@@ -33,6 +33,7 @@ This is the fastest guide to where information belongs.
 | Laboratory protocol, stage gates, and benchmark ladder | `docs/11-research-laboratory/` |
 | Repeated compaction and emotion-factor benchmark | `docs/11-research-laboratory/compression-benchmark-extension.md` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
+| Emotion/salience mechanism synthesis and falsification rules | `docs/12-interdisciplinary-memory/emotion-salience-synthesis.md` |
 | Coverage, search, experiment, and backend registries | `data/lab/` |
 | Machine-readable repository list | `data/catalogs/repositories-seed.csv` |
 | Machine-readable paper list | `data/catalogs/papers-curated.csv` |

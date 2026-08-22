@@ -100,4 +100,6 @@ See:
 
 - [source seeds](source-seeds.md);
 - [hypothesis portfolio](hypothesis-portfolio.md);
+- [compression synthesis](compression-synthesis.md);
+- [emotion and salience synthesis](emotion-salience-synthesis.md);
 - [synthesis protocol](synthesis-protocol.md).

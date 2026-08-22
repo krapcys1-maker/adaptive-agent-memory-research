@@ -61,12 +61,33 @@ Use a factorial synthetic design rather than inferring emotion from prose:
 - surprise: expected, unexpected;
 - factual reliability: corroborated, single-source, contradicted;
 - future query probability: low, high.
+- modulatory timing: before encoding, immediately after, delayed, retrieval time;
+- contingency scope: task-relevant feature, peripheral feature, session-wide;
+- required controller: evidence retrieval, semantic revision, cached procedure.
 
 Compare uniform allocation, consequence-only, surprise-only, emotion-only, and factor-separated policies. Never use the emotional label as evidence truth.
 
-Primary: consequence-weighted answer loss. Guardrails: unweighted critical recall, contradiction detection, calibration, demographic/topic bias, and adversarial emotional-language promotion.
+Primary: consequence-weighted answer loss. Guardrails: unweighted critical recall, contradiction detection, calibration, false generalization to similar contexts, procedure perseveration after a rule change, demographic/topic bias, and adversarial emotional-language promotion.
 
 Success: a factor-separated policy improves weighted loss over uniform allocation and all single-signal policies on held-out combinations, while no protected guardrail worsens beyond a preregistered 2-point non-inferiority margin. Failure means emotion metadata is not admitted to automatic allocation.
+
+## Experiment C5 — provisional eligibility and delayed promotion
+
+Every event is appended immediately to the raw archive. Only promotion into derived semantic/procedural memory is delayed. Outcomes arrive before, immediately after, or well after a frozen eligibility window; unrelated novel and emotionally worded events occur inside the same window as distractors.
+
+Compare immediate promotion, fixed batch promotion, expiring eligibility, eligibility plus causal/event linkage, and no promotion/raw retrieval only.
+
+Primary: delayed critical-task success at fixed derived-memory budget. Guardrails: wrong-event promotion, poison promotion, missed urgent correction, raw-archive availability, and maintenance cost.
+
+Success: linked eligibility improves delayed task success by at least 8 points over fixed batch and immediate promotion while wrong-event/poison promotion is no worse than the best baseline plus 2 points. If raw retrieval alone matches it, promotion is rejected as unnecessary complexity.
+
+## Experiment C6 — specificity and subsystem control
+
+Pair each learned episode/procedure with near-neighbor contexts where it is invalid, then introduce a rule change that requires evidence retrieval instead of the familiar cached procedure. Cross consequence/arousal labels with whether the cached procedure is actually correct.
+
+Primary: context-specific correct-action rate. Guardrails: false generalization, procedure perseveration, contradiction retrieval, and abstention when scope is ambiguous.
+
+Success: factor-separated control preserves or improves routine-task performance while reducing false generalization and post-change perseveration by at least 8 points versus a scalar salience rank. Failure blocks salience from choosing the memory subsystem.
 
 ## Analysis and stopping
 

@@ -77,5 +77,10 @@ Do not mark a paper read until the note records:
 3. Nagy, Orbán, and Wu — adaptive episodic/semantic compression Perspective.
 4. Jakob and Gershman — rate-distortion population coding for working memory.
 5. Fayyaz et al. — semantic completion in a generative episodic-memory model.
+6. Grella and Donaldson — contextual engrams and locus-coeruleus neuromodulation review.
+7. Leake et al. — learning duration, engram reactivation, and context precision in mice.
+8. Packard and Goodman — emotional arousal and competing memory systems review.
+9. Wittmann et al. — reward contingency and delayed human recollection.
+10. Wang et al. — novelty, synaptic tagging/capture, and spatial-memory persistence in rats.
 
 Canonical notes and artifact hashes are in `docs/07-literature/full-read-notes/`. Completion here means the full read plus an initial challenge pass, not independent verification or architecture endorsement.
