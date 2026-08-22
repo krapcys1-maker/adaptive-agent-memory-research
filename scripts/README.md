@@ -131,6 +131,16 @@ python scripts/run_obligation_mapping_construction.py --check
 
 The output preserves a whole-query baseline, conjunction splitter, QDMR-inspired rules, gold-obligation linker ceiling, and gold oracle. Its corpus was inspectable; results only diagnose the instrument and cannot establish generalization.
 
+Prepare, run, and score the optional budgeted DeepSeek comparator:
+
+```powershell
+python scripts/run_obligation_mapping_deepseek.py prepare
+python scripts/run_obligation_mapping_deepseek.py run --budget-usd 10
+python scripts/run_obligation_mapping_deepseek.py score
+```
+
+The prompt and model-visible jobs must be committed before `run`. The adapter uses the global conservative budget ledger, separates paired translations across stateless batches, validates the complete output schema, and treats missing/invalid predictions as failures.
+
 ## Verify screening-source identity
 
 Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:

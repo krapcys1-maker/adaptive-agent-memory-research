@@ -1,0 +1,28 @@
+{
+  "experiment": "PMLAB-MAP-001-optional-model-construction",
+  "status": "frozen-input",
+  "created_at": "2026-08-22T17:44:38Z",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "pmlab-map-deepseek-v0",
+  "corpus_freeze_commit": "4b6c47e",
+  "case_count": 56,
+  "temperature": 0,
+  "thinking": "disabled",
+  "response_format": "json_object",
+  "data_class": "synthetic public benchmark fixtures",
+  "authority": "replaceable model comparator; never gold",
+  "hard_cumulative_budget_usd": 10.0,
+  "hashes": {
+    "jobs.jsonl": "9361d3277fdcb43c46aae00e9416c97c5adcc72b7c2a1e5c8f8748ddddeef951",
+    "prompt.txt": "a0c74ac2ae45ef272a7d02986ea23f1bac04ee3b41d2376ea730ce11282c9723",
+    "schema-v0.json": "eb2b6f8abc1f5cba301d6ed22f9e30553909826b1360d59260d91f5ad0fc8d11",
+    "entities-v0.json": "1d6ed0394e2fd38d40e5fc3e48150b385c200b7030b80dcc7995eef5edf883ed",
+    "model-cases.jsonl": "889e685c0a2ca815650934770024a2317388e9f6e75a806dfcf16ae67ce97f69"
+  },
+  "known_limitations": [
+    "inspectable construction corpus",
+    "single model",
+    "no independent labels",
+    "no held-out challenge"
+  ]
+}
