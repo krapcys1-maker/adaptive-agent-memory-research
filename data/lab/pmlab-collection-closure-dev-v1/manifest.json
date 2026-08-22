@@ -1,0 +1,83 @@
+{
+  "experiment_id": "PMLAB-CLOSURE-001",
+  "dataset": "pmlab-collection-closure-dev-v1",
+  "status": "authored-construction-freeze",
+  "parent_dataset": "pmlab-collection-closure-dev-v0",
+  "parent_corpus_sha256": "3599635e6e66cd1f98a2d7bcae98f97369aa5e4c412590f697a126f124253e58",
+  "change_reason": "v0 did not isolate insertion-independence because counterexample certificates already declared partial",
+  "changes": [
+    "two bilingual insertion-counterexample certificates now declare status complete",
+    "all cases receive an evaluation-only adversarial_certificate_claim boolean",
+    "queries inventories probes insertions expected tiers and expected actions are unchanged"
+  ],
+  "freeze_boundary": "first git commit containing v1 builder, tests, manifest, and all five v1 JSONL artifacts",
+  "case_count": 48,
+  "corpus_sha256": "3450ebbed450904216c75366c9aac374bdafb5e9add3a13d44e59e74d69ee43c",
+  "artifact_sha256": {
+    "cases": "b175166e876bd8243a61b1f4090df2cc693781a0959d0c4fea306f89064e4b42",
+    "inventories": "6dd1c87edfd3e661a185306b2741a27ca5f29476928e0cd117e7006feca54a98",
+    "probes": "c282fc137db49cddf9fd1933bdbb1cdc90bf5a9f43171fe95511a551a35ee77a",
+    "certificates": "fa935db3b484178a486e3a39ee676c76d9d07ce705bfdc5063d5a10b3cb8d8f9",
+    "insertions": "ce0d9bc6a6d4be21e59e5dd09e7992ae46ea2437da4071795c8ac5edf8ebcb3d"
+  },
+  "strata": {
+    "absent-positive-without-explicit-negation": 2,
+    "admissible-insertion-changes-negative-answer": 2,
+    "admissible-insertions-independent-of-query": 2,
+    "ambiguous-entity-before-scope-mapping": 2,
+    "authoritative-source-wrong-predicate": 2,
+    "bilingual-query-maps-to-exact-certificate": 2,
+    "bounded-enumeration-count-and-probes-match": 2,
+    "bounded-enumeration-member-count-mismatch": 2,
+    "complete-scope-with-current-conflict": 2,
+    "complete-scope-with-superseded-and-current-record": 2,
+    "expired-exact-certificate": 2,
+    "explicit-negative-fact-in-complete-scope": 2,
+    "globally-incomplete-query-complete-entity-slice": 2,
+    "indexes-complete-canonical-inventory-unknown": 2,
+    "multi-facet-with-different-closure-scopes": 2,
+    "only-stale-or-unauthorized-records-in-complete-scope": 2,
+    "positive-certain-answer-in-incomplete-collection": 2,
+    "predicate-entity-complete-time-interval-incomplete": 2,
+    "query-mapped-to-wrong-certificate-scope": 2,
+    "required-replica-unavailable": 2,
+    "retrieval-not-attempted": 2,
+    "scope-mutated-after-certificate": 2,
+    "searched-scope-with-unsearched-domain": 2,
+    "unsearched-unauthorized-partition": 2
+  },
+  "languages": {
+    "en": 24,
+    "pl": 24
+  },
+  "negative_tiers": {
+    "MIXED": 2,
+    "N0_NOT_RETRIEVED": 2,
+    "N1_NOT_FOUND_IN_SEARCHED_SCOPE": 22,
+    "N2_NO_AUTHORIZED_CURRENT_RECORD_IN_COMPLETE_SCOPE": 12,
+    "N3_PROPOSITION_FALSE": 2,
+    "NONE": 8
+  },
+  "expected_actions": {
+    "ABSTAIN_CONFLICT": 2,
+    "ABSTAIN_INCONCLUSIVE": 8,
+    "ANSWER_EXPLICIT_NEGATIVE": 2,
+    "ANSWER_SUPPORTED": 4,
+    "ASK_CLARIFICATION": 2,
+    "PARTIAL_WITH_SCOPED_GAP": 2,
+    "PROBE_SCOPE": 12,
+    "REMAP_SCOPE": 2,
+    "REPORT_BOUNDED_ABSENCE": 12,
+    "RETRIEVE": 2
+  },
+  "critical_cases": 34,
+  "adversarial_certificate_claims": 2,
+  "limitations": [
+    "authored construction corpus with visible gold labels",
+    "v1 was repaired before any runner existed but after v0 freeze",
+    "bilingual pairs share semantics and must be split by pair_group",
+    "inventories certificates probes and insertions are synthetic diagnostic artifacts",
+    "no natural-language scope mapper policy or scoring runner is implemented",
+    "passing can validate only state-machine and artifact-contract semantics"
+  ]
+}
