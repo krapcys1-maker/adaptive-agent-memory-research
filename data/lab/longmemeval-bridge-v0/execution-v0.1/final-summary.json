@@ -1,0 +1,171 @@
+{
+  "architecture_effect": "none",
+  "b2_minus_b1_by_question_type": {
+    "knowledge-update": 0.0,
+    "multi-session": 0.09999999999999998,
+    "single-session-assistant": 0.0,
+    "single-session-preference": 0.19999999999999996,
+    "single-session-user": 0.0,
+    "temporal-reasoning": 0.0
+  },
+  "backends": {
+    "B0-no-memory": {
+      "abstention_candidate_null_rate": 1.0,
+      "abstention_cases": 6,
+      "abstention_near_miss_intrusion_at_1_rate": 0.0,
+      "abstention_near_miss_intrusion_at_5_rate": 0.0,
+      "all_required_at_5_rate": 0.0,
+      "answerable_cases": 30,
+      "backend": "B0-no-memory",
+      "backend_errors": 0,
+      "cases": 36,
+      "first_pass_latency_p50_ms": 0.006,
+      "first_pass_latency_p95_ms": 0.0093,
+      "macro_recall_at_1": 0.0,
+      "macro_recall_at_5": 0.0,
+      "mean_build_ms_per_case": 0.0018805555555555555,
+      "mean_candidate_count": 0.0,
+      "mean_index_bytes_per_case": 0.0,
+      "mean_ndcg_at_5": 0.0,
+      "mean_reciprocal_rank": 0.0,
+      "micro_recall_at_5": 0.0,
+      "query_mean_recall_at_5": 0.0,
+      "recall_at_5_by_question_type": {
+        "knowledge-update": 0.0,
+        "multi-session": 0.0,
+        "single-session-assistant": 0.0,
+        "single-session-preference": 0.0,
+        "single-session-user": 0.0,
+        "temporal-reasoning": 0.0
+      }
+    },
+    "B1-ripgrep": {
+      "abstention_candidate_null_rate": 0.0,
+      "abstention_cases": 6,
+      "abstention_near_miss_intrusion_at_1_rate": 1.0,
+      "abstention_near_miss_intrusion_at_5_rate": 1.0,
+      "all_required_at_5_rate": 0.9333333333333333,
+      "answerable_cases": 30,
+      "backend": "B1-ripgrep",
+      "backend_errors": 0,
+      "cases": 36,
+      "first_pass_latency_p50_ms": 364.0913,
+      "first_pass_latency_p95_ms": 557.6761,
+      "macro_recall_at_1": 0.6,
+      "macro_recall_at_5": 0.9333333333333332,
+      "mean_build_ms_per_case": 17.43906388888889,
+      "mean_candidate_count": 5.0,
+      "mean_index_bytes_per_case": 500849.25,
+      "mean_ndcg_at_5": 0.863505895566188,
+      "mean_reciprocal_rank": 0.8416666666666667,
+      "micro_recall_at_5": 0.9318181818181818,
+      "query_mean_recall_at_5": 0.9333333333333333,
+      "recall_at_5_by_question_type": {
+        "knowledge-update": 1.0,
+        "multi-session": 0.8,
+        "single-session-assistant": 1.0,
+        "single-session-preference": 0.8,
+        "single-session-user": 1.0,
+        "temporal-reasoning": 1.0
+      }
+    },
+    "B2-sqlite-fts5": {
+      "abstention_candidate_null_rate": 0.0,
+      "abstention_cases": 6,
+      "abstention_near_miss_intrusion_at_1_rate": 0.8333333333333334,
+      "abstention_near_miss_intrusion_at_5_rate": 0.8333333333333334,
+      "all_required_at_5_rate": 0.9666666666666667,
+      "answerable_cases": 30,
+      "backend": "B2-sqlite-fts5",
+      "backend_errors": 0,
+      "cases": 36,
+      "first_pass_latency_p50_ms": 0.6278,
+      "first_pass_latency_p95_ms": 0.8506,
+      "macro_recall_at_1": 0.65,
+      "macro_recall_at_5": 0.9833333333333334,
+      "mean_build_ms_per_case": 20.00251388888889,
+      "mean_candidate_count": 5.0,
+      "mean_index_bytes_per_case": 817720.8888888889,
+      "mean_ndcg_at_5": 0.9237069654807757,
+      "mean_reciprocal_rank": 0.9133333333333333,
+      "micro_recall_at_5": 0.9772727272727273,
+      "query_mean_recall_at_5": 0.9833333333333333,
+      "recall_at_5_by_question_type": {
+        "knowledge-update": 1.0,
+        "multi-session": 0.9,
+        "single-session-assistant": 1.0,
+        "single-session-preference": 1.0,
+        "single-session-user": 1.0,
+        "temporal-reasoning": 1.0
+      }
+    },
+    "O-answer-session-control": {
+      "abstention_candidate_null_rate": 1.0,
+      "abstention_cases": 6,
+      "abstention_near_miss_intrusion_at_1_rate": 0.0,
+      "abstention_near_miss_intrusion_at_5_rate": 0.0,
+      "all_required_at_5_rate": 1.0,
+      "answerable_cases": 30,
+      "backend": "O-answer-session-control",
+      "backend_errors": 0,
+      "cases": 36,
+      "first_pass_latency_p50_ms": 0.0044,
+      "first_pass_latency_p95_ms": 0.0062,
+      "macro_recall_at_1": 0.7666666666666667,
+      "macro_recall_at_5": 1.0,
+      "mean_build_ms_per_case": 0.004922222222222222,
+      "mean_candidate_count": 1.2222222222222223,
+      "mean_index_bytes_per_case": 0.0,
+      "mean_ndcg_at_5": 1.0,
+      "mean_reciprocal_rank": 1.0,
+      "micro_recall_at_5": 1.0,
+      "query_mean_recall_at_5": 1.0,
+      "recall_at_5_by_question_type": {
+        "knowledge-update": 1.0,
+        "multi-session": 1.0,
+        "single-session-assistant": 1.0,
+        "single-session-preference": 1.0,
+        "single-session-user": 1.0,
+        "temporal-reasoning": 1.0
+      }
+    }
+  },
+  "content_free": true,
+  "controls": {
+    "B0_zero_recall_and_empty": true,
+    "fresh_process_determinism": true,
+    "no_backend_errors": true,
+    "oracle_empty_abstention": true,
+    "oracle_perfect_answerable": true
+  },
+  "created_at": "2026-08-22T21:36:25Z",
+  "decision": "supports-sparse-transfer",
+  "limitations": [
+    "public, potentially contaminated transfer set",
+    "30 answerable and six abstention cases provide low statistical power",
+    "synthetic/compiled histories differ from natural project memory",
+    "retrieval-only evaluation cannot establish answer correctness or abstention correctness",
+    "session dates are deliberately excluded by the frozen metadata-blind adapter"
+  ],
+  "measurement_sha256": {
+    "measurement-a": "c75cc023854d70f37d3755d3188c6631501d2e41bffbd9460ff0b567178ea9c2",
+    "measurement-b": "427c1686356d7fd769386adca37fc779da39f637de806a97828a616a942d61df"
+  },
+  "paired_bootstrap": {
+    "b2_minus_b1": 0.05000000000000001,
+    "ci95_high": 0.11666666666666665,
+    "ci95_low": 0.0
+  },
+  "primary_results_sha256": "2d8d65daf31f9c6f5d87215b147b28f9703157d263522e9aff0ba01e2089e573",
+  "status": "complete-public-transfer-diagnostic",
+  "warm_latency": {
+    "B1-ripgrep": {
+      "query_p50_of_case_p50_ms": 102.67190006561577,
+      "query_p95_of_case_p95_ms": 276.7791000660509
+    },
+    "B2-sqlite-fts5": {
+      "query_p50_of_case_p50_ms": 0.31050003599375486,
+      "query_p95_of_case_p95_ms": 0.5920999683439732
+    }
+  }
+}
