@@ -93,5 +93,13 @@ Do not mark a paper read until the note records:
 15. Schiller et al. — human reactivation-extinction and reported return-of-fear blockade.
 16. Chalkia et al. — registered direct replication of reactivation-extinction.
 17. Hardwicke et al. — direct and conceptual postretrieval sequence replications.
+18. Wolfson et al. — BREAK/QDMR formalism, annotation, conversion, split, metrics, and parser-error audit.
+19. Lei et al. — Spider schema-link annotation, oracle-link ablation, and residual-error audit.
+20. Gan et al. — Spider-Syn construction, review process, overlap, metrics, and defense caveats.
+21. Kim and Linzen — COGS construction, generalization cases, split sizes, multi-seed results, and boundaries.
+22. Keysers et al. — CFQ/DBCA atom and compound definitions, MCD construction, leakage warning, and results.
+23. Bethard and Parker — SCATE typed temporal semantics, annotation agreement, corpus size, and limitations.
+24. Laparra et al. — SemEval time graph/interval tracks, data, metrics, results, and participation limits.
+25. Wu et al. — BLINK retrieval/reranking split, candidate ceilings, in-KB assumption, and absent NIL evaluation.
 
 Canonical notes and artifact hashes are in `docs/07-literature/full-read-notes/`. Completion here means the full read plus an initial challenge pass, not independent verification or architecture endorsement.

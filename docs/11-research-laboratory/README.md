@@ -78,6 +78,9 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-diverse-cues-v0/` — frozen-protocol result: strong validity/trust/cross-language gains, but the bundle is rejected by the zero-abstention result.
 - `docs/12-interdisciplinary-memory/evidence-sufficiency-and-completeness-synthesis.md` — source-backed typology and preregistration draft for answerability, obligation coverage, claim support, and typed gaps.
 - `data/lab/pmlab-evidence-sufficiency-dev-v0/` — 36-case frozen construction corpus and policy ablation; gold hybrid validates the state contract while matched-coverage and real-mapping gates remain closed.
+- `docs/07-literature/obligation-mapping-primary-source-audit.md` — exact-locator audit of BREAK, schema linking, Spider-Syn, COGS, CFQ, SCATE, SemEval time parsing, and BLINK.
+- `docs/11-research-laboratory/obligation-ir-schema-v0.md` — design-freeze candidate separating computation graphs from entity/predicate/time/authorization/certificate scopes.
+- `data/lab/pmlab-obligation-mapping-dev-v0/` — bilingual 28-group/56-case construction source, metric-equivalence fixtures, generated payloads, and deterministic validation; not held out or independently reviewed.
 - `data/lab/pmlab-forgetting-dev/` — deterministic 28-case F1 and 56-query F2 development instrument with artifacts and an adversarial review.
 - `data/lab/pmlab-forgetting-challenge-v0/` — unseen-template multi-fault and ambiguous entity/time challenge that breaks the development resolver.
 - `data/lab/reader-interference-stress-v5/` — first fully audited single-model factorial over stale count, cue quality, order, similarity, and instruction strength.

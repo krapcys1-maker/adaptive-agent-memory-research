@@ -1,0 +1,34 @@
+{
+  "schema_version": "pmlab-map-fixture-schema-v0",
+  "namespaces": [
+    {"id": "approvals", "authorization": "project-read"},
+    {"id": "canonical-events", "authorization": "project-read"},
+    {"id": "experiments", "authorization": "project-read"},
+    {"id": "benchmarks", "authorization": "project-read"},
+    {"id": "findings", "authorization": "project-read"},
+    {"id": "decisions", "authorization": "project-read"},
+    {"id": "failures", "authorization": "project-read"},
+    {"id": "private-notes", "authorization": "private-read"}
+  ],
+  "predicates": [
+    {"id": "approval.approver", "namespace": "approvals", "aliases": {"en": ["approver", "signed off"], "pl": ["zatwierdzający", "zatwierdził", "podpisał zgodę"]}},
+    {"id": "approval.date", "namespace": "approvals", "aliases": {"en": ["approval date"], "pl": ["data zatwierdzenia", "kiedy zatwierdzono"]}},
+    {"id": "approval.status", "namespace": "approvals", "aliases": {"en": ["approved"], "pl": ["zatwierdzony"]}},
+    {"id": "project.owner", "namespace": "canonical-events", "aliases": {"en": ["owner"], "pl": ["właściciel"]}},
+    {"id": "person.manager", "namespace": "canonical-events", "aliases": {"en": ["manager"], "pl": ["przełożony"]}},
+    {"id": "experiment.status", "namespace": "experiments", "aliases": {"en": ["status", "completed", "failed"], "pl": ["status", "ukończony", "nieudany"]}},
+    {"id": "experiment.failure_count", "namespace": "experiments", "aliases": {"en": ["failure count"], "pl": ["liczba niepowodzeń"]}},
+    {"id": "backend.failure_events", "namespace": "failures", "aliases": {"en": ["failures"], "pl": ["awarie", "niepowodzenia"]}},
+    {"id": "run.cost_usd", "namespace": "experiments", "aliases": {"en": ["cost"], "pl": ["koszt"]}},
+    {"id": "benchmark.recall_at_5", "namespace": "benchmarks", "aliases": {"en": ["Recall@5", "recall"], "pl": ["Recall@5", "czułość"]}},
+    {"id": "record.kind", "namespace": "canonical-events", "aliases": {"en": ["kind", "finding", "decision"], "pl": ["rodzaj", "ustalenie", "decyzja"]}},
+    {"id": "record.review_status", "namespace": "canonical-events", "aliases": {"en": ["reviewed", "current"], "pl": ["zrecenzowany", "aktualny"]}},
+    {"id": "experiment.planned", "namespace": "experiments", "aliases": {"en": ["planned"], "pl": ["zaplanowany"]}},
+    {"id": "experiment.completed", "namespace": "experiments", "aliases": {"en": ["completed"], "pl": ["ukończony"]}},
+    {"id": "failure.occurred_at", "namespace": "failures", "aliases": {"en": ["failure time", "latest"], "pl": ["czas awarii", "najnowszy"]}},
+    {"id": "claim.polarity", "namespace": "findings", "aliases": {"en": ["explicitly false"], "pl": ["jawnie fałszywe"]}},
+    {"id": "review.exists", "namespace": "canonical-events", "aliases": {"en": ["review exists"], "pl": ["istnieje przegląd"]}},
+    {"id": "authorization.secret_note", "namespace": "private-notes", "aliases": {"en": ["secret note"], "pl": ["tajna notatka"]}},
+    {"id": "temporal.event", "namespace": "canonical-events", "aliases": {"en": ["event"], "pl": ["zdarzenie"]}}
+  ]
+}

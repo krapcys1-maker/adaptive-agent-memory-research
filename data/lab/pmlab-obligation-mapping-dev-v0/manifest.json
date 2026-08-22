@@ -1,0 +1,52 @@
+{
+  "artifact": "construction-dev-v0",
+  "benchmark": "PMLAB-MAP-001",
+  "builder_version": "pmlab-map-builder-v0",
+  "case_count": 56,
+  "equivalence_fixture_count": 4,
+  "equivalence_fixture_counts": {
+    "different-structure-same-denotation": 2,
+    "same-structure-different-denotation": 2
+  },
+  "hashes": {
+    "cases.jsonl": "93b9458e7e543656b15a940d647ea242cde4f5a2dfad12e6b0c495972213f336",
+    "entities-v0.json": "1d6ed0394e2fd38d40e5fc3e48150b385c200b7030b80dcc7995eef5edf883ed",
+    "equivalence-fixtures.jsonl": "01530bca88794a4f4f6e89fc563ddfe1de081778fa25b863c8e29df9912bf604",
+    "model-cases.jsonl": "889e685c0a2ca815650934770024a2317388e9f6e75a806dfcf16ae67ce97f69",
+    "schema-v0.json": "eb2b6f8abc1f5cba301d6ed22f9e30553909826b1360d59260d91f5ad0fc8d11",
+    "template-groups.jsonl": "c55dd43b24d7b26ad0e9d6ab2deaeaf29f0a1efbce18d938655ba084166efd02"
+  },
+  "known_blockers": [
+    "not independently reviewed",
+    "no held-out challenge"
+  ],
+  "language_counts": {
+    "en": 28,
+    "pl": 28
+  },
+  "operator_counts": {
+    "AGGREGATE": 2,
+    "ARITHMETIC": 2,
+    "BOOLEAN": 4,
+    "COMPARATIVE": 2,
+    "DIFFERENCE": 2,
+    "FILTER": 2,
+    "GROUP": 2,
+    "INTERSECTION": 2,
+    "PROJECT": 2,
+    "SELECT": 64,
+    "SORT": 2,
+    "SUPERLATIVE": 2,
+    "UNION": 2
+  },
+  "reference_clock": "2026-08-22T12:00:00+03:00",
+  "status": "authored-construction-not-held-out",
+  "supportedness_counts": {
+    "ambiguous": 2,
+    "nil": 1,
+    "supported": 22,
+    "unauthorized": 1,
+    "unsupported": 2
+  },
+  "template_group_count": 28
+}

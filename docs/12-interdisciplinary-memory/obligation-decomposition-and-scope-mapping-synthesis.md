@@ -1,6 +1,6 @@
 # Obligation decomposition and scope mapping
 
-Status: targeted primary-paper pass complete; full-text metric audit, multilingual evidence, and independent review incomplete
+Status: targeted full-text metric audit complete for BREAK, schema linking, Spider-Syn, COGS, CFQ, SCATE, SemEval time normalization, and BLINK; multilingual evidence, later replication audit, and independent review incomplete
 
 ## Central conclusion
 
@@ -10,17 +10,17 @@ A missed obligation is safety-critical: the system may certify and answer the pa
 
 ## Evidence transferred
 
-QDMR represents a complex question as an ordered sequence of simpler natural-language steps and a small operator inventory. The BREAK work shows that these decompositions can be converted to a pseudo-SQL representation and used in downstream QA. This makes QDMR a useful candidate intermediate representation, not a ready-made oracle for personal memory: its source tasks, annotations, operators, and evaluation do not encode our authorization, valid-time, provenance, or collection-certificate semantics.
+QDMR represents a complex question as an ordered, backward-referencing DAG of simpler natural-language steps and 13 operator families. BREAK contains 83,978 questions, but its full-text metrics impose caution: expert review found 97.4% correct decompositions and 93.8% both correct and granular; conversion review found 99.4% correct individual logical steps but only 93.1% fully accurate logical forms; the granular parser's exact match was 0.157 while manual semantic acceptance was 54%. The split follows source datasets/contexts rather than held-out semantic templates, and grounding is outside QDMR. It is therefore a useful candidate computation graph, not a ready-made oracle for personal-memory scopes.
 
-Text-to-SQL work separates schema encoding from schema linking. RAT-SQL and subsequent schema-linking analysis show that aligning mentions to columns/tables is a central failure source, especially on unseen schemas. This maps directly to predicate and namespace selection in memory. A correct logical decomposition with the wrong predicate is still a wrong collection certificate.
+Text-to-SQL work separates schema encoding from schema linking. The audited Spider study raised a simple parser from 57.4 to 72.4 dev exact match with oracle links, but automatic versus adjudicated link labels reached only 0.775 column, 0.801 table, and 0.915 value micro F1. In repeated manual audits of oracle-link parser errors, 29.6% were semantically valid outputs rejected by exact match, 26.3% were corpus errors, and 44.1% were genuine model incapability. A correct logical decomposition with the wrong predicate is still a wrong collection certificate, but correct links are also not sufficient for correct logical composition.
 
-Spider-Syn removes easy lexical overlap by substituting natural synonyms and reports large performance degradation in existing parsers. Therefore our mapper cannot be evaluated only on questions that repeat canonical predicate names. English paraphrases, Polish forms, abbreviations, and user vocabulary must be split by semantic template and schema, with synonym glossaries frozen independently.
+Spider-Syn removes easy lexical overlap by substituting natural synonyms. RAT-SQL+BERT fell from 69.7% Spider dev exact match to 48.2% on Spider-Syn. However, Spider-Syn has no public test set, 35% of development substitutions also occur in training, and ManualMAS uses the benchmark's own synonym annotations. It establishes lexical fragility, not open-schema or Polish generalization. English paraphrases, Polish forms, abbreviations, and user vocabulary must be grouped by semantic template and schema, with glossaries frozen independently.
 
-COGS and CFQ expose compositional generalization gaps by holding out new combinations of familiar atoms and structures. Random row splits are not sufficient. Bilingual translations and paraphrases of one semantic template belong to one split group; new test structures must combine familiar predicates, entity types, time operators, and question operators in unseen ways.
+COGS exposes compositional generalization gaps by contrasting ordinary in-distribution data with a 21,000-example, 21-case generalization set. Tested models scored 0.96-0.99 in distribution but only 0.16-0.35 on generalization, with high seed sensitivity, and structural recombinations were harder than lexical ones. CFQ/DBCA formalizes the split objective: keep atom distributions similar while making rule-application compounds different. Its MCD baselines fell from above 97% random-split accuracy to 14.9-18.9%, but CFQ deliberately removes ambiguity and named-entity learning. These generated-task numbers do not transfer; the split discipline does. Bilingual translations and paraphrases of one semantic template belong to one group, and challenge structures must recombine familiar atoms in unseen compounds. Hyperparameters may not be selected on a validation set drawn from the challenge compound distribution.
 
-Temporal normalization is a distinct semantic task. SCATE-style work represents expressions using compositional operators and handles relative, recurring, intersecting, and event-anchored time. The project must preserve the original span, normalized interval, reference time, timezone, granularity, inclusivity, and ambiguity. A parser that guesses an interval must not silently select a certificate.
+Temporal normalization is a distinct semantic task. SCATE defines typed periods, intervals, repeating intervals, and 18 temporal operator signatures/variants. Its initial 34-document corpus reached 0.917 span/type F1 but 0.821 full span/type/property/link F1. SemEval-2018 then separated component-graph parsing from interpreted bounded intervals and showed that better component scores need not yield better interval scores. The project must preserve raw span, operator graph, normalized interval, reference time, timezone, granularity, inclusivity, recurrence, and ambiguity, and score structure separately from denotation. A parser that guesses an interval must not silently select a certificate.
 
-Entity linking is likewise separate. Retrieval-plus-reranking systems such as BLINK illustrate the candidate-generation/disambiguation split, but dense similarity is not authorization or identity proof. The mapper must return multiple candidates or unresolved state when names collide.
+Entity linking is likewise separate. BLINK illustrates candidate retrieval plus reranking, but its zero-shot task assumes a valid in-KB gold entity and explicitly leaves NIL prediction to future work. Its 82.06% Recall@64 on the zero-shot test also demonstrates that reranking cannot recover a gold entity absent from the candidate set. Dense similarity is not authorization or identity proof. The mapper must preserve multiple candidates and return ambiguous/NIL state when required rather than force a link.
 
 ## Proposed intermediate representation
 
@@ -109,7 +109,7 @@ End-to-end answer accuracy cannot localize these failures. Gold obligations must
 - abstention, clarification, retrieval cost, latency, and risk-coverage;
 - errors by unseen template, unseen schema, synonym, language, ambiguity, and temporal class.
 
-Semantic equivalence needs structured comparison or controlled execution. Raw string exact match remains a strict diagnostic but cannot be the only decomposition metric.
+Semantic equivalence needs structured comparison or controlled execution. Raw exact match remains a strict diagnostic but cannot be the only decomposition metric. Conversely, denotational equivalence cannot replace graph scoring because a wrong intermediate structure can accidentally produce the same result on one fixture. Strict form, structure, and denotation/action are three separate score views.
 
 ### Candidate gates
 
@@ -151,9 +151,10 @@ These are preregistration candidates. Dataset utilities and minimum coverage mus
 
 ## Remaining evidence work
 
-- read BREAK annotation, conversion, split, and evaluation sections in full and inspect later QDMR error analyses;
-- audit Spider schema-linking labels, noise, execution metrics, and adversarial variants;
+- audit later CFQ/COGS/QDMR replications and alternative compound definitions;
 - find Polish and multilingual decomposition/entity/temporal benchmarks or establish a documented translation protocol;
 - compare SCATE, TimeML/TIMEX3, HeidelTime, and modern multilingual normalizers on our supported time language;
-- audit entity-linking calibration and NIL/unknown handling rather than top-1 accuracy alone;
+- audit later entity-linking calibration and NIL/unknown handling rather than top-1 in-KB accuracy alone;
 - obtain an independent review of obligation atomicity, operator inventory, and asymmetric utilities.
+
+Exact local locators, hashes, numerical caveats, and audit corrections are recorded in `docs/07-literature/obligation-mapping-primary-source-audit.md`. The construction contract is in `docs/11-research-laboratory/obligation-ir-schema-v0.md`.

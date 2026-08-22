@@ -1,6 +1,6 @@
 # Obligation decomposer and scope-mapper protocol
 
-Status: preregistration draft; no corpus, parser, or result
+Status: preregistration draft; design-freeze candidate and construction corpus exist; no parser, independent review, or result
 
 ## Purpose
 
@@ -40,3 +40,7 @@ Status: preregistration draft; no corpus, parser, or result
 ## Promotion boundary
 
 A construction pass validates serialization and scoring only. No mapper advances until it passes an unseen template-and-schema challenge, zero critical false-closure gate, bilingual audit, and independent label review. A cloud-model arm may be useful as a replaceable comparator, never as gold.
+
+## Current construction artifact
+
+`docs/11-research-laboratory/obligation-ir-schema-v0.md` defines the operator, scope, atomicity, split, utility, and metric contract. `data/lab/pmlab-obligation-mapping-dev-v0/` contains 28 semantic groups expanded to 56 paired PL/EN cases. It covers all 13 operators and includes ambiguity, NIL, authorization, temporal, closure, unsupported-structure, and structure-versus-denotation metric fixtures. It remains inspectable development data and may not be reported as held out.

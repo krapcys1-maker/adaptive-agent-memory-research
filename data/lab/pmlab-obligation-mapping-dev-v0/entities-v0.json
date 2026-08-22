@@ -1,0 +1,15 @@
+{
+  "catalog_version": "pmlab-map-fixture-entities-v0",
+  "entities": [
+    {"id": "project:umber", "type": "project", "aliases": ["Umber", "projekt Umber", "Umber project"]},
+    {"id": "project:mercury", "type": "project", "aliases": ["Mercury", "projekt Mercury", "Mercury project"]},
+    {"id": "person:mercury", "type": "person", "aliases": ["Mercury"]},
+    {"id": "person:anna-kowalska", "type": "person", "aliases": ["Anna Kowalska", "Anna"]},
+    {"id": "person:alex-lee", "type": "person", "aliases": ["Alex Lee", "Alex"]},
+    {"id": "backend:rg", "type": "backend", "aliases": ["rg", "ripgrep"]},
+    {"id": "backend:fts5", "type": "backend", "aliases": ["FTS5", "SQLite FTS5"]},
+    {"id": "experiment:closure-v1", "type": "experiment", "aliases": ["closure v1", "PMLAB-CLOSURE v1"]},
+    {"id": "audit:scope", "type": "audit", "aliases": ["scope audit", "audyt zakresu"]}
+  ],
+  "known_nil_mentions": ["Nebula", "projekt Nebula", "Nebula project"]
+}

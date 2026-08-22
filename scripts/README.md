@@ -113,6 +113,15 @@ Run the post-freeze language/date challenge against unchanged parser v0:
 python scripts/run_query_parser_challenge.py
 ```
 
+Build and validate the bilingual PMLAB-MAP construction corpus:
+
+```powershell
+python scripts/build_obligation_mapping_dev_corpus.py
+python scripts/build_obligation_mapping_dev_corpus.py --check
+```
+
+The builder expands 28 semantic template groups into paired English/Polish cases, checks all 13 operators, prevents applicable certificates on unresolved or unauthorized scopes, and emits a gold-free model payload plus a hashed manifest. This is development infrastructure, not a held-out result.
+
 ## Verify screening-source identity
 
 Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:
