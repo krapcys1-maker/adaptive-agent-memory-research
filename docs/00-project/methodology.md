@@ -29,6 +29,20 @@ Each claim should answer:
 - Does the result generalize to long-running agents?
 - What would falsify the proposed AI mapping?
 
+Important claims require a detailed claim card with an exact section, page, figure, table, code line, commit, or dataset row. An abstract is a discovery and triage source; it is not sufficient for a high-confidence mechanism claim.
+
+## Independent challenge
+
+The extractor of a consequential claim must not be its only reviewer. A reviewer should receive the source and claim without being told which architecture the project prefers, then record:
+
+- whether the locator supports the wording;
+- omitted boundary conditions;
+- plausible alternative explanations;
+- contradictory or null evidence;
+- whether confidence should increase, decrease, or remain unchanged.
+
+Multiple agents using the same model and visible reasoning are not automatically independent. Use separated contexts, different model families, blinded labels, or human review according to consequence.
+
 ## Biological translation rule
 
 Never infer this:

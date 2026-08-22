@@ -48,7 +48,10 @@ docs/06-datasets/         Training and evaluation data
 docs/07-literature/       Reading queues, bibliography, evidence ledger
 docs/08-experiments/      Experiment specifications (no implementation yet)
 docs/09-synthesis/        Findings, open questions, exclusions
+docs/10-comparative-biological-memory/  Animal, motor, immune, cellular, and collective memory
+docs/11-research-laboratory/            Coverage protocol, benchmark ladder, gates, architecture boundary
 data/catalogs/            Machine-readable paper and repository catalogs
+data/lab/                 Coverage, search, experiment, and backend registries
 data/snapshots/           Reproducible discovery outputs (normally ignored)
 external/repos/           Local shallow clones (ignored by Git)
 sources/papers/           Local paper PDFs (ignored by Git)
@@ -59,7 +62,7 @@ tools/project_memory/     Dependency-free CLI and MCP memory adapter
 
 ## Current phase
 
-The project is in **Phase 0: evidence collection and conceptual falsification**. Product-memory experiments remain postponed until the lifecycle, evaluation targets, and baseline comparisons are sufficiently clear. The included project-memory bootstrap exists only to preserve the research process itself.
+The project is in **Phase 0: evidence collection and conceptual falsification**, with a formal pre-implementation laboratory now defined. Product-memory experiments remain gated until evidence coverage, benchmark validity, baseline reproduction, and architecture boundaries are sufficiently clear. The included project-memory bootstrap exists only to preserve the research process itself.
 
 ## Working language
 

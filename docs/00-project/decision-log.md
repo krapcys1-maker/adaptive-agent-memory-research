@@ -29,3 +29,21 @@ Reason: Learned retention will make mistakes, and consolidation may corrupt deta
 Decision: Clone useful repositories and download accessible papers locally, but keep them out of this public repository.
 
 Reason: Respect licenses, avoid stale forks, reduce repository size, and preserve clear ownership.
+
+## 2026-08-22 — Laboratory gates before architecture complexity
+
+Decision: Compare `rg`, FTS5/BM25, local dense retrieval, hybrid retrieval, temporal ranking, graph retrieval, and operational salience in that order under one frozen contract.
+
+Reason: Changing multiple components at once prevents causal attribution. Biological plausibility and benchmark popularity are not substitutes for incremental evidence.
+
+## 2026-08-22 — Expand beyond human memory without collapsing meanings
+
+Decision: Add comparative animal, motor, muscle, immune, cellular, epigenetic, prokaryotic, and collective memory as distinct research tracks.
+
+Reason: Different biological systems expose useful strategies for persistence, priming, interference, specificity, and reactivation, but using one word for them must not imply shared mechanisms or cognition.
+
+## 2026-08-22 — Coverage is a protocol state, not a completeness percentage
+
+Decision: Report search rounds, databases, screened denominators, novelty yield, contradictions, and saturation status instead of unsupported estimates such as "95% complete."
+
+Reason: The total relevant literature is unknowable and changes over time. A reproducible stopping rule is defensible; an absolute completeness claim is not.

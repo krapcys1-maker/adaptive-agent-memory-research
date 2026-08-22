@@ -12,6 +12,7 @@ Build the evidence base required to design a local-first long-term memory layer 
 - Source-quality and evidence-rating rules.
 - Paper, project, dataset, and benchmark catalogs.
 - Reproducible discovery scripts.
+- Search logs, coverage matrix, and per-topic saturation criteria.
 - Decision, exclusion, and open-question logs.
 
 ### Exit criteria
@@ -20,6 +21,7 @@ Build the evidence base required to design a local-first long-term memory layer 
 - Each proposed mechanism has at least one measurable hypothesis.
 - External projects have license and relevance metadata.
 - Benchmark leakage and evaluation limitations are documented.
+- No topic is called "complete" without a reproducible multi-database search, citation snowballing, and diminishing-yield audit.
 
 ## Phase 1 — Human memory foundations
 
@@ -117,6 +119,47 @@ Questions:
 - How can an agent know that relevant memory may exist?
 - How should unresolved intentions and future triggers be stored?
 
+## Phase 1B — Comparative biological memory
+
+Study memory-like dependence on history across species and biological scales without treating unlike mechanisms as interchangeable.
+
+### Neural memory across animals
+
+- Episodic-like what-where-when behavior in birds, mammals, and cephalopods.
+- Associative learning, habituation, sensitization, spatial navigation, social memory, and foraging memory.
+- Convergent behavioral capability implemented by different nervous-system architectures.
+
+### Motor and skill memory
+
+- Neural consolidation, interference, practice structure, automaticity, and relearning.
+- Separation of nervous-system motor memory from persistent changes inside skeletal muscle.
+
+### Cellular and molecular history
+
+- Skeletal-muscle epigenetic and myonuclear history effects.
+- Adaptive immune memory and trained innate immunity.
+- Epigenetic/transcriptional priming and cellular hysteresis.
+- CRISPR spacer acquisition as sequence-encoded prokaryotic immune history.
+- Non-neural habituation and adaptation in unicellular or acellular model systems.
+
+### Collective and externalized memory
+
+- Stigmergy, environmental traces, social transmission, and distributed group memory.
+- Distinguish memory inside an individual from information persisted in the environment or population.
+
+Required translation rule:
+
+```text
+observed history-dependent behavior
+→ physical storage substrate
+→ write/update/retention/retrieval dynamics
+→ computational abstraction
+→ non-biological baseline
+→ falsifiable benefit and failure prediction
+```
+
+The comparative map and seed evidence live in `docs/10-comparative-biological-memory/`.
+
 ## Phase 2 — LLM and agent memory landscape
 
 Research each stage independently.
@@ -198,6 +241,8 @@ High-priority bridge hypotheses:
 7. Temporal and causal indexes recover memories missed by semantic similarity.
 
 ## Phase 4 — Evaluation science
+
+All proposed mechanisms enter through the staged laboratory program in `docs/11-research-laboratory/`. A new layer is not unlocked by plausibility or biological analogy; it must beat the previous registered baseline under a frozen protocol.
 
 ### Separate subsystems
 

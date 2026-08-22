@@ -32,3 +32,11 @@ These are operational project definitions, not claims that all research communit
 | Contradiction | Two records that cannot both be valid under the same entity, time, scope, and interpretation. |
 | Supersession | A newer state replaces an older state for current use without erasing historical truth. |
 | Operational affect | Project shorthand for outcome-derived signals such as surprise, reward, effort, severity, or rollback cost; not machine emotion. |
+| Comparative memory | Study of how different organisms and substrates preserve effects of past events; not an assertion that the mechanisms or subjective experiences are equivalent. |
+| Episodic-like memory | Behavioral evidence that an animal integrates event content, place, and time; the suffix avoids inferring human-like conscious recollection from behavior alone. |
+| Motor memory | Persistent improvement or altered performance after sensorimotor practice, primarily studied through nervous-system learning and consolidation. |
+| Skeletal-muscle history effect | Persistent molecular, cellular, or structural change after prior loading that can alter later response; distinct from neural motor memory. |
+| Cellular memory | A qualified umbrella for persistent state-dependent cellular responses such as transcriptional priming, epigenetic state, immune training, or sequence-encoded defense; always name the substrate and assay. |
+| Trained immunity | Persistent functional reprogramming of innate immune cells or their progenitors that changes later responses; distinct from antigen-specific adaptive immune memory. |
+| Hysteresis | Dependence of current response on prior state or path, even under the same current input. |
+| Stigmergic memory | Information persisted in environmental traces that later guides an individual or group. |

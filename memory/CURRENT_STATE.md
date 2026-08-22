@@ -6,7 +6,7 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
-Evidence collection, source auditing, candidate preservation, benchmark design, and falsifiable hypothesis formation. We are not yet claiming a validated final architecture.
+Evidence collection, comparative biological-memory expansion, source auditing, candidate preservation, and formal laboratory design. We are not yet claiming a validated final architecture. Mechanisms advance through registered stage gates rather than plausibility alone.
 
 ## Project-memory bootstrap
 
@@ -20,8 +20,10 @@ A dependency-free local memory now supports continuity of this research:
 
 ## Immediate priorities
 
-1. Build a gold query set from real research sessions and measure lexical retrieval before adding embeddings.
-2. Audit candidate repositories at pinned revisions and separate reusable mechanisms from marketing claims.
-3. Define success metrics for write quality, retrieval, temporal revision, provenance, latency, token cost, and harmful-memory intrusion.
-4. Study emotional salience as a testable prioritization signal, separated from simulated affect or claims of subjective emotion.
-5. Preserve rejected and strange ideas as labeled hypotheses unless evidence rules them out.
+1. Run the six-round coverage protocol and repair the distinction between discovered, screened, read, and independently reviewed sources.
+2. Build and independently review `project-memory-lab-v0`, including dated evidence, supersession, paraphrase, causal, abstention, bilingual, poisoned-memory, and distractor cases.
+3. Reproduce `rg` and FTS5/BM25 baselines under a frozen retrieved-token budget before selecting local embeddings.
+4. Fully read and snowball the comparative source seeds for animal, motor, skeletal-muscle, immune, transcriptional, non-neural, CRISPR, and collective memory.
+5. Audit candidate repositories at pinned revisions and separate reusable mechanisms from marketing claims.
+6. Test emotional salience only after utility labels and consequence-weighted retention metrics exist; never equate operational signals with subjective emotion.
+7. Preserve rejected ideas, null results, and failed runs as labeled evidence.

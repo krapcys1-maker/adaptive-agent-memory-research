@@ -62,3 +62,7 @@ For every important claim:
 6. [Systems catalog](docs/04-systems/catalog.md)
 7. [Benchmark catalog](docs/05-benchmarks/catalog.md)
 8. [Research methodology](docs/00-project/methodology.md)
+9. [Comparative biological memory](docs/10-comparative-biological-memory/README.md)
+10. [Research laboratory](docs/11-research-laboratory/README.md)
+11. [Benchmark ladder](docs/11-research-laboratory/benchmark-ladder.md)
+12. [Project Memory Lab v0](docs/11-research-laboratory/project-memory-lab-v0.md)

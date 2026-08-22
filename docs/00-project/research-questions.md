@@ -62,3 +62,13 @@ Status: in-progress
 - How should multiple agents share or isolate memory?
 - How can stored prompt injection and poisoned experience be detected?
 - How are correction, deletion, consent, and audit implemented?
+
+## J. Comparative biological memory
+
+- Which memory functions evolved convergently in animals with substantially different neural architectures?
+- Which behavioral assays establish retained information without making claims about subjective recollection?
+- What is stored in motor memory versus in skeletal-muscle adaptation, and what are their distinct timescales?
+- Which cellular systems implement priming, hysteresis, sequence-encoded history, or faster reacquisition?
+- Which immune-memory mechanisms suggest useful threat-specific retention, and which would create dangerous overreaction in an agent?
+- When is environmental or collective persistence a better analogy than internal memory?
+- For every biological mechanism, what simpler non-biological baseline could explain the same proposed engineering benefit?

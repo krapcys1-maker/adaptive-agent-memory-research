@@ -11,12 +11,14 @@ Status: reviewed
 - Memory quality, privacy, security, provenance, contradiction, and deletion controls.
 - Learning which memories help future tasks.
 - Human-memory research when it yields a testable computational principle.
+- Comparative animal, motor, immune, cellular, epigenetic, and collective memory research when mechanisms are operationally distinguished and translated into falsifiable engineering hypotheses.
 - Evaluation on dialogue, knowledge work, coding agents, and long-running projects.
 
 ## Out of scope during research phase
 
 - Changing transformer attention or expanding the native context window.
 - Claiming biological equivalence between human and LLM memory.
+- Treating every history-dependent biological response as cognitive or episodic memory.
 - Claiming machine emotion or consciousness.
 - Irreversible automatic deletion.
 - Training a large model before establishing deterministic and classical-ML baselines.

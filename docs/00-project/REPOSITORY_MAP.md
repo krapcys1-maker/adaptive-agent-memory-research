@@ -27,6 +27,9 @@ This is the fastest guide to where information belongs.
 | Claims backed by evidence | `docs/07-literature/evidence-ledger.csv` |
 | Planned experiments | `docs/08-experiments/` |
 | Current conclusions and rejected ideas | `docs/09-synthesis/` |
+| Animal, motor, immune, cellular, and collective memory | `docs/10-comparative-biological-memory/` |
+| Laboratory protocol, stage gates, and benchmark ladder | `docs/11-research-laboratory/` |
+| Coverage, search, experiment, and backend registries | `data/lab/` |
 | Machine-readable repository list | `data/catalogs/repositories-seed.csv` |
 | Machine-readable paper list | `data/catalogs/papers-curated.csv` |
 | Locally downloaded GitHub repositories | `external/repos/` (ignored) |

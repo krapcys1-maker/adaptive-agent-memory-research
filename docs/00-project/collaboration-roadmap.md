@@ -34,6 +34,30 @@ Deliverable: separate evidence for emotional arousal, stress, novelty, reward, m
 
 Key output: a non-anthropomorphic operational-salience feature set with risks and ablations.
 
+## Workstream CB-1 — Comparative animal memory
+
+Deliverable: cross-species map of episodic-like, spatial, associative, procedural, social, and prospective-like memory assays, including convergent capabilities and different neural substrates.
+
+Key output: behavioral task abstractions and explicit boundaries against consciousness claims.
+
+## Workstream CB-2 — Motor and skeletal-muscle history
+
+Deliverable: separate synthesis of neural motor learning/consolidation and persistent molecular or structural effects in skeletal muscle.
+
+Key output: testable procedural-interference, priming, and relearning-savings hypotheses without literal "memory in muscles" claims.
+
+## Workstream CB-3 — Cellular, immune, and prokaryotic memory
+
+Deliverable: adaptive immunity, trained innate immunity, transcriptional memory, cellular hysteresis, non-neural habituation, and CRISPR history reviewed as distinct mechanisms.
+
+Key output: candidate abstractions for protected signatures, priming, bounded append-like history, recovery, and maladaptive overreaction.
+
+## Workstream CB-4 — Collective and externalized memory
+
+Deliverable: animal stigmergy, environmental traces, social transmission, and distributed persistence separated from individual internal memory.
+
+Key output: hypotheses for shared agent artifacts and contamination-resistant coordination.
+
 ## Workstream AI-1 — Memory lifecycle survey
 
 Deliverable: write/represent/organize/consolidate/retrieve/update/retain/delete taxonomy across papers and open-source systems.
@@ -75,6 +99,12 @@ Key output: training/validation/final-test allocation and label confidence.
 Deliverable: methods for estimating whether a memory improved a later action, including paired rollouts, ablations, off-policy bias, and delayed/censored outcomes.
 
 Key output: future-utility definition and feasible measurement protocols.
+
+## Workstream EV-4 — Project Memory Lab v0
+
+Deliverable: dual-annotated 120-query pilot, frozen by complete history, covering twelve retrieval and safety strata.
+
+Key output: independently reproduced no-memory, `rg`, FTS5/BM25, and oracle baselines before dense retrieval is unlocked.
 
 ## Workstream SE-1 — Safety, privacy, and ownership
 

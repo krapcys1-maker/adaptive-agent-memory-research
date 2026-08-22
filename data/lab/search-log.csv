@@ -1,0 +1,13 @@
+search_id,topic_id,round_type,database,query,filters,searched_at,results_returned,results_screened,new_unique_relevant,included_for_full_read,reviewer,notes
+OA-20260822-01,BIO-ANIMAL-EPI,seed,OpenAlex,"comparative animal episodic-like memory what where when","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery; spot check shows query drift"
+OA-20260822-02,BIO-ANIMAL-LEARN,seed,OpenAlex,"animal memory consolidation reconsolidation updating","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery"
+OA-20260822-03,BIO-ANIMAL-LEARN,seed,OpenAlex,"animal procedural memory skill habit motor learning","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery"
+OA-20260822-04,BIO-ANIMAL-EPI,seed,OpenAlex,"animal spatial memory navigation food caching","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery"
+OA-20260822-05,BIO-MOTOR,seed,OpenAlex,"human motor memory skill consolidation interference relearning","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery; spot check shows general-memory drift"
+OA-20260822-06,BIO-MUSCLE,seed,OpenAlex,"skeletal muscle epigenetic myonuclear memory hypertrophy retraining","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery"
+OA-20260822-07,BIO-IMMUNE-ADAPT,seed,OpenAlex,"adaptive immune memory clonal persistence recall response","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery"
+OA-20260822-08,BIO-IMMUNE-TRAINED,seed,OpenAlex,"trained innate immunity hematopoietic stem cell epigenetic memory","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery; spot check shows broad epigenomics drift"
+OA-20260822-09,BIO-TRANSCRIPTION,seed,OpenAlex,"cellular epigenetic transcriptional memory priming reactivation","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery; spot check shows broad signaling drift"
+OA-20260822-10,BIO-NONNEURAL,seed,OpenAlex,"non-neural learning habituation single cell organism memory","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery; spot check shows neuroscience drift"
+OA-20260822-11,BIO-CRISPR,seed,OpenAlex,"bacterial CRISPR acquired immune memory spacer history","relevance top 40",2026-08-22,40,0,unknown,0,automation,"unscreened discovery"
+OA-20260822-12,BIO-COLLECTIVE,seed,OpenAlex,"collective animal memory stigmergy externalized memory","relevance top 40",2026-08-22,32,0,unknown,0,automation,"unscreened discovery; spot check shows swarm-robotics drift"
