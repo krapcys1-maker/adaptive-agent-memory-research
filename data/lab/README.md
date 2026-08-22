@@ -12,5 +12,6 @@ Machine-readable research-control files. Empty cells mean unknown or not yet aud
 - `pmlab-collection-closure-dev-v1/`: pre-run repair, frozen 48-case closure corpus, deterministic ablations, artifacts, and construction report. No held-out claim is permitted.
 - `PMLAB-MAP-001` is a preregistration-only obligation decomposition and per-obligation scope-mapping experiment in `docs/11-research-laboratory/obligation-scope-mapper-protocol.md`; no corpus or parser exists.
 - `longmemeval-bridge-v0/`: 36 version-pinned public LongMemEval-S question IDs selected by a preregistered hash rule; source conversations remain in an ignored verified cache, abstention near-miss sessions are not treated as retrieval gold, and no backend has run.
+- `pmlab-v0-lexical-preregistration/`: machine-readable lexical-v0 backend boundary, metrics, bootstrap, guardrails, and decision rules frozen at `e111a57`; execution remains false until dual review and adjudicated gold.
 
 Large corpora and run artifacts belong in ignored, reproducible caches with versioned manifests. Final compact metrics and conclusions belong in Git.

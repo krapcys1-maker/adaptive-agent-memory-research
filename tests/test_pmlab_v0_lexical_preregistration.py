@@ -15,6 +15,7 @@ class LexicalPreregistrationTests(unittest.TestCase):
         cls.corpus = json.loads(CONSTRUCTION.read_text(encoding="utf-8"))
 
     def test_execution_is_locked_on_independent_gold(self):
+        self.assertEqual(self.protocol["protocol_freeze_commit"], "e111a57")
         self.assertFalse(self.protocol["execution_authorized"])
         self.assertFalse(self.protocol["freeze_prerequisites_satisfied"]["dual_independent_labels"])
         self.assertIsNone(self.protocol["corpus"]["adjudicated_gold_sha256"])

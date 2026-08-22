@@ -1,6 +1,7 @@
 {
   "experiment_id": "PMLAB-V0-RET-001",
   "protocol_version": "lexical-v0",
+  "protocol_freeze_commit": "e111a57",
   "status": "protocol-frozen-execution-locked",
   "execution_authorized": false,
   "freeze_prerequisites_satisfied": {

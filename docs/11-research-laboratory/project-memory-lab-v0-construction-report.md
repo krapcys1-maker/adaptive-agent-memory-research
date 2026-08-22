@@ -46,7 +46,7 @@ The `blind/` packet contains the complete corpus, label-free query objects, two 
 - inspect development/test template-family similarity beyond exact duplicates;
 - adjudicate every answerability and evidence-set disagreement in writing;
 - keep the selected 36-ID LongMemEval bridge version-pinned and separately scored; audit adapter fidelity before transfer execution;
-- freeze the lexical query-expansion rule, practical effect threshold, bootstrap method, latency/cache policy, and missing-data rule;
+- preserve the lexical-v0 contract frozen at `e111a57`; any change to query rules, thresholds, bootstrap, cache policy, or missing-data handling creates a new version;
 - reproduce `B0`, `B1`, and `B2` in a clean environment.
 
 Local dense embeddings remain locked. Their model, pooling, chunking, index, and fusion rule may be selected only from development data after the lexical result contract is frozen. The test split must not become a tuning set.
