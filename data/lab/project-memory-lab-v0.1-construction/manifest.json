@@ -8,6 +8,7 @@
     "thresholds_confirmatory": false
   },
   "baseline_run_permitted": false,
+  "exploratory_baseline_run_permitted": true,
   "benchmark_id": "project-memory-lab-v0.1-construction",
   "candidate_freeze_commit": "cc904dd",
   "evidence_corpus_byte_identical_to_parent": true,
@@ -45,6 +46,16 @@
     "receipt_path": "data/lab/api-screening/deepseek-v4-flash-pmlab-v01-leakage-review-20260822/model-review-receipt.json",
     "receipt_sha256": "69de3b09902982988d72842e908fda020d2b1dc65008016fef89534e09761fca"
   },
-  "status": "model-blind-leakage-accepted-awaiting-m2-annotation",
+  "model_review_gold": {
+    "adjudicated_queries": 25,
+    "authority": "M2 exploratory only; not human or cross-family independent",
+    "evidence_tier": "M2",
+    "gold_path": "data/lab/api-screening/deepseek-v4-flash-pmlab-v01-adjudication-m2-20260823/model-reviewed-gold.jsonl",
+    "gold_sha256": "ed9f88778c42526ae37762b6a47e40c2ab7381c3eb2f10703851e3d1004d170f",
+    "receipt_path": "data/lab/api-screening/deepseek-v4-flash-pmlab-v01-adjudication-m2-20260823/gold-freeze-receipt.json",
+    "receipt_sha256": "e5b8ece6acd78da304c957db11496b576ca0661a4aeb257bdb0b53d9d9868011",
+    "unanimous_queries": 95
+  },
+  "status": "m2-model-reviewed-gold-frozen-exploratory-baseline-permitted",
   "unlock": "label-free split audit, direct template inspection, independent leakage audit, two independent complete forms, adjudication, provenance audit, and gold hash freeze"
 }

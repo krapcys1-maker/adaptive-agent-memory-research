@@ -3,8 +3,10 @@
   "protocol_version": "lexical-v0-unchanged-on-pmlab-v0.1",
   "protocol_freeze_commit": "e111a57",
   "source_query_freeze_commit": "cc904dd",
-  "status": "protocol-migrated-unchanged-execution-locked",
+  "status": "protocol-frozen-m2-exploratory-execution-authorized",
   "execution_authorized": false,
+  "exploratory_execution_authorized": true,
+  "execution_authority": "M2 author-operated blind model review; one exploratory run only; no confirmatory or architecture claim",
   "migration_note": "outcome, backend, metric, bootstrap, guardrail, and execution contracts are unchanged from e111a57; only the repaired v0.1 query packet and hashes replace invalidated v0",
   "freeze_prerequisites_satisfied": {
     "corpus_bytes": true,
@@ -14,6 +16,13 @@
     "adjudicated_gold_hash": false,
     "independent_provenance_template_audit": false
   },
+  "model_review_fallback_prerequisites_satisfied": {
+    "m1_blind_leakage_acceptance": true,
+    "two_role_separated_complete_forms": true,
+    "all_disagreements_blindly_adjudicated": true,
+    "m2_gold_hash_frozen": true,
+    "human_or_cross_family_independence": false
+  },
   "corpus": {
     "construction_commit": "cc904dd",
     "records": 176,
@@ -22,7 +31,7 @@
     "test_queries": 60,
     "corpus_sha256": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
     "blind_queries_sha256": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
-    "adjudicated_gold_sha256": null
+    "adjudicated_gold_sha256": "ed9f88778c42526ae37762b6a47e40c2ab7381c3eb2f10703851e3d1004d170f"
   },
   "backend_input_boundary": {
     "visible": ["query text"],

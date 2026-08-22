@@ -1,6 +1,6 @@
 {
   "run_id": "deepseek-v4-flash-pmlab-v01-adjudication-m2-20260823",
-  "status": "frozen-input-awaiting-api",
+  "status": "gold-finalized",
   "created_at": "2026-08-22T21:05:10Z",
   "model": "deepseek-v4-flash",
   "prompt_version": "pmlab-v01-blind-model-adjudication-m2-v1",
@@ -35,5 +35,7 @@
     "disagreements.jsonl": "219fc62bb5673bababf9a47b6fb99bf95be971ecd8069b853e0ba50893916d5d",
     "form-a.jsonl": "ab32a9ab1b1e5ba63ba0c2f5df536a9bc8b90f7d004a5c6a9f7e85d70cccbb80",
     "form-b.jsonl": "ec1076b905d846f7b2439072b767bfb13d743d108026bc933805335d9a54ee18"
-  }
+  },
+  "gold_sha256": "ed9f88778c42526ae37762b6a47e40c2ab7381c3eb2f10703851e3d1004d170f",
+  "gold_freeze_receipt_sha256": "e5b8ece6acd78da304c957db11496b576ca0661a4aeb257bdb0b53d9d9868011"
 }

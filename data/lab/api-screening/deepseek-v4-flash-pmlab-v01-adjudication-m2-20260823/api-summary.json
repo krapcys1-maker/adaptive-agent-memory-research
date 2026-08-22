@@ -1,0 +1,8 @@
+{
+  "status": "api-run-complete",
+  "valid_adjudications": 25,
+  "calls_this_invocation": 8,
+  "errors_logged": 0,
+  "run_conservative_cost_usd": 0.09017932,
+  "all_runs_conservative_cost_usd": 0.82829208
+}

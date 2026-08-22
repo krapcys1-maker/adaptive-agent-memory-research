@@ -28,6 +28,7 @@ def validate(review_path: Path) -> dict[str, Any]:
     allowed_statuses = {
         "automated-screen-passed-awaiting-independent-leakage-review",
         "model-blind-leakage-accepted-awaiting-m2-annotation",
+        "m2-model-reviewed-gold-frozen-exploratory-baseline-permitted",
     }
     if manifest["status"] not in allowed_statuses:
         raise ValueError("packet is not at the independent leakage-review gate")

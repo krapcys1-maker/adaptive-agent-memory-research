@@ -21,6 +21,7 @@ A dependency-free local memory now supports continuity of this research:
 
 ## Latest diagnostics (2026-08-22)
 
+- A controlled DeepSeek fallback completed the stalled PMLAB v0.1 review path without claiming human independence. Blind M1 leakage review accepted 12/12 categories. Two fresh M2 roles produced complete 120-query forms with exact label agreement on 95/120 (0.7917); a third blind role adjudicated all 25 disputes. Exploratory model-reviewed gold is frozen at SHA-256 `ed9f88778c42526ae37762b6a47e40c2ab7381c3eb2f10703851e3d1004d170f`. The three new stages cost USD 0.29025812 and the conservative project API ledger totals USD 0.82829208. This unlocks one frozen lexical B0/B1/B2 run labelled exploratory; confirmatory claims and architecture promotion still require H-tier or cross-family replication.
 - A budgeted DeepSeek V4 Flash worker screened literature, challenged methodology, and served as a synthetic reader. Reader v0-v4 exposed successive gold, chronology, cross-case, and condition-name leakage channels. Fully audited v5 cost USD 0.05218136. Cumulative conservative cost including invalid runs is USD 0.32598016. The worker remains optional and replaceable.
 - The 37 normalized `include` candidates passed bibliographic identity resolution, but represented 35 distinct works after merging one version duplicate and one peer-review artifact. Abstract screening assigned 19 priority full reads, 9 background sources, 6 deferred sources, and 1 challenge-only preprint.
 - A 24-query PMLAB development slice compared no memory, ripgrep, and SQLite FTS5. The lexical backends reached Recall@5 0.841 but showed forbidden-record intrusion 0.292, no successful abstention, and zero cross-language recall. This is an authored instrument test, not architecture evidence.
@@ -73,7 +74,7 @@ A dependency-free local memory now supports continuity of this research:
 ## Immediate priorities
 
 1. Run the six-round coverage protocol and repair the distinction between discovered, screened, read, and independently reviewed sources.
-2. Obtain an independent leakage audit for `project-memory-lab-v0.1`; only after acceptance obtain two blind annotation forms, adjudicate disagreements, freeze gold, and execute the unchanged lexical protocol exactly once.
+2. Execute the unchanged lexical B0/B1/B2 protocol exactly once against the frozen M2 exploratory gold. Preserve the result as model-reviewed exploratory evidence; seek later H-tier or cross-family replication before confirmatory claims.
 3. Build and freeze `PMLAB-CLOSURE-001` before allowing stable negative answers: independently audit N0-N3 labels, query-scope mappings, certificate freshness, registered replica/media inventories, and counterexample insertions. Then freeze the evidence decomposer/mapper and create unseen diverse-cue cases. Also obtain P10/external reliability review, freeze parser v1 plus typed fallback, and replicate the reader interaction before selecting local embeddings.
 4. Fully read and snowball the comparative source seeds for animal, motor, skeletal-muscle, immune, transcriptional, non-neural, CRISPR, and collective memory.
 5. Repair and independently reproduce only the deterministic generator and error-position logic from the pinned `Unable-to-Forget` repository; do not adopt its runtime or credentials pattern as a dependency.

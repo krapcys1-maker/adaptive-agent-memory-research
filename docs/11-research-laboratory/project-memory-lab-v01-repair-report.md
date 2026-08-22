@@ -1,6 +1,6 @@
 # Project Memory Lab v0.1 query-form repair report
 
-Status: candidate frozen; independent leakage review pending; retrieval execution locked
+Status: M2 model-reviewed exploratory gold frozen; one frozen lexical run permitted; H-tier confirmation pending
 
 ## Why v0.1 exists
 
@@ -23,12 +23,13 @@ The same label-free screen that flagged 22 of 300 v0 pairs flagged 0 of 300 v0.1
 
 These numbers are descriptive, post-hoc construction checks. They do not prove semantic independence and do not validate labels.
 
-## Gates that remain closed
+## Model-review fallback outcome
 
-1. An auditor independent of corpus construction must accept or reject the query split and disclose prior exposure.
-2. If accepted, two distinct reviewers must annotate the blind packet independently and freeze signed receipts.
-3. Disagreements require written adjudication before author hypotheses are compared or gold is frozen.
-4. Provenance, alternative evidence, template leakage, and gold hashes must be accepted.
-5. Only then may B0/B1/B2/O execute under the unchanged protocol frozen at `e111a57`.
+The project used the registered M1/M2 fallback because no external human reviewer was available:
 
-No DeepSeek or Codex self-review qualifies as the independent gate.
+1. A fresh blind DeepSeek M1 context accepted all twelve leakage categories without seeing corpus answers, author labels, builder source, or backend output.
+2. Two stateless M2 roles independently labelled all 120 questions using distinct prompts and deterministic input orders. Exact label agreement was 95/120 (0.7917).
+3. A third blind role saw only the 25 disputes, full blind evidence, and anonymous candidates; it adjudicated every dispute.
+4. Exploratory gold is frozen at SHA-256 `ed9f88778c42526ae37762b6a47e40c2ab7381c3eb2f10703851e3d1004d170f`.
+
+This author-operated same-family process is operationally blind but not institutionally independent. It permits one execution of the already frozen B0/B1/B2 lexical protocol with a permanent exploratory label. Human/cross-family confirmation, confirmatory claims, and architecture promotion remain closed.

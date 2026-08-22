@@ -118,9 +118,10 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/longmemeval-bridge-v0/` — version-pinned 36-ID public transfer bridge selected from verified LongMemEval-S cleaned bytes; no source content is redistributed and abstention near-miss sessions are not scored as positive retrieval gold.
 - `data/lab/pmlab-v0-lexical-preregistration/` — lexical-v0 protocol frozen at `e111a57`: query-only backend input, exact B1/B2 rules, eleven-stratum primary metric, paired bootstrap, safety guardrails, and an explicit execution lock.
 - `data/lab/pmlab-v0-split-audit/` — label-free audit preserving the v0 split as an invalid pre-run instrument after repeated development/test query frames were found; labels and backends remained unseen.
-- `data/lab/project-memory-lab-v0.1-construction/` — candidate query-form repair frozen at `cc904dd`: the v0 evidence corpus is byte-identical, all 60 test forms changed, and all non-query authored relations stayed fixed; review remains blind and no author label is gold.
+- `data/lab/project-memory-lab-v0.1-construction/` — query-form repair frozen at `cc904dd`; M1 leakage review and role-separated M2 annotation/adjudication are complete under the explicitly non-human model-review fallback.
 - `data/lab/pmlab-v0.1-split-audit/` — 300-pair label-free screen with zero descriptive threshold crossings plus a direct author inspection; neither substitutes for independent leakage review.
-- `data/lab/pmlab-v0.1-lexical-preregistration/` — unchanged `e111a57` B0/B1/B2/O contract rebound to the repaired blind-query hash; execution remains locked.
+- `data/lab/pmlab-v0.1-lexical-preregistration/` — unchanged `e111a57` B0/B1/B2/O contract rebound to the repaired blind-query hash; one exploratory execution is now permitted against frozen M2 gold.
+- `data/lab/api-screening/deepseek-v4-flash-pmlab-v01-adjudication-m2-20260823/` — frozen A/B disagreement adjudication, complete raw API provenance, and 120-query model-reviewed exploratory gold (95 unanimous, 25 adjudicated).
 - `emotion-salience-benchmark-protocol-v0.md` — expanded PMLAB-COMP-C4-001 draft separating phase, target feature, timing, consequence, surprise, controllability, signal provenance, competition, and controller action; no corpus or result exists.
 - `data/lab/pmlab-salience-ontology-review-v0/blind/` — gold-free independent-review packet that operationalizes 12 factor boundaries through 24 probes; its acceptance permits corpus construction, never controller implementation.
 - `biological-savings-benchmark-protocol-v0.md` — preregistration draft separating retained content, latent reconstruction savings, and final recovered performance; no corpus or runner exists.
@@ -140,4 +141,4 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 
 ## Immediate laboratory milestone
 
-Release `project-memory-lab-v0.1` only after independent leakage acceptance, two blind annotations, adjudicated gold, and provenance review. Then execute the frozen `rg` versus SQLite FTS5 baseline exactly once. No embedding, graph, or salience mechanism is admitted until that result and its failure localization are reviewed.
+Execute the frozen `rg` versus SQLite FTS5 baseline exactly once against the M2 model-reviewed gold and label it exploratory. Do not admit embeddings, graph, or salience until that result and its failure localization are reviewed. H-tier or cross-family replication remains required before confirmatory release or architecture promotion.

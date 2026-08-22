@@ -24,7 +24,10 @@ def sha256(path: Path) -> str:
 
 def verify_packet() -> dict[str, Any]:
     manifest = json.loads((PACKET / "manifest.json").read_text(encoding="utf-8"))
-    if manifest["status"] != "model-blind-leakage-accepted-awaiting-m2-annotation":
+    if manifest["status"] not in {
+        "model-blind-leakage-accepted-awaiting-m2-annotation",
+        "m2-model-reviewed-gold-frozen-exploratory-baseline-permitted",
+    }:
         raise ValueError("packet is not M1-accepted and awaiting M2 annotation")
     if manifest["baseline_run_permitted"] is not False or manifest["author_labels_are_gold"] is not False:
         raise ValueError("construction safety flags changed")
