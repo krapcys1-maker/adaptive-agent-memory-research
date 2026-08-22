@@ -84,5 +84,7 @@ Do not mark a paper read until the note records:
 10. Wang et al. — novelty, synaptic tagging/capture, and spatial-memory persistence in rats.
 11. Nádasdy et al. — recurring spike sequences and time-compressed sleep replay in rats.
 12. Ólafsdóttir et al. — task-state-dependent awake hippocampal replay in rats.
+13. Ego-Stengel and Wilson — post-training ripple disruption and spatial learning.
+14. Jadhav et al. — awake SWR disruption and memory-guided alternation.
 
 Canonical notes and artifact hashes are in `docs/07-literature/full-read-notes/`. Completion here means the full read plus an initial challenge pass, not independent verification or architecture endorsement.

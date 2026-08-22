@@ -49,10 +49,24 @@ Compare uniform, recency, reward, surprise, retrieval-frequency, diversity, cons
 
 Success for a learned/gated sampler requires improvement over uniform and diversity baselines on macro delayed utility without lowering rare-critical or quiet-critical recall by more than 2 points and without increasing poison-driven errors. Reward, surprise, and retrieval frequency are rejected as standalone samplers if they amplify their matched attack class.
 
+## Experiment R4 — content-specific causal attribution
+
+At matched maintenance calls, tokens, latency allowance, and write permissions, compare:
+
+- no maintenance/raw retrieval only;
+- sham maintenance call with no history content;
+- randomly sampled real episodes;
+- deliberately corrupted or task-irrelevant episodes;
+- content-targeted episodes selected without future labels;
+- direct just-in-time evidence retrieval without replay-derived writes.
+
+Cross tasks that require a simple current-state rule with tasks that must bind current state to recent and remote events. Primary analysis is the interaction between maintenance content and history dependence. Secondary outcomes are immediate action, delayed transfer, unsupported derived writes, poison persistence, and cost.
+
+Content-specific replay succeeds only if targeted episodes beat sham, random, corrupted, and direct-retrieval controls by at least 5 points on history-dependent tasks, do not claim the same gain on simple tasks, and retain every safety guardrail. If sham or random replay matches targeted replay, attribute the benefit to extra computation or regularization rather than memory content.
+
 ## Analysis and stopping
 
 - Freeze all replay prompts, seeds, budgets, thresholds, and corpus versions before held-out execution.
 - Use history-level paired bootstrap intervals; event count is not the independent replication unit.
 - Inspect learning curves against replay volume so “more compute” cannot masquerade as a mechanism.
 - One positive synthetic result permits replication only. Architecture promotion requires a second corpus family, a different reader/provider family where feasible, and an explicit no-replay comparison.
-
