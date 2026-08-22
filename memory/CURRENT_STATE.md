@@ -29,12 +29,13 @@ A dependency-free local memory now supports continuity of this research:
 - An unseen-template challenge added 16 multi-fault or missing-telemetry F1 traces and 154 records with 24 F2 queries. The B3 rule resolver fell to Recall@5 0.50, scored zero on natural-language and relative time, and abstained correctly on only 0.25 of unanswerable cases. Its sufficiency is rejected; entity resolution, temporal normalization, and validity filtering must be tested separately.
 - Oracle query normalization raised challenge FTS5 Recall@5 from 0.40 to 1.00, while oracle history scope added 0.00; forbidden-version intrusion stayed 1.00. In reader stress v5, full/weak cues and explicit abstention policy were perfect; minimal policy scored 8/16 with absent cues and 4/16 with contradictory current markers. Record count alone is not the supported mechanism.
 - Across 174 authored fault traces, passive cascading telemetry reached exact fault-set accuracy 0.075, root accuracy 0.511, and physical-data-loss decision coverage 0.414. Ideal isolated active probes scored 1.0 by construction. This establishes an observability requirement, not real probe accuracy; probe noise and budget must be tested next.
+- A deterministic parser consuming only query text and a corpus-derived entity/topic/version/date catalog matched the oracle-normalized Recall@5 ceiling of 1.0 on the 24 observed challenge templates, versus raw FTS5 at 0.40, and abstained on 4/4 unanswerable queries. It was authored after template inspection and is not held out. Stale intrusion remained 1.0.
 
 ## Immediate priorities
 
 1. Run the six-round coverage protocol and repair the distinction between discovered, screened, read, and independently reviewed sources.
 2. Build and independently review `project-memory-lab-v0`, including dated evidence, supersession, paraphrase, causal, abstention, bilingual, poisoned-memory, distractor, and stage-localized fault cases.
-3. Replicate the validity-ambiguity-by-abstention-policy interaction with multiple independent cases per cell and another model family; replace oracle normalization with a measurable parser; inject noise and budgets into active F1 probes before selecting local embeddings.
+3. Freeze an unseen paraphrase/date/alias challenge for parser v0; replicate the validity-ambiguity-by-abstention-policy interaction; inject noise and budgets into active F1 probes before selecting local embeddings.
 4. Fully read and snowball the comparative source seeds for animal, motor, skeletal-muscle, immune, transcriptional, non-neural, CRISPR, and collective memory.
 5. Repair and independently reproduce only the deterministic generator and error-position logic from the pinned `Unable-to-Forget` repository; do not adopt its runtime or credentials pattern as a dependency.
 6. Test emotional salience only after utility labels and consequence-weighted retention metrics exist; never equate operational signals with subjective emotion.

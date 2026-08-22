@@ -75,6 +75,12 @@ Compare passive cascading telemetry with controlled active probes for capture, s
 python scripts/run_fault_probe_comparison.py
 ```
 
+Run the deterministic entity/time parser baseline against challenge v0:
+
+```powershell
+python scripts/run_query_parser_baseline.py
+```
+
 ## Verify screening-source identity
 
 Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:

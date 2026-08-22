@@ -1,0 +1,39 @@
+{
+  "status": "completed-development-parser-baseline",
+  "queries": 24,
+  "catalog_histories": 8,
+  "parser_answerable_history_accuracy": 1,
+  "parser_answerable_target_date_accuracy": 1,
+  "parser_unanswerable_abstention": 1,
+  "arms": [
+    {
+      "arm": "oracle-normalized-all",
+      "answerable_recall_at_5": 1.0,
+      "answerable_mrr": 1.0,
+      "forbidden_intrusion_rate": 1,
+      "unanswerable_abstention_rate": 0.25
+    },
+    {
+      "arm": "parser-all",
+      "answerable_recall_at_5": 1.0,
+      "answerable_mrr": 1.0,
+      "forbidden_intrusion_rate": 1,
+      "unanswerable_abstention_rate": 1
+    },
+    {
+      "arm": "parser-history",
+      "answerable_recall_at_5": 1.0,
+      "answerable_mrr": 1.0,
+      "forbidden_intrusion_rate": 1,
+      "unanswerable_abstention_rate": 1
+    },
+    {
+      "arm": "raw-all",
+      "answerable_recall_at_5": 0.4,
+      "answerable_mrr": 0.2891666666666667,
+      "forbidden_intrusion_rate": 1,
+      "unanswerable_abstention_rate": 0.25
+    }
+  ],
+  "boundary": "Parser v0 was authored after challenge templates were observed and uses corpus metadata. It is measurable and label-free at runtime but is not held out."
+}

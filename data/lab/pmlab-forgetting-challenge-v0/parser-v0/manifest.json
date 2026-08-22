@@ -1,0 +1,14 @@
+{
+  "status": "completed-development-parser-baseline",
+  "script": "scripts/run_query_parser_baseline.py",
+  "dataset": "data/lab/pmlab-forgetting-challenge-v0",
+  "parser_inputs": "query text plus catalog built from corpus entity/topic/version/valid_from metadata",
+  "forbidden_runtime_inputs": [
+    "query history_id",
+    "gold_evidence_ids",
+    "expected answer",
+    "category"
+  ],
+  "catalog_sha256": "67eaceb954d58081b351334a73577294dc6fe4b8f3679ea3fb0f2222005dcba4",
+  "authority": "template-observed development baseline only"
+}
