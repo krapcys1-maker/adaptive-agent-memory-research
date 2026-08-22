@@ -1,0 +1,27 @@
+{
+  "arms": [
+    "whole_query_single_scope",
+    "conjunction_splitter",
+    "qdmr_rules_pipeline",
+    "gold_obligations_predicted_links",
+    "gold_oracle"
+  ],
+  "case_count": 28,
+  "challenge_cases_sha256": "7bd6e2bcd140e2bde931256c2a2648d58588b2bd723f2ac2b3868e6260db62e6",
+  "challenge_freeze_commit": "adc540f",
+  "experiment": "PMLAB-MAP-001-post-freeze-challenge",
+  "harness_version": "pmlab-map-challenge-harness-v0",
+  "hashes": {
+    "report.md": "30faf7ba199aadce4c4891e059ff74338aab24d64f917c9441d04c524441aabd",
+    "results.jsonl": "816ed6b89694aa5c80b30a44783c369fd6fa1a9e78d1e95081c083a0e40b4e59",
+    "summary.json": "71048ef1555fe70138e3407bf7c6cfb54c02b7a9afb0de401a20a188c43489e5"
+  },
+  "known_limitations": [
+    "same-process labels",
+    "small synthetic challenge",
+    "single post-freeze challenge"
+  ],
+  "prediction_runner_freeze_commit": "6a82bd8",
+  "result_count": 140,
+  "status": "completed-post-freeze-not-independent"
+}

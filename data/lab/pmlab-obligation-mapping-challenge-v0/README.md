@@ -14,3 +14,5 @@ The challenge introduces only post-freeze material:
 The challenge is unseen to the frozen arms but its labels were authored by the same research process and are not independently reviewed. It must therefore be reported as a post-freeze challenge, not a definitive held-out benchmark.
 
 No construction failure may be used to modify either parser before this challenge is scored. Any later repair creates a new version and requires another challenge.
+
+The unchanged deterministic QDMR arm has now been scored. It fell from construction F1 0.922 to 0.409, produced 18 critical omissions and ten false closures, and reached zero end-to-end exact cases. Even gold obligations plus its frozen linker reached only 0.071 end-to-end exact. Full artifacts are in `deterministic-artifacts/`; no rule was repaired before scoring.

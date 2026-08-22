@@ -1,0 +1,32 @@
+{
+  "experiment": "PMLAB-MAP-001-optional-model-post-freeze-challenge",
+  "status": "frozen-post-arm-challenge-input",
+  "created_at": "2026-08-22T17:58:18Z",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "pmlab-map-deepseek-v0",
+  "adapter_version": "pmlab-map-deepseek-adapter-v1",
+  "prompt_freeze_commit": "6a288f6",
+  "corpus_freeze_commit": "adc540f",
+  "case_count": 28,
+  "temperature": 0,
+  "thinking": "disabled",
+  "response_format": "json_object",
+  "data_class": "synthetic public benchmark fixtures",
+  "authority": "replaceable model comparator; never gold",
+  "hard_cumulative_budget_usd": 10.0,
+  "hashes": {
+    "jobs.jsonl": "a97adbb5971ab72378cc32f01f8a845027f0825da637665a7fb8ad9febbc7c79",
+    "prompt.txt": "a0c74ac2ae45ef272a7d02986ea23f1bac04ee3b41d2376ea730ce11282c9723",
+    "schema-v0.json": "7bdcf3df1baf3610331141b4ed67a8460af75226aceb2a14e4e38cd4993cfddb",
+    "entities-v0.json": "41c8dcfbaa0818928cce2b37402727bdb49b4b37b99a91fa02804835b1c4bc75",
+    "model-cases.jsonl": "299e77954fc8fbd689f9e836d9cb4da0e25af22f84739edf354d5aa73bbc970e"
+  },
+  "known_limitations": [
+    "same-process labels",
+    "single model",
+    "small synthetic post-freeze challenge",
+    "no independent review"
+  ],
+  "challenge_freeze_commit": "adc540f",
+  "construction_model_result_commit": "0066961"
+}

@@ -1,0 +1,107 @@
+{
+  "conjunction_splitter": {
+    "case_count": 28,
+    "critical_full_recall": 0.25,
+    "critical_omission_count": 18,
+    "critical_unresolved_safe_rate": 0.0,
+    "end_to_end_exact_rate": 0.0,
+    "false_closure_count": 10,
+    "link_accuracy": {
+      "authorization": 1.0,
+      "certificate": 0.7142857142857143,
+      "entity": 0.0,
+      "namespaces": 0.0,
+      "predicate": 0.0,
+      "time": 0.9047619047619048
+    },
+    "obligation_f1": 0.4421052631578947,
+    "obligation_precision": 0.6,
+    "obligation_recall": 0.35,
+    "status_exact_rate": 0.6428571428571429,
+    "structure_exact_rate": 0.42857142857142855
+  },
+  "gold_obligations_predicted_links": {
+    "case_count": 28,
+    "critical_full_recall": 1.0,
+    "critical_omission_count": 0,
+    "critical_unresolved_safe_rate": 1.0,
+    "end_to_end_exact_rate": 0.07142857142857142,
+    "false_closure_count": 0,
+    "link_accuracy": {
+      "authorization": 0.9,
+      "certificate": 0.8666666666666667,
+      "entity": 0.3333333333333333,
+      "namespaces": 0.3,
+      "predicate": 0.3,
+      "time": 0.8333333333333334
+    },
+    "obligation_f1": 1.0,
+    "obligation_precision": 1.0,
+    "obligation_recall": 1.0,
+    "status_exact_rate": 1.0,
+    "structure_exact_rate": 1.0
+  },
+  "gold_oracle": {
+    "case_count": 28,
+    "critical_full_recall": 1.0,
+    "critical_omission_count": 0,
+    "critical_unresolved_safe_rate": 1.0,
+    "end_to_end_exact_rate": 1.0,
+    "false_closure_count": 0,
+    "link_accuracy": {
+      "authorization": 1.0,
+      "certificate": 1.0,
+      "entity": 1.0,
+      "namespaces": 1.0,
+      "predicate": 1.0,
+      "time": 1.0
+    },
+    "obligation_f1": 1.0,
+    "obligation_precision": 1.0,
+    "obligation_recall": 1.0,
+    "status_exact_rate": 1.0,
+    "structure_exact_rate": 1.0
+  },
+  "qdmr_rules_pipeline": {
+    "case_count": 28,
+    "critical_full_recall": 0.25,
+    "critical_omission_count": 18,
+    "critical_unresolved_safe_rate": 0.0,
+    "end_to_end_exact_rate": 0.0,
+    "false_closure_count": 10,
+    "link_accuracy": {
+      "authorization": 0.9473684210526315,
+      "certificate": 0.6842105263157895,
+      "entity": 0.0,
+      "namespaces": 0.05263157894736842,
+      "predicate": 0.05263157894736842,
+      "time": 0.8947368421052632
+    },
+    "obligation_f1": 0.40860215053763443,
+    "obligation_precision": 0.5757575757575758,
+    "obligation_recall": 0.31666666666666665,
+    "status_exact_rate": 0.6428571428571429,
+    "structure_exact_rate": 0.42857142857142855
+  },
+  "whole_query_single_scope": {
+    "case_count": 28,
+    "critical_full_recall": 0.25,
+    "critical_omission_count": 18,
+    "critical_unresolved_safe_rate": 0.0,
+    "end_to_end_exact_rate": 0.0,
+    "false_closure_count": 10,
+    "link_accuracy": {
+      "authorization": 1.0,
+      "certificate": 0.6666666666666666,
+      "entity": 0.0,
+      "namespaces": 0.0,
+      "predicate": 0.0,
+      "time": 0.8888888888888888
+    },
+    "obligation_f1": 0.4090909090909091,
+    "obligation_precision": 0.6428571428571429,
+    "obligation_recall": 0.3,
+    "status_exact_rate": 0.6428571428571429,
+    "structure_exact_rate": 0.42857142857142855
+  }
+}
