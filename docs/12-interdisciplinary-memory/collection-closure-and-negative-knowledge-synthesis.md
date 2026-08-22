@@ -2,6 +2,14 @@
 
 Status: targeted primary-source pass complete; exact formalism extraction and independent review incomplete
 
+## Construction result
+
+`PMLAB-CLOSURE-001` v0 was frozen at commit `b99b20a`. A pre-run audit found that its insertion-counterexample cases already marked the certificate `partial`, so they could not isolate the value of insertion-independence testing. V0 remains preserved. V1 changed only the two bilingual certificate statuses to declared `complete`, added an evaluation-only adversarial flag, and was frozen at `e9649ac` before runner implementation.
+
+On 48 authored cases, global CWA produced 40 unsupported N3 decisions; retrieval saturation produced 28 unsupported N2 decisions; and a coarse completeness flag produced eight unsupported N2 decisions. An exact query certificate reduced this to two unsupported N2 decisions, both on the deliberately unsound completeness claims. Adding the counterexample-insertion check removed both, kept positive safe coverage at 1.0, and invalidated every expiry/mutation case.
+
+The construction gates remain closed. The candidate reached 0.958 exact tier/action accuracy but 0.941 critical-tier accuracy, below the frozen 0.95 threshold, because it cannot decompose the one supported and one unclosed facet in the two bilingual multi-facet cases. Its action coverage was 0.375 versus 0.958 for retrieval saturation, so no matched-coverage comparison exists within the 0.06 tolerance. These results validate the scoped state transitions only; they do not validate real certificates, inventory probes, or natural-language scope mapping.
+
 ## Decision
 
 The project memory must use an **open-world default**. Failure to retrieve a record is not evidence that the record is absent from durable storage, and absence from durable storage is not evidence that the proposition is false. A closed-world inference is allowed only inside an explicit, current, query-specific completeness certificate.
@@ -194,3 +202,4 @@ Exact inspected page ranges and local artifact hashes are recorded in `docs/07-l
 - test whether supported personal-memory query shapes admit tractable counterexample insertion generation;
 - obtain an independent database-theory review of the certificate semantics;
 - keep privacy deletion, data never captured, inaccessible data, and confirmed physical loss as different states.
+- freeze a separate obligation decomposer and per-obligation scope mapper before an unseen closure challenge; do not repair the v1 multi-facet cases post hoc.

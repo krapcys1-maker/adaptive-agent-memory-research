@@ -1,6 +1,6 @@
 # Collection closure and negative-knowledge benchmark extension
 
-Status: preregistration draft; construction corpus not frozen
+Status: v0 and repaired v1 construction corpora frozen; exploratory construction run complete; held-out and architecture claims blocked
 
 ## Purpose
 
@@ -52,3 +52,13 @@ The runner must not receive hidden inventory or gold scope labels. Oracle arms m
 ## Promotion boundary
 
 A construction pass can admit the state machine and artifact contract. It cannot establish that real disks, replicas, access controls, natural-language scope mapping, or completeness metadata are reliable. Architecture promotion remains blocked until the held-out and independent-review gates pass.
+
+## Frozen construction outcome
+
+- v0 freeze: `b99b20a`, corpus SHA-256 `3599635e6e66cd1f98a2d7bcae98f97369aa5e4c412590f697a126f124253e58`;
+- v0 defect: insertion-counterexample certificates declared `partial`, so insertion checking was not isolated;
+- v1 repair/freeze before runner: `e9649ac`, corpus SHA-256 `3450ebbed450904216c75366c9aac374bdafb5e9add3a13d44e59e74d69ee43c`;
+- candidate certificate-plus-insertion arm: exact tier/action 0.958, critical tier 0.941, zero unsupported N2/N3, positive safe coverage 1.0;
+- failed gates: critical tier below 0.95 because multi-facet decomposition is absent; matched-coverage comparison unavailable because coverage gap versus retrieval saturation is 0.583.
+
+The next protocol version must freeze the decomposer and per-obligation scope mapper separately. V1 labels and cases remain unchanged.
