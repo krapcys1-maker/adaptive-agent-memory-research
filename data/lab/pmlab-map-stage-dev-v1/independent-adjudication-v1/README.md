@@ -29,6 +29,8 @@ The packet includes every critical semantic group plus a deterministic ordinary-
 5. Only then generate a reveal/adjudication comparison against author and advisory labels.
 6. Every material critical disagreement is resolved or the group is excluded. Original labels are never deleted.
 
+`scripts/validate_mapper_independent_review_v1.py` creates the pre-reveal receipt. `scripts/reveal_mapper_adjudication_v1.py` refuses to compare labels unless the stored receipt exactly matches a freshly validated form and attestation. Its output is a three-way author/independent/advisory comparison plus a pending adjudication queue; it never writes adjudicated labels or changes gold.
+
 DeepSeek is an advisory worker already used on this corpus. It cannot satisfy this independent-review requirement.
 
 Revision 1.1 was issued before any reviewer was assigned. It adds exact reviewer-label JSON shapes after validation found that the base schema's entity field names (`ranked_candidates`) differed from the authored label envelope (`candidate_ids` plus `selected_ids`). No cases, selection, gold labels, or advisory results changed.
