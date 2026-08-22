@@ -1,0 +1,100 @@
+{
+  "bridge_id": "longmemeval-bridge-v0",
+  "protocol_id": "LONGMEMEVAL-BRIDGE-RET-001",
+  "status": "execution-protocol-frozen-before-backend-output",
+  "authority": "public transfer diagnostic only; never pool with PMLAB and never use as confirmatory evidence",
+  "unlock_receipts": {
+    "pmlab_result_sha256": "41856a6adda80d483023e39a5fa3b0d0f325484e6f62e8cc11915c1487d946bb",
+    "pmlab_rankings_sha256": "ea86e8656e5d7511a7b711a11cb270570e93c96ce849da735a0a77cbdc3cbb9e",
+    "pmlab_decision": "advance-B2-over-B1-exploratory",
+    "bridge_selection_sha256": "6eb629bc0f9d1938fa15247092f2f69e096dc92de59c92881d0478972aad6483",
+    "source_sha256": "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442"
+  },
+  "adapter": {
+    "retrieval_unit": "one complete LongMemEval session",
+    "record_id": "runtime-only opaque sequential identifier assigned in source haystack order",
+    "title": "empty string",
+    "body": "turns in source order, serialized as role + ': ' + content and separated by newline",
+    "indexed": [
+      "turn role",
+      "turn content"
+    ],
+    "not_indexed": [
+      "source session id",
+      "session date",
+      "question date",
+      "question id",
+      "question type",
+      "answer",
+      "answerability",
+      "answer session ids",
+      "has_answer labels"
+    ],
+    "backend_visible_query_input": [
+      "question text"
+    ],
+    "no_query_expansion": true,
+    "no_translation": true,
+    "no_fusion": true,
+    "no_bridge_specific_tuning": true
+  },
+  "backends": {
+    "B0": "unchanged no-memory backend from lexical-v0",
+    "B1": "unchanged ripgrep tokenization, IDF-like scoring, and tie break from lexical-v0",
+    "B2": "unchanged SQLite FTS5 unicode61 OR-query, BM25 ranking, and tie break from lexical-v0",
+    "O": "answerable-only scorer control returning required sessions; empty on abstention"
+  },
+  "retrieval_contract": {
+    "primary_k": 5,
+    "reported_k": [
+      1,
+      5
+    ],
+    "maximum_returned_ids": 5,
+    "answerable_gold": "answer_session_ids mapped to runtime opaque identifiers",
+    "abstention_gold": null,
+    "abstention_rule": "report candidate-null and near-miss retrieval separately; neither is called correct answer abstention without a reader/completeness controller",
+    "source_content_persistence": "never write questions, answers, conversations, raw source session ids, or evidence labels to tracked outputs",
+    "backend_error": "record an empty result for the affected case; transfer is inconclusive if any B1/B2 error occurs"
+  },
+  "primary_outcome": {
+    "metric": "macro Recall@5 over six answerable question types",
+    "comparison": "B2 minus B1 paired difference over the 30 answerable questions",
+    "stratum_aggregation": "mean evidence-session recall within each question type, then equal-weight mean across six types",
+    "uncertainty": "10000 paired stratified bootstrap resamples within question type",
+    "bootstrap_seed": 20260823,
+    "confidence_interval": "two-sided percentile 95%"
+  },
+  "secondary_metrics": [
+    "micro and macro Recall@1 and Recall@5",
+    "all-required-sessions-at-5 rate",
+    "MRR of first required session",
+    "binary-gain nDCG@5",
+    "per-question-type Recall@5",
+    "candidate-null rate on six abstention cases",
+    "near-miss-session intrusion at 1 and 5 on abstention cases",
+    "candidate count",
+    "returned characters and UTF-8 bytes",
+    "index bytes, build time, and query latency"
+  ],
+  "sanity_controls": {
+    "B0": "zero recall and no returned candidates",
+    "O": "Recall@5 and all-required-at-5 equal 1.0 on answerable cases and no returned candidates on abstention",
+    "determinism": "B1 and B2 rankings must be byte-identical across two fresh processes"
+  },
+  "interpretation_rule": {
+    "supports_sparse_transfer": "B2-B1 point difference is positive, the 95% lower bound is at least zero, no question type loses more than 0.10 Recall@5, all controls pass, and there are no backend errors",
+    "fails_sparse_transfer": "B2-B1 point difference is non-positive or any question type loses more than 0.10 Recall@5, with otherwise valid controls",
+    "inconclusive": "bootstrap interval crosses zero despite a positive point estimate, any control fails, any B1/B2 backend error occurs, source/version drift occurs, or rankings are non-deterministic",
+    "architecture_effect": "none; the bridge can support or fail external transfer of the sparse baseline only"
+  },
+  "execution_sequence": [
+    "verify source bytes, source hash, selection hash, and PMLAB receipts",
+    "freeze and commit this adapter and interpretation contract",
+    "implement and test the runner without inspecting backend outcomes",
+    "freeze runner and environment versions",
+    "execute all 36 cases once",
+    "repeat rankings in two fresh processes for determinism",
+    "publish only content-free per-case metrics and aggregate results"
+  ]
+}
