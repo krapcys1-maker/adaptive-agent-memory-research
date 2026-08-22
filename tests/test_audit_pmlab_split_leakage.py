@@ -21,6 +21,15 @@ class SplitLeakageAuditTests(unittest.TestCase):
         self.assertFalse(summary["backend_output_read"])
         self.assertIn("reject v0 split", summary["decision"])
 
+    def test_clean_candidate_is_not_automatically_called_independent(self):
+        rows = [
+            {"example_id": "D", "category": "x", "split": "development", "query": "Where is the cobalt tool stored?"},
+            {"example_id": "T", "category": "x", "split": "test", "query": "Return the assigned location for the bronze instrument."},
+        ]
+        _, summary = MODULE.audit(rows, "test fixture")
+        self.assertEqual(summary["flagged_pairs"], 0)
+        self.assertIn("independent leakage audit remain required", summary["decision"])
+
 
 if __name__ == "__main__":
     unittest.main()

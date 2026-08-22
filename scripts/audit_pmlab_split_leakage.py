@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import difflib
+import argparse
 import json
 import re
 from collections import defaultdict
@@ -33,7 +34,7 @@ def jaccard(left: set[str], right: set[str]) -> float:
     return len(left & right) / len(left | right) if left | right else 1.0
 
 
-def audit(rows: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+def audit(rows: list[dict[str, Any]], source_description: str = "unspecified PMLAB blind queries") -> tuple[list[dict[str, Any]], dict[str, Any]]:
     pairs = []
     by_category: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for category in sorted({row["category"] for row in rows}):
@@ -57,34 +58,51 @@ def audit(rows: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, A
     flags = [row for row in pairs if row["sequence_ratio"] >= 0.85 or row["token_jaccard"] >= 0.75 or row["character_trigram_jaccard"] >= 0.70]
     summary = {
         "status": "posthoc-label-free-construction-audit",
-        "source": "project-memory-lab-v0-construction blind queries frozen at 612eb06",
+        "source": source_description,
         "query_count": len(rows), "cross_split_pairs": len(pairs), "flagged_pairs": len(flags),
         "flagged_categories": sorted({row["category"] for row in flags}), "category_maxima": maxima,
         "thresholds_are_confirmatory": False,
-        "decision_basis": "registered split policy requires different development/test templates; direct inspection shows repeated authored frames",
-        "decision": "reject v0 split for held-out confirmation; preserve as instrument defect; author v0.1 before review or backend execution",
+        "decision_basis": "registered split policy requires different development/test templates; numeric thresholds are a descriptive screen, not an independent semantic audit",
+        "decision": (
+            "reject v0 split/candidate split for held-out confirmation; preserve as instrument defect"
+            if flags else
+            "automated descriptive screen found no threshold crossings; direct template inspection and independent leakage audit remain required"
+        ),
         "labels_read": False, "backend_output_read": False,
     }
     return pairs, summary
 
 
 def main() -> int:
-    rows = read_jsonl(SOURCE)
-    pairs, summary = audit(rows)
-    OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "pairs.jsonl").write_text("".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in pairs), encoding="utf-8", newline="\n")
-    (OUT / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source", type=Path, default=SOURCE)
+    parser.add_argument("--output", type=Path, default=OUT)
+    parser.add_argument("--source-description", default=None)
+    parser.add_argument("--title", default="PMLAB development/test split audit")
+    args = parser.parse_args()
+    rows = read_jsonl(args.source)
+    description = args.source_description or str(args.source.relative_to(ROOT))
+    pairs, summary = audit(rows, description)
+    args.output.mkdir(parents=True, exist_ok=True)
+    (args.output / "pairs.jsonl").write_text("".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in pairs), encoding="utf-8", newline="\n")
+    (args.output / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    rejected = bool(summary["flagged_pairs"])
     report = [
-        "# PMLAB v0 development/test split audit", "",
-        "Status: v0 rejected for held-out confirmation before labels or backend execution", "",
-        f"The label-free audit compared {summary['cross_split_pairs']} within-category development/test query pairs. It flagged {summary['flagged_pairs']} pairs across {len(summary['flagged_categories'])} categories: " + ", ".join(summary["flagged_categories"]) + ".", "",
-        "The numeric thresholds are descriptive and post-hoc. The rejection does not depend on treating them as preregistered: the registered split policy already required different query templates, while direct paired inspection shows repeated frames with mostly entity/failure substitutions.", "",
+        f"# {args.title}", "",
+        ("Status: candidate rejected before labels or backend execution" if rejected else "Status: automated descriptive screen passed; independent leakage audit still required"), "",
+        f"The label-free audit compared {summary['cross_split_pairs']} within-category development/test query pairs. It flagged {summary['flagged_pairs']} pairs across {len(summary['flagged_categories'])} categories: " + (", ".join(summary["flagged_categories"]) if summary["flagged_categories"] else "none") + ".", "",
+        "The numeric thresholds are descriptive and post-hoc. They are a construction diagnostic, not proof of semantic independence. The registered split policy separately requires different development/test query forms.", "",
         "## Category maxima", "", "| Category | Sequence | Token Jaccard | Character trigram Jaccard |", "| --- | ---: | ---: | ---: |",
     ]
     for category, metrics in summary["category_maxima"].items():
         report.append(f"| {category} | {metrics['sequence_ratio']:.3f} | {metrics['token_jaccard']:.3f} | {metrics['character_trigram_jaccard']:.3f} |")
-    report += ["", "## Decision", "", "Do not request independent labels and do not execute B0/B1/B2 on this split. Preserve the corpus, protocol, and audit as a pre-run instrument failure. V0.1 must change test query forms without changing evidence records or reading backend results, rerun this audit, and issue new packet hashes."]
-    (OUT / "report.md").write_text("\n".join(report) + "\n", encoding="utf-8", newline="\n")
+    decision_text = (
+        "Do not request independent labels and do not execute B0/B1/B2 on this split. Preserve the corpus, protocol, and audit as a pre-run instrument failure."
+        if rejected else
+        "The candidate may proceed to direct template inspection and independent leakage review. This screen does not unlock labels or backend execution."
+    )
+    report += ["", "## Decision", "", decision_text]
+    (args.output / "report.md").write_text("\n".join(report) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0
 

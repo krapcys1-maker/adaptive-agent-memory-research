@@ -1,0 +1,12 @@
+{
+  "backend_output_read": false,
+  "corpus_byte_identical": true,
+  "development_queries_changed": 0,
+  "independent_review_complete": false,
+  "labels_read_by_builder": true,
+  "non_query_label_fields_changed": 0,
+  "output_corpus_sha256": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+  "source_corpus_sha256": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+  "status": "construction-repair-not-independent",
+  "test_queries_changed": 60
+}

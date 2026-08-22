@@ -1,0 +1,75 @@
+{
+  "backend_output_read": false,
+  "category_maxima": {
+    "causal_multi_episode": {
+      "character_trigram_jaccard": 0.16149068322981366,
+      "sequence_ratio": 0.4512820512820513,
+      "token_jaccard": 0.13636363636363635
+    },
+    "contradiction": {
+      "character_trigram_jaccard": 0.20869565217391303,
+      "sequence_ratio": 0.45390070921985815,
+      "token_jaccard": 0.2222222222222222
+    },
+    "cross_language": {
+      "character_trigram_jaccard": 0.14606741573033707,
+      "sequence_ratio": 0.43636363636363634,
+      "token_jaccard": 0.08333333333333333
+    },
+    "exact_lexical": {
+      "character_trigram_jaccard": 0.08403361344537816,
+      "sequence_ratio": 0.41304347826086957,
+      "token_jaccard": 0.07692307692307693
+    },
+    "paraphrase": {
+      "character_trigram_jaccard": 0.125,
+      "sequence_ratio": 0.4375,
+      "token_jaccard": 0.10526315789473684
+    },
+    "poison_resistance": {
+      "character_trigram_jaccard": 0.22485207100591717,
+      "sequence_ratio": 0.3853211009174312,
+      "token_jaccard": 0.18518518518518517
+    },
+    "procedure_failure": {
+      "character_trigram_jaccard": 0.3669064748201439,
+      "sequence_ratio": 0.49635036496350365,
+      "token_jaccard": 0.2727272727272727
+    },
+    "supersession": {
+      "character_trigram_jaccard": 0.22641509433962265,
+      "sequence_ratio": 0.4768211920529801,
+      "token_jaccard": 0.16666666666666666
+    },
+    "temporal_as_of": {
+      "character_trigram_jaccard": 0.25609756097560976,
+      "sequence_ratio": 0.44036697247706424,
+      "token_jaccard": 0.29411764705882354
+    },
+    "unanswerable": {
+      "character_trigram_jaccard": 0.09803921568627451,
+      "sequence_ratio": 0.4,
+      "token_jaccard": 0.1111111111111111
+    },
+    "weak_overlap": {
+      "character_trigram_jaccard": 0.09345794392523364,
+      "sequence_ratio": 0.4122137404580153,
+      "token_jaccard": 0.16666666666666666
+    },
+    "what_where_when": {
+      "character_trigram_jaccard": 0.16037735849056603,
+      "sequence_ratio": 0.373134328358209,
+      "token_jaccard": 0.125
+    }
+  },
+  "cross_split_pairs": 300,
+  "decision": "automated descriptive screen found no threshold crossings; direct template inspection and independent leakage audit remain required",
+  "decision_basis": "registered split policy requires different development/test templates; numeric thresholds are a descriptive screen, not an independent semantic audit",
+  "flagged_categories": [],
+  "flagged_pairs": 0,
+  "labels_read": false,
+  "query_count": 120,
+  "source": "project-memory-lab-v0.1-construction candidate blind queries derived pre-run from v0",
+  "status": "posthoc-label-free-construction-audit",
+  "thresholds_are_confirmatory": false
+}

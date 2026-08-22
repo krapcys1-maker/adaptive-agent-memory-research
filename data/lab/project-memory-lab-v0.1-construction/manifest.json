@@ -1,0 +1,35 @@
+{
+  "author_label_relations_unchanged": true,
+  "author_labels_are_gold": false,
+  "baseline_run_permitted": false,
+  "benchmark_id": "project-memory-lab-v0.1-construction",
+  "evidence_corpus_byte_identical_to_parent": true,
+  "hashes": {
+    "blind/annotation-form-a.jsonl": "99dc0ca7fe5e99353b4d8541efac0be5d6bdc0b2cbb68cad0bd339ca9dfd5000",
+    "blind/annotation-form-b.jsonl": "99dc0ca7fe5e99353b4d8541efac0be5d6bdc0b2cbb68cad0bd339ca9dfd5000",
+    "blind/annotation-manual.md": "eedf9268535451f8f4ee6d1a9f11964f0cb7339e424a9be3583ccb71b88d892a",
+    "blind/attestation-a.json": "5f4629e10054d1e98ee7c10b41073b6beda3e3cf14d3b785e3aec10ea50ed8a2",
+    "blind/attestation-b.json": "5f4629e10054d1e98ee7c10b41073b6beda3e3cf14d3b785e3aec10ea50ed8a2",
+    "blind/corpus.jsonl": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+    "blind/queries.jsonl": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
+    "corpus.jsonl": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+    "internal/author-labels.jsonl": "11044886dbe4703270ea007625ee512085ed6c028e9c6041e06ebe4c26841ad1"
+  },
+  "limitations": [
+    "query rewrites were authored by the benchmark constructor and require independent leakage review",
+    "96 cases remain controlled synthetic constructions and 24 are project-research records",
+    "author labels remain same-process hypotheses, not released gold",
+    "the separately licensed public-benchmark bridge is not part of this corpus"
+  ],
+  "parent_freeze_commit": "612eb06",
+  "parent_invalidated_version": "project-memory-lab-v0-construction",
+  "queries": 120,
+  "records": 176,
+  "repair_scope": "all 60 test query forms changed before independent annotation or backend execution",
+  "splits": {
+    "development": 60,
+    "test": 60
+  },
+  "status": "authored-repair-awaiting-label-free-split-audit",
+  "unlock": "label-free split audit, direct template inspection, independent leakage audit, two independent complete forms, adjudication, provenance audit, and gold hash freeze"
+}
