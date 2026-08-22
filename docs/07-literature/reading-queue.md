@@ -69,3 +69,13 @@ Do not mark a paper read until the note records:
 - at least one falsifiable hypothesis or explicit reason for exclusion.
 - exact section, page, figure, table, code location, or dataset locator supporting each extracted claim;
 - contradictory, null, or boundary-condition evidence found during the challenge pass.
+
+## Completed full-text extraction — awaiting independent review
+
+1. Zou et al. — decision-centric agent memory / DeMem.
+2. Colaco and Lahjouji — cross-layer memory compaction survey and reference experiment.
+3. Nagy, Orbán, and Wu — adaptive episodic/semantic compression Perspective.
+4. Jakob and Gershman — rate-distortion population coding for working memory.
+5. Fayyaz et al. — semantic completion in a generative episodic-memory model.
+
+Canonical notes and artifact hashes are in `docs/07-literature/full-read-notes/`. Completion here means the full read plus an initial challenge pass, not independent verification or architecture endorsement.

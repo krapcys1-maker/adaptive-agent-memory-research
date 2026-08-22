@@ -24,11 +24,13 @@ This is the fastest guide to where information belongs.
 | Benchmarks and evaluation risks | `docs/05-benchmarks/` |
 | Public datasets and labels | `docs/06-datasets/catalog.md` |
 | Papers to read | `docs/07-literature/reading-queue.md` |
+| Completed full-text extraction notes | `docs/07-literature/full-read-notes/` |
 | Claims backed by evidence | `docs/07-literature/evidence-ledger.csv` |
 | Planned experiments | `docs/08-experiments/` |
 | Current conclusions and rejected ideas | `docs/09-synthesis/` |
 | Animal, motor, immune, cellular, and collective memory | `docs/10-comparative-biological-memory/` |
 | Laboratory protocol, stage gates, and benchmark ladder | `docs/11-research-laboratory/` |
+| Repeated compaction and emotion-factor benchmark | `docs/11-research-laboratory/compression-benchmark-extension.md` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Coverage, search, experiment, and backend registries | `data/lab/` |
 | Machine-readable repository list | `data/catalogs/repositories-seed.csv` |

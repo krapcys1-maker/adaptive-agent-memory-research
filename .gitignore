@@ -1,6 +1,7 @@
 # Local research caches (recreated from manifests)
 /external/repos/
 /sources/papers/
+/tmp/
 
 # Generated discovery snapshots
 /data/snapshots/*.json
