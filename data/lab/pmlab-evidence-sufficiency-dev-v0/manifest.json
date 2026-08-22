@@ -1,0 +1,53 @@
+{
+  "experiment_id": "PMLAB-SUFF-001",
+  "dataset": "pmlab-evidence-sufficiency-dev-v0",
+  "status": "authored-construction-freeze",
+  "freeze_boundary": "first git commit containing builder manifest and cases.jsonl",
+  "case_count": 36,
+  "case_sha256": "67a2f20421550a44f2d3c377a259af496bcdbc2ea22394286b6a21997469b5f3",
+  "strata": {
+    "absent-empty-retrieval": 2,
+    "absent-with-similar-distractor": 2,
+    "bilingual-complete-evidence": 2,
+    "complete-answer-incomplete-attribution": 2,
+    "complete-multi-source": 2,
+    "complete-single": 2,
+    "conflict-resolved-by-validity": 2,
+    "incomplete-inventory-no-hit": 2,
+    "missing-bridge-recoverable": 2,
+    "missing-bridge-unavailable": 2,
+    "missing-facet-recoverable": 2,
+    "missing-facet-unavailable": 2,
+    "query-ambiguous": 2,
+    "redundant-saturation-missing-obligation": 2,
+    "stale-only-current-recoverable": 2,
+    "supported-answer-unsupported-extra-claim": 2,
+    "unresolved-current-conflict": 2,
+    "untrusted-only": 2
+  },
+  "languages": {
+    "en": 18,
+    "pl": 18
+  },
+  "expected_actions": {
+    "ABSTAIN_CONFLICT": 2,
+    "ABSTAIN_INCONCLUSIVE": 2,
+    "ABSTAIN_INVALID_EVIDENCE": 2,
+    "ABSTAIN_NOT_FOUND": 4,
+    "ANSWER_FULL": 8,
+    "ANSWER_SUPPORTED_ONLY": 2,
+    "ASK_CLARIFICATION": 2,
+    "PARTIAL_WITH_GAP": 4,
+    "REPAIR_ATTRIBUTION": 2,
+    "RETRIEVE_MISSING": 6,
+    "RETRIEVE_VALID": 2
+  },
+  "critical_cases": 12,
+  "limitations": [
+    "authored construction corpus and visible labels",
+    "obligation and claim-support mappings are diagnostic gold",
+    "reader scores are authored counterexamples not sampled model outputs",
+    "no real retriever judge or reader is evaluated",
+    "passing can validate state-machine semantics only"
+  ]
+}
