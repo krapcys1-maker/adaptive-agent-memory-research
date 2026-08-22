@@ -1,0 +1,80 @@
+{
+  "status": "completed-disposable-same-device-harness",
+  "cases": 300,
+  "trials_per_injection": 25,
+  "outcome_accuracy": 1.0,
+  "physical_loss_confirmed_count": 0,
+  "by_injection": {
+    "clean": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "capture-omission": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "primary-missing": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "replica-missing": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "both-missing": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "primary-truncated": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "both-truncated": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "schema-unsupported": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "index-omission": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "primary-structured-reader-fault": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "both-raw-reader-timeout": {
+      "trials": 25,
+      "accuracy": 1.0
+    },
+    "structured-parser-fault": {
+      "trials": 25,
+      "accuracy": 1.0
+    }
+  },
+  "probe_latency_us_descriptive": {
+    "primary_raw": {
+      "observations": 275,
+      "p50": 609.1,
+      "p95_nearest_rank": 4769.3
+    },
+    "replica_raw": {
+      "observations": 275,
+      "p50": 518.8,
+      "p95_nearest_rank": 802.2
+    },
+    "primary_structured": {
+      "observations": 275,
+      "p50": 66.3,
+      "p95_nearest_rank": 663.5
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "volume_topology": "C and D observed on Disk 0"
+  },
+  "boundary": "Real fsync/read/checksum/file-loss operations in disposable temp files; primary and replica share Disk 0; repeated trials are deterministic exercises, not independent reliability samples."
+}

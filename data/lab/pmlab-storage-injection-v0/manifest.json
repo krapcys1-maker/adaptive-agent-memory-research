@@ -1,0 +1,22 @@
+{
+  "status": "completed-disposable-same-device-harness",
+  "script": "scripts/run_storage_fault_injection.py",
+  "injections": [
+    "clean",
+    "capture-omission",
+    "primary-missing",
+    "replica-missing",
+    "both-missing",
+    "primary-truncated",
+    "both-truncated",
+    "schema-unsupported",
+    "index-omission",
+    "primary-structured-reader-fault",
+    "both-raw-reader-timeout",
+    "structured-parser-fault"
+  ],
+  "results_sha256": "197a30994ac0111210335b4e3a3c7d696cf72237483900b228ba30ede841d028",
+  "temporary_root_guard": "resolved parent equals system temp and basename starts pmlab-storage-",
+  "model_api_required": false,
+  "authority": "state-machine and probe-execution test only; no P10 independence"
+}

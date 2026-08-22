@@ -44,6 +44,7 @@ This is the fastest guide to where information belongs.
 | Noisy active-probe safety and cost comparison | `data/lab/pmlab-fault-probes-robustness-v1/` |
 | Healthy-result audit rate versus localization-cost curve | `data/lab/pmlab-probe-success-audit-v0/` |
 | Probe dependency map and empirical reliability protocol | `data/lab/probe-failure-domain-map-v0.csv`; `docs/11-research-laboratory/probe-failure-domain-and-reliability-protocol.md` |
+| Disposable same-device real-filesystem injection harness | `data/lab/pmlab-storage-injection-v0/` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Emotion/salience mechanism synthesis and falsification rules | `docs/12-interdisciplinary-memory/emotion-salience-synthesis.md` |
 | Interference, active forgetting, availability/accessibility, and recovery synthesis | `docs/12-interdisciplinary-memory/interference-active-forgetting-synthesis.md` |

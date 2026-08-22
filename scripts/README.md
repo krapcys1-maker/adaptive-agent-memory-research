@@ -87,6 +87,12 @@ Calculate the exact expected healthy-result audit curve:
 python scripts/run_probe_success_audit_curve.py
 ```
 
+Exercise the storage diagnostic state machine against disposable real files. The script verifies its generated system-temp root before any unlink or truncation:
+
+```powershell
+python scripts/run_storage_fault_injection.py
+```
+
 Run the deterministic entity/time parser baseline against challenge v0:
 
 ```powershell
