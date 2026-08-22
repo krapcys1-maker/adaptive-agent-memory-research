@@ -10,6 +10,8 @@ The project aims at a functional memory substitute for continuity, learning, cor
 
 Current focused syntheses include `metamemory-selective-control-synthesis.md`, which connects monitoring/control, feeling-of-knowing heuristics, selective risk, semantic uncertainty, and typed retrieval escalation without treating confidence as proof of stored knowledge.
 
+`evidence-sufficiency-and-completeness-synthesis.md` separates relevance, validity, answerability, facet and bridge completeness, claim support, citation completeness, conflict resolution, and collection closure.
+
 ## Common functional decomposition
 
 ```text
@@ -107,4 +109,6 @@ See:
 - [replay synthesis](replay-synthesis.md);
 - [reconsolidation and revision synthesis](reconsolidation-synthesis.md);
 - [interference, active forgetting, and access-failure synthesis](interference-active-forgetting-synthesis.md);
+- [metamemory and selective-control synthesis](metamemory-selective-control-synthesis.md);
+- [evidence sufficiency and completeness synthesis](evidence-sufficiency-and-completeness-synthesis.md);
 - [synthesis protocol](synthesis-protocol.md).
