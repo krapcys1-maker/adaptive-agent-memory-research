@@ -1,6 +1,6 @@
 # PMLAB-MAP stage development v1
 
-Status: annotation contract frozen; contract, graph, entity, and predicate tranches authored and unreviewed; no candidates implemented
+Status: base six-stage allocation authored and unreviewed; declared-label coverage amendment required; no candidates implemented
 
 This directory defines the next development instrument after both integrated PMLAB-MAP arms failed post-freeze challenge v0. It is not a parser implementation and contains no candidate outputs.
 
@@ -53,6 +53,12 @@ The future stage challenge repeats steps 2-6 after candidate versions are frozen
 - 14 predicate groups grounded against `predicate-catalog-v1.json`, including direct aliases, synonym/name mismatch, near-neighbor ambiguity, implicit schema context, and unsupported predicates.
 
 The builder converts bilingual graph-span templates to language-specific gold, verifies exact spans and backward-only DAG edges, checks predicate and namespace IDs, enforces typed ambiguity/unsupported states, and checks authored critical-group quotas. The accumulated corpus is 52 groups/104 rows; time/authorization and certificate routing remain unauthored.
+
+## Time, authorization, and certificate tranche
+
+`time-certificate-groups-v1.jsonl` adds the final 20 base-allocation groups/40 rows. Time fixtures make reference clock, timezone, principal, policy version, normalized interval/recurrence/event anchor, and namespace-level authorization explicit. Certificate fixtures distinguish positive, derived, explicit-negative, complete-scope absence, stale/incomplete/wrong-scope, ambiguity, and matching versus out-of-scope insertion probes.
+
+The base allocation therefore reaches 72 groups/144 rows and all six stage quotas. It is not yet implementation-ready: `declared-label-coverage-audit-v1.md` records five unobserved contract labels plus one graph-stage/schema inconsistency. A versioned supplemental development tranche is required before candidate work; independent review remains required afterward.
 
 ## Blind advisory review
 

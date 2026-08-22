@@ -20,6 +20,7 @@ BUILDER_VERSION = "pmlab-map-stage-dev-builder-v2"
 SOURCE_PATHS = [
     DATA_DIR / "contract-entity-groups-v1.jsonl",
     DATA_DIR / "graph-predicate-groups-v1.jsonl",
+    DATA_DIR / "time-certificate-groups-v1.jsonl",
 ]
 CATALOG_PATH = DATA_DIR / "entity-catalog-v1.json"
 PREDICATE_CATALOG_PATH = DATA_DIR / "predicate-catalog-v1.json"
@@ -166,6 +167,78 @@ def validate_predicate_group(group: dict[str, Any], predicate_catalog: dict[str,
         raise ValueError(f"{gid}: unsupported predicate cannot invent candidates or namespaces")
 
 
+def validate_time_authorization_group(group: dict[str, Any], schema: dict[str, Any]) -> None:
+    gid = group["semantic_group_id"]
+    fixture = group.get("fixture", {})
+    gold = group["gold"]
+    contract = schema["stage_outputs"]["time_authorization"]
+    if gold.get("time_status") not in contract["time_status"]:
+        raise ValueError(f"{gid}: invalid time status")
+    if gold.get("authorization_status") not in contract["authorization_status"]:
+        raise ValueError(f"{gid}: invalid authorization status")
+    if set(gold.get("raw_span", {})) != {"en", "pl"}:
+        raise ValueError(f"{gid}: bilingual time span missing")
+    for language, variant in group["variants"].items():
+        if variant.get("raw_span") != gold["raw_span"][language] or variant["raw_span"] not in variant["raw_query"]:
+            raise ValueError(f"{gid}:{language}: time span is not exact or differs from gold")
+    for field in ("reference_clock", "timezone", "principal"):
+        if not fixture.get(field) or fixture[field] != gold.get(field):
+            raise ValueError(f"{gid}: {field} is missing or differs between input and gold")
+    if not isinstance(gold.get("normalized_time"), str) or not gold["normalized_time"]:
+        raise ValueError(f"{gid}: normalized time must be explicit")
+    authorized = gold.get("authorized_namespaces")
+    denied = gold.get("denied_namespaces")
+    if not isinstance(authorized, list) or not isinstance(denied, list) or set(authorized) & set(denied):
+        raise ValueError(f"{gid}: authorization namespace partition is invalid")
+    authorization = gold["authorization_status"]
+    if authorization == "denied" and (authorized or not denied):
+        raise ValueError(f"{gid}: denied scope must expose nothing and name denied scope")
+    if authorization == "partial" and (not authorized or not denied):
+        raise ValueError(f"{gid}: partial scope requires allowed and denied namespaces")
+    if authorization == "allowed" and denied:
+        raise ValueError(f"{gid}: allowed scope cannot contain denied namespaces")
+    if gold["time_status"] == "ambiguous" and not gold["normalized_time"].startswith("ambiguous:"):
+        raise ValueError(f"{gid}: ambiguous time must remain typed")
+    if gold["time_status"] == "unbounded" and not gold["normalized_time"].startswith("unbounded:"):
+        raise ValueError(f"{gid}: unbounded time must remain typed")
+    if gold["time_status"] == "inherited":
+        if not fixture.get("parent_scopes") or gold["authorization_status"] != "inherited":
+            raise ValueError(f"{gid}: inherited time requires parent scopes and inherited authorization")
+
+
+def validate_certificate_group(group: dict[str, Any], schema: dict[str, Any]) -> None:
+    gid = group["semantic_group_id"]
+    fixture = group.get("fixture", {})
+    gold = group["gold"]
+    contract = schema["stage_outputs"]["certificate_routing"]
+    if gold.get("certificate_status") not in contract["certificate_status"]:
+        raise ValueError(f"{gid}: invalid certificate status")
+    if gold.get("action") not in contract["action"] or not gold.get("basis"):
+        raise ValueError(f"{gid}: invalid certificate action or missing basis")
+    for language, variant in group["variants"].items():
+        if not variant.get("proposition_span") or variant["proposition_span"] not in variant["raw_query"]:
+            raise ValueError(f"{gid}:{language}: proposition span is not exact")
+    collection = fixture.get("collection", {})
+    insertion = fixture.get("insertion", {})
+    status = gold["certificate_status"]
+    if status == "explicit_negative" and fixture.get("evidence_state") != "explicit_negative_record":
+        raise ValueError(f"{gid}: explicit negative requires proposition-level evidence")
+    if status == "requires_complete_scope":
+        if not (collection.get("fresh") and collection.get("complete") and collection.get("scope_match")):
+            raise ValueError(f"{gid}: collection absence requires fresh exact completeness")
+        if insertion.get("present") and insertion.get("matches_scope"):
+            raise ValueError(f"{gid}: matching insertion invalidates collection absence")
+    if insertion.get("present") and insertion.get("matches_scope") and status != "inapplicable":
+        raise ValueError(f"{gid}: insertion counterexample must invalidate certificate")
+    if fixture.get("mapping_status") != "resolved" and status not in {"ambiguous", "inapplicable"}:
+        raise ValueError(f"{gid}: unresolved mapping cannot receive a conclusive certificate")
+    safe_answer = {"applicable", "derived", "explicit_negative", "requires_complete_scope"}
+    if gold["action"] == "answer" and status not in safe_answer:
+        raise ValueError(f"{gid}: unsafe answer action")
+    if status == "ambiguous" and gold["action"] != "clarify":
+        raise ValueError(f"{gid}: ambiguous certificate requires clarification")
+
+
 def validate_group_sources(
     groups: list[dict[str, Any]],
     catalog: dict[str, Any],
@@ -195,6 +268,14 @@ def validate_group_sources(
         ("predicate_linking", "near_neighbor_ambiguity"): 3,
         ("predicate_linking", "implicit_schema_context"): 3,
         ("predicate_linking", "unsupported_predicate"): 2,
+        ("time_authorization", "absolute_relative_and_event_anchor"): 3,
+        ("time_authorization", "recurrence_unbounded_and_ambiguous"): 3,
+        ("time_authorization", "allowed_denied_partial"): 2,
+        ("time_authorization", "inherited_multi_parent_scope"): 2,
+        ("certificate_routing", "applicable_and_derived"): 2,
+        ("certificate_routing", "explicit_negative_vs_absence"): 3,
+        ("certificate_routing", "stale_incomplete_or_wrong_scope"): 3,
+        ("certificate_routing", "insertion_counterexample"): 2,
     }
     if counts != expected:
         raise ValueError(f"source allocation mismatch: {dict(counts)}")
@@ -218,6 +299,14 @@ def validate_group_sources(
         ("predicate_linking", "near_neighbor_ambiguity"): 3,
         ("predicate_linking", "implicit_schema_context"): 2,
         ("predicate_linking", "unsupported_predicate"): 2,
+        ("time_authorization", "absolute_relative_and_event_anchor"): 2,
+        ("time_authorization", "recurrence_unbounded_and_ambiguous"): 3,
+        ("time_authorization", "allowed_denied_partial"): 2,
+        ("time_authorization", "inherited_multi_parent_scope"): 2,
+        ("certificate_routing", "applicable_and_derived"): 1,
+        ("certificate_routing", "explicit_negative_vs_absence"): 3,
+        ("certificate_routing", "stale_incomplete_or_wrong_scope"): 3,
+        ("certificate_routing", "insertion_counterexample"): 2,
     }
     actual_critical = Counter(
         (group["stage"], group["stratum"])
@@ -271,6 +360,10 @@ def validate_group_sources(
             validate_graph_group(group, schema)
         elif group["stage"] == "predicate_linking":
             validate_predicate_group(group, predicate_catalog, schema)
+        elif group["stage"] == "time_authorization":
+            validate_time_authorization_group(group, schema)
+        elif group["stage"] == "certificate_routing":
+            validate_certificate_group(group, schema)
         else:
             raise ValueError(f"{gid}: source validator not implemented for {group['stage']}")
 
@@ -280,6 +373,8 @@ def gold_for_language(group: dict[str, Any], language: str) -> dict[str, Any]:
     if group["stage"] == "obligation_graph":
         for node in gold["nodes"]:
             node["source_span"] = node["source_span"][language]
+    elif group["stage"] == "time_authorization":
+        gold["raw_span"] = gold["raw_span"][language]
     return gold
 
 
@@ -299,6 +394,30 @@ def allocation_snapshot(groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
     ]
 
 
+def declared_label_coverage(cases: list[dict[str, Any]], schema: dict[str, Any]) -> dict[str, Any]:
+    declarations = {
+        "contract_span.decision": schema["stage_outputs"]["contract_span"]["decision"],
+        "contract_span.reject_reason": schema["stage_outputs"]["contract_span"]["reject_reason"],
+        "obligation_graph.query_status": schema["stage_outputs"]["obligation_graph"]["query_status"],
+        "entity_linking.action": schema["stage_outputs"]["entity_linking"]["action"],
+        "predicate_linking.action": schema["stage_outputs"]["predicate_linking"]["action"],
+        "time_authorization.time_status": schema["stage_outputs"]["time_authorization"]["time_status"],
+        "time_authorization.authorization_status": schema["stage_outputs"]["time_authorization"]["authorization_status"],
+        "certificate_routing.certificate_status": schema["stage_outputs"]["certificate_routing"]["certificate_status"],
+        "certificate_routing.action": schema["stage_outputs"]["certificate_routing"]["action"],
+    }
+    result = {}
+    for key, declared in declarations.items():
+        stage, field = key.split(".", 1)
+        observed = sorted({case["gold"].get(field) for case in cases if case["stage"] == stage and case["gold"].get(field) is not None})
+        result[key] = {
+            "declared": declared,
+            "observed": observed,
+            "uncovered": sorted(set(declared) - set(observed)),
+        }
+    return result
+
+
 def build_outputs() -> dict[Path, str]:
     groups = [group for path in SOURCE_PATHS for group in read_jsonl(path)]
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
@@ -311,13 +430,15 @@ def build_outputs() -> dict[Path, str]:
     for group in groups:
         for language in ("en", "pl"):
             case_id = f"{group['semantic_group_id']}-{language.upper()}"
-            stage_input = {**group["variants"][language]}
+            stage_input = {**group["variants"][language], **copy.deepcopy(group.get("fixture", {}))}
             if group["stage"] in {"contract_span", "entity_linking"}:
                 stage_input["catalog_version"] = catalog["catalog_version"]
             elif group["stage"] == "predicate_linking":
                 stage_input["schema_version"] = predicate_catalog["schema_version"]
             elif group["stage"] == "obligation_graph":
                 stage_input["graph_contract_version"] = schema["schema_version"]
+            elif group["stage"] in {"time_authorization", "certificate_routing"}:
+                stage_input["stage_contract_version"] = schema["schema_version"]
             case = {
                 "case_id": case_id,
                 "semantic_group_id": group["semantic_group_id"],
@@ -335,6 +456,8 @@ def build_outputs() -> dict[Path, str]:
                         if group["stage"] == "predicate_linking"
                         else schema["schema_version"]
                         if group["stage"] == "obligation_graph"
+                        else schema["schema_version"]
+                        if group["stage"] in {"time_authorization", "certificate_routing"}
                         else catalog["catalog_version"]
                     ),
                     "source_or_construction_basis": group["construction_basis"],
@@ -362,9 +485,10 @@ def build_outputs() -> dict[Path, str]:
     review_text = render_jsonl(review_queue)
     allocation = allocation_snapshot(groups)
     allocation_text = json.dumps(allocation, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+    coverage = declared_label_coverage(cases, schema)
     manifest = {
         "benchmark": "PMLAB-MAP-STAGE-001",
-        "artifact": "stage-dev-v1-contract-entity-graph-predicate-tranche",
+        "artifact": "stage-dev-v1-complete-six-stage-corpus",
         "status": "authored-unreviewed-development-data",
         "builder_version": BUILDER_VERSION,
         "annotation_contract_freeze_commit": "794c9e3",
@@ -374,6 +498,10 @@ def build_outputs() -> dict[Path, str]:
         "language_counts": dict(sorted(Counter(case["language"] for case in cases).items())),
         "critical_group_count": sum(group["criticality"] == "critical" for group in groups),
         "review_status": "not-reviewed",
+        "declared_label_coverage": coverage,
+        "uncovered_declared_labels": {
+            key: value["uncovered"] for key, value in coverage.items() if value["uncovered"]
+        },
         "hashes": {
             **{path.name: sha256_bytes(path.read_bytes()) for path in SOURCE_PATHS},
             "entity-catalog-v1.json": sha256_bytes(CATALOG_PATH.read_bytes()),
@@ -391,7 +519,7 @@ def build_outputs() -> dict[Path, str]:
             "split_and_stratum_absent_from_model_cases": True,
             "candidate_outputs_absent": True,
         },
-        "blockers": ["independent label review not completed", "time/authorization and certificate stage corpora not authored", "no candidate implementation may use future challenge rows"],
+        "blockers": ["independent label review not completed", "advisory review of the complete corpus not completed", "no candidate implementation may use future challenge rows"],
     }
     return {
         DATA_DIR / "cases.jsonl": cases_text,

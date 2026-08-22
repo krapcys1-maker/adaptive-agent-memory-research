@@ -1,5 +1,33 @@
 [
   {
+    "critical_groups": 1,
+    "rows": 4,
+    "semantic_groups": 2,
+    "stage": "certificate_routing",
+    "stratum": "applicable_and_derived"
+  },
+  {
+    "critical_groups": 3,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "certificate_routing",
+    "stratum": "explicit_negative_vs_absence"
+  },
+  {
+    "critical_groups": 2,
+    "rows": 4,
+    "semantic_groups": 2,
+    "stage": "certificate_routing",
+    "stratum": "insertion_counterexample"
+  },
+  {
+    "critical_groups": 3,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "certificate_routing",
+    "stratum": "stale_incomplete_or_wrong_scope"
+  },
+  {
     "critical_groups": 2,
     "rows": 4,
     "semantic_groups": 2,
@@ -131,5 +159,33 @@
     "semantic_groups": 2,
     "stage": "predicate_linking",
     "stratum": "unsupported_predicate"
+  },
+  {
+    "critical_groups": 2,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "time_authorization",
+    "stratum": "absolute_relative_and_event_anchor"
+  },
+  {
+    "critical_groups": 2,
+    "rows": 4,
+    "semantic_groups": 2,
+    "stage": "time_authorization",
+    "stratum": "allowed_denied_partial"
+  },
+  {
+    "critical_groups": 2,
+    "rows": 4,
+    "semantic_groups": 2,
+    "stage": "time_authorization",
+    "stratum": "inherited_multi_parent_scope"
+  },
+  {
+    "critical_groups": 3,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "time_authorization",
+    "stratum": "recurrence_unbounded_and_ambiguous"
   }
 ]

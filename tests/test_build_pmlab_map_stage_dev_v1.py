@@ -21,12 +21,12 @@ class PmlabMapStageDevBuilderTests(unittest.TestCase):
         cls.review = [json.loads(line) for line in cls.outputs[MODULE.DATA_DIR / "independent-review-queue.jsonl"].splitlines()]
         cls.manifest = json.loads(cls.outputs[MODULE.DATA_DIR / "manifest.json"])
 
-    def test_current_tranche_has_52_bilingual_groups(self):
+    def test_complete_corpus_has_72_bilingual_groups(self):
         groups = defaultdict(set)
         for case in self.cases:
             groups[case["semantic_group_id"]].add(case["language"])
-        self.assertEqual(len(groups), 52)
-        self.assertEqual(len(self.cases), 104)
+        self.assertEqual(len(groups), 72)
+        self.assertEqual(len(self.cases), 144)
         self.assertTrue(all(languages == {"en", "pl"} for languages in groups.values()))
 
     def test_model_and_review_payloads_do_not_leak_gold(self):
@@ -75,6 +75,34 @@ class PmlabMapStageDevBuilderTests(unittest.TestCase):
         self.assertEqual(18, actions["linked"])
         self.assertEqual(6, actions["ambiguous_schema"])
         self.assertEqual(4, actions["unsupported_predicate"])
+
+    def test_time_and_certificate_allocations(self):
+        groups = defaultdict(set)
+        for case in self.cases:
+            groups[case["stage"]].add(case["semantic_group_id"])
+        self.assertEqual(10, len(groups["time_authorization"]))
+        self.assertEqual(10, len(groups["certificate_routing"]))
+
+    def test_time_labels_preserve_all_resolution_and_access_states(self):
+        time_statuses = {case["gold"]["time_status"] for case in self.cases if case["stage"] == "time_authorization"}
+        authorization = {case["gold"]["authorization_status"] for case in self.cases if case["stage"] == "time_authorization"}
+        self.assertEqual({"resolved", "ambiguous", "unbounded", "inherited"}, time_statuses)
+        self.assertEqual({"allowed", "denied", "partial", "inherited"}, authorization)
+
+    def test_certificate_labels_cover_safe_negative_boundaries(self):
+        statuses = {case["gold"]["certificate_status"] for case in self.cases if case["stage"] == "certificate_routing"}
+        self.assertEqual(
+            {"applicable", "derived", "explicit_negative", "requires_complete_scope", "ambiguous", "inapplicable"},
+            statuses,
+        )
+        inserted = [
+            case
+            for case in self.cases
+            if case["stage"] == "certificate_routing"
+            and case["input"].get("insertion", {}).get("matches_scope")
+        ]
+        self.assertTrue(inserted)
+        self.assertTrue(all(case["gold"]["certificate_status"] == "inapplicable" for case in inserted))
 
     def test_manifest_records_unreviewed_and_no_candidates(self):
         self.assertEqual(self.manifest["review_status"], "not-reviewed")
