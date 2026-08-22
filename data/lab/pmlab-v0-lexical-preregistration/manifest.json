@@ -1,0 +1,117 @@
+{
+  "experiment_id": "PMLAB-V0-RET-001",
+  "protocol_version": "lexical-v0",
+  "status": "protocol-frozen-execution-locked",
+  "execution_authorized": false,
+  "freeze_prerequisites_satisfied": {
+    "corpus_bytes": true,
+    "backend_contract": true,
+    "metrics_and_decision_rules": true,
+    "dual_independent_labels": false,
+    "adjudicated_gold_hash": false,
+    "independent_provenance_template_audit": false
+  },
+  "corpus": {
+    "construction_commit": "612eb06",
+    "records": 176,
+    "queries": 120,
+    "development_queries": 60,
+    "test_queries": 60,
+    "corpus_sha256": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+    "blind_queries_sha256": "bbd92b7bedc876ff849d4b504aa99abf99dae334d022f1d19c5e87510b8160b7",
+    "adjudicated_gold_sha256": null
+  },
+  "backend_input_boundary": {
+    "visible": ["query text"],
+    "hidden": ["example id", "history id", "split", "family", "category", "query time metadata outside query text", "consequence weight", "answerability", "gold evidence", "forbidden evidence"],
+    "indexed_fields": ["title", "body"],
+    "not_indexed": ["evidence id", "history id", "valid_from", "valid_to", "status", "supersedes", "trust", "family", "source_path", "source_relation"]
+  },
+  "backends": {
+    "B0": {"name": "no-memory", "behavior": "always return an empty ranked list"},
+    "B1": {
+      "name": "ripgrep-tokenized-lexical",
+      "tokenization": "Unicode alphanumeric words with internal hyphens; casefold; length >=3; exact frozen EN/PL stopword list from run_memory_benchmark.py; stable first occurrence; no stemming, synonyms, translation, metadata, or learned expansion",
+      "scoring": "sum IDF-like token weights log((N+1)/(df+1))+1 over documents containing each fixed-string token",
+      "tie_break": "ascending opaque evidence_id"
+    },
+    "B2": {
+      "name": "sqlite-fts5-bm25",
+      "tokenizer": "SQLite FTS5 unicode61 defaults",
+      "query": "OR of the same B1 frozen tokens, each phrase-quoted",
+      "ranking": "ascending SQLite bm25 score",
+      "tie_break": "ascending opaque evidence_id"
+    },
+    "O": {"name": "reviewed-evidence-oracle", "behavior": "return all adjudicated required evidence before acceptable alternatives; scorer integrity control only"}
+  },
+  "retrieval_contract": {
+    "primary_k": 5,
+    "reported_k": [1, 5],
+    "maximum_returned_ids": 5,
+    "source_unit": "one complete PMLAB evidence record",
+    "content_budget": "not applied to identifier-level retrieval; returned characters and UTF-8 bytes are reported; a matched context-token budget is deferred to reader evaluation",
+    "duplicate_ids": "reject run",
+    "unknown_ids": "reject run",
+    "backend_error": "record zero recall for affected query and backend; experiment is inconclusive if any backend error rate exceeds 0.01",
+    "empty_token_query": "return empty list and record empty_query_tokens=true"
+  },
+  "primary_outcome": {
+    "metric": "macro Recall@5 over the eleven answerable strata",
+    "comparison": "B2 minus B1 paired difference on test",
+    "stratum_aggregation": "mean query evidence recall inside each answerable category, then equal-weight mean across categories",
+    "uncertainty": "10000 paired stratified bootstrap resamples within category",
+    "bootstrap_seed": 20260822,
+    "confidence_interval": "two-sided percentile 95%"
+  },
+  "secondary_metrics": [
+    "Recall@1 and Recall@5 by category and family",
+    "all-required-evidence-at-5 rate",
+    "Precision@5 with denominator equal to returned candidate count",
+    "MRR of first required evidence",
+    "binary-gain nDCG@5",
+    "consequence-weighted evidence recall",
+    "critical full-evidence miss rate for consequence_weight >=4",
+    "forbidden stale/poison intrusion rate at 1 and 5",
+    "unanswerable candidate-null rate and returned-candidate count (not called abstention)",
+    "returned characters and bytes",
+    "index bytes and build time",
+    "process-new-index first-pass latency p50/p95",
+    "warm-index latency p50/p95 over five measured repetitions after one unmeasured warmup"
+  ],
+  "sanity_controls": {
+    "B0": "Recall@k must be zero and returned candidates empty; this is an incremental-memory control, not a useful answer policy",
+    "O": "Recall@5 and all-required-evidence rate must be 1.0 on answerable cases with zero forbidden intrusion; otherwise invalidate scorer or adjudicated labels",
+    "determinism": "B1 and B2 ranked IDs must match byte-for-byte across two fresh processes on the same tool versions"
+  },
+  "decision_rule": {
+    "advance_B2_over_B1": [
+      "test macro Recall@5 point difference >=0.05",
+      "95% paired bootstrap lower bound >0",
+      "B2 improves by >=0.05 in at least three answerable non-exact strata",
+      "critical full-evidence miss rate does not exceed B1 by >0.02",
+      "forbidden intrusion at 5 does not exceed B1 by >0.02",
+      "no validity or leakage failure"
+    ],
+    "restrict": "primary gain passes but a non-safety cost or one task family fails; retain only the documented boundary",
+    "reject": "primary point threshold or positive-CI rule fails, or a safety guardrail fails; B1 remains the simpler baseline",
+    "inconclusive": "label/adjudication defect, oracle failure, >1% backend errors, version drift, split leakage, or non-deterministic ranked IDs"
+  },
+  "execution_sequence": [
+    "validate two independent annotation receipts",
+    "adjudicate and freeze gold without backend output",
+    "freeze exact Python, ripgrep, SQLite, OS, CPU, and repository versions",
+    "run unit and oracle scorer checks",
+    "run development once for infrastructure failure only; do not change tokenization, ranking, k, metrics, or thresholds",
+    "commit runner and development artifacts",
+    "run test exactly once in a clean process",
+    "repeat fresh-process determinism and latency measurements",
+    "publish all rows and decision outcome"
+  ],
+  "reader_model": null,
+  "judge": null,
+  "public_bridge": {
+    "manifest": "data/lab/longmemeval-bridge-v0/manifest.json",
+    "rule": "execute only after PMLAB test using the unchanged adapter; score separately; abstention has no positive retrieval gold"
+  },
+  "dense_and_hybrid_unlock": "C1 remains locked until B1/B2 protocol completes and independent review accepts labels and analysis; a B2 rejection does not block testing C1 against the simpler surviving B1 baseline"
+}

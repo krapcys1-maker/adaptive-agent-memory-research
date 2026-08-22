@@ -95,9 +95,11 @@ Controls:
 - no reader model in the primary retrieval result;
 - reader evaluation performed later with a fixed prompt and at least two provider/model families where subscriptions allow.
 
-Primary metric: macro Recall@5 across the 12 strata, with critical-memory miss rate reported separately.
+Primary metric: macro Recall@5 across the eleven answerable strata, with critical-memory miss rate reported separately. The unanswerable stratum has no positive retrieval gold and is not folded into Recall@5.
 
-Secondary metrics: MRR, nDCG, evidence recall per token, stale intrusion, abstention, p50/p95 latency, index size, and scale degradation.
+Secondary metrics: MRR, nDCG, evidence recall per returned content, stale/poison intrusion, unanswerable candidate-null behavior, p50/p95 latency, index size, and scale degradation. End-to-end abstention belongs to the later completeness-controller/reader comparison, not raw retrieval.
+
+The exact frozen lexical-v0 input boundary, tokenization, ranking, bootstrap, safety guardrails, outcome rules, and execution lock are machine-readable in `data/lab/pmlab-v0-lexical-preregistration/manifest.json`.
 
 ## Leakage and validity checks
 
