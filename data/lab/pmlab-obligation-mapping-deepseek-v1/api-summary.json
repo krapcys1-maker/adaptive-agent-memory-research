@@ -1,0 +1,14 @@
+{
+  "status": "api-run-complete",
+  "model": "deepseek-v4-flash",
+  "jobs": 56,
+  "valid_predictions": 45,
+  "schema_valid_rate": 0.8035714285714286,
+  "attempted_cases": 56,
+  "errors": 11,
+  "calls_this_invocation": 8,
+  "run_conservative_cost_usd": 0.0199958,
+  "all_runs_conservative_cost_usd": 0.3661592,
+  "hard_budget_usd": 10.0,
+  "frozen_manifest_hash": "edbbe8a6014ba807f241929e35054de984a295bae495957d2d7680ea3beae569"
+}

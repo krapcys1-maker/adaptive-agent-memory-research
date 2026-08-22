@@ -82,6 +82,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/11-research-laboratory/obligation-ir-schema-v0.md` — design-freeze candidate separating computation graphs from entity/predicate/time/authorization/certificate scopes.
 - `data/lab/pmlab-obligation-mapping-dev-v0/` — bilingual 28-group/56-case construction source, metric-equivalence fixtures, generated payloads, and deterministic validation; not held out or independently reviewed.
 - `data/lab/pmlab-obligation-mapping-dev-v0/artifacts/` — repaired deterministic construction comparison; QDMR rules pass discovery/safe-abstention checks but fail entity/predicate and end-to-end promotion gates. The rejected first instrument run is preserved beside it.
+- `data/lab/pmlab-obligation-mapping-deepseek-v1/` — frozen optional-model construction comparator; only 45/56 schema-valid predictions, F1 0.710, critical recall 0.607, E2E 0.143, and two false closures. Rejected for promotion.
 - `data/lab/pmlab-forgetting-dev/` — deterministic 28-case F1 and 56-query F2 development instrument with artifacts and an adversarial review.
 - `data/lab/pmlab-forgetting-challenge-v0/` — unseen-template multi-fault and ambiguous entity/time challenge that breaks the development resolver.
 - `data/lab/reader-interference-stress-v5/` — first fully audited single-model factorial over stale count, cue quality, order, similarity, and instruction strength.

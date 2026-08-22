@@ -1,0 +1,15 @@
+{
+  "status": "completed-construction-model-comparator",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "pmlab-map-deepseek-v0",
+  "corpus_freeze_commit": "4b6c47e",
+  "prediction_count": 45,
+  "scored_case_count": 56,
+  "hashes": {
+    "predictions.jsonl": "85c93537df11194911e9082f72232281dd4f4716127bd94d39198a6ef9760197",
+    "scored-results.jsonl": "1ef62ef267dd7edced5e08427b3beb13c0bfd9c34f0ae7517a9efa115db5148e",
+    "score-summary.json": "48a8e6ff7f2edcbf1aa2d2247377ef462f3ac117b3f61fa2a16bf3f0bb4251c3",
+    "report.md": "c2c9bcfa8d1516bbb03ec16e521522996e3222a5bd20309b9c0c4ce8ed4b507b"
+  },
+  "authority": "optional comparator; not gold; not held out"
+}
