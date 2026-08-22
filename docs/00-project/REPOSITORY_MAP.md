@@ -41,6 +41,7 @@ This is the fastest guide to where information belongs.
 | Measurable catalog entity/time parser baseline | `data/lab/pmlab-forgetting-challenge-v0/parser-v0/` |
 | Frozen language/date falsification of parser v0 | `data/lab/pmlab-forgetting-challenge-v0/parser-challenge-v1/` |
 | Passive cascade versus isolated active-probe comparison | `data/lab/pmlab-fault-probes-v0/` |
+| Noisy active-probe safety and cost comparison | `data/lab/pmlab-fault-probes-robustness-v1/` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Emotion/salience mechanism synthesis and falsification rules | `docs/12-interdisciplinary-memory/emotion-salience-synthesis.md` |
 | Interference, active forgetting, availability/accessibility, and recovery synthesis | `docs/12-interdisciplinary-memory/interference-active-forgetting-synthesis.md` |

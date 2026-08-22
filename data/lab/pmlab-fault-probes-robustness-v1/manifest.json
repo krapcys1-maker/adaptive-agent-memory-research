@@ -1,0 +1,9 @@
+{
+  "status": "completed-deterministic-probe-robustness",
+  "script": "scripts/run_fault_probe_robustness.py",
+  "base_instrument": "data/lab/pmlab-fault-probes-v0",
+  "cases_sha256": "51ec9e6ac3601bb9f9ab24531464fa5839e5f804ff4fe8216265c77d62a0e1fb",
+  "results_sha256": "e0f45863126aa7038ac5b64f3fa2bcf44ad8cf4f4a0cda02abc3267e8357a2c3",
+  "model_api_required": false,
+  "authority": "authored robustness instrument; not empirical failure rates"
+}

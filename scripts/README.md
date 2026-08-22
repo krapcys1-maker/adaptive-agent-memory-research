@@ -75,6 +75,12 @@ Compare passive cascading telemetry with controlled active probes for capture, s
 python scripts/run_fault_probe_comparison.py
 ```
 
+Stress the active probes with transient, persistent, and correlated measurement failures:
+
+```powershell
+python scripts/run_fault_probe_robustness.py
+```
+
 Run the deterministic entity/time parser baseline against challenge v0:
 
 ```powershell

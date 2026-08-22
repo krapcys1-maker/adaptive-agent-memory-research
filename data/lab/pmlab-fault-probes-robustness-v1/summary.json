@@ -1,0 +1,309 @@
+{
+  "status": "completed-deterministic-probe-robustness",
+  "fault_specs": 58,
+  "noise_scenarios": 34,
+  "cases": 1972,
+  "arms": {
+    "single-naive": {
+      "cases": 1972,
+      "exact_fault_set_accuracy": 0.5481744421906694,
+      "root_fault_accuracy": 0.8265720081135902,
+      "macro_stage_f1": 0.8883231487551205,
+      "data_loss_recall": 0.7058823529411765,
+      "false_data_loss_rate": 0.029411764705882353,
+      "false_no_loss_rate": 0.20588235294117646,
+      "data_loss_decision_coverage": 0.9756592292089249,
+      "data_loss_accuracy_when_decided": 0.91995841995842,
+      "mean_probe_units": 10
+    },
+    "repeat-all-naive": {
+      "cases": 1972,
+      "exact_fault_set_accuracy": 0.7941176470588235,
+      "root_fault_accuracy": 0.9183569979716024,
+      "macro_stage_f1": 0.9401698994796259,
+      "data_loss_recall": 0.8823529411764706,
+      "false_data_loss_rate": 0.029411764705882353,
+      "false_no_loss_rate": 0.11764705882352941,
+      "data_loss_decision_coverage": 1,
+      "data_loss_accuracy_when_decided": 0.9462474645030426,
+      "mean_probe_units": 30
+    },
+    "adaptive-abnormal-naive": {
+      "cases": 1972,
+      "exact_fault_set_accuracy": 0.7246450304259635,
+      "root_fault_accuracy": 0.8894523326572008,
+      "macro_stage_f1": 0.924855881633032,
+      "data_loss_recall": 0.7941176470588235,
+      "false_data_loss_rate": 0.029411764705882353,
+      "false_no_loss_rate": 0.20588235294117646,
+      "data_loss_decision_coverage": 1,
+      "data_loss_accuracy_when_decided": 0.9219066937119675,
+      "mean_probe_units": 17.969574036511155
+    },
+    "adaptive-storage-diverse": {
+      "cases": 1972,
+      "exact_fault_set_accuracy": 0.7408722109533469,
+      "root_fault_accuracy": 0.9006085192697769,
+      "macro_stage_f1": 0.9274147266511964,
+      "data_loss_recall": 0.8235294117647058,
+      "false_data_loss_rate": 0,
+      "false_no_loss_rate": 0,
+      "data_loss_decision_coverage": 0.9087221095334685,
+      "data_loss_accuracy_when_decided": 1,
+      "mean_probe_units": 24.158215010141987
+    }
+  },
+  "by_noise_class": {
+    "clean": {
+      "single-naive": {
+        "cases": 58,
+        "exact_fault_set_accuracy": 1,
+        "root_fault_accuracy": 1,
+        "macro_stage_f1": 1.0,
+        "data_loss_recall": 1,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 10
+      },
+      "repeat-all-naive": {
+        "cases": 58,
+        "exact_fault_set_accuracy": 1,
+        "root_fault_accuracy": 1,
+        "macro_stage_f1": 1.0,
+        "data_loss_recall": 1,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 30
+      },
+      "adaptive-abnormal-naive": {
+        "cases": 58,
+        "exact_fault_set_accuracy": 1,
+        "root_fault_accuracy": 1,
+        "macro_stage_f1": 1.0,
+        "data_loss_recall": 1,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 16.93103448275862
+      },
+      "adaptive-storage-diverse": {
+        "cases": 58,
+        "exact_fault_set_accuracy": 1,
+        "root_fault_accuracy": 1,
+        "macro_stage_f1": 1.0,
+        "data_loss_recall": 1,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 23.620689655172413
+      }
+    },
+    "correlated": {
+      "single-naive": {
+        "cases": 174,
+        "exact_fault_set_accuracy": 0.6666666666666666,
+        "root_fault_accuracy": 0.7873563218390804,
+        "macro_stage_f1": 0.7909607699667923,
+        "data_loss_recall": 0.6666666666666666,
+        "false_data_loss_rate": 0.3333333333333333,
+        "false_no_loss_rate": 0.3333333333333333,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 0.6666666666666666,
+        "mean_probe_units": 10
+      },
+      "repeat-all-naive": {
+        "cases": 174,
+        "exact_fault_set_accuracy": 0.6666666666666666,
+        "root_fault_accuracy": 0.7873563218390804,
+        "macro_stage_f1": 0.7909607699667923,
+        "data_loss_recall": 0.6666666666666666,
+        "false_data_loss_rate": 0.3333333333333333,
+        "false_no_loss_rate": 0.3333333333333333,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 0.6666666666666666,
+        "mean_probe_units": 30
+      },
+      "adaptive-abnormal-naive": {
+        "cases": 174,
+        "exact_fault_set_accuracy": 0.6666666666666666,
+        "root_fault_accuracy": 0.7873563218390804,
+        "macro_stage_f1": 0.7909607699667923,
+        "data_loss_recall": 0.6666666666666666,
+        "false_data_loss_rate": 0.3333333333333333,
+        "false_no_loss_rate": 0.3333333333333333,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 0.6666666666666666,
+        "mean_probe_units": 20.25287356321839
+      },
+      "adaptive-storage-diverse": {
+        "cases": 174,
+        "exact_fault_set_accuracy": 0.6666666666666666,
+        "root_fault_accuracy": 0.7873563218390804,
+        "macro_stage_f1": 0.7909607699667923,
+        "data_loss_recall": 0.6666666666666666,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 0.6666666666666666,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 25.74712643678161
+      }
+    },
+    "persistent-flip": {
+      "single-naive": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 0.4,
+        "root_fault_accuracy": 0.7862068965517242,
+        "macro_stage_f1": 0.8738966225798049,
+        "data_loss_recall": 0.7,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0.3,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 0.9172413793103448,
+        "mean_probe_units": 10
+      },
+      "repeat-all-naive": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 0.4,
+        "root_fault_accuracy": 0.7862068965517242,
+        "macro_stage_f1": 0.8738966225798049,
+        "data_loss_recall": 0.7,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0.3,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 0.9172413793103448,
+        "mean_probe_units": 30
+      },
+      "adaptive-abnormal-naive": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 0.4,
+        "root_fault_accuracy": 0.7862068965517242,
+        "macro_stage_f1": 0.8738966225798049,
+        "data_loss_recall": 0.7,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0.3,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 0.9172413793103448,
+        "mean_probe_units": 17.544827586206896
+      },
+      "adaptive-storage-diverse": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 0.4,
+        "root_fault_accuracy": 0.7862068965517242,
+        "macro_stage_f1": 0.8738966225798049,
+        "data_loss_recall": 0.5,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 0.7896551724137931,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 23.896551724137932
+      }
+    },
+    "transient-flip": {
+      "single-naive": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 0.4,
+        "root_fault_accuracy": 0.7862068965517242,
+        "macro_stage_f1": 0.8738966225798049,
+        "data_loss_recall": 0.7,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0.3,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 0.9172413793103448,
+        "mean_probe_units": 10
+      },
+      "repeat-all-naive": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 1,
+        "root_fault_accuracy": 1,
+        "macro_stage_f1": 1.0,
+        "data_loss_recall": 1,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 30
+      },
+      "adaptive-abnormal-naive": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 0.7637931034482759,
+        "root_fault_accuracy": 0.9017241379310345,
+        "macro_stage_f1": 0.9473684210526315,
+        "data_loss_recall": 0.7,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0.3,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 0.9172413793103448,
+        "mean_probe_units": 17.544827586206896
+      },
+      "adaptive-storage-diverse": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 0.8189655172413793,
+        "root_fault_accuracy": 0.9396551724137931,
+        "macro_stage_f1": 0.956140350877193,
+        "data_loss_recall": 1,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 23.896551724137932
+      }
+    },
+    "transient-timeout": {
+      "single-naive": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 0.7637931034482759,
+        "root_fault_accuracy": 0.9017241379310345,
+        "macro_stage_f1": 0.9473684210526315,
+        "data_loss_recall": 0.7,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 0.9172413793103448,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 10
+      },
+      "repeat-all-naive": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 1,
+        "root_fault_accuracy": 1,
+        "macro_stage_f1": 1.0,
+        "data_loss_recall": 1,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 30
+      },
+      "adaptive-abnormal-naive": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 1,
+        "root_fault_accuracy": 1,
+        "macro_stage_f1": 1.0,
+        "data_loss_recall": 1,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 18.23793103448276
+      },
+      "adaptive-storage-diverse": {
+        "cases": 580,
+        "exact_fault_set_accuracy": 1,
+        "root_fault_accuracy": 1,
+        "macro_stage_f1": 1.0,
+        "data_loss_recall": 1,
+        "false_data_loss_rate": 0,
+        "false_no_loss_rate": 0,
+        "data_loss_decision_coverage": 1,
+        "data_loss_accuracy_when_decided": 1,
+        "mean_probe_units": 24.25862068965517
+      }
+    }
+  },
+  "boundary": "Authored deterministic noise schedules; repetitions are independent only in transient scenarios; correlated and persistent faults intentionally defeat repetition."
+}
