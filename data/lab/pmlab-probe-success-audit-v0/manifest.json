@@ -1,0 +1,17 @@
+{
+  "status": "completed-exact-expected-audit-curve",
+  "script": "scripts/run_probe_success_audit_curve.py",
+  "base": "data/lab/pmlab-fault-probes-robustness-v1",
+  "rates": [
+    0.0,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "contributions_sha256": "c15a8a065d5f56bd160e402e592f678a432ee0a74d1e23d5a18f0809e7c8ed7f",
+  "model_api_required": false,
+  "authority": "authored exact expectation under a specified synthetic condition"
+}

@@ -81,6 +81,12 @@ Stress the active probes with transient, persistent, and correlated measurement 
 python scripts/run_fault_probe_robustness.py
 ```
 
+Calculate the exact expected healthy-result audit curve:
+
+```powershell
+python scripts/run_probe_success_audit_curve.py
+```
+
 Run the deterministic entity/time parser baseline against challenge v0:
 
 ```powershell
