@@ -1,0 +1,33 @@
+{
+  "run_id": "deepseek-v4-flash-memory-evidence-audit-20260823",
+  "status": "prepared-uncommitted-input",
+  "created_at": "2026-08-22T21:39:10Z",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "memory-evidence-adversarial-review-m1-v1",
+  "jobs": 3,
+  "temperature": 0,
+  "thinking": "disabled",
+  "response_format": "json_object",
+  "run_budget_usd": 0.25,
+  "global_budget_usd": 10.0,
+  "prompt_freeze_commit": null,
+  "visible_to_worker": [
+    "content-free protocols, aggregate metrics, hashes, limitations, invalid-run disclosure"
+  ],
+  "hidden_from_worker": [
+    "raw datasets",
+    "question text",
+    "answers",
+    "conversations",
+    "session IDs",
+    "API key",
+    "personal files"
+  ],
+  "authority": "author-operated same-family M1 advisory review; not human, institutional, or confirmatory independence",
+  "hashes": {
+    "jobs.jsonl": "e4a373e42eb4241e005739951897234db34fa4da2ede23f9a24a1c656bfa4822",
+    "prompt.txt": "f6823a1eb3a8b80e04259d09f611926142e53a7520b920d83eb6889d91f82d64",
+    "bridge_final_summary.json": "c3727c5dafd7f54dce04eeef5977ef1c094c482270efeede0b499cd2c32e4224",
+    "pmlab_final_summary.json": "19a014eaea9251e81b3114affff58106563bc28f9f3e16edf19c99efdd964351"
+  }
+}
