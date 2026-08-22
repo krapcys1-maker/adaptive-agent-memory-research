@@ -1,0 +1,21 @@
+{
+  "base_protocol_sha256": "5d9bb7e99b9f41d6bf3fd80dd78e331b6ead5c4162fc0ebec6dd6d4af2b3f125",
+  "created_at": "2026-08-22T21:34:27Z",
+  "lexical_dependency_sha256": "0727a359821f6daf36409b50b52df3d6e01b70f3dd819ca7f5b0e031f0ec4241",
+  "protocol_freeze_commit": "ad8fc3d",
+  "protocol_sha256": "b21dbb05db4f98d0ce9a41020ec2e155b95b00ba06b730a953ff1c660bf8765e",
+  "runner_commit": "e33613c7e811944d04f853435bd5f32a71fcf4df",
+  "runner_sha256": "2d21b530be9bf876dc53a2109ccbe6fba03ac3198e7dcdde5d10c7f1eaa414fa",
+  "selection_sha256": "6eb629bc0f9d1938fa15247092f2f69e096dc92de59c92881d0478972aad6483",
+  "source_sha256": "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442",
+  "status": "environment-frozen-before-bridge-output",
+  "tools": {
+    "machine": "AMD64",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+    "python": "3.12.10",
+    "python_implementation": "CPython",
+    "ripgrep": "ripgrep 15.2.0 (rev e89fff89ac)",
+    "sqlite": "3.49.1"
+  }
+}
