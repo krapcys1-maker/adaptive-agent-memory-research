@@ -17,6 +17,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "lab" / "project-memory-lab-v0-construction"
+CORPUS_FREEZE_COMMIT = "612eb06"
 CATEGORIES = [
     "exact_lexical",
     "paraphrase",
@@ -438,6 +439,7 @@ def build_outputs() -> dict[Path, str]:
     form_text = canonical_jsonl(blank_form)
     manifest = {
         "benchmark_id": "project-memory-lab-v0-construction",
+        "corpus_freeze_commit": CORPUS_FREEZE_COMMIT,
         "status": "authored-construction-awaiting-dual-independent-annotation",
         "queries": len(labels), "records": len(records), "categories": {name: 10 for name in CATEGORIES},
         "splits": {"development": 60, "test": 60},

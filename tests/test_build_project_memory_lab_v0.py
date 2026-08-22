@@ -48,6 +48,7 @@ class ProjectMemoryLabBuilderTests(unittest.TestCase):
         self.assertFalse(manifest["author_labels_are_gold"])
         self.assertFalse(manifest["baseline_run_permitted"])
         self.assertEqual(manifest["families"], {"controlled_synthetic": 96, "project_research": 24})
+        self.assertEqual(manifest["corpus_freeze_commit"], "612eb06")
 
     def test_builder_is_deterministic(self):
         self.assertEqual(self.outputs, MODULE.build_outputs())

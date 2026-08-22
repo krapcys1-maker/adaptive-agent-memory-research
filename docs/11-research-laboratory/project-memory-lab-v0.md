@@ -1,6 +1,12 @@
 # Project Memory Lab v0 specification
 
-Status: preregistration-draft
+Status: 120-query authored construction frozen; dual independent annotation pending
+
+## Construction checkpoint
+
+The first complete construction corpus froze at commit `612eb06`. It contains 120 queries and 176 records: ten queries in each of the twelve registered strata, balanced 60/60 across development and test with no shared history IDs. Ninety-six queries use controlled synthetic histories and twenty-four use versioned project-research records.
+
+This closes the corpus-count and mechanical split-construction gap, not benchmark validity. Author labels are explicitly non-gold, the public-benchmark bridge is still absent, and independent template/provenance review is incomplete. The blind packet requires two reviewers whose forms remain mutually hidden until both byte hashes are frozen. `B0/B1/B2` execution remains locked until their labels are adjudicated and the baseline thresholds are frozen.
 
 ## Objective
 

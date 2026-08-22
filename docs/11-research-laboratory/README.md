@@ -114,6 +114,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/phase-gate-status.csv` — current gate decision and blockers for each active experiment family.
 - `data/lab/backend-registry.csv` — frozen retrieval ladder and unlock state.
 - `data/lab/pmlab-v0-dev/` — 24-query development slice and first B0/B1/B2 instrument report; explicitly not the released benchmark.
+- `data/lab/project-memory-lab-v0-construction/` — complete 120-query/176-record authored construction corpus frozen at `612eb06`, with opaque IDs, disjoint 60/60 history splits, a dual blind-annotation packet, and an integrity validator; author labels are not gold and lexical runs remain locked.
 
 ## Non-negotiable practices
 

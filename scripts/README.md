@@ -42,6 +42,15 @@ python scripts/run_memory_benchmark.py
 
 This compares no memory, actual `rg`, and SQLite FTS5. Its scores are diagnostic only; the slice is not the independently annotated 120-query PMLAB v0.
 
+Build the complete authored construction corpus and verify a returned independent annotation form:
+
+```powershell
+python scripts/build_project_memory_lab_v0.py
+python scripts/validate_pmlab_v0_annotation.py --form-a completed-a.jsonl --attestation-a completed-a-attestation.json
+```
+
+Add `--form-b` and `--attestation-b` only after the second reviewer has independently frozen a different completed form. The validator checks packet integrity and contracts but deliberately does not read author labels, compute agreement, or unlock a benchmark run.
+
 ## F1/F2 forgetting diagnostics
 
 Build and run the authored fault-localization and version-interference development slice:

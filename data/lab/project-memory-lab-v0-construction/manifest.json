@@ -16,6 +16,7 @@
     "weak_overlap": 10,
     "what_where_when": 10
   },
+  "corpus_freeze_commit": "612eb06",
   "families": {
     "controlled_synthetic": 96,
     "project_research": 24
