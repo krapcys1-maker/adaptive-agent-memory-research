@@ -3,7 +3,7 @@ O,full-relevant-evidence-oracle,planned,yes,none,"reader ceiling and prompt sens
 B0,no-memory,planned,yes,none,"incremental value of any memory","always required"
 B1,rg-tokenized-lexical,planned,yes,ripgrep,"lowest complexity text baseline","frozen v0 corpus"
 B2,sqlite-fts5-bm25,available,yes,Python SQLite,"indexed sparse retrieval benefit","B1 reproducible"
-B3,rule-entity-time,development-only,yes,none,"value of explicit entity and temporal validity scoping","held-out entity and time-resolution corpus"
+B3,rule-entity-time,component-candidate,yes,none,"separate value of entity resolution temporal normalization and validity filtering","2x2 normalized-query by validity-scope experiment"
 C1,local-dense-embeddings,locked,yes,pinned local embedding model,"semantic and paraphrase benefit","reviewed corpus and model manifest"
 C2,hybrid-sparse-dense,locked,yes,C1,"complementary retrieval benefit","fusion frozen on development set"
 C3,temporal-validity-ranking,locked,yes,C2,"updates and as-of reasoning","reviewed temporal labels"

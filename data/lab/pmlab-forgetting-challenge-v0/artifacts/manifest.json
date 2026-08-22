@@ -1,0 +1,24 @@
+{
+  "status": "authored-challenge-development-only",
+  "generator": "scripts/run_forgetting_challenge.py",
+  "held_out_from_development": true,
+  "independent_annotation": false,
+  "f1_fault_contract": "multi-fault isolated probes plus missing telemetry",
+  "f2_corpus_description": "eight unequal histories with duplicate surface names and unseen development entities",
+  "f2_query_description": "current, ISO, relative, natural-language, ambiguous, and unanswerable queries",
+  "b3_input": "query text only; exact entity surface name and optional ISO date; no gold query metadata",
+  "f1_cases": 16,
+  "f2_records": 154,
+  "f2_queries": 24,
+  "f1_sha256": "ca5f9c249f28e50da179f5cf824fcff4349bfd9eb40f6f424b3872ae975de8d1",
+  "f2_corpus_sha256": "11ea05b7fc8b8c417bbf290704e0e0c9083f1443885dc30cb72f1ccb6726f1c9",
+  "f2_queries_sha256": "8b371132ca86d6d6a6f7e379b58d127ce3b1ebbefbb3e39f757f4e274475d480",
+  "backends": [
+    "B0-no-memory",
+    "B1-ripgrep",
+    "B2-sqlite-fts5",
+    "B3-rule-entity-time",
+    "O-gold-evidence"
+  ],
+  "authority": "adversarial development evidence only; no confirmatory or architecture claim"
+}

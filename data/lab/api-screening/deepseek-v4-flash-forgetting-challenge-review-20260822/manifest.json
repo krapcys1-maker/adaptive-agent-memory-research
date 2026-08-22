@@ -1,0 +1,18 @@
+{
+  "run_id": "deepseek-v4-flash-forgetting-challenge-review-20260822",
+  "status": "frozen-input",
+  "jobs": 5,
+  "jobs_sha256": "964c0d6c871e46af197fd275b2545601b2563ef2baec5e721573482563792364",
+  "dataset": "data/lab/pmlab-forgetting-challenge-v0",
+  "dataset_manifest_sha256": "3fe7ea4db3423ff6416bdf5fb0f9f9d9fd45e490cc2f221d7ee7b244965f892f",
+  "prompt_version": "forgetting-benchmark-adversarial-review-v1",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0,
+  "data_class": "public deterministic synthetic benchmark metadata and aggregate results",
+  "authority": "unreviewed adversarial candidates only; cannot change gold or memory",
+  "pricing_assumption_usd_per_million": {
+    "input_all_cache_miss": 0.44,
+    "output": 1.32
+  }
+}

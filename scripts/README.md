@@ -51,6 +51,14 @@ python scripts/review_forgetting_benchmark.py run --run-id review-name --budget-
 
 The review worker receives only synthetic metadata and aggregate results. Its output remains an unreviewed candidate queue until a local review records each disposition.
 
+Run the adversarial entity/time and multi-fault challenge:
+
+```powershell
+python scripts/run_forgetting_challenge.py
+```
+
+This challenge is separated from development by entities and query templates, but it is still project-authored and must not be described as independently labeled.
+
 ## Verify screening-source identity
 
 Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:

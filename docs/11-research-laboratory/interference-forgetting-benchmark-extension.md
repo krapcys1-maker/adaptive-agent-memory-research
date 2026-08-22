@@ -66,6 +66,8 @@ Guardrails: historical-as-of recall, stale intrusion, unsupported value rate, ev
 
 Initial success threshold: a candidate must improve the interference AUC by at least 10 percentage points over the immediately simpler equal-budget baseline, keep historical-as-of recall within 2 points, and not increase unsupported values or poisoned-memory selection by more than 1 point. The paired 95% interval must exclude zero.
 
+Before comparing retrieval families, cross query interpretation (`raw` versus normalized entity/time) with candidate scoping (`all records` versus validity-filtered). This 2x2 decomposition prevents a temporal parser improvement from being misreported as a ranking-backend improvement.
+
 ## F3 — Reversible active forgetting
 
 Label disposable synthetic records as currently valid, superseded, low-utility, rare-critical, poisoned, or legally deleted. Compare:

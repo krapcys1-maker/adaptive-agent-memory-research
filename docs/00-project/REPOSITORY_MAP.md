@@ -36,6 +36,7 @@ This is the fastest guide to where information belongs.
 | Repeated compaction and emotion-factor benchmark | `docs/11-research-laboratory/compression-benchmark-extension.md` |
 | Interference, active forgetting, recovery, and failure-localization benchmark | `docs/11-research-laboratory/interference-forgetting-benchmark-extension.md` |
 | F1/F2 deterministic development corpus, results, and report | `data/lab/pmlab-forgetting-dev/` |
+| F1/F2 adversarial challenge and resolver failure report | `data/lab/pmlab-forgetting-challenge-v0/` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Emotion/salience mechanism synthesis and falsification rules | `docs/12-interdisciplinary-memory/emotion-salience-synthesis.md` |
 | Interference, active forgetting, availability/accessibility, and recovery synthesis | `docs/12-interdisciplinary-memory/interference-active-forgetting-synthesis.md` |

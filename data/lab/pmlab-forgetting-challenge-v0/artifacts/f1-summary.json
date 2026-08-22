@@ -1,0 +1,10 @@
+{
+  "status": "authored-challenge-development-only",
+  "cases": 16,
+  "multi_fault_cases": 9,
+  "missing_telemetry_cases": 7,
+  "exact_fault_set_accuracy": 1,
+  "exact_unknown_set_accuracy": 1,
+  "data_loss_accuracy": 1,
+  "boundary": "Stage probes are explicitly isolated; this does not solve causal localization from one cascading end-to-end trace."
+}

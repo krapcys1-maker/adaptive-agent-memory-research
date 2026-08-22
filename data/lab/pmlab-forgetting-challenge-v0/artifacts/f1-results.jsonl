@@ -1,0 +1,16 @@
+{"case_id": "F1CH-001", "complete": true, "data_loss_correct": true, "data_loss_diagnosed": true, "fault_set_correct": true, "known_faults": ["F1", "F2"], "unknown_set_correct": true, "unknown_stages": []}
+{"case_id": "F1CH-002", "complete": true, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F2", "F4"], "unknown_set_correct": true, "unknown_stages": []}
+{"case_id": "F1CH-003", "complete": true, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F3", "F5"], "unknown_set_correct": true, "unknown_stages": []}
+{"case_id": "F1CH-004", "complete": true, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F0", "F4"], "unknown_set_correct": true, "unknown_stages": []}
+{"case_id": "F1CH-005", "complete": true, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F1", "F3"], "unknown_set_correct": true, "unknown_stages": []}
+{"case_id": "F1CH-006", "complete": true, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F1", "F4", "F5"], "unknown_set_correct": true, "unknown_stages": []}
+{"case_id": "F1CH-007", "complete": true, "data_loss_correct": true, "data_loss_diagnosed": true, "fault_set_correct": true, "known_faults": ["F1", "F5"], "unknown_set_correct": true, "unknown_stages": []}
+{"case_id": "F1CH-008", "complete": true, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F2", "F3", "F4"], "unknown_set_correct": true, "unknown_stages": []}
+{"case_id": "F1CH-009", "complete": false, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": [], "unknown_set_correct": true, "unknown_stages": ["F1"]}
+{"case_id": "F1CH-010", "complete": false, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F4"], "unknown_set_correct": true, "unknown_stages": ["F2"]}
+{"case_id": "F1CH-011", "complete": false, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F5"], "unknown_set_correct": true, "unknown_stages": ["F3"]}
+{"case_id": "F1CH-012", "complete": false, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": [], "unknown_set_correct": true, "unknown_stages": ["F4", "F5"]}
+{"case_id": "F1CH-013", "complete": false, "data_loss_correct": true, "data_loss_diagnosed": null, "fault_set_correct": true, "known_faults": [], "unknown_set_correct": true, "unknown_stages": ["F1"]}
+{"case_id": "F1CH-014", "complete": false, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F0", "F2"], "unknown_set_correct": true, "unknown_stages": ["F5"]}
+{"case_id": "F1CH-015", "complete": false, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": ["F1"], "unknown_set_correct": true, "unknown_stages": ["F4"]}
+{"case_id": "F1CH-016", "complete": true, "data_loss_correct": true, "data_loss_diagnosed": false, "fault_set_correct": true, "known_faults": [], "unknown_set_correct": true, "unknown_stages": []}

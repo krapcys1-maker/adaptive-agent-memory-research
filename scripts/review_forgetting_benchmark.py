@@ -65,17 +65,22 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def build_jobs() -> list[dict[str, Any]]:
-    manifest = read_json(DATASET / "artifacts" / "manifest.json")
-    f1 = read_json(DATASET / "artifacts" / "f1-summary.json")
-    f2 = read_json(DATASET / "artifacts" / "f2-summary.json")
+def build_jobs(dataset: Path = DATASET) -> list[dict[str, Any]]:
+    manifest = read_json(dataset / "artifacts" / "manifest.json")
+    f1 = read_json(dataset / "artifacts" / "f1-summary.json")
+    f2 = read_json(dataset / "artifacts" / "f2-summary.json")
     shared_boundary = {
         "status": manifest["status"],
         "authority": manifest["authority"],
         "authored": True,
-        "held_out": False,
-        "independent_annotation": False,
+        "held_out_from_development": manifest.get("held_out_from_development", False),
+        "independent_annotation": manifest.get("independent_annotation", False),
     }
+    curve_question = (
+        "Which design artifacts could create the observed update-count curve?"
+        if "update_counts" in f2
+        else "Which design artifacts or category mixtures could create the aggregate challenge results?"
+    )
     return [
         {
             "job_id": "F1-STAGE-VS-LOSS",
@@ -85,17 +90,17 @@ def build_jobs() -> list[dict[str, Any]]:
         {
             "job_id": "F1-INTERNAL-VALIDITY",
             "question": "Which cases are missing before the F1 instrument can estimate real localization accuracy?",
-            "evidence": {**shared_boundary, "cases": manifest["f1_cases"], "fault_contract": "exactly one authored fault per trace", "summary": f1},
+            "evidence": {**shared_boundary, "cases": manifest["f1_cases"], "fault_contract": manifest.get("f1_fault_contract", "exactly one authored fault per trace"), "summary": f1},
         },
         {
             "job_id": "F2-BASELINE-FAIRNESS",
             "question": "Is the B1/B2 versus B3 comparison fair and what can it actually establish?",
-            "evidence": {**shared_boundary, "summary": f2, "b3_input": "gold history_id and gold as_of_version", "top_k": 5},
+            "evidence": {**shared_boundary, "summary": f2, "b3_input": manifest.get("b3_input", "query text exact entity name and optional ISO date"), "top_k": 5},
         },
         {
             "job_id": "F2-CURVE-VALIDITY",
-            "question": "Which design artifacts could create the observed update-count curve?",
-            "evidence": {**shared_boundary, "summary": f2, "corpus": "four templated histories, 64 revisions each", "queries": "current and historical-as-of at seven update counts"},
+            "question": curve_question,
+            "evidence": {**shared_boundary, "summary": f2, "corpus": manifest.get("f2_corpus_description", "four templated histories, 64 revisions each"), "queries": manifest.get("f2_query_description", "current and historical-as-of at seven update counts")},
         },
         {
             "job_id": "NEXT-GATE",
@@ -127,19 +132,25 @@ def validate(content: str, jobs: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return results
 
 
-def prepare(run_id: str) -> dict[str, Any]:
+def prepare(run_id: str, dataset: Path = DATASET) -> dict[str, Any]:
     run_dir = OUTPUT_ROOT / run_id
     if run_dir.exists() and any(run_dir.iterdir()):
         raise ValueError(f"run directory is not empty: {run_dir}")
-    jobs = build_jobs()
+    jobs = build_jobs(dataset)
     shared.write_jsonl(run_dir / "jobs.jsonl", jobs)
     jobs_path = run_dir / "jobs.jsonl"
+    resolved_dataset = dataset.resolve()
+    try:
+        dataset_reference = resolved_dataset.relative_to(ROOT).as_posix()
+    except ValueError:
+        dataset_reference = str(resolved_dataset)
     manifest = {
         "run_id": run_id,
         "status": "frozen-input",
         "jobs": len(jobs),
         "jobs_sha256": sha256_file(jobs_path),
-        "dataset_manifest_sha256": sha256_file(DATASET / "artifacts" / "manifest.json"),
+        "dataset": dataset_reference,
+        "dataset_manifest_sha256": sha256_file(dataset / "artifacts" / "manifest.json"),
         "prompt_version": PROMPT_VERSION,
         "model": MODEL,
         "thinking": "disabled",
@@ -248,6 +259,7 @@ def main() -> int:
     commands = parser.add_subparsers(dest="command", required=True)
     prepare_parser = commands.add_parser("prepare")
     prepare_parser.add_argument("--run-id", required=True)
+    prepare_parser.add_argument("--dataset", type=Path, default=DATASET)
     run_parser = commands.add_parser("run")
     run_parser.add_argument("--run-id", required=True)
     run_parser.add_argument("--env-file", type=Path, default=ROOT.parent / ".env")
@@ -256,7 +268,7 @@ def main() -> int:
     run_parser.add_argument("--timeout", type=float, default=120.0)
     args = parser.parse_args()
     try:
-        result = prepare(args.run_id) if args.command == "prepare" else run(
+        result = prepare(args.run_id, args.dataset) if args.command == "prepare" else run(
             args.run_id, args.env_file, args.budget_usd, args.max_tokens, args.timeout
         )
         print(json.dumps(result, ensure_ascii=False, indent=2))
