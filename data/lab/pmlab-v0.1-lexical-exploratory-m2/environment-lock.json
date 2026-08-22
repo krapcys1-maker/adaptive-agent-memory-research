@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-08-22T21:15:21Z",
+  "hashes": {
+    "corpus": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+    "gold": "ed9f88778c42526ae37762b6a47e40c2ab7381c3eb2f10703851e3d1004d170f",
+    "gold_receipt": "e5b8ece6acd78da304c957db11496b576ca0661a4aeb257bdb0b53d9d9868011",
+    "preregistration": "f9528941e852dac6fb6d7ffd2c386f2256df74aec2fb872703910b4a67a1b479",
+    "queries": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
+    "retrieval_dependency": "684bca0e2b63b9830b8ec61163806c2b21850abad2094dc4f52a670ada6e2ffb",
+    "runner": "79c67dff06798741ca10d7340c1fec47ac68f3f40dd364961dc58e81c4e0c54e"
+  },
+  "machine": "AMD64",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+  "protocol_freeze_commit": "e111a57",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "python_executable": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "queries": 120,
+  "records": 176,
+  "ripgrep": "ripgrep 15.2.0 (rev e89fff89ac)",
+  "runner_freeze_commit": "a9cd3cc9f069482e870edd4170f4fc1f251c09f9",
+  "source_query_freeze_commit": "cc904dd",
+  "sqlite": "3.49.1",
+  "status": "environment-and-inputs-frozen",
+  "top_k": 5
+}

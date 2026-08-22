@@ -1,0 +1,11 @@
+{
+  "architecture_promotion_permitted": false,
+  "authority": "one exploratory execution under M2 model-review fallback",
+  "confirmatory": false,
+  "created_at": "2026-08-22T21:15:21Z",
+  "development_freeze_commit": null,
+  "environment_lock_sha256": "c4f0d839f8e26a560a6215511ed6f5530e51a6a2ef96ea13c52a886027017223",
+  "experiment_id": "PMLAB-V01-RET-001-M2-EXPLORATORY",
+  "status": "environment-frozen-awaiting-development",
+  "test_authorization_commit": null
+}
