@@ -1,6 +1,6 @@
 # Declared-label coverage audit v1
 
-Status: base 72-group allocation authored; coverage amendment required before corpus freeze
+Status: base audit completed; five-group coverage amendment authored; independent review still required
 
 The base allocation has exactly 72 semantic groups and 144 paired PL/EN rows across all six stages. Structural validation and quota compliance are necessary but not sufficient: the builder now compares every declared enum in `case-schema-v1.json` with observed gold labels.
 
@@ -20,3 +20,9 @@ The base allocation has exactly 72 semantic groups and 144 paired PL/EN rows acr
 Do not call the 72-group base corpus complete for implementation. Author a versioned supplemental coverage tranche before any candidate exists. Supplemental rows must remain development data, use new semantic-group IDs, preserve PL/EN pairing, and be counted separately from the frozen base allocation. The graph status inconsistency must be documented rather than filled with a cross-stage leakage case.
 
 The manifest's `uncovered_declared_labels` object is the machine-readable source of this audit. Independent label review remains a separate blocker after coverage repair.
+
+## Resolution
+
+`case-schema-amendment-v1.json` and `supplemental-coverage-groups-v1.jsonl` implement the five exercisable controls as new development groups without changing the 72-group base allocation. The accumulated corpus is 77 groups/154 rows. `manifest.json` now reports an empty `unresolved_coverage_gaps` object.
+
+`obligation_graph.query_status=unauthorized` remains visible in `uncovered_declared_labels`, but its full disposition is recorded under `non_exercisable_declared_labels`: the isolated graph stage has no principal or policy input, so authorization belongs to `time_authorization` and to the later integrated contract. This is a schema-scope clarification, not a fabricated graph example.

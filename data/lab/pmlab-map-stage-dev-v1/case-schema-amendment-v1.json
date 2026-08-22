@@ -1,0 +1,23 @@
+{
+  "amendment_version": "pmlab-map-stage-case-amendment-v1",
+  "base_schema_version": "pmlab-map-stage-case-v1",
+  "base_allocation_freeze_commit": "025eff6",
+  "purpose": "Close declared-label coverage gaps before any candidate implementation without rewriting the 72-group base allocation.",
+  "supplemental_development_groups": 5,
+  "supplemental_pairing": "PL-EN",
+  "coverage_controls": [
+    "contract_span.reject_reason=unsafe_unresolved_state",
+    "entity_linking.action=mention_not_detected",
+    "time_authorization.time_status=unsupported",
+    "certificate_routing.action=partial_with_gap",
+    "certificate_routing.action=abstain"
+  ],
+  "non_exercisable_under_isolated_stage_input": {
+    "obligation_graph.query_status=unauthorized": {
+      "reason": "The isolated graph stage receives raw query only and cannot observe principal or policy.",
+      "delegated_stage": "time_authorization",
+      "integrated_contract": "An integrated mapper may propagate authorization failure after the policy-aware stage, but graph-only scoring must not infer it."
+    }
+  },
+  "authority": "development benchmark amendment; does not alter future challenge allocation or waive independent review"
+}

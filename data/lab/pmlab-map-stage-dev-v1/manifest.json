@@ -1,6 +1,7 @@
 {
   "annotation_contract_freeze_commit": "794c9e3",
   "artifact": "stage-dev-v1-complete-six-stage-corpus",
+  "base_allocation_semantic_group_count": 72,
   "benchmark": "PMLAB-MAP-STAGE-001",
   "blockers": [
     "independent label review not completed",
@@ -8,8 +9,8 @@
     "no candidate implementation may use future challenge rows"
   ],
   "builder_version": "pmlab-map-stage-dev-builder-v2",
-  "case_count": 144,
-  "critical_group_count": 56,
+  "case_count": 154,
+  "critical_group_count": 61,
   "declared_label_coverage": {
     "certificate_routing.action": {
       "declared": [
@@ -20,14 +21,13 @@
         "abstain"
       ],
       "observed": [
+        "abstain",
         "answer",
         "clarify",
-        "continue_search"
-      ],
-      "uncovered": [
-        "abstain",
+        "continue_search",
         "partial_with_gap"
-      ]
+      ],
+      "uncovered": []
     },
     "certificate_routing.certificate_status": {
       "declared": [
@@ -75,11 +75,10 @@
         "missing_required_field",
         "non_source_span",
         "none",
-        "unknown_catalog_id"
-      ],
-      "uncovered": [
+        "unknown_catalog_id",
         "unsafe_unresolved_state"
-      ]
+      ],
+      "uncovered": []
     },
     "entity_linking.action": {
       "declared": [
@@ -92,12 +91,11 @@
       "observed": [
         "ambiguous_in_catalog",
         "linked",
+        "mention_not_detected",
         "missing_entity",
         "non_entity_phrase"
       ],
-      "uncovered": [
-        "mention_not_detected"
-      ]
+      "uncovered": []
     },
     "obligation_graph.query_status": {
       "declared": [
@@ -155,29 +153,30 @@
         "ambiguous",
         "inherited",
         "resolved",
-        "unbounded"
-      ],
-      "uncovered": [
+        "unbounded",
         "unsupported"
-      ]
+      ],
+      "uncovered": []
     }
   },
   "hashes": {
-    "allocation-snapshot.json": "0992d5beb00b91ae7168c42ca2eee7bf51ef4e608854381f62c18be8f6002195",
+    "allocation-snapshot.json": "c727c287e6d5ea7a3d129be30a475fa9f18c60999159a48eca02f30decd59171",
     "case-allocation-v1.csv": "9f5c3ebe3f339e06f58a545b6d2e26a66baebe807778997e1c8feb7450723dbc",
+    "case-schema-amendment-v1.json": "a469b281d282995dab587346e2b8a88f398abbf8f5e8524c37daacadf0a58963",
     "case-schema-v1.json": "485d1b2b97f6e28bc700b216af54539440a08c88b1cc9cfcad2c4759ff6d11c2",
-    "cases.jsonl": "56ba0d6414d864c6f84c84430389e1bdfd3d3a7060eea5cdcca0638c5d0d3e29",
+    "cases.jsonl": "a4cec0cbc3e68c0410586c73889d65b7547a15e09360fed3f036e88311d54936",
     "contract-entity-groups-v1.jsonl": "e3341b1507e040c36b9d4b45f7b7be97f25f8b86c36dcf99b2dbbf2c800535ad",
     "entity-catalog-v1.json": "4c756c73f08f31cbc3f4ce6a92f0fc226d0f5f9bdc558eb0215b38de7788a3fa",
     "graph-predicate-groups-v1.jsonl": "c2957b44e53f5447626695ce1c4d11435bf11675d481176a25aa41d8ce76fa35",
-    "independent-review-queue.jsonl": "444a90ab583f282a75e7962f8e9f624d44873082350f9edba15448eeb3c7ec0d",
-    "model-cases.jsonl": "8fbff1b8f5949cfce650241cf4987e2d08588b8967179611cf64896eed58e691",
+    "independent-review-queue.jsonl": "81744aa6fb1cc740d696eeced0e43ceb20114e1dadc45712d0153aaa783c64f8",
+    "model-cases.jsonl": "c976b8945eca01d7cf0f6f58e0e9ae83234bf012f0a89d176a5dc36f025bb3de",
     "predicate-catalog-v1.json": "ee27409184b903a37608d0183e857187a60a7e65a406f55cbf97e92fc8d49191",
+    "supplemental-coverage-groups-v1.jsonl": "3ecbb91ab293411f93b6d0448b40987a3bf31e73451011c7d2ae01b35f1dd959",
     "time-certificate-groups-v1.jsonl": "c68933ca2832f8be94cd0a49a7efbeecb9f5879117025ef64e34427596da038f"
   },
   "language_counts": {
-    "en": 72,
-    "pl": 72
+    "en": 77,
+    "pl": 77
   },
   "leakage_checks": {
     "candidate_outputs_absent": true,
@@ -185,33 +184,29 @@
     "gold_absent_from_model_cases": true,
     "split_and_stratum_absent_from_model_cases": true
   },
+  "non_exercisable_declared_labels": {
+    "obligation_graph.query_status=unauthorized": {
+      "delegated_stage": "time_authorization",
+      "integrated_contract": "An integrated mapper may propagate authorization failure after the policy-aware stage, but graph-only scoring must not infer it.",
+      "reason": "The isolated graph stage receives raw query only and cannot observe principal or policy."
+    }
+  },
   "review_status": "not-reviewed",
-  "semantic_group_count": 72,
+  "semantic_group_count": 77,
   "stage_counts": {
-    "certificate_routing": 20,
-    "contract_span": 16,
-    "entity_linking": 28,
+    "certificate_routing": 24,
+    "contract_span": 18,
+    "entity_linking": 30,
     "obligation_graph": 32,
     "predicate_linking": 28,
-    "time_authorization": 20
+    "time_authorization": 22
   },
   "status": "authored-unreviewed-development-data",
+  "supplemental_coverage_semantic_group_count": 5,
   "uncovered_declared_labels": {
-    "certificate_routing.action": [
-      "abstain",
-      "partial_with_gap"
-    ],
-    "contract_span.reject_reason": [
-      "unsafe_unresolved_state"
-    ],
-    "entity_linking.action": [
-      "mention_not_detected"
-    ],
     "obligation_graph.query_status": [
       "unauthorized"
-    ],
-    "time_authorization.time_status": [
-      "unsupported"
     ]
-  }
+  },
+  "unresolved_coverage_gaps": {}
 }

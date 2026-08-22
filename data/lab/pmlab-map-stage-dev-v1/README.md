@@ -1,6 +1,6 @@
 # PMLAB-MAP stage development v1
 
-Status: base six-stage allocation authored and unreviewed; declared-label coverage amendment required; no candidates implemented
+Status: six-stage development corpus plus coverage amendment authored and unreviewed; no candidates implemented
 
 This directory defines the next development instrument after both integrated PMLAB-MAP arms failed post-freeze challenge v0. It is not a parser implementation and contains no candidate outputs.
 
@@ -58,7 +58,7 @@ The builder converts bilingual graph-span templates to language-specific gold, v
 
 `time-certificate-groups-v1.jsonl` adds the final 20 base-allocation groups/40 rows. Time fixtures make reference clock, timezone, principal, policy version, normalized interval/recurrence/event anchor, and namespace-level authorization explicit. Certificate fixtures distinguish positive, derived, explicit-negative, complete-scope absence, stale/incomplete/wrong-scope, ambiguity, and matching versus out-of-scope insertion probes.
 
-The base allocation therefore reaches 72 groups/144 rows and all six stage quotas. It is not yet implementation-ready: `declared-label-coverage-audit-v1.md` records five unobserved contract labels plus one graph-stage/schema inconsistency. A versioned supplemental development tranche is required before candidate work; independent review remains required afterward.
+The base allocation therefore reaches 72 groups/144 rows and all six stage quotas. `case-schema-amendment-v1.json` and `supplemental-coverage-groups-v1.jsonl` add five explicitly supplemental groups/10 rows for the exercisable coverage gaps, yielding 77 groups/154 rows. The remaining declared `graph=unauthorized` state is non-exercisable in a raw-query-only graph stage and is delegated to the policy-aware stage. `manifest.json` reports no unresolved exercisable coverage gaps. Candidate implementation remains blocked until complete-corpus advisory review and genuine independent label review.
 
 ## Blind advisory review
 

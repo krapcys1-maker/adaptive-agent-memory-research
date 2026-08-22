@@ -21,12 +21,12 @@ class PmlabMapStageDevBuilderTests(unittest.TestCase):
         cls.review = [json.loads(line) for line in cls.outputs[MODULE.DATA_DIR / "independent-review-queue.jsonl"].splitlines()]
         cls.manifest = json.loads(cls.outputs[MODULE.DATA_DIR / "manifest.json"])
 
-    def test_complete_corpus_has_72_bilingual_groups(self):
+    def test_base_plus_supplement_has_77_bilingual_groups(self):
         groups = defaultdict(set)
         for case in self.cases:
             groups[case["semantic_group_id"]].add(case["language"])
-        self.assertEqual(len(groups), 72)
-        self.assertEqual(len(self.cases), 144)
+        self.assertEqual(len(groups), 77)
+        self.assertEqual(len(self.cases), 154)
         self.assertTrue(all(languages == {"en", "pl"} for languages in groups.values()))
 
     def test_model_and_review_payloads_do_not_leak_gold(self):
@@ -76,17 +76,17 @@ class PmlabMapStageDevBuilderTests(unittest.TestCase):
         self.assertEqual(6, actions["ambiguous_schema"])
         self.assertEqual(4, actions["unsupported_predicate"])
 
-    def test_time_and_certificate_allocations(self):
+    def test_time_and_certificate_base_plus_supplement_counts(self):
         groups = defaultdict(set)
         for case in self.cases:
             groups[case["stage"]].add(case["semantic_group_id"])
-        self.assertEqual(10, len(groups["time_authorization"]))
-        self.assertEqual(10, len(groups["certificate_routing"]))
+        self.assertEqual(11, len(groups["time_authorization"]))
+        self.assertEqual(12, len(groups["certificate_routing"]))
 
     def test_time_labels_preserve_all_resolution_and_access_states(self):
         time_statuses = {case["gold"]["time_status"] for case in self.cases if case["stage"] == "time_authorization"}
         authorization = {case["gold"]["authorization_status"] for case in self.cases if case["stage"] == "time_authorization"}
-        self.assertEqual({"resolved", "ambiguous", "unbounded", "inherited"}, time_statuses)
+        self.assertEqual({"resolved", "ambiguous", "unbounded", "unsupported", "inherited"}, time_statuses)
         self.assertEqual({"allowed", "denied", "partial", "inherited"}, authorization)
 
     def test_certificate_labels_cover_safe_negative_boundaries(self):
@@ -103,6 +103,23 @@ class PmlabMapStageDevBuilderTests(unittest.TestCase):
         ]
         self.assertTrue(inserted)
         self.assertTrue(all(case["gold"]["certificate_status"] == "inapplicable" for case in inserted))
+
+    def test_supplement_closes_exercisable_declared_label_gaps(self):
+        self.assertEqual(72, self.manifest["base_allocation_semantic_group_count"])
+        self.assertEqual(5, self.manifest["supplemental_coverage_semantic_group_count"])
+        self.assertEqual({}, self.manifest["unresolved_coverage_gaps"])
+        self.assertEqual(
+            {"obligation_graph.query_status": ["unauthorized"]},
+            self.manifest["uncovered_declared_labels"],
+        )
+        self.assertIn(
+            "obligation_graph.query_status=unauthorized",
+            self.manifest["non_exercisable_declared_labels"],
+        )
+
+    def test_certificate_actions_include_partial_and_abstain(self):
+        actions = {case["gold"]["action"] for case in self.cases if case["stage"] == "certificate_routing"}
+        self.assertEqual({"answer", "continue_search", "clarify", "partial_with_gap", "abstain"}, actions)
 
     def test_manifest_records_unreviewed_and_no_candidates(self):
         self.assertEqual(self.manifest["review_status"], "not-reviewed")

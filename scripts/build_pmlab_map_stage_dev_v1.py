@@ -21,11 +21,13 @@ SOURCE_PATHS = [
     DATA_DIR / "contract-entity-groups-v1.jsonl",
     DATA_DIR / "graph-predicate-groups-v1.jsonl",
     DATA_DIR / "time-certificate-groups-v1.jsonl",
+    DATA_DIR / "supplemental-coverage-groups-v1.jsonl",
 ]
 CATALOG_PATH = DATA_DIR / "entity-catalog-v1.json"
 PREDICATE_CATALOG_PATH = DATA_DIR / "predicate-catalog-v1.json"
 SCHEMA_PATH = DATA_DIR / "case-schema-v1.json"
 ALLOCATION_PATH = DATA_DIR / "case-allocation-v1.csv"
+AMENDMENT_PATH = DATA_DIR / "case-schema-amendment-v1.json"
 AUTHORED_AT = "2026-08-22T00:00:00Z"
 ALLOWED_OPERATORS = {
     "SELECT", "FILTER", "PROJECT", "AGGREGATE", "GROUP", "SUPERLATIVE",
@@ -201,6 +203,8 @@ def validate_time_authorization_group(group: dict[str, Any], schema: dict[str, A
         raise ValueError(f"{gid}: ambiguous time must remain typed")
     if gold["time_status"] == "unbounded" and not gold["normalized_time"].startswith("unbounded:"):
         raise ValueError(f"{gid}: unbounded time must remain typed")
+    if gold["time_status"] == "unsupported" and not gold["normalized_time"].startswith("unsupported:"):
+        raise ValueError(f"{gid}: unsupported time must remain typed")
     if gold["time_status"] == "inherited":
         if not fixture.get("parent_scopes") or gold["authorization_status"] != "inherited":
             raise ValueError(f"{gid}: inherited time requires parent scopes and inherited authorization")
@@ -276,6 +280,10 @@ def validate_group_sources(
         ("certificate_routing", "explicit_negative_vs_absence"): 3,
         ("certificate_routing", "stale_incomplete_or_wrong_scope"): 3,
         ("certificate_routing", "insertion_counterexample"): 2,
+        ("contract_span", "supplemental_declared_label_coverage"): 1,
+        ("entity_linking", "supplemental_declared_label_coverage"): 1,
+        ("time_authorization", "supplemental_declared_label_coverage"): 1,
+        ("certificate_routing", "supplemental_declared_label_coverage"): 2,
     }
     if counts != expected:
         raise ValueError(f"source allocation mismatch: {dict(counts)}")
@@ -307,6 +315,10 @@ def validate_group_sources(
         ("certificate_routing", "explicit_negative_vs_absence"): 3,
         ("certificate_routing", "stale_incomplete_or_wrong_scope"): 3,
         ("certificate_routing", "insertion_counterexample"): 2,
+        ("contract_span", "supplemental_declared_label_coverage"): 1,
+        ("entity_linking", "supplemental_declared_label_coverage"): 1,
+        ("time_authorization", "supplemental_declared_label_coverage"): 1,
+        ("certificate_routing", "supplemental_declared_label_coverage"): 2,
     }
     actual_critical = Counter(
         (group["stage"], group["stratum"])
@@ -336,7 +348,10 @@ def validate_group_sources(
                 raise ValueError(f"{gid}: invalid entity action")
             for language, variant in group["variants"].items():
                 span = variant["mention_span"]
-                if not span or span not in variant["raw_query"]:
+                if action == "mention_not_detected":
+                    if span is not None:
+                        raise ValueError(f"{gid}:{language}: missing-mention control must use null span")
+                elif not span or span not in variant["raw_query"]:
                     raise ValueError(f"{gid}:{language}: mention span is not exact")
             candidate_set = set(gold.get("candidate_ids", []))
             if candidate_set - ids:
@@ -422,6 +437,7 @@ def build_outputs() -> dict[Path, str]:
     groups = [group for path in SOURCE_PATHS for group in read_jsonl(path)]
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
     predicate_catalog = json.loads(PREDICATE_CATALOG_PATH.read_text(encoding="utf-8"))
+    amendment = json.loads(AMENDMENT_PATH.read_text(encoding="utf-8"))
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     validate_group_sources(groups, catalog, predicate_catalog, schema)
     cases: list[dict[str, Any]] = []
@@ -486,6 +502,13 @@ def build_outputs() -> dict[Path, str]:
     allocation = allocation_snapshot(groups)
     allocation_text = json.dumps(allocation, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
     coverage = declared_label_coverage(cases, schema)
+    non_exercisable = amendment["non_exercisable_under_isolated_stage_input"]
+    unresolved_coverage = {
+        key: value["uncovered"]
+        for key, value in coverage.items()
+        if value["uncovered"]
+        and any(f"{key}={label}" not in non_exercisable for label in value["uncovered"])
+    }
     manifest = {
         "benchmark": "PMLAB-MAP-STAGE-001",
         "artifact": "stage-dev-v1-complete-six-stage-corpus",
@@ -493,6 +516,8 @@ def build_outputs() -> dict[Path, str]:
         "builder_version": BUILDER_VERSION,
         "annotation_contract_freeze_commit": "794c9e3",
         "semantic_group_count": len(groups),
+        "base_allocation_semantic_group_count": 72,
+        "supplemental_coverage_semantic_group_count": amendment["supplemental_development_groups"],
         "case_count": len(cases),
         "stage_counts": dict(sorted(Counter(case["stage"] for case in cases).items())),
         "language_counts": dict(sorted(Counter(case["language"] for case in cases).items())),
@@ -502,12 +527,15 @@ def build_outputs() -> dict[Path, str]:
         "uncovered_declared_labels": {
             key: value["uncovered"] for key, value in coverage.items() if value["uncovered"]
         },
+        "non_exercisable_declared_labels": non_exercisable,
+        "unresolved_coverage_gaps": unresolved_coverage,
         "hashes": {
             **{path.name: sha256_bytes(path.read_bytes()) for path in SOURCE_PATHS},
             "entity-catalog-v1.json": sha256_bytes(CATALOG_PATH.read_bytes()),
             "predicate-catalog-v1.json": sha256_bytes(PREDICATE_CATALOG_PATH.read_bytes()),
             "case-schema-v1.json": sha256_bytes(SCHEMA_PATH.read_bytes()),
             "case-allocation-v1.csv": sha256_bytes(ALLOCATION_PATH.read_bytes()),
+            "case-schema-amendment-v1.json": sha256_bytes(AMENDMENT_PATH.read_bytes()),
             "cases.jsonl": sha256_bytes(cases_text.encode("utf-8")),
             "model-cases.jsonl": sha256_bytes(model_text.encode("utf-8")),
             "independent-review-queue.jsonl": sha256_bytes(review_text.encode("utf-8")),
