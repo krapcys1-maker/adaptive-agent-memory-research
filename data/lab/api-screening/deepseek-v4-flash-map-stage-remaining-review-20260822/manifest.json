@@ -1,0 +1,33 @@
+{
+  "run_id": "deepseek-v4-flash-map-stage-remaining-review-20260822",
+  "status": "prepared-uncommitted-input",
+  "created_at": "2026-08-22T18:43:30Z",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "pmlab-map-stage-remaining-blind-advisory-v1",
+  "corpus_freeze_commit": "fc9b212",
+  "prompt_freeze_commit": null,
+  "prior_reviewed_cases": 44,
+  "semantic_groups": 55,
+  "cases": 110,
+  "temperature": 0,
+  "thinking": "disabled",
+  "hard_cumulative_budget_usd": 10.0,
+  "hidden_from_worker": [
+    "gold",
+    "criticality",
+    "stratum",
+    "split",
+    "provenance",
+    "scores",
+    "candidate implementation"
+  ],
+  "authority": "advisory blind worker; not independent corpus review; cannot change gold",
+  "hashes": {
+    "jobs.jsonl": "2ef0b74be31661a076a6aa991e80580f297ac3b499e188669b78b6d3b5d4bb61",
+    "prompt.txt": "34952426b2e6055fa406d6a733da2a8979a925ac9e2d3c1c49cd88388c9daea2",
+    "independent-review-queue.jsonl": "81744aa6fb1cc740d696eeced0e43ceb20114e1dadc45712d0153aaa783c64f8",
+    "entity-catalog-v1.json": "4c756c73f08f31cbc3f4ce6a92f0fc226d0f5f9bdc558eb0215b38de7788a3fa",
+    "predicate-catalog-v1.json": "ee27409184b903a37608d0183e857187a60a7e65a406f55cbf97e92fc8d49191",
+    "first-pass-predictions.jsonl": "d2c0744335087a024ceacddc991173a58a8410ca61198063dbe5d88ff6eb8310"
+  }
+}
