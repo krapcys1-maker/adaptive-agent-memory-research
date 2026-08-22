@@ -1,0 +1,19 @@
+{
+  "status": "m2-model-annotation-contract-valid-before-adjudication",
+  "slot": "B",
+  "reviewer_id": "deepseek-v4-flash-role-b-m2",
+  "reviewer_family_or_affiliation": "DeepSeek API; author-operated external model; M2 common-mode dependence disclosed",
+  "queries": 120,
+  "answerable_labels": 110,
+  "form_sha256": "ec1076b905d846f7b2439072b767bfb13d743d108026bc933805335d9a54ee18",
+  "attestation_sha256": "608eaec36973fa9246ed8265b6ddf79e59f2555c0b5fc553b9cb0431376f3c3b",
+  "blind_corpus_sha256": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+  "blind_queries_sha256": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
+  "author_labels_read": false,
+  "backend_run_permitted": false,
+  "authority": "role-separated blind model annotation; not human or cross-family independence",
+  "evidence_tier": "M2",
+  "human_independence_satisfied": false,
+  "cross_family_independence_satisfied": false,
+  "model_review_common_mode_risk": true
+}

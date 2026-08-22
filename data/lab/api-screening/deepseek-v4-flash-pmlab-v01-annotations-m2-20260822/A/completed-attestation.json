@@ -1,0 +1,19 @@
+{
+  "assigned_slot": "A",
+  "blind_corpus_sha256": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+  "blind_queries_sha256": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
+  "completed_form_sha256": "ab32a9ab1b1e5ba63ba0c2f5df536a9bc8b90f7d004a5c6a9f7e85d70cccbb80",
+  "conflicts_prior_exposure_or_assistance": "Fresh stateless role call. Same DeepSeek family as the other role and earlier project workers; other role form, author labels, builder source, backend outputs, and preferred labels were not supplied.",
+  "review_completed_at": "2026-08-22T21:01:07Z",
+  "review_started_at": "2026-08-22T20:59:53Z",
+  "reviewer_family_or_affiliation": "DeepSeek API; author-operated external model; M2 common-mode dependence disclosed",
+  "reviewer_id": "deepseek-v4-flash-role-a-m2",
+  "signature_or_verifiable_acknowledgement": "deepseek-v4-flash-pmlab-v01-annotations-m2-20260822:role-a",
+  "statements": {
+    "did_not_inspect_author_labels_or_builder_source": true,
+    "did_not_inspect_backend_outputs": true,
+    "did_not_inspect_other_reviewer_form": true,
+    "disclosed_conflicts_prior_exposure_and_assistance": true,
+    "used_only_corpus_evidence_for_labels": true
+  }
+}

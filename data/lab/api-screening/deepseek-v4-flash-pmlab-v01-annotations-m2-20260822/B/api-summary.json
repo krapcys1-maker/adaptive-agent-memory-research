@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "slot": "B",
+  "valid_annotations": 120,
+  "calls_this_invocation": 12,
+  "errors_logged": 0,
+  "run_conservative_cost_usd": 0.14086996,
+  "all_runs_conservative_cost_usd": 0.73811276
+}
