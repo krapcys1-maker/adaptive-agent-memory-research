@@ -1,0 +1,33 @@
+{
+  "status": "advisory-comparison-complete",
+  "cases": 44,
+  "predictions": 44,
+  "exact_agreement": 40,
+  "exact_agreement_rate": 0.9090909090909091,
+  "critical_exact_agreement": 30,
+  "critical_cases": 34,
+  "critical_exact_agreement_rate": 0.8823529411764706,
+  "bilingual_groups_with_matching_advisory_labels": 22,
+  "bilingual_groups": 22,
+  "case_validity_counts": {
+    "valid": 36,
+    "material_issue": 8
+  },
+  "worker_case_validity_usable": false,
+  "worker_case_validity_issue": "The prompt did not define whether validity referred to the benchmark case or the deliberately defective contract payload. All material_issue flags were attached to typed-reject negative fixtures, so this field is treated as interpretation-confounded and excluded from evidence.",
+  "confounded_material_issue_rows": 8,
+  "by_stage": {
+    "contract_span": {
+      "cases": 16,
+      "exact": 12,
+      "rate": 0.75
+    },
+    "entity_linking": {
+      "cases": 28,
+      "exact": 28,
+      "rate": 1.0
+    }
+  },
+  "authority": "disagreement queue only; human/independent review still required",
+  "gold_mutated": false
+}

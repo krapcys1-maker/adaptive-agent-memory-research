@@ -351,9 +351,46 @@ def run(env_file: Path, budget_usd: float, batch_size: int, max_tokens: int, tim
 
 def normalized_label(label: dict[str, Any]) -> dict[str, Any]:
     value = dict(label)
-    if "selected_ids" not in value:
+    if "action" in value and "selected_ids" not in value:
         value["selected_ids"] = []
     return value
+
+
+def contract_mechanical_trace(case: dict[str, Any]) -> dict[str, Any]:
+    """Expose direct substring and dependency facts without consulting gold."""
+    value = case["input"]
+    if "candidate_text" in value:
+        try:
+            payload = json.loads(value["candidate_text"])
+            serialization_valid = True
+        except json.JSONDecodeError:
+            return {"serialization_valid": False, "nodes": []}
+    else:
+        payload = value.get("candidate_payload")
+        serialization_valid = isinstance(payload, dict)
+    traces = []
+    previous: list[str] = []
+    for index, node in enumerate(payload.get("nodes", []) if isinstance(payload, dict) else [], start=1):
+        dependencies = node.get("depends", []) if isinstance(node, dict) else []
+        traces.append(
+            {
+                "node_index": index,
+                "obligation_id": node.get("obligation_id") if isinstance(node, dict) else None,
+                "expected_obligation_id": f"O{index}",
+                "id_sequential": isinstance(node, dict) and node.get("obligation_id") == f"O{index}",
+                "span_text": node.get("span_text") if isinstance(node, dict) else None,
+                "span_is_exact_query_substring": isinstance(node, dict)
+                and isinstance(node.get("span_text"), str)
+                and node["span_text"] in value["raw_query"],
+                "dependencies": dependencies,
+                "prior_ids": list(previous),
+                "dependencies_only_backward": isinstance(dependencies, list)
+                and all(dependency in previous for dependency in dependencies),
+            }
+        )
+        if isinstance(node, dict) and isinstance(node.get("obligation_id"), str):
+            previous.append(node["obligation_id"])
+    return {"serialization_valid": serialization_valid, "nodes": traces}
 
 
 def adjudicate() -> dict[str, Any]:
@@ -384,6 +421,7 @@ def adjudicate() -> dict[str, Any]:
                 "disputed_field": prediction["disputed_field"],
                 "rationale": prediction["rationale"],
                 "authority": "advisory-model-disagreement-only",
+                **({"mechanical_trace": contract_mechanical_trace(case)} if case["stage"] == "contract_span" else {}),
             }
         )
     shared.write_jsonl(RUN_DIR / "comparison.jsonl", rows)
@@ -395,9 +433,14 @@ def adjudicate() -> dict[str, Any]:
         group: len(items) == 2 and canonical(items[0].get("advisory_label")) == canonical(items[1].get("advisory_label"))
         for group, items in group_predictions.items()
     }
-    valid = [row for row in rows if row["status"] != "missing_prediction"] if rows and "status" in rows[0] else [row for row in rows if "advisory_label" in row]
     exact = [row for row in rows if row.get("exact_agreement")]
     critical = [row for row in rows if row["criticality"] == "critical"]
+    invalid_case_validity = [
+        row
+        for row in rows
+        if row.get("case_validity") == "material_issue"
+        and row.get("advisory_label", {}).get("decision") == "typed_reject"
+    ]
     summary = {
         "status": "advisory-comparison-complete" if len(predictions) == len(cases) else "advisory-comparison-incomplete",
         "cases": len(cases),
@@ -410,6 +453,13 @@ def adjudicate() -> dict[str, Any]:
         "bilingual_groups_with_matching_advisory_labels": sum(parity.values()),
         "bilingual_groups": len(parity),
         "case_validity_counts": dict(Counter(row.get("case_validity", "missing") for row in rows)),
+        "worker_case_validity_usable": False,
+        "worker_case_validity_issue": (
+            "The prompt did not define whether validity referred to the benchmark case or the deliberately defective "
+            "contract payload. All material_issue flags were attached to typed-reject negative fixtures, so this field "
+            "is treated as interpretation-confounded and excluded from evidence."
+        ),
+        "confounded_material_issue_rows": len(invalid_case_validity),
         "by_stage": {
             stage: {
                 "cases": len(stage_rows),
@@ -423,6 +473,19 @@ def adjudicate() -> dict[str, Any]:
     }
     shared.write_json(RUN_DIR / "comparison-summary.json", summary)
     disagreements = [row for row in rows if not row.get("exact_agreement")]
+    shared.write_jsonl(
+        RUN_DIR / "disagreement-evidence.jsonl",
+        [
+            {
+                "case_id": row["case_id"],
+                "gold": row.get("gold"),
+                "advisory_label": row.get("advisory_label"),
+                "mechanical_trace": row.get("mechanical_trace"),
+                "note": "Mechanical facts are transparent checks, not independent annotation.",
+            }
+            for row in disagreements
+        ],
+    )
     report = [
         "# PMLAB-MAP stage blind advisory review",
         "",
@@ -436,6 +499,8 @@ def adjudicate() -> dict[str, Any]:
         "",
         "The model saw no gold labels, criticality, strata, scores, author rationale, or candidate implementation. Agreement is not proof of label validity, and disagreement does not automatically replace gold. Every disagreement remains an adjudication target; human or otherwise genuinely independent review is still required by the frozen protocol.",
         "",
+        "The worker's `case_validity` field is excluded from evidence. The prompt failed to distinguish benchmark-case validity from the deliberately defective payload under review; all eight `material_issue` flags landed on correctly typed-rejected negative fixtures. Raw values are preserved as a prompt-design failure.",
+        "",
         "## Disagreement queue",
         "",
     ]
@@ -445,6 +510,33 @@ def adjudicate() -> dict[str, Any]:
         for row in disagreements:
             report.append(f"- `{row['case_id']}` ({row['stage']}, {row['criticality']}): {row.get('disputed_field') or 'exact label'} — {row.get('rationale', 'missing prediction')}")
     (RUN_DIR / "report.md").write_text("\n".join(report) + "\n", encoding="utf-8", newline="\n")
+    api_summary = json.loads((RUN_DIR / "api-summary.json").read_text(encoding="utf-8"))
+    artifacts = [
+        "api-summary.json",
+        "calls.jsonl",
+        "raw-responses.jsonl",
+        "predictions.jsonl",
+        "comparison.jsonl",
+        "comparison-summary.json",
+        "disagreement-evidence.jsonl",
+        "report.md",
+    ]
+    result_manifest = {
+        "run_id": RUN_ID,
+        "status": summary["status"],
+        "corpus_freeze_commit": CORPUS_FREEZE_COMMIT,
+        "prompt_freeze_commit": verify_frozen_inputs()["prompt_freeze_commit"],
+        "model": MODEL,
+        "cases": len(cases),
+        "valid_predictions": len(predictions),
+        "run_conservative_cost_usd": api_summary["run_conservative_cost_usd"],
+        "all_runs_conservative_cost_usd_at_completion": api_summary["all_runs_conservative_cost_usd"],
+        "authority": "advisory disagreement queue only; independent review still required",
+        "worker_case_validity_usable": False,
+        "gold_mutated": False,
+        "hashes": {name: sha256(RUN_DIR / name) for name in artifacts},
+    }
+    shared.write_json(RUN_DIR / "result-manifest.json", result_manifest)
     return summary
 
 

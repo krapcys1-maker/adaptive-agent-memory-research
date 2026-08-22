@@ -1,0 +1,13 @@
+{
+  "status": "api-run-complete",
+  "model": "deepseek-v4-flash",
+  "cases": 44,
+  "valid_predictions": 44,
+  "valid_rate": 1.0,
+  "errors_logged": 0,
+  "calls_this_invocation": 8,
+  "run_conservative_cost_usd": 0.0132286,
+  "all_runs_conservative_cost_usd": 0.39103284,
+  "hard_cumulative_budget_usd": 10.0,
+  "authority": "advisory only; no independent-review status"
+}

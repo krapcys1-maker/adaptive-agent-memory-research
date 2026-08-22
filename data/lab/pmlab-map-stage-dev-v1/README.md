@@ -44,3 +44,16 @@ The future stage challenge repeats steps 2-6 after candidate versions are frozen
 - 14 entity groups covering aliases, catalog collisions, missing entities, non-entity phrases, coreference, and multi-entity relations.
 
 `cases.jsonl` contains gold and provenance. `model-cases.jsonl` and `independent-review-queue.jsonl` exclude gold, criticality, split, stratum, and author rationale. The manifest status remains `authored-unreviewed-development-data`; these cases may not be used as reviewed evidence or as a confirmation set.
+
+## Blind advisory review
+
+After the corpus freeze at `7481b44`, DeepSeek V4 Flash reviewed all 44 rows from a prompt and job packet frozen at `ceae9d4`. The worker saw the review inputs and catalog but not gold, criticality, strata, scores, provenance, or a candidate implementation.
+
+- 44/44 responses passed the output validator at a conservative cost of USD 0.01322860;
+- exact label agreement was 40/44 overall and 30/34 on critical rows;
+- entity/NIL labels agreed on 28/28 rows;
+- four contract rows disagreed: both languages of `ST-C03` and `ST-C07`;
+- direct traces show that `ST-C03` uses a non-source paraphrase and that `ST-C07` contains a forward dependency, so the model objections are retained but do not alter gold;
+- the worker's `case_validity` field is unusable because it conflated deliberately defective payloads with defective benchmark cases.
+
+The complete raw and derived record is under `../api-screening/deepseek-v4-flash-map-stage-advisory-review-20260822/`. This remains an advisory worker review, not the independently signed review required for corpus freeze.

@@ -39,6 +39,18 @@ class BlindReviewTests(unittest.TestCase):
         MODULE.validate_label({**base, "case_id": contract["case_id"], "independent_label": {"decision": "accept", "reject_reason": "none"}}, contract, catalog_ids)
         MODULE.validate_label({**base, "case_id": entity["case_id"], "independent_label": {"action": "linked", "candidate_ids": ["vendor:cobalt"], "selected_id": "vendor:cobalt", "selected_ids": []}}, entity, catalog_ids)
 
+    def test_contract_normalization_does_not_add_entity_fields(self):
+        label = {"decision": "accept", "reject_reason": "none"}
+        self.assertEqual(label, MODULE.normalized_label(label))
+
+    def test_mechanical_trace_exposes_non_source_span_and_forward_dependency(self):
+        cases_path = ROOT / "data" / "lab" / "pmlab-map-stage-dev-v1" / "cases.jsonl"
+        cases = {row["case_id"]: row for row in (json.loads(line) for line in cases_path.read_text(encoding="utf-8").splitlines())}
+        c03 = MODULE.contract_mechanical_trace(cases["ST-C03-EN"])
+        c07 = MODULE.contract_mechanical_trace(cases["ST-C07-EN"])
+        self.assertFalse(c03["nodes"][0]["span_is_exact_query_substring"])
+        self.assertFalse(c07["nodes"][0]["dependencies_only_backward"])
+
 
 if __name__ == "__main__":
     unittest.main()
