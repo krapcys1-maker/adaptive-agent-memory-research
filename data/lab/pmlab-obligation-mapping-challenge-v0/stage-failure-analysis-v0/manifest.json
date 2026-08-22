@@ -1,0 +1,18 @@
+{
+  "analysis": "PMLAB-MAP-stage-failure-localization",
+  "analyzer_version": "pmlab-map-stage-failure-analysis-v0",
+  "case_arm_rows": 56,
+  "challenge_freeze_commit": "adc540f",
+  "challenge_result_commit": "6bcb8ab",
+  "hashes": {
+    "report.md": "e1001305b9b3086b2273be5f5d81afc800bdea9f912341e495cbb850efe663c3",
+    "rows.jsonl": "f13ec1e92d22f2e342475624b35c81758d1e4a43d75c28d54fcc68c9f69451e5",
+    "summary.json": "f75720df549257b44f887a0a919ff4d3ecdefaf1b5953b499cec8f3af30bf631"
+  },
+  "limitations": [
+    "post-hoc",
+    "first failure is not causal",
+    "same-process challenge labels"
+  ],
+  "status": "post-hoc-spent-challenge-diagnostic"
+}

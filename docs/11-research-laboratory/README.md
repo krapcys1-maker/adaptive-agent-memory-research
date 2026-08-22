@@ -85,6 +85,8 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-obligation-mapping-deepseek-v1/` — frozen optional-model construction comparator; only 45/56 schema-valid predictions, F1 0.710, critical recall 0.607, E2E 0.143, and two false closures. Rejected for promotion.
 - `data/lab/pmlab-obligation-mapping-challenge-v0/` — 14-group/28-case paired PL/EN post-arm challenge with disjoint schema/entity identifiers, unseen complete composition signatures, and unresolved safety strata; same-process labels still require independent review.
 - `data/lab/pmlab-obligation-mapping-deepseek-challenge-v0/` — unchanged optional-model prompt on the post-freeze challenge; 13/28 valid, F1 0.325, critical recall 0.292, E2E 0.107, two false closures. Rejected.
+- `data/lab/pmlab-obligation-mapping-challenge-v0/stage-failure-analysis-v0/` — post-hoc localization showing multi-stage errors in 24/28 rule cases and 21/28 model cases; descriptive only because challenge v0 is spent.
+- `docs/11-research-laboratory/factorized-obligation-mapper-repair-protocol-v0.md` — next-stage protocol isolating contract/span, graph, entity, schema, time/authorization, and certificate routing before another integrated challenge.
 - `data/lab/pmlab-forgetting-dev/` — deterministic 28-case F1 and 56-query F2 development instrument with artifacts and an adversarial review.
 - `data/lab/pmlab-forgetting-challenge-v0/` — unseen-template multi-fault and ambiguous entity/time challenge that breaks the development resolver.
 - `data/lab/reader-interference-stress-v5/` — first fully audited single-model factorial over stale count, cue quality, order, similarity, and instruction strength.

@@ -1,0 +1,48 @@
+{
+  "deepseek_v4_flash": {
+    "any_failure_counts": {
+      "certificate": 4,
+      "contract": 15,
+      "entity": 3,
+      "false-closure": 2,
+      "graph": 22,
+      "namespace": 1,
+      "predicate": 2,
+      "status": 17,
+      "time": 2
+    },
+    "case_count": 28,
+    "cases_with_multiple_failure_stages": 21,
+    "critical_failures": 21,
+    "false_closure_count": 2,
+    "first_failure_counts": {
+      "contract": 15,
+      "graph": 7,
+      "pass": 3,
+      "predicate": 1,
+      "status": 2
+    }
+  },
+  "qdmr_rules_pipeline": {
+    "any_failure_counts": {
+      "authorization": 1,
+      "certificate": 6,
+      "entity": 18,
+      "false-closure": 10,
+      "graph": 22,
+      "namespace": 18,
+      "predicate": 18,
+      "status": 10,
+      "time": 2
+    },
+    "case_count": 28,
+    "cases_with_multiple_failure_stages": 24,
+    "critical_failures": 24,
+    "false_closure_count": 10,
+    "first_failure_counts": {
+      "entity": 2,
+      "graph": 16,
+      "status": 10
+    }
+  }
+}
