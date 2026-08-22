@@ -1,0 +1,18 @@
+{
+  "experiment_id": "PMLAB-META-001",
+  "frozen_corpus_commit": "a4d5d3c",
+  "case_sha256": "98b0db04e43792599c4b5a6d795629d7bcd78d87e79f4bc377077a3d5bddcfe3",
+  "runner": "scripts/run_metamemory_control_dev.py",
+  "runner_sha256": "75ad046200fca2bae5ad28bda380c0335a38f1cd464994655e6377146e3fb79f",
+  "policies": [
+    "cue_familiarity",
+    "no_monitor",
+    "oracle",
+    "self_confidence",
+    "semantic_consistency",
+    "typed_control",
+    "typed_monitor"
+  ],
+  "scalar_threshold": 0.75,
+  "network_or_model_calls": 0
+}

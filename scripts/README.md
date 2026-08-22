@@ -2,6 +2,8 @@
 
 These scripts make discovery reproducible. Their outputs are candidate lists, not trusted evidence. Every important source must still be read and reviewed.
 
+`build_metamemory_dev_corpus.py` deterministically authors the frozen construction corpus for PMLAB-META-001. `run_metamemory_control_dev.py` verifies its hash and compares scalar confidence, typed monitoring, typed control, and an oracle ceiling without network or model calls.
+
 ## Discover papers through OpenAlex
 
 ```powershell

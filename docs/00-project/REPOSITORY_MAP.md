@@ -47,6 +47,7 @@ This is the fastest guide to where information belongs.
 | Disposable same-device real-filesystem injection harness | `data/lab/pmlab-storage-injection-v0/` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Metamemory, selective prediction, and typed retrieval-control synthesis | `docs/12-interdisciplinary-memory/metamemory-selective-control-synthesis.md` |
+| Frozen typed metamemory-control development corpus, runner, and construction result | `data/lab/pmlab-metamemory-control-dev-v0/` |
 | Emotion/salience mechanism synthesis and falsification rules | `docs/12-interdisciplinary-memory/emotion-salience-synthesis.md` |
 | Interference, active forgetting, availability/accessibility, and recovery synthesis | `docs/12-interdisciplinary-memory/interference-active-forgetting-synthesis.md` |
 | Coverage, search, experiment, and backend registries | `data/lab/` |
