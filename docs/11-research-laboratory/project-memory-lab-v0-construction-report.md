@@ -1,6 +1,6 @@
 # Project Memory Lab v0 construction report
 
-Status: complete authored construction; independent dual annotation and adjudication pending
+Status: preserved pre-run instrument defect; v0 split rejected for template leakage
 
 ## Outcome
 
@@ -40,6 +40,8 @@ The `blind/` packet contains the complete corpus, label-free query objects, two 
 `validate_pmlab_v0_annotation.py` rejects missing/duplicate cases, blank or inconsistent identity, unknown or overlapping evidence roles, invalid confidence, mismatched hashes, unsigned attestations, the same reviewer in both slots, and byte-identical dual submissions. A receipt proves only contract and byte integrity. It cannot confer independence, compute agreement, adjudicate labels, or permit a baseline.
 
 ## Remaining validity gates
+
+The label-free split audit run after this construction report flagged 22 of 300 within-category development/test pairs across causal, contradiction, and procedure strata. Direct inspection confirmed repeated query frames. No independent labels or backend outputs existed. V0 is therefore invalid for held-out confirmation; the gates below move to v0.1.
 
 - obtain two genuinely independent complete reviews;
 - audit the 24 project paraphrases against exact source locations;

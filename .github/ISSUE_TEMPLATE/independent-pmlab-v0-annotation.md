@@ -7,6 +7,8 @@ labels: research, independent-review
 
 ## Requested slot
 
+> **Paused:** do not claim this packet. A pre-run label-free audit rejected the v0 development/test split for repeated query templates. Wait for the versioned v0.1 packet; v0 labels will not satisfy the held-out gate.
+
 Reviewer A or Reviewer B. The two reviewers must work independently and may not inspect one another's form before both hashes are frozen.
 
 ## Identity or stable pseudonym

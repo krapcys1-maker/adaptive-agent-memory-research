@@ -2,8 +2,9 @@
   "experiment_id": "PMLAB-V0-RET-001",
   "protocol_version": "lexical-v0",
   "protocol_freeze_commit": "e111a57",
-  "status": "protocol-frozen-execution-locked",
+  "status": "protocol-frozen-source-corpus-invalidated-pre-run",
   "execution_authorized": false,
+  "source_corpus_invalidation": "label-free split audit found repeated development/test query frames; migrate unchanged protocol to v0.1 only after new query hashes freeze",
   "freeze_prerequisites_satisfied": {
     "corpus_bytes": true,
     "backend_contract": true,

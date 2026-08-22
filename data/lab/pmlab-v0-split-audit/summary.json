@@ -1,0 +1,79 @@
+{
+  "backend_output_read": false,
+  "category_maxima": {
+    "causal_multi_episode": {
+      "character_trigram_jaccard": 0.7052631578947368,
+      "sequence_ratio": 0.8808290155440415,
+      "token_jaccard": 0.7058823529411765
+    },
+    "contradiction": {
+      "character_trigram_jaccard": 0.7236842105263158,
+      "sequence_ratio": 0.8933333333333333,
+      "token_jaccard": 0.7692307692307693
+    },
+    "cross_language": {
+      "character_trigram_jaccard": 0.14814814814814814,
+      "sequence_ratio": 0.5507246376811594,
+      "token_jaccard": 0.2222222222222222
+    },
+    "exact_lexical": {
+      "character_trigram_jaccard": 0.29508196721311475,
+      "sequence_ratio": 0.7058823529411765,
+      "token_jaccard": 0.4
+    },
+    "paraphrase": {
+      "character_trigram_jaccard": 0.1368421052631579,
+      "sequence_ratio": 0.5357142857142857,
+      "token_jaccard": 0.1875
+    },
+    "poison_resistance": {
+      "character_trigram_jaccard": 0.52,
+      "sequence_ratio": 0.7796610169491526,
+      "token_jaccard": 0.5217391304347826
+    },
+    "procedure_failure": {
+      "character_trigram_jaccard": 0.6568627450980392,
+      "sequence_ratio": 0.8924731182795699,
+      "token_jaccard": 0.625
+    },
+    "supersession": {
+      "character_trigram_jaccard": 0.4444444444444444,
+      "sequence_ratio": 0.7714285714285715,
+      "token_jaccard": 0.5
+    },
+    "temporal_as_of": {
+      "character_trigram_jaccard": 0.41379310344827586,
+      "sequence_ratio": 0.8181818181818182,
+      "token_jaccard": 0.5384615384615384
+    },
+    "unanswerable": {
+      "character_trigram_jaccard": 0.3269230769230769,
+      "sequence_ratio": 0.6027397260273972,
+      "token_jaccard": 0.5555555555555556
+    },
+    "weak_overlap": {
+      "character_trigram_jaccard": 0.10975609756097561,
+      "sequence_ratio": 0.46601941747572817,
+      "token_jaccard": 0.16666666666666666
+    },
+    "what_where_when": {
+      "character_trigram_jaccard": 0.49206349206349204,
+      "sequence_ratio": 0.7920792079207921,
+      "token_jaccard": 0.6
+    }
+  },
+  "cross_split_pairs": 300,
+  "decision": "reject v0 split for held-out confirmation; preserve as instrument defect; author v0.1 before review or backend execution",
+  "decision_basis": "registered split policy requires different development/test templates; direct inspection shows repeated authored frames",
+  "flagged_categories": [
+    "causal_multi_episode",
+    "contradiction",
+    "procedure_failure"
+  ],
+  "flagged_pairs": 22,
+  "labels_read": false,
+  "query_count": 120,
+  "source": "project-memory-lab-v0-construction blind queries frozen at 612eb06",
+  "status": "posthoc-label-free-construction-audit",
+  "thresholds_are_confirmatory": false
+}

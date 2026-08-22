@@ -117,6 +117,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/project-memory-lab-v0-construction/` — complete 120-query/176-record authored construction corpus frozen at `612eb06`, with opaque IDs, disjoint 60/60 history splits, a dual blind-annotation packet, and an integrity validator; author labels are not gold and lexical runs remain locked.
 - `data/lab/longmemeval-bridge-v0/` — version-pinned 36-ID public transfer bridge selected from verified LongMemEval-S cleaned bytes; no source content is redistributed and abstention near-miss sessions are not scored as positive retrieval gold.
 - `data/lab/pmlab-v0-lexical-preregistration/` — lexical-v0 protocol frozen at `e111a57`: query-only backend input, exact B1/B2 rules, eleven-stratum primary metric, paired bootstrap, safety guardrails, and an explicit execution lock.
+- `data/lab/pmlab-v0-split-audit/` — label-free audit preserving the v0 split as an invalid pre-run instrument after repeated development/test query frames were found; labels and backends remained unseen.
 
 ## Non-negotiable practices
 
