@@ -34,6 +34,16 @@ python scripts/run_memory_benchmark.py
 
 This compares no memory, actual `rg`, and SQLite FTS5. Its scores are diagnostic only; the slice is not the independently annotated 120-query PMLAB v0.
 
+## Verify screening-source identity
+
+Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:
+
+```powershell
+python scripts/audit_screening_sources.py
+```
+
+This verifies bibliographic identity only. It does not mark a paper read or validate a scientific claim.
+
 ## Refresh GitHub metadata
 
 ```powershell

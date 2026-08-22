@@ -46,4 +46,4 @@ The normalized queue is `review-queue.jsonl`. Raw model outputs remain in `candi
 
 ## Decision
 
-Pass the worker for expanded **candidate generation only**. Do not let it promote evidence, modify claims, or mark a research area screened. Next, deduplicate by stable source identity and manually review all 37 `include` candidates plus a stratified sample of `maybe` and `exclude` decisions.
+Pass the worker for expanded **candidate generation only**. Do not let it promote evidence, modify claims, or mark a research area screened. The subsequent identity and abstract audit is recorded in `source-review-report.md`: 37 includes reduced to 35 distinct works, with 19 prioritized for full reading.

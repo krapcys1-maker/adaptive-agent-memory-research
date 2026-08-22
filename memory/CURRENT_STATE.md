@@ -22,6 +22,7 @@ A dependency-free local memory now supports continuity of this research:
 ## Latest diagnostics (2026-08-22)
 
 - A budgeted DeepSeek V4 Flash worker screened 125 frozen OpenAlex metadata records with 125/125 schema-valid outputs. Two prompt-policy violations required deterministic correction. Its cumulative conservative cost, including two pilots, was USD 0.0613668. It is admitted for candidate generation only.
+- The 37 normalized `include` candidates passed bibliographic identity resolution, but represented 35 distinct works after merging one version duplicate and one peer-review artifact. Abstract screening assigned 19 priority full reads, 9 background sources, 6 deferred sources, and 1 challenge-only preprint.
 - A 24-query PMLAB development slice compared no memory, ripgrep, and SQLite FTS5. The lexical backends reached Recall@5 0.841 but showed forbidden-record intrusion 0.292, no successful abstention, and zero cross-language recall. This is an authored instrument test, not architecture evidence.
 
 ## Immediate priorities

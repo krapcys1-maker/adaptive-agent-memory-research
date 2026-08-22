@@ -64,6 +64,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/11-research-laboratory/minimal-architecture.md` — provider-neutral architecture boundary.
 - `docs/11-research-laboratory/optional-api-worker-policy.md` — when a cloud model may enter as a replaceable, review-gated batch worker.
 - `docs/11-research-laboratory/deepseek-screening-pilot.md` — preregistered public-metadata admission pilot with a cumulative USD 10 hard cap.
+- `data/lab/api-screening/deepseek-v4-flash-screening-125-20260822/source-review-report.md` — deterministic identity audit and abstract-level disposition of all 37 model-included candidates.
 - `docs/11-research-laboratory/project-memory-lab-v0.md` — preregistration draft for the first real project benchmark.
 - `data/lab/coverage-matrix.csv` — topic status and gaps.
 - `data/lab/search-log.csv` — denominator for saturation claims.
