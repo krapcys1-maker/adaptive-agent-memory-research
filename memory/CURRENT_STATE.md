@@ -17,6 +17,7 @@ A dependency-free local memory now supports continuity of this research:
 - MCP stdio serves Codex, Claude Code, and other clients;
 - CLI remains available to clients without MCP;
 - no model API key, vector database, graph database, or cloud account is required.
+- external API models are optional, replaceable batch workers; they may write review candidates but never accepted evidence directly.
 
 ## Immediate priorities
 
@@ -27,3 +28,4 @@ A dependency-free local memory now supports continuity of this research:
 5. Audit candidate repositories at pinned revisions and separate reusable mechanisms from marketing claims.
 6. Test emotional salience only after utility labels and consequence-weighted retention metrics exist; never equate operational signals with subjective emotion.
 7. Preserve rejected ideas, null results, and failed runs as labeled evidence.
+8. Before adding an API worker, preregister a frozen admission pilot measuring locator accuracy, unsupported claims, abstention, reviewer time, cost, privacy, and provider failure.

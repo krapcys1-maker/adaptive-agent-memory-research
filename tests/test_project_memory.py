@@ -5,7 +5,9 @@ import tempfile
 import unittest
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from unittest.mock import patch
 
+from tools.project_memory import cli
 from tools.project_memory.memory_store import MemoryStore
 from tools.project_memory.server import McpServer
 
@@ -107,6 +109,21 @@ class ProjectMemoryTests(unittest.TestCase):
         )
         payload = json.loads(response["result"]["content"][0]["text"])
         self.assertFalse(payload["model_api_required"])
+
+    def test_cli_forces_unicode_safe_output(self) -> None:
+        class LegacyStream:
+            def __init__(self) -> None:
+                self.configuration: dict[str, str] = {}
+
+            def reconfigure(self, **configuration: str) -> None:
+                self.configuration = configuration
+
+        stdout = LegacyStream()
+        stderr = LegacyStream()
+        with patch.object(cli.sys, "stdout", stdout), patch.object(cli.sys, "stderr", stderr):
+            cli._configure_standard_streams()
+        self.assertEqual({"encoding": "utf-8", "errors": "backslashreplace"}, stdout.configuration)
+        self.assertEqual({"encoding": "utf-8", "errors": "backslashreplace"}, stderr.configuration)
 
 
 if __name__ == "__main__":

@@ -62,6 +62,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/11-research-laboratory/benchmark-ladder.md` — ordered baseline and mechanism comparisons.
 - `docs/11-research-laboratory/stage-gates.md` — evidence required before added complexity.
 - `docs/11-research-laboratory/minimal-architecture.md` — provider-neutral architecture boundary.
+- `docs/11-research-laboratory/optional-api-worker-policy.md` — when a cloud model may enter as a replaceable, review-gated batch worker.
 - `docs/11-research-laboratory/project-memory-lab-v0.md` — preregistration draft for the first real project benchmark.
 - `data/lab/coverage-matrix.csv` — topic status and gaps.
 - `data/lab/search-log.csv` — denominator for saturation claims.

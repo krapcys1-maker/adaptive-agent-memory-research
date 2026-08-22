@@ -70,6 +70,8 @@ backend_version
 - A new mechanism is an adapter, not a migration of user truth.
 - Experiment artifacts and operational memory share identifiers but not authority.
 - The system can begin with `rg` and FTS5, then add one measured capability at a time.
+- Subscription-based interactive agents and metered API workers use the same MCP/CLI boundary; neither owns the canonical store.
+- Optional batch models emit review candidates through a provider adapter and cannot directly promote scientific claims.
 
 ## Architectural unknowns deliberately left open
 

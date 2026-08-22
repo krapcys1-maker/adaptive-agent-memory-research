@@ -15,6 +15,14 @@ if __package__ in {None, ""}:
 from tools.project_memory.memory_store import ALLOWED_KINDS, MemoryError, MemoryStore  # noqa: E402
 
 
+def _configure_standard_streams() -> None:
+    """Keep JSON output Unicode-safe on Windows consoles with legacy encodings."""
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if callable(reconfigure):
+            reconfigure(encoding="utf-8", errors="backslashreplace")
+
+
 def _print(value: object) -> None:
     print(json.dumps(value, ensure_ascii=False, indent=2))
 
@@ -67,6 +75,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main() -> int:
+    _configure_standard_streams()
     args = build_parser().parse_args()
     store = MemoryStore(args.root)
     try:

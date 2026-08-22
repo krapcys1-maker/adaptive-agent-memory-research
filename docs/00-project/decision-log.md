@@ -47,3 +47,9 @@ Reason: Different biological systems expose useful strategies for persistence, p
 Decision: Report search rounds, databases, screened denominators, novelty yield, contradictions, and saturation status instead of unsupported estimates such as "95% complete."
 
 Reason: The total relevant literature is unknowable and changes over time. A reproducible stopping rule is defensible; an absolute completeness claim is not.
+
+## 2026-08-22 — External model APIs are optional batch workers
+
+Decision: Keep the research memory, retrieval indexes, and accepted evidence independent of model APIs. Admit a cloud model only through a provider-neutral, review-gated batch experiment.
+
+Reason: Subscription agents already support interactive research, while local tools cover canonical storage and initial retrieval. Premature API integration adds cost, privacy, provider-drift, and automation-bias risks without proving that scientific review becomes faster or better.
