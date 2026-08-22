@@ -1,0 +1,17 @@
+{
+  "catalog_version": "pmlab-map-challenge-entities-v0",
+  "entities": [
+    {"id": "vendor:cobalt", "type": "vendor", "aliases": ["Cobalt Supplies", "dostawca Cobalt"]},
+    {"id": "workspace:orchid", "type": "workspace", "aliases": ["Orchid workspace", "obszar Orchid"]},
+    {"id": "sensor:north-7", "type": "sensor", "aliases": ["North-7", "czujnik North-7"]},
+    {"id": "sensor:south-3", "type": "sensor", "aliases": ["South-3", "czujnik South-3"]},
+    {"id": "team:coral", "type": "team", "aliases": ["Coral team", "zespół Coral"]},
+    {"id": "team:jade", "type": "team", "aliases": ["Jade team", "zespół Jade"]},
+    {"id": "release:iris", "type": "release", "aliases": ["Iris release", "wydanie Iris"]},
+    {"id": "workspace:atlas", "type": "workspace", "aliases": ["Atlas"]},
+    {"id": "dataset:atlas", "type": "dataset", "aliases": ["Atlas"]},
+    {"id": "person:ewa-zielinska", "type": "person", "aliases": ["Ewa Zielińska", "Ewa Zielinska"]},
+    {"id": "audit:telemetry-cutover", "type": "audit", "aliases": ["telemetry cutover", "migracja telemetrii"]}
+  ],
+  "known_nil_mentions": ["Quasar node", "węzeł Quasar"]
+}

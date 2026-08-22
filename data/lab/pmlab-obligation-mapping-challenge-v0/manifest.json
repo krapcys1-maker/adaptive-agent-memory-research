@@ -1,0 +1,42 @@
+{
+  "artifact": "post-freeze-challenge-v0",
+  "benchmark": "PMLAB-MAP-001",
+  "builder_version": "pmlab-map-challenge-builder-v0",
+  "case_count": 28,
+  "construction_corpus_freeze_commit": "4b6c47e",
+  "deterministic_runner_freeze_commit": "6a82bd8",
+  "hashes": {
+    "cases.jsonl": "7bd6e2bcd140e2bde931256c2a2648d58588b2bd723f2ac2b3868e6260db62e6",
+    "entities-v0.json": "41c8dcfbaa0818928cce2b37402727bdb49b4b37b99a91fa02804835b1c4bc75",
+    "model-cases.jsonl": "299e77954fc8fbd689f9e836d9cb4da0e25af22f84739edf354d5aa73bbc970e",
+    "schema-v0.json": "7bdcf3df1baf3610331141b4ed67a8460af75226aceb2a14e4e38cd4993cfddb",
+    "template-groups.jsonl": "28928a96825979ca541225b239b7012b200766913926d27d623a03b6f59e7ab1"
+  },
+  "known_blockers": [
+    "labels authored by the same research process",
+    "no independent review",
+    "small synthetic corpus"
+  ],
+  "language_counts": {
+    "en": 14,
+    "pl": 14
+  },
+  "max_graph_nodes": 5,
+  "optional_model_adapter_freeze_commit": "8913667",
+  "optional_model_prompt_freeze_commit": "6a288f6",
+  "status": "authored-post-arm-challenge-not-independently-reviewed",
+  "supportedness_counts": {
+    "ambiguous": 2,
+    "nil": 1,
+    "supported": 9,
+    "unauthorized": 1,
+    "unsupported": 1
+  },
+  "template_group_count": 14,
+  "unseen_schema": {
+    "all_ids_disjoint_from_construction": true,
+    "entity_count": 11,
+    "namespace_count": 8,
+    "predicate_count": 16
+  }
+}

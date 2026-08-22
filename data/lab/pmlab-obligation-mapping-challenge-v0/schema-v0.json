@@ -1,0 +1,31 @@
+{
+  "schema_version": "pmlab-map-challenge-schema-v0",
+  "namespaces": [
+    {"id": "procurement-ledger", "authorization": "project-read"},
+    {"id": "workspace-directory", "authorization": "project-read"},
+    {"id": "sensor-telemetry", "authorization": "project-read"},
+    {"id": "incident-register", "authorization": "project-read"},
+    {"id": "package-inventory", "authorization": "project-read"},
+    {"id": "credential-registry", "authorization": "security-read"},
+    {"id": "release-catalog", "authorization": "project-read"},
+    {"id": "health-private", "authorization": "health-private-read"}
+  ],
+  "predicates": [
+    {"id": "vendor.country", "namespace": "procurement-ledger", "aliases": {"en": ["supplier country", "based in"], "pl": ["kraj dostawcy", "ma siedzibę"]}},
+    {"id": "workspace.owner", "namespace": "workspace-directory", "aliases": {"en": ["workspace steward", "responsible for"], "pl": ["opiekun obszaru", "odpowiada za"]}},
+    {"id": "person.contact_email", "namespace": "workspace-directory", "aliases": {"en": ["contact address", "email"], "pl": ["adres kontaktowy", "e-mail"]}},
+    {"id": "instrument.drift_pct", "namespace": "sensor-telemetry", "aliases": {"en": ["calibration drift", "drift percentage"], "pl": ["dryf kalibracji", "procent dryfu"]}},
+    {"id": "sensor.reading", "namespace": "sensor-telemetry", "aliases": {"en": ["reading", "measurement"], "pl": ["odczyt", "pomiar"]}},
+    {"id": "incident.severity", "namespace": "incident-register", "aliases": {"en": ["incident severity", "severity"], "pl": ["dotkliwość incydentu", "poziom incydentu"]}},
+    {"id": "team.incident_count", "namespace": "incident-register", "aliases": {"en": ["incident count"], "pl": ["liczba incydentów"]}},
+    {"id": "package.license_status", "namespace": "package-inventory", "aliases": {"en": ["licensed", "license status"], "pl": ["licencjonowane", "status licencji"]}},
+    {"id": "package.audit_status", "namespace": "package-inventory", "aliases": {"en": ["audited", "audit status"], "pl": ["poddane audytowi", "status audytu"]}},
+    {"id": "credential.active", "namespace": "credential-registry", "aliases": {"en": ["active credential"], "pl": ["aktywne poświadczenie"]}},
+    {"id": "credential.revoked", "namespace": "credential-registry", "aliases": {"en": ["revoked credential"], "pl": ["unieważnione poświadczenie"]}},
+    {"id": "release.version", "namespace": "release-catalog", "aliases": {"en": ["release version"], "pl": ["wersja wydania"]}},
+    {"id": "release.date", "namespace": "release-catalog", "aliases": {"en": ["release date"], "pl": ["data wydania"]}},
+    {"id": "dataset.owner", "namespace": "workspace-directory", "aliases": {"en": ["dataset custodian"], "pl": ["opiekun zbioru danych"]}},
+    {"id": "medical.allergy", "namespace": "health-private", "aliases": {"en": ["allergy"], "pl": ["alergia"]}},
+    {"id": "contract.termination_exists", "namespace": "procurement-ledger", "aliases": {"en": ["termination notice"], "pl": ["wypowiedzenie umowy"]}}
+  ]
+}
