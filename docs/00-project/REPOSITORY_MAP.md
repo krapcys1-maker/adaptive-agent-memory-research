@@ -52,6 +52,8 @@ This is the fastest guide to where information belongs.
 | Collection closure, open/closed-world boundary, and negative-knowledge tiers | `docs/12-interdisciplinary-memory/collection-closure-and-negative-knowledge-synthesis.md` |
 | Collection-closure benchmark preregistration | `docs/11-research-laboratory/collection-closure-benchmark-extension.md` |
 | Frozen collection-closure corpora and deterministic construction result | `data/lab/pmlab-collection-closure-dev-v0/`; `data/lab/pmlab-collection-closure-dev-v1/` |
+| Obligation decomposition, schema/entity/time linking, and scope-mapper synthesis | `docs/12-interdisciplinary-memory/obligation-decomposition-and-scope-mapping-synthesis.md` |
+| PMLAB-MAP-001 preregistration and leakage controls | `docs/11-research-laboratory/obligation-scope-mapper-protocol.md` |
 | Frozen evidence-sufficiency construction corpus, ablations, and result | `data/lab/pmlab-evidence-sufficiency-dev-v0/` |
 | Frozen typed metamemory-control development corpus, runner, and construction result | `data/lab/pmlab-metamemory-control-dev-v0/` |
 | Post-hoc real `rg`/FTS5 agreement and risk-coverage falsification | `data/lab/pmlab-backend-agreement-v0/` |

@@ -10,5 +10,6 @@ Machine-readable research-control files. Empty cells mean unknown or not yet aud
 - `pmlab-evidence-sufficiency-dev-v0/`: frozen answerability, obligation, claim-support, attribution, conflict, and collection-closure construction test.
 - `pmlab-collection-closure-dev-v0/`: preserved first freeze whose insertion-counterexample stratum failed to isolate the intended mechanism.
 - `pmlab-collection-closure-dev-v1/`: pre-run repair, frozen 48-case closure corpus, deterministic ablations, artifacts, and construction report. No held-out claim is permitted.
+- `PMLAB-MAP-001` is a preregistration-only obligation decomposition and per-obligation scope-mapping experiment in `docs/11-research-laboratory/obligation-scope-mapper-protocol.md`; no corpus or parser exists.
 
 Large corpora and run artifacts belong in ignored, reproducible caches with versioned manifests. Final compact metrics and conclusions belong in Git.

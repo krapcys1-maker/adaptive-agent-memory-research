@@ -89,3 +89,9 @@ Reason: Suppression can reduce interference without destroying recovery paths. R
 Decision: Treat missing retrieval, absence from searched scope, absence from a certified complete collection scope, and proposition-level falsity as four different states. Allow a closed-world negative only under an exact, current, authorized completeness certificate; proposition-level falsity additionally requires explicit negative evidence or a domain rule.
 
 Reason: Incomplete-database theory shows that completeness is query-relative and independent from validity. The project's evidence-sufficiency construction also showed that retrieval and obligation coverage cannot determine whether all authorized storage domains were exhausted. A global closed-world policy would convert index, replica, authorization, freshness, and capture gaps into false facts.
+
+## 2026-08-22 — Decompose obligations before mapping collection scope
+
+Decision: Represent every required answer facet as a typed obligation and map entity, predicate/schema, time, namespace, and certificate scope per obligation. Keep translations and paraphrases of one semantic template in one split; hold out new compositions and schemas rather than random rows.
+
+Reason: PMLAB-CLOSURE v1's only remaining construction errors were multi-facet questions with different closure states. QDMR supplies a candidate decomposition language, while schema-linking, synonym-robustness, and compositional-generalization evidence shows that correct-looking in-distribution parsing can depend on lexical overlap and familiar structures.
