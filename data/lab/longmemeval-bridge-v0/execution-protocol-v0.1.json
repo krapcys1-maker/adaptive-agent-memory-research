@@ -1,0 +1,45 @@
+{
+  "bridge_id": "longmemeval-bridge-v0",
+  "protocol_id": "LONGMEMEVAL-BRIDGE-RET-001-v0.1",
+  "status": "repair-protocol-frozen-after-invalid-v0-before-valid-v0.1-output",
+  "inherits": "execution-protocol.json",
+  "inherited_protocol_sha256": "5d9bb7e99b9f41d6bf3fd80dd78e331b6ead5c4162fc0ebec6dd6d4af2b3f125",
+  "invalid_v0_disclosure": {
+    "primary_results_sha256": "74536721358a483534071aba69da1d95e63a5965508adf157c835f03775cdea8",
+    "primary_summary_sha256": "2d2db3a1622873bb1a3b31331a7835010957109309e96e5db548e46170f9b655",
+    "failure": "B1 JSONDecodeError on question c8f1aeed and fresh-process measurement failure",
+    "root_cause": "the source contains U+2028 inside rg JSON string data; Python str.splitlines() split the valid JSON event inside its string",
+    "invalid_outcome_was_seen": {
+      "b1_macro_recall_at_5": 0.9,
+      "b2_macro_recall_at_5": 0.9833333333333334,
+      "b2_minus_b1": 0.08333333333333333,
+      "ci95": [
+        0.0,
+        0.18333333333333335
+      ]
+    },
+    "interpretation": "invalid infrastructure output; no transfer conclusion"
+  },
+  "only_permitted_change": {
+    "file": "scripts/run_memory_benchmark.py",
+    "old": "completed.stdout.splitlines()",
+    "new": "completed.stdout.split('\\n')",
+    "reason": "rg JSON Lines records are delimited by LF; Unicode line and paragraph separators are legal string data and must not become record boundaries",
+    "ranking_semantics": "unchanged",
+    "tokenization": "unchanged",
+    "scoring": "unchanged",
+    "tie_break": "unchanged",
+    "adapter": "unchanged",
+    "metrics": "unchanged",
+    "thresholds": "unchanged"
+  },
+  "additional_controls": [
+    "unit test with a literal U+2028 in indexed content must reproduce a valid B1 ranking",
+    "environment lock must hash both the bridge runner and run_memory_benchmark.py dependency",
+    "all 36 primary cases must be rerun because v0 was invalid",
+    "v0.1 must use a new output directory and preserve invalid v0 artifacts",
+    "primary and two fresh-process ranking hashes must agree"
+  ],
+  "output_directory": "data/lab/longmemeval-bridge-v0/execution-v0.1",
+  "claim_boundary": "post-failure repair replication with prior outcome known; public transfer diagnostic only"
+}
