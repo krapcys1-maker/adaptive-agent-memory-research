@@ -1,6 +1,6 @@
 {
   "run_id": "deepseek-v4-flash-memory-evidence-audit-20260823",
-  "status": "prepared-uncommitted-input",
+  "status": "frozen-input-awaiting-api",
   "created_at": "2026-08-22T21:39:10Z",
   "model": "deepseek-v4-flash",
   "prompt_version": "memory-evidence-adversarial-review-m1-v1",
@@ -10,7 +10,7 @@
   "response_format": "json_object",
   "run_budget_usd": 0.25,
   "global_budget_usd": 10.0,
-  "prompt_freeze_commit": null,
+  "prompt_freeze_commit": "a422027",
   "visible_to_worker": [
     "content-free protocols, aggregate metrics, hashes, limitations, invalid-run disclosure"
   ],
