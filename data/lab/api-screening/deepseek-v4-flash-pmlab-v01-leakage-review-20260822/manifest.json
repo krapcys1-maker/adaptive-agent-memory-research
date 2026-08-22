@@ -1,0 +1,40 @@
+{
+  "run_id": "deepseek-v4-flash-pmlab-v01-leakage-review-20260822",
+  "status": "prepared-uncommitted-input",
+  "created_at": "2026-08-22T20:54:54Z",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "pmlab-v01-model-blind-leakage-m1-v1",
+  "evidence_tier": "M1",
+  "candidate_query_freeze_commit": "cc904dd",
+  "prompt_freeze_commit": null,
+  "categories": 12,
+  "queries": 120,
+  "temperature": 0,
+  "thinking": "disabled",
+  "response_format": "json_object",
+  "run_budget_usd": 0.25,
+  "global_budget_usd": 10.0,
+  "visible_to_worker": [
+    "blind query forms",
+    "development/test assignment",
+    "category",
+    "language",
+    "query time",
+    "synthetic/project family"
+  ],
+  "hidden_from_worker": [
+    "author labels",
+    "evidence corpus content",
+    "builder source",
+    "backend outputs",
+    "other reviewer forms",
+    "preferred decision"
+  ],
+  "authority": "author-operated external model; blind M1 review, not human or cross-family independence",
+  "hashes": {
+    "jobs.jsonl": "d39885a9fca802a9b3146210acebd3dbe68eabfd26ae9a012775cb5e1535d86f",
+    "prompt.txt": "6883901a875740c33a28104160827d3306c44b1d120b1df88ed82e089e72a4a2",
+    "blind_queries.jsonl": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
+    "blind_corpus.jsonl": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d"
+  }
+}
