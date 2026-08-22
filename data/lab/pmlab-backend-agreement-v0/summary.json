@@ -1,0 +1,298 @@
+{
+  "experiment_id": "PMLAB-META-BACKEND-AGREE-001",
+  "status": "completed-posthoc-exploratory",
+  "case_count": 24,
+  "joint_unsafe_cases": 13,
+  "top1_agree_cases": 19,
+  "top1_agree_unsafe_cases": 11,
+  "strategies": {
+    "ripgrep": {
+      "cases": 24,
+      "answer_coverage": 0.9583333333333334,
+      "selective_retrieval_risk": 0.5217391304347826,
+      "safe_action_accuracy": 0.4583333333333333,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "forbidden_intrusion_rate": 0.2916666666666667,
+      "unanswerable_abstention_rate": 0
+    },
+    "fts5": {
+      "cases": 24,
+      "answer_coverage": 0.9583333333333334,
+      "selective_retrieval_risk": 0.5217391304347826,
+      "safe_action_accuracy": 0.4583333333333333,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "forbidden_intrusion_rate": 0.2916666666666667,
+      "unanswerable_abstention_rate": 0
+    },
+    "intersection": {
+      "cases": 24,
+      "answer_coverage": 0.9583333333333334,
+      "selective_retrieval_risk": 0.5217391304347826,
+      "safe_action_accuracy": 0.4583333333333333,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "forbidden_intrusion_rate": 0.2916666666666667,
+      "unanswerable_abstention_rate": 0
+    },
+    "union": {
+      "cases": 24,
+      "answer_coverage": 0.9583333333333334,
+      "selective_retrieval_risk": 0.5217391304347826,
+      "safe_action_accuracy": 0.4583333333333333,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "forbidden_intrusion_rate": 0.2916666666666667,
+      "unanswerable_abstention_rate": 0
+    },
+    "agreement_gate_0.8": {
+      "cases": 24,
+      "answer_coverage": 0.5416666666666666,
+      "selective_retrieval_risk": 0.5384615384615384,
+      "safe_action_accuracy": 0.25,
+      "macro_recall_at_5_answerable": 0.4090909090909091,
+      "forbidden_intrusion_rate": 0.125,
+      "unanswerable_abstention_rate": 0
+    }
+  },
+  "risk_coverage": {
+    "backend_jaccard": {
+      "signal": "backend_jaccard",
+      "descriptive_trapezoid_area": 0.4999721293199554,
+      "points": [
+        {
+          "threshold": 1.0,
+          "coverage": 0.5416666666666666,
+          "risk": 0.5384615384615384,
+          "accepted": 13
+        },
+        {
+          "threshold": 0.8,
+          "coverage": 0.625,
+          "risk": 0.4666666666666667,
+          "accepted": 15
+        },
+        {
+          "threshold": 0.6666666666666666,
+          "coverage": 0.875,
+          "risk": 0.5238095238095238,
+          "accepted": 21
+        },
+        {
+          "threshold": 0.6,
+          "coverage": 0.9166666666666666,
+          "risk": 0.5,
+          "accepted": 22
+        },
+        {
+          "threshold": 0.42857142857142855,
+          "coverage": 0.9583333333333334,
+          "risk": 0.5217391304347826,
+          "accepted": 23
+        }
+      ]
+    },
+    "lexical_cue_coverage": {
+      "signal": "lexical_cue_coverage",
+      "descriptive_trapezoid_area": 0.42405544837610054,
+      "points": [
+        {
+          "threshold": 1.0,
+          "coverage": 0.16666666666666666,
+          "risk": 0.25,
+          "accepted": 4
+        },
+        {
+          "threshold": 0.8571428571428571,
+          "coverage": 0.20833333333333334,
+          "risk": 0.4,
+          "accepted": 5
+        },
+        {
+          "threshold": 0.8,
+          "coverage": 0.2916666666666667,
+          "risk": 0.42857142857142855,
+          "accepted": 7
+        },
+        {
+          "threshold": 0.75,
+          "coverage": 0.3333333333333333,
+          "risk": 0.5,
+          "accepted": 8
+        },
+        {
+          "threshold": 0.7142857142857143,
+          "coverage": 0.375,
+          "risk": 0.4444444444444444,
+          "accepted": 9
+        },
+        {
+          "threshold": 0.6666666666666666,
+          "coverage": 0.4166666666666667,
+          "risk": 0.5,
+          "accepted": 10
+        },
+        {
+          "threshold": 0.625,
+          "coverage": 0.4583333333333333,
+          "risk": 0.5454545454545454,
+          "accepted": 11
+        },
+        {
+          "threshold": 0.6,
+          "coverage": 0.5833333333333334,
+          "risk": 0.42857142857142855,
+          "accepted": 14
+        },
+        {
+          "threshold": 0.5714285714285714,
+          "coverage": 0.625,
+          "risk": 0.4666666666666667,
+          "accepted": 15
+        },
+        {
+          "threshold": 0.5,
+          "coverage": 0.6666666666666666,
+          "risk": 0.5,
+          "accepted": 16
+        },
+        {
+          "threshold": 0.375,
+          "coverage": 0.75,
+          "risk": 0.5,
+          "accepted": 18
+        },
+        {
+          "threshold": 0.3333333333333333,
+          "coverage": 0.875,
+          "risk": 0.5714285714285714,
+          "accepted": 21
+        },
+        {
+          "threshold": 0.2857142857142857,
+          "coverage": 0.9583333333333334,
+          "risk": 0.5217391304347826,
+          "accepted": 23
+        },
+        {
+          "threshold": 0.0,
+          "coverage": 0.9583333333333334,
+          "risk": 0.5217391304347826,
+          "accepted": 23
+        }
+      ]
+    },
+    "combined_agreement": {
+      "signal": "combined_agreement",
+      "descriptive_trapezoid_area": 0.49732265854935465,
+      "points": [
+        {
+          "threshold": 1.0,
+          "coverage": 0.08333333333333333,
+          "risk": 0.5,
+          "accepted": 2
+        },
+        {
+          "threshold": 0.9333333333333332,
+          "coverage": 0.16666666666666666,
+          "risk": 0.5,
+          "accepted": 4
+        },
+        {
+          "threshold": 0.9166666666666666,
+          "coverage": 0.20833333333333334,
+          "risk": 0.6,
+          "accepted": 5
+        },
+        {
+          "threshold": 0.8888888888888888,
+          "coverage": 0.25,
+          "risk": 0.5,
+          "accepted": 6
+        },
+        {
+          "threshold": 0.8666666666666667,
+          "coverage": 0.3333333333333333,
+          "risk": 0.375,
+          "accepted": 8
+        },
+        {
+          "threshold": 0.8412698412698413,
+          "coverage": 0.375,
+          "risk": 0.4444444444444444,
+          "accepted": 9
+        },
+        {
+          "threshold": 0.8333333333333334,
+          "coverage": 0.4166666666666667,
+          "risk": 0.5,
+          "accepted": 10
+        },
+        {
+          "threshold": 0.7916666666666666,
+          "coverage": 0.4583333333333333,
+          "risk": 0.45454545454545453,
+          "accepted": 11
+        },
+        {
+          "threshold": 0.7777777777777778,
+          "coverage": 0.5833333333333334,
+          "risk": 0.5714285714285714,
+          "accepted": 14
+        },
+        {
+          "threshold": 0.7638888888888888,
+          "coverage": 0.625,
+          "risk": 0.6,
+          "accepted": 15
+        },
+        {
+          "threshold": 0.7619047619047619,
+          "coverage": 0.6666666666666666,
+          "risk": 0.5625,
+          "accepted": 16
+        },
+        {
+          "threshold": 0.746031746031746,
+          "coverage": 0.7083333333333334,
+          "risk": 0.5882352941176471,
+          "accepted": 17
+        },
+        {
+          "threshold": 0.6805555555555555,
+          "coverage": 0.75,
+          "risk": 0.6111111111111112,
+          "accepted": 18
+        },
+        {
+          "threshold": 0.6285714285714286,
+          "coverage": 0.7916666666666666,
+          "risk": 0.5789473684210527,
+          "accepted": 19
+        },
+        {
+          "threshold": 0.5333333333333333,
+          "coverage": 0.875,
+          "risk": 0.5238095238095238,
+          "accepted": 21
+        },
+        {
+          "threshold": 0.4603174603174603,
+          "coverage": 0.9166666666666666,
+          "risk": 0.5,
+          "accepted": 22
+        },
+        {
+          "threshold": 0.36507936507936506,
+          "coverage": 0.9583333333333334,
+          "risk": 0.5217391304347826,
+          "accepted": 23
+        },
+        {
+          "threshold": 0.3333333333333333,
+          "coverage": 0.9583333333333334,
+          "risk": 0.5217391304347826,
+          "accepted": 23
+        }
+      ]
+    }
+  },
+  "interpretation_boundary": "post-hoc authored development analysis; no calibration or architecture claim"
+}

@@ -1,0 +1,15 @@
+{
+  "experiment_id": "PMLAB-META-BACKEND-AGREE-001",
+  "source_dataset": "data/lab/pmlab-v0-dev",
+  "source_corpus_sha256": "82e319afe5077043d5c4e5f83c734b98006c97037303462667854dcadb92ae4e",
+  "source_queries_sha256": "c91fd1721bbc60e7504a888486498c72e9e4c7f48ffcea64db8c82d76a852bfb",
+  "runner": "scripts/analyze_backend_agreement.py",
+  "runner_sha256": "5b2c821ec4344169423cd4c7d426bdbc15b199112aa2579263862c9ce05d54a2",
+  "top_k": 5,
+  "network_or_model_calls": 0,
+  "limitations": [
+    "post-hoc analysis after prior benchmark inspection",
+    "authored development corpus and visible labels",
+    "both backends share lexical cues corpus and storage"
+  ]
+}

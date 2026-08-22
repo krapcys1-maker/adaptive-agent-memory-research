@@ -36,6 +36,8 @@ Farquhar and colleagues group sampled generations by semantic equivalence before
 
 These methods remain reader-level signals. Repeated samples can agree on the same stale or poisoned record, and semantic entropy does not establish evidence sufficiency or disk availability. Our noisy-probe experiment independently demonstrates the general systems principle that repeated measurements sharing a failure domain are not independent confirmation.
 
+The project-local post-hoc backend analysis supplies a direct retrieval example. Ripgrep and SQLite FTS5 jointly failed the safe-retrieval criterion on 13 of 24 existing development cases; 11 of 19 cases with the same top-ranked ID were still unsafe. Requiring top-1 agreement plus set Jaccard of at least 0.8 reduced answer coverage to 0.542 while selective retrieval risk remained 0.538. Agreement between implementations sharing lexical cues is therefore rejected as independent metamemory evidence on this corpus.
+
 ## Typed metamemory state for this project
 
 The meta-controller should expose a vector, not one feeling:
