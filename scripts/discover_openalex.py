@@ -15,6 +15,7 @@ import pathlib
 import time
 import urllib.parse
 import urllib.request
+from urllib.error import HTTPError
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -54,6 +55,21 @@ QUERIES = [
     ("memory-evaluation", "LLM agent memory benchmark evaluation"),
     ("memory-utility", "future utility memory retention learned policy agents"),
     ("memory-safety", "agent memory security privacy poisoning prompt injection"),
+    ("computational-associative-memory", "associative memory attractor pattern completion pattern separation"),
+    ("continual-learning-replay", "continual learning experience replay stability plasticity catastrophic forgetting"),
+    ("semantic-memory-compression", "episodic memory semantic compression rate distortion information bottleneck"),
+    ("memory-allocation-engram", "memory allocation engram excitability synaptic tagging capture"),
+    ("sleep-awake-replay", "hippocampal replay sleep awake memory consolidation reactivation"),
+    ("neuromodulated-memory", "norepinephrine dopamine reward prediction error emotional memory consolidation"),
+    ("prospective-memory-offloading", "prospective memory intention cognitive offloading external reminders metacognition"),
+    ("memory-metacognition", "metamemory confidence feeling of knowing retrieval control abstention"),
+    ("metamemory-monitoring", "metamemory feeling of knowing judgment of learning confidence monitoring"),
+    ("retrieval-control", "memory retrieval control monitoring search decision cognitive control"),
+    ("source-monitoring-confidence", "source monitoring memory confidence calibration recognition recall"),
+    ("storage-crash-consistency", "storage crash consistency journaling checksums atomic durable recovery"),
+    ("temporal-provenance-storage", "temporal database provenance event sourcing append only versioned records"),
+    ("distributed-shared-memory", "distributed shared memory consistency provenance concurrent agents"),
+    ("information-thermodynamics", "information thermodynamics erasure Landauer memory physical limits"),
 ]
 
 
@@ -66,7 +82,7 @@ def inverted_index_to_text(index: dict[str, list[int]] | None) -> str:
     return " ".join(word for _, word in sorted(positions))
 
 
-def fetch(query: str, per_page: int, email: str | None) -> dict:
+def fetch(query: str, per_page: int, email: str | None, max_attempts: int = 6) -> dict:
     params = {
         "search": query,
         "per-page": str(per_page),
@@ -94,14 +110,29 @@ def fetch(query: str, per_page: int, email: str | None) -> dict:
         url,
         headers={"User-Agent": "adaptive-agent-memory-research/0.1"},
     )
-    with urllib.request.urlopen(request, timeout=60) as response:
-        return json.load(response)
+    for attempt in range(max_attempts):
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                return json.load(response)
+        except HTTPError as exc:
+            if exc.code != 429 and not 500 <= exc.code < 600:
+                raise
+            if attempt == max_attempts - 1:
+                raise
+            retry_after = exc.headers.get("Retry-After", "")
+            try:
+                server_delay = float(retry_after)
+            except ValueError:
+                server_delay = 0.0
+            time.sleep(max(server_delay, min(60.0, 2.0**attempt)))
+    raise RuntimeError("OpenAlex request retry loop ended unexpectedly")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--per-query", type=int, default=30)
     parser.add_argument("--email", default=None, help="Optional polite-pool email for OpenAlex")
+    parser.add_argument("--request-delay", type=float, default=0.25)
     args = parser.parse_args()
 
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
@@ -145,7 +176,7 @@ def main() -> int:
                 },
             )
             existing["discovery_queries"].add(label)  # type: ignore[union-attr]
-        time.sleep(0.12)
+        time.sleep(max(0.0, args.request_delay))
 
     timestamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     snapshot_path = SNAPSHOT_DIR / f"openalex-{timestamp}.json"

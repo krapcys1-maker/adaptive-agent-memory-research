@@ -6,7 +6,7 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
-Evidence collection, comparative biological-memory expansion, source auditing, candidate preservation, and formal laboratory design. We are not yet claiming a validated final architecture. Mechanisms advance through registered stage gates rather than plausibility alone.
+Evidence collection, comparative biological-memory expansion, interdisciplinary mechanism mapping, source auditing, candidate preservation, and formal laboratory design. Broad discovery now runs alongside reversible screening/synthesis cycles. We are not yet claiming a validated final architecture. Mechanisms advance through registered stage gates rather than plausibility alone.
 
 ## Project-memory bootstrap
 
@@ -29,3 +29,5 @@ A dependency-free local memory now supports continuity of this research:
 6. Test emotional salience only after utility labels and consequence-weighted retention metrics exist; never equate operational signals with subjective emotion.
 7. Preserve rejected ideas, null results, and failed runs as labeled evidence.
 8. Before adding an API worker, preregister a frozen admission pilot measuring locator accuracy, unsupported claims, abstention, reviewer time, cost, privacy, and provider failure.
+9. Screen Priority-A interdisciplinary tracks: allocation, replay/CLS, semantic compression, prospective offloading, metacognitive retrieval control, operational salience, continual learning, and crash consistency.
+10. Run a synthesis checkpoint after 25 screened records or three newly primary-read decisive sources in one topic; update hypotheses and next searches without declaring global completeness.

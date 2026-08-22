@@ -29,6 +29,7 @@ This is the fastest guide to where information belongs.
 | Current conclusions and rejected ideas | `docs/09-synthesis/` |
 | Animal, motor, immune, cellular, and collective memory | `docs/10-comparative-biological-memory/` |
 | Laboratory protocol, stage gates, and benchmark ladder | `docs/11-research-laboratory/` |
+| Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Coverage, search, experiment, and backend registries | `data/lab/` |
 | Machine-readable repository list | `data/catalogs/repositories-seed.csv` |
 | Machine-readable paper list | `data/catalogs/papers-curated.csv` |

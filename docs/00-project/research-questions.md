@@ -72,3 +72,14 @@ Status: in-progress
 - Which immune-memory mechanisms suggest useful threat-specific retention, and which would create dangerous overreaction in an agent?
 - When is environmental or collective persistence a better analogy than internal memory?
 - For every biological mechanism, what simpler non-biological baseline could explain the same proposed engineering benefit?
+
+## K. Interdisciplinary mechanism synthesis
+
+- Which memory functions require similarity retrieval, and which require prospective condition-action triggers?
+- Can task-conditioned rate-distortion preserve future decisions better than generic summarization?
+- Which neuromodulatory findings justify separate operational signals for consequence, surprise, urgency, controllability, and uncertainty?
+- When should replay happen, what should it sample, and how can repeated errors be prevented from consolidating?
+- Can a metacognitive controller reliably choose among retrieve, ask, act, and abstain?
+- Which properties of journals, checksums, atomic updates, and fault recovery belong in a long-term memory benchmark?
+- At what abstraction level does a physical or biological mechanism produce a distinct testable prediction rather than a decorative analogy?
+- How can one architecture support retrospective episodes, semantic knowledge, procedures, and prospective intentions without forcing them into one retrieval rule?

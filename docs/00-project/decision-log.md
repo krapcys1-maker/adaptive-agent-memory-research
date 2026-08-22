@@ -53,3 +53,15 @@ Reason: The total relevant literature is unknowable and changes over time. A rep
 Decision: Keep the research memory, retrieval indexes, and accepted evidence independent of model APIs. Admit a cloud model only through a provider-neutral, review-gated batch experiment.
 
 Reason: Subscription agents already support interactive research, while local tools cover canonical storage and initial retrieval. Premature API integration adds cost, privacy, provider-drift, and automation-bias risks without proving that scientific review becomes faster or better.
+
+## 2026-08-22 — Begin reversible synthesis while continuing targeted discovery
+
+Decision: Stop expanding the topic list without direction. Process Priority-A mechanisms in repeated screening, primary-reading, synthesis, and benchmark cycles while targeted adversarial and snowball searches continue.
+
+Reason: The catalog now has enough disciplinary breadth to define falsifiable mechanism candidates, but most new leads remain unscreened and the lexical baselines are not reproduced. Raw source volume cannot substitute for exact evidence, independent challenge, or task-level evaluation.
+
+## 2026-08-22 — Treat emotion as decomposed operational signals first
+
+Decision: Test outcome valence, magnitude, urgency, surprise, controllability, uncertainty, explicit user weight, and recurrence as separate memory-control variables. Do not claim that a scalar salience score creates subjective emotion.
+
+Reason: Arousal, valence, reward, prediction error, stress, and importance have different effects and failure modes. Keeping them separate permits ablation, calibration, poisoning tests, and rejection.

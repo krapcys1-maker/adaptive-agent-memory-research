@@ -1,0 +1,34 @@
+# Interdisciplinary source seeds
+
+Status: in-progress
+
+These sources establish vocabulary and plausible mechanisms. Except where already represented in the evidence ledger, they remain seeds for full reading, exact-locator extraction, replication search, and independent review.
+
+| Track | Seed | Direct contribution | Engineering question | Boundary |
+| --- | --- | --- | --- | --- |
+| Complementary learning systems | [McClelland, McNaughton & O'Reilly 1995](https://doi.org/10.1037/0033-295X.102.3.419) | formal account of rapid hippocampal learning and gradual interleaved neocortical integration | do separate exact and generalized stores reduce interference? | influential theory/review, not a literal blueprint for files and LLMs |
+| Associative dynamics | [Hopfield 1982](https://doi.org/10.1073/pnas.79.8.2554) | content-addressable retrieval can emerge from attractor dynamics | when does pattern completion recover weak cues? | overload and spurious/mixed attractors can create false recall |
+| Engram allocation | [Yiu et al. 2014](https://doi.org/10.1016/j.neuron.2014.07.017) and [Park et al. 2020](https://doi.org/10.1038/s41467-020-15927-2) | neuronal excitability/CREB can bias which eligible neurons enter a fear-memory engram | can write allocation use temporary eligibility and competition? | mouse fear-memory circuits; salience score is not CREB |
+| Replay | [Karlsson & Frank 2009](https://doi.org/10.1038/nn.2344) | hippocampal sequences from remote experience replay during waking pauses | should consolidation occur during idle/task-boundary periods? | reactivation is not proof that every replay causes consolidation |
+| Reconsolidation | [Nader, Schafe & LeDoux 2000](https://doi.org/10.1038/35021052) | reactivated fear memories showed a transient protein-synthesis-sensitive period | should retrieval open a versioned revision window? | boundary conditions vary; digital originals need not be destroyed |
+| Noradrenergic consolidation | [Roozendaal et al. 2008](https://doi.org/10.1016/j.nlm.2008.06.010) and [Roozendaal et al. 2006](https://doi.org/10.1073/pnas.0601874103) | post-training noradrenergic/glucocorticoid manipulations changed later memory in animal tasks | can consequence signals modulate consolidation separately from relevance? | pharmacological arousal is not an agent's subjective emotion |
+| Reward prediction error | [Jang et al. 2019](https://doi.org/10.1016/j.neuroimage.2019.04.053) | positive reward prediction error at encoding strengthened incidental memory | does calibrated outcome surprise predict later utility? | positive reward, surprise, and task value must remain separable |
+| Cognitive offloading | [Gilbert 2015](https://doi.org/10.1080/17470218.2015.1054846) | people strategically externalized delayed intentions as load/distraction increased | should intentions be stored as triggerable commitments rather than retrieved facts? | reminders can change encoding strategy and create dependence |
+| Semantic compression | [Nagy, Török & Orbán 2020](https://doi.org/10.1371/journal.pcbi.1008363) | rate-distortion/generative modeling accounted for several systematic memory distortions | which details may be compressed without changing future decisions? | normative modeling and selected datasets; not proof of one brain algorithm |
+| Information bottleneck | [Tishby, Pereira & Bialek 1999/2000](https://arxiv.org/abs/physics/0004057) | formalizes short codes that preserve information relevant to another variable | can future task variables define what a consolidation keeps? | the relevant variable is unknown and nonstationary for open-ended agents |
+| Continual learning replay | [Lopez-Paz & Ranzato 2017](https://papers.nips.cc/paper/7225-gradient-episodic-memory-for-continual-learning) | episodic examples constrained new learning and enabled transfer metrics | which memories should be replayed to preserve capabilities? | model-weight continual learning differs from retrieval-only external memory |
+| Limits of continual learning | [Knoblauch, Husain & Diethe 2020](https://proceedings.mlr.press/v119/knoblauch20a.html) | theoretical analysis connects optimal continual learning to perfect memory and NP-hardness | what approximation frontier should the system report? | formal setup does not imply that storing everything solves retrieval |
+| Durable logging | [JFS logging paper](https://www.usenix.org/conference/als-2000/jfs-log-how-journaled-file-system-performs-logging) | logging restores a consistent state after interruption | should every accepted memory mutation be atomic and replayable? | crash consistency protects state, not factual correctness |
+| Application crash consistency | [Pillai et al. 2014](https://www.usenix.org/conference/osdi14/technical-sessions/presentation/pillai) | persistence correctness depends on subtle ordering and atomicity properties | can power-loss fault injection be a memory benchmark? | operating-system persistence is only one failure layer |
+| Thermodynamics of erasure | [Landauer 1961](https://doi.org/10.1147/rd.53.0183) | links logically irreversible operations with physical dissipation | does irreversible deletion deserve stronger governance than suppression? | physical lower bounds are not a practical retention policy |
+| Retrieval-augmented generation | [Lewis et al. 2020](https://arxiv.org/abs/2005.11401) | combines parametric generation with a retrieved non-parametric corpus | how should retrieval quality and reader quality be separated? | RAG question answering is not the full lifecycle of agent memory |
+
+## Required adversarial reading
+
+For every promising seed, search for:
+
+- failure to replicate, alternative mechanism, boundary condition, and null result;
+- task and population dependence;
+- whether the claimed memory is storage, access, changed response, or external cueing;
+- whether the proposed AI mapping beats a simpler database or retrieval baseline;
+- whether a gain comes with false recall, overgeneralization, dependence, poisoning, or lost provenance.

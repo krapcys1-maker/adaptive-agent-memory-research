@@ -66,3 +66,5 @@ For every important claim:
 10. [Research laboratory](docs/11-research-laboratory/README.md)
 11. [Benchmark ladder](docs/11-research-laboratory/benchmark-ladder.md)
 12. [Project Memory Lab v0](docs/11-research-laboratory/project-memory-lab-v0.md)
+13. [Interdisciplinary memory mechanisms](docs/12-interdisciplinary-memory/README.md)
+14. [Cross-disciplinary hypothesis portfolio](docs/12-interdisciplinary-memory/hypothesis-portfolio.md)

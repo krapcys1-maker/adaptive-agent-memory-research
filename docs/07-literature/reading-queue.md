@@ -41,6 +41,21 @@ These are seed papers, not a completed reading list:
 9. Barrangou and colleagues — acquired CRISPR spacer defense.
 10. Primary adaptive immune-memory and biological stigmergy sources still need seeding.
 
+## Read first — interdisciplinary mechanisms
+
+1. McClelland, McNaughton, and O'Reilly — fast/slow complementary learning and interference.
+2. Hopfield — content-addressable attractors, overload, and spurious recall.
+3. Primary engram-allocation and synaptic-tagging manipulations — eligibility and competitive write allocation.
+4. Awake/sleep replay studies plus causal disruption and null evidence — consolidation timing and sampling.
+5. Nader, Schafe, and LeDoux plus reconsolidation boundary-condition literature — versioned revision after retrieval.
+6. Noradrenergic, stress, reward-prediction-error, and emotional-memory studies — separate arousal, valence, surprise, and consequence.
+7. Gilbert and follow-up cognitive-offloading work — condition-triggered intentions and reminder dependence.
+8. Semantic compression, rate-distortion, and information bottleneck — task-conditioned retention and distortion.
+9. Continual-learning replay and stability-gap work — interference metrics and replay failure modes.
+10. Journaling, crash-consistency, checksums, and fault injection — durable canonical memory under failure.
+11. Temporal databases and provenance — valid time, transaction time, correction, and supersession.
+12. Landauer and modern information thermodynamics — physical boundary only; require a unique architecture prediction before promotion.
+
 ## Reading-note minimum
 
 Do not mark a paper read until the note records:
