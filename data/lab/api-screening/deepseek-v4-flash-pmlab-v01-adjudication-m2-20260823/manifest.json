@@ -1,0 +1,39 @@
+{
+  "run_id": "deepseek-v4-flash-pmlab-v01-adjudication-m2-20260823",
+  "status": "prepared-uncommitted-input",
+  "created_at": "2026-08-22T21:05:10Z",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "pmlab-v01-blind-model-adjudication-m2-v1",
+  "evidence_tier": "M2",
+  "dual_forms_freeze_commit": "46497af4c9b73695c82fffb05487c67ee90e805d",
+  "prompt_freeze_commit": null,
+  "jobs": 8,
+  "disputes": 25,
+  "temperature": 0,
+  "thinking": "disabled",
+  "response_format": "json_object",
+  "run_budget_usd": 0.5,
+  "global_budget_usd": 10.0,
+  "visible_to_worker": [
+    "full blind corpus",
+    "disputed blind queries",
+    "anonymous A/B candidate labels",
+    "annotation definitions"
+  ],
+  "hidden_from_worker": [
+    "author labels",
+    "reviewer identities",
+    "backend results",
+    "agreed form rows",
+    "preferred labels"
+  ],
+  "hashes": {
+    "jobs.jsonl": "72a96f03c0c3dc10da553f194f2d6204c5e3ccc9197a40d23912a4c9e2408ba2",
+    "prompt.txt": "8948792a9918eb645bb0a02a6a0c0bd0e7fad97c044891d33490c374a80d8f68",
+    "blind_corpus.jsonl": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+    "blind_queries.jsonl": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
+    "disagreements.jsonl": "219fc62bb5673bababf9a47b6fb99bf95be971ecd8069b853e0ba50893916d5d",
+    "form-a.jsonl": "ab32a9ab1b1e5ba63ba0c2f5df536a9bc8b90f7d004a5c6a9f7e85d70cccbb80",
+    "form-b.jsonl": "ec1076b905d846f7b2439072b767bfb13d743d108026bc933805335d9a54ee18"
+  }
+}
