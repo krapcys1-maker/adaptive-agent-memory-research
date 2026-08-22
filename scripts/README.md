@@ -69,6 +69,12 @@ python scripts/run_reader_interference.py run --budget-usd 10
 
 The stronger reader factorial is generated and run with `run_reader_stress.py`. Every model payload must pass gold-field, opaque-ID, per-case identity-isolation, and opaque-case-ID tests. V1–V4 are retained as leakage audits; v5 is the first fully interpretable stress run.
 
+Compare passive cascading telemetry with controlled active probes for capture, storage, retrieval, selection, reader, and action stages:
+
+```powershell
+python scripts/run_fault_probe_comparison.py
+```
+
 ## Verify screening-source identity
 
 Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:

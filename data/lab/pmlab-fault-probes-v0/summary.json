@@ -1,0 +1,197 @@
+{
+  "status": "completed-deterministic-instrument-test",
+  "cases": 174,
+  "base_fault_specs": 58,
+  "telemetry_patterns": [
+    "complete",
+    "operational-sparse",
+    "fault-silent"
+  ],
+  "arms": {
+    "passive": {
+      "cases": 174,
+      "exact_fault_set_accuracy": 0.07471264367816093,
+      "root_fault_accuracy": 0.5114942528735632,
+      "macro_stage_f1": 0.37096903384830543,
+      "per_stage_f1": {
+        "F0": 0.8,
+        "F1": 0.460431654676259,
+        "F2": 0.49586776859504134,
+        "F3": 0.1891891891891892,
+        "F4": 0.11594202898550725,
+        "F5": 0.1643835616438356
+      },
+      "masked_downstream_fault_recall": 0.14583333333333334,
+      "data_loss_decision_coverage": 0.41379310344827586,
+      "data_loss_accuracy_when_decided": 0.8611111111111112,
+      "data_loss_overall_accuracy": 0.3563218390804598,
+      "mean_unknown_stages": 3.9942528735632186,
+      "incremental_probe_units": 0
+    },
+    "active": {
+      "cases": 174,
+      "exact_fault_set_accuracy": 1,
+      "root_fault_accuracy": 1,
+      "macro_stage_f1": 1.0,
+      "per_stage_f1": {
+        "F0": 1.0,
+        "F1": 1.0,
+        "F2": 1.0,
+        "F3": 1.0,
+        "F4": 1.0,
+        "F5": 1.0
+      },
+      "masked_downstream_fault_recall": 1,
+      "data_loss_decision_coverage": 1,
+      "data_loss_accuracy_when_decided": 1.0,
+      "data_loss_overall_accuracy": 1,
+      "mean_unknown_stages": 0,
+      "incremental_probe_units": 10
+    }
+  },
+  "passive_by_telemetry_pattern": {
+    "complete": {
+      "cases": 58,
+      "exact_fault_set_accuracy": 0.13793103448275862,
+      "root_fault_accuracy": 1,
+      "macro_stage_f1": 0.4832728248670278,
+      "per_stage_f1": {
+        "F0": 1.0,
+        "F1": 0.8148148148148148,
+        "F2": 0.5,
+        "F3": 0.32,
+        "F4": 0.17391304347826086,
+        "F5": 0.09090909090909091
+      },
+      "masked_downstream_fault_recall": 0,
+      "data_loss_decision_coverage": 0.6206896551724138,
+      "data_loss_accuracy_when_decided": 0.8611111111111112,
+      "data_loss_overall_accuracy": 0.5344827586206896,
+      "mean_unknown_stages": 3.8620689655172415,
+      "incremental_probe_units": 0
+    },
+    "operational-sparse": {
+      "cases": 58,
+      "exact_fault_set_accuracy": 0.06896551724137931,
+      "root_fault_accuracy": 0.5172413793103449,
+      "macro_stage_f1": 0.3142857142857143,
+      "per_stage_f1": {
+        "F0": 1.0,
+        "F1": 0.0,
+        "F2": 0.6,
+        "F3": 0.0,
+        "F4": 0.0,
+        "F5": 0.2857142857142857
+      },
+      "masked_downstream_fault_recall": 0.1375,
+      "data_loss_decision_coverage": 0.3620689655172414,
+      "data_loss_accuracy_when_decided": 0.7619047619047619,
+      "data_loss_overall_accuracy": 0.27586206896551724,
+      "mean_unknown_stages": 4.224137931034483,
+      "incremental_probe_units": 0
+    },
+    "fault-silent": {
+      "cases": 58,
+      "exact_fault_set_accuracy": 0.017241379310344827,
+      "root_fault_accuracy": 0.017241379310344827,
+      "macro_stage_f1": 0.20178229164111608,
+      "per_stage_f1": {
+        "F0": 0.0,
+        "F1": 0.37735849056603776,
+        "F2": 0.37209302325581395,
+        "F3": 0.21428571428571427,
+        "F4": 0.16,
+        "F5": 0.08695652173913043
+      },
+      "masked_downstream_fault_recall": 0.3,
+      "data_loss_decision_coverage": 0.25862068965517243,
+      "data_loss_accuracy_when_decided": 1.0,
+      "data_loss_overall_accuracy": 0.25862068965517243,
+      "mean_unknown_stages": 3.896551724137931,
+      "incremental_probe_units": 0
+    }
+  },
+  "passive_by_fault_width": {
+    "0": {
+      "cases": 3,
+      "exact_fault_set_accuracy": 1,
+      "root_fault_accuracy": 1,
+      "macro_stage_f1": 1.0,
+      "per_stage_f1": {
+        "F0": 1.0,
+        "F1": 1.0,
+        "F2": 1.0,
+        "F3": 1.0,
+        "F4": 1.0,
+        "F5": 1.0
+      },
+      "masked_downstream_fault_recall": null,
+      "data_loss_decision_coverage": 0.6666666666666666,
+      "data_loss_accuracy_when_decided": 1.0,
+      "data_loss_overall_accuracy": 0.6666666666666666,
+      "mean_unknown_stages": 1.3333333333333333,
+      "incremental_probe_units": 0
+    },
+    "1": {
+      "cases": 21,
+      "exact_fault_set_accuracy": 0.47619047619047616,
+      "root_fault_accuracy": 0.47619047619047616,
+      "macro_stage_f1": 0.4981481481481482,
+      "per_stage_f1": {
+        "F0": 0.8,
+        "F1": 0.4444444444444444,
+        "F2": 0.4444444444444444,
+        "F3": 0.4,
+        "F4": 0.4,
+        "F5": 0.5
+      },
+      "masked_downstream_fault_recall": null,
+      "data_loss_decision_coverage": 0.47619047619047616,
+      "data_loss_accuracy_when_decided": 1.0,
+      "data_loss_overall_accuracy": 0.47619047619047616,
+      "mean_unknown_stages": 3.0952380952380953,
+      "incremental_probe_units": 0
+    },
+    "2": {
+      "cases": 60,
+      "exact_fault_set_accuracy": 0,
+      "root_fault_accuracy": 0.48333333333333334,
+      "macro_stage_f1": 0.4131030804943848,
+      "per_stage_f1": {
+        "F0": 0.8,
+        "F1": 0.45454545454545453,
+        "F2": 0.5,
+        "F3": 0.2608695652173913,
+        "F4": 0.19047619047619047,
+        "F5": 0.2727272727272727
+      },
+      "masked_downstream_fault_recall": 0.18333333333333332,
+      "data_loss_decision_coverage": 0.4,
+      "data_loss_accuracy_when_decided": 0.9166666666666666,
+      "data_loss_overall_accuracy": 0.36666666666666664,
+      "mean_unknown_stages": 3.9166666666666665,
+      "incremental_probe_units": 0
+    },
+    "3": {
+      "cases": 90,
+      "exact_fault_set_accuracy": 0,
+      "root_fault_accuracy": 0.5222222222222223,
+      "macro_stage_f1": 0.33142905291540276,
+      "per_stage_f1": {
+        "F0": 0.8,
+        "F1": 0.46511627906976744,
+        "F2": 0.5,
+        "F3": 0.13043478260869565,
+        "F4": 0.046511627906976744,
+        "F5": 0.046511627906976744
+      },
+      "masked_downstream_fault_recall": 0.13333333333333333,
+      "data_loss_decision_coverage": 0.4,
+      "data_loss_accuracy_when_decided": 0.7777777777777778,
+      "data_loss_overall_accuracy": 0.3111111111111111,
+      "mean_unknown_stages": 4.344444444444444,
+      "incremental_probe_units": 0
+    }
+  },
+  "boundary": "Ideal active probes use controlled inputs and are assumed truthful. Results establish observability requirements, not real-world diagnostic accuracy."
+}

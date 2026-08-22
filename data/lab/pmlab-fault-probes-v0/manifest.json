@@ -1,0 +1,17 @@
+{
+  "status": "frozen-deterministic-run",
+  "generator": "scripts/run_fault_probe_comparison.py",
+  "cases": 174,
+  "stages": [
+    "F0",
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5"
+  ],
+  "cases_sha256": "d11020ee82f0255ebca16473eeb8727b662387a9e83d20b38cd18fca3880ef3c",
+  "results_sha256": "a2f54751e927d19b1fe380f2370b14547f9816aefce45b371067fdfe56f2eb5a",
+  "authority": "authored observability instrument; not held out",
+  "model_api_required": false
+}
