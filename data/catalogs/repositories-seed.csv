@@ -38,3 +38,4 @@ context-management,B,no,horizon-llm/CoMem,decoupled context compression,"Compari
 emerging-system,C,no,LycheeMem/LycheeMem,new long-term memory system,"Monitor; require paper and benchmark audit before promotion"
 emerging-system,C,no,TIMAN-group/PlugMem,new memory framework,"Monitor; inspect claims and independent reproducibility"
 governance,B,no,ProsusAI/MemEval,memory evaluation project,"Inspect scope and distinction from similarly named benchmarks"
+research-code,B,yes,amvjakob/wm-rate-distortion,rate-distortion working-memory reproduction,"Primary code for Figures 2-8; current revision lacks pinned Julia environment bundled data and license so reproduction is blocked pending dependency/data reconstruction"

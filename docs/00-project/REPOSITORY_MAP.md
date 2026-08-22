@@ -21,6 +21,7 @@ This is the fastest guide to where information belongs.
 | LLM memory lifecycle and architectures | `docs/02-llm-memory/` |
 | Human/AI analogies and hypotheses | `docs/03-human-ai-bridge/` |
 | Useful open-source projects | `docs/04-systems/catalog.md` |
+| Compression code reproducibility status | `docs/04-systems/compression-code-reproducibility-audit.md` |
 | Benchmarks and evaluation risks | `docs/05-benchmarks/` |
 | Public datasets and labels | `docs/06-datasets/catalog.md` |
 | Papers to read | `docs/07-literature/reading-queue.md` |

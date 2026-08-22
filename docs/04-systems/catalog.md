@@ -64,3 +64,7 @@ The machine-readable selection is in `data/catalogs/repositories-seed.csv`. Repo
 ## Adoption rule
 
 A high star count is not evidence of memory quality. No dependency is selected before code inspection, license review, benchmark reproduction, and comparison with a minimal local baseline.
+
+## Primary research-code artifacts
+
+- **amvjakob/wm-rate-distortion:** primary Julia notebooks for Figures 2–8 of the working-memory paper. The [reproducibility audit](compression-code-reproducibility-audit.md) found missing pinned dependencies, data artifacts, and a license, so it is a research reference rather than an adoptable dependency.

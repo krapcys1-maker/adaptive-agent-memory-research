@@ -29,6 +29,7 @@ The authors derive a population-coding model with intrinsic gain adaptation and 
 - The neural reanalysis has `N=2` monkeys and is correlational with respect to the proposed gain mechanism.
 - Strong model comparison across reused datasets is not an out-of-sample test of an LLM memory architecture.
 - Optimizing distortion predicts structured error under scarcity; it does not justify deleting source evidence when disk capacity is cheap.
+- The public code at revision `ac3210ae90fb28ef9edc97f0651b3ff3b136eef2` contains figure notebooks but no pinned Julia environment, bundled data described by its README, detected license, or clean runner. Reproduction is artifact-blocked; see `docs/04-systems/compression-code-reproducibility-audit.md`.
 
 ## Project relevance
 

@@ -26,6 +26,7 @@ The paper formalizes query-conditioned routing of interaction histories into `K`
 ## Limitations and challenge pass
 
 - This is a very recent preprint with no independent reproduction found in this pass.
+- No public code repository was identified in the paper or a title/method GitHub search on 2026-08-22. This is a time-stamped artifact-search result, not evidence that code is permanently unavailable.
 - The constrained resource is a runtime decision-state/answer context budget, not total disk storage. The results do not show that raw evidence should be deleted.
 - LoCoMo and related answer scores depend substantially on LLM readers and judges; agreement checks reduce but do not remove judge bias.
 - The formal guarantees assume a finite contextual-bandit setting and feedback structure unlike an open-ended personal agent.
