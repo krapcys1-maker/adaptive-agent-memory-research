@@ -71,3 +71,15 @@ Reason: Arousal, valence, reward, prediction error, stress, and importance have 
 Decision: Do not wait for global literature completeness. Admit a falsifiable hypothesis to an exploratory test when its mechanism, strongest alternative, baseline, characteristic failure, metrics, costs, safety guardrails, and rejection rule are explicit. Freeze a confirmatory test only after its corpus, split, thresholds, analysis, and review contract are recorded. New evidence may start a new protocol version but may not rewrite a frozen one.
 
 Reason: Literature saturation and empirical test readiness answer different questions. More reading cannot resolve an uncertainty that depends on system behavior, while testing too early without a challenge search or rejection rule produces persuasive but uninterpretable scores.
+
+## 2026-08-22 — Localize a memory failure before calling it forgetting
+
+Decision: A missing or wrong answer is not evidence that a memory record was erased. Diagnose capture, durable storage, indexing/access, validity/selection/context assembly, reader use, and final action/evaluation as separate stages. Call storage loss only when canonical identity and integrity checks fail.
+
+Reason: Human cueing results and current LLM-memory diagnostics both show that available information can remain inaccessible or unusable. End-to-end accuracy alone cannot identify the failed stage.
+
+## 2026-08-22 — Active forgetting is reversible by default
+
+Decision: First test reduced ranking, removal from active indexes, contextual gating, supersession, and archival with provenance. Treat irreversible physical deletion as a separate user, privacy, security, or retention-policy operation.
+
+Reason: Suppression can reduce interference without destroying recovery paths. Recent biological evidence also warns that behaviorally silent traces may later be recovered correctly or distorted, so recovery integrity must be measured together with recovery rate.

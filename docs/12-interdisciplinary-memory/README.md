@@ -104,4 +104,5 @@ See:
 - [emotion and salience synthesis](emotion-salience-synthesis.md);
 - [replay synthesis](replay-synthesis.md);
 - [reconsolidation and revision synthesis](reconsolidation-synthesis.md);
+- [interference, active forgetting, and access-failure synthesis](interference-active-forgetting-synthesis.md);
 - [synthesis protocol](synthesis-protocol.md).

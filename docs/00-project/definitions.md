@@ -23,6 +23,11 @@ These are operational project definitions, not claims that all research communit
 | Context construction | Choosing, ordering, compressing, and formatting information supplied to the model. |
 | Retention | Maintaining a memory or its retrieval accessibility over time. |
 | Forgetting | Reduced availability or accessibility; may mean suppression, archival, index removal, corruption, or deletion and must be qualified. |
+| Availability | Presence and integrity of a memory record at a specified storage layer, demonstrated in the engineered system by direct read, identity, checksum, and provenance checks. |
+| Accessibility | Ability of a specified cue, index, policy, and budget to recover an available record for possible use. |
+| Interference | Degraded encoding, retrieval, selection, or use caused by competing old, new, or similar information; the affected stage must be named. |
+| Active forgetting | A policy-controlled reduction in default accessibility or influence; it does not imply physical deletion unless deletion is explicitly named and verified. |
+| Recovery integrity | Degree to which a recovered memory preserves the correct source, version, scope, and content without misleading or unsupported reconstruction. |
 | Salience | A signal that an event deserves processing priority; not identical to usefulness. |
 | Future utility | Improvement attributable to a memory on later objectives, net of retrieval and processing cost. |
 | Retrieval frequency | Number of retrievals; an exposure measure, not proof of utility. |

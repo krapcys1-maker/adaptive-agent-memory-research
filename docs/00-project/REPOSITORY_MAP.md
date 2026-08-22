@@ -22,6 +22,7 @@ This is the fastest guide to where information belongs.
 | Human/AI analogies and hypotheses | `docs/03-human-ai-bridge/` |
 | Useful open-source projects | `docs/04-systems/catalog.md` |
 | Compression code reproducibility status | `docs/04-systems/compression-code-reproducibility-audit.md` |
+| PI-LLM interference code and reproducibility risks | `docs/04-systems/unable-to-forget-reproducibility-audit.md` |
 | Benchmarks and evaluation risks | `docs/05-benchmarks/` |
 | Public datasets and labels | `docs/06-datasets/catalog.md` |
 | Papers to read | `docs/07-literature/reading-queue.md` |
@@ -33,8 +34,10 @@ This is the fastest guide to where information belongs.
 | Laboratory protocol, stage gates, and benchmark ladder | `docs/11-research-laboratory/` |
 | Exact boundary between research, exploratory tests, frozen tests, and architecture promotion | `docs/11-research-laboratory/research-to-experiment-gate.md` |
 | Repeated compaction and emotion-factor benchmark | `docs/11-research-laboratory/compression-benchmark-extension.md` |
+| Interference, active forgetting, recovery, and failure-localization benchmark | `docs/11-research-laboratory/interference-forgetting-benchmark-extension.md` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Emotion/salience mechanism synthesis and falsification rules | `docs/12-interdisciplinary-memory/emotion-salience-synthesis.md` |
+| Interference, active forgetting, availability/accessibility, and recovery synthesis | `docs/12-interdisciplinary-memory/interference-active-forgetting-synthesis.md` |
 | Coverage, search, experiment, and backend registries | `data/lab/` |
 | Current research-to-experiment gate decisions and blockers | `data/lab/phase-gate-status.csv` |
 | Machine-readable repository list | `data/catalogs/repositories-seed.csv` |

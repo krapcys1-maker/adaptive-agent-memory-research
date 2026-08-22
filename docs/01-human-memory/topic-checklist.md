@@ -47,13 +47,13 @@ Status: outline
 ## Forgetting
 
 - [ ] Trace decay
-- [ ] Proactive and retroactive interference
-- [ ] Retrieval-induced forgetting
-- [ ] Inhibitory accounts
-- [ ] Context drift
-- [ ] Active/adaptive forgetting
+- [x] Proactive and retroactive interference — first source and benchmark pass; formal saturation search remains
+- [x] Retrieval-induced forgetting — behavioral effect reviewed; mechanism remains contested
+- [x] Inhibitory accounts — reviewed against context and blocking alternatives
+- [x] Context drift — first adversarial account reviewed
+- [x] Active/adaptive forgetting — fly, rat, and computational translations reviewed
 - [ ] Motivated forgetting
-- [ ] Storage-loss versus access-failure debate
+- [x] Storage-loss versus access-failure debate — operational diagnostic adopted; further replication required
 
 ## Control and future action
 
