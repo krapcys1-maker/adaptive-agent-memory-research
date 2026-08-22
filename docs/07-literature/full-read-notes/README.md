@@ -28,3 +28,5 @@ Local PDFs are rebuildable research caches and are intentionally excluded from G
 | [Emotional arousal and memory systems](2012-packard-goodman-emotional-arousal-systems.md) | brief review | extracted + first challenge pass |
 | [Reward and long-term memory](2011-wittmann-reward-memory.md) | primary human experiment | extracted + first challenge pass |
 | [Synaptic tagging and spatial memory](2010-wang-synaptic-tagging-spatial-memory.md) | primary rat and slice study | extracted + first challenge pass |
+| [Replay and time compression](1999-nadasdy-replay-time-compression.md) | primary rat electrophysiology study | extracted + first challenge pass |
+| [Task-demand switch in awake replay](2017-olafsdottir-task-demand-replay.md) | primary rat electrophysiology study | extracted + first challenge pass |

@@ -102,4 +102,5 @@ See:
 - [hypothesis portfolio](hypothesis-portfolio.md);
 - [compression synthesis](compression-synthesis.md);
 - [emotion and salience synthesis](emotion-salience-synthesis.md);
+- [replay synthesis](replay-synthesis.md);
 - [synthesis protocol](synthesis-protocol.md).

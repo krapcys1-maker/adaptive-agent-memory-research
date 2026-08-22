@@ -29,3 +29,5 @@ Priority experiment families:
 5. Retrieval frequency versus counterfactual utility labels.
 6. Operational-salience ablation.
 7. Archive/suppression versus deletion.
+8. Phase-conditioned replay versus no replay and single-policy replay.
+9. Replay compression, sampling safety, and repeated-error amplification.

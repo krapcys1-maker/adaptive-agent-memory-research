@@ -82,5 +82,7 @@ Do not mark a paper read until the note records:
 8. Packard and Goodman — emotional arousal and competing memory systems review.
 9. Wittmann et al. — reward contingency and delayed human recollection.
 10. Wang et al. — novelty, synaptic tagging/capture, and spatial-memory persistence in rats.
+11. Nádasdy et al. — recurring spike sequences and time-compressed sleep replay in rats.
+12. Ólafsdóttir et al. — task-state-dependent awake hippocampal replay in rats.
 
 Canonical notes and artifact hashes are in `docs/07-literature/full-read-notes/`. Completion here means the full read plus an initial challenge pass, not independent verification or architecture endorsement.
