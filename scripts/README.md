@@ -6,6 +6,8 @@ These scripts make discovery reproducible. Their outputs are candidate lists, no
 
 `analyze_backend_agreement.py` reruns `rg` and SQLite FTS5 on the existing PMLAB development corpus and measures whether shared lexical agreement predicts safe retrieval.
 
+`run_diverse_cue_retrieval.py` executes the frozen valid-time, trust, and bilingual-cue factorial. Its glossary and inspected development corpus prohibit confirmatory claims.
+
 ## Discover papers through OpenAlex
 
 ```powershell
