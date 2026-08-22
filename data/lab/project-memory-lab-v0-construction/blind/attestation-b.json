@@ -1,0 +1,19 @@
+{
+  "assigned_slot": "",
+  "blind_corpus_sha256": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+  "blind_queries_sha256": "bbd92b7bedc876ff849d4b504aa99abf99dae334d022f1d19c5e87510b8160b7",
+  "completed_form_sha256": "",
+  "conflicts_prior_exposure_or_assistance": "",
+  "review_completed_at": "",
+  "review_started_at": "",
+  "reviewer_family_or_affiliation": "",
+  "reviewer_id": "",
+  "signature_or_verifiable_acknowledgement": "",
+  "statements": {
+    "did_not_inspect_author_labels_or_builder_source": null,
+    "did_not_inspect_backend_outputs": null,
+    "did_not_inspect_other_reviewer_form": null,
+    "disclosed_conflicts_prior_exposure_and_assistance": null,
+    "used_only_corpus_evidence_for_labels": null
+  }
+}

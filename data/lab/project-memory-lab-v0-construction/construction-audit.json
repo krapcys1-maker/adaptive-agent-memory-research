@@ -1,0 +1,16 @@
+{
+  "blind_query_exposes_history_id": false,
+  "development_test_history_overlap": 0,
+  "duplicate_queries_casefolded": 0,
+  "missing_project_source_paths": [],
+  "opaque_evidence_ids": true,
+  "opaque_history_ids": true,
+  "query_count": 120,
+  "record_count": 176,
+  "status": "construction-audit-not-independent",
+  "unresolved_checks": [
+    "independent semantic audit of acceptable alternative evidence",
+    "independent template-family similarity audit across development and test",
+    "public benchmark bridge license and contamination audit"
+  ]
+}

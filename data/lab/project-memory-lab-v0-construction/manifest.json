@@ -1,0 +1,49 @@
+{
+  "author_labels_are_gold": false,
+  "baseline_run_permitted": false,
+  "benchmark_id": "project-memory-lab-v0-construction",
+  "categories": {
+    "causal_multi_episode": 10,
+    "contradiction": 10,
+    "cross_language": 10,
+    "exact_lexical": 10,
+    "paraphrase": 10,
+    "poison_resistance": 10,
+    "procedure_failure": 10,
+    "supersession": 10,
+    "temporal_as_of": 10,
+    "unanswerable": 10,
+    "weak_overlap": 10,
+    "what_where_when": 10
+  },
+  "families": {
+    "controlled_synthetic": 96,
+    "project_research": 24
+  },
+  "hashes": {
+    "blind/annotation-form-a.jsonl": "99dc0ca7fe5e99353b4d8541efac0be5d6bdc0b2cbb68cad0bd339ca9dfd5000",
+    "blind/annotation-form-b.jsonl": "99dc0ca7fe5e99353b4d8541efac0be5d6bdc0b2cbb68cad0bd339ca9dfd5000",
+    "blind/annotation-manual.md": "eedf9268535451f8f4ee6d1a9f11964f0cb7339e424a9be3583ccb71b88d892a",
+    "blind/attestation-a.json": "11c620545b84763a1fd7a4b6f507897bf64237b9e3430f8b64b01bfb9d9c76e2",
+    "blind/attestation-b.json": "11c620545b84763a1fd7a4b6f507897bf64237b9e3430f8b64b01bfb9d9c76e2",
+    "blind/corpus.jsonl": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+    "blind/queries.jsonl": "bbd92b7bedc876ff849d4b504aa99abf99dae334d022f1d19c5e87510b8160b7",
+    "corpus.jsonl": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+    "internal/author-labels.jsonl": "763cd0c1b576b074a2ac8320984a068fc0744d6a886b990c2bedfb5332df628b"
+  },
+  "limitations": [
+    "96 cases are controlled synthetic constructions and 24 are project-research records",
+    "the public benchmark bridge is not yet included",
+    "author labels are same-process hypotheses, not released gold",
+    "test labels are not independently hidden until external annotation is receipt-frozen",
+    "template-family similarity requires an external leakage audit"
+  ],
+  "queries": 120,
+  "records": 176,
+  "splits": {
+    "development": 60,
+    "test": 60
+  },
+  "status": "authored-construction-awaiting-dual-independent-annotation",
+  "unlock": "two independent complete forms, adjudication, provenance/leakage audit, hash freeze, and baseline preregistration"
+}
