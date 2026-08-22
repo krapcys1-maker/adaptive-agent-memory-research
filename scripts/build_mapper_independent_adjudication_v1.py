@@ -24,7 +24,7 @@ PREDICATE_PATH = CORPUS_DIR / "predicate-catalog-v1.json"
 FIRST_COMPARISON = ROOT / "data" / "lab" / "api-screening" / "deepseek-v4-flash-map-stage-advisory-review-20260822" / "comparison.jsonl"
 SECOND_COMPARISON = ROOT / "data" / "lab" / "api-screening" / "deepseek-v4-flash-map-stage-remaining-review-20260822" / "comparison.jsonl"
 CORPUS_FREEZE_COMMIT = "fc9b212"
-BUILDER_VERSION = "mapper-independent-adjudication-packet-v1"
+BUILDER_VERSION = "mapper-independent-adjudication-packet-v1.1"
 FORBIDDEN_BLIND_KEYS = {"gold", "criticality", "split", "stratum", "provenance", "evaluation_metadata", "advisory_label", "exact_agreement"}
 
 
@@ -120,6 +120,32 @@ def build_outputs() -> dict[Path, str]:
     contract = {
         "schema_version": schema["schema_version"],
         "stage_outputs": schema["stage_outputs"],
+        "review_label_contracts": {
+            "contract_span": {"decision": "enum", "reject_reason": "enum"},
+            "obligation_graph": {
+                "query_status": "enum excluding unauthorized in isolated review",
+                "nodes": [{"obligation_id": "O#", "operator": "enum", "source_span": "exact string", "depends": ["prior O#"]}],
+            },
+            "entity_linking": {
+                "action": "enum",
+                "candidate_ids": ["entity ID strings"],
+                "selected_id": "entity ID, ref:O#, or null",
+                "selected_ids": ["entity ID strings; [] unless true multi-entity selection"],
+            },
+            "predicate_linking": {
+                "action": "enum",
+                "ranked_predicates": ["predicate ID strings only"],
+                "selected_predicate": "predicate ID or null",
+                "selected_namespaces": ["namespace ID strings"],
+            },
+            "time_authorization": {
+                "time_status": "enum", "authorization_status": "enum", "raw_span": "exact string",
+                "normalized_time": "canonical string", "timezone": "IANA zone", "reference_clock": "input string",
+                "principal": "input string", "policy_basis": "explicit string",
+                "authorized_namespaces": ["namespace strings"], "denied_namespaces": ["namespace strings"],
+            },
+            "certificate_routing": {"certificate_status": "enum", "action": "enum", "basis": "nonempty evidence/failure string"},
+        },
         "non_exercisable_under_isolated_stage_input": amendment["non_exercisable_under_isolated_stage_input"],
         "review_note": "Use review-manual-v1.md canonical rules; do not inspect author labels.",
     }
@@ -194,6 +220,7 @@ def build_outputs() -> dict[Path, str]:
     blind_hashes[manual_path.name] = sha_bytes(manual_path.read_bytes())
     manifest = {
         "packet": "PMLAB-MAP-STAGE-001-independent-adjudication-v1",
+        "packet_revision": "1.1-pre-review-concrete-label-contracts",
         "status": "blank-blind-packet-awaiting-independent-reviewer",
         "builder_version": BUILDER_VERSION,
         "corpus_freeze_commit": CORPUS_FREEZE_COMMIT,

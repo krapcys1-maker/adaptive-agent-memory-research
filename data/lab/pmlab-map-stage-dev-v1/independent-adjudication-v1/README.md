@@ -1,6 +1,6 @@
 # Independent adjudication packet v1
 
-Status: packet design; no independent labels yet
+Status: packet revision 1.1 ready; no independent labels yet
 
 This packet is the phase gate between authored development labels and candidate implementation.
 
@@ -30,3 +30,5 @@ The packet includes every critical semantic group plus a deterministic ordinary-
 6. Every material critical disagreement is resolved or the group is excluded. Original labels are never deleted.
 
 DeepSeek is an advisory worker already used on this corpus. It cannot satisfy this independent-review requirement.
+
+Revision 1.1 was issued before any reviewer was assigned. It adds exact reviewer-label JSON shapes after validation found that the base schema's entity field names (`ranked_candidates`) differed from the authored label envelope (`candidate_ids` plus `selected_ids`). No cases, selection, gold labels, or advisory results changed.

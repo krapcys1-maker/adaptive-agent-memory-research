@@ -8,10 +8,10 @@
     "jobs.jsonl": "93852a8e2101f9982c5fb479cd1c34d06360e4672c43ed3399ddf126b5d51653",
     "predicate-catalog-v1.json": "ee27409184b903a37608d0183e857187a60a7e65a406f55cbf97e92fc8d49191",
     "review-form.jsonl": "5ea2024111332be5ed011caef0fdfd27942a7100154b3200579fe3cb1fb65bad",
-    "review-manual-v1.md": "73093231502715c64d50d160df5756bd07896953574ca581aec3da8bbc008371",
-    "stage-output-contract-v1.json": "2f4a8508bf42460e25577c03cc6f89b7bf03be6c8c6ed298b650cf9b075eee7c"
+    "review-manual-v1.md": "16db9a2f13216699214bcdf92a9acf4978e30a0d175e78bbcffedf1246591c89",
+    "stage-output-contract-v1.json": "8362730ff1f500534b7f89d32e19f51df2b514e0e8e40d427af08d409386ce5e"
   },
-  "builder_version": "mapper-independent-adjudication-packet-v1",
+  "builder_version": "mapper-independent-adjudication-packet-v1.1",
   "completed_review_form_hash": null,
   "corpus_freeze_commit": "fc9b212",
   "critical_groups": 61,
@@ -20,6 +20,7 @@
   "ordinary_fraction_of_corpus_ordinary": 0.375,
   "ordinary_groups": 6,
   "packet": "PMLAB-MAP-STAGE-001-independent-adjudication-v1",
+  "packet_revision": "1.1-pre-review-concrete-label-contracts",
   "reviewer": null,
   "selected_rows": 134,
   "selected_semantic_groups": 67,

@@ -6,6 +6,66 @@
       "reason": "The isolated graph stage receives raw query only and cannot observe principal or policy."
     }
   },
+  "review_label_contracts": {
+    "certificate_routing": {
+      "action": "enum",
+      "basis": "nonempty evidence/failure string",
+      "certificate_status": "enum"
+    },
+    "contract_span": {
+      "decision": "enum",
+      "reject_reason": "enum"
+    },
+    "entity_linking": {
+      "action": "enum",
+      "candidate_ids": [
+        "entity ID strings"
+      ],
+      "selected_id": "entity ID, ref:O#, or null",
+      "selected_ids": [
+        "entity ID strings; [] unless true multi-entity selection"
+      ]
+    },
+    "obligation_graph": {
+      "nodes": [
+        {
+          "depends": [
+            "prior O#"
+          ],
+          "obligation_id": "O#",
+          "operator": "enum",
+          "source_span": "exact string"
+        }
+      ],
+      "query_status": "enum excluding unauthorized in isolated review"
+    },
+    "predicate_linking": {
+      "action": "enum",
+      "ranked_predicates": [
+        "predicate ID strings only"
+      ],
+      "selected_namespaces": [
+        "namespace ID strings"
+      ],
+      "selected_predicate": "predicate ID or null"
+    },
+    "time_authorization": {
+      "authorization_status": "enum",
+      "authorized_namespaces": [
+        "namespace strings"
+      ],
+      "denied_namespaces": [
+        "namespace strings"
+      ],
+      "normalized_time": "canonical string",
+      "policy_basis": "explicit string",
+      "principal": "input string",
+      "raw_span": "exact string",
+      "reference_clock": "input string",
+      "time_status": "enum",
+      "timezone": "IANA zone"
+    }
+  },
   "review_note": "Use review-manual-v1.md canonical rules; do not inspect author labels.",
   "schema_version": "pmlab-map-stage-case-v1",
   "stage_outputs": {

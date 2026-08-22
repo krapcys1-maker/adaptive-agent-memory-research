@@ -34,7 +34,11 @@ Accept only valid serialization with required fields, exact source spans, sequen
 
 Entity actions are `linked`, `ambiguous_in_catalog`, `missing_entity`, `non_entity_phrase`, and `mention_not_detected`. Record every plausible ID before selecting. Null supplied mention is `mention_not_detected`.
 
+Return the entity label with exactly four fields: `action`, `candidate_ids`, `selected_id`, and `selected_ids`. `candidate_ids` and `selected_ids` contain ID strings only. Always include `selected_ids`; use `[]` unless the result is a true multi-entity selection. Unresolved actions select neither a single nor multiple entities.
+
 Predicate review has two decisions: candidate set and selection. An exact alias is strong evidence but not automatic truth; descriptions and entity context also matter. A topical near-neighbor is not enough. Use `ambiguous_schema` if multiple IDs remain defensible and `unsupported_predicate` if none represents the requested facet. Ranked predicates are arrays of ID strings only.
+
+Return the predicate label with exactly `action`, `ranked_predicates`, `selected_predicate`, and `selected_namespaces`. Do not return scored objects inside `ranked_predicates`.
 
 ## Time and authorization
 
