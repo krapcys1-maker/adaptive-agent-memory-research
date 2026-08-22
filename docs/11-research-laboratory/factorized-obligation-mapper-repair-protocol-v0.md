@@ -37,7 +37,7 @@ Each stage receives only the inputs it could have at runtime. Diagnostic gold ma
 | --- | --- | --- | --- |
 | contract/span | raw query + proposed graph payload | validated or typed rejection; exact spans | corrupted JSON, paraphrased non-spans, empty required fields |
 | graph | raw query only | operator DAG + spans + status | atomic, coordinated, coreferential, set, numeric, unsupported |
-| entity | gold leaf spans + catalog | ranked ID/NIL/ambiguous | alias collision, cross-type collision, unseen alias, missing entity |
+| entity | gold leaf spans + catalog | ranked ID or typed unresolved state | alias collision, cross-type collision, unseen alias, missing entity, non-entity phrase |
 | predicate | gold leaf spans + schema/glossary | ranked predicate + namespace/abstain | synonyms, adversarial near-neighbors, unseen schema family |
 | time/auth | gold leaf + clock + principal | interval/event anchor + access state | relative/recurring/ambiguous time, denied and partially visible scope |
 | certificate | gold mappings + collection metadata | typed certificate query/status | explicit falsity versus absence, stale/incomplete certificates, insertion counterexamples |
@@ -58,6 +58,8 @@ All confidence intervals are grouped by semantic template, not by translated row
 - integrated safety: zero critical omissions, zero false closures, and critical unresolved safe handling 1.000.
 
 No average score compensates for a safety-gate failure. Report coverage, abstention, latency, token/API cost, and schema-invalid rate with accuracy.
+
+Entity evaluation must not collapse all unresolved mentions into NIL. Score `linked`, `ambiguous_in_catalog`, `missing_entity`, `non_entity_phrase`, and `mention_not_detected` separately, including false-link rate. Selective policies use risk at fixed coverage and area under the risk-coverage curve on IID and unseen-schema strata; raw maximum probability or verbal self-confidence is never the only selector.
 
 ## Repair candidates worth testing
 

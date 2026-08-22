@@ -91,9 +91,31 @@ The evidence supports four additions to the factorized protocol:
 
 It does **not** justify adding a constrained-decoding runtime to the architecture. Provider support differs, model/task interactions can reverse, and none of these sources demonstrates safe obligation mapping in a local-memory system.
 
+## Selective prediction and NIL follow-up
+
+### Risk-coverage, not confidence alone
+
+Xin et al., *The Art of Abstention*, ACL 2021, defines selective prediction as a predictor plus a selection function and evaluates the tradeoff with risk-coverage curves and their area (Section 3.1, pages 2-3). It also distinguishes calibration, which can change absolute probability levels, from selective ranking, and distinguishes model uncertainty from questions unanswerable even for humans (Section 2, page 2). The reported tasks are classification, not structured mapping.
+
+Varshney et al., *Towards Improving Selective Prediction Ability of NLP Systems*, RepL4NLP 2022, reports that maximum probability degrades strongly out of domain and uses a learned calibrator based on confidence plus instance difficulty (Sections 2-5, pages 1-4). The result is task-specific and relies on held-out correctness annotations; it does not make a model's verbal confidence privileged evidence.
+
+Project use: evaluate selective risk at fixed coverage and risk-coverage AUC separately for each mapper stage, with IID and unseen-schema strata. Do not use raw model self-confidence or MaxProb as the only abstention signal.
+
+Primary: https://aclanthology.org/2021.acl-long.84.pdf and https://aclanthology.org/2022.repl4nlp-1.23.pdf
+
+### NIL is not one class
+
+Zhu et al., *Learn to Not Link*, Findings of ACL 2023, separates NIL into **Missing Entity** and **Non-Entity Phrase** (Section 2, page 3). Its NEL dataset has 9,924 examples and 33.57% NIL, mostly non-entity phrases (Table 2, page 4); the paper also reports that a manual sample of AIDA NIL labels contained about 10% linkable errors (Section 3, page 3). Its tested bi-/cross-encoders use score thresholds and type information; this does not establish calibrated thresholds for a new catalog.
+
+Schindler et al., *Find the Funding*, COLING 2022, explicitly evaluates In-KB, Emerging Entity/out-of-KB, and All strata (Evaluation Metrics, page 3) and separates candidate retrieval from a lightweight Entity-or-NIL selector using retrieval, string, link-probability, and commonness features (page 3). The funding-domain supervision and Wikipedia-derived priors do not transfer directly to a local project catalog.
+
+Project use: gold and outputs must distinguish `linked`, `ambiguous_in_catalog`, `missing_entity`, `non_entity_phrase`, and `mention_not_detected`. Report candidate recall, NIL subtype accuracy, false-link rate, and selective risk separately. A single similarity threshold may be a baseline, not an oracle.
+
+Primary: https://aclanthology.org/2023.findings-acl.690.pdf and https://aclanthology.org/2022.coling-1.168.pdf
+
 ## Remaining search gaps
 
-- calibrated selective prediction for joint NIL/entity/schema linking;
+- calibrated selective prediction for joint NIL/entity/schema linking on structured outputs rather than classification;
 - multilingual Polish schema-linking and span-alignment evidence;
 - constrained-decoding comparisons on nested DAG outputs rather than shallow answer wrappers;
 - local small-model replication with exact provider-neutral I/O;
