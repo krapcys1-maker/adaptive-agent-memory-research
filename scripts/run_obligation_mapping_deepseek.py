@@ -25,8 +25,11 @@ import screen_literature as shared  # noqa: E402
 MODEL = "deepseek-v4-flash"
 API_URL = "https://api.deepseek.com/chat/completions"
 PROMPT_VERSION = "pmlab-map-deepseek-v0"
+ADAPTER_VERSION = "pmlab-map-deepseek-adapter-v1"
 CORPUS_FREEZE_COMMIT = "4b6c47e"
-RUN_DIR = ROOT / "data" / "lab" / "pmlab-obligation-mapping-deepseek-v0"
+PROMPT_FREEZE_COMMIT = "6a288f6"
+RUN_ID = "pmlab-map-deepseek-v1"
+RUN_DIR = ROOT / "data" / "lab" / "pmlab-obligation-mapping-deepseek-v1"
 CORPUS_DIR = ROOT / "data" / "lab" / "pmlab-obligation-mapping-dev-v0"
 GLOBAL_LEDGER = ROOT / "data" / "lab" / "api-screening" / "budget-ledger.jsonl"
 OPERATORS = {
@@ -103,6 +106,8 @@ def prepare() -> dict[str, Any]:
         "created_at": utc_now(),
         "model": MODEL,
         "prompt_version": PROMPT_VERSION,
+        "adapter_version": ADAPTER_VERSION,
+        "prompt_freeze_commit": PROMPT_FREEZE_COMMIT,
         "corpus_freeze_commit": CORPUS_FREEZE_COMMIT,
         "case_count": len(jobs),
         "temperature": 0,
@@ -233,7 +238,8 @@ def run(env_file: Path, budget_usd: float, batch_size: int, max_tokens: int, tim
     entities = json.loads((CORPUS_DIR / "entities-v0.json").read_text(encoding="utf-8"))
     predictions_path = RUN_DIR / "predictions.jsonl"
     completed = {item["query_id"] for item in read_jsonl(predictions_path)}
-    pending = [item for item in jobs if item["query_id"] not in completed]
+    attempted_invalid = {item["query_id"] for item in read_jsonl(RUN_DIR / "errors.jsonl") if item.get("query_id")}
+    pending = [item for item in jobs if item["query_id"] not in completed | attempted_invalid]
     calls = 0
     for batch in batches_by_language(pending, batch_size):
         user_payload = {
@@ -263,7 +269,7 @@ def run(env_file: Path, budget_usd: float, batch_size: int, max_tokens: int, tim
             completion_tokens = int(usage.get("completion_tokens") or 0)
             cost = shared.conservative_cost(prompt_tokens, completion_tokens)
             ledger = {
-                "at": utc_now(), "run_id": "pmlab-map-deepseek-v0", "model": response.get("model", MODEL),
+                "at": utc_now(), "run_id": RUN_ID, "model": response.get("model", MODEL),
                 "response_id": response.get("id", ""), "prompt_tokens": prompt_tokens,
                 "completion_tokens": completion_tokens, "conservative_cost_usd": round(cost, 8),
                 "pricing_basis": "all input charged at configured peak cache-miss rate",
@@ -271,22 +277,39 @@ def run(env_file: Path, budget_usd: float, batch_size: int, max_tokens: int, tim
             append_jsonl(GLOBAL_LEDGER, ledger)
             append_jsonl(RUN_DIR / "calls.jsonl", {**ledger, "latency_ms": elapsed_ms, "query_ids": [item["query_id"] for item in batch]})
             content = ((response.get("choices") or [{}])[0].get("message") or {}).get("content") or ""
-            for result in validate_response(content, batch, schema):
-                append_jsonl(predictions_path, {**result, "model": response.get("model", MODEL), "prompt_version": PROMPT_VERSION, "parsed_at": utc_now()})
+            append_jsonl(RUN_DIR / "raw-responses.jsonl", {"at": utc_now(), "response_id": response.get("id", ""), "query_ids": [item["query_id"] for item in batch], "content": content})
+            parsed = json.loads(content)
+            response_results = parsed.get("results")
+            if not isinstance(response_results, list):
+                raise ValueError("response has no results array")
+            by_id = {item.get("query_id"): item for item in response_results if isinstance(item, dict)}
+            for job in batch:
+                qid = job["query_id"]
+                if qid not in by_id:
+                    append_jsonl(RUN_DIR / "errors.jsonl", {"at": utc_now(), "query_id": qid, "error_type": "missing-result", "error": "query_id absent from response"})
+                    continue
+                try:
+                    validated = validate_response(json.dumps({"results": [by_id[qid]]}, ensure_ascii=False), [job], schema)[0]
+                except (ValueError, json.JSONDecodeError) as exc:
+                    append_jsonl(RUN_DIR / "errors.jsonl", {"at": utc_now(), "query_id": qid, "error_type": "result-validation", "error": str(exc), "raw_result": by_id[qid]})
+                    continue
+                append_jsonl(predictions_path, {**validated, "model": response.get("model", MODEL), "prompt_version": PROMPT_VERSION, "adapter_version": ADAPTER_VERSION, "parsed_at": utc_now()})
         except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, json.JSONDecodeError, ValueError) as exc:
             append_jsonl(RUN_DIR / "errors.jsonl", {"at": utc_now(), "query_ids": [item["query_id"] for item in batch], "error_type": type(exc).__name__, "error": str(exc)})
         calls += 1
     predictions = read_jsonl(predictions_path)
     errors = read_jsonl(RUN_DIR / "errors.jsonl")
+    attempted = {item["query_id"] for item in predictions} | {item["query_id"] for item in errors if item.get("query_id")}
     summary = {
-        "status": "api-run-complete" if len(predictions) == len(jobs) else "api-run-incomplete",
+        "status": "api-run-complete" if len(attempted) == len(jobs) else "api-run-incomplete",
         "model": MODEL,
         "jobs": len(jobs),
         "valid_predictions": len(predictions),
         "schema_valid_rate": len(predictions) / len(jobs),
+        "attempted_cases": len(attempted),
         "errors": len(errors),
         "calls_this_invocation": calls,
-        "run_conservative_cost_usd": round(sum(float(item["conservative_cost_usd"]) for item in read_jsonl(GLOBAL_LEDGER) if item.get("run_id") == "pmlab-map-deepseek-v0"), 8),
+        "run_conservative_cost_usd": round(sum(float(item["conservative_cost_usd"]) for item in read_jsonl(GLOBAL_LEDGER) if item.get("run_id") == RUN_ID), 8),
         "all_runs_conservative_cost_usd": shared.ledger_total(),
         "hard_budget_usd": budget_usd,
         "frozen_manifest_hash": hashlib.sha256(canonical_json(manifest).encode("utf-8")).hexdigest(),

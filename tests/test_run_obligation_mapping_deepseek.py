@@ -12,7 +12,7 @@ SPEC.loader.exec_module(MODULE)
 
 
 def test_batches_never_mix_bilingual_pairs():
-    jobs = MODULE.read_jsonl(ROOT / "data" / "lab" / "pmlab-obligation-mapping-deepseek-v0" / "jobs.jsonl")
+    jobs = MODULE.read_jsonl(MODULE.RUN_DIR / "jobs.jsonl")
     for batch in MODULE.batches_by_language(jobs, 7):
         assert len({item["language"] for item in batch}) == 1
         groups = [item["query_id"].rsplit("-", 1)[0] for item in batch]
