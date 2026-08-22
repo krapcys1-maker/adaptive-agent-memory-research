@@ -71,6 +71,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/11-research-laboratory/replay-benchmark-extension.md` — preregistered phase-conditioned replay, compression-throughput, and sampling-safety tests.
 - `docs/11-research-laboratory/revision-benchmark-extension.md` — preregistered versioning, non-mutating retrieval, return, and representation-dissociation tests.
 - `docs/11-research-laboratory/interference-forgetting-benchmark-extension.md` — preregistered fault localization, interference curves, reversible forgetting, recovery-integrity, and retrieval-neighbor tests.
+- `data/lab/pmlab-forgetting-dev/` — deterministic 28-case F1 and 56-query F2 development instrument with artifacts and an adversarial review.
 - `data/lab/coverage-matrix.csv` — topic status and gaps.
 - `data/lab/search-log.csv` — denominator for saturation claims.
 - `data/lab/experiment-registry.csv` — all planned, running, completed, null, and failed experiments.

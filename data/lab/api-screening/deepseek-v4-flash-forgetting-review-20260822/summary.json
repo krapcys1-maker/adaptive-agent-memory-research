@@ -1,0 +1,9 @@
+{
+  "run_id": "deepseek-v4-flash-forgetting-review-20260822",
+  "jobs": 5,
+  "schema_valid_outputs": 5,
+  "run_conservative_cost_usd": 0.00289828,
+  "all_runs_conservative_cost_usd": 0.06426508,
+  "hard_budget_usd": 10.0,
+  "authority": "model candidates only; manual benchmark review required"
+}

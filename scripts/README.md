@@ -34,6 +34,23 @@ python scripts/run_memory_benchmark.py
 
 This compares no memory, actual `rg`, and SQLite FTS5. Its scores are diagnostic only; the slice is not the independently annotated 120-query PMLAB v0.
 
+## F1/F2 forgetting diagnostics
+
+Build and run the authored fault-localization and version-interference development slice:
+
+```powershell
+python scripts/run_forgetting_benchmark.py
+```
+
+To request a bounded adversarial methodology review after freezing a run:
+
+```powershell
+python scripts/review_forgetting_benchmark.py prepare --run-id review-name
+python scripts/review_forgetting_benchmark.py run --run-id review-name --budget-usd 10
+```
+
+The review worker receives only synthetic metadata and aggregate results. Its output remains an unreviewed candidate queue until a local review records each disposition.
+
 ## Verify screening-source identity
 
 Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:

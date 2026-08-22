@@ -1,0 +1,18 @@
+{
+  "status": "instrument-development-only",
+  "generator": "scripts/run_forgetting_benchmark.py",
+  "f1_cases": 28,
+  "f2_records": 256,
+  "f2_queries": 56,
+  "f1_cases_sha256": "913363c6cc7e9433edb40957b1b38c4fbe8fb52279240bae45a98b59b2b874a3",
+  "f2_corpus_sha256": "e28a4fb3c60d5f5d92c7046406c7f2b602bc036a252c6e443b8284f5527ab787",
+  "f2_queries_sha256": "41a3764dff9ce5787c41fe01497bd24b4a0ace43dca5736dc39c580a7eeb8336",
+  "backends": [
+    "B0-no-memory",
+    "B1-ripgrep",
+    "B2-sqlite-fts5",
+    "B3-rule-entity-time",
+    "O-gold-evidence"
+  ],
+  "authority": "authored development instrument; not held out; no architecture promotion"
+}

@@ -36,7 +36,9 @@ Controls:
 
 Primary metric: macro fault-localization accuracy across `F0`–`F5`.
 
-Initial success threshold: at least 95% macro localization accuracy, at least 90% in every class, and zero cases labeled storage loss when an exact checksum-valid record is directly recoverable. Any ambiguous case must be labeled multi-fault or inconclusive rather than forced into one class.
+Report `failed_stage` and `data_loss_diagnosed` separately. An `F1` schema or provenance failure may retain recoverable raw bytes and is not automatically physical loss.
+
+Initial success threshold: at least 95% macro localization accuracy, at least 90% in every class, and zero cases labeled data loss when exact canonical bytes are recoverable. Any ambiguous case must be labeled multi-fault or inconclusive rather than forced into one class.
 
 ## F2 — Proactive and retroactive interference curves
 

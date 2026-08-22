@@ -1,0 +1,17 @@
+{
+  "run_id": "deepseek-v4-flash-forgetting-review-20260822",
+  "status": "frozen-input",
+  "jobs": 5,
+  "jobs_sha256": "6a4bcbc66795353ea4f5f31509b2e25b7e0493507054e0da6187a221f43c5a74",
+  "dataset_manifest_sha256": "24e23272690b88bdd801f9c9d937722a60582835819b97a9e7054aef8e613444",
+  "prompt_version": "forgetting-benchmark-adversarial-review-v1",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0,
+  "data_class": "public deterministic synthetic benchmark metadata and aggregate results",
+  "authority": "unreviewed adversarial candidates only; cannot change gold or memory",
+  "pricing_assumption_usd_per_million": {
+    "input_all_cache_miss": 0.44,
+    "output": 1.32
+  }
+}

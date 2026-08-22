@@ -56,13 +56,15 @@ On their fixed-budget LongMemEval setup, most tested baselines were write-domina
 | Code | Failure class | Direct probe | A miss means |
 | --- | --- | --- | --- |
 | `F0` | capture/encoding | compare source event with write receipt and immutable event ID | required evidence never entered canonical memory |
-| `F1` | storage integrity | direct ID/path read, checksum, schema and provenance validation | record is absent, corrupt, truncated, or transformed beyond recovery |
+| `F1` | durable-record contract | direct ID/path read, raw-byte recovery, checksum, schema and provenance validation | canonical storage or its integrity metadata failed; raw data loss is a separate subdiagnosis |
 | `F2` | indexing/addressing | full scan or direct-ID oracle succeeds while registered retrieval misses | evidence is stored but not accessible through the tested index/query policy |
 | `F3` | validity/selection | retrieved set contains gold but current-context set omits it or prefers stale/poisoned evidence | ranking, temporal scope, authorization, or context construction failed |
 | `F4` | reader utilization | exact gold evidence is in the prompt but the fixed reader fails | reasoning, instruction following, extraction, or answer formatting failed |
 | `F5` | action/evaluation | correct answer is produced but not used or is scored incorrectly | executor or evaluator failed rather than memory |
 
 The diagnosis is the earliest failed probe in the controlled pipeline. Multiple failures may coexist and must be reported rather than collapsed into one label.
+
+`F1` must never be rendered automatically as “the data were erased.” Missing or checksum-invalid bytes can support a data-loss diagnosis; recoverable bytes with an invalid schema or broken provenance remain a durable-record contract failure without physical loss.
 
 ## Operational definition of active forgetting
 
