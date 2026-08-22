@@ -38,6 +38,8 @@ These methods remain reader-level signals. Repeated samples can agree on the sam
 
 The project-local post-hoc backend analysis supplies a direct retrieval example. Ripgrep and SQLite FTS5 jointly failed the safe-retrieval criterion on 13 of 24 existing development cases; 11 of 19 cases with the same top-ranked ID were still unsafe. Requiring top-1 agreement plus set Jaccard of at least 0.8 reduced answer coverage to 0.542 while selective retrieval risk remained 0.538. Agreement between implementations sharing lexical cues is therefore rejected as independent metamemory evidence on this corpus.
 
+A subsequent protocol was committed before execution and replaced backend duplication with valid-time filtering, explicit trust filtering, and an authored bilingual glossary. On the same inspected development corpus, the combined arm raised safe-action accuracy from 0.458 to 0.833, lowered selective retrieval risk from 0.522 to 0.167, removed forbidden-record intrusion, and raised cross-language recall from 0 to 1.0. It nevertheless failed the frozen bundle gate because unanswerable abstention remained 0/2. Diverse cues can repair known access and selection failures, but they do not by themselves estimate evidence sufficiency.
+
 ## Typed metamemory state for this project
 
 The meta-controller should expose a vector, not one feeling:

@@ -49,6 +49,7 @@ This is the fastest guide to where information belongs.
 | Metamemory, selective prediction, and typed retrieval-control synthesis | `docs/12-interdisciplinary-memory/metamemory-selective-control-synthesis.md` |
 | Frozen typed metamemory-control development corpus, runner, and construction result | `data/lab/pmlab-metamemory-control-dev-v0/` |
 | Post-hoc real `rg`/FTS5 agreement and risk-coverage falsification | `data/lab/pmlab-backend-agreement-v0/` |
+| Frozen valid-time, trust, and bilingual diverse-cue factorial | `data/lab/pmlab-diverse-cues-v0/` |
 | Emotion/salience mechanism synthesis and falsification rules | `docs/12-interdisciplinary-memory/emotion-salience-synthesis.md` |
 | Interference, active forgetting, availability/accessibility, and recovery synthesis | `docs/12-interdisciplinary-memory/interference-active-forgetting-synthesis.md` |
 | Coverage, search, experiment, and backend registries | `data/lab/` |

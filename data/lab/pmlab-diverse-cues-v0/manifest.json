@@ -1,0 +1,20 @@
+{
+  "experiment_id": "PMLAB-META-DIVERSE-CUE-001",
+  "protocol": "docs/11-research-laboratory/diverse-cue-retrieval-protocol-v0.md",
+  "freeze_commit": "43cdec087cd6d864d27285cd202f2191021d062b",
+  "source_dataset": "data/lab/pmlab-v0-dev",
+  "source_corpus_sha256": "82e319afe5077043d5c4e5f83c734b98006c97037303462667854dcadb92ae4e",
+  "source_queries_sha256": "c91fd1721bbc60e7504a888486498c72e9e4c7f48ffcea64db8c82d76a852bfb",
+  "runner_sha256": "db9149548b5dc672f8b9f5b94ac1004b9feab9278d8d23627c5cbb5135711ea5",
+  "arms": [
+    "raw",
+    "time",
+    "trust",
+    "bilingual",
+    "time_trust",
+    "time_trust_bilingual"
+  ],
+  "top_k": 5,
+  "candidate_k": 10,
+  "network_or_model_calls": 0
+}

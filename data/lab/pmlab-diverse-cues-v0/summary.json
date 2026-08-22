@@ -1,0 +1,86 @@
+{
+  "experiment_id": "PMLAB-META-DIVERSE-CUE-001",
+  "status": "completed-development-after-freeze",
+  "arms": {
+    "raw": {
+      "cases": 24,
+      "answer_coverage": 0.9583333333333334,
+      "selective_retrieval_risk": 0.5217391304347826,
+      "safe_action_accuracy": 0.4583333333333333,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "forbidden_intrusion_rate": 0.2916666666666667,
+      "unanswerable_abstention_rate": 0,
+      "cross_language_recall_at_5": 0.0,
+      "candidate_depth": 5,
+      "fts_calls_per_query": 1
+    },
+    "time": {
+      "cases": 24,
+      "answer_coverage": 0.9583333333333334,
+      "selective_retrieval_risk": 0.30434782608695654,
+      "safe_action_accuracy": 0.6666666666666666,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "forbidden_intrusion_rate": 0.08333333333333333,
+      "unanswerable_abstention_rate": 0,
+      "cross_language_recall_at_5": 0.0,
+      "candidate_depth": 10,
+      "fts_calls_per_query": 1
+    },
+    "trust": {
+      "cases": 24,
+      "answer_coverage": 0.9583333333333334,
+      "selective_retrieval_risk": 0.43478260869565216,
+      "safe_action_accuracy": 0.5416666666666666,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "forbidden_intrusion_rate": 0.20833333333333334,
+      "unanswerable_abstention_rate": 0,
+      "cross_language_recall_at_5": 0.0,
+      "candidate_depth": 10,
+      "fts_calls_per_query": 1
+    },
+    "bilingual": {
+      "cases": 24,
+      "answer_coverage": 1.0,
+      "selective_retrieval_risk": 0.4583333333333333,
+      "safe_action_accuracy": 0.5416666666666666,
+      "macro_recall_at_5_answerable": 0.9318181818181818,
+      "forbidden_intrusion_rate": 0.2916666666666667,
+      "unanswerable_abstention_rate": 0,
+      "cross_language_recall_at_5": 1.0,
+      "candidate_depth": 5,
+      "fts_calls_per_query": 1
+    },
+    "time_trust": {
+      "cases": 24,
+      "answer_coverage": 0.9583333333333334,
+      "selective_retrieval_risk": 0.21739130434782608,
+      "safe_action_accuracy": 0.75,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "forbidden_intrusion_rate": 0,
+      "unanswerable_abstention_rate": 0,
+      "cross_language_recall_at_5": 0.0,
+      "candidate_depth": 10,
+      "fts_calls_per_query": 1
+    },
+    "time_trust_bilingual": {
+      "cases": 24,
+      "answer_coverage": 1.0,
+      "selective_retrieval_risk": 0.16666666666666666,
+      "safe_action_accuracy": 0.8333333333333334,
+      "macro_recall_at_5_answerable": 0.9318181818181818,
+      "forbidden_intrusion_rate": 0,
+      "unanswerable_abstention_rate": 0,
+      "cross_language_recall_at_5": 1.0,
+      "candidate_depth": 10,
+      "fts_calls_per_query": 1
+    }
+  },
+  "candidate_gates": {
+    "safe_action_gain_at_least_15_points": true,
+    "forbidden_intrusion_at_most_0.05": true,
+    "cross_language_gain_at_least_0.50": true,
+    "unanswerable_abstention_at_least_0.50": false
+  },
+  "all_candidate_gates_pass": false,
+  "interpretation_boundary": "authored inspected development corpus and tailored glossary; not confirmatory"
+}
