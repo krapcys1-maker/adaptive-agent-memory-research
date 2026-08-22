@@ -1,6 +1,7 @@
 "repository","local_path","revision","branch","captured_at","status"
 "mem0ai/mem0","external/repos/mem0ai__mem0","9b565da8e3f1b05fc3ed80ac338e6bbb9622d4d7","main","2026-08-22T11:27:31.4945285Z","available"
 "letta-ai/letta-code","external/repos/letta-ai__letta-code","d292d991818aa0c9eaa68659988ef5bab6c9d351","main","2026-08-22T11:27:38.8120328Z","available"
+"NOBI327/amygdala","external/repos/NOBI327__amygdala","344133c15966075b41a41862375a56b34cdde2f8","main","2026-08-22T19:52:00Z","audited-tier-c-comparator"
 "getzep/graphiti","external/repos/getzep__graphiti","993e081a6d7948a0d8851c12a5fbdbeb49fed862","main","2026-08-22T11:27:40.3862783Z","available"
 "langchain-ai/langmem","external/repos/langchain-ai__langmem","29cbe41e58528f92e9efa773c12e15c47be3808c","main","2026-08-22T11:27:41.4215574Z","available"
 "MemTensor/MemOS","external/repos/MemTensor__MemOS","be68e2fb5370866bd5e2b188bb3d22bd13b49e09","main","2026-08-22T11:27:42.4656851Z","available"

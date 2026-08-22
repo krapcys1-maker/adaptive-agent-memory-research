@@ -68,3 +68,4 @@ A high star count is not evidence of memory quality. No dependency is selected b
 ## Primary research-code artifacts
 
 - **amvjakob/wm-rate-distortion:** primary Julia notebooks for Figures 2–8 of the working-memory paper. The [reproducibility audit](compression-code-reproducibility-audit.md) found missing pinned dependencies, data artifacts, and a license, so it is a research reference rather than an adoptable dependency.
+- **NOBI327/amygdala:** audited at `344133c`; 331 tests pass with a dummy OpenAI key, but its central ranker is affect/scene/time based rather than content based and its schema lacks the project's evidence/version/provenance contract. The [repository audit](amygdala-repository-audit.md) retains it as a tier-C salience comparator, not a foundation.
