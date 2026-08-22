@@ -83,3 +83,9 @@ Reason: Human cueing results and current LLM-memory diagnostics both show that a
 Decision: First test reduced ranking, removal from active indexes, contextual gating, supersession, and archival with provenance. Treat irreversible physical deletion as a separate user, privacy, security, or retention-policy operation.
 
 Reason: Suppression can reduce interference without destroying recovery paths. Recent biological evidence also warns that behaviorally silent traces may later be recovered correctly or distorted, so recovery integrity must be measured together with recovery rate.
+
+## 2026-08-22 — Open world by default; closure is query-specific evidence
+
+Decision: Treat missing retrieval, absence from searched scope, absence from a certified complete collection scope, and proposition-level falsity as four different states. Allow a closed-world negative only under an exact, current, authorized completeness certificate; proposition-level falsity additionally requires explicit negative evidence or a domain rule.
+
+Reason: Incomplete-database theory shows that completeness is query-relative and independent from validity. The project's evidence-sufficiency construction also showed that retrieval and obligation coverage cannot determine whether all authorized storage domains were exhausted. A global closed-world policy would convert index, replica, authorization, freshness, and capture gaps into false facts.

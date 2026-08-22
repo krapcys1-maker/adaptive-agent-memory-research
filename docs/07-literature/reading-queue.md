@@ -57,6 +57,7 @@ These are seed papers, not a completed reading list:
 12. Landauer and modern information thermodynamics — physical boundary only; require a unique architecture prediction before promotion.
 13. Metamemory monitoring and control, cue-familiarity/accessibility accounts, search termination, selective prediction, and semantic uncertainty — complete replication/adversarial pass after the targeted synthesis.
 14. Evidence sufficiency, answerability, missing facets/bridges, citation completeness, learned-judge calibration, and shared critic/generator failures — complete full-metric and replication pass after the targeted synthesis.
+15. Closed/open-world reasoning, incomplete databases, certain/possible answers, validity versus completeness, query-completeness statements, insertion independence, local closed-world assumptions, and negative knowledge — extract exact theorem assumptions and implementation constraints before freezing collection-closure cases.
 
 ## Reading-note minimum
 

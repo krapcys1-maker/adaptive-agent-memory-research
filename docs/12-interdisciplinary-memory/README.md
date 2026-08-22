@@ -12,6 +12,8 @@ Current focused syntheses include `metamemory-selective-control-synthesis.md`, w
 
 `evidence-sufficiency-and-completeness-synthesis.md` separates relevance, validity, answerability, facet and bridge completeness, claim support, citation completeness, conflict resolution, and collection closure.
 
+`collection-closure-and-negative-knowledge-synthesis.md` formalizes the open-world default, query-specific completeness certificates, four negative-knowledge tiers, and the evidence required before a retrieval miss may become a bounded absence claim.
+
 ## Common functional decomposition
 
 ```text
@@ -111,4 +113,5 @@ See:
 - [interference, active forgetting, and access-failure synthesis](interference-active-forgetting-synthesis.md);
 - [metamemory and selective-control synthesis](metamemory-selective-control-synthesis.md);
 - [evidence sufficiency and completeness synthesis](evidence-sufficiency-and-completeness-synthesis.md);
+- [collection closure and negative knowledge synthesis](collection-closure-and-negative-knowledge-synthesis.md);
 - [synthesis protocol](synthesis-protocol.md).
