@@ -1,0 +1,10 @@
+{
+  "status": "api-run-complete",
+  "model": "deepseek-v4-flash",
+  "valid_reviews": 3,
+  "calls_this_invocation": 1,
+  "errors_logged": 1,
+  "run_conservative_cost_usd": 0.013849,
+  "all_runs_conservative_cost_usd": 0.84214108,
+  "authority": "author-operated same-family M1 advisory review; not human, institutional, or confirmatory independence"
+}

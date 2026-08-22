@@ -4,6 +4,8 @@ Status: complete public transfer diagnostic
 
 Decision: `supports-sparse-transfer`. This result has no architecture-promotion authority and is never pooled with PMLAB.
 
+Post-run interpretation: this label is the outcome of the frozen descriptive rule. Because the paired interval touches zero, the result is compatible with no B2-B1 difference and must not be described as statistically demonstrated superiority. A controlled DeepSeek advisory review returned `needs_revision` in all three roles; its valid and mistaken criticisms are assessed in `data/lab/api-screening/deepseek-v4-flash-memory-evidence-audit-20260823/author-assessment.md`.
+
 ## Primary comparison
 
 - B1 macro Recall@5: 0.933333

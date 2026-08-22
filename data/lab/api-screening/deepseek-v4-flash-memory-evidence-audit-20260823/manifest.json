@@ -1,6 +1,6 @@
 {
   "run_id": "deepseek-v4-flash-memory-evidence-audit-20260823",
-  "status": "frozen-input-awaiting-api",
+  "status": "review-finalized",
   "created_at": "2026-08-22T21:39:10Z",
   "model": "deepseek-v4-flash",
   "prompt_version": "memory-evidence-adversarial-review-m1-v1",
@@ -29,5 +29,6 @@
     "prompt.txt": "f6823a1eb3a8b80e04259d09f611926142e53a7520b920d83eb6889d91f82d64",
     "bridge_final_summary.json": "c3727c5dafd7f54dce04eeef5977ef1c094c482270efeede0b499cd2c32e4224",
     "pmlab_final_summary.json": "19a014eaea9251e81b3114affff58106563bc28f9f3e16edf19c99efdd964351"
-  }
+  },
+  "review_summary_sha256": "0f9d32d6852290a4f30726b7b4eb358cfa628644afdcc97e2e5d3f97d92781f4"
 }

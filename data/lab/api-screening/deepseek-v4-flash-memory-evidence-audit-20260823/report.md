@@ -1,0 +1,80 @@
+# DeepSeek advisory review of memory evidence
+
+Status: finalized M1 author-operated model review
+
+This is an adversarial second-model reading, not human or institutional independence. It cannot turn exploratory evidence into confirmation.
+
+## Verdicts
+
+### architecture-and-next-gate
+
+Verdict: `needs_revision` (confidence 0.85).
+
+Claim boundary: The strongest defensible claim is: 'In an exploratory, synthetic retrieval evaluation, B2 (sqlite-fts5) shows a small, non-significant-at-the-95%-level improvement in macro Recall@5 over B1 (ripgrep) (point difference 0.058, bootstrap 95% CI [0.003, 0.121]), with lower first-pass latency. This is not confirmatory and does not establish architecture superiority or abstention correctness.'
+
+Next test: A preregistered, matched comparison of B2 vs B1 and a dense/hybrid baseline on a held-out, non-contaminated natural project memory set, with equal top-k and context bytes, separate evaluation of abstention correctness (including near-miss intrusion), and a completeness controller for stale/poison intrusion. The primary outcome should be a pre-specified composite of recall, abstention accuracy, and critical-miss rate, with a power analysis and multiple-testing correction.
+
+Fatal issues:
+
+- Public transfer set is potentially contaminated and small (30 answerable, 6 abstention); cannot support architecture-level claims.
+- B2-minus-B1 paired bootstrap CI lower bound is 0.0, so no positive evidence of superiority over B1 in public transfer.
+- Internal M2 bootstrap CI lower bound is 0.003, but the point difference is small and the result is explicitly exploratory; no confirmatory authority.
+- Abstention correctness is not evaluated; candidate retrieval is conflated with correct answer abstention.
+- No raw data or query/answer pairs are provided, so independent verification is impossible.
+
+Major issues:
+
+- Multiple testing across many metrics and strata without correction; the decision rule is descriptive, not inferential.
+- B2 and B1 are not compared under matched top-k/context bytes; B2 returns fewer characters on average, which may confound recall differences.
+- Public transfer set may be contaminated by common public data; no provenance or deduplication evidence.
+- The internal M2 set is synthetic/compiled and may not represent natural project memory; external validity is limited.
+- The oracle control is not a real backend and cannot be used to validate architecture choices.
+- The abstention near-miss intrusion rates for B1 and B2 are high (1.0 and 0.833), indicating that abstention cases are not handled correctly; this is not addressed in the decision.
+- The claim 'supports-sparse-transfer' is too strong given the low power and CI including zero.
+
+### protocol-integrity
+
+Verdict: `needs_revision` (confidence 0.70).
+
+Claim boundary: Any claim from v0.1 must be limited to: 'In a public transfer diagnostic, the bridge did not degrade sparse retrieval transfer beyond the pre-specified threshold, and may have improved it, but this is exploratory and not confirmatory.' No claim of architecture effect or generalizable improvement is allowed.
+
+Next test: After v0.1 output is available, the next required test is a pre-registered confirmatory evaluation on a held-out dataset with a reader/completeness controller to test correct answer abstention, and a comparison against a strong baseline (e.g., fine-tuned dense retriever) to assess relative benefit.
+
+Major issues:
+
+- The repair protocol is frozen before v0.1 output, but the prior invalid outcome was already observed; this is a post-failure replication with known outcome, so any positive result is at risk of confirmation bias and cannot be treated as confirmatory.
+- The protocol does not specify a pre-registered analysis plan for the v0.1 data; the interpretation rule is inherited from the original protocol, but the repair protocol does not explicitly state that the same thresholds and bootstrap settings will be applied without modification.
+- The protocol does not include a pre-registered rule for handling multiple testing across the six question types; the 'no question type loses more than 0.10' rule is a descriptive threshold, not a formal statistical test, and may inflate false positive risk.
+- The protocol does not specify how to handle cases where the bootstrap CI lower bound is exactly zero; the interpretation rule says 'at least zero' but does not clarify whether a zero lower bound is sufficient for support, which is ambiguous.
+- The protocol does not include a pre-registered sensitivity analysis for the choice of k=5; only k=1 and k=5 are reported, but no rule for interpreting k=1 is given.
+- The protocol does not specify how to handle missing data or backend errors in the v0.1 run; it says any error makes transfer inconclusive, but does not define a contingency plan for partial errors.
+- The protocol does not include a pre-registered rule for handling ties in rankings; the determinism check requires byte-identical rankings, but tie-breaking is not specified.
+- The protocol does not include a pre-registered rule for handling cases where the backend returns more than 5 candidates; the retrieval contract says maximum_returned_ids=5, but does not specify how to truncate or handle extra candidates.
+- The protocol does not include a pre-registered rule for handling cases where the backend returns duplicate IDs; the retrieval contract does not specify deduplication.
+- The protocol does not include a pre-registered rule for handling cases where the backend returns IDs that are not in the source haystack; the retrieval contract does not specify how to handle invalid IDs.
+
+### statistics-and-constructs
+
+Verdict: `needs_revision` (confidence 0.90).
+
+Claim boundary: The claim must be limited to: 'In this public transfer diagnostic with 30 answerable questions, B2-sqlite-fts5 shows a positive point estimate in macro Recall@5 over B1-ripgrep, but the 95% bootstrap CI includes zero, so the improvement is not statistically significant. The abstention construct is not validated because B1 and B2 do not abstain on abstention cases. No architecture-level or generalizable claims are made.'
+
+Next test: Run a larger, preregistered evaluation with at least 100 answerable questions per type, include a true abstention mechanism (e.g., threshold on candidate score), and report a bootstrap CI with a strictly positive lower bound. Also test on non-public, natural project histories to avoid contamination.
+
+Fatal issues:
+
+- The decision rule requires the 95% lower bound to be at least zero, but the reported CI lower bound is exactly 0.0. A boundary-touching interval is not positive evidence; the result is inconclusive under the stated rule.
+- The abstention construct is invalid: B1 and B2 return candidates for all 6 abstention cases (candidate null rate 0.0), yet the oracle control also returns candidates for abstention cases (candidate null rate 1.0 is for B0 and O? Actually O has 1.0 null rate, but B1/B2 have 0.0). The abstention cases are not truly abstained; the evaluation conflates retrieval candidate generation with correct answer abstention.
+- The primary outcome is macro Recall@5 over six question types, but the bootstrap resamples within question type and then aggregates. The reported CI lower bound of 0.0 is not strictly positive; the decision 'supports-sparse-transfer' is not justified by the pre-registered rule.
+
+Major issues:
+
+- Sample size is very small (30 answerable, 6 abstention) leading to low power; the bootstrap CI is wide and touches zero.
+- The transfer set is public and potentially contaminated; no evidence of decontamination from model training data.
+- The comparison B2 vs B1 is not architecture-independent; both are retrieval backends, but the claim of 'sparse transfer' is limited to these specific implementations.
+- Latency comparison is not controlled for hardware, warm-up, or concurrent load; B1 ripgrep is orders of magnitude slower, but this is not the primary outcome.
+- The abstention near-miss intrusion rates for B1 and B2 are high (1.0 and 0.833), indicating that abstention cases are not being handled correctly; the oracle control has 0.0 intrusion, but B1/B2 are not abstaining.
+- The 'all_required_at_5_rate' for B1 and B2 is high, but the abstention cases are not evaluated for correctness; the metric does not measure answer correctness.
+- The selection algorithm uses sha256 of question_id, but the base_question_pair_overlap is 0; this is fine but the selection is deterministic and may not be representative.
+- The bootstrap seed is fixed; the CI is a point estimate and not robust to seed changes.
+
