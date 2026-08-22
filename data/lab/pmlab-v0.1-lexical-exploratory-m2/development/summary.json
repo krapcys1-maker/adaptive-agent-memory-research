@@ -1,0 +1,189 @@
+{
+  "backends": {
+    "B0-no-memory": {
+      "all_required_at_5_rate": 0.0,
+      "answerable_queries": 55,
+      "backend": "B0-no-memory",
+      "backend_error_rate": 0.0,
+      "build_ms": 0.0,
+      "consequence_weighted_recall_at_5": 0.0,
+      "critical_full_evidence_miss_rate": 1.0,
+      "first_pass_latency_ms": {
+        "p50": 0.0003,
+        "p95": 0.0005
+      },
+      "forbidden_intrusion_at_1_rate": 0.0,
+      "forbidden_intrusion_at_5_rate": 0.0,
+      "index_bytes": 0,
+      "macro_recall_at_5_answerable_strata": 0.0,
+      "mean_returned_characters": 0.0,
+      "mean_returned_utf8_bytes": 0.0,
+      "micro_recall_at_1": 0.0,
+      "micro_recall_at_5": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "queries": 60,
+      "recall_at_5_by_category": {
+        "causal_multi_episode": 0.0,
+        "contradiction": 0.0,
+        "cross_language": 0.0,
+        "exact_lexical": 0.0,
+        "paraphrase": 0.0,
+        "poison_resistance": 0.0,
+        "procedure_failure": 0.0,
+        "supersession": 0.0,
+        "temporal_as_of": 0.0,
+        "weak_overlap": 0.0,
+        "what_where_when": 0.0
+      },
+      "recall_at_5_by_family": {
+        "controlled_synthetic": 0.0,
+        "project_research": 0.0
+      },
+      "unanswerable_candidate_null_rate": 1.0,
+      "unanswerable_mean_candidate_count": 0.0
+    },
+    "B1-ripgrep": {
+      "all_required_at_5_rate": 0.7090909090909091,
+      "answerable_queries": 55,
+      "backend": "B1-ripgrep",
+      "backend_error_rate": 0.0,
+      "build_ms": 34.1294,
+      "consequence_weighted_recall_at_5": 0.7724550898203593,
+      "critical_full_evidence_miss_rate": 0.42857142857142855,
+      "first_pass_latency_ms": {
+        "p50": 87.3732,
+        "p95": 224.5629
+      },
+      "forbidden_intrusion_at_1_rate": 0.05,
+      "forbidden_intrusion_at_5_rate": 0.13333333333333333,
+      "index_bytes": 17230,
+      "macro_recall_at_5_answerable_strata": 0.7636363636363637,
+      "mean_returned_characters": 436.81666666666666,
+      "mean_returned_utf8_bytes": 436.93333333333334,
+      "micro_recall_at_1": 0.506060606060606,
+      "micro_recall_at_5": 0.7636363636363637,
+      "mrr": 0.7378787878787879,
+      "ndcg_at_5": 0.7068408600204761,
+      "precision_at_5": 0.28090909090909094,
+      "queries": 60,
+      "recall_at_5_by_category": {
+        "causal_multi_episode": 0.6,
+        "contradiction": 1.0,
+        "cross_language": 0.2,
+        "exact_lexical": 1.0,
+        "paraphrase": 0.6,
+        "poison_resistance": 0.8,
+        "procedure_failure": 1.0,
+        "supersession": 1.0,
+        "temporal_as_of": 1.0,
+        "weak_overlap": 0.2,
+        "what_where_when": 1.0
+      },
+      "recall_at_5_by_family": {
+        "controlled_synthetic": 0.7272727272727273,
+        "project_research": 0.9090909090909091
+      },
+      "unanswerable_candidate_null_rate": 0.0,
+      "unanswerable_mean_candidate_count": 3.8
+    },
+    "B2-sqlite-fts5": {
+      "all_required_at_5_rate": 0.6909090909090909,
+      "answerable_queries": 55,
+      "backend": "B2-sqlite-fts5",
+      "backend_error_rate": 0.0,
+      "build_ms": 7.6064,
+      "consequence_weighted_recall_at_5": 0.7604790419161677,
+      "critical_full_evidence_miss_rate": 0.5,
+      "first_pass_latency_ms": {
+        "p50": 0.062,
+        "p95": 0.1648
+      },
+      "forbidden_intrusion_at_1_rate": 0.03333333333333333,
+      "forbidden_intrusion_at_5_rate": 0.13333333333333333,
+      "index_bytes": 73728,
+      "macro_recall_at_5_answerable_strata": 0.7545454545454546,
+      "mean_returned_characters": 365.53333333333336,
+      "mean_returned_utf8_bytes": 365.53333333333336,
+      "micro_recall_at_1": 0.5333333333333333,
+      "micro_recall_at_5": 0.7545454545454545,
+      "mrr": 0.7530303030303029,
+      "ndcg_at_5": 0.7130549924576982,
+      "precision_at_5": 0.2772727272727273,
+      "queries": 60,
+      "recall_at_5_by_category": {
+        "causal_multi_episode": 0.6,
+        "contradiction": 1.0,
+        "cross_language": 0.2,
+        "exact_lexical": 1.0,
+        "paraphrase": 0.6,
+        "poison_resistance": 0.7,
+        "procedure_failure": 1.0,
+        "supersession": 1.0,
+        "temporal_as_of": 1.0,
+        "weak_overlap": 0.2,
+        "what_where_when": 1.0
+      },
+      "recall_at_5_by_family": {
+        "controlled_synthetic": 0.7159090909090909,
+        "project_research": 0.9090909090909091
+      },
+      "unanswerable_candidate_null_rate": 0.4,
+      "unanswerable_mean_candidate_count": 1.4
+    },
+    "O-reviewed-evidence": {
+      "all_required_at_5_rate": 1.0,
+      "answerable_queries": 55,
+      "backend": "O-reviewed-evidence",
+      "backend_error_rate": 0.0,
+      "build_ms": 0.0,
+      "consequence_weighted_recall_at_5": 1.0,
+      "critical_full_evidence_miss_rate": 0.0,
+      "first_pass_latency_ms": {
+        "p50": 0.0009,
+        "p95": 0.0023
+      },
+      "forbidden_intrusion_at_1_rate": 0.0,
+      "forbidden_intrusion_at_5_rate": 0.0,
+      "index_bytes": 0,
+      "macro_recall_at_5_answerable_strata": 1.0,
+      "mean_returned_characters": 173.75,
+      "mean_returned_utf8_bytes": 173.81666666666666,
+      "micro_recall_at_1": 0.8151515151515152,
+      "micro_recall_at_5": 1.0,
+      "mrr": 1.0,
+      "ndcg_at_5": 1.0,
+      "precision_at_5": 0.923030303030303,
+      "queries": 60,
+      "recall_at_5_by_category": {
+        "causal_multi_episode": 1.0,
+        "contradiction": 1.0,
+        "cross_language": 1.0,
+        "exact_lexical": 1.0,
+        "paraphrase": 1.0,
+        "poison_resistance": 1.0,
+        "procedure_failure": 1.0,
+        "supersession": 1.0,
+        "temporal_as_of": 1.0,
+        "weak_overlap": 1.0,
+        "what_where_when": 1.0
+      },
+      "recall_at_5_by_family": {
+        "controlled_synthetic": 1.0,
+        "project_research": 1.0
+      },
+      "unanswerable_candidate_null_rate": 1.0,
+      "unanswerable_mean_candidate_count": 0.0
+    }
+  },
+  "infrastructure_checks": {
+    "b0_zero_recall_and_empty": true,
+    "backend_error_rates_at_most_0.01": true,
+    "oracle_full_recall": true,
+    "oracle_zero_forbidden_intrusion": true
+  },
+  "infrastructure_pass": true,
+  "purpose": "infrastructure validation only; metrics must not tune the frozen test protocol",
+  "split": "development"
+}

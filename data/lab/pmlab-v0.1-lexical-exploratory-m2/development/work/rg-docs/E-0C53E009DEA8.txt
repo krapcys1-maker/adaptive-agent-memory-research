@@ -1,0 +1,2 @@
+Prevention procedure
+To prevent recurrence, record exposure, replace the reviewer, and keep the contaminated review as invalid evidence.

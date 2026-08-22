@@ -1,0 +1,2 @@
+Report B on dense retrieval
+Report B found that dense retrieval increased stale-value intrusion.

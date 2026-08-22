@@ -1,0 +1,2 @@
+Project research record
+Collection-closure corpus v0 was replaced by v1 after an insertion-counterexample isolation defect was found.

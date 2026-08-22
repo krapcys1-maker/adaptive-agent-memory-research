@@ -1,0 +1,2 @@
+Operational note
+The incident lead must notify the privacy officer after detecting a credential disclosure.

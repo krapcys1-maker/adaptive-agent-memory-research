@@ -1,0 +1,2 @@
+Report A on summary compression
+Report A found that summary compression preserved every decision.

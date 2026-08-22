@@ -1,0 +1,2 @@
+Updated staging region
+From 2026-05-20, the staging region is Kestrel, replacing Delta.

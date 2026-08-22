@@ -1,0 +1,2 @@
+Project research record
+BLINK's dense retriever reached 82.06 percent Recall@64 on its zero-shot test, while a reranker still cannot recover a missing candidate and the setup assumes an in-KB entity rather than NIL.

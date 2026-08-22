@@ -1,0 +1,2 @@
+Old checksum algorithm
+The checksum algorithm is SHA-256.

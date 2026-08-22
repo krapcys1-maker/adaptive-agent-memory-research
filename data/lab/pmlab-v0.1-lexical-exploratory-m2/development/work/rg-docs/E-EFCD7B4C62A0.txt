@@ -1,0 +1,2 @@
+Repair
+Atomic replacement restored the prior catalog.

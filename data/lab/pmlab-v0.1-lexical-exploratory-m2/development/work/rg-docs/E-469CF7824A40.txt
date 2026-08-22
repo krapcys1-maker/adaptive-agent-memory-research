@@ -1,0 +1,2 @@
+Report B on confidence gating
+Report B found that confidence gating remained overconfident on missing facts.

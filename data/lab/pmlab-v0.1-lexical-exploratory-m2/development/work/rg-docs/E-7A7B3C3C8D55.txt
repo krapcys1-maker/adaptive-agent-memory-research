@@ -1,0 +1,2 @@
+Project research record
+Project agents must never store secrets, credentials, personal data, raw chain-of-thought, or unsupported claims as facts.

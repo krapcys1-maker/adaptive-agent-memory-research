@@ -1,0 +1,2 @@
+Project research record
+Before the unseen parser challenge, parser v0 was only a development success on inspected templates; after the challenge its generality was rejected.

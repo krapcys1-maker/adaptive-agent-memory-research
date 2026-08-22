@@ -1,0 +1,2 @@
+Updated artifact registry
+From 2026-04-25, the artifact registry is Harbor, replacing Northstar.

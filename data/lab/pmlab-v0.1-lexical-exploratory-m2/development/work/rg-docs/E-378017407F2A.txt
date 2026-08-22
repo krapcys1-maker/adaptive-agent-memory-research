@@ -1,0 +1,2 @@
+Operational note
+The reviewer rejects a claim when its cited passage does not entail it.
