@@ -8,6 +8,8 @@ These scripts make discovery reproducible. Their outputs are candidate lists, no
 
 `run_diverse_cue_retrieval.py` executes the frozen valid-time, trust, and bilingual-cue factorial. Its glossary and inspected development corpus prohibit confirmatory claims.
 
+`build_evidence_sufficiency_corpus.py` creates the frozen PMLAB-SUFF-001 construction cases. `run_evidence_sufficiency_dev.py` compares scalar, claim, obligation, collection-aware, and oracle policies while enforcing the case hash.
+
 ## Discover papers through OpenAlex
 
 ```powershell

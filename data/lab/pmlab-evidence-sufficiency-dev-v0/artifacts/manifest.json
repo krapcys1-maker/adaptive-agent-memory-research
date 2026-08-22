@@ -1,0 +1,23 @@
+{
+  "experiment_id": "PMLAB-SUFF-001",
+  "frozen_corpus_commit": "4ca0309",
+  "case_sha256": "67a2f20421550a44f2d3c377a259af496bcdbc2ea22394286b6a21997469b5f3",
+  "runner": "scripts/run_evidence_sufficiency_dev.py",
+  "runner_sha256": "8dc35e09551741cd6f04b40bc8dfa1fe3661d8dfc4891fbe97b8ecc335d66914",
+  "policies": [
+    "claim_entailment",
+    "collection_hybrid",
+    "context_relevance",
+    "nonempty",
+    "oracle",
+    "retrieved_obligation",
+    "self_report",
+    "semantic_consistency",
+    "similarity"
+  ],
+  "network_or_model_calls": 0,
+  "diagnostic_gold_arms": [
+    "collection_hybrid",
+    "oracle"
+  ]
+}

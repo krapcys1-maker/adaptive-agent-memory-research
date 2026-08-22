@@ -8,6 +8,8 @@ Retrieval relevance is not evidence sufficiency. A memory system can retrieve to
 
 This conclusion follows both from the literature and from the project's frozen diverse-cue result. Valid-time, trust, and bilingual interventions removed stale/poison intrusions and recovered cross-language targets, but they did not abstain on two absent facts and did not repair one incomplete multi-source answer. Better retrieval did not create an evidence-sufficiency judgment.
 
+The follow-up 36-case construction corpus was frozen before runner implementation at commit `4ca0309`. Non-empty retrieval produced 0.75 selective sufficiency risk; similarity, context relevance, self-report, and semantic-consistency arms each produced 0.80 on authored adversarial scores. Claim entailment fell to 0.20 but retained two critical false-sufficient decisions because support alone did not encode validity and conflict. A retrieved-obligation monitor reached 0.778 exact action at zero answer risk, but confused continued search with collection-confirmed absence or permanent partiality in eight cases. A diagnostic collection-aware hybrid reproduced all authored actions, while the matched-coverage gates failed. This validates the typed decision contract only and isolates collection-scope evidence as a required input.
+
 ## Distinctions that the system must preserve
 
 | State | Question answered by the state | Example failure |

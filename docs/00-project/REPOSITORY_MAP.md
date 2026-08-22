@@ -48,6 +48,7 @@ This is the fastest guide to where information belongs.
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Metamemory, selective prediction, and typed retrieval-control synthesis | `docs/12-interdisciplinary-memory/metamemory-selective-control-synthesis.md` |
 | Evidence sufficiency, answerability, claim support, and multi-source completeness | `docs/12-interdisciplinary-memory/evidence-sufficiency-and-completeness-synthesis.md` |
+| Frozen evidence-sufficiency construction corpus, ablations, and result | `data/lab/pmlab-evidence-sufficiency-dev-v0/` |
 | Frozen typed metamemory-control development corpus, runner, and construction result | `data/lab/pmlab-metamemory-control-dev-v0/` |
 | Post-hoc real `rg`/FTS5 agreement and risk-coverage falsification | `data/lab/pmlab-backend-agreement-v0/` |
 | Frozen valid-time, trust, and bilingual diverse-cue factorial | `data/lab/pmlab-diverse-cues-v0/` |

@@ -1,0 +1,468 @@
+{
+  "experiment_id": "PMLAB-SUFF-001",
+  "status": "completed-exploratory-construction-test",
+  "case_count": 36,
+  "default_scalar_threshold": 0.75,
+  "policy_metrics": {
+    "claim_entailment": {
+      "cases": 36,
+      "exact_action_accuracy": 0.2222222222222222,
+      "answer_coverage": 0.2777777777777778,
+      "selective_sufficiency_risk": 0.2,
+      "false_sufficient_rate": 0.05555555555555555,
+      "false_insufficient_rate": 0.05555555555555555,
+      "critical_false_sufficient": 2,
+      "correct_gap_action_rate": 0.0,
+      "obligation_gap_precision": 1.0,
+      "obligation_gap_recall": 0.0,
+      "accepted_claim_support_precision": 1.0,
+      "supported_claim_attribution_rate": 1.0,
+      "false_not_found": 0,
+      "mean_abstract_cost": 1.0,
+      "action_distribution": {
+        "ABSTAIN_INSUFFICIENT": 26,
+        "ANSWER_FULL": 10
+      },
+      "exact_action_errors_by_stratum": {
+        "absent-empty-retrieval": 2,
+        "absent-with-similar-distractor": 2,
+        "complete-answer-incomplete-attribution": 2,
+        "incomplete-inventory-no-hit": 2,
+        "missing-bridge-recoverable": 2,
+        "missing-bridge-unavailable": 2,
+        "missing-facet-recoverable": 2,
+        "missing-facet-unavailable": 2,
+        "query-ambiguous": 2,
+        "redundant-saturation-missing-obligation": 2,
+        "stale-only-current-recoverable": 2,
+        "supported-answer-unsupported-extra-claim": 2,
+        "unresolved-current-conflict": 2,
+        "untrusted-only": 2
+      }
+    },
+    "collection_hybrid": {
+      "cases": 36,
+      "exact_action_accuracy": 1.0,
+      "answer_coverage": 0.2777777777777778,
+      "selective_sufficiency_risk": 0.0,
+      "false_sufficient_rate": 0.0,
+      "false_insufficient_rate": 0.0,
+      "critical_false_sufficient": 0,
+      "correct_gap_action_rate": 1.0,
+      "obligation_gap_precision": 1.0,
+      "obligation_gap_recall": 1.0,
+      "accepted_claim_support_precision": 1.0,
+      "supported_claim_attribution_rate": 1.0,
+      "false_not_found": 0,
+      "mean_abstract_cost": 3.0,
+      "action_distribution": {
+        "ABSTAIN_CONFLICT": 2,
+        "ABSTAIN_INCONCLUSIVE": 2,
+        "ABSTAIN_INVALID_EVIDENCE": 2,
+        "ABSTAIN_NOT_FOUND": 4,
+        "ANSWER_FULL": 8,
+        "ANSWER_SUPPORTED_ONLY": 2,
+        "ASK_CLARIFICATION": 2,
+        "PARTIAL_WITH_GAP": 4,
+        "REPAIR_ATTRIBUTION": 2,
+        "RETRIEVE_MISSING": 6,
+        "RETRIEVE_VALID": 2
+      },
+      "exact_action_errors_by_stratum": {}
+    },
+    "context_relevance": {
+      "cases": 36,
+      "exact_action_accuracy": 0.16666666666666666,
+      "answer_coverage": 0.8333333333333334,
+      "selective_sufficiency_risk": 0.8,
+      "false_sufficient_rate": 0.6666666666666666,
+      "false_insufficient_rate": 0.05555555555555555,
+      "critical_false_sufficient": 10,
+      "correct_gap_action_rate": 0.0,
+      "obligation_gap_precision": 1.0,
+      "obligation_gap_recall": 0.0,
+      "accepted_claim_support_precision": 0.5925925925925926,
+      "supported_claim_attribution_rate": 1.0,
+      "false_not_found": 0,
+      "mean_abstract_cost": 0.0,
+      "action_distribution": {
+        "ABSTAIN_INSUFFICIENT": 6,
+        "ANSWER_FULL": 30
+      },
+      "exact_action_errors_by_stratum": {
+        "absent-empty-retrieval": 2,
+        "absent-with-similar-distractor": 2,
+        "bilingual-complete-evidence": 2,
+        "complete-answer-incomplete-attribution": 2,
+        "incomplete-inventory-no-hit": 2,
+        "missing-bridge-recoverable": 2,
+        "missing-bridge-unavailable": 2,
+        "missing-facet-recoverable": 2,
+        "missing-facet-unavailable": 2,
+        "query-ambiguous": 2,
+        "redundant-saturation-missing-obligation": 2,
+        "stale-only-current-recoverable": 2,
+        "supported-answer-unsupported-extra-claim": 2,
+        "unresolved-current-conflict": 2,
+        "untrusted-only": 2
+      }
+    },
+    "nonempty": {
+      "cases": 36,
+      "exact_action_accuracy": 0.2777777777777778,
+      "answer_coverage": 0.8888888888888888,
+      "selective_sufficiency_risk": 0.75,
+      "false_sufficient_rate": 0.6666666666666666,
+      "false_insufficient_rate": 0.0,
+      "critical_false_sufficient": 10,
+      "correct_gap_action_rate": 0.08333333333333333,
+      "obligation_gap_precision": 1.0,
+      "obligation_gap_recall": 0.0,
+      "accepted_claim_support_precision": 0.6071428571428571,
+      "supported_claim_attribution_rate": 1.0,
+      "false_not_found": 2,
+      "mean_abstract_cost": 0.0,
+      "action_distribution": {
+        "ABSTAIN_NOT_FOUND": 4,
+        "ANSWER_FULL": 32
+      },
+      "exact_action_errors_by_stratum": {
+        "absent-with-similar-distractor": 2,
+        "complete-answer-incomplete-attribution": 2,
+        "incomplete-inventory-no-hit": 2,
+        "missing-bridge-recoverable": 2,
+        "missing-bridge-unavailable": 2,
+        "missing-facet-recoverable": 2,
+        "missing-facet-unavailable": 2,
+        "query-ambiguous": 2,
+        "redundant-saturation-missing-obligation": 2,
+        "stale-only-current-recoverable": 2,
+        "supported-answer-unsupported-extra-claim": 2,
+        "unresolved-current-conflict": 2,
+        "untrusted-only": 2
+      }
+    },
+    "oracle": {
+      "cases": 36,
+      "exact_action_accuracy": 1.0,
+      "answer_coverage": 0.2777777777777778,
+      "selective_sufficiency_risk": 0.0,
+      "false_sufficient_rate": 0.0,
+      "false_insufficient_rate": 0.0,
+      "critical_false_sufficient": 0,
+      "correct_gap_action_rate": 1.0,
+      "obligation_gap_precision": 1.0,
+      "obligation_gap_recall": 1.0,
+      "accepted_claim_support_precision": 1.0,
+      "supported_claim_attribution_rate": 1.0,
+      "false_not_found": 0,
+      "mean_abstract_cost": 0.0,
+      "action_distribution": {
+        "ABSTAIN_CONFLICT": 2,
+        "ABSTAIN_INCONCLUSIVE": 2,
+        "ABSTAIN_INVALID_EVIDENCE": 2,
+        "ABSTAIN_NOT_FOUND": 4,
+        "ANSWER_FULL": 8,
+        "ANSWER_SUPPORTED_ONLY": 2,
+        "ASK_CLARIFICATION": 2,
+        "PARTIAL_WITH_GAP": 4,
+        "REPAIR_ATTRIBUTION": 2,
+        "RETRIEVE_MISSING": 6,
+        "RETRIEVE_VALID": 2
+      },
+      "exact_action_errors_by_stratum": {}
+    },
+    "retrieved_obligation": {
+      "cases": 36,
+      "exact_action_accuracy": 0.7777777777777778,
+      "answer_coverage": 0.2777777777777778,
+      "selective_sufficiency_risk": 0.0,
+      "false_sufficient_rate": 0.0,
+      "false_insufficient_rate": 0.0,
+      "critical_false_sufficient": 0,
+      "correct_gap_action_rate": 0.6666666666666666,
+      "obligation_gap_precision": 1.0,
+      "obligation_gap_recall": 1.0,
+      "accepted_claim_support_precision": 1.0,
+      "supported_claim_attribution_rate": 1.0,
+      "false_not_found": 0,
+      "mean_abstract_cost": 1.0,
+      "action_distribution": {
+        "ABSTAIN_CONFLICT": 2,
+        "ABSTAIN_INCONCLUSIVE": 2,
+        "ABSTAIN_INVALID_EVIDENCE": 2,
+        "ANSWER_FULL": 8,
+        "ANSWER_SUPPORTED_ONLY": 2,
+        "ASK_CLARIFICATION": 2,
+        "REPAIR_ATTRIBUTION": 2,
+        "RETRIEVE_MISSING": 14,
+        "RETRIEVE_VALID": 2
+      },
+      "exact_action_errors_by_stratum": {
+        "absent-empty-retrieval": 2,
+        "absent-with-similar-distractor": 2,
+        "missing-bridge-unavailable": 2,
+        "missing-facet-unavailable": 2
+      }
+    },
+    "self_report": {
+      "cases": 36,
+      "exact_action_accuracy": 0.16666666666666666,
+      "answer_coverage": 0.8333333333333334,
+      "selective_sufficiency_risk": 0.8,
+      "false_sufficient_rate": 0.6666666666666666,
+      "false_insufficient_rate": 0.05555555555555555,
+      "critical_false_sufficient": 10,
+      "correct_gap_action_rate": 0.0,
+      "obligation_gap_precision": 1.0,
+      "obligation_gap_recall": 0.0,
+      "accepted_claim_support_precision": 0.5925925925925926,
+      "supported_claim_attribution_rate": 1.0,
+      "false_not_found": 0,
+      "mean_abstract_cost": 0.0,
+      "action_distribution": {
+        "ABSTAIN_INSUFFICIENT": 6,
+        "ANSWER_FULL": 30
+      },
+      "exact_action_errors_by_stratum": {
+        "absent-empty-retrieval": 2,
+        "absent-with-similar-distractor": 2,
+        "bilingual-complete-evidence": 2,
+        "complete-answer-incomplete-attribution": 2,
+        "incomplete-inventory-no-hit": 2,
+        "missing-bridge-recoverable": 2,
+        "missing-bridge-unavailable": 2,
+        "missing-facet-recoverable": 2,
+        "missing-facet-unavailable": 2,
+        "query-ambiguous": 2,
+        "redundant-saturation-missing-obligation": 2,
+        "stale-only-current-recoverable": 2,
+        "supported-answer-unsupported-extra-claim": 2,
+        "unresolved-current-conflict": 2,
+        "untrusted-only": 2
+      }
+    },
+    "semantic_consistency": {
+      "cases": 36,
+      "exact_action_accuracy": 0.16666666666666666,
+      "answer_coverage": 0.8333333333333334,
+      "selective_sufficiency_risk": 0.8,
+      "false_sufficient_rate": 0.6666666666666666,
+      "false_insufficient_rate": 0.05555555555555555,
+      "critical_false_sufficient": 10,
+      "correct_gap_action_rate": 0.0,
+      "obligation_gap_precision": 1.0,
+      "obligation_gap_recall": 0.0,
+      "accepted_claim_support_precision": 0.5925925925925926,
+      "supported_claim_attribution_rate": 1.0,
+      "false_not_found": 0,
+      "mean_abstract_cost": 0.0,
+      "action_distribution": {
+        "ABSTAIN_INSUFFICIENT": 6,
+        "ANSWER_FULL": 30
+      },
+      "exact_action_errors_by_stratum": {
+        "absent-empty-retrieval": 2,
+        "absent-with-similar-distractor": 2,
+        "bilingual-complete-evidence": 2,
+        "complete-answer-incomplete-attribution": 2,
+        "incomplete-inventory-no-hit": 2,
+        "missing-bridge-recoverable": 2,
+        "missing-bridge-unavailable": 2,
+        "missing-facet-recoverable": 2,
+        "missing-facet-unavailable": 2,
+        "query-ambiguous": 2,
+        "redundant-saturation-missing-obligation": 2,
+        "stale-only-current-recoverable": 2,
+        "supported-answer-unsupported-extra-claim": 2,
+        "unresolved-current-conflict": 2,
+        "untrusted-only": 2
+      }
+    },
+    "similarity": {
+      "cases": 36,
+      "exact_action_accuracy": 0.16666666666666666,
+      "answer_coverage": 0.8333333333333334,
+      "selective_sufficiency_risk": 0.8,
+      "false_sufficient_rate": 0.6666666666666666,
+      "false_insufficient_rate": 0.05555555555555555,
+      "critical_false_sufficient": 10,
+      "correct_gap_action_rate": 0.0,
+      "obligation_gap_precision": 1.0,
+      "obligation_gap_recall": 0.0,
+      "accepted_claim_support_precision": 0.5925925925925926,
+      "supported_claim_attribution_rate": 1.0,
+      "false_not_found": 0,
+      "mean_abstract_cost": 0.0,
+      "action_distribution": {
+        "ABSTAIN_INSUFFICIENT": 6,
+        "ANSWER_FULL": 30
+      },
+      "exact_action_errors_by_stratum": {
+        "absent-empty-retrieval": 2,
+        "absent-with-similar-distractor": 2,
+        "bilingual-complete-evidence": 2,
+        "complete-answer-incomplete-attribution": 2,
+        "incomplete-inventory-no-hit": 2,
+        "missing-bridge-recoverable": 2,
+        "missing-bridge-unavailable": 2,
+        "missing-facet-recoverable": 2,
+        "missing-facet-unavailable": 2,
+        "query-ambiguous": 2,
+        "redundant-saturation-missing-obligation": 2,
+        "stale-only-current-recoverable": 2,
+        "supported-answer-unsupported-extra-claim": 2,
+        "unresolved-current-conflict": 2,
+        "untrusted-only": 2
+      }
+    }
+  },
+  "risk_coverage": {
+    "similarity": [
+      {
+        "threshold": 0.98,
+        "coverage": 0.05555555555555555,
+        "risk": 1.0,
+        "accepted": 2
+      },
+      {
+        "threshold": 0.96,
+        "coverage": 0.1111111111111111,
+        "risk": 1.0,
+        "accepted": 4
+      },
+      {
+        "threshold": 0.9,
+        "coverage": 0.8333333333333334,
+        "risk": 0.8,
+        "accepted": 30
+      },
+      {
+        "threshold": 0.61,
+        "coverage": 0.8888888888888888,
+        "risk": 0.75,
+        "accepted": 32
+      },
+      {
+        "threshold": 0.0,
+        "coverage": 0.8888888888888888,
+        "risk": 0.75,
+        "accepted": 32
+      }
+    ],
+    "context_relevance": [
+      {
+        "threshold": 0.94,
+        "coverage": 0.05555555555555555,
+        "risk": 0.0,
+        "accepted": 2
+      },
+      {
+        "threshold": 0.93,
+        "coverage": 0.7777777777777778,
+        "risk": 0.8571428571428571,
+        "accepted": 28
+      },
+      {
+        "threshold": 0.91,
+        "coverage": 0.8333333333333334,
+        "risk": 0.8,
+        "accepted": 30
+      },
+      {
+        "threshold": 0.62,
+        "coverage": 0.8888888888888888,
+        "risk": 0.75,
+        "accepted": 32
+      },
+      {
+        "threshold": 0.25,
+        "coverage": 0.8888888888888888,
+        "risk": 0.75,
+        "accepted": 32
+      }
+    ],
+    "self_report": [
+      {
+        "threshold": 0.94,
+        "coverage": 0.7222222222222222,
+        "risk": 0.9230769230769231,
+        "accepted": 26
+      },
+      {
+        "threshold": 0.91,
+        "coverage": 0.7777777777777778,
+        "risk": 0.8571428571428571,
+        "accepted": 28
+      },
+      {
+        "threshold": 0.88,
+        "coverage": 0.8333333333333334,
+        "risk": 0.8,
+        "accepted": 30
+      },
+      {
+        "threshold": 0.58,
+        "coverage": 0.8888888888888888,
+        "risk": 0.75,
+        "accepted": 32
+      },
+      {
+        "threshold": 0.22,
+        "coverage": 0.8888888888888888,
+        "risk": 0.75,
+        "accepted": 32
+      }
+    ],
+    "semantic_consistency": [
+      {
+        "threshold": 0.95,
+        "coverage": 0.7222222222222222,
+        "risk": 0.9230769230769231,
+        "accepted": 26
+      },
+      {
+        "threshold": 0.9,
+        "coverage": 0.7777777777777778,
+        "risk": 0.8571428571428571,
+        "accepted": 28
+      },
+      {
+        "threshold": 0.86,
+        "coverage": 0.8333333333333334,
+        "risk": 0.8,
+        "accepted": 30
+      },
+      {
+        "threshold": 0.55,
+        "coverage": 0.8888888888888888,
+        "risk": 0.75,
+        "accepted": 32
+      },
+      {
+        "threshold": 0.28,
+        "coverage": 0.8888888888888888,
+        "risk": 0.75,
+        "accepted": 32
+      }
+    ]
+  },
+  "self_report_point_closest_to_hybrid_coverage": {
+    "threshold": 0.94,
+    "coverage": 0.7222222222222222,
+    "risk": 0.9230769230769231,
+    "accepted": 26
+  },
+  "self_report_hybrid_coverage_gap": 0.4444444444444444,
+  "candidate_gate_checks": {
+    "zero_critical_false_sufficient": true,
+    "gap_action_at_least_0.90": true,
+    "obligation_recall_at_least_0.90": true,
+    "claim_support_precision_at_least_0.95": true,
+    "matched_coverage_point_available": false,
+    "matched_coverage_risk_gain_at_least_0.15": false,
+    "zero_false_not_found": true
+  },
+  "all_candidate_gates_pass": false,
+  "interpretation_boundary": "authored labels and diagnostic-gold obligation mappings; state-machine construction only"
+}
