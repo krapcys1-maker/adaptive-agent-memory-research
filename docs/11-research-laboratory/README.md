@@ -87,6 +87,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-obligation-mapping-deepseek-challenge-v0/` — unchanged optional-model prompt on the post-freeze challenge; 13/28 valid, F1 0.325, critical recall 0.292, E2E 0.107, two false closures. Rejected.
 - `data/lab/pmlab-obligation-mapping-challenge-v0/stage-failure-analysis-v0/` — post-hoc localization showing multi-stage errors in 24/28 rule cases and 21/28 model cases; descriptive only because challenge v0 is spent.
 - `docs/11-research-laboratory/factorized-obligation-mapper-repair-protocol-v0.md` — next-stage protocol isolating contract/span, graph, entity, schema, time/authorization, and certificate routing before another integrated challenge.
+- `docs/07-literature/structured-output-and-schema-linking-audit.md` — exact-locator audit showing why valid structured output, semantic correctness, executable correctness, schema recall, and schema false positives require separate metrics.
 - `data/lab/pmlab-forgetting-dev/` — deterministic 28-case F1 and 56-query F2 development instrument with artifacts and an adversarial review.
 - `data/lab/pmlab-forgetting-challenge-v0/` — unseen-template multi-fault and ambiguous entity/time challenge that breaks the development resolver.
 - `data/lab/reader-interference-stress-v5/` — first fully audited single-model factorial over stale count, cue quality, order, similarity, and instruction strength.

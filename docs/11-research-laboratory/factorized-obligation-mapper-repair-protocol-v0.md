@@ -71,6 +71,10 @@ These are hypotheses, not architecture decisions:
 6. constrained decoding or tool-schema validation only after measuring whether it improves semantic validity rather than JSON syntax alone;
 7. optional LLM selection over deterministic candidate sets, with local fallback and identical provider-neutral I/O.
 
+For any model arm, cross four interface modes where the provider/runtime permits them: prompt-only direct JSON, hard constrained output, controlled-sublanguage followed by deterministic conversion, and semantic draft followed by deterministic validation/packaging. Score `schema_valid`, `semantic_correct`, `end_to_end_correct`, and `wrong_valid_contract` separately. A 100% valid JSON stream can still fail the semantic safety gate.
+
+For schema retrieval, report candidate Recall@5 together with false-positive rate, retained-schema fraction, tokens, calls, and latency. A union of lexical and contextual candidates is admissible only as a recall-stage arm; it must not be presented as correct top-1 scope selection.
+
 ## Stop and promotion rules
 
 Stop repairing an integrated arm on challenge v0: it is spent. A repair may proceed only on stage dev v1, then freeze. If an oracle-isolated stage does not improve the downstream critical metric by at least five percentage points or remove a safety failure, do not add its complexity. If candidate Recall@5 is below 0.99, do not spend effort on a reranker. If all isolated stages pass but integration fails, investigate interface composition rather than retraining each stage.
