@@ -81,6 +81,12 @@ Run the deterministic entity/time parser baseline against challenge v0:
 python scripts/run_query_parser_baseline.py
 ```
 
+Run the post-freeze language/date challenge against unchanged parser v0:
+
+```powershell
+python scripts/run_query_parser_challenge.py
+```
+
 ## Verify screening-source identity
 
 Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:

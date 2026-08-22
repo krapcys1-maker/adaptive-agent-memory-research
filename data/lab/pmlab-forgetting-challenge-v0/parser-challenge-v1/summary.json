@@ -1,0 +1,43 @@
+{
+  "status": "completed-frozen-parser-challenge",
+  "parser_frozen_commit": "1a43b7a",
+  "cases": 28,
+  "answerable_cases": 21,
+  "unanswerable_cases": 7,
+  "exact_parse_accuracy": 0.39285714285714285,
+  "answerable_exact_parse_accuracy": 0.23809523809523808,
+  "answerable_recall_at_5": 0.23809523809523808,
+  "unanswerable_abstention_rate": 0.8571428571428571,
+  "arms": {
+    "raw": {
+      "answerable_recall_at_5": 0.38095238095238093,
+      "unanswerable_abstention_rate": 0.14285714285714285
+    },
+    "parser-strict": {
+      "answerable_recall_at_5": 0.23809523809523808,
+      "unanswerable_abstention_rate": 0.8571428571428571
+    },
+    "parser-fallback-raw": {
+      "answerable_recall_at_5": 0.6190476190476191,
+      "unanswerable_abstention_rate": 0.14285714285714285
+    },
+    "posthoc-unresolved-time-fallback": {
+      "answerable_recall_at_5": 0.6190476190476191,
+      "unanswerable_abstention_rate": 0.8571428571428571
+    }
+  },
+  "parse_accuracy_by_category": {
+    "ambiguous": 1,
+    "date-format": 0.125,
+    "missing-entity": 1,
+    "multilingual": 0,
+    "out-of-range": 1,
+    "paraphrase": 0.25,
+    "relative-time": 0,
+    "topic-disambiguation": 0.75,
+    "underspecified-time": 0,
+    "unknown-entity": 1
+  },
+  "posthoc_note": "The unresolved-time-only fallback was defined after inspecting v1 failure reasons and requires a fresh freeze before evidential use.",
+  "boundary": "Authored adversarial challenge created after parser v0 was committed, but not independently designed or annotated."
+}

@@ -1,0 +1,7 @@
+{
+  "status": "completed-frozen-parser-challenge",
+  "script": "scripts/run_query_parser_challenge.py",
+  "parser_frozen_commit": "1a43b7a",
+  "cases_sha256": "80b9d53006fc58ecf402452571d02685b52a62c77ad6bc602e227b8da37f0e23",
+  "authority": "post-freeze authored challenge; not independent"
+}

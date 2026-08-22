@@ -1,0 +1,28 @@
+{"answerable": true, "case_id": "PCH-001", "category": "paraphrase", "expected_history_id": "aster-key", "expected_target_date": "2026-01-03", "query": "Which passphrase is presently active for Aster?"}
+{"answerable": true, "case_id": "PCH-002", "category": "paraphrase", "expected_history_id": "juniper-route", "expected_target_date": "2026-01-07", "query": "Give me Juniper's latest delivery path."}
+{"answerable": true, "case_id": "PCH-003", "category": "paraphrase", "expected_history_id": "nimbus-owner", "expected_target_date": "2026-01-11", "query": "Who owns the current Nimbus incident?"}
+{"answerable": true, "case_id": "PCH-004", "category": "paraphrase", "expected_history_id": "vela-threshold", "expected_target_date": "2026-01-19", "query": "What is Vela's presently valid safety limit?"}
+{"answerable": true, "case_id": "PCH-005", "category": "topic-disambiguation", "expected_history_id": "mercury-project", "expected_target_date": "2026-01-31", "query": "Current communications channel for the Mercury project?"}
+{"answerable": true, "case_id": "PCH-006", "category": "topic-disambiguation", "expected_history_id": "mercury-planet", "expected_target_date": "2026-02-16", "query": "Current viewing interval for planet Mercury?"}
+{"answerable": true, "case_id": "PCH-007", "category": "topic-disambiguation", "expected_history_id": "jordan-analyst", "expected_target_date": "2026-01-13", "query": "What is Jordan's current review assignment?"}
+{"answerable": true, "case_id": "PCH-008", "category": "topic-disambiguation", "expected_history_id": "jordan-station", "expected_target_date": "2026-01-23", "query": "Which station locker is active now for Jordan?"}
+{"answerable": true, "case_id": "PCH-009", "category": "date-format", "expected_history_id": "aster-key", "expected_target_date": "2026-01-01", "query": "Aster access phrase on 01/01/2026?"}
+{"answerable": true, "case_id": "PCH-010", "category": "date-format", "expected_history_id": "juniper-route", "expected_target_date": "2026-01-03", "query": "Juniper delivery route on 3 January 2026?"}
+{"answerable": true, "case_id": "PCH-011", "category": "date-format", "expected_history_id": "nimbus-owner", "expected_target_date": "2026-01-05", "query": "Nimbus incident owner on January fifth, 2026?"}
+{"answerable": true, "case_id": "PCH-012", "category": "date-format", "expected_history_id": "vela-threshold", "expected_target_date": "2026-01-09", "query": "Vela safety threshold on 2026.01.09?"}
+{"answerable": true, "case_id": "PCH-013", "category": "date-format", "expected_history_id": "mercury-project", "expected_target_date": "2026-01-10", "query": "Mercury project channel on the 10th of January 2026?"}
+{"answerable": true, "case_id": "PCH-014", "category": "date-format", "expected_history_id": "mercury-planet", "expected_target_date": "2026-02-15", "query": "Mercury observation window on February 15, 2026?"}
+{"answerable": true, "case_id": "PCH-015", "category": "date-format", "expected_history_id": "jordan-analyst", "expected_target_date": "2026-01-04", "query": "Jordan review duty on Jan 4, 2026?"}
+{"answerable": true, "case_id": "PCH-016", "category": "date-format", "expected_history_id": "jordan-station", "expected_target_date": "2026-01-07", "query": "Jordan station locker at 2026-01-07T12:00Z?"}
+{"answerable": true, "case_id": "PCH-017", "category": "relative-time", "expected_history_id": "aster-key", "expected_target_date": "2026-01-01", "query": "Aster access phrase two versions back from newest?"}
+{"answerable": true, "case_id": "PCH-018", "category": "relative-time", "expected_history_id": "juniper-route", "expected_target_date": "2026-01-05", "query": "What was the fifth Juniper delivery route revision?"}
+{"answerable": true, "case_id": "PCH-019", "category": "relative-time", "expected_history_id": "nimbus-owner", "expected_target_date": "2026-01-09", "query": "Właściciel incydentu Nimbus dwa wydania przed najnowszym?"}
+{"answerable": true, "case_id": "PCH-020", "category": "relative-time", "expected_history_id": "vela-threshold", "expected_target_date": "2026-01-18", "query": "What was the previous Vela safety threshold?"}
+{"answerable": true, "case_id": "PCH-021", "category": "multilingual", "expected_history_id": "aster-key", "expected_target_date": "2026-01-03", "query": "Jaki jest aktualny kod dostępu Aster?"}
+{"answerable": false, "case_id": "PCH-022", "category": "ambiguous", "expected_history_id": null, "expected_target_date": null, "query": "What is the current Mercury state?"}
+{"answerable": false, "case_id": "PCH-023", "category": "ambiguous", "expected_history_id": null, "expected_target_date": null, "query": "What is Jordan's current responsibility?"}
+{"answerable": false, "case_id": "PCH-024", "category": "unknown-entity", "expected_history_id": null, "expected_target_date": null, "query": "What is Zephyr's current recovery code?"}
+{"answerable": false, "case_id": "PCH-025", "category": "out-of-range", "expected_history_id": null, "expected_target_date": null, "query": "Aster access phrase on 2025-12-31?"}
+{"answerable": false, "case_id": "PCH-026", "category": "underspecified-time", "expected_history_id": null, "expected_target_date": null, "query": "What was Vela's safety threshold sometime before now?"}
+{"answerable": false, "case_id": "PCH-027", "category": "out-of-range", "expected_history_id": null, "expected_target_date": null, "query": "Mercury project channel on January 1, 2027?"}
+{"answerable": false, "case_id": "PCH-028", "category": "missing-entity", "expected_history_id": null, "expected_target_date": null, "query": "What is the current access phrase?"}

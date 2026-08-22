@@ -39,6 +39,7 @@ This is the fastest guide to where information belongs.
 | F1/F2 adversarial challenge and resolver failure report | `data/lab/pmlab-forgetting-challenge-v0/` |
 | Query/scope factorial and leakage-controlled reader stress | `data/lab/pmlab-forgetting-challenge-v0/factorial/`; `data/lab/reader-interference-stress-v5/` |
 | Measurable catalog entity/time parser baseline | `data/lab/pmlab-forgetting-challenge-v0/parser-v0/` |
+| Frozen language/date falsification of parser v0 | `data/lab/pmlab-forgetting-challenge-v0/parser-challenge-v1/` |
 | Passive cascade versus isolated active-probe comparison | `data/lab/pmlab-fault-probes-v0/` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Emotion/salience mechanism synthesis and falsification rules | `docs/12-interdisciplinary-memory/emotion-salience-synthesis.md` |
