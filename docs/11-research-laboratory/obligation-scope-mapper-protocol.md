@@ -1,6 +1,6 @@
 # Obligation decomposer and scope-mapper protocol
 
-Status: preregistration draft; design-freeze candidate and construction corpus exist; no parser, independent review, or result
+Status: construction and post-freeze challenge completed; both deployable arms rejected; independent review absent
 
 ## Purpose
 
@@ -44,3 +44,9 @@ A construction pass validates serialization and scoring only. No mapper advances
 ## Current construction artifact
 
 `docs/11-research-laboratory/obligation-ir-schema-v0.md` defines the operator, scope, atomicity, split, utility, and metric contract. `data/lab/pmlab-obligation-mapping-dev-v0/` contains 28 semantic groups expanded to 56 paired PL/EN cases. It covers all 13 operators and includes ambiguity, NIL, authorization, temporal, closure, unsupported-structure, and structure-versus-denotation metric fixtures. It remains inspectable development data and may not be reported as held out.
+
+## Post-freeze challenge result
+
+The challenge corpus froze at `adc540f` after the deterministic runner and optional-model prompt were fixed. Its 14 semantic groups yield 28 paired PL/EN cases with entirely disjoint predicate, namespace, and catalog entity identifiers plus unseen complete composition signatures. Labels come from the same research process and are not independently reviewed.
+
+The unchanged QDMR rules fell from construction obligation F1 0.922 to 0.409, with 18 critical omissions, ten false closures, and zero end-to-end exact cases. The unchanged `deepseek-v4-flash` prompt fell from 0.710 to 0.325, returned only 13/28 schema-valid predictions, made 17 critical omissions and two false closures, and reached 0.107 end-to-end exact. Both arms fail promotion. No post-challenge repair may be evaluated on this challenge as if it were still unseen.

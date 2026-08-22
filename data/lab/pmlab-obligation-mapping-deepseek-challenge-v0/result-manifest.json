@@ -1,0 +1,18 @@
+{
+  "status": "completed-post-freeze-model-comparator",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "pmlab-map-deepseek-v0",
+  "prompt_freeze_commit": "6a288f6",
+  "adapter_freeze_commit": "8913667",
+  "challenge_freeze_commit": "adc540f",
+  "construction_model_result_commit": "0066961",
+  "prediction_count": 13,
+  "scored_case_count": 28,
+  "hashes": {
+    "predictions.jsonl": "12c79636df5919900f8ce6a8117ddc2d4860adf7032ebb830a5b8ce72c538918",
+    "scored-results.jsonl": "3f3ec3958210eb26d4298c7aed406b04baa594ea59773ba6ce57deaca4833ad6",
+    "score-summary.json": "efdea6a738f0ce859fb018c717071041407e99a204dc27b3895ce8324d2d42d4",
+    "report.md": "5d80b1a232a1344f0d6592cd6bc040c24f1fb5302f56c1976068a7e8e7a3013b"
+  },
+  "authority": "optional comparator; never gold; post-freeze but not independently reviewed"
+}

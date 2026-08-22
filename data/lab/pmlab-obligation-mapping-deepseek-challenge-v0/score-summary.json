@@ -1,0 +1,21 @@
+{
+  "case_count": 28,
+  "obligation_precision": 0.65,
+  "obligation_recall": 0.21666666666666667,
+  "obligation_f1": 0.325,
+  "critical_full_recall": 0.2916666666666667,
+  "critical_omission_count": 17,
+  "structure_exact_rate": 0.32142857142857145,
+  "status_exact_rate": 0.39285714285714285,
+  "false_closure_count": 2,
+  "critical_unresolved_safe_rate": 0.8,
+  "end_to_end_exact_rate": 0.10714285714285714,
+  "link_accuracy": {
+    "entity": 0.7692307692307693,
+    "predicate": 0.8461538461538461,
+    "namespaces": 0.9230769230769231,
+    "time": 0.8461538461538461,
+    "authorization": 1.0,
+    "certificate": 0.6923076923076923
+  }
+}
