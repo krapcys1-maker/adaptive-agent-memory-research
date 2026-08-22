@@ -55,6 +55,7 @@ These are seed papers, not a completed reading list:
 10. Journaling, crash-consistency, checksums, and fault injection — durable canonical memory under failure.
 11. Temporal databases and provenance — valid time, transaction time, correction, and supersession.
 12. Landauer and modern information thermodynamics — physical boundary only; require a unique architecture prediction before promotion.
+13. Metamemory monitoring and control, cue-familiarity/accessibility accounts, search termination, selective prediction, and semantic uncertainty — complete replication/adversarial pass after the targeted synthesis.
 
 ## Reading-note minimum
 

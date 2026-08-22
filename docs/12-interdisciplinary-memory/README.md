@@ -8,6 +8,8 @@ Identify mechanisms from adjacent disciplines that solve a measurable part of lo
 
 The project aims at a functional memory substitute for continuity, learning, correction, future intentions, and appropriate recall. It does not assume that an external disk store creates human phenomenology, consciousness, or felt emotion.
 
+Current focused syntheses include `metamemory-selective-control-synthesis.md`, which connects monitoring/control, feeling-of-knowing heuristics, selective risk, semantic uncertainty, and typed retrieval escalation without treating confidence as proof of stored knowledge.
+
 ## Common functional decomposition
 
 ```text
