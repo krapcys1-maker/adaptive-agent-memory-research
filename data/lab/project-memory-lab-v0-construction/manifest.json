@@ -45,6 +45,6 @@
     "development": 60,
     "test": 60
   },
-  "status": "authored-construction-awaiting-dual-independent-annotation",
+  "status": "invalidated-pre-run-template-leakage",
   "unlock": "two independent complete forms, adjudication, provenance/leakage audit, hash freeze, and baseline preregistration"
 }

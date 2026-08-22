@@ -1,0 +1,32 @@
+{
+  "audit_status": "pass",
+  "backend_output_read": false,
+  "new_manifest_sha256": "3c357d1c18e6061b4937c3c2a68e383cbf546106720f026e0e14ac6e18533644",
+  "old_manifest_sha256": "575bb7e3418888bbb707b865a3866bd7f11094aba96795d2da8bf9c24d766541",
+  "original_protocol_freeze_commit": "e111a57",
+  "outcome_contract_unchanged": true,
+  "source_query_freeze_commit": "cc904dd",
+  "top_level_content_changes_excluding_version_status_migration_and_corpus": [],
+  "corpus_changes": {
+    "blind_queries_sha256": {
+      "from": "bbd92b7bedc876ff849d4b504aa99abf99dae334d022f1d19c5e87510b8160b7",
+      "to": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf"
+    },
+    "construction_commit": {
+      "from": "612eb06",
+      "to": "cc904dd"
+    }
+  },
+  "unchanged_contract_sections": [
+    "backend_input_boundary",
+    "backends",
+    "retrieval_contract",
+    "primary_outcome",
+    "secondary_metrics",
+    "sanity_controls",
+    "decision_rule",
+    "execution_sequence",
+    "public_bridge",
+    "dense_and_hybrid_unlock"
+  ]
+}

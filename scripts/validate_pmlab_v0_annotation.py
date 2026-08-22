@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Validate one or two independent PMLAB v0 annotation submissions.
+"""Historical validator for PMLAB v0 annotation submissions.
 
 The validator checks packet integrity and annotation contracts.  It never reads
-author labels, computes agreement with them, or unlocks a baseline run.
+author labels, computes agreement with them, or unlocks a baseline run. The v0
+packet is invalidated, so packet verification now rejects it by design.
 """
 
 from __future__ import annotations
@@ -30,8 +31,8 @@ def sha256(path: Path) -> str:
 
 def verify_packet() -> dict[str, Any]:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    if manifest["status"] != "authored-construction-awaiting-dual-independent-annotation":
-        raise ValueError("packet is not awaiting dual independent annotation")
+    if manifest["status"] != "independent-leakage-accepted-awaiting-dual-annotation":
+        raise ValueError("packet is not independently leakage-accepted and awaiting dual annotation")
     if manifest["baseline_run_permitted"] is not False or manifest["author_labels_are_gold"] is not False:
         raise ValueError("construction safety flags changed")
     for relative, expected in manifest["hashes"].items():

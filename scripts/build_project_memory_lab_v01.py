@@ -17,6 +17,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data" / "lab" / "project-memory-lab-v0-construction"
 OUT = ROOT / "data" / "lab" / "project-memory-lab-v0.1-construction"
+CANDIDATE_FREEZE_COMMIT = "cc904dd"
 
 
 TEST_REWRITES = {
@@ -119,13 +120,45 @@ def build_outputs() -> dict[Path, bytes]:
     source_attestation["blind_corpus_sha256"] = sha256_bytes(corpus_bytes)
     source_attestation["blind_queries_sha256"] = sha256_bytes(blind_bytes)
     attestation_bytes = (json.dumps(source_attestation, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
+    categories = sorted({row["category"] for row in blind_queries})
+    leakage_review = {
+        "reviewer_id": "",
+        "reviewer_family_or_affiliation": "",
+        "review_started_at": "",
+        "review_completed_at": "",
+        "candidate_query_freeze_commit": CANDIDATE_FREEZE_COMMIT,
+        "blind_corpus_sha256": sha256_bytes(corpus_bytes),
+        "blind_queries_sha256": sha256_bytes(blind_bytes),
+        "category_reviews": {
+            category: {"decision": None, "material_overlap_example_ids": [], "notes": ""}
+            for category in categories
+        },
+        "whole_packet_decision": None,
+        "statements": {
+            "did_not_inspect_author_labels_or_builder_source": None,
+            "did_not_inspect_backend_outputs": None,
+            "compared_all_within_category_development_test_forms": None,
+            "checked_category_filename_wording_and_project_exposure_cues": None,
+            "disclosed_conflicts_prior_exposure_and_assistance": None,
+        },
+        "conflicts_prior_exposure_or_assistance": "",
+        "signature_or_verifiable_acknowledgement": "",
+    }
+    leakage_review_bytes = (json.dumps(leakage_review, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
 
     manifest = {
         "benchmark_id": "project-memory-lab-v0.1-construction",
-        "status": "authored-repair-awaiting-label-free-split-audit",
+        "status": "automated-screen-passed-awaiting-independent-leakage-review",
+        "candidate_freeze_commit": CANDIDATE_FREEZE_COMMIT,
         "parent_invalidated_version": "project-memory-lab-v0-construction",
         "parent_freeze_commit": "612eb06",
         "repair_scope": "all 60 test query forms changed before independent annotation or backend execution",
+        "automated_split_audit": {
+            "path": "data/lab/pmlab-v0.1-split-audit/summary.json",
+            "cross_split_pairs": 300,
+            "flagged_pairs": 0,
+            "thresholds_confirmatory": False,
+        },
         "evidence_corpus_byte_identical_to_parent": True,
         "author_label_relations_unchanged": True,
         "queries": len(labels),
@@ -144,6 +177,7 @@ def build_outputs() -> dict[Path, bytes]:
             "blind/annotation-manual.md": sha256_bytes(manual_bytes),
             "blind/attestation-a.json": sha256_bytes(attestation_bytes),
             "blind/attestation-b.json": sha256_bytes(attestation_bytes),
+            "blind/leakage-review-form.json": sha256_bytes(leakage_review_bytes),
         },
         "limitations": [
             "query rewrites were authored by the benchmark constructor and require independent leakage review",
@@ -187,6 +221,7 @@ The rewrite is not self-validating. The label-free similarity screen, direct pai
         OUT / "blind" / "annotation-manual.md": manual_bytes,
         OUT / "blind" / "attestation-a.json": attestation_bytes,
         OUT / "blind" / "attestation-b.json": attestation_bytes,
+        OUT / "blind" / "leakage-review-form.json": leakage_review_bytes,
         OUT / "manifest.json": manifest_bytes,
         OUT / "construction-audit.json": audit_bytes,
         OUT / "README.md": readme,

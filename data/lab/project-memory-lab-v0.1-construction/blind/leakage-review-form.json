@@ -1,0 +1,81 @@
+{
+  "blind_corpus_sha256": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+  "blind_queries_sha256": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
+  "candidate_query_freeze_commit": "cc904dd",
+  "category_reviews": {
+    "causal_multi_episode": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "contradiction": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "cross_language": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "exact_lexical": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "paraphrase": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "poison_resistance": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "procedure_failure": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "supersession": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "temporal_as_of": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "unanswerable": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "weak_overlap": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    },
+    "what_where_when": {
+      "decision": null,
+      "material_overlap_example_ids": [],
+      "notes": ""
+    }
+  },
+  "conflicts_prior_exposure_or_assistance": "",
+  "review_completed_at": "",
+  "review_started_at": "",
+  "reviewer_family_or_affiliation": "",
+  "reviewer_id": "",
+  "signature_or_verifiable_acknowledgement": "",
+  "statements": {
+    "checked_category_filename_wording_and_project_exposure_cues": null,
+    "compared_all_within_category_development_test_forms": null,
+    "did_not_inspect_author_labels_or_builder_source": null,
+    "did_not_inspect_backend_outputs": null,
+    "disclosed_conflicts_prior_exposure_and_assistance": null
+  },
+  "whole_packet_decision": null
+}

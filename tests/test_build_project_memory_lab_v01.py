@@ -57,6 +57,13 @@ class ProjectMemoryLabV01BuilderTests(unittest.TestCase):
         attestation = json.loads(self.outputs[MODULE.OUT / "blind" / "attestation-a.json"])
         self.assertEqual(attestation["blind_queries_sha256"], hashlib.sha256(queries).hexdigest())
 
+    def test_leakage_review_template_is_blank_and_hash_bound(self):
+        review = json.loads(self.outputs[MODULE.OUT / "blind" / "leakage-review-form.json"])
+        queries = self.outputs[MODULE.OUT / "blind" / "queries.jsonl"]
+        self.assertIsNone(review["whole_packet_decision"])
+        self.assertEqual(review["blind_queries_sha256"], hashlib.sha256(queries).hexdigest())
+        self.assertEqual(len(review["category_reviews"]), 12)
+
     def test_builder_is_deterministic(self):
         self.assertEqual(self.outputs, MODULE.build_outputs())
 

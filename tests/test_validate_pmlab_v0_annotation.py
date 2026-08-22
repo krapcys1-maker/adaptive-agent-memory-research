@@ -15,10 +15,9 @@ SPEC.loader.exec_module(MODULE)
 
 
 class PMLABAnnotationValidatorTests(unittest.TestCase):
-    def test_packet_integrity_and_blank_rejection(self):
-        self.assertEqual(MODULE.verify_packet()["queries"], 120)
-        with self.assertRaises(ValueError):
-            MODULE.validate_one(MODULE.BLIND / "annotation-form-a.jsonl", MODULE.BLIND / "attestation-a.json", "A")
+    def test_invalidated_v0_packet_cannot_enter_annotation(self):
+        with self.assertRaisesRegex(ValueError, "not independently leakage-accepted"):
+            MODULE.verify_packet()
 
     def completed(self, directory: Path, reviewer: str, slot: str, alter_first: bool = False):
         labels = MODULE.read_jsonl(MODULE.PACKET / "internal" / "author-labels.jsonl")
@@ -48,23 +47,6 @@ class PMLABAnnotationValidatorTests(unittest.TestCase):
         att = directory / f"att-{slot}.json"
         att.write_text(json.dumps(attestation), encoding="utf-8")
         return form, att
-
-    def test_complete_contract_gets_receipt_but_not_unlock(self):
-        with tempfile.TemporaryDirectory() as temp:
-            form, att = self.completed(Path(temp), "reviewer-a", "A")
-            receipt = MODULE.validate_one(form, att, "A")
-        self.assertEqual(receipt["queries"], 120)
-        self.assertFalse(receipt["backend_run_permitted"])
-
-    def test_pair_requires_distinct_nonidentical_reviews(self):
-        with tempfile.TemporaryDirectory() as temp:
-            path = Path(temp)
-            fa, aa = self.completed(path, "reviewer-a", "A")
-            fb, ab = self.completed(path, "reviewer-b", "B", alter_first=True)
-            receipt = MODULE.validate_pair(fa, aa, fb, ab)
-        self.assertEqual(receipt["status"], "dual-annotation-contract-valid-before-adjudication")
-        self.assertFalse(receipt["backend_run_permitted"])
-
 
 if __name__ == "__main__":
     unittest.main()

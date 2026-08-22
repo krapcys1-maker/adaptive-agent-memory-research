@@ -118,6 +118,9 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/longmemeval-bridge-v0/` — version-pinned 36-ID public transfer bridge selected from verified LongMemEval-S cleaned bytes; no source content is redistributed and abstention near-miss sessions are not scored as positive retrieval gold.
 - `data/lab/pmlab-v0-lexical-preregistration/` — lexical-v0 protocol frozen at `e111a57`: query-only backend input, exact B1/B2 rules, eleven-stratum primary metric, paired bootstrap, safety guardrails, and an explicit execution lock.
 - `data/lab/pmlab-v0-split-audit/` — label-free audit preserving the v0 split as an invalid pre-run instrument after repeated development/test query frames were found; labels and backends remained unseen.
+- `data/lab/project-memory-lab-v0.1-construction/` — candidate query-form repair frozen at `cc904dd`: the v0 evidence corpus is byte-identical, all 60 test forms changed, and all non-query authored relations stayed fixed; review remains blind and no author label is gold.
+- `data/lab/pmlab-v0.1-split-audit/` — 300-pair label-free screen with zero descriptive threshold crossings plus a direct author inspection; neither substitutes for independent leakage review.
+- `data/lab/pmlab-v0.1-lexical-preregistration/` — unchanged `e111a57` B0/B1/B2/O contract rebound to the repaired blind-query hash; execution remains locked.
 
 ## Non-negotiable practices
 
@@ -133,4 +136,4 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 
 ## Immediate laboratory milestone
 
-Release `project-memory-lab-v0`: a small, inspectable benchmark derived from this research project with dated evidence, decisions, supersessions, paraphrases, causal questions, abstention cases, and distractors. It begins with `rg` and SQLite FTS5. No embedding, graph, or salience mechanism is admitted until the corpus, labels, and evaluation script receive independent review.
+Release `project-memory-lab-v0.1` only after independent leakage acceptance, two blind annotations, adjudicated gold, and provenance review. Then execute the frozen `rg` versus SQLite FTS5 baseline exactly once. No embedding, graph, or salience mechanism is admitted until that result and its failure localization are reviewed.

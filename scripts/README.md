@@ -51,6 +51,23 @@ python scripts/validate_pmlab_v0_annotation.py --form-a completed-a.jsonl --atte
 
 Add `--form-b` and `--attestation-b` only after the second reviewer has independently frozen a different completed form. The validator checks packet integrity and contracts but deliberately does not read author labels, compute agreement, or unlock a benchmark run.
 
+V0 is preserved as invalid for held-out use. Rebuild the v0.1 query-form repair and rerun its label-free split screen with:
+
+```powershell
+python scripts/build_project_memory_lab_v01.py
+python scripts/audit_pmlab_split_leakage.py --source data/lab/project-memory-lab-v0.1-construction/blind/queries.jsonl --output data/lab/pmlab-v0.1-split-audit --title "PMLAB v0.1 development/test split audit"
+```
+
+The v0.1 builder preserves evidence bytes and non-query label relations. A zero-flag automated screen is not independent acceptance and does not authorize baseline execution.
+
+Validate a completed independent leakage review before opening annotation:
+
+```powershell
+python scripts/validate_pmlab_v01_leakage_review.py --review completed-leakage-review.json --receipt leakage-review-receipt.json
+```
+
+The checked-in blank form must fail validation. A valid receipt still reports `backend_run_permitted=false`; explicit packet-state transition, dual annotation, and adjudication remain separate gates.
+
 Verify the ignored LongMemEval-S cleaned snapshot and reproduce the public bridge selection:
 
 ```powershell
