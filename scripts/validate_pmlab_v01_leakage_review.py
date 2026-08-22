@@ -25,7 +25,11 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
 
 def validate(review_path: Path) -> dict[str, Any]:
     manifest = json.loads((PACKET / "manifest.json").read_text(encoding="utf-8"))
-    if manifest["status"] != "automated-screen-passed-awaiting-independent-leakage-review":
+    allowed_statuses = {
+        "automated-screen-passed-awaiting-independent-leakage-review",
+        "model-blind-leakage-accepted-awaiting-m2-annotation",
+    }
+    if manifest["status"] not in allowed_statuses:
         raise ValueError("packet is not at the independent leakage-review gate")
     if manifest["baseline_run_permitted"] is not False or manifest["author_labels_are_gold"] is not False:
         raise ValueError("construction safety flags changed")

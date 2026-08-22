@@ -1,0 +1,20 @@
+{
+  "status": "model-blind-leakage-review-contract-valid",
+  "decision": "accept",
+  "reviewer_id": "deepseek-v4-flash-blind-m1",
+  "reviewer_family_or_affiliation": "DeepSeek API; author-operated external model; common-mode dependence disclosed",
+  "review_sha256": "9c1e024aa00edc74d8f89e9a670daca1230140d84ddbc78f87e3949a7f7b2f96",
+  "blind_corpus_sha256": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+  "blind_queries_sha256": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
+  "material_overlap_example_ids": [],
+  "author_labels_read": false,
+  "backend_run_permitted": false,
+  "next_gate": "if accepted, freeze this receipt and explicitly change packet status before dual annotation",
+  "evidence_tier": "M1",
+  "human_independence_satisfied": false,
+  "cross_family_independence_satisfied": false,
+  "model_review_common_mode_risk": true,
+  "experimental_annotation_permitted": true,
+  "confirmatory_baseline_permitted": false,
+  "authority": "M1 model-reviewed exploratory gate only"
+}

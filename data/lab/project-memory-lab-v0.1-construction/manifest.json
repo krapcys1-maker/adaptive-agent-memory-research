@@ -38,6 +38,13 @@
     "development": 60,
     "test": 60
   },
-  "status": "automated-screen-passed-awaiting-independent-leakage-review",
+  "model_review_gate": {
+    "evidence_tier": "M1",
+    "decision": "accept",
+    "human_independence_satisfied": false,
+    "receipt_path": "data/lab/api-screening/deepseek-v4-flash-pmlab-v01-leakage-review-20260822/model-review-receipt.json",
+    "receipt_sha256": "69de3b09902982988d72842e908fda020d2b1dc65008016fef89534e09761fca"
+  },
+  "status": "model-blind-leakage-accepted-awaiting-m2-annotation",
   "unlock": "label-free split audit, direct template inspection, independent leakage audit, two independent complete forms, adjudication, provenance audit, and gold hash freeze"
 }

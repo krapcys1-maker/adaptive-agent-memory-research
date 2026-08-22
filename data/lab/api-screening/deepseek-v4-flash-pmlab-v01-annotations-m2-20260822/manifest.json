@@ -1,0 +1,42 @@
+{
+  "run_id": "deepseek-v4-flash-pmlab-v01-annotations-m2-20260822",
+  "status": "prepared-uncommitted-input",
+  "created_at": "2026-08-22T20:59:29Z",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "pmlab-v01-blind-model-annotation-m2-v1",
+  "evidence_tier": "M2",
+  "prompt_freeze_commit": null,
+  "roles": [
+    "A",
+    "B"
+  ],
+  "jobs_per_role": 12,
+  "queries_per_role": 120,
+  "temperature": 0,
+  "thinking": "disabled",
+  "response_format": "json_object",
+  "run_budget_usd_per_role": 1.0,
+  "global_budget_usd": 10.0,
+  "visible_to_each_role": [
+    "complete blind corpus",
+    "complete blind queries",
+    "annotation manual"
+  ],
+  "hidden_from_each_role": [
+    "author labels",
+    "builder source",
+    "backend outputs",
+    "other role form",
+    "preferred labels"
+  ],
+  "common_mode_disclosure": "same provider/model family in fresh stateless calls; separate prompts and deterministic orders",
+  "hashes": {
+    "blind_corpus.jsonl": "260b44de1314629aaa7efd5bffe2157bd2414548cce2501cff6998f6ebae0d9d",
+    "blind_queries.jsonl": "6dca3fcea6e7b7830231444d6e8050952843bbe8974f78633889e6ac76c056bf",
+    "annotation-manual.md": "eedf9268535451f8f4ee6d1a9f11964f0cb7339e424a9be3583ccb71b88d892a",
+    "A/jobs.jsonl": "ee67ac08e89fd15a6217b6c6576577ae6d0e8d8aab5471e16fdc92fc2adf2eaf",
+    "B/jobs.jsonl": "490c1bb82963fdec369dfe4062c74d51aefc8dc6f26479d9d98ebafb28e306e0",
+    "A/prompt.txt": "b090d706992bef04219bf646e27dee10c2bd879eb57d146be70fcc08928c9f40",
+    "B/prompt.txt": "4891d327480c166208d10e0e1cf58953f752a9b6a3c870146bce5efd4a5917d6"
+  }
+}
