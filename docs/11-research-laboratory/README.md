@@ -123,6 +123,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-v0.1-lexical-preregistration/` — unchanged `e111a57` B0/B1/B2/O contract rebound to the repaired blind-query hash; execution remains locked.
 - `emotion-salience-benchmark-protocol-v0.md` — expanded PMLAB-COMP-C4-001 draft separating phase, target feature, timing, consequence, surprise, controllability, signal provenance, competition, and controller action; no corpus or result exists.
 - `data/lab/pmlab-salience-ontology-review-v0/blind/` — gold-free independent-review packet that operationalizes 12 factor boundaries through 24 probes; its acceptance permits corpus construction, never controller implementation.
+- `biological-savings-benchmark-protocol-v0.md` — preregistration draft separating retained content, latent reconstruction savings, and final recovered performance; no corpus or runner exists.
 
 ## Non-negotiable practices
 

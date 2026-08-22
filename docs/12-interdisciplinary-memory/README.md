@@ -112,6 +112,7 @@ See:
 - [emotion and salience synthesis](emotion-salience-synthesis.md);
 - [adversarial emotion/salience primary-source audit v1](emotion-salience-primary-source-audit-v1.md);
 - [appraisal and affective-computing bridge](appraisal-affective-computing-bridge.md);
+- [comparative biological memory synthesis v0](comparative-biological-memory-synthesis-v0.md);
 - [replay synthesis](replay-synthesis.md);
 - [reconsolidation and revision synthesis](reconsolidation-synthesis.md);
 - [interference, active forgetting, and access-failure synthesis](interference-active-forgetting-synthesis.md);
