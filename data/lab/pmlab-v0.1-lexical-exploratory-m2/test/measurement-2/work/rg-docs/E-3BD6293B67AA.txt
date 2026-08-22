@@ -1,0 +1,2 @@
+Project research record
+A correction is an explicit transaction; corrected beliefs supersede earlier state while the raw event history is retained.

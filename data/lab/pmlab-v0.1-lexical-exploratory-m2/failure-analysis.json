@@ -1,0 +1,665 @@
+{
+  "authority": "descriptive analysis of sealed M2 exploratory output; no threshold or architecture change",
+  "b2_failure_cases": [
+    {
+      "all_required_at_5": false,
+      "category": "causal_multi_episode",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-CA-06",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.3333333333333333,
+      "retrieved": [
+        "E-329F1B4A9E19",
+        "E-6FEB4C696B85",
+        "E-55A997BA682F",
+        "E-C40307219607",
+        "E-7A7B3C3C8D55"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "causal_multi_episode",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-CA-07",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.3333333333333333,
+      "retrieved": [
+        "E-AA1C93EB55B3",
+        "E-4B2E1C26BFD5",
+        "E-7EA6D8203E8B",
+        "E-EFCD7B4C62A0",
+        "E-A92B3683D8CA"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "causal_multi_episode",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-CA-08",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.6666666666666666,
+      "retrieved": [
+        "E-33F52044A9E4",
+        "E-47F4C689195C",
+        "E-280DC740B1E9",
+        "E-834774F7BCAF",
+        "E-DFEAB1FEE7C6"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "causal_multi_episode",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-CA-09",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.6666666666666666,
+      "retrieved": [
+        "E-EFCD7B4C62A0",
+        "E-7257FEBB7840",
+        "E-7A7B3C3C8D55",
+        "E-0059BD9F156E",
+        "E-218885DEC60E"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "causal_multi_episode",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-CA-10",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.5,
+      "retrieved": [
+        "E-B69EEBC69306",
+        "E-3BD6293B67AA",
+        "E-236FFF2AE23C",
+        "E-F9C2F626BC1C",
+        "E-169C57507664"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "paraphrase",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-PA-06",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "E-864A755DF576",
+        "E-7B91DF333FB0",
+        "E-0660AD6BE00E",
+        "E-555C9A511AEC",
+        "E-01C8845658A2"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "paraphrase",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-PA-07",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "E-087011A8AF64",
+        "E-F9C2F626BC1C",
+        "E-1A5AC5C7176E",
+        "E-0C74BFFEC5E7",
+        "E-135CEE2E64DC"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "paraphrase",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-PA-10",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "E-087011A8AF64",
+        "E-1A5AC5C7176E",
+        "E-0C74BFFEC5E7",
+        "E-135CEE2E64DC",
+        "E-768208107391"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "poison_resistance",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-PO-07",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.5,
+      "retrieved": [
+        "E-555C9A511AEC",
+        "E-7A7B3C3C8D55",
+        "E-ED67FBC7E477",
+        "E-087011A8AF64",
+        "E-9365E1C4A3B0"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "poison_resistance",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-PO-08",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.5,
+      "retrieved": [
+        "E-A92B3683D8CA",
+        "E-08AE55D6B4CA",
+        "E-45DCBA54715E",
+        "E-4C0ACF2D3E84",
+        "E-62E6AB47A1CF"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "poison_resistance",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-PO-09",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.5,
+      "retrieved": [
+        "E-E20C9463B0AB",
+        "E-08AE55D6B4CA",
+        "E-45DCBA54715E",
+        "E-4C0ACF2D3E84",
+        "E-62E6AB47A1CF"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "poison_resistance",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-PO-10",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "E-5848AFFFA8FD",
+        "E-F9C2F626BC1C",
+        "E-08AE55D6B4CA",
+        "E-45DCBA54715E",
+        "E-4C0ACF2D3E84"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "procedure_failure",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-PR-07",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.5,
+      "retrieved": [
+        "E-0059BD9F156E",
+        "E-2CC1AECC3D58",
+        "E-6B0D0FC213B9",
+        "E-7257FEBB7840",
+        "E-8453DB9DA3CB"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "procedure_failure",
+      "consequence_weight": 4,
+      "example_id": "PMLAB-PR-08",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "E-341125337AFD",
+        "E-A40E7F78D953",
+        "E-C40307219607",
+        "E-4106624BA502",
+        "E-6B6BAE9D4155"
+      ]
+    },
+    {
+      "all_required_at_5": true,
+      "category": "supersession",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-SU-06",
+      "forbidden_retrieved": [
+        "E-58863610B555"
+      ],
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "E-58863610B555",
+        "E-C78D924D8981",
+        "E-DFEAB1FEE7C6",
+        "E-D37432E10E92",
+        "E-A5F116B55AB6"
+      ]
+    },
+    {
+      "all_required_at_5": true,
+      "category": "supersession",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-SU-07",
+      "forbidden_retrieved": [
+        "E-341125337AFD"
+      ],
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "E-341125337AFD",
+        "E-A40E7F78D953",
+        "E-3E9FA42D8068",
+        "E-3BD6293B67AA",
+        "E-C40307219607"
+      ]
+    },
+    {
+      "all_required_at_5": true,
+      "category": "supersession",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-SU-08",
+      "forbidden_retrieved": [
+        "E-63080E32FEC5"
+      ],
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "E-63080E32FEC5",
+        "E-2715DB680615",
+        "E-E967E1930201",
+        "E-80C4BACC6440",
+        "E-EF66EF3C9728"
+      ]
+    },
+    {
+      "all_required_at_5": true,
+      "category": "supersession",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-SU-09",
+      "forbidden_retrieved": [
+        "E-D0D6121A0A85"
+      ],
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "E-2A0454AA4B6C",
+        "E-D0D6121A0A85",
+        "E-135CEE2E64DC",
+        "E-1262D9C7B68D",
+        "E-2AE0ED08D53B"
+      ]
+    },
+    {
+      "all_required_at_5": true,
+      "category": "temporal_as_of",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-TA-06",
+      "forbidden_retrieved": [
+        "E-7008D9E9F405"
+      ],
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "E-55A997BA682F",
+        "E-7008D9E9F405",
+        "E-6FEB4C696B85",
+        "E-D17ECCF1AE5A",
+        "E-BB35EB955F8F"
+      ]
+    },
+    {
+      "all_required_at_5": true,
+      "category": "temporal_as_of",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-TA-07",
+      "forbidden_retrieved": [
+        "E-29F9DBA40B91"
+      ],
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "E-F372DDB39894",
+        "E-29F9DBA40B91",
+        "E-689CB209308C",
+        "E-0E8E72D70FF8",
+        "E-1ACBDB83E59C"
+      ]
+    },
+    {
+      "all_required_at_5": true,
+      "category": "temporal_as_of",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-TA-08",
+      "forbidden_retrieved": [
+        "E-110E9F4F64E2"
+      ],
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "E-110E9F4F64E2",
+        "E-ADA9170E7E0C",
+        "E-555C9A511AEC",
+        "E-0C53E009DEA8",
+        "E-9365E1C4A3B0"
+      ]
+    },
+    {
+      "all_required_at_5": true,
+      "category": "temporal_as_of",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-TA-09",
+      "forbidden_retrieved": [
+        "E-864A755DF576"
+      ],
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "E-7B91DF333FB0",
+        "E-864A755DF576",
+        "E-1DEA54EC837E",
+        "E-F6DD2079C444",
+        "E-0660AD6BE00E"
+      ]
+    },
+    {
+      "all_required_at_5": null,
+      "category": "unanswerable",
+      "consequence_weight": 1,
+      "example_id": "PMLAB-UN-06",
+      "forbidden_retrieved": [],
+      "recall_at_5": null,
+      "retrieved": [
+        "E-0E8E72D70FF8",
+        "E-1ACBDB83E59C",
+        "E-9AE57CBAD4AC",
+        "E-A5093F543373",
+        "E-B02A0080A722"
+      ]
+    },
+    {
+      "all_required_at_5": null,
+      "category": "unanswerable",
+      "consequence_weight": 1,
+      "example_id": "PMLAB-UN-07",
+      "forbidden_retrieved": [],
+      "recall_at_5": null,
+      "retrieved": [
+        "E-EF66EF3C9728",
+        "E-768208107391",
+        "E-80C4BACC6440",
+        "E-329F1B4A9E19",
+        "E-0059BD9F156E"
+      ]
+    },
+    {
+      "all_required_at_5": null,
+      "category": "unanswerable",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-UN-08",
+      "forbidden_retrieved": [],
+      "recall_at_5": null,
+      "retrieved": [
+        "E-927388EA7F92",
+        "E-768208107391",
+        "E-506233736E60",
+        "E-236FFF2AE23C",
+        "E-0C53E009DEA8"
+      ]
+    },
+    {
+      "all_required_at_5": null,
+      "category": "unanswerable",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-UN-09",
+      "forbidden_retrieved": [
+        "E-99E16C984D7C"
+      ],
+      "recall_at_5": null,
+      "retrieved": [
+        "E-99E16C984D7C",
+        "E-1A5AC5C7176E",
+        "E-73FD8E54FF8D",
+        "E-19B8A662A5D4",
+        "E-280DC740B1E9"
+      ]
+    },
+    {
+      "all_required_at_5": null,
+      "category": "unanswerable",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-UN-10",
+      "forbidden_retrieved": [],
+      "recall_at_5": null,
+      "retrieved": [
+        "E-768208107391",
+        "E-087011A8AF64",
+        "E-FF7F0F4562A7",
+        "E-3E9FA42D8068",
+        "E-703EBFCF4A0D"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "cross_language",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-XL-06",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.0,
+      "retrieved": []
+    },
+    {
+      "all_required_at_5": false,
+      "category": "cross_language",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-XL-07",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "E-ADA9170E7E0C",
+        "E-110E9F4F64E2",
+        "E-0C53E009DEA8",
+        "E-2503CADFE45C",
+        "E-9365E1C4A3B0"
+      ]
+    },
+    {
+      "all_required_at_5": false,
+      "category": "cross_language",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-XL-08",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.0,
+      "retrieved": []
+    },
+    {
+      "all_required_at_5": false,
+      "category": "cross_language",
+      "consequence_weight": 3,
+      "example_id": "PMLAB-XL-09",
+      "forbidden_retrieved": [],
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "E-33F52044A9E4",
+        "E-47F4C689195C",
+        "E-555C9A511AEC"
+      ]
+    }
+  ],
+  "b2_incomplete_answerable_by_category": {
+    "causal_multi_episode": 5,
+    "cross_language": 4,
+    "paraphrase": 3,
+    "poison_resistance": 4,
+    "procedure_failure": 2
+  },
+  "critical_memory": {
+    "b1_misses": [
+      "PMLAB-CA-06",
+      "PMLAB-CA-07",
+      "PMLAB-CA-08",
+      "PMLAB-CA-09",
+      "PMLAB-PO-07",
+      "PMLAB-PO-08",
+      "PMLAB-PO-09",
+      "PMLAB-PO-10",
+      "PMLAB-PR-07",
+      "PMLAB-PR-08"
+    ],
+    "b2_misses": [
+      "PMLAB-CA-06",
+      "PMLAB-CA-07",
+      "PMLAB-CA-08",
+      "PMLAB-CA-09",
+      "PMLAB-PO-07",
+      "PMLAB-PO-08",
+      "PMLAB-PO-09",
+      "PMLAB-PO-10",
+      "PMLAB-PR-07",
+      "PMLAB-PR-08"
+    ],
+    "queries": 14
+  },
+  "decision_unchanged": "advance-B2-over-B1-exploratory",
+  "forbidden_intrusion": {
+    "b2_cases": [
+      {
+        "example_id": "PMLAB-SU-06",
+        "forbidden_retrieved": [
+          "E-58863610B555"
+        ]
+      },
+      {
+        "example_id": "PMLAB-SU-07",
+        "forbidden_retrieved": [
+          "E-341125337AFD"
+        ]
+      },
+      {
+        "example_id": "PMLAB-SU-08",
+        "forbidden_retrieved": [
+          "E-63080E32FEC5"
+        ]
+      },
+      {
+        "example_id": "PMLAB-SU-09",
+        "forbidden_retrieved": [
+          "E-D0D6121A0A85"
+        ]
+      },
+      {
+        "example_id": "PMLAB-TA-06",
+        "forbidden_retrieved": [
+          "E-7008D9E9F405"
+        ]
+      },
+      {
+        "example_id": "PMLAB-TA-07",
+        "forbidden_retrieved": [
+          "E-29F9DBA40B91"
+        ]
+      },
+      {
+        "example_id": "PMLAB-TA-08",
+        "forbidden_retrieved": [
+          "E-110E9F4F64E2"
+        ]
+      },
+      {
+        "example_id": "PMLAB-TA-09",
+        "forbidden_retrieved": [
+          "E-864A755DF576"
+        ]
+      },
+      {
+        "example_id": "PMLAB-UN-09",
+        "forbidden_retrieved": [
+          "E-99E16C984D7C"
+        ]
+      }
+    ],
+    "new_in_b2": [
+      "PMLAB-UN-09"
+    ],
+    "removed_by_b2": []
+  },
+  "full_evidence": {
+    "b2_loses_b1_success": [],
+    "b2_recovers_b1_miss": [
+      "PMLAB-CO-06",
+      "PMLAB-TA-06",
+      "PMLAB-WO-06"
+    ]
+  },
+  "paired_recall": {
+    "b1_wins": [
+      "PMLAB-PR-08"
+    ],
+    "b2_wins": [
+      "PMLAB-CA-06",
+      "PMLAB-CA-08",
+      "PMLAB-CO-06",
+      "PMLAB-TA-06",
+      "PMLAB-WO-06"
+    ],
+    "ties": [
+      "PMLAB-CA-07",
+      "PMLAB-CA-09",
+      "PMLAB-CA-10",
+      "PMLAB-CO-07",
+      "PMLAB-CO-08",
+      "PMLAB-CO-09",
+      "PMLAB-CO-10",
+      "PMLAB-EX-06",
+      "PMLAB-EX-07",
+      "PMLAB-EX-08",
+      "PMLAB-EX-09",
+      "PMLAB-EX-10",
+      "PMLAB-PA-06",
+      "PMLAB-PA-07",
+      "PMLAB-PA-08",
+      "PMLAB-PA-09",
+      "PMLAB-PA-10",
+      "PMLAB-PO-06",
+      "PMLAB-PO-07",
+      "PMLAB-PO-08",
+      "PMLAB-PO-09",
+      "PMLAB-PO-10",
+      "PMLAB-PR-06",
+      "PMLAB-PR-07",
+      "PMLAB-PR-09",
+      "PMLAB-PR-10",
+      "PMLAB-SU-06",
+      "PMLAB-SU-07",
+      "PMLAB-SU-08",
+      "PMLAB-SU-09",
+      "PMLAB-SU-10",
+      "PMLAB-TA-07",
+      "PMLAB-TA-08",
+      "PMLAB-TA-09",
+      "PMLAB-TA-10",
+      "PMLAB-WO-07",
+      "PMLAB-WO-08",
+      "PMLAB-WO-09",
+      "PMLAB-WO-10",
+      "PMLAB-WWW-06",
+      "PMLAB-WWW-07",
+      "PMLAB-WWW-08",
+      "PMLAB-WWW-09",
+      "PMLAB-WWW-10",
+      "PMLAB-XL-06",
+      "PMLAB-XL-07",
+      "PMLAB-XL-08",
+      "PMLAB-XL-09",
+      "PMLAB-XL-10"
+    ]
+  },
+  "resource_tradeoff": {
+    "index_size_ratio_b2_over_b1": 4.2790481717933835,
+    "warm_p50_speed_ratio_b1_over_b2": 1637.3894601542418,
+    "warm_p95_speed_ratio_b1_over_b2": 1570.0817875210794
+  },
+  "status": "post-hoc-descriptive-failure-localization",
+  "unanswerable": {
+    "b1_nonempty": [
+      "PMLAB-UN-06",
+      "PMLAB-UN-07",
+      "PMLAB-UN-08",
+      "PMLAB-UN-09",
+      "PMLAB-UN-10"
+    ],
+    "b2_nonempty": [
+      "PMLAB-UN-06",
+      "PMLAB-UN-07",
+      "PMLAB-UN-08",
+      "PMLAB-UN-09",
+      "PMLAB-UN-10"
+    ],
+    "queries": 5
+  }
+}

@@ -1,0 +1,2 @@
+Project research record
+The integrated obligation mapper was rejected; the current repair path factorizes contract, graph, entity, predicate, time, and certificate stages.

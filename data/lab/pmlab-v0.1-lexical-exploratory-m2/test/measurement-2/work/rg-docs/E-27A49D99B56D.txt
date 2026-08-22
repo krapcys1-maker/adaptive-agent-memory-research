@@ -1,0 +1,2 @@
+Report B on automatic deletion
+Report B found that automatic deletion destroyed the audit trail.

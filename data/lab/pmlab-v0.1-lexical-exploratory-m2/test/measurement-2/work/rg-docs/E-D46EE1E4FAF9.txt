@@ -1,0 +1,2 @@
+Report B on query expansion
+Report B found that query expansion increased distractor matches.

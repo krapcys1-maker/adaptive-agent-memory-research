@@ -1,0 +1,2 @@
+Incident onset
+Current answers became stale because validity filters were skipped.

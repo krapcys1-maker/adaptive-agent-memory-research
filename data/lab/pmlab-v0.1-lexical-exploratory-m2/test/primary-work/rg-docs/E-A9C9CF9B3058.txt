@@ -1,0 +1,2 @@
+Operational note
+The service operator should suspend writes before rotating encryption keys.

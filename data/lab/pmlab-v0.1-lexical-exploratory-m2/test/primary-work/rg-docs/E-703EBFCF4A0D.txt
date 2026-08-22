@@ -1,0 +1,2 @@
+Report A on dense retrieval
+Report A found that dense retrieval improved paraphrase recall.

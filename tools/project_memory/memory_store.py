@@ -50,6 +50,8 @@ EXCLUDED_PARTS = {
     ".venv",
     "__pycache__",
     "node_modules",
+    "primary-work",
+    "work",
 }
 EXCLUDED_PREFIXES = {
     "data/snapshots",

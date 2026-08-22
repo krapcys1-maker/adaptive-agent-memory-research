@@ -1,0 +1,2 @@
+Current checksum algorithm
+The current checksum algorithm is BLAKE3; it replaced SHA-256.

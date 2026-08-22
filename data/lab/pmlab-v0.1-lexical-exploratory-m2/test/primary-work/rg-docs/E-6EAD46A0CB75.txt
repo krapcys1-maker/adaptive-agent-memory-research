@@ -1,0 +1,2 @@
+Storage record for cobalt pressure gauge
+The cobalt pressure gauge is stored in locker T-6.

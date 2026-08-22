@@ -1,0 +1,2 @@
+Current export format
+The current export format is Parquet; it replaced CSV.

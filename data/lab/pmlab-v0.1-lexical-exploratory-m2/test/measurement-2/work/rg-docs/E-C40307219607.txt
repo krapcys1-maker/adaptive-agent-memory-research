@@ -1,0 +1,2 @@
+Incident onset
+A backup failed because the destination filled.

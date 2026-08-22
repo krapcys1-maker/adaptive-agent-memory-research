@@ -1,0 +1,2 @@
+Report A on query expansion
+Report A found that query expansion recovered bilingual cues.

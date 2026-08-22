@@ -1,0 +1,2 @@
+Prevention procedure
+To prevent recurrence, redact credentials, rotate the secret, and preserve an access-controlled incident record.

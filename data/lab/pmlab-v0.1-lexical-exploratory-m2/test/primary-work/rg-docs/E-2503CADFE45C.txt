@@ -1,0 +1,2 @@
+Project research record
+Parser v0 matched inspected templates, then fell to 0.238 exact parse and Recall@5 on unseen language/date perturbations, so its generality was rejected and typed fallback was proposed.

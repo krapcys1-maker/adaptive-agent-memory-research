@@ -1,0 +1,2 @@
+Updated review quorum
+From 2026-06-01, the review quorum is two reviewers, replacing one reviewer.

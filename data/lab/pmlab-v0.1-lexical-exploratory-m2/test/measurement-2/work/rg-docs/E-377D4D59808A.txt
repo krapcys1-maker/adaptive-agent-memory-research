@@ -1,0 +1,2 @@
+Report B on nightly replay
+Report B found that nightly replay reduced transfer under interference.

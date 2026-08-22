@@ -1,0 +1,2 @@
+Prevention procedure
+To prevent recurrence, run a migration dry run and compare schema versions before release.

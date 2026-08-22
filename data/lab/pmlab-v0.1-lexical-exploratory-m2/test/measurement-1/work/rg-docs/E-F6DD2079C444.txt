@@ -1,0 +1,2 @@
+Current snapshot hour
+The current snapshot hour is 03:30; it replaced 01:00.

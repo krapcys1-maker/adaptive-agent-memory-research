@@ -1,0 +1,2 @@
+Operational note
+A cold replica is created before pruning the primary event journal.

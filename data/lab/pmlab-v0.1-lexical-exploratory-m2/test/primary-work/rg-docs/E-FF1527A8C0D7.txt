@@ -1,0 +1,2 @@
+Storage record for bronze thermal probe
+The bronze thermal probe is stored in shelf P-55.

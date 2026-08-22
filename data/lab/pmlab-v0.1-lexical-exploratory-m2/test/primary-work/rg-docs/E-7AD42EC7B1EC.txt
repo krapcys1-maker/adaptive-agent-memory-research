@@ -1,0 +1,2 @@
+Prevention procedure
+To prevent recurrence, resume from the last verified cursor and verify the final manifest.

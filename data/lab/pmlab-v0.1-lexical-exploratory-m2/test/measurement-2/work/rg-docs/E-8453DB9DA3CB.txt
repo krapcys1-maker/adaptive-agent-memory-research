@@ -1,0 +1,2 @@
+Operational note
+The scheduler postpones compaction while an export is in progress.

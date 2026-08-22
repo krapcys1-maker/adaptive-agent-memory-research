@@ -1,0 +1,2 @@
+Incident onset
+Indexing stalled because a malformed timestamp entered the queue.

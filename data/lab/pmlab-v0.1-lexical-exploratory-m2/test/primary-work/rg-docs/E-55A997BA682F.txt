@@ -1,0 +1,2 @@
+Updated backup interval
+From 2026-03-15, the backup interval is two hours, replacing six hours.

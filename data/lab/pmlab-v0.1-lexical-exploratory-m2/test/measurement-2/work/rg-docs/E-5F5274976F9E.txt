@@ -1,0 +1,2 @@
+Report A on confidence gating
+Report A found that confidence gating reduced unsupported answers.

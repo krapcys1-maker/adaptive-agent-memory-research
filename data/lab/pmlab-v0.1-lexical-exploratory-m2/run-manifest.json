@@ -3,11 +3,19 @@
   "authority": "one exploratory execution under M2 model-review fallback",
   "confirmatory": false,
   "created_at": "2026-08-22T21:15:21Z",
+  "decision": "advance-B2-over-B1-exploratory",
   "development_freeze_commit": "3a2878a3f9869c63c7d729e042d9f74914bcccb4",
   "development_results_sha256": "b360435672557b30b9cd107b5c5a8181bf184cc5115ea8ca22485a73de93146e",
   "development_summary_sha256": "9ec47de0b253f44d1ae26d4765af93c5473d07339391db94f3ca45d34e16eeb3",
   "environment_lock_sha256": "c4f0d839f8e26a560a6215511ed6f5530e51a6a2ef96ea13c52a886027017223",
   "experiment_id": "PMLAB-V01-RET-001-M2-EXPLORATORY",
-  "status": "test-primary-authorized-awaiting-clean-commit",
-  "test_authorization_commit": null
+  "final_summary_sha256": "19a014eaea9251e81b3114affff58106563bc28f9f3e16edf19c99efdd964351",
+  "failure_analysis_json_sha256": "dde88c09e37947f4468b09e50c5ca4169e85690f83d6d97316a6de0becefd7d4",
+  "failure_analysis_report_sha256": "8bd77e5975c402c2ef6ac5a238563802b0ff301a181c5c5e6577d38394c09c2a",
+  "measurement_1_receipt_sha256": "dd8c41ca82ce60d5f6f158721c1cbe47ba38c5c2f1e7304e84015debc840254b",
+  "measurement_2_receipt_sha256": "9d2e390776bc70311535e71e96789545dd6e520bad73c73a8ec031c4709aec7e",
+  "primary_execution_receipt_sha256": "078e02d488a1631cab97aae838287df213d90ecc4deb82f53feefd9b0555969a",
+  "report_sha256": "3fdabf4790430978f574d40a0af4a53abd18e4e695e593b6538fc59a51fdff40",
+  "status": "completed-once-model-reviewed-exploratory",
+  "test_authorization_commit": "f702e8616fd8f4929fceea7d7bb1f5966b3161fc"
 }

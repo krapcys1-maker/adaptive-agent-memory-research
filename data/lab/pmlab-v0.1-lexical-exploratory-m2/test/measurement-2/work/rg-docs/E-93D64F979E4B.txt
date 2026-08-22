@@ -1,0 +1,2 @@
+Report B on summary compression
+Report B found that summary compression lost two exception clauses.

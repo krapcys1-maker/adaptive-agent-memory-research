@@ -1,0 +1,2 @@
+Storage record for quartz calibration tile
+The quartz calibration tile is stored in cabinet R-8.

@@ -67,6 +67,17 @@ class ProjectMemoryTests(unittest.TestCase):
         self.assertTrue(context["context"].startswith("# State"))
         self.assertLessEqual(context["characters_used"], 2000)
 
+    def test_generated_work_directories_are_not_indexed(self) -> None:
+        for name in ("work", "primary-work"):
+            generated = self.root / "data" / "lab" / "benchmark" / name
+            generated.mkdir(parents=True)
+            (generated / "duplicate.txt").write_text(
+                "This generated corpus copy must not pollute durable project memory.", encoding="utf-8"
+            )
+        report = self.store.rebuild_index()
+        self.assertEqual(2, report["documents"])
+        self.assertFalse(any(hit["id_or_path"].endswith("duplicate.txt") for hit in self.store.search("generated corpus copy")))
+
     def test_malformed_event_is_reported_without_losing_valid_events(self) -> None:
         self.store.initialize()
         self.store.events_path.write_text(

@@ -1,0 +1,26 @@
+{
+  "builds": {
+    "B0-no-memory": {
+      "build_ms": 0.0,
+      "index_bytes": 0
+    },
+    "B1-ripgrep": {
+      "build_ms": 35.0707,
+      "index_bytes": 17230
+    },
+    "B2-sqlite-fts5": {
+      "build_ms": 7.6465,
+      "index_bytes": 73728
+    },
+    "O-reviewed-evidence": {
+      "build_ms": 0.0,
+      "index_bytes": 0
+    }
+  },
+  "completed_at": "2026-08-22T21:18:28Z",
+  "latencies_sha256": "ce9eeb799b9236d315104b8a2953053a233899ffaa3334f2eca3466610ddc63c",
+  "process_id": 46648,
+  "rankings_sha256": "ea86e8656e5d7511a7b711a11cb270570e93c96ce849da735a0a77cbdc3cbb9e",
+  "repetition": 2,
+  "status": "fresh-process-measurement-complete"
+}

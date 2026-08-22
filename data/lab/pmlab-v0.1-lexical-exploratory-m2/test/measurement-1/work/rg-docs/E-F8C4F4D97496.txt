@@ -1,0 +1,2 @@
+Report A on automatic deletion
+Report A found that automatic deletion reduced disk use safely.

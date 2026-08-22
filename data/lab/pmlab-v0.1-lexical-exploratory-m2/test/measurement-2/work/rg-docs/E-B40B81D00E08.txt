@@ -1,0 +1,2 @@
+Storage record for teal vacuum sensor
+The teal vacuum sensor is stored in cabinet N-14.

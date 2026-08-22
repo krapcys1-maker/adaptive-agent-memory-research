@@ -1,0 +1,2 @@
+Original alert channel
+The alert channel is email.

@@ -1,0 +1,2 @@
+Report A on prefetching
+Report A found that prefetching reduced median latency.

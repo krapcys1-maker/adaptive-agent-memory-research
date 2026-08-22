@@ -1,0 +1,2 @@
+Updated render engine
+From 2026-03-01, the render engine is Boreal, replacing Atlas.

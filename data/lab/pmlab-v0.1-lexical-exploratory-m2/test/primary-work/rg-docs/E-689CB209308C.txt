@@ -1,0 +1,2 @@
+Operational note
+The controller archives low-utility records instead of erasing their only copy.

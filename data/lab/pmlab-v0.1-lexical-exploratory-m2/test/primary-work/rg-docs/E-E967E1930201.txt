@@ -1,0 +1,2 @@
+Diagnosis
+Capacity telemetry identified zero free blocks.

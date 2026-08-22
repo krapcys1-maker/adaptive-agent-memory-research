@@ -1,0 +1,2 @@
+Project research record
+Before receipt-gated reveal was implemented, the independent mapper form was blank and author/advisory comparisons remained sealed.

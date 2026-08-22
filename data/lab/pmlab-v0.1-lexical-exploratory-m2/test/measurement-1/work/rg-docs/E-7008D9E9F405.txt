@@ -1,0 +1,2 @@
+Updated audit cadence
+From 2026-05-05, the audit cadence is weekly, replacing monthly.

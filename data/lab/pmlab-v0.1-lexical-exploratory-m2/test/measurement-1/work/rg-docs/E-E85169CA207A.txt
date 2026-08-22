@@ -1,0 +1,2 @@
+Diagnosis
+Profiling showed repeated disk reads.

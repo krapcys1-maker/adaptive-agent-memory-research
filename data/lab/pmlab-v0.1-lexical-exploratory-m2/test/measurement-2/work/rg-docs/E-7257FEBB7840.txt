@@ -1,0 +1,2 @@
+Incident onset
+The catalog would not load because an interrupted write truncated JSON.

@@ -1,0 +1,2 @@
+Project research record
+The independent mapper packet places 67 groups and 134 rows in its blind directory, together with manuals and hashes.

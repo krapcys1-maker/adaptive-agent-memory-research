@@ -1,0 +1,2 @@
+Old snapshot hour
+The snapshot hour is 01:00.

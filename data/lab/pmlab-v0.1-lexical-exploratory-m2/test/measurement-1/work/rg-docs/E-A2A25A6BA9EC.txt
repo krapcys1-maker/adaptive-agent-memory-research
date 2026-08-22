@@ -1,0 +1,2 @@
+Incident onset
+A worker repeated jobs because acknowledgements were lost.

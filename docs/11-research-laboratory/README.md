@@ -120,7 +120,8 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-v0-split-audit/` — label-free audit preserving the v0 split as an invalid pre-run instrument after repeated development/test query frames were found; labels and backends remained unseen.
 - `data/lab/project-memory-lab-v0.1-construction/` — query-form repair frozen at `cc904dd`; M1 leakage review and role-separated M2 annotation/adjudication are complete under the explicitly non-human model-review fallback.
 - `data/lab/pmlab-v0.1-split-audit/` — 300-pair label-free screen with zero descriptive threshold crossings plus a direct author inspection; neither substitutes for independent leakage review.
-- `data/lab/pmlab-v0.1-lexical-preregistration/` — unchanged `e111a57` B0/B1/B2/O contract rebound to the repaired blind-query hash; one exploratory execution is now permitted against frozen M2 gold.
+- `data/lab/pmlab-v0.1-lexical-preregistration/` — unchanged `e111a57` B0/B1/B2/O contract rebound to the repaired blind-query hash; its single M2 exploratory authorization is consumed.
+- `data/lab/pmlab-v0.1-lexical-exploratory-m2/` — sealed one-time result: B2-B1 macro Recall@5 +0.0576, stratified 95% CI [0.0030, 0.1212], deterministic rankings, and B2 advanced only as an exploratory sparse baseline; absolute safety/completeness failures remain documented.
 - `data/lab/api-screening/deepseek-v4-flash-pmlab-v01-adjudication-m2-20260823/` — frozen A/B disagreement adjudication, complete raw API provenance, and 120-query model-reviewed exploratory gold (95 unanimous, 25 adjudicated).
 - `emotion-salience-benchmark-protocol-v0.md` — expanded PMLAB-COMP-C4-001 draft separating phase, target feature, timing, consequence, surprise, controllability, signal provenance, competition, and controller action; no corpus or result exists.
 - `data/lab/pmlab-salience-ontology-review-v0/blind/` — gold-free independent-review packet that operationalizes 12 factor boundaries through 24 probes; its acceptance permits corpus construction, never controller implementation.
@@ -141,4 +142,4 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 
 ## Immediate laboratory milestone
 
-Execute the frozen `rg` versus SQLite FTS5 baseline exactly once against the M2 model-reviewed gold and label it exploratory. Do not admit embeddings, graph, or salience until that result and its failure localization are reviewed. H-tier or cross-family replication remains required before confirmatory release or architecture promotion.
+The frozen lexical baseline is complete and the test is spent. Run the unchanged LongMemEval bridge separately, then preregister new data for factor-isolated bilingual cues, validity/trust filtering, and sufficiency control against the surviving FTS5 sparse baseline. Do not tune on PMLAB v0.1 or admit embeddings, graph, salience, or product architecture without a new comparison. H-tier or cross-family replication remains required for confirmation.

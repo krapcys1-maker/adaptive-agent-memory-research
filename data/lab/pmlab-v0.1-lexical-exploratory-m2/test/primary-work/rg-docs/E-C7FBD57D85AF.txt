@@ -1,0 +1,2 @@
+Storage record for silver spectrometer lens
+The silver spectrometer lens is stored in case Q-27.

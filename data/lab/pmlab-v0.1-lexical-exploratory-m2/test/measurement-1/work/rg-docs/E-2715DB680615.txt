@@ -1,0 +1,2 @@
+Current telemetry port
+The current telemetry port is 4318; it replaced 4317.

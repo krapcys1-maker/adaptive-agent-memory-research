@@ -1,0 +1,2 @@
+Project research record
+The API request exposed expected labels, so the run is retained as an invalid leakage artifact and all forty scores are excluded.

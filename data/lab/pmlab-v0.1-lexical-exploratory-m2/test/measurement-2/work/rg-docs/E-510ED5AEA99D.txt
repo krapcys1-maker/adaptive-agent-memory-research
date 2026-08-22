@@ -1,0 +1,2 @@
+Prevention procedure
+To prevent recurrence, retain the archived source hash and mark the locator unavailable.

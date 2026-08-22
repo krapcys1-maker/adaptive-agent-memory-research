@@ -1,0 +1,2 @@
+Operational note
+The nightly archive must be duplicated before the database upgrade.

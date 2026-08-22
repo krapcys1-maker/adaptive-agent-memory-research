@@ -1,0 +1,2 @@
+Operational note
+A checksum inspection is mandatory before accepting an imported bundle.

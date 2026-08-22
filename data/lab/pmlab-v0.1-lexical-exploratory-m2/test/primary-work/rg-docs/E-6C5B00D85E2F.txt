@@ -1,0 +1,2 @@
+Prevention procedure
+To prevent recurrence, stop reads from the index and rebuild it from canonical files.

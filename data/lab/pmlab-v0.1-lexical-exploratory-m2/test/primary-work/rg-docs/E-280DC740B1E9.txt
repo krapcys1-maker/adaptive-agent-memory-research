@@ -1,0 +1,2 @@
+Report B on prefetching
+Report B found that prefetching did not change median latency.

@@ -1,0 +1,2 @@
+Incident onset
+Search latency rose because the cache was disabled.

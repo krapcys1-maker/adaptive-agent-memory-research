@@ -1,0 +1,2 @@
+Updated alert channel
+From 2026-04-10, the alert channel is pager, replacing email.

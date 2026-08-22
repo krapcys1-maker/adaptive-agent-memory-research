@@ -1,0 +1,2 @@
+Prevention procedure
+To prevent recurrence, exclude it from current-state answers until synchronization is verified.
