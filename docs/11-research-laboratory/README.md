@@ -59,6 +59,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 ## Laboratory directories
 
 - `docs/11-research-laboratory/coverage-protocol.md` — how evidence coverage is measured and when searching may pause.
+- `docs/11-research-laboratory/research-to-experiment-gate.md` — the enforceable boundary between targeted reading, exploratory tests, frozen confirmation, and architecture promotion.
 - `docs/11-research-laboratory/benchmark-ladder.md` — ordered baseline and mechanism comparisons.
 - `docs/11-research-laboratory/stage-gates.md` — evidence required before added complexity.
 - `docs/11-research-laboratory/minimal-architecture.md` — provider-neutral architecture boundary.
@@ -72,6 +73,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/coverage-matrix.csv` — topic status and gaps.
 - `data/lab/search-log.csv` — denominator for saturation claims.
 - `data/lab/experiment-registry.csv` — all planned, running, completed, null, and failed experiments.
+- `data/lab/phase-gate-status.csv` — current gate decision and blockers for each active experiment family.
 - `data/lab/backend-registry.csv` — frozen retrieval ladder and unlock state.
 - `data/lab/pmlab-v0-dev/` — 24-query development slice and first B0/B1/B2 instrument report; explicitly not the released benchmark.
 

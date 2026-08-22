@@ -63,7 +63,7 @@ tools/project_memory/     Dependency-free CLI and MCP memory adapter
 
 ## Current phase
 
-The project is in **Phase 0: evidence collection and conceptual falsification**, with a formal pre-implementation laboratory now defined. Product-memory experiments remain gated until evidence coverage, benchmark validity, baseline reproduction, and architecture boundaries are sufficiently clear. The included project-memory bootstrap exists only to preserve the research process itself.
+The project is in **evidence collection plus gated laboratory testing**. It does not wait for global literature completeness: each falsifiable hypothesis may enter an exploratory test under the [research-to-experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md). Confirmatory claims, added architecture complexity, and product implementation remain blocked until their stricter benchmark, reproduction, safety, and review gates pass. The included project-memory bootstrap exists only to preserve the research process itself.
 
 ## Working language
 

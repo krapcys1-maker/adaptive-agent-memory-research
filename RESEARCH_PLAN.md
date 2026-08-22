@@ -23,6 +23,10 @@ Build the evidence base required to design a local-first long-term memory layer 
 - Benchmark leakage and evaluation limitations are documented.
 - No topic is called "complete" without a reproducible multi-database search, citation snowballing, and diminishing-yield audit.
 
+### Transition policy
+
+Phase labels do not force the whole project to wait for global completion. Each falsifiable hypothesis crosses the research-to-experiment boundary independently under `docs/11-research-laboratory/research-to-experiment-gate.md`. Targeted research may continue while a different hypothesis is being tested. Once a confirmatory protocol is frozen, new reading can motivate a new version but cannot alter the frozen outcome contract.
+
 ## Phase 1 — Human memory foundations
 
 ### 1. Working and short-term memory

@@ -2,6 +2,8 @@
 
 Status: reviewed
 
+The operational handoff from evidence gathering to exploratory and frozen experiments is defined in `research-to-experiment-gate.md`. These R0-R5 gates govern the broader path from research integrity to a candidate product architecture.
+
 ## Gate R0 — Inventory integrity
 
 Required:

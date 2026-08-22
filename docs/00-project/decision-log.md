@@ -65,3 +65,9 @@ Reason: The catalog now has enough disciplinary breadth to define falsifiable me
 Decision: Test outcome valence, magnitude, urgency, surprise, controllability, uncertainty, explicit user weight, and recurrence as separate memory-control variables. Do not claim that a scalar salience score creates subjective emotion.
 
 Reason: Arousal, valence, reward, prediction error, stress, and importance have different effects and failure modes. Keeping them separate permits ablation, calibration, poisoning tests, and rejection.
+
+## 2026-08-22 — Transition from research to testing per hypothesis
+
+Decision: Do not wait for global literature completeness. Admit a falsifiable hypothesis to an exploratory test when its mechanism, strongest alternative, baseline, characteristic failure, metrics, costs, safety guardrails, and rejection rule are explicit. Freeze a confirmatory test only after its corpus, split, thresholds, analysis, and review contract are recorded. New evidence may start a new protocol version but may not rewrite a frozen one.
+
+Reason: Literature saturation and empirical test readiness answer different questions. More reading cannot resolve an uncertainty that depends on system behavior, while testing too early without a challenge search or rejection rule produces persuasive but uninterpretable scores.

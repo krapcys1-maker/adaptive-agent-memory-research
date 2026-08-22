@@ -31,10 +31,12 @@ This is the fastest guide to where information belongs.
 | Current conclusions and rejected ideas | `docs/09-synthesis/` |
 | Animal, motor, immune, cellular, and collective memory | `docs/10-comparative-biological-memory/` |
 | Laboratory protocol, stage gates, and benchmark ladder | `docs/11-research-laboratory/` |
+| Exact boundary between research, exploratory tests, frozen tests, and architecture promotion | `docs/11-research-laboratory/research-to-experiment-gate.md` |
 | Repeated compaction and emotion-factor benchmark | `docs/11-research-laboratory/compression-benchmark-extension.md` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
 | Emotion/salience mechanism synthesis and falsification rules | `docs/12-interdisciplinary-memory/emotion-salience-synthesis.md` |
 | Coverage, search, experiment, and backend registries | `data/lab/` |
+| Current research-to-experiment gate decisions and blockers | `data/lab/phase-gate-status.csv` |
 | Machine-readable repository list | `data/catalogs/repositories-seed.csv` |
 | Machine-readable paper list | `data/catalogs/papers-curated.csv` |
 | Locally downloaded GitHub repositories | `external/repos/` (ignored) |
