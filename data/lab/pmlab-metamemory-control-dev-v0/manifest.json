@@ -1,0 +1,31 @@
+{
+  "experiment_id": "PMLAB-META-001",
+  "dataset": "pmlab-metamemory-control-dev-v0",
+  "status": "authored-development-freeze",
+  "freeze_boundary": "first git commit containing this manifest and cases.jsonl",
+  "case_count": 26,
+  "case_sha256": "98b0db04e43792599c4b5a6d795629d7bcd78d87e79f4bc377077a3d5bddcfe3",
+  "strata": {
+    "alternate-cue-only": 6,
+    "conflicting-current": 2,
+    "consistent-unsupported": 2,
+    "direct-id-only": 2,
+    "disagreement-with-evidence": 2,
+    "familiar-poison": 2,
+    "healthy-initial": 4,
+    "not-stored": 2,
+    "query-ambiguous": 2,
+    "stale-version": 2
+  },
+  "languages": {
+    "en": 14,
+    "pl": 12
+  },
+  "critical_cases": 12,
+  "limitations": [
+    "authored construction corpus, not held out",
+    "case transitions are synthetic and deterministic",
+    "no reader model, latency distribution, or real retrieval backend",
+    "success cannot promote an architecture"
+  ]
+}
