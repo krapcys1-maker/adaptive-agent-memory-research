@@ -59,6 +59,14 @@ python scripts/run_forgetting_challenge.py
 
 This challenge is separated from development by entities and query templates, but it is still project-authored and must not be described as independently labeled.
 
+Factor query normalization from history scope, then run the optional reader pilot:
+
+```powershell
+python scripts/run_query_scope_factorial.py
+python scripts/run_reader_interference.py prepare
+python scripts/run_reader_interference.py run --budget-usd 10
+```
+
 ## Verify screening-source identity
 
 Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:

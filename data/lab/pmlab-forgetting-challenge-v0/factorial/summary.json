@@ -1,0 +1,80 @@
+{
+  "status": "oracle-intervention-diagnostic-only",
+  "queries": 24,
+  "arms": [
+    {
+      "arm": "O-validity-ceiling",
+      "answerable_recall_at_5": 1.0,
+      "answerable_mrr": 1.0,
+      "forbidden_intrusion_rate": 0,
+      "unanswerable_abstention_rate": 1,
+      "recall_by_category": {
+        "ambiguous-name-current": 1.0,
+        "natural-language-time": 1.0,
+        "relative-time": 1.0,
+        "unseen-current": 1.0,
+        "unseen-iso-time": 1.0
+      }
+    },
+    {
+      "arm": "Q0-raw_S0-all",
+      "answerable_recall_at_5": 0.4,
+      "answerable_mrr": 0.2891666666666667,
+      "forbidden_intrusion_rate": 1,
+      "unanswerable_abstention_rate": 0.25,
+      "recall_by_category": {
+        "ambiguous-name-current": 0.0,
+        "natural-language-time": 0.25,
+        "relative-time": 0.5,
+        "unseen-current": 0.25,
+        "unseen-iso-time": 1.0
+      }
+    },
+    {
+      "arm": "Q0-raw_S1-history",
+      "answerable_recall_at_5": 0.4,
+      "answerable_mrr": 0.2891666666666667,
+      "forbidden_intrusion_rate": 1,
+      "unanswerable_abstention_rate": 0.25,
+      "recall_by_category": {
+        "ambiguous-name-current": 0.0,
+        "natural-language-time": 0.25,
+        "relative-time": 0.5,
+        "unseen-current": 0.25,
+        "unseen-iso-time": 1.0
+      }
+    },
+    {
+      "arm": "Q1-normalized_S0-all",
+      "answerable_recall_at_5": 1.0,
+      "answerable_mrr": 1.0,
+      "forbidden_intrusion_rate": 1,
+      "unanswerable_abstention_rate": 0.25,
+      "recall_by_category": {
+        "ambiguous-name-current": 1.0,
+        "natural-language-time": 1.0,
+        "relative-time": 1.0,
+        "unseen-current": 1.0,
+        "unseen-iso-time": 1.0
+      }
+    },
+    {
+      "arm": "Q1-normalized_S1-history",
+      "answerable_recall_at_5": 1.0,
+      "answerable_mrr": 1.0,
+      "forbidden_intrusion_rate": 1,
+      "unanswerable_abstention_rate": 0.25,
+      "recall_by_category": {
+        "ambiguous-name-current": 1.0,
+        "natural-language-time": 1.0,
+        "relative-time": 1.0,
+        "unseen-current": 1.0,
+        "unseen-iso-time": 1.0
+      }
+    }
+  ],
+  "main_effect_query_normalization_at_all_scope": 0.6,
+  "main_effect_history_scope_at_raw_query": 0.0,
+  "combined_gain": 0.6,
+  "boundary": "Q1 and S1 consume registered gold metadata; effects are diagnostic ceilings, not deployable-system results."
+}

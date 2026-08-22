@@ -1,0 +1,34 @@
+{
+  "status": "completed-exploratory-single-model",
+  "cases": 40,
+  "by_condition": {
+    "gold-only": {
+      "answer_correct": 1.0,
+      "evidence_correct": 1.0,
+      "abstain_correct": 1.0
+    },
+    "gold-unrelated": {
+      "answer_correct": 1.0,
+      "evidence_correct": 1.0,
+      "abstain_correct": 1.0
+    },
+    "gold-first-stale": {
+      "answer_correct": 1.0,
+      "evidence_correct": 1.0,
+      "abstain_correct": 1.0
+    },
+    "gold-last-stale": {
+      "answer_correct": 1.0,
+      "evidence_correct": 1.0,
+      "abstain_correct": 1.0
+    },
+    "stale-only": {
+      "answer_correct": 1.0,
+      "evidence_correct": 1.0,
+      "abstain_correct": 1.0
+    }
+  },
+  "run_cost_usd": 0.00796224,
+  "cumulative_cost_usd": 0.0753214,
+  "boundary": "One synthetic model snapshot; batched cases; no general reader claim."
+}

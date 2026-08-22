@@ -1,0 +1,12 @@
+{
+  "status": "oracle-intervention-diagnostic-only",
+  "script": "scripts/run_query_scope_factorial.py",
+  "dataset": "data/lab/pmlab-forgetting-challenge-v0",
+  "top_k": 5,
+  "retriever": "SQLite FTS5 for Q0/Q1 x S0/S1",
+  "interventions": {
+    "Q1": "gold-normalized entity topic ISO date",
+    "S1": "gold history scope"
+  },
+  "authority": "mechanism-localization diagnostic only"
+}

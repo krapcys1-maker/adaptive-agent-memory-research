@@ -1,0 +1,18 @@
+{
+  "status": "frozen-input",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0,
+  "conditions": [
+    "gold-only",
+    "gold-unrelated",
+    "gold-first-stale",
+    "gold-last-stale",
+    "stale-only"
+  ],
+  "cases": 40,
+  "cases_sha256": "0bb55ce1ab80d13aaef9739b72a84a2f4af9b92533cd10bbff5b881407487c75",
+  "data_class": "public deterministic synthetic records",
+  "authority": "single-model exploratory reader result only",
+  "hard_cumulative_budget_usd": 10
+}
