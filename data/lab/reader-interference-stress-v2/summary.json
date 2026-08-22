@@ -1,0 +1,171 @@
+{
+  "status": "completed-exploratory-single-model",
+  "cases": 128,
+  "cells": [
+    {
+      "cue_quality": "full",
+      "instruction": "explicit",
+      "cases": 16,
+      "answer_accuracy": 1.0,
+      "evidence_accuracy": 1.0,
+      "abstain_accuracy": 1.0
+    },
+    {
+      "cue_quality": "full",
+      "instruction": "minimal",
+      "cases": 16,
+      "answer_accuracy": 1.0,
+      "evidence_accuracy": 1.0,
+      "abstain_accuracy": 1.0
+    },
+    {
+      "cue_quality": "weak",
+      "instruction": "explicit",
+      "cases": 16,
+      "answer_accuracy": 1.0,
+      "evidence_accuracy": 1.0,
+      "abstain_accuracy": 1.0
+    },
+    {
+      "cue_quality": "weak",
+      "instruction": "minimal",
+      "cases": 16,
+      "answer_accuracy": 1.0,
+      "evidence_accuracy": 1.0,
+      "abstain_accuracy": 1.0
+    },
+    {
+      "cue_quality": "absent",
+      "instruction": "explicit",
+      "cases": 16,
+      "answer_accuracy": 0.25,
+      "evidence_accuracy": 0.25,
+      "abstain_accuracy": 0.25
+    },
+    {
+      "cue_quality": "absent",
+      "instruction": "minimal",
+      "cases": 16,
+      "answer_accuracy": 0.0,
+      "evidence_accuracy": 0.0,
+      "abstain_accuracy": 0.0
+    },
+    {
+      "cue_quality": "contradictory",
+      "instruction": "explicit",
+      "cases": 16,
+      "answer_accuracy": 1.0,
+      "evidence_accuracy": 1.0,
+      "abstain_accuracy": 1.0
+    },
+    {
+      "cue_quality": "contradictory",
+      "instruction": "minimal",
+      "cases": 16,
+      "answer_accuracy": 0.75,
+      "evidence_accuracy": 0.75,
+      "abstain_accuracy": 0.75
+    }
+  ],
+  "curves": [
+    {
+      "cue_quality": "full",
+      "stale_count": 1,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "full",
+      "stale_count": 4,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "full",
+      "stale_count": 16,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "full",
+      "stale_count": 64,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "weak",
+      "stale_count": 1,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "weak",
+      "stale_count": 4,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "weak",
+      "stale_count": 16,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "weak",
+      "stale_count": 64,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "absent",
+      "stale_count": 1,
+      "cases": 8,
+      "decision_accuracy": 0.5
+    },
+    {
+      "cue_quality": "absent",
+      "stale_count": 4,
+      "cases": 8,
+      "decision_accuracy": 0.0
+    },
+    {
+      "cue_quality": "absent",
+      "stale_count": 16,
+      "cases": 8,
+      "decision_accuracy": 0.0
+    },
+    {
+      "cue_quality": "absent",
+      "stale_count": 64,
+      "cases": 8,
+      "decision_accuracy": 0.0
+    },
+    {
+      "cue_quality": "contradictory",
+      "stale_count": 1,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "contradictory",
+      "stale_count": 4,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "contradictory",
+      "stale_count": 16,
+      "cases": 8,
+      "decision_accuracy": 1.0
+    },
+    {
+      "cue_quality": "contradictory",
+      "stale_count": 64,
+      "cases": 8,
+      "decision_accuracy": 0.5
+    }
+  ],
+  "run_cost_usd": 0.04481752,
+  "cumulative_cost_usd": 0.16836292,
+  "boundary": "One model; one case per full factorial cell; batched evaluation; explicit expected abstention for underdetermined cues."
+}

@@ -12,5 +12,8 @@ class ReaderInterferenceTests(unittest.TestCase):
     def test_schema_validation_requires_all_ids(self):
         cases=[{"case_id":"A"},{"case_id":"B"}]
         with self.assertRaises(ValueError): reader.validate(json.dumps({"results":[{"case_id":"A","abstain":False}]}),cases)
+    def test_model_payload_excludes_gold_labels(self):
+        item=reader.model_item(reader.make_cases()[0]); serialized=json.dumps(item)
+        self.assertNotIn("expected_",serialized)
 
 if __name__=="__main__": unittest.main()

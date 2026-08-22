@@ -1,0 +1,37 @@
+{
+  "status": "frozen-input",
+  "model": "deepseek-v4-flash",
+  "thinking": "disabled",
+  "temperature": 0,
+  "cases": 128,
+  "factors": {
+    "stale_count": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "cue_quality": [
+      "full",
+      "weak",
+      "absent",
+      "contradictory"
+    ],
+    "gold_order": [
+      "gold-first",
+      "gold-last"
+    ],
+    "value_similarity": [
+      "high",
+      "low"
+    ],
+    "instruction": [
+      "explicit",
+      "minimal"
+    ]
+  },
+  "cases_sha256": "5d5d1ea616f8ba14db675f9f8dd6d6d4e0dcb02927b2e54663012b5f785b7fc9",
+  "data_class": "public deterministic synthetic records",
+  "authority": "single-model exploratory stress result",
+  "hard_cumulative_budget_usd": 10
+}

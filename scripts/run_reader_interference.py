@@ -21,6 +21,9 @@ API_URL = "https://api.deepseek.com/chat/completions"
 CONDITIONS = ("gold-only", "gold-unrelated", "gold-first-stale", "gold-last-stale", "stale-only")
 SYSTEM = """Use only the supplied synthetic memory records. A record is valid at query_time when valid_from <= query_time and valid_to is null or query_time < valid_to. Return one JSON object: {"results":[{"case_id":"exact","answer":"exact value or empty","evidence_id":"exact ID or empty","abstain":true|false}]}. Never infer a missing value."""
 
+def model_item(case: dict[str, Any]) -> dict[str, Any]:
+    return {key: case[key] for key in ("case_id", "query_time", "query", "records")}
+
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -94,7 +97,7 @@ def run(env_file: Path, budget_usd: float, max_tokens: int, timeout: float) -> d
     outputs=[]
     for condition in CONDITIONS:
         batch=[case for case in cases if case["condition"]==condition]
-        messages=[{"role":"system","content":SYSTEM},{"role":"user","content":json.dumps({"items":batch},ensure_ascii=False)}]
+        messages=[{"role":"system","content":SYSTEM},{"role":"user","content":json.dumps({"items":[model_item(case) for case in batch]},ensure_ascii=False)}]
         preflight=shared.conservative_cost(math.ceil(sum(len(m["content"]) for m in messages)/2),max_tokens)
         if shared.ledger_total()+preflight>budget_usd: raise RuntimeError("hard cumulative budget would be exceeded")
         body=json.dumps({"model":MODEL,"messages":messages,"thinking":{"type":"disabled"},"temperature":0,"max_tokens":max_tokens,"response_format":{"type":"json_object"},"stream":False}).encode()
