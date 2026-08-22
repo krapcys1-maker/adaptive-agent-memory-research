@@ -1,0 +1,22 @@
+{
+  "corpus_groups": 77,
+  "critical_groups_selected": 61,
+  "ordinary_groups_selected": 6,
+  "ordinary_sampling": "minimum sha256(semantic_group_id) within each stage",
+  "priority_counts": {
+    "P0": 40,
+    "P1": 25,
+    "P2": 2
+  },
+  "selected_groups": 67,
+  "selected_rows": 134,
+  "stage_counts": {
+    "certificate_routing": 12,
+    "contract_span": 8,
+    "entity_linking": 13,
+    "obligation_graph": 12,
+    "predicate_linking": 11,
+    "time_authorization": 11
+  },
+  "warning": "This file reveals selection/priority metadata and is not part of the blind reviewer packet."
+}

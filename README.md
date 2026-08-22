@@ -65,6 +65,8 @@ tools/project_memory/     Dependency-free CLI and MCP memory adapter
 
 The project is in **evidence collection plus gated laboratory testing**. It does not wait for global literature completeness: each falsifiable hypothesis may enter an exploratory test under the [research-to-experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md). Confirmatory claims, added architecture complexity, and product implementation remain blocked until their stricter benchmark, reproduction, safety, and review gates pass. The included project-memory bootstrap exists only to preserve the research process itself.
 
+The current collaboration bottleneck is a blind independent review of the 77-group bilingual mapper-stage development corpus. Reviewers should claim the `Independent mapper-label review` issue template and use only `data/lab/pmlab-map-stage-dev-v1/independent-adjudication-v1/blind/` until their signed form is committed. Candidate parser implementation remains intentionally blocked until material critical-label disagreements are adjudicated.
+
 ## Working language
 
 Repository content is written in English so that contributors can collaborate internationally. Issues and discussions may use any language, but durable findings should be summarized in English.

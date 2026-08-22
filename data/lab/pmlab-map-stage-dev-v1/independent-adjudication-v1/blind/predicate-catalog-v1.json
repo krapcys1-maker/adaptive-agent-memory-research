@@ -1,0 +1,26 @@
+{
+  "schema_version": "pmlab-map-stage-predicates-v1",
+  "namespaces": ["directory", "procurement", "telemetry", "approvals", "support", "finance", "audit"],
+  "predicates": [
+    {"id":"project.owner","namespace":"directory","aliases":{"en":["owner","owned by"],"pl":["właściciel","należy do"]},"description":{"en":"person responsible as project owner","pl":"osoba będąca właścicielem projektu"}},
+    {"id":"person.manager","namespace":"directory","aliases":{"en":["manager","boss","supervisor"],"pl":["przełożony","szef","kierownik"]},"description":{"en":"direct organizational manager of a person","pl":"bezpośredni przełożony osoby"}},
+    {"id":"person.email","namespace":"directory","aliases":{"en":["email","email address"],"pl":["e-mail","adres e-mail"]},"description":{"en":"primary directory email address","pl":"główny adres e-mail w katalogu"}},
+    {"id":"person.contact_email","namespace":"directory","aliases":{"en":["contact email","contact address"],"pl":["e-mail kontaktowy","adres kontaktowy"]},"description":{"en":"externally designated contact email","pl":"wyznaczony zewnętrzny e-mail kontaktowy"}},
+    {"id":"vendor.country","namespace":"procurement","aliases":{"en":["registered country","country of registration"],"pl":["kraj rejestracji","zarejestrowany kraj"]},"description":{"en":"legal country of vendor registration","pl":"prawny kraj rejestracji dostawcy"}},
+    {"id":"vendor.risk_rating","namespace":"procurement","aliases":{"en":["risk rating","risk score"],"pl":["ocena ryzyka","wynik ryzyka"]},"description":{"en":"current procurement risk rating","pl":"aktualna ocena ryzyka zakupowego"}},
+    {"id":"vendor.compliance_status","namespace":"procurement","aliases":{"en":["compliance status","compliance state"],"pl":["status zgodności","stan zgodności"]},"description":{"en":"vendor compliance-review status","pl":"status przeglądu zgodności dostawcy"}},
+    {"id":"sensor.latest_value","namespace":"telemetry","aliases":{"en":["latest value","latest reading"],"pl":["najnowsza wartość","ostatni odczyt"]},"description":{"en":"most recent sensor measurement","pl":"najnowszy pomiar czujnika"}},
+    {"id":"sensor.failure_count","namespace":"telemetry","aliases":{"en":["failure count","number of failures"],"pl":["liczba awarii","ile awarii"]},"description":{"en":"count of failure events","pl":"liczba zdarzeń awarii"}},
+    {"id":"sensor.failure_rate","namespace":"telemetry","aliases":{"en":["failure rate","fault frequency"],"pl":["częstość awarii","wskaźnik awarii"]},"description":{"en":"failure events normalized by observation time","pl":"awarie znormalizowane czasem obserwacji"}},
+    {"id":"approval.approver","namespace":"approvals","aliases":{"en":["approver","signed off by"],"pl":["zatwierdzający","zaakceptowane przez"]},"description":{"en":"person who granted approval","pl":"osoba która udzieliła zatwierdzenia"}},
+    {"id":"approval.requester","namespace":"approvals","aliases":{"en":["requester","requested by"],"pl":["wnioskodawca","zgłoszone przez"]},"description":{"en":"person who requested approval","pl":"osoba która wystąpiła o zatwierdzenie"}},
+    {"id":"project.status","namespace":"directory","aliases":{"en":["project status","state"],"pl":["status projektu","stan"]},"description":{"en":"operational status such as active or paused","pl":"stan operacyjny taki jak aktywny lub wstrzymany"}},
+    {"id":"project.phase","namespace":"directory","aliases":{"en":["project phase","stage"],"pl":["faza projektu","etap"]},"description":{"en":"lifecycle phase such as discovery or delivery","pl":"faza cyklu życia jak analiza lub realizacja"}},
+    {"id":"record.created_at","namespace":"audit","aliases":{"en":["created at","creation time"],"pl":["utworzono","czas utworzenia"]},"description":{"en":"timestamp when a record was created","pl":"znacznik czasu utworzenia rekordu"}},
+    {"id":"record.updated_at","namespace":"audit","aliases":{"en":["updated at","last changed"],"pl":["zaktualizowano","ostatnio zmieniono"]},"description":{"en":"timestamp of the latest record change","pl":"znacznik czasu ostatniej zmiany rekordu"}},
+    {"id":"ticket.status","namespace":"support","aliases":{"en":["ticket status","open state"],"pl":["status zgłoszenia","stan otwarcia"]},"description":{"en":"workflow state of a support ticket","pl":"stan przepływu zgłoszenia pomocy"}},
+    {"id":"ticket.resolution_status","namespace":"support","aliases":{"en":["resolution status","fixed"],"pl":["status rozwiązania","naprawione"]},"description":{"en":"whether the reported issue has been resolved","pl":"czy zgłoszony problem został rozwiązany"}},
+    {"id":"invoice.total_amount","namespace":"finance","aliases":{"en":["invoice amount","total amount"],"pl":["kwota faktury","łączna kwota"]},"description":{"en":"gross total recorded on an invoice","pl":"łączna kwota brutto na fakturze"}},
+    {"id":"invoice.paid_amount","namespace":"finance","aliases":{"en":["paid amount","amount paid"],"pl":["zapłacona kwota","kwota opłacona"]},"description":{"en":"amount already paid against an invoice","pl":"kwota już zapłacona za fakturę"}}
+  ]
+}

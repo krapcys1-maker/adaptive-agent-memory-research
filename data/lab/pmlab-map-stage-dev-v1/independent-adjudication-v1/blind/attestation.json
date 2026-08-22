@@ -1,0 +1,18 @@
+{
+  "attestation_id": null,
+  "conflict_or_prior_exposure_notes": null,
+  "packet_manifest_sha256": null,
+  "review_completed_at": null,
+  "review_started_at": null,
+  "reviewer_family_or_affiliation": null,
+  "reviewer_id_or_pseudonym": null,
+  "signature_or_verifiable_acknowledgement": null,
+  "source_commit": "fc9b212",
+  "statements": {
+    "did_not_inspect_advisory_predictions_or_scores": null,
+    "did_not_inspect_author_gold": null,
+    "did_not_inspect_candidate_implementations": null,
+    "disclosed_conflicts_or_prior_exposure": null,
+    "labeled_each_language_before_reveal": null
+  }
+}

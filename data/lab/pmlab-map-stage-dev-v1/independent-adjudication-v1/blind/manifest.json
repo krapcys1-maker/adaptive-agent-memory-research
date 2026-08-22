@@ -1,0 +1,27 @@
+{
+  "all_six_stages_represented": true,
+  "authority": "packet preparation only; does not confer independent review",
+  "blind_forbidden_fields_absent": true,
+  "blind_hashes": {
+    "attestation.json": "41ac81ecbc1d5b7fef94f71f2b5cfcb3241b2943124b263e6c01031eaf9da9ce",
+    "entity-catalog-v1.json": "4c756c73f08f31cbc3f4ce6a92f0fc226d0f5f9bdc558eb0215b38de7788a3fa",
+    "jobs.jsonl": "93852a8e2101f9982c5fb479cd1c34d06360e4672c43ed3399ddf126b5d51653",
+    "predicate-catalog-v1.json": "ee27409184b903a37608d0183e857187a60a7e65a406f55cbf97e92fc8d49191",
+    "review-form.jsonl": "5ea2024111332be5ed011caef0fdfd27942a7100154b3200579fe3cb1fb65bad",
+    "review-manual-v1.md": "73093231502715c64d50d160df5756bd07896953574ca581aec3da8bbc008371",
+    "stage-output-contract-v1.json": "2f4a8508bf42460e25577c03cc6f89b7bf03be6c8c6ed298b650cf9b075eee7c"
+  },
+  "builder_version": "mapper-independent-adjudication-packet-v1",
+  "completed_review_form_hash": null,
+  "corpus_freeze_commit": "fc9b212",
+  "critical_groups": 61,
+  "gold_or_advisory_labels_in_blind_packet": false,
+  "independent_review_status": "not-started",
+  "ordinary_fraction_of_corpus_ordinary": 0.375,
+  "ordinary_groups": 6,
+  "packet": "PMLAB-MAP-STAGE-001-independent-adjudication-v1",
+  "reviewer": null,
+  "selected_rows": 134,
+  "selected_semantic_groups": 67,
+  "status": "blank-blind-packet-awaiting-independent-reviewer"
+}

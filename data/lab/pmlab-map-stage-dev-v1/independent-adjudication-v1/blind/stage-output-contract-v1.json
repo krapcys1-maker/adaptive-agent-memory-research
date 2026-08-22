@@ -1,0 +1,151 @@
+{
+  "non_exercisable_under_isolated_stage_input": {
+    "obligation_graph.query_status=unauthorized": {
+      "delegated_stage": "time_authorization",
+      "integrated_contract": "An integrated mapper may propagate authorization failure after the policy-aware stage, but graph-only scoring must not infer it.",
+      "reason": "The isolated graph stage receives raw query only and cannot observe principal or policy."
+    }
+  },
+  "review_note": "Use review-manual-v1.md canonical rules; do not inspect author labels.",
+  "schema_version": "pmlab-map-stage-case-v1",
+  "stage_outputs": {
+    "certificate_routing": {
+      "action": [
+        "answer",
+        "continue_search",
+        "clarify",
+        "partial_with_gap",
+        "abstain"
+      ],
+      "certificate_status": [
+        "applicable",
+        "derived",
+        "explicit_negative",
+        "requires_complete_scope",
+        "ambiguous",
+        "inapplicable"
+      ],
+      "required_metrics": [
+        "certificate_exact",
+        "action_exact",
+        "false_explicit_negative",
+        "false_collection_absence",
+        "insertion_detection"
+      ]
+    },
+    "contract_span": {
+      "decision": [
+        "accept",
+        "typed_reject"
+      ],
+      "reject_reason": [
+        "none",
+        "invalid_serialization",
+        "missing_required_field",
+        "non_source_span",
+        "invalid_dependency",
+        "unknown_catalog_id",
+        "unsafe_unresolved_state"
+      ],
+      "required_metrics": [
+        "schema_valid",
+        "contract_valid",
+        "wrong_valid_contract",
+        "typed_reject_exact"
+      ]
+    },
+    "entity_linking": {
+      "action": [
+        "linked",
+        "ambiguous_in_catalog",
+        "missing_entity",
+        "non_entity_phrase",
+        "mention_not_detected"
+      ],
+      "fields": [
+        "ranked_candidates",
+        "selected_id",
+        "mention_span",
+        "type_basis"
+      ],
+      "required_metrics": [
+        "candidate_recall_at_5",
+        "top1_accuracy",
+        "nil_subtype_accuracy",
+        "false_link_rate",
+        "risk_coverage_auc"
+      ]
+    },
+    "obligation_graph": {
+      "node_fields": [
+        "obligation_id",
+        "operator",
+        "source_span",
+        "depends"
+      ],
+      "query_status": [
+        "resolved",
+        "ambiguous",
+        "unauthorized",
+        "unsupported_structure"
+      ],
+      "required_metrics": [
+        "obligation_precision",
+        "obligation_recall",
+        "critical_full_recall",
+        "structure_exact",
+        "unsupported_coercion"
+      ]
+    },
+    "predicate_linking": {
+      "action": [
+        "linked",
+        "ambiguous_schema",
+        "unsupported_predicate"
+      ],
+      "fields": [
+        "ranked_predicates",
+        "selected_predicate",
+        "selected_namespaces",
+        "span"
+      ],
+      "required_metrics": [
+        "candidate_recall_at_5",
+        "top1_accuracy",
+        "false_positive_rate",
+        "retained_schema_fraction",
+        "risk_coverage_auc"
+      ]
+    },
+    "time_authorization": {
+      "authorization_status": [
+        "allowed",
+        "denied",
+        "partial",
+        "inherited"
+      ],
+      "fields": [
+        "raw_span",
+        "normalized_time",
+        "timezone",
+        "reference_clock",
+        "principal",
+        "policy_basis"
+      ],
+      "required_metrics": [
+        "time_structure_exact",
+        "interval_or_anchor_exact",
+        "ambiguous_safe",
+        "authorization_exact",
+        "unauthorized_exposure"
+      ],
+      "time_status": [
+        "resolved",
+        "ambiguous",
+        "unbounded",
+        "unsupported",
+        "inherited"
+      ]
+    }
+  }
+}

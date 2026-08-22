@@ -53,3 +53,11 @@ Revisit when:
 - Keep a pull request focused on one research topic or catalog update.
 - Describe sources added, claims changed, and open disagreements.
 - Use absolute claims only when the evidence supports them.
+
+## Independent benchmark review
+
+The current highest-priority contribution is independent review of the PMLAB-MAP stage labels. Claim the dedicated GitHub issue template before opening author or advisory artifacts.
+
+Reviewers receive only `data/lab/pmlab-map-stage-dev-v1/independent-adjudication-v1/blind/`. Complete and hash the review form plus attestation before any reveal comparison. Do not silently modify author labels: independent, advisory, author, and adjudicated labels remain separate records.
+
+A reviewer with prior exposure can still provide useful criticism, but the contribution must disclose that exposure and cannot alone satisfy the blind independent-review gate. A model family already used for advisory review cannot be the sole independent reviewer.
