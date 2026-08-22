@@ -122,6 +122,15 @@ python scripts/build_obligation_mapping_dev_corpus.py --check
 
 The builder expands 28 semantic template groups into paired English/Polish cases, checks all 13 operators, prevents applicable certificates on unresolved or unauthorized scopes, and emits a gold-free model payload plus a hashed manifest. This is development infrastructure, not a held-out result.
 
+Run the frozen-corpus deterministic construction arms:
+
+```powershell
+python scripts/run_obligation_mapping_construction.py
+python scripts/run_obligation_mapping_construction.py --check
+```
+
+The output preserves a whole-query baseline, conjunction splitter, QDMR-inspired rules, gold-obligation linker ceiling, and gold oracle. Its corpus was inspectable; results only diagnose the instrument and cannot establish generalization.
+
 ## Verify screening-source identity
 
 Resolve `include` candidates through DOI content negotiation and the OpenAlex work endpoint:

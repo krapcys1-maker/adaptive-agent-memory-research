@@ -1,0 +1,27 @@
+{
+  "arms": [
+    "whole_query_single_scope",
+    "conjunction_splitter",
+    "qdmr_rules_pipeline",
+    "gold_obligations_predicted_links",
+    "gold_oracle"
+  ],
+  "case_count": 56,
+  "corpus_cases_sha256": "93b9458e7e543656b15a940d647ea242cde4f5a2dfad12e6b0c495972213f336",
+  "corpus_freeze_commit": "4b6c47e",
+  "experiment": "PMLAB-MAP-001-construction",
+  "hashes": {
+    "report.md": "7a17174cbb09de808fe0e51265b1ea27f98dc1e5d767aff4e61cd0b1a15d0b32",
+    "results.jsonl": "b305fb5f193c166d4c2f108f91fd83de4c7adfc4217545794feabcda99314e53",
+    "summary.json": "a25ee2dee49d0b42538d371ce6e2318b9aec84b298c33d13d7bd42a7a39b2077"
+  },
+  "known_limitations": [
+    "inspectable construction corpus",
+    "tailored deterministic rules",
+    "no independent labels",
+    "no held-out challenge"
+  ],
+  "result_count": 280,
+  "runner_version": "pmlab-map-construction-runner-v1",
+  "status": "completed-development-not-held-out"
+}
