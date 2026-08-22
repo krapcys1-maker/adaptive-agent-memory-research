@@ -31,3 +31,5 @@ Priority experiment families:
 7. Archive/suppression versus deletion.
 8. Phase-conditioned replay versus no replay and single-policy replay.
 9. Replay compression, sampling safety, and repeated-error amplification.
+10. Explicit revision versus overwrite, coexistence, and retrieval-triggered mutation.
+11. Delayed return, old-context renewal, reinstatement, and rollback after correction.

@@ -18,6 +18,7 @@ Every hypothesis is an engineering translation, not a claim of biological equiva
 | XH-10 | Conditioned suppression is safer than irreversible deletion for adaptive forgetting. | deletion, no forgetting | retrieval efficiency plus recovery after utility shift | archive growth overwhelms maintenance or suppression leaks irrelevant items |
 | XH-11 | User-visible external artifacts are sometimes superior to internal memory records. | memory-only representation | task completion, collaboration, and correction | duplicated/conflicting artifacts or lost ownership boundaries |
 | XH-12 | A different-model batch worker reduces screening labor without weakening scientific integrity. | subscription/manual workflow | verified source cards per reviewer hour | locator errors, automation bias, privacy failure, or no net time saving |
+| XH-13 | Explicit evidence-bearing revision with versioned supersession is safer than retrieval-triggered overwrite. | in-place overwrite, append-both, and no update | valid-time action plus delayed return and audit recovery | false supersession, stale return, scope leakage, or excessive routing cost |
 
 ## Operational emotion candidate
 

@@ -32,3 +32,6 @@ Local PDFs are rebuildable research caches and are intentionally excluded from G
 | [Task-demand switch in awake replay](2017-olafsdottir-task-demand-replay.md) | primary rat electrophysiology study | extracted + first challenge pass |
 | [Rest ripple disruption](2010-ego-stengel-ripple-disruption.md) | primary causal rat study | extracted + first challenge pass |
 | [Awake SWR disruption](2012-jadhav-awake-swr-disruption.md) | primary causal rat study | extracted + first challenge pass |
+| [Human reactivation-extinction](2010-schiller-reactivation-extinction.md) | primary human experiment | extracted + first challenge pass |
+| [Registered fear replication](2020-chalkia-reactivation-extinction-replication.md) | registered direct replication | extracted + first challenge pass |
+| [Postretrieval sequence replication battery](2016-hardwicke-postretrieval-replications.md) | seven-experiment replication battery | extracted + first challenge pass |

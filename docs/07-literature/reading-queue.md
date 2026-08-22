@@ -86,5 +86,8 @@ Do not mark a paper read until the note records:
 12. Ólafsdóttir et al. — task-state-dependent awake hippocampal replay in rats.
 13. Ego-Stengel and Wilson — post-training ripple disruption and spatial learning.
 14. Jadhav et al. — awake SWR disruption and memory-guided alternation.
+15. Schiller et al. — human reactivation-extinction and reported return-of-fear blockade.
+16. Chalkia et al. — registered direct replication of reactivation-extinction.
+17. Hardwicke et al. — direct and conceptual postretrieval sequence replications.
 
 Canonical notes and artifact hashes are in `docs/07-literature/full-read-notes/`. Completion here means the full read plus an initial challenge pass, not independent verification or architecture endorsement.

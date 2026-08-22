@@ -68,6 +68,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/11-research-laboratory/project-memory-lab-v0.md` — preregistration draft for the first real project benchmark.
 - `docs/11-research-laboratory/compression-benchmark-extension.md` — preregistered repeated-compaction, model-change, semantic-completion, and factor-separated emotion tests.
 - `docs/11-research-laboratory/replay-benchmark-extension.md` — preregistered phase-conditioned replay, compression-throughput, and sampling-safety tests.
+- `docs/11-research-laboratory/revision-benchmark-extension.md` — preregistered versioning, non-mutating retrieval, return, and representation-dissociation tests.
 - `data/lab/coverage-matrix.csv` — topic status and gaps.
 - `data/lab/search-log.csv` — denominator for saturation claims.
 - `data/lab/experiment-registry.csv` — all planned, running, completed, null, and failed experiments.
