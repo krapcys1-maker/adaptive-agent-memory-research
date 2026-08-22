@@ -1,0 +1,20 @@
+# Local research caches (recreated from manifests)
+/external/repos/
+/sources/papers/
+
+# Generated discovery snapshots
+/data/snapshots/*.json
+/data/snapshots/*.jsonl
+
+# Python and tooling
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

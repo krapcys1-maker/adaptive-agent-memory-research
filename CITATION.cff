@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: Adaptive Agent Memory Research
+message: If this research workspace is useful, please cite the repository and the primary sources referenced by the specific material you use.
+type: dataset
+authors:
+  - family-names: Community contributors
+repository-code: https://github.com/krapcys1-maker/adaptive-agent-memory-research
+license: CC-BY-4.0
+version: 0.1.0
+date-released: 2026-08-22

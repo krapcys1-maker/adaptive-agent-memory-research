@@ -1,0 +1,11 @@
+system,write_unit,raw_evidence,representation,retrieval,temporal_model,consolidation,forgetting,local_first,license,status
+Mem0,unknown,unknown,facts+vectors,hybrid/implementation-dependent,review-needed,LLM-managed updates,review-needed,supported,Apache-2.0,to-review
+Letta,unknown,unknown,memory blocks+archival,agent-managed,review-needed,agent-managed,review-needed,supported,Apache-2.0,to-review
+Graphiti,events+facts,review-needed,temporal knowledge graph,graph+semantic,first-class,graph extraction/supersession,validity-aware,supported,Apache-2.0,to-review
+LangMem,memories,review-needed,semantic+episodic+procedural,configurable,review-needed,background workflows,review-needed,supported,MIT,to-review
+MemOS,review-needed,review-needed,multiple substrates,hybrid,review-needed,yes,review-needed,supported,Apache-2.0,to-review
+AgentMemory,review-needed,review-needed,files+indexes,hybrid,review-needed,yes,retention/archival,yes,Apache-2.0,to-review
+A-MEM,structured notes,source-link-review,notes+links,semantic+linked,metadata,continuous evolution,not central,yes,MIT,to-review
+LightMem,review-needed,review-needed,structured memories,hybrid/intent-aware,review-needed,yes,review-needed,yes,review-needed,to-review
+TiMem,conversation fragments,review-needed,temporal hierarchy,complexity-aware,first-class,hierarchical,review-needed,self-hosting available,mixed Apache/MIT,to-review
+HippoRAG,documents,yes,knowledge graph+vectors,PPR+semantic,limited,graph integration,none,yes,MIT,to-review
