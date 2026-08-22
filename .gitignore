@@ -13,6 +13,11 @@ __pycache__/
 venv/
 .env
 
+# Rebuildable project-memory runtime files
+/memory/.index/
+/memory/.events.lock
+/memory/.index.lock
+
 # Editors and operating systems
 .DS_Store
 Thumbs.db

@@ -1,5 +1,12 @@
 # Repository Map and Cheat Sheet
 
+## Cross-agent project memory
+
+- `memory/` — append-only durable project memory, current-state orientation, and reviewed records.
+- `tools/project_memory/` — local SQLite FTS5 index, CLI, and MCP stdio server.
+- `.codex/config.toml` and `.mcp.json` — project-scoped Codex and Claude Code integration.
+- `AGENTS.md` and `CLAUDE.md` — automatic memory-use instructions for each client.
+
 This is the fastest guide to where information belongs.
 
 | If you are looking for... | Go to... |

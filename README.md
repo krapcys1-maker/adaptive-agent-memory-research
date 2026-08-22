@@ -4,7 +4,7 @@ An open research workspace for designing **local-first, model-agnostic, long-ter
 
 The target system does not require changing a model's context-window implementation. The context window remains the agent's immediately available workspace; durable memory is stored on the user's disk and a memory controller decides what to write, preserve, consolidate, retrieve, revise, and archive.
 
-This repository is currently a **research project, not a production memory implementation**.
+This repository is currently a **research project, not a production agent-memory implementation**. It includes a small provider-neutral project-memory bootstrap so Codex, Claude Code, and other MCP or shell-capable agents can share research continuity without a model API key.
 
 ## Research objective
 
@@ -33,6 +33,7 @@ The central research hypothesis is:
 4. Check [research questions](docs/00-project/research-questions.md) before adding a source.
 5. Record claims in the [evidence ledger](docs/07-literature/evidence-ledger.csv).
 6. Follow [CONTRIBUTING.md](CONTRIBUTING.md) when proposing changes.
+7. Use [memory/README.md](memory/README.md) for durable cross-agent project memory.
 
 ## Repository layout
 
@@ -52,11 +53,13 @@ data/snapshots/           Reproducible discovery outputs (normally ignored)
 external/repos/           Local shallow clones (ignored by Git)
 sources/papers/           Local paper PDFs (ignored by Git)
 scripts/                  Reproducible discovery and download helpers
+memory/                   Git-tracked project memory and generated local index
+tools/project_memory/     Dependency-free CLI and MCP memory adapter
 ```
 
 ## Current phase
 
-The project is in **Phase 0: evidence collection and conceptual falsification**. We are deliberately postponing implementation until the memory lifecycle, evaluation targets, and baseline comparisons are sufficiently clear.
+The project is in **Phase 0: evidence collection and conceptual falsification**. Product-memory experiments remain postponed until the lifecycle, evaluation targets, and baseline comparisons are sufficiently clear. The included project-memory bootstrap exists only to preserve the research process itself.
 
 ## Working language
 
