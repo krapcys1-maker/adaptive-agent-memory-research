@@ -63,11 +63,13 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/11-research-laboratory/stage-gates.md` — evidence required before added complexity.
 - `docs/11-research-laboratory/minimal-architecture.md` — provider-neutral architecture boundary.
 - `docs/11-research-laboratory/optional-api-worker-policy.md` — when a cloud model may enter as a replaceable, review-gated batch worker.
+- `docs/11-research-laboratory/deepseek-screening-pilot.md` — preregistered public-metadata admission pilot with a cumulative USD 10 hard cap.
 - `docs/11-research-laboratory/project-memory-lab-v0.md` — preregistration draft for the first real project benchmark.
 - `data/lab/coverage-matrix.csv` — topic status and gaps.
 - `data/lab/search-log.csv` — denominator for saturation claims.
 - `data/lab/experiment-registry.csv` — all planned, running, completed, null, and failed experiments.
 - `data/lab/backend-registry.csv` — frozen retrieval ladder and unlock state.
+- `data/lab/pmlab-v0-dev/` — 24-query development slice and first B0/B1/B2 instrument report; explicitly not the released benchmark.
 
 ## Non-negotiable practices
 

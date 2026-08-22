@@ -18,6 +18,10 @@ venv/
 /memory/.events.lock
 /memory/.index.lock
 
+# Rebuildable PMLAB development indexes
+/data/lab/pmlab-v0-dev/artifacts/rg-docs/
+/data/lab/pmlab-v0-dev/artifacts/fts5.sqlite
+
 # Editors and operating systems
 .DS_Store
 Thumbs.db

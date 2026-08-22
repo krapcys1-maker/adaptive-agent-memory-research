@@ -1,0 +1,91 @@
+{
+  "manifest": {
+    "status": "instrument-development-only",
+    "corpus_records": 28,
+    "queries": 24,
+    "top_k": 5,
+    "corpus_sha256": "82e319afe5077043d5c4e5f83c734b98006c97037303462667854dcadb92ae4e",
+    "queries_sha256": "c91fd1721bbc60e7504a888486498c72e9e4c7f48ffcea64db8c82d76a852bfb",
+    "tokenization": "Unicode words length >=3; frozen English/Polish stopword list; no expansion or synonyms",
+    "backends": [
+      "B0-no-memory",
+      "B1-ripgrep",
+      "B2-sqlite-fts5"
+    ],
+    "limitations": "Authored development slice; not independently annotated; not held out; no architecture claims"
+  },
+  "results": [
+    {
+      "backend": "B0-no-memory",
+      "queries": 24,
+      "answerable_queries": 22,
+      "macro_recall_at_5_answerable": 0.0,
+      "mean_reciprocal_rank": 0.0,
+      "forbidden_intrusion_rate": 0,
+      "unanswerable_abstention_rate": 1,
+      "p50_latency_ms": 0.000100000761449337,
+      "p95_latency_ms": 0.000600004568696022,
+      "recall_by_category": {
+        "causal_multi_episode": 0.0,
+        "contradiction": 0.0,
+        "cross_language": 0.0,
+        "exact_lexical": 0.0,
+        "paraphrase": 0.0,
+        "poison_resistance": 0.0,
+        "procedure_failure": 0.0,
+        "supersession": 0.0,
+        "temporal_as_of": 0.0,
+        "weak_overlap": 0.0,
+        "what_where_when": 0.0
+      }
+    },
+    {
+      "backend": "B1-ripgrep",
+      "queries": 24,
+      "answerable_queries": 22,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "mean_reciprocal_rank": 0.7651515151515151,
+      "forbidden_intrusion_rate": 0.2916666666666667,
+      "unanswerable_abstention_rate": 0,
+      "p50_latency_ms": 90.55100003024563,
+      "p95_latency_ms": 144.00520001072437,
+      "recall_by_category": {
+        "causal_multi_episode": 1.0,
+        "contradiction": 0.75,
+        "cross_language": 0.0,
+        "exact_lexical": 1.0,
+        "paraphrase": 1.0,
+        "poison_resistance": 1.0,
+        "procedure_failure": 1.0,
+        "supersession": 1.0,
+        "temporal_as_of": 1.0,
+        "weak_overlap": 0.5,
+        "what_where_when": 1.0
+      }
+    },
+    {
+      "backend": "B2-sqlite-fts5",
+      "queries": 24,
+      "answerable_queries": 22,
+      "macro_recall_at_5_answerable": 0.8409090909090909,
+      "mean_reciprocal_rank": 0.7348484848484849,
+      "forbidden_intrusion_rate": 0.2916666666666667,
+      "unanswerable_abstention_rate": 0,
+      "p50_latency_ms": 0.05289999535307288,
+      "p95_latency_ms": 0.13110000872984529,
+      "recall_by_category": {
+        "causal_multi_episode": 1.0,
+        "contradiction": 0.75,
+        "cross_language": 0.0,
+        "exact_lexical": 1.0,
+        "paraphrase": 1.0,
+        "poison_resistance": 1.0,
+        "procedure_failure": 1.0,
+        "supersession": 1.0,
+        "temporal_as_of": 1.0,
+        "weak_overlap": 0.5,
+        "what_where_when": 1.0
+      }
+    }
+  ]
+}

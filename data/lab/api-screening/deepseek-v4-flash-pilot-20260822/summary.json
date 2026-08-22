@@ -1,0 +1,18 @@
+{
+  "run_id": "deepseek-v4-flash-pilot-20260822",
+  "finished_at": "2026-08-22T13:02:31Z",
+  "jobs": 25,
+  "candidate_outputs": 25,
+  "schema_valid_rate": 1.0,
+  "calls_this_invocation": 5,
+  "errors": 0,
+  "decisions": {
+    "include": 9,
+    "maybe": 7,
+    "exclude": 9
+  },
+  "run_conservative_cost_usd": 0.00867064,
+  "all_runs_conservative_cost_usd": 0.00867064,
+  "hard_budget_usd": 10.0,
+  "authority": "model candidates only; source-level review required"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "instrument-development-only",
+  "corpus_records": 28,
+  "queries": 24,
+  "top_k": 5,
+  "corpus_sha256": "82e319afe5077043d5c4e5f83c734b98006c97037303462667854dcadb92ae4e",
+  "queries_sha256": "c91fd1721bbc60e7504a888486498c72e9e4c7f48ffcea64db8c82d76a852bfb",
+  "tokenization": "Unicode words length >=3; frozen English/Polish stopword list; no expansion or synonyms",
+  "backends": [
+    "B0-no-memory",
+    "B1-ripgrep",
+    "B2-sqlite-fts5"
+  ],
+  "limitations": "Authored development slice; not independently annotated; not held out; no architecture claims"
+}

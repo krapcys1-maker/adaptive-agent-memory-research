@@ -19,6 +19,11 @@ A dependency-free local memory now supports continuity of this research:
 - no model API key, vector database, graph database, or cloud account is required.
 - external API models are optional, replaceable batch workers; they may write review candidates but never accepted evidence directly.
 
+## Latest diagnostics (2026-08-22)
+
+- A budgeted DeepSeek V4 Flash worker screened 125 frozen OpenAlex metadata records with 125/125 schema-valid outputs. Two prompt-policy violations required deterministic correction. Its cumulative conservative cost, including two pilots, was USD 0.0613668. It is admitted for candidate generation only.
+- A 24-query PMLAB development slice compared no memory, ripgrep, and SQLite FTS5. The lexical backends reached Recall@5 0.841 but showed forbidden-record intrusion 0.292, no successful abstention, and zero cross-language recall. This is an authored instrument test, not architecture evidence.
+
 ## Immediate priorities
 
 1. Run the six-round coverage protocol and repair the distinction between discovered, screened, read, and independently reviewed sources.
@@ -28,6 +33,6 @@ A dependency-free local memory now supports continuity of this research:
 5. Audit candidate repositories at pinned revisions and separate reusable mechanisms from marketing claims.
 6. Test emotional salience only after utility labels and consequence-weighted retention metrics exist; never equate operational signals with subjective emotion.
 7. Preserve rejected ideas, null results, and failed runs as labeled evidence.
-8. Before adding an API worker, preregister a frozen admission pilot measuring locator accuracy, unsupported claims, abstention, reviewer time, cost, privacy, and provider failure.
+8. Deduplicate and manually source-review the DeepSeek normalized queue; do not promote model candidates directly into claims or coverage status.
 9. Screen Priority-A interdisciplinary tracks: allocation, replay/CLS, semantic compression, prospective offloading, metacognitive retrieval control, operational salience, continual learning, and crash consistency.
 10. Run a synthesis checkpoint after 25 screened records or three newly primary-read decisive sources in one topic; update hypotheses and next searches without declaring global completeness.

@@ -13,6 +13,27 @@ Produces:
 - `data/catalogs/papers-discovered.csv`
 - a dated raw snapshot in `data/snapshots/`
 
+## Budgeted literature screening
+
+`screen_literature.py` prepares frozen public-metadata batches and can send them to DeepSeek V4 Flash as review candidates. It enforces a cumulative conservative USD budget, disables thinking, validates JSON, supports resume, and never stores the API key.
+
+```powershell
+python scripts/screen_literature.py prepare --run-id pilot-name --per-profile 5
+python scripts/screen_literature.py run --run-id pilot-name --budget-usd 10
+```
+
+The default ignored key location is the parent workspace `.env` with `DEEPSEEK_API_KEY`. Outputs under `data/lab/api-screening/` are screening artifacts, not accepted evidence.
+
+## PMLAB development comparison
+
+Run the controlled 24-query instrument-development slice:
+
+```powershell
+python scripts/run_memory_benchmark.py
+```
+
+This compares no memory, actual `rg`, and SQLite FTS5. Its scores are diagnostic only; the slice is not the independently annotated 120-query PMLAB v0.
+
 ## Refresh GitHub metadata
 
 ```powershell
