@@ -231,21 +231,46 @@ def compare() -> dict[str, Any]:
     verify()
     cases = {row["case_id"]:row for row in shared.read_jsonl(CORPUS_DIR/"cases.jsonl")}
     predictions = {row["case_id"]:row for row in shared.read_jsonl(RUN_DIR/"predictions.jsonl")}
+    expected_ids = {case["case_id"] for job in shared.read_jsonl(RUN_DIR/"jobs.jsonl") for case in job["cases"]}
     rows=[]
-    for case_id in sorted(predictions):
-        case=cases[case_id]; proposed=predictions[case_id]["independent_label"]; gold=case["gold"]
-        rows.append({"case_id":case_id,"semantic_group_id":case["semantic_group_id"],"stage":case["stage"],"language":case["language"],"criticality":case["criticality"],"gold":gold,"advisory_label":proposed,"exact_agreement":canonical(gold)==canonical(proposed),"confidence":predictions[case_id]["confidence"],"rationale":predictions[case_id]["rationale"],"authority":"advisory-model-disagreement-only"})
+    for case_id in sorted(expected_ids):
+        case=cases[case_id]; prediction=predictions.get(case_id); gold=case["gold"]
+        if prediction is None:
+            rows.append({"case_id":case_id,"semantic_group_id":case["semantic_group_id"],"stage":case["stage"],"language":case["language"],"criticality":case["criticality"],"gold":gold,"advisory_label":None,"prediction_status":"schema_invalid_after_retries","exact_agreement":False,"authority":"advisory-model-disagreement-only"})
+            continue
+        proposed=prediction["independent_label"]
+        rows.append({"case_id":case_id,"semantic_group_id":case["semantic_group_id"],"stage":case["stage"],"language":case["language"],"criticality":case["criticality"],"gold":gold,"advisory_label":proposed,"prediction_status":"valid","exact_agreement":canonical(gold)==canonical(proposed),"confidence":prediction["confidence"],"rationale":prediction["rationale"],"authority":"advisory-model-disagreement-only"})
     shared.write_jsonl(RUN_DIR/"comparison.jsonl",rows)
     exact=sum(row["exact_agreement"] for row in rows); critical=[row for row in rows if row["criticality"]=="critical"]
     by_stage={stage:{"cases":len(items),"exact":sum(row["exact_agreement"] for row in items),"rate":sum(row["exact_agreement"] for row in items)/len(items)} for stage in sorted({row["stage"] for row in rows}) for items in [[row for row in rows if row["stage"]==stage]]}
-    summary={"status":"advisory-comparison-complete" if len(rows)==110 else "advisory-comparison-incomplete","cases":110,"predictions":len(rows),"exact_agreement":exact,"exact_agreement_rate":exact/110,"critical_exact_agreement":sum(row["exact_agreement"] for row in critical),"critical_cases":len(critical),"by_stage":by_stage,"authority":"disagreement queue only; independent review required","gold_mutated":False}
+    summary={"status":"advisory-comparison-incomplete" if len(predictions)<110 else "advisory-comparison-complete","cases":110,"valid_predictions":len(predictions),"schema_valid_rate":len(predictions)/110,"exact_agreement":exact,"exact_agreement_rate":exact/110,"critical_exact_agreement":sum(row["exact_agreement"] for row in critical),"critical_cases":len(critical),"by_stage":by_stage,"authority":"disagreement queue only; independent review required","gold_mutated":False}
     shared.write_json(RUN_DIR/"comparison-summary.json",summary)
+    def field_checks(row: dict[str, Any]) -> dict[str, bool]:
+        if row["prediction_status"] != "valid": return {}
+        gold=row["gold"]; proposed=row["advisory_label"]; stage=row["stage"]
+        if stage=="contract_span": return {field:gold.get(field)==proposed.get(field) for field in ("decision","reject_reason")}
+        if stage=="entity_linking": return {"action":gold.get("action")==proposed.get("action"),"candidate_set":set(gold.get("candidate_ids",[]))==set(proposed.get("candidate_ids",[])),"selected_id":gold.get("selected_id")==proposed.get("selected_id"),"selected_ids":set(gold.get("selected_ids",[]))==set(proposed.get("selected_ids",[]))}
+        if stage=="obligation_graph":
+            gn=gold.get("nodes",[]); pn=proposed.get("nodes",[])
+            return {"query_status":gold.get("query_status")==proposed.get("query_status"),"node_count":len(gn)==len(pn),"operator_sequence":[n.get("operator") for n in gn]==[n.get("operator") for n in pn],"dependency_structure":[n.get("depends") for n in gn]==[n.get("depends") for n in pn],"source_spans":[n.get("source_span") for n in gn]==[n.get("source_span") for n in pn]}
+        if stage=="predicate_linking": return {"action":gold.get("action")==proposed.get("action"),"candidate_set":set(gold.get("ranked_predicates",[]))==set(proposed.get("ranked_predicates",[])),"selected_predicate":gold.get("selected_predicate")==proposed.get("selected_predicate"),"namespace_set":set(gold.get("selected_namespaces",[]))==set(proposed.get("selected_namespaces",[]))}
+        if stage=="time_authorization": return {field:(set(gold.get(field,[]))==set(proposed.get(field,[])) if field in {"authorized_namespaces","denied_namespaces"} else gold.get(field)==proposed.get(field)) for field in ("time_status","authorization_status","raw_span","normalized_time","timezone","reference_clock","principal","policy_basis","authorized_namespaces","denied_namespaces")}
+        return {field:gold.get(field)==proposed.get(field) for field in ("certificate_status","action","basis")}
+    field_rows=[]
+    for row in rows:
+        for field,agree in field_checks(row).items(): field_rows.append({"stage":row["stage"],"field":field,"agree":agree})
+    field_summary={}
+    for stage in sorted({item["stage"] for item in field_rows}):
+        field_summary[stage]={}
+        for field in sorted({item["field"] for item in field_rows if item["stage"]==stage}):
+            items=[item for item in field_rows if item["stage"]==stage and item["field"]==field]; agreed=sum(item["agree"] for item in items); field_summary[stage][field]={"agree":agreed,"valid_predictions":len(items),"rate":agreed/len(items)}
+    shared.write_json(RUN_DIR/"field-agreement-summary.json",{"authority":"descriptive field-level comparison; not independent validation","schema_invalid_cases":110-len(predictions),"by_stage":field_summary})
     disagreements=[row for row in rows if not row["exact_agreement"]]
-    report=["# Remaining PMLAB-MAP stage blind advisory review","","Status: advisory disagreement queue; not independent corpus review","",f"- predictions: {len(rows)}/110;",f"- exact agreement: {exact}/110 ({exact/110:.3f});",f"- critical exact agreement: {summary['critical_exact_agreement']}/{len(critical)};",f"- disagreements: {len(disagreements)}.","","Gold was revealed only during this post-response comparison. No disagreement automatically changes gold.","","## Disagreements",""]+[f"- `{row['case_id']}` ({row['stage']}, {row['criticality']}): {row['rationale']}" for row in disagreements]
+    report=["# Remaining PMLAB-MAP stage blind advisory review","","Status: advisory disagreement queue; not independent corpus review","",f"- schema-valid predictions: {len(predictions)}/110;",f"- exact object agreement: {exact}/110 ({exact/110:.3f});",f"- critical exact agreement: {summary['critical_exact_agreement']}/{len(critical)};",f"- disagreements or invalid predictions: {len(disagreements)}.","","Exact object agreement is intentionally strict and confounds semantic disagreement with canonical representation differences. Use `field-agreement-summary.json` to localize status, action, graph, span, time, and scope agreement. Gold was revealed only during this post-response comparison; no disagreement automatically changes it.","","## Disagreements",""]+[f"- `{row['case_id']}` ({row['stage']}, {row['criticality']}): {row.get('rationale','schema-invalid after two attempts')}" for row in disagreements]
     (RUN_DIR/"report.md").write_text("\n".join(report)+"\n",encoding="utf-8",newline="\n")
-    artifacts=["api-summary.json","calls.jsonl","raw-responses.jsonl","predictions.jsonl","comparison.jsonl","comparison-summary.json","report.md"]
+    artifacts=["api-summary.json","calls.jsonl","raw-responses.jsonl","predictions.jsonl","comparison.jsonl","comparison-summary.json","field-agreement-summary.json","report.md"]
     api=json.loads((RUN_DIR/"api-summary.json").read_text(encoding="utf-8")); manifest=verify()
-    shared.write_json(RUN_DIR/"result-manifest.json",{"run_id":RUN_ID,"status":summary["status"],"corpus_freeze_commit":CORPUS_FREEZE_COMMIT,"prompt_freeze_commit":manifest["prompt_freeze_commit"],"cases":110,"valid_predictions":len(rows),"run_conservative_cost_usd":api["run_conservative_cost_usd"],"all_runs_conservative_cost_usd_at_completion":api["all_runs_conservative_cost_usd"],"authority":"advisory only; independent review required","gold_mutated":False,"hashes":{name:sha256(RUN_DIR/name) for name in artifacts}})
+    shared.write_json(RUN_DIR/"result-manifest.json",{"run_id":RUN_ID,"status":summary["status"],"corpus_freeze_commit":CORPUS_FREEZE_COMMIT,"prompt_freeze_commit":manifest["prompt_freeze_commit"],"cases":110,"valid_predictions":len(predictions),"run_conservative_cost_usd":api["run_conservative_cost_usd"],"all_runs_conservative_cost_usd_at_completion":api["all_runs_conservative_cost_usd"],"authority":"advisory only; independent review required","gold_mutated":False,"hashes":{name:sha256(RUN_DIR/name) for name in artifacts}})
     return summary
 
 

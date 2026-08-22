@@ -72,3 +72,17 @@ After the corpus freeze at `7481b44`, DeepSeek V4 Flash reviewed all 44 rows fro
 - the worker's `case_validity` field is unusable because it conflated deliberately defective payloads with defective benchmark cases.
 
 The complete raw and derived record is under `../api-screening/deepseek-v4-flash-map-stage-advisory-review-20260822/`. This remains an advisory worker review, not the independently signed review required for corpus freeze.
+
+## Remaining-corpus blind advisory review
+
+After the full corpus freeze at `fc9b212`, a second prompt/job packet frozen at `33ab039` reviewed only the 110 rows not present in the first pass. Two unchanged attempts produced 104/110 schema-valid labels for USD 0.05700112; six repeated contract failures are preserved (four predicate candidate arrays returned objects rather than IDs, and two unsupported-time rows returned null normalization while conflating temporal support with authorization).
+
+Strict full-object agreement was only 18/110, but it is not a sufficient label-validity statistic because free-form `basis` and non-canonical interval renderings make semantically similar objects unequal. Field-level localization shows:
+
+- graph query status 32/32, but operator sequence and exact span list only 8/32 each;
+- predicate action and selected predicate 18/24 valid outputs, namespaces 24/24;
+- time status and authorization 14/20, with exact raw span/clock/timezone/principal 20/20 but normalized-time string 0/20;
+- certificate action 18/24 and certificate status 10/24; exact free-form basis 0/24;
+- supplemental missing-mention action 2/2 and unsafe-contract decision 2/2, but the contract reject reason differed 0/2.
+
+These results expose underspecified canonical graph, time, and certificate conventions. They do not mutate gold, and the six invalid outputs remain failures. Candidate implementation stays blocked until the labeling manual defines canonical equivalence or narrows the output contract and a genuinely independent reviewer adjudicates the material cases.

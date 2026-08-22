@@ -1,0 +1,11 @@
+{
+  "status": "api-run-incomplete",
+  "cases": 110,
+  "valid_predictions": 104,
+  "errors_logged": 14,
+  "calls_this_invocation": 4,
+  "run_conservative_cost_usd": 0.05700112,
+  "all_runs_conservative_cost_usd": 0.44803396,
+  "hard_cumulative_budget_usd": 10.0,
+  "authority": "advisory only"
+}

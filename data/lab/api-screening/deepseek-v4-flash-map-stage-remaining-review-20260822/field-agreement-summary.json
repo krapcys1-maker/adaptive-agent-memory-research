@@ -1,0 +1,158 @@
+{
+  "authority": "descriptive field-level comparison; not independent validation",
+  "schema_invalid_cases": 6,
+  "by_stage": {
+    "certificate_routing": {
+      "action": {
+        "agree": 18,
+        "valid_predictions": 24,
+        "rate": 0.75
+      },
+      "basis": {
+        "agree": 0,
+        "valid_predictions": 24,
+        "rate": 0.0
+      },
+      "certificate_status": {
+        "agree": 10,
+        "valid_predictions": 24,
+        "rate": 0.4166666666666667
+      }
+    },
+    "contract_span": {
+      "decision": {
+        "agree": 2,
+        "valid_predictions": 2,
+        "rate": 1.0
+      },
+      "reject_reason": {
+        "agree": 0,
+        "valid_predictions": 2,
+        "rate": 0.0
+      }
+    },
+    "entity_linking": {
+      "action": {
+        "agree": 2,
+        "valid_predictions": 2,
+        "rate": 1.0
+      },
+      "candidate_set": {
+        "agree": 2,
+        "valid_predictions": 2,
+        "rate": 1.0
+      },
+      "selected_id": {
+        "agree": 2,
+        "valid_predictions": 2,
+        "rate": 1.0
+      },
+      "selected_ids": {
+        "agree": 2,
+        "valid_predictions": 2,
+        "rate": 1.0
+      }
+    },
+    "obligation_graph": {
+      "dependency_structure": {
+        "agree": 16,
+        "valid_predictions": 32,
+        "rate": 0.5
+      },
+      "node_count": {
+        "agree": 18,
+        "valid_predictions": 32,
+        "rate": 0.5625
+      },
+      "operator_sequence": {
+        "agree": 8,
+        "valid_predictions": 32,
+        "rate": 0.25
+      },
+      "query_status": {
+        "agree": 32,
+        "valid_predictions": 32,
+        "rate": 1.0
+      },
+      "source_spans": {
+        "agree": 8,
+        "valid_predictions": 32,
+        "rate": 0.25
+      }
+    },
+    "predicate_linking": {
+      "action": {
+        "agree": 18,
+        "valid_predictions": 24,
+        "rate": 0.75
+      },
+      "candidate_set": {
+        "agree": 16,
+        "valid_predictions": 24,
+        "rate": 0.6666666666666666
+      },
+      "namespace_set": {
+        "agree": 24,
+        "valid_predictions": 24,
+        "rate": 1.0
+      },
+      "selected_predicate": {
+        "agree": 18,
+        "valid_predictions": 24,
+        "rate": 0.75
+      }
+    },
+    "time_authorization": {
+      "authorization_status": {
+        "agree": 14,
+        "valid_predictions": 20,
+        "rate": 0.7
+      },
+      "authorized_namespaces": {
+        "agree": 10,
+        "valid_predictions": 20,
+        "rate": 0.5
+      },
+      "denied_namespaces": {
+        "agree": 16,
+        "valid_predictions": 20,
+        "rate": 0.8
+      },
+      "normalized_time": {
+        "agree": 0,
+        "valid_predictions": 20,
+        "rate": 0.0
+      },
+      "policy_basis": {
+        "agree": 0,
+        "valid_predictions": 20,
+        "rate": 0.0
+      },
+      "principal": {
+        "agree": 20,
+        "valid_predictions": 20,
+        "rate": 1.0
+      },
+      "raw_span": {
+        "agree": 20,
+        "valid_predictions": 20,
+        "rate": 1.0
+      },
+      "reference_clock": {
+        "agree": 20,
+        "valid_predictions": 20,
+        "rate": 1.0
+      },
+      "time_status": {
+        "agree": 14,
+        "valid_predictions": 20,
+        "rate": 0.7
+      },
+      "timezone": {
+        "agree": 20,
+        "valid_predictions": 20,
+        "rate": 1.0
+      }
+    }
+  }
+}

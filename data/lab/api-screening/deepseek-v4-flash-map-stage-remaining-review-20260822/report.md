@@ -1,0 +1,105 @@
+# Remaining PMLAB-MAP stage blind advisory review
+
+Status: advisory disagreement queue; not independent corpus review
+
+- schema-valid predictions: 104/110;
+- exact object agreement: 18/110 (0.164);
+- critical exact agreement: 12/88;
+- disagreements or invalid predictions: 92.
+
+Exact object agreement is intentionally strict and confounds semantic disagreement with canonical representation differences. Use `field-agreement-summary.json` to localize status, action, graph, span, time, and scope agreement. Gold was revealed only during this post-response comparison; no disagreement automatically changes it.
+
+## Disagreements
+
+- `ST-G01-EN` (obligation_graph, ordinary): Single atomic query with one SELECT node; no ambiguity or unsupported structure.
+- `ST-G01-PL` (obligation_graph, ordinary): Single atomic query with one SELECT node; no ambiguity or unsupported structure.
+- `ST-G02-EN` (obligation_graph, critical): Two conjunctive SELECT obligations; second depends on first for the entity reference.
+- `ST-G02-PL` (obligation_graph, critical): Two conjunctive SELECT obligations; second depends on first for the entity reference.
+- `ST-G03-EN` (obligation_graph, ordinary): Two independent SELECT obligations; no dependency between them.
+- `ST-G03-PL` (obligation_graph, ordinary): Two independent SELECT obligations; no dependency between them.
+- `ST-G04-EN` (obligation_graph, critical): Query decomposes into two sequential SELECT operations: first find Aurora's owner, then find that owner's manager. Backward dependency is explicit.
+- `ST-G04-PL` (obligation_graph, critical): Polish query mirrors English: first select Aurora's owner, then select that person's manager. Sequential dependency is clear.
+- `ST-G05-EN` (obligation_graph, critical): Three sequential SELECT operations: owner, then manager of that owner, then email of that manager. Dependencies are explicit.
+- `ST-G05-PL` (obligation_graph, critical): Polish query clearly chains three selections: owner, manager of that person, and email of the manager. Dependencies are explicit.
+- `ST-G07-EN` (obligation_graph, critical): Query asks for people in both teams, requiring intersection of two sets.
+- `ST-G07-PL` (obligation_graph, critical): Polish query mirrors English, asking for people in both teams.
+- `ST-G08-EN` (obligation_graph, critical): Query selects approved vendors and subtracts suspended ones.
+- `ST-G08-PL` (obligation_graph, critical): Polish query expresses set difference with 'z wyjątkiem'.
+- `ST-G09-EN` (obligation_graph, ordinary): Query asks to add two failure counts, requiring arithmetic addition.
+- `ST-G09-PL` (obligation_graph, ordinary): Polish query 'Dodaj' indicates addition of the two counts.
+- `ST-G10-EN` (obligation_graph, critical): Query asks for sensor with highest average failure rate; graph nodes represent selection, aggregation, and superlative.
+- `ST-G10-PL` (obligation_graph, critical): Polish query mirrors English structure with selection, aggregation, and superlative.
+- `ST-G11-EN` (obligation_graph, critical): Counterfactual conditional 'If Aurora had never launched' cannot be represented by the allowed atomic operators; graph is unsupported.
+- `ST-G11-PL` (obligation_graph, critical): Counterfactual conditional 'Gdyby Aurora nigdy nie wystartowała' is not representable; graph unsupported.
+- `ST-G12-EN` (obligation_graph, critical): Causal query 'What caused' is not expressible with the allowed operators; graph unsupported.
+- `ST-G12-PL` (obligation_graph, critical): Causal query 'Co spowodowało' is not expressible with the allowed operators; graph unsupported.
+- `ST-G13-EN` (obligation_graph, critical): Query contains unresolved pronouns 'its' and 'their' with no antecedent, making the graph ambiguous; nodes are atomic and sequential.
+- `ST-G13-PL` (obligation_graph, critical): Query contains unresolved pronouns 'jego' and 'ich' with no antecedent, making the graph ambiguous; nodes are atomic and sequential.
+- `ST-G14-EN` (obligation_graph, ordinary): Query is a simple ownership lookup with explicit entity 'Aurora' and no ambiguity.
+- `ST-G14-PL` (obligation_graph, ordinary): Query is a simple ownership lookup with explicit entity 'Aurory' and no ambiguity.
+- `ST-G15-EN` (obligation_graph, critical): Query has a clear list operation followed by a filter on ownership of Aurora; no ambiguity.
+- `ST-G15-PL` (obligation_graph, critical): Query has a clear list operation followed by a filter on ownership of Aurora; no ambiguity.
+- `ST-G16-EN` (obligation_graph, ordinary): Query asks whether Marta is the owner of Aurora; graph nodes represent selecting Marta and filtering by ownership relation.
+- `ST-G16-PL` (obligation_graph, ordinary): Polish query mirrors English: select Marta and filter by ownership of Aurora.
+- `ST-P05-EN` (predicate_linking, critical): The span 'signed off' suggests an approval action, but the predicate catalog has no predicate specifically for release sign-off. The closest predicates are approval.approver and approval.requester, but neither directly matches 'signed off' as an alias. The entity context is a release, which is not a person, so neither approver nor requester is clearly applicable. Thus the schema is ambiguous.
+- `ST-P05-PL` (predicate_linking, critical): The span 'zaakceptował' means 'accepted/approved', but no predicate alias directly matches it. The closest are approval.approver and approval.requester, but the entity context is a release, not a person, so neither is clearly applicable. Thus the schema is ambiguous.
+- `ST-P07-EN` (predicate_linking, critical): The span 'state' matches the alias 'state' of predicate project.status, which is appropriate for a project entity.
+- `ST-P07-PL` (predicate_linking, critical): The span 'stanie' corresponds to the Polish alias 'stan' of predicate project.status.
+- `ST-P08-EN` (predicate_linking, critical): The span 'contact address' matches the alias 'contact address' of predicate person.contact_email.
+- `ST-P08-PL` (predicate_linking, critical): The span 'adres kontaktowy' matches the Polish alias 'adres kontaktowy' of predicate person.contact_email.
+- `ST-P09-EN` (predicate_linking, critical): schema-invalid after two attempts
+- `ST-P09-PL` (predicate_linking, critical): schema-invalid after two attempts
+- `ST-P10-EN` (predicate_linking, critical): schema-invalid after two attempts
+- `ST-P10-PL` (predicate_linking, critical): schema-invalid after two attempts
+- `ST-P11-EN` (predicate_linking, ordinary): The span 'How much' asks for an amount on an invoice; the catalog has invoice.total_amount and invoice.paid_amount, both plausible, but 'shown on invoice' aligns with total amount.
+- `ST-P11-PL` (predicate_linking, ordinary): The span 'Jaka kwota' asks for an amount on an invoice; both invoice predicates are plausible, but 'widnieje na fakturze' aligns with total amount.
+- `ST-R01-EN` (certificate_routing, ordinary): Positive record with fresh, scope-matched collection and no matching insertion supports answering.
+- `ST-R01-PL` (certificate_routing, ordinary): Same as EN: positive record, fresh scope-matched collection, no matching insertion.
+- `ST-R02-EN` (certificate_routing, critical): Verified derived evidence from positive parents supports answering.
+- `ST-R02-PL` (certificate_routing, critical): Same as EN: derived from positive parents.
+- `ST-R03-EN` (certificate_routing, critical): Explicit negative record supports answering negatively despite stale collection.
+- `ST-R03-PL` (certificate_routing, critical): Same as EN: explicit negative record.
+- `ST-R04-EN` (certificate_routing, critical): Complete and fresh collection with no matching record and no insertion; absence certificate is applicable.
+- `ST-R04-PL` (certificate_routing, critical): Complete and fresh collection with no matching record and no insertion; absence certificate is applicable.
+- `ST-R05-EN` (certificate_routing, critical): Collection incomplete; absence certificate requires complete scope.
+- `ST-R05-PL` (certificate_routing, critical): Collection incomplete; absence certificate requires complete scope.
+- `ST-R06-EN` (certificate_routing, critical): Collection not fresh; absence certificate requires fresh scope.
+- `ST-R06-PL` (certificate_routing, critical): Collection not fresh; absence certificate requires fresh scope.
+- `ST-R07-EN` (certificate_routing, critical): Collection certified for procurement but query asks about finance invoices; scope mismatch makes certificate inapplicable, so no-hit cannot be treated as falsity.
+- `ST-R07-PL` (certificate_routing, critical): Same scope mismatch as EN case; certificate inapplicable, abstain.
+- `ST-R08-EN` (certificate_routing, critical): Entity ambiguity prevents a complete scope; no-hit cannot be treated as falsity.
+- `ST-R08-PL` (certificate_routing, critical): Same entity ambiguity as EN case; clarify.
+- `ST-R09-EN` (certificate_routing, critical): A record matching the exact scope was inserted after the certificate, so the absence is no longer valid.
+- `ST-R09-PL` (certificate_routing, critical): Same post-certificate mutation as EN case; abstain.
+- `ST-R10-EN` (certificate_routing, critical): The insertion record is outside the exact scope, so it does not invalidate the absence. But the predicate incident.open is unsupported, so the certificate cannot be applied.
+- `ST-R10-PL` (certificate_routing, critical): Same as EN: unsupported predicate incident.open, so certificate cannot be applied.
+- `ST-S01-EN` (contract_span, critical): The payload uses predicate record.owner which is not in the catalog; the entity is ambiguous but the predicate is unsupported, so the span cannot be accepted.
+- `ST-S01-PL` (contract_span, critical): Same as EN: unsupported predicate record.owner.
+- `ST-S02-EN` (entity_linking, critical): Mention span is null, so no entity mention is detected.
+- `ST-S02-PL` (entity_linking, critical): Mention span is null, so no entity mention is detected.
+- `ST-S03-EN` (time_authorization, critical): schema-invalid after two attempts
+- `ST-S03-PL` (time_authorization, critical): schema-invalid after two attempts
+- `ST-S04-EN` (certificate_routing, critical): The owner facet is positive, but the incidents collection is incomplete, so the absence claim cannot be certified; partial answer with gap is appropriate.
+- `ST-S04-PL` (certificate_routing, critical): The owner facet is positive, but the incidents collection is incomplete, so the absence claim cannot be certified; partial answer with gap is appropriate.
+- `ST-S05-EN` (certificate_routing, critical): Authorization is denied, so the system must abstain from answering; the negative certificate is explicit.
+- `ST-S05-PL` (certificate_routing, critical): Authorization is denied, so the system must abstain from answering; the negative certificate is explicit.
+- `ST-T01-EN` (time_authorization, ordinary): Explicit date range fully resolved; no denial evidence.
+- `ST-T01-PL` (time_authorization, ordinary): Explicit date range fully resolved; no denial evidence.
+- `ST-T02-EN` (time_authorization, critical): Relative 'last week' is ambiguous; partial authorization inferred.
+- `ST-T02-PL` (time_authorization, critical): Relative 'last week' is ambiguous; partial authorization inferred.
+- `ST-T03-EN` (time_authorization, critical): Event timestamp resolves the time reference; no denial evidence.
+- `ST-T03-PL` (time_authorization, critical): Event timestamp resolves the time reference; no denial evidence.
+- `ST-T04-EN` (time_authorization, critical): Recurring schedule is ambiguous as a single interval but clearly authorizes telemetry sensor checks; no denial indicated.
+- `ST-T04-PL` (time_authorization, critical): Polish equivalent of recurring Monday 09:00; same ambiguity and authorization.
+- `ST-T05-EN` (time_authorization, critical): 'ever' indicates unbounded historical query; no time restriction, authorization allowed for directory status.
+- `ST-T05-PL` (time_authorization, critical): Polish 'kiedykolwiek' matches 'ever', unbounded time, allowed.
+- `ST-T06-EN` (time_authorization, critical): 'early next week' is vague, not an exact interval; scheduling audit is allowed.
+- `ST-T06-PL` (time_authorization, critical): Polish equivalent of 'early next week', ambiguous but allowed.
+- `ST-T07-EN` (time_authorization, critical): The raw span 'today' resolves to the reference date 2026-08-22. The principal is 'user:guest' and the query requests a private HR note, which is outside guest authorization, so the authorization is denied.
+- `ST-T07-PL` (time_authorization, critical): The raw span 'dzisiejszą' resolves to the reference date 2026-08-22. The principal is 'user:guest' and the query requests a private HR note, which is outside guest authorization, so the authorization is denied.
+- `ST-T08-EN` (time_authorization, critical): The raw span 'today' resolves to the reference date 2026-08-22. The principal is 'user:auditor' and the query requests directory and finance changes, which are within auditor authorization, so the authorization is allowed.
+- `ST-T08-PL` (time_authorization, critical): The raw span 'dzisiejsze' resolves to the reference date 2026-08-22. The principal is 'user:auditor' and the query requests directory and finance changes, which are within auditor authorization, so the authorization is allowed.
+- `ST-T09-EN` (time_authorization, critical): The raw span explicitly refers to the same time and access scope as the parent, so both time and authorization are inherited from the parent scope O1.
+- `ST-T09-PL` (time_authorization, critical): The raw span explicitly refers to the same time and access scope as the parent, so both time and authorization are inherited from the parent scope O1.
+- `ST-T10-EN` (time_authorization, critical): The raw span explicitly requests the overlap of the two parent scopes, which is the intersection [2026-08-10,2026-08-20]. Both parent scopes are allowed, so the intersection is allowed.
+- `ST-T10-PL` (time_authorization, critical): The Polish span requests the overlap of the two parent scopes, which is the intersection [2026-08-10,2026-08-20]. Both parent scopes are allowed, so the intersection is allowed.

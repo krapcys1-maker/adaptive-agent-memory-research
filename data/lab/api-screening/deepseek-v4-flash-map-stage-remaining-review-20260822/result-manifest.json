@@ -1,0 +1,22 @@
+{
+  "run_id": "deepseek-v4-flash-map-stage-remaining-review-20260822",
+  "status": "advisory-comparison-incomplete",
+  "corpus_freeze_commit": "fc9b212",
+  "prompt_freeze_commit": "33ab039",
+  "cases": 110,
+  "valid_predictions": 104,
+  "run_conservative_cost_usd": 0.05700112,
+  "all_runs_conservative_cost_usd_at_completion": 0.44803396,
+  "authority": "advisory only; independent review required",
+  "gold_mutated": false,
+  "hashes": {
+    "api-summary.json": "fd89642615b54b2438da192f1564789ba2bb6c1a4e94fce5190e0cafd5e8eda3",
+    "calls.jsonl": "2b19a1ea021d83e01ad21910f03484b8367b2461623c3617a90ce52128ece24a",
+    "raw-responses.jsonl": "5a2bda091ae88ad341d3fdeb8cf803212010dbc932d1acb3e53ba6d29d99565d",
+    "predictions.jsonl": "49530f2a198c451e21121d9bfe20ff9454412d044aaf391db0d02bc28b2e4ecc",
+    "comparison.jsonl": "04fafff92281f184df1bbbcbf266cb8ff770c25196cde4723559737929642d47",
+    "comparison-summary.json": "55e97cd3ea0ad1f5ae3ebfe2f8af91100f3364ca41708d7a10d32d6c1c970856",
+    "field-agreement-summary.json": "e2dde0e24005550f22c3e5972bf10a4de024d214a5dfbaa42ade5c6fbd324124",
+    "report.md": "b65a1edaf4efbe616b73a15279cb42bb8c5e717bbecadb08f1defa7c70792c50"
+  }
+}

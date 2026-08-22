@@ -1,0 +1,44 @@
+{
+  "status": "advisory-comparison-incomplete",
+  "cases": 110,
+  "valid_predictions": 104,
+  "schema_valid_rate": 0.9454545454545454,
+  "exact_agreement": 18,
+  "exact_agreement_rate": 0.16363636363636364,
+  "critical_exact_agreement": 12,
+  "critical_cases": 88,
+  "by_stage": {
+    "certificate_routing": {
+      "cases": 24,
+      "exact": 0,
+      "rate": 0.0
+    },
+    "contract_span": {
+      "cases": 2,
+      "exact": 0,
+      "rate": 0.0
+    },
+    "entity_linking": {
+      "cases": 2,
+      "exact": 0,
+      "rate": 0.0
+    },
+    "obligation_graph": {
+      "cases": 32,
+      "exact": 2,
+      "rate": 0.0625
+    },
+    "predicate_linking": {
+      "cases": 28,
+      "exact": 16,
+      "rate": 0.5714285714285714
+    },
+    "time_authorization": {
+      "cases": 22,
+      "exact": 0,
+      "rate": 0.0
+    }
+  },
+  "authority": "disagreement queue only; independent review required",
+  "gold_mutated": false
+}
