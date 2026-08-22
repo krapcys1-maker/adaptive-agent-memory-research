@@ -1,0 +1,19 @@
+{
+  "attestation_id": null,
+  "completed_review_sha256": null,
+  "packet_manifest_sha256": null,
+  "review_completed_at": null,
+  "review_started_at": null,
+  "reviewer_family_or_affiliation": null,
+  "reviewer_id_or_pseudonym": null,
+  "signature_or_verifiable_acknowledgement": null,
+  "source_evidence_commit": "1ba6fc9",
+  "statements": {
+    "did_not_inspect_or_run_a_candidate_controller": null,
+    "did_not_receive_author_preferred_probe_answers": null,
+    "did_not_treat_salience_as_truth_or_validity": null,
+    "disclosed_tools_conflicts_and_prior_exposure": null,
+    "reviewed_every_factor_and_probe_before_author_discussion": null
+  },
+  "tools_conflicts_or_prior_exposure_notes": null
+}

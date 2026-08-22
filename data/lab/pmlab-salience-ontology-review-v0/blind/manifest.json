@@ -1,0 +1,21 @@
+{
+  "author_probe_labels_present": false,
+  "authority": "packet preparation only; does not confer independent review or admit salience into architecture",
+  "blind_hashes": {
+    "attestation.json": "1b7ee056dcc94fd5ebb02eef2126d4b9f2f968a8f54a626e0d94d1b649bbebeb",
+    "factor-contract.json": "2cee24c0092114a99081b55cd568d8be15c8f079639aeba318ee555cf09c81b1",
+    "probe-cases.jsonl": "9e6d14e5ae5fa296f0068f6a75081a3297ffbf86cf6ca42972fb1dcc2d3f7c9a",
+    "review-form.json": "85f6ad49712da29333ad3fc273c0da94a56f2f9f9b734226a22c744ae62b402e",
+    "review-manual.md": "93e021ca4e4a03b708284bb41ffea0a9af1f253dbbdf2117c0d567b905b65d18"
+  },
+  "builder_version": "salience-ontology-review-v0.1",
+  "controller_or_backend_outputs_present": false,
+  "factor_count": 12,
+  "independent_review_status": "not-started",
+  "next_allowed_if_accepted": "revise definitions if requested, then freeze generator and independently labelled outcome corpus before implementing a controller",
+  "outcome_corpus_present": false,
+  "packet": "PMLAB-SAL-ONTOLOGY-001-v0",
+  "probe_count": 24,
+  "source_evidence_commit": "1ba6fc9",
+  "status": "blank-gold-free-packet-awaiting-independent-reviewer"
+}

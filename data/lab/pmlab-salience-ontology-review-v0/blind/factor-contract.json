@@ -1,0 +1,182 @@
+{
+  "allowed_actions": [
+    "no_control_change",
+    "provisional_eligibility",
+    "schedule_replay",
+    "protect_retention",
+    "retrieve_more"
+  ],
+  "always_prohibited_actions": [
+    "delete_raw",
+    "mutate_canonical_fact",
+    "bypass_provenance",
+    "auto_select_cached_procedure"
+  ],
+  "authority": "candidate measurement contract only; not architecture or causal validation",
+  "factors": [
+    {
+      "allowed_values": [
+        "explicit_user",
+        "verified_outcome",
+        "policy",
+        "model_inference",
+        "unknown"
+      ],
+      "evidence_rule": "Record the source and evidence ID; source controls authority, not truth.",
+      "factor_id": "signal_source",
+      "forbidden_inference": "A confident model inference is not a verified outcome.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "Who or what supplied the signal?"
+    },
+    {
+      "allowed_values": [
+        "target_feature",
+        "peripheral_feature",
+        "session_wide",
+        "unresolved"
+      ],
+      "evidence_rule": "Require feature/event IDs or mark unresolved.",
+      "factor_id": "target_scope",
+      "forbidden_inference": "A session-wide mood or consequence must not promote every co-occurring item.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "Which exact feature or event is linked to the signal?"
+    },
+    {
+      "allowed_values": [
+        "negative",
+        "neutral",
+        "positive",
+        "mixed",
+        "unknown"
+      ],
+      "evidence_rule": "Use explicit metadata or a documented outcome relation.",
+      "factor_id": "valence",
+      "forbidden_inference": "Valence is not magnitude, urgency, truth, or user importance.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "What signed direction was explicitly reported for the outcome or affective metadata?"
+    },
+    {
+      "allowed_values": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "unknown"
+      ],
+      "evidence_rule": "The scale and outcome evidence must be recorded before comparison.",
+      "factor_id": "outcome_magnitude",
+      "forbidden_inference": "Dramatic wording cannot establish magnitude.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "How large is the verified consequence on a task-specific scale?"
+    },
+    {
+      "allowed_values": [
+        "reversible",
+        "time_limited",
+        "irreversible",
+        "unknown"
+      ],
+      "evidence_rule": "Require a deadline, decay rule, or policy basis.",
+      "factor_id": "urgency",
+      "forbidden_inference": "Negative valence does not imply urgency.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "How quickly does delay change the achievable outcome?"
+    },
+    {
+      "allowed_values": [
+        "expected",
+        "unexpected_model_change",
+        "unexpected_noise",
+        "unresolved"
+      ],
+      "evidence_rule": "Record the frozen prior prediction and the later discrepancy evidence.",
+      "factor_id": "surprise_class",
+      "forbidden_inference": "Novel wording, rarity, or prediction error alone does not prove model change.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "Does the observation challenge a prior prediction, and is the discrepancy likely structural?"
+    },
+    {
+      "allowed_values": [
+        "preventable",
+        "recoverable",
+        "uncontrollable",
+        "unknown"
+      ],
+      "evidence_rule": "Tie the value to an available action and causal rationale.",
+      "factor_id": "controllability",
+      "forbidden_inference": "High consequence does not imply controllability.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "Can a memory-guided action alter the outcome?"
+    },
+    {
+      "allowed_values": [
+        "encoding",
+        "post_encoding",
+        "retrieval",
+        "revision",
+        "unknown"
+      ],
+      "evidence_rule": "Record observation and action times separately.",
+      "factor_id": "phase",
+      "forbidden_inference": "An encoding effect cannot be assumed to apply at retrieval or revision.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "At which memory operation may the signal act?"
+    },
+    {
+      "allowed_values": [
+        "one_priority",
+        "compatible_priorities",
+        "conflicting_priorities",
+        "unmapped"
+      ],
+      "evidence_rule": "Name competitors and the shared budget.",
+      "factor_id": "competition",
+      "forbidden_inference": "A target gain is not success unless collateral losses are measured.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "Which other memories or actions compete for the same fixed budget?"
+    },
+    {
+      "allowed_values": [
+        "episodic_evidence",
+        "semantic_revision_candidate",
+        "cached_procedure",
+        "retrieve_more",
+        "none"
+      ],
+      "evidence_rule": "Identify the representation and preserve raw evidence.",
+      "factor_id": "controller_target",
+      "forbidden_inference": "Arousal or stress must not automatically select a cached procedure.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "What representation or operation would be affected?"
+    },
+    {
+      "allowed_values": [
+        "low",
+        "medium",
+        "high",
+        "unknown"
+      ],
+      "evidence_rule": "Confidence must cite provenance and uncertainty; it is not factual confidence in the memory content.",
+      "factor_id": "signal_confidence",
+      "forbidden_inference": "Repeated model assertions are not independent confirmation.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "How reliable is the factor assignment itself?"
+    },
+    {
+      "allowed_values": [
+        "current",
+        "contradicted",
+        "superseded",
+        "unresolved"
+      ],
+      "evidence_rule": "Use explicit validity/provenance records, never salience metadata.",
+      "factor_id": "validity_relation",
+      "forbidden_inference": "Salience cannot make a proposition current or canonical.",
+      "missing_value_policy": "unknown; never infer the strongest value from rhetoric or absence",
+      "operational_question": "Is the linked evidence current, contradicted, superseded, or unresolved?"
+    }
+  ],
+  "ontology_id": "PMLAB-SAL-ONTOLOGY-001-v0",
+  "purpose": "factor-separated operational memory control; no subjective-emotion claim",
+  "source_evidence_commit": "1ba6fc9"
+}

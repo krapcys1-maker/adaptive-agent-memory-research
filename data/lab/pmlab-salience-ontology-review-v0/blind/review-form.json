@@ -1,0 +1,376 @@
+{
+  "attestation_id": null,
+  "factor_reviews": [
+    {
+      "decision": null,
+      "factor_id": "signal_source",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "target_scope",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "valence",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "outcome_magnitude",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "urgency",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "surprise_class",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "controllability",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "phase",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "competition",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "controller_target",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "signal_confidence",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    },
+    {
+      "decision": null,
+      "factor_id": "validity_relation",
+      "independent_from_other_factors": null,
+      "leakage_or_safety_risks": [],
+      "operational_observability": null,
+      "overlaps_with": [],
+      "proposed_revision": null,
+      "rationale": null
+    }
+  ],
+  "missing_factors": [],
+  "probe_reviews": [
+    {
+      "case_id": "SAL-P01",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P02",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P03",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P04",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P05",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P06",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P07",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P08",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P09",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P10",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P11",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P12",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P13",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P14",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P15",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P16",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P17",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P18",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P19",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P20",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P21",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P22",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P23",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    },
+    {
+      "case_id": "SAL-P24",
+      "material_ambiguity": null,
+      "permitted_actions": [],
+      "prohibited_actions": [],
+      "rationale": null,
+      "supported_factor_ids": [],
+      "unresolved_factor_ids": [],
+      "unsupported_factor_ids": []
+    }
+  ],
+  "redundant_or_nonidentifiable_factors": [],
+  "review_id": null,
+  "reviewed_at": null,
+  "reviewer_family_or_affiliation": null,
+  "reviewer_id_or_pseudonym": null,
+  "source_evidence_commit": "1ba6fc9",
+  "whole_packet_decision": null,
+  "whole_packet_rationale": null
+}
