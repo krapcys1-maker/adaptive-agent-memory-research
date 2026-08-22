@@ -1,0 +1,18 @@
+{
+  "catalog_version": "pmlab-map-stage-dev-entities-v1",
+  "entities": [
+    {"id": "vendor:cobalt", "type": "vendor", "aliases": {"en": ["Cobalt Supplies", "Cobalt supplier"], "pl": ["dostawca Cobalt", "Cobalt"]}},
+    {"id": "workspace:orchid", "type": "workspace", "aliases": {"en": ["Orchid workspace", "Orchid area"], "pl": ["obszar Orchid", "przestrzeń Orchid"]}},
+    {"id": "sensor:north-7", "type": "sensor", "aliases": {"en": ["North-7", "North unit seven"], "pl": ["North-7", "północna jednostka siedem"]}},
+    {"id": "sensor:south-3", "type": "sensor", "aliases": {"en": ["South-3", "South unit three"], "pl": ["South-3", "południowa jednostka trzy"]}},
+    {"id": "workspace:atlas", "type": "workspace", "aliases": {"en": ["Atlas"], "pl": ["Atlas"]}},
+    {"id": "dataset:atlas", "type": "dataset", "aliases": {"en": ["Atlas"], "pl": ["Atlas"]}},
+    {"id": "project:mercury", "type": "project", "aliases": {"en": ["Mercury"], "pl": ["Mercury"]}},
+    {"id": "person:mercury", "type": "person", "aliases": {"en": ["Mercury"], "pl": ["Mercury"]}},
+    {"id": "team:phoenix", "type": "team", "aliases": {"en": ["Phoenix"], "pl": ["Phoenix"]}},
+    {"id": "release:phoenix", "type": "release", "aliases": {"en": ["Phoenix"], "pl": ["Phoenix"]}},
+    {"id": "person:marta-nowak", "type": "person", "aliases": {"en": ["Marta Nowak", "Marta"], "pl": ["Marta Nowak", "Marta"]}},
+    {"id": "person:ewa-zielinska", "type": "person", "aliases": {"en": ["Ewa Zielinska", "Ewa Zielińska"], "pl": ["Ewa Zielińska", "Ewa"]}},
+    {"id": "project:aurora", "type": "project", "aliases": {"en": ["Aurora project", "Aurora"], "pl": ["projekt Aurora", "Aurora"]}}
+  ]
+}

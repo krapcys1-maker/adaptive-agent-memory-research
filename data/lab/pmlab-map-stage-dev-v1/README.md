@@ -1,6 +1,6 @@
 # PMLAB-MAP stage development v1
 
-Status: design and annotation contract frozen as a candidate; no cases authored yet
+Status: annotation contract frozen; first contract/entity tranche authored and unreviewed; no candidates implemented
 
 This directory defines the next development instrument after both integrated PMLAB-MAP arms failed post-freeze challenge v0. It is not a parser implementation and contains no candidate outputs.
 
@@ -35,3 +35,12 @@ Construction and challenge v0 may inform development strata, but their rows cann
 7. Only then implement or modify stage candidates.
 
 The future stage challenge repeats steps 2-6 after candidate versions are frozen, using new semantic groups, catalogs, schemas, surfaces, and ambiguity patterns.
+
+## First authored tranche
+
+`contract-entity-groups-v1.jsonl` contains 22 semantic groups expanded to 44 paired rows:
+
+- 8 contract/span groups covering valid nested output, wrong-but-valid output, malformed/missing fields, and dependency/ID integrity;
+- 14 entity groups covering aliases, catalog collisions, missing entities, non-entity phrases, coreference, and multi-entity relations.
+
+`cases.jsonl` contains gold and provenance. `model-cases.jsonl` and `independent-review-queue.jsonl` exclude gold, criticality, split, stratum, and author rationale. The manifest status remains `authored-unreviewed-development-data`; these cases may not be used as reviewed evidence or as a confirmation set.

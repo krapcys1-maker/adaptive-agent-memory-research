@@ -89,6 +89,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/11-research-laboratory/factorized-obligation-mapper-repair-protocol-v0.md` — next-stage protocol isolating contract/span, graph, entity, schema, time/authorization, and certificate routing before another integrated challenge.
 - `docs/07-literature/structured-output-and-schema-linking-audit.md` — exact-locator audit showing why valid structured output, semantic correctness, executable correctness, schema recall, and schema false positives require separate metrics.
 - `data/lab/pmlab-map-stage-dev-v1/` — stage-case schema, 72-development/42-later-challenge semantic-group allocation, annotation manual, and blind independent-review checklist; no cases or candidate outputs yet.
+- `data/lab/pmlab-map-stage-dev-v1/manifest.json` — first unreviewed tranche: 22 semantic groups/44 PL-EN rows for contract/span and entity/NIL, with recomputed contract labels and gold-free model/review payloads; no candidate implementation.
 - `data/lab/pmlab-forgetting-dev/` — deterministic 28-case F1 and 56-query F2 development instrument with artifacts and an adversarial review.
 - `data/lab/pmlab-forgetting-challenge-v0/` — unseen-template multi-fault and ambiguous entity/time challenge that breaks the development resolver.
 - `data/lab/reader-interference-stress-v5/` — first fully audited single-model factorial over stale count, cue quality, order, similarity, and instruction strength.
