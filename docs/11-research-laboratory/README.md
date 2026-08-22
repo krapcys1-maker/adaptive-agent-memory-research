@@ -77,6 +77,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-fault-probes-v0/` — deterministic comparison of cascading passive telemetry with isolated active stage probes and explicit data-loss diagnosis.
 - `data/lab/pmlab-fault-probes-robustness-v1/` — 1,972-case stress test of retries, timeouts, false-health signals, correlated probe failures, safe abstention, and abstract probe budgets.
 - `data/lab/pmlab-probe-success-audit-v0/` — exact expected localization/cost curve for auditing first-pass healthy results under transient flips.
+- `docs/11-research-laboratory/probe-failure-domain-and-reliability-protocol.md` and `data/lab/probe-failure-domain-map-v0.csv` — versioned rules for independence, empirical error rates, replica inventory, and safe physical-loss decisions.
 - `data/lab/pmlab-forgetting-challenge-v0/parser-v0/` — label-free-at-runtime catalog parser baseline on observed development templates; not held out.
 - `data/lab/pmlab-forgetting-challenge-v0/parser-challenge-v1/` — post-freeze language/date perturbation set that falsifies parser v0 generality.
 - `data/lab/coverage-matrix.csv` — topic status and gaps.
