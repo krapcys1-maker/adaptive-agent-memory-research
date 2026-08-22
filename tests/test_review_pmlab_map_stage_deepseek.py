@@ -17,9 +17,8 @@ SPEC.loader.exec_module(MODULE)
 class BlindReviewTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        path = ROOT / "data" / "lab" / "pmlab-map-stage-dev-v1" / "independent-review-queue.jsonl"
-        cls.queue = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
-        cls.jobs = MODULE.build_jobs(cls.queue)
+        path = MODULE.RUN_DIR / "jobs.jsonl"
+        cls.jobs = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
     def test_builds_all_paired_groups(self):
         self.assertEqual(22, len(self.jobs))

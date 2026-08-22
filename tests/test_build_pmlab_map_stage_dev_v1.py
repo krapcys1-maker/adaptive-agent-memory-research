@@ -21,12 +21,12 @@ class PmlabMapStageDevBuilderTests(unittest.TestCase):
         cls.review = [json.loads(line) for line in cls.outputs[MODULE.DATA_DIR / "independent-review-queue.jsonl"].splitlines()]
         cls.manifest = json.loads(cls.outputs[MODULE.DATA_DIR / "manifest.json"])
 
-    def test_first_tranche_has_22_bilingual_groups(self):
+    def test_current_tranche_has_52_bilingual_groups(self):
         groups = defaultdict(set)
         for case in self.cases:
             groups[case["semantic_group_id"]].add(case["language"])
-        self.assertEqual(len(groups), 22)
-        self.assertEqual(len(self.cases), 44)
+        self.assertEqual(len(groups), 52)
+        self.assertEqual(len(self.cases), 104)
         self.assertTrue(all(languages == {"en", "pl"} for languages in groups.values()))
 
     def test_model_and_review_payloads_do_not_leak_gold(self):
@@ -45,11 +45,36 @@ class PmlabMapStageDevBuilderTests(unittest.TestCase):
     def test_contract_labels_are_recomputed_not_trusted(self):
         catalog = json.loads(MODULE.CATALOG_PATH.read_text(encoding="utf-8"))
         ids = MODULE.catalog_ids(catalog)
-        groups = MODULE.read_jsonl(MODULE.SOURCE_PATH)
+        groups = [group for path in MODULE.SOURCE_PATHS for group in MODULE.read_jsonl(path)]
         for group in groups:
             if group["stage"] == "contract_span":
                 for variant in group["variants"].values():
                     self.assertEqual(MODULE.contract_decision(variant, ids), group["gold"])
+
+    def test_graph_and_predicate_allocations(self):
+        groups = defaultdict(set)
+        for case in self.cases:
+            groups[case["stage"]].add(case["semantic_group_id"])
+        self.assertEqual(16, len(groups["obligation_graph"]))
+        self.assertEqual(14, len(groups["predicate_linking"]))
+
+    def test_graph_gold_uses_language_specific_exact_spans(self):
+        for case in self.cases:
+            if case["stage"] != "obligation_graph":
+                continue
+            previous = []
+            for index, node in enumerate(case["gold"]["nodes"], start=1):
+                self.assertEqual(f"O{index}", node["obligation_id"])
+                self.assertIn(node["source_span"], case["input"]["raw_query"])
+                self.assertTrue(all(dependency in previous for dependency in node["depends"]))
+                previous.append(node["obligation_id"])
+
+    def test_predicate_gold_has_link_ambiguity_and_unsupported(self):
+        actions = Counter(case["gold"].get("action") for case in self.cases if case["stage"] == "predicate_linking")
+        self.assertEqual({"linked", "ambiguous_schema", "unsupported_predicate"}, set(actions))
+        self.assertEqual(18, actions["linked"])
+        self.assertEqual(6, actions["ambiguous_schema"])
+        self.assertEqual(4, actions["unsupported_predicate"])
 
     def test_manifest_records_unreviewed_and_no_candidates(self):
         self.assertEqual(self.manifest["review_status"], "not-reviewed")

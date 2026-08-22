@@ -1,6 +1,6 @@
 # PMLAB-MAP stage development v1
 
-Status: annotation contract frozen; first contract/entity tranche authored and unreviewed; no candidates implemented
+Status: annotation contract frozen; contract, graph, entity, and predicate tranches authored and unreviewed; no candidates implemented
 
 This directory defines the next development instrument after both integrated PMLAB-MAP arms failed post-freeze challenge v0. It is not a parser implementation and contains no candidate outputs.
 
@@ -44,6 +44,15 @@ The future stage challenge repeats steps 2-6 after candidate versions are frozen
 - 14 entity groups covering aliases, catalog collisions, missing entities, non-entity phrases, coreference, and multi-entity relations.
 
 `cases.jsonl` contains gold and provenance. `model-cases.jsonl` and `independent-review-queue.jsonl` exclude gold, criticality, split, stratum, and author rationale. The manifest status remains `authored-unreviewed-development-data`; these cases may not be used as reviewed evidence or as a confirmation set.
+
+## Graph and predicate tranche
+
+`graph-predicate-groups-v1.jsonl` adds 30 semantic groups/60 paired rows:
+
+- 16 obligation-graph groups for atomic and coordinated facets, projection/coreference, multi-parent dependencies, set and numeric composition, unsupported or ambiguous structures, and denotation/structure dissociation;
+- 14 predicate groups grounded against `predicate-catalog-v1.json`, including direct aliases, synonym/name mismatch, near-neighbor ambiguity, implicit schema context, and unsupported predicates.
+
+The builder converts bilingual graph-span templates to language-specific gold, verifies exact spans and backward-only DAG edges, checks predicate and namespace IDs, enforces typed ambiguity/unsupported states, and checks authored critical-group quotas. The accumulated corpus is 52 groups/104 rows; time/authorization and certificate routing remain unauthored.
 
 ## Blind advisory review
 

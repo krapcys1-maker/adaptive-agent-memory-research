@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and validate the first PMLAB-MAP stage-dev-v1 corpus tranche."""
+"""Build and validate authored PMLAB-MAP stage-dev-v1 corpus tranches."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ import argparse
 import csv
 import hashlib
 import json
+import copy
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,9 +16,13 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data" / "lab" / "pmlab-map-stage-dev-v1"
-BUILDER_VERSION = "pmlab-map-stage-dev-builder-v1"
-SOURCE_PATH = DATA_DIR / "contract-entity-groups-v1.jsonl"
+BUILDER_VERSION = "pmlab-map-stage-dev-builder-v2"
+SOURCE_PATHS = [
+    DATA_DIR / "contract-entity-groups-v1.jsonl",
+    DATA_DIR / "graph-predicate-groups-v1.jsonl",
+]
 CATALOG_PATH = DATA_DIR / "entity-catalog-v1.json"
+PREDICATE_CATALOG_PATH = DATA_DIR / "predicate-catalog-v1.json"
 SCHEMA_PATH = DATA_DIR / "case-schema-v1.json"
 ALLOCATION_PATH = DATA_DIR / "case-allocation-v1.csv"
 AUTHORED_AT = "2026-08-22T00:00:00Z"
@@ -103,7 +108,70 @@ def contract_decision(variant: dict[str, Any], ids: set[str]) -> dict[str, str]:
     return {"decision": "accept", "reject_reason": "none"}
 
 
-def validate_group_sources(groups: list[dict[str, Any]], catalog: dict[str, Any], schema: dict[str, Any]) -> None:
+def validate_graph_group(group: dict[str, Any], schema: dict[str, Any]) -> None:
+    gid = group["semantic_group_id"]
+    gold = group["gold"]
+    if gold.get("query_status") not in schema["stage_outputs"]["obligation_graph"]["query_status"]:
+        raise ValueError(f"{gid}: invalid graph status")
+    nodes = gold.get("nodes")
+    if not isinstance(nodes, list):
+        raise ValueError(f"{gid}: graph nodes must be an array")
+    if gold["query_status"] in {"unsupported_structure", "ambiguous"} and nodes:
+        raise ValueError(f"{gid}: unresolved graph fixture must not force nodes")
+    if gold["query_status"] == "resolved" and not nodes:
+        raise ValueError(f"{gid}: resolved graph requires nodes")
+    previous: list[str] = []
+    for index, node in enumerate(nodes, start=1):
+        if set(node) != {"obligation_id", "operator", "source_span", "depends"}:
+            raise ValueError(f"{gid}: graph node fields differ from contract")
+        if node["obligation_id"] != f"O{index}" or any(dep not in previous for dep in node["depends"]):
+            raise ValueError(f"{gid}: graph IDs or dependencies are invalid")
+        if node["operator"] not in ALLOWED_OPERATORS:
+            raise ValueError(f"{gid}: invalid graph operator")
+        if set(node["source_span"]) != {"en", "pl"}:
+            raise ValueError(f"{gid}: graph source span must be bilingual")
+        for language, variant in group["variants"].items():
+            span = node["source_span"][language]
+            if not span or span not in variant["raw_query"]:
+                raise ValueError(f"{gid}:{language}: graph span is not exact: {span}")
+        previous.append(node["obligation_id"])
+
+
+def validate_predicate_group(group: dict[str, Any], predicate_catalog: dict[str, Any], schema: dict[str, Any]) -> None:
+    gid = group["semantic_group_id"]
+    ids = {item["id"] for item in predicate_catalog["predicates"]}
+    namespaces = set(predicate_catalog["namespaces"])
+    gold = group["gold"]
+    action = gold.get("action")
+    if action not in schema["stage_outputs"]["predicate_linking"]["action"]:
+        raise ValueError(f"{gid}: invalid predicate action")
+    ranked = gold.get("ranked_predicates")
+    selected = gold.get("selected_predicate")
+    selected_namespaces = gold.get("selected_namespaces")
+    if not isinstance(ranked, list) or set(ranked) - ids:
+        raise ValueError(f"{gid}: unknown predicate candidate")
+    if not isinstance(selected_namespaces, list) or set(selected_namespaces) - namespaces:
+        raise ValueError(f"{gid}: unknown namespace")
+    for language, variant in group["variants"].items():
+        if not variant.get("span") or variant["span"] not in variant["raw_query"]:
+            raise ValueError(f"{gid}:{language}: predicate span is not exact")
+    if action == "linked":
+        if selected not in ids or selected not in ranked or not selected_namespaces:
+            raise ValueError(f"{gid}: linked predicate requires selected candidate and namespace")
+    elif selected is not None:
+        raise ValueError(f"{gid}: unresolved predicate cannot select top1")
+    if action == "ambiguous_schema" and len(ranked) < 2:
+        raise ValueError(f"{gid}: schema ambiguity requires at least two candidates")
+    if action == "unsupported_predicate" and (ranked or selected_namespaces):
+        raise ValueError(f"{gid}: unsupported predicate cannot invent candidates or namespaces")
+
+
+def validate_group_sources(
+    groups: list[dict[str, Any]],
+    catalog: dict[str, Any],
+    predicate_catalog: dict[str, Any],
+    schema: dict[str, Any],
+) -> None:
     ids = catalog_ids(catalog)
     seen: set[str] = set()
     counts = Counter((group["stage"], group["stratum"]) for group in groups)
@@ -112,14 +180,52 @@ def validate_group_sources(groups: list[dict[str, Any]], catalog: dict[str, Any]
         ("contract_span", "wrong_valid_contract"): 2,
         ("contract_span", "invalid_serialization_or_fields"): 2,
         ("contract_span", "dependency_and_id_integrity"): 2,
+        ("obligation_graph", "atomic_and_coordination"): 3,
+        ("obligation_graph", "coreference_and_projection"): 3,
+        ("obligation_graph", "set_and_numeric_composition"): 4,
+        ("obligation_graph", "unsupported_and_ambiguous_structure"): 3,
+        ("obligation_graph", "denotation_structure_dissociation"): 3,
         ("entity_linking", "exact_alias_and_paraphrase"): 3,
         ("entity_linking", "in_catalog_collision"): 3,
         ("entity_linking", "missing_entity"): 3,
         ("entity_linking", "non_entity_phrase"): 3,
         ("entity_linking", "coreference_and_multi_entity"): 2,
+        ("predicate_linking", "exact_alias_and_description"): 3,
+        ("predicate_linking", "synonym_and_name_mismatch"): 3,
+        ("predicate_linking", "near_neighbor_ambiguity"): 3,
+        ("predicate_linking", "implicit_schema_context"): 3,
+        ("predicate_linking", "unsupported_predicate"): 2,
     }
     if counts != expected:
         raise ValueError(f"source allocation mismatch: {dict(counts)}")
+    expected_critical = {
+        ("contract_span", "valid_nested_contract"): 1,
+        ("contract_span", "wrong_valid_contract"): 2,
+        ("contract_span", "invalid_serialization_or_fields"): 1,
+        ("contract_span", "dependency_and_id_integrity"): 2,
+        ("obligation_graph", "atomic_and_coordination"): 1,
+        ("obligation_graph", "coreference_and_projection"): 3,
+        ("obligation_graph", "set_and_numeric_composition"): 3,
+        ("obligation_graph", "unsupported_and_ambiguous_structure"): 3,
+        ("obligation_graph", "denotation_structure_dissociation"): 1,
+        ("entity_linking", "exact_alias_and_paraphrase"): 1,
+        ("entity_linking", "in_catalog_collision"): 3,
+        ("entity_linking", "missing_entity"): 3,
+        ("entity_linking", "non_entity_phrase"): 2,
+        ("entity_linking", "coreference_and_multi_entity"): 2,
+        ("predicate_linking", "exact_alias_and_description"): 1,
+        ("predicate_linking", "synonym_and_name_mismatch"): 2,
+        ("predicate_linking", "near_neighbor_ambiguity"): 3,
+        ("predicate_linking", "implicit_schema_context"): 2,
+        ("predicate_linking", "unsupported_predicate"): 2,
+    }
+    actual_critical = Counter(
+        (group["stage"], group["stratum"])
+        for group in groups
+        if group["criticality"] == "critical"
+    )
+    if actual_critical != expected_critical:
+        raise ValueError(f"critical allocation mismatch: {dict(actual_critical)}")
     for group in groups:
         gid = group["semantic_group_id"]
         if gid in seen:
@@ -134,7 +240,7 @@ def validate_group_sources(groups: list[dict[str, Any]], catalog: dict[str, Any]
                 actual = contract_decision(variant, ids)
                 if actual != group["gold"]:
                     raise ValueError(f"{gid}:{language}: contract oracle {actual} != gold {group['gold']}")
-        else:
+        elif group["stage"] == "entity_linking":
             gold = group["gold"]
             action = gold["action"]
             if action not in schema["stage_outputs"]["entity_linking"]["action"]:
@@ -161,6 +267,20 @@ def validate_group_sources(groups: list[dict[str, Any]], catalog: dict[str, Any]
                 raise ValueError(f"{gid}: ambiguous case requires at least two candidates")
             if action in {"missing_entity", "non_entity_phrase", "mention_not_detected"} and candidate_set:
                 raise ValueError(f"{gid}: NIL subtype cannot have gold candidates")
+        elif group["stage"] == "obligation_graph":
+            validate_graph_group(group, schema)
+        elif group["stage"] == "predicate_linking":
+            validate_predicate_group(group, predicate_catalog, schema)
+        else:
+            raise ValueError(f"{gid}: source validator not implemented for {group['stage']}")
+
+
+def gold_for_language(group: dict[str, Any], language: str) -> dict[str, Any]:
+    gold = copy.deepcopy(group["gold"])
+    if group["stage"] == "obligation_graph":
+        for node in gold["nodes"]:
+            node["source_span"] = node["source_span"][language]
+    return gold
 
 
 def allocation_snapshot(groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -180,20 +300,24 @@ def allocation_snapshot(groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def build_outputs() -> dict[Path, str]:
-    groups = read_jsonl(SOURCE_PATH)
+    groups = [group for path in SOURCE_PATHS for group in read_jsonl(path)]
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
+    predicate_catalog = json.loads(PREDICATE_CATALOG_PATH.read_text(encoding="utf-8"))
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
-    validate_group_sources(groups, catalog, schema)
+    validate_group_sources(groups, catalog, predicate_catalog, schema)
     cases: list[dict[str, Any]] = []
     model_cases: list[dict[str, Any]] = []
     review_queue: list[dict[str, Any]] = []
     for group in groups:
         for language in ("en", "pl"):
             case_id = f"{group['semantic_group_id']}-{language.upper()}"
-            stage_input = {
-                **group["variants"][language],
-                "catalog_version": catalog["catalog_version"],
-            }
+            stage_input = {**group["variants"][language]}
+            if group["stage"] in {"contract_span", "entity_linking"}:
+                stage_input["catalog_version"] = catalog["catalog_version"]
+            elif group["stage"] == "predicate_linking":
+                stage_input["schema_version"] = predicate_catalog["schema_version"]
+            elif group["stage"] == "obligation_graph":
+                stage_input["graph_contract_version"] = schema["schema_version"]
             case = {
                 "case_id": case_id,
                 "semantic_group_id": group["semantic_group_id"],
@@ -202,11 +326,17 @@ def build_outputs() -> dict[Path, str]:
                 "criticality": group["criticality"],
                 "split": "stage-dev-v1",
                 "input": stage_input,
-                "gold": group["gold"],
+                "gold": gold_for_language(group, language),
                 "provenance": {
                     "author_id": "Codex-same-process",
                     "authored_at": AUTHORED_AT,
-                    "schema_or_catalog_version": catalog["catalog_version"],
+                    "schema_or_catalog_version": (
+                        predicate_catalog["schema_version"]
+                        if group["stage"] == "predicate_linking"
+                        else schema["schema_version"]
+                        if group["stage"] == "obligation_graph"
+                        else catalog["catalog_version"]
+                    ),
                     "source_or_construction_basis": group["construction_basis"],
                     "review_status": "unreviewed",
                 },
@@ -234,7 +364,7 @@ def build_outputs() -> dict[Path, str]:
     allocation_text = json.dumps(allocation, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
     manifest = {
         "benchmark": "PMLAB-MAP-STAGE-001",
-        "artifact": "stage-dev-v1-contract-entity-tranche",
+        "artifact": "stage-dev-v1-contract-entity-graph-predicate-tranche",
         "status": "authored-unreviewed-development-data",
         "builder_version": BUILDER_VERSION,
         "annotation_contract_freeze_commit": "794c9e3",
@@ -245,8 +375,9 @@ def build_outputs() -> dict[Path, str]:
         "critical_group_count": sum(group["criticality"] == "critical" for group in groups),
         "review_status": "not-reviewed",
         "hashes": {
-            "contract-entity-groups-v1.jsonl": sha256_bytes(SOURCE_PATH.read_bytes()),
+            **{path.name: sha256_bytes(path.read_bytes()) for path in SOURCE_PATHS},
             "entity-catalog-v1.json": sha256_bytes(CATALOG_PATH.read_bytes()),
+            "predicate-catalog-v1.json": sha256_bytes(PREDICATE_CATALOG_PATH.read_bytes()),
             "case-schema-v1.json": sha256_bytes(SCHEMA_PATH.read_bytes()),
             "case-allocation-v1.csv": sha256_bytes(ALLOCATION_PATH.read_bytes()),
             "cases.jsonl": sha256_bytes(cases_text.encode("utf-8")),
@@ -260,7 +391,7 @@ def build_outputs() -> dict[Path, str]:
             "split_and_stratum_absent_from_model_cases": True,
             "candidate_outputs_absent": True,
         },
-        "blockers": ["independent label review not completed", "remaining four stage corpora not authored", "no candidate implementation may use future challenge rows"],
+        "blockers": ["independent label review not completed", "time/authorization and certificate stage corpora not authored", "no candidate implementation may use future challenge rows"],
     }
     return {
         DATA_DIR / "cases.jsonl": cases_text,

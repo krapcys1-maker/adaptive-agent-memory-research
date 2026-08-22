@@ -61,5 +61,75 @@
     "semantic_groups": 3,
     "stage": "entity_linking",
     "stratum": "non_entity_phrase"
+  },
+  {
+    "critical_groups": 1,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "obligation_graph",
+    "stratum": "atomic_and_coordination"
+  },
+  {
+    "critical_groups": 3,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "obligation_graph",
+    "stratum": "coreference_and_projection"
+  },
+  {
+    "critical_groups": 1,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "obligation_graph",
+    "stratum": "denotation_structure_dissociation"
+  },
+  {
+    "critical_groups": 3,
+    "rows": 8,
+    "semantic_groups": 4,
+    "stage": "obligation_graph",
+    "stratum": "set_and_numeric_composition"
+  },
+  {
+    "critical_groups": 3,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "obligation_graph",
+    "stratum": "unsupported_and_ambiguous_structure"
+  },
+  {
+    "critical_groups": 1,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "predicate_linking",
+    "stratum": "exact_alias_and_description"
+  },
+  {
+    "critical_groups": 2,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "predicate_linking",
+    "stratum": "implicit_schema_context"
+  },
+  {
+    "critical_groups": 3,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "predicate_linking",
+    "stratum": "near_neighbor_ambiguity"
+  },
+  {
+    "critical_groups": 2,
+    "rows": 6,
+    "semantic_groups": 3,
+    "stage": "predicate_linking",
+    "stratum": "synonym_and_name_mismatch"
+  },
+  {
+    "critical_groups": 2,
+    "rows": 4,
+    "semantic_groups": 2,
+    "stage": "predicate_linking",
+    "stratum": "unsupported_predicate"
   }
 ]
