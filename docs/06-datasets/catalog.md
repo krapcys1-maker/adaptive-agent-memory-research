@@ -15,6 +15,8 @@ Useful labels:
 
 Do not interpret all non-evidence turns as globally useless.
 
+The first public bridge is frozen in `data/lab/longmemeval-bridge-v0/`. It references the cleaned LongMemEval-S snapshot at dataset commit `98d7416c24c778c2fee6e6f3006e7a073259d48f`, file SHA-256 `d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442`, without redistributing conversations or answers. Thirty answerable and six abstention IDs are selected by salted hash within strata. Public labels make this transfer evidence, not a hidden test.
+
 ### LoCoMo
 
 Useful material:

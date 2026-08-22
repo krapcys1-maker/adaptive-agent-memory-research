@@ -51,6 +51,14 @@ python scripts/validate_pmlab_v0_annotation.py --form-a completed-a.jsonl --atte
 
 Add `--form-b` and `--attestation-b` only after the second reviewer has independently frozen a different completed form. The validator checks packet integrity and contracts but deliberately does not read author labels, compute agreement, or unlock a benchmark run.
 
+Verify the ignored LongMemEval-S cleaned snapshot and reproduce the public bridge selection:
+
+```powershell
+python scripts/prepare_longmemeval_bridge.py
+```
+
+The source must match the pinned 277,383,467-byte file and SHA-256. Only question IDs and structural counts are committed; conversations, answers, and evidence stay in `external/datasets/`.
+
 ## F1/F2 forgetting diagnostics
 
 Build and run the authored fault-localization and version-interference development slice:

@@ -6,8 +6,8 @@ Status: in-progress
 
 | Benchmark | Primary target | Strength | Limitation to investigate | Proposed role |
 |---|---|---|---|---|
-| LongMemEval | long-term assistant conversation | evidence sessions, updates, temporal and multi-session questions | many histories fit modern long contexts; QA mixes retrieval and reader performance | training/validation and subsystem retrieval tests |
-| LoCoMo | multi-session dialogue | evidence IDs, summaries, temporal event structure | small number of long conversations; synthetic pipeline; judge and annotation quality need audit | training and conversational evaluation |
+| LongMemEval | long-term assistant conversation | evidence sessions/turns, updates, temporal and multi-session questions | public labels/contamination; QA mixes retrieval and reader performance; abstention near-miss sessions are not positive retrieval gold | version-pinned 36-ID transfer bridge, never pooled with PMLAB |
+| LoCoMo | multi-session dialogue | evidence IDs, summaries, temporal event structure | ten conversations; generated/edit pipeline; CC BY-NC 4.0; judge and annotation quality need audit | secondary noncommercial conversational audit, no bundled redistribution |
 | LongMemEval-V2 | long-running agent experience | workflow knowledge, dynamic state, gotchas, trajectories | very large and operationally expensive; preprint/young benchmark | high-value held-out final test |
 | BEAM | 100K–10M+ long memory | scale and multiple memory abilities | must verify exact task construction and contamination risk | held-out stress test |
 | MemoryAgentBench | incremental agent memory | separates accurate retrieval, test-time learning, long-range understanding | requires inspection of environments and scoring | held-out agent evaluation |

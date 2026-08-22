@@ -45,7 +45,7 @@ The `blind/` packet contains the complete corpus, label-free query objects, two 
 - audit the 24 project paraphrases against exact source locations;
 - inspect development/test template-family similarity beyond exact duplicates;
 - adjudicate every answerability and evidence-set disagreement in writing;
-- add a separately licensed and separately reported public-benchmark bridge, or formally scope v0 to the first two families;
+- keep the selected 36-ID LongMemEval bridge version-pinned and separately scored; audit adapter fidelity before transfer execution;
 - freeze the lexical query-expansion rule, practical effect threshold, bootstrap method, latency/cache policy, and missing-data rule;
 - reproduce `B0`, `B1`, and `B2` in a clean environment.
 
