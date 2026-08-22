@@ -1,4 +1,6 @@
 import importlib.util
+import shutil
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -32,6 +34,13 @@ class MemoryBenchmarkTests(unittest.TestCase):
         query = {"answerable": False, "gold_evidence_ids": [], "forbidden_stale_ids": []}
         self.assertTrue(MODULE.score_query(query, [])["abstained_correctly"])
         self.assertFalse(MODULE.score_query(query, ["E1"])["abstained_correctly"])
+
+    @unittest.skipUnless(shutil.which("rg"), "ripgrep is not installed")
+    def test_ripgrep_jsonl_parser_preserves_unicode_line_separator(self):
+        records = [{"evidence_id": "E-1", "title": "", "body": "alpha\u2028beta"}]
+        with tempfile.TemporaryDirectory() as temporary:
+            backend = MODULE.RipgrepRetriever(records, Path(temporary) / "docs")
+            self.assertEqual(backend.retrieve("alpha", 5), ["E-1"])
 
 
 if __name__ == "__main__":

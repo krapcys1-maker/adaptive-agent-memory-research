@@ -108,7 +108,11 @@ class RipgrepRetriever:
                 check=False,
             )
             matches: set[str] = set()
-            for line in completed.stdout.splitlines():
+            # rg emits JSON Lines delimited by LF. str.splitlines() is unsafe
+            # because it also splits literal U+0085/U+2028/U+2029 in strings.
+            for line in completed.stdout.split("\n"):
+                if not line:
+                    continue
                 event = json.loads(line)
                 if event.get("type") != "match":
                     continue

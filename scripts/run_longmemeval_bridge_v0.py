@@ -28,16 +28,18 @@ import run_memory_benchmark as lexical  # noqa: E402
 
 
 BRIDGE = ROOT / "data" / "lab" / "longmemeval-bridge-v0"
-OUT = BRIDGE / "execution"
+OUT = BRIDGE / "execution-v0.1"
 SOURCE = ROOT / "external" / "datasets" / "longmemeval-cleaned-98d7416c24c7" / "longmemeval_s_cleaned.json"
 SELECTION = BRIDGE / "selection.jsonl"
-PROTOCOL = BRIDGE / "execution-protocol.json"
+BASE_PROTOCOL = BRIDGE / "execution-protocol.json"
+PROTOCOL = BRIDGE / "execution-protocol-v0.1.json"
 LOCK = OUT / "environment-lock.json"
 SOURCE_BYTES = 277_383_467
 SOURCE_SHA256 = "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442"
 SELECTION_SHA256 = "6eb629bc0f9d1938fa15247092f2f69e096dc92de59c92881d0478972aad6483"
-PROTOCOL_SHA256 = "5d9bb7e99b9f41d6bf3fd80dd78e331b6ead5c4162fc0ebec6dd6d4af2b3f125"
-PROTOCOL_FREEZE_COMMIT = "87b32e3"
+BASE_PROTOCOL_SHA256 = "5d9bb7e99b9f41d6bf3fd80dd78e331b6ead5c4162fc0ebec6dd6d4af2b3f125"
+PROTOCOL_SHA256 = "b21dbb05db4f98d0ce9a41020ec2e155b95b00ba06b730a953ff1c660bf8765e"
+PROTOCOL_FREEZE_COMMIT = "ad8fc3d"
 QUESTION_TYPES = (
     "single-session-user",
     "single-session-assistant",
@@ -108,8 +110,10 @@ def validate_frozen_files() -> None:
         raise ValueError("LongMemEval source bytes differ from the frozen source")
     if sha256_file(SELECTION) != SELECTION_SHA256:
         raise ValueError("bridge selection differs from the frozen selection")
+    if sha256_file(BASE_PROTOCOL) != BASE_PROTOCOL_SHA256:
+        raise ValueError("base bridge execution protocol differs from its pre-output freeze")
     if sha256_file(PROTOCOL) != PROTOCOL_SHA256:
-        raise ValueError("bridge execution protocol differs from its pre-output freeze")
+        raise ValueError("bridge v0.1 repair protocol differs from its pre-output freeze")
     subprocess.run(["git", "merge-base", "--is-ancestor", PROTOCOL_FREEZE_COMMIT, "HEAD"], cwd=ROOT, check=True)
 
 
@@ -310,6 +314,8 @@ def prepare() -> None:
         "protocol_freeze_commit": PROTOCOL_FREEZE_COMMIT,
         "runner_commit": git("rev-parse", "HEAD"),
         "runner_sha256": sha256_file(Path(__file__)),
+        "lexical_dependency_sha256": sha256_file(ROOT / "scripts" / "run_memory_benchmark.py"),
+        "base_protocol_sha256": sha256_file(BASE_PROTOCOL),
         "protocol_sha256": sha256_file(PROTOCOL),
         "selection_sha256": sha256_file(SELECTION),
         "source_sha256": sha256_file(SOURCE),
@@ -325,6 +331,10 @@ def validate_lock() -> dict[str, Any]:
     lock = json.loads(LOCK.read_text(encoding="utf-8"))
     if lock["runner_sha256"] != sha256_file(Path(__file__)):
         raise ValueError("runner changed after environment freeze")
+    if lock["lexical_dependency_sha256"] != sha256_file(ROOT / "scripts" / "run_memory_benchmark.py"):
+        raise ValueError("shared lexical dependency changed after environment freeze")
+    if lock["base_protocol_sha256"] != BASE_PROTOCOL_SHA256:
+        raise ValueError("frozen base protocol mismatch")
     if lock["protocol_sha256"] != PROTOCOL_SHA256 or lock["selection_sha256"] != SELECTION_SHA256:
         raise ValueError("frozen protocol or selection mismatch")
     if lock["source_sha256"] != SOURCE_SHA256 or lock["tools"] != tool_versions():
