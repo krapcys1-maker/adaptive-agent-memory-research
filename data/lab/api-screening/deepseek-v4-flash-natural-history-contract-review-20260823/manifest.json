@@ -1,12 +1,12 @@
 {
   "run_id": "deepseek-v4-flash-natural-history-contract-review-20260823",
-  "status": "prepared-uncommitted-input",
+  "status": "frozen-input-awaiting-api",
   "model": "deepseek-v4-flash",
   "temperature": 0,
   "thinking": "disabled",
   "run_budget_usd": 0.05,
   "global_budget_usd": 10.0,
-  "prompt_freeze_commit": null,
+  "prompt_freeze_commit": "3f27498c84ca6ad2ca0ffa75f5672998daebf619",
   "hashes": {
     "job.json": "8526f67df4fdc2a7270116cfbd787e205b6e7abc2405ea346766857d3d0dd99e",
     "prompt.txt": "7a6c0a4d9c6b0d37b265a40645f07daa2e17f6b5c818ebf56512d21a1a0028a0"
