@@ -1,7 +1,7 @@
 {
   "schema_version": "0.2.0",
   "experiment_id": "PMLAB-NATURAL-RET-001",
-  "status": "revised-source-unit-contract-awaiting-review-no-corpus-no-result",
+  "status": "post-m1-revised-source-unit-contract-awaiting-independent-review-no-corpus-no-result",
   "protocol": "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md",
   "design_artifacts": {
     "source_unit_schema": "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json",
@@ -41,6 +41,11 @@
     "reader_in_primary": false,
     "ann_in_primary": false,
     "same_byte_exact_source_units": true
+  },
+  "unitization_parameters": {
+    "utf8_byte_ceiling": null,
+    "status": "pending-label-free-size-and-tokenizer-feasibility-audit",
+    "freeze_rule": "one value selected without retrieval outcomes and frozen before any prospective test"
   },
   "locks": {
     "corpus_built": false,

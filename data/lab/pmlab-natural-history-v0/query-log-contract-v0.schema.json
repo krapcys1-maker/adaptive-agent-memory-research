@@ -26,7 +26,8 @@
     "pre_output_attestation",
     "collection_phase",
     "recorded_by_role",
-    "storage_class"
+    "storage_class",
+    "capture_sequence"
   ],
   "properties": {
     "query_id": {
@@ -56,10 +57,46 @@
     "origin_receipt": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["mode", "value"],
+      "required": ["mode", "value", "generation"],
+      "allOf": [
+        {
+          "if": {"properties": {"mode": {"const": "private_random_receipt"}}, "required": ["mode"]},
+          "then": {
+            "properties": {
+              "value": {"pattern": "^OR-[a-f0-9]{32}$"},
+              "generation": {"const": "csprng-128"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"mode": {"const": "private_keyed_digest"}}, "required": ["mode"]},
+          "then": {
+            "required": ["key_id"],
+            "properties": {
+              "value": {"pattern": "^KD-[a-f0-9]{64}$"},
+              "generation": {"const": "hmac-sha256"},
+              "key_id": {"pattern": "^K-[a-f0-9]{16}$"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"mode": {"const": "public_git_locator"}}, "required": ["mode"]},
+          "then": {
+            "required": ["repository_id"],
+            "properties": {
+              "value": {"pattern": "^git:(?:[a-f0-9]{40}|[a-f0-9]{64}):[^\\r\\n]+$"},
+              "generation": {"const": "public-git-locator"},
+              "repository_id": {"const": "adaptive-agent-memory-research-public"}
+            }
+          }
+        }
+      ],
       "properties": {
         "mode": {"enum": ["public_git_locator", "private_random_receipt", "private_keyed_digest"]},
-        "value": {"type": "string", "minLength": 3}
+        "value": {"type": "string", "minLength": 3},
+        "generation": {"enum": ["public-git-locator", "csprng-128", "hmac-sha256"]},
+        "key_id": {"type": "string"},
+        "repository_id": {"type": "string"}
       },
       "description": "Public locators may be explicit. Private origins use an independently random receipt or keyed digest whose mapping/key remains outside Git; an unkeyed content or locator hash is forbidden."
     },
@@ -82,6 +119,11 @@
     "storage_class": {
       "enum": ["git_public", "local_restricted"],
       "description": "Local-restricted query text and origin mappings must not be committed to the public repository; public artifacts expose opaque IDs and aggregate receipts only."
+    },
+    "capture_sequence": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonic position in the append-only capture log; supports ordering audits but does not prove blindness by itself."
     },
     "exclusion_reason": {
       "type": ["string", "null"]

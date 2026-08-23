@@ -1,6 +1,6 @@
 {
   "run_id": "deepseek-v4-flash-natural-history-contract-review-v2-20260823",
-  "status": "frozen-input-awaiting-api",
+  "status": "review-finalized",
   "model": "deepseek-v4-flash",
   "temperature": 0,
   "thinking": "disabled",
@@ -11,5 +11,8 @@
     "job.json": "37ba8df361e391060beab12a5150e84545a8f7f2e3b33ad9e9d31b912f2f2e8d",
     "prompt.txt": "281b4f6f7be005e522822a81312994edb8210d460b247b2ecc9c5406193a2b58"
   },
-  "authority": "author-operated M1 advisory; not independent review and cannot unlock the builder"
+  "authority": "author-operated M1 advisory; not independent review and cannot unlock the builder",
+  "response_id": "86075f3b-1bf6-4280-b711-6421eb6af36f",
+  "cost_usd": 0.00313192,
+  "review_result_sha256": "d279389785b85b4e99c3fda2f4714579ffe78a88e84a5641ccc6fd413796a93e"
 }

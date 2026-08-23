@@ -84,3 +84,7 @@ Verbatim private query text is `local_restricted` and must not be committed to t
 5. Build only retrospective development queries with admissible pre-output provenance. Prospective test collection and every dense/backend run remain locked.
 
 This audit repairs the design contract. It is not independent review, corpus evidence, retrieval evidence, or permission to choose a dense model.
+
+## Post-audit M1 disposition
+
+A large frozen DeepSeek M1 packet failed by truncating invalid JSON and produced no verdict. A separately frozen compact packet returned `needs_revision`. Accepted repairs add mode-specific receipt shapes, unique aliases, a manifest-level byte-ceiling receipt, capture sequence, control-character rejection, and explicit executable validators. Schema-only requests to prove cryptographic derivation, entropy, or backend serialization were translated into executable invariants because JSON Schema cannot establish them. Claims that the required SHA algorithm/length pairs were unenforced were rejected as contradicted by the conditional schemas and tests. The full disposition is in `data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-v2-20260823/advisory-disposition.md`. M1 remains non-independent and the builder stays locked.

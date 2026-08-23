@@ -74,6 +74,7 @@
     "search_text": {
       "type": "string",
       "minLength": 1,
+      "pattern": "^[^\\u0000-\\u0008\\u000b-\\u001f\\u007f]*$",
       "description": "The byte-identical UTF-8 text passed to every retrieval representation before its documented tokenizer."
     },
     "search_text_sha256": {
@@ -128,6 +129,7 @@
     },
     "source_aliases": {
       "type": "array",
+      "uniqueItems": true,
       "items": {
         "type": "object",
         "additionalProperties": false,

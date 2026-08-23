@@ -1,0 +1,11 @@
+{
+  "at": "2026-08-23T06:13:57Z",
+  "run_id": "deepseek-v4-flash-natural-history-contract-review-v2-20260823",
+  "model": "deepseek-v4-flash",
+  "response_id": "86075f3b-1bf6-4280-b711-6421eb6af36f",
+  "prompt_tokens": 3140,
+  "completion_tokens": 1326,
+  "conservative_cost_usd": 0.00313192,
+  "pricing_basis": "all input charged at configured peak cache-miss rate",
+  "latency_ms": 10568.51
+}

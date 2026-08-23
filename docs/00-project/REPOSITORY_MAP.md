@@ -28,6 +28,7 @@ This is the fastest guide to where information belongs.
 | Exact citation pack M1 audits | failed large packet in `data/lab/api-screening/deepseek-v4-flash-pack-characterization-review-20260823/`; compact finalized advisory and disposition in `data/lab/api-screening/deepseek-v4-flash-pack-characterization-review-v2-20260823/` |
 | Equal-evidence citation/order reader pilot | `docs/11-research-laboratory/pack-reader-benchmark-protocol-v0.md`; `data/lab/pmlab-pack-reader-v0/execution-deepseek-v4-flash-v0/report.md`; `result-audit.json`; `registered-descriptive-mediators.json` |
 | Follow-up on retrieval safety, fusion limits, and context ordering | `docs/07-literature/retrieval-safety-context-order-followup-v0.md` |
+| Natural-history source-unit and query contract audit | `docs/07-literature/natural-history-source-unit-contract-audit-v0.md`; `data/lab/pmlab-natural-history-v0/`; compact M1 disposition in `data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-v2-20260823/` |
 | Compression code reproducibility status | `docs/04-systems/compression-code-reproducibility-audit.md` |
 | PI-LLM interference code and reproducibility risks | `docs/04-systems/unable-to-forget-reproducibility-audit.md` |
 | Benchmarks and evaluation risks | `docs/05-benchmarks/` |

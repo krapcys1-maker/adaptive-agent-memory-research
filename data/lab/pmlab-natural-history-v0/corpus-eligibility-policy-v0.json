@@ -77,6 +77,14 @@
     "allowed_private_receipts": ["independently random opaque receipt", "keyed digest with key outside Git"],
     "attestation_limit": "a pre-output statement records process provenance but is not independent proof; capture order must be audited separately"
   },
+  "deterministic_validator_requirements": {
+    "canonical_unit_id": "recompute the versioned identity hash and reject any unit_id mismatch; JSON Schema alone cannot enforce a cryptographic derivation",
+    "backend_projection": "serialize exactly unit_id and search_text and byte-audit that no hidden field reaches B1/B2/C1/C2",
+    "aliases": "reject duplicate path-locator aliases and require deterministic canonical-source selection",
+    "query_receipts": "generate private random receipts with a CSPRNG or keyed digests with HMAC-SHA-256; schema patterns are shape checks, not entropy proofs",
+    "source_exclusions": "reject every path matching query, label, gold, blind, API, artifact, raw, test, script, tool, cache, secret, symlink, gitlink, binary, or non-UTF-8 rules before unitization",
+    "control_characters": "search_text may contain tab and LF but no other C0 control or DEL byte"
+  },
   "primary_backend_visible_fields": ["unit_id", "search_text"],
   "pending_before_execution": [
     "independent eligibility review",

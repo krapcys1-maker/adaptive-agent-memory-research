@@ -1,0 +1,76 @@
+{
+  "verdict": "needs_revision",
+  "fatal": [
+    "The source-unit schema does not enforce that unit_id is derived from the specified canonical identity fields, allowing arbitrary opaque IDs.",
+    "The query-log schema permits origin_receipt.mode 'private_random_receipt' without requiring the receipt to be independently random or keyed, violating the unkeyed-hash prohibition.",
+    "The contract lacks a rule that source_aliases entries must have distinct locators, risking duplicate alias collapse ambiguity.",
+    "The policy requires freezing the UTF-8 byte ceiling before test, but the schema has no field to record that ceiling, so compliance cannot be verified.",
+    "The contract does not require that backend_visible_fields be enforced at the data layer, only described, allowing accidental leakage."
+  ],
+  "repairs": [
+    {
+      "severity": "major",
+      "artifact": "source-unit-contract-v0.schema.json",
+      "issue": "Add a conditional schema rule that unit_id must match the SHA-256 of the canonical identity string (version, source_type, path, locator, search_text_sha256) to prevent arbitrary IDs.",
+      "required_test": "Generate a unit with a non-canonical unit_id and assert schema validation fails."
+    },
+    {
+      "severity": "major",
+      "artifact": "query-log-contract-v0.schema.json",
+      "issue": "For origin_receipt.mode 'private_random_receipt', require the value to be at least 128 bits of entropy and not derived from query text or locator; for 'private_keyed_digest', require a key_id field outside Git.",
+      "required_test": "Submit a query log with a receipt equal to SHA-256(query_text) and assert validation fails."
+    },
+    {
+      "severity": "major",
+      "artifact": "source-unit-contract-v0.schema.json",
+      "issue": "Add a uniqueness constraint on source_aliases entries by (path, locator) to prevent duplicate aliases and ensure deterministic collapse.",
+      "required_test": "Create a unit with two identical alias entries and assert validation fails."
+    },
+    {
+      "severity": "major",
+      "artifact": "policy_digest",
+      "issue": "Add a required field 'utf8_byte_ceiling' to the source-unit schema or a separate manifest to record the frozen ceiling before test.",
+      "required_test": "Validate that the ceiling is present and consistent across all units in a test run."
+    },
+    {
+      "severity": "major",
+      "artifact": "source-unit-contract-v0.schema.json",
+      "issue": "Add a schema-level assertion that backend_visible_fields is exactly ['unit_id','search_text'] and that no other fields are serialized to the backend, enforced by a test that inspects the serialized output.",
+      "required_test": "Serialize a unit and assert the output contains only unit_id and search_text."
+    },
+    {
+      "severity": "minor",
+      "artifact": "source-unit-contract-v0.schema.json",
+      "issue": "Clarify that search_text must be the exact bytes before tokenization and add a pattern to forbid control characters except newline/tab.",
+      "required_test": "Submit a unit with a null byte in search_text and assert validation fails."
+    },
+    {
+      "severity": "minor",
+      "artifact": "query-log-contract-v0.schema.json",
+      "issue": "Require that query_cutoff_commit and git_object_format are consistent with the repository's actual object format, verified by a test that checks the commit's length.",
+      "required_test": "Provide a sha1 commit with git_object_format 'sha256' and assert validation fails."
+    },
+    {
+      "severity": "minor",
+      "artifact": "policy_digest",
+      "issue": "Add a rule that no test query log or label path may appear in any source unit's path or locator, and enforce via a test that scans all units.",
+      "required_test": "Create a unit with path containing 'test_query_log' and assert validation fails."
+    }
+  ],
+  "schema_mismatches": [
+    "The source-unit schema's allOf for snapshot_commit pattern allows both sha1 and sha256 regardless of git_object_format, but the if-then only restricts when git_object_format is present; it should require the pattern to match the declared format.",
+    "The query-log schema's origin_receipt.value minLength is 3, which is too short for a secure random receipt or keyed digest; it should enforce a minimum length of 32.",
+    "The source-unit schema's source_git_object.object_id pattern allows both lengths, but the allOf only restricts when algorithm is present; it should require the object_id length to match the algorithm.",
+    "The query-log schema's pre_output_attestation is a const string, but the policy says it is not independent proof; the schema should allow an additional field for audit timestamp or sequence.",
+    "The source-unit schema's source_aliases items do not require the locator to match the locator.kind enum, allowing inconsistent alias locators."
+  ],
+  "privacy_or_leakage_attacks": [
+    "An attacker could set origin_receipt.mode to 'private_random_receipt' with a value equal to SHA-256(query_text), which is an unkeyed hash and forbidden; the schema does not prevent this.",
+    "An attacker could include a path or locator in source_aliases that reveals a private query label, and the schema does not forbid such content.",
+    "An attacker could set backend_visible_fields to include 'path' by exploiting the const if not enforced at serialization, leaking historical file locations.",
+    "An attacker could use a public_git_locator receipt that points to a private repository, leaking the query's origin; the schema does not restrict the locator to public repositories.",
+    "An attacker could set storage_class to 'git_public' for a private query, and the schema does not enforce that private queries use local_restricted."
+  ],
+  "builder_locked": true,
+  "confidence": 0.9
+}
