@@ -1,0 +1,124 @@
+{
+  "records": [
+    {
+      "corpus_percentile": 0.984073,
+      "cosine": 0.61855,
+      "current": "PM-20260822-44eab165",
+      "current_title": "Reader pilot v0 invalidated by gold-label leakage",
+      "stale_in_top5": 1,
+      "stale_is_nearest_neighbour": 0,
+      "stale_rank_unfiltered": 5,
+      "superseded": "PM-20260822-74be80bc",
+      "superseded_title": "No DeepSeek reader interference under explicit four-stale validity condition"
+    },
+    {
+      "corpus_percentile": 0.99978,
+      "cosine": 0.88484,
+      "current": "PM-20260822-2b4bdcab",
+      "current_title": "Reader stress required five iterations to close known leakage channels",
+      "stale_in_top5": 1,
+      "stale_is_nearest_neighbour": 1,
+      "stale_rank_unfiltered": 1,
+      "superseded": "PM-20260822-418aef1b",
+      "superseded_title": "Reader stress required four iterations to remove leakage channels"
+    },
+    {
+      "corpus_percentile": 0.999339,
+      "cosine": 0.800509,
+      "current": "PM-20260822-c1f962ab",
+      "current_title": "Validity ambiguity and weak abstention policy drive v5 reader errors",
+      "stale_in_top5": 1,
+      "stale_is_nearest_neighbour": 1,
+      "stale_rank_unfiltered": 1,
+      "superseded": "PM-20260822-46259b59",
+      "superseded_title": "Reader failures require high competition conflicting validity and weak policy in v4"
+    },
+    {
+      "corpus_percentile": 0.973216,
+      "cosine": 0.592618,
+      "current": "PM-20260822-de3ede38",
+      "current_title": "LongMemEval public bridge completed",
+      "stale_in_top5": 0,
+      "stale_is_nearest_neighbour": 0,
+      "stale_rank_unfiltered": 7,
+      "superseded": "PM-20260822-a5360a96",
+      "superseded_title": "Public bridge and lexical protocol frozen"
+    },
+    {
+      "corpus_percentile": 0.99989,
+      "cosine": 1.0,
+      "current": "PM-20260822-fe559c41",
+      "current_title": "LongMemEval public bridge completed",
+      "stale_in_top5": 1,
+      "stale_is_nearest_neighbour": 1,
+      "stale_rank_unfiltered": 1,
+      "superseded": "PM-20260822-de3ede38",
+      "superseded_title": "LongMemEval public bridge completed"
+    },
+    {
+      "corpus_percentile": 0.999835,
+      "cosine": 0.91098,
+      "current": "PM-20260823-1a7fa8df",
+      "current_title": "Future-utility telemetry T0.1 validates amended instrumentation",
+      "stale_in_top5": 1,
+      "stale_is_nearest_neighbour": 1,
+      "stale_rank_unfiltered": 1,
+      "superseded": "PM-20260823-d2b24067",
+      "superseded_title": "Future-utility telemetry T0 validates append-only instrumentation"
+    },
+    {
+      "corpus_percentile": 0.997796,
+      "cosine": 0.713598,
+      "current": "PM-20260823-664d2f46",
+      "current_title": "Independent natural-history contract review packet v0 is superseded before review",
+      "stale_in_top5": 1,
+      "stale_is_nearest_neighbour": 0,
+      "stale_rank_unfiltered": 2,
+      "superseded": "PM-20260823-1ceab347",
+      "superseded_title": "Independent natural-history contract review packet is ready"
+    },
+    {
+      "corpus_percentile": 0.999945,
+      "cosine": 1.0,
+      "current": "PM-20260823-d0d4d01d",
+      "current_title": "Multiple agent sessions may write to this repository concurrently",
+      "stale_in_top5": 1,
+      "stale_is_nearest_neighbour": 1,
+      "stale_rank_unfiltered": 1,
+      "superseded": "PM-20260823-86a31b3b",
+      "superseded_title": "Multiple agent sessions may write to this repository concurrently"
+    },
+    {
+      "corpus_percentile": 0.999614,
+      "cosine": 0.822852,
+      "current": "PM-20260823-ff5d1ad8",
+      "current_title": "The association-graph benefit was an artifact of insufficient leakage control",
+      "stale_in_top5": 1,
+      "stale_is_nearest_neighbour": 1,
+      "stale_rank_unfiltered": 1,
+      "superseded": "PM-20260823-4761e3cc",
+      "superseded_title": "Association graph gives a small consistent retrieval benefit, not driven by authored gold"
+    }
+  ],
+  "summary": {
+    "active_events": 182,
+    "authority": "development measurement only; n=9 supersession pairs, qualitative",
+    "corpus_baseline_mean": 0.371959,
+    "corpus_baseline_p95": 0.556337,
+    "corpus_baseline_p99": 0.638445,
+    "corpus_events": 191,
+    "experiment_id": "PMLAB-STALE-E1",
+    "filter_is_load_bearing": "search() excludes superseded records by metadata; this run removes that filter to measure what content alone would do",
+    "mean_corpus_percentile": 0.994832,
+    "median_stale_rank_unfiltered": 1,
+    "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "pair_cosine_max": 1.0,
+    "pair_cosine_mean": 0.815994,
+    "pair_cosine_min": 0.592618,
+    "pairs_above_corpus_p99": 7,
+    "stale_in_top5_unfiltered": 8,
+    "stale_is_nearest_neighbour": 6,
+    "supersession_pairs": 9,
+    "tier": "E-exploratory"
+  }
+}

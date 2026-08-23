@@ -244,3 +244,31 @@ class ProjectMemoryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+    def test_superseded_records_never_appear_in_search(self) -> None:
+        """The supersession filter is load-bearing and must survive any index change.
+
+        PMLAB-STALE-E1 measured that a superseded memory and its replacement sit
+        at the 99.5th percentile of corpus similarity, with two pairs at cosine
+        exactly 1.000. Content cannot separate them, so this filter is the only
+        thing preventing a stale record from being returned as the top result —
+        6 of 9 were the nearest neighbour with the filter removed.
+        """
+        old = self.store.add(
+            kind="finding",
+            title="Bridge completed",
+            summary="The public bridge run completed successfully.",
+            source_refs=["docs/bridge.md"],
+        )
+        new = self.store.supersede(
+            memory_id=old["id"],
+            reason="The first run was invalidated by a framing defect.",
+            title="Bridge completed",
+            summary="The public bridge run completed after a framing repair.",
+            source_refs=["docs/bridge.md"],
+        )
+        hits = {hit["id_or_path"] for hit in self.store.search("bridge completed", limit=50)}
+        self.assertIn(new["id"], hits)
+        self.assertNotIn(old["id"], hits, "a superseded record must never be searchable")
+        self.assertIsNotNone(self.store.get(old["id"]), "it must still be reachable by exact id")
+        self.assertFalse(self.store.get(old["id"])["is_active"])
