@@ -1,7 +1,9 @@
 # Tiered memory routing and future-utility audit
 
-Status: primary-source audit, design implications only  
-Audited: 2026-08-23  
+Status: primary-source audit, design implications only
+
+Audited: 2026-08-23
+
 Input: user-supplied synthesis about Mem0, LangMem, AgentMemory, Amygdala, model cascades, and longitudinal memory utility
 
 ## Bottom line
@@ -169,4 +171,3 @@ Advance two preregistration drafts:
 - `PMLAB-UTILITY-001`: determine whether longitudinal telemetry can progress from exposure association to an admissible estimate of attributable future utility.
 
 Do not yet implement automatic consolidation, deletion, learned ranking, emotional salience, or reward-updated retention. Those actions remain downstream of the two protocols and independent-label gates.
-

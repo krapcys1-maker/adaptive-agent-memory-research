@@ -1,7 +1,9 @@
 # Memory-manager cascade benchmark protocol v0
 
-Experiment: `PMLAB-ROUTER-001`  
-Status: preregistration draft; no corpus, model outputs, or result  
+Experiment: `PMLAB-ROUTER-001`
+
+Status: preregistration draft; no corpus, model outputs, or result
+
 Purpose: test a provider-neutral deterministic-to-model cascade without allowing it to mutate canonical memory
 
 ## Research question
@@ -174,4 +176,3 @@ DeepSeek Flash/Pro is one optional pairing, not the architecture. The existing c
 - blinded analysis script and rejection report template.
 
 Until those artifacts exist, the experiment remains `preregistration-draft` and consumes no API budget.
-

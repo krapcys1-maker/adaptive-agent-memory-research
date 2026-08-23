@@ -1,7 +1,9 @@
 # Future-utility telemetry protocol v0
 
-Experiment: `PMLAB-UTILITY-001`  
-Status: preregistration draft; logging schema and causal design not implemented  
+Experiment: `PMLAB-UTILITY-001`
+
+Status: preregistration draft; logging schema and causal design not implemented
+
 Purpose: turn delayed real project reuse into auditable evidence without confusing exposure with benefit
 
 ## Research question
@@ -224,4 +226,3 @@ Outcome utility is a prerequisite for testing operational emotional salience. Ap
 - analysis code frozen before T3 outcomes are opened.
 
 Until those exist, `execution_authorized` remains false and no adaptive policy is permitted.
-
