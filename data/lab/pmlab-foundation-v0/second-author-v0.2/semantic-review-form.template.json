@@ -1,0 +1,16 @@
+{
+  "schema_version": "foundation-second-author-semantic-review-v0.2",
+  "challenge_id": "PMLAB-FOUNDATION-SECOND-AUTHOR-002",
+  "submission_id": null,
+  "reviewer": null,
+  "reviewer_authored_fixture": false,
+  "reviewer_saw_project_results_before_freeze": null,
+  "dimension_findings": [],
+  "critical_failures": [],
+  "missing_dimensions": [],
+  "submission_eligible_for_execution": null,
+  "parent_experiment_authorized": false,
+  "limitations": [],
+  "signature_or_verifiable_acknowledgement": null
+}
+

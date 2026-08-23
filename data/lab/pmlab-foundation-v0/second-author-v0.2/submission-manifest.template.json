@@ -1,0 +1,42 @@
+{
+  "schema_version": "foundation-second-author-submission-v0.2",
+  "challenge_id": "PMLAB-FOUNDATION-SECOND-AUTHOR-002",
+  "submission_id": null,
+  "status": "template-not-a-submission",
+  "immutable_commit": null,
+  "repository": null,
+  "submitted_at": null,
+  "roles": {
+    "fixture_author": null,
+    "operator": null,
+    "semantic_reviewer": null,
+    "contract_custodian": "adaptive-agent-memory-research project"
+  },
+  "prior_exposure": [],
+  "conflicts": [],
+  "tool_and_model_assistance": [],
+  "environment": {
+    "os": null,
+    "filesystem": null,
+    "container_or_sandbox": null,
+    "network_state": null,
+    "clock_source": null
+  },
+  "coverage": {
+    "canonical_governance": [],
+    "receipts_failure_localization": [],
+    "delayed_reveal_information_flow": []
+  },
+  "artifacts": {},
+  "gold_handling": {
+    "mode": null,
+    "public_commitment": null,
+    "key_or_mapping_custodian": null,
+    "release_condition": null
+  },
+  "real_sensitive_data_included": false,
+  "parent_experiment_authorized": false,
+  "known_limitations": [],
+  "attestation": null
+}
+

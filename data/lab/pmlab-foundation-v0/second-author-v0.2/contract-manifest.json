@@ -1,0 +1,19 @@
+{
+  "schema_version": "foundation-second-author-contract-manifest-v0.2",
+  "challenge_id": "PMLAB-FOUNDATION-SECOND-AUTHOR-002",
+  "status": "contract-and-templates-frozen-no-submission",
+  "subject_fixture_authored_by_project": false,
+  "submission_received": false,
+  "execution_authorized": false,
+  "parent_experiment_authorized": false,
+  "model_api_required": false,
+  "artifacts": [
+    {"path": "docs/11-research-laboratory/foundation-second-author-challenge-contract-v0.2.md", "bytes": 6606, "sha256": "cfe17a1e46adf917889715a6e1bc3caf2899d123ba47e8abcd04d080f5fe14c0"},
+    {"path": "data/lab/pmlab-foundation-v0/second-author-v0.2/submission-manifest.template.json", "bytes": 1088, "sha256": "98770ff15231e32013175ba8b8692556666338a65d5e8b74fd9408fb3abc4dfa"},
+    {"path": "data/lab/pmlab-foundation-v0/second-author-v0.2/semantic-review-form.template.json", "bytes": 507, "sha256": "2f231776f6fbb5f5251d7eefb60cc974112d5915c4257b849a36eaf2b8b10dd3"},
+    {"path": "data/lab/pmlab-foundation-v0/second-author-v0.2/README.md", "bytes": 636, "sha256": "aabb275f8ab935cbb7d40304b128399521c398e472d7d37b7ed940bf329a787d"},
+    {"path": ".github/ISSUE_TEMPLATE/independent-foundation-second-author-challenge.md", "bytes": 1437, "sha256": "6f465c493cb4f0eec87ef09f053e1dac860b06eaf8c04533141a97abd498dd9b"}
+  ],
+  "next_gate": "receive and freeze an immutable external submission before inspecting hidden labels or adapting a validator"
+}
+
