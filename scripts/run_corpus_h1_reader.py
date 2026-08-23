@@ -60,6 +60,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from corpus.arms import ARM_NOTES, ARMS, DEFAULT_TOKEN_BUDGET, _before, _fill  # noqa: E402
+from corpus.history_family_spec import _lcg  # noqa: E402
 from run_corpus_h1_baseline import build_index, load, search  # noqa: E402
 
 CORPUS = ROOT / "data" / "lab" / "corpus-h1"
@@ -223,8 +225,23 @@ def score(answer: str, gold: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def select(arm: str, events: list[dict[str, Any]], question: str, day: int,
+           budget: int, connection: Any, by_id: dict[str, Any],
+           stream: Any) -> list[dict[str, Any]]:
+    """What this arm carries into the prompt, under the shared token budget."""
+    if arm == "fts5":
+        # Ranked by relevance, then filled to the same budget every other arm
+        # gets. A retrieval depth is not a budget: ten short events and ten long
+        # ones are different amounts of context, and comparing across that
+        # difference measures context size rather than retention.
+        ranked = [by_id[e] for e in search(connection, question, 60) if e in by_id]
+        return _fill(_before(ranked, day), budget)
+    return ARMS[arm](events, question, day, budget, stream)
+
+
 def run(limit: int | None, stub: bool, key: str | None, run_id: str, at: str,
-        timeout: float, max_spend: float) -> dict[str, Any]:
+        timeout: float, max_spend: float, arm: str = "fts5",
+        budget: int = DEFAULT_TOKEN_BUDGET) -> dict[str, Any]:
     events = load(CORPUS / "prefix-v0" / "history.jsonl")
     queries = load(CORPUS / "reveal-v0" / "queries.jsonl")
     gold_of = {row["query_id"]: row for row in load(CORPUS / "reveal-v0" / "gold.jsonl")}
@@ -264,8 +281,11 @@ def run(limit: int | None, stub: bool, key: str | None, run_id: str, at: str,
     spent = 0.0
     for query in selected:
         gold = gold_of[query["query_id"]]
-        ranked = search(connection, query["question"], RETRIEVAL_DEPTH)
-        notes = [(n + 1, by_id[e]["text"], by_id[e]["day"]) for n, e in enumerate(ranked)]
+        stream = _lcg(hash(query["query_id"]) & 0xFFFFFFFF)
+        kept = select(arm, events, query["question"], query["asked_on_day"],
+                      budget, connection, by_id, stream)
+        ranked = [event["event_id"] for event in kept]
+        notes = [(n + 1, event["text"], event["day"]) for n, event in enumerate(kept)]
 
         if stub:
             answer = stub_answer(query["question"], notes)
@@ -278,7 +298,8 @@ def run(limit: int | None, stub: bool, key: str | None, run_id: str, at: str,
         records.append({
             "query_id": query["query_id"],
             "family": gold["case_id"].rsplit("-", 1)[0],
-            "retrieved": len(ranked),
+            "retained": len(kept),
+            "retained_tokens": sum(len(e["text"].split()) for e in kept),
             "gold_retrieved": int(gold["gold_event_id"] in ranked),
             "forbidden_retrieved": (
                 int(gold["forbidden_event_id"] in ranked) if gold["forbidden_event_id"] else None
@@ -287,20 +308,25 @@ def run(limit: int | None, stub: bool, key: str | None, run_id: str, at: str,
             **score(answer, gold),
         })
 
-    return {"records": records, "summary": summarise(records, stub, spent, len(selected))}
+    return {"records": records, "summary": summarise(records, stub, spent, len(selected), arm, budget)}
 
 
 def _mean(values: list[int]) -> float | None:
     return round(sum(values) / len(values), 6) if values else None
 
 
-def summarise(records: list[dict[str, Any]], stub: bool, spent: float, asked: int) -> dict[str, Any]:
+def summarise(records: list[dict[str, Any]], stub: bool, spent: float, asked: int,
+              arm: str = "fts5", budget: int = DEFAULT_TOKEN_BUDGET) -> dict[str, Any]:
     families = sorted({record["family"] for record in records})
     leakable = [r for r in records if r["forbidden_retrieved"] is not None]
     return {
         "experiment_id": "PMLAB-H1-READ-E1",
         "tier": "E-exploratory",
-        "arm": "fts5-bm25 retrieval + " + ("deterministic stub reader" if stub else MODEL),
+        "arm": arm,
+        "arm_note": ARM_NOTES[arm],
+        "token_budget": budget,
+        "reader": "deterministic stub" if stub else MODEL,
+        "mean_retained_tokens": _mean([r["retained_tokens"] for r in records]),
         "authority": "development measurement only" + (
             "; stub reader, no model and no spend — harness validation only" if stub else ""),
         "probes": asked,
@@ -333,6 +359,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
+    parser.add_argument("--arm", default="fts5", choices=sorted({*ARMS, "fts5"}),
+                        help="retention or retrieval policy under test")
+    parser.add_argument("--budget", type=int, default=DEFAULT_TOKEN_BUDGET,
+                        help="shared token budget; identical across arms or the comparison is void")
     parser.add_argument("--stub", action="store_true",
                         help="deterministic local reader; no network, no cost")
     parser.add_argument("--limit", type=int, default=None, help="probe count; omit for all 84")
@@ -359,7 +389,8 @@ def main(argv: list[str] | None = None) -> int:
             )
 
     result = run(arguments.limit, arguments.stub, key, arguments.run_id,
-                 arguments.at or "stub", arguments.timeout, arguments.max_spend_usd)
+                 arguments.at or "stub", arguments.timeout, arguments.max_spend_usd,
+                 arguments.arm, arguments.budget)
     s = result["summary"]
 
     print(f"{s['experiment_id']} — {s['arm']}")
@@ -375,7 +406,8 @@ def main(argv: list[str] | None = None) -> int:
               f"abstained={block['abstained']:<9} leaked={block['leaked']}")
 
     out = arguments.out if arguments.out.is_absolute() else ROOT / arguments.out
-    out = out.parent / (out.name + "-stub") if arguments.stub else out
+    suffix = f"-{arguments.arm}" + ("-stub" if arguments.stub else "")
+    out = out.parent / (out.name + suffix)
     out.mkdir(parents=True, exist_ok=True)
     (out / "results.json").write_bytes(
         (json.dumps(result, indent=2, sort_keys=True, ensure_ascii=False) + "\n").encode("utf-8")
