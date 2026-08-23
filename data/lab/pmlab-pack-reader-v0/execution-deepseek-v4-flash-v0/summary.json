@@ -1,0 +1,121 @@
+{
+  "experiment_id": "PMLAB-PACK-READER-001",
+  "reader": "deepseek-v4-flash",
+  "status": "single-family-synthetic-reader-scored",
+  "arms": [
+    {
+      "format_arm": "F0_FULL",
+      "order_arm": "O0_RETRIEVAL",
+      "cases": 32,
+      "groups": 16,
+      "schema_valid_rate": 1.0,
+      "case_exact_answer_accuracy": 1.0,
+      "group_exact_answer_count": 16,
+      "group_exact_answer_accuracy": 1.0,
+      "answer_recall": 1.0,
+      "answer_precision": 1.0,
+      "exact_required_citation_accuracy": 1.0,
+      "required_citation_recall": 1.0,
+      "unresolved_citation_rate": 0.0,
+      "stale_atom_use_rate": 0.0,
+      "conflict_resolution_accuracy": 1.0,
+      "inappropriate_abstention_rate": 0.0
+    },
+    {
+      "format_arm": "F0_FULL",
+      "order_arm": "O1_GOVERNED",
+      "cases": 32,
+      "groups": 16,
+      "schema_valid_rate": 1.0,
+      "case_exact_answer_accuracy": 1.0,
+      "group_exact_answer_count": 16,
+      "group_exact_answer_accuracy": 1.0,
+      "answer_recall": 1.0,
+      "answer_precision": 1.0,
+      "exact_required_citation_accuracy": 1.0,
+      "required_citation_recall": 1.0,
+      "unresolved_citation_rate": 0.0,
+      "stale_atom_use_rate": 0.0,
+      "conflict_resolution_accuracy": 1.0,
+      "inappropriate_abstention_rate": 0.0
+    },
+    {
+      "format_arm": "F1_COMPACT",
+      "order_arm": "O0_RETRIEVAL",
+      "cases": 32,
+      "groups": 16,
+      "schema_valid_rate": 1.0,
+      "case_exact_answer_accuracy": 1.0,
+      "group_exact_answer_count": 16,
+      "group_exact_answer_accuracy": 1.0,
+      "answer_recall": 1.0,
+      "answer_precision": 1.0,
+      "exact_required_citation_accuracy": 1.0,
+      "required_citation_recall": 1.0,
+      "unresolved_citation_rate": 0.0,
+      "stale_atom_use_rate": 0.0,
+      "conflict_resolution_accuracy": 1.0,
+      "inappropriate_abstention_rate": 0.0
+    },
+    {
+      "format_arm": "F1_COMPACT",
+      "order_arm": "O1_GOVERNED",
+      "cases": 32,
+      "groups": 16,
+      "schema_valid_rate": 1.0,
+      "case_exact_answer_accuracy": 1.0,
+      "group_exact_answer_count": 16,
+      "group_exact_answer_accuracy": 1.0,
+      "answer_recall": 1.0,
+      "answer_precision": 1.0,
+      "exact_required_citation_accuracy": 0.96875,
+      "required_citation_recall": 0.984375,
+      "unresolved_citation_rate": 0.0,
+      "stale_atom_use_rate": 0.0,
+      "conflict_resolution_accuracy": 1.0,
+      "inappropriate_abstention_rate": 0.0
+    }
+  ],
+  "gates": [
+    {
+      "gate": "schema_validity",
+      "passed": true
+    },
+    {
+      "gate": "unresolved_citations",
+      "passed": true
+    },
+    {
+      "gate": "no_stale_atoms",
+      "passed": true
+    },
+    {
+      "gate": "absolute_reader_competence",
+      "passed": true
+    },
+    {
+      "gate": "compact_compatibility",
+      "passed": true,
+      "within_order_passes": [
+        true,
+        true
+      ]
+    },
+    {
+      "gate": "governed_order_compatibility",
+      "passed": true,
+      "within_format_passes": [
+        true,
+        true
+      ]
+    },
+    {
+      "gate": "identical_evidence",
+      "passed": true
+    }
+  ],
+  "all_compatibility_gates_passed": true,
+  "groups_are_units": true,
+  "claim_boundary": "Author-built synthetic fixture and one author-operated reader family; no retrieval, natural-history, cross-family, or architecture claim.",
+  "run_cost_usd": 0.04026
+}

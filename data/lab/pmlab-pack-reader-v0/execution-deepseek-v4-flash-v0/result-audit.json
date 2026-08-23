@@ -1,0 +1,93 @@
+{
+  "checks": {
+    "all_frozen_gates_reported_passed": true,
+    "all_responses_exact_schema": true,
+    "condition_response_call_sets_exact": true,
+    "fixture_hashes_match": true,
+    "independent_core_metrics_match_frozen_scorer": true,
+    "local_cost_matches_manifest": true,
+    "one_http_call_per_condition": true,
+    "raw_hashes_match_frozen_manifest": true
+  },
+  "exception_count": 1,
+  "exceptions": [
+    {
+      "abstain": false,
+      "case_id": "PRG-14-PL",
+      "citation_required": 2,
+      "citation_tp": 1,
+      "condition_id": "C1d45807750212d69",
+      "exact_answer": true,
+      "exact_citations": false,
+      "expected_citations": [
+        "R01",
+        "R02"
+      ],
+      "group_id": "PRG-14",
+      "language": "pl",
+      "predicted_citations": [
+        "R01",
+        "R03"
+      ],
+      "stale_used": [],
+      "unresolved": []
+    }
+  ],
+  "experiment_id": "PMLAB-PACK-READER-001",
+  "interpretation": [
+    "All four arms passed the frozen single-reader compatibility gates.",
+    "One compact-governed Polish condition returned correct answers but substituted R03 for required R02; R03 resolved but did not support the requested atom.",
+    "The result establishes compatibility for one synthetic fixture and one reader family, not superiority or natural-history validity."
+  ],
+  "passed": true,
+  "recomputed_arms": [
+    {
+      "case_exact_answer_accuracy": 1.0,
+      "cases": 32,
+      "exact_required_citation_accuracy": 1.0,
+      "format_arm": "F0_FULL",
+      "group_exact_answer_count": 16,
+      "inappropriate_abstentions": 0,
+      "order_arm": "O0_RETRIEVAL",
+      "required_citation_recall": 1.0,
+      "stale_answer_cases": 0,
+      "unresolved_citations": 0
+    },
+    {
+      "case_exact_answer_accuracy": 1.0,
+      "cases": 32,
+      "exact_required_citation_accuracy": 1.0,
+      "format_arm": "F0_FULL",
+      "group_exact_answer_count": 16,
+      "inappropriate_abstentions": 0,
+      "order_arm": "O1_GOVERNED",
+      "required_citation_recall": 1.0,
+      "stale_answer_cases": 0,
+      "unresolved_citations": 0
+    },
+    {
+      "case_exact_answer_accuracy": 1.0,
+      "cases": 32,
+      "exact_required_citation_accuracy": 1.0,
+      "format_arm": "F1_COMPACT",
+      "group_exact_answer_count": 16,
+      "inappropriate_abstentions": 0,
+      "order_arm": "O0_RETRIEVAL",
+      "required_citation_recall": 1.0,
+      "stale_answer_cases": 0,
+      "unresolved_citations": 0
+    },
+    {
+      "case_exact_answer_accuracy": 1.0,
+      "cases": 32,
+      "exact_required_citation_accuracy": 0.96875,
+      "format_arm": "F1_COMPACT",
+      "group_exact_answer_count": 16,
+      "inappropriate_abstentions": 0,
+      "order_arm": "O1_GOVERNED",
+      "required_citation_recall": 0.984375,
+      "stale_answer_cases": 0,
+      "unresolved_citations": 0
+    }
+  ]
+}

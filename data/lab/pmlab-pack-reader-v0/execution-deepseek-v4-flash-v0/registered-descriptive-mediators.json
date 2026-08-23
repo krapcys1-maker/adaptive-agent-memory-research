@@ -1,0 +1,46 @@
+{
+  "arms": [
+    {
+      "conditions": 32,
+      "conservative_cost_usd": 0.01080068,
+      "format_arm": "F0_FULL",
+      "mean_latency_ms": 1080.050625,
+      "mean_provider_prompt_tokens": 653.09375,
+      "mean_serialized_user_utf8_bytes": 1430.625,
+      "order_arm": "O0_RETRIEVAL"
+    },
+    {
+      "conditions": 32,
+      "conservative_cost_usd": 0.01080068,
+      "format_arm": "F0_FULL",
+      "mean_latency_ms": 1091.5009375,
+      "mean_provider_prompt_tokens": 653.09375,
+      "mean_serialized_user_utf8_bytes": 1430.625,
+      "order_arm": "O1_GOVERNED"
+    },
+    {
+      "conditions": 32,
+      "conservative_cost_usd": 0.00932932,
+      "format_arm": "F1_COMPACT",
+      "mean_latency_ms": 1138.66375,
+      "mean_provider_prompt_tokens": 548.59375,
+      "mean_serialized_user_utf8_bytes": 1084.125,
+      "order_arm": "O0_RETRIEVAL"
+    },
+    {
+      "conditions": 32,
+      "conservative_cost_usd": 0.00932932,
+      "format_arm": "F1_COMPACT",
+      "mean_latency_ms": 1125.5190625,
+      "mean_provider_prompt_tokens": 548.59375,
+      "mean_serialized_user_utf8_bytes": 1084.125,
+      "order_arm": "O1_GOVERNED"
+    }
+  ],
+  "boundary": "Descriptive provider and serialization costs; not a causal latency claim and not an architecture recommendation.",
+  "compact_minus_full_mean_prompt_tokens": -104.5,
+  "compact_minus_full_mean_utf8_bytes": -346.5,
+  "compact_relative_prompt_token_reduction": 0.16000765586870186,
+  "compact_relative_utf8_reduction": 0.24220183486238533,
+  "status": "registered descriptive mediators computed after raw freeze"
+}

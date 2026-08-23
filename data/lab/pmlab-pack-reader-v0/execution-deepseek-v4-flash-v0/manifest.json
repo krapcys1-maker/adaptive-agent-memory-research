@@ -1,7 +1,7 @@
 {
   "experiment_id": "PMLAB-PACK-READER-001",
   "run_id": "deepseek-v4-flash-pack-reader-v0-20260823",
-  "status": "raw-responses-frozen",
+  "status": "scored",
   "fixture_freeze_commit": "365c0b6c0ae159b1517fbc87941aa33a8e369da2",
   "prompt_freeze_commit": "d870741e8bba6257d12288b23d1e8f367571ae6e",
   "model": "deepseek-v4-flash",
@@ -28,5 +28,7 @@
     "calls.jsonl": "3edc251ff1727e8b2c24275af1c567e43cbb05d3887135dddbd40b379d5b3bb6",
     "raw-responses.jsonl": "0a5c511cc9741f0bcfd2cceac789c23700677990617ff62ce9888d76345315f0",
     "responses.jsonl": "971f1c8643c3f7966e934794d502ad82aee0594b50bbc433808fda398632e99a"
-  }
+  },
+  "scored_sha256": "cd05ac01359bc966327774500a0eaf87b70c117d4e958ac5dc3bf6b7bab03858",
+  "summary_sha256": "f15b8bb74c9e7b89763043eea7046fa956cee45f6fc508803d7dc9c1f580fd0e"
 }
