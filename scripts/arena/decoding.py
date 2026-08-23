@@ -27,7 +27,10 @@ read as a mutating store.
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
+
+from arena.spend_ledger import SpendLedger
 
 
 #: The arena's decoding, applied to every system alike.
@@ -83,6 +86,13 @@ class _Completions:
             "prompt_tokens": int(getattr(usage, "prompt_tokens", 0) or 0),
             "completion_tokens": int(getattr(usage, "completion_tokens", 0) or 0),
         })
+        if self._owner.shared_ledger is not None:
+            self._owner.shared_ledger.record(
+                self._owner.call_cost(self._calls[-1]),
+                model=kwargs.get("model"),
+                prompt_tokens=self._calls[-1]["prompt_tokens"],
+                completion_tokens=self._calls[-1]["completion_tokens"],
+            )
         return response
 
     def __getattr__(self, name: str) -> Any:
@@ -108,7 +118,8 @@ class FixedDecoding:
 
     def __init__(self, inner: Any, fixed: dict[str, Any] | None = None,
                  spend_cap_usd: float | None = None,
-                 first_call_reserve_usd: float = 0.01):
+                 first_call_reserve_usd: float = 0.01,
+                 shared_ledger: SpendLedger | None = None):
         self._inner = inner
         self.fixed = dict(ARENA_DECODING if fixed is None else fixed)
         #: One entry per request, carrying what was asked, what was enforced, and
@@ -116,6 +127,10 @@ class FixedDecoding:
         self.request_log: list[dict[str, Any]] = []
         self.spend_cap_usd = spend_cap_usd
         self._first_call_reserve = first_call_reserve_usd
+        #: The night's shared total, if one was opened. A per-run cap stops one
+        #: run; it cannot stop five runs from each stopping politely at their own
+        #: ceiling and costing five times what was agreed.
+        self.shared_ledger = shared_ledger
         self.chat = _Chat(inner.chat, self.fixed, self.request_log, self)
 
     # ------------------------------------------------------------------- money
@@ -136,10 +151,15 @@ class FixedDecoding:
         again for headroom. That stops *below* the limit rather than just past
         it, which is the only version of a hard cap worth the name.
         """
-        if self.spend_cap_usd is None:
-            return
         seen = [self.call_cost(call) for call in self.request_log]
         reserve = max(seen) * 1.5 if seen else self._first_call_reserve
+        # The shared total first: exhausting the night's budget stops every run,
+        # and finding that out from the per-run cap would mean the last run
+        # spends its whole allowance discovering there was none left.
+        if self.shared_ledger is not None:
+            self.shared_ledger.check(reserve)
+        if self.spend_cap_usd is None:
+            return
         if self.spent_usd + reserve > self.spend_cap_usd:
             raise SpendCapReached(
                 f"spent ${self.spent_usd:.4f} over {len(self.request_log)} calls; the "
@@ -154,7 +174,7 @@ class FixedDecoding:
 
     @property
     def ledger(self) -> dict[str, int]:
-        """The arena's own spend ledger, which the system cannot reset.
+        """This run's own call ledger, which the system cannot reset.
 
         CUPMem's tracker is cleared by `reset_usage_tracking`, and the adapter
         calls it on every `reset()` so that ingest and query are priced

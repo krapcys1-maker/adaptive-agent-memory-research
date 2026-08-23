@@ -33,3 +33,4 @@ Thumbs.db
 
 # Pilot raw text: corpus questions, gold answers and composed answers
 /data/lab/arena/pilot-raw/
+/external/venvs/

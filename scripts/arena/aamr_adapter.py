@@ -38,6 +38,37 @@ def _elapsed_us(started: float) -> int:
     return int(round((time.monotonic() - started) * 1_000_000))
 
 
+def _time_of(record: dict[str, Any]) -> Any:
+    """When this record was true, in whatever the arena's records carry.
+
+    The fixture uses an integer `day`; a real corpus uses an ISO `timestamp`.
+    Reading only `day` made every real record time zero, which silently switched
+    the temporal filter off — the mechanism would then have been measured with
+    its temporal half disabled and nothing would have said so.
+
+    Format translation only. Which records the chain admits, and in what order,
+    is unchanged.
+    """
+    for field in ("day", "timestamp", "date", "valid_from"):
+        if record.get(field) not in (None, ""):
+            return record[field]
+    return None
+
+
+def _not_after(record_time: Any, asked_at: Any) -> bool:
+    """Was this record true by the time the question was asked?
+
+    Comparable only when both sides are the same kind. ISO dates order correctly
+    as strings and integer days as integers; comparing one against the other is
+    not a late record, it is an unanswerable question, so it does not filter.
+    """
+    if asked_at is None or record_time is None:
+        return True
+    if isinstance(record_time, str) != isinstance(asked_at, str):
+        return True
+    return record_time <= asked_at
+
+
 def _free(started: float) -> Cost:
     """A cost of zero that is genuinely measured, not merely unreported."""
     return Cost(
@@ -84,23 +115,34 @@ class AAMRAdapter:
         if address is None or address.canonical not in self._drawers:
             # Abstention is a real answer here, not a fallback. A wrong address
             # opens someone else's drawer, which is worse than opening none.
-            return Answer(text="", abstained=True,
-                          cost=_free(started), system_metadata={"reason": "no address resolved"})
+            return Answer(text="", abstained=True, cost=_free(started),
+                          system_metadata={"reason": "no address resolved",
+                                           "abstention_derivable": True,
+                                           "abstention_channel": "explicit: no address resolved"})
 
         chain = [r for r in self._drawers[address.canonical]
-                 if asked_at is None or r.get("day", 0) <= asked_at]
+                 if _not_after(_time_of(r), asked_at)]
         if not chain:
-            return Answer(text="", abstained=True,
-                          cost=_free(started), system_metadata={"reason": "chain empty at query time"})
+            return Answer(text="", abstained=True, cost=_free(started),
+                          system_metadata={"reason": "chain empty at query time",
+                                           "abstention_derivable": True,
+                                           "abstention_channel": "explicit: chain empty at query time"})
 
         # Newest first. An addressed chain arrives time-ordered, which is why the
         # resolver is a no-op on simple succession — measured in PMLAB-H1-COMPOSE-E1.
-        chain.sort(key=lambda r: -r.get("day", 0))
+        # Newest first. An addressed chain arrives time-ordered, which is why the
+        # resolver is a no-op on simple succession — measured in PMLAB-H1-COMPOSE-E1.
+        # Sorted by string so an ISO date and an integer day both order, and
+        # zero-padded so 9 does not sort above 10.
+        chain.sort(key=lambda r: f"{_time_of(r):>020}" if _time_of(r) is not None else "",
+                   reverse=True)
         return Answer(
             text=chain[0]["text"],
             evidence_ids=[r["id"] for r in chain],
             context_tokens=sum(len(r["text"].split()) for r in chain),
             abstained=False,
             cost=_free(started),
-            system_metadata={"address": address.canonical, "chain_length": len(chain)},
+            system_metadata={"address": address.canonical, "chain_length": len(chain),
+                             "abstention_derivable": True,
+                             "abstention_channel": "explicit: no address resolved"},
         )

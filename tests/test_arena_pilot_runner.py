@@ -101,3 +101,56 @@ def test_the_artefact_says_it_is_not_a_leaderboard() -> None:
     record = json.loads(artefact.read_text(encoding="utf-8"))
     assert "not_a_leaderboard" in record
     assert record["contract_version"] == "ARENA-0.1"
+
+
+# ------------------------------------------------- the reference adapter's clock
+
+
+def test_a_record_with_an_iso_timestamp_is_not_treated_as_time_zero() -> None:
+    """Reading only `day` switched the temporal filter off on any real corpus.
+
+    Every record then had time zero, every record was "not after" any question,
+    and the mechanism would have been measured with its temporal half disabled
+    with nothing saying so.
+    """
+    from arena.aamr_adapter import _time_of
+
+    assert _time_of({"timestamp": "2023-05-10", "text": "x"}) == "2023-05-10"
+    assert _time_of({"day": 9, "text": "x"}) == 9
+    assert _time_of({"text": "x"}) is None
+
+
+def test_an_integer_day_and_an_iso_date_are_not_compared_against_each_other() -> None:
+    """Comparing them is not a late record, it is an unanswerable question."""
+    from arena.aamr_adapter import _not_after
+
+    assert _not_after(3, 9) is True
+    assert _not_after(9, 3) is False
+    assert _not_after("2023-01-01", "2023-06-01") is True
+    assert _not_after("2023-06-01", "2023-01-01") is False
+    # Mixed kinds: does not filter, rather than raising or guessing.
+    assert _not_after(3, "2023-01-01") is True
+    assert _not_after("2023-01-01", 3) is True
+
+
+def test_no_question_time_admits_every_record() -> None:
+    from arena.aamr_adapter import _not_after
+
+    assert _not_after("2023-01-01", None) is True
+    assert _not_after(None, "2023-01-01") is True
+
+
+def test_the_chain_orders_day_ten_above_day_nine() -> None:
+    """String ordering without padding would put 9 above 10 and answer with the older."""
+    from arena.adapter import Answer
+    from arena.aamr_adapter import AAMRAdapter
+
+    adapter = AAMRAdapter()
+    adapter.reset()
+    records = [{"id": "r1", "day": 9, "text": "The billing staging host is https://a.internal:8443."},
+               {"id": "r2", "day": 10, "text": "Correction: billing staging is now https://c.internal:8443."}]
+    adapter.ingest(records)
+    answer = adapter.query("Which host should a billing deploy target?", 20)
+    assert isinstance(answer, Answer)
+    if not answer.abstained:
+        assert "c.internal" in answer.text
