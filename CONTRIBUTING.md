@@ -127,4 +127,6 @@ A reviewer with prior exposure can still provide useful criticism. Disclose the 
 
 ## Code of conduct
 
-Criticism of a claim, a method, or a result is welcome and expected. Criticism of a person is not.
+All participants are expected to adhere to our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+Criticism of a claim, a method, or a result is welcome and expected; criticism of a person is not. Disclosing prior exposure or conflicts of interest is treated as good practice.
