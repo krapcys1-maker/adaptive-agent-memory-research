@@ -74,6 +74,11 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md` — pre-builder inventory showing why gold, blind, raw, and generated artifacts cannot be indexed naively.
 - `docs/11-research-laboratory/natural-completeness-controller-benchmark-protocol-v0.md` — separate N0-N3 sufficiency, abstention, closure, and escalation benchmark.
 - `data/lab/pmlab-completeness-natural-v0/manifest.json` — machine-readable controller arms and unresolved execution gates.
+- `docs/07-literature/tiered-memory-routing-and-future-utility-audit.md` — primary-source correction of cascade, repository, utility, and current DeepSeek-cost claims.
+- `docs/11-research-laboratory/memory-manager-cascade-benchmark-protocol-v0.md` — shadow-only deterministic/cheap/strong manager comparison with typed escalation and no canonical mutation.
+- `data/lab/pmlab-memory-router-v0/manifest.json` — execution-locked `PMLAB-ROUTER-001` arms, safety gates, and resource outcomes.
+- `docs/11-research-laboratory/future-utility-telemetry-protocol-v0.md` — U0-U5 evidence ladder and staged path from immutable telemetry to safe randomized exposure.
+- `data/lab/pmlab-future-utility-v0/manifest.json` — execution-locked `PMLAB-UTILITY-001` phase and causal-identification constraints.
 - `docs/11-research-laboratory/compression-benchmark-extension.md` — preregistered repeated-compaction, model-change, semantic-completion, and factor-separated emotion tests.
 - `docs/11-research-laboratory/replay-benchmark-extension.md` — preregistered phase-conditioned replay, compression-throughput, and sampling-safety tests.
 - `docs/11-research-laboratory/revision-benchmark-extension.md` — preregistered versioning, non-mutating retrieval, return, and representation-dissociation tests.

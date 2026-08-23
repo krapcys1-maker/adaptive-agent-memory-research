@@ -29,3 +29,6 @@
 "facebookresearch/faiss","external/repos/facebookresearch__faiss","7059eaf7da7eddda62e71367e684d4bdedd7f94f","main","2026-08-23T02:42:26.2128279Z","available"
 "asg017/sqlite-vec","external/repos/asg017__sqlite-vec","04d28bd21773981e2d266bbf6aa4efbd011eb4f6","main","2026-08-23T02:42:26.2128279Z","available"
 "sdadas/pirb","external/repos/sdadas__pirb","cce658e60f7ec86acb15d64620e1ab4c44a39ad6","master","2026-08-23T02:42:26.2128279Z","available-license-audit-required"
+"MemTensor/MemRL","external/repos/MemTensor__MemRL","c1b322ca43de36ddf64c6712f89d0095bfc35ce0","main","2026-08-23T03:17:51.9725539Z","available-mit-audit-required"
+"nemori-ai/nemori","external/repos/nemori-ai__nemori","d2a6dff6e5481214a0be6a2d10147feccfc16244","main","2026-08-23T03:17:51.9725539Z","available-mit-audit-required"
+"lm-sys/RouteLLM","external/repos/lm-sys__RouteLLM","0b64fdafe049e596a3f5657c219329f24af24198","main","2026-08-23T03:17:51.9725539Z","available-apache-2-audit-required"

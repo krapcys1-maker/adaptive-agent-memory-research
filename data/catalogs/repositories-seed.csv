@@ -45,3 +45,6 @@ dense-retrieval,A,yes,FlagOpen/FlagEmbedding,BGE-M3 dense and multi-function ret
 vector-search,A,yes,facebookresearch/faiss,exact vector search reference,"Use IndexFlatIP only as a checked implementation of normalized exact cosine before testing approximate indexes"
 vector-storage,B,yes,asg017/sqlite-vec,portable SQLite vector extension,"Storage and deployment candidate only; do not confound it with the first embedding-quality comparison"
 benchmark,A,yes,sdadas/pirb,Polish dense sparse and hybrid retrieval benchmark,"Use as Polish transfer and method-design evidence; audit individual dataset licenses before downloading any corpus"
+utility-learning,A,yes,MemTensor/MemRL,reward-updated memory utility,"Closest open implementation of intent-experience-utility memories; audit reward assumptions and delayed-credit failure modes before reproduction"
+memory-distillation,A,yes,nemori-ai/nemori,prediction-error memory distillation,"Compare intrinsic surprise at write time with observed and causal downstream utility; do not equate the three"
+model-routing,B,yes,lm-sys/RouteLLM,learned model cascade baseline,"Reuse routing and cost-quality evaluation patterns only; its general-chat savings do not establish memory-manager performance"

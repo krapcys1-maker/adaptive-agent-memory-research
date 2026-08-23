@@ -1,0 +1,47 @@
+{
+  "experiment_id": "PMLAB-ROUTER-001",
+  "title": "Provider-neutral tiered memory-manager routing",
+  "version": "0.1.0-draft",
+  "status": "preregistration-draft",
+  "execution_authorized": false,
+  "canonical_memory_mutation_authorized": false,
+  "raw_append_precedes_all_arms": true,
+  "corpus": {
+    "status": "not-built",
+    "grouped_split_required": true,
+    "independent_labels_required": true
+  },
+  "arms": ["R0", "R1", "S0", "F0", "C2", "C3", "O"],
+  "routing": {
+    "fixed_call_share_quotas": false,
+    "typed_triggers_required": true,
+    "verbal_confidence_sufficient": false,
+    "thresholds_frozen_before_test": true
+  },
+  "primary_outcomes": [
+    "exact_structured_label_accuracy",
+    "critical_recall",
+    "critical_omission_rate",
+    "unauthorized_capture_rate",
+    "unsafe_mutation_proposal_rate",
+    "selective_risk_coverage",
+    "measured_usd",
+    "model_tokens",
+    "p95_latency"
+  ],
+  "development_advancement_gates": {
+    "unauthorized_captures": 0,
+    "unsafe_canonical_mutations": 0,
+    "max_critical_omission_increase": 0.01,
+    "max_macro_exact_degradation": 0.02,
+    "minimum_model_token_cost_reduction": 0.50,
+    "minimum_usd_reduction_alternative": 0.40
+  },
+  "budget": {
+    "project_cumulative_usd_cap": 10.0,
+    "experiment_cap_usd": null,
+    "execution_blocked_until_cap_frozen": true
+  },
+  "protocol": "docs/11-research-laboratory/memory-manager-cascade-benchmark-protocol-v0.md",
+  "created_at": "2026-08-23T00:00:00Z"
+}

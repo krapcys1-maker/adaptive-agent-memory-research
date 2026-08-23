@@ -1,0 +1,49 @@
+{
+  "experiment_id": "PMLAB-UTILITY-001",
+  "title": "Longitudinal memory future-utility telemetry",
+  "version": "0.1.0-draft",
+  "status": "preregistration-draft",
+  "execution_authorized": false,
+  "adaptive_policy_authorized": false,
+  "canonical_memory_mutation_authorized": false,
+  "target": "counterfactual future utility net of cost and harm",
+  "levels": {
+    "U0": "stored",
+    "U1": "eligible_or_retrieved",
+    "U2": "exposed",
+    "U3": "behaviorally_referenced",
+    "U4": "associated_outcome",
+    "U5": "counterfactual_benefit_estimated"
+  },
+  "causal_retention_training_minimum_level": "U5",
+  "phases": [
+    "T0_schema_replay_validation",
+    "T1_natural_shadow_observation",
+    "T2_offline_paired_replay",
+    "T3_safe_randomized_exposure",
+    "T4_shadow_utility_model"
+  ],
+  "randomization": {
+    "critical_memory_withholding_allowed": false,
+    "privacy_sensitive_withholding_allowed": false,
+    "unique_support_withholding_allowed": false,
+    "assignment_probability_required": true
+  },
+  "primary_outcome_families": [
+    "task_success",
+    "repeated_error_avoidance",
+    "rediscovery_avoided",
+    "time_to_correct_solution",
+    "tokens_and_usd",
+    "critical_harm"
+  ],
+  "promotion_constraints": {
+    "minimum_assignment_log_completeness": 0.99,
+    "minimum_outcome_observability": 0.90,
+    "critical_or_private_withholding": 0,
+    "fresh_cohort_interval_excludes_zero": true,
+    "material_critical_harm_increase_allowed": false
+  },
+  "protocol": "docs/11-research-laboratory/future-utility-telemetry-protocol-v0.md",
+  "created_at": "2026-08-23T00:00:00Z"
+}
