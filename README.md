@@ -1,17 +1,103 @@
-# Adaptive Agent Memory Research
+<h1 align="center">Can an agent learn what is worth remembering?</h1>
 
-[![CI](https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml/badge.svg)](https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
+<p align="center">
+A local-first, model-agnostic memory system that decides what to keep from<br>
+<b>the measured future usefulness of past experience</b> — not from what looks similar to your query.
+</p>
 
-An open research workspace for **local-first, model-agnostic, long-term memory for LLM agents**.
+<p align="center">
+<a href="https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml"><img src="https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg" alt="License: CC BY 4.0"></a>
+<img src="https://img.shields.io/badge/dependencies-none-brightgreen" alt="No dependencies">
+<img src="https://img.shields.io/badge/API%20key-not%20required-blue" alt="No API key">
+<a href="https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue"><img src="https://img.shields.io/github/issues/krapcys1-maker/adaptive-agent-memory-research/good%20first%20issue?label=good%20first%20issues&color=7057ff" alt="Good first issues"></a>
+</p>
 
-The context window stays the agent's immediate workspace. Durable memory lives on the user's disk, and a controller decides what to write, preserve, consolidate, retrieve, revise, and archive. No model API key, vector database, or cloud account is required for anything in this repository.
+---
 
-This is a **research project, not a production memory library**. What it offers is not a product but a method: every claim carries provenance, negative results are preserved rather than deleted, and mechanisms advance through registered gates instead of plausibility.
+## Give Claude Code persistent project memory in two minutes
 
-## Try it in two minutes
+The memory engine this research is built on is dependency-free, offline, and works today on **your** project. Point any MCP client at it:
 
-The repository ships a dependency-free project memory that this research uses on itself. You can run all of it locally, offline:
+```bash
+git clone https://github.com/krapcys1-maker/adaptive-agent-memory-research ~/aamr
+claude mcp add project-memory -- python ~/aamr/tools/project_memory/server.py --root .
+```
+
+Your agent now has eight tools — `memory_status`, `memory_search`, `memory_context`, `memory_get`, `memory_timeline`, `memory_add`, `memory_supersede`, `memory_rebuild_index` — writing to a single append-only `memory/events.jsonl` in your repository. No API key, no vector database, no daemon, no cloud account, no `pip install`.
+
+Prefer no MCP client? Everything works from the CLI:
+
+```bash
+python tools/project_memory/cli.py add --kind decision \
+  --title "Use SQLite for the cache" \
+  --summary "Chose SQLite over Redis because the deployment target has no daemon." \
+  --source docs/adr/0003.md
+python tools/project_memory/cli.py search "why sqlite"
+```
+
+> **This is the research engine, not a finished product.** It is used daily by this project on itself, which is the strongest thing we can honestly say about it. Bugs, rough edges, and honest reports of both are welcome — see [#36](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/36) if setup fights you.
+
+---
+
+## The problem
+
+An agent's context window is a workspace, not a memory. Once a conversation is compacted, whatever was dropped is gone — including the thing that turns out to matter three weeks later.
+
+The usual answer is to embed everything and retrieve by similarity. That answers *what looks like this query*, which is not the same question as *what will this agent need*. Those two come apart badly, and this project exists to measure exactly where.
+
+## The idea
+
+Two stores, not one. A fast, evidence-preserving episodic log that learns from single experiences, and a slower semantic or procedural store that consolidates what recurs. What moves between them is governed by **measured future utility** rather than by semantic similarity or retrieval frequency.
+
+```text
+                 experience
+                     │
+                     ▼
+        ┌────────────────────────┐
+        │   append-only log      │   immutable evidence, never rewritten
+        └────────────┬───────────┘
+                     ▼
+        ┌────────────────────────┐
+        │   memory controller    │   write · preserve · consolidate · revise · archive
+        └────────────┬───────────┘
+                     ▼
+    ┌──────────┬───────────┬────────────┬──────────┐
+    │ episodic │ semantic  │ procedural │ failure  │
+    └──────────┴─────┬─────┴────────────┴──────────┘
+                     ▼
+        ┌────────────────────────┐
+        │  measured future use   │   ◄── the part that is actually research
+        └────────────┬───────────┘
+                     ▼
+                 retrieval ──────────► agent
+```
+
+The append-only log, the controller and retrieval are built and running — that is what the two-minute setup above gives you. The box marked *the part that is actually research* is the open question, and the four stores below the controller are a design rather than a measured decomposition. This diagram is the hypothesis, not a claim about what works.
+
+## What we have measured
+
+Of 71 registered experiments, **37 have run** and 20 are blocked on a corpus that does not exist yet. All are exploratory and none is independently reviewed, so read these as measurements rather than settled science — but they are measurements, and the data is in the repository.
+
+**A superseded fact is maximally similar to the fact that replaced it.** Mean cosine 0.816 between an old fact and its replacement, against a corpus baseline of 0.372 — one pair at 1.000. With the metadata filter removed, the stale version was the nearest neighbour in 6 of 9 cases and its median rank was 1. *Content cannot separate a retired fact from its successor. Only bookkeeping can.* → `PMLAB-STALE-E1`
+
+**One timestamp cannot answer "what did we believe at time T".** It scored 0.00 on that question and leaked future information into 6 of 18 queries. Separating valid time from transaction time scored 0.944 with zero leaks. The caveat matters as much as the result: every design scored 1.00 on *what is true now*, so the second axis buys nothing unless historical questions get asked. → `PMLAB-REV-V0`
+
+**A 220 MB local multilingual embedder lifted Polish-query recall@10 from 0.156 to 0.978** — and pulled in four times as much superseded material doing it (0.200 forbidden intrusion against 0.050 for lexical search). Recall solved; safety unmeasured. → `PMLAB-XLANG-E2`
+
+**An association graph over memory made retrieval worse.** The earlier, favourable version of this result was **retracted by us**: its leakage control removed one edge where it needed to remove 4.5, so the gold-generating group reassembled over two hops. → `PMLAB-ASSOC-E2` retracted, `PMLAB-ASSOC-E3`
+
+**We cannot currently instantiate tier I3 of our own independence ladder.** Two roles of one model fabricated an evidence identifier zero times across 120 queries, so the error correlation is *undefined* rather than zero — and the harness reports undefined, because 0.0 would claim an independence nobody measured. → `PMLAB-DECORR-E1`
+
+Three of those five are negatives and one is a retraction of our own work. **That ratio is the honest one at this stage**, and it is the thing this project is most willing to defend.
+
+### The number that is not here yet
+
+There is no headline benchmark table on this page, and there will not be one until it is earned. The comparison that matters — adaptive memory against native compaction and against vector retrieval, at a fixed context budget, on a long history — needs a corpus that does not exist yet. Building it is [#41](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/41), it blocks twenty experiments, and it is the highest-leverage task open.
+
+We have pre-committed to publishing that result whichever way it falls. Given that three separate runs here have already measured our own mechanisms *harming* retrieval, a negative headline is a live possibility — and it would be published in the same font as a positive one.
+
+## Try the research, not just the tool
 
 ```bash
 git clone https://github.com/krapcys1-maker/adaptive-agent-memory-research
@@ -19,19 +105,14 @@ cd adaptive-agent-memory-research
 python -m pip install -r requirements-dev.txt
 ```
 
-Inspect the memory the project keeps about its own research:
+Inspect the memory this project keeps about its own research, and watch it assemble a context bundle under a hard character budget:
 
 ```bash
 python tools/project_memory/cli.py status
-```
-
-Ask it something and watch it assemble a context bundle under a character budget:
-
-```bash
 python tools/project_memory/cli.py context "what is blocking independent review" --char-budget 4000
 ```
 
-Check that the append-only log satisfies every invariant that is decidable from its bytes — no model, no network, no reviewer:
+Check that the append-only log satisfies every invariant decidable from its bytes — no model, no network, no reviewer:
 
 ```bash
 python scripts/verify_memory_integrity.py
@@ -43,37 +124,33 @@ Audit the whole repository for claims that no longer hold:
 python scripts/audit_repository_claims.py
 ```
 
-That last one currently reports 34 findings. None of them is a broken freeze — 243 of the 246 resolvable declared hashes match their working copy, and the remaining three are derived digests declared under a name that reads like a file digest. What it does report is 17 registry rows pointing at artifacts for experiments that have not run, and 12 experiment identifiers described in documentation but absent from the registry. Both are tracked in the issue list rather than hidden.
+That last one reports 34 findings. None is a broken freeze — 243 of the 246 resolvable declared hashes match their working copy, and the other three are derived digests declared under a name that reads like a file digest. What it does report is 17 registry rows pointing at artifacts for experiments that have not run, and 12 experiment identifiers described in documentation but absent from the registry. Tracked in the issue list, not hidden.
 
-## What we are trying to find out
+## How to help
 
-> Does an agent need complementary memory systems — an evidence-preserving episodic store for rapid learning from single experiences, and a slower semantic or procedural store that consolidates recurring evidence? And should transitions between them be governed by **measured future utility** rather than by semantic similarity?
+Contributions run at three depths, and **you do not need a background in memory research for the first one.**
 
-Five questions organise the work:
+### About an hour, no research background
 
-1. What is the atomic unit of agent memory: message, event, fact, relation, episode, procedure, or decision?
-2. How can storage failure be distinguished from retrieval failure and from reasoning failure?
-3. How can future utility be measured causally rather than inferred from retrieval frequency?
-4. When should exact episodes be consolidated into semantic or procedural knowledge?
-5. How can memories be updated without losing provenance, uncertainty, or superseded historical states?
+Issues labelled [`good first issue`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue) and [`no-expertise-needed`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/no-expertise-needed) are ordinary software work: a scoped bug, a missing exclusion rule, a CLI subcommand, reading one unfamiliar repository carefully. Each states what "done" means before you start.
 
-## What we have found so far
+If the setup instructions above fail on your machine, saying so in an issue is itself a useful contribution — this is developed on Windows and tested on Linux, and that gap has already produced one real defect.
 
-Of 71 registered experiments, 37 have run and 20 are blocked on corpora that need a reader model. All are exploratory and none is independently reviewed, so read what follows as measurements rather than settled science — but they are measurements, and the data is in the repository.
+**A negative result closes an issue here.** If you inspect something and find it is not what we assumed, write that down and you are done. Several of the findings above are exactly that.
 
-**A superseded fact is maximally similar to its replacement.** Across nine supersession pairs the mean cosine between an old fact and the fact that replaced it was 0.816 against a corpus baseline of 0.372, with one pair at 1.000. With the metadata filter removed, the stale version was the nearest neighbour in 6 of 9 cases and its median rank was 1. Content cannot separate a retired fact from its successor — only bookkeeping can. `PMLAB-STALE-E1`
+### A few sessions, engineering
 
-**Two time axes are needed, and each single-axis design fails exactly the question the other answers.** A resolver with one timestamp scored 0.00 on *what did we believe at time T*, leaking future information on 6 of 18 queries. A bitemporal one scored 0.944 overall with zero leaks. The caveat matters as much as the result: every arm scored 1.00 on *what is true now*, so the second axis buys nothing unless historical questions get asked. `PMLAB-REV-V0`
+Issues labelled [`track:engine`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/track%3Aengine) build the machinery the research needs: sealed held-out splits, error-decorrelation measurement, the bitemporal query layer, cost-normalised retrieval metrics. These need care but not domain expertise.
 
-**A local 220 MB multilingual embedder lifted Polish-query recall@10 from 0.156 to 0.978** — and pulled in four times as much superseded material doing it (0.200 forbidden intrusion against 0.050 for lexical search). Recall was solved; safety was not measured. `PMLAB-XLANG-E2`
+**Finding a hole in our method is worth more than completing a task.** The sealed-split tool carries three guards, each added after the corresponding attack was reproduced against it. A fourth would be the better contribution.
 
-**An association graph over memory made retrieval worse once the leak was closed.** The first version of this measurement was retracted by us: its leakage control removed only the direct edge between a held-out pair, so the gold-generating group reassembled over two hops. The corrected control removes 4.5 edges per pair instead of 1, and with it the graph harms the lexical baseline it was meant to help. `PMLAB-ASSOC-E2` retracted, `PMLAB-ASSOC-E3`
+### Research review
 
-**Tier I3 of our own independence ladder cannot currently be instantiated.** Two roles of one model over 120 queries fabricated an evidence identifier exactly zero times, so both error vectors are constant and their correlation is undefined rather than zero. The harness reports it as undefined, because 0.0 would claim an independence nobody measured. `PMLAB-DECORR-E1`
+Issues labelled [`independent-review`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/independent-review) need someone who can judge evidence. Read [the independence ladder](docs/00-project/independence-ladder.md) first — it explains why a large share of what once required an expert reviewer is now a mechanical check, and what genuinely still needs human judgement.
 
-Negative and retracted results are kept here on the same footing as positive ones. Three of the five above are negatives, one is a retraction of our own work, and that ratio is the honest one for this stage.
+Everything goes through [CONTRIBUTING.md](CONTRIBUTING.md). Disagreement with a recorded conclusion is welcome; that is what the evidence ledger is for. Say hello in [Discussions](https://github.com/krapcys1-maker/adaptive-agent-memory-research/discussions).
 
-## Non-negotiable constraints
+## What we will not trade away
 
 - User data stays local by default.
 - The system must be model-agnostic.
@@ -84,29 +161,30 @@ Negative and retracted results are kept here on the same footing as positive one
 - A retrieved memory is not automatically a useful memory.
 - Every added mechanism justifies itself in controlled evaluation.
 
-## How to help
+## The five research questions
 
-Contributions run at three depths. **You do not need a background in memory research for the first one.**
+> Does an agent need complementary memory systems — an evidence-preserving episodic store for rapid learning from single experiences, and a slower semantic or procedural store that consolidates recurring evidence? And should transitions between them be governed by **measured future utility** rather than by semantic similarity?
 
-### About an hour, no research background
+1. What is the atomic unit of agent memory: message, event, fact, relation, episode, procedure, or decision?
+2. How can storage failure be distinguished from retrieval failure and from reasoning failure?
+3. How can future utility be measured causally rather than inferred from retrieval frequency?
+4. When should exact episodes be consolidated into semantic or procedural knowledge?
+5. How can memories be updated without losing provenance, uncertainty, or superseded historical states?
 
-Issues labelled [`good first issue`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue) and [`no-expertise-needed`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/no-expertise-needed) are ordinary software work: a scoped bug, a missing exclusion rule, a CLI subcommand, reading one unfamiliar repository carefully. Each states what "done" means before you start.
+## Current phase
 
-If the setup instructions above fail on your machine, saying so in an issue is itself a useful contribution — this is developed on Windows and tested on Linux, and that gap has already produced one real defect.
+Evidence collection alongside gated laboratory testing. Each falsifiable hypothesis may enter an exploratory test under the [research-to-experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md); confirmatory claims, added architecture, and any product implementation remain blocked behind stricter benchmark, reproduction, safety, and review gates.
 
-**A negative result closes an issue here.** If you inspect something and find it is not what we assumed, write that down and the issue is done. Several of the findings above are exactly that.
+Work runs in three tracks — engine, experiment, community — with milestones **M1 Engine**, **M2 Execute**, **M3 Independence**. New preregistrations are paused until the existing unexecuted drafts are triaged, because the project was designing protocols faster than it could run them.
 
-### A few sessions, engineering
+Both defects this section used to list as open are now closed, and how they closed is more interesting than that they did. Frozen hashes were reproducible only on a Windows checkout because Git's end-of-line conversion made 843 of 1348 files under `data/` differ byte for byte across platforms; `.gitattributes` now disables conversion repository-wide. Six frozen artifacts had been modified after freezing, by two distinct causes rather than one. CI verifies freezes on Linux with full history, so the check cannot pass vacuously.
 
-Issues labelled [`track:engine`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/track%3Aengine) build the machinery the research needs: sealed held-out splits, error-decorrelation measurement, the association layer, the bitemporal schema. These need care but not domain expertise.
+---
 
-### Research review
+<details>
+<summary><b>Deep research — the full repository</b></summary>
 
-Issues labelled [`independent-review`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/independent-review) need someone who can judge evidence. Read [the independence ladder](docs/00-project/independence-ladder.md) first — it explains why a large share of what once required an expert reviewer is now a mechanical check, and what genuinely still needs human judgement.
-
-Everything goes through [CONTRIBUTING.md](CONTRIBUTING.md). Disagreement with a recorded conclusion is welcome; that is what the evidence ledger is for.
-
-## Reading path
+### Reading path
 
 New contributors do not need all of this. Read the first three, then follow whatever your issue touches.
 
@@ -121,7 +199,7 @@ New contributors do not need all of this. Read the first three, then follow what
 9. [Systems catalog](docs/04-systems/catalog.md) · [benchmark catalog](docs/05-benchmarks/catalog.md)
 10. [Research laboratory](docs/11-research-laboratory/README.md) and the [experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md)
 
-## Repository layout
+### Repository layout
 
 ```text
 docs/00-project/          Scope, definitions, methodology, independence ladder, decisions
@@ -146,13 +224,7 @@ memory/                   Append-only project memory and its generated index
 tools/project_memory/     Dependency-free CLI and MCP memory adapter
 ```
 
-## Current phase
-
-Evidence collection alongside gated laboratory testing. Each falsifiable hypothesis may enter an exploratory test under the [research-to-experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md); confirmatory claims, added architecture, and any product implementation remain blocked behind stricter benchmark, reproduction, safety, and review gates.
-
-Work is organised in three parallel tracks — engine, experiment, and community — with milestones **M1 Engine**, **M2 Execute**, and **M3 Independence**. New preregistrations are paused until the existing unexecuted drafts are triaged, because the project was designing protocols faster than it could run them.
-
-Both defects this section used to list as open are now closed, and how they closed is more interesting than that they did. Frozen hashes were reproducible only on a Windows checkout because Git's end-of-line conversion made 843 of 1348 files under `data/` differ byte for byte across platforms; `.gitattributes` now disables conversion repository-wide. Six frozen artifacts had been modified after freezing, by two distinct causes rather than one. CI verifies freezes on Linux with full history, so the check cannot pass vacuously.
+</details>
 
 ## Working language
 
