@@ -47,12 +47,23 @@ from typing import Any, Protocol, runtime_checkable
 
 @dataclass(frozen=True)
 class Cost:
-    """What one operation consumed. Zero is a claim, not a default."""
+    """What one operation consumed. Zero is a claim, not a default.
+
+    ``measured`` is the field that keeps that claim honest. A system making no
+    model calls and a system unable to report them both produce zeros, and
+    letting the second aggregate as a real zero would make ignorance of cost look
+    like an advantage — the cheapest system in the table would be the one that
+    cannot count.
+
+    So an unmeasured cost carries ``measured=False``, addition propagates it, and
+    the harness refuses to report a total built from one.
+    """
 
     model_calls: int = 0
     input_tokens: int = 0
     output_tokens: int = 0
     wall_seconds: float = 0.0
+    measured: bool = True
 
     def __add__(self, other: "Cost") -> "Cost":
         return Cost(
@@ -60,6 +71,9 @@ class Cost:
             self.input_tokens + other.input_tokens,
             self.output_tokens + other.output_tokens,
             round(self.wall_seconds + other.wall_seconds, 6),
+            # One unmeasured component makes the total unmeasured. A sum that
+            # silently drops the qualifier is exactly the failure this prevents.
+            self.measured and other.measured,
         )
 
 
@@ -132,6 +146,10 @@ def validate_adapter(adapter: Any, fixture: dict[str, Any]) -> dict[str, Any]:
 
     if not isinstance(ingest_cost, Cost):
         problems.append("ingest must return a Cost")
+    elif not ingest_cost.measured and any(
+        getattr(ingest_cost, f) for f in ("model_calls", "input_tokens", "output_tokens")
+    ):
+        problems.append("cost is marked unmeasured but carries non-zero counts")
     elif ingest_cost.wall_seconds == 0.0 and elapsed > 0.5:
         # Not fatal: a fast adapter legitimately reports ~0. But a slow one
         # reporting 0 is under-reporting, and cost is part of the mechanism.
@@ -163,6 +181,10 @@ def validate_adapter(adapter: Any, fixture: dict[str, Any]) -> dict[str, Any]:
         "adapter": getattr(adapter, "name", "?"),
         "probes_answered": len(answers),
         "ingest_cost": vars(ingest_cost) if isinstance(ingest_cost, Cost) else None,
+        "cost_is_measured": (
+            isinstance(ingest_cost, Cost) and ingest_cost.measured
+            and all(a.cost.measured for a in answers)
+        ),
         "mean_context_tokens": (
             round(sum(a.context_tokens for a in answers) / len(answers), 3) if answers else None
         ),

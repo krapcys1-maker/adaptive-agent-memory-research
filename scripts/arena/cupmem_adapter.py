@@ -144,6 +144,7 @@ class CUPMemAdapter:
             input_tokens=self._usage("prompt_tokens"),
             output_tokens=self._usage("completion_tokens"),
             wall_seconds=round(time.monotonic() - started, 6),
+            measured=self._usage_available(),
         )
 
     def query(self, question: str, asked_at: Any = None) -> Answer:
@@ -166,23 +167,39 @@ class CUPMemAdapter:
                 input_tokens=max(0, after[1] - before[1]),
                 output_tokens=max(0, after[2] - before[2]),
                 wall_seconds=round(time.monotonic() - started, 6),
+                measured=self._usage_available(),
             ),
             system_metadata={
                 # Their premise verdict is reported, never converted into one of
                 # our failure types. That conversion is the harness's job.
                 "verdict": result.get("verdict"),
                 "abstention_derivable": abstained is not None,
-                "context_tokens_measured": self._context_tokens(result) is not None,
+                "cost_observability": (
+                    "native" if self._usage_available() else "unobservable"
+                ),
+                "evidence_observability": (
+                    "native" if evidence else "none-returned"
+                ),
             },
         )
 
     # ----------------------------------------------------------------- helpers
 
+    def _usage_available(self) -> bool:
+        """Can this engine report usage at all?
+
+        The distinction the arena depends on: a system making no model calls and
+        a system unable to count them both produce zeros, and only one of them is
+        cheap.
+        """
+        return getattr(getattr(self._engine, "llm", None), "usage", None) is not None
+
     def _usage(self, field: str) -> int:
         """Cumulative usage, or 0 when their tracker does not expose it.
 
-        Zero here means not-exposed, and `system_metadata` records which case
-        applies so the arena never reads an unmeasured cost as a free one.
+        Callers must pair this with ``_usage_available`` and set ``measured``
+        accordingly. Reading this number alone would treat an unreportable cost
+        as a free one.
         """
         tracker = getattr(getattr(self._engine, "llm", None), "usage", None)
         if isinstance(tracker, dict):

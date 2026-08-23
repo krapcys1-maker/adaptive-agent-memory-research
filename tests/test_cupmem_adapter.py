@@ -127,14 +127,55 @@ def test_ingest_cost_reports_their_model_calls() -> None:
     assert cost.input_tokens == 100
 
 
-def test_an_engine_that_cannot_report_usage_yields_zero_and_says_so() -> None:
-    """Zero because none, and zero because unmeasurable, are different facts."""
+def test_an_unreportable_cost_is_marked_unmeasured_not_free() -> None:
+    """Zero because none, and zero because unmeasurable, are different facts.
+
+    Without this the cheapest system in the table would be the one that cannot
+    count, and ignorance of cost would read as an advantage.
+    """
     adapter = CUPMemAdapter(_EngineDouble(expose_usage=False))
     adapter.reset()
-    adapter.ingest([{"id": "r1", "text": "one", "timestamp": "d1"}])
+    cost = adapter.ingest([{"id": "r1", "text": "one", "timestamp": "d1"}])
     answer = adapter.query("anything?")
-    assert answer.cost.model_calls == 0
-    assert answer.system_metadata["abstention_derivable"] is True
+
+    assert cost.model_calls == 0 and cost.measured is False
+    assert answer.cost.measured is False
+    assert answer.system_metadata["cost_observability"] == "unobservable"
+
+
+def test_a_reportable_cost_is_marked_measured() -> None:
+    adapter = CUPMemAdapter(_EngineDouble(expose_usage=True))
+    adapter.reset()
+    assert adapter.ingest([{"id": "r1", "text": "one", "timestamp": "d1"}]).measured is True
+    assert adapter.query("anything?").system_metadata["cost_observability"] == "native"
+
+
+def test_one_unmeasured_component_makes_a_total_unmeasured() -> None:
+    """A sum that drops the qualifier is the failure this exists to prevent."""
+    assert (Cost(1, 10, 2, 0.5) + Cost(measured=False)).measured is False
+    assert (Cost(1, 10, 2, 0.5) + Cost(0, 0, 0, 0.1)).measured is True
+
+
+def test_the_validator_reports_whether_cost_was_measured_at_all() -> None:
+    measurable = validate_adapter(CUPMemAdapter(_EngineDouble()), synthetic_fixture())
+    blind = validate_adapter(CUPMemAdapter(_EngineDouble(expose_usage=False)), synthetic_fixture())
+    assert measurable["cost_is_measured"] is True
+    assert blind["cost_is_measured"] is False
+    # Both still obey the contract: being unable to report cost is a property to
+    # record, not grounds for exclusion from the arena.
+    assert measurable["admissible"] and blind["admissible"]
+
+
+def test_a_cost_claiming_to_be_unmeasured_while_carrying_counts_is_rejected() -> None:
+    class Contradictory:
+        name = "contradictory"
+        def reset(self): pass
+        def ingest(self, records): return Cost(5, 100, 20, 0.1, measured=False)
+        def query(self, question, asked_at=None): return Answer(text="x")
+
+    result = validate_adapter(Contradictory(), synthetic_fixture())
+    assert not result["admissible"]
+    assert any("unmeasured" in p for p in result["problems"])
 
 
 def test_an_abstaining_engine_reports_no_text() -> None:
