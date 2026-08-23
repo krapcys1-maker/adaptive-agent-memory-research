@@ -1,0 +1,200 @@
+{
+  "artifact": "arena-system-source",
+  "system": "CUPMem",
+  "purpose": "Names the exact bytes a frozen run measured. A system name and a branch name are both moving targets; a commit and a tree digest are not.",
+  "root": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\repos\\icedreamc__STALE",
+  "subtree": "cup_mem",
+  "remote": "https://github.com/icedreamc/STALE",
+  "commit": "ea7d391103a151927cd29d2f01d87597a782bdcb",
+  "commit_date": "2026-05-19T10:36:04+08:00",
+  "working_tree_clean": true,
+  "uncommitted": [],
+  "file_count": 46,
+  "tree_digest_sha256": "6ea117feea0e1a974f02f7673b7986d0df8782315e30a466bd46bf63bcd08e30",
+  "files": {
+    "cup_mem/__init__.py": {
+      "sha256": "505b9d8c40eb0d6aa68070b484283c0eeb50d2f31f5ec8b4a152f7f868667b32",
+      "bytes": 553
+    },
+    "cup_mem/core/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cup_mem/core/config.py": {
+      "sha256": "273ce6d6fd87475eda632f146e45518145245ed81fbafe3a9ad2ec2eaefff1b1",
+      "bytes": 796
+    },
+    "cup_mem/core/engine.py": {
+      "sha256": "73c4021bdbef925e134576ea628f8c765e63c1372b12e200d94be96f6c22a824",
+      "bytes": 89
+    },
+    "cup_mem/core/engine_utils.py": {
+      "sha256": "7169896d4de6f9201eee3802458c70f47ad5e68c2cb87c4cf6324d3e44037906",
+      "bytes": 16254
+    },
+    "cup_mem/core/sample_runner.py": {
+      "sha256": "3705510fbfdd186a9ea9d4d63987b1018aa832f886862ff237929daa832bc328",
+      "bytes": 11377
+    },
+    "cup_mem/core/temporal.py": {
+      "sha256": "ab5646613cc8cc8c9ba453efdd6947dfd83876d13e695bf3d288b98d41d1fc05",
+      "bytes": 2949
+    },
+    "cup_mem/core/types.py": {
+      "sha256": "670676eb09885bede3316af83ae732965f154d3a9075c44f3b2d56f9899e29f6",
+      "bytes": 618
+    },
+    "cup_mem/llm_layer/__init__.py": {
+      "sha256": "deb3599283480892fe7a2dd72e45594302613388c1865a4ae1ff944f173b2f7c",
+      "bytes": 169
+    },
+    "cup_mem/llm_layer/client.py": {
+      "sha256": "03244d65c2ba23cf27e55905ab65c434aad6f1351511c74b2c04f1725645e204",
+      "bytes": 18277
+    },
+    "cup_mem/llm_layer/responses_adapter.py": {
+      "sha256": "66c84a65c66fa00d0ec38f82dba4733a2bfea62a96592b2af38e2513482ef8e0",
+      "bytes": 16205
+    },
+    "cup_mem/memory/__init__.py": {
+      "sha256": "75d6ae7702dd5c253334a439bc9db060f07cd66ea4d1b4a5b8a763a5c9460fba",
+      "bytes": 75
+    },
+    "cup_mem/memory/models.py": {
+      "sha256": "ac774ad7c70670a092998126a018b4c50545fb7e52854e8f71af47dacc9850ca",
+      "bytes": 12228
+    },
+    "cup_mem/memory/schema.py": {
+      "sha256": "1d2c5a3d48b3a3c72d1d5b8d8639a512f5812451c47c097202e7f0fdc0d8a764",
+      "bytes": 7968
+    },
+    "cup_mem/pipeline.py": {
+      "sha256": "14312ffda661e5a8e8a7c613c18b6e261cb0cff013bbd038775fd31e316ef229",
+      "bytes": 3009
+    },
+    "cup_mem/prompt_lib/__init__.py": {
+      "sha256": "74cffa0de9ca57963fa5520a82afea52b5626378a6e46ceeaaa18d594e7591f8",
+      "bytes": 78
+    },
+    "cup_mem/prompt_lib/templates.py": {
+      "sha256": "ada9e171f3cf9d86f19eb033675b96038d90e7f04391bfbbb0a73da4ee2e533c",
+      "bytes": 31945
+    },
+    "cup_mem/query/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cup_mem/query/action_grounding.py": {
+      "sha256": "adcc50feaf647b0385c424af15125a2259fb94bd837600982995f93e38e95082",
+      "bytes": 16380
+    },
+    "cup_mem/query/basis_recovery.py": {
+      "sha256": "f7a7da06b78fc9050728135772df5a407ee0d7f5674f8bf9e0a1f91ce0acc269",
+      "bytes": 119
+    },
+    "cup_mem/query/basis_recovery_impl.py": {
+      "sha256": "72933fe996d05f064b4f0356b8db77b7d1b2aaca6f19c5fca37f7c06e00662af",
+      "bytes": 31821
+    },
+    "cup_mem/query/engine.py": {
+      "sha256": "28e8a7496026176f947483361a14e4ef69e35103fc76396e2a123e542bfbb163",
+      "bytes": 9613
+    },
+    "cup_mem/query/premise_verifier.py": {
+      "sha256": "f26594bdc4022a2858b083dfca517ef1b718f23ecc57fe30fb67a0673351ab0e",
+      "bytes": 26350
+    },
+    "cup_mem/query/readout.py": {
+      "sha256": "69d56472b0a2f5de22cdc3a75882204bb763de0d0d81051c40ac9888369a94de",
+      "bytes": 31510
+    },
+    "cup_mem/query/retrieval.py": {
+      "sha256": "4b0b42f2e9c8c11b55dfe74fd61f5543bcceb4dccf1f634d13201dca331a9f1e",
+      "bytes": 3460
+    },
+    "cup_mem/query/support.py": {
+      "sha256": "5daaba74d1eb2f5eb008573d4f7e7c8ba0a9d6437522499e7ceaa758c55472cf",
+      "bytes": 35028
+    },
+    "cup_mem/query/track_hints.py": {
+      "sha256": "e46d4f3b7462cc7d8770cdbc53bec867ce4c63061ee531cd1b9ab994ae1eefec",
+      "bytes": 18602
+    },
+    "cup_mem/retrieval/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cup_mem/retrieval/embedding.py": {
+      "sha256": "544ac35a14e557780d252057e689379485d0091e420740abe52d7c2746aeb7e0",
+      "bytes": 3628
+    },
+    "cup_mem/run_cup_mem.py": {
+      "sha256": "6566f85b485b78fc5c533dd6794b0e1e1b3ce73341eacbf5eb1af17baff651ec",
+      "bytes": 10125
+    },
+    "cup_mem/store_layer/__init__.py": {
+      "sha256": "d1510c6d22b95519bf4825094bc94a3002f05aa0dfa7301e5abcbf43ab6cacd0",
+      "bytes": 168
+    },
+    "cup_mem/store_layer/in_memory.py": {
+      "sha256": "dd6d0319ed50dda12feabfcfb057161475c30b409f90fc1bf3c3e4ef90ed2c10",
+      "bytes": 10523
+    },
+    "cup_mem/store_layer/temporal_policy.py": {
+      "sha256": "5b68b35dbe13a8daa2d8ded43fe39d63ee1a580308184a288a55b8dcd725c1c9",
+      "bytes": 238
+    },
+    "cup_mem/store_layer/transitions.py": {
+      "sha256": "19c2dab0140bb514e105da1f42e158dc71a81596fbb9af8bc4fdb57217acc951",
+      "bytes": 15887
+    },
+    "cup_mem/tracing/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cup_mem/tracing/events.py": {
+      "sha256": "8dcb7fd276ed66875dc12aaaf72ed12aea08aa3303f466ad7030dfaa056fa67b",
+      "bytes": 220
+    },
+    "cup_mem/write/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "cup_mem/write/chunker.py": {
+      "sha256": "7d25c621e3582262a61fb2b0da0a893baf3e73d9c13ea6cd6562f9ec2ce36775",
+      "bytes": 7910
+    },
+    "cup_mem/write/delta_extractor.py": {
+      "sha256": "70b57f59d6fb6569a7a2d69a382851fa1031990f9b0be2f5baa0d8351521a9eb",
+      "bytes": 14937
+    },
+    "cup_mem/write/invalidation_judge.py": {
+      "sha256": "07d7cdeedbae145e3d5af878822d64fd06b87697e45339fb7b16521662bea18e",
+      "bytes": 7229
+    },
+    "cup_mem/write/invalidation_lanes.py": {
+      "sha256": "9bac8ddefc701f1ea68fd9b251885f338033c1a77054ffbe7c066b09731b4546",
+      "bytes": 20578
+    },
+    "cup_mem/write/invalidation_merge.py": {
+      "sha256": "b0d7c72428746fd7814f2e2a67c34641d3f45ed9243059964ec4613a67332308",
+      "bytes": 21881
+    },
+    "cup_mem/write/invalidation_resolver.py": {
+      "sha256": "f46f9634462da38f5c1275c814046d156f52f39f18a901c8fbfbf5249df2d109",
+      "bytes": 8863
+    },
+    "cup_mem/write/stale_linker.py": {
+      "sha256": "74c8e9e57b20dfe4fcc11a5823ef49f127737ec95aa641f5463f0a113c55b064",
+      "bytes": 8202
+    },
+    "cup_mem/write/update_resolver.py": {
+      "sha256": "e59f2704e997af15424d8ee228479835726a969eacf6cc1f4f3364e737f1b97e",
+      "bytes": 18848
+    },
+    "cup_mem/write/writer.py": {
+      "sha256": "ae2c3ee633df149111789f61893af81e7964799242e95cbf23e2b8142d1c3b7c",
+      "bytes": 13622
+    }
+  }
+}
