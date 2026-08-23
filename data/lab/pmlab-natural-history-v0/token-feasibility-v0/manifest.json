@@ -1,0 +1,8 @@
+{
+  "audit_id": "PMLAB-NATURAL-RET-001-TOKEN-FEAS-V0",
+  "authority": "label-free feasibility only; no byte ceiling, builder, backend, or model selection authority",
+  "snapshot_commit": "44b2b9beeb4339fa3b758baba80bb3514c4b9ba1",
+  "status": "label-free-logical-unit-and-tokenizer-feasibility-only-no-ceiling-selected",
+  "summary_sha256": "63139780bf4050b713e46536114eceddf1c6b21f112c839f1df1dcb2ac37312b",
+  "tokenizer_receipts_sha256": "a0be16b58007e0ec14d4c7c497111edf8e58988c3073333a508ee99a086d8066"
+}

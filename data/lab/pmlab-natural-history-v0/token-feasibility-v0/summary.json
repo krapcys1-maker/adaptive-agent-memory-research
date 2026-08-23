@@ -1,0 +1,198 @@
+{
+  "candidate_ceiling_diagnostics": [
+    {
+      "observed_unsplit_token_checks": {
+        "C0_MINILM": {
+          "max_tokens": 207,
+          "over_registered_limit": 103
+        },
+        "C1A_E5": {
+          "max_tokens": 209,
+          "over_registered_limit": 0
+        },
+        "C1B_BGE_M3": {
+          "max_tokens": 207,
+          "over_registered_limit": 0
+        }
+      },
+      "unsplit_fraction_within": 0.4674237895995218,
+      "unsplit_logical_units_within": 782,
+      "utf8_byte_ceiling": 512
+    },
+    {
+      "observed_unsplit_token_checks": {
+        "C0_MINILM": {
+          "max_tokens": 325,
+          "over_registered_limit": 541
+        },
+        "C1A_E5": {
+          "max_tokens": 327,
+          "over_registered_limit": 0
+        },
+        "C1B_BGE_M3": {
+          "max_tokens": 325,
+          "over_registered_limit": 0
+        }
+      },
+      "unsplit_fraction_within": 0.7597130902570233,
+      "unsplit_logical_units_within": 1271,
+      "utf8_byte_ceiling": 768
+    },
+    {
+      "observed_unsplit_token_checks": {
+        "C0_MINILM": {
+          "max_tokens": 369,
+          "over_registered_limit": 757
+        },
+        "C1A_E5": {
+          "max_tokens": 371,
+          "over_registered_limit": 0
+        },
+        "C1B_BGE_M3": {
+          "max_tokens": 369,
+          "over_registered_limit": 0
+        }
+      },
+      "unsplit_fraction_within": 0.8888224745965332,
+      "unsplit_logical_units_within": 1487,
+      "utf8_byte_ceiling": 1024
+    },
+    {
+      "observed_unsplit_token_checks": {
+        "C0_MINILM": {
+          "max_tokens": 552,
+          "over_registered_limit": 884
+        },
+        "C1A_E5": {
+          "max_tokens": 554,
+          "over_registered_limit": 2
+        },
+        "C1B_BGE_M3": {
+          "max_tokens": 552,
+          "over_registered_limit": 0
+        }
+      },
+      "unsplit_fraction_within": 0.9653317393903168,
+      "unsplit_logical_units_within": 1615,
+      "utf8_byte_ceiling": 1536
+    },
+    {
+      "observed_unsplit_token_checks": {
+        "C0_MINILM": {
+          "max_tokens": 653,
+          "over_registered_limit": 911
+        },
+        "C1A_E5": {
+          "max_tokens": 655,
+          "over_registered_limit": 8
+        },
+        "C1B_BGE_M3": {
+          "max_tokens": 653,
+          "over_registered_limit": 0
+        }
+      },
+      "unsplit_fraction_within": 0.9814704124327556,
+      "unsplit_logical_units_within": 1642,
+      "utf8_byte_ceiling": 2048
+    },
+    {
+      "observed_unsplit_token_checks": {
+        "C0_MINILM": {
+          "max_tokens": 871,
+          "over_registered_limit": 929
+        },
+        "C1A_E5": {
+          "max_tokens": 873,
+          "over_registered_limit": 24
+        },
+        "C1B_BGE_M3": {
+          "max_tokens": 871,
+          "over_registered_limit": 0
+        }
+      },
+      "unsplit_fraction_within": 0.9922295277943813,
+      "unsplit_logical_units_within": 1660,
+      "utf8_byte_ceiling": 3072
+    },
+    {
+      "observed_unsplit_token_checks": {
+        "C0_MINILM": {
+          "max_tokens": 1074,
+          "over_registered_limit": 933
+        },
+        "C1A_E5": {
+          "max_tokens": 1076,
+          "over_registered_limit": 28
+        },
+        "C1B_BGE_M3": {
+          "max_tokens": 1074,
+          "over_registered_limit": 0
+        }
+      },
+      "unsplit_fraction_within": 0.9946204423191871,
+      "unsplit_logical_units_within": 1664,
+      "utf8_byte_ceiling": 4096
+    }
+  ],
+  "counts_by_eligibility_class": {
+    "canonical_memory": 143,
+    "canonical_research": 1138,
+    "registered_summary_secondary": 6,
+    "reviewed_catalog": 241,
+    "reviewed_lab_summary": 145
+  },
+  "counts_by_source_type": {
+    "catalog_row": 241,
+    "markdown_section": 1290,
+    "project_memory_event": 142
+  },
+  "exclusions": {},
+  "limitations": [
+    "No query, label, gold evidence, backend score, embedding, vector, or retrieval output was read or produced.",
+    "Logical units are measured before the registered oversize split algorithm; heading repetition may change final chunk token counts.",
+    "This inventory cannot freeze the byte ceiling or authorize the source-unit builder before independent contract review.",
+    "MiniLM is a 128-token diagnostic and does not set the common C1A/C1B unit ceiling; its truncation exposure is reported."
+  ],
+  "logical_units": 1673,
+  "over_limit_unsplit": {
+    "C0_MINILM": 942,
+    "C1A_E5": 37,
+    "C1B_BGE_M3": 1
+  },
+  "snapshot_commit": "44b2b9beeb4339fa3b758baba80bb3514c4b9ba1",
+  "status": "label-free-logical-unit-and-tokenizer-feasibility-only-no-ceiling-selected",
+  "token_distributions": {
+    "C0_MINILM": {
+      "max": 9659,
+      "min": 4,
+      "p50": 139,
+      "p90": 289,
+      "p95": 374,
+      "p99": 754
+    },
+    "C1A_E5": {
+      "max": 9661,
+      "min": 6,
+      "p50": 141,
+      "p90": 291,
+      "p95": 376,
+      "p99": 756
+    },
+    "C1B_BGE_M3": {
+      "max": 9659,
+      "min": 4,
+      "p50": 139,
+      "p90": 289,
+      "p95": 374,
+      "p99": 754
+    }
+  },
+  "utf8_byte_distribution": {
+    "max": 35639,
+    "min": 12,
+    "p50": 531,
+    "p90": 1041,
+    "p95": 1345,
+    "p99": 2698
+  }
+}

@@ -1,6 +1,7 @@
 # Local research caches (recreated from manifests)
 /external/repos/
 /external/datasets/
+/external/models/
 /sources/papers/
 /tmp/
 

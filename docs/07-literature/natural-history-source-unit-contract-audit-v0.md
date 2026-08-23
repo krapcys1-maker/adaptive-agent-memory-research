@@ -1,6 +1,6 @@
 # Natural-history source-unit and query-provenance contract audit v0
 
-Status: primary-source design audit; contract revision 0.2 is ready for review, but no corpus builder or backend run is authorized
+Status: primary-source design audit plus label-free tokenizer feasibility; contract revision 0.2 awaits a replacement independent-review packet, and no corpus builder or backend run is authorized
 
 ## Question
 
@@ -42,9 +42,11 @@ Including the snapshot commit in the ID was rejected because it would turn every
 
 ### Markdown section semantics
 
-Use a CommonMark-aware block parser for ATX and Setext headings. Each unit contains the normalized heading-path text followed by the direct body up to the first child heading; child bodies are separate units. The heading path is part of `search_text` because generic headings such as “Result” or “Limitations” otherwise lose their subject. The filesystem path remains hidden from primary backends. Non-empty preamble becomes an explicit preamble unit.
+Use a CommonMark-aware block parser for ATX and Setext headings. Each unit contains the normalized heading-path text followed by the direct body up to the first child heading; child bodies are separate units. Historical CRLF/CR becomes LF, only outer blank lines are stripped, and internal Unicode/whitespace is preserved without NFC rewriting. The heading path is part of `search_text` because generic headings such as “Result” or “Limitations” otherwise lose their subject. The filesystem path remains hidden from primary backends. Non-empty preamble becomes an explicit preamble unit.
 
-Line locators preserve the historical source range. Oversized direct bodies split only at parsed paragraph boundaries after a development-only UTF-8 ceiling freezes. A code fence, list item, block quote, or HTML block must not be misread as a heading boundary.
+Project-memory search text uses a fixed semantic allowlist in this order: title, summary, non-empty body, and tags. IDs, operation/kind, confidence/status, timestamps, provenance references, supersession, and relations stay hidden in the primary representation. Their historical records remain available to gold/provenance logic, so hiding them from B1/B2/C1 is not deletion.
+
+Line locators preserve the historical source range. Oversized direct bodies split at parsed CommonMark block boundaries after a development-only UTF-8 ceiling freezes. A block larger than the ceiling uses the latest fitting Unicode whitespace boundary and then, only if no whitespace exists, a valid UTF-8 code-point boundary. Parts have zero overlap, repeat heading context, and carry hidden split method/order metadata. Reconstruction must recover every direct-body byte exactly once after repeated context is removed. A code fence, list item, block quote, or HTML block must not be misread as a heading boundary.
 
 ### Structured rows
 

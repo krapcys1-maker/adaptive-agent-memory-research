@@ -1,6 +1,6 @@
 # Natural project-history retrieval benchmark protocol v0
 
-Status: source-unit/query contracts revised after primary-source and M1 advisory audits; independent review remains open; no corpus, backend run, or result exists
+Status: source-unit/query contracts revised after primary-source, M1 advisory, and label-free token-feasibility audits; replacement independent review remains open; no corpus, backend run, or retrieval result exists
 
 Experiment ID: `PMLAB-NATURAL-RET-001`
 
@@ -52,7 +52,9 @@ Historical reconstruction enumerates the exact cutoff tree and reads addressed G
 
 Markdown follows CommonMark 0.31.2 block semantics. Search text includes heading-path text plus direct body, while child bodies remain separate units. CSV uses its historical header and source column order; JSONL admits I-JSON objects serialized with RFC 8785 JCS. Symlinks, gitlinks, binary blobs, non-UTF-8 text, malformed rows, and duplicate JSON members fail closed in v0.
 
-The experiment manifest records the single frozen UTF-8 byte ceiling; it is not repeated in every unit. JSON Schema checks shapes only. A deterministic validator must separately recompute canonical unit IDs, audit exact backend projection to `unit_id,search_text`, verify alias uniqueness/canonical selection, enforce path exclusions, and verify receipt generation. Private random receipts use a 128-bit-form CSPRNG identifier; private keyed receipts use HMAC-SHA-256 with the key outside Git. Query capture also records a monotonic sequence, which supports ordering audit but does not prove blindness.
+The experiment manifest records the single frozen UTF-8 byte ceiling; it is not repeated in every unit. Oversized logical sections first split at parsed CommonMark block boundaries. An individually oversized block splits at the latest Unicode whitespace that fits, falling back only to a valid UTF-8 code-point boundary. Parts use zero overlap, repeat the required heading context, and record method and part order in hidden metadata. Reconstruction tests must prove no body byte was lost or duplicated.
+
+JSON Schema checks shapes only. A deterministic validator must separately recompute canonical unit IDs, audit exact backend projection to `unit_id,search_text`, verify alias uniqueness/canonical selection, enforce path exclusions, validate split reconstruction, and verify receipt generation. Private random receipts use a 128-bit-form CSPRNG identifier; private keyed receipts use HMAC-SHA-256 with the key outside Git. Query capture also records a monotonic sequence, which supports ordering audit but does not prove blindness.
 
 All backends receive byte-identical units. `CURRENT_STATE.md` and other curated summaries form a registered factor: primary analysis excludes them, and a secondary analysis includes them to quantify summary leakage or genuine utility.
 

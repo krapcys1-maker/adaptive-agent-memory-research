@@ -31,12 +31,15 @@ def completed_form():
     }
 
 
-def test_completed_independent_form_validates(tmp_path):
+def test_superseded_packet_rejects_completed_form(tmp_path):
     path = tmp_path / "review.json"
     path.write_text(json.dumps(completed_form()), encoding="utf-8")
-    receipt = MODULE.validate(path)
-    assert receipt["valid"] is True
-    assert receipt["independent_class"] is True
+    try:
+        MODULE.validate(path)
+    except ValueError as error:
+        assert "not active" in str(error)
+    else:
+        raise AssertionError("superseded review packet accepted a form")
 
 
 def test_nonaccept_cannot_recommend_unlock(tmp_path):

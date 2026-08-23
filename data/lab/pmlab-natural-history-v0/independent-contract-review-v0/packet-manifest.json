@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "packet_id": "PMLAB-NATURAL-RET-001-CONTRACT-REVIEW-V0",
   "source_commit": "ebe82013066afac292d6747102ec57e4ffa7ab84",
-  "status": "awaiting-independent-review",
+  "status": "superseded-before-review-oversized-single-block-rule-was-incomplete",
   "forbidden_before_form_freeze": [
     "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-20260823/",
     "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-v2-20260823/"

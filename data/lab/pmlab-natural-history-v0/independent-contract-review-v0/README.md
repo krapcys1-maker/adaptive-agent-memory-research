@@ -1,6 +1,6 @@
 # Independent review packet for PMLAB-NATURAL-RET-001 contracts
 
-Status: gold-free design review packet; no builder, corpus, backend output, or result exists
+Status: superseded before any review; the single-oversized-block split rule was incomplete; use the next packet revision
 
 Source commit: `ebe82013066afac292d6747102ec57e4ffa7ab84`
 

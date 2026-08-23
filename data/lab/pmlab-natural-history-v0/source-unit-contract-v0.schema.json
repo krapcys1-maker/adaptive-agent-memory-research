@@ -141,6 +141,18 @@
       },
       "description": "Exact duplicate byte sources collapsed before ranking; near duplicates are not collapsed."
     },
+    "split_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "part_index", "part_count", "overlap_utf8_bytes"],
+      "properties": {
+        "method": {"enum": ["commonmark_block_boundary", "unicode_whitespace_boundary", "utf8_codepoint_boundary"]},
+        "part_index": {"type": "integer", "minimum": 1},
+        "part_count": {"type": "integer", "minimum": 2},
+        "overlap_utf8_bytes": {"const": 0}
+      },
+      "description": "Required on an oversized logical unit split under the frozen global byte ceiling. The locator value also carries the same part index."
+    },
     "backend_visible_fields": {
       "const": ["unit_id", "search_text"],
       "description": "The primary B1/B2/C1/C2 comparison receives no path, filename, time, status, trust, or label."

@@ -55,12 +55,12 @@
   ],
   "unitization": {
     "stable_unit_id": "sha256 over versioned canonical identity containing source_type, path, locator, and search_text_sha256; exclude snapshot_commit so unchanged content keeps one ID across snapshots",
-    "markdown": "CommonMark 0.31.2 ATX and Setext heading section with heading-path text plus direct body; child bodies are separate; fenced-code heading lookalikes are not headings; preserve heading path, occurrence, and exact historical line span in the hidden locator",
+    "markdown": "CommonMark 0.31.2 ATX and Setext heading section with heading-path text plus direct body; normalize source CRLF/CR to LF, strip only outer blank lines, preserve internal Unicode and whitespace without NFC rewriting; child bodies are separate; fenced-code heading lookalikes are not headings; preserve heading path, occurrence, and exact historical line span in the hidden locator",
     "markdown_preamble": "non-empty content before the first heading is one explicit preamble unit",
-    "project_memory": "one event per unit from the historical events.jsonl blob; search text uses a frozen allowlist of semantic fields; superseded events remain available for temporal gold and derived active status stays backend-hidden",
+    "project_memory": "one event per unit from the historical events.jsonl blob; search text serializes title, summary, non-empty body, and tags in that fixed order with LF labels; event ID, operation, kind, confidence, status, times, provenance refs, supersession, and relations stay backend-hidden; superseded events remain available for temporal gold and derived active status stays backend-hidden",
     "catalog_csv": "RFC 4180 parse with the historical header; search text serializes header-value pairs in frozen source-column order; malformed or duplicate headers fail closed",
     "catalog_jsonl": "one I-JSON object per line with unique member names; canonical search text follows RFC 8785 JCS and UTF-8; non-I-JSON numbers or duplicate names fail closed",
-    "oversize": "split only at deterministic paragraph boundaries under a UTF-8 byte ceiling chosen on development and frozen before test",
+    "oversize": "under one frozen UTF-8 byte ceiling including repeated heading context: split at parsed CommonMark block boundaries; if one block still exceeds the remaining budget split at the latest Unicode whitespace boundary; if none exists split at a valid UTF-8 code-point boundary; use zero overlap and record method part index/count in hidden metadata and locator",
     "exact_duplicates": "collapse identical search_text hashes into one ranked unit and preserve every source alias",
     "near_duplicates": "preserve and report; do not tune a similarity deduplicator on test"
   },
@@ -83,7 +83,8 @@
     "aliases": "reject duplicate path-locator aliases and require deterministic canonical-source selection",
     "query_receipts": "generate private random receipts with a CSPRNG or keyed digests with HMAC-SHA-256; schema patterns are shape checks, not entropy proofs",
     "source_exclusions": "reject every path matching query, label, gold, blind, API, artifact, raw, test, script, tool, cache, secret, symlink, gitlink, binary, or non-UTF-8 rules before unitization",
-    "control_characters": "search_text may contain tab and LF but no other C0 control or DEL byte"
+    "control_characters": "search_text may contain tab and LF but no other C0 control or DEL byte",
+    "oversize_split": "reconstruct all parts in part-index order and require byte-identical logical content after removing repeated heading context; reject missing duplicate or out-of-range parts and every chunk over the frozen ceiling"
   },
   "primary_backend_visible_fields": ["unit_id", "search_text"],
   "pending_before_execution": [

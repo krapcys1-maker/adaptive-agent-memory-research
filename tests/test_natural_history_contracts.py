@@ -122,3 +122,40 @@ def test_source_unit_rejects_duplicate_aliases_and_unsafe_control():
     }
     messages = [error.message for error in jsonschema.Draft202012Validator(schema("source-unit-contract-v0.schema.json")).iter_errors(value)]
     assert len(messages) >= 2
+
+
+def test_source_unit_accepts_registered_zero_overlap_split_metadata():
+    value = {
+        "contract_version": "0.2.0", "unit_id": "U-0123456789abcdef",
+        "snapshot_commit": "a" * 40, "git_object_format": "sha1",
+        "source_type": "markdown_section", "path": "docs/example.md",
+        "locator": {"kind": "heading_path_and_occurrence", "value": "Title#1/part-1-of-3"},
+        "search_text": "Title\nFirst part", "search_text_sha256": "b" * 64,
+        "source_blob_sha256": "c" * 64,
+        "source_git_object": {"algorithm": "sha1", "object_id": "d" * 40},
+        "eligibility_class": "canonical_research", "backend_visible_fields": ["unit_id", "search_text"],
+        "split_metadata": {
+            "method": "commonmark_block_boundary", "part_index": 1,
+            "part_count": 3, "overlap_utf8_bytes": 0,
+        },
+    }
+    jsonschema.Draft202012Validator(schema("source-unit-contract-v0.schema.json")).validate(value)
+
+
+def test_source_unit_rejects_overlap_or_single_part_split_metadata():
+    value = {
+        "contract_version": "0.2.0", "unit_id": "U-0123456789abcdef",
+        "snapshot_commit": "a" * 40, "git_object_format": "sha1",
+        "source_type": "markdown_section", "path": "docs/example.md",
+        "locator": {"kind": "heading_path_and_occurrence", "value": "Title#1/part-1-of-1"},
+        "search_text": "Title\nOnly part", "search_text_sha256": "b" * 64,
+        "source_blob_sha256": "c" * 64,
+        "source_git_object": {"algorithm": "sha1", "object_id": "d" * 40},
+        "eligibility_class": "canonical_research", "backend_visible_fields": ["unit_id", "search_text"],
+        "split_metadata": {
+            "method": "utf8_codepoint_boundary", "part_index": 1,
+            "part_count": 1, "overlap_utf8_bytes": 1,
+        },
+    }
+    errors = list(jsonschema.Draft202012Validator(schema("source-unit-contract-v0.schema.json")).iter_errors(value))
+    assert len(errors) >= 2

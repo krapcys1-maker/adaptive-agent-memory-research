@@ -33,6 +33,7 @@ def require(condition: bool, message: str) -> None:
 
 def validate(path: Path) -> dict[str, Any]:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    require(manifest.get("status") == "ready-for-independent-review", "review packet is not active")
     form = json.loads(path.read_text(encoding="utf-8"))
     require(form["packet_id"] == manifest["packet_id"], "packet ID mismatch")
     require(form["source_commit"] == manifest["source_commit"], "source commit mismatch")
