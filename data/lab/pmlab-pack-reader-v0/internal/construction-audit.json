@@ -1,0 +1,29 @@
+{
+  "audit": "pre-run construction and leakage audit",
+  "checks": {
+    "bilingual_pairs_share_gold": true,
+    "blind_schedule_schema": true,
+    "case_record_invariants": true,
+    "declared_hashes_match": true,
+    "expected_shape": true,
+    "four_conditions_per_case": true,
+    "gold_atom_and_citation_invariants": true,
+    "opaque_condition_ids": true,
+    "prompt_safe_case_schema": true,
+    "schedule_mapping_complete": true,
+    "source_spans_exact": true
+  },
+  "counts": {
+    "cases": 32,
+    "conditions": 128,
+    "groups": 16,
+    "records": 256
+  },
+  "experiment_id": "PMLAB-PACK-READER-001",
+  "limitations": [
+    "Author-built synthetic fixture; this is not independent validation.",
+    "Prompt and runner are not part of this audit and require a separate freeze gate.",
+    "Internal gold and treatment maps remain accessible locally but are excluded from prompt-safe schemas."
+  ],
+  "passed": true
+}

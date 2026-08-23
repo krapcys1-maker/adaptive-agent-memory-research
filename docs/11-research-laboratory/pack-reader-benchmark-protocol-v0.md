@@ -1,7 +1,7 @@
 # Equal-evidence citation and order reader pilot v0
 
 Experiment ID: `PMLAB-PACK-READER-001`  
-Status: construction-locked preregistration; no corpus, prompt packet, or API run yet  
+Status: corpus, gold, source spans, and opaque schedule frozen before runner construction; no prompt packet or API run yet
 Authority: synthetic reader compatibility pilot only
 
 ## Purpose
@@ -12,7 +12,7 @@ It does not test retrieval, capacity selection, trust detection, automatic curre
 
 ## Fresh grouped fixture
 
-Construct 16 new semantic groups, each with an English and Polish case (`32` cases). Bilingual cases remain one analysis group and never count as independent replications.
+The frozen construction fixture contains 16 new semantic groups, each with an English and Polish case (`32` cases). Bilingual cases remain one analysis group and never count as independent replications.
 
 Every case contains the same eight evidence records in all four arms:
 
@@ -107,8 +107,8 @@ These are compatibility gates, not superiority tests. Passing advances the forma
 
 Execution remains locked until:
 
-1. the 16-group fixture, source spans, and gold hashes freeze;
-2. a leakage audit verifies opaque condition IDs and removes treatment/gold names;
+1. [complete] the 16-group fixture, source spans, and gold hashes freeze;
+2. [complete] a leakage audit verifies opaque condition IDs and removes treatment/gold names from prompt-safe inputs;
 3. the provider-neutral prompt, JSON validator, scorer, condition schedule, and model manifest freeze;
 4. all 128 prompts pass local evidence-identity and citation-resolution checks;
 5. the peak-cost preflight is below USD 0.50;

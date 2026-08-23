@@ -1,0 +1,32 @@
+{"answer_atoms": ["G01-ACTIVE-A"], "case_id": "PRG-01-EN", "group_id": "PRG-01", "language": "en", "required_local_ids": ["R01"], "stale_atoms": ["G01-OLD-A"]}
+{"answer_atoms": ["G01-ACTIVE-A"], "case_id": "PRG-01-PL", "group_id": "PRG-01", "language": "pl", "required_local_ids": ["R01"], "stale_atoms": ["G01-OLD-A"]}
+{"answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "case_id": "PRG-02-EN", "group_id": "PRG-02", "language": "en", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G02-OLD-A", "G02-OLD-B"]}
+{"answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "case_id": "PRG-02-PL", "group_id": "PRG-02", "language": "pl", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G02-OLD-A", "G02-OLD-B"]}
+{"answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "case_id": "PRG-03-EN", "group_id": "PRG-03", "language": "en", "required_local_ids": ["R01", "R02", "R03"], "stale_atoms": ["G03-OLD-A", "G03-OLD-B", "G03-OLD-C"]}
+{"answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "case_id": "PRG-03-PL", "group_id": "PRG-03", "language": "pl", "required_local_ids": ["R01", "R02", "R03"], "stale_atoms": ["G03-OLD-A", "G03-OLD-B", "G03-OLD-C"]}
+{"answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "case_id": "PRG-04-EN", "group_id": "PRG-04", "language": "en", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G04-OLD-A", "G04-OLD-B"]}
+{"answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "case_id": "PRG-04-PL", "group_id": "PRG-04", "language": "pl", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G04-OLD-A", "G04-OLD-B"]}
+{"answer_atoms": ["G05-ACTIVE-A"], "case_id": "PRG-05-EN", "group_id": "PRG-05", "language": "en", "required_local_ids": ["R01"], "stale_atoms": ["G05-OLD-A"]}
+{"answer_atoms": ["G05-ACTIVE-A"], "case_id": "PRG-05-PL", "group_id": "PRG-05", "language": "pl", "required_local_ids": ["R01"], "stale_atoms": ["G05-OLD-A"]}
+{"answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "case_id": "PRG-06-EN", "group_id": "PRG-06", "language": "en", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G06-OLD-A", "G06-OLD-B"]}
+{"answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "case_id": "PRG-06-PL", "group_id": "PRG-06", "language": "pl", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G06-OLD-A", "G06-OLD-B"]}
+{"answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "case_id": "PRG-07-EN", "group_id": "PRG-07", "language": "en", "required_local_ids": ["R01", "R02", "R03"], "stale_atoms": ["G07-OLD-A", "G07-OLD-B", "G07-OLD-C"]}
+{"answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "case_id": "PRG-07-PL", "group_id": "PRG-07", "language": "pl", "required_local_ids": ["R01", "R02", "R03"], "stale_atoms": ["G07-OLD-A", "G07-OLD-B", "G07-OLD-C"]}
+{"answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "case_id": "PRG-08-EN", "group_id": "PRG-08", "language": "en", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G08-OLD-A", "G08-OLD-B"]}
+{"answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "case_id": "PRG-08-PL", "group_id": "PRG-08", "language": "pl", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G08-OLD-A", "G08-OLD-B"]}
+{"answer_atoms": ["G09-ACTIVE-A"], "case_id": "PRG-09-EN", "group_id": "PRG-09", "language": "en", "required_local_ids": ["R01"], "stale_atoms": ["G09-OLD-A"]}
+{"answer_atoms": ["G09-ACTIVE-A"], "case_id": "PRG-09-PL", "group_id": "PRG-09", "language": "pl", "required_local_ids": ["R01"], "stale_atoms": ["G09-OLD-A"]}
+{"answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "case_id": "PRG-10-EN", "group_id": "PRG-10", "language": "en", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G10-OLD-A", "G10-OLD-B"]}
+{"answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "case_id": "PRG-10-PL", "group_id": "PRG-10", "language": "pl", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G10-OLD-A", "G10-OLD-B"]}
+{"answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "case_id": "PRG-11-EN", "group_id": "PRG-11", "language": "en", "required_local_ids": ["R01", "R02", "R03"], "stale_atoms": ["G11-OLD-A", "G11-OLD-B", "G11-OLD-C"]}
+{"answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "case_id": "PRG-11-PL", "group_id": "PRG-11", "language": "pl", "required_local_ids": ["R01", "R02", "R03"], "stale_atoms": ["G11-OLD-A", "G11-OLD-B", "G11-OLD-C"]}
+{"answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "case_id": "PRG-12-EN", "group_id": "PRG-12", "language": "en", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G12-OLD-A", "G12-OLD-B"]}
+{"answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "case_id": "PRG-12-PL", "group_id": "PRG-12", "language": "pl", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G12-OLD-A", "G12-OLD-B"]}
+{"answer_atoms": ["G13-ACTIVE-A"], "case_id": "PRG-13-EN", "group_id": "PRG-13", "language": "en", "required_local_ids": ["R01"], "stale_atoms": ["G13-OLD-A"]}
+{"answer_atoms": ["G13-ACTIVE-A"], "case_id": "PRG-13-PL", "group_id": "PRG-13", "language": "pl", "required_local_ids": ["R01"], "stale_atoms": ["G13-OLD-A"]}
+{"answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "case_id": "PRG-14-EN", "group_id": "PRG-14", "language": "en", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G14-OLD-A", "G14-OLD-B"]}
+{"answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "case_id": "PRG-14-PL", "group_id": "PRG-14", "language": "pl", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G14-OLD-A", "G14-OLD-B"]}
+{"answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "case_id": "PRG-15-EN", "group_id": "PRG-15", "language": "en", "required_local_ids": ["R01", "R02", "R03"], "stale_atoms": ["G15-OLD-A", "G15-OLD-B", "G15-OLD-C"]}
+{"answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "case_id": "PRG-15-PL", "group_id": "PRG-15", "language": "pl", "required_local_ids": ["R01", "R02", "R03"], "stale_atoms": ["G15-OLD-A", "G15-OLD-B", "G15-OLD-C"]}
+{"answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "case_id": "PRG-16-EN", "group_id": "PRG-16", "language": "en", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G16-OLD-A", "G16-OLD-B"]}
+{"answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "case_id": "PRG-16-PL", "group_id": "PRG-16", "language": "pl", "required_local_ids": ["R01", "R02"], "stale_atoms": ["G16-OLD-A", "G16-OLD-B"]}

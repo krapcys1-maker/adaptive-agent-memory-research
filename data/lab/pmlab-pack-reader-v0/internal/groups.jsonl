@@ -1,0 +1,16 @@
+{"answer_atoms": ["G01-ACTIVE-A"], "answer_count": 1, "group_id": "PRG-01", "stale_atoms": ["G01-OLD-A"], "strata": ["single", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "answer_count": 2, "group_id": "PRG-02", "stale_atoms": ["G02-OLD-A", "G02-OLD-B"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "answer_count": 3, "group_id": "PRG-03", "stale_atoms": ["G03-OLD-A", "G03-OLD-B", "G03-OLD-C"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "answer_count": 2, "group_id": "PRG-04", "stale_atoms": ["G04-OLD-A", "G04-OLD-B"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G05-ACTIVE-A"], "answer_count": 1, "group_id": "PRG-05", "stale_atoms": ["G05-OLD-A"], "strata": ["single", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "answer_count": 2, "group_id": "PRG-06", "stale_atoms": ["G06-OLD-A", "G06-OLD-B"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "answer_count": 3, "group_id": "PRG-07", "stale_atoms": ["G07-OLD-A", "G07-OLD-B", "G07-OLD-C"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "answer_count": 2, "group_id": "PRG-08", "stale_atoms": ["G08-OLD-A", "G08-OLD-B"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G09-ACTIVE-A"], "answer_count": 1, "group_id": "PRG-09", "stale_atoms": ["G09-OLD-A"], "strata": ["single", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "answer_count": 2, "group_id": "PRG-10", "stale_atoms": ["G10-OLD-A", "G10-OLD-B"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "answer_count": 3, "group_id": "PRG-11", "stale_atoms": ["G11-OLD-A", "G11-OLD-B", "G11-OLD-C"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "answer_count": 2, "group_id": "PRG-12", "stale_atoms": ["G12-OLD-A", "G12-OLD-B"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G13-ACTIVE-A"], "answer_count": 1, "group_id": "PRG-13", "stale_atoms": ["G13-OLD-A"], "strata": ["single", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "answer_count": 2, "group_id": "PRG-14", "stale_atoms": ["G14-OLD-A", "G14-OLD-B"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "answer_count": 3, "group_id": "PRG-15", "stale_atoms": ["G15-OLD-A", "G15-OLD-B", "G15-OLD-C"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}
+{"answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "answer_count": 2, "group_id": "PRG-16", "stale_atoms": ["G16-OLD-A", "G16-OLD-B"], "strata": ["multi", "current-stale-conflict", "bilingual-pair"]}

@@ -1,20 +1,31 @@
 {
-  "experiment_id": "PMLAB-PACK-READER-001",
-  "status": "construction-locked-preregistration-no-corpus-no-api",
-  "groups_planned": 16,
-  "cases_planned": 32,
-  "calls_per_reader_planned": 128,
-  "citation_arms": ["F0_FULL", "F1_COMPACT"],
-  "order_arms": ["O0_RETRIEVAL", "O1_GOVERNED"],
-  "evidence_ids_equal_across_arms": true,
-  "evidence_text_equal_across_arms": true,
-  "serialized_bytes_equalized": false,
-  "reader": "deepseek-v4-flash M1 synthetic reader first; cross-family replication required",
-  "run_cap_usd": 0.5,
-  "global_cap_usd": 10.0,
-  "corpus": "not-built",
-  "prompt_packet": "not-built",
-  "runner": "not-built",
   "api_authorized": false,
-  "authority": "reader compatibility pilot only; no architecture or natural-transfer claim"
+  "authored_synthetic": true,
+  "authority": "visible construction fixture; reader compatibility only",
+  "bilingual_grouping": true,
+  "cases": 32,
+  "conditions": 128,
+  "construction_audit": {
+    "passed": true,
+    "path": "data/lab/pmlab-pack-reader-v0/internal/construction-audit.json",
+    "sha256": "7621a8813dd7c7f5e0ba59f2813933d3c5ae2101cf24a0773a87b8a2124f6d4b"
+  },
+  "experiment_id": "PMLAB-PACK-READER-001",
+  "groups": 16,
+  "hashes": {
+    "data/lab/pmlab-pack-reader-v0/blind/schedule.jsonl": "f04c86168af5de85cd30dd59fabae36de216536dd656794e1545dac0ce464880",
+    "data/lab/pmlab-pack-reader-v0/cases.jsonl": "0dcd5c2416b10d604b7e3a5a1b4d64f0ef7a09d92b8b8fe4ed6279fbe5364de0",
+    "data/lab/pmlab-pack-reader-v0/corpus.jsonl": "1121f077df70dead0d7aeae87176e1237259f14c186bb46febd8c203738ca012",
+    "data/lab/pmlab-pack-reader-v0/internal/condition-map.jsonl": "093ac93988ae005c4d7743230cb4217bc07eeb24dbc1ec9bf5ea2c6f0cf2b26c",
+    "data/lab/pmlab-pack-reader-v0/internal/construction-audit.json": "7621a8813dd7c7f5e0ba59f2813933d3c5ae2101cf24a0773a87b8a2124f6d4b",
+    "data/lab/pmlab-pack-reader-v0/internal/gold.jsonl": "04daf84291980234530a0e74c73806963f181cc6b50ad1c2a8fcb53f46d93b34",
+    "data/lab/pmlab-pack-reader-v0/internal/groups.jsonl": "34a96dab5448d2df0701381ed587d960f73b3f7eddf24c262a6fc0c781628873",
+    "data/lab/pmlab-pack-reader-v0/sources/english/evidence.md": "e2d12f459529ddaacfea2070fa2e0961dcdab45423f8b56544a41749833938cd",
+    "data/lab/pmlab-pack-reader-v0/sources/polish/evidence.md": "b5dec339126dfe9f0946a7daf28013f44ce634f4a915ff2b6512f95251f4e258"
+  },
+  "independently_reviewed": false,
+  "prompt_packet": "not-built",
+  "records": 256,
+  "runner": "not-built",
+  "status": "fixture-and-opaque-schedule-frozen-before-runner"
 }
