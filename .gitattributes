@@ -1,0 +1,13 @@
+# Byte-exactness is a research requirement here, not a style preference.
+#
+# This repository freezes research artifacts by SHA-256 and asks independent
+# reviewers to verify those digests. Git's automatic end-of-line conversion made
+# that impossible: a file checked out on Windows differed byte for byte from the
+# same file on Linux, so a declared hash was reproducible on one platform only.
+# 843 of 1348 files under data/ were affected. See issue #26.
+#
+# `-text` disables all conversion, so a checkout reproduces the stored blob
+# exactly on every platform. It is chosen over `text=auto eol=lf` because
+# normalising would rewrite the stored bytes of existing artifacts and break the
+# declared hashes that are currently correct.
+* -text
