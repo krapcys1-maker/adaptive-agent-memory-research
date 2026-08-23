@@ -24,6 +24,14 @@ class Mem0StateProbe:
     arena did not cause.
     """
 
+    #: `get_all` defaults to `limit=100` and returns a truncated page without
+    #: saying so. A first version of this probe took that default, so the
+    #: fingerprint covered the first hundred rows of a store that held more,
+    #: `stored_items` reported exactly 100 for every unit, and a query that wrote
+    #: to row 101 would have read as read-only. A partial fingerprint cannot
+    #: establish read-only, which is the whole reason this class exists.
+    PAGE = 100_000
+
     def __init__(self, memory: Any, bank: str = "arena-pilot") -> None:
         self._memory = memory
         self._bank = bank
@@ -35,10 +43,20 @@ class Mem0StateProbe:
             )
 
     def _items(self) -> list[dict[str, Any]]:
-        payload = self._memory.get_all(user_id=self._bank)
+        payload = self._memory.get_all(user_id=self._bank, limit=self.PAGE)
         if isinstance(payload, dict):
             payload = payload.get("results") or []
-        return [item for item in (payload or []) if isinstance(item, dict)]
+        items = [item for item in (payload or []) if isinstance(item, dict)]
+        if len(items) >= self.PAGE:
+            # Truncated again. Raising is the only honest option: silently
+            # fingerprinting a page would go back to reporting read-only for a
+            # store whose tail was never looked at.
+            raise RuntimeError(
+                f"Mem0 state probe read {len(items)} rows at its page limit, so the "
+                "store may be larger than the fingerprint covers. Raise PAGE rather "
+                "than measuring a prefix."
+            )
+        return items
 
     def fingerprint(self) -> str:
         # Sorted by id, because their store returns rows in whatever order the

@@ -1,0 +1,99 @@
+{
+  "artifact": "arena-calibration-mem0",
+  "mode": "calibration",
+  "system": "Mem0",
+  "contract_version": "ARENA-0.1",
+  "contract_digest": "e68be19fb33aac46fe760497303a78a0f487feec5a457ebea930337b10d3e9aa",
+  "runner_digest": "607af5aa50d5fe5c99b69c22a5c47b947c2ed824dae486a3b10f81de840c9a16",
+  "adapter_digest": "0917f636ea456d3ae673c759bc7d7f3fe219571692599e2d549cdefd65723038",
+  "started_at": "2026-08-23T21:01:22+00:00",
+  "selection": "e8a848ed9c8a8440625f218516219b37b4a5ad681502cd45a8ff3fc687fb86a9",
+  "source": {
+    "system": "Mem0",
+    "version": "1.0.6",
+    "vector_store": "qdrant, local path, on_disk",
+    "embedder_enforced": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\models\\all-MiniLM-L6-v2",
+    "embedder_native_default": "openai text-embedding-3-small",
+    "embedder_override_reason": "held constant with CUPMem's; the native default would add a second provider and a second bill inside one comparison"
+  },
+  "target_model": "deepseek-chat",
+  "decoding": {
+    "arena_enforced": {
+      "temperature": 0
+    },
+    "preregistered": false,
+    "provenance": "adopted after a CUPMem run showed a repeated probe returning different answers, so it is a control chosen in response to an observation, not before one. It is not any system's own decoding"
+  },
+  "spend_cap_usd": 0.4,
+  "total_cap_usd": 10.0,
+  "state_probe_available": true,
+  "units": [
+    {
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "sessions_available": 41,
+      "sessions_ingested": 15,
+      "user_turns_ingested": 69,
+      "sessions_skipped_no_user_turn": 0,
+      "ingest": {
+        "model_calls": 28,
+        "input_tokens": 43473,
+        "output_tokens": 12143,
+        "wall_seconds": 84.36,
+        "usd": 0.0251
+      },
+      "per_session_calls": [
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "status": "calibrated",
+      "state_digest_after_ingest_differs": true,
+      "stored_items": 88
+    }
+  ],
+  "status": "calibration complete",
+  "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
+  "spend_usd": 0.0251,
+  "provider_calls": 28,
+  "meter": {
+    "calls": 28,
+    "refused_calls": 0,
+    "prompt_tokens": 43473,
+    "completion_tokens": 12143,
+    "usd": 0.025095,
+    "unknown_usage_calls": 0,
+    "arena_enforced_decoding": {
+      "temperature": 0
+    },
+    "decoding_overrides": 28,
+    "decoding_override_values": [
+      "{\"temperature\": 0.1}"
+    ],
+    "native_requested_decoding": [
+      "{\"temperature\": 0.1}"
+    ]
+  },
+  "night_ledger": {
+    "path": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\data\\lab\\arena\\spend-ledger.jsonl",
+    "total_usd": 0.025095,
+    "total_cap_usd": 10.0,
+    "by_run": {
+      "mem0-calibration": 0.025094
+    },
+    "calls": 28
+  }
+}

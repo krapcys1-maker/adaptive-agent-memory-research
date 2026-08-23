@@ -168,12 +168,7 @@ class Mem0Adapter:
     def _meter_snapshot(self) -> dict[str, int] | None:
         if self._meter is None:
             return None
-        with self._meter.lock:
-            return {
-                "calls": len(self._meter.calls),
-                "prompt_tokens": sum(c["prompt_tokens"] for c in self._meter.calls),
-                "completion_tokens": sum(c["completion_tokens"] for c in self._meter.calls),
-            }
+        return self._meter.snapshot()
 
     def _cost_observability(self) -> dict[str, str]:
         source = "instrumented" if self._meter is not None else "unobservable"

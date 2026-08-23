@@ -88,6 +88,20 @@ class ProxyState:
                     f"${self.run_cap_usd:.2f}. Stopping below it.")
         return None
 
+    def snapshot(self) -> dict[str, int]:
+        """Running totals, taken atomically. The one surface a meter must have.
+
+        Adapters take deltas of this to price a single operation, so it is a
+        method rather than a list: the remote meter lives in another process and
+        cannot hand out its calls without shipping them over HTTP per probe.
+        """
+        with self.lock:
+            return {
+                "calls": len(self.calls),
+                "prompt_tokens": sum(c["prompt_tokens"] for c in self.calls),
+                "completion_tokens": sum(c["completion_tokens"] for c in self.calls),
+            }
+
     def summary(self) -> dict[str, Any]:
         overrides = [c for c in self.calls if c["overridden"]]
         prompt = sum(c["prompt_tokens"] for c in self.calls)

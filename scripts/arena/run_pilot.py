@@ -141,6 +141,13 @@ def build_mem0(args, ledger):
     rather than native: Mem0's own default is an OpenAI embedding endpoint, which
     would put a second provider and a second bill inside one comparison.
     """
+    # Mem0 posts usage telemetry to an external analytics service on import and
+    # on every operation, and it is on by default. The arena does not send a
+    # third party a record of a run it was not asked to send, and a background
+    # queue competing with the measured calls is not a condition anyone chose.
+    # Off before the import that reads it.
+    os.environ["MEM0_TELEMETRY"] = "False"
+
     from mem0 import Memory
 
     from arena.mem0_adapter import BANK, Mem0Adapter
@@ -175,11 +182,81 @@ def build_mem0(args, ledger):
             "embedder_override_reason": ("held constant with CUPMem's; the native "
                                          "default would add a second provider and a "
                                          "second bill inside one comparison"),
+            "telemetry": "disabled by the arena; this system posts usage analytics "
+                         "to an external service by default",
         },
     }
 
 
-SYSTEMS = {"aamr": build_aamr, "cupmem": build_cupmem, "mem0": build_mem0}
+def build_hindsight(args, ledger):
+    """Hindsight, already running as a server, metered by the arena's proxy.
+
+    It is a service, not a library, so the in-process wrapper reaches nothing in
+    it. Its provider client is pointed at the proxy by environment before the
+    server starts; the proxy is the only place the arena can price it, and it is
+    also the only place the cap can stop it.
+
+    Its embedder is pinned to the same local checkpoint the others run on — an
+    arena control, recorded as enforced beside its native default of
+    BAAI/bge-small-en-v1.5.
+    """
+    from arena.hindsight_adapter import BANK, HindsightAdapter, HindsightHTTP
+    from arena.hindsight_probe import HindsightStateProbe
+    from arena.provider_proxy import ProxyState
+
+    http = HindsightHTTP(args.hindsight_url)
+    #: The proxy runs in its own process for this system, so its counters are
+    #: read over HTTP rather than shared in memory.
+    meter = _RemoteMeter(args.proxy_url)
+    return {
+        "adapter": HindsightAdapter(http, meter),
+        "probe": HindsightStateProbe(http, BANK),
+        "provider": None,
+        "meter": meter,
+        "source": {
+            "system": "Hindsight", "version": "0.9.1",
+            "repo": "vectorize-io/hindsight", "commit": "3295716c",
+            "database": "pg0 embedded PostgreSQL",
+            "embedder_enforced": str(Path(args.embedding_model_path).resolve()),
+            "embedder_native_default": "BAAI/bge-small-en-v1.5",
+            "retain_mode": "async=false requested, then settled on a stable count",
+        },
+    }
+
+
+class _RemoteMeter:
+    """The proxy's counters, read over HTTP because it is a separate process.
+
+    Presents the one surface a meter needs — `snapshot()` — so adapters and the
+    runner never have to know which side of a process boundary the money is
+    counted on.
+    """
+
+    def __init__(self, url: str) -> None:
+        self._url = url.rstrip("/")
+
+    def _get(self) -> dict[str, Any]:
+        import urllib.request
+
+        with urllib.request.urlopen(f"{self._url}/arena/summary", timeout=30) as response:
+            return json.loads(response.read())
+
+    def snapshot(self) -> dict[str, int]:
+        summary = self._get()
+        return {"calls": summary["calls"],
+                "prompt_tokens": summary["prompt_tokens"],
+                "completion_tokens": summary["completion_tokens"]}
+
+    @property
+    def spent_usd(self) -> float:
+        return self._get()["usd"]
+
+    def summary(self) -> dict[str, Any]:
+        return self._get()
+
+
+SYSTEMS = {"aamr": build_aamr, "cupmem": build_cupmem, "mem0": build_mem0,
+           "hindsight": build_hindsight}
 
 
 def load_key() -> str:
@@ -206,6 +283,8 @@ def main() -> int:
     parser.add_argument("--embedding-model-path",
                         default=str(ROOT / "external/models/all-MiniLM-L6-v2"))
     parser.add_argument("--mem0-store", default=str(ROOT / "external/venvs/mem0-store"))
+    parser.add_argument("--hindsight-url", default="http://127.0.0.1:8801")
+    parser.add_argument("--proxy-url", default="http://127.0.0.1:8799")
     parser.add_argument("--out", default=None)
     args = parser.parse_args()
 
@@ -264,8 +343,9 @@ def main() -> int:
             record["decoding_override_values"] = sorted(
                 {json.dumps(c["overridden"], sort_keys=True) for c in provider.overrides})
         elif built.get("meter") is not None:
-            record["provider_calls"] = len(built["meter"].calls)
-            record["meter"] = built["meter"].summary()
+            meter_summary = built["meter"].summary()
+            record["provider_calls"] = meter_summary["calls"]
+            record["meter"] = meter_summary
         else:
             record["provider_calls"] = 0
         record["night_ledger"] = ledger.summary()
