@@ -8,19 +8,40 @@ Contributions are welcome at three depths, and only the last one needs a backgro
 git clone https://github.com/krapcys1-maker/adaptive-agent-memory-research
 cd adaptive-agent-memory-research
 python -m pip install -r requirements-dev.txt
-python -m pytest -q
+python tasks.py check
 ```
 
-The suite should pass. One test is marked `xfail` because of a known cross-platform defect that is tracked in an open issue, so you will see either `1 xfailed` on Linux or `1 xpassed` on Windows. Both are expected; neither means your checkout is broken.
+`python tasks.py check` runs every gate CI runs, in the order CI runs them, and
+exits non-zero if any of them fails. It is the answer to *"did I break
+anything?"* and the one command a pull request must pass. Takes about 25
+seconds.
 
-Two more things worth running before you change anything, because they tell you what the project checks about itself:
+The test suite should pass. One test is marked `xfail` because of a known
+cross-platform defect that is tracked in an open issue, so you will see either
+`1 xfailed` on Linux or `1 xpassed` on Windows. Both are expected; neither
+means your checkout is broken.
+
+The other targets, for when you do not want to wait for the whole thing:
 
 ```bash
-python scripts/verify_memory_integrity.py      # invariants of the append-only memory log
-python scripts/audit_repository_claims.py      # declared hashes, registry paths, cross-references
+python tasks.py fast      # ~0.3s -- memory integrity + source pipeline; fine in a pre-commit hook
+python tasks.py test      # ~12s  -- the test suite alone
+python tasks.py audit     # ~14s  -- both audits, without the test suite
+python tasks.py --list    # what each target runs, and roughly how long it takes
 ```
 
-If any of this fails on your machine, open an issue saying so. Setup that only works for the maintainer is a real defect and reporting it is a real contribution.
+Each gate is still an ordinary script, so you can always run one directly —
+`python scripts/verify_memory_integrity.py` and friends — and `tasks.py` prints
+the exact command before it runs it, so a failure tells you what to re-run.
+
+Two of these tell you what the project checks about itself and are worth reading
+the output of even when they pass: `verify_memory_integrity.py` covers the
+invariants of the append-only memory log, and `audit_repository_claims.py`
+covers declared hashes, registry paths and cross-references.
+
+If any of this fails on your machine, open an issue saying so. Setup that only
+works for the maintainer is a real defect and reporting it is a real
+contribution.
 
 ## Three ways in
 
