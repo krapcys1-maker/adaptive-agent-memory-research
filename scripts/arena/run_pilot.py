@@ -255,8 +255,91 @@ class _RemoteMeter:
         return self._get()
 
 
+def build_graphiti(args, ledger):
+    """Graphiti on embedded Kuzu, metered by an in-process proxy.
+
+    Kuzu rather than Neo4j, so no database service. Its embedder and reranker are
+    pinned to the same local checkpoint the other systems run on — an arena
+    control, recorded beside their native defaults, which are an OpenAI embedding
+    endpoint and an LLM-based reranker. Either would put a second provider and a
+    second bill inside one comparison, and the reranker would put a model call in
+    the query path of one system and not the others.
+    """
+    from graphiti_core import Graphiti
+    from graphiti_core.cross_encoder.bge_reranker_client import BGERerankerClient
+    from graphiti_core.driver.kuzu_driver import KuzuDriver
+    from graphiti_core.embedder.client import EmbedderClient
+    from graphiti_core.llm_client.config import LLMConfig
+    from graphiti_core.llm_client.openai_generic_client import OpenAIGenericClient
+
+    from arena.graphiti_adapter import GROUP, GraphitiAdapter
+    from arena.graphiti_probe import GraphitiStateProbe
+    from arena.provider_proxy import serve
+
+    _server, meter = serve("https://api.deepseek.com", load_key(), 0, ledger, args.cap_usd)
+    port = _server.server_address[1]
+
+    class _LocalEmbedder(EmbedderClient):
+        """The same checkpoint the others embed with, wrapped in their interface."""
+
+        def __init__(self, path: str) -> None:
+            from sentence_transformers import SentenceTransformer
+
+            self._model = SentenceTransformer(path, device="cpu")
+
+        async def create(self, input_data):  # noqa: ANN001
+            texts = input_data if isinstance(input_data, list) else [input_data]
+            texts = [t if isinstance(t, str) else " ".join(map(str, t)) for t in texts]
+            vectors = self._model.encode(texts, show_progress_bar=False)
+            return vectors[0].tolist() if not isinstance(input_data, list) else [
+                v.tolist() for v in vectors]
+
+        async def create_batch(self, input_data_list):  # noqa: ANN001
+            vectors = self._model.encode(list(input_data_list), show_progress_bar=False)
+            return [v.tolist() for v in vectors]
+
+    store = Path(args.graphiti_store).resolve()
+    store.parent.mkdir(parents=True, exist_ok=True)
+    graphiti = Graphiti(
+        graph_driver=KuzuDriver(db=str(store)),
+        # `json_object` rather than their default `json_schema`. This is their own
+        # switch, provided for exactly this case: DeepSeek answers a json_schema
+        # response_format with "This response_format type is unavailable now", and
+        # in json_object mode Graphiti injects the schema into the prompt instead.
+        # Choosing between two modes the system ships is configuration; the
+        # alternative — having the arena's proxy rewrite the request — would be
+        # the arena editing what a system asked its provider for.
+        llm_client=OpenAIGenericClient(
+            config=LLMConfig(api_key="routed-through-the-arena-proxy",
+                             model=args.model,
+                             base_url=f"http://127.0.0.1:{port}/v1"),
+            structured_output_mode="json_object"),
+        embedder=_LocalEmbedder(str(Path(args.embedding_model_path).resolve())),
+        cross_encoder=BGERerankerClient(),
+    )
+    return {
+        "adapter": GraphitiAdapter(graphiti, meter),
+        "probe": GraphitiStateProbe(graphiti, GROUP),
+        "provider": None,
+        "meter": meter,
+        "source": {
+            "system": "Graphiti", "repo": "getzep/graphiti",
+            "commit": "993e081a6d7948a0d8851c12a5fbdbeb49fed862",
+            "graph_backend": "kuzu, embedded",
+            "embedder_enforced": str(Path(args.embedding_model_path).resolve()),
+            "embedder_native_default": "openai text-embedding-3-small",
+            "reranker_enforced": "BGE local cross-encoder",
+            "reranker_native_default": "OpenAIRerankerClient, an LLM call per candidate",
+            "structured_output_mode": "json_object, their own switch; the provider "
+                                      "rejects the json_schema default",
+            "group_id": "their provider default; an explicit one raises on their "
+                        "deprecated Kuzu driver",
+        },
+    }
+
+
 SYSTEMS = {"aamr": build_aamr, "cupmem": build_cupmem, "mem0": build_mem0,
-           "hindsight": build_hindsight}
+           "hindsight": build_hindsight, "graphiti": build_graphiti}
 
 
 def load_key() -> str:
@@ -283,6 +366,7 @@ def main() -> int:
     parser.add_argument("--embedding-model-path",
                         default=str(ROOT / "external/models/all-MiniLM-L6-v2"))
     parser.add_argument("--mem0-store", default=str(ROOT / "external/venvs/mem0-store"))
+    parser.add_argument("--graphiti-store", default=str(ROOT / "external/venvs/graphiti-store"))
     parser.add_argument("--hindsight-url", default="http://127.0.0.1:8801")
     parser.add_argument("--proxy-url", default="http://127.0.0.1:8799")
     parser.add_argument("--out", default=None)

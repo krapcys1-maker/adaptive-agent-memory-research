@@ -237,8 +237,15 @@ class HindsightAdapter:
         before = self._meter_snapshot()
 
         payload: dict[str, Any] = {"query": question, "max_tokens": 4096}
-        if asked_at:
-            payload["query_timestamp"] = str(asked_at)
+        # The same normalisation the ingest path needs, and for the same reason.
+        # Fixing one call site and not the other cost a run: retain was corrected
+        # for the corpus date format and recall was left to 400 on it 41 sessions
+        # later, after the ingest had been paid for.
+        asked_iso = _iso_timestamp(asked_at)
+        if asked_iso:
+            payload["query_timestamp"] = asked_iso
+        elif asked_at:
+            self.unparsed_timestamps += 1
         result = self._http.call(
             "POST", f"/v1/default/banks/{self._bank}/memories/recall", payload)
 

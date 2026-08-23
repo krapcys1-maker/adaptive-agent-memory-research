@@ -1,0 +1,96 @@
+{
+  "artifact": "arena-calibration-graphiti",
+  "mode": "calibration",
+  "system": "Graphiti",
+  "contract_version": "ARENA-0.1",
+  "contract_digest": "e68be19fb33aac46fe760497303a78a0f487feec5a457ebea930337b10d3e9aa",
+  "runner_digest": "ace9dbde35333a66b33adffd65473d282bd95891cce8d709f1bb837f0023267e",
+  "adapter_digest": "eefe4e0fe544cb938749554144b7da3dfaf6a7adeb45de910d2fb278fc04e0ca",
+  "started_at": "2026-08-23T21:37:07+00:00",
+  "selection": "e8a848ed9c8a8440625f218516219b37b4a5ad681502cd45a8ff3fc687fb86a9",
+  "source": {
+    "system": "Graphiti",
+    "repo": "getzep/graphiti",
+    "commit": "993e081a6d7948a0d8851c12a5fbdbeb49fed862",
+    "graph_backend": "kuzu, embedded",
+    "embedder_enforced": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\models\\all-MiniLM-L6-v2",
+    "embedder_native_default": "openai text-embedding-3-small",
+    "reranker_enforced": "BGE local cross-encoder",
+    "reranker_native_default": "OpenAIRerankerClient, an LLM call per candidate",
+    "structured_output_mode": "json_object, their own switch; the provider rejects the json_schema default",
+    "group_id": "their provider default; an explicit one raises on their deprecated Kuzu driver"
+  },
+  "target_model": "deepseek-chat",
+  "decoding": {
+    "arena_enforced": {
+      "temperature": 0
+    },
+    "preregistered": false,
+    "provenance": "adopted after a CUPMem run showed a repeated probe returning different answers, so it is a control chosen in response to an observation, not before one. It is not any system's own decoding"
+  },
+  "spend_cap_usd": 0.4,
+  "total_cap_usd": 10.0,
+  "state_probe_available": true,
+  "units": [
+    {
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "sessions_available": 41,
+      "sessions_ingested": 0,
+      "user_turns_ingested": 0,
+      "sessions_skipped_no_user_turn": 0,
+      "ingest": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "wall_seconds": 0.0
+      },
+      "per_session_calls": [],
+      "status": "ingesting"
+    }
+  ],
+  "status": "failed",
+  "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
+  "spend_usd": 0.003,
+  "meter_baseline": {
+    "calls": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0
+  },
+  "meter_baseline_usd": 0,
+  "provider_calls": 4,
+  "meter": {
+    "calls": 4,
+    "refused_calls": 0,
+    "prompt_tokens": 8407,
+    "completion_tokens": 622,
+    "usd": 0.002954,
+    "unknown_usage_calls": 0,
+    "arena_enforced_decoding": {
+      "temperature": 0
+    },
+    "decoding_overrides": 4,
+    "decoding_override_values": [
+      "{\"temperature\": 1}"
+    ],
+    "native_requested_decoding": [
+      "{\"temperature\": 1}"
+    ]
+  },
+  "meter_note": "`meter` holds the proxy's running totals, which include anything it served before this run. `spend_usd` and `provider_calls` are this run's own, taken as a delta from the baseline",
+  "night_ledger": {
+    "path": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\data\\lab\\arena\\spend-ledger.jsonl",
+    "total_usd": 2.02503,
+    "total_cap_usd": 10.0,
+    "by_run": {
+      "mem0-calibration": 0.025094,
+      "mem0-pilot": 0.589804,
+      "hindsight-pilot": 1.404219,
+      "graphiti-calibration": 0.005908
+    },
+    "calls": 1656
+  },
+  "failed_with": "RuntimeError: Binder exception: Table RelatesToNode_ doesn't have an index with name edge_name_and_fact.",
+  "traceback": "^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\utils\\maintenance\\edge_operations.py\", line 392, in resolve_extracted_edges\n    related_edges_results: list[SearchResults] = await semaphore_gather(\n                                                 ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\helpers.py\", line 133, in semaphore_gather\n    return await asyncio.gather(*(_wrap_coroutine(coroutine) for coroutine in coroutines))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\helpers.py\", line 131, in _wrap_coroutine\n    return await coroutine\n           ^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\search\\search.py\", line 173, in search\n    ) = await semaphore_gather(\n        ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\helpers.py\", line 133, in semaphore_gather\n    return await asyncio.gather(*(_wrap_coroutine(coroutine) for coroutine in coroutines))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\helpers.py\", line 131, in _wrap_coroutine\n    return await coroutine\n           ^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\search\\search.py\", line 324, in edge_search\n    search_results = list(await semaphore_gather(*search_tasks))\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\helpers.py\", line 133, in semaphore_gather\n    return await asyncio.gather(*(_wrap_coroutine(coroutine) for coroutine in coroutines))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\helpers.py\", line 131, in _wrap_coroutine\n    return await coroutine\n           ^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\search\\search_utils.py\", line 278, in edge_fulltext_search\n    records, _, _ = await driver.execute_query(\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\graphiti_core\\driver\\kuzu_driver.py\", line 227, in execute_query\n    results = await self.client.execute(cypher_query_, parameters=params)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\kuzu\\async_connection.py\", line 171, in execute\n    return await loop.run_in_executor(self.executor, conn.execute, query, parameters)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\graphiti\\Lib\\site-packages\\kuzu\\connection.py\", line 134, in execute\n    query_result_internal = self._connection.execute(prepared_statement._prepared_statement, parameters)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Binder exception: Table RelatesToNode_ doesn't have an index with name edge_name_and_fact.\n"
+}
