@@ -1,0 +1,19 @@
+{
+  "experiment_id": "PMLAB-REUSE-CHAR-001",
+  "status": "descriptive-second-fresh-process-warm-cache-reproduction",
+  "rankings_sha256": "0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9",
+  "model_load_ms": 635.0464,
+  "corpus_embedding_ms": 1100.3643,
+  "p50_query_latency_ms": {
+    "B2_FTS5": 0.2621,
+    "C0_FASTEMBED": 52.1364,
+    "C2_RRF": 52.39485
+  },
+  "p95_query_latency_ms": {
+    "B2_FTS5": 0.4655,
+    "C0_FASTEMBED": 91.9179,
+    "C2_RRF": 92.3834
+  },
+  "source": "second fresh-process stdout and tmp/reuse-char-repeat artifacts",
+  "interpretation": "descriptive warm-cache timing only; not a controlled performance benchmark"
+}

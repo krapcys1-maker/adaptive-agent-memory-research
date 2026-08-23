@@ -9,6 +9,7 @@ from scripts.run_reuse_characterization import (
     rrf,
     validate_inputs,
 )
+from scripts.analyze_reuse_characterization import analyze
 
 
 def fixture():
@@ -56,3 +57,13 @@ def test_all_pack_modes_report_budget_omissions():
         pack = build_pack(mode, [row["record_id"] for row in corpus[:10]], records, budget=80)
         assert pack["omitted"]
         assert pack["utf8_bytes"] <= 80
+
+
+def test_posthoc_failure_analysis_is_derived_from_committed_outputs():
+    result = analyze()
+    assert result["rrf_forbidden_subset_of_dense"] is True
+    assert result["forbidden_query_sets"]["C0_FASTEMBED"] == ["Q04", "Q06", "Q07", "Q08"]
+    assert result["forbidden_query_sets"]["C2_RRF"] == ["Q04", "Q06", "Q07"]
+    assert result["unanswerable_candidates"]["B2_FTS5"][0]["ranked"]
+    dense = result["packaging_by_arm"]["C0_FASTEMBED"]
+    assert dense["bucketed"]["required_retained"] == dense["raw"]["required_retained"]

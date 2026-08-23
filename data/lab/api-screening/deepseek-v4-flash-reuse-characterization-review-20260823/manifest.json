@@ -1,16 +1,19 @@
 {
   "run_id": "deepseek-v4-flash-reuse-characterization-review-20260823",
-  "status": "prepared-uncommitted-input",
+  "status": "review-finalized",
   "created_at": "2026-08-23T05:07:45Z",
   "model": "deepseek-v4-flash",
   "temperature": 0,
   "thinking": "disabled",
   "run_budget_usd": 0.1,
   "global_budget_usd": 10.0,
-  "prompt_freeze_commit": null,
+  "prompt_freeze_commit": "0ece317c60a43be29047d72709da2477dc77017e",
   "authority": "M1 author-operated model advisory; not independent review and cannot promote architecture",
   "hashes": {
     "job.json": "1c721d559da5855aa226cf6b03348cc5b8c4c7e23734d3ca5e17b2ce1e04f94d",
     "prompt.txt": "8283fa2454a6ab4ddd90732ad981169383aac5f185848bb68f5cb1a517e7b85f"
-  }
+  },
+  "response_id": "3b06b0a2-5ab7-4446-a733-90125fa2a502",
+  "cost_usd": 0.00573936,
+  "review_result_sha256": "4074b7470acc9e168bb684f0acda4d7f8ef40e17091e7ad4fb89ec3d9d1891ad"
 }

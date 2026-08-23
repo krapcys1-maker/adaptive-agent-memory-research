@@ -3,6 +3,8 @@
 Status: completed synthetic development characterization after protocol freeze `8ed9dce`  
 Authority: implementation evidence only; no architecture selection or natural-benchmark claim
 
+Advisory audit: DeepSeek M1 returned `needs_revision`; accepted and rejected findings are tracked in `data/lab/api-screening/deepseek-v4-flash-reuse-characterization-review-20260823/audit-disposition.md`. The audit is author-operated, not independent, and does not change the frozen result.
+
 ## Result
 
 | Retrieval arm | Recall@5 | All required@5 | MRR@5 | Forbidden intrusion@5 | Cross-language Recall@5 | Candidate-null on unanswerable | Warm p50 |
@@ -11,7 +13,7 @@ Authority: implementation evidence only; no architecture selection or natural-be
 | FastEmbed MiniLM | 0.982 | 0.947 | 0.829 | 0.200 | 1.000 | 0.000 | 52.136 ms |
 | FTS5 + FastEmbed RRF | 0.868 | 0.842 | 0.789 | 0.150 | 0.750 | 0.000 | 52.395 ms |
 
-The dense diagnostic recovered nearly every authored semantic target, including all cross-language cases, but retrieved a forbidden record in four of twenty queries. FTS5 had one forbidden intrusion. RRF improved substantially over FTS5 but was worse than the dense component on recall, all-required evidence, cross-language recall, terminology shift, and forbidden intrusion.
+The dense diagnostic recovered nearly every authored semantic target, including all cross-language cases, but retrieved a forbidden record in four of twenty queries. FTS5 had one forbidden intrusion. RRF improved substantially over FTS5 but was worse than the dense component on recall, all-required evidence, cross-language recall, terminology shift, and forbidden intrusion. Exact query IDs, returned IDs, missing/forbidden sets, per-arm packaging metrics, and overlap calculations are reproducibly derived in `failure-analysis.json` by `scripts/analyze_reuse_characterization.py`.
 
 This is direct counterevidence to two unsafe assumptions:
 
@@ -31,7 +33,7 @@ FastEmbed missed one of three required records in the multi-project donor questi
 - stale plaintext-key storage beside the current keyring record;
 - the superseded vector-source-of-truth proposal beside the current derived-index decision.
 
-RRF inherited three forbidden intrusions and lost some dense-only semantic gains. At `k=60` and depth 10, agreement between the two components dominated, so a strong dense-only candidate could fall when sparse evidence was absent or misleading.
+RRF's forbidden query set `{Q04,Q06,Q07}` was a subset of the dense set `{Q04,Q06,Q07,Q08}`. It also lost some dense-only semantic gains. At `k=60` and depth 10, agreement between the two components dominated, so a strong dense-only candidate could fall when sparse evidence was absent or misleading. This is descriptive localization, not a causal estimate of why fusion failed.
 
 ## Citations and context packs
 
@@ -57,22 +59,23 @@ The bucket labels were authored metadata. Perfect placement validates determinis
 - First model load including download: 25.681 s; first corpus embedding: 1.910 s.
 - Warm model load: 0.635 s; warm corpus embedding: 1.100 s.
 - Two fresh Python processes produced the same ranking SHA-256: `0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9`.
-- No chat-model/API calls and no API cost.
+- The characterization execution used no chat-model/API calls and incurred no API cost. The later, separately logged M1 advisory cost USD 0.00573936.
 
 ## Characterization decision
 
-- **Admit exact citations** as a required contract: deterministic validity passed.
-- **Admit bucketed packing as a testable formatter**, not as a classifier or final ordering policy.
+- **Advance the exact-citation implementation to later tests:** deterministic locator validity passed; evidence truth did not.
+- **Advance bucketed packing only as a testable formatter**, not as a classifier, safety control, or final ordering policy.
 - **Retain FTS5** as the minimal sparse baseline.
 - **Retain FastEmbed/MiniLM only as a restricted diagnostic**; its semantic gain and safety loss both require natural replication.
 - **Retain RRF as a comparator, not a default**; it did not beat the dense component here.
 - **Keep abstention, trust filtering, validity filtering, and evidence completeness outside raw retrieval.**
 
-## Next tests
+## Post-hoc next-test proposals
+
+These proposals were generated after observing the characterization and are not part of its frozen protocol or result. Each requires a new preregistration before execution.
 
 1. On a frozen development set, compare full citations with compact citation IDs plus a footer dictionary under equal byte budgets.
 2. Factor context order: retrieval order, current-first, relevance-first with stale-at-end, and duplicated critical evidence at the end. Use a provider-neutral reader and test position effects.
 3. Filter or quarantine untrusted/stale candidates before the reader; do not rely on section labels as an instruction-injection defense.
 4. Measure component complementarity and per-query discordance before assuming RRF can outperform its stronger component.
 5. In the locked natural benchmark, compare multilingual E5-small against FTS5 and RRF only after independent eligibility and evidence labels are complete.
-

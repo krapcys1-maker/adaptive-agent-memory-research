@@ -1,0 +1,421 @@
+{
+  "analysis_status": "post-hoc-transparent-failure-localization-no-retuning",
+  "authority": "descriptive post-hoc localization over committed output; no tuning or architecture authority",
+  "experiment_id": "PMLAB-REUSE-CHAR-001",
+  "failure_cases": {
+    "B2_FTS5": [
+      {
+        "category": "natural_paraphrase",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E03"
+        ],
+        "query": "Gdzie powinny żyć informacje, których model nie mieści już w bieżącym zestawie roboczym?",
+        "query_id": "Q02",
+        "ranked": [
+          "E13",
+          "E07",
+          "E34",
+          "E25"
+        ]
+      },
+      {
+        "category": "cross_language",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E04"
+        ],
+        "query": "Jak zachować możliwość sprawdzenia, z którego dokładnego fragmentu pochodzi fakt?",
+        "query_id": "Q03",
+        "ranked": []
+      },
+      {
+        "category": "cross_language",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E16"
+        ],
+        "query": "Why must merely reading a memory not increase its importance?",
+        "query_id": "Q04",
+        "ranked": [
+          "E04",
+          "E09",
+          "E30",
+          "E08",
+          "E36"
+        ]
+      },
+      {
+        "category": "cross_language",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E08"
+        ],
+        "query": "Czy samo odzyskanie wspomnienia dowodzi użyteczności i gdzie zapisać rzeczywisty wynik?",
+        "query_id": "Q06",
+        "ranked": [
+          "E07"
+        ]
+      },
+      {
+        "category": "stale_current",
+        "forbidden_returned_ids": [
+          "E10"
+        ],
+        "missing_required_ids": [],
+        "query": "Where is the backup encryption key kept?",
+        "query_id": "Q07",
+        "ranked": [
+          "E10",
+          "E09",
+          "E18",
+          "E29",
+          "E12"
+        ]
+      },
+      {
+        "category": "natural_paraphrase",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E18",
+          "E19"
+        ],
+        "query": "How do we prevent a scheduled reminder from executing twice or performing an unauthorized action?",
+        "query_id": "Q10",
+        "ranked": [
+          "E24",
+          "E08",
+          "E03",
+          "E11",
+          "E32"
+        ]
+      },
+      {
+        "category": "cross_language",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E26"
+        ],
+        "query": "Czy sygnał emocjonalny może automatycznie zwiększyć pewność prawdziwości i priorytet pamięci?",
+        "query_id": "Q14",
+        "ranked": [
+          "E17",
+          "E25",
+          "E16"
+        ]
+      },
+      {
+        "category": "terminology_shift",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E03"
+        ],
+        "query": "Which external episodic and semantic store represents durable information outside working context?",
+        "query_id": "Q20",
+        "ranked": [
+          "E32",
+          "E18",
+          "E22",
+          "E36",
+          "E19"
+        ]
+      }
+    ],
+    "C0_FASTEMBED": [
+      {
+        "category": "cross_language",
+        "forbidden_returned_ids": [
+          "E17"
+        ],
+        "missing_required_ids": [],
+        "query": "Why must merely reading a memory not increase its importance?",
+        "query_id": "Q04",
+        "ranked": [
+          "E17",
+          "E16",
+          "E07",
+          "E26",
+          "E22"
+        ]
+      },
+      {
+        "category": "cross_language",
+        "forbidden_returned_ids": [
+          "E17"
+        ],
+        "missing_required_ids": [],
+        "query": "Czy samo odzyskanie wspomnienia dowodzi użyteczności i gdzie zapisać rzeczywisty wynik?",
+        "query_id": "Q06",
+        "ranked": [
+          "E07",
+          "E26",
+          "E08",
+          "E17",
+          "E04"
+        ]
+      },
+      {
+        "category": "stale_current",
+        "forbidden_returned_ids": [
+          "E10"
+        ],
+        "missing_required_ids": [],
+        "query": "Where is the backup encryption key kept?",
+        "query_id": "Q07",
+        "ranked": [
+          "E10",
+          "E09",
+          "E04",
+          "E01",
+          "E28"
+        ]
+      },
+      {
+        "category": "natural_paraphrase",
+        "forbidden_returned_ids": [
+          "E02"
+        ],
+        "missing_required_ids": [],
+        "query": "Can vector embeddings become the authoritative long-term record?",
+        "query_id": "Q08",
+        "ranked": [
+          "E32",
+          "E13",
+          "E02",
+          "E14",
+          "E28"
+        ]
+      },
+      {
+        "category": "multi_evidence",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E22"
+        ],
+        "query": "Which projects donate evidence contracts, cited path-safe retrieval, and three context buckets?",
+        "query_id": "Q11",
+        "ranked": [
+          "E20",
+          "E21",
+          "E27",
+          "E36",
+          "E01"
+        ]
+      }
+    ],
+    "C2_RRF": [
+      {
+        "category": "natural_paraphrase",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E03"
+        ],
+        "query": "Gdzie powinny żyć informacje, których model nie mieści już w bieżącym zestawie roboczym?",
+        "query_id": "Q02",
+        "ranked": [
+          "E34",
+          "E13",
+          "E22",
+          "E07",
+          "E20"
+        ]
+      },
+      {
+        "category": "cross_language",
+        "forbidden_returned_ids": [
+          "E17"
+        ],
+        "missing_required_ids": [
+          "E16"
+        ],
+        "query": "Why must merely reading a memory not increase its importance?",
+        "query_id": "Q04",
+        "ranked": [
+          "E04",
+          "E08",
+          "E26",
+          "E32",
+          "E17"
+        ]
+      },
+      {
+        "category": "cross_language",
+        "forbidden_returned_ids": [
+          "E17"
+        ],
+        "missing_required_ids": [],
+        "query": "Czy samo odzyskanie wspomnienia dowodzi użyteczności i gdzie zapisać rzeczywisty wynik?",
+        "query_id": "Q06",
+        "ranked": [
+          "E07",
+          "E26",
+          "E08",
+          "E17",
+          "E04"
+        ]
+      },
+      {
+        "category": "stale_current",
+        "forbidden_returned_ids": [
+          "E10"
+        ],
+        "missing_required_ids": [],
+        "query": "Where is the backup encryption key kept?",
+        "query_id": "Q07",
+        "ranked": [
+          "E10",
+          "E09",
+          "E31",
+          "E04",
+          "E18"
+        ]
+      },
+      {
+        "category": "terminology_shift",
+        "forbidden_returned_ids": [],
+        "missing_required_ids": [
+          "E03"
+        ],
+        "query": "Which external episodic and semantic store represents durable information outside working context?",
+        "query_id": "Q20",
+        "ranked": [
+          "E32",
+          "E22",
+          "E36",
+          "E18",
+          "E35"
+        ]
+      }
+    ]
+  },
+  "forbidden_query_sets": {
+    "B2_FTS5": [
+      "Q07"
+    ],
+    "C0_FASTEMBED": [
+      "Q04",
+      "Q06",
+      "Q07",
+      "Q08"
+    ],
+    "C2_RRF": [
+      "Q04",
+      "Q06",
+      "Q07"
+    ]
+  },
+  "packaging_by_arm": {
+    "B2_FTS5": {
+      "bucketed": {
+        "mean_utf8_bytes": 607.2,
+        "omitted_items": 6,
+        "queries_with_required_pack_loss": [
+          "Q17"
+        ],
+        "required_retained": 0.6842105263157895
+      },
+      "cited": {
+        "mean_utf8_bytes": 610.2,
+        "omitted_items": 1,
+        "queries_with_required_pack_loss": [],
+        "required_retained": 0.7105263157894737
+      },
+      "raw": {
+        "mean_utf8_bytes": 362.8,
+        "omitted_items": 0,
+        "queries_with_required_pack_loss": [],
+        "required_retained": 0.7105263157894737
+      }
+    },
+    "C0_FASTEMBED": {
+      "bucketed": {
+        "mean_utf8_bytes": 675.55,
+        "omitted_items": 14,
+        "queries_with_required_pack_loss": [],
+        "required_retained": 0.9824561403508771
+      },
+      "cited": {
+        "mean_utf8_bytes": 726.75,
+        "omitted_items": 1,
+        "queries_with_required_pack_loss": [],
+        "required_retained": 0.9824561403508771
+      },
+      "raw": {
+        "mean_utf8_bytes": 432.5,
+        "omitted_items": 0,
+        "queries_with_required_pack_loss": [],
+        "required_retained": 0.9824561403508771
+      }
+    },
+    "C2_RRF": {
+      "bucketed": {
+        "mean_utf8_bytes": 684.2,
+        "omitted_items": 12,
+        "queries_with_required_pack_loss": [
+          "Q10",
+          "Q11"
+        ],
+        "required_retained": 0.8245614035087719
+      },
+      "cited": {
+        "mean_utf8_bytes": 708.4,
+        "omitted_items": 3,
+        "queries_with_required_pack_loss": [],
+        "required_retained": 0.868421052631579
+      },
+      "raw": {
+        "mean_utf8_bytes": 431,
+        "omitted_items": 0,
+        "queries_with_required_pack_loss": [],
+        "required_retained": 0.868421052631579
+      }
+    }
+  },
+  "rrf_dense_forbidden_overlap": [
+    "Q04",
+    "Q06",
+    "Q07"
+  ],
+  "rrf_forbidden_subset_of_dense": true,
+  "unanswerable_candidates": {
+    "B2_FTS5": [
+      {
+        "query": "What is the production database password?",
+        "query_id": "Q18",
+        "ranked": [
+          "E09",
+          "E29",
+          "E12",
+          "E31",
+          "E10"
+        ]
+      }
+    ],
+    "C0_FASTEMBED": [
+      {
+        "query": "What is the production database password?",
+        "query_id": "Q18",
+        "ranked": [
+          "E09",
+          "E10",
+          "E31",
+          "E01",
+          "E04"
+        ]
+      }
+    ],
+    "C2_RRF": [
+      {
+        "query": "What is the production database password?",
+        "query_id": "Q18",
+        "ranked": [
+          "E09",
+          "E10",
+          "E31",
+          "E35",
+          "E29"
+        ]
+      }
+    ]
+  }
+}

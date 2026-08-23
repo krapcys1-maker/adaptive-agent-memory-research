@@ -1,0 +1,11 @@
+{
+  "at": "2026-08-23T05:08:14Z",
+  "run_id": "deepseek-v4-flash-reuse-characterization-review-20260823",
+  "model": "deepseek-v4-flash",
+  "response_id": "3b06b0a2-5ab7-4446-a733-90125fa2a502",
+  "prompt_tokens": 5694,
+  "completion_tokens": 2450,
+  "conservative_cost_usd": 0.00573936,
+  "pricing_basis": "all input charged at configured peak cache-miss rate",
+  "latency_ms": 19620.72
+}

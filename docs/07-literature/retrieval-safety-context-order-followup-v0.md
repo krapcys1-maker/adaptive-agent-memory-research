@@ -2,6 +2,8 @@
 
 Status: targeted primary-source follow-up triggered by `PMLAB-REUSE-CHAR-001`
 
+All hypotheses in this document are post-hoc proposals generated after the characterization result. They are not registered outcomes and cannot be tested without a separate frozen protocol.
+
 ## Trigger
 
 The synthetic characterization found three coupled effects:
@@ -71,4 +73,3 @@ Reject if the typed controller does not dominate baselines on held-out risk-cove
 ## Research decision
 
 Do not tune the current fixture. Preserve it as a spent implementation diagnostic. Advance only its deterministic contracts: exact citations, explicit omission reporting, reversible metadata buckets, and reproducible rank traces. Dense selection, fusion choice, trust classification, order, and abstention remain separate experiments.
-
