@@ -146,31 +146,85 @@ the merge step cannot. Whether that gap matters, and how often, is measurable �
 and it is a sharper research question than the one we were asking, because it
 sits at the boundary of a mechanism built on an explicit, checkable assumption.
 
-## Three classes of variance, and trigram covers one
+## Five classes of variance, and a measured threshold conflict
 
-Their assumption makes the taxonomy visible:
+A first version of this section had three classes and put our `OBSOLETE` family
+under *spelling*. That was wrong, and the error mattered enough to measure.
 
 ```
-1  SPELLING       Alice Chen · alice chen · Alice C.
-                  → trigram similarity. Solved here.
+1  ORTHOGRAPHIC    Alice Chen · alice chen · Alice C.
+                   same entity, different spelling
 
-2  LEXICAL ALIAS  billing service · invoice backend
-                  → alias table or semantic match. Not solved by trigram —
-                    the strings share almost no characters.
+2  LEXICAL ALIAS   billing service · invoice backend
+                   same entity, no shared characters
 
-3  REFERENTIAL    Alice Chen · the new PM · she · her replacement
-                  → coreference over discourse. Not a string problem at all.
+3  REFERENTIAL     Alice Chen · the new PM · she
+                   same entity, resolvable only in discourse
+
+4  IDENTITY        billing staging host · vault staging host
+                   DIFFERENT entities, near-identical wording
+
+5  TEMPORAL STATE  old host · current host · future host · correction
+                   one entity, several versions, one in force
 ```
 
-`OBSOLETE` in our own corpus is class 1. The near-clone failure that motivated
-addressing is class 1 as well — twelve services phrased identically. Classes 2
-and 3 are untouched by anything either project has built, and no measurement
-here says how often they occur.
+`OBSOLETE` and the 48-near-clone failure are **4 and 5**. They are not spelling.
+Trigram similarity answers *are these two strings the same name*; addressing
+answers *are these two records about the same object*. Different axes, and
+conflating them would have produced a wrong conclusion about what transplanting
+their resolver buys us.
 
-That is a map of the problem rather than a choice of embedding, and it is the
-more useful output of this reading.
+### The measurement
 
----
+Their algorithm, run over examples from each class:
+
+| pair | class | similarity |
+|---|---|---:|
+| `Alice Chen` / `alice chen` | 1 — should merge | **1.000** |
+| `Microsoft Corp.` / `microsoft corporation` | 1 — should merge | 0.609 |
+| `Alice Chen` / `Alice C.` | 1 — should merge | 0.583 |
+| `service.billing/staging/endpoint.host` / `service.vault/…` | 4 — must **not** merge | **0.707** |
+| `billing staging host` / `vault staging host` | 4 — must **not** merge | 0.520 |
+| `tests/billing-fuzz` / `tests/vault-fuzz` | 4 — must **not** merge | 0.440 |
+| `--dist=no` / `--dist=yes` | must **not** merge | 0.417 |
+| `billing service` / `invoice backend` | 2 — should merge | 0.103 |
+| `the new PM` / `Alice Chen` | 3 — should merge | 0.000 |
+
+**Class 4 overlaps class 1.** Two distinct services score 0.707, higher than two
+spellings of one person at 0.583. **No single threshold separates them.** Any
+cutoff low enough to merge `Alice C.` would also merge `billing` with `vault` —
+and collision is a gate this project froze at `< 0.02` before any of this.
+
+Class 2 and 3 sit at 0.103 and 0.000, below any usable cutoff. Trigram cannot
+reach them at all.
+
+### What that means for the transplant
+
+Not that their mechanism is wrong. It assumes it is comparing **entity names**,
+and in their pipeline those come from an extractor that names entities
+distinctly. Feeding it a *composed address* like `service.X/scope/property`
+violates that assumption, because the shared scope and property tokens dominate
+the trigram set and the distinguishing token is a small fraction of it.
+
+So the transplant is conditional, and the condition is precise:
+
+> apply trigram resolution to the **entity component alone**, never to a composed
+> address, and never to a value that must match exactly.
+
+`--dist=no` versus `--dist=yes` at 0.417 is why the `resolve=false` escape hatch
+is not optional here — it is what keeps a flag from merging with its opposite.
+
+### What is not known
+
+The earlier draft said classes 2 and 3 are untouched by anything either project
+has built. That is not established. Hindsight's **extractor** runs before the
+deterministic merge and may already resolve some aliasing and coreference —
+their own example, *"Alice", "Alice Chen" and "the new PM" all map to the same
+person*, is a class 3 claim, and nothing in `entity_resolver.py` could achieve it.
+
+So the honest statement is that **it is not known how much of classes 2 and 3
+these systems resolve, or at which stage.** The shared arena is what would show
+it, and this is one more reason to run the arena before reading further code.
 
 ## Consequence for CANDIDATE-1
 
