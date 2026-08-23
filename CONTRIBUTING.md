@@ -71,10 +71,20 @@ Keep a pull request to one topic. Describe what sources were added, what claims 
 
 ## Adding a paper
 
-1. Add a row to `data/catalogs/papers-curated.csv`.
+1. Add a row to `data/catalogs/papers-curated.csv`, including `reading_state`.
 2. Add important claims to `docs/07-literature/evidence-ledger.csv`.
 3. Add a reading note only after reading the source, not merely its abstract.
 4. Include limitations and relevance to a research question.
+
+`status` records what kind of publication it is; `reading_state` records how far
+we engaged with it. They are different questions and were conflated until the
+audit measured the cost: of 174 catalogued sources, 57 had never been cited by
+any claim and only 18 had a full-read note. See
+[`data/catalogs/README-reading-state.md`](data/catalogs/README-reading-state.md).
+
+Raise a reading state in the same change that adds its artifact — `full-read`
+with the note, `abstract-read` with the abstract-level claim. A state raised
+without the artifact is a claim about work that left no trace.
 
 ## Adding a repository
 

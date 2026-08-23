@@ -93,6 +93,11 @@ def run() -> dict[str, Any]:
         1 for row in catalog if PUBLICATION_TYPES.search(row.get("status", ""))
     )
 
+    reading_states: dict[str, int] = {}
+    for row in catalog:
+        key = (row.get("reading_state") or "absent").strip() or "absent"
+        reading_states[key] = reading_states.get(key, 0) + 1
+
     ledger_levels: dict[str, int] = {}
     for row in ledger:
         key = (row.get("status") or "?").strip()
@@ -110,11 +115,14 @@ def run() -> dict[str, Any]:
         "orphan_claim_ids": sorted(orphan_claims)[:20],
         "catalog_status_column_holds_publication_type_not_reading_state": status_is_publication_type,
         "ledger_status_levels": dict(sorted(ledger_levels.items())),
+        "catalog_reading_states": dict(sorted(reading_states.items())),
+        "reading_state_still_unknown": reading_states.get("unknown", 0),
         "gap": (
-            "The catalog cannot express whether a source was read. Its status column records "
-            "publication type. The ledger distinguishes abstract-extracted from extracted, but only "
-            "for claims, never for sources, so a source read in full and one skimmed for a single "
-            "claim are indistinguishable in the catalog."
+            "The catalog now carries reading_state alongside status, so the distinction between "
+            "publication type and engagement is expressible. Every row starts at unknown, which "
+            "means the record does not say rather than that the source is unread. The remaining "
+            "gap is that 36 percent of ledger claims cite a source in no catalog, so the catalog "
+            "is not yet the canonical source list."
         ),
         "not_repaired": (
             "Assigning a reading state to every catalogued source is a judgement about what was "
