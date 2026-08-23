@@ -1,0 +1,11 @@
+{
+  "at": "2026-08-23T08:14:17Z",
+  "run_id": "deepseek-v4-flash-foundation-contract-semantic-review-v2-20260823",
+  "model": "deepseek-v4-flash",
+  "response_id": "7ff880bb-dd4a-4cf5-a0b8-76d6598ed392",
+  "prompt_tokens": 16654,
+  "completion_tokens": 2679,
+  "conservative_cost_usd": 0.01086404,
+  "pricing_basis": "all input charged at configured peak cache-miss rate",
+  "latency_ms": 18709.05
+}

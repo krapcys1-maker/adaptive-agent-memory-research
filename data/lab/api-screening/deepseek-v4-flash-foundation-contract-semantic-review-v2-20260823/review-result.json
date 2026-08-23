@@ -1,0 +1,153 @@
+{
+  "findings": [
+    {
+      "question_id": "A01",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "data/lab/pmlab-foundation-v0/contracts/canonical-event-v0.1.schema.json",
+        "data/lab/pmlab-foundation-v0/construction-v0/canonical-events.jsonl"
+      ],
+      "rationale": "Canonical events reference exact bytes via storage_ref and content_sha256, but the schema does not bind the canonical event to the source object hash or span integrity beyond a single hash. The construction fixture has only two events; no evidence of collision or ambiguity handling. Derived summaries are not present, but the contract does not explicitly forbid treating summaries as canonical in later stages.",
+      "required_change": "Add explicit integrity binding between canonical event and source object (e.g., include source_object_sha256 in the canonical event hash computation) and document that derived summaries are never canonical."
+    },
+    {
+      "question_id": "A02",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "data/lab/pmlab-foundation-v0/contracts/canonical-event-v0.1.schema.json",
+        "data/lab/pmlab-foundation-v0/construction-v0/canonical-events.jsonl"
+      ],
+      "rationale": "Temporal fields are distinct and support as-of reconstruction, but the validator only rejects reversed validity and transaction before observation. It does not enforce that correction events have valid_from within the original validity interval or that supersession is monotonic. Late corrections could leak future state if not properly bounded.",
+      "required_change": "Add validator rules for correction/supersession temporal consistency and ensure as-of queries cannot see future corrections."
+    },
+    {
+      "question_id": "A03",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "data/lab/pmlab-foundation-v0/contracts/canonical-event-v0.1.schema.json",
+        "data/lab/pmlab-foundation-v0/construction-v0/canonical-events.jsonl"
+      ],
+      "rationale": "Authorization fields are present, but denied capture is only mentioned in the contract, not enforced in the schema (capture_allowed is const true). Retention and access scopes are defined but no enforcement or audit trail for later exposure is specified. The construction fixture uses synthetic data only, so privacy boundaries are untested.",
+      "required_change": "Add a governance receipt schema for denied capture and enforce retention/access scope checks in the validator."
+    },
+    {
+      "question_id": "A04",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "data/lab/pmlab-foundation-v0/contracts/canonical-event-v0.1.schema.json",
+        "data/lab/pmlab-foundation-v0/construction-v0/canonical-events.jsonl"
+      ],
+      "rationale": "Provenance and revision fields exist, but the validator does not check for cycles, missing targets, or conflicting concurrent revisions. The construction fixture has a single correction chain, so concurrency is untested. Ambiguous authority is not addressed.",
+      "required_change": "Add validator rules for cycle detection, target existence, and conflict resolution for concurrent revisions."
+    },
+    {
+      "question_id": "A05",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "docs/11-research-laboratory/foundation-canonical-event-and-stage-receipt-contract-v0.md",
+        "data/lab/pmlab-foundation-v0/contracts/stage-receipt-v0.1.schema.json"
+      ],
+      "rationale": "F0-F5 stages are defined with mandatory checks, but boundaries are not exhaustive: e.g., F2 does not include a check for index corruption, F3 does not include a check for context pack integrity. Overlap exists between F3 and F4 (delivered context vs exact evidence exposed). Missing telemetry is 'unknown', but the contract does not specify how to distinguish capture failure from durable-record failure when F0 passes but F1 fails.",
+      "required_change": "Refine stage boundaries to be non-overlapping and add missing checks for index corruption and context pack integrity."
+    },
+    {
+      "question_id": "A06",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "docs/11-research-laboratory/foundation-canonical-event-and-stage-receipt-contract-v0.md",
+        "data/lab/pmlab-foundation-v0/construction-v0/stage-receipts.jsonl"
+      ],
+      "rationale": "The four-probe rule is conservative, but it can produce false negatives if all probes fail due to a common cause (e.g., encryption key loss) or if a stale cache returns raw bytes without content hash match. The construction fixture only shows a passing case; no invalid mutations for physical loss are provided in this packet.",
+      "required_change": "Add invalid mutations for correlated probe failures and encryption key loss, and require that raw-byte recovery includes a content hash match to rule out stale caches."
+    },
+    {
+      "question_id": "A07",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "data/lab/pmlab-foundation-v0/contracts/stage-receipt-v0.1.schema.json",
+        "data/lab/pmlab-foundation-v0/construction-v0/stage-receipts.jsonl"
+      ],
+      "rationale": "Receipts have hashes and chaining, but the schema allows null sha256 for many refs, and the construction fixture uses null for index, retrieval, context, reader, action, and evaluation refs. This prevents independent replay and tamper detection for those artifacts. Unknown-state handling is defined but not exercised.",
+      "required_change": "Require non-null sha256 for all input/output refs except when the artifact is intentionally ephemeral, and add a receipt for unknown-state handling."
+    },
+    {
+      "question_id": "A08",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "data/lab/pmlab-foundation-v0/delayed-reveal-v0/prefix-freeze-v0/write-side-access-receipt.json",
+        "data/lab/pmlab-foundation-v0/delayed-reveal-v0/prefix-freeze-v0/prefixes.jsonl"
+      ],
+      "rationale": "The prefix commit and access receipt are same-author attestations. They prove that the registered write-side process did not read reveal/gold artifacts, but they do not prevent prior author knowledge, unlogged reads, or leakage through filenames, timestamps, or tool metadata. The receipt lists observed read paths but does not include a process isolation mechanism.",
+      "required_change": "Add a process isolation mechanism (e.g., container with no network and no access to reveal/gold) and include a system-level audit log that cannot be modified by the author."
+    },
+    {
+      "question_id": "A09",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/reader/reveals.jsonl",
+        "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/gold/gold.jsonl"
+      ],
+      "rationale": "The counterfactual set has three tasks with different required evidence sets and answer states, but they are all closely related to the same provider change. The tasks are not sufficiently incompatible to challenge write-side anticipation; a write-side could have anticipated the general topic and prepared multiple answers.",
+      "required_change": "Add at least one counterfactual task that is semantically unrelated to the prefix content (e.g., a task about a different project or domain) to strengthen the fork."
+    },
+    {
+      "question_id": "A10",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/task-reveal-v0.1.schema.json",
+        "data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/reveal-gold-v0.1.schema.json",
+        "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/gold/answer-state-catalog.json"
+      ],
+      "rationale": "Reveal and gold are separated, but the answer-state catalog is stored in the same directory as gold and is not reader-visible. However, the catalog contains answer atoms that could be inferred from the reveal queries. The reader-visible fields are limited to reveal_id, query, language, but the query itself may leak the answer (e.g., 'Which provider is current' implies a provider change).",
+      "required_change": "Ensure reveal queries do not contain answer atoms or temporal hints that could reveal the gold answer. Store answer-state catalog in a separate location with stricter access controls."
+    },
+    {
+      "question_id": "A11",
+      "verdict": "fail",
+      "severity": "blocking",
+      "evidence_locators": [
+        "docs/11-research-laboratory/foundation-canonical-event-and-stage-receipt-contract-v0.md",
+        "docs/11-research-laboratory/foundation-delayed-reveal-and-leakage-contract-v0.md"
+      ],
+      "rationale": "The same author designed the contract, fixture, mutations, validator, and repair. Git-separated freezes do not provide independence. The contracts explicitly state that L5 independent review and a separately authored unseen history are required, but this packet does not include any such independent artifact. Therefore, conclusions about semantic independence and external validity are blocked.",
+      "required_change": "Obtain a second author to independently create the fixture, mutations, and validator, and conduct a blinded review before any promotion."
+    },
+    {
+      "question_id": "A12",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "docs/11-research-laboratory/foundation-delayed-reveal-and-leakage-contract-v0.md"
+      ],
+      "rationale": "The contract specifies a second-author fixture and L5 review, but the smallest unseen attack set is not fully specified. It should include semantic attacks on time, revision, privacy, and physical-loss rules, as well as leakage attacks through metadata and process isolation.",
+      "required_change": "Define a concrete unseen second-author fixture with at least 10 valid and 10 invalid traces covering all registered invalid classes and additional semantic attacks, and require a blinded review before promotion."
+    }
+  ],
+  "overall_verdict": "needs_revision",
+  "gate_recommendations": {
+    "canonical_contract": "conditional",
+    "delayed_reveal_contract": "conditional",
+    "parent_experiment": "deny"
+  },
+  "blocking_findings": [
+    "A11"
+  ],
+  "residual_risks": [
+    "Same-author bias remains until a second author independently creates fixtures and validator.",
+    "Physical-loss rule may produce false negatives under correlated failures or encryption key loss.",
+    "Reveal queries may leak answer atoms despite separation.",
+    "Process isolation is not independently verified; unlogged reads and metadata leakage remain possible.",
+    "Counterfactual tasks are too closely related to challenge write-side anticipation."
+  ],
+  "overall_rationale": "The contracts are structurally sound but lack independent verification and have several semantic gaps. The canonical contract needs validator rules for revision cycles, temporal consistency, and privacy enforcement. The delayed-reveal contract needs stronger process isolation and more diverse counterfactual tasks. The parent experiment must remain denied until a second author independently validates the fixtures and the L5 review is completed."
+}

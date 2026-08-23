@@ -1,6 +1,6 @@
 {
   "run_id": "deepseek-v4-flash-foundation-contract-semantic-review-v2-20260823",
-  "status": "frozen-input-awaiting-api",
+  "status": "api-run-complete",
   "model": "deepseek-v4-flash",
   "temperature": 0,
   "thinking": "disabled",
@@ -11,5 +11,7 @@
     "job.json": "85beb8e75dd86dda672bb943abdf450601017ce0449af017e948d1e499255be4",
     "prompt.txt": "847bf34aaa7a8b0f179165edf8e090d49f9b3fddece55f416e61c8839b4f242a"
   },
-  "authority": "author-operated M1 advisory; not independent review and cannot unlock the builder"
+  "authority": "author-operated M1 advisory; not independent review and cannot unlock the builder",
+  "response_id": "7ff880bb-dd4a-4cf5-a0b8-76d6598ed392",
+  "cost_usd": 0.01086404
 }
