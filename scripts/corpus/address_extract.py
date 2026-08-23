@@ -138,6 +138,11 @@ def extract(text: str, canonicalise: bool = False) -> Address | None:
     belongs to everyone, which is precisely the collision the metrics watch for.
     """
     entity = _entity(text)
+    if entity is None and canonicalise:
+        # E2-A3. Frozen by digest before execution, labelled post-hoc: proposed
+        # after A2 moved the bottleneck from property to entity.
+        from corpus.entity_canon import canonical_entity
+        entity = canonical_entity(text)
     if entity is None:
         return None
     prop = _property(text)

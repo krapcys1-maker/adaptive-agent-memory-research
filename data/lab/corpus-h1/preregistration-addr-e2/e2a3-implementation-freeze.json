@@ -1,0 +1,39 @@
+{
+  "arm": "E2-A3",
+  "baseline_to_beat": {
+    "abstention_rate": 0.428571,
+    "collision_rate": 0.0,
+    "fragmentation_rate": 0.0,
+    "gold_coverage": 0.571429,
+    "mean_context_tokens": 15.238095,
+    "stale_context_rate": 0.142857
+  },
+  "diagnostic_extension_not_used_for_pass_fail": {
+    "stale_semantic_duplicate_adjusted": "the frozen stale_context_rate counts any same-slot record that is not the gold. BILINGUAL slots hold two paraphrases of one fact, so that record is neither the gold nor superseded and the 0.143 observed under A2 is probably an artifact. This variant excludes same-slot records that no supersession separates. It is an ADDITION reported alongside the frozen metric and never in place of it \u2014 changing a definition after seeing a result is what the frozen denominators exist to prevent"
+  },
+  "execution_rules": [
+    "run once on dev-a, once on valid-b, no edit between",
+    "E2-A stays frozen at 0.143; E2-A2 stays frozen at 0.571",
+    "if A3 raises dev and not valid, the patterns were fitted and that is the finding"
+  ],
+  "experiment_id": "PMLAB-H1-ADDR-E2",
+  "frozen_at": "2026-08-24T02:00:00Z",
+  "git_commit": "672e0a5dd2d59b0574fa87217bfbbfb35b5a2930",
+  "implementation_digests": {
+    "scripts/corpus/address_extract.py": "1c9b195a9638c68a96f9e9e7281dd3a31c39f0baa733bd25374b8ec9514b1b9b",
+    "scripts/corpus/entity_canon.py": "81fc392d5b2ef002379fbeefd61fde5e296de7f09dfea6789b9efea980ef6e7e",
+    "scripts/corpus/property_canon.py": "199de72b605c19645fd86523c56fec55375526fa968b003917f99629123c309b"
+  },
+  "protocol": "E2-A3 implementation freeze, before any execution",
+  "provenance": [
+    "E2-A2 run on dev-a and valid-b: coverage 0.571 on both, identical to three decimals",
+    "bottleneck observed to have MOVED: on DELAYED, OBSOLETE and POISON the property resolves and entity returns None",
+    "hypothesis proposed AFTER that observation: entity patterns were written for assertion grammar and questions use interrogative grammar",
+    "implementation frozen by digest \u2014 this document",
+    "only then executed, once per split, with no edit between"
+  ],
+  "question_positions": 6,
+  "status_label": "post-hoc mechanistic follow-up, preregistered before execution",
+  "supplements_not_modifies": "aac1c7267714c0364ef8e1769eb6ce5619bc220b9e98d0d11c2eb9a803c412d3",
+  "unchanged": "every threshold, metric definition, denominator and gate in the frozen preregistration"
+}
