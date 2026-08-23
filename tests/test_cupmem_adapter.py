@@ -51,6 +51,20 @@ def test_evidence_is_deduplicated_in_order() -> None:
     assert _evidence_ids([{"id": "a"}, {"id": "b"}, {"id": "a"}]) == ["a", "b"]
 
 
+def test_a_session_reference_is_not_evidence_that_a_record_reached_the_reader() -> None:
+    """Their items carry a revision_history naming the session of each revision.
+
+    Reading `session_id` out of it put `s_001` and `s_002` in the evidence of
+    every probe on the first live run. A session is a container; counting one as
+    a retrieved record inflates any per-record retrieval analysis.
+    """
+    context = {"topk_primary_hits": [{"id": "i_1", "text": "x", "payload": {
+        "item_id": "i_1",
+        "revision_history": [{"session_id": "s_001", "source_session_id": "s_001"}],
+    }}]}
+    assert _evidence_ids(context) == ["i_1"]
+
+
 def test_evidence_comes_from_their_real_hit_shape() -> None:
     """Their hits are {source, id, text, payload}; payloads carry `item_id`."""
     adapter = CUPMemAdapter(EngineDouble())
@@ -140,6 +154,49 @@ def test_a_text_repeated_across_their_views_is_counted_once() -> None:
     """Their context lists one hit under three keys; the reader sees one copy."""
     hit = {"id": "i_1", "text": "three word answer"}
     assert _context_tokens({"a": [hit], "b": [hit], "c": {"primary": hit}}) == 3
+
+
+def test_the_record_text_is_read_from_where_their_query_path_puts_it() -> None:
+    """Their hits carry `payload.value`, never a key called `text`.
+
+    Looking only for `text` reported `context_tokens: 0` on a live run that had
+    delivered four records. A zero is a claim, and that one was false.
+    """
+    hit = {"id": "i_1", "source": "active", "text_preview": "value: three word answer",
+           "payload": {"item_id": "i_1", "value": "three word answer"}}
+    assert _context_tokens({"topk_primary_hits": [hit]}) == 3
+
+
+def test_a_truncated_preview_is_not_counted_beside_the_value_it_truncates() -> None:
+    """Otherwise one record is counted twice and the second copy is counted wrong."""
+    long = " ".join(f"word{n}" for n in range(60))
+    hit = {"id": "i_1", "text_preview": long[:160], "payload": {"value": long}}
+    assert _context_tokens({"topk_primary_hits": [hit]}) == 60
+
+
+def test_an_unknown_track_contributes_its_reason() -> None:
+    hit = {"id": "profile/track", "source": "unknown",
+           "payload": {"bucket": "profile", "local_track": "track",
+                       "reason": "no current value recorded"}}
+    assert _context_tokens({"topk_primary_hits": [hit]}) == 4
+
+
+def test_evidence_without_context_tokens_is_flagged_as_unmeasured() -> None:
+    """Records reached the reader, so a zero is a failed measurement, not a free query."""
+    class TextlessHits(EngineDouble):
+        def answer_query(self, *, query_label, query_text):
+            result = super().answer_query(query_label=query_label, query_text=query_text)
+            for hit in result["relevant_context"]["topk_primary_hits"]:
+                hit["payload"] = {"item_id": hit["id"]}
+            result["relevant_context"]["active_items"] = []
+            return result
+
+    adapter = CUPMemAdapter(TextlessHits())
+    adapter.reset()
+    adapter.ingest([{"id": "r1", "text": "one", "timestamp": "d1"}])
+    answer = adapter.query("anything?")
+    assert answer.evidence_ids and answer.context_tokens == 0
+    assert answer.system_metadata["context_tokens_measurable"] is False
 
 
 # ---------------------------------------------------------------- session translation

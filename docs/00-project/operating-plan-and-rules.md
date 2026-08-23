@@ -27,7 +27,7 @@ adapter  →  ARENA-0 fixtures  →  operational fit  →  infra dry-run  →  f
 | system | status |
 |---|---|
 | AAMR (reference) | adapter done, admissible, abstains on all fixtures |
-| CUPMem | adapter done against a double; real fixtures next |
+| CUPMem | **operational fit PASS** against the real system, nine of nine. Dry-run blocked on a corpus and a budget |
 | Hindsight | not started |
 | Graphiti | not started |
 | Mem0 | not started |
@@ -122,6 +122,21 @@ targeted search at the half-microsecond boundary found **17,338 violations in
 property can be made exact by construction — integer microseconds rather than
 rounded floats — make it exact rather than testing for it.
 
+**A double written by the adapter's author certifies the adapter, not the
+system.** CUPMem's double agreed with its adapter in all five places the adapter
+was wrong, because both were written from one reading of their surface. A double
+is evidence only where it can disagree with the thing it is testing, so it must
+quote the system's code, and something must re-check the quotations. Fixing one
+field last session left the class untouched and four more were waiting.
+
+**A repeated probe cannot detect mutation against a sampling decoder.** At
+temperature 0, deepseek-chat returned 4 distinct outputs in 20 identical
+free-form requests and 3 in 20 structured ones. So *ask twice and compare* reads
+a decoder as a store that learned, and it rejected an adapter whose state digest
+was byte-identical either side of the query. Fingerprint the state instead —
+another case of a property that can be settled by construction rather than
+sampled for.
+
 **Internal corpora are diagnostic instruments only.** H1 and H2 answer *why a
 system failed*. They cannot answer *whether it works elsewhere* — they were
 written by the author of the mechanisms they score, and disjoint splits control
@@ -206,17 +221,46 @@ no result file; the ledger still had the $0.014.
 
 ## Immediate next steps
 
-1. Real CUPMem against ARENA-0 fixtures — reset, session and time semantics,
-   answer shape, abstention, evidence and cost observability, query-time state
-   mutation. **Ignore accuracy entirely.**
-2. If operational fit passes: 10–20 unit infra dry-run.
-3. Freeze adapter and config; frozen run; **put CUPMem down**.
+1. ~~Real CUPMem against ARENA-0 fixtures.~~ **Done. Nine of nine, accuracy not
+   scored.** Source, embedding revision and decoding are pinned; cost is native
+   and fully known; the query path is read-only over state, proved by fingerprint.
+2. **Blocked — two decisions.** The dry-run needs a corpus and a budget, and
+   neither exists yet.
+   - *Corpus.* STALE ships a generation pipeline and no data, so using it means
+     generating it, at its own model cost. LongMemEval-S cleaned is on disk with
+     a frozen 36-question bridge selection, but that selection was frozen for a
+     lexical-retrieval protocol rather than for the arena.
+   - *Budget.* Measured, not guessed: CUPMem's ingestion costs 7.8 calls and
+     13,200 prompt tokens per single-turn session. The bridge is 1,736 sessions
+     over 36 units, averaging 5.1 user turns each, so a 20-unit dry-run is **at
+     least $4.19 and realistically several times that**, per system, ingestion
+     only. Total project spend to date is under $2.
+3. Then: freeze adapter and config; frozen run; **put CUPMem down**.
 4. Hindsight adapter. Same sequence.
 5. Graphiti, then Mem0.
 6. Phase B.
 
 ## Open blockers
 
+- **The arena has no corpus.** Every plan above says *dry-run* and *frozen run*
+  without naming what they run on. STALE has no data in its repository and
+  LongMemEval's bridge selection was frozen for a different protocol.
+- **The arena has no budget.** The first measured rate puts one system's 20-unit
+  dry-run at a floor of $4.19 and five systems' full bridge well into three
+  figures.
+- **A frozen run will not be reproducible.** The decoder is not deterministic at
+  temperature 0, so a per-probe difference between two systems carries variance
+  that has not been separated from the systems. Repeating each probe *k* times
+  measures it and multiplies the cost by *k*.
+- **`evidence_ids` is underspecified: whose id space?** The reference adapter
+  returns arena record ids because it stores the records. CUPMem returns its own
+  item ids, because it stores facts it extracted. The harness cannot ask *was the
+  gold record retrieved* across both. Per the rule below, question the
+  requirement first: record-level evidence provenance may be a requirement that
+  exists only because our own system happens to have it.
+- **The frozen contract's `read_only` is stronger than read-only.** It is checked
+  by comparing two query outputs, so it means read-only *and* reproducible.
+  CUPMem is declared `unknown` while a state fingerprint proves it read-only.
 - Arena infrastructure: databases for Graphiti and Hindsight; API budget for
   systems whose ingestion calls a model
 - `MemEval` may carry the harness — audited in #35, with the recorded caveat

@@ -128,7 +128,12 @@ def main() -> int:
     # The frozen contract's own verdict, run unmodified on a fresh pass.
     contract = validate_adapter(CUPMemAdapter(engine), fixture)
 
+    # Their counter, and ours. Theirs is reset by every `adapter.reset()` so
+    # that ingest and query price separately; reading a run total off it reports
+    # only what happened after the last reset. The arena's ledger sits under the
+    # system and cannot be cleared by it.
     usage = engine.llm.get_usage_summary()
+    ledger = engine.llm.client.ledger
     decoding_overrides = getattr(engine.llm.client, "overrides", None)
 
     record = {
@@ -146,18 +151,23 @@ def main() -> int:
         "operational_fit": fit,
         "frozen_contract": contract,
         "run_usage": {
-            "total_calls": usage.get("total_calls"),
-            "cache_hits": usage.get("cache_hits"),
-            "logical_usage": usage.get("logical_usage"),
-            "billed_usage": usage.get("billed_usage"),
-            "by_phase": {k: v.get("calls") for k, v in (usage.get("by_phase") or {}).items()},
+            "arena_ledger": ledger,
+            "arena_ledger_note": ("every provider request this run made, counted "
+                                  "beneath the system so its own resets cannot "
+                                  "clear it"),
+            "system_counter_since_last_reset": {
+                "total_calls": usage.get("total_calls"),
+                "cache_hits": usage.get("cache_hits"),
+                "logical_usage": usage.get("logical_usage"),
+                "billed_usage": usage.get("billed_usage"),
+                "by_phase": {k: v.get("calls")
+                             for k, v in (usage.get("by_phase") or {}).items()},
+            },
         },
         "spend_usd": {
             "run_total": round(
-                (usage.get("billed_usage", {}).get("prompt_tokens", 0) / 1e6
-                 * PRICE_PER_MTOK["input"])
-                + (usage.get("billed_usage", {}).get("completion_tokens", 0) / 1e6
-                   * PRICE_PER_MTOK["output"]), 6),
+                ledger["prompt_tokens"] / 1e6 * PRICE_PER_MTOK["input"]
+                + ledger["completion_tokens"] / 1e6 * PRICE_PER_MTOK["output"], 6),
             "price_per_mtok": PRICE_PER_MTOK,
             "note": "list price at run time; a projection, not an invoice",
         },
@@ -175,8 +185,8 @@ def main() -> int:
     print(f"frozen contract    admissible={contract['admissible']}")
     for problem in contract["problems"]:
         print(f"  problem: {problem}")
-    print(f"calls {usage.get('total_calls')}  "
-          f"billed {usage.get('billed_usage')}  "
+    print(f"run: {ledger['calls']} calls, {ledger['prompt_tokens']} prompt, "
+          f"{ledger['completion_tokens']} completion, "
           f"${record['spend_usd']['run_total']:.4f}")
     return 0
 

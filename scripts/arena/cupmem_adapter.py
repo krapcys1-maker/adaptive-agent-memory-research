@@ -68,10 +68,28 @@ ABSTENTION_CHANNEL = "empty-composed-answer"
 #: reference their retrieval assembles; the rest are here because the walk is
 #: generic, and a hand-written map per system is how an arena acquires five
 #: private schemas.
-_ID_KEYS = frozenset({"id", "uid", "chunk_id", "session_id", "record_id",
-                      "memory_id", "item_id"})
+#:
+#: `session_id` is deliberately absent. Their stored items carry a
+#: `revision_history` whose events name the session an item was revised in, and
+#: including it put `s_001` and `s_002` in the evidence of every probe. A session
+#: is a container, not a record that reached the reader, and counting one inflates
+#: any per-record retrieval analysis built on this field.
+_ID_KEYS = frozenset({"id", "uid", "chunk_id", "record_id", "memory_id", "item_id"})
 
-_TEXT_KEYS = frozenset({"text"})
+#: Where the text of a retrieved record actually lives in their hits. Their query
+#: path renders an item as `bucket / local_track / value / status` and ships the
+#: payload, so `value` is the record's own text and `reason` is its equivalent on
+#: an unknown-current track. `text` is here for their fallback shape.
+#:
+#: `text_preview` is deliberately absent: it is a 160-character truncation of a
+#: rendering whose `value` is already counted, so including it would count one
+#: record twice and count the second copy wrong.
+#:
+#: The first version looked only for `text`, which their query path never emits.
+#: It reported `context_tokens: 0` for a system that had just delivered four
+#: records — a false zero of exactly the kind this project refuses to let an
+#: unknown become.
+_TEXT_KEYS = frozenset({"text", "value", "reason"})
 
 
 def _elapsed_us(started: float) -> int:
@@ -184,11 +202,23 @@ class CUPMemAdapter:
     #: run turns it into a measurement by fingerprinting engine state either side
     #: of a query.
     #:
-    #: It stays `unknown` rather than `read_only` because the contract's check
-    #: for `read_only` compares two query *outputs*, and their answers are drawn
-    #: from a sampling model. Declaring `read_only` would be rejected for
-    #: nondeterminism the declaration was never about. The state proof is carried
-    #: in the operational-fit record instead of being asserted here.
+    #: Their query path is read-only over engine state. That is established twice
+    #: over: no `apply_update`, no `chunk_bank` append and no counter advance
+    #: appears anywhere under `query/`, and a live run fingerprinted everything
+    #: their own `reset()` clears either side of a query and got identical digests.
+    #:
+    #: It is still declared `unknown`, because the contract's `read_only` is a
+    #: stronger predicate than the one that was proved. The contract tests it by
+    #: comparing two query *outputs*, so `read_only` there means read-only *and*
+    #: reproducible. The second half does not hold: at the arena's fixed
+    #: temperature of 0 one run repeated a probe identically and the next did not.
+    #: Declaring `read_only` therefore made the adapter inadmissible for decoder
+    #: variance the declaration was never about.
+    #:
+    #: `unknown` is the honest value in the contract's vocabulary, and it costs
+    #: something real: a harness reading this field alone cannot learn that probe
+    #: order does not matter for CUPMem. The state proof is carried in the
+    #: operational-fit record, which keeps the two questions apart.
     query_mutates_state = "unknown"
 
     name = "CUPMem"
@@ -320,11 +350,17 @@ class CUPMemAdapter:
                 "cost_observability": self._cost_observability(),
                 "evidence_observability": "native" if evidence else "none-returned",
                 "context_tokens_basis": (
-                    "distinct `text` fields of their reported relevant_context, "
-                    "whitespace-split; their second-pass fallback evidence never "
-                    "enters that structure, so this is a floor"
+                    "distinct record text in their reported relevant_context "
+                    "(`value`, `reason`, `text`), whitespace-split; their "
+                    "second-pass fallback evidence never enters that structure, "
+                    "so this is a floor"
                 ),
                 "context_tokens_is_floor": True,
+                # Evidence with no text is a contradiction, not a cheap query.
+                # Recorded here so operational fit can fail on it rather than
+                # letting a false zero into a cost column.
+                "context_tokens_measurable": bool(
+                    _context_tokens(context)) or not evidence,
             },
         )
 

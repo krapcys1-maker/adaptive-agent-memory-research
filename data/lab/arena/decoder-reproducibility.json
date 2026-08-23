@@ -1,0 +1,51 @@
+{
+  "artifact": "arena-decoder-reproducibility",
+  "recorded_at": "2026-08-23T19:38:00+00:00",
+  "question": "does the arena's fixed decoding make a repeated identical request return an identical answer",
+  "why_it_matters": "the frozen contract detects query-time state mutation by repeating a probe and comparing outputs. Without a reproducible decoder that test cannot separate a store that learned from a decoder that drew differently, and it rejected an adapter whose state digest was identical either side of the query",
+  "model": "deepseek-chat",
+  "base_url": "https://api.deepseek.com/v1",
+  "decoding": {
+    "temperature": 0
+  },
+  "results": {
+    "short_factual": {
+      "repeats": 20,
+      "distinct_outputs": 1,
+      "modal_share": 1.0,
+      "reproducible": true,
+      "samples": [
+        "Paris"
+      ]
+    },
+    "free_form": {
+      "repeats": 20,
+      "distinct_outputs": 4,
+      "modal_share": 0.75,
+      "reproducible": false,
+      "samples": [
+        "A memory system should retain the record that a fact was superseded to preserve the temporal integrity of knowledge, allowing it to accurately reconstruct past states and answer historical queries. This record also enables the system to trace the evolution of beliefs, detect conflicting information, and recover the previous fact if the newer one is later invalidated.",
+        "A memory system should retain the record that a fact was superseded to preserve the temporal integrity of knowledge, allowing it to accurately reconstruct past states and answer historical queries. This record also enables the system to trace the reasoning behind updates, detect conflicting information, and avoid re-adopting outdated facts when new evidence is later invalidated.",
+        "A memory system should retain the record that a fact was superseded to preserve the temporal integrity of knowledge, allowing it to accurately reconstruct past states and answer historical queries. This record also enables the system to trace the reasoning behind updates, detect conflicting information, and avoid the irreversible loss of context that could lead to logical inconsistencies or errone"
+      ]
+    },
+    "structured_json": {
+      "repeats": 20,
+      "distinct_outputs": 3,
+      "modal_share": 0.9,
+      "reproducible": false,
+      "samples": [
+        "{\"status\": \"OUTDATED\", \"reason\": \"The stored fact from day 1 is superseded by the later record from day 9 indicating the new staging host.\"}",
+        "{\"status\": \"OUTDATED\", \"reason\": \"The stored fact from day 1 is superseded by the later record from day 9 indicating the staging host has changed to https://c.internal:8443.\"}",
+        "{\"status\": \"OUTDATED\", \"reason\": \"The stored fact from day 1 is superseded by the later record from day 9, which specifies the current staging host.\"}"
+      ]
+    }
+  },
+  "reproducible_everywhere": false,
+  "usage": {
+    "calls": 60,
+    "prompt_tokens": 2640,
+    "completion_tokens": 2155
+  },
+  "scope": "one provider, one model, one day, 20 draws per probe. Reproducibility is a property of a deployment, not of a temperature setting"
+}

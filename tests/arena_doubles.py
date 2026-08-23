@@ -179,9 +179,19 @@ class EngineDouble:
         if self._mutate_on_query:
             self._proposal_counter += 1
 
-        hits = [{"source": "active", "id": item["item_id"],
-                 "text": item["value"], "payload": item} for item in self.store.items]
-        answer = "" if self._abstain else (hits[-1]["text"] if hits else "")
+        # Their query path renders a hit with `text_preview`, a 160-character
+        # truncation, and ships the item as `payload` — so the record's own text
+        # arrives as `payload["value"]` and never under a key called `text`. The
+        # first adapter looked only for `text` and reported zero context tokens
+        # for a system that had just delivered four records.
+        hits = [{"rank_index": n, "score": 1.0, "source": "active",
+                 "source_detail": "strong_active", "id": item["item_id"],
+                 "payload": item, "bucket": item["bucket"],
+                 "local_track": item["local_track"],
+                 "text_preview": item["value"][:160]}
+                for n, item in enumerate(self.store.items, start=1)]
+        answer = "" if self._abstain else (
+            hits[-1]["payload"]["value"] if hits else "")
         return {
             "query_label": query_label,
             "query_text": query_text,

@@ -1,45 +1,532 @@
 {
   "artifact": "cupmem-operational-fit",
   "system": "CUPMem",
+  "recorded_at": "2026-08-23T19:41:30+00:00",
   "against": "the real implementation, not the double",
   "measured": "adapter assumptions only; accuracy deliberately not scored",
+  "source": {
+    "root": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\repos\\icedreamc__STALE",
+    "subtree": "cup_mem",
+    "remote": "https://github.com/icedreamc/STALE",
+    "commit": "ea7d391103a151927cd29d2f01d87597a782bdcb",
+    "commit_date": "2026-05-19T10:36:04+08:00",
+    "working_tree_clean": true,
+    "uncommitted": [],
+    "file_count": 46,
+    "tree_digest_sha256": "6ea117feea0e1a974f02f7673b7986d0df8782315e30a466bd46bf63bcd08e30",
+    "files": "<see cupmem-source-provenance.json>"
+  },
   "embedding_model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
   "target_model": "deepseek-chat",
-  "result": {
+  "decoding": {
+    "temperature": 0
+  },
+  "decoding_overridden_by_system": [
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1849,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1851,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1890,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1938,
+      "completion_tokens": 196
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 2026,
+      "completion_tokens": 196
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1897,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1866,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 2201,
+      "completion_tokens": 166
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 2250,
+      "completion_tokens": 157
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1869,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 2469,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1849,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1860,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1903,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 2026,
+      "completion_tokens": 205
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1938,
+      "completion_tokens": 202
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1892,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 2391,
+      "completion_tokens": 238
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 2367,
+      "completion_tokens": 217
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 1875,
+      "completion_tokens": 8
+    },
+    {
+      "model": "deepseek-chat",
+      "overridden": {
+        "temperature": 0.3
+      },
+      "prompt_tokens": 2352,
+      "completion_tokens": 8
+    }
+  ],
+  "response_cache": null,
+  "operational_fit": {
+    "adapter": "CUPMem",
+    "fit": true,
+    "failures": [],
+    "unverifiable": [],
+    "state_probe_available": true,
+    "observed": {
+      "session_writes": [
+        {
+          "session_index": 0,
+          "session_time": "1",
+          "turns": 1,
+          "roles": [
+            "user"
+          ]
+        },
+        {
+          "session_index": 1,
+          "session_time": "2",
+          "turns": 1,
+          "roles": [
+            "user"
+          ]
+        },
+        {
+          "session_index": 2,
+          "session_time": "9",
+          "turns": 1,
+          "roles": [
+            "user"
+          ]
+        },
+        {
+          "session_index": 3,
+          "session_time": "3",
+          "turns": 1,
+          "roles": [
+            "user"
+          ]
+        }
+      ],
+      "stored_session_times": [
+        "1",
+        "2",
+        "3",
+        "9"
+      ],
+      "record_times": [
+        "1",
+        "2",
+        "3",
+        "9"
+      ],
+      "query_mutation": {
+        "state_changed": false,
+        "output_differed": true,
+        "reading": "read_only state; output nondeterminism is decoding, not memory"
+      },
+      "declared_mutation_mode": "unknown",
+      "abstention": {
+        "derivable_on_every_probe": true,
+        "channel": "empty-composed-answer",
+        "raw": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "premise_status": [
+          "SUPPORTED",
+          "SUPPORTED",
+          "SUPPORTED",
+          "SUPPORTED",
+          "SUPPORTED"
+        ],
+        "abstained": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "evidence": {
+        "ids_per_probe": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "any_evidence": true,
+        "stored_id_count": 18,
+        "ids_not_matching_any_stored_record": [],
+        "context_tokens_per_probe": [
+          77,
+          77,
+          132,
+          77,
+          102
+        ]
+      },
+      "cost": {
+        "ingest": {
+          "model_calls": {
+            "value": 31,
+            "observability": "native",
+            "lower_bound": false
+          },
+          "input_tokens": {
+            "value": 52882,
+            "observability": "native",
+            "lower_bound": false
+          },
+          "output_tokens": {
+            "value": 2821,
+            "observability": "native",
+            "lower_bound": false
+          },
+          "wall_microseconds": {
+            "value": 34110000,
+            "observability": "instrumented",
+            "lower_bound": false
+          },
+          "fully_known": true,
+          "is_lower_bound": false
+        },
+        "ingest_wall_seconds": 34.11,
+        "per_query": [
+          {
+            "model_calls": {
+              "value": 3,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "input_tokens": {
+              "value": 9207,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "output_tokens": {
+              "value": 703,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "wall_microseconds": {
+              "value": 6640000,
+              "observability": "instrumented",
+              "lower_bound": false
+            },
+            "fully_known": true,
+            "is_lower_bound": false
+          },
+          {
+            "model_calls": {
+              "value": 3,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "input_tokens": {
+              "value": 9198,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "output_tokens": {
+              "value": 723,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "wall_microseconds": {
+              "value": 6141000,
+              "observability": "instrumented",
+              "lower_bound": false
+            },
+            "fully_known": true,
+            "is_lower_bound": false
+          },
+          {
+            "model_calls": {
+              "value": 7,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "input_tokens": {
+              "value": 17316,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "output_tokens": {
+              "value": 1350,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "wall_microseconds": {
+              "value": 12562000,
+              "observability": "instrumented",
+              "lower_bound": false
+            },
+            "fully_known": true,
+            "is_lower_bound": false
+          },
+          {
+            "model_calls": {
+              "value": 3,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "input_tokens": {
+              "value": 9130,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "output_tokens": {
+              "value": 616,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "wall_microseconds": {
+              "value": 5406000,
+              "observability": "instrumented",
+              "lower_bound": false
+            },
+            "fully_known": true,
+            "is_lower_bound": false
+          },
+          {
+            "model_calls": {
+              "value": 5,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "input_tokens": {
+              "value": 10624,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "output_tokens": {
+              "value": 928,
+              "observability": "native",
+              "lower_bound": false
+            },
+            "wall_microseconds": {
+              "value": 8719000,
+              "observability": "instrumented",
+              "lower_bound": false
+            },
+            "fully_known": true,
+            "is_lower_bound": false
+          }
+        ],
+        "observability": {
+          "calls": "native",
+          "prompt_tokens": "native",
+          "completion_tokens": "native"
+        }
+      },
+      "reset": {
+        "state_returns_to_empty": true,
+        "evidence_after_reset": [],
+        "context_tokens_after_reset": 0
+      }
+    },
+    "note": "operational fit is about the adapter's assumptions, not the system's answers. Accuracy is deliberately not scored here"
+  },
+  "frozen_contract": {
     "admissible": true,
     "problems": [],
     "adapter": "CUPMem",
     "probes_answered": 3,
     "ingest_cost": {
       "model_calls": {
-        "value": null,
-        "observability": "unobservable",
+        "value": 31,
+        "observability": "native",
         "lower_bound": false
       },
       "input_tokens": {
-        "value": null,
-        "observability": "unobservable",
+        "value": 52124,
+        "observability": "native",
         "lower_bound": false
       },
       "output_tokens": {
-        "value": null,
-        "observability": "unobservable",
+        "value": 3009,
+        "observability": "native",
         "lower_bound": false
       },
       "wall_microseconds": {
-        "value": 0,
+        "value": 34031000,
         "observability": "instrumented",
         "lower_bound": false
       },
-      "fully_known": false,
+      "fully_known": true,
       "is_lower_bound": false
     },
-    "cost_fully_known": false,
+    "cost_fully_known": true,
     "cost_is_lower_bound": false,
-    "mean_context_tokens": 101.333,
+    "mean_context_tokens": 85.667,
     "abstentions": 0,
     "query_mutates_state": "unknown",
-    "repeated_query_differed": true,
+    "repeated_query_differed": false,
     "note": "admissible means the adapter obeys the contract, never that the system is good. Rejecting one here costs nothing; discovering it mid-run costs the run"
+  },
+  "run_usage": {
+    "arena_ledger": {
+      "calls": 108,
+      "prompt_tokens": 216137,
+      "completion_tokens": 15671
+    },
+    "arena_ledger_note": "every provider request this run made, counted beneath the system so its own resets cannot clear it",
+    "system_counter_since_last_reset": {
+      "total_calls": 4,
+      "cache_hits": 0,
+      "logical_usage": {
+        "prompt_tokens": 5584,
+        "completion_tokens": 979,
+        "total_tokens": 6563
+      },
+      "billed_usage": {
+        "prompt_tokens": 5584,
+        "completion_tokens": 979,
+        "total_tokens": 6563
+      },
+      "by_phase": {
+        "query_parser": 1,
+        "premise_verifier": 2,
+        "answer_composer": 1
+      }
+    }
+  },
+  "spend_usd": {
+    "run_total": 0.075595,
+    "price_per_mtok": {
+      "input": 0.27,
+      "output": 1.1
+    },
+    "note": "list price at run time; a projection, not an invoice"
   }
 }

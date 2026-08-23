@@ -20,13 +20,22 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from arena.decoding import ARENA_DECODING, FixedDecoding  # noqa: E402
 
 
+class _Usage:
+    prompt_tokens = 100
+    completion_tokens = 10
+
+
+class _Response:
+    usage = _Usage()
+
+
 class _Completions:
     def __init__(self) -> None:
         self.seen: list[dict] = []
 
     def create(self, **kwargs):
         self.seen.append(kwargs)
-        return {"ok": True}
+        return _Response()
 
     def other_method(self) -> str:
         return "untouched"
@@ -69,7 +78,7 @@ def test_an_override_is_recorded_rather_than_swallowed() -> None:
     client = FixedDecoding(_Client())
     client.chat.completions.create(model="m", messages=[], temperature=0.7)
     client.chat.completions.create(model="m", messages=[])
-    assert client.overrides == [{"model": "m", "overridden": {"temperature": 0.7}}]
+    assert [c["overridden"] for c in client.overrides] == [{"temperature": 0.7}]
     assert len(client.request_log) == 2
 
 
@@ -92,3 +101,51 @@ def test_the_fixed_parameters_can_be_stated_explicitly() -> None:
     client.chat.completions.create(model="m", messages=[])
     sent = client._inner.chat.completions.seen[0]
     assert sent["temperature"] == 0 and sent["top_p"] == 1
+
+
+# ------------------------------------------------------------------- the ledger
+
+
+def test_the_ledger_counts_every_request_the_run_made() -> None:
+    client = FixedDecoding(_Client())
+    for _ in range(3):
+        client.chat.completions.create(model="m", messages=[])
+    assert client.ledger == {"calls": 3, "prompt_tokens": 300, "completion_tokens": 30}
+
+
+def test_the_ledger_survives_what_the_system_can_reset() -> None:
+    """The bug this exists for, stated as a test.
+
+    CUPMem's own counter is cleared by `reset_usage_tracking`, and the adapter
+    calls it on every reset so ingest and query price separately. A run total
+    read from that counter reported four calls for a run that made seventy-one.
+    """
+    client = FixedDecoding(_Client())
+    client.chat.completions.create(model="m", messages=[])
+
+    class SystemThatResets:
+        def __init__(self, provider): self.client, self._n = provider, 0
+        def reset_usage_tracking(self): self._n = 0
+        def get_usage_summary(self): return {"total_calls": self._n}
+
+    system = SystemThatResets(client)
+    system.reset_usage_tracking()
+
+    assert system.get_usage_summary()["total_calls"] == 0
+    assert client.ledger["calls"] == 1
+
+
+def test_a_response_without_usage_counts_the_call_and_no_tokens() -> None:
+    """Unknown tokens are not zero tokens, but an uncounted call is a lost call."""
+    class NoUsage:
+        usage = None
+
+    class Bare(_Completions):
+        def create(self, **kwargs):
+            self.seen.append(kwargs)
+            return NoUsage()
+
+    client = FixedDecoding(_Client())
+    client.chat.completions._inner = Bare()
+    client.chat.completions.create(model="m", messages=[])
+    assert client.ledger == {"calls": 1, "prompt_tokens": 0, "completion_tokens": 0}

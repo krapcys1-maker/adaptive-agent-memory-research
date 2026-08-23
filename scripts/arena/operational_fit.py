@@ -276,6 +276,15 @@ def operational_fit(
         failures.append(
             f"evidence observability: {len(unreal)} surfaced ids match nothing stored"
         )
+    contradictory = [index for index, answer in enumerate(answers)
+                     if answer.evidence_ids and not answer.context_tokens]
+    observed["evidence"]["context_tokens_per_probe"] = [a.context_tokens for a in answers]
+    if contradictory:
+        failures.append(
+            f"context cost: probes {contradictory} surfaced evidence and reported zero "
+            "context tokens. Records reached the reader, so the zero is a measurement "
+            "that failed, not a query that was free"
+        )
 
     observed["cost"] = {
         "ingest": ingest_cost.summary() if isinstance(ingest_cost, Cost) else None,

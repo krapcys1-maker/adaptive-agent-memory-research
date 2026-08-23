@@ -1,0 +1,357 @@
+{
+  "artifact": "arena-run-cost-projection",
+  "recorded_at": "2026-08-23T19:46:01+00:00",
+  "system": "CUPMem",
+  "corpus": "LongMemEval-S cleaned, restricted to the frozen bridge selection",
+  "rate": {
+    "calls_per_session": 7.75,
+    "prompt_tokens_per_session": 13220.5,
+    "completion_tokens_per_session": 705.25,
+    "measured_on": "4 single-turn sessions in the ARENA-0 operational-fit run; ingestion only, query cost excluded"
+  },
+  "shape": {
+    "units": 36,
+    "sessions_total": 1736,
+    "sessions_median": 48.0,
+    "user_turns_total": 8830,
+    "user_turns_median": 246.0,
+    "words_total": 2834173
+  },
+  "projections": {
+    "1_units": {
+      "units": 1,
+      "sessions": 48,
+      "ingest_calls": 374,
+      "ingest_prompt_tokens": 637522,
+      "ingest_completion_tokens": 34009,
+      "ingest_usd": 0.21,
+      "is_floor": true,
+      "why_a_floor": "the rate was measured on single-turn sessions. Their write path spends per extracted chunk, and a session of many turns yields more chunks, so a real session costs at least this and probably several times it"
+    },
+    "10_units": {
+      "units": 10,
+      "sessions": 482,
+      "ingest_calls": 3737,
+      "ingest_prompt_tokens": 6375219,
+      "ingest_completion_tokens": 340087,
+      "ingest_usd": 2.1,
+      "is_floor": true,
+      "why_a_floor": "the rate was measured on single-turn sessions. Their write path spends per extracted chunk, and a session of many turns yields more chunks, so a real session costs at least this and probably several times it"
+    },
+    "20_units": {
+      "units": 20,
+      "sessions": 964,
+      "ingest_calls": 7474,
+      "ingest_prompt_tokens": 12750438,
+      "ingest_completion_tokens": 680174,
+      "ingest_usd": 4.19,
+      "is_floor": true,
+      "why_a_floor": "the rate was measured on single-turn sessions. Their write path spends per extracted chunk, and a session of many turns yields more chunks, so a real session costs at least this and probably several times it"
+    },
+    "36_units": {
+      "units": 36,
+      "sessions": 1736,
+      "ingest_calls": 13454,
+      "ingest_prompt_tokens": 22950788,
+      "ingest_completion_tokens": 1224314,
+      "ingest_usd": 7.54,
+      "is_floor": true,
+      "why_a_floor": "the rate was measured on single-turn sessions. Their write path spends per extracted chunk, and a session of many turns yields more chunks, so a real session costs at least this and probably several times it"
+    }
+  },
+  "excluded_from_every_figure": [
+    "query cost, measured at 3 to 7 calls and 9k to 17k prompt tokens per probe",
+    "retries, which their client makes up to three of per call",
+    "every other system in the arena, whose rate is its own and unmeasured"
+  ],
+  "per_unit": [
+    {
+      "question_id": "726462e0",
+      "question_type": "single-session-user",
+      "sessions": 48,
+      "turns": 501,
+      "user_turns": 249,
+      "words": 78236
+    },
+    {
+      "question_id": "ec81a493",
+      "question_type": "single-session-user",
+      "sessions": 51,
+      "turns": 495,
+      "user_turns": 246,
+      "words": 82236
+    },
+    {
+      "question_id": "001be529",
+      "question_type": "single-session-user",
+      "sessions": 51,
+      "turns": 514,
+      "user_turns": 255,
+      "words": 79486
+    },
+    {
+      "question_id": "545bd2b5",
+      "question_type": "single-session-user",
+      "sessions": 44,
+      "turns": 461,
+      "user_turns": 229,
+      "words": 77457
+    },
+    {
+      "question_id": "76d63226",
+      "question_type": "single-session-user",
+      "sessions": 48,
+      "turns": 489,
+      "user_turns": 242,
+      "words": 78352
+    },
+    {
+      "question_id": "29f2956b_abs",
+      "question_type": "single-session-user",
+      "sessions": 50,
+      "turns": 494,
+      "user_turns": 245,
+      "words": 79502
+    },
+    {
+      "question_id": "b3c15d39",
+      "question_type": "multi-session",
+      "sessions": 51,
+      "turns": 502,
+      "user_turns": 248,
+      "words": 75997
+    },
+    {
+      "question_id": "35a27287",
+      "question_type": "single-session-preference",
+      "sessions": 51,
+      "turns": 519,
+      "user_turns": 258,
+      "words": 77926
+    },
+    {
+      "question_id": "32260d93",
+      "question_type": "single-session-preference",
+      "sessions": 46,
+      "turns": 524,
+      "user_turns": 259,
+      "words": 76415
+    },
+    {
+      "question_id": "a89d7624",
+      "question_type": "single-session-preference",
+      "sessions": 49,
+      "turns": 496,
+      "user_turns": 245,
+      "words": 78555
+    },
+    {
+      "question_id": "b0479f84",
+      "question_type": "single-session-preference",
+      "sessions": 48,
+      "turns": 502,
+      "user_turns": 249,
+      "words": 78582
+    },
+    {
+      "question_id": "07b6f563",
+      "question_type": "single-session-preference",
+      "sessions": 52,
+      "turns": 524,
+      "user_turns": 260,
+      "words": 79772
+    },
+    {
+      "question_id": "a11281a2",
+      "question_type": "multi-session",
+      "sessions": 50,
+      "turns": 457,
+      "user_turns": 226,
+      "words": 79011
+    },
+    {
+      "question_id": "77eafa52",
+      "question_type": "multi-session",
+      "sessions": 51,
+      "turns": 527,
+      "user_turns": 262,
+      "words": 79064
+    },
+    {
+      "question_id": "157a136e",
+      "question_type": "multi-session",
+      "sessions": 47,
+      "turns": 503,
+      "user_turns": 251,
+      "words": 79453
+    },
+    {
+      "question_id": "21d02d0d",
+      "question_type": "multi-session",
+      "sessions": 47,
+      "turns": 497,
+      "user_turns": 246,
+      "words": 79623
+    },
+    {
+      "question_id": "ba358f49_abs",
+      "question_type": "multi-session",
+      "sessions": 48,
+      "turns": 477,
+      "user_turns": 238,
+      "words": 78502
+    },
+    {
+      "question_id": "09ba9854_abs",
+      "question_type": "multi-session",
+      "sessions": 50,
+      "turns": 513,
+      "user_turns": 255,
+      "words": 79019
+    },
+    {
+      "question_id": "gpt4_e072b769",
+      "question_type": "temporal-reasoning",
+      "sessions": 45,
+      "turns": 444,
+      "user_turns": 219,
+      "words": 80556
+    },
+    {
+      "question_id": "gpt4_8e165409",
+      "question_type": "temporal-reasoning",
+      "sessions": 47,
+      "turns": 480,
+      "user_turns": 238,
+      "words": 77792
+    },
+    {
+      "question_id": "gpt4_2487a7cb",
+      "question_type": "temporal-reasoning",
+      "sessions": 47,
+      "turns": 495,
+      "user_turns": 246,
+      "words": 79083
+    },
+    {
+      "question_id": "gpt4_76048e76",
+      "question_type": "temporal-reasoning",
+      "sessions": 44,
+      "turns": 482,
+      "user_turns": 238,
+      "words": 78902
+    },
+    {
+      "question_id": "gpt4_d9af6064",
+      "question_type": "temporal-reasoning",
+      "sessions": 51,
+      "turns": 534,
+      "user_turns": 265,
+      "words": 79059
+    },
+    {
+      "question_id": "c8090214_abs",
+      "question_type": "temporal-reasoning",
+      "sessions": 53,
+      "turns": 506,
+      "user_turns": 253,
+      "words": 78799
+    },
+    {
+      "question_id": "031748ae",
+      "question_type": "knowledge-update",
+      "sessions": 46,
+      "turns": 494,
+      "user_turns": 246,
+      "words": 79999
+    },
+    {
+      "question_id": "618f13b2",
+      "question_type": "knowledge-update",
+      "sessions": 49,
+      "turns": 506,
+      "user_turns": 252,
+      "words": 79786
+    },
+    {
+      "question_id": "01493427",
+      "question_type": "knowledge-update",
+      "sessions": 47,
+      "turns": 487,
+      "user_turns": 242,
+      "words": 77735
+    },
+    {
+      "question_id": "cf22b7bf",
+      "question_type": "knowledge-update",
+      "sessions": 55,
+      "turns": 550,
+      "user_turns": 273,
+      "words": 78172
+    },
+    {
+      "question_id": "c7dc5443",
+      "question_type": "knowledge-update",
+      "sessions": 46,
+      "turns": 478,
+      "user_turns": 238,
+      "words": 80105
+    },
+    {
+      "question_id": "0ddfec37_abs",
+      "question_type": "knowledge-update",
+      "sessions": 45,
+      "turns": 447,
+      "user_turns": 222,
+      "words": 78178
+    },
+    {
+      "question_id": "f685340e_abs",
+      "question_type": "knowledge-update",
+      "sessions": 43,
+      "turns": 456,
+      "user_turns": 227,
+      "words": 79036
+    },
+    {
+      "question_id": "6ae235be",
+      "question_type": "single-session-assistant",
+      "sessions": 48,
+      "turns": 454,
+      "user_turns": 226,
+      "words": 78096
+    },
+    {
+      "question_id": "8cf51dda",
+      "question_type": "single-session-assistant",
+      "sessions": 46,
+      "turns": 454,
+      "user_turns": 225,
+      "words": 78261
+    },
+    {
+      "question_id": "7a8d0b71",
+      "question_type": "single-session-assistant",
+      "sessions": 45,
+      "turns": 489,
+      "user_turns": 243,
+      "words": 79090
+    },
+    {
+      "question_id": "ac031881",
+      "question_type": "single-session-assistant",
+      "sessions": 47,
+      "turns": 529,
+      "user_turns": 264,
+      "words": 77578
+    },
+    {
+      "question_id": "c8f1aeed",
+      "question_type": "single-session-assistant",
+      "sessions": 50,
+      "turns": 504,
+      "user_turns": 250,
+      "words": 76758
+    }
+  ]
+}

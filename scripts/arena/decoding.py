@@ -44,8 +44,17 @@ class _Completions:
         # override is recorded rather than swallowed so the divergence is visible.
         overridden = {k: kwargs[k] for k in self._fixed if k in kwargs
                       and kwargs[k] != self._fixed[k]}
-        self._calls.append({"model": kwargs.get("model"), "overridden": overridden})
-        return self._inner.create(**{**kwargs, **self._fixed})
+        response = self._inner.create(**{**kwargs, **self._fixed})
+        usage = getattr(response, "usage", None)
+        self._calls.append({
+            "model": kwargs.get("model"),
+            "overridden": overridden,
+            # Per call, not per run. A background run once died after 29 calls
+            # with no result file, and the spend was still real.
+            "prompt_tokens": int(getattr(usage, "prompt_tokens", 0) or 0),
+            "completion_tokens": int(getattr(usage, "completion_tokens", 0) or 0),
+        })
+        return response
 
     def __getattr__(self, name: str) -> Any:
         return getattr(self._inner, name)
@@ -78,6 +87,23 @@ class FixedDecoding:
     def overrides(self) -> list[dict[str, Any]]:
         """Requests where the system asked for decoding the arena refused."""
         return [call for call in self.request_log if call["overridden"]]
+
+    @property
+    def ledger(self) -> dict[str, int]:
+        """The arena's own spend ledger, which the system cannot reset.
+
+        CUPMem's tracker is cleared by `reset_usage_tracking`, and the adapter
+        calls it on every `reset()` so that ingest and query are priced
+        separately. Reading a *run* total off that counter therefore reports
+        whatever happened after the last reset — four calls for a run that made
+        seventy-one. Both numbers are wanted, so both are kept, in ledgers with
+        different owners and different lifetimes.
+        """
+        return {
+            "calls": len(self.request_log),
+            "prompt_tokens": sum(c["prompt_tokens"] for c in self.request_log),
+            "completion_tokens": sum(c["completion_tokens"] for c in self.request_log),
+        }
 
     def __getattr__(self, name: str) -> Any:
         return getattr(self._inner, name)

@@ -88,6 +88,10 @@ class CUPMemStateProbe:
         ids += [str(getattr(delta, "delta_id", "")) for delta in self._engine.delta_store]
         ids += [str(link.get("stale_item_id", ""))
                 for link in snapshot.get("stale_support_links", [])]
+        # Session ids, because their revision_history names one per event. The
+        # question this list answers is *fabricated or not*, and a session their
+        # own store recorded is not fabricated even when it is not a record.
+        ids += [str(item.get("created_session_id", "")) for item in self._items()]
         return [value for value in dict.fromkeys(ids) if value and value != "/"]
 
     def _items(self) -> list[dict[str, Any]]:
