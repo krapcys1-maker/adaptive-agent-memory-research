@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1.0",
+  "status": "design-freeze-candidate-not-executed",
+  "snapshot_rule": "materialize the Git tree and canonical memory events at or before each query_cutoff_commit",
+  "include": [
+    {
+      "class": "canonical_research",
+      "patterns": ["README.md", "START_HERE.md", "RESEARCH_PLAN.md", "CONTRIBUTING.md", "docs/**/*.md"]
+    },
+    {
+      "class": "canonical_memory",
+      "patterns": ["memory/events.jsonl", "memory/records/*.md"]
+    },
+    {
+      "class": "reviewed_lab_summary",
+      "patterns": ["data/lab/**/README.md", "data/lab/**/report.md"]
+    },
+    {
+      "class": "reviewed_catalog",
+      "patterns": [
+        "data/catalogs/repositories-current.csv",
+        "data/catalogs/repository-revisions.csv",
+        "data/catalogs/dense-retrieval-candidates.csv",
+        "docs/07-literature/evidence-ledger.csv"
+      ]
+    }
+  ],
+  "registered_factor_only": [
+    {
+      "path": "memory/CURRENT_STATE.md",
+      "primary": "excluded",
+      "secondary": "included",
+      "reason": "measure the value and leakage risk of a curated summary separately"
+    }
+  ],
+  "exclude": [
+    "data/lab/**/blind/**",
+    "data/lab/**/artifacts/**",
+    "data/lab/**/raw/**",
+    "data/lab/api-screening/**",
+    "data/lab/**/*gold*",
+    "data/lab/**/*annotation*",
+    "data/lab/**/cases.jsonl",
+    "data/lab/**/queries.jsonl",
+    "tests/**",
+    "scripts/**",
+    "tools/**",
+    "external/**",
+    "sources/papers/**",
+    "memory/.index/**",
+    ".env",
+    "**/.git/**",
+    "**/__pycache__/**",
+    "**/.pytest_cache/**"
+  ],
+  "unitization": {
+    "markdown": "heading section with direct body; child sections are separate; preserve heading path in hidden locator",
+    "project_memory": "one active or historically valid event per unit; superseded events remain available for temporal gold",
+    "catalog": "one data row per unit with frozen column order",
+    "oversize": "split only at deterministic paragraph boundaries under a UTF-8 byte ceiling chosen on development and frozen before test",
+    "exact_duplicates": "collapse identical search_text hashes into one ranked unit and preserve every source alias",
+    "near_duplicates": "preserve and report; do not tune a similarity deduplicator on test"
+  },
+  "primary_backend_visible_fields": ["unit_id", "search_text"],
+  "pending_before_execution": [
+    "independent eligibility review",
+    "freeze UTF-8 byte ceiling on outcome-hidden development",
+    "implement and test historical Git-tree reconstruction",
+    "verify no test query log or label path enters any unit",
+    "freeze source-unit manifest hashes"
+  ]
+}

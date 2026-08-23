@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json",
+  "title": "PMLAB natural-history source unit v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "unit_id",
+    "snapshot_commit",
+    "source_type",
+    "path",
+    "locator",
+    "search_text",
+    "search_text_sha256",
+    "source_blob_sha256",
+    "eligibility_class",
+    "backend_visible_fields"
+  ],
+  "properties": {
+    "unit_id": {
+      "type": "string",
+      "pattern": "^U-[a-f0-9]{16}$",
+      "description": "Opaque ID derived from the frozen snapshot, locator, and content hash; it must not encode time, category, or relevance."
+    },
+    "snapshot_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "source_type": {
+      "enum": [
+        "project_memory_event",
+        "markdown_section",
+        "catalog_row",
+        "lab_summary_section"
+      ]
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "enum": ["event_id", "heading_path_and_occurrence", "row_primary_key"]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "search_text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The byte-identical UTF-8 text passed to every retrieval representation before its documented tokenizer."
+    },
+    "search_text_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_blob_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "eligibility_class": {
+      "enum": [
+        "canonical_research",
+        "canonical_memory",
+        "reviewed_lab_summary",
+        "reviewed_catalog"
+      ]
+    },
+    "valid_time": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "recorded_time": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "status": {
+      "type": ["string", "null"]
+    },
+    "trust": {
+      "type": ["string", "null"]
+    },
+    "source_aliases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "locator"],
+        "properties": {
+          "path": {"type": "string"},
+          "locator": {"type": "string"}
+        }
+      },
+      "description": "Exact duplicate byte sources collapsed before ranking; near duplicates are not collapsed."
+    },
+    "backend_visible_fields": {
+      "const": ["unit_id", "search_text"],
+      "description": "The primary B1/B2/C1/C2 comparison receives no path, filename, time, status, trust, or label."
+    }
+  }
+}

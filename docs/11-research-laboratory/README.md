@@ -67,6 +67,13 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/11-research-laboratory/deepseek-screening-pilot.md` — preregistered public-metadata admission pilot with a cumulative USD 10 hard cap.
 - `data/lab/api-screening/deepseek-v4-flash-screening-125-20260822/source-review-report.md` — deterministic identity audit and abstract-level disposition of all 37 model-included candidates.
 - `docs/11-research-laboratory/project-memory-lab-v0.md` — preregistration draft for the first real project benchmark.
+- `docs/07-literature/local-dense-hybrid-retrieval-audit.md` — primary-source audit and revision-pinned candidates for multilingual local dense retrieval, exact search, and untuned fusion.
+- `docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md` — prospective authentic-query protocol for the next matched B1/B2/local-dense/RRF comparison.
+- `data/lab/pmlab-natural-history-v0/manifest.json` — machine-readable execution locks, arms, and sample-size rule for that comparison.
+- `data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json` — model-independent inclusion, exclusion, unitization, exact-duplicate, and metadata-visibility rules.
+- `data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md` — pre-builder inventory showing why gold, blind, raw, and generated artifacts cannot be indexed naively.
+- `docs/11-research-laboratory/natural-completeness-controller-benchmark-protocol-v0.md` — separate N0-N3 sufficiency, abstention, closure, and escalation benchmark.
+- `data/lab/pmlab-completeness-natural-v0/manifest.json` — machine-readable controller arms and unresolved execution gates.
 - `docs/11-research-laboratory/compression-benchmark-extension.md` — preregistered repeated-compaction, model-change, semantic-completion, and factor-separated emotion tests.
 - `docs/11-research-laboratory/replay-benchmark-extension.md` — preregistered phase-conditioned replay, compression-throughput, and sampling-safety tests.
 - `docs/11-research-laboratory/revision-benchmark-extension.md` — preregistered versioning, non-mutating retrieval, return, and representation-dissociation tests.
@@ -142,4 +149,4 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 
 ## Immediate laboratory milestone
 
-The frozen lexical baseline and public LongMemEval bridge are complete; both are spent for tuning. Next preregister a matched B1/B2/local-dense/hybrid comparison on new natural project histories, and separately test a completeness controller for incomplete, stale, poison, and multi-evidence cases. Do not admit embeddings, graph, salience, or product architecture without that new comparison. H-tier or cross-family replication remains required for confirmation.
+The frozen lexical baseline and public LongMemEval bridge are complete and spent. The next natural-history retrieval and completeness-controller protocols now exist, but execution is locked. Build the common source-unit manifest and authentic outcome-hidden development set first; independently adjudicate the obligation mapper before any completeness candidate runs. Dense representation may be screened only with exact search and identical units. Storage engines, ANN, graphs, salience, emotion, and product architecture remain downstream. H-tier or cross-family replication remains required for confirmation.

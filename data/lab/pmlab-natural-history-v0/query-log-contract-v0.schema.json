@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-natural-history-v0/query-log-contract-v0.schema.json",
+  "title": "PMLAB authentic pre-output query log v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "query_id",
+    "recorded_at",
+    "query_text",
+    "language",
+    "origin_type",
+    "origin_ref_hash",
+    "query_cutoff_commit",
+    "pre_output_attestation",
+    "collection_phase"
+  ],
+  "properties": {
+    "query_id": {
+      "type": "string",
+      "pattern": "^Q-[a-f0-9]{16}$"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "query_text": {
+      "type": "string",
+      "minLength": 3
+    },
+    "language": {
+      "enum": ["pl", "en", "mixed", "other"]
+    },
+    "origin_type": {
+      "enum": [
+        "verbatim_user_question",
+        "pre-investigation_issue",
+        "pre-answer_debug_question",
+        "pre-evidence_reviewer_question",
+        "authored_diagnostic_development_only"
+      ]
+    },
+    "origin_ref_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "Hash of the private or public origin locator; the raw private locator need not be published."
+    },
+    "query_cutoff_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "pre_output_attestation": {
+      "const": "No candidate backend output or gold evidence search was viewed before this query was frozen."
+    },
+    "collection_phase": {
+      "enum": ["retrospective_development", "prospective_test"]
+    },
+    "exclusion_reason": {
+      "type": ["string", "null"]
+    }
+  }
+}

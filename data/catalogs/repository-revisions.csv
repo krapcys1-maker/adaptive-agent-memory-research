@@ -24,3 +24,8 @@
 "IAAR-Shanghai/Awesome-AI-Memory","external/repos/IAAR-Shanghai__Awesome-AI-Memory","f189610b855e67ea177ee408500325b6213073ff","main","2026-08-22T11:28:02.7620175Z","available"
 "TeleAI-UAGI/Awesome-Agent-Memory","external/repos/TeleAI-UAGI__Awesome-Agent-Memory","31b9e83d8465eb345109e5a67f7e1e8143a9f4c5","main","2026-08-22T11:28:03.8139329Z","available"
 "amvjakob/wm-rate-distortion","external/repos/amvjakob__wm-rate-distortion","ac3210ae90fb28ef9edc97f0651b3ff3b136eef2","main","2026-08-22T13:55:00Z","available-reproduction-blocked"
+"huggingface/sentence-transformers","external/repos/huggingface__sentence-transformers","cad211983f36ce458e9b3360f3e11b29fc54cbd8","main","2026-08-23T02:42:26.2128279Z","available"
+"FlagOpen/FlagEmbedding","external/repos/FlagOpen__FlagEmbedding","292ad785dea715f8cd509b8177f6e48618e6b137","master","2026-08-23T02:42:26.2128279Z","available"
+"facebookresearch/faiss","external/repos/facebookresearch__faiss","7059eaf7da7eddda62e71367e684d4bdedd7f94f","main","2026-08-23T02:42:26.2128279Z","available"
+"asg017/sqlite-vec","external/repos/asg017__sqlite-vec","04d28bd21773981e2d266bbf6aa4efbd011eb4f6","main","2026-08-23T02:42:26.2128279Z","available"
+"sdadas/pirb","external/repos/sdadas__pirb","cce658e60f7ec86acb15d64620e1ab4c44a39ad6","master","2026-08-23T02:42:26.2128279Z","available-license-audit-required"

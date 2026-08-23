@@ -1,0 +1,55 @@
+{
+  "schema_version": "0.1.0",
+  "experiment_id": "PMLAB-NATURAL-RET-001",
+  "status": "preregistration-draft-no-corpus-no-result",
+  "protocol": "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md",
+  "design_artifacts": {
+    "source_unit_schema": "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json",
+    "query_log_schema": "data/lab/pmlab-natural-history-v0/query-log-contract-v0.schema.json",
+    "eligibility_policy": "data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json",
+    "pre_builder_audit": "data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md"
+  },
+  "primary_endpoint": "all_required_evidence_in_top5",
+  "alpha_two_sided": 0.05,
+  "target_power": 0.8,
+  "sample_size": {
+    "status": "pending-development-discordance-estimate",
+    "minimum_per_h1_stratum": 30,
+    "rule": "maximum paired-power requirement across H1 and H2 frozen before prospective outcome analysis"
+  },
+  "h1_strata": [
+    "natural_paraphrase",
+    "cross_language_pl_en",
+    "terminology_shift"
+  ],
+  "arms": {
+    "B1": "rg-tokenized-lexical",
+    "B2": "sqlite-fts5-bm25",
+    "C0": "paraphrase-multilingual-MiniLM-L12-v2-diagnostic",
+    "C1_DEV_A": "multilingual-e5-small-exact",
+    "C1_DEV_B": "bge-m3-dense-only-exact-resource-permitting",
+    "C1": "development-selected-and-frozen-local-dense",
+    "C2": "B2-plus-C1-RRF-k60",
+    "O": "independently-reviewed-full-relevant-evidence"
+  },
+  "retrieval_contract": {
+    "primary_k": 5,
+    "dense_search": "l2-normalized-float32-exhaustive-inner-product",
+    "fusion": "equal-input-RRF-k60",
+    "tie_break": "opaque-unit-id-ascending",
+    "reader_in_primary": false,
+    "ann_in_primary": false,
+    "same_byte_exact_source_units": true
+  },
+  "locks": {
+    "corpus_built": false,
+    "eligibility_policy_independently_reviewed": false,
+    "source_unit_manifest_frozen": false,
+    "development_queries_frozen": false,
+    "dense_model_selected": false,
+    "prospective_test_started": false,
+    "independent_labels_complete": false,
+    "execution_authorized": false
+  },
+  "result": null
+}

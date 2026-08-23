@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.1.0",
+  "experiment_id": "PMLAB-NATURAL-COMP-001",
+  "status": "preregistration-draft-blocked-no-corpus-no-result",
+  "protocol": "docs/11-research-laboratory/natural-completeness-controller-benchmark-protocol-v0.md",
+  "case_families": [
+    "prospective_natural",
+    "controlled_safety_twins"
+  ],
+  "actions": [
+    "ANSWER",
+    "PARTIAL_WITH_GAP",
+    "CONTINUE_SEARCH",
+    "ABSTAIN_UNKNOWN",
+    "REJECT_UNTRUSTED"
+  ],
+  "evidence_tiers": [
+    "N0_NOT_RETRIEVED",
+    "N1_NOT_FOUND_IN_SEARCHED_SCOPE",
+    "N2_NO_AUTHORIZED_CURRENT_RECORD_IN_COMPLETE_SCOPE",
+    "N3_PROPOSITION_FALSE"
+  ],
+  "arms": {
+    "D0": "nonempty-candidate",
+    "D1": "development-calibrated-scalar-threshold",
+    "D2": "typed-obligation-and-support",
+    "D3": "typed-support-plus-query-specific-closure",
+    "D4": "D3-plus-one-frozen-search-escalation",
+    "O": "gold-state-oracle"
+  },
+  "primary_endpoints": [
+    "unsupported_answer_risk",
+    "critical_false_closure",
+    "risk_at_matched_coverage",
+    "exact_obligation_tier_action",
+    "positive_safe_coverage"
+  ],
+  "locks": {
+    "retriever_frozen": false,
+    "obligation_mapper_independently_adjudicated": false,
+    "unseen_mapper_challenge_passed": false,
+    "natural_cases_frozen": false,
+    "controlled_twins_frozen": false,
+    "independent_labels_complete": false,
+    "execution_authorized": false
+  },
+  "result": null
+}

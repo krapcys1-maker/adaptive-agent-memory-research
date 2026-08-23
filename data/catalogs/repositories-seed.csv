@@ -40,3 +40,8 @@ emerging-system,C,no,TIMAN-group/PlugMem,new memory framework,"Monitor; inspect 
 governance,B,no,ProsusAI/MemEval,memory evaluation project,"Inspect scope and distinction from similarly named benchmarks"
 research-code,B,yes,amvjakob/wm-rate-distortion,rate-distortion working-memory reproduction,"Primary code for Figures 2-8; current revision lacks pinned Julia environment bundled data and license so reproduction is blocked pending dependency/data reconstruction"
 research-code,A,yes,zhuangziGiantfish/Unable-to-Forget,proactive-interference benchmark,"Pinned benchmark generator candidate; MIT; use core generation and error-position logic only after credential removal seed freezing parser tests and bug fixes"
+dense-retrieval,A,yes,huggingface/sentence-transformers,local multilingual embedding inference,"Primary inference and evaluation library candidate; pin package code and model revisions separately"
+dense-retrieval,A,yes,FlagOpen/FlagEmbedding,BGE-M3 dense and multi-function retrieval,"Resource-ceiling multilingual candidate; evaluate dense-only before any native sparse or multi-vector mode"
+vector-search,A,yes,facebookresearch/faiss,exact vector search reference,"Use IndexFlatIP only as a checked implementation of normalized exact cosine before testing approximate indexes"
+vector-storage,B,yes,asg017/sqlite-vec,portable SQLite vector extension,"Storage and deployment candidate only; do not confound it with the first embedding-quality comparison"
+benchmark,A,yes,sdadas/pirb,Polish dense sparse and hybrid retrieval benchmark,"Use as Polish transfer and method-design evidence; audit individual dataset licenses before downloading any corpus"

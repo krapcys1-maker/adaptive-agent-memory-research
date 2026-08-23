@@ -67,6 +67,8 @@ The project is in **evidence collection plus gated laboratory testing**. It does
 
 The current collaboration bottleneck is a blind independent review of the 77-group bilingual mapper-stage development corpus. Reviewers should claim the `Independent mapper-label review` issue template and use only `data/lab/pmlab-map-stage-dev-v1/independent-adjudication-v1/blind/` until their signed form is committed. Candidate parser implementation remains intentionally blocked until material critical-label disagreements are adjudicated.
 
+The next retrieval gate is also specified but not yet executable: build one model-independent natural-history source-unit manifest, collect outcome-hidden authentic development questions, screen pinned local E5-small and dense-only BGE-M3 with exact search, then freeze one model before prospective testing. Evidence completeness and abstention are evaluated in a separate controller benchmark.
+
 ## Working language
 
 Repository content is written in English so that contributors can collaborate internationally. Issues and discussions may use any language, but durable findings should be summarized in English.
