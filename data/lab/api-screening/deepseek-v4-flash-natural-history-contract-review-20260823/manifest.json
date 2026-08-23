@@ -1,6 +1,6 @@
 {
   "run_id": "deepseek-v4-flash-natural-history-contract-review-20260823",
-  "status": "frozen-input-awaiting-api",
+  "status": "invalid-truncated-json-preserved-no-verdict",
   "model": "deepseek-v4-flash",
   "temperature": 0,
   "thinking": "disabled",
@@ -11,5 +11,8 @@
     "job.json": "8526f67df4fdc2a7270116cfbd787e205b6e7abc2405ea346766857d3d0dd99e",
     "prompt.txt": "7a6c0a4d9c6b0d37b265a40645f07daa2e17f6b5c818ebf56512d21a1a0028a0"
   },
-  "authority": "author-operated M1 advisory; not independent review and cannot unlock the builder"
+  "authority": "author-operated M1 advisory; not independent review and cannot unlock the builder",
+  "response_id": "5b6881ab-2472-4902-88c7-ff196f8c0d2d",
+  "cost_usd": 0.01037344,
+  "failure": "completion reached 4000-token cap and ended inside a JSON string; raw response preserved; no verdict or issue list admitted"
 }

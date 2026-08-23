@@ -1,0 +1,472 @@
+{
+  "job_id": "PMLAB-NATURAL-RET-001-CONTRACT-M1-COMPACT",
+  "timing": "No builder, corpus, backend output, or result exists.",
+  "source_unit_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json",
+    "title": "PMLAB natural-history source unit v0",
+    "type": "object",
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "git_object_format": {
+              "const": "sha1"
+            }
+          },
+          "required": [
+            "git_object_format"
+          ]
+        },
+        "then": {
+          "properties": {
+            "snapshot_commit": {
+              "pattern": "^[a-f0-9]{40}$"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "git_object_format": {
+              "const": "sha256"
+            }
+          },
+          "required": [
+            "git_object_format"
+          ]
+        },
+        "then": {
+          "properties": {
+            "snapshot_commit": {
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        }
+      }
+    ],
+    "required": [
+      "contract_version",
+      "unit_id",
+      "snapshot_commit",
+      "git_object_format",
+      "source_type",
+      "path",
+      "locator",
+      "search_text",
+      "search_text_sha256",
+      "source_blob_sha256",
+      "source_git_object",
+      "eligibility_class",
+      "backend_visible_fields"
+    ],
+    "properties": {
+      "contract_version": {
+        "const": "0.2.0"
+      },
+      "unit_id": {
+        "type": "string",
+        "pattern": "^U-[a-f0-9]{16}$",
+        "description": "Opaque ID derived from contract version, source type, path, locator, and search-text hash. Snapshot commit is excluded so an unchanged unit keeps its ID across historical snapshots. It must not encode time, category, or relevance."
+      },
+      "snapshot_commit": {
+        "type": "string",
+        "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+      },
+      "git_object_format": {
+        "enum": [
+          "sha1",
+          "sha256"
+        ]
+      },
+      "source_type": {
+        "enum": [
+          "project_memory_event",
+          "markdown_section",
+          "catalog_row",
+          "lab_summary_section"
+        ]
+      },
+      "path": {
+        "type": "string",
+        "minLength": 1
+      },
+      "locator": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "value"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "event_id",
+              "heading_path_and_occurrence",
+              "row_primary_key"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "search_text": {
+        "type": "string",
+        "minLength": 1,
+        "description": "The byte-identical UTF-8 text passed to every retrieval representation before its documented tokenizer."
+      },
+      "search_text_sha256": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "source_blob_sha256": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$",
+        "description": "Portable SHA-256 of the exact historical file bytes, distinct from Git's typed object name."
+      },
+      "source_git_object": {
+        "type": "object",
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "algorithm": {
+                  "const": "sha1"
+                }
+              },
+              "required": [
+                "algorithm"
+              ]
+            },
+            "then": {
+              "properties": {
+                "object_id": {
+                  "pattern": "^[a-f0-9]{40}$"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "algorithm": {
+                  "const": "sha256"
+                }
+              },
+              "required": [
+                "algorithm"
+              ]
+            },
+            "then": {
+              "properties": {
+                "object_id": {
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          }
+        ],
+        "required": [
+          "algorithm",
+          "object_id"
+        ],
+        "properties": {
+          "algorithm": {
+            "enum": [
+              "sha1",
+              "sha256"
+            ]
+          },
+          "object_id": {
+            "type": "string",
+            "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+          }
+        }
+      },
+      "eligibility_class": {
+        "enum": [
+          "canonical_research",
+          "canonical_memory",
+          "reviewed_lab_summary",
+          "reviewed_catalog"
+        ]
+      },
+      "valid_time": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time"
+      },
+      "recorded_time": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time"
+      },
+      "status": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "trust": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "source_aliases": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "locator"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "locator": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Exact duplicate byte sources collapsed before ranking; near duplicates are not collapsed."
+      },
+      "backend_visible_fields": {
+        "const": [
+          "unit_id",
+          "search_text"
+        ],
+        "description": "The primary B1/B2/C1/C2 comparison receives no path, filename, time, status, trust, or label."
+      }
+    }
+  },
+  "query_log_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-natural-history-v0/query-log-contract-v0.schema.json",
+    "title": "PMLAB authentic pre-output query log v0",
+    "type": "object",
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "git_object_format": {
+              "const": "sha1"
+            }
+          },
+          "required": [
+            "git_object_format"
+          ]
+        },
+        "then": {
+          "properties": {
+            "query_cutoff_commit": {
+              "pattern": "^[a-f0-9]{40}$"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "git_object_format": {
+              "const": "sha256"
+            }
+          },
+          "required": [
+            "git_object_format"
+          ]
+        },
+        "then": {
+          "properties": {
+            "query_cutoff_commit": {
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        }
+      }
+    ],
+    "required": [
+      "query_id",
+      "recorded_at",
+      "query_text",
+      "language",
+      "origin_type",
+      "origin_receipt",
+      "query_cutoff_commit",
+      "git_object_format",
+      "pre_output_attestation",
+      "collection_phase",
+      "recorded_by_role",
+      "storage_class"
+    ],
+    "properties": {
+      "query_id": {
+        "type": "string",
+        "pattern": "^Q-[a-f0-9]{16}$"
+      },
+      "recorded_at": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "query_text": {
+        "type": "string",
+        "minLength": 3
+      },
+      "language": {
+        "enum": [
+          "pl",
+          "en",
+          "mixed",
+          "other"
+        ]
+      },
+      "origin_type": {
+        "enum": [
+          "verbatim_user_question",
+          "pre-investigation_issue",
+          "pre-answer_debug_question",
+          "pre-evidence_reviewer_question",
+          "authored_diagnostic_development_only"
+        ]
+      },
+      "origin_receipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode",
+          "value"
+        ],
+        "properties": {
+          "mode": {
+            "enum": [
+              "public_git_locator",
+              "private_random_receipt",
+              "private_keyed_digest"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "description": "Public locators may be explicit. Private origins use an independently random receipt or keyed digest whose mapping/key remains outside Git; an unkeyed content or locator hash is forbidden."
+      },
+      "query_cutoff_commit": {
+        "type": "string",
+        "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+      },
+      "git_object_format": {
+        "enum": [
+          "sha1",
+          "sha256"
+        ]
+      },
+      "pre_output_attestation": {
+        "const": "No candidate backend output or gold evidence search was viewed before this query was frozen."
+      },
+      "collection_phase": {
+        "enum": [
+          "retrospective_development",
+          "prospective_test"
+        ]
+      },
+      "recorded_by_role": {
+        "enum": [
+          "user",
+          "research_agent",
+          "human_reviewer",
+          "automated_capture"
+        ]
+      },
+      "storage_class": {
+        "enum": [
+          "git_public",
+          "local_restricted"
+        ],
+        "description": "Local-restricted query text and origin mappings must not be committed to the public repository; public artifacts expose opaque IDs and aggregate receipts only."
+      },
+      "exclusion_reason": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  },
+  "policy_digest": {
+    "status": "revised-design-review-candidate-not-executed",
+    "snapshot_rule": "enumerate the exact Git tree with git ls-tree -r --full-tree at query_cutoff_commit and read each eligible blob with <commit>:<path>; never read the working tree for a historical snapshot",
+    "unitization": {
+      "stable_unit_id": "sha256 over versioned canonical identity containing source_type, path, locator, and search_text_sha256; exclude snapshot_commit so unchanged content keeps one ID across snapshots",
+      "markdown": "CommonMark 0.31.2 ATX and Setext heading section with heading-path text plus direct body; child bodies are separate; fenced-code heading lookalikes are not headings; preserve heading path, occurrence, and exact historical line span in the hidden locator",
+      "markdown_preamble": "non-empty content before the first heading is one explicit preamble unit",
+      "project_memory": "one event per unit from the historical events.jsonl blob; search text uses a frozen allowlist of semantic fields; superseded events remain available for temporal gold and derived active status stays backend-hidden",
+      "catalog_csv": "RFC 4180 parse with the historical header; search text serializes header-value pairs in frozen source-column order; malformed or duplicate headers fail closed",
+      "catalog_jsonl": "one I-JSON object per line with unique member names; canonical search text follows RFC 8785 JCS and UTF-8; non-I-JSON numbers or duplicate names fail closed",
+      "oversize": "split only at deterministic paragraph boundaries under a UTF-8 byte ceiling chosen on development and frozen before test",
+      "exact_duplicates": "collapse identical search_text hashes into one ranked unit and preserve every source alias",
+      "near_duplicates": "preserve and report; do not tune a similarity deduplicator on test"
+    },
+    "historical_tree_controls": {
+      "git_object_format": "record sha1 or sha256 from the repository; never infer the algorithm only from an unlabeled digest",
+      "portable_blob_integrity": "record SHA-256 of exact blob bytes in addition to the Git typed object name",
+      "unsupported_entries": [
+        "symlink",
+        "gitlink/submodule",
+        "non-UTF-8 text",
+        "binary blob"
+      ],
+      "unsupported_action": "exclude with a counted reason before unitization; never follow a link into the working tree"
+    },
+    "query_privacy": {
+      "unkeyed_origin_hash": "forbidden",
+      "public_query": "may use an explicit public Git locator receipt",
+      "private_query": "store verbatim text and origin mapping only in local-restricted storage; publish opaque IDs and aggregate receipts",
+      "allowed_private_receipts": [
+        "independently random opaque receipt",
+        "keyed digest with key outside Git"
+      ],
+      "attestation_limit": "a pre-output statement records process provenance but is not independent proof; capture order must be audited separately"
+    },
+    "backend_visible_fields": [
+      "unit_id",
+      "search_text"
+    ],
+    "pending_before_execution": [
+      "independent eligibility review",
+      "freeze UTF-8 byte ceiling on outcome-hidden development",
+      "implement and test historical Git-tree reconstruction",
+      "independently review stable-ID, heading-context, canonical-row, and query-privacy rules",
+      "verify no test query log or label path enters any unit",
+      "freeze source-unit manifest hashes"
+    ]
+  },
+  "registered_rules": [
+    "Historical files come only from the cutoff Git tree, never the working tree.",
+    "Unit IDs exclude snapshot commit and include version, type, path, locator, and search-text hash.",
+    "Markdown search text contains CommonMark heading path plus direct body; child bodies are separate.",
+    "CSV uses historical headers and source order; JSONL requires I-JSON plus RFC 8785 JCS.",
+    "Symlinks, gitlinks, binary, non-UTF-8, and malformed rows fail closed.",
+    "Unkeyed private-origin hashes are forbidden; private text and mappings stay local-restricted.",
+    "Exact duplicates collapse deterministically with aliases; near duplicates remain.",
+    "Independent review and label-free size/token feasibility remain required before builder authorization."
+  ],
+  "artifact_hashes": {
+    "source_schema": "470b2572ec1f765005c6655f105a428cd7a9e679bc50342af95e6a6fd1efd8fd",
+    "query_schema": "2cb5ee7ec3c7dceb053e93312efe38750572fc7b5558b387d38e3d78eb7cd12e",
+    "policy": "8de79a68a6485552122071732209e66f57ed556ee21016694ff080c4952c95fc"
+  },
+  "authority": "M1 advisory only; builder must remain locked."
+}
