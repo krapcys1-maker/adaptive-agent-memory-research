@@ -22,7 +22,11 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12"]
     steps:
+      # Full history is required: several tests verify frozen artifacts by
+      # running `git show <freeze-commit>:<path>`, which fails on a shallow clone.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
