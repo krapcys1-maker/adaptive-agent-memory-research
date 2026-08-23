@@ -1,0 +1,63 @@
+{
+  "by_arm": {
+    "fts5": {
+      "F0_F1": "structurally unreachable: the corpus is generated whole and read from disk",
+      "abstained_not_a_failure": 0,
+      "answered": 71,
+      "by_stage": {
+        "F2": 10,
+        "F4": 3
+      },
+      "by_stage_and_family": {
+        "F2": {
+          "OBSOLETE": 10
+        },
+        "F4": {
+          "DELAYED": 3
+        }
+      },
+      "failures": 13,
+      "probes": 84
+    },
+    "rank-oracle": {
+      "F0_F1": "structurally unreachable: the corpus is generated whole and read from disk",
+      "abstained_not_a_failure": 10,
+      "answered": 72,
+      "by_stage": {
+        "F4": 1,
+        "F5": 1
+      },
+      "by_stage_and_family": {
+        "F4": {
+          "POISON": 1
+        },
+        "F5": {
+          "RARE-EXC": 1
+        }
+      },
+      "failures": 2,
+      "probes": 84
+    },
+    "recency": {
+      "F0_F1": "structurally unreachable: the corpus is generated whole and read from disk",
+      "abstained_not_a_failure": 82,
+      "answered": 0,
+      "by_stage": {
+        "F2": 2
+      },
+      "by_stage_and_family": {
+        "F2": {
+          "OBSOLETE": 2
+        }
+      },
+      "failures": 2,
+      "probes": 84
+    }
+  },
+  "stages": {
+    "F2": "indexing/addressing \u2014 the record exists and the index did not surface it",
+    "F3": "validity/selection \u2014 gold was retrieved and a superseded record was answered from",
+    "F4": "reader utilization \u2014 gold was in the prompt and was not used",
+    "F5": "action/evaluation \u2014 an answer was produced and truncated away"
+  }
+}

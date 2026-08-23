@@ -13,6 +13,23 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-00",
       "retained": 15,
+      "retained_ids": [
+        "BILINGUAL-00#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "OBSOLETE-00#003",
+        "REDERIVE-00#000",
+        "BILINGUAL-00#001"
+      ],
       "retained_tokens": 246
     },
     {
@@ -28,6 +45,23 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-01",
       "retained": 15,
+      "retained_ids": [
+        "BILINGUAL-01#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "REDERIVE-01#000",
+        "RARE-EXC-01#008",
+        "OBSOLETE-01#003"
+      ],
       "retained_tokens": 242
     },
     {
@@ -43,6 +77,23 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-02",
       "retained": 15,
+      "retained_ids": [
+        "BILINGUAL-02#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "REDERIVE-02#000",
+        "OBSOLETE-02#003",
+        "OBSOLETE-02#001"
+      ],
       "retained_tokens": 240
     },
     {
@@ -58,6 +109,26 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-03",
       "retained": 18,
+      "retained_ids": [
+        "BILINGUAL-03#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "NOISE#022",
+        "NOISE#062",
+        "NOISE#030",
+        "NOISE#010",
+        "NOISE#070",
+        "NOISE#186"
+      ],
       "retained_tokens": 246
     },
     {
@@ -73,6 +144,23 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-04",
       "retained": 15,
+      "retained_ids": [
+        "BILINGUAL-04#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "REDERIVE-04#000",
+        "OBSOLETE-04#003",
+        "OBSOLETE-04#001"
+      ],
       "retained_tokens": 246
     },
     {
@@ -88,6 +176,23 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-05",
       "retained": 15,
+      "retained_ids": [
+        "BILINGUAL-05#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "REDERIVE-05#000",
+        "OBSOLETE-05#003",
+        "OBSOLETE-05#001"
+      ],
       "retained_tokens": 246
     },
     {
@@ -103,6 +208,23 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-06",
       "retained": 15,
+      "retained_ids": [
+        "BILINGUAL-06#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "REDERIVE-06#000",
+        "OBSOLETE-06#003",
+        "OBSOLETE-06#001"
+      ],
       "retained_tokens": 245
     },
     {
@@ -118,6 +240,23 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-07",
       "retained": 15,
+      "retained_ids": [
+        "BILINGUAL-07#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "REDERIVE-07#000",
+        "OBSOLETE-07#003",
+        "OBSOLETE-07#001"
+      ],
       "retained_tokens": 241
     },
     {
@@ -133,6 +272,23 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-08",
       "retained": 15,
+      "retained_ids": [
+        "BILINGUAL-08#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-05#000",
+        "REDERIVE-08#000",
+        "OBSOLETE-08#003",
+        "OBSOLETE-08#001"
+      ],
       "retained_tokens": 243
     },
     {
@@ -148,6 +304,24 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-09",
       "retained": 16,
+      "retained_ids": [
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "OBSOLETE-09#003",
+        "REDERIVE-09#000",
+        "RARE-EXC-09#013",
+        "OBSOLETE-09#001"
+      ],
       "retained_tokens": 247
     },
     {
@@ -163,6 +337,23 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-10",
       "retained": 15,
+      "retained_ids": [
+        "BILINGUAL-10#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-11#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "REDERIVE-10#000",
+        "OBSOLETE-10#003",
+        "OBSOLETE-10#001"
+      ],
       "retained_tokens": 245
     },
     {
@@ -178,6 +369,26 @@
       "missing_fragments": [],
       "query_id": "Q-BILINGUAL-11",
       "retained": 18,
+      "retained_ids": [
+        "BILINGUAL-11#000",
+        "BILINGUAL-09#000",
+        "BILINGUAL-01#000",
+        "BILINGUAL-07#000",
+        "BILINGUAL-10#000",
+        "BILINGUAL-03#000",
+        "BILINGUAL-06#000",
+        "BILINGUAL-04#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-02#000",
+        "BILINGUAL-08#000",
+        "BILINGUAL-05#000",
+        "NOISE#056",
+        "NOISE#108",
+        "NOISE#132",
+        "NOISE#184",
+        "NOISE#044",
+        "NOISE#064"
+      ],
       "retained_tokens": 246
     },
     {
@@ -193,6 +404,16 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-00",
       "retained": 8,
+      "retained_ids": [
+        "DELAYED-00#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "DELAYED-04#000",
+        "OBSOLETE-00#003",
+        "REDERIVE-00#000"
+      ],
       "retained_tokens": 250
     },
     {
@@ -208,6 +429,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-01",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-01#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-04#000",
+        "OBSOLETE-01#003"
+      ],
       "retained_tokens": 250
     },
     {
@@ -223,6 +453,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-02",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "DELAYED-04#000",
+        "REDERIVE-02#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -238,6 +477,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-03",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-03#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "DELAYED-02#001"
+      ],
       "retained_tokens": 245
     },
     {
@@ -253,6 +501,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-04",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-04#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "DELAYED-02#001"
+      ],
       "retained_tokens": 245
     },
     {
@@ -268,6 +525,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-05",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "DELAYED-04#000",
+        "DELAYED-02#001"
+      ],
       "retained_tokens": 245
     },
     {
@@ -283,6 +549,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-06",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-06#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "OBSOLETE-06#003"
+      ],
       "retained_tokens": 250
     },
     {
@@ -298,6 +573,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-07",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-07#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "REDERIVE-07#000"
+      ],
       "retained_tokens": 241
     },
     {
@@ -313,6 +597,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-08",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-08#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "OBSOLETE-08#003"
+      ],
       "retained_tokens": 250
     },
     {
@@ -328,6 +621,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-09",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-09#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-01#000",
+        "DELAYED-04#000",
+        "OBSOLETE-09#003"
+      ],
       "retained_tokens": 240
     },
     {
@@ -343,6 +645,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-10",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-10#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "DELAYED-02#001"
+      ],
       "retained_tokens": 245
     },
     {
@@ -358,6 +669,15 @@
       "missing_fragments": [],
       "query_id": "Q-DELAYED-11",
       "retained": 7,
+      "retained_ids": [
+        "DELAYED-11#000",
+        "DELAYED-05#000",
+        "DELAYED-02#000",
+        "DELAYED-00#000",
+        "DELAYED-09#000",
+        "DELAYED-01#000",
+        "DELAYED-02#001"
+      ],
       "retained_tokens": 245
     },
     {
@@ -373,6 +693,17 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-00",
       "retained": 9,
+      "retained_ids": [
+        "FAILFIX-00#002",
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-02#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002",
+        "FAILFIX-04#002",
+        "OBSOLETE-00#003"
+      ],
       "retained_tokens": 250
     },
     {
@@ -388,6 +719,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-01",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-01#002",
+        "FAILFIX-02#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -403,6 +744,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-02",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-02#002",
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002",
+        "FAILFIX-04#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -418,6 +769,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-03",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-02#002",
+        "FAILFIX-03#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -433,6 +794,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-04",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-04#002",
+        "FAILFIX-02#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -448,6 +819,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-05",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-02#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002",
+        "FAILFIX-04#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -463,6 +844,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-06",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-06#002",
+        "FAILFIX-02#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -478,6 +869,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-07",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-07#002",
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-02#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002",
+        "FAILFIX-04#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -493,6 +894,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-08",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-08#002",
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-02#002",
+        "FAILFIX-00#002",
+        "FAILFIX-09#002",
+        "FAILFIX-04#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -508,6 +919,17 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-09",
       "retained": 9,
+      "retained_ids": [
+        "FAILFIX-09#002",
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-02#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-04#002",
+        "OBSOLETE-09#003"
+      ],
       "retained_tokens": 250
     },
     {
@@ -523,6 +945,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-10",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-10#002",
+        "FAILFIX-05#002",
+        "FAILFIX-07#002",
+        "FAILFIX-02#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002",
+        "FAILFIX-04#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -538,6 +970,16 @@
       "missing_fragments": [],
       "query_id": "Q-FAILFIX-11",
       "retained": 8,
+      "retained_ids": [
+        "FAILFIX-05#002",
+        "FAILFIX-10#002",
+        "FAILFIX-07#002",
+        "FAILFIX-02#002",
+        "FAILFIX-11#002",
+        "FAILFIX-00#002",
+        "FAILFIX-08#002",
+        "FAILFIX-09#002"
+      ],
       "retained_tokens": 244
     },
     {
@@ -553,6 +995,18 @@
       "missing_fragments": [],
       "query_id": "Q-OBSOLETE-00",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "OBSOLETE-00#003",
+        "BILINGUAL-00#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000"
+      ],
       "retained_tokens": 247
     },
     {
@@ -571,6 +1025,18 @@
       ],
       "query_id": "Q-OBSOLETE-01",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "BILINGUAL-01#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "OBSOLETE-00#003"
+      ],
       "retained_tokens": 247
     },
     {
@@ -589,6 +1055,18 @@
       ],
       "query_id": "Q-OBSOLETE-02",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "BILINGUAL-02#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "REDERIVE-02#000"
+      ],
       "retained_tokens": 249
     },
     {
@@ -607,6 +1085,17 @@
       ],
       "query_id": "Q-OBSOLETE-03",
       "retained": 9,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "POISON-09#000"
+      ],
       "retained_tokens": 248
     },
     {
@@ -625,6 +1114,18 @@
       ],
       "query_id": "Q-OBSOLETE-04",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "BILINGUAL-04#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "OBSOLETE-00#003"
+      ],
       "retained_tokens": 247
     },
     {
@@ -643,6 +1144,18 @@
       ],
       "query_id": "Q-OBSOLETE-05",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "BILINGUAL-05#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "OBSOLETE-00#003"
+      ],
       "retained_tokens": 247
     },
     {
@@ -661,6 +1174,18 @@
       ],
       "query_id": "Q-OBSOLETE-06",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "BILINGUAL-06#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "OBSOLETE-00#003"
+      ],
       "retained_tokens": 247
     },
     {
@@ -679,6 +1204,18 @@
       ],
       "query_id": "Q-OBSOLETE-07",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "BILINGUAL-07#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "REDERIVE-07#000"
+      ],
       "retained_tokens": 248
     },
     {
@@ -697,6 +1234,18 @@
       ],
       "query_id": "Q-OBSOLETE-08",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "BILINGUAL-08#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "OBSOLETE-00#003"
+      ],
       "retained_tokens": 247
     },
     {
@@ -712,6 +1261,18 @@
       "missing_fragments": [],
       "query_id": "Q-OBSOLETE-09",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "OBSOLETE-09#003",
+        "BILINGUAL-09#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000"
+      ],
       "retained_tokens": 247
     },
     {
@@ -730,6 +1291,18 @@
       ],
       "query_id": "Q-OBSOLETE-10",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "BILINGUAL-10#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "OBSOLETE-00#003"
+      ],
       "retained_tokens": 247
     },
     {
@@ -748,6 +1321,17 @@
       ],
       "query_id": "Q-OBSOLETE-11",
       "retained": 9,
+      "retained_ids": [
+        "POISON-04#000",
+        "POISON-06#000",
+        "POISON-07#000",
+        "POISON-08#000",
+        "POISON-00#000",
+        "POISON-05#000",
+        "POISON-11#000",
+        "POISON-10#000",
+        "POISON-09#000"
+      ],
       "retained_tokens": 248
     },
     {
@@ -763,6 +1347,19 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-00",
       "retained": 11,
+      "retained_ids": [
+        "POISON-00#001",
+        "POISON-04#000",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "OBSOLETE-00#003",
+        "RARE-EXC-00#009",
+        "REDERIVE-00#000",
+        "BILINGUAL-00#000",
+        "BILINGUAL-00#001"
+      ],
       "retained_tokens": 247
     },
     {
@@ -778,6 +1375,16 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-01",
       "retained": 8,
+      "retained_ids": [
+        "POISON-01#001",
+        "POISON-05#001",
+        "POISON-09#000",
+        "POISON-05#000",
+        "POISON-09#001",
+        "POISON-01#000",
+        "FAILFIX-01#002",
+        "REDERIVE-01#000"
+      ],
       "retained_tokens": 250
     },
     {
@@ -793,6 +1400,17 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-02",
       "retained": 9,
+      "retained_ids": [
+        "POISON-02#001",
+        "POISON-06#000",
+        "POISON-10#001",
+        "POISON-10#000",
+        "POISON-06#001",
+        "POISON-02#000",
+        "RARE-EXC-02#010",
+        "REDERIVE-02#000",
+        "BILINGUAL-02#000"
+      ],
       "retained_tokens": 241
     },
     {
@@ -810,6 +1428,17 @@
       ],
       "query_id": "Q-POISON-03",
       "retained": 9,
+      "retained_ids": [
+        "POISON-03#001",
+        "POISON-07#000",
+        "POISON-11#001",
+        "POISON-07#001",
+        "POISON-11#000",
+        "POISON-03#000",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-04#000"
+      ],
       "retained_tokens": 246
     },
     {
@@ -825,6 +1454,18 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-04",
       "retained": 10,
+      "retained_ids": [
+        "POISON-04#001",
+        "POISON-04#000",
+        "POISON-08#001",
+        "POISON-00#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "OBSOLETE-04#003",
+        "FAILFIX-04#002",
+        "REDERIVE-04#000",
+        "BILINGUAL-04#000"
+      ],
       "retained_tokens": 247
     },
     {
@@ -840,6 +1481,17 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-05",
       "retained": 9,
+      "retained_ids": [
+        "POISON-05#001",
+        "POISON-09#000",
+        "POISON-05#000",
+        "POISON-01#001",
+        "POISON-09#001",
+        "POISON-01#000",
+        "OBSOLETE-05#003",
+        "REDERIVE-05#000",
+        "FAILFIX-04#001"
+      ],
       "retained_tokens": 245
     },
     {
@@ -855,6 +1507,16 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-06",
       "retained": 8,
+      "retained_ids": [
+        "POISON-06#001",
+        "POISON-06#000",
+        "POISON-10#001",
+        "POISON-10#000",
+        "POISON-02#001",
+        "POISON-02#000",
+        "FAILFIX-06#002",
+        "OBSOLETE-06#003"
+      ],
       "retained_tokens": 244
     },
     {
@@ -870,6 +1532,19 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-07",
       "retained": 11,
+      "retained_ids": [
+        "POISON-07#001",
+        "POISON-07#000",
+        "POISON-11#001",
+        "POISON-03#001",
+        "POISON-11#000",
+        "POISON-03#000",
+        "OBSOLETE-07#003",
+        "REDERIVE-07#000",
+        "FAILFIX-07#002",
+        "BILINGUAL-07#000",
+        "FAILFIX-04#001"
+      ],
       "retained_tokens": 247
     },
     {
@@ -885,6 +1560,19 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-08",
       "retained": 11,
+      "retained_ids": [
+        "POISON-08#001",
+        "POISON-04#000",
+        "POISON-04#001",
+        "POISON-00#001",
+        "POISON-08#000",
+        "POISON-00#000",
+        "REDERIVE-08#000",
+        "OBSOLETE-08#003",
+        "BILINGUAL-08#000",
+        "BILINGUAL-08#001",
+        "FAILFIX-04#001"
+      ],
       "retained_tokens": 245
     },
     {
@@ -900,6 +1588,18 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-09",
       "retained": 10,
+      "retained_ids": [
+        "POISON-09#001",
+        "POISON-05#001",
+        "POISON-09#000",
+        "POISON-05#000",
+        "POISON-01#001",
+        "POISON-01#000",
+        "OBSOLETE-09#003",
+        "REDERIVE-09#000",
+        "RARE-EXC-09#013",
+        "FAILFIX-04#001"
+      ],
       "retained_tokens": 246
     },
     {
@@ -915,6 +1615,17 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-10",
       "retained": 9,
+      "retained_ids": [
+        "POISON-10#001",
+        "POISON-06#000",
+        "POISON-10#000",
+        "POISON-06#001",
+        "POISON-02#001",
+        "POISON-02#000",
+        "OBSOLETE-10#003",
+        "REDERIVE-10#000",
+        "FAILFIX-10#002"
+      ],
       "retained_tokens": 245
     },
     {
@@ -930,6 +1641,17 @@
       "missing_fragments": [],
       "query_id": "Q-POISON-11",
       "retained": 9,
+      "retained_ids": [
+        "POISON-11#001",
+        "POISON-07#000",
+        "POISON-03#001",
+        "POISON-07#001",
+        "POISON-11#000",
+        "POISON-03#000",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-04#000"
+      ],
       "retained_tokens": 246
     },
     {
@@ -945,6 +1667,17 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-00",
       "retained": 9,
+      "retained_ids": [
+        "RARE-EXC-00#009",
+        "RARE-EXC-02#010",
+        "POISON-00#001",
+        "OBSOLETE-00#003",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-05#001"
+      ],
       "retained_tokens": 249
     },
     {
@@ -960,6 +1693,17 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-01",
       "retained": 9,
+      "retained_ids": [
+        "RARE-EXC-01#008",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-00#001",
+        "OBSOLETE-01#003",
+        "POISON-05#001",
+        "BILINGUAL-01#001"
+      ],
       "retained_tokens": 249
     },
     {
@@ -975,6 +1719,17 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-02",
       "retained": 9,
+      "retained_ids": [
+        "RARE-EXC-02#010",
+        "RARE-EXC-00#009",
+        "POISON-02#001",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "OBSOLETE-02#003",
+        "REDERIVE-02#000"
+      ],
       "retained_tokens": 249
     },
     {
@@ -990,6 +1745,17 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-03",
       "retained": 9,
+      "retained_ids": [
+        "RARE-EXC-03#010",
+        "RARE-EXC-07#010",
+        "POISON-03#001",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-00#001",
+        "OBSOLETE-00#003"
+      ],
       "retained_tokens": 247
     },
     {
@@ -1005,6 +1771,18 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-04",
       "retained": 10,
+      "retained_ids": [
+        "RARE-EXC-04#007",
+        "POISON-04#001",
+        "RARE-EXC-08#008",
+        "OBSOLETE-04#003",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-08#001",
+        "POISON-00#001",
+        "DELAYED-02#001",
+        "DELAYED-05#001"
+      ],
       "retained_tokens": 250
     },
     {
@@ -1020,6 +1798,17 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-05",
       "retained": 9,
+      "retained_ids": [
+        "RARE-EXC-05#009",
+        "POISON-05#001",
+        "OBSOLETE-05#003",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-00#001",
+        "DELAYED-02#001"
+      ],
       "retained_tokens": 246
     },
     {
@@ -1038,6 +1827,18 @@
       ],
       "query_id": "Q-RARE-EXC-06",
       "retained": 10,
+      "retained_ids": [
+        "RARE-EXC-06#010",
+        "POISON-06#001",
+        "RARE-EXC-10#012",
+        "POISON-01#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-00#001",
+        "OBSOLETE-06#003",
+        "DELAYED-02#001",
+        "DELAYED-05#001"
+      ],
       "retained_tokens": 248
     },
     {
@@ -1053,6 +1854,18 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-07",
       "retained": 10,
+      "retained_ids": [
+        "RARE-EXC-07#010",
+        "POISON-07#001",
+        "RARE-EXC-03#010",
+        "OBSOLETE-07#003",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "DELAYED-02#001",
+        "REDERIVE-07#000"
+      ],
       "retained_tokens": 249
     },
     {
@@ -1068,6 +1881,18 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-08",
       "retained": 10,
+      "retained_ids": [
+        "RARE-EXC-08#008",
+        "POISON-08#001",
+        "RARE-EXC-04#007",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-00#001",
+        "OBSOLETE-08#003",
+        "DELAYED-02#001",
+        "DELAYED-05#001"
+      ],
       "retained_tokens": 248
     },
     {
@@ -1083,6 +1908,17 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-09",
       "retained": 9,
+      "retained_ids": [
+        "RARE-EXC-09#013",
+        "RARE-EXC-11#012",
+        "OBSOLETE-09#003",
+        "POISON-09#001",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-00#001"
+      ],
       "retained_tokens": 246
     },
     {
@@ -1098,6 +1934,18 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-10",
       "retained": 10,
+      "retained_ids": [
+        "RARE-EXC-10#012",
+        "POISON-10#001",
+        "RARE-EXC-06#010",
+        "OBSOLETE-10#003",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "DELAYED-02#001",
+        "OBSOLETE-00#003"
+      ],
       "retained_tokens": 246
     },
     {
@@ -1113,6 +1961,18 @@
       "missing_fragments": [],
       "query_id": "Q-RARE-EXC-11",
       "retained": 10,
+      "retained_ids": [
+        "RARE-EXC-09#013",
+        "RARE-EXC-11#012",
+        "POISON-11#001",
+        "POISON-01#001",
+        "POISON-06#001",
+        "POISON-04#001",
+        "POISON-08#001",
+        "POISON-00#001",
+        "DELAYED-02#001",
+        "OBSOLETE-11#003"
+      ],
       "retained_tokens": 247
     },
     {
@@ -1128,6 +1988,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-00",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-00#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1143,6 +2020,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-01",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-01#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1158,6 +2052,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-02",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-02#000",
+        "REDERIVE-07#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1173,6 +2084,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-03",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-03#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1188,6 +2116,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-04",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-04#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1203,6 +2148,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-05",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-05#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1218,6 +2180,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-06",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-06#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1233,6 +2212,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-07",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1248,6 +2244,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-08",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-08#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1263,6 +2276,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-09",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-09#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1278,6 +2308,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-10",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-10#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-11#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     },
     {
@@ -1293,6 +2340,23 @@
       "missing_fragments": [],
       "query_id": "Q-REDERIVE-11",
       "retained": 15,
+      "retained_ids": [
+        "REDERIVE-11#000",
+        "REDERIVE-07#000",
+        "REDERIVE-02#000",
+        "REDERIVE-00#000",
+        "REDERIVE-01#000",
+        "REDERIVE-03#000",
+        "REDERIVE-10#000",
+        "REDERIVE-08#000",
+        "REDERIVE-04#000",
+        "REDERIVE-09#000",
+        "REDERIVE-05#000",
+        "REDERIVE-06#000",
+        "DELAYED-02#000",
+        "DELAYED-05#000",
+        "DELAYED-00#000"
+      ],
       "retained_tokens": 242
     }
   ],
