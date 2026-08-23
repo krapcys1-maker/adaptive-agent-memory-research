@@ -1,7 +1,7 @@
 {
-  "schema_version": "0.1.0",
-  "status": "design-freeze-candidate-not-executed",
-  "snapshot_rule": "materialize the Git tree and canonical memory events at or before each query_cutoff_commit",
+  "schema_version": "0.2.0",
+  "status": "revised-design-review-candidate-not-executed",
+  "snapshot_rule": "enumerate the exact Git tree with git ls-tree -r --full-tree at query_cutoff_commit and read each eligible blob with <commit>:<path>; never read the working tree for a historical snapshot",
   "include": [
     {
       "class": "canonical_research",
@@ -54,18 +54,35 @@
     "**/.pytest_cache/**"
   ],
   "unitization": {
-    "markdown": "heading section with direct body; child sections are separate; preserve heading path in hidden locator",
-    "project_memory": "one active or historically valid event per unit; superseded events remain available for temporal gold",
-    "catalog": "one data row per unit with frozen column order",
+    "stable_unit_id": "sha256 over versioned canonical identity containing source_type, path, locator, and search_text_sha256; exclude snapshot_commit so unchanged content keeps one ID across snapshots",
+    "markdown": "CommonMark 0.31.2 ATX and Setext heading section with heading-path text plus direct body; child bodies are separate; fenced-code heading lookalikes are not headings; preserve heading path, occurrence, and exact historical line span in the hidden locator",
+    "markdown_preamble": "non-empty content before the first heading is one explicit preamble unit",
+    "project_memory": "one event per unit from the historical events.jsonl blob; search text uses a frozen allowlist of semantic fields; superseded events remain available for temporal gold and derived active status stays backend-hidden",
+    "catalog_csv": "RFC 4180 parse with the historical header; search text serializes header-value pairs in frozen source-column order; malformed or duplicate headers fail closed",
+    "catalog_jsonl": "one I-JSON object per line with unique member names; canonical search text follows RFC 8785 JCS and UTF-8; non-I-JSON numbers or duplicate names fail closed",
     "oversize": "split only at deterministic paragraph boundaries under a UTF-8 byte ceiling chosen on development and frozen before test",
     "exact_duplicates": "collapse identical search_text hashes into one ranked unit and preserve every source alias",
     "near_duplicates": "preserve and report; do not tune a similarity deduplicator on test"
+  },
+  "historical_tree_controls": {
+    "git_object_format": "record sha1 or sha256 from the repository; never infer the algorithm only from an unlabeled digest",
+    "portable_blob_integrity": "record SHA-256 of exact blob bytes in addition to the Git typed object name",
+    "unsupported_entries": ["symlink", "gitlink/submodule", "non-UTF-8 text", "binary blob"],
+    "unsupported_action": "exclude with a counted reason before unitization; never follow a link into the working tree"
+  },
+  "query_privacy": {
+    "unkeyed_origin_hash": "forbidden",
+    "public_query": "may use an explicit public Git locator receipt",
+    "private_query": "store verbatim text and origin mapping only in local-restricted storage; publish opaque IDs and aggregate receipts",
+    "allowed_private_receipts": ["independently random opaque receipt", "keyed digest with key outside Git"],
+    "attestation_limit": "a pre-output statement records process provenance but is not independent proof; capture order must be audited separately"
   },
   "primary_backend_visible_fields": ["unit_id", "search_text"],
   "pending_before_execution": [
     "independent eligibility review",
     "freeze UTF-8 byte ceiling on outcome-hidden development",
     "implement and test historical Git-tree reconstruction",
+    "independently review stable-ID, heading-context, canonical-row, and query-privacy rules",
     "verify no test query log or label path enters any unit",
     "freeze source-unit manifest hashes"
   ]

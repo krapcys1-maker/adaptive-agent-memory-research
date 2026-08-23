@@ -1,13 +1,14 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "experiment_id": "PMLAB-NATURAL-RET-001",
-  "status": "preregistration-draft-no-corpus-no-result",
+  "status": "revised-source-unit-contract-awaiting-review-no-corpus-no-result",
   "protocol": "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md",
   "design_artifacts": {
     "source_unit_schema": "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json",
     "query_log_schema": "data/lab/pmlab-natural-history-v0/query-log-contract-v0.schema.json",
     "eligibility_policy": "data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json",
-    "pre_builder_audit": "data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md"
+    "pre_builder_audit": "data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md",
+    "source_unit_contract_audit": "docs/07-literature/natural-history-source-unit-contract-audit-v0.md"
   },
   "primary_endpoint": "all_required_evidence_in_top5",
   "alpha_two_sided": 0.05,

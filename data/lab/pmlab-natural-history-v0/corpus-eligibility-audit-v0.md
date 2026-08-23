@@ -1,6 +1,6 @@
 # Natural-history corpus eligibility audit v0
 
-Status: pre-builder inventory; design evidence only; no corpus or benchmark output exists
+Status: preserved pre-builder inventory for contract v0.1; design issues are repaired in the v0.2 source-unit audit, but no corpus or benchmark output exists
 
 Audited commit: `4ab0684a3da3c30446ea9c3345ea35009517d1e5`
 
@@ -36,4 +36,4 @@ There are 1,171 Markdown headings across the audited tree. Of those, 872 are in 
 
 ## Design disposition
 
-The eligibility policy and two JSON Schemas are admitted for independent review. A builder remains locked until the byte ceiling, historical snapshot semantics, Markdown direct-body parsing, exact-duplicate aliasing, and exclusion tests are frozen. This audit does not authorize embedding downloads or backend execution.
+The inventory remains valid, but the initial contracts required revision for stable cross-snapshot IDs, declared Git object formats, heading-bearing search text, canonical row serialization, and private-origin receipts. Those repairs are documented in `docs/07-literature/natural-history-source-unit-contract-audit-v0.md`. The revised policy and schemas are candidates for independent review. A builder remains locked until the byte ceiling, historical snapshot semantics, Markdown parsing, exact-duplicate aliasing, privacy controls, and exclusion tests freeze. This audit does not authorize embedding downloads or backend execution.

@@ -4,27 +4,46 @@
   "title": "PMLAB natural-history source unit v0",
   "type": "object",
   "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {"properties": {"git_object_format": {"const": "sha1"}}, "required": ["git_object_format"]},
+      "then": {"properties": {"snapshot_commit": {"pattern": "^[a-f0-9]{40}$"}}}
+    },
+    {
+      "if": {"properties": {"git_object_format": {"const": "sha256"}}, "required": ["git_object_format"]},
+      "then": {"properties": {"snapshot_commit": {"pattern": "^[a-f0-9]{64}$"}}}
+    }
+  ],
   "required": [
+    "contract_version",
     "unit_id",
     "snapshot_commit",
+    "git_object_format",
     "source_type",
     "path",
     "locator",
     "search_text",
     "search_text_sha256",
     "source_blob_sha256",
+    "source_git_object",
     "eligibility_class",
     "backend_visible_fields"
   ],
   "properties": {
+    "contract_version": {
+      "const": "0.2.0"
+    },
     "unit_id": {
       "type": "string",
       "pattern": "^U-[a-f0-9]{16}$",
-      "description": "Opaque ID derived from the frozen snapshot, locator, and content hash; it must not encode time, category, or relevance."
+      "description": "Opaque ID derived from contract version, source type, path, locator, and search-text hash. Snapshot commit is excluded so an unchanged unit keeps its ID across historical snapshots. It must not encode time, category, or relevance."
     },
     "snapshot_commit": {
       "type": "string",
-      "pattern": "^[a-f0-9]{40}$"
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "git_object_format": {
+      "enum": ["sha1", "sha256"]
     },
     "source_type": {
       "enum": [
@@ -63,7 +82,27 @@
     },
     "source_blob_sha256": {
       "type": "string",
-      "pattern": "^[a-f0-9]{64}$"
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "Portable SHA-256 of the exact historical file bytes, distinct from Git's typed object name."
+    },
+    "source_git_object": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {"properties": {"algorithm": {"const": "sha1"}}, "required": ["algorithm"]},
+          "then": {"properties": {"object_id": {"pattern": "^[a-f0-9]{40}$"}}}
+        },
+        {
+          "if": {"properties": {"algorithm": {"const": "sha256"}}, "required": ["algorithm"]},
+          "then": {"properties": {"object_id": {"pattern": "^[a-f0-9]{64}$"}}}
+        }
+      ],
+      "required": ["algorithm", "object_id"],
+      "properties": {
+        "algorithm": {"enum": ["sha1", "sha256"]},
+        "object_id": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"}
+      }
     },
     "eligibility_class": {
       "enum": [

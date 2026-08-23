@@ -4,16 +4,29 @@
   "title": "PMLAB authentic pre-output query log v0",
   "type": "object",
   "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {"properties": {"git_object_format": {"const": "sha1"}}, "required": ["git_object_format"]},
+      "then": {"properties": {"query_cutoff_commit": {"pattern": "^[a-f0-9]{40}$"}}}
+    },
+    {
+      "if": {"properties": {"git_object_format": {"const": "sha256"}}, "required": ["git_object_format"]},
+      "then": {"properties": {"query_cutoff_commit": {"pattern": "^[a-f0-9]{64}$"}}}
+    }
+  ],
   "required": [
     "query_id",
     "recorded_at",
     "query_text",
     "language",
     "origin_type",
-    "origin_ref_hash",
+    "origin_receipt",
     "query_cutoff_commit",
+    "git_object_format",
     "pre_output_attestation",
-    "collection_phase"
+    "collection_phase",
+    "recorded_by_role",
+    "storage_class"
   ],
   "properties": {
     "query_id": {
@@ -40,20 +53,35 @@
         "authored_diagnostic_development_only"
       ]
     },
-    "origin_ref_hash": {
-      "type": "string",
-      "pattern": "^[a-f0-9]{64}$",
-      "description": "Hash of the private or public origin locator; the raw private locator need not be published."
+    "origin_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "value"],
+      "properties": {
+        "mode": {"enum": ["public_git_locator", "private_random_receipt", "private_keyed_digest"]},
+        "value": {"type": "string", "minLength": 3}
+      },
+      "description": "Public locators may be explicit. Private origins use an independently random receipt or keyed digest whose mapping/key remains outside Git; an unkeyed content or locator hash is forbidden."
     },
     "query_cutoff_commit": {
       "type": "string",
-      "pattern": "^[a-f0-9]{40}$"
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "git_object_format": {
+      "enum": ["sha1", "sha256"]
     },
     "pre_output_attestation": {
       "const": "No candidate backend output or gold evidence search was viewed before this query was frozen."
     },
     "collection_phase": {
       "enum": ["retrospective_development", "prospective_test"]
+    },
+    "recorded_by_role": {
+      "enum": ["user", "research_agent", "human_reviewer", "automated_capture"]
+    },
+    "storage_class": {
+      "enum": ["git_public", "local_restricted"],
+      "description": "Local-restricted query text and origin mappings must not be committed to the public repository; public artifacts expose opaque IDs and aggregate receipts only."
     },
     "exclusion_reason": {
       "type": ["string", "null"]

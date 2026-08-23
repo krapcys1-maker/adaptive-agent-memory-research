@@ -1,6 +1,6 @@
 # Natural project-history retrieval benchmark protocol v0
 
-Status: preregistration draft; source-unit and prospective-query instruments not yet built; no result exists
+Status: source-unit/query contracts revised after primary-source audit and awaiting review; no corpus, backend run, or result exists
 
 Experiment ID: `PMLAB-NATURAL-RET-001`
 
@@ -33,6 +33,8 @@ Backend-generated questions, retrospective paraphrases written to fill a quota, 
 
 Each query records a UTC timestamp. Only durable records whose valid-time and commit/event time precede that timestamp may be gold evidence. This query-time cutoff prevents future summaries from leaking answers into earlier cases.
 
+Public Git locators may serve as origin receipts. Private origins use independently random receipts or keyed digests whose mapping/key remains outside Git; unkeyed hashes of query text or private locators are forbidden. Verbatim private queries remain in local-restricted storage and public artifacts expose only opaque IDs and aggregate receipts. A pre-output attestation is process evidence, not independent proof of blindness.
+
 ## Corpus and source units
 
 The canonical source universe is reconstructed as of each query cutoff from reviewed Git history and append-only project-memory events. Generated model outputs, temporary API work directories, benchmark gold files, raw annotations, caches, vendored repositories, and the prospective query log are excluded.
@@ -45,6 +47,10 @@ One model-independent source-unit builder must freeze:
 - no hidden backend-specific summary, label, entity expansion, timestamp expansion, or filename boost;
 - a common size ceiling compatible with the selected E5 input boundary, with deterministic split rules for oversized units;
 - stable opaque unit IDs and exact UTF-8 content hashes.
+
+Historical reconstruction enumerates the exact cutoff tree and reads addressed Git blobs, never same-named files from the working tree. Each unit records the declared Git object format and typed object name plus a portable SHA-256 of exact blob bytes. Unit identity excludes the snapshot commit so unchanged content at the same path/locator remains stable across cutoffs; an edit produces a new unit.
+
+Markdown follows CommonMark 0.31.2 block semantics. Search text includes heading-path text plus direct body, while child bodies remain separate units. CSV uses its historical header and source column order; JSONL admits I-JSON objects serialized with RFC 8785 JCS. Symlinks, gitlinks, binary blobs, non-UTF-8 text, malformed rows, and duplicate JSON members fail closed in v0.
 
 All backends receive byte-identical units. `CURRENT_STATE.md` and other curated summaries form a registered factor: primary analysis excludes them, and a secondary analysis includes them to quantify summary leakage or genuine utility.
 
