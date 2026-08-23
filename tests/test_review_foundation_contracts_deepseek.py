@@ -30,8 +30,9 @@ def test_job_contains_only_declared_subject_artifacts():
     job = review.build_job()
     manifest = review.json.loads((review.BLIND / "packet-manifest.json").read_text(encoding="utf-8"))
     assert set(job["subject_artifacts"]) == set(manifest["subject_artifacts"])
+    assert not any("invalid-mutations" in path or "audit-report" in path or "CURRENT_STATE" in path for path in job["subject_artifacts"])
     serialized = review.json.dumps(job)
-    for forbidden in ("construction-validation-report", "leakage-audit-report", "invalid-mutations", "CURRENT_STATE"):
+    for forbidden in ("INV-PREFIX-QUERY-FIELD", "INV-EVENT-BAD-HASH", "passed-authored-L0-L4", "Latest diagnostics"):
         assert forbidden not in serialized
 
 
@@ -51,4 +52,3 @@ def test_all_twelve_findings_are_required_in_order():
     value["findings"] = value["findings"][:-1]
     with pytest.raises(ValueError, match="A01-A12"):
         review.validate(value)
-

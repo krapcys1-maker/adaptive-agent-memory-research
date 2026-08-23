@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import review_natural_history_contract_deepseek as base
 
 
-base.RUN_ID = "deepseek-v4-flash-foundation-contract-semantic-review-20260823"
+base.RUN_ID = "deepseek-v4-flash-foundation-contract-semantic-review-v2-20260823"
 base.RUN_DIR = base.ROOT / "data" / "lab" / "api-screening" / base.RUN_ID
 base.RUN_CAP = 0.10
 base.GLOBAL_CAP = 10.0
