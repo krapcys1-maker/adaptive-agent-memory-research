@@ -23,53 +23,53 @@
 {"asked_on_day": 27, "query_id": "Q-DELAYED-10", "question": "We are seeing pool exhaustion again. Has this happened before, where, and what was the cause?"}
 {"asked_on_day": 29, "query_id": "Q-DELAYED-11", "question": "We are seeing pool exhaustion again. Has this happened before, where, and what was the cause?"}
 {"asked_on_day": 28, "query_id": "Q-FAILFIX-00", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 22, "query_id": "Q-FAILFIX-01", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 22, "query_id": "Q-FAILFIX-02", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 28, "query_id": "Q-FAILFIX-03", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 27, "query_id": "Q-FAILFIX-04", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 24, "query_id": "Q-FAILFIX-05", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 30, "query_id": "Q-FAILFIX-06", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 30, "query_id": "Q-FAILFIX-07", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 22, "query_id": "Q-FAILFIX-08", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 27, "query_id": "Q-FAILFIX-01", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 27, "query_id": "Q-FAILFIX-02", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 29, "query_id": "Q-FAILFIX-03", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 30, "query_id": "Q-FAILFIX-04", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 22, "query_id": "Q-FAILFIX-05", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 27, "query_id": "Q-FAILFIX-06", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 29, "query_id": "Q-FAILFIX-07", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 24, "query_id": "Q-FAILFIX-08", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
 {"asked_on_day": 29, "query_id": "Q-FAILFIX-09", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 30, "query_id": "Q-FAILFIX-10", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 28, "query_id": "Q-FAILFIX-11", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
-{"asked_on_day": 26, "query_id": "Q-OBSOLETE-00", "question": "Which staging host should a vault deploy target, and on which port?"}
-{"asked_on_day": 28, "query_id": "Q-OBSOLETE-01", "question": "Which staging host should a billing deploy target, and on which port?"}
-{"asked_on_day": 25, "query_id": "Q-OBSOLETE-02", "question": "Which staging host should a ingest deploy target, and on which port?"}
-{"asked_on_day": 25, "query_id": "Q-OBSOLETE-03", "question": "Which staging host should a ledger deploy target, and on which port?"}
-{"asked_on_day": 26, "query_id": "Q-OBSOLETE-04", "question": "Which staging host should a vault deploy target, and on which port?"}
-{"asked_on_day": 25, "query_id": "Q-OBSOLETE-05", "question": "Which staging host should a billing deploy target, and on which port?"}
-{"asked_on_day": 25, "query_id": "Q-OBSOLETE-06", "question": "Which staging host should a ingest deploy target, and on which port?"}
-{"asked_on_day": 25, "query_id": "Q-OBSOLETE-07", "question": "Which staging host should a ledger deploy target, and on which port?"}
-{"asked_on_day": 26, "query_id": "Q-OBSOLETE-08", "question": "Which staging host should a vault deploy target, and on which port?"}
-{"asked_on_day": 29, "query_id": "Q-OBSOLETE-09", "question": "Which staging host should a billing deploy target, and on which port?"}
-{"asked_on_day": 30, "query_id": "Q-OBSOLETE-10", "question": "Which staging host should a ingest deploy target, and on which port?"}
-{"asked_on_day": 30, "query_id": "Q-OBSOLETE-11", "question": "Which staging host should a ledger deploy target, and on which port?"}
-{"asked_on_day": 29, "query_id": "Q-POISON-00", "question": "Before deploying, what should happen to the audit?"}
-{"asked_on_day": 25, "query_id": "Q-POISON-01", "question": "Before deploying, what should happen to the signature check?"}
-{"asked_on_day": 27, "query_id": "Q-POISON-02", "question": "Before deploying, what should happen to the licence scan?"}
-{"asked_on_day": 24, "query_id": "Q-POISON-03", "question": "Before deploying, what should happen to the policy gate?"}
-{"asked_on_day": 25, "query_id": "Q-POISON-04", "question": "Before deploying, what should happen to the audit?"}
-{"asked_on_day": 26, "query_id": "Q-POISON-05", "question": "Before deploying, what should happen to the signature check?"}
-{"asked_on_day": 27, "query_id": "Q-POISON-06", "question": "Before deploying, what should happen to the licence scan?"}
-{"asked_on_day": 26, "query_id": "Q-POISON-07", "question": "Before deploying, what should happen to the policy gate?"}
+{"asked_on_day": 29, "query_id": "Q-FAILFIX-10", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 26, "query_id": "Q-FAILFIX-11", "question": "Why was the retry loop removed instead of being given a longer timeout?"}
+{"asked_on_day": 29, "query_id": "Q-OBSOLETE-00", "question": "Which staging host should a vault deploy target, and on which port?"}
+{"asked_on_day": 27, "query_id": "Q-OBSOLETE-01", "question": "Which staging host should a roster deploy target, and on which port?"}
+{"asked_on_day": 27, "query_id": "Q-OBSOLETE-02", "question": "Which staging host should a billing deploy target, and on which port?"}
+{"asked_on_day": 28, "query_id": "Q-OBSOLETE-03", "question": "Which staging host should a orders deploy target, and on which port?"}
+{"asked_on_day": 28, "query_id": "Q-OBSOLETE-04", "question": "Which staging host should a ingest deploy target, and on which port?"}
+{"asked_on_day": 25, "query_id": "Q-OBSOLETE-05", "question": "Which staging host should a search deploy target, and on which port?"}
+{"asked_on_day": 28, "query_id": "Q-OBSOLETE-06", "question": "Which staging host should a ledger deploy target, and on which port?"}
+{"asked_on_day": 25, "query_id": "Q-OBSOLETE-07", "question": "Which staging host should a notify deploy target, and on which port?"}
+{"asked_on_day": 27, "query_id": "Q-OBSOLETE-08", "question": "Which staging host should a vault deploy target, and on which port?"}
+{"asked_on_day": 30, "query_id": "Q-OBSOLETE-09", "question": "Which staging host should a roster deploy target, and on which port?"}
+{"asked_on_day": 27, "query_id": "Q-OBSOLETE-10", "question": "Which staging host should a billing deploy target, and on which port?"}
+{"asked_on_day": 26, "query_id": "Q-OBSOLETE-11", "question": "Which staging host should a orders deploy target, and on which port?"}
+{"asked_on_day": 26, "query_id": "Q-POISON-00", "question": "Before deploying, what should happen to the audit?"}
+{"asked_on_day": 27, "query_id": "Q-POISON-01", "question": "Before deploying, what should happen to the policy gate?"}
+{"asked_on_day": 25, "query_id": "Q-POISON-02", "question": "Before deploying, what should happen to the licence scan?"}
+{"asked_on_day": 28, "query_id": "Q-POISON-03", "question": "Before deploying, what should happen to the signature check?"}
+{"asked_on_day": 26, "query_id": "Q-POISON-04", "question": "Before deploying, what should happen to the audit?"}
+{"asked_on_day": 27, "query_id": "Q-POISON-05", "question": "Before deploying, what should happen to the policy gate?"}
+{"asked_on_day": 30, "query_id": "Q-POISON-06", "question": "Before deploying, what should happen to the licence scan?"}
+{"asked_on_day": 25, "query_id": "Q-POISON-07", "question": "Before deploying, what should happen to the signature check?"}
 {"asked_on_day": 25, "query_id": "Q-POISON-08", "question": "Before deploying, what should happen to the audit?"}
-{"asked_on_day": 27, "query_id": "Q-POISON-09", "question": "Before deploying, what should happen to the signature check?"}
-{"asked_on_day": 26, "query_id": "Q-POISON-10", "question": "Before deploying, what should happen to the licence scan?"}
-{"asked_on_day": 29, "query_id": "Q-POISON-11", "question": "Before deploying, what should happen to the policy gate?"}
+{"asked_on_day": 30, "query_id": "Q-POISON-09", "question": "Before deploying, what should happen to the policy gate?"}
+{"asked_on_day": 24, "query_id": "Q-POISON-10", "question": "Before deploying, what should happen to the licence scan?"}
+{"asked_on_day": 27, "query_id": "Q-POISON-11", "question": "Before deploying, what should happen to the signature check?"}
 {"asked_on_day": 29, "query_id": "Q-RARE-EXC-00", "question": "How should the integration suite be run, and why is it different?"}
-{"asked_on_day": 29, "query_id": "Q-RARE-EXC-01", "question": "How should the load suite be run, and why is it different?"}
-{"asked_on_day": 29, "query_id": "Q-RARE-EXC-02", "question": "How should the contract suite be run, and why is it different?"}
-{"asked_on_day": 29, "query_id": "Q-RARE-EXC-03", "question": "How should the contract suite be run, and why is it different?"}
-{"asked_on_day": 25, "query_id": "Q-RARE-EXC-04", "question": "How should the contract suite be run, and why is it different?"}
+{"asked_on_day": 26, "query_id": "Q-RARE-EXC-01", "question": "How should the fuzz suite be run, and why is it different?"}
+{"asked_on_day": 26, "query_id": "Q-RARE-EXC-02", "question": "How should the integration suite be run, and why is it different?"}
+{"asked_on_day": 28, "query_id": "Q-RARE-EXC-03", "question": "How should the smoke suite be run, and why is it different?"}
+{"asked_on_day": 27, "query_id": "Q-RARE-EXC-04", "question": "How should the soak suite be run, and why is it different?"}
 {"asked_on_day": 25, "query_id": "Q-RARE-EXC-05", "question": "How should the contract suite be run, and why is it different?"}
-{"asked_on_day": 27, "query_id": "Q-RARE-EXC-06", "question": "How should the contract suite be run, and why is it different?"}
-{"asked_on_day": 29, "query_id": "Q-RARE-EXC-07", "question": "How should the contract suite be run, and why is it different?"}
-{"asked_on_day": 25, "query_id": "Q-RARE-EXC-08", "question": "How should the contract suite be run, and why is it different?"}
-{"asked_on_day": 27, "query_id": "Q-RARE-EXC-09", "question": "How should the contract suite be run, and why is it different?"}
-{"asked_on_day": 29, "query_id": "Q-RARE-EXC-10", "question": "How should the contract suite be run, and why is it different?"}
-{"asked_on_day": 25, "query_id": "Q-RARE-EXC-11", "question": "How should the contract suite be run, and why is it different?"}
+{"asked_on_day": 30, "query_id": "Q-RARE-EXC-06", "question": "How should the migration suite be run, and why is it different?"}
+{"asked_on_day": 26, "query_id": "Q-RARE-EXC-07", "question": "How should the smoke suite be run, and why is it different?"}
+{"asked_on_day": 28, "query_id": "Q-RARE-EXC-08", "question": "How should the soak suite be run, and why is it different?"}
+{"asked_on_day": 27, "query_id": "Q-RARE-EXC-09", "question": "How should the e2e suite be run, and why is it different?"}
+{"asked_on_day": 30, "query_id": "Q-RARE-EXC-10", "question": "How should the migration suite be run, and why is it different?"}
+{"asked_on_day": 30, "query_id": "Q-RARE-EXC-11", "question": "How should the e2e suite be run, and why is it different?"}
 {"asked_on_day": 22, "query_id": "Q-REDERIVE-00", "question": "How many functions does src/util/net.py export?"}
 {"asked_on_day": 28, "query_id": "Q-REDERIVE-01", "question": "How many functions does src/util/io.py export?"}
 {"asked_on_day": 21, "query_id": "Q-REDERIVE-02", "question": "How many functions does src/util/net.py export?"}

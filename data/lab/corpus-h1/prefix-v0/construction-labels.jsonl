@@ -1,10 +1,7 @@
-{"event_id": "OBSOLETE-01#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "OBSOLETE-05#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "OBSOLETE-09#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "RARE-EXC-02#000", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-05#000", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-02#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "OBSOLETE-10#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "RARE-EXC-01#000", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-07#000", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-10#000", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-11#000", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "DELAYED-02#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
 {"event_id": "DELAYED-05#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
@@ -25,32 +22,27 @@
 {"event_id": "NOISE#159", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#184", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#211", "properties": ["repeated-noise"]}
+{"event_id": "OBSOLETE-01#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "OBSOLETE-02#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-09#000", "properties": ["exact-identifier", "obsolete-fact"]}
 {"event_id": "RARE-EXC-00#000", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-07#001", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-11#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-10#000", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "DELAYED-00#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
 {"event_id": "DELAYED-02#001", "properties": ["one-off-noise"]}
 {"event_id": "DELAYED-05#001", "properties": ["one-off-noise"]}
 {"event_id": "DELAYED-09#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
-{"event_id": "OBSOLETE-02#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "OBSOLETE-06#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "OBSOLETE-10#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "RARE-EXC-01#000", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-01#010", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
-{"event_id": "RARE-EXC-02#008", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
-{"event_id": "RARE-EXC-03#009", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
-{"event_id": "RARE-EXC-04#000", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-04#009", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
-{"event_id": "RARE-EXC-07#002", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-09#000", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-10#009", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "OBSOLETE-02#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-04#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "OBSOLETE-09#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-01#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-05#009", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-06#000", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#012", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
 {"event_id": "DELAYED-00#001", "properties": ["one-off-noise"]}
 {"event_id": "DELAYED-01#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
 {"event_id": "DELAYED-04#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
 {"event_id": "DELAYED-09#001", "properties": ["one-off-noise"]}
-{"event_id": "FAILFIX-11#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-11#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-11#002", "properties": ["not-rederivable-from-files", "rationale"]}
 {"event_id": "NOISE#030", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#037", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#044", "properties": ["repeated-noise"]}
@@ -60,31 +52,37 @@
 {"event_id": "NOISE#129", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#191", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#201", "properties": ["one-off-noise"]}
-{"event_id": "RARE-EXC-01#001", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-03#000", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-06#000", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-07#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-03#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "OBSOLETE-09#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-11#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "RARE-EXC-01#008", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-02#000", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-03#010", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-04#000", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-05#000", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#000", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-10#001", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "BILINGUAL-09#000", "properties": ["bilingual-paraphrase", "exact-identifier"]}
 {"event_id": "DELAYED-01#001", "properties": ["one-off-noise"]}
 {"event_id": "DELAYED-03#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
 {"event_id": "DELAYED-04#001", "properties": ["one-off-noise"]}
 {"event_id": "DELAYED-07#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
-{"event_id": "FAILFIX-06#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-06#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-06#002", "properties": ["not-rederivable-from-files", "rationale"]}
-{"event_id": "FAILFIX-07#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-07#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-07#002", "properties": ["not-rederivable-from-files", "rationale"]}
-{"event_id": "FAILFIX-10#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-10#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-10#002", "properties": ["not-rederivable-from-files", "rationale"]}
-{"event_id": "OBSOLETE-03#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "OBSOLETE-07#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "OBSOLETE-11#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "FAILFIX-04#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-04#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-04#002", "properties": ["not-rederivable-from-files", "rationale"]}
+{"event_id": "FAILFIX-05#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-05#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-05#002", "properties": ["not-rederivable-from-files", "rationale"]}
+{"event_id": "FAILFIX-11#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-11#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-11#002", "properties": ["not-rederivable-from-files", "rationale"]}
+{"event_id": "OBSOLETE-06#000", "properties": ["exact-identifier", "obsolete-fact"]}
 {"event_id": "RARE-EXC-00#009", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
-{"event_id": "RARE-EXC-07#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-08#000", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-09#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-05#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#010", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-10#012", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-11#001", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "BILINGUAL-01#000", "properties": ["bilingual-paraphrase", "exact-identifier"]}
 {"event_id": "BILINGUAL-09#001", "properties": ["bilingual-paraphrase"]}
 {"event_id": "DELAYED-03#001", "properties": ["one-off-noise"]}
@@ -93,15 +91,6 @@
 {"event_id": "DELAYED-08#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
 {"event_id": "DELAYED-10#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
 {"event_id": "DELAYED-11#000", "properties": ["authorization-state", "delayed-importance", "exact-identifier"]}
-{"event_id": "FAILFIX-01#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-01#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-01#002", "properties": ["not-rederivable-from-files", "rationale"]}
-{"event_id": "FAILFIX-05#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-05#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-05#002", "properties": ["not-rederivable-from-files", "rationale"]}
-{"event_id": "FAILFIX-08#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-08#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-08#002", "properties": ["not-rederivable-from-files", "rationale"]}
 {"event_id": "NOISE#010", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#016", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#036", "properties": ["one-off-noise"]}
@@ -120,9 +109,12 @@
 {"event_id": "NOISE#193", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#221", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#237", "properties": ["one-off-noise"]}
-{"event_id": "RARE-EXC-01#002", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-10#001", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-11#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-01#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-05#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "OBSOLETE-10#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-07#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-08#000", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#001", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "REDERIVE-02#000", "properties": ["rederivable-from-files"]}
 {"event_id": "REDERIVE-03#000", "properties": ["rederivable-from-files"]}
 {"event_id": "REDERIVE-04#000", "properties": ["rederivable-from-files"]}
@@ -134,13 +126,27 @@
 {"event_id": "DELAYED-08#001", "properties": ["one-off-noise"]}
 {"event_id": "DELAYED-10#001", "properties": ["one-off-noise"]}
 {"event_id": "DELAYED-11#001", "properties": ["one-off-noise"]}
+{"event_id": "FAILFIX-01#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-01#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-01#002", "properties": ["not-rederivable-from-files", "rationale"]}
+{"event_id": "FAILFIX-02#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-02#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-02#002", "properties": ["not-rederivable-from-files", "rationale"]}
 {"event_id": "OBSOLETE-00#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "OBSOLETE-04#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "OBSOLETE-01#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-05#001", "properties": ["obsolete-fact", "repeated-noise"]}
 {"event_id": "OBSOLETE-08#000", "properties": ["exact-identifier", "obsolete-fact"]}
-{"event_id": "RARE-EXC-03#001", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-04#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-10#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-11#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-02#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-02#010", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-03#000", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-07#010", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
-{"event_id": "RARE-EXC-11#009", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-08#008", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-09#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#013", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-10#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#002", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "BILINGUAL-03#000", "properties": ["bilingual-paraphrase", "exact-identifier"]}
 {"event_id": "BILINGUAL-06#000", "properties": ["bilingual-paraphrase", "exact-identifier"]}
 {"event_id": "BILINGUAL-07#001", "properties": ["bilingual-paraphrase"]}
@@ -149,9 +155,6 @@
 {"event_id": "FAILFIX-00#000", "properties": ["failed-attempt"]}
 {"event_id": "FAILFIX-00#001", "properties": ["exact-identifier", "successful-fix"]}
 {"event_id": "FAILFIX-00#002", "properties": ["not-rederivable-from-files", "rationale"]}
-{"event_id": "FAILFIX-04#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-04#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-04#002", "properties": ["not-rederivable-from-files", "rationale"]}
 {"event_id": "NOISE#001", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#020", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#063", "properties": ["one-off-noise"]}
@@ -165,35 +168,53 @@
 {"event_id": "NOISE#189", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#214", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#220", "properties": ["repeated-noise"]}
+{"event_id": "OBSOLETE-00#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-04#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-05#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-06#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-07#000", "properties": ["exact-identifier", "obsolete-fact"]}
+{"event_id": "OBSOLETE-08#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-11#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "POISON-04#000", "properties": ["poisoned-plausible"]}
+{"event_id": "POISON-09#000", "properties": ["poisoned-plausible"]}
 {"event_id": "RARE-EXC-00#001", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-02#001", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-04#002", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-05#009", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
-{"event_id": "RARE-EXC-09#009", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-02#002", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "BILINGUAL-03#001", "properties": ["bilingual-paraphrase"]}
 {"event_id": "BILINGUAL-04#000", "properties": ["bilingual-paraphrase", "exact-identifier"]}
 {"event_id": "BILINGUAL-06#001", "properties": ["bilingual-paraphrase"]}
 {"event_id": "BILINGUAL-11#001", "properties": ["bilingual-paraphrase"]}
-{"event_id": "FAILFIX-02#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-02#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-02#002", "properties": ["not-rederivable-from-files", "rationale"]}
 {"event_id": "FAILFIX-03#000", "properties": ["failed-attempt"]}
 {"event_id": "FAILFIX-03#001", "properties": ["exact-identifier", "successful-fix"]}
 {"event_id": "FAILFIX-03#002", "properties": ["not-rederivable-from-files", "rationale"]}
-{"event_id": "FAILFIX-09#000", "properties": ["failed-attempt"]}
-{"event_id": "FAILFIX-09#001", "properties": ["exact-identifier", "successful-fix"]}
-{"event_id": "FAILFIX-09#002", "properties": ["not-rederivable-from-files", "rationale"]}
-{"event_id": "POISON-02#000", "properties": ["poisoned-plausible"]}
-{"event_id": "RARE-EXC-02#002", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-03#002", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-04#003", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-06#001", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-06#009", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
-{"event_id": "RARE-EXC-08#010", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "FAILFIX-10#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-10#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-10#002", "properties": ["not-rederivable-from-files", "rationale"]}
+{"event_id": "OBSOLETE-00#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-04#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-06#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-07#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-08#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "POISON-04#001", "properties": ["important-now"]}
+{"event_id": "POISON-09#001", "properties": ["important-now"]}
+{"event_id": "RARE-EXC-02#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-04#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-04#007", "properties": ["exact-identifier", "important-now", "rare-critical-exception"]}
+{"event_id": "RARE-EXC-07#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-08#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#003", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-11#003", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "BILINGUAL-00#000", "properties": ["bilingual-paraphrase", "exact-identifier"]}
 {"event_id": "BILINGUAL-02#000", "properties": ["bilingual-paraphrase", "exact-identifier"]}
 {"event_id": "BILINGUAL-04#001", "properties": ["bilingual-paraphrase"]}
+{"event_id": "FAILFIX-06#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-06#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-06#002", "properties": ["not-rederivable-from-files", "rationale"]}
+{"event_id": "FAILFIX-08#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-08#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-08#002", "properties": ["not-rederivable-from-files", "rationale"]}
+{"event_id": "FAILFIX-09#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-09#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-09#002", "properties": ["not-rederivable-from-files", "rationale"]}
 {"event_id": "NOISE#009", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#046", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#074", "properties": ["repeated-noise"]}
@@ -208,12 +229,12 @@
 {"event_id": "NOISE#231", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#236", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#238", "properties": ["repeated-noise"]}
-{"event_id": "OBSOLETE-08#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "POISON-02#001", "properties": ["important-now"]}
+{"event_id": "OBSOLETE-03#001", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-07#002", "properties": ["obsolete-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-00#002", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-03#003", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-05#001", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-09#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-08#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#004", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "REDERIVE-00#000", "properties": ["rederivable-from-files"]}
 {"event_id": "REDERIVE-05#000", "properties": ["rederivable-from-files"]}
 {"event_id": "REDERIVE-07#000", "properties": ["rederivable-from-files"]}
@@ -222,11 +243,11 @@
 {"event_id": "BILINGUAL-00#001", "properties": ["bilingual-paraphrase"]}
 {"event_id": "BILINGUAL-02#001", "properties": ["bilingual-paraphrase"]}
 {"event_id": "BILINGUAL-08#000", "properties": ["bilingual-paraphrase", "exact-identifier"]}
-{"event_id": "OBSOLETE-02#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "POISON-06#000", "properties": ["poisoned-plausible"]}
-{"event_id": "RARE-EXC-01#003", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-06#002", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-08#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "FAILFIX-07#000", "properties": ["failed-attempt"]}
+{"event_id": "FAILFIX-07#001", "properties": ["exact-identifier", "successful-fix"]}
+{"event_id": "FAILFIX-07#002", "properties": ["not-rederivable-from-files", "rationale"]}
+{"event_id": "OBSOLETE-03#002", "properties": ["obsolete-fact", "repeated-noise"]}
+{"event_id": "POISON-01#000", "properties": ["poisoned-plausible"]}
 {"event_id": "BILINGUAL-08#001", "properties": ["bilingual-paraphrase"]}
 {"event_id": "NOISE#026", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#035", "properties": ["repeated-noise"]}
@@ -247,20 +268,25 @@
 {"event_id": "NOISE#199", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#203", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#208", "properties": ["repeated-noise"]}
-{"event_id": "OBSOLETE-07#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "OBSOLETE-11#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "POISON-06#001", "properties": ["important-now"]}
-{"event_id": "RARE-EXC-01#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-06#003", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-08#002", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-10#002", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "OBSOLETE-03#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "POISON-08#000", "properties": ["poisoned-plausible"]}
-{"event_id": "RARE-EXC-02#003", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-03#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-05#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-01#003", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "OBSOLETE-02#003", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "OBSOLETE-05#003", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "OBSOLETE-10#003", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "POISON-01#001", "properties": ["important-now"]}
+{"event_id": "POISON-05#000", "properties": ["poisoned-plausible"]}
+{"event_id": "POISON-11#000", "properties": ["poisoned-plausible"]}
+{"event_id": "RARE-EXC-01#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-03#001", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-04#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#004", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-03#003", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "POISON-05#001", "properties": ["important-now"]}
+{"event_id": "POISON-10#000", "properties": ["poisoned-plausible"]}
+{"event_id": "POISON-11#001", "properties": ["important-now"]}
+{"event_id": "RARE-EXC-02#004", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-03#002", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-08#003", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-10#003", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "BILINGUAL-05#000", "properties": ["bilingual-paraphrase", "exact-identifier"]}
 {"event_id": "NOISE#019", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#032", "properties": ["repeated-noise"]}
@@ -276,31 +302,30 @@
 {"event_id": "NOISE#175", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#185", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#213", "properties": ["one-off-noise"]}
-{"event_id": "OBSOLETE-01#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "OBSOLETE-06#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "OBSOLETE-09#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "POISON-05#000", "properties": ["poisoned-plausible"]}
-{"event_id": "POISON-08#001", "properties": ["important-now"]}
-{"event_id": "POISON-09#000", "properties": ["poisoned-plausible"]}
+{"event_id": "OBSOLETE-08#003", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "POISON-03#000", "properties": ["poisoned-plausible"]}
+{"event_id": "POISON-08#000", "properties": ["poisoned-plausible"]}
+{"event_id": "POISON-10#001", "properties": ["important-now"]}
 {"event_id": "RARE-EXC-00#003", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-02#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-04#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-05#003", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-10#004", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-03#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-05#002", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#006", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "REDERIVE-01#000", "properties": ["rederivable-from-files"]}
 {"event_id": "REDERIVE-06#000", "properties": ["rederivable-from-files"]}
 {"event_id": "REDERIVE-08#000", "properties": ["rederivable-from-files"]}
 {"event_id": "BILINGUAL-05#001", "properties": ["bilingual-paraphrase"]}
-{"event_id": "OBSOLETE-04#001", "properties": ["exact-identifier", "explicit-correction"]}
 {"event_id": "POISON-00#000", "properties": ["poisoned-plausible"]}
-{"event_id": "POISON-01#000", "properties": ["poisoned-plausible"]}
-{"event_id": "POISON-03#000", "properties": ["poisoned-plausible"]}
-{"event_id": "POISON-05#001", "properties": ["important-now"]}
-{"event_id": "POISON-09#001", "properties": ["important-now"]}
-{"event_id": "POISON-10#000", "properties": ["poisoned-plausible"]}
-{"event_id": "POISON-11#000", "properties": ["poisoned-plausible"]}
-{"event_id": "RARE-EXC-01#005", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-09#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "POISON-02#000", "properties": ["poisoned-plausible"]}
+{"event_id": "POISON-03#001", "properties": ["important-now"]}
+{"event_id": "POISON-06#000", "properties": ["poisoned-plausible"]}
+{"event_id": "POISON-08#001", "properties": ["important-now"]}
+{"event_id": "RARE-EXC-01#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#004", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#006", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-10#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#007", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "NOISE#015", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#027", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#054", "properties": ["one-off-noise"]}
@@ -317,19 +342,19 @@
 {"event_id": "NOISE#210", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#215", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#227", "properties": ["repeated-noise"]}
-{"event_id": "OBSOLETE-00#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "OBSOLETE-05#001", "properties": ["exact-identifier", "explicit-correction"]}
-{"event_id": "OBSOLETE-10#001", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "OBSOLETE-09#003", "properties": ["exact-identifier", "explicit-correction"]}
 {"event_id": "POISON-00#001", "properties": ["important-now"]}
-{"event_id": "POISON-01#001", "properties": ["important-now"]}
-{"event_id": "POISON-03#001", "properties": ["important-now"]}
-{"event_id": "POISON-10#001", "properties": ["important-now"]}
-{"event_id": "POISON-11#001", "properties": ["important-now"]}
-{"event_id": "RARE-EXC-04#005", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-07#005", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "POISON-04#000", "properties": ["poisoned-plausible"]}
+{"event_id": "POISON-02#001", "properties": ["important-now"]}
+{"event_id": "POISON-06#001", "properties": ["important-now"]}
+{"event_id": "RARE-EXC-02#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#008", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "OBSOLETE-07#003", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "OBSOLETE-11#003", "properties": ["exact-identifier", "explicit-correction"]}
 {"event_id": "POISON-07#000", "properties": ["poisoned-plausible"]}
-{"event_id": "RARE-EXC-11#004", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-01#004", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-07#004", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#009", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "NOISE#057", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#068", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#094", "properties": ["repeated-noise"]}
@@ -341,19 +366,20 @@
 {"event_id": "NOISE#177", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#183", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#190", "properties": ["repeated-noise"]}
-{"event_id": "POISON-04#001", "properties": ["important-now"]}
+{"event_id": "OBSOLETE-00#003", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "OBSOLETE-04#003", "properties": ["exact-identifier", "explicit-correction"]}
+{"event_id": "OBSOLETE-06#003", "properties": ["exact-identifier", "explicit-correction"]}
 {"event_id": "POISON-07#001", "properties": ["important-now"]}
-{"event_id": "RARE-EXC-01#006", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-02#005", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-03#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-01#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-02#006", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-05#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#006", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-02#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-03#004", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-05#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-09#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-01#007", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-04#006", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-07#006", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-08#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-10#005", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-11#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-07#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-10#004", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "NOISE#069", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#078", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#081", "properties": ["one-off-noise"]}
@@ -366,13 +392,16 @@
 {"event_id": "NOISE#225", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#226", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#239", "properties": ["repeated-noise"]}
-{"event_id": "RARE-EXC-09#005", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-11#006", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-03#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-07#006", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-08#004", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#008", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-10#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#010", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-00#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-02#006", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-03#006", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-06#004", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-07#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-02#008", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-04#003", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-05#005", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-10#006", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "NOISE#004", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#005", "properties": ["repeated-noise"]}
@@ -390,11 +419,11 @@
 {"event_id": "NOISE#182", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#216", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#217", "properties": ["repeated-noise"]}
-{"event_id": "RARE-EXC-06#005", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-10#007", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-00#005", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-05#005", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-08#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-03#006", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#009", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-10#008", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "NOISE#002", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#028", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#050", "properties": ["repeated-noise"]}
@@ -416,13 +445,13 @@
 {"event_id": "NOISE#223", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#230", "properties": ["repeated-noise"]}
 {"event_id": "RARE-EXC-00#006", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-04#007", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-07#008", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-09#006", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-11#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-03#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-07#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-10#009", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-00#007", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-05#006", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-09#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#008", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#010", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "NOISE#006", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#025", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#031", "properties": ["repeated-noise"]}
@@ -445,13 +474,15 @@
 {"event_id": "NOISE#232", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#233", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#234", "properties": ["one-off-noise"]}
-{"event_id": "RARE-EXC-01#008", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-06#006", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-01#006", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-04#004", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-06#009", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-08#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-10#010", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-04#005", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-05#006", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-08#006", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-09#008", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-03#007", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-06#007", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-08#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#011", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "NOISE#007", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#008", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#012", "properties": ["one-off-noise"]}
@@ -473,15 +504,18 @@
 {"event_id": "NOISE#206", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#228", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#235", "properties": ["repeated-noise"]}
+{"event_id": "RARE-EXC-02#009", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-03#008", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-05#007", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-08#008", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-07#008", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-09#012", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-00#008", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-01#009", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-04#008", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-01#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-03#009", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "RARE-EXC-05#008", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-10#008", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-11#008", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-07#009", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-08#007", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-10#011", "properties": ["common-fact", "repeated-noise"]}
 {"event_id": "NOISE#000", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#003", "properties": ["one-off-noise"]}
 {"event_id": "NOISE#011", "properties": ["repeated-noise"]}
@@ -500,7 +534,5 @@
 {"event_id": "NOISE#218", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#224", "properties": ["repeated-noise"]}
 {"event_id": "NOISE#229", "properties": ["repeated-noise"]}
-{"event_id": "RARE-EXC-02#007", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-06#008", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-07#009", "properties": ["common-fact", "repeated-noise"]}
-{"event_id": "RARE-EXC-08#009", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-04#006", "properties": ["common-fact", "repeated-noise"]}
+{"event_id": "RARE-EXC-11#011", "properties": ["common-fact", "repeated-noise"]}

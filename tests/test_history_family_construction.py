@@ -156,6 +156,37 @@ def test_the_queries_an_arm_sees_carry_no_gold_and_no_family(corpus: dict) -> No
         assert set(query) == {"query_id", "asked_on_day", "question"}
 
 
+def test_gold_is_not_systematically_longer_than_its_forbidden_event(corpus: dict) -> None:
+    """Length must not stand in for correctness.
+
+    ``PMLAB-H1-BASE-E1`` found the gold longer than the forbidden event in 12 of
+    12 instances of both OBSOLETE and RARE-EXC. With an OR-of-terms BM25 arm that
+    is a free signal: prefer long events and score well without reading them. The
+    corpus would have measured document length wearing the costume of a memory
+    benchmark.
+
+    A perfect 12/12 or 0/12 split in either direction is the failure. Some
+    variation is expected and fine.
+    """
+    length = {event["event_id"]: len(event["text"].split()) for event in corpus["history"]}
+    by_family: dict[str, list[bool]] = {}
+    for gold in corpus["gold"]:
+        if not gold["forbidden_event_id"]:
+            continue
+        family = gold["case_id"].rsplit("-", 1)[0]
+        by_family.setdefault(family, []).append(
+            length[gold["gold_event_id"]] > length[gold["forbidden_event_id"]]
+        )
+
+    assert by_family, "no family carries a forbidden event"
+    confounded = {
+        family: f"{sum(flags)}/{len(flags)} gold longer"
+        for family, flags in by_family.items()
+        if len(flags) > 2 and (all(flags) or not any(flags))
+    }
+    assert not confounded, f"length predicts the gold perfectly: {confounded}"
+
+
 def test_forbidden_events_exist_for_the_families_that_need_them(corpus: dict) -> None:
     """Recall alone cannot see the failure these families are built around."""
     needing = {"OBSOLETE", "RARE-EXC", "POISON"}
