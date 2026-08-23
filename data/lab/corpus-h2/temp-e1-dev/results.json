@@ -1,0 +1,1028 @@
+{
+  "newest": {
+    "records": [
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-00",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-01",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-02",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-03",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-04",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-05",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-06",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-07",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-08",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-09",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-10",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-11",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-12",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-13",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-00",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-01",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-02",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-03",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-04",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-05",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-06",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-07",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-08",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-09",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-10",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-11",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-12",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-13",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-00",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-01",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-02",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-03",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-04",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-05",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-06",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-07",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-08",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-09",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-10",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-11",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-12",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-13",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-00",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-01",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-02",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-03",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-04",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-05",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-06",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-07",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-08",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-09",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-10",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-11",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-12",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-13",
+        "took_the_wrong_record": 1
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-00",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-01",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-02",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-03",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-04",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-05",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-06",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-07",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-08",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-09",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-10",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-11",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-12",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 0,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-13",
+        "took_the_wrong_record": 0
+      }
+    ],
+    "summary": {
+      "abstention_rate": 0.0,
+      "api_cost_usd": 0.0,
+      "arm": "newest",
+      "by_family": {
+        "TEMP-CONFLICT": 0.0,
+        "TEMP-CORRECTION": 1.0,
+        "TEMP-FUTURE": 0.0,
+        "TEMP-HISTORICAL": 0.0,
+        "TEMP-OVERLAP": 0.0
+      },
+      "conflict_note": "on TEMP-CONFLICT, correct means declining to answer",
+      "correct": 0.2,
+      "experiment_id": "PMLAB-H2-TEMP-E1",
+      "model": null,
+      "probes": 70,
+      "split": "dev",
+      "took_the_wrong_record": 0.6
+    }
+  },
+  "resolver": {
+    "records": [
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-00",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-01",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-02",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-03",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-04",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-05",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-06",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-07",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-08",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-09",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-10",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-11",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-12",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-FUTURE",
+        "query_id": "Q-TEMP-FUTURE-13",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-00",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-01",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-02",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-03",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-04",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-05",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-06",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-07",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-08",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-09",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-10",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-11",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-12",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-CORRECTION",
+        "query_id": "Q-TEMP-CORRECTION-13",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-00",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-01",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-02",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-03",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-04",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-05",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-06",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-07",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-08",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-09",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-10",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-11",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-12",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-HISTORICAL",
+        "query_id": "Q-TEMP-HISTORICAL-13",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-00",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-01",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-02",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-03",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-04",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-05",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-06",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-07",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-08",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-09",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-10",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-11",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-12",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 0,
+        "correct": 1,
+        "family": "TEMP-OVERLAP",
+        "query_id": "Q-TEMP-OVERLAP-13",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-00",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-01",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-02",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-03",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-04",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-05",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-06",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-07",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-08",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-09",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-10",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-11",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-12",
+        "took_the_wrong_record": 0
+      },
+      {
+        "abstained": 1,
+        "correct": 1,
+        "family": "TEMP-CONFLICT",
+        "query_id": "Q-TEMP-CONFLICT-13",
+        "took_the_wrong_record": 0
+      }
+    ],
+    "summary": {
+      "abstention_rate": 0.2,
+      "api_cost_usd": 0.0,
+      "arm": "resolver",
+      "by_family": {
+        "TEMP-CONFLICT": 1.0,
+        "TEMP-CORRECTION": 1.0,
+        "TEMP-FUTURE": 1.0,
+        "TEMP-HISTORICAL": 1.0,
+        "TEMP-OVERLAP": 1.0
+      },
+      "conflict_note": "on TEMP-CONFLICT, correct means declining to answer",
+      "correct": 1.0,
+      "experiment_id": "PMLAB-H2-TEMP-E1",
+      "model": null,
+      "probes": 70,
+      "split": "dev",
+      "took_the_wrong_record": 0.0
+    }
+  }
+}

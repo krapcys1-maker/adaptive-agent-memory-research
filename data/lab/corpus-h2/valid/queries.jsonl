@@ -1,0 +1,70 @@
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-00", "question": "What is the scheduler retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-01", "question": "What is the archive retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-02", "question": "What is the shipping retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-03", "question": "What is the pricing retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-04", "question": "What is the consent retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-05", "question": "What is the routing retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-06", "question": "What is the clearing retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-07", "question": "What is the onboarding retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-08", "question": "What is the reconcile retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-09", "question": "What is the settlement retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-10", "question": "What is the custody retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-11", "question": "What is the escrow retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-12", "question": "What is the fulfilment retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-13", "question": "What is the provisioning retention window right now?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-00", "question": "What was the scheduler retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-01", "question": "What was the archive retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-02", "question": "What was the shipping retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-03", "question": "What was the pricing retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-04", "question": "What was the consent retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-05", "question": "What was the routing retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-06", "question": "What was the clearing retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-07", "question": "What was the onboarding retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-08", "question": "What was the reconcile retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-09", "question": "What was the settlement retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-10", "question": "What was the custody retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-11", "question": "What was the escrow retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-12", "question": "What was the fulfilment retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-13", "question": "What was the provisioning retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-00", "question": "What was the scheduler retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-01", "question": "What was the archive retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-02", "question": "What was the shipping retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-03", "question": "What was the pricing retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-04", "question": "What was the consent retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-05", "question": "What was the routing retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-06", "question": "What was the clearing retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-07", "question": "What was the onboarding retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-08", "question": "What was the reconcile retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-09", "question": "What was the settlement retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-10", "question": "What was the custody retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-11", "question": "What was the escrow retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-12", "question": "What was the fulfilment retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-13", "question": "What was the provisioning retention window before it changed?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-00", "question": "What was the scheduler retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-01", "question": "What was the archive retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-02", "question": "What was the shipping retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-03", "question": "What was the pricing retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-04", "question": "What was the consent retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-05", "question": "What was the routing retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-06", "question": "What was the clearing retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-07", "question": "What was the onboarding retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-08", "question": "What was the reconcile retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-09", "question": "What was the settlement retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-10", "question": "What was the custody retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-11", "question": "What was the escrow retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-12", "question": "What was the fulfilment retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-13", "question": "What was the provisioning retention window on day 12?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-00", "question": "What is the scheduler retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-01", "question": "What is the archive retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-02", "question": "What is the shipping retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-03", "question": "What is the pricing retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-04", "question": "What is the consent retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-05", "question": "What is the routing retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-06", "question": "What is the clearing retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-07", "question": "What is the onboarding retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-08", "question": "What is the reconcile retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-09", "question": "What is the settlement retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-10", "question": "What is the custody retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-11", "question": "What is the escrow retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-12", "question": "What is the fulfilment retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-13", "question": "What is the provisioning retention window?"}

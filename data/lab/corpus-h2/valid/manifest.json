@@ -1,0 +1,20 @@
+{
+  "corpus_id": "H2-TEMPORAL",
+  "events": 140,
+  "events_sha256": "11e5f415cff3c8620a255241180b4043af3c85853cae943a3445cd3e9bd99e20",
+  "families": [
+    "TEMP-FUTURE",
+    "TEMP-CORRECTION",
+    "TEMP-HISTORICAL",
+    "TEMP-OVERLAP",
+    "TEMP-CONFLICT"
+  ],
+  "generator": "scripts/build_temporal_corpus_h2.py",
+  "gold_sha256": "ab18aa7c4efc2cbde0f47b4b3d5b0e78d314891a2d16e3d0dd8280cce5b569ee",
+  "instances_per_family": 14,
+  "no_ordering_policy_passes_all_five": "always-newest fails FUTURE and OVERLAP; always-oldest fails HISTORICAL; suppressing old records fails HISTORICAL; answering confidently always fails CONFLICT",
+  "probes": 70,
+  "queries_sha256": "02fe0510511f239f04f1ceafb488c8c146b05eebb4f779e7057a97d9eb00819a",
+  "seed": 20260925,
+  "why": "H1 exercises succession only, where an addressed chain arrives newest-first and a resolver is a no-op. Every family here is a case where N1 is not the answer, so a resolver either earns its place or is refuted"
+}

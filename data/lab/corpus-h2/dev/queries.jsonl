@@ -1,0 +1,70 @@
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-00", "question": "What is the orders retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-01", "question": "What is the billing retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-02", "question": "What is the search retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-03", "question": "What is the ingest retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-04", "question": "What is the notify retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-05", "question": "What is the ledger retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-06", "question": "What is the roster retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-07", "question": "What is the vault retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-08", "question": "What is the invoicing retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-09", "question": "What is the dispatch retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-10", "question": "What is the catalog retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-11", "question": "What is the identity retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-12", "question": "What is the telemetry retention window right now?"}
+{"asked_on": 20, "query_id": "Q-TEMP-FUTURE-13", "question": "What is the payouts retention window right now?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-00", "question": "What was the orders retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-01", "question": "What was the billing retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-02", "question": "What was the search retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-03", "question": "What was the ingest retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-04", "question": "What was the notify retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-05", "question": "What was the ledger retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-06", "question": "What was the roster retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-07", "question": "What was the vault retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-08", "question": "What was the invoicing retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-09", "question": "What was the dispatch retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-10", "question": "What was the catalog retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-11", "question": "What was the identity retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-12", "question": "What was the telemetry retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-CORRECTION-13", "question": "What was the payouts retention window before the correction?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-00", "question": "What was the orders retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-01", "question": "What was the billing retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-02", "question": "What was the search retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-03", "question": "What was the ingest retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-04", "question": "What was the notify retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-05", "question": "What was the ledger retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-06", "question": "What was the roster retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-07", "question": "What was the vault retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-08", "question": "What was the invoicing retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-09", "question": "What was the dispatch retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-10", "question": "What was the catalog retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-11", "question": "What was the identity retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-12", "question": "What was the telemetry retention window before it changed?"}
+{"asked_on": 25, "query_id": "Q-TEMP-HISTORICAL-13", "question": "What was the payouts retention window before it changed?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-00", "question": "What was the orders retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-01", "question": "What was the billing retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-02", "question": "What was the search retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-03", "question": "What was the ingest retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-04", "question": "What was the notify retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-05", "question": "What was the ledger retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-06", "question": "What was the roster retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-07", "question": "What was the vault retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-08", "question": "What was the invoicing retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-09", "question": "What was the dispatch retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-10", "question": "What was the catalog retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-11", "question": "What was the identity retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-12", "question": "What was the telemetry retention window on day 12?"}
+{"asked_on": 12, "query_id": "Q-TEMP-OVERLAP-13", "question": "What was the payouts retention window on day 12?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-00", "question": "What is the orders retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-01", "question": "What is the billing retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-02", "question": "What is the search retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-03", "question": "What is the ingest retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-04", "question": "What is the notify retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-05", "question": "What is the ledger retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-06", "question": "What is the roster retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-07", "question": "What is the vault retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-08", "question": "What is the invoicing retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-09", "question": "What is the dispatch retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-10", "question": "What is the catalog retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-11", "question": "What is the identity retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-12", "question": "What is the telemetry retention window?"}
+{"asked_on": 22, "query_id": "Q-TEMP-CONFLICT-13", "question": "What is the payouts retention window?"}
