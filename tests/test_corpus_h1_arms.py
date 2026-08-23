@@ -156,3 +156,44 @@ def test_the_random_arm_is_seeded_and_reproducible(corpus: dict) -> None:
 def test_every_arm_has_a_note_explaining_what_it_models(corpus: dict) -> None:
     for arm in {*ARMS, "fts5"}:
         assert ARM_NOTES.get(arm), f"{arm} has no note"
+
+
+# --------------------------------------------------------------- the table refuses bad input
+
+
+def test_the_comparison_refuses_arms_run_under_different_budgets() -> None:
+    """A table mixing a 250-token arm with a 500-token one looks like a finding.
+
+    It is worth refusing rather than warning: by the time a table is being read,
+    nobody re-checks the conditions each row was produced under.
+    """
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import compare_corpus_h1_arms as compare
+
+    runs = [
+        {"arm": "a", "token_budget": 250, "reader": "m", "probes": 84},
+        {"arm": "b", "token_budget": 500, "reader": "m", "probes": 84},
+    ]
+    with pytest.raises(SystemExit, match="token budget"):
+        compare.guard(runs)
+
+
+def test_the_comparison_refuses_arms_read_by_different_models() -> None:
+    import compare_corpus_h1_arms as compare
+
+    runs = [
+        {"arm": "a", "token_budget": 250, "reader": "one", "probes": 84},
+        {"arm": "b", "token_budget": 250, "reader": "two", "probes": 84},
+    ]
+    with pytest.raises(SystemExit, match="reader"):
+        compare.guard(runs)
+
+
+def test_the_comparison_accepts_arms_that_do_share_conditions() -> None:
+    import compare_corpus_h1_arms as compare
+
+    runs = [
+        {"arm": "a", "token_budget": 250, "reader": "m", "probes": 84},
+        {"arm": "b", "token_budget": 250, "reader": "m", "probes": 84},
+    ]
+    compare.guard(runs)

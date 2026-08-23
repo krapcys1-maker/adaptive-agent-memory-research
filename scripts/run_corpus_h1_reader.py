@@ -78,7 +78,18 @@ INPUT_PRICE_PER_MILLION_USD = 0.44
 OUTPUT_PRICE_PER_MILLION_USD = 1.32
 
 RETRIEVAL_DEPTH = 10
-MAX_OUTPUT_TOKENS = 200
+
+# Headroom for a reasoning model. At 200 the first full run returned five empty
+# answers, all in one family: finish_reason "length" with all 200 completion
+# tokens consumed as reasoning_tokens, so the model thought its way to the right
+# answer and had no budget left to write it. Its reasoning_content quoted the
+# correct flag and suite. That understated the arm on exactly the probes needing
+# most thought, which is the worst possible place for a cap to bite.
+#
+# reasoning_content is deliberately never scored. Grading a model's scratchpad
+# measures something other than the answer, and this project does not store raw
+# chain-of-thought.
+MAX_OUTPUT_TOKENS = 900
 
 SYSTEM_PROMPT = """You answer questions about an agent's work history using only the notes supplied.
 
@@ -211,14 +222,16 @@ def _present(fragment: str, text: str) -> bool:
 def score(answer: str, gold: dict[str, Any]) -> dict[str, Any]:
     """Mechanical. No judge model, so nothing here is a matter of opinion."""
     lowered = answer.lower()
+    empty = not answer.strip()
     abstained = "i do not know" in lowered
     required = [fragment for fragment in gold["answer_contains"]
                 if not _present(fragment, lowered)]
     leaked = [marker for marker in gold.get("answer_must_not_contain") or []
               if _present(marker, lowered)]
     return {
+        "empty": int(empty),
         "abstained": int(abstained),
-        "answered": int(not abstained and not required),
+        "answered": int(not abstained and not empty and not required),
         "missing_fragments": required,
         "leaked": int(bool(leaked)),
         "leaked_markers": leaked,
@@ -332,6 +345,7 @@ def summarise(records: list[dict[str, Any]], stub: bool, spent: float, asked: in
         "probes": asked,
         "gold_retrieved": _mean([r["gold_retrieved"] for r in records]),
         "answered": _mean([r["answered"] for r in records]),
+        "empty": _mean([r["empty"] for r in records]),
         "abstained": _mean([r["abstained"] for r in records]),
         "leaked": _mean([r["leaked"] for r in records]),
         "leaked_despite_retrieving_gold": _mean(
