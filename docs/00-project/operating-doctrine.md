@@ -2,7 +2,7 @@
 
 One page answering: what do we test next, and why that one?
 
-Everything else in `docs/00-project/` says what **blocks** a claim. Nothing said what to **pick**. That gap is why 23 of 66 registered experiments never ran and 16 more produced results without a recorded decision: every candidate was equally registered, so none was prioritised.
+Everything else in `docs/00-project/` says what **blocks** a claim. Nothing said what to **pick**. That gap is why 21 of 66 registered experiments never ran: every candidate was equally registered, so none was prioritised.
 
 ## The five questions we are actually answering
 
@@ -46,9 +46,9 @@ Success is **a recorded decision**, not a positive result.
 
 An experiment succeeds when it produces a `result` and a `decision` in the registry, whatever direction the result points. `PMLAB-ASSOC-E1` was inconclusive and is a success: it registered the resolving step, which `E2` then executed.
 
-An experiment fails when it produces neither — when it runs and nobody writes down what follows. 16 registry rows are currently in that state and each is a debt.
+An experiment fails when it produces neither — when it runs and nobody writes down what follows. No registry row is currently in that state, and keeping it that way is the point: a result without a decision is a debt that compounds, because the next person has to re-derive the conclusion from the numbers.
 
-Every row needs `primary_metric` and `practical_threshold` **before** execution. 64 of 66 have them; the exceptions are the two Tier E runs, where the doctrine permits a descriptive label instead, provided the label is registered honestly.
+Every row needs `primary_metric` and `practical_threshold` **before** execution. All but the Tier E runs have them; there the doctrine permits a registered descriptive label instead, provided the label is honest about what was not preregistered.
 
 ## Promotion path
 
@@ -64,6 +64,10 @@ Tier E exploratory result
 ```
 
 See [`independence-ladder.md`](independence-ladder.md). The point of the ladder is that the first three steps need **no reviewer, no model, and no budget**, so a result can travel a long way before it needs anything scarce.
+
+## Using our own memory as a corpus
+
+See [`bootstrapping-strategy.md`](bootstrapping-strategy.md). In short: the project's own memory is an unusually good corpus, because it was produced by real work before anyone knew what would be measured against it. It generates hypotheses and Tier E measurements. It never validates the architecture, and a finding that originates inside our own tooling earns no discount on the ladder.
 
 ## Where to invest
 

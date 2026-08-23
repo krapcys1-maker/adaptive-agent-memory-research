@@ -92,13 +92,14 @@ New contributors do not need all of this. Read the first three, then follow what
 
 1. [Start here](START_HERE.md) — the shape of the problem
 2. [Operating doctrine](docs/00-project/operating-doctrine.md) — what we test next, and why that one
-3. [Independence ladder](docs/00-project/independence-ladder.md) — how a claim earns promotion
-4. [Repository map](docs/00-project/REPOSITORY_MAP.md) — where everything lives
-5. [Scope](docs/00-project/scope.md) and [definitions](docs/00-project/definitions.md)
-6. [Research plan](RESEARCH_PLAN.md) and [research questions](docs/00-project/research-questions.md)
-7. [Human memory](docs/01-human-memory/README.md) · [LLM memory](docs/02-llm-memory/README.md) · [mapping between them](docs/03-human-ai-bridge/mapping.md)
-8. [Systems catalog](docs/04-systems/catalog.md) · [benchmark catalog](docs/05-benchmarks/catalog.md)
-9. [Research laboratory](docs/11-research-laboratory/README.md) and the [experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md)
+3. [Bootstrapping strategy](docs/00-project/bootstrapping-strategy.md) — why the tool is also the corpus, and what that costs
+4. [Independence ladder](docs/00-project/independence-ladder.md) — how a claim earns promotion
+5. [Repository map](docs/00-project/REPOSITORY_MAP.md) — where everything lives
+6. [Scope](docs/00-project/scope.md) and [definitions](docs/00-project/definitions.md)
+7. [Research plan](RESEARCH_PLAN.md) and [research questions](docs/00-project/research-questions.md)
+8. [Human memory](docs/01-human-memory/README.md) · [LLM memory](docs/02-llm-memory/README.md) · [mapping between them](docs/03-human-ai-bridge/mapping.md)
+9. [Systems catalog](docs/04-systems/catalog.md) · [benchmark catalog](docs/05-benchmarks/catalog.md)
+10. [Research laboratory](docs/11-research-laboratory/README.md) and the [experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md)
 
 ## Repository layout
 
