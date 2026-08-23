@@ -1,0 +1,11 @@
+{
+  "experiment_id": "PMLAB-PACK-002",
+  "status": "two-fresh-process-byte-identical-reproduction",
+  "protocol_freeze_commit": "96c901fef3f4829ddbeac7e731bd2a526548d0a4",
+  "primary_packs_sha256": "4145c30546a24299e9c3a8a0283e5ddb0208a98b3d6d601723c1787d5f1e820c",
+  "repeat_packs_sha256": "4145c30546a24299e9c3a8a0283e5ddb0208a98b3d6d601723c1787d5f1e820c",
+  "identical": true,
+  "repeat_artifact": "ignored tmp/pmlab-pack-characterization-v1-repeat",
+  "api_calls": 0,
+  "api_cost_usd": 0
+}

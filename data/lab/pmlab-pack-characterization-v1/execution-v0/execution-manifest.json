@@ -1,0 +1,20 @@
+{
+  "api_calls": 0,
+  "api_cost_usd": 0,
+  "dependencies": "Python standard library only",
+  "experiment_id": "PMLAB-PACK-002",
+  "input_hashes": {
+    "cases.jsonl": "da1f1a94d09cadcf0996ae102a6aa7e86ba1a72f95c2cb77ea28e66234dfc967",
+    "corpus.jsonl": "2270bffe8d76a760f216ad4ac85328b6de8970bdc1c12cf90188d21f2315a8c8"
+  },
+  "output_hashes": {
+    "aggregates.json": "26571140b29ea47551d4f41cb571aee3ce5f1a82c9ab2ab1bddf1c3d6b82c684",
+    "packs.jsonl": "4145c30546a24299e9c3a8a0283e5ddb0208a98b3d6d601723c1787d5f1e820c",
+    "summary.json": "ae2504fb30c0a771f0b5cb0715379e193c519d98472ce5625ad333d794909989"
+  },
+  "packs": 864,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "protocol_freeze_commit": "96c901fef3f4829ddbeac7e731bd2a526548d0a4",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "runner": "scripts/run_pack_characterization.py"
+}

@@ -1,0 +1,65 @@
+{
+  "architecture_selection_allowed": false,
+  "authority": "visible authored serialization fixture; no reader or architecture claim",
+  "experiment_id": "PMLAB-PACK-002",
+  "hypotheses": {
+    "H_PACK2_01": true,
+    "H_PACK2_02": true,
+    "H_PACK2_03": true
+  },
+  "integrity_pass": true,
+  "order_differences": [
+    {
+      "budget_utf8": 512,
+      "format_arm": "C0_FULL_INLINE",
+      "governed_minus_retrieval": -0.02777777777777779
+    },
+    {
+      "budget_utf8": 512,
+      "format_arm": "C1_SOURCE_FOOTER",
+      "governed_minus_retrieval": 0.02777777777777779
+    },
+    {
+      "budget_utf8": 768,
+      "format_arm": "C0_FULL_INLINE",
+      "governed_minus_retrieval": 0.22916666666666663
+    },
+    {
+      "budget_utf8": 768,
+      "format_arm": "C1_SOURCE_FOOTER",
+      "governed_minus_retrieval": 0.27083333333333326
+    },
+    {
+      "budget_utf8": 1024,
+      "format_arm": "C0_FULL_INLINE",
+      "governed_minus_retrieval": 0.32638888888888895
+    },
+    {
+      "budget_utf8": 1024,
+      "format_arm": "C1_SOURCE_FOOTER",
+      "governed_minus_retrieval": 0.24305555555555558
+    },
+    {
+      "budget_utf8": 1536,
+      "format_arm": "C0_FULL_INLINE",
+      "governed_minus_retrieval": 0.0
+    },
+    {
+      "budget_utf8": 1536,
+      "format_arm": "C1_SOURCE_FOOTER",
+      "governed_minus_retrieval": 0.0
+    }
+  ],
+  "packs": 864,
+  "primary_768": {
+    "C0_FULL_INLINE_macro_required_retention": 0.7013888888888888,
+    "C1_SOURCE_FOOTER_macro_required_retention": 0.7893518518518519,
+    "compact_minus_full": 0.08796296296296302
+  },
+  "reader_stage_numeric_gate": true,
+  "status": "completed-synthetic-development-characterization",
+  "strata_768": {
+    "long_locator_compact_minus_full": 0.11111111111111116,
+    "source_reuse_compact_minus_full": 0.07407407407407407
+  }
+}
