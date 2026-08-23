@@ -1,0 +1,20 @@
+{
+  "authority": "development measurement only; analysis is model-free and spends no API budget",
+  "dataset": "data/lab/api-screening/deepseek-v4-flash-pmlab-v01-annotations-m2-20260822",
+  "error_correlation_phi": null,
+  "experiment_id": "PMLAB-DECORR-E1",
+  "fabrications": {
+    "both_same_query": 0,
+    "role_a": 0,
+    "role_b": 0
+  },
+  "gold_provenance_of_the_unusable_dataset": {
+    "blind_model_adjudication": 25,
+    "unanimous_roles_a_b": 95
+  },
+  "ground_truth": "I0 mechanical: a citation to an evidence identifier absent from the material the role was shown is a fabrication, wrong regardless of judgement",
+  "phi_undefined_reason": "at least one role produced a constant error vector, so correlation is undefined rather than zero",
+  "queries_compared": 120,
+  "tier": "E-exploratory",
+  "why_gold_cannot_be_used": "gold is derived from the labels being measured: 95 items are the two roles' unanimous agreement and 25 are a third same-family role's adjudication, with none human confirmed"
+}
