@@ -1,0 +1,9 @@
+{
+  "conditions": 128,
+  "one_attempt_usd": 0.10055672,
+  "all_conditions_retry_usd": 0.20111344,
+  "run_cap_usd": 0.5,
+  "global_spent_before_usd": 0.9322918,
+  "global_cap_usd": 10.0,
+  "passes": true
+}

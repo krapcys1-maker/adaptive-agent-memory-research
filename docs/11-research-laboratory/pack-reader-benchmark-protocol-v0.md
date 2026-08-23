@@ -110,7 +110,7 @@ Execution remains locked until:
 
 1. [complete] the 16-group fixture, source spans, and gold hashes freeze;
 2. [complete] a leakage audit verifies opaque condition IDs and removes treatment/gold names from prompt-safe inputs;
-3. the provider-neutral prompt, JSON validator, scorer, condition schedule, and model manifest freeze;
-4. all 128 prompts pass local evidence-identity and citation-resolution checks;
-5. the peak-cost preflight is below USD 0.50;
-6. project memory records the frozen commit and the fact that this is an M1 synthetic reader.
+3. [complete] the provider-neutral prompt, JSON validator, scorer, condition schedule, and model manifest freeze;
+4. [complete] all 128 prompts pass local evidence-identity and citation-resolution checks;
+5. [complete] the peak-cost preflight is below USD 0.50;
+6. [complete] project memory records the frozen commit and the fact that this is an M1 synthetic reader.

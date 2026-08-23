@@ -1,9 +1,9 @@
 {
   "experiment_id": "PMLAB-PACK-READER-001",
   "run_id": "deepseek-v4-flash-pack-reader-v0-20260823",
-  "status": "prepared-uncommitted-prompt-packet",
+  "status": "frozen-prompt-awaiting-api",
   "fixture_freeze_commit": "365c0b6c0ae159b1517fbc87941aa33a8e369da2",
-  "prompt_freeze_commit": null,
+  "prompt_freeze_commit": "d870741e8bba6257d12288b23d1e8f367571ae6e",
   "model": "deepseek-v4-flash",
   "prompt_version": "pack-reader-v0",
   "temperature": 0,

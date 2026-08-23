@@ -1,0 +1,11 @@
+{
+  "audit": "frozen prompt locator resolution and model-visible leakage audit",
+  "boundary": "Checks serialization, exact resolution, prompt layout, and named leakage only; it does not validate reader behavior.",
+  "expected_locators": 1024,
+  "experiment_id": "PMLAB-PACK-READER-001",
+  "gold_joined": false,
+  "locators_resolved_exactly": 1024,
+  "model_visible_leak_condition_ids": [],
+  "packets": 128,
+  "passed": true
+}
