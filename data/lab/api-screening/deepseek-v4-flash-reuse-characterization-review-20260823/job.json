@@ -1,0 +1,144 @@
+{
+  "job_id": "PMLAB-REUSE-CHAR-001-M1",
+  "review_focus": "Falsify the characterization report and its proposed next steps without granting architecture authority.",
+  "protocol": "# Reuse component characterization benchmark v0\n\nExperiment ID: `PMLAB-REUSE-CHAR-001`  \nStatus: frozen-development protocol; synthetic characterization only\n\n## Purpose\n\nTest whether the narrow components selected by the reuse-before-inventing audit can share one provider-neutral contract before any product integration:\n\n- SQLite FTS5/BM25 sparse retrieval;\n- exact source citations;\n- optional local FastEmbed dense retrieval;\n- equal-input reciprocal-rank fusion with `k=60`;\n- context construction with `current`, `supporting`, and `stale/conflicting` sections.\n\nThis is an implementation-characterization experiment. Its authored synthetic cases are visible to the implementer, small, and not independently labelled. It can reveal bugs, incompatibilities, missing metadata, and qualitative complementarity. It cannot select a production architecture, satisfy `PMLAB-NATURAL-RET-001`, or support a superiority claim.\n\n## Frozen sample\n\n- 36 line-addressable evidence records in Polish and English;\n- 20 queries covering exact terms, paraphrases, cross-language cues, terminology shift, multi-evidence questions, stale/current competition, poison, and missing information;\n- one byte-identical `search_text` field shared by every retrieval arm;\n- exact source path and line range for every record;\n- authored record metadata supplies pack buckets. Bucket inference is explicitly **not** tested here.\n\nRecord IDs are readable because this is a characterization fixture. Backends receive IDs only as return identifiers and receive no query labels, buckets, trust, paths, or gold.\n\n## Retrieval arms\n\n| Arm | Definition |\n|---|---|\n| `B2_FTS5` | SQLite FTS5 `unicode61`, OR query over deterministic Unicode tokens, BM25 order, ID tie break |\n| `C0_FASTEMBED` | FastEmbed 0.8.0, `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`, exact normalized float32 inner product, ID tie break |\n| `C2_RRF` | Equal-input fusion of B2 and C0 rankings at depth 10 using `sum(1/(60+rank))` |\n\nFastEmbed source artifact: `qdrant/paraphrase-multilingual-MiniLM-L12-v2-onnx-Q` at observed Hugging Face revision `faf4aa4225822f3bc6376869cb1164e8e3feedd0`. It is a restricted diagnostic, not the E5 candidate registered for the future natural benchmark. If FastEmbed or the model is unavailable, the run must report the dense and RRF arms as unavailable; it may not silently substitute a model.\n\n## Packaging arms\n\nEach available retrieval arm produces the same top five IDs, then packages them three ways under a frozen 768-byte UTF-8 budget:\n\n- `raw`: text in retrieval order;\n- `cited`: text plus `path:line-line` for every included item;\n- `bucketed`: current first, then supporting, then stale/conflicting, preserving retrieval order within a bucket and reporting omissions.\n\nUntrusted records are omitted from `bucketed` packs and counted. Stale/conflicting records remain visible in their own section; they must never appear under current or supporting. Packaging never changes retrieval metrics.\n\n## Metrics\n\nRetrieval:\n\n- macro required-evidence Recall@5;\n- all-required-evidence@5;\n- MRR@5;\n- forbidden/stale intrusion@5;\n- candidate-null behavior for unanswerable queries;\n- per-category recall;\n- p50/p95 query latency, build time, embedding time, and vector bytes.\n\nCitations and packing:\n\n- exact citation span validity;\n- citation coverage among packed items;\n- required evidence retained under the byte budget;\n- stale-to-current/supporting leakage;\n- untrusted omission;\n- actual UTF-8 bytes and omission counts.\n\n## Characterization gates\n\nThese gates validate the instrument, not the architecture:\n\n1. every corpus citation resolves to byte-identical source text;\n2. every cited packed item has a valid locator;\n3. bucketed packs have zero stale-to-current/supporting leakage;\n4. bucketed packs never expose an untrusted record;\n5. every pack respects 768 UTF-8 bytes and reports omissions;\n6. RRF matches the frozen formula and deterministic tie break;\n7. two fresh-process runs produce byte-identical rankings for all available arms;\n8. the exact corpus and query hashes are recorded.\n\nRetrieval gains, losses, and failures are observations only. No minimum retrieval score is an architecture gate.\n\n## Interpretation boundaries\n\n- Dense success on authored paraphrases does not demonstrate natural project-history benefit.\n- Dense failure does not reject embeddings; it can reflect this diagnostic model, language mix, or small sample.\n- RRF can improve one stratum while harming another. Only the future independently reviewed natural benchmark may decide whether it advances.\n- Perfect citation or bucket metrics validate deterministic plumbing, not evidence truth, bucket inference, completeness, or reader behavior.\n- Candidate-null is not semantic abstention: dense retrieval always has nearest neighbors unless a separate controller declines to answer.\n\n",
+  "aggregate_summary": {
+    "all_characterization_gates_pass": true,
+    "architecture_selection_allowed": false,
+    "build": {
+      "B2_FTS5": {
+        "build_ms": 10.6795,
+        "index_bytes": 36864
+      },
+      "C0_FASTEMBED": {
+        "cache_bytes": 252141277,
+        "embedding_ms": 1910.0229,
+        "model_load_ms": 25680.5566,
+        "vector_bytes": 55296
+      }
+    },
+    "characterization_gates": {
+      "all_corpus_citations_exact": true,
+      "all_packed_citations_valid": true,
+      "all_packs_within_utf8_budget": true,
+      "rrf_reference_example_exact": true,
+      "zero_stale_to_current_supporting_leakage": true,
+      "zero_untrusted_exposure_in_bucketed_pack": true
+    },
+    "experiment_id": "PMLAB-REUSE-CHAR-001",
+    "packaging": {
+      "bucketed": {
+        "citation_coverage": 1.0,
+        "mean_required_retained": 0.8304093567251462,
+        "mean_utf8_bytes": 655.65,
+        "packs": 60,
+        "total_omitted": 32
+      },
+      "cited": {
+        "citation_coverage": 1.0,
+        "mean_required_retained": 0.8538011695906432,
+        "mean_utf8_bytes": 681.7833333333333,
+        "packs": 60,
+        "total_omitted": 5
+      },
+      "raw": {
+        "citation_coverage": 0.0,
+        "mean_required_retained": 0.8538011695906432,
+        "mean_utf8_bytes": 408.76666666666665,
+        "packs": 60,
+        "total_omitted": 0
+      }
+    },
+    "rankings_sha256": "0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9",
+    "retrieval": {
+      "B2_FTS5": {
+        "all_required_at_5": 0.631578947368421,
+        "forbidden_intrusion_rate_at_5": 0.05,
+        "macro_recall_at_5": 0.7105263157894737,
+        "mrr_at_5": 0.6973684210526315,
+        "p50_query_latency_ms": 0.43185,
+        "p95_query_latency_ms": 0.8592,
+        "queries": 20,
+        "recall_at_5_by_category": {
+          "cross_language": 0.25,
+          "exact_identifier": 1.0,
+          "exact_terminology": 1.0,
+          "multi_evidence": 1.0,
+          "natural_paraphrase": 0.6,
+          "stale_current": 1.0,
+          "terminology_shift": 0.5
+        },
+        "unanswerable_candidate_null": 0
+      },
+      "C0_FASTEMBED": {
+        "all_required_at_5": 0.9473684210526315,
+        "forbidden_intrusion_rate_at_5": 0.2,
+        "macro_recall_at_5": 0.9824561403508771,
+        "mrr_at_5": 0.8289473684210527,
+        "p50_query_latency_ms": 89.09110000000001,
+        "p95_query_latency_ms": 101.5934,
+        "queries": 20,
+        "recall_at_5_by_category": {
+          "cross_language": 1.0,
+          "exact_identifier": 1.0,
+          "exact_terminology": 1.0,
+          "multi_evidence": 0.9333333333333333,
+          "natural_paraphrase": 1.0,
+          "stale_current": 1.0,
+          "terminology_shift": 1.0
+        },
+        "unanswerable_candidate_null": 0
+      },
+      "C2_RRF": {
+        "all_required_at_5": 0.8421052631578947,
+        "forbidden_intrusion_rate_at_5": 0.15,
+        "macro_recall_at_5": 0.868421052631579,
+        "mrr_at_5": 0.7894736842105263,
+        "p50_query_latency_ms": 89.50059999999999,
+        "p95_query_latency_ms": 102.0304,
+        "queries": 20,
+        "recall_at_5_by_category": {
+          "cross_language": 0.75,
+          "exact_identifier": 1.0,
+          "exact_terminology": 1.0,
+          "multi_evidence": 1.0,
+          "natural_paraphrase": 0.8,
+          "stale_current": 1.0,
+          "terminology_shift": 0.5
+        },
+        "unanswerable_candidate_null": 0
+      }
+    },
+    "status": "completed-synthetic-development-characterization",
+    "unavailable_arms": {}
+  },
+  "execution_manifest": {
+    "architecture_selection_allowed": false,
+    "candidate_depth": 10,
+    "corpus_sha256": "d42713b861677d15181cb15fbd428cc37506eaad1dec1233e28c68abd47fc6f5",
+    "evidence_sha256": "f3f5379de7939f020c0dd4e9ae7b8178c0f26273cece3b0ea71d40ed0e258ca7",
+    "experiment_id": "PMLAB-REUSE-CHAR-001",
+    "model_api_calls": 0,
+    "pack_budget_utf8_bytes": 768,
+    "protocol": "docs/11-research-laboratory/reuse-characterization-benchmark-protocol-v0.md",
+    "queries_sha256": "1c385ca8e792f8910a21ec2bfa178d892d3789f17d05f42ccdcef45e4b234438",
+    "rankings_sha256": "0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9",
+    "rrf_k": 60,
+    "runner_sha256": "434276ac832e1d204f52e370ae593a60bfccd563ee396c8b43239e09c0130746",
+    "top_k": 5
+  },
+  "reproducibility_receipt": {
+    "experiment_id": "PMLAB-REUSE-CHAR-001",
+    "protocol_freeze_commit": "8ed9dce314e4ed2baf6950ea4ac61e4aab3239d0",
+    "primary_rankings_sha256": "0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9",
+    "fresh_process_repeat_rankings_sha256": "0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9",
+    "rankings_byte_identical": true,
+    "repeat_output_location": "tmp/reuse-char-repeat (ignored and reproducible)",
+    "model_api_calls": 0,
+    "interpretation": "ranking determinism only; latency is descriptive and differs between cold-download and warm-cache runs"
+  },
+  "author_report": "# Reuse component characterization run v0\n\nStatus: completed synthetic development characterization after protocol freeze `8ed9dce`  \nAuthority: implementation evidence only; no architecture selection or natural-benchmark claim\n\n## Result\n\n| Retrieval arm | Recall@5 | All required@5 | MRR@5 | Forbidden intrusion@5 | Cross-language Recall@5 | Candidate-null on unanswerable | Warm p50 |\n|---|---:|---:|---:|---:|---:|---:|---:|\n| FTS5 | 0.711 | 0.632 | 0.697 | 0.050 | 0.250 | 0.000 | 0.262 ms |\n| FastEmbed MiniLM | 0.982 | 0.947 | 0.829 | 0.200 | 1.000 | 0.000 | 52.136 ms |\n| FTS5 + FastEmbed RRF | 0.868 | 0.842 | 0.789 | 0.150 | 0.750 | 0.000 | 52.395 ms |\n\nThe dense diagnostic recovered nearly every authored semantic target, including all cross-language cases, but retrieved a forbidden record in four of twenty queries. FTS5 had one forbidden intrusion. RRF improved substantially over FTS5 but was worse than the dense component on recall, all-required evidence, cross-language recall, terminology shift, and forbidden intrusion.\n\nThis is direct counterevidence to two unsafe assumptions:\n\n1. higher semantic recall is not the same as safer memory;\n2. an untuned hybrid does not necessarily beat its strongest component.\n\nAll three arms returned candidates for the unanswerable password query. Nearest-neighbor retrieval and non-empty lexical hits therefore remain candidate generation, not abstention or evidence completeness.\n\n## Failure localization\n\nFTS5 missed complete required evidence in seven answerable cases. Its main failures were cross-language retrieval, low-overlap paraphrases, and one prospective-scheduling paraphrase. It retrieved the stale plaintext-key record for the backup-key query.\n\nFastEmbed missed one of three required records in the multi-project donor question. Its four forbidden intrusions were:\n\n- obsolete automatic reinforcement;\n- obsolete automatic reinforcement beside the correct utility records;\n- stale plaintext-key storage beside the current keyring record;\n- the superseded vector-source-of-truth proposal beside the current derived-index decision.\n\nRRF inherited three forbidden intrusions and lost some dense-only semantic gains. At `k=60` and depth 10, agreement between the two components dominated, so a strong dense-only candidate could fall when sparse evidence was absent or misleading.\n\n## Citations and context packs\n\nAll 36 source locators resolved to byte-identical evidence. All cited and bucketed packed items had valid locators. No stale record entered the current/supporting sections and no untrusted record entered a bucketed pack.\n\n| Retrieval arm | Raw required retained | Cited required retained | Bucketed required retained | Bucketed omissions |\n|---|---:|---:|---:|---:|\n| FTS5 | 0.711 | 0.711 | 0.684 | 6 |\n| FastEmbed | 0.982 | 0.982 | 0.982 | 14 |\n| RRF | 0.868 | 0.868 | 0.825 | 12 |\n\nThe 768-byte budget exposed a real packaging tradeoff. Citations and section headers consume context. The bucketed pack preserved every dense-required item in this fixture, but dropped required evidence for one FTS5 and one RRF case. Omission counts alone are not enough; the pack must identify whether a required obligation was lost.\n\nThe bucket labels were authored metadata. Perfect placement validates deterministic plumbing only. It does not validate automatic classification of current, supporting, stale, conflicting, or untrusted content.\n\n## Runtime and reproducibility\n\n- FastEmbed: `0.8.0`; mean-pooling behavior reported by the library at runtime.\n- ONNX source revision: `faf4aa4225822f3bc6376869cb1164e8e3feedd0`.\n- ONNX SHA-256: `634d0f66c29dc934c8fa72b8a4fe91dd4d420a22f1d82a241058d4316e659a99`.\n- Model cache: 252,141,277 bytes.\n- Corpus vectors: 55,296 bytes for 36 × 384 float32 values.\n- First model load including download: 25.681 s; first corpus embedding: 1.910 s.\n- Warm model load: 0.635 s; warm corpus embedding: 1.100 s.\n- Two fresh Python processes produced the same ranking SHA-256: `0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9`.\n- No chat-model/API calls and no API cost.\n\n## Characterization decision\n\n- **Admit exact citations** as a required contract: deterministic validity passed.\n- **Admit bucketed packing as a testable formatter**, not as a classifier or final ordering policy.\n- **Retain FTS5** as the minimal sparse baseline.\n- **Retain FastEmbed/MiniLM only as a restricted diagnostic**; its semantic gain and safety loss both require natural replication.\n- **Retain RRF as a comparator, not a default**; it did not beat the dense component here.\n- **Keep abstention, trust filtering, validity filtering, and evidence completeness outside raw retrieval.**\n\n## Next tests\n\n1. On a frozen development set, compare full citations with compact citation IDs plus a footer dictionary under equal byte budgets.\n2. Factor context order: retrieval order, current-first, relevance-first with stale-at-end, and duplicated critical evidence at the end. Use a provider-neutral reader and test position effects.\n3. Filter or quarantine untrusted/stale candidates before the reader; do not rely on section labels as an instruction-injection defense.\n4. Measure component complementarity and per-query discordance before assuming RRF can outperform its stronger component.\n5. In the locked natural benchmark, compare multilingual E5-small against FTS5 and RRF only after independent eligibility and evidence labels are complete.\n\n",
+  "primary_source_followup": "# Retrieval safety and context-order follow-up v0\n\nStatus: targeted primary-source follow-up triggered by `PMLAB-REUSE-CHAR-001`\n\n## Trigger\n\nThe synthetic characterization found three coupled effects:\n\n- local dense retrieval greatly improved semantic and cross-language recall while increasing forbidden/stale intrusion;\n- RRF improved the sparse baseline but did not beat the dense component;\n- citations and section headers consumed enough of a fixed byte budget to drop required evidence in some packs.\n\nThese observations do not establish general effects. They identify the next mechanisms and controls that need primary-source grounding.\n\n## Rank fusion is a comparator, not a law\n\nCormack, Clarke, and Buettcher introduced RRF as a simple rank-only fusion rule and reported aggregate gains across their TREC/LETOR evaluations. The result justifies RRF as a strong untuned baseline. It does not prove that RRF beats every component on every corpus, representation pair, depth, or safety metric.\n\nOur result is compatible with that boundary: sparse and dense errors were not always complementary, and the fused ranking inherited stale candidates. The next analysis must report per-query component discordance, overlap, unique wins, unique harms, and depth sensitivity. Tuning `k`, weights, or depth on the 20 visible cases is prohibited.\n\nPrimary source: [Cormack et al., SIGIR 2009](https://research.google/pubs/reciprocal-rank-fusion-outperforms-condorcet-and-individual-rank-learning-methods/).\n\n## Ordering a context pack is a reader intervention\n\nLiu et al. found that reader performance can change substantially with the position of relevant information and is often strongest when evidence appears near the beginning or end of a long context. Therefore `current -> supporting -> stale` is not a neutral formatting choice. It may protect a reader from stale evidence but can also push necessary supporting evidence into a weak position.\n\nThe next reader experiment must hold retrieved IDs and bytes constant while permuting order. It must separate:\n\n- current-first governance benefit;\n- relevance-first answer benefit;\n- stale-at-end warning benefit;\n- critical-evidence duplication cost;\n- provider/model-specific position effects.\n\nPrimary source: [Liu et al., TACL 2024](https://aclanthology.org/2024.tacl-1.9/).\n\n## Retrieved memory is an untrusted input channel\n\nGreshake et al. demonstrated indirect prompt injection through data later retrieved by LLM-integrated applications. PoisonedRAG formalizes knowledge-base corruption and reports strong targeted attack success in its evaluated settings. These sources make one architecture boundary non-negotiable: retrieval relevance cannot authorize an instruction or external action.\n\nThe characterization's untrusted omission proves only that an already-labelled record can be excluded. It does not detect adversarial content, resolve mixed trusted/untrusted spans, or protect a model that has already seen the malicious text. Trust and authorization filters must run before context construction, and external actions need a separate policy boundary.\n\nPrimary sources: [Greshake et al., 2023](https://arxiv.org/abs/2302.12173), [Zou et al., USENIX Security 2025](https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag).\n\n## New falsifiable hypotheses\n\n### H-CHAR-01 — complementarity-gated fusion\n\nRRF improves over the stronger component only when sparse and dense arms have enough distinct correct top-depth candidates and do not contribute disproportionate forbidden candidates.\n\nReject if predeclared complementarity measures cannot predict the direction of held-out RRF gain better than a constant stronger-component choice.\n\n### H-CHAR-02 — compact evidence references\n\nCompact citation IDs plus one footer dictionary preserve more required evidence than repeated full path/line strings under an equal UTF-8 budget without reducing exact citation resolution.\n\nReject if retained-required gain is below five points or any citation becomes ambiguous or invalid.\n\n### H-CHAR-03 — governed order versus reader position bias\n\nCurrent-first/stale-last ordering reduces stale-use errors but can reduce multi-evidence answer accuracy when required supporting evidence moves into middle positions.\n\nReject the fixed order if no stale-use benefit appears or if the answer-accuracy loss exceeds its preregistered guardrail.\n\n### H-CHAR-04 — retrieval cannot supply abstention alone\n\nA typed completeness/trust controller reduces unsupported answers at matched coverage compared with any non-empty, similarity-threshold, or backend-agreement rule.\n\nReject if the typed controller does not dominate baselines on held-out risk-coverage or causes critical false negatives.\n\n## Research decision\n\nDo not tune the current fixture. Preserve it as a spent implementation diagnostic. Advance only its deterministic contracts: exact citations, explicit omission reporting, reversible metadata buckets, and reproducible rank traces. Dense selection, fusion choice, trust classification, order, and abstention remain separate experiments.\n\n",
+  "authority_boundary": "Synthetic authored development characterization only; no independent labels, uncertainty interval, reader, natural transfer, or architecture promotion.",
+  "data_boundary": "Public synthetic aggregate artifacts only; no conversations, credentials, private files, raw project memory, or chain of thought."
+}
