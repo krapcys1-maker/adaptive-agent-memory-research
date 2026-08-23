@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-future-utility-v0/telemetry-event-v0.schema.json",
+  "title": "PMLAB future-utility append-only telemetry event v0",
+  "description": "Structural contract. Cross-event ordering, idempotency, joins, privacy, causal-level and correction invariants are enforced by validate_future_utility_telemetry_t0.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "idempotency_key",
+    "event_type",
+    "phase",
+    "occurred_at",
+    "recorded_at",
+    "producer",
+    "privacy",
+    "payload"
+  ],
+  "properties": {
+    "schema_version": {"const": "pmlab-utility-telemetry-v0"},
+    "event_id": {"type": "string", "pattern": "^TE-[A-F0-9]{16}$"},
+    "idempotency_key": {"type": "string", "pattern": "^IDEM-[A-F0-9]{16}$"},
+    "event_type": {
+      "enum": [
+        "memory_registered",
+        "task_registered",
+        "candidate_set_frozen",
+        "retrieval_observed",
+        "exposure_assigned",
+        "exposure_observed",
+        "behavior_reference",
+        "outcome_observed",
+        "cost_observed",
+        "observation_window_closed",
+        "correction",
+        "causal_effect_estimated"
+      ]
+    },
+    "phase": {"enum": ["T0", "T1", "T2", "T3", "T4"]},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "task_id": {"type": "string", "pattern": "^TASK-[A-F0-9]{12}$"},
+    "memory_id": {"type": "string", "pattern": "^MEM-[A-F0-9]{12}$"},
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component", "version"],
+      "properties": {
+        "component": {"type": "string", "minLength": 1, "maxLength": 80},
+        "version": {"type": "string", "minLength": 1, "maxLength": 80}
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capture_basis", "sensitivity", "redaction_count", "external_processing_allowed"],
+      "properties": {
+        "capture_basis": {"enum": ["synthetic", "explicit_user_scope", "project_artifact_allowlist", "not_captured"]},
+        "sensitivity": {"enum": ["none", "internal", "personal", "secret", "private_reasoning"]},
+        "redaction_count": {"type": "integer", "minimum": 0},
+        "external_processing_allowed": {"type": "boolean"}
+      }
+    },
+    "payload": {"type": "object"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "memoryRegistered": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["content_sha256", "memory_version", "provenance_class", "authorization_state", "trust_state", "validity_state"],
+      "properties": {
+        "content_sha256": {"$ref": "#/$defs/sha256"},
+        "memory_version": {"type": "integer", "minimum": 1},
+        "provenance_class": {"enum": ["canonical_project_event", "reviewed_project_document", "synthetic_fixture", "external_source_claim"]},
+        "authorization_state": {"enum": ["authorized", "denied", "unknown"]},
+        "trust_state": {"enum": ["reviewed", "unreviewed", "contested"]},
+        "validity_state": {"enum": ["current", "stale", "superseded", "unknown"]},
+        "transaction_time": {"type": "string", "format": "date-time"},
+        "valid_from": {"type": ["string", "null"], "format": "date-time"},
+        "valid_to": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "taskRegistered": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_family", "language", "criticality", "query_cutoff", "outcome_specs", "policy_versions"],
+      "properties": {
+        "task_family": {"type": "string", "minLength": 1, "maxLength": 80},
+        "language": {"enum": ["pl", "en", "mixed", "other"]},
+        "criticality": {"enum": ["ordinary", "critical"]},
+        "query_cutoff": {"type": "string", "format": "date-time"},
+        "outcome_specs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "unit", "direction", "window_days"],
+            "properties": {
+              "name": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+              "unit": {"type": "string", "minLength": 1, "maxLength": 40},
+              "direction": {"enum": ["higher_better", "lower_better", "harm"]},
+              "window_days": {"type": "integer", "minimum": 0, "maximum": 3650}
+            }
+          }
+        },
+        "policy_versions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["retrieval", "reranker", "reader", "prompt", "model", "exposure"],
+          "properties": {
+            "retrieval": {"type": "string"},
+            "reranker": {"type": "string"},
+            "reader": {"type": "string"},
+            "prompt": {"type": "string"},
+            "model": {"type": "string"},
+            "exposure": {"type": "string"}
+          }
+        }
+      }
+    },
+    "candidateSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_set_sha256", "candidate_memory_ids", "corpus_cutoff", "selection_policy"],
+      "properties": {
+        "candidate_set_sha256": {"$ref": "#/$defs/sha256"},
+        "candidate_memory_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^MEM-[A-F0-9]{12}$"}},
+        "corpus_cutoff": {"type": "string", "format": "date-time"},
+        "selection_policy": {"type": "string", "minLength": 1, "maxLength": 100}
+      }
+    },
+    "retrieval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eligible", "eligibility_reason", "retrieved", "rank", "component_scores", "candidate_count"],
+      "properties": {
+        "eligible": {"type": "boolean"},
+        "eligibility_reason": {"type": "string", "minLength": 1, "maxLength": 120},
+        "retrieved": {"type": "boolean"},
+        "rank": {"type": ["integer", "null"], "minimum": 1},
+        "component_scores": {"type": "object", "additionalProperties": {"type": "number"}},
+        "candidate_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "exposureAssignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assignment_id", "mechanism", "arm", "propensity", "safety_exclusion"],
+      "properties": {
+        "assignment_id": {"type": "string", "pattern": "^ASG-[A-F0-9]{12}$"},
+        "mechanism": {"enum": ["synthetic_validation", "natural_observation", "randomized", "deterministic_safety_override"]},
+        "arm": {"enum": ["include", "withhold", "natural", "forced_include"]},
+        "propensity": {"type": ["number", "null"], "exclusiveMinimum": 0, "maximum": 1},
+        "safety_exclusion": {"type": ["string", "null"], "maxLength": 160}
+      }
+    },
+    "exposureObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assignment_id", "shown", "context_position", "withhold_reason", "context_packet_sha256"],
+      "properties": {
+        "assignment_id": {"type": "string", "pattern": "^ASG-[A-F0-9]{12}$"},
+        "shown": {"type": "boolean"},
+        "context_position": {"type": ["integer", "null"], "minimum": 0},
+        "withhold_reason": {"type": ["string", "null"], "maxLength": 160},
+        "context_packet_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "behaviorReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["output_sha256", "reference_type", "evidence_event_ids", "explicit_user_feedback"],
+      "properties": {
+        "output_sha256": {"$ref": "#/$defs/sha256"},
+        "reference_type": {"enum": ["citation", "quoted_fact", "action_dependency", "explicit_user_reference"]},
+        "evidence_event_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^TE-[A-F0-9]{16}$"}},
+        "explicit_user_feedback": {"enum": ["positive", "negative", "neutral", "not_observed"]}
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["outcome_name", "value", "unit", "window_days", "assessor_id", "assessor_blinded", "harm_flags"],
+      "properties": {
+        "outcome_name": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+        "value": {"type": ["number", "boolean"]},
+        "unit": {"type": "string", "minLength": 1, "maxLength": 40},
+        "window_days": {"type": "integer", "minimum": 0, "maximum": 3650},
+        "assessor_id": {"type": "string", "minLength": 1, "maxLength": 80},
+        "assessor_blinded": {"type": "boolean"},
+        "harm_flags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"enum": ["stale_action", "privacy_leak", "unsupported_answer", "forbidden_intrusion", "wasted_work"]}
+        }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_cache_hit_tokens", "input_cache_miss_tokens", "output_tokens", "usd", "latency_ms", "local_compute_ms", "price_manifest_id"],
+      "properties": {
+        "input_cache_hit_tokens": {"type": "integer", "minimum": 0},
+        "input_cache_miss_tokens": {"type": "integer", "minimum": 0},
+        "output_tokens": {"type": "integer", "minimum": 0},
+        "usd": {"type": "number", "minimum": 0},
+        "latency_ms": {"type": "number", "minimum": 0},
+        "local_compute_ms": {"type": "number", "minimum": 0},
+        "price_manifest_id": {"type": ["string", "null"]}
+      }
+    },
+    "windowClosed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["window_end", "censoring_reason", "outstanding_outcome_names"],
+      "properties": {
+        "window_end": {"type": "string", "format": "date-time"},
+        "censoring_reason": {"enum": ["none", "observation_window_ended", "task_abandoned", "outcome_unavailable", "policy_change"]},
+        "outstanding_outcome_names": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"}}
+      }
+    },
+    "correction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_event_id", "field_corrections", "reason"],
+      "properties": {
+        "target_event_id": {"type": "string", "pattern": "^TE-[A-F0-9]{16}$"},
+        "field_corrections": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {"pattern": "^/payload/[A-Za-z0-9_/-]+$"},
+          "additionalProperties": {"type": ["string", "number", "boolean", "null"]}
+        },
+        "reason": {"type": "string", "minLength": 1, "maxLength": 240}
+      }
+    },
+    "effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["design_id", "estimand", "estimator", "population", "contrast", "estimate", "interval_low", "interval_high", "sample_size", "cost_adjusted", "harm_adjusted"],
+      "properties": {
+        "design_id": {"type": "string", "minLength": 1},
+        "estimand": {"type": "string", "minLength": 1},
+        "estimator": {"type": "string", "minLength": 1},
+        "population": {"type": "string", "minLength": 1},
+        "contrast": {"type": "string", "minLength": 1},
+        "estimate": {"type": "number"},
+        "interval_low": {"type": "number"},
+        "interval_high": {"type": "number"},
+        "sample_size": {"type": "integer", "minimum": 1},
+        "cost_adjusted": {"type": "boolean"},
+        "harm_adjusted": {"type": "boolean"}
+      }
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"event_type": {"const": "memory_registered"}}}, "then": {"required": ["memory_id"], "properties": {"payload": {"$ref": "#/$defs/memoryRegistered"}}}},
+    {"if": {"properties": {"event_type": {"const": "task_registered"}}}, "then": {"required": ["task_id"], "properties": {"payload": {"$ref": "#/$defs/taskRegistered"}}}},
+    {"if": {"properties": {"event_type": {"const": "candidate_set_frozen"}}}, "then": {"required": ["task_id"], "properties": {"payload": {"$ref": "#/$defs/candidateSet"}}}},
+    {"if": {"properties": {"event_type": {"const": "retrieval_observed"}}}, "then": {"required": ["task_id", "memory_id"], "properties": {"payload": {"$ref": "#/$defs/retrieval"}}}},
+    {"if": {"properties": {"event_type": {"const": "exposure_assigned"}}}, "then": {"required": ["task_id", "memory_id"], "properties": {"payload": {"$ref": "#/$defs/exposureAssignment"}}}},
+    {"if": {"properties": {"event_type": {"const": "exposure_observed"}}}, "then": {"required": ["task_id", "memory_id"], "properties": {"payload": {"$ref": "#/$defs/exposureObservation"}}}},
+    {"if": {"properties": {"event_type": {"const": "behavior_reference"}}}, "then": {"required": ["task_id", "memory_id"], "properties": {"payload": {"$ref": "#/$defs/behaviorReference"}}}},
+    {"if": {"properties": {"event_type": {"const": "outcome_observed"}}}, "then": {"required": ["task_id"], "properties": {"payload": {"$ref": "#/$defs/outcome"}}}},
+    {"if": {"properties": {"event_type": {"const": "cost_observed"}}}, "then": {"required": ["task_id"], "properties": {"payload": {"$ref": "#/$defs/cost"}}}},
+    {"if": {"properties": {"event_type": {"const": "observation_window_closed"}}}, "then": {"required": ["task_id"], "properties": {"payload": {"$ref": "#/$defs/windowClosed"}}}},
+    {"if": {"properties": {"event_type": {"const": "correction"}}}, "then": {"properties": {"payload": {"$ref": "#/$defs/correction"}}}},
+    {"if": {"properties": {"event_type": {"const": "causal_effect_estimated"}}}, "then": {"properties": {"payload": {"$ref": "#/$defs/effect"}}}}
+  ]
+}

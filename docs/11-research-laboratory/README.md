@@ -79,6 +79,8 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-memory-router-v0/manifest.json` — execution-locked `PMLAB-ROUTER-001` arms, safety gates, and resource outcomes.
 - `docs/11-research-laboratory/future-utility-telemetry-protocol-v0.md` — U0-U5 evidence ladder and staged path from immutable telemetry to safe randomized exposure.
 - `data/lab/pmlab-future-utility-v0/manifest.json` — execution-locked `PMLAB-UTILITY-001` phase and causal-identification constraints.
+- `docs/11-research-laboratory/future-utility-telemetry-privacy-and-capture-policy-v0.md` — allowlist-first hashed/typed capture contract that prohibits raw transcripts, secrets, and private reasoning.
+- `data/lab/pmlab-future-utility-v0/t0/` — completed synthetic T0 validation: exact retry collapse, append-only correction, explicit censoring, privacy rejection, and premature-U5 rejection; T1 remains locked.
 - `docs/11-research-laboratory/compression-benchmark-extension.md` — preregistered repeated-compaction, model-change, semantic-completion, and factor-separated emotion tests.
 - `docs/11-research-laboratory/replay-benchmark-extension.md` — preregistered phase-conditioned replay, compression-throughput, and sampling-safety tests.
 - `docs/11-research-laboratory/revision-benchmark-extension.md` — preregistered versioning, non-mutating retrieval, return, and representation-dissociation tests.

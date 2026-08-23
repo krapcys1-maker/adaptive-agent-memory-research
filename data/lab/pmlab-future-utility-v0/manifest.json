@@ -1,9 +1,14 @@
 {
   "experiment_id": "PMLAB-UTILITY-001",
   "title": "Longitudinal memory future-utility telemetry",
-  "version": "0.1.0-draft",
-  "status": "preregistration-draft",
+  "version": "0.2.0-t0",
+  "status": "t0-synthetic-schema-validated-t1-locked",
   "execution_authorized": false,
+  "t0_synthetic_validation_completed": true,
+  "t1_natural_capture_authorized": false,
+  "t2_replay_authorized": false,
+  "t3_randomized_exposure_authorized": false,
+  "t4_utility_model_authorized": false,
   "adaptive_policy_authorized": false,
   "canonical_memory_mutation_authorized": false,
   "target": "counterfactual future utility net of cost and harm",
@@ -44,6 +49,19 @@
     "fresh_cohort_interval_excludes_zero": true,
     "material_critical_harm_increase_allowed": false
   },
+  "t0_artifacts": {
+    "schema": "data/lab/pmlab-future-utility-v0/telemetry-event-v0.schema.json",
+    "privacy_policy": "docs/11-research-laboratory/future-utility-telemetry-privacy-and-capture-policy-v0.md",
+    "valid_deliveries": "data/lab/pmlab-future-utility-v0/t0/valid-deliveries.jsonl",
+    "invalid_cases": "data/lab/pmlab-future-utility-v0/t0/invalid-cases.json",
+    "validator": "scripts/validate_future_utility_telemetry_t0.py",
+    "report": "data/lab/pmlab-future-utility-v0/t0/validation-report.json",
+    "schema_sha256": "1d28da644790e06b661e772c73b6ff779f91a8a52c95760d7877e48a53d8f04a",
+    "valid_deliveries_sha256": "c8d66bbc6cc524ecc7497176e102f22babc95f5a497a3e735d2f96c43480335d",
+    "invalid_cases_sha256": "5365b5c0888f7f0d2abf438390834bd46b1739a03d76900ef8c190a6bbde5230",
+    "validation_report_sha256": "ad659770f49eeccc2255f3055e240b650fb455c2c1321c492f8939d7c401a0de"
+  },
+  "t0_result_authority": "instrument integrity only; no natural capture, randomized exposure, adaptive policy, causal utility, retention, consolidation, or architecture claim",
   "protocol": "docs/11-research-laboratory/future-utility-telemetry-protocol-v0.md",
   "created_at": "2026-08-23T00:00:00Z"
 }

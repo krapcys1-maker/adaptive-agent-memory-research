@@ -193,6 +193,22 @@ powershell -ExecutionPolicy Bypass -File scripts/refresh-github-catalog.ps1
 
 Produces `data/catalogs/repositories-current.csv` using the GitHub CLI.
 
+## Validate future-utility telemetry T0
+
+Validate the append-only U0-U4 synthetic stream, collapse exact retries, verify joins/corrections/censoring, reject privacy and premature-causal failures, and compare the deterministic report:
+
+```powershell
+python scripts/validate_future_utility_telemetry_t0.py --check-report
+```
+
+Regenerate the report only after intentional schema or fixture review:
+
+```powershell
+python scripts/validate_future_utility_telemetry_t0.py --write-report
+```
+
+This is instrument validation only. It does not authorize natural capture, randomized withholding, adaptive ranking, or a causal-utility claim.
+
 ## Download selected repositories
 
 ```powershell

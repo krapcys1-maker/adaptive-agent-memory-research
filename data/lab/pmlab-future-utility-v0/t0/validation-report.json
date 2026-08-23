@@ -1,0 +1,105 @@
+{
+  "authority": "T0 instrument integrity only; no natural capture, causal utility, randomized exposure, adaptive ranking, retention, consolidation, or architecture claim",
+  "experiment_id": "PMLAB-UTILITY-001",
+  "hashes": {
+    "invalid_cases_sha256": "5365b5c0888f7f0d2abf438390834bd46b1739a03d76900ef8c190a6bbde5230",
+    "schema_sha256": "1d28da644790e06b661e772c73b6ff779f91a8a52c95760d7877e48a53d8f04a",
+    "valid_deliveries_sha256": "c8d66bbc6cc524ecc7497176e102f22babc95f5a497a3e735d2f96c43480335d"
+  },
+  "invalid_cases": {
+    "rejected": 13,
+    "results": [
+      {
+        "case_id": "T0-INV-001-CONFLICTING-RETRY",
+        "observed_error": "conflicting retry reuses event identity"
+      },
+      {
+        "case_id": "T0-INV-002-BEHAVIOR-WITHOUT-EXPOSURE",
+        "observed_error": "behavior reference requires prior shown exposure"
+      },
+      {
+        "case_id": "T0-INV-003-MISSING-PROPENSITY",
+        "observed_error": "random or synthetic assignment requires propensity"
+      },
+      {
+        "case_id": "T0-INV-004-SENSITIVE-EXTERNAL",
+        "observed_error": "sensitive event cannot allow external processing"
+      },
+      {
+        "case_id": "T0-INV-005-RAW-CONTENT",
+        "observed_error": "prohibited key at $/payload/raw_content"
+      },
+      {
+        "case_id": "T0-INV-006-FORWARD-CORRECTION",
+        "observed_error": "correction target must be a prior logical event"
+      },
+      {
+        "case_id": "T0-INV-007-UNDECLARED-OUTCOME",
+        "observed_error": "outcome was not preregistered: TASK-000000000001/answer_accuracy"
+      },
+      {
+        "case_id": "T0-INV-008-OUTSIDE-CANDIDATE-SET",
+        "observed_error": "retrieval memory is outside candidate set: MEM-000000000003"
+      },
+      {
+        "case_id": "T0-INV-009-U5-DURING-T0",
+        "observed_error": "causal_effect_estimated is prohibited before T4"
+      },
+      {
+        "case_id": "T0-INV-010-CENSOR-MISMATCH",
+        "observed_error": "closure outstanding outcomes mismatch: TASK-000000000002"
+      },
+      {
+        "case_id": "T0-INV-011-ASSIGNMENT-EXPOSURE-MISMATCH",
+        "observed_error": "exposure shown state conflicts with assignment arm"
+      },
+      {
+        "case_id": "T0-INV-012-RECORDED-ORDER-REGRESSION",
+        "observed_error": "logical event recorded_at order regressed"
+      },
+      {
+        "case_id": "T0-INV-013-CORRECTION-BREAKS-TARGET-CONTRACT",
+        "observed_error": "TE-000000000000000E.cost_observed.payload.usd must be numeric"
+      }
+    ],
+    "total": 13
+  },
+  "phase": "T0",
+  "privacy": {
+    "external_processing_events": 0,
+    "raw_content_fields_accepted": 0,
+    "synthetic_nonsensitive_only": true
+  },
+  "schema_version": "pmlab-utility-telemetry-v0",
+  "status": "synthetic-schema-validation-passed",
+  "valid_stream": {
+    "causal_effect_event_count": 0,
+    "censored_task_count": 1,
+    "closed_task_count": 2,
+    "correction_count": 1,
+    "deliveries": 24,
+    "exact_retries_collapsed": 1,
+    "logical_event_type_counts": {
+      "behavior_reference": 1,
+      "candidate_set_frozen": 2,
+      "correction": 1,
+      "cost_observed": 2,
+      "exposure_assigned": 3,
+      "exposure_observed": 3,
+      "memory_registered": 2,
+      "observation_window_closed": 2,
+      "outcome_observed": 2,
+      "retrieval_observed": 3,
+      "task_registered": 2
+    },
+    "logical_events": 23,
+    "maximum_observational_level_counts": {
+      "U1": 1,
+      "U2": 1,
+      "U3": 0,
+      "U4": 1
+    },
+    "memory_count": 2,
+    "task_count": 2
+  }
+}
