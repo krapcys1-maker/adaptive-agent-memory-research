@@ -116,6 +116,9 @@ class CUPMemAdapter:
     configuration surface and keeps the adapter testable against a double.
     """
 
+    #: their engine may update state during recall; not established without a live run
+    query_mutates_state = "unknown"
+
     name = "CUPMem"
 
     def __init__(self, engine: Any, session_time_field: str = "timestamp") -> None:

@@ -51,6 +51,9 @@ def _free(started: float) -> Cost:
 class AAMRAdapter:
     """Deterministic addressing plus temporal resolution. No model anywhere."""
 
+    #: addressing and chain ordering read the store and never write to it
+    query_mutates_state = "read_only"
+
     name = "AAMR-CANDIDATE-0"
 
     def __init__(self) -> None:

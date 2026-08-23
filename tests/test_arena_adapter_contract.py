@@ -27,6 +27,7 @@ from arena.aamr_adapter import AAMRAdapter  # noqa: E402
 
 class _Conforming:
     name = "conforming"
+    query_mutates_state = "read_only"
 
     def __init__(self) -> None:
         self.records: list[dict[str, Any]] = []
@@ -180,3 +181,57 @@ def test_the_fixture_contains_a_probe_with_no_answer() -> None:
 def test_the_protocol_is_structural_not_nominal() -> None:
     assert isinstance(AAMRAdapter(), MemoryAdapter)
     assert isinstance(_Conforming(), MemoryAdapter)
+
+
+# --------------------------------------------------------------- query-time mutation
+
+
+def test_a_declared_read_only_that_mutates_is_rejected() -> None:
+    """Mutation is not the failure. A false declaration is.
+
+    A system that learns during recall has a property the arena must control
+    for — repeat a probe, or fix probe order. An undeclared one makes the
+    harness compare probes that are not comparable, without knowing it.
+    """
+    class Liar(_Conforming):
+        query_mutates_state = "read_only"
+
+        def query(self, question, asked_at=None):
+            self.records = self.records[1:]  # each query changes what the next sees
+            return Answer(text=self.records[0]["text"] if self.records else "",
+                          evidence_ids=[r["id"] for r in self.records])
+
+    result = validate_adapter(Liar(), synthetic_fixture())
+    assert not result["admissible"]
+    assert any("read_only" in p for p in result["problems"])
+
+
+def test_a_declared_mutator_is_admissible_and_recorded() -> None:
+    """A property to control for, not grounds for exclusion."""
+    class Learner(_Conforming):
+        query_mutates_state = "mutates_by_design"
+
+        def query(self, question, asked_at=None):
+            self.records = self.records[1:]
+            return Answer(text=self.records[0]["text"] if self.records else "",
+                          evidence_ids=[r["id"] for r in self.records])
+
+    result = validate_adapter(Learner(), synthetic_fixture())
+    assert result["admissible"], result["problems"]
+    assert result["query_mutates_state"] == "mutates_by_design"
+    assert result["repeated_query_differed"] is True
+
+
+def test_an_undeclared_mutation_mode_is_rejected() -> None:
+    class Silent(_Conforming):
+        query_mutates_state = "probably not"
+
+    result = validate_adapter(Silent(), synthetic_fixture())
+    assert not result["admissible"]
+    assert any("query_mutates_state" in p for p in result["problems"])
+
+
+def test_the_reference_adapter_declares_read_only_and_keeps_it() -> None:
+    result = validate_adapter(AAMRAdapter(), synthetic_fixture())
+    assert result["query_mutates_state"] == "read_only"
+    assert result["repeated_query_differed"] is False

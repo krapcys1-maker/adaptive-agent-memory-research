@@ -184,6 +184,13 @@ class Answer:
     system_metadata: dict[str, Any] = field(default_factory=dict)
 
 
+# Whether querying changes stored state. Declared by the adapter, checked by the
+# validator, and never inferred — a system that learns during recall is not
+# broken, but an arena that does not know which systems do cannot keep probes
+# comparable.
+MUTATION_MODES = ("read_only", "mutates_by_design", "unknown")
+
+
 @runtime_checkable
 class MemoryAdapter(Protocol):
     """Three methods. Anything more is the harness's job.
@@ -194,6 +201,10 @@ class MemoryAdapter(Protocol):
     """
 
     name: str
+
+    #: One of ``MUTATION_MODES``. ``mutates_by_design`` is a property to control
+    #: for, not a defect; ``read_only`` contradicted by behaviour is a defect.
+    query_mutates_state: str
 
     def reset(self) -> None:
         """Discard all state. The next ingest must behave like the first."""
@@ -243,6 +254,27 @@ def validate_adapter(adapter: Any, fixture: dict[str, Any]) -> dict[str, Any]:
         # reporting 0 is under-reporting, and cost is part of the mechanism.
         problems.append("ingest took over 0.5s and reported zero wall time")
 
+    # Does querying change what a later query sees? Asked by querying twice and
+    # comparing, then judged against what the adapter declared.
+    #
+    # Mutation is not itself a failure. A system that learns during recall has a
+    # property the arena must control for — repeat a probe, or fix probe order —
+    # and only an undeclared mutation is a defect, because the harness would then
+    # be comparing probes that are not comparable.
+    declared = getattr(adapter, "query_mutates_state", "unknown")
+    if declared not in MUTATION_MODES:
+        problems.append(f"query_mutates_state must be one of {MUTATION_MODES}")
+
+    probe = fixture["probes"][0]
+    first = adapter.query(probe["question"], probe.get("asked_at"))
+    second = adapter.query(probe["question"], probe.get("asked_at"))
+    observed_mutation = (first.text, first.evidence_ids) != (second.text, second.evidence_ids)
+    if observed_mutation and declared == "read_only":
+        problems.append(
+            "declared read_only but a repeated query returned different results; "
+            "either the declaration is wrong or the system is nondeterministic"
+        )
+
     answers = []
     for probe in fixture["probes"]:
         answer = adapter.query(probe["question"], probe.get("asked_at"))
@@ -281,6 +313,8 @@ def validate_adapter(adapter: Any, fixture: dict[str, Any]) -> dict[str, Any]:
             round(sum(a.context_tokens for a in answers) / len(answers), 3) if answers else None
         ),
         "abstentions": sum(1 for a in answers if a.abstained),
+        "query_mutates_state": declared,
+        "repeated_query_differed": observed_mutation,
         "note": ("admissible means the adapter obeys the contract, never that the system is good. "
                  "Rejecting one here costs nothing; discovering it mid-run costs the run"),
     }
