@@ -43,3 +43,4 @@ jagoff/memo,external/repos/jagoff__memo,645648a01ac370650579c2e91cbf7f6c03f97115
 AgentMem/agentmem,external/repos/AgentMem__agentmem,c96ff3ce7a5286d33a7c280d53cafa1bfcb13693,main,2026-08-23T07:31:47.1185368Z,available-full-history-apache-2.0-static-audit-uv-runtime-unavailable
 ProsusAI/MemEval,external/repos/ProsusAI__MemEval,807ae6d7d8a5b76f6fe964d5a581d96c036e2ac4,main,2026-08-23T14:54:11.0051900Z,available-apache-2-static-audit-not-executed
 icedreamc/STALE,external/repos/icedreamc__STALE,ea7d391103a151927cd29d2f01d87597a782bdcb,main,2026-08-24T03:40:00Z,available-mit-benchmark-and-cupmem-baseline
+vectorize-io/hindsight,external/repos/vectorize-io__hindsight,3295716c,main,2026-08-24T05:30:00Z,available-mit-entity-resolution-audited
