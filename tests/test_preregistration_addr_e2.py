@@ -101,3 +101,66 @@ def test_no_extractor_existed_when_this_was_frozen() -> None:
                  list((ROOT / "scripts" / "corpus").glob("*extract*"))
     if candidates:
         pytest.skip("an extractor now exists; registration precedence is a git-history question")
+
+
+# --------------------------------------------------------------- the splits are real
+
+
+@pytest.fixture(scope="module")
+def addendum() -> dict:
+    path = PREREG / "addendum-splits.json"
+    if not path.is_file():
+        pytest.skip("split addendum not present")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def test_the_addendum_does_not_modify_the_frozen_preregistration(addendum: dict) -> None:
+    """Supplement by appending. The frozen file stays the authority on success."""
+    declared = (PREREG / "preregistration.sha256").read_text(encoding="utf-8").split()[0]
+    assert addendum["supplements_not_modifies"] == declared
+
+
+def test_no_question_appears_in_two_splits(addendum: dict) -> None:
+    """Changing the seed alone left 45 of 84 questions shared. That is not a holdout.
+
+    A question is determined by its family template and its subject, so varying
+    hosts and days while the subject stayed pinned to the instance index produced
+    the same set of questions under a different seed. Each split now draws its
+    subjects from a disjoint block.
+    """
+    corpus = ROOT / "data" / "lab" / "corpus-h1"
+    paths = {
+        "dev-a": corpus / "reveal-v0" / "queries.jsonl",
+        "valid-b": corpus / "valid-b" / "reveal" / "queries.jsonl",
+        "sealed-c": corpus / "sealed-c" / "reveal" / "queries.jsonl",
+    }
+    for path in paths.values():
+        if not path.is_file():
+            pytest.skip("splits not generated")
+
+    questions = {
+        name: {json.loads(line)["question"]
+               for line in path.read_text(encoding="utf-8").splitlines() if line.strip()}
+        for name, path in paths.items()
+    }
+    names = sorted(questions)
+    for i, first in enumerate(names):
+        for second in names[i + 1:]:
+            shared = questions[first] & questions[second]
+            assert not shared, (
+                f"{len(shared)} question(s) shared between {first} and {second}: "
+                f"{sorted(shared)[:2]}"
+            )
+
+
+def test_the_development_split_is_the_one_the_thresholds_were_frozen_against(
+    registered: dict, addendum: dict
+) -> None:
+    assert addendum["splits"]["dev-a"]["history_sha256"] == registered["corpus"]["history_sha256"]
+
+
+def test_the_weakness_of_a_self_generated_holdout_is_stated(addendum: dict) -> None:
+    """Withheld-by-intent is weaker than sealed, and must not be described as sealed."""
+    limit = addendum["honest_limit"]
+    assert "weak isolation" in limit
+    assert "withheld-by-intent" in limit

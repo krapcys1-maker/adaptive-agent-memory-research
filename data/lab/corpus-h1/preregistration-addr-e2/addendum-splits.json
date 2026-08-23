@@ -1,0 +1,48 @@
+{
+  "addendum_to": "PMLAB-H1-ADDR-E2",
+  "disjointness": {
+    "how": "each split draws its twelve subject nouns from a disjoint block of the service list, so no question text can occur in two splits",
+    "measured": {
+      "dev_sealed": 0,
+      "dev_valid": 0,
+      "of": 84,
+      "valid_sealed": 0
+    },
+    "the_attempt_that_failed": "changing the seed alone left 45 of 84 questions shared between development and holdout. A question is determined by its family template and its subject, and the seed varied hosts, ports and days while the subject stayed pinned to the instance index. Reassigning which instance received which subject still produced the same set of questions. Only disjoint pools work"
+  },
+  "does_not_change": "any threshold, metric definition, denominator or gate in the frozen preregistration. This file supplements it; the frozen file remains the authority on what counts as success",
+  "git_commit": "80ad5e14f19b72753acc92c2a764f26e732fdee7",
+  "honest_limit": "a single author generating a holdout in their own repository has weak isolation: nothing physically prevents reading sealed-c, and the guarantee rests on discipline. scripts/sealed_split.py implements the commit-and-reveal protocol that removes that reliance, and issue #42 records that it has never been run on a real pool. Sealing this corpus with it is the right use and is not yet done. Until then sealed-c is withheld-by-intent, which is weaker and should be described that way",
+  "noise_pool_note": "noise draws from its own frozen sixteen-name pool. Extending the subject list changed a modulo and shifted every noise event, so the registered corpus briefly stopped regenerating from its own generator. A frozen artifact that cannot be reproduced is not frozen",
+  "procedure": [
+    "iterate the extractor on dev-a only",
+    "freeze the implementation by digest",
+    "run valid-b once",
+    "decide by the thresholds already frozen, not by what valid-b shows",
+    "run sealed-c once"
+  ],
+  "registered_at": "2026-08-23T23:40:00Z",
+  "splits": {
+    "dev-a": {
+      "gold_sha256": "964be5aba722e85bd82c29d3b3cebe1da58c036333cf72ab76d212571f4cac62",
+      "history_sha256": "665dc5f293f6505560adf60f9f40e49d67bd15d75fc1a5091dfa79be8dce6071",
+      "note": "byte-identical to the corpus the frozen preregistration names",
+      "role": "development; may be inspected, iterated on, and diagnosed",
+      "seed": 20260823
+    },
+    "sealed-c": {
+      "gold_sha256": "b762c0e4838966eb792f1423377050e55bd8d7307364ca484dfffce4fbfc40f9",
+      "history_sha256": "b5647966f22be91ef3a5207b9b6177d468f3d8edc0efc34d5f71fb659eb9264c",
+      "role": "one final run; not inspected before it",
+      "seed": 20261115
+    },
+    "valid-b": {
+      "gold_sha256": "4aff5a319953ae01511e8af4e0c35ae3bd61abb2ac0901d07d0e05197b157ebc",
+      "history_sha256": "0ccebc27903aecdbd445a546d1e730aba167d7c340d804d1dafb0cfa9172498c",
+      "role": "one run after the implementation is frozen; not iterated on",
+      "seed": 20260901
+    }
+  },
+  "supplements_not_modifies": "aac1c7267714c0364ef8e1769eb6ce5619bc220b9e98d0d11c2eb9a803c412d3",
+  "why": "the frozen preregistration fixes thresholds but not the split. Its 84 probes have been examined repeatedly \u2014 grouped by family, dissected per case, and the six unreachable OBSOLETE probes are known individually. Anyone writing an extractor now knows the shape of the test. So that corpus can honestly answer whether an implementation built after registration meets criteria set before it, and cannot on its own support a claim that automatic addressing generalises"
+}

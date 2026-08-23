@@ -111,6 +111,19 @@ def _write_jsonl(path: Path, rows: list[dict[str, Any]]) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+
+def _display(path: Path) -> str:
+    """Repo-relative when possible, absolute otherwise.
+
+    ``Path.relative_to`` raises for a path outside the repository, and this
+    project has now hit that three times — a print statement is not worth
+    aborting a run that already wrote its output.
+    """
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return str(path)
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -162,7 +175,7 @@ def main(argv: list[str] | None = None) -> int:
     payload = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
     (out / "manifest.json").write_bytes(payload.encode("utf-8"))
 
-    print(f"history family H1 written to {out.relative_to(ROOT).as_posix()}")
+    print(f"history family H1 written to {_display(out)}")
     print(f"  events   {len(events)}")
     print(f"  cases    {len(FAMILIES) * arguments.instances} "
           f"({len(FAMILIES)} families x {arguments.instances})")

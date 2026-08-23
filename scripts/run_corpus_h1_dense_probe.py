@@ -184,6 +184,19 @@ def summarise(records: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+
+def _display(path: Path) -> str:
+    """Repo-relative when possible, absolute otherwise.
+
+    ``Path.relative_to`` raises for a path outside the repository, and this
+    project has now hit that three times — a print statement is not worth
+    aborting a run that already wrote its output.
+    """
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return str(path)
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -230,7 +243,7 @@ def main(argv: list[str] | None = None) -> int:
     out.mkdir(parents=True, exist_ok=True)
     (out / "results.json").write_bytes(
         (json.dumps(result, indent=2, sort_keys=True) + "\n").encode("utf-8"))
-    print(f"\nwritten: {(out / 'results.json').relative_to(ROOT).as_posix()}")
+    print(f"\nwritten: {_display((out / 'results.json'))}")
     return 0
 
 

@@ -102,9 +102,37 @@ def event_id(case_id: str, index: int) -> str:
 # `xk39fj` measures retrieval over noise that no real history contains.
 
 _COLOURS = ("blue", "green", "amber", "slate", "coral", "indigo", "olive", "rust")
-_SERVICES = ("orders", "billing", "search", "ingest", "notify", "ledger", "roster", "vault",
-             "invoicing", "dispatch", "catalog", "identity", "telemetry", "payouts",
-             "scheduler", "archive")
+# Three disjoint blocks of twelve. A split takes one block and no other, so no
+# question text can appear in two splits.
+#
+# Rotating one shared pool was not enough and the check caught it: a question is
+# determined by its family template and its subject, so reassigning which
+# instance gets "billing" still produced the same *set* of questions. 45 of 84
+# were shared between development and holdout. Disjoint pools are the only thing
+# that makes a different seed a genuinely different split.
+_SERVICES = (
+    # block 0 — the registered development corpus, frozen by digest
+    "orders", "billing", "search", "ingest", "notify", "ledger",
+    "roster", "vault", "invoicing", "dispatch", "catalog", "identity",
+    # block 1
+    "telemetry", "payouts", "scheduler", "archive", "shipping", "pricing",
+    "consent", "routing", "clearing", "onboarding", "reconcile", "settlement",
+    # block 2
+    "custody", "escrow", "fulfilment", "provisioning", "metering", "chargeback",
+    "underwriting", "attestation", "brokerage", "remittance", "collateral", "issuance",
+)
+_SERVICE_BLOCK = 12
+
+# Noise draws from its own frozen pool, never from _SERVICES.
+#
+# Extending _SERVICES from sixteen names to thirty-six changed `next(stream) %
+# len(_SERVICES)` and shifted every noise event, so the registered corpus stopped
+# regenerating from its own generator — a frozen artifact that cannot be
+# reproduced is not frozen, it is merely old. Noise carries no probe and has no
+# reason to share a pool with the subjects that identify cases.
+_NOISE_SERVICES = ("orders", "billing", "search", "ingest", "notify", "ledger",
+                   "roster", "vault", "invoicing", "dispatch", "catalog", "identity",
+                   "telemetry", "payouts", "scheduler", "archive")
 _MODULES = ("pool", "cache", "router", "queue", "session", "codec", "walker", "digest")
 _PACKAGES = ("text", "net", "store", "sync", "parse", "io", "graph", "time")
 _SUITES = ("integration", "contract", "smoke", "migration", "e2e", "load", "soak", "fuzz")
@@ -115,15 +143,30 @@ def _pick(stream: Iterator[int], options: tuple[str, ...]) -> str:
     return options[next(stream) % len(options)]
 
 
-def subject_for(instance: int) -> str:
+def subject_for(instance: int, seed: int = DEFAULT_SEED) -> str:
     """The noun that identifies one instance of a family inside its question.
 
     Indexed by instance, never drawn from the stream. A stream draw gave
     collisions — eight words across twelve instances — and a probe that does not
     identify its own case has twelve contradictory correct answers. Uniqueness is
     pinned by a construction test, which fails if instances exceed this list.
+
+    Blocked by seed, because otherwise a different seed is not a different split.
+    The first attempt at a held-out corpus changed the seed and produced 60 of 84
+    *identical questions*: the seed varied hosts, ports and days while the subject
+    stayed pinned to the instance index, so ``OBSOLETE-01`` asked about ``billing``
+    in every split. Development and holdout would have shared most of their
+    probes.
+
+    The registered seed is the anchor and its rotation is zero, deliberately: the
+    development corpus is frozen inside
+    ``preregistration-addr-e2/preregistration.json`` by SHA-256, and changing its
+    bytes would invalidate thresholds chosen against them. Anchoring is a choice
+    with a stated reason rather than a coincidence, which is why it is written
+    here.
     """
-    return _SERVICES[instance % len(_SERVICES)]
+    block = 0 if seed == DEFAULT_SEED else 1 + (seed // 7 + seed) % 2
+    return _SERVICES[block * _SERVICE_BLOCK + instance % _SERVICE_BLOCK]
 
 
 def _hex(stream: Iterator[int], width: int = 7) -> str:
@@ -435,7 +478,7 @@ def build_cases(seed: int, instances: int) -> list[dict[str, Any]]:
     for offset, (name, factory) in enumerate(FAMILIES):
         stream = _lcg(seed + 7919 * (offset + 1))
         for instance in range(instances):
-            cases.append(factory(f"{name}-{instance:02d}", stream, subject_for(instance)))
+            cases.append(factory(f"{name}-{instance:02d}", stream, subject_for(instance, seed)))
     return cases
 
 
@@ -464,7 +507,7 @@ def noise_events(seed: int, count: int) -> list[dict[str, Any]]:
                 "day": 1 + (next(stream) % HISTORY_DAYS),
                 "channel": "agent_note",
                 "properties": ["repeated-noise" if index % 3 else "one-off-noise"],
-                "text": template.format(n=1 + next(stream) % 400, s=_pick(stream, _SERVICES)),
+                "text": template.format(n=1 + next(stream) % 400, s=_pick(stream, _NOISE_SERVICES)),
                 "case_id": "NOISE",
                 "index": index,
             }
