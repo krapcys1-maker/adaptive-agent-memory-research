@@ -21,6 +21,8 @@ This is the fastest guide to where information belongs.
 | LLM memory lifecycle and architectures | `docs/02-llm-memory/` |
 | Human/AI analogies and hypotheses | `docs/03-human-ai-bridge/` |
 | Useful open-source projects | `docs/04-systems/catalog.md` |
+| Reusable code segments, license/runtime audit, and non-adoptions | `docs/04-systems/reuse-before-inventing-audit-v0.md`; `docs/04-systems/reuse-component-adoption-register-v0.csv` |
+| Minimal provider-neutral architecture assembled from audited parts | `docs/04-systems/minimal-reuse-architecture-v0.md` |
 | Compression code reproducibility status | `docs/04-systems/compression-code-reproducibility-audit.md` |
 | PI-LLM interference code and reproducibility risks | `docs/04-systems/unable-to-forget-reproducibility-audit.md` |
 | Benchmarks and evaluation risks | `docs/05-benchmarks/` |

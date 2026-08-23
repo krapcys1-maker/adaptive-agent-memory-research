@@ -69,3 +69,9 @@ A high star count is not evidence of memory quality. No dependency is selected b
 
 - **amvjakob/wm-rate-distortion:** primary Julia notebooks for Figures 2–8 of the working-memory paper. The [reproducibility audit](compression-code-reproducibility-audit.md) found missing pinned dependencies, data artifacts, and a license, so it is a research reference rather than an adoptable dependency.
 - **NOBI327/amygdala:** audited at `344133c`; 331 tests pass with a dummy OpenAI key, but its central ranker is affect/scene/time based rather than content based and its schema lacks the project's evidence/version/provenance contract. The [repository audit](amygdala-repository-audit.md) retains it as a tier-C salience comparator, not a foundation.
+
+## Reuse-before-inventing audit
+
+The [component audit](reuse-before-inventing-audit-v0.md) and [machine-readable adoption register](reuse-component-adoption-register-v0.csv) inspect exact reusable boundaries from GoodMemory, mnemos, mcp-local-memory, and memo. The [minimal reuse architecture](minimal-reuse-architecture-v0.md) combines only their strongest separable ideas with established protocol, privacy, encryption, and scheduling components.
+
+The current decision is deliberately composite: adapt typed evidence and traces, cited local retrieval and path safety, exposure-versus-feedback accounting, and current/supporting/stale context packs. Do not adopt any one full memory product as the project core.

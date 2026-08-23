@@ -36,3 +36,7 @@
 "xjtuleeyf/Locomo-Plus","external/repos/xjtuleeyf__Locomo-Plus","059f4e3d38f7f1f96765e8e2cb7de3097551bffb","main","2026-08-23T04:30:30.4238715Z","available-no-root-license-audit-blocked"
 "qinchonghanzuibang/ImplicitMemBench","external/repos/qinchonghanzuibang__ImplicitMemBench","927413bf3f5389bb47c94c2a0ba987e435b101b8","main","2026-08-23T04:30:30.4238715Z","available-mit-audit-required"
 "ericjiang18/MemCon","external/repos/ericjiang18__MemCon","aa15afc9406aab8854b957ebfea08816997de882","main","2026-08-23T04:30:30.4238715Z","available-readme-mit-no-license-file-audit-required"
+"hjqcan/GoodMemory","external/repos/hjqcan__GoodMemory","08ebbb50097dc9cf03810391f37a2d8e22f20ca2","main","2026-08-23T04:42:59.8569912Z","git-objects-available-windows-checkout-blocked-mit-static-audit"
+"Beledarian/mcp-local-memory","external/repos/Beledarian__mcp-local-memory","86450ce477607bdd97f5b63db8f9ccf760429bc7","main","2026-08-23T04:42:59.8569912Z","available-mit-static-audit-npm-ci-failed-node24-native-build"
+"arhuman/mnemos","external/repos/arhuman__mnemos","0bdf9de70350ff4659ce7af9ee25536b14fe8b9d","main","2026-08-23T04:42:59.8569912Z","available-mit-static-audit-go-runtime-unavailable"
+"jagoff/memo","external/repos/jagoff__memo","645648a01ac370650579c2e91cbf7f6c03f97115","master","2026-08-23T04:42:59.8569912Z","available-mit-static-audit-platform-limited"
