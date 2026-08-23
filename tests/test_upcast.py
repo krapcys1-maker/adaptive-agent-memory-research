@@ -22,6 +22,7 @@ from tools.project_memory.upcast import (
     UPCASTERS,
     V1_REQUIRED,
     UpcastError,
+    derive_temporal_view,
     describe_versions,
     upcast_all,
     upcast_event,
@@ -169,3 +170,90 @@ def test_registered_upcasters_form_a_contiguous_chain() -> None:
     """A gap would make some version unreachable and migration would stall."""
     versions = sorted(UPCASTERS)
     assert versions == list(range(1, len(versions) + 1))
+
+
+# --------------------------------------------------------------------------- v2 bitemporal shape
+
+
+def test_v1_to_v2_adds_all_four_temporal_fields() -> None:
+    """#34 corrected the design: four fields on two axes, not two beside created_at."""
+    result = v1_to_v2(v1_event(created_at="2026-03-04T05:06:07Z"))
+    assert result["schema_version"] == 2
+    assert result["valid_from"] == "2026-03-04T05:06:07Z"
+    assert result["valid_to"] is None
+    assert result["expired_at"] is None
+    assert result["claim_class"] == "unclassified"
+
+
+def test_a_v1_supersession_is_unclassified_not_guessed() -> None:
+    """Version 1 recorded that a conclusion changed, never whether the world did."""
+    superseded = v1_event(
+        id="PM-20260101-bbbbbbbb",
+        operation="supersede",
+        supersedes="PM-20260101-aaaaaaaa",
+        supersession_reason="the measurement was label-leaked",
+    )
+    assert v1_to_v2(superseded)["supersession_kind"] == "unclassified"
+    assert v1_to_v2(v1_event())["supersession_kind"] is None
+
+
+# --------------------------------------------------------------------------- derived, not stored
+
+
+def _succeeding(kind: str) -> list[dict]:
+    first = v1_event(created_at="2026-01-01T00:00:00Z")
+    second = v1_event(
+        id="PM-20260201-bbbbbbbb",
+        operation="supersede",
+        supersedes=first["id"],
+        created_at="2026-02-01T00:00:00Z",
+        supersession_reason="revised",
+    )
+    second["supersession_kind"] = kind
+    return [first, second]
+
+
+def test_succession_derives_both_ends_from_the_successor(tmp_path: Path) -> None:
+    view = {event["id"]: event for event in derive_temporal_view(_succeeding("succession"))}
+    prior = view["PM-20260101-aaaaaaaa"]
+    assert prior["expired_at"] == "2026-02-01T00:00:00Z", "record withdrawn when the successor was written"
+    assert prior["valid_to"] == "2026-02-01T00:00:00Z", "the fact stopped being true when the next began"
+
+
+def test_correction_expires_the_record_without_ending_the_fact() -> None:
+    """A correction means the record was wrong, so nothing about the world changed."""
+    view = {event["id"]: event for event in derive_temporal_view(_succeeding("correction"))}
+    prior = view["PM-20260101-aaaaaaaa"]
+    assert prior["expired_at"] == "2026-02-01T00:00:00Z"
+    assert prior["valid_to"] is None
+
+
+def test_an_unclassified_supersession_derives_no_valid_to() -> None:
+    """Every version-1 supersession is unclassified; inventing an interval would fabricate evidence."""
+    view = {event["id"]: event for event in derive_temporal_view(_succeeding("unclassified"))}
+    prior = view["PM-20260101-aaaaaaaa"]
+    assert prior["expired_at"] == "2026-02-01T00:00:00Z"
+    assert prior["valid_to"] is None
+
+
+def test_a_record_with_no_successor_keeps_both_ends_open() -> None:
+    view = derive_temporal_view([v1_event()])
+    assert view[0]["valid_to"] is None
+    assert view[0]["expired_at"] is None
+
+
+def test_the_real_log_derives_without_error_and_ends_only_superseded_records() -> None:
+    events = load_canonical()
+    view = derive_temporal_view(events)
+    assert len(view) == len(events)
+
+    superseded = {
+        str(event["supersedes"]) for event in events if event.get("supersedes")
+    }
+    for event in view:
+        if event["id"] in superseded:
+            assert event["expired_at"] is not None, f"{event['id']} was superseded but never expired"
+        else:
+            assert event["expired_at"] is None, f"{event['id']} has no successor but was expired"
+        # No v1 supersession is classified, so no valid_to may be derived yet.
+        assert event["valid_to"] is None
