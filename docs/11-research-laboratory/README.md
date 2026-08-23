@@ -72,6 +72,9 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-natural-history-v0/manifest.json` — machine-readable execution locks, arms, and sample-size rule for that comparison.
 - `data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json` — model-independent inclusion, exclusion, unitization, exact-duplicate, and metadata-visibility rules.
 - `data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md` — pre-builder inventory showing why gold, blind, raw, and generated artifacts cannot be indexed naively.
+- `docs/11-research-laboratory/reuse-characterization-benchmark-protocol-v0.md` — frozen synthetic contract test for FTS5, exact citations, local FastEmbed, RRF, and current/supporting/stale packs; it cannot select architecture.
+- `data/lab/pmlab-reuse-characterization-v0/execution-v0/` — deterministic result: dense semantic gains coupled to higher forbidden intrusion, RRF below dense, exact citations, and measurable context-budget overhead.
+- `docs/07-literature/retrieval-safety-context-order-followup-v0.md` — primary-source follow-up on fusion boundaries, positional reader effects, knowledge poisoning, and indirect prompt injection.
 - `docs/11-research-laboratory/natural-completeness-controller-benchmark-protocol-v0.md` — separate N0-N3 sufficiency, abstention, closure, and escalation benchmark.
 - `data/lab/pmlab-completeness-natural-v0/manifest.json` — machine-readable controller arms and unresolved execution gates.
 - `docs/07-literature/tiered-memory-routing-and-future-utility-audit.md` — primary-source correction of cascade, repository, utility, and current DeepSeek-cost claims.

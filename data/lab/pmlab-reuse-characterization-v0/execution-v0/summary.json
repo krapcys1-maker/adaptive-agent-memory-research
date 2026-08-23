@@ -1,0 +1,110 @@
+{
+  "all_characterization_gates_pass": true,
+  "architecture_selection_allowed": false,
+  "build": {
+    "B2_FTS5": {
+      "build_ms": 10.6795,
+      "index_bytes": 36864
+    },
+    "C0_FASTEMBED": {
+      "cache_bytes": 252141277,
+      "embedding_ms": 1910.0229,
+      "model_load_ms": 25680.5566,
+      "vector_bytes": 55296
+    }
+  },
+  "characterization_gates": {
+    "all_corpus_citations_exact": true,
+    "all_packed_citations_valid": true,
+    "all_packs_within_utf8_budget": true,
+    "rrf_reference_example_exact": true,
+    "zero_stale_to_current_supporting_leakage": true,
+    "zero_untrusted_exposure_in_bucketed_pack": true
+  },
+  "experiment_id": "PMLAB-REUSE-CHAR-001",
+  "packaging": {
+    "bucketed": {
+      "citation_coverage": 1.0,
+      "mean_required_retained": 0.8304093567251462,
+      "mean_utf8_bytes": 655.65,
+      "packs": 60,
+      "total_omitted": 32
+    },
+    "cited": {
+      "citation_coverage": 1.0,
+      "mean_required_retained": 0.8538011695906432,
+      "mean_utf8_bytes": 681.7833333333333,
+      "packs": 60,
+      "total_omitted": 5
+    },
+    "raw": {
+      "citation_coverage": 0.0,
+      "mean_required_retained": 0.8538011695906432,
+      "mean_utf8_bytes": 408.76666666666665,
+      "packs": 60,
+      "total_omitted": 0
+    }
+  },
+  "rankings_sha256": "0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9",
+  "retrieval": {
+    "B2_FTS5": {
+      "all_required_at_5": 0.631578947368421,
+      "forbidden_intrusion_rate_at_5": 0.05,
+      "macro_recall_at_5": 0.7105263157894737,
+      "mrr_at_5": 0.6973684210526315,
+      "p50_query_latency_ms": 0.43185,
+      "p95_query_latency_ms": 0.8592,
+      "queries": 20,
+      "recall_at_5_by_category": {
+        "cross_language": 0.25,
+        "exact_identifier": 1.0,
+        "exact_terminology": 1.0,
+        "multi_evidence": 1.0,
+        "natural_paraphrase": 0.6,
+        "stale_current": 1.0,
+        "terminology_shift": 0.5
+      },
+      "unanswerable_candidate_null": 0
+    },
+    "C0_FASTEMBED": {
+      "all_required_at_5": 0.9473684210526315,
+      "forbidden_intrusion_rate_at_5": 0.2,
+      "macro_recall_at_5": 0.9824561403508771,
+      "mrr_at_5": 0.8289473684210527,
+      "p50_query_latency_ms": 89.09110000000001,
+      "p95_query_latency_ms": 101.5934,
+      "queries": 20,
+      "recall_at_5_by_category": {
+        "cross_language": 1.0,
+        "exact_identifier": 1.0,
+        "exact_terminology": 1.0,
+        "multi_evidence": 0.9333333333333333,
+        "natural_paraphrase": 1.0,
+        "stale_current": 1.0,
+        "terminology_shift": 1.0
+      },
+      "unanswerable_candidate_null": 0
+    },
+    "C2_RRF": {
+      "all_required_at_5": 0.8421052631578947,
+      "forbidden_intrusion_rate_at_5": 0.15,
+      "macro_recall_at_5": 0.868421052631579,
+      "mrr_at_5": 0.7894736842105263,
+      "p50_query_latency_ms": 89.50059999999999,
+      "p95_query_latency_ms": 102.0304,
+      "queries": 20,
+      "recall_at_5_by_category": {
+        "cross_language": 0.75,
+        "exact_identifier": 1.0,
+        "exact_terminology": 1.0,
+        "multi_evidence": 1.0,
+        "natural_paraphrase": 0.8,
+        "stale_current": 1.0,
+        "terminology_shift": 0.5
+      },
+      "unanswerable_candidate_null": 0
+    }
+  },
+  "status": "completed-synthetic-development-characterization",
+  "unavailable_arms": {}
+}

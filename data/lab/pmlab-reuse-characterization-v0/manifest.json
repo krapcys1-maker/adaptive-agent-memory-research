@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "experiment_id": "PMLAB-REUSE-CHAR-001",
-  "status": "frozen-development-protocol-awaiting-execution",
+  "status": "completed-synthetic-development-characterization",
   "protocol": "docs/11-research-laboratory/reuse-characterization-benchmark-protocol-v0.md",
   "corpus": "data/lab/pmlab-reuse-characterization-v0/corpus.jsonl",
   "queries": "data/lab/pmlab-reuse-characterization-v0/queries.jsonl",
@@ -19,5 +19,8 @@
   },
   "architecture_selection_allowed": false,
   "natural_benchmark_unlocks": false,
-  "execution_result": null
+  "protocol_freeze_commit": "8ed9dce314e4ed2baf6950ea4ac61e4aab3239d0",
+  "execution_result": "data/lab/pmlab-reuse-characterization-v0/execution-v0/summary.json",
+  "rankings_sha256": "0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9",
+  "decision": "admit citation and pack contracts; retain FTS5 dense and RRF as benchmark arms only; no architecture promotion"
 }

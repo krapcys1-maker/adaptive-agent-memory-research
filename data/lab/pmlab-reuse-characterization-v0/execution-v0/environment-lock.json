@@ -1,0 +1,9 @@
+{
+  "fastembed_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "fastembed_model_revision": "faf4aa4225822f3bc6376869cb1164e8e3feedd0",
+  "fastembed_requested": true,
+  "network_model_calls": 0,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "sqlite": "3.49.1"
+}

@@ -1,0 +1,10 @@
+{
+  "experiment_id": "PMLAB-REUSE-CHAR-001",
+  "protocol_freeze_commit": "8ed9dce314e4ed2baf6950ea4ac61e4aab3239d0",
+  "primary_rankings_sha256": "0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9",
+  "fresh_process_repeat_rankings_sha256": "0bf4d21773b37df9525dbb576281d014c034d76831579f94627cb5c1e10d1ec9",
+  "rankings_byte_identical": true,
+  "repeat_output_location": "tmp/reuse-char-repeat (ignored and reproducible)",
+  "model_api_calls": 0,
+  "interpretation": "ranking determinism only; latency is descriptive and differs between cold-download and warm-cache runs"
+}

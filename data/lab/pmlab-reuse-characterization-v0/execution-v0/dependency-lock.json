@@ -1,0 +1,19 @@
+{
+  "python": "3.12.10",
+  "fastembed": "0.8.0",
+  "huggingface_hub": "1.28.0",
+  "numpy": "2.5.2",
+  "onnxruntime": "1.29.0",
+  "tokenizers": "0.23.1",
+  "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "source_artifact": "qdrant/paraphrase-multilingual-MiniLM-L12-v2-onnx-Q",
+  "source_revision": "faf4aa4225822f3bc6376869cb1164e8e3feedd0",
+  "pooling_observed": "mean; FastEmbed 0.8.0 emitted an explicit behavior-change warning",
+  "artifacts": {
+    "config.json": "c8ec081fdad2df991bf5abbf18418fec7a5cdaa421f60ffb060a30040b8c376f",
+    "model_optimized.onnx": "634d0f66c29dc934c8fa72b8a4fe91dd4d420a22f1d82a241058d4316e659a99",
+    "special_tokens_map.json": "8c785abebea9ae3257b61681b4e6fd8365cedfe980c21970d001e834cf10835",
+    "tokenizer_config.json": "0666eefb692422757e1dddf3c9fb1ded73ba3dc726c5828671fc89e45bf3609f",
+    "tokenizer.json": "fa685fc160bbdbab64058d4fc91b60e62d207e8dc60b9af5c002c5ab946ded00"
+  }
+}
