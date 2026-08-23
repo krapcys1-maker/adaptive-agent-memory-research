@@ -130,7 +130,7 @@ def _scope(text: str) -> str:
     return ""
 
 
-def extract(text: str) -> Address | None:
+def extract(text: str, canonicalise: bool = False) -> Address | None:
     """The address this record concerns, or None when no rule is confident.
 
     Both an entity and a property are required. An entity alone cannot name a
@@ -141,19 +141,24 @@ def extract(text: str) -> Address | None:
     if entity is None:
         return None
     prop = _property(text)
+    if prop is None and canonicalise:
+        # E2-A2 only. Frozen by digest before execution, and labelled post-hoc:
+        # this arm was proposed after E2-A's failure, not registered alongside it.
+        from corpus.property_canon import canonical_property
+        prop = canonical_property(text)
     if prop is None:
         return None
     return Address(entity, prop, _scope(text))
 
 
-def extract_query(question: str) -> Address | None:
+def extract_query(question: str, canonicalise: bool = False) -> Address | None:
     """The slot a question asks about.
 
     The same rules, because a question that cannot be addressed by the rules that
     addressed the records would silently open a different drawer than the one the
     records went into.
     """
-    return extract(question)
+    return extract(question, canonicalise)
 
 
 def describe() -> dict[str, Any]:

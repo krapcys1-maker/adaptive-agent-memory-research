@@ -48,7 +48,7 @@ def true_slot(event_id: str) -> str:
     return event_id.split("#")[0]
 
 
-def run(split: str, budget: int) -> dict[str, Any]:
+def run(split: str, budget: int, canonicalise: bool = False) -> dict[str, Any]:
     prefix, reveal = SPLITS[split]
     events = load(prefix / "history.jsonl")
     by_id = {e["event_id"]: e for e in events}
@@ -58,7 +58,7 @@ def run(split: str, budget: int) -> dict[str, Any]:
     # Extraction sees text only — never construction labels, never gold.
     assigned: dict[str, str] = {}
     for event in events:
-        address = extract(event["text"])
+        address = extract(event["text"], canonicalise)
         if address:
             assigned[event["event_id"]] = address.canonical
 
@@ -83,7 +83,7 @@ def run(split: str, budget: int) -> dict[str, Any]:
         gold = gold_of[query["query_id"]]
         day = query["asked_on_day"]
         want = true_slot(gold["gold_event_id"])
-        address = extract_query(query["question"])
+        address = extract_query(query["question"], canonicalise)
 
         if address is None:
             records.append({
@@ -100,7 +100,7 @@ def run(split: str, budget: int) -> dict[str, Any]:
 
         # A wrong entity opens someone else's drawer; a wrong property narrows
         # badly inside the right one. Scored apart because they need different work.
-        true_address = extract(by_id[gold["gold_event_id"]]["text"])
+        true_address = extract(by_id[gold["gold_event_id"]]["text"], canonicalise)
         wrong_entity = int(true_address is not None and address.entity != true_address.entity)
         wrong_property = int(true_address is not None and not wrong_entity
                              and address.prop != true_address.prop)
@@ -116,7 +116,8 @@ def run(split: str, budget: int) -> dict[str, Any]:
         })
 
     return {"records": records,
-            "summary": summarise(split, records, true_slots, collided, fragmented, assigned, events)}
+            "summary": {**summarise(split, records, true_slots, collided, fragmented, assigned, events),
+                        "arm": "E2-A2 deterministic + property canonicalisation" if canonicalise else "E2-A deterministic"}}
 
 
 def summarise(split: str, records, true_slots, collided, fragmented, assigned, events) -> dict[str, Any]:
@@ -177,11 +178,13 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--split", default="dev-a", choices=sorted(SPLITS))
+    parser.add_argument("--canonicalise", action="store_true",
+                        help="E2-A2: apply the frozen property canonicalisation layer")
     parser.add_argument("--budget", type=int, default=250)
     parser.add_argument("--out", type=Path, default=None)
     arguments = parser.parse_args(argv)
 
-    result = run(arguments.split, arguments.budget)
+    result = run(arguments.split, arguments.budget, arguments.canonicalise)
     s = result["summary"]
 
     print(f"{s['experiment_id']} — {s['arm']} on {s['split']}")

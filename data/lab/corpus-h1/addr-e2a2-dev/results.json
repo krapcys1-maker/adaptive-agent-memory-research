@@ -1,0 +1,932 @@
+{
+  "records": [
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-00",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-01",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-02",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-03",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-04",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-05",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-06",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-07",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-08",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-09",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-10",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "BILINGUAL",
+      "gold_in_context": 1,
+      "query_id": "Q-BILINGUAL-11",
+      "stale_in_context": 1,
+      "tokens": 43,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-00",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-01",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-02",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-03",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-04",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-05",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-06",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-07",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-08",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-09",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-10",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "DELAYED",
+      "gold_in_context": 0,
+      "query_id": "Q-DELAYED-11",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-00",
+      "stale_in_context": 0,
+      "tokens": 34,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-01",
+      "stale_in_context": 0,
+      "tokens": 36,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-02",
+      "stale_in_context": 0,
+      "tokens": 34,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-03",
+      "stale_in_context": 0,
+      "tokens": 36,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-04",
+      "stale_in_context": 0,
+      "tokens": 36,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-05",
+      "stale_in_context": 0,
+      "tokens": 24,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-06",
+      "stale_in_context": 0,
+      "tokens": 36,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-07",
+      "stale_in_context": 0,
+      "tokens": 24,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-08",
+      "stale_in_context": 0,
+      "tokens": 34,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-09",
+      "stale_in_context": 0,
+      "tokens": 34,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-10",
+      "stale_in_context": 0,
+      "tokens": 24,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "FAILFIX",
+      "gold_in_context": 1,
+      "query_id": "Q-FAILFIX-11",
+      "stale_in_context": 0,
+      "tokens": 36,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-00",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-01",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-02",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-03",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-04",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-05",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-06",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-07",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-08",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-09",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-10",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "OBSOLETE",
+      "gold_in_context": 0,
+      "query_id": "Q-OBSOLETE-11",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-00",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-01",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-02",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-03",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-04",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-05",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-06",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-07",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-08",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-09",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-10",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 1,
+      "family": "POISON",
+      "gold_in_context": 0,
+      "query_id": "Q-POISON-11",
+      "stale_in_context": 0,
+      "tokens": 0,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-00",
+      "stale_in_context": 0,
+      "tokens": 24,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-01",
+      "stale_in_context": 0,
+      "tokens": 12,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-02",
+      "stale_in_context": 0,
+      "tokens": 24,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-03",
+      "stale_in_context": 0,
+      "tokens": 23,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-04",
+      "stale_in_context": 0,
+      "tokens": 22,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-05",
+      "stale_in_context": 0,
+      "tokens": 22,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-06",
+      "stale_in_context": 0,
+      "tokens": 22,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-07",
+      "stale_in_context": 0,
+      "tokens": 23,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-08",
+      "stale_in_context": 0,
+      "tokens": 22,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-09",
+      "stale_in_context": 0,
+      "tokens": 13,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-10",
+      "stale_in_context": 0,
+      "tokens": 22,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "RARE-EXC",
+      "gold_in_context": 1,
+      "query_id": "Q-RARE-EXC-11",
+      "stale_in_context": 0,
+      "tokens": 22,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-00",
+      "stale_in_context": 0,
+      "tokens": 10,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-01",
+      "stale_in_context": 0,
+      "tokens": 10,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-02",
+      "stale_in_context": 0,
+      "tokens": 8,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-03",
+      "stale_in_context": 0,
+      "tokens": 11,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-04",
+      "stale_in_context": 0,
+      "tokens": 12,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-05",
+      "stale_in_context": 0,
+      "tokens": 12,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-06",
+      "stale_in_context": 0,
+      "tokens": 13,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-07",
+      "stale_in_context": 0,
+      "tokens": 7,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-08",
+      "stale_in_context": 0,
+      "tokens": 11,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-09",
+      "stale_in_context": 0,
+      "tokens": 12,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-10",
+      "stale_in_context": 0,
+      "tokens": 11,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    },
+    {
+      "abstained": 0,
+      "family": "REDERIVE",
+      "gold_in_context": 1,
+      "query_id": "Q-REDERIVE-11",
+      "stale_in_context": 0,
+      "tokens": 8,
+      "wrong_entity": 0,
+      "wrong_property": 0
+    }
+  ],
+  "summary": {
+    "abstention_rate": 0.428571,
+    "arm": "E2-A2 deterministic + property canonicalisation",
+    "by_family": {
+      "BILINGUAL": {
+        "abstention_rate": 0.0,
+        "gold_coverage": 1.0,
+        "probes": 12,
+        "stale_context_rate": 1.0
+      },
+      "DELAYED": {
+        "abstention_rate": 1.0,
+        "gold_coverage": 0.0,
+        "probes": 12,
+        "stale_context_rate": 0.0
+      },
+      "FAILFIX": {
+        "abstention_rate": 0.0,
+        "gold_coverage": 1.0,
+        "probes": 12,
+        "stale_context_rate": 0.0
+      },
+      "OBSOLETE": {
+        "abstention_rate": 1.0,
+        "gold_coverage": 0.0,
+        "probes": 12,
+        "stale_context_rate": 0.0
+      },
+      "POISON": {
+        "abstention_rate": 1.0,
+        "gold_coverage": 0.0,
+        "probes": 12,
+        "stale_context_rate": 0.0
+      },
+      "RARE-EXC": {
+        "abstention_rate": 0.0,
+        "gold_coverage": 1.0,
+        "probes": 12,
+        "stale_context_rate": 0.0
+      },
+      "REDERIVE": {
+        "abstention_rate": 0.0,
+        "gold_coverage": 1.0,
+        "probes": 12,
+        "stale_context_rate": 0.0
+      }
+    },
+    "catastrophic_wrong_entity_rate": 0.0,
+    "collision_rate": 0.0,
+    "eligible_probes": 84,
+    "experiment_id": "PMLAB-H1-ADDR-E2",
+    "extractor": {
+      "abstains": "when either entity or property is unmatched; a wrong entity opens someone else's drawer",
+      "api_cost_usd": 0.0,
+      "arm": "E2-A deterministic",
+      "canonical_form": "entity/scope/property, generated from the fields, never authored",
+      "entity_patterns": 12,
+      "honest_limit": "written by an author who has read dev-a, so its dev-a score is optimistic by construction. valid-b and the committed sealed-c exist for exactly this reason",
+      "model": null,
+      "property_rules": 7,
+      "stoplist": 26
+    },
+    "fragmentation_rate": 0.0,
+    "gates": {
+      "checks": {
+        "OBSOLETE gold_coverage >= 0.85": false,
+        "OBSOLETE stale_context_rate <= 0.30": true,
+        "catastrophic_wrong_entity_rate < 0.01": true,
+        "collision_rate < 0.02": true,
+        "fragmentation_rate < 0.02": true,
+        "gold_coverage >= 0.95": false,
+        "mean_context_tokens < 100": true,
+        "stale_context_rate < 0.20": true
+      },
+      "failed": [
+        "gold_coverage >= 0.95",
+        "OBSOLETE gold_coverage >= 0.85"
+      ],
+      "passed": false
+    },
+    "gold_coverage": 0.571429,
+    "mean_context_tokens": 15.238095,
+    "records_addressed": 132,
+    "records_total": 538,
+    "split": "dev-a",
+    "stale_context_rate": 0.142857,
+    "wrong_property_rate": 0.0
+  }
+}
