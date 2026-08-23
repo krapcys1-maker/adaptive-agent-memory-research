@@ -1,6 +1,16 @@
-# Revision and reconsolidation benchmark extension v0
+# Revision and reconsolidation benchmark extension v0.1
 
 Status: preregistration-draft; no test results observed
+
+## Temporal contract stage V0
+
+Before retrieval or reader tests, a deterministic stage must establish that the storage/view layer can answer the requested temporal basis. Each operation records an immutable ID, causal parents, actor, occurrence/observation time with precision and timezone, half-open valid-time interval, transaction/system interval, scope, source evidence, and typed revision relation.
+
+Compare one-timestamp recency, append-only/no resolver, valid-time only, transaction-time only, bitemporal, bitemporal plus causal conflict, and oracle arms. Required cases include late corrections, future-effective rules, temporary exceptions, overlapping scopes, concurrent writers, clock skew, uncertain ranges, timezone boundaries, replay/import, correction-of-correction, and future-information leakage.
+
+Primary deterministic metrics are exact as-of reconstruction, valid-at state, as-previously-known state, late-correction localization, false current/stale classification, causal misordering, derivation/provenance closure, and future-information leakage. Any critical future leak, silent concurrent winner, or inability to reconstruct the pre-correction view blocks V1-V3.
+
+Natural-language time parsing is an upstream factor and receives a separate oracle-time ablation. Reader/model accuracy cannot repair an incorrect temporal basis.
 
 ## Shared controls
 
@@ -41,4 +51,5 @@ Success requires at least 90% correct representation-specific behavior in every 
 - Repeat after paraphrasing both old and new cues.
 - Promotion requires a second corpus family and a different reader/provider family where feasible.
 - Immediate post-update accuracy alone can never promote a revision policy.
-
+- A Git/database commit time cannot substitute for valid time, and wall-clock order cannot substitute for explicit causal parents.
+- See `../12-interdisciplinary-memory/temporal-provenance-versioning-and-correction-audit-v0.md` for the evidence boundary and repository candidates.

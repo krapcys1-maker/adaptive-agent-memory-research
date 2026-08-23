@@ -15,6 +15,8 @@ The first supports the investigation. It must not be presented as validation of 
 
 `shared-memory-provenance-conflict-benchmark-protocol-v0.md` preregisters `PMLAB-SHARED-001`. It separates replica convergence, semantic invariants, provenance, authorization, confidentiality, correction, and user outcome. It is design-only: no shared-memory dependency, corpus, runner, or result exists.
 
+`revision-benchmark-extension.md` v0.1 adds deterministic `PMLAB-REV-V0-001` before the existing revision/return tests. It separately scores valid time, transaction time, as-of reconstruction, late correction, causal order, and future-information leakage; natural-language parsing and LLM readers remain downstream.
+
 ## Evidence-to-decision pipeline
 
 ```text

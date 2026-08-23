@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1.0",
+  "experiment_id": "PMLAB-REV-V0-001",
+  "status": "preregistration-draft-no-time-contract-no-corpus-no-run-no-result",
+  "protocol": "docs/11-research-laboratory/revision-benchmark-extension.md",
+  "evidence_basis": "docs/12-interdisciplinary-memory/temporal-provenance-versioning-and-correction-audit-v0.md",
+  "purpose": "establish deterministic temporal basis and historical reconstruction before retrieval or reader evaluation",
+  "arms": {
+    "T0": "one-timestamp-recency",
+    "T1": "append-only-no-temporal-resolver",
+    "T2": "valid-time-only",
+    "T3": "transaction-time-only",
+    "T4": "bitemporal-deterministic-resolver",
+    "T5": "bitemporal-plus-causal-parent-conflict-handling",
+    "O": "oracle-temporal-basis"
+  },
+  "primary_endpoints": [
+    "exact_as_of_reconstruction",
+    "exact_valid_at_state",
+    "exact_as_previously_known_state",
+    "late_correction_localization",
+    "false_current_or_stale_classification",
+    "causal_misordering_rate",
+    "derivation_provenance_closure",
+    "future_information_leakage"
+  ],
+  "critical_rejections": [
+    "any_future_information_leakage",
+    "silent_winner_for_unresolved_concurrent_semantic_conflict",
+    "pre_correction_view_not_exactly_reconstructable",
+    "commit_or_wall_clock_used_as_undeclared_valid_or_causal_time",
+    "derived_output_without_exact_source_version_and_temporal_basis"
+  ],
+  "locks": {
+    "time_axis_and_unknown_grammar_frozen": false,
+    "half_open_interval_policy_independently_reviewed": false,
+    "causal_and_concurrent_operation_semantics_frozen": false,
+    "operation_schema_frozen": false,
+    "development_cases_frozen": false,
+    "oracle_labels_independently_reviewed": false,
+    "runner_and_scorer_frozen": false,
+    "prospective_test_reserved": false,
+    "storage_engine_comparator_authorized": false,
+    "reader_model_extension_authorized": false,
+    "execution_authorized": false
+  },
+  "result": null,
+  "authority": "deterministic laboratory design only; no storage-engine or architecture selection"
+}
