@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      # Full history is required: several tests verify frozen artifacts by
+      # running `git show <freeze-commit>:<path>`, which fails on a shallow clone.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+
+      - name: Run test suite
+        run: python -m pytest -q
+
+  memory-integrity:
+    name: Project-memory integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify canonical memory log
+        run: python scripts/verify_memory_integrity.py --format text
+
+  canonical-store-guard:
+    name: Canonical store guard
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reject rewrites of append-only memory
+        run: |
+          base="origin/${{ github.base_ref }}"
+          git fetch --no-tags --depth=1 origin "${{ github.base_ref }}"
+          if ! git diff --quiet "$base" -- memory/events.jsonl; then
+            removed=$(git diff --numstat "$base" -- memory/events.jsonl | awk '{print $2}')
+            if [ "${removed:-0}" -ne 0 ]; then
+              echo "::error file=memory/events.jsonl::events.jsonl is append-only; this pull request deletes or rewrites $removed line(s)."
+              echo "Use memory_supersede to revise a conclusion. Never edit or remove a prior event."
+              exit 1
+            fi
+            echo "events.jsonl grew by $(git diff --numstat "$base" -- memory/events.jsonl | awk '{print $1}') appended line(s)."
+          else
+            echo "events.jsonl unchanged."
+          fi
+
+      - name: Reject committed disposable index
+        run: |
+          if git ls-files --error-unmatch memory/.index >/dev/null 2>&1; then
+            echo "::error::memory/.index is a rebuildable local index and must never be committed."
+            exit 1
+          fi
+          echo "No disposable index tracked."
