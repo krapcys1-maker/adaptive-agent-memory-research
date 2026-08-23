@@ -122,4 +122,5 @@ See:
 - [evidence sufficiency and completeness synthesis](evidence-sufficiency-and-completeness-synthesis.md);
 - [collection closure and negative knowledge synthesis](collection-closure-and-negative-knowledge-synthesis.md);
 - [obligation decomposition and scope mapping synthesis](obligation-decomposition-and-scope-mapping-synthesis.md);
+- [distributed shared memory, CRDT, provenance, and authorization audit v0](distributed-shared-memory-crdt-provenance-audit-v0.md);
 - [synthesis protocol](synthesis-protocol.md).

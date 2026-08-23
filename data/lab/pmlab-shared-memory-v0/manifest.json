@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "experiment_id": "PMLAB-SHARED-001",
+  "status": "preregistration-draft-no-threat-contract-no-corpus-no-run-no-result",
+  "protocol": "docs/11-research-laboratory/shared-memory-provenance-conflict-benchmark-protocol-v0.md",
+  "evidence_basis": [
+    "docs/12-interdisciplinary-memory/distributed-shared-memory-crdt-provenance-audit-v0.md",
+    "docs/10-comparative-biological-memory/collective-externalized-and-social-memory-audit-v0.md"
+  ],
+  "claims": [
+    "replica_convergence_is_not_truth_convergence",
+    "semantic_invariants_require_separate_validation",
+    "provenance_and_authorization_are_independent_mechanisms",
+    "revocation_cannot_restore_disclosed_plaintext",
+    "shared_coordination_must_beat_isolated_local_baseline"
+  ],
+  "arms": {
+    "S0": "isolated-private-stores",
+    "S1": "naive-last-writer-shared-file",
+    "S2": "append-only-operation-log-deterministic-replay",
+    "S3A": "automerge-derived-replicated-view",
+    "S3Y": "yjs-derived-replicated-view",
+    "S4": "provenance-valid-time-invariant-gated-view",
+    "S5L": "simple-local-capability-policy",
+    "S5U": "ucan-like-signed-attenuated-capability-policy",
+    "O": "oracle-control"
+  },
+  "primary_endpoints": [
+    "state_convergence_after_quiescence",
+    "lost_update_rate",
+    "invariant_violation_recall_and_false_positive_rate",
+    "exact_supported_current_state",
+    "unauthorized_plaintext_exposure",
+    "poison_propagation_depth",
+    "correction_recovery_time",
+    "provenance_chain_completeness"
+  ],
+  "locks": {
+    "threat_model_frozen": false,
+    "operation_and_invariant_schema_frozen": false,
+    "independent_protocol_review_complete": false,
+    "privacy_and_security_review_complete": false,
+    "development_cases_frozen": false,
+    "oracle_labels_independently_reviewed": false,
+    "power_or_precision_rule_frozen": false,
+    "adapter_revisions_and_serialization_frozen": false,
+    "runner_and_fault_injector_frozen": false,
+    "prospective_test_reserved": false,
+    "reader_model_extension_authorized": false,
+    "execution_authorized": false
+  },
+  "result": null,
+  "authority": "laboratory design only; does not authorize shared-memory implementation or architecture promotion"
+}

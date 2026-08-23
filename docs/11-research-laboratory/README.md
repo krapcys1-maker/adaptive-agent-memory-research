@@ -13,6 +13,8 @@ The laboratory studies two different objects:
 
 The first supports the investigation. It must not be presented as validation of the second.
 
+`shared-memory-provenance-conflict-benchmark-protocol-v0.md` preregisters `PMLAB-SHARED-001`. It separates replica convergence, semantic invariants, provenance, authorization, confidentiality, correction, and user outcome. It is design-only: no shared-memory dependency, corpus, runner, or result exists.
+
 ## Evidence-to-decision pipeline
 
 ```text
