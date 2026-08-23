@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import tempfile
+import time
 import unittest
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -241,10 +242,6 @@ class ProjectMemoryTests(unittest.TestCase):
         self.assertEqual({"encoding": "utf-8", "errors": "backslashreplace"}, stdout.configuration)
         self.assertEqual({"encoding": "utf-8", "errors": "backslashreplace"}, stderr.configuration)
 
-
-if __name__ == "__main__":
-    unittest.main()
-
     def test_superseded_records_never_appear_in_search(self) -> None:
         """The supersession filter is load-bearing and must survive any index change.
 
@@ -272,3 +269,82 @@ if __name__ == "__main__":
         self.assertNotIn(old["id"], hits, "a superseded record must never be searchable")
         self.assertIsNotNone(self.store.get(old["id"]), "it must still be reachable by exact id")
         self.assertFalse(self.store.get(old["id"])["is_active"])
+
+    def test_a_live_writers_lock_is_never_stolen(self) -> None:
+        """The previous rule broke any lock older than 120 seconds.
+
+        That steals the lock from a writer that is merely slow — a paused agent,
+        a machine under load, a debugger — and lets two writers append at once,
+        which is exactly what the lock exists to prevent. See issue #28.
+        """
+        import os
+
+        from tools.project_memory import memory_store
+
+        lock = self.root / "memory" / ".events.lock"
+        lock.parent.mkdir(parents=True, exist_ok=True)
+        lock.write_text(
+            json.dumps({"pid": os.getpid(), "host": memory_store.socket.gethostname(),
+                        "acquired_at": "2020-01-01T00:00:00Z"}),
+            encoding="utf-8",
+        )
+        # Ten minutes old: far past the 120-second rule that used to steal it,
+        # and far short of the ceiling that applies regardless of owner.
+        stale = time.time() - 600
+        os.utime(lock, (stale, stale))
+        self.assertEqual("", memory_store._breakable_reason(lock))
+
+    def test_a_dead_owners_lock_is_recovered(self) -> None:
+        from tools.project_memory import memory_store
+
+        lock = self.root / "memory" / ".events.lock"
+        lock.parent.mkdir(parents=True, exist_ok=True)
+        lock.write_text(
+            json.dumps({"pid": 999999, "host": memory_store.socket.gethostname(),
+                        "acquired_at": "2020-01-01T00:00:00Z"}),
+            encoding="utf-8",
+        )
+        self.assertIn("is gone", memory_store._breakable_reason(lock))
+
+    def test_a_lock_held_on_another_host_is_not_broken_by_pid(self) -> None:
+        """A remote process id means nothing here, as on a synced filesystem."""
+        import os
+
+        from tools.project_memory import memory_store
+
+        lock = self.root / "memory" / ".events.lock"
+        lock.parent.mkdir(parents=True, exist_ok=True)
+        lock.write_text(
+            json.dumps({"pid": os.getpid(), "host": "some-other-machine",
+                        "acquired_at": "2020-01-01T00:00:00Z"}),
+            encoding="utf-8",
+        )
+        self.assertEqual("", memory_store._breakable_reason(lock))
+
+    def test_a_malformed_lock_survives_until_the_long_ceiling(self) -> None:
+        import os
+
+        from tools.project_memory import memory_store
+
+        lock = self.root / "memory" / ".events.lock"
+        lock.parent.mkdir(parents=True, exist_ok=True)
+        lock.write_text("12345 not-json", encoding="utf-8")
+        self.assertEqual("", memory_store._breakable_reason(lock))
+
+        os.utime(lock, (0, 0))
+        self.assertIn("ceiling", memory_store._breakable_reason(lock))
+
+    def test_probing_a_process_does_not_signal_it(self) -> None:
+        """On Windows os.kill(pid, 0) calls TerminateProcess and would kill it."""
+        import os
+
+        from tools.project_memory.memory_store import _process_is_alive
+
+        self.assertTrue(_process_is_alive(os.getpid()))
+        self.assertTrue(_process_is_alive(os.getpid()), "still alive after probing")
+        self.assertFalse(_process_is_alive(999999))
+        self.assertFalse(_process_is_alive(0))
+
+
+if __name__ == "__main__":
+    unittest.main()

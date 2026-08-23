@@ -10,7 +10,9 @@ import hashlib
 import json
 import os
 import re
+import socket
 import sqlite3
+import sys
 import subprocess
 import time
 import uuid
@@ -72,6 +74,12 @@ EXCLUDED_PREFIXES = {
 }
 MAX_INDEXED_FILE_BYTES = 5 * 1024 * 1024
 
+# How long a lock may be held before it is broken regardless of who holds it.
+# Deliberately far above any legitimate write: the previous 120-second rule stole
+# locks from writers that were merely slow, which is the two-writer hazard the
+# lock exists to prevent. See issue #28.
+LOCK_ABANDONED_SECONDS = 3600
+
 # Largest share of a context bundle that the canonical state summary may occupy.
 # The remainder is reserved for retrieved evidence so that a growing
 # CURRENT_STATE.md cannot silently crowd out every search hit.
@@ -86,6 +94,105 @@ GLOSSARY_TOKEN = re.compile(r"[^\W\d_]+", re.UNICODE)
 
 class MemoryError(ValueError):
     """Raised when a memory operation is invalid."""
+
+
+def _process_is_alive(pid: int) -> bool:
+    """Whether a process id is still running, without signalling it.
+
+    On POSIX, ``os.kill(pid, 0)`` is the standard existence probe. **On Windows
+    it is not**: Python's ``os.kill`` treats any signal other than the two
+    console-control events as a request to call ``TerminateProcess``, so probing
+    with signal 0 would kill the very process being checked. Windows therefore
+    uses ``OpenProcess`` through ctypes, which is stdlib and keeps this module
+    dependency-free.
+    """
+    if pid <= 0:
+        return False
+    if os.name == "nt":
+        import ctypes
+
+        PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
+        ERROR_INVALID_PARAMETER = 87
+        kernel32 = ctypes.windll.kernel32  # type: ignore[attr-defined]
+        handle = kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
+        if handle:
+            kernel32.CloseHandle(handle)
+            return True
+        # Access denied means the process exists but belongs to someone else.
+        # Only an invalid parameter means no such process.
+        return kernel32.GetLastError() != ERROR_INVALID_PARAMETER
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    except OSError:
+        return True
+    return True
+
+
+def _unlink_lock(lock_path: Path, attempts: int = 40) -> None:
+    """Remove a lock file, tolerating a concurrent reader.
+
+    Windows refuses to delete a file another handle has open. Verifying
+    ownership means reading the lock on every contention, which widens the
+    window where a releasing writer and a checking writer overlap. A brief
+    retry is the correct handling of that race rather than a workaround: the
+    reader closes within microseconds, and giving up would leave a stale lock
+    behind — the exact failure this hardening exists to avoid.
+    """
+    for _ in range(attempts):
+        try:
+            lock_path.unlink(missing_ok=True)
+            return
+        except PermissionError:
+            time.sleep(0.01)
+    # Last attempt, deliberately unguarded: if it still fails the caller must
+    # see the error rather than silently continue without the lock released.
+    lock_path.unlink(missing_ok=True)
+
+
+def _lock_owner() -> dict[str, Any]:
+    return {"pid": os.getpid(), "host": socket.gethostname(), "acquired_at": _utc_now()}
+
+
+def _breakable_reason(lock_path: Path) -> str:
+    """Why this lock may be broken, or an empty string meaning it may not.
+
+    The previous rule broke any lock older than 120 seconds. That steals the
+    lock from a writer that is merely slow — a paused agent, a machine under
+    load, a debugger, a large index rebuild — and lets two writers append at
+    once, which is precisely what the lock exists to prevent.
+
+    Ownership is now verified instead of inferred from age. A lock is broken
+    only when its owner is provably gone on this host, or when it is so old that
+    leaving it would deadlock the store regardless of who holds it.
+    """
+    age = time.time() - lock_path.stat().st_mtime
+    try:
+        owner = json.loads(lock_path.read_text(encoding="utf-8"))
+        pid = int(owner["pid"])
+        host = str(owner["host"])
+    except (OSError, ValueError, KeyError, TypeError):
+        # A lock written by an older version, or truncated mid-write. Nothing
+        # can be verified about it, so only the long ceiling applies.
+        if age > LOCK_ABANDONED_SECONDS:
+            return f"unreadable owner record, age {age:.0f}s exceeds the {LOCK_ABANDONED_SECONDS}s ceiling"
+        return ""
+
+    if host != socket.gethostname():
+        # A different machine's process id means nothing here, which is the
+        # case on a shared or synced filesystem.
+        if age > LOCK_ABANDONED_SECONDS:
+            return f"held by host {host!r}, age {age:.0f}s exceeds the {LOCK_ABANDONED_SECONDS}s ceiling"
+        return ""
+
+    if not _process_is_alive(pid):
+        return f"owner pid {pid} on this host is gone"
+    if age > LOCK_ABANDONED_SECONDS:
+        return f"owner pid {pid} still alive but has held it {age:.0f}s"
+    return ""
 
 
 def _utc_now() -> str:
@@ -141,15 +248,25 @@ class MemoryStore:
         while True:
             try:
                 descriptor = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
-                os.write(descriptor, f"{os.getpid()} {_utc_now()}".encode("utf-8"))
+                os.write(descriptor, json.dumps(_lock_owner()).encode("utf-8"))
                 os.close(descriptor)
                 break
             except FileExistsError:
                 try:
-                    if time.time() - lock_path.stat().st_mtime > 120:
-                        lock_path.unlink(missing_ok=True)
-                        continue
+                    reason = _breakable_reason(lock_path)
                 except FileNotFoundError:
+                    continue
+                if reason:
+                    # A broken lock is a real event, not routine cleanup. Two
+                    # writers appending concurrently is exactly the hazard this
+                    # lock exists to prevent, so say so loudly rather than
+                    # silently proceeding.
+                    print(
+                        f"WARNING: breaking {lock_path.name}: {reason}",
+                        file=sys.stderr,
+                        flush=True,
+                    )
+                    _unlink_lock(lock_path)
                     continue
                 if time.monotonic() >= deadline:
                     raise MemoryError(f"memory lock is busy: {lock_path.name}")
@@ -157,7 +274,7 @@ class MemoryStore:
         try:
             yield
         finally:
-            lock_path.unlink(missing_ok=True)
+            _unlink_lock(lock_path)
 
     def _append(self, event: dict[str, Any]) -> dict[str, Any]:
         self.initialize()
