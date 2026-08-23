@@ -1,4 +1,16 @@
-# Test and verification dependencies only.
-# The project-memory tool itself has no third-party dependency and must stay that way.
-pytest==8.3.4
-jsonschema==4.23.0
+# Test and verification dependencies.
+#
+# The project-memory tool itself has no third-party dependency and must stay
+# that way. Everything listed here exists only so that the test suite can import
+# the scripts it exercises.
+#
+# markdown-it-py and transformers are required because
+# scripts/audit_natural_history_token_feasibility.py imports them at module
+# level and is hash-frozen inside
+# data/lab/pmlab-natural-history-v0/independent-contract-review-v0.1/packet-manifest.json.
+# Making those imports lazy would change the frozen file, so the dependency is
+# declared instead. No model weights are downloaded during tests.
+pytest==8.4.2
+jsonschema==4.26.0
+markdown-it-py==4.0.0
+transformers==5.1.0
