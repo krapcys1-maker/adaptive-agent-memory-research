@@ -1,0 +1,35 @@
+{
+  "run_id": "deepseek-v4-flash-future-utility-t0-review-20260823",
+  "status": "prepared-uncommitted-input",
+  "created_at": "2026-08-23T03:57:39Z",
+  "model": "deepseek-v4-flash",
+  "prompt_version": "future-utility-t0-adversarial-m1-v1",
+  "jobs": 2,
+  "temperature": 0,
+  "thinking": "disabled",
+  "response_format": "json_object",
+  "run_budget_usd": 0.1,
+  "global_budget_usd": 10.0,
+  "prompt_freeze_commit": null,
+  "visible_to_worker": [
+    "public contracts",
+    "synthetic aggregate report",
+    "event enums",
+    "validator invariants",
+    "artifact hashes"
+  ],
+  "hidden_from_worker": [
+    "conversation",
+    "user content",
+    "raw memories",
+    "credentials",
+    "API key",
+    "private files",
+    "chain of thought"
+  ],
+  "authority": "author-operated M1 advisory review; not independent privacy/statistical approval and cannot unlock T1-T4",
+  "hashes": {
+    "jobs.jsonl": "6f6029bfee3ffb38d0a60a61554f5bac1b300cd2ca7fcc26e9014d3b40f17525",
+    "prompt.txt": "0ca2377a947cf8ec3aa8dd8e5e6a04625281b89c52825d7d6543129f64269e27"
+  }
+}
