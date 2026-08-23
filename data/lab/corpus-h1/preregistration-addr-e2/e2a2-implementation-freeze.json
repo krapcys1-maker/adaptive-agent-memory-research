@@ -1,0 +1,38 @@
+{
+  "arm": "E2-A2",
+  "entry_criterion": "each form names a linguistic alternation \u2014 assertion against question, verb against noun, English against Polish \u2014 not a string observed in the corpus. A dictionary written until the development set passes is a dictionary of that development set",
+  "execution_rules": [
+    "run once on dev-a; that number is a DEVELOPMENT result, not evidence of generalisation",
+    "the mapping is NOT revised after seeing the dev-a score",
+    "run once on valid-b; that is the transfer test",
+    "E2-A stays frozen at 0.143 and its rules are not improved"
+  ],
+  "experiment_id": "PMLAB-H1-ADDR-E2",
+  "frozen_at": "2026-08-24T01:20:00Z",
+  "git_commit": "13e6ae5e36c25f975eae568486ff7878de034ff6",
+  "implementation_digests": {
+    "scripts/corpus/address_extract.py": "679a7f40680cb1ec3894257d2cd4f8073b11ecf1fa1022c2642b0039ad13ae17",
+    "scripts/corpus/property_canon.py": "199de72b605c19645fd86523c56fec55375526fa968b003917f99629123c309b"
+  },
+  "mapping_size": {
+    "properties": 7,
+    "surface_forms": 31
+  },
+  "protocol": "E2-A2 implementation freeze, before any execution",
+  "provenance": [
+    "E2-A run and reported: gold coverage 0.143, abstention 0.857",
+    "bottleneck observed: entity resolves on 0.571 of questions, property on 0.286",
+    "hypothesis proposed AFTER that observation: property canonicalisation may close it without a model",
+    "implementation frozen by digest \u2014 this document",
+    "only then executed"
+  ],
+  "status_label": "post-hoc mechanistic follow-up, preregistered before execution",
+  "supplements_not_modifies": "aac1c7267714c0364ef8e1769eb6ce5619bc220b9e98d0d11c2eb9a803c412d3",
+  "unchanged": "every threshold, metric definition, denominator and gate in the frozen preregistration",
+  "what_each_outcome_would_mean": {
+    "dev high, valid high": "property normalisation generalises without a model",
+    "dev high, valid low": "a dictionary was written for one corpus; the alternations were not alternations",
+    "dev low": "canonicalisation is not the bottleneck and E2-B is justified"
+  },
+  "why_the_label_matters": "an arm proposed after seeing a result is a different kind of evidence from one registered before it. Presenting A2 as part of the original plan would be false, and the only thing that makes a post-hoc arm usable is saying plainly that it is one"
+}
