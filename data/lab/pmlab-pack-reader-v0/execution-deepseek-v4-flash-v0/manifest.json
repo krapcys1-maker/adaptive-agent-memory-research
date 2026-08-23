@@ -1,7 +1,7 @@
 {
   "experiment_id": "PMLAB-PACK-READER-001",
   "run_id": "deepseek-v4-flash-pack-reader-v0-20260823",
-  "status": "frozen-prompt-awaiting-api",
+  "status": "raw-responses-frozen",
   "fixture_freeze_commit": "365c0b6c0ae159b1517fbc87941aa33a8e369da2",
   "prompt_freeze_commit": "d870741e8bba6257d12288b23d1e8f367571ae6e",
   "model": "deepseek-v4-flash",
@@ -20,5 +20,13 @@
     "system-prompt.txt": "88ec9780189d646df785f647ece9a278a97b7fe41bea4b2b260627b82575c1d6"
   },
   "runner_sha256": "8898867ee2c6ad50c40174b1e0365335545947b768802d566837adf825a2e8fc",
-  "authority": "author-operated M1 synthetic reader compatibility run; not independent validation"
+  "authority": "author-operated M1 synthetic reader compatibility run; not independent validation",
+  "terminal_responses": 128,
+  "http_calls": 128,
+  "run_cost_usd": 0.04026,
+  "raw_hashes": {
+    "calls.jsonl": "3edc251ff1727e8b2c24275af1c567e43cbb05d3887135dddbd40b379d5b3bb6",
+    "raw-responses.jsonl": "0a5c511cc9741f0bcfd2cceac789c23700677990617ff62ce9888d76345315f0",
+    "responses.jsonl": "971f1c8643c3f7966e934794d502ad82aee0594b50bbc433808fda398632e99a"
+  }
 }

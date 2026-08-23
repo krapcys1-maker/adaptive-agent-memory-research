@@ -1,0 +1,128 @@
+{"condition_id": "C0071c14dcba52852", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C023534ff20e4b033", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C07bd22650efdafa9", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G01-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C0a99a8d82b1a7f72", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C0ac66fa6118530ab", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G01-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C1085e76ae8092547", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C1536a414e76bdb79", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C1a1e8083f68b5a56", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C1d45807750212d69", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "citations": ["R01", "R03"]}}
+{"condition_id": "C1f833d9478e0d012", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C22a3f2d2df958be7", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G01-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C24f66e4bb52207f5", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C25a1f1353e06fb11", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G09-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C26c96e37e2f22325", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C291e257b0496a34a", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C29cdd894b681bcc4", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C2b3b827c5c7c795d", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C2b71160063f52002", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C2d859bd9e098ae59", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G05-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C30e4e55955f963e5", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C314d625dff8b0787", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C31ab55ad3f265652", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C3387f9a21bdc5fed", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C33c1fc97ac269194", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C3460570719e6d260", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C347beaf5cbd108ba", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G09-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C34c8bccf4a523104", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G13-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C3a09578ba085c73d", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C46d2e0038ac7519f", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C4f9358da0908f7c5", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C50426873ddf84d0a", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C51a8c195c42c2ebf", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C52c5546746a7602e", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C537135dde8239c00", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C53a860355d5ede71", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C56757d6427fa0931", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G05-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C57805ca6ec438d8f", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C578375c839ddab7f", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G13-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C57a5e2724903b56a", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C5e0b5978124500de", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C5f79a789ad29fb40", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C604db73f424db09c", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C63e2f9e2d985ebe0", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C6441c5fb19e38976", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C6489ed62c674ef46", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C64ed9be045033137", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G05-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C687650881d59023e", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C68b3e281f14cca80", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C699c3048c9af75ea", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G09-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C6abcc5d58dc5f3b0", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G13-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C6b3d76471f5309f6", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C6b7e167fe20f0c06", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C6cada6551f66c23e", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C6e131e5a77184a13", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C6e6d799ade24eea7", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C6e9653d6b4f2ef94", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C70738278985a18a6", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G01-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C71d2cdb5604b7ddb", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C7686b80b36b07fe8", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G13-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C76d70cb8ed9720db", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C78a33b95811ae5f9", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C78cefee91325e944", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C7940aaa0ae6ead10", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C7af1f23b6162086d", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C7c5606a98fc496d3", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G09-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C7d71173e71dec721", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C82d0ed8665680142", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C84731cbc8a7e329e", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G13-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C84cd306209fac5c8", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C85647cd4c18e9b3b", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G05-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C8b4cb54740121b64", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G05-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C8f88201659c6bd19", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C8f930c9d689c1547", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C900014597ca596af", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C914cc6878a5fb5ff", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C92c880176a264e3c", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C93a6f695f75fa2b7", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C94bc7cb17fe1f41b", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C9709d47e6fd60a0c", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C99766476c7e6f87f", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C9993dff5ebae8eca", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C9dff8d790d7afabb", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C9e1f2020463fae88", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G13-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "C9f327d7ba0a839d7", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G12-ACTIVE-A", "G12-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "C9fd5ac5ae8ee4aac", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "C9ff391112278ec67", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G16-ACTIVE-A", "G16-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Ca19511fb8cdf8bc5", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G09-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Ca28f7494eecb7daf", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "Ca381eeb287d8fa0a", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "Ca63091afdd570bc6", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "Caadf77339acc0488", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G11-ACTIVE-A", "G11-ACTIVE-B", "G11-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "Cae1020966c709544", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cb007348233f9e2bc", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cb5609abecc9ce0d3", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G09-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Cb66eeb96118b1610", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G05-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Cb754e4c07d9db016", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "Cb91c0f89e4babf89", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cbb450c8a3c97e91c", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cbc5241f65ef24f6f", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cc1198c876509b1a9", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G05-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Cc748725e84e1ce3e", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "Cc7c6af2cd412779d", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G01-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Cc7e6c0761098c2f4", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cc81b96545dc5f0bc", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "Cc87d66a4fdfdb0a6", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G14-ACTIVE-A", "G14-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cce16c823eb211e39", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cd55ade97533b2908", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G03-ACTIVE-A", "G03-ACTIVE-B", "G03-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "Cd616451f20e0983f", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G01-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Cd6dfdd214080abe6", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cd74528a144398b82", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G09-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Cdb173bd654801718", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G07-ACTIVE-A", "G07-ACTIVE-B", "G07-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
+{"condition_id": "Cdd297bb08ee6e39f", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cdf24d9fbfd34c183", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G09-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Ce06db308368a8f1a", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G01-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Ce20d7cba9afb02db", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Ce2d0b6e96c3db118", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G01-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Ce99466542ade1954", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Ce9fba0f6e91c7c01", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G05-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Cebc760e68e6e8ebf", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G13-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Cebf00faff804a53e", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G10-ACTIVE-A", "G10-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cec590f3fe03aa567", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G06-ACTIVE-A", "G06-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cf17c6d834c91b4a7", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cf310f67ee6cb4930", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cfa41117c26fe2535", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G02-ACTIVE-A", "G02-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cfa502f75b39ede53", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G08-ACTIVE-A", "G08-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cfa6d2b6ca772f2fe", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G13-ACTIVE-A"], "citations": ["R01"]}}
+{"condition_id": "Cfb2c3084fe4f81b3", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G04-ACTIVE-A", "G04-ACTIVE-B"], "citations": ["R01", "R02"]}}
+{"condition_id": "Cfbf0e8615fafa0ab", "errors": [], "schema_valid": true, "value": {"abstain": false, "answer_atoms": ["G15-ACTIVE-A", "G15-ACTIVE-B", "G15-ACTIVE-C"], "citations": ["R01", "R02", "R03"]}}
