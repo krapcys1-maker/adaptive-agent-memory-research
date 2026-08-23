@@ -53,6 +53,23 @@ jobs:
       - name: Verify canonical memory log
         run: python scripts/verify_memory_integrity.py --format text
 
+  claim-audit:
+    name: Repository claim audit
+    runs-on: ubuntu-latest
+    steps:
+      # Full history is required: the audit compares declared digests against
+      # Git blob bytes as well as working-copy bytes.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Audit declared hashes, registry paths, and cross-references
+        run: python scripts/audit_repository_claims.py --format text
+
   canonical-store-guard:
     name: Canonical store guard
     runs-on: ubuntu-latest
