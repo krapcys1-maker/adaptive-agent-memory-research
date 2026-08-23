@@ -1,0 +1,20 @@
+{"query_id":"Q01","query":"Gdzie zapisujemy trwałe zdarzenia projektu i jaki indeks można odbudować?","category":"natural_paraphrase","answerable":true,"required_ids":["E01"],"forbidden_ids":["E02"]}
+{"query_id":"Q02","query":"Gdzie powinny żyć informacje, których model nie mieści już w bieżącym zestawie roboczym?","category":"natural_paraphrase","answerable":true,"required_ids":["E03"],"forbidden_ids":[]}
+{"query_id":"Q03","query":"Jak zachować możliwość sprawdzenia, z którego dokładnego fragmentu pochodzi fakt?","category":"cross_language","answerable":true,"required_ids":["E04"],"forbidden_ids":[]}
+{"query_id":"Q04","query":"Why must merely reading a memory not increase its importance?","category":"cross_language","answerable":true,"required_ids":["E16"],"forbidden_ids":["E17"]}
+{"query_id":"Q05","query":"What formula and score types are used by reciprocal rank fusion?","category":"multi_evidence","answerable":true,"required_ids":["E05","E06"],"forbidden_ids":[]}
+{"query_id":"Q06","query":"Czy samo odzyskanie wspomnienia dowodzi użyteczności i gdzie zapisać rzeczywisty wynik?","category":"cross_language","answerable":true,"required_ids":["E07","E08"],"forbidden_ids":["E17"]}
+{"query_id":"Q07","query":"Where is the backup encryption key kept?","category":"stale_current","answerable":true,"required_ids":["E09"],"forbidden_ids":["E10","E11"]}
+{"query_id":"Q08","query":"Can vector embeddings become the authoritative long-term record?","category":"natural_paraphrase","answerable":true,"required_ids":["E13"],"forbidden_ids":["E02"]}
+{"query_id":"Q09","query":"Which local inference engine and similarity calculation does the dense diagnostic use?","category":"multi_evidence","answerable":true,"required_ids":["E14","E15"],"forbidden_ids":[]}
+{"query_id":"Q10","query":"How do we prevent a scheduled reminder from executing twice or performing an unauthorized action?","category":"natural_paraphrase","answerable":true,"required_ids":["E18","E19"],"forbidden_ids":[]}
+{"query_id":"Q11","query":"Which projects donate evidence contracts, cited path-safe retrieval, and three context buckets?","category":"multi_evidence","answerable":true,"required_ids":["E20","E21","E22"],"forbidden_ids":[]}
+{"query_id":"Q12","query":"Does a PII scanner proving no match guarantee that memory content is safe?","category":"natural_paraphrase","answerable":true,"required_ids":["E23"],"forbidden_ids":[]}
+{"query_id":"Q13","query":"Do Gitleaks core and its GitHub Action necessarily use the same license?","category":"exact_terminology","answerable":true,"required_ids":["E24"],"forbidden_ids":[]}
+{"query_id":"Q14","query":"Czy sygnał emocjonalny może automatycznie zwiększyć pewność prawdziwości i priorytet pamięci?","category":"cross_language","answerable":true,"required_ids":["E25","E26"],"forbidden_ids":[]}
+{"query_id":"Q15","query":"How is corrected history preserved while allowing the search index to be rebuilt?","category":"multi_evidence","answerable":true,"required_ids":["E27","E28"],"forbidden_ids":[]}
+{"query_id":"Q16","query":"Co zapewni, że nowy agent natychmiast podejmie dalsze badania?","category":"stale_current","answerable":true,"required_ids":["E33"],"forbidden_ids":["E34"]}
+{"query_id":"Q17","query":"How is the context limit measured and how are dropped memories disclosed?","category":"multi_evidence","answerable":true,"required_ids":["E35","E36"],"forbidden_ids":[]}
+{"query_id":"Q18","query":"What is the production database password?","category":"unanswerable","answerable":false,"required_ids":[],"forbidden_ids":["E11"]}
+{"query_id":"Q19","query":"What is the identifier of the active retrieval characterization?","category":"exact_identifier","answerable":true,"required_ids":["E31"],"forbidden_ids":[]}
+{"query_id":"Q20","query":"Which external episodic and semantic store represents durable information outside working context?","category":"terminology_shift","answerable":true,"required_ids":["E32","E03"],"forbidden_ids":[]}

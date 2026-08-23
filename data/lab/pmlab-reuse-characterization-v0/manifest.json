@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "experiment_id": "PMLAB-REUSE-CHAR-001",
+  "status": "frozen-development-protocol-awaiting-execution",
+  "protocol": "docs/11-research-laboratory/reuse-characterization-benchmark-protocol-v0.md",
+  "corpus": "data/lab/pmlab-reuse-characterization-v0/corpus.jsonl",
+  "queries": "data/lab/pmlab-reuse-characterization-v0/queries.jsonl",
+  "evidence": "data/lab/pmlab-reuse-characterization-v0/evidence.md",
+  "sample": {"records": 36, "queries": 20, "authored_synthetic": true, "independently_reviewed": false},
+  "retrieval": {"top_k": 5, "candidate_depth": 10, "rrf_k": 60, "exact_dense": true},
+  "packaging": {"utf8_byte_budget": 768, "buckets": ["current", "supporting", "stale_conflicting"]},
+  "fastembed": {
+    "required": false,
+    "package": "fastembed==0.8.0",
+    "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "source_artifact": "qdrant/paraphrase-multilingual-MiniLM-L12-v2-onnx-Q",
+    "source_revision": "faf4aa4225822f3bc6376869cb1164e8e3feedd0",
+    "role": "restricted multilingual semantic diagnostic"
+  },
+  "architecture_selection_allowed": false,
+  "natural_benchmark_unlocks": false,
+  "execution_result": null
+}
