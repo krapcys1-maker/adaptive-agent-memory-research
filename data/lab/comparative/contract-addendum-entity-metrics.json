@@ -1,0 +1,23 @@
+{
+  "addendum_to": "comparative memory systems contract, v0",
+  "denominators": "each divides by the number of pairs of that class present in the arena, and the class of a pair is fixed by the arena's construction rather than by any system's output",
+  "design_principles_this_yields": {
+    "component_wise_resolution": "never fuzzy-match a composed address. Resolve entity, property and scope separately, then compose the canonical address from the resolved parts. A composed string lets shared scope and property tokens dominate the comparison while the distinguishing token is a small fraction of it",
+    "exactness_is_a_type_property": "resolve=false belongs to the data type, not to a caller's optional flag. --dist=no against --dist=yes scores 0.417, high enough to be merged by an aggressive cutoff, and hoping a threshold stays conservative is not a policy",
+    "type_determines_policy": "there is no global similarity cutoff. A person name may be fuzzy; a service entity needs controlled alias resolution; a property identifier needs a canonical vocabulary; a flag, path, UUID or port is exact-only; a temporal value goes to the resolver. The measurement refutes a single threshold rather than merely discouraging one"
+  },
+  "git_commit": "2c26f6fdf65be1a92d02fede67d61fedb1a67f7b",
+  "metrics": {
+    "alias_merge_recall": "class 2 - billing service and invoice backend, no shared characters",
+    "coreference_merge_recall": "class 3 - Alice Chen and the new PM, resolvable only in discourse",
+    "identity_collision_rate": "class 4 - DIFFERENT entities merged, billing with vault. The failure that looks like success in an aggregate",
+    "literal_corruption_rate": "an exact value altered by fuzzy matching, --dist=no becoming --dist=yes. Scored apart because its cost is not proportional to its rate",
+    "spelling_merge_recall": "class 1 - Alice Chen and Alice C. reaching one canonical entity"
+  },
+  "registered_at": "2026-08-24T06:00:00Z",
+  "subject": "entity resolution is five measurements, not one",
+  "supplements_not_modifies": "7019712093a5a4601fecdd446abb4640d99639f8cc616c02f28b87f2143ddfbb",
+  "the_general_rule": "a similarity mechanism cannot be transplanted without the representation level it was designed for. Hindsight compares entity names and is sound there. Applied to a composed address it is unsound, and the failure is caused by the representation rather than by the algorithm",
+  "unchanged": "every field, condition and refusal in the frozen contract",
+  "why": "one accuracy figure hides the failure that matters. A system can reach 0.95 on spelling variants and catastrophically merge distinct entities, and both live inside the same number. Measured on Hindsight's own algorithm, two distinct services score 0.707 while two spellings of one person score 0.583, so no single threshold separates them and an aggregate cannot say so"
+}
