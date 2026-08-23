@@ -27,7 +27,7 @@ adapter  →  ARENA-0 fixtures  →  operational fit  →  infra dry-run  →  f
 | system | status |
 |---|---|
 | AAMR (reference) | adapter done, admissible, abstains on all fixtures |
-| CUPMem | **operational fit PASS** against the real system, nine of nine. Dry-run blocked on a corpus and a budget |
+| CUPMem | **operational fit PASS**, nine of nine. Pilot running on four frozen units under a $3 cap |
 | Hindsight | not started |
 | Graphiti | not started |
 | Mem0 | not started |
@@ -204,6 +204,23 @@ understanding of this project.
 
 ### On spending
 
+This is funded out of one person's pocket, which is a constraint on the design
+and not only on the accounting. It is why the dry-run became a four-unit pilot.
+
+**A cap is enforced below the system, or it is a report.** The arena's provider
+wrapper refuses the request that could cross the ceiling, using the most
+expensive call so far as its reserve, so it stops under the line. Checking after
+the call is how one finds out about an overspend rather than preventing it.
+
+**A rate measured on a fixture is not a rate.** The first projection came from
+four single-turn synthetic sessions and was wrong twice over: it over-stated
+calls per session, and it missed that cost grows as the store fills. Measure the
+rate on the corpus that will be run.
+
+**Report the model you believe and the one you fear.** The pilot projection
+carries $1.84 and $4.00 and says which is which and why. A projection that
+reports only its preferred number is a hope.
+
 Total spend to date is under $1.50. Every finding on the front page except the
 reader runs cost nothing.
 
@@ -221,46 +238,51 @@ no result file; the ledger still had the $0.014.
 
 ## Immediate next steps
 
+The dry-run became a **pilot**: four units rather than ten to twenty, about a
+tenth of the bridge, sized to what a hard cap buys. It is not a leaderboard and
+four units cannot be one.
+
 1. ~~Real CUPMem against ARENA-0 fixtures.~~ **Done. Nine of nine, accuracy not
-   scored.** Source, embedding revision and decoding are pinned; cost is native
-   and fully known; the query path is read-only over state, proved by fingerprint.
-2. **Blocked — two decisions.** The dry-run needs a corpus and a budget, and
-   neither exists yet.
-   - *Corpus.* STALE ships a generation pipeline and no data, so using it means
-     generating it, at its own model cost. LongMemEval-S cleaned is on disk with
-     a frozen 36-question bridge selection, but that selection was frozen for a
-     lexical-retrieval protocol rather than for the arena.
-   - *Budget.* Measured, not guessed: CUPMem's ingestion costs 7.8 calls and
-     13,200 prompt tokens per single-turn session. The bridge is 1,736 sessions
-     over 36 units, averaging 5.1 user turns each, so a 20-unit dry-run is **at
-     least $4.19 and realistically several times that**, per system, ingestion
-     only. Total project spend to date is under $2.
-3. Then: freeze adapter and config; frozen run; **put CUPMem down**.
-4. Hindsight adapter. Same sequence.
-5. Graphiti, then Mem0.
-6. Phase B.
+   scored.** Source, embedding revision and decoding pinned; cost native and
+   fully known; the query path read-only over state, proved by fingerprint.
+2. ~~Decide a corpus.~~ **Done.** LongMemEval-S cleaned, its own frozen
+   four-unit selection — not `bridge-v0`, which was frozen for a
+   lexical-retrieval protocol under a different question. Stratified on user
+   turns, one unit per regime, four distinct question types, frozen before
+   anything ran.
+3. ~~Amend the contract.~~ **Done.** ARENA-0.1 splits `query_mutates_state`
+   from `output_reproducible`. ARENA-0 stays unedited.
+4. **Pilot CUPMem under a $3 hard cap**, enforced beneath the provider so it
+   refuses the request that would cross rather than reporting an overspend.
+   Projected $1.84 on the believed model, $4.00 on the pessimistic one.
+5. **Stop.** No 36-unit run, no second pass, no further system, without a new
+   decision. The question the pilot answers is whether there is any signal worth
+   paying more for.
+6. Then Hindsight, Graphiti, Mem0 — same sequence, each with its own projection.
+7. Phase B.
 
 ## Open blockers
 
-- **The arena has no corpus.** Every plan above says *dry-run* and *frozen run*
-  without naming what they run on. STALE has no data in its repository and
-  LongMemEval's bridge selection was frozen for a different protocol.
-- **The arena has no budget.** The first measured rate puts one system's 20-unit
-  dry-run at a floor of $4.19 and five systems' full bridge well into three
-  figures.
+- **Cost is not linear in corpus size.** CUPMem's calls per session ran 5.6 over
+  the first half of a fifteen-session calibration and 13.1 over the second: an
+  empty store has nothing to invalidate. So a dollars-per-record figure depends
+  on how much the system already remembers, and two systems measured at
+  different corpus positions are not comparable on cost. Whether it plateaus is
+  believed, not proved; the pilot's per-session series is recorded to settle it.
 - **A frozen run will not be reproducible.** The decoder is not deterministic at
   temperature 0, so a per-probe difference between two systems carries variance
   that has not been separated from the systems. Repeating each probe *k* times
-  measures it and multiplies the cost by *k*.
+  measures it and multiplies the cost by *k*. The pilot does **one** pass and
+  reports the decoder's variance from a separate cheap probe instead.
 - **`evidence_ids` is underspecified: whose id space?** The reference adapter
   returns arena record ids because it stores the records. CUPMem returns its own
   item ids, because it stores facts it extracted. The harness cannot ask *was the
   gold record retrieved* across both. Per the rule below, question the
   requirement first: record-level evidence provenance may be a requirement that
   exists only because our own system happens to have it.
-- **The frozen contract's `read_only` is stronger than read-only.** It is checked
-  by comparing two query outputs, so it means read-only *and* reproducible.
-  CUPMem is declared `unknown` while a state fingerprint proves it read-only.
+- ~~The frozen contract's `read_only` is stronger than read-only.~~ **Resolved
+  in ARENA-0.1**, which measures state through a probe and reproducibility by
+  repetition, and never infers either from the other.
 - Arena infrastructure: databases for Graphiti and Hindsight; API budget for
   systems whose ingestion calls a model
 - `MemEval` may carry the harness — audited in #35, with the recorded caveat
