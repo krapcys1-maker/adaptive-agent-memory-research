@@ -99,7 +99,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/07-literature/future-utility-causal-privacy-primary-source-audit.md` — primary-source falsification of bundle credit, interference, censoring, propensity, hashing, append-only erasure, and local-first privacy shortcuts.
 - `data/lab/pmlab-future-utility-v0/independent-audit-v0/blind/` — deterministic gold-free T0.1 audit packet with fixed questions, subject hashes, blank review form, and attestation; preparation is not independent approval.
 - `data/lab/pmlab-future-utility-v0/independent-audit-v0/model-review-disposition.md` — disposition of the frozen DeepSeek cross-family challenge: A07 lifecycle/erasure and A08 security/access are blocking, T1-T4 remain denied, and inaccurate model advice is explicitly rejected.
-- `docs/11-research-laboratory/compression-benchmark-extension.md` — preregistered repeated-compaction, model-change, semantic-completion, and factor-separated emotion tests.
+- `docs/11-research-laboratory/compression-benchmark-extension.md` — v0.1 preregistered repeated-compaction, model-change, semantic-completion, factor-separated emotion, and decision-conditioned task-shift tests.
 - `docs/11-research-laboratory/replay-benchmark-extension.md` — preregistered phase-conditioned replay, compression-throughput, and sampling-safety tests.
 - `docs/11-research-laboratory/revision-benchmark-extension.md` — preregistered versioning, non-mutating retrieval, return, and representation-dissociation tests.
 - `docs/11-research-laboratory/interference-forgetting-benchmark-extension.md` — preregistered fault localization, interference curves, reversible forgetting, recovery-integrity, and retrieval-neighbor tests.

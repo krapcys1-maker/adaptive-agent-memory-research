@@ -1,4 +1,4 @@
-# Compression benchmark extension v0
+# Compression benchmark extension v0.1
 
 Status: preregistration-draft; no test results observed
 
@@ -89,9 +89,21 @@ Primary: context-specific correct-action rate. Guardrails: false generalization,
 
 Success: factor-separated control preserves or improves routine-task performance while reducing false generalization and post-change perseveration by at least 8 points versus a scalar salience rank. Failure blocks salience from choosing the memory subsystem.
 
+## Experiment C7 — decision-conditioned distortion under task shift
+
+Construct paired histories that are descriptively similar but action-incompatible, descriptively different but action-equivalent, equivalent for the visible task but incompatible after a hidden future-task reveal, common-rule versus rare critical exception, true anomaly versus noise/poison, and current versus corrected action-value/authorization state.
+
+Compare raw archive plus retrieval, equal-token extractive evidence, generic equal-length summary, query-aware learned compression, descriptive similarity partition, decision-conflict partition, versioned decision partition with raw fallback, and a held-out task-specific oracle.
+
+Primary: counterfactual decision regret at a fixed active-context budget. Guardrails: critical wrong action, future-task transfer loss, correction/repartition recovery, exact provenance, poisoned merge, unsupported completion, calls, latency, disk growth, and reader tokens.
+
+Success requires a paired regret improvement over both extractive and raw-retrieval baselines across at least two task families while producing zero observed critical wrong actions and no material provenance, task-shift, correction, or poison regression. A current-task average gain, oracle result, or LLM-judge-only gain cannot promote a compressor or authorize raw-evidence deletion.
+
 ## Analysis and stopping
 
 - Freeze seeds, examples, thresholds, and code commit before test execution.
 - Report paired bootstrap intervals and per-history differences; choose another test only if its assumptions are documented.
 - A statistically positive result is insufficient if cost or a safety guardrail fails.
 - One successful task family permits replication, not architecture promotion. Promotion requires a second corpus family and a different reader/provider family where feasible.
+
+Evidence basis: `../12-interdisciplinary-memory/rate-distortion-information-bottleneck-and-decision-memory-audit-v0.md`.

@@ -111,6 +111,7 @@ See:
 - [source seeds](source-seeds.md);
 - [hypothesis portfolio](hypothesis-portfolio.md);
 - [compression synthesis](compression-synthesis.md);
+- [rate-distortion, information bottleneck, and decision-memory audit v0](rate-distortion-information-bottleneck-and-decision-memory-audit-v0.md);
 - [emotion and salience synthesis](emotion-salience-synthesis.md);
 - [adversarial emotion/salience primary-source audit v1](emotion-salience-primary-source-audit-v1.md);
 - [appraisal and affective-computing bridge](appraisal-affective-computing-bridge.md);
