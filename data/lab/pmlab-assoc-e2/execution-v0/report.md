@@ -60,3 +60,47 @@ So the honest summary is: **a small, consistent benefit of roughly five points, 
 The effect is now large enough and stable enough to justify a **sealed held-out test** under independence tier I1, using `scripts/sealed_split.py`. That would fix the two weaknesses this run cannot fix on its own: the threshold would be registered before the challenge half exists, and the split would be verifiable by a third party rather than chosen by the author.
 
 That is the natural promotion path — from Tier E exploration to a commit-and-reveal evaluation — and it needs no reviewer, no model, and no budget.
+
+---
+
+# RETRACTED — 2026-08-23
+
+**The headline result of this report is withdrawn.** An adversarial review found the leakage control insufficient, and independent reproduction confirmed it.
+
+## The defect
+
+Gold pairs were derived from a shared source or a shared rare tag. When a pair `(A, B)` was held out, the control removed **only the direct edge between A and B**.
+
+Every other event citing that same source stayed connected to both endpoints. So the path `A → C → B` was not transitivity through a *different* source — it was the **gold-generating group reassembling over two hops**.
+
+The claim above that "any gain therefore still requires transitivity" is false for most recoveries.
+
+## Measured
+
+| | |
+|---|---|
+| Graph-reachable targets reachable **only** through the gold group | **67.5%** (114 / 169) |
+| Depth-5 wins arriving through the gold group | 58% (40 / 69) |
+| Depth-10 wins arriving through the gold group | 63% (37 / 59) |
+| Difference after neutralising those recoveries, @5 | **−0.0644** |
+| Difference after neutralising those recoveries, @10 | **−0.0436** |
+
+The reported benefit does not merely shrink. It **reverses**.
+
+## Two further criticisms, both accepted
+
+**Pooling was decided after seeing the strata.** This report admitted that, then relied on the pooled interval anyway. The only stratum with non-authored gold — the mechanical one — included zero at both depths. The sentence "fails to exclude zero because n = 240, not because the effect is absent" is unfalsifiable and should not have been written.
+
+**The honest label is `inconclusive`**, exactly as `PMLAB-ASSOC-E1` was. E2 did not advance the evidence past E1; it appeared to, by adding an authored stratum to the pool.
+
+## What survived scrutiny
+
+The bootstrap implementation was checked and is correct, including under a clustered resample over edges rather than query directions: at depth 10 the two query directions are effectively uncorrelated (r = +0.012) and the interval is unchanged.
+
+## The correct control
+
+When a pair is held out, remove **the entire group sharing the gold-defining source or tag**, not just the edge between the two endpoints. Any future association experiment must do this before its result means anything.
+
+## Status
+
+`PMLAB-ASSOC-E2` is reclassified from `completed-exploratory-supports-association-benefit` to `retracted-leakage-artifact`. The run, its data, and this report are preserved. Nothing is deleted.

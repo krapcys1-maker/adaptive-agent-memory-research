@@ -83,3 +83,34 @@ This is stated rather than glossed over. I1 is a strong tier, not an absolute on
 ## Tamper cases covered by tests
 
 Wrong key · reveal without registration · pool extended after sealing · pool content edited without changing identifiers · candidate changed after registration · registration bound to a different manifest · registered artifact deleted · published development half edited · duplicate case identifiers · case without an identifier · empty pool · experiment identifier colliding with a case identifier.
+
+---
+
+## Adversarial review, 2026-08-23 — three holes, two closed
+
+An adversarial review ran working proofs of concept against this protocol. Its findings are recorded here rather than quietly patched.
+
+### Closed: a candidate could be tuned after the reveal
+
+**The attack, as executed.** Seal, register a stub candidate, reveal, read `challenge.jsonl` off disk, then re-register a candidate hard-coding the answers. `verify()` reported **eleven green checks** on that tuned candidate, because every check compared the registration against itself.
+
+**Closed by three changes.** `register` refuses once a reveal receipt exists. `reveal` refuses to run twice. The receipt records the registration's digest at reveal time, and `verify` fails if the registration on disk no longer matches it — a last line of defence if the first two are ever bypassed.
+
+Four regression tests pin this.
+
+### Not closed, now disclosed: key grinding
+
+**The attack.** `seal` draws a fresh random key each run, and only the chosen manifest is ever published. An author holding a candidate can run `seal` thousands of times and keep whichever split flatters it. The review demonstrated this: 4000 keys produced a split where 81% of a chosen subset landed in the challenge half, against roughly 50% expected.
+
+Nothing in the published manifest distinguishes a ground split from an honest one.
+
+**This cannot be fixed offline.** Preventing it requires a key nobody could predict at seal time — a public randomness beacon, or a commit hash that did not yet exist. So the protocol now *states which guarantee applies* instead of implying the stronger one:
+
+- `key_source: "self-generated"` — convenient, and **grindable**. `verify` reports `key_source_is_externally_witnessed: false`.
+- `key_source: "external-witness"` — supplied via `--key-file` from a value the author could not have chosen. Publish its provenance alongside the manifest.
+
+A result that matters should use an externally witnessed key. The earlier claim that "the split cannot be chosen after seeing results" was true only of results, not of candidates the author already held.
+
+### Correction to the stated limitation
+
+This document previously said ordering "rests on publication, not a trusted clock", which was right but insufficient: it did not say that `verify` would show a full green checklist on a tuned candidate anyway. A tool that displays a guarantee it does not hold is worse than one that says nothing. That is now fixed in the code and stated here.

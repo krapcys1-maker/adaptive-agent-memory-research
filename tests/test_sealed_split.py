@@ -24,6 +24,7 @@ OTHER_KEY = "b" * 64
 
 
 def write_pool(directory: Path, count: int = 40) -> Path:
+    directory.mkdir(parents=True, exist_ok=True)
     path = directory / "pool.jsonl"
     path.write_text(
         "".join(
@@ -251,3 +252,93 @@ def test_experiment_id_colliding_with_a_case_id_is_refused(tmp_path: Path) -> No
         ]
     )
     assert result == 2
+
+
+# --------------------------------------------------------------------------- adversarial review, 2026-08-23
+#
+# An adversarial review ran a working proof of concept against this protocol:
+# seal, register a stub, reveal, read the challenge half off disk, re-register a
+# candidate hard-coding the answers, and verify() reported eleven green checks.
+# These tests pin the holes closed.
+
+
+def test_registering_after_reveal_is_refused(tmp_path: Path) -> None:
+    """Once the challenge is on disk, the split is spent."""
+    pool, key, sealed = seal(tmp_path)
+    register(sealed, write_candidate(tmp_path))
+    assert reveal(sealed, pool, key) == 0
+
+    tuned = tmp_path / "tuned.py"
+    tuned.write_text("LOOKUP = {}\ndef solve(case): return LOOKUP[case]\n", encoding="utf-8")
+    assert sealed_split.main(["register", "--sealed", str(sealed), "--candidate", str(tuned)]) == 2
+
+
+def test_revealing_twice_is_refused(tmp_path: Path) -> None:
+    """A second reveal would let a re-registered candidate look pre-dated."""
+    pool, key, sealed = seal(tmp_path)
+    register(sealed, write_candidate(tmp_path))
+    assert reveal(sealed, pool, key) == 0
+    assert reveal(sealed, pool, key) == 2
+
+
+def test_verify_detects_a_registration_swapped_after_reveal(tmp_path: Path) -> None:
+    """The last line of defence if the guards above are ever bypassed.
+
+    Every other check compares the registration against itself, so a swapped
+    registration stays green without this one.
+    """
+    pool, key, sealed = seal(tmp_path)
+    candidate = write_candidate(tmp_path)
+    register(sealed, candidate)
+    assert reveal(sealed, pool, key) == 0
+
+    # Simulate a bypass: rewrite the registration directly on disk.
+    candidate.write_text("def solve(case): return 'memorised'\n", encoding="utf-8")
+    registration = json.loads((sealed / sealed_split.REGISTRATION_FILE).read_text(encoding="utf-8"))
+    registration["candidate"][0]["sha256"] = sealed_split._sha256_file(candidate)
+    (sealed / sealed_split.REGISTRATION_FILE).write_bytes(
+        (json.dumps(registration, indent=2, sort_keys=True) + "\n").encode("utf-8")
+    )
+
+    result = sealed_split.main(
+        ["verify", "--sealed", str(sealed), "--pool", str(pool), "--key-file", str(key)]
+    )
+    assert result == 1
+
+
+def test_reveal_receipt_binds_the_registration_bytes(tmp_path: Path) -> None:
+    pool, key, sealed = seal(tmp_path)
+    register(sealed, write_candidate(tmp_path))
+    assert reveal(sealed, pool, key) == 0
+    receipt = json.loads((sealed / sealed_split.REVEAL_RECEIPT).read_text(encoding="utf-8"))
+    assert receipt["registration_sha256_at_reveal"] == sealed_split._sha256_file(
+        sealed / sealed_split.REGISTRATION_FILE
+    )
+
+
+def test_manifest_records_whether_the_key_could_have_been_ground(tmp_path: Path) -> None:
+    """A self-generated key can be redrawn until the split flatters a candidate.
+
+    Nothing offline can prevent that, so the manifest must at least say which
+    guarantee applies.
+    """
+    _, _, sealed = seal(tmp_path)
+    manifest = json.loads((sealed / sealed_split.SEALED_MANIFEST).read_text(encoding="utf-8"))
+    assert manifest["key_source"] == "external-witness"
+    assert "redrawn" in manifest["key_source_caveat"]
+
+    generated = tmp_path / "generated"
+    assert (
+        sealed_split.main(
+            [
+                "seal",
+                "--pool", str(write_pool(tmp_path / "second")),
+                "--out", str(generated),
+                "--experiment", "TEST-GEN",
+                "--write-key", str(tmp_path / "gen.key"),
+            ]
+        )
+        == 0
+    )
+    document = json.loads((generated / sealed_split.SEALED_MANIFEST).read_text(encoding="utf-8"))
+    assert document["key_source"] == "self-generated"

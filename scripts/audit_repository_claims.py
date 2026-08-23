@@ -132,22 +132,53 @@ def resolve_declared_target(manifest: Path, key: str, key_path: list[str]) -> tu
 
 SUPERSEDED_MARKER = "SUPERSEDED.json"
 
+# A marker suppresses hash checking, so it is itself a security boundary. These
+# fields must all be present and usable or the marker is rejected.
+MARKER_REQUIRED = ("status", "superseded_by", "reason", "recorded_at")
 
-def superseded_by_marker(manifest: Path) -> Path | None:
-    """Return the marker declaring this manifest's directory superseded, if any.
+
+def read_marker(marker: Path) -> tuple[dict[str, Any] | None, str]:
+    """Validate a supersession marker. Returns (document, reason_if_rejected).
+
+    An adversarial review demonstrated that an empty ``{}`` file placed anywhere
+    above a manifest silenced every hash check beneath it, giving a second and
+    weaker route to making the audit pass — the very behaviour the marker exists
+    to avoid. Validation is therefore **fail-closed**: anything unparseable,
+    incomplete, or pointing at a successor that does not exist suppresses
+    nothing, and is reported.
+    """
+    try:
+        document = json.loads(marker.read_text(encoding="utf-8-sig"))
+    except (OSError, json.JSONDecodeError) as error:
+        return None, f"unreadable or invalid JSON: {error}"
+    if not isinstance(document, dict):
+        return None, "must be a JSON object"
+    missing = [field for field in MARKER_REQUIRED if not str(document.get(field, "")).strip()]
+    if missing:
+        return None, f"missing required field(s): {', '.join(missing)}"
+    if document.get("status") != "superseded":
+        return None, f"status must be 'superseded', got {document.get('status')!r}"
+    successor = str(document["superseded_by"])
+    if not (ROOT / successor).exists():
+        return None, f"superseded_by points at a path that does not exist: {successor}"
+    if (ROOT / successor).resolve() == marker.parent.resolve():
+        return None, "superseded_by points at the marker's own directory"
+    return document, ""
+
+
+def superseded_by_marker(manifest: Path) -> tuple[Path, dict[str, Any] | None, str] | None:
+    """Find the marker governing this manifest, if any, with its validity.
 
     A superseded packet keeps the bytes it actually declared. Its digests are
     stale rather than false: they described the repository correctly at the
     freeze commit. Reporting them as live breaks would push the project towards
-    rewriting historical freezes to silence an audit, which is precisely the
-    behaviour this project refuses.
+    rewriting historical freezes to silence an audit.
     """
     for directory in (manifest.parent, *manifest.parent.parents):
-        if directory == ROOT.parent:
-            break
         marker = directory / SUPERSEDED_MARKER
         if marker.is_file():
-            return marker
+            document, reason = read_marker(marker)
+            return marker, document, reason
         if directory == ROOT:
             break
     return None
@@ -157,10 +188,31 @@ def check_declared_hashes(findings: list[Finding], counters: Counter) -> None:
     for manifest in iter_files(ROOT / "data", {".json"}):
         if manifest.name == SUPERSEDED_MARKER:
             continue
-        marker = superseded_by_marker(manifest)
-        if marker is not None:
-            counters["declarations_in_superseded_packets"] += 1
-            continue
+        governing = superseded_by_marker(manifest)
+        if governing is not None:
+            marker, document, rejection = governing
+            if document is None:
+                counters["invalid_supersession_markers"] += 1
+                findings.append(
+                    Finding(
+                        "invalid-supersession-marker",
+                        "high",
+                        marker.relative_to(ROOT).as_posix(),
+                        f"{rejection}. Suppressing nothing; declarations below are still checked.",
+                    )
+                )
+                # Fall through: an invalid marker must not silence anything.
+            else:
+                counters["declarations_in_superseded_packets"] += 1
+                findings.append(
+                    Finding(
+                        "superseded-packet",
+                        "low",
+                        manifest.relative_to(ROOT).as_posix(),
+                        f"declarations not checked; packet superseded by {document['superseded_by']}",
+                    )
+                )
+                continue
         try:
             payload = json.loads(manifest.read_text(encoding="utf-8-sig"))
         except (json.JSONDecodeError, OSError):

@@ -1,5 +1,6 @@
 {
   "cause": "The contracts this packet froze were subsequently revised by 'Revise natural history source unit contracts' (3f27498), 'Audit and harden natural history contracts' (ebe8201), and 'audit natural-history token feasibility' (2d5948d). Packet v0.1 was prepared against the revised contracts, but v0 was left in place without a supersession marker, so its declarations continued to read as live claims.",
+  "correction_2026_08_23": "An earlier version of this marker said 'Nothing in this directory is modified'. That was false and an adversarial review caught it: packet-manifest.json had its 'status' field changed in commit 2d5948d, from 'awaiting-independent-review' to 'superseded-before-review-oversized-single-block-rule-was-incomplete'. That is an in-place edit of a frozen artifact, which the operating doctrine forbids. The prior bytes remain recoverable from Git. Only the status metadata changed; no declared digest, case, or result was altered. The claim is narrowed here rather than the history being rewritten again.",
   "declarations_status": "Correct when frozen at 44b2b9b, and correct about the state of the repository at that commit. They are stale, not false: 5 of the 7 declared files were edited afterwards.",
   "evidence": {
     "at_freeze_commit_44b2b9b": "all seven declared digests matched",
@@ -10,7 +11,7 @@
   "reason": "Replaced by independent-contract-review-v0.1, which is the packet a reviewer should use.",
   "recorded_at": "2026-08-23T11:35:00Z",
   "recorded_by": "provenance audit of issue #30",
-  "repair_rule": "Nothing in this directory is modified. A superseded packet keeps the bytes it actually declared; rewriting them would destroy the record of what was frozen and when.",
+  "repair_rule": "The declared digests in this packet are not modified. They were correct at freeze commit 44b2b9b and are preserved as what was actually frozen; rewriting them would destroy the record of what was declared and when.",
   "status": "superseded",
   "superseded_by": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0.1",
   "tracked_in": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/30"

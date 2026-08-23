@@ -241,6 +241,14 @@ def command_seal(arguments: argparse.Namespace) -> int:
             "sha256": _sha256_file(generator) if generator else None,
         },
         "tool_sha256": _sha256_file(Path(__file__)),
+        "key_source": "external-witness" if arguments.key_file else "self-generated",
+        "key_source_caveat": (
+            "A self-generated key can be redrawn until the split flatters a candidate the "
+            "author already holds, and the published manifest cannot distinguish a ground "
+            "split from an honest one. Use --key-file with a value nobody could predict at "
+            "seal time, such as a public randomness beacon or a commit hash that did not "
+            "exist yet, and publish its provenance."
+        ),
         "notes": (
             "This manifest deliberately contains no key and no challenge case. "
             "Ordering is enforced by publication, not by the sealed_at value."
@@ -262,6 +270,18 @@ def command_seal(arguments: argparse.Namespace) -> int:
 def command_register(arguments: argparse.Namespace) -> int:
     directory = Path(arguments.sealed)
     manifest = _load_manifest(directory)
+
+    # An adversarial review demonstrated the hole this closes: seal, register a
+    # stub, reveal, read the challenge half off disk, then re-register a
+    # candidate that hard-codes the answers. verify() reported eleven green
+    # checks on that tuned candidate. Once the challenge is on disk the split is
+    # spent, so registration after reveal is refused outright.
+    if (directory / REVEAL_RECEIPT).is_file():
+        raise SealError(
+            "the challenge half has already been revealed; registering a candidate now "
+            "would let it be tuned to answers already on disk. This split is spent — "
+            "seal a fresh pool instead."
+        )
 
     entries = []
     for raw in arguments.candidate:
@@ -304,6 +324,12 @@ def command_reveal(arguments: argparse.Namespace) -> int:
     key = _read_key(Path(arguments.key_file))
     _check_commitment(manifest, key)
 
+    if (directory / REVEAL_RECEIPT).is_file():
+        raise SealError(
+            "already revealed; a second reveal would let a re-registered candidate look "
+            "as though it predated the challenge"
+        )
+
     registration_path = directory / REGISTRATION_FILE
     if not registration_path.is_file():
         raise SealError(
@@ -338,6 +364,7 @@ def command_reveal(arguments: argparse.Namespace) -> int:
         "protocol_version": PROTOCOL_VERSION,
         "experiment_id": manifest["experiment_id"],
         "revealed_at": _now(),
+        "registration_sha256_at_reveal": _sha256_file(registration_path),
         "key_sha256": manifest["key_commitment"],
         "candidate_digest": registration["candidate_digest"],
         "challenge_digest": challenge_digest,
@@ -401,6 +428,26 @@ def command_verify(arguments: argparse.Namespace) -> int:
             and _sha256_file(_resolve_path(entry["path"])) == entry["sha256"]
             for entry in registration["candidate"]
         )
+
+        # The registration on disk must be byte-identical to the one the reveal
+        # saw. Without this, an author could reveal, read the challenge half,
+        # then swap in a candidate tuned to the answers: every other check
+        # compares the registration against itself and stays green.
+        receipt_path = directory / REVEAL_RECEIPT
+        if receipt_path.is_file():
+            receipt = json.loads(receipt_path.read_text(encoding="utf-8-sig"))
+            recorded = receipt.get("registration_sha256_at_reveal")
+            checks["registration_unchanged_since_reveal"] = bool(recorded) and recorded == _sha256_file(
+                registration_path
+            )
+
+    # Grinding: a self-generated key can be redrawn until the split flatters a
+    # candidate the author already holds, and nothing in the published manifest
+    # distinguishes a ground split from an honest one. Stating the key's origin
+    # is the most this tool can do offline.
+    checks["key_source_is_externally_witnessed"] = (
+        manifest.get("key_source") == "external-witness"
+    )
 
     passed = all(checks.values())
     print(json.dumps({"passed": passed, "checks": checks}, indent=2, sort_keys=True))
