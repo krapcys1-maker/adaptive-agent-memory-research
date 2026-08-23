@@ -14,10 +14,12 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from arena.decoding import ARENA_DECODING, FixedDecoding  # noqa: E402
+from arena.decoding import ARENA_DECODING, FixedDecoding, SpendCapReached  # noqa: E402
 
 
 class _Usage:
@@ -149,3 +151,60 @@ def test_a_response_without_usage_counts_the_call_and_no_tokens() -> None:
     client.chat.completions._inner = Bare()
     client.chat.completions.create(model="m", messages=[])
     assert client.ledger == {"calls": 1, "prompt_tokens": 0, "completion_tokens": 0}
+
+
+# --------------------------------------------------------------------- the cap
+
+
+def test_no_cap_means_no_refusal() -> None:
+    client = FixedDecoding(_Client())
+    for _ in range(50):
+        client.chat.completions.create(model="m", messages=[])
+    assert len(client.request_log) == 50
+
+
+def test_the_cap_refuses_before_crossing_rather_than_reporting_after() -> None:
+    """A cap checked after the fact is a report of an overspend.
+
+    Each call here costs 100 prompt and 10 completion tokens: $0.000027 +
+    $0.000011 = $0.000038. A cap of $0.0002 buys five, and the reserve stops the
+    sixth while still under the line.
+    """
+    client = FixedDecoding(_Client(), spend_cap_usd=0.0002,
+                           first_call_reserve_usd=0.00004)
+    made = 0
+    with pytest.raises(SpendCapReached):
+        for _ in range(100):
+            client.chat.completions.create(model="m", messages=[])
+            made += 1
+    assert 0 < made < 100
+    assert client.spent_usd < client.spend_cap_usd
+
+
+def test_the_reserve_comes_from_the_most_expensive_call_seen() -> None:
+    """The next call's cost is unknowable, so the bound is the worst one so far."""
+    client = FixedDecoding(_Client(), spend_cap_usd=1.0)
+    client.chat.completions.create(model="m", messages=[])
+    one_call = client.spent_usd
+    # Cap set just above what is spent, with no room for another call of that size.
+    client.spend_cap_usd = one_call * 1.2
+    with pytest.raises(SpendCapReached, match="Stopping below it"):
+        client.chat.completions.create(model="m", messages=[])
+
+
+def test_a_cap_smaller_than_the_first_call_reserve_stops_immediately() -> None:
+    """Nothing is spent at all, rather than one call's worth being spent to find out."""
+    client = FixedDecoding(_Client(), spend_cap_usd=0.001, first_call_reserve_usd=0.01)
+    with pytest.raises(SpendCapReached):
+        client.chat.completions.create(model="m", messages=[])
+    assert client.request_log == []
+
+
+def test_what_the_system_asked_for_is_recorded_beside_what_was_enforced() -> None:
+    """Native decoding and arena decoding are different facts and both are wanted."""
+    client = FixedDecoding(_Client())
+    client.chat.completions.create(model="m", messages=[], temperature=0.3)
+    call = client.request_log[0]
+    assert call["requested"] == {"temperature": 0.3}
+    assert call["enforced"] == {"temperature": 0}
+    assert call["overridden"] == {"temperature": 0.3}

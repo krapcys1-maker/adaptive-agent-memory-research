@@ -1,0 +1,81 @@
+{
+  "artifact": "arena-calibration-cupmem",
+  "mode": "calibration",
+  "contract_version": "ARENA-0.1",
+  "contract_digest": "e68be19fb33aac46fe760497303a78a0f487feec5a457ebea930337b10d3e9aa",
+  "started_at": "2026-08-23T20:07:10+00:00",
+  "selection": "e8a848ed9c8a8440625f218516219b37b4a5ad681502cd45a8ff3fc687fb86a9",
+  "system": "CUPMem",
+  "source": {
+    "root": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\repos\\icedreamc__STALE",
+    "subtree": "cup_mem",
+    "remote": "https://github.com/icedreamc/STALE",
+    "commit": "ea7d391103a151927cd29d2f01d87597a782bdcb",
+    "commit_date": "2026-05-19T10:36:04+08:00",
+    "working_tree_clean": true,
+    "uncommitted": [],
+    "file_count": 46,
+    "tree_digest_sha256": "6ea117feea0e1a974f02f7673b7986d0df8782315e30a466bd46bf63bcd08e30"
+  },
+  "embedding_model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "target_model": "deepseek-chat",
+  "decoding": {
+    "arena_enforced": {
+      "temperature": 0
+    },
+    "preregistered": false,
+    "provenance": "adopted after a CUPMem run showed a repeated probe returning different answers, so it is a control chosen in response to an observation. It is not CUPMem's own decoding and must not be read as native behaviour",
+    "system_native_requested": "recorded per call in decoding_overrides"
+  },
+  "spend_cap_usd": 0.35,
+  "price_per_mtok": {
+    "input": 0.27,
+    "output": 1.1
+  },
+  "units": [
+    {
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "sessions_available": 41,
+      "sessions_ingested": 15,
+      "user_turns_ingested": 69,
+      "sessions_skipped_no_user_turn": 0,
+      "ingest": {
+        "model_calls": 144,
+        "input_tokens": 296178,
+        "output_tokens": 14716,
+        "wall_seconds": 184.15,
+        "usd": 0.0962
+      },
+      "per_session_calls": [
+        8,
+        1,
+        1,
+        1,
+        10,
+        7,
+        11,
+        15,
+        14,
+        20,
+        1,
+        15,
+        13,
+        12,
+        15
+      ],
+      "status": "calibrated",
+      "state_digest_after_ingest_differs": true,
+      "stored_items": 67
+    }
+  ],
+  "status": "calibration complete",
+  "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
+  "spend_usd": 0.0962,
+  "provider_calls": 144,
+  "decoding_overrides": 46,
+  "decoding_override_values": [
+    "{\"temperature\": 0.3}"
+  ]
+}

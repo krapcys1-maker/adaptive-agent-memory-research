@@ -1,0 +1,134 @@
+{
+  "artifact": "arena-pilot-cost-projection",
+  "recorded_at": "2026-08-23T20:12:00+00:00",
+  "system": "CUPMem",
+  "selection": "e8a848ed9c8a8440625f218516219b37b4a5ad681502cd45a8ff3fc687fb86a9",
+  "cap_usd": 3.0,
+  "rate": {
+    "measured_on": "15 real sessions of unit ba358f49, 69 user turns",
+    "calls_per_session": [
+      8,
+      1,
+      1,
+      1,
+      10,
+      7,
+      11,
+      15,
+      14,
+      20,
+      1,
+      15,
+      13,
+      12,
+      15
+    ],
+    "prompt_tokens_per_call": 2057,
+    "completion_tokens_per_call": 102,
+    "tail_token_growth_applied": 1.25,
+    "observation": "calls per session rise as the store fills, from a mean of 5.6 over the first half to 13.1 over the second, then flatten"
+  },
+  "ingest": {
+    "per_unit": {
+      "ba358f49": {
+        "slot": "short",
+        "sessions": 41,
+        "user_turns": 204,
+        "plateau": {
+          "calls": 435,
+          "prompt_tokens": 1118895,
+          "completion_tokens": 44475,
+          "usd": 0.351
+        },
+        "linear": {
+          "calls": 837,
+          "prompt_tokens": 2152258,
+          "completion_tokens": 85550,
+          "usd": 0.6752
+        }
+      },
+      "gpt4_98f46fc6": {
+        "slot": "medium",
+        "sessions": 49,
+        "user_turns": 243,
+        "plateau": {
+          "calls": 525,
+          "prompt_tokens": 1349255,
+          "completion_tokens": 53632,
+          "usd": 0.4233
+        },
+        "linear": {
+          "calls": 1164,
+          "prompt_tokens": 2991539,
+          "completion_tokens": 118911,
+          "usd": 0.9385
+        }
+      },
+      "58bf7951": {
+        "slot": "long",
+        "sessions": 57,
+        "user_turns": 305,
+        "plateau": {
+          "calls": 614,
+          "prompt_tokens": 1579616,
+          "completion_tokens": 62788,
+          "usd": 0.4956
+        },
+        "linear": {
+          "calls": 1543,
+          "prompt_tokens": 3967744,
+          "completion_tokens": 157714,
+          "usd": 1.2448
+        }
+      },
+      "6a27ffc2": {
+        "slot": "update",
+        "sessions": 51,
+        "user_turns": 244,
+        "plateau": {
+          "calls": 547,
+          "prompt_tokens": 1406846,
+          "completion_tokens": 55921,
+          "usd": 0.4414
+        },
+        "linear": {
+          "calls": 1254,
+          "prompt_tokens": 3222754,
+          "completion_tokens": 128101,
+          "usd": 1.0111
+        }
+      }
+    },
+    "totals": {
+      "plateau": {
+        "calls": 2121,
+        "prompt_tokens": 5454612,
+        "completion_tokens": 216816,
+        "usd": 1.7113
+      },
+      "linear": {
+        "calls": 4798,
+        "prompt_tokens": 12334295,
+        "completion_tokens": 490276,
+        "usd": 3.8696
+      }
+    }
+  },
+  "query": {
+    "probes": 8,
+    "calls": 48,
+    "prompt_tokens": 104000,
+    "completion_tokens": 6000,
+    "usd": 0.0347,
+    "basis": "operational-fit run: 3-7 calls, 9k-17k prompt per probe"
+  },
+  "already_spent_on_calibration_usd": 0.0962,
+  "projection_usd": {
+    "plateau": 1.8422,
+    "linear": 4.0005
+  },
+  "believed": "plateau",
+  "why": "every candidate pool in their config is top-k bounded, so per-call prompt size cannot grow without limit, and the last three calibration sessions are flat rather than still climbing. The linear figure is the pessimistic bound, carried because a projection that reports only its preferred number is a hope",
+  "verdict": "proceed",
+  "guarantee": "the cap is enforced beneath the provider, so the pessimistic model being right costs a truncated run rather than an overspend"
+}

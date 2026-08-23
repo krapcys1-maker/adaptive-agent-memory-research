@@ -30,15 +30,40 @@ from __future__ import annotations
 from typing import Any
 
 
-#: Declared before any result exists, per the freeze-before-measuring rule.
+#: The arena's decoding, applied to every system alike.
+#:
+#: Its provenance is stated because it changes how it may be read. This was NOT
+#: preregistered. It was introduced after a CUPMem run showed a repeated probe
+#: returning different answers, so it is a control adopted in response to an
+#: observation, not before one. It is kept because holding decoding constant is
+#: what makes two systems' numbers the same kind of number — not because it makes
+#: any system reproducible, which it measurably does not.
+#:
+#: It is not the instrument for the question it was first reached for. Whether a
+#: query mutates memory is settled by a state fingerprint, not by making two
+#: answers match.
 ARENA_DECODING: dict[str, Any] = {"temperature": 0}
+
+#: DeepSeek list price per million tokens, for the cap below.
+PRICE_PER_MTOK = {"input": 0.27, "output": 1.10}
+
+
+class SpendCapReached(RuntimeError):
+    """Raised instead of making the request that would cross the cap.
+
+    Before, not after. A cap checked after the fact is a report of an overspend,
+    and this project is funded out of someone's pocket.
+    """
 
 
 class _Completions:
-    def __init__(self, inner: Any, fixed: dict[str, Any], calls: list[dict[str, Any]]):
+    def __init__(self, inner: Any, fixed: dict[str, Any], calls: list[dict[str, Any]],
+                 owner: "FixedDecoding"):
         self._inner, self._fixed, self._calls = inner, fixed, calls
+        self._owner = owner
 
     def create(self, **kwargs: Any) -> Any:
+        self._owner.check_cap()
         # The system's own kwargs lose to the arena's. A system that pins its own
         # temperature would otherwise silently opt out of the control, and the
         # override is recorded rather than swallowed so the divergence is visible.
@@ -48,6 +73,10 @@ class _Completions:
         usage = getattr(response, "usage", None)
         self._calls.append({
             "model": kwargs.get("model"),
+            # What the system asked for, beside what the arena enforced. Both, so
+            # a reader can tell a system's own decoding from the arena's.
+            "requested": {k: kwargs.get(k) for k in self._fixed},
+            "enforced": dict(self._fixed),
             "overridden": overridden,
             # Per call, not per run. A background run once died after 29 calls
             # with no result file, and the spend was still real.
@@ -61,9 +90,10 @@ class _Completions:
 
 
 class _Chat:
-    def __init__(self, inner: Any, fixed: dict[str, Any], calls: list[dict[str, Any]]):
+    def __init__(self, inner: Any, fixed: dict[str, Any], calls: list[dict[str, Any]],
+                 owner: "FixedDecoding"):
         self._inner = inner
-        self.completions = _Completions(inner.completions, fixed, calls)
+        self.completions = _Completions(inner.completions, fixed, calls, owner)
 
     def __getattr__(self, name: str) -> Any:
         return getattr(self._inner, name)
@@ -76,12 +106,46 @@ class FixedDecoding:
     uses that is not `chat.completions.create` behaves exactly as before.
     """
 
-    def __init__(self, inner: Any, fixed: dict[str, Any] | None = None):
+    def __init__(self, inner: Any, fixed: dict[str, Any] | None = None,
+                 spend_cap_usd: float | None = None,
+                 first_call_reserve_usd: float = 0.01):
         self._inner = inner
         self.fixed = dict(ARENA_DECODING if fixed is None else fixed)
-        #: One entry per request, carrying any system-set value this overrode.
+        #: One entry per request, carrying what was asked, what was enforced, and
+        #: what it cost.
         self.request_log: list[dict[str, Any]] = []
-        self.chat = _Chat(inner.chat, self.fixed, self.request_log)
+        self.spend_cap_usd = spend_cap_usd
+        self._first_call_reserve = first_call_reserve_usd
+        self.chat = _Chat(inner.chat, self.fixed, self.request_log, self)
+
+    # ------------------------------------------------------------------- money
+
+    def call_cost(self, call: dict[str, Any]) -> float:
+        return (call["prompt_tokens"] / 1e6 * PRICE_PER_MTOK["input"]
+                + call["completion_tokens"] / 1e6 * PRICE_PER_MTOK["output"])
+
+    @property
+    def spent_usd(self) -> float:
+        return sum(self.call_cost(call) for call in self.request_log)
+
+    def check_cap(self) -> None:
+        """Refuse the next request if it could cross the cap.
+
+        The cost of a request is not known until it returns, so the cap is
+        enforced with a reserve: the most expensive call seen so far, with half
+        again for headroom. That stops *below* the limit rather than just past
+        it, which is the only version of a hard cap worth the name.
+        """
+        if self.spend_cap_usd is None:
+            return
+        seen = [self.call_cost(call) for call in self.request_log]
+        reserve = max(seen) * 1.5 if seen else self._first_call_reserve
+        if self.spent_usd + reserve > self.spend_cap_usd:
+            raise SpendCapReached(
+                f"spent ${self.spent_usd:.4f} over {len(self.request_log)} calls; the "
+                f"next could cost up to ${reserve:.4f} and the cap is "
+                f"${self.spend_cap_usd:.2f}. Stopping below it rather than past it."
+            )
 
     @property
     def overrides(self) -> list[dict[str, Any]]:
