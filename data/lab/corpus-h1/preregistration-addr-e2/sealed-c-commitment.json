@@ -1,0 +1,31 @@
+{
+  "commitment_sha256_of_secret_seed": "f3b8837e33f9cc6d57f400580e5e476dae5d260572c41c838fd5b45d390d44fe",
+  "committed_at": "2026-08-24T00:10:00Z",
+  "expected_shape": {
+    "families": 7,
+    "instances_per_family": 12,
+    "probes": 84,
+    "subject_block": "the block not used by dev-a or valid-b"
+  },
+  "experiment_id": "PMLAB-H1-ADDR-E2",
+  "generator_pinned_to": {
+    "git_commit": "dfa4437c9be28d1d4eea318c9032b1aceee97c50",
+    "history": "scripts/build_history_family.py",
+    "reveal": "scripts/build_delayed_reveal.py",
+    "spec": "scripts/corpus/history_family_spec.py"
+  },
+  "git_commit": "dfa4437c9be28d1d4eea318c9032b1aceee97c50",
+  "protocol": "commit-and-reveal on the corpus seed",
+  "reveal_procedure": [
+    "freeze the extractor implementation by digest and record it",
+    "publish the secret seed",
+    "verify sha256(secret) equals the commitment above",
+    "derive the corpus seed from the secret and generate sealed-c",
+    "run once; report against the thresholds already frozen"
+  ],
+  "secret_seed_location": "outside the repository; never committed",
+  "split": "sealed-c",
+  "stronger_variant_not_used": "seed = sha256(precommitted_secret + a future public value) would leave even the author unable to know the seed in advance. Not used here because it needs an agreed external source at reveal time; recorded so the weaker choice is visible rather than implied",
+  "what_this_still_does_not_guarantee": "the author holds the secret and could reveal early. The commitment makes seed-shopping detectable, not impossible. scripts/sealed_split.py and issue #42 carry the stronger construction",
+  "why_the_corpus_is_not_materialised": "not looking at a file is discipline. Not having the file is a property. The seed derives the entire corpus, so committing to its hash fixes the corpus without creating it, and it cannot be re-chosen after a result is seen \u2014 any other seed fails the commitment check"
+}
