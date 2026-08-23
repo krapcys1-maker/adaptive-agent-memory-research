@@ -31,6 +31,9 @@ Git-tracked append-only JSONL plus reviewed Markdown is canonical. SQLite FTS5 i
 - **Supersession cannot be solved by retrieval.** `PMLAB-STALE-E1`: a superseded fact and its replacement sit at the 99.5th percentile of corpus similarity, two pairs at cosine exactly 1.000. It must live in the schema.
 - **Cross-language retrieval.** `PMLAB-XLANG-E1` measured Polish Recall@10 at 0.156 against English 1.000, with 26 of 45 queries returning nothing. A glossary lifted it to 0.867; local dense retrieval reached 0.978 in `E2`, but its safety cost is unmeasured and dense makes stale intrusion structurally worse.
 - **Provenance repair.** 843 of 1348 lab files diverged between working copy and blob; now 0. Six broken freezes resolved as two distinct defects. Zero critical audit findings.
+- **Both time axes are needed.** `PMLAB-REV-V0` compared five temporal resolvers: bitemporal reached exact 0.944 with perfect `valid_at`, zero leaks and zero critical failures, while each single-axis arm failed precisely the question the other axis answers. Caveat that bounds the claim: every arm scored 1.00 on `current`, so the value exists only in historical questions.
+- **Tier I3 cannot be instantiated yet.** `PMLAB-DECORR-E1` found the one two-reviewer dataset has gold derived from the labels being measured, and the one gold-free mechanical dimension produced zero errors, so correlation is undefined rather than zero. Any claim resting on a model panel is recorded as `asserted`.
+- **Reflection Stage 1 is exact-only.** Five detectors, each proven to fire on a constructed case. A polarity contradiction detector was written and removed after measurement: all four of its hits on the live corpus were false positives, because this project's prose is saturated with negation by design.
 
 ## Open blockers
 
