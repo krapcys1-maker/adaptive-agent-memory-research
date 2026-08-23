@@ -1,0 +1,20 @@
+{
+  "addendum_to": "comparative memory systems contract, v0",
+  "git_commit": "3860c01fb5d47a2a04aa7014118a0a8e9465b4db",
+  "if_a_system_fails_operational_fit": "the first question is not how to work around it. It is whether the arena should require that property at all, or whether it is required only because this project's own system happens to have it. A requirement no independent system can meet is a finding about the requirement",
+  "operational_fit": {
+    "cupmem": "NOT TESTED",
+    "decidable_by": "a written adapter run against the ARENA-0 fixtures",
+    "question": "can evidence, abstention, model calls, tokens, latency, reset semantics and query independence be derived honestly and without losing information?",
+    "why_separate": "a system can expose the right three methods and still be unable to report what it retrieved or what a query cost. Merging the two levels would let a name match stand in for a capability"
+  },
+  "registered_at": "2026-08-24T07:00:00Z",
+  "structural_fit": {
+    "cupmem": "PASS - reset at pipeline.py:58, write_session at write/writer.py:244, answer_query at query/engine.py:9",
+    "decidable_by": "reading the system's public surface. No adapter, no infrastructure, no spend",
+    "question": "do the three method boundaries exist natively, or must a system pretend to an architecture it does not have?"
+  },
+  "subject": "contract fit is reported at two levels, not one",
+  "supplements_not_modifies": "7019712093a5a4601fecdd446abb4640d99639f8cc616c02f28b87f2143ddfbb",
+  "unchanged": "every field, condition and refusal in the frozen contract"
+}
