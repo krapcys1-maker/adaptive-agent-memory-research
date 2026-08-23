@@ -1,0 +1,6863 @@
+{
+  "records": [
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000003",
+      "stratum": "tag_only",
+      "target": "PM-20260822-16f40aaf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-16f40aaf",
+      "stratum": "tag_only",
+      "target": "PM-20260822-00000003",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-02ab9b9e",
+      "stratum": "mechanical",
+      "target": "PM-20260822-18a25b2b",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-18a25b2b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-02ab9b9e",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-0c908263",
+      "stratum": "tag_only",
+      "target": "PM-20260822-44eab165",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-44eab165",
+      "stratum": "tag_only",
+      "target": "PM-20260822-0c908263",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-0e2572a8",
+      "stratum": "tag_only",
+      "target": "PM-20260822-836420c7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-836420c7",
+      "stratum": "tag_only",
+      "target": "PM-20260822-0e2572a8",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1076c0cd",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fdc78b1c",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-fdc78b1c",
+      "stratum": "mechanical",
+      "target": "PM-20260822-1076c0cd",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-1351b670",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fc29a3d7",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-fc29a3d7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-1351b670",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-17f0f446",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2b4bdcab",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2b4bdcab",
+      "stratum": "mechanical",
+      "target": "PM-20260822-17f0f446",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-17f0f446",
+      "stratum": "mechanical",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "mechanical",
+      "target": "PM-20260822-17f0f446",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-18a25b2b",
+      "stratum": "tag_only",
+      "target": "PM-20260822-ef44bbda",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ef44bbda",
+      "stratum": "tag_only",
+      "target": "PM-20260822-18a25b2b",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2b4bdcab",
+      "stratum": "tag_only",
+      "target": "PM-20260823-98381c20",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-98381c20",
+      "stratum": "tag_only",
+      "target": "PM-20260822-2b4bdcab",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2be26d5e",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b2f85a3b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b2f85a3b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2be26d5e",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2be26d5e",
+      "stratum": "mechanical",
+      "target": "PM-20260822-e0df4646",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e0df4646",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2be26d5e",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2c5da8b7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-865fe87b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-865fe87b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2c5da8b7",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2dec9a36",
+      "stratum": "mechanical",
+      "target": "PM-20260822-751a0ea3",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-751a0ea3",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2dec9a36",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-37cd9dbd",
+      "stratum": "mechanical",
+      "target": "PM-20260822-f602472b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-f602472b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-37cd9dbd",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "tag_only",
+      "target": "PM-20260823-98381c20",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-98381c20",
+      "stratum": "tag_only",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-50e7cfb5",
+      "stratum": "tag_only",
+      "target": "PM-20260823-56739a68",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-56739a68",
+      "stratum": "tag_only",
+      "target": "PM-20260822-50e7cfb5",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-50e7cfb5",
+      "stratum": "mechanical",
+      "target": "PM-20260823-97ad8014",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-97ad8014",
+      "stratum": "mechanical",
+      "target": "PM-20260822-50e7cfb5",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-51ccd502",
+      "stratum": "tag_only",
+      "target": "PM-20260823-a17feb44",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a17feb44",
+      "stratum": "tag_only",
+      "target": "PM-20260822-51ccd502",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-751a0ea3",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ad51341b",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ad51341b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-751a0ea3",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-81bb193d",
+      "stratum": "tag_only",
+      "target": "PM-20260823-5f031aa4",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-5f031aa4",
+      "stratum": "tag_only",
+      "target": "PM-20260822-81bb193d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-865fe87b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b01ef292",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b01ef292",
+      "stratum": "mechanical",
+      "target": "PM-20260822-865fe87b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-9100a554",
+      "stratum": "tag_only",
+      "target": "PM-20260823-d449038d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-d449038d",
+      "stratum": "tag_only",
+      "target": "PM-20260822-9100a554",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-97493d32",
+      "stratum": "tag_only",
+      "target": "PM-20260822-d5499ca6",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d5499ca6",
+      "stratum": "tag_only",
+      "target": "PM-20260822-97493d32",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a1d963a7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ad51341b",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ad51341b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a1d963a7",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a6fd019e",
+      "stratum": "tag_only",
+      "target": "PM-20260822-d33694cf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d33694cf",
+      "stratum": "tag_only",
+      "target": "PM-20260822-a6fd019e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b01ef292",
+      "stratum": "tag_only",
+      "target": "PM-20260823-dc63afd0",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-dc63afd0",
+      "stratum": "tag_only",
+      "target": "PM-20260822-b01ef292",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260822-cc4a8fc1",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fd56bed5",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260822-fd56bed5",
+      "stratum": "mechanical",
+      "target": "PM-20260822-cc4a8fc1",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-155f760b",
+      "stratum": "mechanical",
+      "target": "PM-20260823-ca31fb8d",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-ca31fb8d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-155f760b",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-1a7fa8df",
+      "stratum": "mechanical",
+      "target": "PM-20260823-e2311a6e",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-e2311a6e",
+      "stratum": "mechanical",
+      "target": "PM-20260823-1a7fa8df",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-269cb999",
+      "stratum": "mechanical",
+      "target": "PM-20260823-3d51a0cd",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-3d51a0cd",
+      "stratum": "mechanical",
+      "target": "PM-20260823-269cb999",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-269cb999",
+      "stratum": "mechanical",
+      "target": "PM-20260823-eeacb566",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-eeacb566",
+      "stratum": "mechanical",
+      "target": "PM-20260823-269cb999",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-2ff4faaf",
+      "stratum": "tag_only",
+      "target": "PM-20260823-a0e25e8e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a0e25e8e",
+      "stratum": "tag_only",
+      "target": "PM-20260823-2ff4faaf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-2ff4faaf",
+      "stratum": "mechanical",
+      "target": "PM-20260823-b7bf575a",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-b7bf575a",
+      "stratum": "mechanical",
+      "target": "PM-20260823-2ff4faaf",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-2ff4faaf",
+      "stratum": "tag_only",
+      "target": "PM-20260823-bbe4805d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-bbe4805d",
+      "stratum": "tag_only",
+      "target": "PM-20260823-2ff4faaf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-3d51a0cd",
+      "stratum": "tag_only",
+      "target": "PM-20260823-e39bdd2d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-e39bdd2d",
+      "stratum": "tag_only",
+      "target": "PM-20260823-3d51a0cd",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-412b45fb",
+      "stratum": "tag_only",
+      "target": "PM-20260823-517beeaf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-517beeaf",
+      "stratum": "tag_only",
+      "target": "PM-20260823-412b45fb",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-5f031aa4",
+      "stratum": "tag_only",
+      "target": "PM-20260823-a0cd6322",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a0cd6322",
+      "stratum": "tag_only",
+      "target": "PM-20260823-5f031aa4",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-67b664e7",
+      "stratum": "tag_only",
+      "target": "PM-20260823-ec6f8a37",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-ec6f8a37",
+      "stratum": "tag_only",
+      "target": "PM-20260823-67b664e7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-89178673",
+      "stratum": "mechanical",
+      "target": "PM-20260823-8be87369",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-8be87369",
+      "stratum": "mechanical",
+      "target": "PM-20260823-89178673",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-98381c20",
+      "stratum": "mechanical",
+      "target": "PM-20260823-ca31fb8d",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 1,
+      "query": "PM-20260823-ca31fb8d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-98381c20",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-9efa8c7a",
+      "stratum": "tag_only",
+      "target": "PM-20260823-aaae8d9a",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 0,
+      "graph_reachable": 0,
+      "query": "PM-20260823-aaae8d9a",
+      "stratum": "tag_only",
+      "target": "PM-20260823-9efa8c7a",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000001",
+      "stratum": "mechanical",
+      "target": "PM-20260822-00000004",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000004",
+      "stratum": "mechanical",
+      "target": "PM-20260822-00000001",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-02ab9b9e",
+      "stratum": "tag_only",
+      "target": "PM-20260822-75f89d91",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-75f89d91",
+      "stratum": "tag_only",
+      "target": "PM-20260822-02ab9b9e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-02ab9b9e",
+      "stratum": "tag_only",
+      "target": "PM-20260822-ef44bbda",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ef44bbda",
+      "stratum": "tag_only",
+      "target": "PM-20260822-02ab9b9e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-06ba788e",
+      "stratum": "mechanical",
+      "target": "PM-20260822-1b189d43",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1b189d43",
+      "stratum": "mechanical",
+      "target": "PM-20260822-06ba788e",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-0d382567",
+      "stratum": "tag_only",
+      "target": "PM-20260822-f909fa82",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-f909fa82",
+      "stratum": "tag_only",
+      "target": "PM-20260822-0d382567",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-1076c0cd",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ad51341b",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ad51341b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-1076c0cd",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-16f40aaf",
+      "stratum": "tag_only",
+      "target": "PM-20260822-50e7cfb5",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-50e7cfb5",
+      "stratum": "tag_only",
+      "target": "PM-20260822-16f40aaf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1b189d43",
+      "stratum": "tag_only",
+      "target": "PM-20260822-62b05abd",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-62b05abd",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1b189d43",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2be26d5e",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a9b2f51f",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a9b2f51f",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2be26d5e",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2dec9a36",
+      "stratum": "mechanical",
+      "target": "PM-20260822-8e096367",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-8e096367",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2dec9a36",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2dec9a36",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ad51341b",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ad51341b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2dec9a36",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-44eab165",
+      "stratum": "tag_only",
+      "target": "PM-20260822-c1f962ab",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-c1f962ab",
+      "stratum": "tag_only",
+      "target": "PM-20260822-44eab165",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-451ee423",
+      "stratum": "mechanical",
+      "target": "PM-20260822-81bb193d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-81bb193d",
+      "stratum": "mechanical",
+      "target": "PM-20260822-451ee423",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-451ee423",
+      "stratum": "mechanical",
+      "target": "PM-20260822-d578e180",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d578e180",
+      "stratum": "mechanical",
+      "target": "PM-20260822-451ee423",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-451ee423",
+      "stratum": "mechanical",
+      "target": "PM-20260823-eeacb566",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-eeacb566",
+      "stratum": "mechanical",
+      "target": "PM-20260822-451ee423",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "tag_only",
+      "target": "PM-20260822-81bb193d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-81bb193d",
+      "stratum": "tag_only",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-4d688dad",
+      "stratum": "tag_only",
+      "target": "PM-20260822-70de510a",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-70de510a",
+      "stratum": "tag_only",
+      "target": "PM-20260822-4d688dad",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-51ccd502",
+      "stratum": "mechanical",
+      "target": "PM-20260822-97493d32",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-97493d32",
+      "stratum": "mechanical",
+      "target": "PM-20260822-51ccd502",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-51ccd502",
+      "stratum": "tag_only",
+      "target": "PM-20260822-b01ef292",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b01ef292",
+      "stratum": "tag_only",
+      "target": "PM-20260822-51ccd502",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-5a518b0d",
+      "stratum": "tag_only",
+      "target": "PM-20260822-e645b654",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e645b654",
+      "stratum": "tag_only",
+      "target": "PM-20260822-5a518b0d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-62847a55",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ee3739bb",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ee3739bb",
+      "stratum": "mechanical",
+      "target": "PM-20260822-62847a55",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-62b05abd",
+      "stratum": "tag_only",
+      "target": "PM-20260822-afca0dff",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-afca0dff",
+      "stratum": "tag_only",
+      "target": "PM-20260822-62b05abd",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-70de510a",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b01ef292",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-b01ef292",
+      "stratum": "mechanical",
+      "target": "PM-20260822-70de510a",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-720d9b2e",
+      "stratum": "tag_only",
+      "target": "PM-20260822-f909fa82",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-f909fa82",
+      "stratum": "tag_only",
+      "target": "PM-20260822-720d9b2e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-75f89d91",
+      "stratum": "tag_only",
+      "target": "PM-20260822-9bff05f5",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-9bff05f5",
+      "stratum": "tag_only",
+      "target": "PM-20260822-75f89d91",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-75f89d91",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ef44bbda",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ef44bbda",
+      "stratum": "mechanical",
+      "target": "PM-20260822-75f89d91",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-81bb193d",
+      "stratum": "tag_only",
+      "target": "PM-20260822-97493d32",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-97493d32",
+      "stratum": "tag_only",
+      "target": "PM-20260822-81bb193d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-81bb193d",
+      "stratum": "tag_only",
+      "target": "PM-20260823-c2708aa9",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-c2708aa9",
+      "stratum": "tag_only",
+      "target": "PM-20260822-81bb193d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a9b2f51f",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b2f85a3b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-b2f85a3b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a9b2f51f",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260822-afca0dff",
+      "stratum": "tag_only",
+      "target": "PM-20260823-89178673",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-89178673",
+      "stratum": "tag_only",
+      "target": "PM-20260822-afca0dff",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d17b39ac",
+      "stratum": "tag_only",
+      "target": "PM-20260822-f909fa82",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-f909fa82",
+      "stratum": "tag_only",
+      "target": "PM-20260822-d17b39ac",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d5499ca6",
+      "stratum": "mechanical",
+      "target": "PM-20260823-eeacb566",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-eeacb566",
+      "stratum": "mechanical",
+      "target": "PM-20260822-d5499ca6",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e15844b2",
+      "stratum": "tag_only",
+      "target": "PM-20260823-abcd854f",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-abcd854f",
+      "stratum": "tag_only",
+      "target": "PM-20260822-e15844b2",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-0c4aacdb",
+      "stratum": "mechanical",
+      "target": "PM-20260823-269cb999",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-269cb999",
+      "stratum": "mechanical",
+      "target": "PM-20260823-0c4aacdb",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-155f760b",
+      "stratum": "mechanical",
+      "target": "PM-20260823-98381c20",
+      "types": [
+        "same_experiment",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-98381c20",
+      "stratum": "mechanical",
+      "target": "PM-20260823-155f760b",
+      "types": [
+        "same_experiment",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-1a7fa8df",
+      "stratum": "tag_only",
+      "target": "PM-20260823-eb7ba215",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-eb7ba215",
+      "stratum": "tag_only",
+      "target": "PM-20260823-1a7fa8df",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-269cb999",
+      "stratum": "tag_only",
+      "target": "PM-20260823-69405be4",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-69405be4",
+      "stratum": "tag_only",
+      "target": "PM-20260823-269cb999",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-3214e82e",
+      "stratum": "tag_only",
+      "target": "PM-20260823-76aba915",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-76aba915",
+      "stratum": "tag_only",
+      "target": "PM-20260823-3214e82e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-52d35466",
+      "stratum": "mechanical",
+      "target": "PM-20260823-5f031aa4",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-5f031aa4",
+      "stratum": "mechanical",
+      "target": "PM-20260823-52d35466",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-5f031aa4",
+      "stratum": "tag_only",
+      "target": "PM-20260823-67b664e7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-67b664e7",
+      "stratum": "tag_only",
+      "target": "PM-20260823-5f031aa4",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-5f031aa4",
+      "stratum": "tag_only",
+      "target": "PM-20260823-c2708aa9",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-c2708aa9",
+      "stratum": "tag_only",
+      "target": "PM-20260823-5f031aa4",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-6203d6e8",
+      "stratum": "mechanical",
+      "target": "PM-20260823-eeacb566",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-eeacb566",
+      "stratum": "mechanical",
+      "target": "PM-20260823-6203d6e8",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-67b664e7",
+      "stratum": "tag_only",
+      "target": "PM-20260823-a0cd6322",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a0cd6322",
+      "stratum": "tag_only",
+      "target": "PM-20260823-67b664e7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-76aba915",
+      "stratum": "mechanical",
+      "target": "PM-20260823-ed727a4d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-ed727a4d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-76aba915",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-8be87369",
+      "stratum": "mechanical",
+      "target": "PM-20260823-a0cd6322",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a0cd6322",
+      "stratum": "mechanical",
+      "target": "PM-20260823-8be87369",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a0cd6322",
+      "stratum": "tag_only",
+      "target": "PM-20260823-bcbfb511",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-bcbfb511",
+      "stratum": "tag_only",
+      "target": "PM-20260823-a0cd6322",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a0e25e8e",
+      "stratum": "tag_only",
+      "target": "PM-20260823-b7bf575a",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-b7bf575a",
+      "stratum": "tag_only",
+      "target": "PM-20260823-a0e25e8e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a0e25e8e",
+      "stratum": "mechanical",
+      "target": "PM-20260823-bbe4805d",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-bbe4805d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-a0e25e8e",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-b7bf575a",
+      "stratum": "tag_only",
+      "target": "PM-20260823-bbe4805d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-bbe4805d",
+      "stratum": "tag_only",
+      "target": "PM-20260823-b7bf575a",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-b92afd1e",
+      "stratum": "tag_only",
+      "target": "PM-20260823-bcbfb511",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-bcbfb511",
+      "stratum": "tag_only",
+      "target": "PM-20260823-b92afd1e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-b92afd1e",
+      "stratum": "tag_only",
+      "target": "PM-20260823-cef262cf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-cef262cf",
+      "stratum": "tag_only",
+      "target": "PM-20260823-b92afd1e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-c3b8b4ea",
+      "stratum": "tag_only",
+      "target": "PM-20260823-e2311a6e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-e2311a6e",
+      "stratum": "tag_only",
+      "target": "PM-20260823-c3b8b4ea",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 1,
+      "graph_reachable": 1,
+      "query": "PM-20260823-d0d4d01d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-ec6f8a37",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 1,
+      "graph_reachable": 0,
+      "query": "PM-20260823-ec6f8a37",
+      "stratum": "mechanical",
+      "target": "PM-20260823-d0d4d01d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000003",
+      "stratum": "tag_only",
+      "target": "PM-20260822-00000004",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000004",
+      "stratum": "tag_only",
+      "target": "PM-20260822-00000003",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000003",
+      "stratum": "mechanical",
+      "target": "PM-20260822-00000006",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000006",
+      "stratum": "mechanical",
+      "target": "PM-20260822-00000003",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-0c908263",
+      "stratum": "tag_only",
+      "target": "PM-20260823-ec6f8a37",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-ec6f8a37",
+      "stratum": "tag_only",
+      "target": "PM-20260822-0c908263",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1237e71c",
+      "stratum": "tag_only",
+      "target": "PM-20260822-9100a554",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-9100a554",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1237e71c",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1351b670",
+      "stratum": "mechanical",
+      "target": "PM-20260822-cc4a8fc1",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-cc4a8fc1",
+      "stratum": "mechanical",
+      "target": "PM-20260822-1351b670",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-16f40aaf",
+      "stratum": "tag_only",
+      "target": "PM-20260823-56739a68",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-56739a68",
+      "stratum": "tag_only",
+      "target": "PM-20260822-16f40aaf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-17f0f446",
+      "stratum": "mechanical",
+      "target": "PM-20260822-97493d32",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-97493d32",
+      "stratum": "mechanical",
+      "target": "PM-20260822-17f0f446",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-17f0f446",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b9af2c84",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b9af2c84",
+      "stratum": "mechanical",
+      "target": "PM-20260822-17f0f446",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-17f0f446",
+      "stratum": "mechanical",
+      "target": "PM-20260822-c1f962ab",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-c1f962ab",
+      "stratum": "mechanical",
+      "target": "PM-20260822-17f0f446",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-18a25b2b",
+      "stratum": "tag_only",
+      "target": "PM-20260822-75f89d91",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-75f89d91",
+      "stratum": "tag_only",
+      "target": "PM-20260822-18a25b2b",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1b189d43",
+      "stratum": "tag_only",
+      "target": "PM-20260822-afca0dff",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-afca0dff",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1b189d43",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2b4bdcab",
+      "stratum": "mechanical",
+      "target": "PM-20260822-44eab165",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-44eab165",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2b4bdcab",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2c5da8b7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-70de510a",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-70de510a",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2c5da8b7",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2d8116c2",
+      "stratum": "tag_only",
+      "target": "PM-20260822-d578e180",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d578e180",
+      "stratum": "tag_only",
+      "target": "PM-20260822-2d8116c2",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-31e3c8d5",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ee3739bb",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ee3739bb",
+      "stratum": "mechanical",
+      "target": "PM-20260822-31e3c8d5",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-451ee423",
+      "stratum": "tag_only",
+      "target": "PM-20260822-d65f30a7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d65f30a7",
+      "stratum": "tag_only",
+      "target": "PM-20260822-451ee423",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "mechanical",
+      "target": "PM-20260822-97493d32",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-97493d32",
+      "stratum": "mechanical",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b9af2c84",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b9af2c84",
+      "stratum": "mechanical",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "tag_only",
+      "target": "PM-20260823-a17feb44",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a17feb44",
+      "stratum": "tag_only",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-62847a55",
+      "stratum": "tag_only",
+      "target": "PM-20260822-b9af2c84",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b9af2c84",
+      "stratum": "tag_only",
+      "target": "PM-20260822-62847a55",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-62b05abd",
+      "stratum": "tag_only",
+      "target": "PM-20260823-89178673",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-89178673",
+      "stratum": "tag_only",
+      "target": "PM-20260822-62b05abd",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-6324da88",
+      "stratum": "tag_only",
+      "target": "PM-20260823-23697ef7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-23697ef7",
+      "stratum": "tag_only",
+      "target": "PM-20260822-6324da88",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-6e5afe1a",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fe85aca4",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-fe85aca4",
+      "stratum": "mechanical",
+      "target": "PM-20260822-6e5afe1a",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-717d5f7a",
+      "stratum": "tag_only",
+      "target": "PM-20260822-f602472b",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-f602472b",
+      "stratum": "tag_only",
+      "target": "PM-20260822-717d5f7a",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-751a0ea3",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a1d963a7",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a1d963a7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-751a0ea3",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-81bb193d",
+      "stratum": "tag_only",
+      "target": "PM-20260823-8906b05c",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260823-8906b05c",
+      "stratum": "tag_only",
+      "target": "PM-20260822-81bb193d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-8e096367",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a1d963a7",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a1d963a7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-8e096367",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-9100a554",
+      "stratum": "tag_only",
+      "target": "PM-20260823-9efa8c7a",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-9efa8c7a",
+      "stratum": "tag_only",
+      "target": "PM-20260822-9100a554",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260822-97493d32",
+      "stratum": "mechanical",
+      "target": "PM-20260822-c632c134",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-c632c134",
+      "stratum": "mechanical",
+      "target": "PM-20260822-97493d32",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-97493d32",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ef44bbda",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ef44bbda",
+      "stratum": "mechanical",
+      "target": "PM-20260822-97493d32",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-9e6efdf8",
+      "stratum": "tag_only",
+      "target": "PM-20260823-517beeaf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-517beeaf",
+      "stratum": "tag_only",
+      "target": "PM-20260822-9e6efdf8",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a9b2f51f",
+      "stratum": "tag_only",
+      "target": "PM-20260823-0c4aacdb",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-0c4aacdb",
+      "stratum": "tag_only",
+      "target": "PM-20260822-a9b2f51f",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-c151986e",
+      "stratum": "mechanical",
+      "target": "PM-20260823-e39bdd2d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-e39bdd2d",
+      "stratum": "mechanical",
+      "target": "PM-20260822-c151986e",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-c632c134",
+      "stratum": "tag_only",
+      "target": "PM-20260822-e15844b2",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e15844b2",
+      "stratum": "tag_only",
+      "target": "PM-20260822-c632c134",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-c632c134",
+      "stratum": "tag_only",
+      "target": "PM-20260823-abcd854f",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-abcd854f",
+      "stratum": "tag_only",
+      "target": "PM-20260822-c632c134",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d65f30a7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fe559c41",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-fe559c41",
+      "stratum": "mechanical",
+      "target": "PM-20260822-d65f30a7",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e46f30f9",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ef674030",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ef674030",
+      "stratum": "mechanical",
+      "target": "PM-20260822-e46f30f9",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ee3739bb",
+      "stratum": "tag_only",
+      "target": "PM-20260823-ec6f8a37",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-ec6f8a37",
+      "stratum": "tag_only",
+      "target": "PM-20260822-ee3739bb",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ef44bbda",
+      "stratum": "tag_only",
+      "target": "PM-20260823-23697ef7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-23697ef7",
+      "stratum": "tag_only",
+      "target": "PM-20260822-ef44bbda",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260822-fd56bed5",
+      "stratum": "tag_only",
+      "target": "PM-20260823-e5354138",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-e5354138",
+      "stratum": "tag_only",
+      "target": "PM-20260822-fd56bed5",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260823-1a7fa8df",
+      "stratum": "tag_only",
+      "target": "PM-20260823-c3b8b4ea",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260823-c3b8b4ea",
+      "stratum": "tag_only",
+      "target": "PM-20260823-1a7fa8df",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-23697ef7",
+      "stratum": "tag_only",
+      "target": "PM-20260823-5f031aa4",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-5f031aa4",
+      "stratum": "tag_only",
+      "target": "PM-20260823-23697ef7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-433cfab0",
+      "stratum": "mechanical",
+      "target": "PM-20260823-aaae8d9a",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-aaae8d9a",
+      "stratum": "mechanical",
+      "target": "PM-20260823-433cfab0",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-52d35466",
+      "stratum": "tag_only",
+      "target": "PM-20260823-a0e25e8e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a0e25e8e",
+      "stratum": "tag_only",
+      "target": "PM-20260823-52d35466",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-52d35466",
+      "stratum": "mechanical",
+      "target": "PM-20260823-ec6f8a37",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260823-ec6f8a37",
+      "stratum": "mechanical",
+      "target": "PM-20260823-52d35466",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-56739a68",
+      "stratum": "mechanical",
+      "target": "PM-20260823-640bff4a",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-640bff4a",
+      "stratum": "mechanical",
+      "target": "PM-20260823-56739a68",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-77b6c47a",
+      "stratum": "mechanical",
+      "target": "PM-20260823-e2efacc7",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-e2efacc7",
+      "stratum": "mechanical",
+      "target": "PM-20260823-77b6c47a",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260823-98381c20",
+      "stratum": "mechanical",
+      "target": "PM-20260823-b92afd1e",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260823-b92afd1e",
+      "stratum": "mechanical",
+      "target": "PM-20260823-98381c20",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260823-b92afd1e",
+      "stratum": "mechanical",
+      "target": "PM-20260823-ca31fb8d",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260823-ca31fb8d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-b92afd1e",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 2,
+      "graph_reachable": 1,
+      "query": "PM-20260823-dc63afd0",
+      "stratum": "tag_only",
+      "target": "PM-20260823-e3132cc5",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 2,
+      "graph_reachable": 0,
+      "query": "PM-20260823-e3132cc5",
+      "stratum": "tag_only",
+      "target": "PM-20260823-dc63afd0",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000002",
+      "stratum": "tag_only",
+      "target": "PM-20260822-00000003",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000003",
+      "stratum": "tag_only",
+      "target": "PM-20260822-00000002",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-00000002",
+      "stratum": "tag_only",
+      "target": "PM-20260823-76aba915",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-76aba915",
+      "stratum": "tag_only",
+      "target": "PM-20260822-00000002",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-00000004",
+      "stratum": "tag_only",
+      "target": "PM-20260822-16f40aaf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-16f40aaf",
+      "stratum": "tag_only",
+      "target": "PM-20260822-00000004",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-069620ec",
+      "stratum": "mechanical",
+      "target": "PM-20260823-52d35466",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-52d35466",
+      "stratum": "mechanical",
+      "target": "PM-20260822-069620ec",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-0e2572a8",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2c5da8b7",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2c5da8b7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-0e2572a8",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-0e2572a8",
+      "stratum": "tag_only",
+      "target": "PM-20260822-31e3c8d5",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-31e3c8d5",
+      "stratum": "tag_only",
+      "target": "PM-20260822-0e2572a8",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-1076c0cd",
+      "stratum": "mechanical",
+      "target": "PM-20260822-751a0ea3",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-751a0ea3",
+      "stratum": "mechanical",
+      "target": "PM-20260822-1076c0cd",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1237e71c",
+      "stratum": "tag_only",
+      "target": "PM-20260822-a9b2f51f",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a9b2f51f",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1237e71c",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1237e71c",
+      "stratum": "tag_only",
+      "target": "PM-20260823-d449038d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-d449038d",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1237e71c",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-17f0f446",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ef44bbda",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ef44bbda",
+      "stratum": "mechanical",
+      "target": "PM-20260822-17f0f446",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-18a25b2b",
+      "stratum": "tag_only",
+      "target": "PM-20260822-9bff05f5",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-9bff05f5",
+      "stratum": "tag_only",
+      "target": "PM-20260822-18a25b2b",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1b189d43",
+      "stratum": "tag_only",
+      "target": "PM-20260822-ba7720ab",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ba7720ab",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1b189d43",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1b189d43",
+      "stratum": "tag_only",
+      "target": "PM-20260823-89178673",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-89178673",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1b189d43",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2b4bdcab",
+      "stratum": "tag_only",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "tag_only",
+      "target": "PM-20260822-2b4bdcab",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2b4bdcab",
+      "stratum": "mechanical",
+      "target": "PM-20260822-c1f962ab",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-c1f962ab",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2b4bdcab",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2c5da8b7",
+      "stratum": "tag_only",
+      "target": "PM-20260822-4d688dad",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-4d688dad",
+      "stratum": "tag_only",
+      "target": "PM-20260822-2c5da8b7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2c5da8b7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b01ef292",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b01ef292",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2c5da8b7",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2ca66bd0",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a9b2f51f",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a9b2f51f",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2ca66bd0",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2dec9a36",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a1d963a7",
+      "types": [
+        "same_experiment",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a1d963a7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2dec9a36",
+      "types": [
+        "same_experiment",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-355cf772",
+      "stratum": "tag_only",
+      "target": "PM-20260822-ba7720ab",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ba7720ab",
+      "stratum": "tag_only",
+      "target": "PM-20260822-355cf772",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-37cd9dbd",
+      "stratum": "mechanical",
+      "target": "PM-20260822-cc4a8fc1",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-cc4a8fc1",
+      "stratum": "mechanical",
+      "target": "PM-20260822-37cd9dbd",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "tag_only",
+      "target": "PM-20260822-d5499ca6",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d5499ca6",
+      "stratum": "tag_only",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ef44bbda",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ef44bbda",
+      "stratum": "mechanical",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-66c1983e",
+      "stratum": "mechanical",
+      "target": "PM-20260822-faceba54",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-faceba54",
+      "stratum": "mechanical",
+      "target": "PM-20260822-66c1983e",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-6e5afe1a",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ef674030",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ef674030",
+      "stratum": "mechanical",
+      "target": "PM-20260822-6e5afe1a",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-70de510a",
+      "stratum": "mechanical",
+      "target": "PM-20260822-836420c7",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-836420c7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-70de510a",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-720d9b2e",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fd56bed5",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-fd56bed5",
+      "stratum": "mechanical",
+      "target": "PM-20260822-720d9b2e",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-751a0ea3",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fdc78b1c",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-fdc78b1c",
+      "stratum": "mechanical",
+      "target": "PM-20260822-751a0ea3",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-7dac2332",
+      "stratum": "tag_only",
+      "target": "PM-20260822-a0fda915",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a0fda915",
+      "stratum": "tag_only",
+      "target": "PM-20260822-7dac2332",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-81bb193d",
+      "stratum": "tag_only",
+      "target": "PM-20260822-d5499ca6",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d5499ca6",
+      "stratum": "tag_only",
+      "target": "PM-20260822-81bb193d",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-865fe87b",
+      "stratum": "tag_only",
+      "target": "PM-20260822-ef44bbda",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ef44bbda",
+      "stratum": "tag_only",
+      "target": "PM-20260822-865fe87b",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-8c46efe5",
+      "stratum": "mechanical",
+      "target": "PM-20260822-c151986e",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-c151986e",
+      "stratum": "mechanical",
+      "target": "PM-20260822-8c46efe5",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-97493d32",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b9af2c84",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b9af2c84",
+      "stratum": "mechanical",
+      "target": "PM-20260822-97493d32",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-9e6efdf8",
+      "stratum": "tag_only",
+      "target": "PM-20260823-412b45fb",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-412b45fb",
+      "stratum": "tag_only",
+      "target": "PM-20260822-9e6efdf8",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a9b2f51f",
+      "stratum": "mechanical",
+      "target": "PM-20260822-e0df4646",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e0df4646",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a9b2f51f",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a9b2f51f",
+      "stratum": "mechanical",
+      "target": "PM-20260823-d449038d",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-d449038d",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a9b2f51f",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b2f85a3b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-e0df4646",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e0df4646",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b2f85a3b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260822-c39aead1",
+      "stratum": "tag_only",
+      "target": "PM-20260822-e46e10a8",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e46e10a8",
+      "stratum": "tag_only",
+      "target": "PM-20260822-c39aead1",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e0df4646",
+      "stratum": "mechanical",
+      "target": "PM-20260823-d449038d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-d449038d",
+      "stratum": "mechanical",
+      "target": "PM-20260822-e0df4646",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-0c4aacdb",
+      "stratum": "mechanical",
+      "target": "PM-20260823-3d51a0cd",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-3d51a0cd",
+      "stratum": "mechanical",
+      "target": "PM-20260823-0c4aacdb",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-0c4aacdb",
+      "stratum": "mechanical",
+      "target": "PM-20260823-67b664e7",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-67b664e7",
+      "stratum": "mechanical",
+      "target": "PM-20260823-0c4aacdb",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-433cfab0",
+      "stratum": "tag_only",
+      "target": "PM-20260823-56739a68",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-56739a68",
+      "stratum": "tag_only",
+      "target": "PM-20260823-433cfab0",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-5f031aa4",
+      "stratum": "mechanical",
+      "target": "PM-20260823-d0d4d01d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-d0d4d01d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-5f031aa4",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-5f031aa4",
+      "stratum": "mechanical",
+      "target": "PM-20260823-ec6f8a37",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-ec6f8a37",
+      "stratum": "mechanical",
+      "target": "PM-20260823-5f031aa4",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-60e9af38",
+      "stratum": "tag_only",
+      "target": "PM-20260823-d7d154b6",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-d7d154b6",
+      "stratum": "tag_only",
+      "target": "PM-20260823-60e9af38",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-6203d6e8",
+      "stratum": "tag_only",
+      "target": "PM-20260823-97ad8014",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-97ad8014",
+      "stratum": "tag_only",
+      "target": "PM-20260823-6203d6e8",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-8906b05c",
+      "stratum": "tag_only",
+      "target": "PM-20260823-c2708aa9",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-c2708aa9",
+      "stratum": "tag_only",
+      "target": "PM-20260823-8906b05c",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-97ad8014",
+      "stratum": "tag_only",
+      "target": "PM-20260823-eeacb566",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-eeacb566",
+      "stratum": "tag_only",
+      "target": "PM-20260823-97ad8014",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-98381c20",
+      "stratum": "tag_only",
+      "target": "PM-20260823-bcbfb511",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-bcbfb511",
+      "stratum": "tag_only",
+      "target": "PM-20260823-98381c20",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-98381c20",
+      "stratum": "tag_only",
+      "target": "PM-20260823-cef262cf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-cef262cf",
+      "stratum": "tag_only",
+      "target": "PM-20260823-98381c20",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 3,
+      "graph_reachable": 0,
+      "query": "PM-20260823-9efa8c7a",
+      "stratum": "mechanical",
+      "target": "PM-20260823-d449038d",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 3,
+      "graph_reachable": 1,
+      "query": "PM-20260823-d449038d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-9efa8c7a",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-0b97e050",
+      "stratum": "tag_only",
+      "target": "PM-20260822-9e6efdf8",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-9e6efdf8",
+      "stratum": "tag_only",
+      "target": "PM-20260822-0b97e050",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-0b97e050",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fc29a3d7",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-fc29a3d7",
+      "stratum": "mechanical",
+      "target": "PM-20260822-0b97e050",
+      "types": [
+        "same_experiment"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-0c908263",
+      "stratum": "tag_only",
+      "target": "PM-20260822-ee3739bb",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ee3739bb",
+      "stratum": "tag_only",
+      "target": "PM-20260822-0c908263",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1237e71c",
+      "stratum": "tag_only",
+      "target": "PM-20260823-9efa8c7a",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-9efa8c7a",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1237e71c",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1351b670",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fd56bed5",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-fd56bed5",
+      "stratum": "mechanical",
+      "target": "PM-20260822-1351b670",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-18a25b2b",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1a7c45bf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1a7c45bf",
+      "stratum": "tag_only",
+      "target": "PM-20260822-18a25b2b",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1a7c45bf",
+      "stratum": "mechanical",
+      "target": "PM-20260822-865fe87b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-865fe87b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-1a7c45bf",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1aa04681",
+      "stratum": "tag_only",
+      "target": "PM-20260822-d578e180",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d578e180",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1aa04681",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-1b189d43",
+      "stratum": "tag_only",
+      "target": "PM-20260822-355cf772",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-355cf772",
+      "stratum": "tag_only",
+      "target": "PM-20260822-1b189d43",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-2be26d5e",
+      "stratum": "mechanical",
+      "target": "PM-20260823-d449038d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-d449038d",
+      "stratum": "mechanical",
+      "target": "PM-20260822-2be26d5e",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-2d8116c2",
+      "stratum": "tag_only",
+      "target": "PM-20260822-451ee423",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-451ee423",
+      "stratum": "tag_only",
+      "target": "PM-20260822-2d8116c2",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-31e3c8d5",
+      "stratum": "mechanical",
+      "target": "PM-20260822-62847a55",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-62847a55",
+      "stratum": "mechanical",
+      "target": "PM-20260822-31e3c8d5",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-451ee423",
+      "stratum": "mechanical",
+      "target": "PM-20260822-f909fa82",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-f909fa82",
+      "stratum": "mechanical",
+      "target": "PM-20260822-451ee423",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-478f4372",
+      "stratum": "mechanical",
+      "target": "PM-20260822-8e4ada80",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-8e4ada80",
+      "stratum": "mechanical",
+      "target": "PM-20260822-478f4372",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "tag_only",
+      "target": "PM-20260822-51ccd502",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-51ccd502",
+      "stratum": "tag_only",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-49a97b59",
+      "stratum": "tag_only",
+      "target": "PM-20260822-b01ef292",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b01ef292",
+      "stratum": "tag_only",
+      "target": "PM-20260822-49a97b59",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-4d688dad",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b9af2c84",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-b9af2c84",
+      "stratum": "mechanical",
+      "target": "PM-20260822-4d688dad",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-51ccd502",
+      "stratum": "mechanical",
+      "target": "PM-20260822-c632c134",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-c632c134",
+      "stratum": "mechanical",
+      "target": "PM-20260822-51ccd502",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-62b05abd",
+      "stratum": "tag_only",
+      "target": "PM-20260823-dc63afd0",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-dc63afd0",
+      "stratum": "tag_only",
+      "target": "PM-20260822-62b05abd",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-6324da88",
+      "stratum": "mechanical",
+      "target": "PM-20260822-a0fda915",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-a0fda915",
+      "stratum": "mechanical",
+      "target": "PM-20260822-6324da88",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-6e5afe1a",
+      "stratum": "mechanical",
+      "target": "PM-20260822-e46f30f9",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-e46f30f9",
+      "stratum": "mechanical",
+      "target": "PM-20260822-6e5afe1a",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-70de510a",
+      "stratum": "mechanical",
+      "target": "PM-20260822-865fe87b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-865fe87b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-70de510a",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-720d9b2e",
+      "stratum": "tag_only",
+      "target": "PM-20260822-d17b39ac",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d17b39ac",
+      "stratum": "tag_only",
+      "target": "PM-20260822-720d9b2e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-81bb193d",
+      "stratum": "mechanical",
+      "target": "PM-20260822-f909fa82",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-f909fa82",
+      "stratum": "mechanical",
+      "target": "PM-20260822-81bb193d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-865fe87b",
+      "stratum": "tag_only",
+      "target": "PM-20260822-b9af2c84",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b9af2c84",
+      "stratum": "tag_only",
+      "target": "PM-20260822-865fe87b",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-96e6332b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-9888318a",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-9888318a",
+      "stratum": "mechanical",
+      "target": "PM-20260822-96e6332b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-ad51341b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-fdc78b1c",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-fdc78b1c",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ad51341b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b01ef292",
+      "stratum": "tag_only",
+      "target": "PM-20260823-a17feb44",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-a17feb44",
+      "stratum": "tag_only",
+      "target": "PM-20260822-b01ef292",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-b2f85a3b",
+      "stratum": "mechanical",
+      "target": "PM-20260823-d449038d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-d449038d",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b2f85a3b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-b9af2c84",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ef44bbda",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ef44bbda",
+      "stratum": "mechanical",
+      "target": "PM-20260822-b9af2c84",
+      "types": [
+        "shared_rare_tag",
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-cc4a8fc1",
+      "stratum": "mechanical",
+      "target": "PM-20260822-f602472b",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-f602472b",
+      "stratum": "mechanical",
+      "target": "PM-20260822-cc4a8fc1",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-d17b39ac",
+      "stratum": "mechanical",
+      "target": "PM-20260822-faceba54",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-faceba54",
+      "stratum": "mechanical",
+      "target": "PM-20260822-d17b39ac",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260822-d33694cf",
+      "stratum": "mechanical",
+      "target": "PM-20260822-ee3739bb",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-ee3739bb",
+      "stratum": "mechanical",
+      "target": "PM-20260822-d33694cf",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260822-e46e10a8",
+      "stratum": "mechanical",
+      "target": "PM-20260823-e5354138",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-e5354138",
+      "stratum": "mechanical",
+      "target": "PM-20260822-e46e10a8",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-155f760b",
+      "stratum": "mechanical",
+      "target": "PM-20260823-b92afd1e",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-b92afd1e",
+      "stratum": "mechanical",
+      "target": "PM-20260823-155f760b",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-23697ef7",
+      "stratum": "tag_only",
+      "target": "PM-20260823-ec6f8a37",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-ec6f8a37",
+      "stratum": "tag_only",
+      "target": "PM-20260823-23697ef7",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-2ff4faaf",
+      "stratum": "tag_only",
+      "target": "PM-20260823-3d51a0cd",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-3d51a0cd",
+      "stratum": "tag_only",
+      "target": "PM-20260823-2ff4faaf",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-412b45fb",
+      "stratum": "tag_only",
+      "target": "PM-20260823-e3132cc5",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-e3132cc5",
+      "stratum": "tag_only",
+      "target": "PM-20260823-412b45fb",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-52d35466",
+      "stratum": "mechanical",
+      "target": "PM-20260823-d0d4d01d",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-d0d4d01d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-52d35466",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-5f031aa4",
+      "stratum": "tag_only",
+      "target": "PM-20260823-8906b05c",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-8906b05c",
+      "stratum": "tag_only",
+      "target": "PM-20260823-5f031aa4",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-69405be4",
+      "stratum": "tag_only",
+      "target": "PM-20260823-eeacb566",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-eeacb566",
+      "stratum": "tag_only",
+      "target": "PM-20260823-69405be4",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-bcbfb511",
+      "stratum": "mechanical",
+      "target": "PM-20260823-cef262cf",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-cef262cf",
+      "stratum": "mechanical",
+      "target": "PM-20260823-bcbfb511",
+      "types": [
+        "same_experiment",
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-e2311a6e",
+      "stratum": "tag_only",
+      "target": "PM-20260823-eb7ba215",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 0,
+      "b1_hit@5": 0,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-eb7ba215",
+      "stratum": "tag_only",
+      "target": "PM-20260823-e2311a6e",
+      "types": [
+        "shared_rare_tag"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 1,
+      "b2_hit@10": 0,
+      "b2_hit@5": 0,
+      "fold": 4,
+      "graph_reachable": 0,
+      "query": "PM-20260823-ed727a4d",
+      "stratum": "mechanical",
+      "target": "PM-20260823-fa05db48",
+      "types": [
+        "shares_source"
+      ]
+    },
+    {
+      "b1_hit@10": 1,
+      "b1_hit@5": 0,
+      "b2_hit@10": 1,
+      "b2_hit@5": 1,
+      "fold": 4,
+      "graph_reachable": 1,
+      "query": "PM-20260823-fa05db48",
+      "stratum": "mechanical",
+      "target": "PM-20260823-ed727a4d",
+      "types": [
+        "shares_source"
+      ]
+    }
+  ],
+  "summary": {
+    "active_events": 174,
+    "authority": "development measurement only; not confirmatory, not independently reviewed",
+    "connected_nodes": 151,
+    "edges_by_type": {
+      "same_experiment": 18,
+      "shared_rare_tag": 147,
+      "shares_source": 105,
+      "supersession": 8
+    },
+    "edges_total_union": 240,
+    "experiment_id": "PMLAB-ASSOC-E2",
+    "gold_caveat": "tag_only gold derives from tags authored by the same agent running the experiment and is therefore weaker evidence of relatedness than the mechanical strata",
+    "mechanical": {
+      "b1_recall@10": 0.5375,
+      "b1_recall@5": 0.395833,
+      "b2_recall@10": 0.579167,
+      "b2_recall@5": 0.441667,
+      "difference@10": {
+        "high": 0.095833,
+        "low": -0.0125,
+        "mean": 0.041667,
+        "n": 240
+      },
+      "difference@5": {
+        "high": 0.108333,
+        "low": -0.016667,
+        "mean": 0.045833,
+        "n": 240
+      },
+      "queries": 240,
+      "reachability_ceiling": 0.366667
+    },
+    "overall": {
+      "b1_recall@10": 0.472917,
+      "b1_recall@5": 0.3375,
+      "b2_recall@10": 0.51875,
+      "b2_recall@5": 0.391667,
+      "difference@10": {
+        "high": 0.085417,
+        "low": 0.00625,
+        "mean": 0.045833,
+        "n": 480
+      },
+      "difference@5": {
+        "high": 0.097917,
+        "low": 0.010417,
+        "mean": 0.054167,
+        "n": 480
+      },
+      "queries": 480,
+      "reachability_ceiling": 0.322917
+    },
+    "rare_tag_max": 4,
+    "records_sha256": "4549d2077cc839250b68224287658b58ffe4710850f57e67892b1e4bd04a7852",
+    "rrf_k": 60,
+    "seed_count": 3,
+    "tag_only": {
+      "b1_recall@10": 0.408333,
+      "b1_recall@5": 0.279167,
+      "b2_recall@10": 0.458333,
+      "b2_recall@5": 0.341667,
+      "difference@10": {
+        "high": 0.104167,
+        "low": -0.004167,
+        "mean": 0.05,
+        "n": 240
+      },
+      "difference@5": {
+        "high": 0.120833,
+        "low": 0.004167,
+        "mean": 0.0625,
+        "n": 240
+      },
+      "queries": 240,
+      "reachability_ceiling": 0.279167
+    },
+    "tier": "E-exploratory"
+  }
+}
