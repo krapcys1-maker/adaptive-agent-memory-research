@@ -1,0 +1,56 @@
+{
+  "addendum_to": "PMLAB-H1-ADDR-E2",
+  "additional_reporting_not_used_for_pass_fail": [
+    "entity accuracy",
+    "property accuracy",
+    "scope accuracy",
+    "canonical address accuracy",
+    "alias-resolution failures",
+    "unknown-entity failures",
+    "unknown-property failures",
+    "over-broad address",
+    "over-narrow address"
+  ],
+  "arms": [
+    {
+      "id": "E2-A",
+      "model": null,
+      "note": "the baseline. Its rules are NOT to be improved \u2014 an improved E2-A stops being a baseline",
+      "result": {
+        "abstention_rate": 0.857143,
+        "collision_rate": 0.0,
+        "fragmentation_rate": 0.0,
+        "gold_coverage": 0.142857,
+        "mean_context_tokens": 4.619048,
+        "stale_context_rate": 0.0
+      },
+      "status": "run, frozen"
+    },
+    {
+      "adds": "property canonicalisation: surface forms of one property mapped to a single identifier",
+      "id": "E2-A2",
+      "model": null,
+      "status": "not run"
+    },
+    {
+      "adds": "extraction into the same {entity, property, scope} schema",
+      "id": "E2-B",
+      "model": "small",
+      "status": "not run"
+    },
+    {
+      "adds": "deterministic when confident, model only on abstention",
+      "id": "E2-C",
+      "model": "small, on fallback only",
+      "status": "not run"
+    }
+  ],
+  "git_commit": "0a2642cefd7c701461107675d60d36592701138e",
+  "prior_art_making_this_urgent": "arXiv 2601.00821 finds extraction losing to raw chunks with extraction gaps at 78.8% of failures. If a cheap extractor is the bottleneck rather than the representation, the cheapest possible fix has to be tried before the expensive one, or the conclusion is unreadable",
+  "registered_at": "2026-08-24T01:00:00Z",
+  "subject": "an arm inserted between the rule baseline and the model arm",
+  "supplements_not_modifies": "aac1c7267714c0364ef8e1769eb6ce5619bc220b9e98d0d11c2eb9a803c412d3",
+  "unchanged": "corpus, thresholds, metric definitions, denominators and gates. This inserts an arm and changes no criterion",
+  "why": "E2-A failed and the first reading of that failure overclaimed. Rules matching the assertion form that records use do not match the interrogative form that questions use \u2014 but a canonicalisation layer mapping rotates, rotation, after rotation and old deployment key onto one property identifier could close the same gap with no model. Going straight from failing rules to a model would show that a model works and never that it was necessary",
+  "why_that_breakdown": "entity 0.99 property 0.96 scope 0.95 address 0.70 would mean the text is understood and the parts are not assembling into a stable address \u2014 a different problem from any single accuracy figure, and invisible without the split"
+}
