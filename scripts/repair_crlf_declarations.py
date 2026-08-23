@@ -73,8 +73,6 @@ def collect() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
             if resolved is None:
                 continue
             target, certain = resolved
-            if not certain:
-                continue
             data = target.read_bytes()
             actual = sha256_bytes(data)
             if actual == value:
@@ -86,11 +84,19 @@ def collect() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
                 "target": target.relative_to(ROOT).as_posix(),
                 "declared": value,
                 "actual": actual,
+                "key_mapping": "path" if certain else "name-heuristic",
             }
+            # A successful CRLF match is itself proof that the declaration
+            # describes this file: an accidental SHA-256 collision is not a real
+            # possibility. So the match confirms even a heuristic key mapping,
+            # and such declarations are safe to repair.
             if sha256_bytes(as_crlf(data)) == value:
                 repairable.append(entry)
-            else:
+            elif certain:
                 genuine.append(entry)
+            # A heuristic key that fails the CRLF test proves nothing. It is
+            # most likely a derived digest that was never a file digest, such as
+            # a ranking-order hash, so it is neither repaired nor called a break.
     return repairable, genuine
 
 

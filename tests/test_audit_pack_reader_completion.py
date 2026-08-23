@@ -3,7 +3,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,19 +16,6 @@ REPORT = (
 )
 
 
-# Known pre-existing defect, tracked as issue #26. The declared hash for
-# summary.json matches the CRLF working copy produced by Git's autocrlf
-# conversion on Windows, not the LF bytes stored in the blob, so this audit
-# cannot pass on a Linux or macOS checkout. 843 of 1348 files under data/lab
-# share the divergence. This is not marked xfail to hide it: the repair is a
-# provenance decision about whether to re-commit artifact bytes or supersede
-# the declared hashes, and that decision must be recorded rather than made
-# silently. strict=False so the test reports as an expected failure where the
-# defect bites and as an unexpected pass once it is repaired.
-@pytest.mark.xfail(
-    strict=False,
-    reason="issue #26: declared freeze hashes are working-copy derived and unverifiable off Windows",
-)
 def test_pack_reader_first_reader_branch_has_complete_evidence_chain():
     result = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "audit_pack_reader_completion.py")],

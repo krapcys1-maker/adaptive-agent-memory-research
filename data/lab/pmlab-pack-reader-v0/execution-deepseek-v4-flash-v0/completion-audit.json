@@ -4,7 +4,7 @@
     "budget_ledger_has_exact_call_receipts_and_cost": true,
     "claim_boundary_and_exception_preserved": true,
     "construction_manifest_is_preserved_pre_run_snapshot": true,
-    "declared_prompt_raw_and_score_hashes_match": false,
+    "declared_prompt_raw_and_score_hashes_match": true,
     "deterministic_result_audit_and_all_registered_gates_pass": true,
     "exactly_one_successful_call_per_condition_and_no_retry": true,
     "fixture_and_construction_audit_pass": true,
@@ -40,6 +40,6 @@
     "run_cost_usd": 0.04026,
     "semantic_groups": 16
   },
-  "passed": false,
+  "passed": true,
   "remaining_external_validity_gate": "Unchanged cross-family replication or independently reviewed natural-history development is required before any format/order recommendation."
 }

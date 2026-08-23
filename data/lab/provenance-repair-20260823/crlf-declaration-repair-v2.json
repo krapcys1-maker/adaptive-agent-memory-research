@@ -1,0 +1,85 @@
+{
+  "applied": true,
+  "issue": 26,
+  "not_repaired_genuine_modifications": [
+    {
+      "actual": "11b5a74eb932e196f6f5be0b7bdcd5ea7ce8388d9a6bdcc72d040cc289fe013b",
+      "declared": "c2c9bcfa8d1516bbb03ec16e521522996e3222a5bd20309b9c0c4ce8ed4b507b",
+      "key": "report.md",
+      "key_mapping": "path",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/pmlab-obligation-mapping-deepseek-v1/result-manifest.json",
+      "target": "data/lab/pmlab-obligation-mapping-deepseek-v1/report.md"
+    },
+    {
+      "actual": "ad1d2cd12efafb7e55fd488b86adae15f04703b34a945bc23c186dbe226e7a3f",
+      "declared": "fec781e0524b5c9955acc291b8bf9c87f8b5ba4d4a87b1e036acd4b19ccae0d6",
+      "key": "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md",
+      "key_mapping": "path",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md"
+    },
+    {
+      "actual": "461b69b839362ce4a3eee530169b142076db28f82e258f479aae1128c2c0d913",
+      "declared": "7e04f94c7e4d09d0e9aabddb728cc0302d87133c85f6d8fdadf2e145ddce8abf",
+      "key": "docs/07-literature/natural-history-source-unit-contract-audit-v0.md",
+      "key_mapping": "path",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "docs/07-literature/natural-history-source-unit-contract-audit-v0.md"
+    },
+    {
+      "actual": "0ac6bacab27477a36b3985c17edce399d88b150065e73cb662003e7403855167",
+      "declared": "91205e29b8c6cd79606a5deaea107afe350a9e8aa4cd2069f720b452164511d5",
+      "key": "data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json",
+      "key_mapping": "path",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json"
+    },
+    {
+      "actual": "1e54d56701b50273f747bd5600f64107d08bf2bb570dd77fb39bd37c9b76940c",
+      "declared": "98e0fac5b9fd029c701f663b1e94c68bfbe39b232f34d6b60e0a5626a194059b",
+      "key": "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json",
+      "key_mapping": "path",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json"
+    },
+    {
+      "actual": "ac65e01c67fce9b833b9756a4db975267a654cbcf7ca2edbf8498e1fd257cae0",
+      "declared": "ddf16a920304b97963259b75b0276d53eb0ffde45abee262312ef015e6ab85dc",
+      "key": "tests/test_natural_history_contracts.py",
+      "key_mapping": "path",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "tests/test_natural_history_contracts.py"
+    }
+  ],
+  "recorded_at": "2026-08-23T10:34:07Z",
+  "repaired": [
+    {
+      "actual": "462b37dbc2dd3fba768e7fb9ecdb7281f19d6cea268c7cde430566b4ad13c54d",
+      "declared": "f15b8bb74c9e7b89763043eea7046fa956cee45f6fc508803d7dc9c1f580fd0e",
+      "key": "summary_sha256",
+      "key_mapping": "name-heuristic",
+      "key_path": [],
+      "manifest": "data/lab/pmlab-pack-reader-v0/execution-deepseek-v4-flash-v0/manifest.json",
+      "target": "data/lab/pmlab-pack-reader-v0/execution-deepseek-v4-flash-v0/summary.json"
+    }
+  ],
+  "rule": "declared digest equals sha256 of the same content with LF converted to CRLF"
+}
