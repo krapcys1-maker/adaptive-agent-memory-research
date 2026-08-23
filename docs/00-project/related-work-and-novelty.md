@@ -53,6 +53,35 @@ in the same range as the 78.8% that paper reports as its dominant failure mode.
 That convergence strengthens the finding and removes any claim to having
 discovered it.
 
+### Tenure — Beyond Similarity Search, 2026
+
+[arXiv 2605.11325](https://arxiv.org/html/2605.11325v1)
+
+A typed belief store with canonical names, aliases, epistemic status, versioned
+supersession and scope isolation. Its retrieval comparison is a sharper version
+of what this project measured independently:
+
+```
+alias-weighted BM25    mean precision 1.0     72/72
+cosine similarity                              8/72
+```
+
+on one corpus, in a semantically homogeneous domain. Compare `PMLAB-H1-DENSE-E1`
+here: on the OBSOLETE family, gold reached the context on 0.167 for lexical and
+0.500 for dense, and 48 near-identical records buried it for both.
+
+Their statement of the failure mode is the one this project arrived at through
+`POISON` and `OBSOLETE`:
+
+> the failure mode for persistent memory is not that memory is empty but that it
+> contains stale, superseded or contradictory facts that silently influence
+> responses
+
+**Consequence: stop tuning retrieval for near-clones.** Another embedding model
+or another BM25 weighting is a measurement someone has already made, twice, with
+a wider margin than this project could produce. Similarity stays as one channel
+and the effort goes to addressability.
+
 ---
 
 ## Reported, not yet verified
@@ -101,13 +130,30 @@ DEV / VALID / commit-and-reveal SEALED
 deterministic → small model → hybrid   extraction gap isolated to property, not entity
 ```
 
-The falsifiable form:
+The falsifiable form, sharpened after the prior-art pass:
 
-> Similarity retrieval degrades when semantically homogeneous memories differ
-> primarily by identity. Explicit addressable state can recover useful evidence
-> more efficiently under a fixed context budget, and the failure of cheap
-> extraction is localisable to a specific resolution step rather than to
-> structure itself.
+> **When is deterministic addressable state sufficient, and where exactly does a
+> model become necessary?**
+
+Structured memory exists (APEX-MEM). Temporal validity exists (Graphiti). State
+resolution exists (A-TMA). Similarity failing on near-clones is measured
+(Tenure). What none of them isolates is the *margin*: how much of the work a
+model is assumed to be needed for can be done without one, and which residue
+genuinely cannot.
+
+This project is measuring that margin directly, one layer at a time:
+
+```
+E2-A    rules only                     0.143
+E2-A2   + property canonicalisation    0.571   dev and valid identical
+E2-A3   + entity canonicalisation      1.000   dev and valid identical
+E2-B    small model                    not run — nothing left for it to do here
+```
+
+Two bottlenecks that looked like they needed intelligence were grammar transfer,
+and both fell to canonicalisation. That is the shape of an answer to the sharpened
+question, and it is why the next corpus has to be harder rather than the next
+component smarter.
 
 That last clause is where this diverges from *Verbatim Chunks*. That paper
 concludes structure loses to raw text. This project has a measurement suggesting
