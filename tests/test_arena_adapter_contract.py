@@ -21,7 +21,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from arena.adapter import Answer, Cost, MemoryAdapter, synthetic_fixture, validate_adapter  # noqa: E402
+from arena.adapter import Answer, Cost, Measure, MemoryAdapter, synthetic_fixture, validate_adapter  # noqa: E402
 from arena.aamr_adapter import AAMRAdapter  # noqa: E402
 
 
@@ -36,7 +36,7 @@ class _Conforming:
 
     def ingest(self, records):
         self.records = list(records)
-        return Cost(model_calls=len(records), input_tokens=10 * len(records))
+        return Cost(Measure(len(records)), Measure(10 * len(records)))
 
     def query(self, question, asked_at=None):
         if not self.records:
@@ -137,16 +137,25 @@ def test_negative_context_tokens_are_rejected() -> None:
 # --------------------------------------------------------------- cost accounting
 
 
-def test_costs_add() -> None:
-    total = Cost(1, 10, 2, 0.5) + Cost(2, 20, 3, 0.25)
-    assert (total.model_calls, total.input_tokens, total.output_tokens) == (3, 30, 5)
-    assert total.wall_seconds == pytest.approx(0.75)
+def test_costs_add_per_field() -> None:
+    total = (Cost(Measure(1), Measure(10), Measure(2), Measure(0.5))
+             + Cost(Measure(2), Measure(20), Measure(3), Measure(0.25)))
+    assert (total.model_calls.value, total.input_tokens.value,
+            total.output_tokens.value) == (3, 30, 5)
+    assert total.wall_seconds.value == pytest.approx(0.75)
+    assert total.fully_known and not total.is_lower_bound
 
 
 def test_a_zero_cost_is_a_claim_not_a_default() -> None:
-    """The reference adapter calls no model, so zero is true rather than unfilled."""
+    """The reference adapter calls no model, so its zero is measured, not absent.
+
+    "native" here is the whole point: a system reporting zero because it makes
+    no calls and one reporting zero because it cannot count must not look alike.
+    """
     result = validate_adapter(AAMRAdapter(), synthetic_fixture())
-    assert result["ingest_cost"]["model_calls"] == 0
+    assert result["ingest_cost"]["model_calls"]["value"] == 0
+    assert result["ingest_cost"]["model_calls"]["observability"] == "native"
+    assert result["cost_fully_known"] is True
 
 
 # --------------------------------------------------------------- the fixture is honest

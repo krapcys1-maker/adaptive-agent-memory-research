@@ -26,7 +26,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from arena.adapter import Answer, Cost, MemoryAdapter, synthetic_fixture, validate_adapter  # noqa: E402
+from arena.adapter import Answer, Cost, Measure, MemoryAdapter, synthetic_fixture, validate_adapter  # noqa: E402
 from arena.cupmem_adapter import CUPMemAdapter, _abstained, _evidence_ids  # noqa: E402
 
 
@@ -115,16 +115,16 @@ def test_query_cost_is_the_delta_not_the_cumulative_total() -> None:
     adapter.reset()
     adapter.ingest([{"id": "r1", "text": "one", "timestamp": "d1"}])
     answer = adapter.query("anything?")
-    assert answer.cost.model_calls == 2       # the query's own calls
-    assert answer.cost.output_tokens == 20    # not the ingest's 100 input
+    assert answer.cost.model_calls.value == 2       # the query's own calls
+    assert answer.cost.output_tokens.value == 20    # not the ingest's 100 input
 
 
 def test_ingest_cost_reports_their_model_calls() -> None:
     adapter = CUPMemAdapter(_EngineDouble())
     adapter.reset()
     cost = adapter.ingest([{"id": "r1", "text": "one", "timestamp": "d1"}])
-    assert cost.model_calls == 1
-    assert cost.input_tokens == 100
+    assert cost.model_calls.value == 1
+    assert cost.input_tokens.value == 100
 
 
 def test_an_unreportable_cost_is_marked_unmeasured_not_free() -> None:
@@ -138,44 +138,79 @@ def test_an_unreportable_cost_is_marked_unmeasured_not_free() -> None:
     cost = adapter.ingest([{"id": "r1", "text": "one", "timestamp": "d1"}])
     answer = adapter.query("anything?")
 
-    assert cost.model_calls == 0 and cost.measured is False
-    assert answer.cost.measured is False
-    assert answer.system_metadata["cost_observability"] == "unobservable"
+    assert cost.model_calls.value is None
+    assert cost.model_calls.observability == "unobservable"
+    assert answer.cost.fully_known is False
+    assert answer.system_metadata["cost_observability"]["calls"] == "unobservable"
 
 
 def test_a_reportable_cost_is_marked_measured() -> None:
     adapter = CUPMemAdapter(_EngineDouble(expose_usage=True))
     adapter.reset()
-    assert adapter.ingest([{"id": "r1", "text": "one", "timestamp": "d1"}]).measured is True
-    assert adapter.query("anything?").system_metadata["cost_observability"] == "native"
+    assert adapter.ingest([{"id": "r1", "text": "one", "timestamp": "d1"}]).fully_known is True
+    assert adapter.query("anything?").system_metadata["cost_observability"]["calls"] == "native"
 
 
-def test_one_unmeasured_component_makes_a_total_unmeasured() -> None:
-    """A sum that drops the qualifier is the failure this exists to prevent."""
-    assert (Cost(1, 10, 2, 0.5) + Cost(measured=False)).measured is False
-    assert (Cost(1, 10, 2, 0.5) + Cost(0, 0, 0, 0.1)).measured is True
+def test_a_measured_part_plus_an_unmeasurable_one_is_a_floor_not_a_rejection() -> None:
+    """The contradiction a single boolean produced, and why it is gone.
+
+    A measured ingest plus an unmeasurable query is neither inconsistent nor
+    zero. It is "at least twelve calls, total unknown", and the twelve was
+    really measured. A single flag forced a choice between rejecting the sum
+    and discarding the twelve.
+    """
+    measured = Cost(Measure(12), Measure(40000), Measure(500), Measure(1.8))
+    blind = Cost(Measure(None, "unobservable"), Measure(None, "unobservable"),
+                 Measure(None, "unobservable"), Measure(0.4, "instrumented"))
+    total = measured + blind
+
+    assert total.model_calls.value == 12
+    assert total.model_calls.lower_bound is True
+    assert total.fully_known is False
+    assert total.is_lower_bound is True
+
+
+def test_two_fully_measured_costs_sum_to_a_total_not_a_floor() -> None:
+    measured = Cost(Measure(12), Measure(40000), Measure(500), Measure(1.8))
+    assert (measured + measured).fully_known is True
+    assert (measured + measured).is_lower_bound is False
+
+
+def test_a_system_may_know_its_calls_and_not_its_tokens() -> None:
+    """One flag over the whole Cost would hide a figure the system does have."""
+    partial = Cost(Measure(17, "native"), Measure(None, "unobservable"))
+    assert partial.model_calls.value == 17
+    assert partial.input_tokens.value is None
+    assert partial.fully_known is False
 
 
 def test_the_validator_reports_whether_cost_was_measured_at_all() -> None:
     measurable = validate_adapter(CUPMemAdapter(_EngineDouble()), synthetic_fixture())
     blind = validate_adapter(CUPMemAdapter(_EngineDouble(expose_usage=False)), synthetic_fixture())
-    assert measurable["cost_is_measured"] is True
-    assert blind["cost_is_measured"] is False
+    assert measurable["cost_fully_known"] is True
+    assert blind["cost_fully_known"] is False
     # Both still obey the contract: being unable to report cost is a property to
     # record, not grounds for exclusion from the arena.
     assert measurable["admissible"] and blind["admissible"]
 
 
-def test_a_cost_claiming_to_be_unmeasured_while_carrying_counts_is_rejected() -> None:
-    class Contradictory:
-        name = "contradictory"
+def test_an_observability_outside_the_vocabulary_is_rejected() -> None:
+    class Nonsense:
+        name = "nonsense"
         def reset(self): pass
-        def ingest(self, records): return Cost(5, 100, 20, 0.1, measured=False)
+        def ingest(self, records): return Cost(Measure(5, "probably"))
         def query(self, question, asked_at=None): return Answer(text="x")
 
-    result = validate_adapter(Contradictory(), synthetic_fixture())
+    result = validate_adapter(Nonsense(), synthetic_fixture())
     assert not result["admissible"]
-    assert any("unmeasured" in p for p in result["problems"])
+    assert any("observability" in p for p in result["problems"])
+
+
+def test_being_unable_to_report_cost_is_recorded_not_disqualifying() -> None:
+    blind = validate_adapter(CUPMemAdapter(_EngineDouble(expose_usage=False)),
+                             synthetic_fixture())
+    assert blind["cost_fully_known"] is False
+    assert blind["admissible"], blind["problems"]
 
 
 def test_an_abstaining_engine_reports_no_text() -> None:

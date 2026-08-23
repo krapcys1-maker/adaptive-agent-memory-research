@@ -39,7 +39,7 @@ from __future__ import annotations
 import time
 from typing import Any
 
-from arena.adapter import Answer, Cost
+from arena.adapter import Answer, Cost, Measure
 
 
 def _evidence_ids(relevant_context: Any) -> list[str]:
@@ -139,12 +139,14 @@ class CUPMemAdapter:
         )
         self._sessions_written += 1
 
+        # Per field, because a system can know it called a model 17 times and
+        # still not expose token usage. One flag over the whole Cost would hide
+        # the figure it does have.
         return Cost(
-            model_calls=self._usage("calls"),
-            input_tokens=self._usage("prompt_tokens"),
-            output_tokens=self._usage("completion_tokens"),
-            wall_seconds=round(time.monotonic() - started, 6),
-            measured=self._usage_available(),
+            model_calls=self._measure("calls"),
+            input_tokens=self._measure("prompt_tokens"),
+            output_tokens=self._measure("completion_tokens"),
+            wall_seconds=Measure(round(time.monotonic() - started, 6), "instrumented"),
         )
 
     def query(self, question: str, asked_at: Any = None) -> Answer:
@@ -163,20 +165,20 @@ class CUPMemAdapter:
             context_tokens=self._context_tokens(result),
             abstained=bool(abstained),
             cost=Cost(
-                model_calls=max(0, after[0] - before[0]),
-                input_tokens=max(0, after[1] - before[1]),
-                output_tokens=max(0, after[2] - before[2]),
-                wall_seconds=round(time.monotonic() - started, 6),
-                measured=self._usage_available(),
+                model_calls=self._delta(before[0], after[0], "calls"),
+                input_tokens=self._delta(before[1], after[1], "prompt_tokens"),
+                output_tokens=self._delta(before[2], after[2], "completion_tokens"),
+                wall_seconds=Measure(round(time.monotonic() - started, 6), "instrumented"),
             ),
             system_metadata={
                 # Their premise verdict is reported, never converted into one of
                 # our failure types. That conversion is the harness's job.
                 "verdict": result.get("verdict"),
                 "abstention_derivable": abstained is not None,
-                "cost_observability": (
-                    "native" if self._usage_available() else "unobservable"
-                ),
+                "cost_observability": {
+                    f: ("native" if self._field_available(f) else "unobservable")
+                    for f in ("calls", "prompt_tokens", "completion_tokens")
+                },
                 "evidence_observability": (
                     "native" if evidence else "none-returned"
                 ),
@@ -194,17 +196,32 @@ class CUPMemAdapter:
         """
         return getattr(getattr(self._engine, "llm", None), "usage", None) is not None
 
-    def _usage(self, field: str) -> int:
-        """Cumulative usage, or 0 when their tracker does not expose it.
+    def _field_available(self, field: str) -> bool:
+        """Does their tracker expose this particular field?
 
-        Callers must pair this with ``_usage_available`` and set ``measured``
-        accordingly. Reading this number alone would treat an unreportable cost
-        as a free one.
+        Checked per field rather than per tracker, because exposing usage at all
+        and exposing every part of it are different things.
         """
+        tracker = getattr(getattr(self._engine, "llm", None), "usage", None)
+        if tracker is None:
+            return False
+        return field in tracker if isinstance(tracker, dict) else hasattr(tracker, field)
+
+    def _usage(self, field: str) -> int:
         tracker = getattr(getattr(self._engine, "llm", None), "usage", None)
         if isinstance(tracker, dict):
             return int(tracker.get(field, 0) or 0)
         return int(getattr(tracker, field, 0) or 0) if tracker is not None else 0
+
+    def _measure(self, field: str) -> Measure:
+        if not self._field_available(field):
+            return Measure(None, "unobservable")
+        return Measure(self._usage(field), "native")
+
+    def _delta(self, before: int, after: int, field: str) -> Measure:
+        if not self._field_available(field):
+            return Measure(None, "unobservable")
+        return Measure(max(0, after - before), "native")
 
     def _context_tokens(self, result: dict[str, Any]) -> int:
         """What reached their reader, in whitespace tokens.

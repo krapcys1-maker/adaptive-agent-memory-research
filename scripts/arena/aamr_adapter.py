@@ -25,8 +25,18 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from arena.adapter import Answer, Cost  # noqa: E402
+from arena.adapter import Answer, Cost, Measure  # noqa: E402
 from corpus.address_extract import extract, extract_query  # noqa: E402
+
+
+def _free(started: float) -> Cost:
+    """A cost of zero that is genuinely measured, not merely unreported."""
+    return Cost(
+        model_calls=Measure(0, "native"),
+        input_tokens=Measure(0, "native"),
+        output_tokens=Measure(0, "native"),
+        wall_seconds=Measure(round(time.monotonic() - started, 6), "instrumented"),
+    )
 
 
 class AAMRAdapter:
@@ -46,7 +56,14 @@ class AAMRAdapter:
             address = extract(record["text"], canonicalise=True)
             if address:
                 self._drawers.setdefault(address.canonical, []).append(record)
-        return Cost(model_calls=0, wall_seconds=round(time.monotonic() - started, 6))
+        # Zero is a claim here, not an unfilled default: this adapter calls no
+        # model, so "native" is the honest observability rather than "unobservable".
+        return Cost(
+            model_calls=Measure(0, "native"),
+            input_tokens=Measure(0, "native"),
+            output_tokens=Measure(0, "native"),
+            wall_seconds=Measure(round(time.monotonic() - started, 6), "instrumented"),
+        )
 
     def query(self, question: str, asked_at: Any = None) -> Answer:
         started = time.monotonic()
@@ -56,15 +73,13 @@ class AAMRAdapter:
             # Abstention is a real answer here, not a fallback. A wrong address
             # opens someone else's drawer, which is worse than opening none.
             return Answer(text="", abstained=True,
-                          cost=Cost(wall_seconds=round(time.monotonic() - started, 6)),
-                          system_metadata={"reason": "no address resolved"})
+                          cost=_free(started), system_metadata={"reason": "no address resolved"})
 
         chain = [r for r in self._drawers[address.canonical]
                  if asked_at is None or r.get("day", 0) <= asked_at]
         if not chain:
             return Answer(text="", abstained=True,
-                          cost=Cost(wall_seconds=round(time.monotonic() - started, 6)),
-                          system_metadata={"reason": "chain empty at query time"})
+                          cost=_free(started), system_metadata={"reason": "chain empty at query time"})
 
         # Newest first. An addressed chain arrives time-ordered, which is why the
         # resolver is a no-op on simple succession — measured in PMLAB-H1-COMPOSE-E1.
@@ -74,6 +89,6 @@ class AAMRAdapter:
             evidence_ids=[r["id"] for r in chain],
             context_tokens=sum(len(r["text"].split()) for r in chain),
             abstained=False,
-            cost=Cost(wall_seconds=round(time.monotonic() - started, 6)),
+            cost=_free(started),
             system_metadata={"address": address.canonical, "chain_length": len(chain)},
         )

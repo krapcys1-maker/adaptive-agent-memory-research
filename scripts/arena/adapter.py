@@ -45,36 +45,98 @@ from dataclasses import dataclass, field
 from typing import Any, Protocol, runtime_checkable
 
 
+OBSERVABILITY = ("native", "instrumented", "unobservable")
+
+
 @dataclass(frozen=True)
-class Cost:
-    """What one operation consumed. Zero is a claim, not a default.
+class Measure:
+    """One quantity, and how we came to know it.
 
-    ``measured`` is the field that keeps that claim honest. A system making no
-    model calls and a system unable to report them both produce zeros, and
-    letting the second aggregate as a real zero would make ignorance of cost look
-    like an advantage — the cheapest system in the table would be the one that
-    cannot count.
-
-    So an unmeasured cost carries ``measured=False``, addition propagates it, and
-    the harness refuses to report a total built from one.
+    ``value is None`` means the system cannot report this quantity. Zero means it
+    reported zero. Those are different facts and a single number cannot hold
+    both.
     """
 
-    model_calls: int = 0
-    input_tokens: int = 0
-    output_tokens: int = 0
-    wall_seconds: float = 0.0
-    measured: bool = True
+    value: int | float | None = 0
+    observability: str = "native"
+    lower_bound: bool = False
+
+    @property
+    def known(self) -> bool:
+        """Fully known. A lower bound carries a number and is not this."""
+        return self.value is not None and not self.lower_bound
+
+    def __add__(self, other: "Measure") -> "Measure":
+        # Weakest observability wins: a total is only as trustworthy as its least
+        # trustworthy part.
+        rank = {"native": 0, "instrumented": 1, "unobservable": 2}
+        weakest = max((self.observability, other.observability), key=lambda o: rank[o])
+
+        if self.value is not None and other.value is not None:
+            return Measure(self.value + other.value, weakest,
+                           self.lower_bound or other.lower_bound)
+
+        # One side is unknown. The known side is a real measurement and throwing
+        # it away would lose information, so it is kept and flagged as a floor.
+        #
+        # A first version returned it without the flag, and `fully_known` then
+        # reported True for a partial total — the same aggregation-destroys-
+        # provenance error this class exists to prevent, committed inside the
+        # fix for it.
+        present = [m for m in (self, other) if m.value is not None]
+        if not present:
+            return Measure(None, "unobservable")
+        return Measure(sum(m.value for m in present), "unobservable", lower_bound=True)
+
+
+@dataclass(frozen=True)
+class Cost:
+    """What one operation consumed, per field, with how each was known.
+
+    A single ``measured`` flag was tried first and produced a contradiction. It
+    forced a sum of a measured ingest and an unmeasured query either to be
+    rejected as inconsistent, or to discard the ingest figure that had genuinely
+    been measured. Neither is acceptable: the honest reading of
+
+        ingest  12 calls, 40,000 tokens, measured
+        query   unmeasurable
+
+    is *at least 12 calls and at least 40,000 tokens, total unknown* — a lower
+    bound, not a contradiction and not a zero.
+
+    Per-field observability also carries a distinction one flag cannot. A system
+    may know perfectly well that it called a model 17 times and still not expose
+    token usage, and reporting the whole cost as unmeasured would hide a figure
+    it actually has.
+    """
+
+    model_calls: Measure = field(default_factory=Measure)
+    input_tokens: Measure = field(default_factory=Measure)
+    output_tokens: Measure = field(default_factory=Measure)
+    wall_seconds: Measure = field(default_factory=lambda: Measure(0.0))
+
+    _FIELDS = ("model_calls", "input_tokens", "output_tokens", "wall_seconds")
 
     def __add__(self, other: "Cost") -> "Cost":
-        return Cost(
-            self.model_calls + other.model_calls,
-            self.input_tokens + other.input_tokens,
-            self.output_tokens + other.output_tokens,
-            round(self.wall_seconds + other.wall_seconds, 6),
-            # One unmeasured component makes the total unmeasured. A sum that
-            # silently drops the qualifier is exactly the failure this prevents.
-            self.measured and other.measured,
-        )
+        return Cost(**{f: getattr(self, f) + getattr(other, f) for f in Cost._FIELDS})
+
+    @property
+    def fully_known(self) -> bool:
+        """Every field reported. Only then is a total a total."""
+        return all(getattr(self, f).known for f in Cost._FIELDS)
+
+    @property
+    def is_lower_bound(self) -> bool:
+        """Any field carries a floor rather than a total."""
+        return any(getattr(self, f).lower_bound for f in Cost._FIELDS)
+
+    def summary(self) -> dict[str, Any]:
+        return {
+            f: {"value": getattr(self, f).value,
+                "observability": getattr(self, f).observability,
+                "lower_bound": getattr(self, f).lower_bound}
+            for f in Cost._FIELDS
+        } | {"fully_known": self.fully_known, "is_lower_bound": self.is_lower_bound}
 
 
 @dataclass(frozen=True)
@@ -146,11 +208,10 @@ def validate_adapter(adapter: Any, fixture: dict[str, Any]) -> dict[str, Any]:
 
     if not isinstance(ingest_cost, Cost):
         problems.append("ingest must return a Cost")
-    elif not ingest_cost.measured and any(
-        getattr(ingest_cost, f) for f in ("model_calls", "input_tokens", "output_tokens")
-    ):
-        problems.append("cost is marked unmeasured but carries non-zero counts")
-    elif ingest_cost.wall_seconds == 0.0 and elapsed > 0.5:
+    elif any(getattr(ingest_cost, f).observability not in OBSERVABILITY
+             for f in Cost._FIELDS):
+        problems.append("a cost field declares an observability outside the vocabulary")
+    elif ingest_cost.wall_seconds.value in (0, 0.0) and elapsed > 0.5:
         # Not fatal: a fast adapter legitimately reports ~0. But a slow one
         # reporting 0 is under-reporting, and cost is part of the mechanism.
         problems.append("ingest took over 0.5s and reported zero wall time")
@@ -180,10 +241,14 @@ def validate_adapter(adapter: Any, fixture: dict[str, Any]) -> dict[str, Any]:
         "problems": problems,
         "adapter": getattr(adapter, "name", "?"),
         "probes_answered": len(answers),
-        "ingest_cost": vars(ingest_cost) if isinstance(ingest_cost, Cost) else None,
-        "cost_is_measured": (
-            isinstance(ingest_cost, Cost) and ingest_cost.measured
-            and all(a.cost.measured for a in answers)
+        "ingest_cost": ingest_cost.summary() if isinstance(ingest_cost, Cost) else None,
+        "cost_fully_known": (
+            isinstance(ingest_cost, Cost) and ingest_cost.fully_known
+            and all(a.cost.fully_known for a in answers)
+        ),
+        "cost_is_lower_bound": (
+            isinstance(ingest_cost, Cost)
+            and (ingest_cost.is_lower_bound or any(a.cost.is_lower_bound for a in answers))
         ),
         "mean_context_tokens": (
             round(sum(a.context_tokens for a in answers) / len(answers), 3) if answers else None
