@@ -3,6 +3,8 @@
 Status: completed synthetic development characterization after freeze `96c901f`
 Authority: serialization capacity only; no reader, classifier, retrieval, or architecture claim
 
+Advisory review: a compact DeepSeek M1 audit returned `accept_characterization_with_limits`; it is author-operated, not independent. Its findings and one corrected aggregation claim are tracked in `data/lab/api-screening/deepseek-v4-flash-pack-characterization-review-v2-20260823/audit-disposition.md`.
+
 ## Primary result
 
 All 864 packs passed exact span resolution, byte-identical evidence, trust filtering, stale-marker, omission-ledger, and UTF-8 budget gates. Two fresh processes produced byte-identical `packs.jsonl` SHA-256 `4145c30546a24299e9c3a8a0283e5ddb0208a98b3d6d601723c1787d5f1e820c`.
@@ -16,6 +18,8 @@ At 768 bytes, averaged across the three frozen order arms:
 | Compact minus full | **+0.088** |
 
 The compact-minus-full delta was `+0.111` in the registered long-locator stratum and `+0.074` when required records reused a source path. `H-PACK2-01` and the registered directional `H-PACK2-02` therefore pass on this visible fixture.
+
+The registered primary average includes the non-deployable oracle arm, where both formats scored `1.0`. Excluding oracle descriptively, the compact-minus-full difference is `+0.132` across retrieval and governed order. This post-hoc value is useful for reader-protocol planning but does not replace the frozen primary calculation.
 
 ## Budget and order interaction
 

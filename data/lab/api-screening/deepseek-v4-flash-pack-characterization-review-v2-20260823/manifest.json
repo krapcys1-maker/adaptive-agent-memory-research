@@ -1,16 +1,19 @@
 {
   "run_id": "deepseek-v4-flash-pack-characterization-review-v2-20260823",
-  "status": "prepared-uncommitted-input",
+  "status": "review-finalized",
   "created_at": "2026-08-23T05:34:52Z",
   "model": "deepseek-v4-flash",
   "temperature": 0,
   "thinking": "disabled",
   "run_budget_usd": 0.1,
   "global_budget_usd": 10.0,
-  "prompt_freeze_commit": null,
+  "prompt_freeze_commit": "16d963e36e203a98a55a4cc7eef418cc2a6b626c",
   "authority": "M1 author-operated model advisory; not independent review and cannot promote architecture",
   "hashes": {
     "job.json": "50ed895d3282a07c5b3ba45615d4c044ceaeb93c490de5d3449a72b00e019ff9",
     "prompt.txt": "3aa2e1d1672d95330b4cece239097ed45abe3e016daa95b9e2daf02810577f7d"
-  }
+  },
+  "response_id": "06a30315-f273-403e-b19d-20a161c37128",
+  "cost_usd": 0.00944196,
+  "review_result_sha256": "f8f21e38b02396fa3793239e827d25a84372ec6f8a4737ffb1017bb919ab6d3d"
 }

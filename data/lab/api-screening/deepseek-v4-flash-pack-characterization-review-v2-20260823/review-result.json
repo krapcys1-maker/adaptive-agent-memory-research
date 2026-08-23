@@ -1,0 +1,66 @@
+{
+  "verdict": "accept_characterization_with_limits",
+  "fatal_issues": [],
+  "major_issues": [
+    "Reader-stage gate conflates numeric retention difference with reader comprehension readiness; fresh reader protocol still required.",
+    "O2_REQUIRED_ORACLE included in primary 768 average, inflating compact-minus-full delta; non-deployable ceiling should be excluded.",
+    "No statistical uncertainty or effect-size confidence reported; 24-case authored sample limits generalization."
+  ],
+  "minor_issues": [
+    "Source-reuse stratum uses case-level property, not per-record reuse isolation.",
+    "Greedy first-fit packing is only one algorithm; sensitivity not assessed.",
+    "UTF-8 bytes not provider token counts; cost claims limited."
+  ],
+  "metric_or_calculation_checks": [
+    {
+      "item": "Primary 768 compact-minus-full = 0.08796",
+      "status": "consistent",
+      "reason": "Matches macro retention difference across all order arms including oracle."
+    },
+    {
+      "item": "Long-locator delta = 0.1111",
+      "status": "consistent",
+      "reason": "Matches stratum-specific macro retention difference at 768."
+    },
+    {
+      "item": "Source-reuse delta = 0.0741",
+      "status": "consistent",
+      "reason": "Matches case-level reuse stratum difference at 768."
+    },
+    {
+      "item": "H_PACK2_03 order difference >=0.05",
+      "status": "consistent",
+      "reason": "768 and 1024 budgets show governed-minus-retrieval >0.05 for both cited formats."
+    },
+    {
+      "item": "Integrity pass all 864 packs",
+      "status": "consistent",
+      "reason": "Aggregates and receipts show zero citation/evidence/stale/omission/budget errors."
+    },
+    {
+      "item": "Reproducibility byte-identical",
+      "status": "consistent",
+      "reason": "Two fresh processes produced identical packs.jsonl SHA-256."
+    }
+  ],
+  "claims_supported": [
+    "Compact source-footer improves required retention over full inline at 768 bytes on this fixture.",
+    "Improvement is present in long-locator and source-reuse strata.",
+    "Governed order can change retention capacity under budget pressure.",
+    "All integrity gates pass for the deterministic serialization."
+  ],
+  "claims_not_supported": [
+    "Reader comprehension or citation emission benefit.",
+    "Natural transfer or generalizability beyond authored fixture.",
+    "Provider token cost equivalence or savings.",
+    "Architecture or reader-order selection authority."
+  ],
+  "required_claim_boundary": "Claims are limited to deterministic serialization capacity on a visible authored 24-case fixture. No reader, classifier, retriever, or architecture selection is supported. O2_REQUIRED_ORACLE is a non-deployable ceiling and should not be used for deployable comparisons. Fresh reader protocol with blinded conditions and equal evidence controls is required before any API use.",
+  "next_required_tests": [
+    "Fresh reader protocol with blinded condition labels and answer-bearing cases.",
+    "Equalize included evidence IDs and bytes across formats to isolate comprehension.",
+    "Exclude O2_REQUIRED_ORACLE from primary deployable comparisons.",
+    "Sensitivity analysis with alternative packing algorithms and budget granularity."
+  ],
+  "confidence": 0.88
+}

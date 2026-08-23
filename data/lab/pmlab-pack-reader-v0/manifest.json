@@ -1,0 +1,20 @@
+{
+  "experiment_id": "PMLAB-PACK-READER-001",
+  "status": "construction-locked-preregistration-no-corpus-no-api",
+  "groups_planned": 16,
+  "cases_planned": 32,
+  "calls_per_reader_planned": 128,
+  "citation_arms": ["F0_FULL", "F1_COMPACT"],
+  "order_arms": ["O0_RETRIEVAL", "O1_GOVERNED"],
+  "evidence_ids_equal_across_arms": true,
+  "evidence_text_equal_across_arms": true,
+  "serialized_bytes_equalized": false,
+  "reader": "deepseek-v4-flash M1 synthetic reader first; cross-family replication required",
+  "run_cap_usd": 0.5,
+  "global_cap_usd": 10.0,
+  "corpus": "not-built",
+  "prompt_packet": "not-built",
+  "runner": "not-built",
+  "api_authorized": false,
+  "authority": "reader compatibility pilot only; no architecture or natural-transfer claim"
+}
