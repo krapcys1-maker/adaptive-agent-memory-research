@@ -8,8 +8,11 @@ This document instantiates reusable component candidates inside the technology-n
 
 Give any compatible LLM a local, inspectable long-term memory without changing its context window. The context window remains working memory. Disk stores canonical observations and derived records. A small adapter retrieves an evidence-bounded context pack for the current model call.
 
+Compaction is complementary and sits outside the canonical store. Native host compaction and a frozen open compactor may reduce active conversation state, but their outputs are versioned derived artifacts. They cannot overwrite the local raw archive. The formal boundary and comparison tracks are frozen in `foundation-v0-architecture-decision.md`.
+
 ```text
 LLM host (OpenAI / Claude / local / future provider)
+          recent state + optional compaction
                     |
           MCP or direct local adapter
                     |
@@ -106,13 +109,14 @@ Freeze meanings, not implementations. SQLite, embeddings, model providers, and M
 ## Build and benchmark order
 
 1. Current local JSONL/FTS5 memory versus a stricter canonical/evidence schema.
-2. FTS5 retrieval with citations and real token budgeting.
-3. Optional exact dense retrieval under the same candidates and filters.
-4. Deterministic RRF hybrid retrieval.
-5. Context buckets and omission reporting.
-6. Explicit outcome feedback ledger without automatic reinforcement.
-7. Prospective time jobs and restart/idempotency tests.
-8. Only then test graph expansion, learned controllers, emotional salience, consolidation, decay, or destructive forgetting.
+2. Freeze an open compaction baseline while preserving raw evidence outside it.
+3. FTS5 retrieval with citations and real token budgeting, both with and without compaction.
+4. Optional exact dense retrieval under the same candidates and filters.
+5. Deterministic RRF hybrid retrieval.
+6. Context buckets and omission reporting.
+7. Explicit outcome feedback ledger without automatic reinforcement.
+8. Prospective time jobs and restart/idempotency tests.
+9. Only then test graph expansion, learned controllers, emotional salience, consolidation, decay, or destructive forgetting.
 
 ## Success gate
 

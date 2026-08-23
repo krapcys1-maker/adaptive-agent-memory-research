@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1",
+  "experiment_id": "PMLAB-FOUNDATION-001",
+  "title": "Foundation compaction plus memory benchmark",
+  "status": "design-only-execution-locked",
+  "protocol": "docs/11-research-laboratory/foundation-compaction-memory-benchmark-protocol-v0.md",
+  "architecture_decision": "docs/04-systems/foundation-v0-architecture-decision.md",
+  "tracks": {
+    "reproducible": ["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "O"],
+    "provider_black_box": ["P0", "P1", "P2", "P3"]
+  },
+  "scale_tokens": [100000, 1000000, 5000000, 10000000],
+  "frozen": {
+    "canonical_event_contract": false,
+    "open_compactor": false,
+    "history_generator": false,
+    "delayed_task_reveals": false,
+    "reader_action_models": false,
+    "context_budget": false,
+    "external_system_revisions": false,
+    "scorers": false,
+    "sample_size": false,
+    "api_budget_usd": false,
+    "independent_review": false
+  },
+  "execution_authorized": false,
+  "blocking_conditions": [
+    "future-query leakage audit not built",
+    "open compactor not frozen",
+    "critical histories and action labels not independently reviewed",
+    "external system arms and reader models not pinned",
+    "experiment-specific API budget not approved"
+  ],
+  "canonical_data_policy": {
+    "append_before_lossy_processing": true,
+    "compaction_is_derived": true,
+    "model_owned_canonical_mutation": false,
+    "raw_deletion_authorized": false
+  }
+}

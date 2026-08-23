@@ -67,6 +67,8 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `docs/11-research-laboratory/benchmark-ladder.md` — ordered baseline and mechanism comparisons.
 - `docs/11-research-laboratory/stage-gates.md` — evidence required before added complexity.
 - `docs/11-research-laboratory/minimal-architecture.md` — provider-neutral architecture boundary.
+- `docs/04-systems/foundation-v0-architecture-decision.md` — accepted research floor separating lossless local evidence, rebuildable retrieval, open/native compaction, and experimental memory layers.
+- `docs/11-research-laboratory/foundation-compaction-memory-benchmark-protocol-v0.md` and `data/lab/pmlab-foundation-v0/manifest.json` — execution-locked reproducible and provider-black-box comparison tracks from compaction alone through FTS5, dense/RRF, external systems, and the adaptive candidate.
 - `docs/11-research-laboratory/optional-api-worker-policy.md` — when a cloud model may enter as a replaceable, review-gated batch worker.
 - `docs/11-research-laboratory/deepseek-screening-pilot.md` — preregistered public-metadata admission pilot with a cumulative USD 10 hard cap.
 - `data/lab/api-screening/deepseek-v4-flash-screening-125-20260822/source-review-report.md` — deterministic identity audit and abstract-level disposition of all 37 model-included candidates.

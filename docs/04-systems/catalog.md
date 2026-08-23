@@ -75,3 +75,9 @@ A high star count is not evidence of memory quality. No dependency is selected b
 The [component audit](reuse-before-inventing-audit-v0.md) and [machine-readable adoption register](reuse-component-adoption-register-v0.csv) inspect exact reusable boundaries from GoodMemory, mnemos, mcp-local-memory, and memo. The [minimal reuse architecture](minimal-reuse-architecture-v0.md) combines only their strongest separable ideas with established protocol, privacy, encryption, and scheduling components.
 
 The current decision is deliberately composite: adapt typed evidence and traces, cited local retrieval and path safety, exposure-versus-feedback accounting, and current/supporting/stale context packs. Do not adopt any one full memory product as the project core.
+
+## Foundation and proactive-memory audit
+
+The [Foundation v0 architecture decision](foundation-v0-architecture-decision.md) makes compaction and external memory complementary: a frozen open compactor and native product compactors are baselines, while append-only local evidence remains recoverable outside every lossy representation.
+
+[AgentMem](agentmem-repository-audit-v0.md) is pinned at `c96ff3c`. Its honest short-task and Claude-compaction nulls, cited intervention snapshots, and verified action receipts are valuable donors. Its model-maintained mutable bank and overwrite stores are rejected as canonical evidence. Proactive Memory Agent and AgentMem remain separate intervention comparators; neither is the Foundation v0 store.

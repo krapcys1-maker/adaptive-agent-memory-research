@@ -23,6 +23,8 @@ observe -> encode -> write -> organize -> consolidate -> retrieve
 
 This is not a claim that a context window is biologically identical to human working memory. It is an engineering analogy whose useful and misleading parts must be tested.
 
+The accepted research floor is [Foundation v0](docs/04-systems/foundation-v0-architecture-decision.md): native or open compaction manages continuation, while an append-only local archive preserves future recoverability. Compaction, summaries, embeddings, graphs, salience, and learned memory policies are derived and replaceable; none owns the only copy of evidence.
+
 ## The first five questions
 
 1. What is the atomic unit of agent memory: message, event, fact, relation, episode, procedure, or decision?
@@ -67,12 +69,14 @@ For every important claim:
 11. [Research-to-experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md)
 12. [Benchmark ladder](docs/11-research-laboratory/benchmark-ladder.md)
 13. [Project Memory Lab v0](docs/11-research-laboratory/project-memory-lab-v0.md)
-14. [Local dense and hybrid retrieval audit](docs/07-literature/local-dense-hybrid-retrieval-audit.md)
-15. [Natural history retrieval benchmark v0](docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md)
-16. [Natural completeness controller benchmark v0](docs/11-research-laboratory/natural-completeness-controller-benchmark-protocol-v0.md)
-17. [Procedural memory retention and relearning benchmark v0](docs/11-research-laboratory/procedural-memory-retention-and-relearning-benchmark-protocol-v0.md)
-18. [Tiered routing and future-utility audit](docs/07-literature/tiered-memory-routing-and-future-utility-audit.md)
-18. [Memory-manager cascade benchmark v0](docs/11-research-laboratory/memory-manager-cascade-benchmark-protocol-v0.md)
-19. [Future-utility telemetry protocol v0](docs/11-research-laboratory/future-utility-telemetry-protocol-v0.md)
-20. [Interdisciplinary memory mechanisms](docs/12-interdisciplinary-memory/README.md)
-21. [Cross-disciplinary hypothesis portfolio](docs/12-interdisciplinary-memory/hypothesis-portfolio.md)
+14. [Foundation v0 architecture decision](docs/04-systems/foundation-v0-architecture-decision.md)
+15. [Foundation compaction plus memory benchmark](docs/11-research-laboratory/foundation-compaction-memory-benchmark-protocol-v0.md)
+16. [Local dense and hybrid retrieval audit](docs/07-literature/local-dense-hybrid-retrieval-audit.md)
+17. [Natural history retrieval benchmark v0](docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md)
+18. [Natural completeness controller benchmark v0](docs/11-research-laboratory/natural-completeness-controller-benchmark-protocol-v0.md)
+19. [Procedural memory retention and relearning benchmark v0](docs/11-research-laboratory/procedural-memory-retention-and-relearning-benchmark-protocol-v0.md)
+20. [Tiered routing and future-utility audit](docs/07-literature/tiered-memory-routing-and-future-utility-audit.md)
+21. [Memory-manager cascade benchmark v0](docs/11-research-laboratory/memory-manager-cascade-benchmark-protocol-v0.md)
+22. [Future-utility telemetry protocol v0](docs/11-research-laboratory/future-utility-telemetry-protocol-v0.md)
+23. [Interdisciplinary memory mechanisms](docs/12-interdisciplinary-memory/README.md)
+24. [Cross-disciplinary hypothesis portfolio](docs/12-interdisciplinary-memory/hypothesis-portfolio.md)
