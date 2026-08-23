@@ -98,3 +98,5 @@ No biological idea enters an architecture proposal until its note states:
 See [source seeds](source-seeds.md) for the initial primary-study map. These seeds establish plausibility and vocabulary; they do not establish coverage.
 
 The first targeted contradiction pass is [motor consolidation, savings, and context audit v0](motor-consolidation-savings-and-context-audit-v0.md). It rejects a single motor-memory-strength construct and derives separate retention, access, context, execution, and relearning endpoints for a future procedural-memory benchmark.
+
+The [collective, externalized, and socially transmitted memory audit v0](collective-externalized-and-social-memory-audit-v0.md) separates environmental traces, distributed private memories, social traditions, group hysteresis, fusion, and symbolic artifacts. It treats copying and conformity as contamination risks as well as coordination mechanisms.
