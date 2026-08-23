@@ -51,6 +51,7 @@ docs/09-synthesis/        Findings, open questions, exclusions
 docs/10-comparative-biological-memory/  Animal, motor, immune, cellular, and collective memory
 docs/11-research-laboratory/            Coverage protocol, benchmark ladder, gates, architecture boundary
 docs/12-interdisciplinary-memory/       Neuroscience, compression, storage, control, offloading, and mechanism synthesis
+docs/13-brain-ai-transfer/              Functional Brain-to-AI mechanism atlas, transfer gaps, sources, and test portfolio
 data/catalogs/            Machine-readable paper and repository catalogs
 data/lab/                 Coverage, search, experiment, and backend registries
 data/snapshots/           Reproducible discovery outputs (normally ignored)

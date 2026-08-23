@@ -10,6 +10,8 @@ The project aims at a functional memory substitute for continuity, learning, cor
 
 Current focused syntheses include `metamemory-selective-control-synthesis.md`, which connects monitoring/control, feeling-of-knowing heuristics, selective risk, semantic uncertainty, and typed retrieval escalation without treating confidence as proof of stored knowledge.
 
+The separate [`docs/13-brain-ai-transfer/`](../13-brain-ai-transfer/) track now turns biological analogies into a 38-row functional transfer atlas. It distinguishes biological evidence, computational abstraction, ML realization, LLM-agent realization, and benchmark status so anatomical vocabulary cannot substitute for an implementation or ablation.
+
 `evidence-sufficiency-and-completeness-synthesis.md` separates relevance, validity, answerability, facet and bridge completeness, claim support, citation completeness, conflict resolution, and collection closure.
 
 `collection-closure-and-negative-knowledge-synthesis.md` formalizes the open-world default, query-specific completeness certificates, four negative-knowledge tiers, and the evidence required before a retrieval miss may become a bounded absence claim.

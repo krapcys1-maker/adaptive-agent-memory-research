@@ -83,3 +83,16 @@ Status: in-progress
 - Which properties of journals, checksums, atomic updates, and fault recovery belong in a long-term memory benchmark?
 - At what abstraction level does a physical or biological mechanism produce a distinct testable prediction rather than a decorative analogy?
 - How can one architecture support retrospective episodes, semantic knowledge, procedures, and prospective intentions without forcing them into one retrieval rule?
+
+## L. Brain-to-AI functional transfer
+
+- Which biological memory functions already have inspectable ML or LLM-agent realizations under different terminology?
+- Which claimed implementations reproduce the defining operation rather than only borrowing a brain-region name?
+- Can pattern separation improve access without blocking useful completion, and can completion avoid false entity/time/episode merges?
+- Can an agent distinguish observed, quoted, inferred, simulated, summarized, and generated memories after recursive re-ingestion?
+- Can prospective intentions trigger at the first valid opportunity while remaining cancellable, authorized, and cheap to monitor?
+- Does schema consolidation improve held-out transfer while retaining rare consequential exceptions and complete provenance?
+- Do procedural memories improve the first relevant action before the model is asked to explain or recall them?
+- When does replay cause negative transfer, poison amplification, collateral forgetting, or policy lock-in?
+- Which reversible timescale policy beats one decay curve without laundering deletion into a forgetting metaphor?
+- Can a learned lifecycle controller outperform frozen rules after controlling for extra context, calls, exploration, and delayed-credit bias?

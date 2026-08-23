@@ -47,6 +47,9 @@ This is the fastest guide to where information belongs.
 | Probe dependency map and empirical reliability protocol | `data/lab/probe-failure-domain-map-v0.csv`; `docs/11-research-laboratory/probe-failure-domain-and-reliability-protocol.md` |
 | Disposable same-device real-filesystem injection harness | `data/lab/pmlab-storage-injection-v0/` |
 | Neuroscience, information theory, storage, control, offloading, and cross-domain hypotheses | `docs/12-interdisciplinary-memory/` |
+| Brain-to-AI functional transfer atlas, gaps, sources, and benchmark portfolio | `docs/13-brain-ai-transfer/` |
+| Machine-readable status of 38 biological-to-agent mechanisms | `docs/13-brain-ai-transfer/atlas-v0.csv` |
+| Initial pinned-code audit of survey, implicit/cognitive benchmarks, and learned controller | `docs/13-brain-ai-transfer/repository-initial-audit-v0.md` |
 | Metamemory, selective prediction, and typed retrieval-control synthesis | `docs/12-interdisciplinary-memory/metamemory-selective-control-synthesis.md` |
 | Evidence sufficiency, answerability, claim support, and multi-source completeness | `docs/12-interdisciplinary-memory/evidence-sufficiency-and-completeness-synthesis.md` |
 | Collection closure, open/closed-world boundary, and negative-knowledge tiers | `docs/12-interdisciplinary-memory/collection-closure-and-negative-knowledge-synthesis.md` |

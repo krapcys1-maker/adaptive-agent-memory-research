@@ -32,3 +32,7 @@
 "MemTensor/MemRL","external/repos/MemTensor__MemRL","c1b322ca43de36ddf64c6712f89d0095bfc35ce0","main","2026-08-23T03:17:51.9725539Z","available-mit-audit-required"
 "nemori-ai/nemori","external/repos/nemori-ai__nemori","d2a6dff6e5481214a0be6a2d10147feccfc16244","main","2026-08-23T03:17:51.9725539Z","available-mit-audit-required"
 "lm-sys/RouteLLM","external/repos/lm-sys__RouteLLM","0b64fdafe049e596a3f5657c219329f24af24198","main","2026-08-23T03:17:51.9725539Z","available-apache-2-audit-required"
+"FeishuLuo/Evolving-LLM-Agent-Memory-Survey","external/repos/FeishuLuo__Evolving-LLM-Agent-Memory-Survey","92b5a4b1b25a02e3a053ed0309704e0ad31d3093","main","2026-08-23T04:30:30.4238715Z","available-mit-discovery-index-only"
+"xjtuleeyf/Locomo-Plus","external/repos/xjtuleeyf__Locomo-Plus","059f4e3d38f7f1f96765e8e2cb7de3097551bffb","main","2026-08-23T04:30:30.4238715Z","available-no-root-license-audit-blocked"
+"qinchonghanzuibang/ImplicitMemBench","external/repos/qinchonghanzuibang__ImplicitMemBench","927413bf3f5389bb47c94c2a0ba987e435b101b8","main","2026-08-23T04:30:30.4238715Z","available-mit-audit-required"
+"ericjiang18/MemCon","external/repos/ericjiang18__MemCon","aa15afc9406aab8854b957ebfea08816997de882","main","2026-08-23T04:30:30.4238715Z","available-readme-mit-no-license-file-audit-required"
