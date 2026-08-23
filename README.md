@@ -87,13 +87,19 @@ Of 71 registered experiments, **37 have run** and 20 are blocked on a corpus tha
 
 **An association graph over memory made retrieval worse.** The earlier, favourable version of this result was **retracted by us**: its leakage control removed one edge where it needed to remove 4.5, so the gold-generating group reassembled over two hops. → `PMLAB-ASSOC-E2` retracted, `PMLAB-ASSOC-E3`
 
+**A benchmark can score perfect recall and still hand the agent the wrong answer.** On the new corpus, the poisoned-instruction family scores **1.000 recall@10** — and retrieves the poisoned line *above* the genuine rule in **25%** of probes. A system retrieving both records looks flawless on recall and would act on the wrong one. This is one lexical arm on one synthetic corpus, so it is evidence about what recall hides rather than a claim about memory systems in general. → `PMLAB-H1-BASE-E1`
+
 **We cannot currently instantiate tier I3 of our own independence ladder.** Two roles of one model fabricated an evidence identifier zero times across 120 queries, so the error correlation is *undefined* rather than zero — and the harness reports undefined, because 0.0 would claim an independence nobody measured. → `PMLAB-DECORR-E1`
 
-Three of those five are negatives and one is a retraction of our own work. **That ratio is the honest one at this stage**, and it is the thing this project is most willing to defend.
+Four of those six are negatives and one is a retraction of our own work. **That ratio is the honest one at this stage**, and it is the thing this project is most willing to defend.
 
 ### The number that is not here yet
 
-There is no headline benchmark table on this page, and there will not be one until it is earned. The comparison that matters — adaptive memory against native compaction and against vector retrieval, at a fixed context budget, on a long history — needs a corpus that does not exist yet. Building it is [#41](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/41), it blocks twenty experiments, and it is the highest-leverage task open.
+There is no headline benchmark table on this page, and there will not be one until it is earned. The comparison that matters — adaptive memory against native compaction and against vector retrieval, at a fixed context budget, on a long history — needs a corpus and a reader model.
+
+The corpus now exists: [corpus H1](data/lab/corpus-h1/README.md), 538 events over 30 simulated days, 84 delayed probes across seven failure families, generated deterministically with no model and no API key. Its first run found a defect *in the corpus* — document length predicted the answer in 12 of 12 instances of three families — which is exactly what the construction-test tier is for. Both the broken and the repaired measurement are published.
+
+What is still missing is the reader model that scores whether an arm could answer from what it retained, and the compaction arms themselves. That is [#41](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/41), still open, still the highest-leverage task.
 
 We have pre-committed to publishing that result whichever way it falls. Given that three separate runs here have already measured our own mechanisms *harming* retrieval, a negative headline is a live possibility — and it would be published in the same font as a positive one.
 
