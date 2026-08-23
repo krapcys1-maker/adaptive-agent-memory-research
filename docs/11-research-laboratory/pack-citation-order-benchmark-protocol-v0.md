@@ -1,7 +1,7 @@
 # Exact citation and pack-order characterization v0
 
 Experiment ID: `PMLAB-PACK-001`  
-Status: frozen synthetic-development protocol; freeze commit recorded before runner implementation  
+Status: frozen at `7913791`, then invalidated pre-run by a citation-treatment construct audit
 Authority: synthetic implementation characterization only
 
 ## Question
@@ -85,3 +85,9 @@ A new reader experiment is justified only if:
 3. the reader protocol uses fresh answer-bearing cases, equal evidence IDs and bytes where possible, blinded condition labels, provider-neutral structured outputs, explicit stale-use and citation measures, and a separately frozen API cap.
 
 The reader test must include full-inline and compact-handle arms. Learned compression remains excluded until those reversible baselines are measured.
+
+## Pre-run invalidation
+
+No pack was executed. After freeze and before runner implementation, an audit found that `C1_COMPACT_FOOTER` assigned a handle to each complete `path:line-line` locator. Because every record has a distinct line range, the dictionary would repeat the full path once per record and add footer overhead. The treatment therefore could not operationalize `H-PACK-02` source-path reuse and had no credible compression mechanism relative to inline locators.
+
+The protocol and fixture are preserved unchanged. `PMLAB-PACK-002` repairs only this construct by mapping one handle to each source path while retaining the line range inline.

@@ -1,0 +1,18 @@
+{
+  "experiment_id": "PMLAB-PACK-002",
+  "status": "frozen-repair-protocol-runner-not-implemented",
+  "inherits_fixture_from": "data/lab/pmlab-pack-characterization-v0/manifest.json",
+  "predecessor_status": "PMLAB-PACK-001 invalidated pre-run; no runner or outcomes",
+  "repair": "source-path handles with inline line ranges replace per-full-locator handles",
+  "corpus_sha256": "2270bffe8d76a760f216ad4ac85328b6de8970bdc1c12cf90188d21f2315a8c8",
+  "cases_sha256": "da1f1a94d09cadcf0996ae102a6aa7e86ba1a72f95c2cb77ea28e66234dfc967",
+  "records": 36,
+  "cases": 24,
+  "packs": 864,
+  "budgets_utf8": [512, 768, 1024, 1536],
+  "citation_arms": ["T0_TEXT_ONLY", "C0_FULL_INLINE", "C1_SOURCE_FOOTER"],
+  "order_arms": ["O0_RETRIEVAL", "O1_GOVERNED", "O2_REQUIRED_ORACLE"],
+  "authored_synthetic": true,
+  "independently_reviewed": false,
+  "authority": "serialization mechanics only; no architecture or reader claim"
+}
