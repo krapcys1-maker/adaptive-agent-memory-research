@@ -301,6 +301,12 @@ def main() -> int:
     #: Either the in-process wrapper or the proxy, whichever this system is
     #: metered by. Both count calls and price them; neither is the system's own.
     meter = built.get("meter") or provider
+    #: What the meter had already counted before this run began. A long-lived
+    #: proxy serves the calibration and then the pilot, so its running totals are
+    #: not this run's spend — Hindsight's first pilot artefact reported its
+    #: calibration inside its pilot figure until this was subtracted.
+    meter_baseline = meter.snapshot() if meter is not None else None
+    baseline_usd = meter.spent_usd if meter is not None else 0.0
 
     record: dict[str, Any] = {
         "artifact": f"arena-{mode}-{args.system}",
@@ -336,7 +342,9 @@ def main() -> int:
 
     def flush(status: str) -> None:
         record["status"] = status
-        record["spend_usd"] = round(meter.spent_usd, 4) if meter else 0.0
+        record["spend_usd"] = round(meter.spent_usd - baseline_usd, 4) if meter else 0.0
+        record["meter_baseline"] = meter_baseline
+        record["meter_baseline_usd"] = round(baseline_usd, 6)
         if provider is not None:
             record["provider_calls"] = len(provider.request_log)
             record["decoding_overrides"] = len(provider.overrides)
@@ -344,8 +352,12 @@ def main() -> int:
                 {json.dumps(c["overridden"], sort_keys=True) for c in provider.overrides})
         elif built.get("meter") is not None:
             meter_summary = built["meter"].summary()
-            record["provider_calls"] = meter_summary["calls"]
+            record["provider_calls"] = meter_summary["calls"] - (meter_baseline or {}).get("calls", 0)
             record["meter"] = meter_summary
+            record["meter_note"] = ("`meter` holds the proxy's running totals, which "
+                                    "include anything it served before this run. "
+                                    "`spend_usd` and `provider_calls` are this run's "
+                                    "own, taken as a delta from the baseline")
         else:
             record["provider_calls"] = 0
         record["night_ledger"] = ledger.summary()

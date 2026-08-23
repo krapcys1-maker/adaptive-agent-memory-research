@@ -527,5 +527,7 @@
       "hindsight-pilot": 3e-06
     },
     "calls": 366
-  }
+  },
+  "superseded_by": "pilot-mem0.json",
+  "superseded_reason": "the state probe took Mem0's default get_all limit of 100 and read a truncated page. stored_items reported exactly 100 for every unit, evidence_all_traceable reported False on every unit, and query_mutates_state read_only rested on a fingerprint that covered a prefix of the store. The cost and task figures in this file are unaffected and were reproduced by the rerun; the memory figures are artefacts. Kept rather than deleted."
 }

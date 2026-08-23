@@ -104,6 +104,10 @@ def main() -> int:
         if record.get("artifact", "").endswith("-blocked"):
             blockers.append(record)
             continue
+        if record.get("superseded_by"):
+            # Kept on disk, kept out of the table. A superseded measurement is
+            # evidence of what went wrong, not a second row for the same system.
+            continue
         rows.append(row(record) | {"artifact": path.name})
 
     # Ordered by what a screen acts on — total cost — and explicitly not by score.

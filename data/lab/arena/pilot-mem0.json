@@ -142,14 +142,15 @@
       "question_type": "temporal-reasoning",
       "slot": "medium",
       "sessions_available": 49,
-      "sessions_ingested": 16,
-      "user_turns_ingested": 86,
+      "sessions_ingested": 49,
+      "user_turns_ingested": 243,
       "sessions_skipped_no_user_turn": 0,
       "ingest": {
-        "model_calls": 27,
-        "input_tokens": 40221,
-        "output_tokens": 9260,
-        "wall_seconds": 63.480000000000004
+        "model_calls": 83,
+        "input_tokens": 132026,
+        "output_tokens": 33784,
+        "wall_seconds": 218.12999999999997,
+        "usd": 0.0728
       },
       "per_session_calls": [
         1,
@@ -167,6 +168,116 @@
         2,
         2,
         2,
+        1,
+        2,
+        1,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "status": "complete",
+      "state_digest_after_ingest_differs": true,
+      "stored_items": 224,
+      "query": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "wall_seconds": 0.02,
+        "fully_known": true,
+        "observability": {
+          "model_calls": "instrumented",
+          "input_tokens": "instrumented",
+          "output_tokens": "instrumented"
+        },
+        "repeat": {
+          "model_calls": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "wall_seconds": 0.01,
+          "fully_known": true,
+          "observability": {
+            "model_calls": "instrumented",
+            "input_tokens": "instrumented",
+            "output_tokens": "instrumented"
+          }
+        },
+        "wall_seconds_measured": 0.03,
+        "usd": 0.0
+      },
+      "memory": {
+        "evidence_ids": 10,
+        "evidence_all_traceable": true,
+        "context_tokens": 98,
+        "context_tokens_measurable": true,
+        "context_tokens_is_floor": false,
+        "abstained": false,
+        "abstention_derivable": true,
+        "abstention_channel": "empty result set",
+        "premise_status": null,
+        "query_mutates_state": "read_only",
+        "output_reproducible": "true",
+        "declared_mutation_mode": "unknown"
+      },
+      "task": {
+        "crude_substring_match": false,
+        "metric": "substring containment of the gold answer, NOT LongMemEval's model judge. It under-counts every correct paraphrase and is a signal check, not a score",
+        "answer_chars": 32
+      },
+      "reset_returns_to_empty": false
+    },
+    {
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "slot": "long",
+      "sessions_available": 57,
+      "sessions_ingested": 11,
+      "user_turns_ingested": 58,
+      "sessions_skipped_no_user_turn": 0,
+      "ingest": {
+        "model_calls": 17,
+        "input_tokens": 28923,
+        "output_tokens": 5151,
+        "wall_seconds": 36.55
+      },
+      "per_session_calls": [
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
         1
       ],
       "status": "ingesting"
@@ -174,19 +285,19 @@
   ],
   "status": "running",
   "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
-  "spend_usd": 0.0932,
-  "provider_calls": 101,
+  "spend_usd": 0.1584,
+  "provider_calls": 174,
   "meter": {
-    "calls": 101,
+    "calls": 174,
     "refused_calls": 0,
-    "prompt_tokens": 161530,
-    "completion_tokens": 45036,
-    "usd": 0.093153,
+    "prompt_tokens": 282258,
+    "completion_tokens": 74711,
+    "usd": 0.158392,
     "unknown_usage_calls": 0,
     "arena_enforced_decoding": {
       "temperature": 0
     },
-    "decoding_overrides": 101,
+    "decoding_overrides": 174,
     "decoding_override_values": [
       "{\"temperature\": 0.1}"
     ],
@@ -196,13 +307,13 @@
   },
   "night_ledger": {
     "path": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\data\\lab\\arena\\spend-ledger.jsonl",
-    "total_usd": 0.528752,
+    "total_usd": 0.916897,
     "total_cap_usd": 10.0,
     "by_run": {
       "mem0-calibration": 0.025094,
-      "mem0-pilot": 0.389071,
-      "hindsight-pilot": 0.114587
+      "mem0-pilot": 0.45431,
+      "hindsight-pilot": 0.437486
     },
-    "calls": 555
+    "calls": 844
   }
 }

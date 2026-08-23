@@ -35,36 +35,66 @@
       "question_type": "multi-session",
       "slot": "short",
       "sessions_available": 41,
-      "sessions_ingested": 1,
-      "user_turns_ingested": 2,
+      "sessions_ingested": 31,
+      "user_turns_ingested": 151,
       "sessions_skipped_no_user_turn": 0,
       "ingest": {
-        "model_calls": 3,
-        "input_tokens": 9238,
-        "output_tokens": 463,
-        "wall_seconds": 5.75
+        "model_calls": 192,
+        "input_tokens": 858881,
+        "output_tokens": 44323,
+        "wall_seconds": 167.38999999999996
       },
       "per_session_calls": [
-        3
+        3,
+        3,
+        1,
+        6,
+        6,
+        7,
+        7,
+        7,
+        8,
+        7,
+        5,
+        8,
+        1,
+        8,
+        8,
+        6,
+        7,
+        7,
+        7,
+        9,
+        8,
+        5,
+        5,
+        8,
+        7,
+        7,
+        4,
+        6,
+        7,
+        7,
+        7
       ],
       "status": "ingesting"
     }
   ],
   "status": "running",
   "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
-  "spend_usd": 0.1176,
-  "provider_calls": 92,
+  "spend_usd": 0.3952,
+  "provider_calls": 281,
   "meter": {
-    "calls": 92,
+    "calls": 281,
     "refused_calls": 0,
-    "prompt_tokens": 357565,
-    "completion_tokens": 19133,
-    "usd": 0.117589,
+    "prompt_tokens": 1207208,
+    "completion_tokens": 62993,
+    "usd": 0.395238,
     "unknown_usage_calls": 0,
     "arena_enforced_decoding": {
       "temperature": 0
     },
-    "decoding_overrides": 72,
+    "decoding_overrides": 224,
     "decoding_override_values": [
       "{\"temperature\": 0.1}"
     ],
@@ -75,13 +105,13 @@
   },
   "night_ledger": {
     "path": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\data\\lab\\arena\\spend-ledger.jsonl",
-    "total_usd": 0.534598,
+    "total_usd": 0.86683,
     "total_cap_usd": 10.0,
     "by_run": {
       "mem0-calibration": 0.025094,
-      "mem0-pilot": 0.391913,
-      "hindsight-pilot": 0.117591
+      "mem0-pilot": 0.446495,
+      "hindsight-pilot": 0.395234
     },
-    "calls": 562
+    "calls": 810
   }
 }
