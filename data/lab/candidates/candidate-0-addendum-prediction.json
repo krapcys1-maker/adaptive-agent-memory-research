@@ -1,0 +1,20 @@
+{
+  "addendum_to": "AAMR-CANDIDATE-0",
+  "git_commit": "64aa74cd65fc50e255816e96c72cd9863f401b13",
+  "measurable_later_not_now": "a grammar-coverage audit \u2014 what share of an external benchmark's question forms these six constructions match \u2014 is decidable from that benchmark's text alone and needs no run. It should be computed on STALE's questions BEFORE scoring anything, because it separates 'the mechanism failed' from 'the mechanism never fired'",
+  "prediction_restated": {
+    "registered": "entity canonicalisation has a STRONGER REASON to transfer than the property layer, because it contains no H1/H2 domain vocabulary. That is a comparison between two layers, not a claim about either one's absolute performance",
+    "too_strong": "entity canonicalisation will generalise",
+    "why_the_difference_matters": "the first would be a claim with no evidence. The second is falsifiable by a single external run and is falsified if both layers fail equally, which would mean the 'general' constructions were specific to our question grammar rather than to our domain"
+  },
+  "registered_at": "2026-08-24T03:20:00Z",
+  "subject": "a limit of the coupling audit, and the prediction restated more weakly",
+  "supplements_not_modifies": "c0410e2ff75750e3315d5b31fbf3f5623c54a9c9c67bad67d31247512a52a448",
+  "the_limit": "the audit counts content words the generators emit. Zero domain tokens therefore means domain-independent and does NOT mean grammar-independent. The pattern 'should a X' contains no billing and no staging, and it still assumes a benchmark phrases questions that way. If STALE asks 'what is the current X' or 'has anything changed about X', six interrogative constructions with no domain vocabulary will fire on none of them. The audit cannot see that, because the thing it measures is orthogonal to it",
+  "unchanged": "every digest, result and rule in CANDIDATE-0",
+  "what_each_outcome_would_mean": {
+    "both high": "surprising given 78.6 percent coupling, and would need explaining rather than celebrating",
+    "both low, equally": "the prediction is wrong; the interrogative constructions were benchmark-grammar-specific, not general",
+    "entity high, property low": "the audit predicted the failure mode before the run; grammar transfers, vocabulary does not"
+  }
+}
