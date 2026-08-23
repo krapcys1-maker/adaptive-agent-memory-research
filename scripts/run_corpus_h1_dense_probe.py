@@ -120,6 +120,20 @@ def summarise(records: list[dict[str, Any]]) -> dict[str, Any]:
         return round(sum(r[field] for r in rows) / len(rows), 6) if rows else None
 
     obsolete = [r for r in records if r["family"] == "OBSOLETE"]
+
+    # The oracle router: per probe, take whichever retriever found the gold. It
+    # is not a system — nothing can know in advance which to trust — but it
+    # bounds every router that could ever be built from these two channels. If
+    # the ceiling sits on top of the better single arm, routing is not worth
+    # building and the complementarity was an illusion of two averages.
+    cells = {
+        "both": sum(1 for r in records if r["lexical_gold"] and r["dense_gold"]),
+        "lexical_only": sum(1 for r in records if r["lexical_gold"] and not r["dense_gold"]),
+        "dense_only": sum(1 for r in records if r["dense_gold"] and not r["lexical_gold"]),
+        "neither": sum(1 for r in records if not r["lexical_gold"] and not r["dense_gold"]),
+    }
+    total = len(records)
+
     return {
         "experiment_id": "PMLAB-H1-DENSE-E1",
         "tier": "E-exploratory",
@@ -149,6 +163,18 @@ def summarise(records: list[dict[str, Any]]) -> dict[str, Any]:
             family: {arm: rate([r for r in records if r["family"] == family], f"{arm}_gold")
                      for arm in ("lexical", "dense")}
             for family in families
+        },
+        "oracle_router": {
+            "counts": cells,
+            "lexical_alone": round((cells["both"] + cells["lexical_only"]) / total, 6),
+            "dense_alone": round((cells["both"] + cells["dense_only"]) / total, 6),
+            "ceiling": round((total - cells["neither"]) / total, 6),
+            "headroom_over_the_better_arm": round(cells["dense_only"] / total, 6),
+            "unreachable_by_either": round(cells["neither"] / total, 6),
+            "note": (
+                "an upper bound on any router over these two channels, not a system. "
+                "Nothing can know in advance which retriever to trust."
+            ),
         },
         "reading": (
             "F2 is gold never surfacing. F3-possible is gold and a superseded record both "
@@ -183,6 +209,17 @@ def main(argv: list[str] | None = None) -> int:
         b = s["obsolete_only"][arm]
         print(f"  {arm:<9}{b['gold_reached_the_context']:>13.3f}"
               f"{b['a_superseded_record_reached_it']:>14.3f}{b['both_present']:>8.3f}")
+
+    o = s["oracle_router"]
+    c = o["counts"]
+    print("\n  oracle router — the ceiling for any router over these two channels\n")
+    print(f"    both found it {c['both']:>3}   lexical only {c['lexical_only']:>3}   "
+          f"dense only {c['dense_only']:>3}   neither {c['neither']:>3}")
+    print(f"    lexical alone   {o['lexical_alone']:.3f}")
+    print(f"    dense alone     {o['dense_alone']:.3f}")
+    print(f"    oracle ceiling  {o['ceiling']:.3f}   "
+          f"(+{o['headroom_over_the_better_arm']:.3f} over the better arm)")
+    print(f"    neither finds   {o['unreachable_by_either']:.3f}   <- not a routing problem")
 
     print("\n  gold reaching the context, by family\n")
     print(f"  {'family':<12}{'lexical':>10}{'dense':>10}")
