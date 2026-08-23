@@ -1,0 +1,32 @@
+{
+  "packet_id": "PMLAB-NATURAL-RET-001-CONTRACT-REVIEW-V0",
+  "packet_manifest_sha256": "a6ed7c72784fbef1dd61e78ecdb56a38c897c416e820a9ff8d6fa33ad91c3093",
+  "source_commit": "ebe82013066afac292d6747102ec57e4ffa7ab84",
+  "reviewer": {
+    "reviewer_id": "",
+    "reviewer_class": "human_independent|cross_family_model_independent|advisory_only",
+    "model_family": null,
+    "provider": null
+  },
+  "blindness_attestation": {
+    "not_an_author_of_reviewed_contract": false,
+    "did_not_view_forbidden_advisory_paths": false,
+    "did_not_view_builder_or_backend_output": false,
+    "used_one_stateless_review_context": false
+  },
+  "dimensions": [
+    {"dimension": "historical_git_reconstruction", "decision": "accept|revise|reject", "evidence": "", "required_change": ""},
+    {"dimension": "stable_unit_identity", "decision": "accept|revise|reject", "evidence": "", "required_change": ""},
+    {"dimension": "markdown_unitization", "decision": "accept|revise|reject", "evidence": "", "required_change": ""},
+    {"dimension": "structured_row_canonicalization", "decision": "accept|revise|reject", "evidence": "", "required_change": ""},
+    {"dimension": "duplicates_aliases_and_exclusions", "decision": "accept|revise|reject", "evidence": "", "required_change": ""},
+    {"dimension": "backend_projection_and_byte_equality", "decision": "accept|revise|reject", "evidence": "", "required_change": ""},
+    {"dimension": "query_privacy_and_capture_order", "decision": "accept|revise|reject", "evidence": "", "required_change": ""},
+    {"dimension": "development_test_isolation", "decision": "accept|revise|reject", "evidence": "", "required_change": ""}
+  ],
+  "blockers": [],
+  "required_adversarial_tests": [],
+  "overall_verdict": "accept_for_development_builder_review|needs_revision|reject",
+  "builder_unlock_recommendation": false,
+  "signed_at": ""
+}

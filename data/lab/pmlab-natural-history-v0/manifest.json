@@ -8,7 +8,8 @@
     "query_log_schema": "data/lab/pmlab-natural-history-v0/query-log-contract-v0.schema.json",
     "eligibility_policy": "data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json",
     "pre_builder_audit": "data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md",
-    "source_unit_contract_audit": "docs/07-literature/natural-history-source-unit-contract-audit-v0.md"
+    "source_unit_contract_audit": "docs/07-literature/natural-history-source-unit-contract-audit-v0.md",
+    "independent_contract_review_packet": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json"
   },
   "primary_endpoint": "all_required_evidence_in_top5",
   "alpha_two_sided": 0.05,
@@ -56,6 +57,12 @@
     "prospective_test_started": false,
     "independent_labels_complete": false,
     "execution_authorized": false
+  },
+  "review_state": {
+    "independent_contract_review_packet_ready": true,
+    "independent_contract_review_complete": false,
+    "review_source_commit": "ebe82013066afac292d6747102ec57e4ffa7ab84",
+    "same_family_m1_counts_as_independent": false
   },
   "result": null
 }

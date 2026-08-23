@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "packet_id": "PMLAB-NATURAL-RET-001-CONTRACT-REVIEW-V0",
+  "source_commit": "ebe82013066afac292d6747102ec57e4ffa7ab84",
+  "status": "awaiting-independent-review",
+  "forbidden_before_form_freeze": [
+    "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-20260823/",
+    "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-v2-20260823/"
+  ],
+  "artifacts": {
+    "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md": "fec781e0524b5c9955acc291b8bf9c87f8b5ba4d4a87b1e036acd4b19ccae0d6",
+    "docs/07-literature/natural-history-source-unit-contract-audit-v0.md": "7e04f94c7e4d09d0e9aabddb728cc0302d87133c85f6d8fdadf2e145ddce8abf",
+    "data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md": "9bfe3b15edfc81f05f7f7f56ef7f611ea4bc6f682df20630a31cc6c54cb0e8a0",
+    "data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json": "91205e29b8c6cd79606a5deaea107afe350a9e8aa4cd2069f720b452164511d5",
+    "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json": "98e0fac5b9fd029c701f663b1e94c68bfbe39b232f34d6b60e0a5626a194059b",
+    "data/lab/pmlab-natural-history-v0/query-log-contract-v0.schema.json": "d27f36d20e23d5aab3e7872d24686fe0dc08a16bd1cb7124194253f9e525badb",
+    "tests/test_natural_history_contracts.py": "ddf16a920304b97963259b75b0276d53eb0ffde45abee262312ef015e6ab85dc"
+  },
+  "authority": "design review only; cannot authorize backend execution, prospective testing, or architecture"
+}
