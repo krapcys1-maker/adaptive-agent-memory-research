@@ -73,8 +73,15 @@ class Measure:
         weakest = max((self.observability, other.observability), key=lambda o: rank[o])
 
         if self.value is not None and other.value is not None:
-            return Measure(self.value + other.value, weakest,
-                           self.lower_bound or other.lower_bound)
+            total = self.value + other.value
+            # Float addition is not associative: 0.1 + 0.2 + 0.3 gives
+            # 0.6000000000000001 or 0.6 depending on grouping, so a latency
+            # column would differ between two runs over identical data purely
+            # from summation order. Rounding to microseconds at each step
+            # restores associativity at a precision no timing needs.
+            if isinstance(total, float):
+                total = round(total, 6)
+            return Measure(total, weakest, self.lower_bound or other.lower_bound)
 
         # One side is unknown. The known side is a real measurement and throwing
         # it away would lose information, so it is kept and flagged as a floor.
@@ -86,7 +93,18 @@ class Measure:
         present = [m for m in (self, other) if m.value is not None]
         if not present:
             return Measure(None, "unobservable")
-        return Measure(sum(m.value for m in present), "unobservable", lower_bound=True)
+
+        floor = sum(m.value for m in present)
+        if isinstance(floor, float):
+            floor = round(floor, 6)
+        if not floor:
+            # A floor of zero carries no information, so adding a known zero to
+            # an unknown must leave it unknown. Otherwise `A + ZERO == A` fails
+            # for unknowns, and a run total would depend on how many zero-cost
+            # operations happened to be summed — the cost table would vary with
+            # summation order over identical data.
+            return Measure(None, "unobservable")
+        return Measure(floor, "unobservable", lower_bound=True)
 
 
 @dataclass(frozen=True)
