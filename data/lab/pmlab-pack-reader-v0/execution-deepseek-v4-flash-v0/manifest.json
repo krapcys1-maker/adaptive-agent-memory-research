@@ -1,0 +1,24 @@
+{
+  "experiment_id": "PMLAB-PACK-READER-001",
+  "run_id": "deepseek-v4-flash-pack-reader-v0-20260823",
+  "status": "prepared-uncommitted-prompt-packet",
+  "fixture_freeze_commit": "365c0b6c0ae159b1517fbc87941aa33a8e369da2",
+  "prompt_freeze_commit": null,
+  "model": "deepseek-v4-flash",
+  "prompt_version": "pack-reader-v0",
+  "temperature": 0,
+  "thinking": "disabled",
+  "max_tokens": 256,
+  "conditions": 128,
+  "run_budget_usd": 0.5,
+  "global_budget_usd": 10.0,
+  "one_attempt_preflight_usd": 0.10055672,
+  "all_conditions_retry_preflight_usd": 0.20111344,
+  "hashes": {
+    "prompt-packets.jsonl": "c9f9ed4b42805295984ab84ee30065e93d5afdbb4bd538db6181602160591b4b",
+    "prompt-audit.json": "60255be89f49ad5e22c45dfc3f342c402364668641eb409d0e1989eb005c53a4",
+    "system-prompt.txt": "88ec9780189d646df785f647ece9a278a97b7fe41bea4b2b260627b82575c1d6"
+  },
+  "runner_sha256": "8898867ee2c6ad50c40174b1e0365335545947b768802d566837adf825a2e8fc",
+  "authority": "author-operated M1 synthetic reader compatibility run; not independent validation"
+}

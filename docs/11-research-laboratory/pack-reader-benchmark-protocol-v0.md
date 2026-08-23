@@ -88,9 +88,10 @@ Across the 16 semantic groups, score a group correct only when both language cas
 1. schema validity at least `0.95` in every arm;
 2. unresolved citation rate `0` in every arm;
 3. no critical stale atom in any answer;
-4. within each order, `F1_COMPACT` group exact-answer accuracy is no more than one group below `F0_FULL`, and required-citation recall differs by no worse than `-0.05`;
-5. within each format, `O1_GOVERNED` stale-use rate is no higher than `O0_RETRIEVAL`, and group exact-answer accuracy differs by no worse than `-0.05`;
-6. every arm must receive identical record IDs and evidence text for a case; any mismatch invalidates the comparison.
+4. absolute reader competence in every arm: at least `14/16` groups exact-answer correct, required-citation recall at least `0.95`, and inappropriate-abstention rate no more than `0.05`;
+5. within each order, `F1_COMPACT` group exact-answer accuracy is no more than one group below `F0_FULL`, and required-citation recall differs by no worse than `-0.05`;
+6. within each format, `O1_GOVERNED` stale-use rate is no higher than `O0_RETRIEVAL`, and group exact-answer accuracy differs by no worse than `-0.05`;
+7. every arm must receive identical record IDs and evidence text for a case; any mismatch invalidates the comparison.
 
 These are compatibility gates, not superiority tests. Passing advances the format/order pair only to cross-family replication or natural-history development. Failure localizes reader incompatibility and preserves both baselines.
 
