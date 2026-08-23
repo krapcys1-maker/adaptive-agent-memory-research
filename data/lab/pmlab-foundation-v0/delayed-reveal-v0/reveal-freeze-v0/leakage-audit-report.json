@@ -1,0 +1,137 @@
+{
+  "schema_version": "foundation-delayed-reveal-leakage-audit-v0.1",
+  "contract_id": "PMLAB-FOUNDATION-REVEAL-001",
+  "status": "passed-authored-L0-L4-construction",
+  "prefix_freeze_commit": "f9980825b0217cddce7f1f4bd84a0cff715a4ad8",
+  "reveal_freeze_commit": "2bf98136eff5a06fe0055b4d0e21a5ff45d1e994",
+  "model_api_used": false,
+  "api_cost_usd": 0,
+  "independent_semantic_review_L5": false,
+  "levels": {
+    "L0_BYTE_FIELD": {
+      "passed": true,
+      "evidence": "exact frozen bytes, schemas, opaque IDs, forbidden-field checks"
+    },
+    "L1_LEXICAL": {
+      "passed": null,
+      "evidence": "descriptive metrics only",
+      "metrics": [
+        {
+          "reveal_index": 1,
+          "token_jaccard": 0.0,
+          "sequence_ratio": 0.2948717948717949,
+          "decision_use": "descriptive_only_not_leakage_verdict"
+        },
+        {
+          "reveal_index": 2,
+          "token_jaccard": 0.0,
+          "sequence_ratio": 0.1437908496732026,
+          "decision_use": "descriptive_only_not_leakage_verdict"
+        },
+        {
+          "reveal_index": 3,
+          "token_jaccard": 0.10526315789473684,
+          "sequence_ratio": 0.3756345177664975,
+          "decision_use": "descriptive_only_not_leakage_verdict"
+        }
+      ]
+    },
+    "L2_PROCESS_ACCESS": {
+      "passed": true,
+      "evidence": "observed reads are a subset of prefix-only allowlist; later tree absent"
+    },
+    "L3_COUNTERFACTUAL_FORK": {
+      "passed": true,
+      "evidence": "one identical prefix, three task families, three answer states, three required-evidence sets"
+    },
+    "L4_REPRODUCIBLE_BUILD": {
+      "passed": true,
+      "evidence": "ordered event IDs and payload bytes reconstructed from prefix source commit without reveal tree"
+    },
+    "L5_INDEPENDENT_SEMANTIC": {
+      "passed": false,
+      "evidence": "not performed"
+    }
+  },
+  "counts": {
+    "prefixes": 1,
+    "reveals": 3,
+    "gold_rows": 3,
+    "invalid_mutations": 14
+  },
+  "mutation_results": [
+    {
+      "case_id": "INV-PREFIX-QUERY-FIELD",
+      "rejected": true,
+      "error": "prefix forbidden field or unexpected field"
+    },
+    {
+      "case_id": "INV-PREFIX-GOLD-FIELD",
+      "rejected": true,
+      "error": "prefix forbidden field or unexpected field"
+    },
+    {
+      "case_id": "INV-ACCESS-REVEAL-READ",
+      "rejected": true,
+      "error": "observed read outside allowlist"
+    },
+    {
+      "case_id": "INV-REVEAL-AUTHORED-BEFORE-PREFIX",
+      "rejected": true,
+      "error": "reveal authored before prefix freeze"
+    },
+    {
+      "case_id": "INV-REVEAL-AVAILABLE-BEFORE-CUTOFF",
+      "rejected": true,
+      "error": "reveal not delayed"
+    },
+    {
+      "case_id": "INV-REVEAL-PREFIX-HASH",
+      "rejected": true,
+      "error": "prefix hash mismatch"
+    },
+    {
+      "case_id": "INV-REVEAL-SEMANTIC-ID",
+      "rejected": true,
+      "error": "reveal id format"
+    },
+    {
+      "case_id": "INV-FORK-TOO-SMALL",
+      "rejected": true,
+      "error": "counterfactual fork requires at least three reveals"
+    },
+    {
+      "case_id": "INV-FORK-DIFFERENT-PREFIX",
+      "rejected": true,
+      "error": "reveal prefix join"
+    },
+    {
+      "case_id": "INV-FORK-SAME-ANSWER-STATE",
+      "rejected": true,
+      "error": "counterfactual answers not incompatible"
+    },
+    {
+      "case_id": "INV-FORK-SAME-EVIDENCE",
+      "rejected": true,
+      "error": "counterfactual evidence sets do not differ"
+    },
+    {
+      "case_id": "INV-READER-GOLD-VISIBLE",
+      "rejected": true,
+      "error": "reader visible fields"
+    },
+    {
+      "case_id": "INV-DUPLICATE-REVEAL-ID",
+      "rejected": true,
+      "error": "duplicate reveal id"
+    },
+    {
+      "case_id": "INV-MISSING-GOLD-JOIN",
+      "rejected": true,
+      "error": "reveal gold join mismatch"
+    }
+  ],
+  "claim_limit": "Same-author mechanical L0-L4 construction only; semantic independence, author blindness, and memory quality are not established.",
+  "parent_execution_authorized": false,
+  "next_gate": "independent blinded L5 semantic attack and unseen second-author prefix/reveal fork"
+}

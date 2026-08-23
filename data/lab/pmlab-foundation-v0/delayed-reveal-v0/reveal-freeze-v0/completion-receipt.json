@@ -1,0 +1,30 @@
+{
+  "schema_version": "foundation-delayed-reveal-completion-v0.1",
+  "contract_id": "PMLAB-FOUNDATION-REVEAL-001",
+  "status": "completed-authored-mechanical-L0-L4",
+  "prefix_freeze_commit": "f9980825b0217cddce7f1f4bd84a0cff715a4ad8",
+  "reveal_freeze_commit": "2bf98136eff5a06fe0055b4d0e21a5ff45d1e994",
+  "failed_auditor_commit": "5a08f8a8dc1898424482bb6cd82cdf03167e0aca",
+  "successful_auditor_commit": "d04377f46653ee941ea9f6ae309b3bce9bdeb76c",
+  "failed_run_preserved": true,
+  "fixture_changed_after_failure": false,
+  "registered_expectations_changed_after_failure": false,
+  "same_author_audit": true,
+  "independent_semantic_review_L5": false,
+  "model_api_used": false,
+  "api_cost_usd": 0,
+  "artifacts": [
+    {"path": "scripts/audit_foundation_delayed_reveal.py", "bytes": 21811, "sha256": "fb0b03ec7578be1e6d7bb27bce599c1b5d7aff834f62d55e7b1bf96b5d7c708b"},
+    {"path": "tests/test_audit_foundation_delayed_reveal.py", "bytes": 2304, "sha256": "095601f4d811928c04aad798461acfef628bba241de07ac62ed4048633a3b104"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/leakage-audit-report.json", "bytes": 4248, "sha256": "c6e99ef696a7113a339b84817ca0a2da21c8ea9d21a85836671e5694ccf06db0"}
+  ],
+  "levels": {"L0_BYTE_FIELD": true, "L1_LEXICAL": null, "L2_PROCESS_ACCESS": true, "L3_COUNTERFACTUAL_FORK": true, "L4_REPRODUCIBLE_BUILD": true, "L5_INDEPENDENT_SEMANTIC": false},
+  "registered_invalid_mutations": 14,
+  "registered_invalid_mutations_rejected": 14,
+  "targeted_tests": {"passed": 4, "failed": 0},
+  "full_repository_tests": {"passed": 289, "failed": 0, "warnings": 2},
+  "parent_experiment_execution_authorized": false,
+  "claim_limit": "Same-author mechanical L0-L4 construction only; no author-blindness, semantic-independence, memory-quality, or architecture claim.",
+  "next_gate": "independent blinded L5 review plus unseen second-author prefix/reveal fork"
+}
+

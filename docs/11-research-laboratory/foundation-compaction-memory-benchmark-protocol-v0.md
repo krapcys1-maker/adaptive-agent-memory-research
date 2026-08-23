@@ -169,4 +169,12 @@ It does not satisfy independent review, unseen-fixture replication, delayed-reve
 leakage control, compactor, reader, external-system, sample-size, scorer, or budget
 gates. `PMLAB-FOUNDATION-001` therefore remains execution-locked.
 
+`PMLAB-FOUNDATION-REVEAL-001` separately froze a prefix before reveal/gold
+authorship, then froze a three-task counterfactual fork and 14 invalid mutations.
+After preserving one failed auditor version and freezing a check-order repair, the
+same-author construction passed mechanical L0/L2/L3/L4; L1 remained descriptive
+and independent semantic L5 was not performed. This advances the leakage
+instrument only. The parent remains locked until L5 and an unseen second-author
+fork pass, in addition to all other listed gates.
+
 Evidence basis: `../04-systems/foundation-v0-architecture-decision.md`, `compression-benchmark-extension.md`, and `../04-systems/agentmem-repository-audit-v0.md`.
