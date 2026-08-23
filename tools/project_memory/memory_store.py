@@ -60,6 +60,13 @@ EXCLUDED_PREFIXES = {
 }
 MAX_INDEXED_FILE_BYTES = 5 * 1024 * 1024
 
+# Largest share of a context bundle that the canonical state summary may occupy.
+# The remainder is reserved for retrieved evidence so that a growing
+# CURRENT_STATE.md cannot silently crowd out every search hit.
+CONTEXT_STATE_SHARE = 0.4
+CONTEXT_SEPARATOR = "\n\n"
+CONTEXT_TRUNCATION_MARKER = "\n[truncated]"
+
 
 class MemoryError(ValueError):
     """Raised when a memory operation is invalid."""
@@ -437,44 +444,145 @@ class MemoryStore:
             for row in rows
         ]
 
-    def context(self, query: str, char_budget: int = 12000, limit: int = 12) -> dict[str, Any]:
+    @staticmethod
+    def _fair_shares(lengths: list[int], budget: int) -> list[int]:
+        """Split ``budget`` across ``lengths`` so no single piece can starve the rest.
+
+        Pieces shorter than an equal share release their surplus to the others, so
+        the budget stays fully used whenever there is content to fill it.
+        """
+        shares = [0] * len(lengths)
+        remaining = budget
+        pending = [index for index, length in enumerate(lengths) if length > 0]
+        while pending and remaining > 0:
+            per_piece = remaining // len(pending)
+            if per_piece == 0:
+                break
+            for index in list(pending):
+                take = min(per_piece, lengths[index] - shares[index])
+                shares[index] += take
+                remaining -= take
+                if shares[index] >= lengths[index]:
+                    pending.remove(index)
+        # Hand out any indivisible remainder in stable order.
+        for index in list(pending):
+            if remaining <= 0:
+                break
+            take = min(remaining, lengths[index] - shares[index])
+            shares[index] += take
+            remaining -= take
+        return shares
+
+    def context(
+        self,
+        query: str,
+        char_budget: int = 12000,
+        limit: int = 12,
+        state_share: float = CONTEXT_STATE_SHARE,
+    ) -> dict[str, Any]:
         char_budget = max(1000, min(int(char_budget), 50000))
-        pieces: list[str] = []
+        state_share = max(0.0, min(float(state_share), 1.0))
+
         current_state = self.memory_dir / "CURRENT_STATE.md"
-        if current_state.exists():
-            pieces.append(current_state.read_text(encoding="utf-8-sig"))
+        state_text = (
+            current_state.read_text(encoding="utf-8-sig") if current_state.exists() else ""
+        )
+
         hits = self.search(query, limit=limit)
         records, _, _ = self.current_records()
+        retrieved: list[tuple[str, str]] = []
         for hit in hits:
             if hit["kind"] == "document" and hit["id_or_path"] == "memory/CURRENT_STATE.md":
                 continue
             if hit["kind"].startswith("memory:"):
                 event = records.get(hit["id_or_path"], {})
                 source_text = ", ".join(event.get("source_refs", [])) or "none recorded"
-                pieces.append(
-                    f"# Memory {event.get('id')} [{event.get('kind')}]\n"
-                    f"Title: {event.get('title')}\nSummary: {event.get('summary')}\n"
-                    f"Body: {event.get('body', '')}\nConfidence: {event.get('confidence')}\n"
-                    f"Sources: {source_text}"
+                retrieved.append(
+                    (
+                        hit["id_or_path"],
+                        f"# Memory {event.get('id')} [{event.get('kind')}]\n"
+                        f"Title: {event.get('title')}\nSummary: {event.get('summary')}\n"
+                        f"Body: {event.get('body', '')}\nConfidence: {event.get('confidence')}\n"
+                        f"Sources: {source_text}",
+                    )
                 )
             else:
-                pieces.append(
-                    f"# Document {hit['id_or_path']}\nTitle: {hit['title']}\nExcerpt: {hit['excerpt']}"
+                retrieved.append(
+                    (
+                        hit["id_or_path"],
+                        f"# Document {hit['id_or_path']}\nTitle: {hit['title']}\nExcerpt: {hit['excerpt']}",
+                    )
                 )
+
+        labelled: list[tuple[str, str]] = []
+        if state_text:
+            labelled.append(("memory/CURRENT_STATE.md", state_text))
+        labelled.extend(retrieved)
+        if not labelled:
+            return {
+                "query": query,
+                "char_budget": char_budget,
+                "characters_used": 0,
+                "state_share": state_share,
+                "context": "",
+                "sections": [],
+                "hits": hits,
+            }
+
+        separator_cost = len(CONTEXT_SEPARATOR) * (len(labelled) - 1)
+        content_budget = max(0, char_budget - separator_cost)
+
+        # The canonical state summary is capped so that retrieved evidence always
+        # keeps a share of the budget. Without this cap a long CURRENT_STATE.md
+        # consumes the whole bundle and every search hit contributes nothing.
+        if state_text and retrieved:
+            state_cap = int(content_budget * state_share)
+            state_allocation = min(len(state_text), state_cap)
+            hit_shares = self._fair_shares(
+                [len(text) for _, text in retrieved], content_budget - state_allocation
+            )
+            allocations = [state_allocation, *hit_shares]
+        else:
+            allocations = self._fair_shares([len(text) for _, text in labelled], content_budget)
+
         output: list[str] = []
-        used = 0
-        for piece in pieces:
-            separator = "\n\n" if output else ""
-            available = char_budget - used - len(separator)
-            if available <= 0:
-                break
-            output.append(piece[:available])
-            used += len(separator) + min(len(piece), available)
+        sections: list[dict[str, Any]] = []
+        for (identifier, text), allowance in zip(labelled, allocations):
+            if allowance <= 0:
+                sections.append(
+                    {
+                        "id_or_path": identifier,
+                        "characters": 0,
+                        "of": len(text),
+                        "truncated": True,
+                        "included": False,
+                    }
+                )
+                continue
+            truncated = allowance < len(text)
+            if truncated and allowance > len(CONTEXT_TRUNCATION_MARKER):
+                body = text[: allowance - len(CONTEXT_TRUNCATION_MARKER)] + CONTEXT_TRUNCATION_MARKER
+            else:
+                body = text[:allowance]
+            output.append(body)
+            sections.append(
+                {
+                    "id_or_path": identifier,
+                    "characters": len(body),
+                    "of": len(text),
+                    "truncated": truncated,
+                    "included": True,
+                }
+            )
+
+        rendered = CONTEXT_SEPARATOR.join(output)
         return {
             "query": query,
             "char_budget": char_budget,
-            "characters_used": used,
-            "context": "\n\n".join(output),
+            "characters_used": len(rendered),
+            "state_share": state_share,
+            "context": rendered,
+            "sections": sections,
             "hits": hits,
         }
 
@@ -505,5 +613,40 @@ class MemoryStore:
             "indexed_documents": index_report["documents"],
             "event_errors": errors,
             "git_state": git_state,
+            "git_head": self._git_head(),
+            "events_sha256": self._events_digest(),
             "model_api_required": False,
         }
+
+    def _git_head(self) -> str:
+        """Return the current commit, so a caller can detect that the repository moved."""
+        try:
+            result = subprocess.run(
+                ["git", "rev-parse", "HEAD"],
+                cwd=self.root,
+                text=True,
+                capture_output=True,
+                timeout=3,
+                check=False,
+            )
+        except (OSError, subprocess.SubprocessError):
+            return "unavailable"
+        if result.returncode != 0:
+            return "unavailable"
+        return result.stdout.strip() or "unavailable"
+
+    def _events_digest(self) -> str:
+        """Hash the canonical log so a caller can detect a concurrent append.
+
+        Two agents may operate on one repository. Writes are serialized by the
+        event lock, but a reader that took a snapshot has no other way to notice
+        that the log grew underneath it.
+        """
+        digest = hashlib.sha256()
+        try:
+            with self.events_path.open("rb") as handle:
+                for chunk in iter(lambda: handle.read(65536), b""):
+                    digest.update(chunk)
+        except OSError:
+            return "unavailable"
+        return digest.hexdigest()

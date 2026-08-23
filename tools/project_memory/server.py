@@ -18,7 +18,11 @@ from typing import Any, Callable
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from tools.project_memory.memory_store import MemoryError, MemoryStore  # noqa: E402
+from tools.project_memory.memory_store import (  # noqa: E402
+    CONTEXT_STATE_SHARE,
+    MemoryError,
+    MemoryStore,
+)
 
 
 SERVER_INFO = {"name": "adaptive-agent-project-memory", "version": "0.1.0"}
@@ -76,6 +80,16 @@ TOOLS = [
                 "query": {"type": "string"},
                 "char_budget": {"type": "integer", "minimum": 1000, "maximum": 50000, "default": 12000},
                 "limit": {"type": "integer", "minimum": 1, "maximum": 50, "default": 12},
+                "state_share": {
+                    "type": "number",
+                    "minimum": 0.0,
+                    "maximum": 1.0,
+                    "default": CONTEXT_STATE_SHARE,
+                    "description": (
+                        "Largest share of the budget the canonical state summary may take. "
+                        "The remainder is reserved for retrieved evidence."
+                    ),
+                },
             },
             "required": ["query"],
         },
@@ -159,7 +173,10 @@ class McpServer:
                 arguments.get("query", ""), arguments.get("limit", 10), arguments.get("kinds")
             ),
             "memory_context": lambda: self.store.context(
-                arguments.get("query", ""), arguments.get("char_budget", 12000), arguments.get("limit", 12)
+                arguments.get("query", ""),
+                arguments.get("char_budget", 12000),
+                arguments.get("limit", 12),
+                arguments.get("state_share", CONTEXT_STATE_SHARE),
             ),
             "memory_get": lambda: self.store.get(arguments.get("memory_id", "")),
             "memory_timeline": lambda: self.store.timeline(

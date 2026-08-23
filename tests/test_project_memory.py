@@ -67,6 +67,73 @@ class ProjectMemoryTests(unittest.TestCase):
         self.assertTrue(context["context"].startswith("# State"))
         self.assertLessEqual(context["characters_used"], 2000)
 
+    def test_long_state_summary_cannot_starve_retrieved_evidence(self) -> None:
+        (self.root / "memory" / "CURRENT_STATE.md").write_text(
+            "# State\n" + ("Temporal and emotional memory diagnostics. " * 2000),
+            encoding="utf-8",
+        )
+        for index in range(6):
+            (self.root / f"evidence-{index}.md").write_text(
+                f"# Evidence {index}\nEmotional retrieval evidence number {index}.",
+                encoding="utf-8",
+            )
+        self.store.rebuild_index()
+
+        context = self.store.context("emotional retrieval", char_budget=4000)
+
+        self.assertLessEqual(context["characters_used"], 4000)
+        state = next(
+            section
+            for section in context["sections"]
+            if section["id_or_path"] == "memory/CURRENT_STATE.md"
+        )
+        self.assertTrue(state["truncated"])
+        self.assertLessEqual(state["characters"], int(4000 * context["state_share"]))
+
+        retrieved = [
+            section
+            for section in context["sections"]
+            if section["id_or_path"] != "memory/CURRENT_STATE.md"
+        ]
+        self.assertTrue(retrieved, "search hits must reach the bundle")
+        self.assertTrue(
+            all(section["characters"] > 0 for section in retrieved),
+            "every retrieved section must receive part of the budget",
+        )
+
+    def test_truncated_sections_are_marked_rather_than_cut_silently(self) -> None:
+        (self.root / "memory" / "CURRENT_STATE.md").write_text(
+            "# State\n" + ("Consolidation and replay. " * 1000), encoding="utf-8"
+        )
+        self.store.rebuild_index()
+        context = self.store.context("consolidation replay", char_budget=1000)
+        self.assertIn("[truncated]", context["context"])
+
+    def test_context_without_hits_still_returns_state(self) -> None:
+        context = self.store.context("no matching terms whatsoever", char_budget=2000)
+        self.assertTrue(context["context"].startswith("# State"))
+        self.assertLessEqual(context["characters_used"], 2000)
+
+    def test_status_exposes_head_and_canonical_digest(self) -> None:
+        first = self.store.status()
+        self.assertEqual(64, len(first["events_sha256"]))
+        self.assertIn("git_head", first)
+
+        unchanged = self.store.status()
+        self.assertEqual(first["events_sha256"], unchanged["events_sha256"])
+
+        self.store.add(
+            kind="decision",
+            title="Concurrent append",
+            summary="A second agent appended an event.",
+        )
+        after = self.store.status()
+        self.assertNotEqual(
+            first["events_sha256"],
+            after["events_sha256"],
+            "an append must change the canonical digest so a stale reader can notice",
+        )
+
     def test_generated_work_directories_are_not_indexed(self) -> None:
         for name in ("work", "primary-work"):
             generated = self.root / "data" / "lab" / "benchmark" / name
