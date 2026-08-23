@@ -176,8 +176,8 @@ def test_a_floor_with_unobservable_provenance_is_coherent() -> None:
 
 
 def test_cost_addition_inherits_the_properties() -> None:
-    exact = Cost(Measure(12), Measure(40_000), Measure(500), Measure(1.8))
-    blind = Cost(UNKNOWN, UNKNOWN, UNKNOWN, Measure(0.4, "instrumented"))
+    exact = Cost(Measure(12), Measure(40_000), Measure(500), Measure(1_800_000))
+    blind = Cost(UNKNOWN, UNKNOWN, UNKNOWN, Measure(400_000, "instrumented"))
 
     assert (exact + exact).fully_known is True
     assert (exact + blind).fully_known is False
@@ -185,21 +185,33 @@ def test_cost_addition_inherits_the_properties() -> None:
     assert (blind + blind).fully_known is False
 
 
-def test_float_addition_is_made_associative_by_rounding() -> None:
-    """0.1 + 0.2 + 0.3 groups to 0.6000000000000001 or 0.6 in IEEE 754.
+def test_durations_are_integers_so_addition_is_exactly_associative() -> None:
+    """Rounding each float sum was tried first and is not a guarantee.
 
-    Not a defect in the model, and still a real problem: a latency column would
-    differ between two runs over identical data purely from summation order.
-    Rounding to microseconds at each step costs nothing any timing needs.
+    A targeted search near the half-microsecond boundary found 17,338
+    associativity violations in 54,872 triples, while 400,000 random triples
+    found none — random values almost never land on the boundary, so the
+    property test passed while the property did not hold. Integers are exact by
+    construction.
     """
-    left = (Measure(0.1) + Measure(0.2)) + Measure(0.3)
-    right = Measure(0.1) + (Measure(0.2) + Measure(0.3))
-    assert left.value == right.value == 0.6
+    a, b, c = Measure(123457), Measure(250000), Measure(1)
+    assert ((a + b) + c).value == (a + (b + c)).value == 373458
+
+
+def test_a_cost_reports_seconds_from_integer_microseconds() -> None:
+    """Presentation converts; storage never does."""
+    cost = Cost(wall_microseconds=Measure(1_500_000))
+    assert cost.wall_microseconds.value == 1_500_000
+    assert cost.wall_seconds == 1.5
+
+
+def test_an_unknown_duration_presents_as_none_not_zero_seconds() -> None:
+    assert Cost(wall_microseconds=Measure(None, "unobservable")).wall_seconds is None
 
 
 def test_cost_addition_is_order_independent() -> None:
-    a = Cost(Measure(1), Measure(10), Measure(2), Measure(0.1))
-    b = Cost(UNKNOWN, Measure(5), UNKNOWN, Measure(0.2))
-    c = Cost(Measure(3), UNKNOWN, Measure(1), Measure(0.3))
+    a = Cost(Measure(1), Measure(10), Measure(2), Measure(100_000))
+    b = Cost(UNKNOWN, Measure(5), UNKNOWN, Measure(200_000))
+    c = Cost(Measure(3), UNKNOWN, Measure(1), Measure(300_000))
     assert ((a + b) + c).summary() == (a + (b + c)).summary()
     assert ((a + b) + c).summary() == ((c + b) + a).summary()

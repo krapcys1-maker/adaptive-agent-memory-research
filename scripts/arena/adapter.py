@@ -55,9 +55,14 @@ class Measure:
     ``value is None`` means the system cannot report this quantity. Zero means it
     reported zero. Those are different facts and a single number cannot hold
     both.
+
+    Values are integers. Durations are microseconds, converted to seconds only
+    for display, because integer addition is exactly associative and rounded
+    float addition is not — and a cost table that varies with summation order
+    over identical data would read as a property of the system under test.
     """
 
-    value: int | float | None = 0
+    value: int | None = 0
     observability: str = "native"
     lower_bound: bool = False
 
@@ -73,15 +78,15 @@ class Measure:
         weakest = max((self.observability, other.observability), key=lambda o: rank[o])
 
         if self.value is not None and other.value is not None:
-            total = self.value + other.value
-            # Float addition is not associative: 0.1 + 0.2 + 0.3 gives
-            # 0.6000000000000001 or 0.6 depending on grouping, so a latency
-            # column would differ between two runs over identical data purely
-            # from summation order. Rounding to microseconds at each step
-            # restores associativity at a precision no timing needs.
-            if isinstance(total, float):
-                total = round(total, 6)
-            return Measure(total, weakest, self.lower_bound or other.lower_bound)
+            # Integers throughout, so addition is exactly associative rather
+            # than approximately so. Rounding each float sum to microseconds was
+            # tried first and is not a guarantee: a targeted search near the
+            # half-microsecond boundary found 17,338 associativity violations in
+            # 54,872 triples, while 400,000 random triples found none. Random
+            # values almost never land on the boundary, so the property test
+            # passed while the property did not hold.
+            return Measure(self.value + other.value, weakest,
+                           self.lower_bound or other.lower_bound)
 
         # One side is unknown. The known side is a real measurement and throwing
         # it away would lose information, so it is kept and flagged as a floor.
@@ -95,8 +100,6 @@ class Measure:
             return Measure(None, "unobservable")
 
         floor = sum(m.value for m in present)
-        if isinstance(floor, float):
-            floor = round(floor, 6)
         if not floor:
             # A floor of zero carries no information, so adding a known zero to
             # an unknown must leave it unknown. Otherwise `A + ZERO == A` fails
@@ -131,9 +134,15 @@ class Cost:
     model_calls: Measure = field(default_factory=Measure)
     input_tokens: Measure = field(default_factory=Measure)
     output_tokens: Measure = field(default_factory=Measure)
-    wall_seconds: Measure = field(default_factory=lambda: Measure(0.0))
+    wall_microseconds: Measure = field(default_factory=Measure)
 
-    _FIELDS = ("model_calls", "input_tokens", "output_tokens", "wall_seconds")
+    _FIELDS = ("model_calls", "input_tokens", "output_tokens", "wall_microseconds")
+
+    @property
+    def wall_seconds(self) -> float | None:
+        """Presentation only. Every stored quantity is an integer."""
+        value = self.wall_microseconds.value
+        return None if value is None else value / 1_000_000
 
     def __add__(self, other: "Cost") -> "Cost":
         return Cost(**{f: getattr(self, f) + getattr(other, f) for f in Cost._FIELDS})
@@ -229,7 +238,7 @@ def validate_adapter(adapter: Any, fixture: dict[str, Any]) -> dict[str, Any]:
     elif any(getattr(ingest_cost, f).observability not in OBSERVABILITY
              for f in Cost._FIELDS):
         problems.append("a cost field declares an observability outside the vocabulary")
-    elif ingest_cost.wall_seconds.value in (0, 0.0) and elapsed > 0.5:
+    elif not ingest_cost.wall_microseconds.value and elapsed > 0.5:
         # Not fatal: a fast adapter legitimately reports ~0. But a slow one
         # reporting 0 is under-reporting, and cost is part of the mechanism.
         problems.append("ingest took over 0.5s and reported zero wall time")

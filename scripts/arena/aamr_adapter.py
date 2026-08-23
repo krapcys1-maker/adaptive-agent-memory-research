@@ -29,13 +29,22 @@ from arena.adapter import Answer, Cost, Measure  # noqa: E402
 from corpus.address_extract import extract, extract_query  # noqa: E402
 
 
+def _elapsed_us(started: float) -> int:
+    """Microseconds since ``started``, as an integer.
+
+    Rounded once at the point of measurement rather than at every addition, so
+    the arena only ever sums integers.
+    """
+    return int(round((time.monotonic() - started) * 1_000_000))
+
+
 def _free(started: float) -> Cost:
     """A cost of zero that is genuinely measured, not merely unreported."""
     return Cost(
         model_calls=Measure(0, "native"),
         input_tokens=Measure(0, "native"),
         output_tokens=Measure(0, "native"),
-        wall_seconds=Measure(round(time.monotonic() - started, 6), "instrumented"),
+        wall_microseconds=Measure(_elapsed_us(started), "instrumented"),
     )
 
 
@@ -62,7 +71,7 @@ class AAMRAdapter:
             model_calls=Measure(0, "native"),
             input_tokens=Measure(0, "native"),
             output_tokens=Measure(0, "native"),
-            wall_seconds=Measure(round(time.monotonic() - started, 6), "instrumented"),
+            wall_microseconds=Measure(_elapsed_us(started), "instrumented"),
         )
 
     def query(self, question: str, asked_at: Any = None) -> Answer:

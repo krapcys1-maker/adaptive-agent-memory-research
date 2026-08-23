@@ -138,11 +138,11 @@ def test_negative_context_tokens_are_rejected() -> None:
 
 
 def test_costs_add_per_field() -> None:
-    total = (Cost(Measure(1), Measure(10), Measure(2), Measure(0.5))
-             + Cost(Measure(2), Measure(20), Measure(3), Measure(0.25)))
+    total = (Cost(Measure(1), Measure(10), Measure(2), Measure(500_000))
+             + Cost(Measure(2), Measure(20), Measure(3), Measure(250_000)))
     assert (total.model_calls.value, total.input_tokens.value,
             total.output_tokens.value) == (3, 30, 5)
-    assert total.wall_seconds.value == pytest.approx(0.75)
+    assert total.wall_microseconds.value == 750_000
     assert total.fully_known and not total.is_lower_bound
 
 

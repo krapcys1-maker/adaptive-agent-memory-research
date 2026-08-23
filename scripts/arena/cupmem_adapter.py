@@ -42,6 +42,15 @@ from typing import Any
 from arena.adapter import Answer, Cost, Measure
 
 
+def _elapsed_us(started: float) -> int:
+    """Microseconds since ``started``, as an integer.
+
+    Rounded once at the point of measurement rather than at every addition, so
+    the arena only ever sums integers.
+    """
+    return int(round((time.monotonic() - started) * 1_000_000))
+
+
 def _evidence_ids(relevant_context: Any) -> list[str]:
     """Whatever identifiers their retrieved context carries, extracted generically.
 
@@ -146,7 +155,7 @@ class CUPMemAdapter:
             model_calls=self._measure("calls"),
             input_tokens=self._measure("prompt_tokens"),
             output_tokens=self._measure("completion_tokens"),
-            wall_seconds=Measure(round(time.monotonic() - started, 6), "instrumented"),
+            wall_microseconds=Measure(_elapsed_us(started), "instrumented"),
         )
 
     def query(self, question: str, asked_at: Any = None) -> Answer:
@@ -168,7 +177,7 @@ class CUPMemAdapter:
                 model_calls=self._delta(before[0], after[0], "calls"),
                 input_tokens=self._delta(before[1], after[1], "prompt_tokens"),
                 output_tokens=self._delta(before[2], after[2], "completion_tokens"),
-                wall_seconds=Measure(round(time.monotonic() - started, 6), "instrumented"),
+                wall_microseconds=Measure(_elapsed_us(started), "instrumented"),
             ),
             system_metadata={
                 # Their premise verdict is reported, never converted into one of

@@ -159,9 +159,9 @@ def test_a_measured_part_plus_an_unmeasurable_one_is_a_floor_not_a_rejection() -
     really measured. A single flag forced a choice between rejecting the sum
     and discarding the twelve.
     """
-    measured = Cost(Measure(12), Measure(40000), Measure(500), Measure(1.8))
+    measured = Cost(Measure(12), Measure(40000), Measure(500), Measure(1_800_000))
     blind = Cost(Measure(None, "unobservable"), Measure(None, "unobservable"),
-                 Measure(None, "unobservable"), Measure(0.4, "instrumented"))
+                 Measure(None, "unobservable"), Measure(400_000, "instrumented"))
     total = measured + blind
 
     assert total.model_calls.value == 12
@@ -171,7 +171,7 @@ def test_a_measured_part_plus_an_unmeasurable_one_is_a_floor_not_a_rejection() -
 
 
 def test_two_fully_measured_costs_sum_to_a_total_not_a_floor() -> None:
-    measured = Cost(Measure(12), Measure(40000), Measure(500), Measure(1.8))
+    measured = Cost(Measure(12), Measure(40000), Measure(500), Measure(1_800_000))
     assert (measured + measured).fully_known is True
     assert (measured + measured).is_lower_bound is False
 
