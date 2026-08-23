@@ -1,0 +1,14 @@
+{
+  "corpus_id": "H1",
+  "generator": "scripts/build_delayed_reveal.py",
+  "gold_sha256": "f3734b58111cd16d87360530f6bf7e14f193069d7b0220da1c5acca9bc6fa76d",
+  "independence": "this generator never opens the history; gold event identifiers are recomputed through the same pure event_id() function the history generator used",
+  "independence_is_proven_by": "tests/test_history_family_construction.py regenerates this output in a directory where history.jsonl does not exist and asserts byte-identical results",
+  "instances_per_family": 12,
+  "issue": 41,
+  "queries": 84,
+  "queries_sha256": "abd586f8f6b6405b32810260612620a3b9d9d224c4eb54496c12eed6718b0dd6",
+  "queries_with_a_forbidden_event": 48,
+  "seed": 20260823,
+  "spec": "scripts/corpus/history_family_spec.py"
+}
