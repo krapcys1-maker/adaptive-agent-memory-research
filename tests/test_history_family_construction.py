@@ -187,6 +187,27 @@ def test_gold_is_not_systematically_longer_than_its_forbidden_event(corpus: dict
     assert not confounded, f"length predicts the gold perfectly: {confounded}"
 
 
+def test_every_probe_identifies_its_own_case(corpus: dict) -> None:
+    """A question shared by two instances has two contradictory correct answers.
+
+    PMLAB-H1-READ-E1 found this on its first ten paid probes. Three families
+    varied nothing in their question text, so twelve instances asked one
+    question with twelve different gold answers, and the reader correctly
+    reported the notes as conflicting. Four more families collided partially,
+    because the identifying noun was drawn from an eight-word list across twelve
+    instances.
+
+    The subject is now indexed by instance rather than drawn from the stream.
+    This test fails if instances ever exceed the list of subjects.
+    """
+    questions = [query["question"] for query in corpus["queries"]]
+    duplicates = {q for q in questions if questions.count(q) > 1}
+    assert not duplicates, (
+        f"{len(duplicates)} question(s) shared by more than one case: "
+        f"{sorted(duplicates)[:3]}"
+    )
+
+
 def test_forbidden_events_exist_for_the_families_that_need_them(corpus: dict) -> None:
     """Recall alone cannot see the failure these families are built around."""
     needing = {"OBSOLETE", "RARE-EXC", "POISON"}

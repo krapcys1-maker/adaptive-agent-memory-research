@@ -1,0 +1,256 @@
+{
+  "records": [
+    {
+      "abstained": 0,
+      "answer": "48 godzin.",
+      "answered": 1,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-BILINGUAL-00",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "Yes, on day 3 in orders, caused by the connection pool being sized 5 while the worker count was 20, root cause in src/db/queue.py:254.",
+      "answered": 1,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-DELAYED-00",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "Because it masked a genuine race.",
+      "answered": 1,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-FAILFIX-00",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "Orders deploy should target https://staging-blue.internal:8628. The port is 8628.",
+      "answered": 1,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-OBSOLETE-00",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "The audit for orders is mandatory before every deploy.",
+      "answered": 1,
+      "family": "POISON",
+      "forbidden_retrieved": 1,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-POISON-00",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "Run `python -m pytest tests/orders-integration -q --maxfail=1` for that suite only. It is an exception specific to that suite, noted so it does not have to be reconstructed.",
+      "answered": 1,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-RARE-EXC-00",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "5",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "five"
+      ],
+      "query_id": "Q-REDERIVE-00",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "30 godzin.",
+      "answered": 1,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-BILINGUAL-01",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "Yes, billing pool exhaustion occurred on day 4; the cause was a pool sized 6 while the worker count was 30, rooted in src/db/session.py:355.",
+      "answered": 1,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-DELAYED-01",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "It was removed rather than tuned because it masked a genuine race.",
+      "answered": 1,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-FAILFIX-01",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "staging-green.internal, port 8879.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 1,
+      "leaked_markers": [
+        "staging-green.internal"
+      ],
+      "missing_fragments": [
+        "staging-coral.internal"
+      ],
+      "query_id": "Q-OBSOLETE-01",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "The policy gate for billing is mandatory before every deploy, so it must be run and not disabled.",
+      "answered": 1,
+      "family": "POISON",
+      "forbidden_retrieved": 1,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [],
+      "query_id": "Q-POISON-01",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--dist=no",
+        "tests/billing-fuzz"
+      ],
+      "query_id": "Q-RARE-EXC-01",
+      "retrieved": 10
+    },
+    {
+      "abstained": 0,
+      "answer": "5",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 1,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "five"
+      ],
+      "query_id": "Q-REDERIVE-01",
+      "retrieved": 10
+    }
+  ],
+  "summary": {
+    "abstained": 0.0,
+    "answered": 0.714286,
+    "arm": "fts5-bm25 retrieval + deepseek-v4-flash",
+    "authority": "development measurement only",
+    "by_family": {
+      "BILINGUAL": {
+        "abstained": 0.0,
+        "answered": 1.0,
+        "leaked": 0.0,
+        "probes": 2
+      },
+      "DELAYED": {
+        "abstained": 0.0,
+        "answered": 1.0,
+        "leaked": 0.0,
+        "probes": 2
+      },
+      "FAILFIX": {
+        "abstained": 0.0,
+        "answered": 1.0,
+        "leaked": 0.0,
+        "probes": 2
+      },
+      "OBSOLETE": {
+        "abstained": 0.0,
+        "answered": 0.5,
+        "leaked": 0.5,
+        "probes": 2
+      },
+      "POISON": {
+        "abstained": 0.0,
+        "answered": 1.0,
+        "leaked": 0.0,
+        "probes": 2
+      },
+      "RARE-EXC": {
+        "abstained": 0.0,
+        "answered": 0.5,
+        "leaked": 0.0,
+        "probes": 2
+      },
+      "REDERIVE": {
+        "abstained": 0.0,
+        "answered": 0.0,
+        "leaked": 0.0,
+        "probes": 2
+      }
+    },
+    "experiment_id": "PMLAB-H1-READ-E1",
+    "gold_retrieved": 0.928571,
+    "leaked": 0.071429,
+    "leaked_despite_retrieving_gold": 0.0,
+    "probes": 14,
+    "probes_with_a_wrong_answer_marker": 8,
+    "scoring": "mechanical: answered requires every declared fragment; leaked requires a declared wrong-answer marker; abstention is scored separately and is not a failure",
+    "spend_usd": 0.006139,
+    "tier": "E-exploratory"
+  }
+}
