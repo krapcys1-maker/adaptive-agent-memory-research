@@ -377,6 +377,7 @@ def run(limit: int | None, stub: bool, key: str | None, run_id: str, at: str,
             "query_id": query["query_id"],
             "family": gold["case_id"].rsplit("-", 1)[0],
             "retained": len(kept),
+            "retained_ids": ranked,
             "retained_tokens": sum(len(e["text"].split()) for e in kept),
             "gold_retrieved": int(gold["gold_event_id"] in ranked),
             "forbidden_retrieved": (
