@@ -58,6 +58,11 @@ from corpus.property_canon import _COMPILED as _PROPERTY_FORMS  # noqa: E402
 # named here is never read.
 QUESTION_FIELDS = ("question", "query", "prompt", "q", "text", "instruction")
 
+# Benchmarks often number their question fields — dim1_query, q2_question. A
+# suffix convention is format adaptation; a list of one benchmark's exact field
+# names would be that benchmark encoded into the instrument.
+QUESTION_SUFFIXES = ("_query", "_question", "_prompt")
+
 
 def _questions_only(path: Path, field: str | None = None) -> list[str]:
     """Every question string, and nothing else from the file.
@@ -73,10 +78,20 @@ def _questions_only(path: Path, field: str | None = None) -> list[str]:
 
     def harvest(node: Any) -> None:
         if isinstance(node, dict):
-            for name in ([field] if field else QUESTION_FIELDS):
-                value = node.get(name)
+            if field:
+                value = node.get(field)
                 if isinstance(value, str) and value.strip():
                     questions.append(value.strip())
+                    return
+            else:
+                taken = False
+                for name, value in node.items():
+                    if not isinstance(value, str) or not value.strip():
+                        continue
+                    if name in QUESTION_FIELDS or name.endswith(QUESTION_SUFFIXES):
+                        questions.append(value.strip())
+                        taken = True
+                if taken:
                     return
             for value in node.values():
                 harvest(value)

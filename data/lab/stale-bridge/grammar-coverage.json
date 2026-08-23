@@ -1,0 +1,46 @@
+{
+  "against_the_registered_prediction": "entity_canon fires on 0.4458, the property layer on 0.0017. The prediction was that entity_canon has a stronger reason to transfer because it carries no domain vocabulary. If both are near zero the prediction is falsified and those constructions were specific to our question grammar rather than our domain",
+  "audit": "grammar coverage of an external benchmark's questions",
+  "by_layer": {
+    "address_extract entity (83% domain)": {
+      "coverage": 0.0,
+      "example_matched": [],
+      "patterns": 12,
+      "patterns_that_never_fire": 12,
+      "questions_matched": 0
+    },
+    "address_extract property (93% domain)": {
+      "coverage": 0.0017,
+      "example_matched": [
+        "Based on the conversation history, does the user still have their current focus on reconciling the compliance logs for the quarterly audit?",
+        "Since the user is heads-down on reconciling the compliance logs for the quarterly audit, can you draft a detailed step-by-step plan for how they should finish the reconciliation this week, including a checklist of what to verify and how to document discrepancies?"
+      ],
+      "patterns": 7,
+      "patterns_that_never_fire": 6,
+      "questions_matched": 2
+    },
+    "entity_canon (0% domain vocabulary)": {
+      "coverage": 0.4458,
+      "example_matched": [
+        "Based on the conversation history, does the user still live in Seattle?",
+        "Since the user has been based in Seattle for the last few years, can you recommend a few Seattle-specific neighborhood resources they should sign up for right now?"
+      ],
+      "patterns": 6,
+      "patterns_that_never_fire": 4,
+      "questions_matched": 535
+    },
+    "property_canon (84% domain)": {
+      "coverage": 0.0017,
+      "example_matched": [
+        "Based on the conversation history, does the user still have their current focus on reconciling the compliance logs for the quarterly audit?",
+        "Since the user is heads-down on reconciling the compliance logs for the quarterly audit, can you draft a detailed step-by-step plan for how they should finish the reconciliation this week, including a checklist of what to verify and how to document discrepancies?"
+      ],
+      "patterns": 7,
+      "patterns_that_never_fire": 6,
+      "questions_matched": 2
+    }
+  },
+  "questions": 1200,
+  "reading": "coverage is whether a layer fires at all, never whether it is right. A layer at near zero cannot produce an informative failure, because it never ran",
+  "reads": "question text only; gold, labels and families are never loaded"
+}
