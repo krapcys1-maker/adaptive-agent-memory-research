@@ -13,7 +13,7 @@
   "failure_reason": "model repeated list items until max_tokens and returned truncated invalid JSON at 3000 and 6000 completion tokens",
   "authority": "M1 author-operated model advisory; not independent review and cannot promote architecture",
   "hashes": {
-    "job.json": "86dcbe8a91e84a7c2cdf4463c98e5cd3fa90b913e74ba0b9b80798062740b15f",
+    "job.json": "38be4feb254e65680513698a8cad0138d57c0511a898d7bba6a605d2e5a7f3bc",
     "prompt.txt": "d7ccc78756cc3a3bc594a2d5d6a8b851d619a391e0722459e3208754be16ce30"
   }
 }

@@ -1,0 +1,230 @@
+{
+  "applied": true,
+  "issue": 26,
+  "not_repaired_genuine_modifications": [
+    {
+      "actual": "11b5a74eb932e196f6f5be0b7bdcd5ea7ce8388d9a6bdcc72d040cc289fe013b",
+      "declared": "c2c9bcfa8d1516bbb03ec16e521522996e3222a5bd20309b9c0c4ce8ed4b507b",
+      "key": "report.md",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/pmlab-obligation-mapping-deepseek-v1/result-manifest.json",
+      "target": "data/lab/pmlab-obligation-mapping-deepseek-v1/report.md"
+    },
+    {
+      "actual": "ad1d2cd12efafb7e55fd488b86adae15f04703b34a945bc23c186dbe226e7a3f",
+      "declared": "fec781e0524b5c9955acc291b8bf9c87f8b5ba4d4a87b1e036acd4b19ccae0d6",
+      "key": "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md"
+    },
+    {
+      "actual": "461b69b839362ce4a3eee530169b142076db28f82e258f479aae1128c2c0d913",
+      "declared": "7e04f94c7e4d09d0e9aabddb728cc0302d87133c85f6d8fdadf2e145ddce8abf",
+      "key": "docs/07-literature/natural-history-source-unit-contract-audit-v0.md",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "docs/07-literature/natural-history-source-unit-contract-audit-v0.md"
+    },
+    {
+      "actual": "0ac6bacab27477a36b3985c17edce399d88b150065e73cb662003e7403855167",
+      "declared": "91205e29b8c6cd79606a5deaea107afe350a9e8aa4cd2069f720b452164511d5",
+      "key": "data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json"
+    },
+    {
+      "actual": "1e54d56701b50273f747bd5600f64107d08bf2bb570dd77fb39bd37c9b76940c",
+      "declared": "98e0fac5b9fd029c701f663b1e94c68bfbe39b232f34d6b60e0a5626a194059b",
+      "key": "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json"
+    },
+    {
+      "actual": "ac65e01c67fce9b833b9756a4db975267a654cbcf7ca2edbf8498e1fd257cae0",
+      "declared": "ddf16a920304b97963259b75b0276d53eb0ffde45abee262312ef015e6ab85dc",
+      "key": "tests/test_natural_history_contracts.py",
+      "key_path": [
+        "artifacts"
+      ],
+      "manifest": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+      "target": "tests/test_natural_history_contracts.py"
+    }
+  ],
+  "recorded_at": "2026-08-23T10:32:30Z",
+  "repaired": [
+    {
+      "actual": "54a463d1bf993b9e081a7e3047b63f1109a9d00925026866b90fac1b55eedaa3",
+      "declared": "efdea6a738f0ce859fb018c717071041407e99a204dc27b3895ce8324d2d42d4",
+      "key": "score-summary.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/pmlab-obligation-mapping-deepseek-challenge-v0/result-manifest.json",
+      "target": "data/lab/pmlab-obligation-mapping-deepseek-challenge-v0/score-summary.json"
+    },
+    {
+      "actual": "3901ea0d9989df9de32b69f35f85191576e0ae711f10cfa9d7b6eecf3de01bb2",
+      "declared": "48a8e6ff7f2edcbf1aa2d2247377ef462f3ac117b3f61fa2a16bf3f0bb4251c3",
+      "key": "score-summary.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/pmlab-obligation-mapping-deepseek-v1/result-manifest.json",
+      "target": "data/lab/pmlab-obligation-mapping-deepseek-v1/score-summary.json"
+    },
+    {
+      "actual": "db3bbc66c6a96cc2fa9fe8b5c4d8ff29c619349b595f60d6a78fe39bc4069b54",
+      "declared": "85beb8e75dd86dda672bb943abdf450601017ce0449af017e948d1e499255be4",
+      "key": "job.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-foundation-contract-semantic-review-20260823/manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-foundation-contract-semantic-review-20260823/job.json"
+    },
+    {
+      "actual": "db3bbc66c6a96cc2fa9fe8b5c4d8ff29c619349b595f60d6a78fe39bc4069b54",
+      "declared": "85beb8e75dd86dda672bb943abdf450601017ce0449af017e948d1e499255be4",
+      "key": "job.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-foundation-contract-semantic-review-v2-20260823/manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-foundation-contract-semantic-review-v2-20260823/job.json"
+    },
+    {
+      "actual": "5a4fb44c15c4eb506c4329e3954cb9361ab7494be5b49e2b2d079344a305e7be",
+      "declared": "408f68392816db44b8b05279db12b7cb7a9f5c582d95f7fa1bc21d8d07c91853",
+      "key": "job.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-future-utility-t01-blind-audit-20260823/manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-future-utility-t01-blind-audit-20260823/job.json"
+    },
+    {
+      "actual": "d0493efce374f6f8c2ac597733de9ada6e637a17466b37c2c311ebe50e8f0f56",
+      "declared": "f22d7cbb7802bd4d4e4d1524a56bb5e7ed07dd1f6bbb364d70d1b8a4cc58d6f0",
+      "key": "api-summary.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-map-stage-advisory-review-20260822/result-manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-map-stage-advisory-review-20260822/api-summary.json"
+    },
+    {
+      "actual": "c7818b42fa503cfe31c43232c471097e146a7906be4e0c1efa28a04ffa8658bb",
+      "declared": "fffddfa8afa551a945680486687777cb538031b81ac617e9f28a28104f1e3182",
+      "key": "comparison-summary.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-map-stage-advisory-review-20260822/result-manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-map-stage-advisory-review-20260822/comparison-summary.json"
+    },
+    {
+      "actual": "accff6518e16c4a49c2784d76f0974704906b06d380462c2259f1a1ac443e634",
+      "declared": "fd89642615b54b2438da192f1564789ba2bb6c1a4e94fce5190e0cafd5e8eda3",
+      "key": "api-summary.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-map-stage-remaining-review-20260822/result-manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-map-stage-remaining-review-20260822/api-summary.json"
+    },
+    {
+      "actual": "20cdcbc5640aad6d6aaaeafc8518673d7377a837eb50aea5a4e4c4834a85e9b1",
+      "declared": "55e97cd3ea0ad1f5ae3ebfe2f8af91100f3364ca41708d7a10d32d6c1c970856",
+      "key": "comparison-summary.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-map-stage-remaining-review-20260822/result-manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-map-stage-remaining-review-20260822/comparison-summary.json"
+    },
+    {
+      "actual": "9165941eb396ae39ffe903b9a25ab09011f547dd3b1f18a2c95d4348800976bd",
+      "declared": "e2dde0e24005550f22c3e5972bf10a4de024d214a5dfbaa42ade5c6fbd324124",
+      "key": "field-agreement-summary.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-map-stage-remaining-review-20260822/result-manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-map-stage-remaining-review-20260822/field-agreement-summary.json"
+    },
+    {
+      "actual": "2241bf6dea51a8e0c371252bb0b16b34ce3891570d9d4626fb0489d64f105c5c",
+      "declared": "8526f67df4fdc2a7270116cfbd787e205b6e7abc2405ea346766857d3d0dd99e",
+      "key": "job.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-20260823/manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-20260823/job.json"
+    },
+    {
+      "actual": "e8c97f6eb26fa557eb06707ac05d89db1aa556417f3dbde13ba43b61bf10e961",
+      "declared": "37ba8df361e391060beab12a5150e84545a8f7f2e3b33ad9e9d31b912f2f2e8d",
+      "key": "job.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-v2-20260823/manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-v2-20260823/job.json"
+    },
+    {
+      "actual": "38be4feb254e65680513698a8cad0138d57c0511a898d7bba6a605d2e5a7f3bc",
+      "declared": "86dcbe8a91e84a7c2cdf4463c98e5cd3fa90b913e74ba0b9b80798062740b15f",
+      "key": "job.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-pack-characterization-review-20260823/manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-pack-characterization-review-20260823/job.json"
+    },
+    {
+      "actual": "89b49c118c892c9706e9bed5bacb2acc40018feb01a858224aa859e04d05156e",
+      "declared": "50ed895d3282a07c5b3ba45615d4c044ceaeb93c490de5d3449a72b00e019ff9",
+      "key": "job.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-pack-characterization-review-v2-20260823/manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-pack-characterization-review-v2-20260823/job.json"
+    },
+    {
+      "actual": "c0fe61d8ae898e8d44d38da0edd82b13ee3ec76e652b01da5063fc9a7e653f9e",
+      "declared": "1c721d559da5855aa226cf6b03348cc5b8c4c7e23734d3ca5e17b2ce1e04f94d",
+      "key": "job.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/api-screening/deepseek-v4-flash-reuse-characterization-review-20260823/manifest.json",
+      "target": "data/lab/api-screening/deepseek-v4-flash-reuse-characterization-review-20260823/job.json"
+    },
+    {
+      "actual": "4898e91cfe0131b9b1aa9888617322a4377095b70e3699abe41974f80ec21f29",
+      "declared": "60255be89f49ad5e22c45dfc3f342c402364668641eb409d0e1989eb005c53a4",
+      "key": "prompt-audit.json",
+      "key_path": [
+        "hashes"
+      ],
+      "manifest": "data/lab/pmlab-pack-reader-v0/execution-deepseek-v4-flash-v0/manifest.json",
+      "target": "data/lab/pmlab-pack-reader-v0/execution-deepseek-v4-flash-v0/prompt-audit.json"
+    }
+  ],
+  "rule": "declared digest equals sha256 of the same content with LF converted to CRLF"
+}

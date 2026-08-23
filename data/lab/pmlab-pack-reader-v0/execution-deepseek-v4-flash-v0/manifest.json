@@ -16,7 +16,7 @@
   "all_conditions_retry_preflight_usd": 0.20111344,
   "hashes": {
     "prompt-packets.jsonl": "c9f9ed4b42805295984ab84ee30065e93d5afdbb4bd538db6181602160591b4b",
-    "prompt-audit.json": "60255be89f49ad5e22c45dfc3f342c402364668641eb409d0e1989eb005c53a4",
+    "prompt-audit.json": "4898e91cfe0131b9b1aa9888617322a4377095b70e3699abe41974f80ec21f29",
     "system-prompt.txt": "88ec9780189d646df785f647ece9a278a97b7fe41bea4b2b260627b82575c1d6"
   },
   "runner_sha256": "8898867ee2c6ad50c40174b1e0365335545947b768802d566837adf825a2e8fc",

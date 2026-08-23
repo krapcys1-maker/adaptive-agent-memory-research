@@ -8,7 +8,7 @@
   "global_budget_usd": 10.0,
   "prompt_freeze_commit": "3f27498c84ca6ad2ca0ffa75f5672998daebf619",
   "hashes": {
-    "job.json": "8526f67df4fdc2a7270116cfbd787e205b6e7abc2405ea346766857d3d0dd99e",
+    "job.json": "2241bf6dea51a8e0c371252bb0b16b34ce3891570d9d4626fb0489d64f105c5c",
     "prompt.txt": "7a6c0a4d9c6b0d37b265a40645f07daa2e17f6b5c818ebf56512d21a1a0028a0"
   },
   "authority": "author-operated M1 advisory; not independent review and cannot unlock the builder",

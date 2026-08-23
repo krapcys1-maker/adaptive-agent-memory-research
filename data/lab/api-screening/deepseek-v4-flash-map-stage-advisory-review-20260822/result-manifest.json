@@ -12,12 +12,12 @@
   "worker_case_validity_usable": false,
   "gold_mutated": false,
   "hashes": {
-    "api-summary.json": "f22d7cbb7802bd4d4e4d1524a56bb5e7ed07dd1f6bbb364d70d1b8a4cc58d6f0",
+    "api-summary.json": "d0493efce374f6f8c2ac597733de9ada6e637a17466b37c2c311ebe50e8f0f56",
     "calls.jsonl": "b46cf0689f6dad128b68a1e2ad1d23e2160abcf49157dcded6921fbe7999e6dc",
     "raw-responses.jsonl": "8eafc0feed98aa59e4fc947e3ad23f2fab47ea385fc9f66110f82e1af07a46ab",
     "predictions.jsonl": "d2c0744335087a024ceacddc991173a58a8410ca61198063dbe5d88ff6eb8310",
     "comparison.jsonl": "41da606cab48ee03f73756fbfa00c6424d1c1e072eff39025bee023a2f0e2248",
-    "comparison-summary.json": "fffddfa8afa551a945680486687777cb538031b81ac617e9f28a28104f1e3182",
+    "comparison-summary.json": "c7818b42fa503cfe31c43232c471097e146a7906be4e0c1efa28a04ffa8658bb",
     "disagreement-evidence.jsonl": "e65da96fbcec7569c1e1a2997c33b12af8bc2ba9bd44d2c0ce2e5ce09bfd40a5",
     "report.md": "a0fccb628c7efa3f415549ed11c7f6cb7e4ad28d254eb7268454a8d65286f9e8"
   }

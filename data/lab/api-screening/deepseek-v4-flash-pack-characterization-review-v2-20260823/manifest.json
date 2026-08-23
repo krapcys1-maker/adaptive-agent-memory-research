@@ -10,7 +10,7 @@
   "prompt_freeze_commit": "16d963e36e203a98a55a4cc7eef418cc2a6b626c",
   "authority": "M1 author-operated model advisory; not independent review and cannot promote architecture",
   "hashes": {
-    "job.json": "50ed895d3282a07c5b3ba45615d4c044ceaeb93c490de5d3449a72b00e019ff9",
+    "job.json": "89b49c118c892c9706e9bed5bacb2acc40018feb01a858224aa859e04d05156e",
     "prompt.txt": "3aa2e1d1672d95330b4cece239097ed45abe3e016daa95b9e2daf02810577f7d"
   },
   "response_id": "06a30315-f273-403e-b19d-20a161c37128",
