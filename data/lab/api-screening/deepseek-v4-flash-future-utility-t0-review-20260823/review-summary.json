@@ -1,0 +1,73 @@
+{
+  "status": "review-finalized",
+  "evidence_tier": "M1-author-operated-model-advisory",
+  "reviewer": "deepseek-v4-flash",
+  "reviews": 2,
+  "verdict_counts": {
+    "accept_t0_with_limits": 2,
+    "needs_revision": 0,
+    "reject_t0_instrument": 0
+  },
+  "fatal_issues": [],
+  "major_issues": [
+    "No access control or authentication mechanism for telemetry stream; no role-based access or authorization checks for reading or writing events.",
+    "No check for interference or spillover across tasks sharing memory or candidate sets; exposure assignment assumes unit-level independence.",
+    "No data minimization review for allowed fields; some fields like assessor identity or pseudonym may be unnecessary for T0 and could be omitted.",
+    "No data protection impact assessment or independent privacy review; policy states independent review not completed.",
+    "No explicit check that correction events cannot target other correction events or that corrected values are not used in downstream joins without versioning.",
+    "No explicit consent or legal basis for processing synthetic data; policy mentions user-approved allowlist but no mechanism to record consent or basis.",
+    "No explicit handling of missing propensity for natural observation beyond allowing null; no check that propensity is in (0,1) for randomized assignments.",
+    "No explicit retention or deletion mechanism; privacy policy acknowledges but does not implement tombstone/export contract, leaving unresolved conflict between audit retention and erasure.",
+    "No validation that outcome_observed occurs within the preregistered observation window or that window closure is not earlier than outcome timestamps.",
+    "No validation that retrieval scores or assignment propensities are not used to infer utility or that U0-U4 labels are not misinterpreted as causal."
+  ],
+  "missing_privacy_controls": [
+    "Access control and authentication for telemetry stream",
+    "Audit logging of privacy events",
+    "Consent and legal basis recording",
+    "Data minimization review for allowed fields",
+    "Data subject rights implementation (access, export, erasure)",
+    "Encryption and pseudonymization techniques",
+    "Independent privacy review and DPIA",
+    "No check that assessor identity or pseudonym is not a real name or email pattern.",
+    "No check that correction reason does not contain raw content or prohibited keys.",
+    "No check that hashes are of canonical content only and not of user identifiers.",
+    "No explicit check that external_processing_allowed is false for sensitivity internal, personal, secret, or private_reasoning (only sensitive events are checked).",
+    "Re-identification risk assessment",
+    "Retention and deletion mechanism with tombstone/export contract"
+  ],
+  "missing_causal_controls": [
+    "No causal effect estimation allowed before T4; policy prohibits",
+    "No check that assignment propensities are not used for inverse probability weighting without a registered estimator.",
+    "No check that exposure_assigned and exposure_observed are not used to claim causal effects without a registered design.",
+    "No check that observation_window_closed does not censor outcomes based on exposure or outcome values (informative censoring).",
+    "No check that outcome_observed is not automatically converted to utility or that missing outcomes are not imputed as zero.",
+    "No handling of unmeasured confounding or selection bias in observational data",
+    "No pre-registration of causal estimands or designs for future T4",
+    "No propensity score model validation; only requires propensity for random/synthetic assignment",
+    "No randomization or adaptive policy authorized; T0 only observational",
+    "No sensitivity analysis or robustness checks for causal claims"
+  ],
+  "required_repairs_before_t1": [
+    "Add checks for interference or spillover across tasks sharing memory or candidate sets.",
+    "Add checks that correction reasons and assessor identifiers do not contain raw content or prohibited patterns.",
+    "Add checks that external_processing_allowed is false for all non-none sensitivity levels.",
+    "Add checks that observation_window_closed does not censor based on exposure or outcome values.",
+    "Add explicit checks for correction targeting correction events and for corrected value versioning in downstream joins.",
+    "Add validation that outcome_observed occurs within the preregistered observation window and that closure is not earlier than outcomes.",
+    "Add validation that propensity is in (0,1) for randomized assignments and that natural observation uses null propensity consistently.",
+    "Conduct independent privacy review and DPIA",
+    "Define and implement retention and deletion mechanisms with tombstone/export contract",
+    "Establish secure storage for raw artifacts with access controls",
+    "Implement access control and authentication for telemetry stream",
+    "Implement audit logging for privacy events",
+    "Implement consent and legal basis recording for natural capture",
+    "Implement data subject rights (access, export, erasure)",
+    "Minimize data collection to only necessary fields for T1"
+  ],
+  "next_tests": [
+    "T1 natural capture with synthetic user-approved allowlist and full privacy review",
+    "T1 natural capture with synthetic user consent and controlled environment, after implementing required privacy controls"
+  ],
+  "authority": "advisory challenge only; not independent validation and cannot unlock T1-T4"
+}

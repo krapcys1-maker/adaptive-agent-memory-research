@@ -1,8 +1,8 @@
 {
   "experiment_id": "PMLAB-UTILITY-001",
   "title": "Longitudinal memory future-utility telemetry",
-  "version": "0.2.0-t0",
-  "status": "t0-synthetic-schema-validated-t1-locked",
+  "version": "0.3.0-t0.1",
+  "status": "t0.1-post-advisory-synthetic-schema-validated-t1-locked",
   "execution_authorized": false,
   "t0_synthetic_validation_completed": true,
   "t1_natural_capture_authorized": false,
@@ -50,16 +50,28 @@
     "material_critical_harm_increase_allowed": false
   },
   "t0_artifacts": {
-    "schema": "data/lab/pmlab-future-utility-v0/telemetry-event-v0.schema.json",
+    "reviewed_prior_schema": "data/lab/pmlab-future-utility-v0/telemetry-event-v0.schema.json",
+    "schema": "data/lab/pmlab-future-utility-v0/telemetry-event-v0.1.schema.json",
     "privacy_policy": "docs/11-research-laboratory/future-utility-telemetry-privacy-and-capture-policy-v0.md",
     "valid_deliveries": "data/lab/pmlab-future-utility-v0/t0/valid-deliveries.jsonl",
     "invalid_cases": "data/lab/pmlab-future-utility-v0/t0/invalid-cases.json",
     "validator": "scripts/validate_future_utility_telemetry_t0.py",
     "report": "data/lab/pmlab-future-utility-v0/t0/validation-report.json",
-    "schema_sha256": "1d28da644790e06b661e772c73b6ff779f91a8a52c95760d7877e48a53d8f04a",
-    "valid_deliveries_sha256": "c8d66bbc6cc524ecc7497176e102f22babc95f5a497a3e735d2f96c43480335d",
-    "invalid_cases_sha256": "5365b5c0888f7f0d2abf438390834bd46b1739a03d76900ef8c190a6bbde5230",
-    "validation_report_sha256": "ad659770f49eeccc2255f3055e240b650fb455c2c1321c492f8939d7c401a0de"
+    "reviewed_prior_schema_sha256": "1d28da644790e06b661e772c73b6ff779f91a8a52c95760d7877e48a53d8f04a",
+    "schema_sha256": "5416ea189043ecefba3b670e6c07ba46c8bbccc79f9310bf3ab30360adc83eeb",
+    "valid_deliveries_sha256": "015cd5fd2f7f9776ff60f1eb1614a2334f7d07f0b4fa4597d24971516096a208",
+    "invalid_cases_sha256": "1d024b807ec087a0ec178d5813a05cf8cc2370967eb06a0436bb39f95bc5a03b",
+    "validation_report_sha256": "494348af099d37f4b636b70e4b3e3a796bb87494593b479e63d4b172f064c542"
+  },
+  "advisory_review": {
+    "run_id": "deepseek-v4-flash-future-utility-t0-review-20260823",
+    "reviewed_schema_version": "pmlab-utility-telemetry-v0",
+    "reviewed_schema_sha256": "1d28da644790e06b661e772c73b6ff779f91a8a52c95760d7877e48a53d8f04a",
+    "evidence_tier": "M1-author-operated-model-advisory",
+    "verdict": "2/2 accept_t0_with_limits",
+    "cost_usd": 0.00540056,
+    "post_review_repairs_independently_reviewed": false,
+    "disposition": "data/lab/pmlab-future-utility-v0/t0/advisory-disposition.md"
   },
   "t0_result_authority": "instrument integrity only; no natural capture, randomized exposure, adaptive policy, causal utility, retention, consolidation, or architecture claim",
   "protocol": "docs/11-research-laboratory/future-utility-telemetry-protocol-v0.md",

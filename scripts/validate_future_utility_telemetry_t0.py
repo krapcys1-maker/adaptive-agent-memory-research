@@ -16,12 +16,12 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 LAB = ROOT / "data" / "lab" / "pmlab-future-utility-v0"
-SCHEMA = LAB / "telemetry-event-v0.schema.json"
+SCHEMA = LAB / "telemetry-event-v0.1.schema.json"
 VALID = LAB / "t0" / "valid-deliveries.jsonl"
 INVALID = LAB / "t0" / "invalid-cases.json"
 REPORT = LAB / "t0" / "validation-report.json"
 
-SCHEMA_VERSION = "pmlab-utility-telemetry-v0"
+SCHEMA_VERSION = "pmlab-utility-telemetry-v0.1"
 EVENT_TYPES = {
     "memory_registered",
     "task_registered",
@@ -56,6 +56,8 @@ IDEM_RE = re.compile(r"^IDEM-[A-F0-9]{16}$")
 TASK_RE = re.compile(r"^TASK-[A-F0-9]{12}$")
 MEMORY_RE = re.compile(r"^MEM-[A-F0-9]{12}$")
 ASSIGN_RE = re.compile(r"^ASG-[A-F0-9]{12}$")
+GOVERNANCE_RE = re.compile(r"^GOV-[A-F0-9]{12}$")
+DEPENDENCE_RE = re.compile(r"^DEP-[A-F0-9]{12}$")
 HASH_RE = re.compile(r"^[a-f0-9]{64}$")
 OUTCOME_RE = re.compile(r"^[a-z][a-z0-9_]{1,63}$")
 
@@ -135,18 +137,25 @@ def walk_privacy(value: Any, path: str = "$") -> None:
 def validate_privacy(event: dict[str, Any]) -> None:
     privacy = exact_fields(
         event["privacy"],
-        {"capture_basis", "sensitivity", "redaction_count", "external_processing_allowed"},
-        {"capture_basis", "sensitivity", "redaction_count", "external_processing_allowed"},
+        {"capture_basis", "sensitivity", "redaction_count", "external_processing_allowed", "governance_receipt_id", "retention_class", "access_scope"},
+        {"capture_basis", "sensitivity", "redaction_count", "external_processing_allowed", "governance_receipt_id", "retention_class", "access_scope"},
         "privacy",
     )
     require(privacy["capture_basis"] in {"synthetic", "explicit_user_scope", "project_artifact_allowlist", "not_captured"}, "invalid capture_basis")
     require(privacy["sensitivity"] in {"none", "internal", "personal", "secret", "private_reasoning"}, "invalid sensitivity")
     require(isinstance(privacy["redaction_count"], int) and privacy["redaction_count"] >= 0, "redaction_count must be a nonnegative integer")
     require(isinstance(privacy["external_processing_allowed"], bool), "external_processing_allowed must be boolean")
-    require(not (privacy["sensitivity"] in {"personal", "secret", "private_reasoning"} and privacy["external_processing_allowed"]), "sensitive event cannot allow external processing")
+    require(not (privacy["sensitivity"] != "none" and privacy["external_processing_allowed"]), "sensitive event cannot allow external processing")
+    require(privacy["governance_receipt_id"] is None or (isinstance(privacy["governance_receipt_id"], str) and GOVERNANCE_RE.fullmatch(privacy["governance_receipt_id"])), "governance_receipt_id invalid")
+    require(privacy["retention_class"] in {"synthetic_disposable", "project_research", "restricted"}, "invalid retention_class")
+    require(privacy["access_scope"] in {"local_research_only", "approved_external_worker"}, "invalid access_scope")
+    require(not privacy["external_processing_allowed"] or privacy["access_scope"] == "approved_external_worker", "external processing requires approved_external_worker scope")
     if event["phase"] == "T0":
         require(privacy["capture_basis"] == "synthetic" and privacy["sensitivity"] == "none", "T0 permits synthetic nonsensitive events only")
         require(privacy["external_processing_allowed"] is False, "T0 external processing is prohibited")
+        require(privacy["governance_receipt_id"] is None and privacy["retention_class"] == "synthetic_disposable" and privacy["access_scope"] == "local_research_only", "T0 requires disposable local synthetic governance")
+    elif privacy["capture_basis"] in {"explicit_user_scope", "project_artifact_allowlist"}:
+        require(privacy["governance_receipt_id"] is not None, "natural capture requires governance receipt")
     walk_privacy(event)
 
 
@@ -170,12 +179,14 @@ def validate_payload(event: dict[str, Any]) -> None:
                 parse_time(p[field], f"{prefix}.{field}")
 
     elif kind == "task_registered":
-        required = {"task_family", "language", "criticality", "query_cutoff", "outcome_specs", "policy_versions"}
+        required = {"task_family", "language", "criticality", "query_cutoff", "observation_window_end", "dependence_cluster_id", "outcome_specs", "policy_versions"}
         p = exact_fields(payload, required, required, prefix)
         require_string(p["task_family"], f"{prefix}.task_family")
         require(p["language"] in {"pl", "en", "mixed", "other"}, f"{prefix}.language invalid")
         require(p["criticality"] in {"ordinary", "critical"}, f"{prefix}.criticality invalid")
         parse_time(p["query_cutoff"], f"{prefix}.query_cutoff")
+        parse_time(p["observation_window_end"], f"{prefix}.observation_window_end")
+        require(isinstance(p["dependence_cluster_id"], str) and DEPENDENCE_RE.fullmatch(p["dependence_cluster_id"]), f"{prefix}.dependence_cluster_id invalid")
         require(isinstance(p["outcome_specs"], list) and p["outcome_specs"], f"{prefix}.outcome_specs must be nonempty")
         names: set[str] = set()
         for index, spec in enumerate(p["outcome_specs"]):
@@ -365,6 +376,7 @@ def validate_stream(deliveries: list[dict[str, Any]], *, require_closed: bool = 
 
     memories: dict[str, dict[str, Any]] = {}
     tasks: dict[str, dict[str, dict[str, Any]]] = {}
+    task_events: dict[str, dict[str, Any]] = {}
     candidates: dict[str, set[str]] = {}
     retrievals: dict[tuple[str, str], dict[str, Any]] = {}
     assignments: dict[str, dict[str, Any]] = {}
@@ -387,7 +399,10 @@ def validate_stream(deliveries: list[dict[str, Any]], *, require_closed: bool = 
             memories[memory_id] = event
         elif kind == "task_registered":
             require(task_id not in tasks, f"task registered twice: {task_id}")
+            require(parse_time(payload["query_cutoff"], f"{task_id}.query_cutoff") <= parse_time(event["occurred_at"], f"{task_id}.occurred_at"), f"query cutoff follows task registration: {task_id}")
+            require(parse_time(payload["observation_window_end"], f"{task_id}.observation_window_end") >= parse_time(event["occurred_at"], f"{task_id}.occurred_at"), f"observation window ends before task registration: {task_id}")
             tasks[task_id] = {spec["name"]: spec for spec in payload["outcome_specs"]}
+            task_events[task_id] = event
         elif kind == "candidate_set_frozen":
             require(task_id in tasks, f"candidate set references unknown task: {task_id}")
             require(task_id not in candidates, f"candidate set frozen twice: {task_id}")
@@ -436,6 +451,8 @@ def validate_stream(deliveries: list[dict[str, Any]], *, require_closed: bool = 
             behavior.add((task_id, memory_id))
         elif kind == "outcome_observed":
             require(task_id in tasks, f"outcome references unknown task: {task_id}")
+            require(task_id not in closures, f"outcome occurs after observation window closure: {task_id}")
+            require(parse_time(event["occurred_at"], f"{event['event_id']}.occurred_at") <= parse_time(task_events[task_id]["payload"]["observation_window_end"], f"{task_id}.observation_window_end"), f"outcome occurs after preregistered observation window: {task_id}")
             name = payload["outcome_name"]
             require(name in tasks[task_id], f"outcome was not preregistered: {task_id}/{name}")
             spec = tasks[task_id][name]
@@ -447,6 +464,9 @@ def validate_stream(deliveries: list[dict[str, Any]], *, require_closed: bool = 
         elif kind == "observation_window_closed":
             require(task_id in tasks, f"closure references unknown task: {task_id}")
             require(task_id not in closures, f"observation window closed twice: {task_id}")
+            registered_end = task_events[task_id]["payload"]["observation_window_end"]
+            require(payload["window_end"] == registered_end, f"closure differs from preregistered observation window: {task_id}")
+            require(parse_time(event["occurred_at"], f"{event['event_id']}.occurred_at") >= parse_time(registered_end, f"{task_id}.observation_window_end"), f"closure precedes observation window end: {task_id}")
             observed = {name for task, name in outcomes if task == task_id}
             missing = set(tasks[task_id]) - observed
             outstanding = set(payload["outstanding_outcome_names"])
@@ -475,6 +495,14 @@ def validate_stream(deliveries: list[dict[str, Any]], *, require_closed: bool = 
     if require_closed:
         require(set(tasks) == set(closures), "every T0 task must close its observation window")
 
+    memory_tasks: dict[str, set[str]] = {}
+    for task_id, memory_id in retrievals:
+        memory_tasks.setdefault(memory_id, set()).add(task_id)
+    for memory_id, related_tasks in memory_tasks.items():
+        if len(related_tasks) > 1:
+            clusters = {task_events[task]["payload"]["dependence_cluster_id"] for task in related_tasks}
+            require(len(clusters) == 1, f"shared memory tasks require one dependence cluster: {memory_id}")
+
     pair_levels: dict[tuple[str, str], str] = {}
     for pair, retrieval in retrievals.items():
         if retrieval["payload"]["eligible"] or retrieval["payload"]["retrieved"]:
@@ -494,6 +522,8 @@ def validate_stream(deliveries: list[dict[str, Any]], *, require_closed: bool = 
         "exact_retries_collapsed": retries,
         "memory_count": len(memories),
         "task_count": len(tasks),
+        "dependence_cluster_count": len({event["payload"]["dependence_cluster_id"] for event in task_events.values()}),
+        "shared_memory_across_task_count": sum(len(task_ids) > 1 for task_ids in memory_tasks.values()),
         "closed_task_count": len(closures),
         "censored_task_count": sum(event["payload"]["censoring_reason"] != "none" for event in closures.values()),
         "correction_count": corrections,

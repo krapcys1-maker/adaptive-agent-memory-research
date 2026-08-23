@@ -94,5 +94,44 @@
     "mutations": [
       {"op": "replace", "event_id": "TE-000000000000000F", "path": "/payload/field_corrections/~1payload~1usd", "value": "not-a-number"}
     ]
+  },
+  {
+    "case_id": "T0-INV-014-INTERNAL-EXTERNAL-PROCESSING",
+    "expected_error": "sensitive event cannot allow external processing",
+    "mutations": [
+      {"op": "replace", "event_id": "TE-0000000000000001", "path": "/privacy/sensitivity", "value": "internal"},
+      {"op": "replace", "event_id": "TE-0000000000000001", "path": "/privacy/external_processing_allowed", "value": true},
+      {"op": "replace", "event_id": "TE-0000000000000001", "path": "/privacy/access_scope", "value": "approved_external_worker"}
+    ]
+  },
+  {
+    "case_id": "T0-INV-015-OUTCOME-AFTER-PREREGISTERED-WINDOW",
+    "expected_error": "outcome occurs after preregistered observation window",
+    "mutations": [
+      {"op": "replace", "event_id": "TE-0000000000000003", "path": "/payload/observation_window_end", "value": "2026-08-23T04:01:17Z"}
+    ]
+  },
+  {
+    "case_id": "T0-INV-016-SHARED-MEMORY-CLUSTER-MISMATCH",
+    "expected_error": "shared memory tasks require one dependence cluster",
+    "mutations": [
+      {"op": "replace", "event_id": "TE-0000000000000011", "path": "/payload/dependence_cluster_id", "value": "DEP-000000000002"}
+    ]
+  },
+  {
+    "case_id": "T0-INV-017-NATURAL-CAPTURE-WITHOUT-RECEIPT",
+    "expected_error": "natural capture requires governance receipt",
+    "mutations": [
+      {"op": "replace", "event_id": "TE-0000000000000001", "path": "/phase", "value": "T1"},
+      {"op": "replace", "event_id": "TE-0000000000000001", "path": "/privacy/capture_basis", "value": "project_artifact_allowlist"},
+      {"op": "replace", "event_id": "TE-0000000000000001", "path": "/privacy/retention_class", "value": "project_research"}
+    ]
+  },
+  {
+    "case_id": "T0-INV-018-CLOSURE-DIFFERS-FROM-PREREGISTERED-WINDOW",
+    "expected_error": "closure differs from preregistered observation window",
+    "mutations": [
+      {"op": "replace", "event_id": "TE-0000000000000010", "path": "/payload/window_end", "value": "2026-08-23T04:01:25Z"}
+    ]
   }
 ]

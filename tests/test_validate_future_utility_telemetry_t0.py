@@ -27,11 +27,11 @@ class FutureUtilityTelemetryT0Tests(unittest.TestCase):
 
     def test_all_invalid_fixtures_are_rejected_for_registered_reason(self):
         report = MODULE.build_report()
-        self.assertEqual(report["invalid_cases"]["total"], 13)
-        self.assertEqual(report["invalid_cases"]["rejected"], 13)
+        self.assertEqual(report["invalid_cases"]["total"], 18)
+        self.assertEqual(report["invalid_cases"]["rejected"], 18)
         self.assertEqual(
             len({row["case_id"] for row in report["invalid_cases"]["results"]}),
-            13,
+            18,
         )
 
     def test_correction_preserves_original_delivery(self):

@@ -209,6 +209,17 @@ python scripts/validate_future_utility_telemetry_t0.py --write-report
 
 This is instrument validation only. It does not authorize natural capture, randomized withholding, adaptive ranking, or a causal-utility claim.
 
+The frozen, budgeted M1 advisory workflow for the T0 privacy and causal contract is:
+
+```powershell
+python scripts/review_future_utility_t0_deepseek.py prepare
+python scripts/review_future_utility_t0_deepseek.py freeze --commit <packet-commit>
+python scripts/review_future_utility_t0_deepseek.py run --run-budget-usd 0.10 --global-budget-usd 10
+python scripts/review_future_utility_t0_deepseek.py finalize
+```
+
+Its author-operated model output is advisory only. Post-review repairs require a new review and do not inherit approval from the earlier packet.
+
 ## Download selected repositories
 
 ```powershell

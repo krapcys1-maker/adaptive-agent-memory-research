@@ -2,12 +2,12 @@
   "authority": "T0 instrument integrity only; no natural capture, causal utility, randomized exposure, adaptive ranking, retention, consolidation, or architecture claim",
   "experiment_id": "PMLAB-UTILITY-001",
   "hashes": {
-    "invalid_cases_sha256": "5365b5c0888f7f0d2abf438390834bd46b1739a03d76900ef8c190a6bbde5230",
-    "schema_sha256": "1d28da644790e06b661e772c73b6ff779f91a8a52c95760d7877e48a53d8f04a",
-    "valid_deliveries_sha256": "c8d66bbc6cc524ecc7497176e102f22babc95f5a497a3e735d2f96c43480335d"
+    "invalid_cases_sha256": "1d024b807ec087a0ec178d5813a05cf8cc2370967eb06a0436bb39f95bc5a03b",
+    "schema_sha256": "5416ea189043ecefba3b670e6c07ba46c8bbccc79f9310bf3ab30360adc83eeb",
+    "valid_deliveries_sha256": "015cd5fd2f7f9776ff60f1eb1614a2334f7d07f0b4fa4597d24971516096a208"
   },
   "invalid_cases": {
-    "rejected": 13,
+    "rejected": 18,
     "results": [
       {
         "case_id": "T0-INV-001-CONFLICTING-RETRY",
@@ -60,9 +60,29 @@
       {
         "case_id": "T0-INV-013-CORRECTION-BREAKS-TARGET-CONTRACT",
         "observed_error": "TE-000000000000000E.cost_observed.payload.usd must be numeric"
+      },
+      {
+        "case_id": "T0-INV-014-INTERNAL-EXTERNAL-PROCESSING",
+        "observed_error": "sensitive event cannot allow external processing"
+      },
+      {
+        "case_id": "T0-INV-015-OUTCOME-AFTER-PREREGISTERED-WINDOW",
+        "observed_error": "outcome occurs after preregistered observation window: TASK-000000000001"
+      },
+      {
+        "case_id": "T0-INV-016-SHARED-MEMORY-CLUSTER-MISMATCH",
+        "observed_error": "shared memory tasks require one dependence cluster: MEM-000000000001"
+      },
+      {
+        "case_id": "T0-INV-017-NATURAL-CAPTURE-WITHOUT-RECEIPT",
+        "observed_error": "natural capture requires governance receipt"
+      },
+      {
+        "case_id": "T0-INV-018-CLOSURE-DIFFERS-FROM-PREREGISTERED-WINDOW",
+        "observed_error": "closure differs from preregistered observation window: TASK-000000000001"
       }
     ],
-    "total": 13
+    "total": 18
   },
   "phase": "T0",
   "privacy": {
@@ -70,7 +90,7 @@
     "raw_content_fields_accepted": 0,
     "synthetic_nonsensitive_only": true
   },
-  "schema_version": "pmlab-utility-telemetry-v0",
+  "schema_version": "pmlab-utility-telemetry-v0.1",
   "status": "synthetic-schema-validation-passed",
   "valid_stream": {
     "causal_effect_event_count": 0,
@@ -78,6 +98,7 @@
     "closed_task_count": 2,
     "correction_count": 1,
     "deliveries": 24,
+    "dependence_cluster_count": 1,
     "exact_retries_collapsed": 1,
     "logical_event_type_counts": {
       "behavior_reference": 1,
@@ -100,6 +121,7 @@
       "U4": 1
     },
     "memory_count": 2,
+    "shared_memory_across_task_count": 1,
     "task_count": 2
   }
 }

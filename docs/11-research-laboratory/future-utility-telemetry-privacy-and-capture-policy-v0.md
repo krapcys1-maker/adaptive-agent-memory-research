@@ -17,6 +17,7 @@ Telemetry capture is denied unless the event is synthetic or the source belongs 
 - explicit evidence-event references and coarse explicit-feedback enum;
 - preregistered outcome values, harm flags, latency, token counts, cache counts, local compute, and USD;
 - assessor identity or pseudonym and blindness status;
+- opaque governance receipt, retention class, access scope, and dependence-cluster identifier;
 - correction pointers, corrected scalar fields, and a non-sensitive reason;
 - observation-window closure and censoring reason.
 
@@ -42,6 +43,12 @@ Raw artifacts needed for an independently approved benchmark belong in access-co
 | `private_reasoning` | denied | denied |
 
 An event marked `personal`, `secret`, or `private_reasoning` cannot set `external_processing_allowed=true`. T0 fixtures use only `synthetic` plus sensitivity `none`.
+
+Revision v0.1 strengthens this rule: every sensitivity other than `none`, including `internal`, prohibits external processing. External processing also requires the `approved_external_worker` access scope. Synthetic T0 events require a null governance receipt, `synthetic_disposable` retention, and `local_research_only` access. A later allowlisted or explicitly authorized natural event must carry an opaque governance receipt; this receipt records approval existence, not user identity or raw consent text.
+
+## Observation and dependence controls
+
+Every task preregisters `observation_window_end`; outcomes after that deadline are rejected and closure cannot move it. Tasks retrieving the same memory share an opaque `dependence_cluster_id`, permitting later clustered or spillover-aware analysis without storing a raw session identity. These fields improve observability but do not solve informative censoring, interference, or causal identification by themselves.
 
 ## Corrections and deletion
 

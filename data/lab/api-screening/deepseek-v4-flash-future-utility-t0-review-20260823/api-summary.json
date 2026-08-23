@@ -1,0 +1,9 @@
+{
+  "status": "api-run-complete",
+  "valid_reviews": 2,
+  "calls_this_invocation": 2,
+  "errors_logged": 0,
+  "run_conservative_cost_usd": 0.00540056,
+  "all_runs_conservative_cost_usd": 0.84754164,
+  "authority": "author-operated M1 advisory review; not independent privacy/statistical approval and cannot unlock T1-T4"
+}
