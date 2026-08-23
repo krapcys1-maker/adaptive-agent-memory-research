@@ -7,3 +7,5 @@ At the start of a substantial task, run `memory_status` and request a focused `m
 The canonical store is `memory/events.jsonl` plus reviewed Markdown. `memory/.index/project_memory.sqlite3` is only a generated search index. If MCP is unavailable, use `python tools/project_memory/cli.py <command>`.
 
 Read `AGENTS.md`, `START_HERE.md`, and `memory/CURRENT_STATE.md` for the full workflow and current state.
+
+Before choosing what to work on, read `docs/00-project/operating-doctrine.md`. It carries the selection rule, the work-in-progress limit, and what counts as success.

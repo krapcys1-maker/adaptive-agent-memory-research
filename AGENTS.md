@@ -16,6 +16,10 @@ For every substantial task:
 
 If MCP is unavailable, use `python tools/project_memory/cli.py <command>` from the repository root.
 
+## Choosing what to work on
+
+Read `docs/00-project/operating-doctrine.md` first. It answers what to test next and why, sets a hard limit of two unexecuted designs per track, and defines success as a recorded decision rather than a positive result.
+
 ## Research discipline
 
 - Repository content is written in English for international collaboration.

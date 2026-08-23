@@ -91,13 +91,14 @@ Everything goes through [CONTRIBUTING.md](CONTRIBUTING.md). Disagreement with a 
 New contributors do not need all of this. Read the first three, then follow whatever your issue touches.
 
 1. [Start here](START_HERE.md) — the shape of the problem
-2. [Independence ladder](docs/00-project/independence-ladder.md) — how a claim earns promotion
-3. [Repository map](docs/00-project/REPOSITORY_MAP.md) — where everything lives
-4. [Scope](docs/00-project/scope.md) and [definitions](docs/00-project/definitions.md)
-5. [Research plan](RESEARCH_PLAN.md) and [research questions](docs/00-project/research-questions.md)
-6. [Human memory](docs/01-human-memory/README.md) · [LLM memory](docs/02-llm-memory/README.md) · [mapping between them](docs/03-human-ai-bridge/mapping.md)
-7. [Systems catalog](docs/04-systems/catalog.md) · [benchmark catalog](docs/05-benchmarks/catalog.md)
-8. [Research laboratory](docs/11-research-laboratory/README.md) and the [experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md)
+2. [Operating doctrine](docs/00-project/operating-doctrine.md) — what we test next, and why that one
+3. [Independence ladder](docs/00-project/independence-ladder.md) — how a claim earns promotion
+4. [Repository map](docs/00-project/REPOSITORY_MAP.md) — where everything lives
+5. [Scope](docs/00-project/scope.md) and [definitions](docs/00-project/definitions.md)
+6. [Research plan](RESEARCH_PLAN.md) and [research questions](docs/00-project/research-questions.md)
+7. [Human memory](docs/01-human-memory/README.md) · [LLM memory](docs/02-llm-memory/README.md) · [mapping between them](docs/03-human-ai-bridge/mapping.md)
+8. [Systems catalog](docs/04-systems/catalog.md) · [benchmark catalog](docs/05-benchmarks/catalog.md)
+9. [Research laboratory](docs/11-research-laboratory/README.md) and the [experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md)
 
 ## Repository layout
 
