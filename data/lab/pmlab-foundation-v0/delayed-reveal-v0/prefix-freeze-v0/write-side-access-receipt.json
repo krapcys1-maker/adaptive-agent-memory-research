@@ -1,0 +1,26 @@
+{
+  "schema_version": "foundation-prefix-access-receipt-v0.1",
+  "phase": "prefix_only_before_reveal_authorship",
+  "prefix_id": "PFX-0000000000000001",
+  "source_commit": "a7b15d6d62abb929d2073390c4a6cf29b517ba48",
+  "source_sha256": "1f8d880ceb9e4ebd9016773f9a2971412574eb4f74f88b489ec64daa3459402a",
+  "allowed_read_paths": [
+    "data/lab/pmlab-foundation-v0/construction-v0/canonical-events.jsonl",
+    "data/lab/pmlab-foundation-v0/construction-v0/raw/correction-001.txt",
+    "data/lab/pmlab-foundation-v0/construction-v0/raw/observation-001.txt",
+    "data/lab/pmlab-foundation-v0/contracts/canonical-event-v0.1.schema.json"
+  ],
+  "observed_read_paths": [
+    "data/lab/pmlab-foundation-v0/construction-v0/canonical-events.jsonl",
+    "data/lab/pmlab-foundation-v0/construction-v0/raw/correction-001.txt",
+    "data/lab/pmlab-foundation-v0/construction-v0/raw/observation-001.txt",
+    "data/lab/pmlab-foundation-v0/contracts/canonical-event-v0.1.schema.json"
+  ],
+  "forbidden_input_classes": ["backend_output", "gold", "query", "reader_prompt", "reveal", "scorer"],
+  "reveal_artifacts_present": false,
+  "gold_artifacts_present": false,
+  "model_api_used": false,
+  "api_cost_usd": 0,
+  "attestation": "The prefix was frozen before reveal or gold content was authored. This same-author receipt is process evidence, not independent proof."
+}
+

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/task-reveal-v0.1.schema.json",
+  "title": "Foundation delayed task reveal v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "reveal_id", "counterfactual_set_id", "prefix_id", "prefix_sha256", "gold_id", "authored_at", "available_at", "query_cutoff", "query", "language", "task_family", "reader_visible_fields"],
+  "properties": {
+    "schema_version": {"const": "foundation-task-reveal-v0.1"},
+    "reveal_id": {"type": "string", "pattern": "^RVL-[A-F0-9]{16}$"},
+    "counterfactual_set_id": {"type": "string", "pattern": "^CF-[A-F0-9]{12}$"},
+    "prefix_id": {"type": "string", "pattern": "^PFX-[A-F0-9]{16}$"},
+    "prefix_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "gold_id": {"type": "string", "pattern": "^GOLD-[A-F0-9]{12}$"},
+    "authored_at": {"type": "string", "format": "date-time"},
+    "available_at": {"type": "string", "format": "date-time"},
+    "query_cutoff": {"type": "string", "format": "date-time"},
+    "query": {"type": "string", "minLength": 3},
+    "language": {"enum": ["pl", "en", "mixed", "other"]},
+    "task_family": {"enum": ["current_state", "historical_as_of", "change_reconstruction", "noise_control"]},
+    "reader_visible_fields": {"const": ["reveal_id", "query", "language"]}
+  }
+}
+

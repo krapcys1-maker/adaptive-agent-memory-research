@@ -1,0 +1,23 @@
+{
+  "schema_version": "foundation-prefix-freeze-manifest-v0.1",
+  "contract_id": "PMLAB-FOUNDATION-REVEAL-001",
+  "parent_experiment_id": "PMLAB-FOUNDATION-001",
+  "status": "prefix-frozen-before-reveal-authorship",
+  "model_api_used": false,
+  "api_authorized": false,
+  "api_budget_usd": 0,
+  "reveal_content_authored": false,
+  "gold_content_authored": false,
+  "auditor_built": false,
+  "independent_review": false,
+  "artifacts": [
+    {"path": "docs/11-research-laboratory/foundation-delayed-reveal-and-leakage-contract-v0.md", "bytes": 5885, "sha256": "91c64191ff4ba49d00eb89a485677251a1ac8677449353ffd06399855e342e4f"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/history-prefix-v0.1.schema.json", "bytes": 2173, "sha256": "a03bab1b65874de06d8d9c7ea3a6ae564ee307909aab8d427a92ea93e49336c0"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/task-reveal-v0.1.schema.json", "bytes": 1479, "sha256": "937b26f29b5776c1767c6ff5f90193213d111aa0a0c3344043ab9e8be9b1bf8e"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/reveal-gold-v0.1.schema.json", "bytes": 1323, "sha256": "eecebb3f174a129904e6039806607c19c9b2a9bbaa684fd2e6d32134b5f07403"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/prefix-freeze-v0/prefixes.jsonl", "bytes": 1185, "sha256": "ed7385f0f4767c415e7f72bc85829cd8f2e938542ce64447683cb826f7465b10"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/prefix-freeze-v0/write-side-access-receipt.json", "bytes": 1354, "sha256": "f9ff18e617d31c746fa27b042ff0ccdc4485dbf7f61ef9336c0f8b196d2f8ebd"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/prefix-freeze-v0/README.md", "bytes": 568, "sha256": "fd56d557d3e24aa656fe9e6c41b5d2a999c949a9fde15e499cf00ad004e1f1ab"}
+  ],
+  "next_gate": "commit exact prefix artifacts; only a later commit may add reveal, gold, schedule, or invalid-mutation content"
+}

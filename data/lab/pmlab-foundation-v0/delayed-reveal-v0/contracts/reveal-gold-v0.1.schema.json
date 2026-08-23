@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/reveal-gold-v0.1.schema.json",
+  "title": "Foundation delayed reveal gold v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "gold_id", "reveal_id", "required_event_ids", "forbidden_event_ids", "supported_answer_state", "supported_action", "consequence_weight", "abstention_allowed"],
+  "properties": {
+    "schema_version": {"const": "foundation-reveal-gold-v0.1"},
+    "gold_id": {"type": "string", "pattern": "^GOLD-[A-F0-9]{12}$"},
+    "reveal_id": {"type": "string", "pattern": "^RVL-[A-F0-9]{16}$"},
+    "required_event_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^EV-[A-F0-9]{16}$"}},
+    "forbidden_event_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EV-[A-F0-9]{16}$"}},
+    "supported_answer_state": {"type": "string", "pattern": "^STATE-[A-F0-9]{12}$"},
+    "supported_action": {"enum": ["answer_supported", "answer_with_change_history", "abstain"]},
+    "consequence_weight": {"type": "integer", "minimum": 1, "maximum": 5},
+    "abstention_allowed": {"type": "boolean"}
+  }
+}
+

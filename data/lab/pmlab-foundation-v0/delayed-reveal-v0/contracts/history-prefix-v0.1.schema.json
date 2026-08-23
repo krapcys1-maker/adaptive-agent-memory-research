@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/history-prefix-v0.1.schema.json",
+  "title": "Foundation delayed-reveal history prefix v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "prefix_id", "canonical_contract_version", "source_commit", "source_path", "source_sha256", "canonical_event_ids", "accepted_event_count", "accepted_payload_utf8_bytes", "prefix_cutoff", "frozen_at", "producer", "write_side_allowed_inputs", "write_side_forbidden_input_classes", "access_receipt_path"],
+  "properties": {
+    "schema_version": {"const": "foundation-history-prefix-v0.1"},
+    "prefix_id": {"type": "string", "pattern": "^PFX-[A-F0-9]{16}$"},
+    "canonical_contract_version": {"const": "foundation-canonical-event-v0.1"},
+    "source_commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "source_path": {"const": "data/lab/pmlab-foundation-v0/construction-v0/canonical-events.jsonl"},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "canonical_event_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^EV-[A-F0-9]{16}$"}},
+    "accepted_event_count": {"type": "integer", "minimum": 2},
+    "accepted_payload_utf8_bytes": {"type": "integer", "minimum": 1},
+    "prefix_cutoff": {"type": "string", "format": "date-time"},
+    "frozen_at": {"type": "string", "format": "date-time"},
+    "producer": {"type": "object", "additionalProperties": false, "required": ["component", "version"], "properties": {"component": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1}}},
+    "write_side_allowed_inputs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "write_side_forbidden_input_classes": {"const": ["backend_output", "gold", "query", "reader_prompt", "reveal", "scorer"]},
+    "access_receipt_path": {"const": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/prefix-freeze-v0/write-side-access-receipt.json"}
+  }
+}
+
