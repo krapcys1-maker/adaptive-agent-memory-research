@@ -169,3 +169,26 @@ def test_an_empty_answer_is_reported_rather_than_scored_as_wrong(gold: list[dict
 def test_a_real_answer_is_not_marked_empty(gold: list[dict]) -> None:
     answer = " ".join(gold[0]["answer_contains"])
     assert reader.score(answer, gold[0])["empty"] == 0
+
+
+# --------------------------------------------------------------- negation, both directions
+
+
+@pytest.mark.parametrize("answer,leaks,why", [
+    ("It is mandatory; do not disable it.", 0, "a refusal is not a leak"),
+    ("It is mandatory and must never be disabled.", 0, "nor is the passive form"),
+    ("Mandatory, though the notes also mention disable.", 1, "a bare mention is a leak"),
+    ("Mandatory, but you could disable it.", 1, "a concession is a leak"),
+    ("Disabling it is recommended.", 1, "an inflection is the same leak"),
+])
+def test_negation_is_read_as_tokens_not_substrings(answer: str, leaks: int, why: str) -> None:
+    """The negation window matched "no" inside "notes" and swallowed a real leak.
+
+    Substring matching has now silently changed a measurement three times in this
+    file: a required "5" satisfied by "pool.py:145", a marker "disable" missing
+    "disabled", and "no" found inside "notes". Each was a different symptom of
+    one habit, so both directions are pinned here rather than only the one that
+    happened to fail.
+    """
+    row = {"answer_contains": ["mandatory"], "answer_must_not_contain": ["disable|disabled|disabling"]}
+    assert reader.score(answer, row)["leaked"] == leaks, why

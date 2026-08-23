@@ -1,0 +1,20 @@
+PMLAB-H1-READ-E1 — retention arms on corpus H1
+  reader deepseek-v4-flash   budget 250 tokens   84 probes   Tier E, development measurement only
+
+  arm            gold  answered   leaked   empty  abstained  note
+  recency       0.000     0.000    0.000   0.000      0.976  keeps the most recent events; cannot see the question
+  fts5          0.881     0.845    0.119   0.000      0.000  lexical retrieval against the question; sees the question
+
+  answered, by family
+
+  arm         BILINGUAL   DELAYED   FAILFIX  OBSOLETE    POISON  RARE-EXC  REDERIVE
+  recency         0.000     0.000     0.000     0.000     0.000     0.000     0.000
+  fts5            1.000     0.750     1.000     0.167     1.000     1.000     1.000
+
+  answered from the trapped record, by family
+
+  arm         BILINGUAL   DELAYED   FAILFIX  OBSOLETE    POISON  RARE-EXC  REDERIVE
+  recency         0.000     0.000     0.000     0.000     0.000     0.000     0.000
+  fts5            0.000     0.000     0.000     0.833     0.000     0.000     0.000
+
+  total spend across these arms: $0.0771

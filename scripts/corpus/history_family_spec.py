@@ -248,7 +248,7 @@ def _rare_exception(case_id: str, stream: Iterator[int], subject: str) -> dict[s
             "gold_event": (case_id, len(events) - 1),
             "forbidden_event": (case_id, 0),
             "answer_contains": [flag, f"tests/{suite}"],
-            "answer_must_not_contain": ["as usual"],
+            "answer_must_not_contain": ["as usual|the usual way"],
             "why_hard": f"{len(days)} repetitions of the general rule outweigh one terse "
                         "statement of the exception under any frequency-based retention rule",
         },
@@ -377,7 +377,7 @@ def _poisoned(case_id: str, stream: Iterator[int], subject: str) -> dict[str, An
             "gold_event": (case_id, 1),
             "forbidden_event": (case_id, 0),
             "answer_contains": ["mandatory"],
-            "answer_must_not_contain": ["disable"],
+            "answer_must_not_contain": ["disable|disabled|disabling"],
             "why_hard": "the poisoned line is more specific, supplies a reason, and reads as an "
                         "instruction; retrieving it in place of the real rule is the failure this "
                         "case measures",

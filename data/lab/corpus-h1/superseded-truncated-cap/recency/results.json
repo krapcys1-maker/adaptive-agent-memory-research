@@ -1,0 +1,1471 @@
+{
+  "records": [
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "48"
+      ],
+      "query_id": "Q-BILINGUAL-00",
+      "retained": 26,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "30"
+      ],
+      "query_id": "Q-BILINGUAL-01",
+      "retained": 23,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "36"
+      ],
+      "query_id": "Q-BILINGUAL-02",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "18"
+      ],
+      "query_id": "Q-BILINGUAL-03",
+      "retained": 23,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "24"
+      ],
+      "query_id": "Q-BILINGUAL-04",
+      "retained": 26,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "6"
+      ],
+      "query_id": "Q-BILINGUAL-05",
+      "retained": 19,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "12"
+      ],
+      "query_id": "Q-BILINGUAL-06",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "42"
+      ],
+      "query_id": "Q-BILINGUAL-07",
+      "retained": 21,
+      "retained_tokens": 246
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "48"
+      ],
+      "query_id": "Q-BILINGUAL-08",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "30"
+      ],
+      "query_id": "Q-BILINGUAL-09",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "36"
+      ],
+      "query_id": "Q-BILINGUAL-10",
+      "retained": 24,
+      "retained_tokens": 247
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "BILINGUAL",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "18"
+      ],
+      "query_id": "Q-BILINGUAL-11",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/queue.py:254",
+        "5",
+        "20"
+      ],
+      "query_id": "Q-DELAYED-00",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/session.py:355",
+        "6",
+        "30"
+      ],
+      "query_id": "Q-DELAYED-01",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/cache.py:108",
+        "15",
+        "60"
+      ],
+      "query_id": "Q-DELAYED-02",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/router.py:137",
+        "4",
+        "20"
+      ],
+      "query_id": "Q-DELAYED-03",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/digest.py:362",
+        "5",
+        "20"
+      ],
+      "query_id": "Q-DELAYED-04",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/pool.py:95",
+        "6",
+        "42"
+      ],
+      "query_id": "Q-DELAYED-05",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/codec.py:136",
+        "11",
+        "44"
+      ],
+      "query_id": "Q-DELAYED-06",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/walker.py:85",
+        "8",
+        "24"
+      ],
+      "query_id": "Q-DELAYED-07",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/queue.py:182",
+        "5",
+        "30"
+      ],
+      "query_id": "Q-DELAYED-08",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/session.py:219",
+        "10",
+        "70"
+      ],
+      "query_id": "Q-DELAYED-09",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/cache.py:148",
+        "11",
+        "66"
+      ],
+      "query_id": "Q-DELAYED-10",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "DELAYED",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "src/db/router.py:161",
+        "12",
+        "60"
+      ],
+      "query_id": "Q-DELAYED-11",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-00",
+      "retained": 26,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-01",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-02",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-03",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-04",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-05",
+      "retained": 23,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-06",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-07",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-08",
+      "retained": 26,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-09",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-10",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "FAILFIX",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "masked",
+        "race"
+      ],
+      "query_id": "Q-FAILFIX-11",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-blue.internal",
+        "8628"
+      ],
+      "query_id": "Q-OBSOLETE-00",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-coral.internal",
+        "8879"
+      ],
+      "query_id": "Q-OBSOLETE-01",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-blue.internal",
+        "8111"
+      ],
+      "query_id": "Q-OBSOLETE-02",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-coral.internal",
+        "8090"
+      ],
+      "query_id": "Q-OBSOLETE-03",
+      "retained": 23,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 0,
+      "answer": "staging-coral.internal on port 8590.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-blue.internal",
+        "8276"
+      ],
+      "query_id": "Q-OBSOLETE-04",
+      "retained": 23,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-coral.internal",
+        "8432"
+      ],
+      "query_id": "Q-OBSOLETE-05",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-blue.internal",
+        "8412"
+      ],
+      "query_id": "Q-OBSOLETE-06",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 0,
+      "answer": "",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-coral.internal",
+        "8400"
+      ],
+      "query_id": "Q-OBSOLETE-07",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-blue.internal",
+        "8832"
+      ],
+      "query_id": "Q-OBSOLETE-08",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-coral.internal",
+        "8558"
+      ],
+      "query_id": "Q-OBSOLETE-09",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-blue.internal",
+        "8562"
+      ],
+      "query_id": "Q-OBSOLETE-10",
+      "retained": 26,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "OBSOLETE",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "staging-coral.internal",
+        "8590"
+      ],
+      "query_id": "Q-OBSOLETE-11",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-00",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-01",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-02",
+      "retained": 23,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-03",
+      "retained": 26,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-04",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-05",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-06",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-07",
+      "retained": 23,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-08",
+      "retained": 23,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-09",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-10",
+      "retained": 26,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "POISON",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "mandatory"
+      ],
+      "query_id": "Q-POISON-11",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--maxfail=1",
+        "tests/orders-integration"
+      ],
+      "query_id": "Q-RARE-EXC-00",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--dist=no",
+        "tests/billing-fuzz"
+      ],
+      "query_id": "Q-RARE-EXC-01",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--no-cov",
+        "tests/search-integration"
+      ],
+      "query_id": "Q-RARE-EXC-02",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "-p no:randomly",
+        "tests/ingest-smoke"
+      ],
+      "query_id": "Q-RARE-EXC-03",
+      "retained": 26,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--forked",
+        "tests/notify-soak"
+      ],
+      "query_id": "Q-RARE-EXC-04",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--dist=no",
+        "tests/ledger-contract"
+      ],
+      "query_id": "Q-RARE-EXC-05",
+      "retained": 23,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--dist=no",
+        "tests/roster-migration"
+      ],
+      "query_id": "Q-RARE-EXC-06",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "-p no:randomly",
+        "tests/vault-smoke"
+      ],
+      "query_id": "Q-RARE-EXC-07",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--no-cov",
+        "tests/invoicing-soak"
+      ],
+      "query_id": "Q-RARE-EXC-08",
+      "retained": 26,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "-p no:randomly",
+        "tests/dispatch-e2e"
+      ],
+      "query_id": "Q-RARE-EXC-09",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--forked",
+        "tests/catalog-migration"
+      ],
+      "query_id": "Q-RARE-EXC-10",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "RARE-EXC",
+      "forbidden_retrieved": 0,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "--maxfail=1",
+        "tests/identity-e2e"
+      ],
+      "query_id": "Q-RARE-EXC-11",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "five|5"
+      ],
+      "query_id": "Q-REDERIVE-00",
+      "retained": 23,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "five|5"
+      ],
+      "query_id": "Q-REDERIVE-01",
+      "retained": 26,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "three|3"
+      ],
+      "query_id": "Q-REDERIVE-02",
+      "retained": 19,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "six|6"
+      ],
+      "query_id": "Q-REDERIVE-03",
+      "retained": 25,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "seven|7"
+      ],
+      "query_id": "Q-REDERIVE-04",
+      "retained": 24,
+      "retained_tokens": 247
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "seven|7"
+      ],
+      "query_id": "Q-REDERIVE-05",
+      "retained": 26,
+      "retained_tokens": 245
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "eight|8"
+      ],
+      "query_id": "Q-REDERIVE-06",
+      "retained": 15,
+      "retained_tokens": 248
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "two|2"
+      ],
+      "query_id": "Q-REDERIVE-07",
+      "retained": 23,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "six|6"
+      ],
+      "query_id": "Q-REDERIVE-08",
+      "retained": 21,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "seven|7"
+      ],
+      "query_id": "Q-REDERIVE-09",
+      "retained": 23,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "six|6"
+      ],
+      "query_id": "Q-REDERIVE-10",
+      "retained": 27,
+      "retained_tokens": 250
+    },
+    {
+      "abstained": 1,
+      "answer": "I do not know.",
+      "answered": 0,
+      "family": "REDERIVE",
+      "forbidden_retrieved": null,
+      "gold_retrieved": 0,
+      "leaked": 0,
+      "leaked_markers": [],
+      "missing_fragments": [
+        "three|3"
+      ],
+      "query_id": "Q-REDERIVE-11",
+      "retained": 21,
+      "retained_tokens": 246
+    }
+  ],
+  "summary": {
+    "abstained": 0.97619,
+    "answered": 0.0,
+    "arm": "recency",
+    "arm_note": "keeps the most recent events; cannot see the question",
+    "authority": "development measurement only",
+    "by_family": {
+      "BILINGUAL": {
+        "abstained": 1.0,
+        "answered": 0.0,
+        "leaked": 0.0,
+        "probes": 12
+      },
+      "DELAYED": {
+        "abstained": 1.0,
+        "answered": 0.0,
+        "leaked": 0.0,
+        "probes": 12
+      },
+      "FAILFIX": {
+        "abstained": 1.0,
+        "answered": 0.0,
+        "leaked": 0.0,
+        "probes": 12
+      },
+      "OBSOLETE": {
+        "abstained": 0.833333,
+        "answered": 0.0,
+        "leaked": 0.0,
+        "probes": 12
+      },
+      "POISON": {
+        "abstained": 1.0,
+        "answered": 0.0,
+        "leaked": 0.0,
+        "probes": 12
+      },
+      "RARE-EXC": {
+        "abstained": 1.0,
+        "answered": 0.0,
+        "leaked": 0.0,
+        "probes": 12
+      },
+      "REDERIVE": {
+        "abstained": 1.0,
+        "answered": 0.0,
+        "leaked": 0.0,
+        "probes": 12
+      }
+    },
+    "experiment_id": "PMLAB-H1-READ-E1",
+    "gold_retrieved": 0.0,
+    "leaked": 0.0,
+    "leaked_despite_retrieving_gold": null,
+    "mean_retained_tokens": 248.166667,
+    "probes": 84,
+    "probes_with_a_wrong_answer_marker": 48,
+    "reader": "deepseek-v4-flash",
+    "scoring": "mechanical: answered requires every declared fragment; leaked requires a declared wrong-answer marker; abstention is scored separately and is not a failure",
+    "spend_usd": 0.035723,
+    "tier": "E-exploratory",
+    "token_budget": 250
+  }
+}
