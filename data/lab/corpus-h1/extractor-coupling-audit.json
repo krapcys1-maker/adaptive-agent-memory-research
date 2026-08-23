@@ -1,0 +1,528 @@
+{
+  "audit": "extractor coupling to the corpora it was written against",
+  "by_block": {
+    "address_extract._ENTITY_PATTERNS": {
+      "corpus_specific": 10,
+      "corpus_specific_share": 0.833,
+      "detail": [
+        {
+          "domain_tokens": [
+            "staging"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\b(?:staging|production|prod)\\s+for\\s+([a-z][a-z-]{2,})\\b"
+        },
+        {
+          "domain_tokens": [
+            "staging"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bcorrection:\\s*([a-z][a-z-]{2,})\\s+(?:staging|production|prod)\\b"
+        },
+        {
+          "domain_tokens": [
+            "log"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bdeploy log for\\s+([a-z][a-z-]{2,})\\b"
+        },
+        {
+          "domain_tokens": [
+            "staging"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bconfirmed the\\s+([a-z][a-z-]{2,})\\s+(?:staging|production|prod)\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\btests/([a-z][a-z-]*?)-[a-z0-9]+\\b"
+        },
+        {
+          "domain_tokens": [
+            "suite"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bthe\\s+([a-z][a-z-]*?)-[a-z0-9]+\\s+suite\\b"
+        },
+        {
+          "domain_tokens": [
+            "load"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bunder load in\\s+([a-z][a-z-]{2,})\\b"
+        },
+        {
+          "domain_tokens": [
+            "loop",
+            "retry"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bthe\\s+([a-z][a-z-]{2,})\\s+retry loop\\b"
+        },
+        {
+          "domain_tokens": [
+            "mandatory"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bfor\\s+([a-z][a-z-]{2,})\\s+is mandatory\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bdla\\s+([a-z][a-z-]{2,})\\b"
+        },
+        {
+          "domain_tokens": [
+            "deployment",
+            "key"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bthe\\s+([a-z][a-z-]{2,})\\s+deployment key\\b"
+        },
+        {
+          "domain_tokens": [
+            "util"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bsrc/util/([a-z][a-z-]*?)_[a-z]+\\.py\\b"
+        }
+      ],
+      "general": 2,
+      "patterns": 12
+    },
+    "address_extract._PROPERTY_RULES": {
+      "corpus_specific": 13,
+      "corpus_specific_share": 0.929,
+      "detail": [
+        {
+          "domain_tokens": [
+            "https"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "https?://[a-z0-9.-]+:\\d+"
+        },
+        {
+          "domain_tokens": [
+            "host"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "endpoint.host"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bpytest\\b.*?\\b(--[a-z-]+(?:=\\w+)?|-p\\s+\\S+)"
+        },
+        {
+          "domain_tokens": [
+            "test"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "test.command"
+        },
+        {
+          "domain_tokens": [
+            "exhausted",
+            "pool",
+            "sized"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bpool was sized\\s+\\d+|\\bconnection pool exhausted\\b"
+        },
+        {
+          "domain_tokens": [
+            "pool"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "db.pool_size"
+        },
+        {
+          "domain_tokens": [
+            "loop"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bretry loop\\b"
+        },
+        {
+          "domain_tokens": [
+            "policy",
+            "retry"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "reliability.retry_policy"
+        },
+        {
+          "domain_tokens": [
+            "rotates",
+            "rotujemy",
+            "wdro"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bkey rotates\\b|\\bklucz wdro\\w+ rotujemy\\b"
+        },
+        {
+          "domain_tokens": [
+            "rotation"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "credential.rotation"
+        },
+        {
+          "domain_tokens": [
+            "functions"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bexports\\s+\\w+\\s+functions\\b"
+        },
+        {
+          "domain_tokens": [
+            "exports",
+            "module"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "module.exports"
+        },
+        {
+          "domain_tokens": [
+            "audit",
+            "check",
+            "gate",
+            "licence",
+            "policy",
+            "scan"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\b(audit|signature check|licence scan|policy gate)\\b"
+        },
+        {
+          "domain_tokens": [
+            "gate",
+            "release"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "release.gate"
+        }
+      ],
+      "general": 1,
+      "patterns": 14
+    },
+    "entity_canon._QUESTION_POSITIONS": {
+      "corpus_specific": 0,
+      "corpus_specific_share": 0.0,
+      "detail": [
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bshould\\s+(?:a|an|the)\\s+([a-z][a-z-]{2,})\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bdeploying\\s+([a-z][a-z-]{2,})\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\b(?:in|for|of)\\s+([a-z][a-z-]{2,})\\s+(?:again|now|today)\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bwas\\s+the\\s+([a-z][a-z-]{2,})\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bhappen\\s+to\\s+the\\s+([a-z][a-z-]{2,})\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\b(?:in|for)\\s+([a-z][a-z-]{2,})[\\s,?.]"
+        }
+      ],
+      "general": 6,
+      "patterns": 6
+    },
+    "property_canon._PROPERTY_FORMS": {
+      "corpus_specific": 32,
+      "corpus_specific_share": 0.842,
+      "detail": [
+        {
+          "domain_tokens": [
+            "rotation"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "credential.rotation"
+        },
+        {
+          "domain_tokens": [
+            "rotates"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bkey rotates?\\b"
+        },
+        {
+          "domain_tokens": [
+            "deployment",
+            "key"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\brotat\\w*\\s+(?:the\\s+)?(?:deployment\\s+)?key\\b"
+        },
+        {
+          "domain_tokens": [
+            "rotation"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bafter\\s+rotation\\b"
+        },
+        {
+          "domain_tokens": [
+            "deployment",
+            "key"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bold\\s+(?:deployment\\s+)?key\\b"
+        },
+        {
+          "domain_tokens": [
+            "key"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bprevious\\s+key\\b"
+        },
+        {
+          "domain_tokens": [
+            "wdro"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bklucz\\s+wdro\\w+\\b"
+        },
+        {
+          "domain_tokens": [
+            "rotacji"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bpo\\s+rotacji\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\brotujemy\\b"
+        },
+        {
+          "domain_tokens": [
+            "host"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "endpoint.host"
+        },
+        {
+          "domain_tokens": [
+            "https"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "https?://[a-z0-9.-]+:\\d+"
+        },
+        {
+          "domain_tokens": [
+            "host"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bstaging\\s+host\\b"
+        },
+        {
+          "domain_tokens": [
+            "target"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bdeploy\\s+target\\b"
+        },
+        {
+          "domain_tokens": [
+            "host"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bwhich\\s+host\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bmoved\\s+to\\b.*\\binternal\\b"
+        },
+        {
+          "domain_tokens": [
+            "https"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bis now\\s+https?://"
+        },
+        {
+          "domain_tokens": [
+            "test"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "test.command"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bpytest\\b"
+        },
+        {
+          "domain_tokens": [
+            "run",
+            "suite"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bhow\\s+should\\s+the\\s+\\S+\\s+suite\\s+be\\s+run\\b"
+        },
+        {
+          "domain_tokens": [
+            "suite"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\brun\\s+the\\s+\\S+\\s+suite\\b"
+        },
+        {
+          "domain_tokens": [
+            "run"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bsuite\\s+be\\s+run\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\b--[a-z-]+(?:=\\w+)?\\b"
+        },
+        {
+          "domain_tokens": [
+            "pool"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "db.pool_size"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bpool\\s+exhaust\\w*\\b"
+        },
+        {
+          "domain_tokens": [
+            "sized"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bpool\\s+was\\s+sized\\b"
+        },
+        {
+          "domain_tokens": [
+            "pool"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bconnection\\s+pool\\b"
+        },
+        {
+          "domain_tokens": [
+            "policy",
+            "retry"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "reliability.retry_policy"
+        },
+        {
+          "domain_tokens": [
+            "loop"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bretry\\s+loop\\b"
+        },
+        {
+          "domain_tokens": [
+            "instead"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bremoved\\s+instead\\s+of\\b.*\\btimeout\\b"
+        },
+        {
+          "domain_tokens": [
+            "timeout"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\blonger\\s+timeout\\b"
+        },
+        {
+          "domain_tokens": [
+            "timeout"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bsocket\\s+timeout\\b"
+        },
+        {
+          "domain_tokens": [
+            "exports",
+            "module"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "module.exports"
+        },
+        {
+          "domain_tokens": [
+            "functions"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bexports?\\s+\\w+\\s+functions?\\b"
+        },
+        {
+          "domain_tokens": [
+            "functions"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bhow\\s+many\\s+functions\\b"
+        },
+        {
+          "domain_tokens": [
+            "gate",
+            "release"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "release.gate"
+        },
+        {
+          "domain_tokens": [
+            "audit",
+            "check",
+            "gate",
+            "licence",
+            "policy",
+            "scan"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\b(?:audit|signature check|licence scan|policy gate)\\b"
+        },
+        {
+          "domain_tokens": [
+            "deploy"
+          ],
+          "kind": "corpus-specific",
+          "pattern": "\\bbefore\\s+(?:any\\s+)?deploy\\w*\\b"
+        },
+        {
+          "domain_tokens": [],
+          "kind": "general",
+          "pattern": "\\bmandatory\\s+before\\b"
+        }
+      ],
+      "general": 6,
+      "patterns": 38
+    }
+  },
+  "corpus_specific_share": 0.786,
+  "corpus_specific_total": 55,
+  "corpus_vocabulary_size": 804,
+  "how_to_read_this": "a high share does not mean the approach is wrong. It means E2-A3's 1.000 has not yet been shown to be about addressing rather than about this corpus's vocabulary, and that the number to expect externally is unknown rather than 1.000",
+  "patterns_total": 70,
+  "why_before_the_external_run": "an external benchmark is spent once. Discovering there that the rules encode our own taxonomy would consume it to learn something free to learn here"
+}

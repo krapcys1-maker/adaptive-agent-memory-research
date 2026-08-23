@@ -1,0 +1,49 @@
+{
+  "candidate": "AAMR-CANDIDATE-0",
+  "components": {
+    "addressing": "scripts/corpus/address_extract.py with canonicalise=True",
+    "entity_canonicalisation": "scripts/corpus/entity_canon.py",
+    "property_canonicalisation": "scripts/corpus/property_canon.py",
+    "temporal_resolution": "scripts/run_temporal_resolver_h2.py::resolver_arm"
+  },
+  "coupling_audit": {
+    "by_block": {
+      "address_extract._ENTITY_PATTERNS": 0.833,
+      "address_extract._PROPERTY_RULES": 0.929,
+      "entity_canon._QUESTION_POSITIONS": 0.0,
+      "property_canon._PROPERTY_FORMS": 0.842
+    },
+    "corpus_specific_share": 0.786,
+    "read_as": "78.6 percent of patterns name a content word the generators emit, so the internal 1.000 has not been shown to be about addressing rather than about this vocabulary"
+  },
+  "digests": {
+    "scripts/corpus/address_extract.py": "1c9b195a9638c68a96f9e9e7281dd3a31c39f0baa733bd25374b8ec9514b1b9b",
+    "scripts/corpus/entity_canon.py": "81fc392d5b2ef002379fbeefd61fde5e296de7f09dfea6789b9efea980ef6e7e",
+    "scripts/corpus/property_canon.py": "199de72b605c19645fd86523c56fec55375526fa968b003917f99629123c309b",
+    "scripts/run_temporal_resolver_h2.py": "4fdf39589f8d289c745fbaca03d0ed1d57ad0396eeb25c5271e616a7aedf3a66"
+  },
+  "frozen_at": "2026-08-24T03:00:00Z",
+  "git_commit": "c284e429cb80ee9da08dd74e674b5b529ba8b69c",
+  "internal_corpora_are_not_evidence_of_generalisation": "H1 and H2 were written by the author of these rules. They answer why a system failed and cannot answer whether it works elsewhere",
+  "internal_results": {
+    "H1 addressing dev/valid": {
+      "context_tokens": 33.2,
+      "gold_coverage": 1.0,
+      "note": "both splits identical"
+    },
+    "H2 temporal dev/valid": {
+      "note": "both splits identical",
+      "ordering_only": 0.2,
+      "resolver": 1.0
+    }
+  },
+  "prediction_registered_before_the_external_run": "transfer should be uneven rather than uniform. The property side is built from domain nouns and should transfer badly. The entity canonicalisation layer contains zero domain tokens \u2014 six purely interrogative constructions \u2014 and moved coverage from 0.571 to 1.000, so it may transfer. A flat pass or a flat failure would both be surprising",
+  "purpose": "the exact configuration that goes to an external benchmark, so the run is attributable",
+  "rules_for_the_external_run": [
+    "run once; STALE becomes a development set the moment it is seen",
+    "no tuning against it. This configuration is what runs",
+    "on failure, attribute to a stage before changing anything: address assignment, conflict detection, temporal validity, retrieval, or final answer",
+    "development afterwards happens on internal material, and the next strong claim needs a different benchmark \u2014 MemoryAgentBench Conflict Resolution",
+    "55.2 percent is not a target unless the backbone, prompt, budget and protocol are reproduced; it is the best system in their paper under their conditions, not a comparable number"
+  ]
+}
