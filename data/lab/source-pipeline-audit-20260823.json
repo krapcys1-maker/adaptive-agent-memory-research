@@ -1,11 +1,15 @@
 {
-  "catalog_entries": 174,
-  "catalog_entries_with_url": 171,
+  "catalog_entries": 220,
+  "catalog_entries_with_url": 217,
   "catalog_reading_states": {
-    "unknown": 174
+    "unknown": 220
   },
   "catalog_status_column_holds_publication_type_not_reading_state": 167,
-  "claims_with_no_resolvable_source": 1,
+  "claims_declaring_no_external_source": 1,
+  "claims_with_no_resolvable_source": 0,
+  "declared_sourceless_claim_ids": [
+    "AI-005"
+  ],
   "full_read_note_files": 26,
   "gap": "The catalog now carries reading_state alongside status, so the distinction between publication type and engagement is expressible. Every row starts at unknown, which means the record does not say rather than that the source is unread. The remaining gap is that some claims cite publications absent from the catalog. An earlier version reported that as 36 percent by lumping repository links, internal artifacts and unrecognised publication hosts together; classifying by host separates them.",
   "internal_artifacts_correctly_uncatalogued": 3,
@@ -29,13 +33,11 @@
     "synthesized": 2
   },
   "not_repaired": "Assigning a reading state to every catalogued source is a judgement about what was actually read. Guessing it would write a fabricated state into what reads afterwards as a record, so this audit reports and stops.",
-  "reading_state_still_unknown": 174,
+  "reading_state_still_unknown": 220,
   "repository_sources_belonging_in_the_repo_catalog": 15,
-  "sources_cited_by_a_claim": 114,
+  "sources_cited_by_a_claim": 160,
   "sources_never_cited": 57,
-  "sources_with_a_full_read_note": 18,
-  "uncatalogued_publications": 46,
-  "unresolvable_claim_ids": [
-    "AI-005"
-  ]
+  "sources_with_a_full_read_note": 24,
+  "uncatalogued_publications": 0,
+  "unresolvable_claim_ids": []
 }

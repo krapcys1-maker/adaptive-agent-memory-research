@@ -89,12 +89,19 @@ def run() -> dict[str, Any]:
     repository_sources: list[str] = []
     internal_artifacts: list[str] = []
     unresolvable: list[str] = []
+    declared_sourceless: list[str] = []
 
     for row in ledger:
         source = normalise(row.get("primary_source", ""))
         claim = row.get("claim_id", "?")
         if not source:
             unresolvable.append(claim)
+            continue
+        if source.startswith("internal:"):
+            # A claim the project derived itself, saying so. Distinct from a
+            # claim that merely failed to name a source: one is a declaration,
+            # the other is an omission.
+            declared_sourceless.append(claim)
             continue
         match = next((u for u in catalog_urls if u and (u in source or source in u)), None)
         if match:
@@ -140,6 +147,8 @@ def run() -> dict[str, Any]:
         "internal_artifacts_correctly_uncatalogued": len(internal_artifacts),
         "claims_with_no_resolvable_source": len(unresolvable),
         "unresolvable_claim_ids": sorted(unresolvable),
+        "claims_declaring_no_external_source": len(declared_sourceless),
+        "declared_sourceless_claim_ids": sorted(declared_sourceless),
         "catalog_status_column_holds_publication_type_not_reading_state": status_is_publication_type,
         "ledger_status_levels": dict(sorted(ledger_levels.items())),
         "catalog_reading_states": dict(sorted(reading_states.items())),
