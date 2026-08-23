@@ -32,17 +32,19 @@
     },
     {
       "system": "Mem0",
-      "status": "running",
-      "units_complete": 2,
-      "score": "0/2",
-      "ingest_usd": 0.1449,
+      "status": "complete",
+      "units_complete": 4,
+      "score": "1/4",
+      "ingest_usd": 0.2939,
       "query_usd": 0.0,
-      "total_usd": 0.1521,
-      "ingest_calls": 157,
+      "total_usd": 0.2939,
+      "ingest_calls": 337,
       "query_calls": 0,
-      "ingest_wall_s": 442,
+      "ingest_wall_s": 891,
       "context_tokens": [
+        "108",
         "112",
+        "93",
         "98"
       ],
       "evidence_ids": 10,
@@ -54,35 +56,13 @@
       "abstention_derivable": true,
       "stored_items": [
         "216",
-        "224"
+        "221",
+        "224",
+        "235"
       ],
       "contract": "ARENA-0.1",
       "selection": "e8a848ed9c8a",
       "artifact": "pilot-mem0.json"
-    },
-    {
-      "system": "Hindsight",
-      "status": "running",
-      "units_complete": 0,
-      "score": "-",
-      "ingest_usd": 0,
-      "query_usd": 0,
-      "total_usd": 0.3952,
-      "ingest_calls": 0,
-      "query_calls": 0,
-      "ingest_wall_s": 0,
-      "context_tokens": [],
-      "evidence_ids": [],
-      "evidence_traceable": [],
-      "cost_observability": [],
-      "mutation": [],
-      "reproducible": [],
-      "abstained": [],
-      "abstention_derivable": [],
-      "stored_items": [],
-      "contract": "ARENA-0.1",
-      "selection": "e8a848ed9c8a",
-      "artifact": "pilot-hindsight.json"
     },
     {
       "system": "CUPMem",
@@ -121,7 +101,101 @@
       "contract": "ARENA-0.1",
       "selection": "e8a848ed9c8a",
       "artifact": "pilot-cupmem.json"
+    },
+    {
+      "system": "Hindsight",
+      "status": "complete",
+      "units_complete": 4,
+      "score": "1/4",
+      "ingest_usd": 1.7917,
+      "query_usd": 0.0105,
+      "total_usd": 1.8123,
+      "ingest_calls": 1246,
+      "query_calls": 1,
+      "ingest_wall_s": 1040,
+      "context_tokens": [
+        "3182",
+        "3208",
+        "3245",
+        "3330"
+      ],
+      "evidence_ids": [
+        "159",
+        "164",
+        "175",
+        "188"
+      ],
+      "evidence_traceable": true,
+      "cost_observability": "instrumented",
+      "mutation": [
+        "\"mutates_by_design\"",
+        "\"read_only\""
+      ],
+      "reproducible": [
+        "\"false\"",
+        "\"true\""
+      ],
+      "abstained": false,
+      "abstention_derivable": true,
+      "stored_items": [
+        "528",
+        "532",
+        "555",
+        "624"
+      ],
+      "contract": "ARENA-0.1",
+      "selection": "e8a848ed9c8a",
+      "artifact": "pilot-hindsight.json"
     }
   ],
-  "blocked": []
+  "blocked": [
+    {
+      "artifact": "arena-pilot-graphiti-blocked",
+      "system": "Graphiti",
+      "status": "BLOCKED",
+      "recorded_at": "2026-08-23T21:38:10+00:00",
+      "repo": "getzep/graphiti",
+      "commit": "993e081a6d7948a0d8851c12a5fbdbeb49fed862",
+      "selection": "arena-pilot-v1",
+      "reason": "no runnable backend on this machine. Their two embedded options are a deprecated one that does not work and one that does not build on Windows; everything else is a database service.",
+      "spend_usd": 0.003,
+      "spend_note": "four provider calls made before the failure, counted in the night ledger",
+      "adapter_written": true,
+      "structural_fit": "PASS \u2014 add_episode and search map onto ingest and query",
+      "operational_fit": "NOT REACHED",
+      "what_was_tried": [
+        {
+          "step": "kuzu embedded backend, their only maintained-in-tree embedded option",
+          "outcome": "their own import emits: 'The Kuzu backend is deprecated and will be removed in a future release \u2014 the upstream Kuzu project is no longer maintained. Migrate to Neo4j or FalkorDB.'"
+        },
+        {
+          "step": "clear_data on a store that has never been written",
+          "outcome": "AttributeError on a private driver field; fixed by building the schema before clearing, which is an adapter ordering choice"
+        },
+        {
+          "step": "add_episode with an explicit group_id",
+          "outcome": "graphiti.py:1079 reads `self.driver._database`, which KuzuDriver does not define, so every episode raises AttributeError. Worked around by using their provider default group, which takes the other branch"
+        },
+        {
+          "step": "json_schema structured output against DeepSeek",
+          "outcome": "provider answers 'This response_format type is unavailable now'. Resolved with their own structured_output_mode='json_object' switch, which exists for providers without native json_schema"
+        },
+        {
+          "step": "search after a successful ingest",
+          "outcome": "Binder exception: Table RelatesToNode_ doesn't have an index with name edge_name_and_fact. Their Kuzu driver creates node tables lazily on first write, so indices built before ingest are built on tables that do not exist, and rebuilding them after ingest does not create this one either. This is the one that stops it"
+        },
+        {
+          "step": "falkordblite, their other embedded backend",
+          "outcome": "pip install fails at build: 'The redislite module is not supported on the win32 platform'"
+        }
+      ],
+      "what_would_unblock_it": [
+        "a Neo4j or FalkorDB service, which is infrastructure this pilot does not have",
+        "a non-Windows host, where falkordblite builds",
+        "an upstream fix to the Kuzu full-text index, in a backend they have deprecated"
+      ],
+      "what_this_is_not": "not a finding about Graphiti's mechanism. Its temporal model is the reason it is in this arena and none of it was measured. The finding is about its embedded deployment story on this machine, and it is a finding about the arena's infrastructure as much as about the system",
+      "rule_applied": "BLOCKED is recorded with the exact reason and the next system is started. Working around it by editing their source would make the measured system something other than the released one"
+    }
+  ]
 }
