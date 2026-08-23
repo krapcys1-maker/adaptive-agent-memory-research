@@ -170,7 +170,55 @@ def _mutation_tags_not_a_list(events: list[dict]) -> list[dict]:
     return events
 
 
+def _v2(event: dict) -> dict:
+    event.update(
+        {
+            "schema_version": 2,
+            "valid_from": event["created_at"],
+            "claim_class": "unclassified",
+            "supersession_kind": "unclassified" if event.get("supersedes") else None,
+        }
+    )
+    return event
+
+
+def _mutation_v2_missing_valid_from(events: list[dict]) -> list[dict]:
+    events = [_v2(e) for e in events]
+    events[0]["valid_from"] = ""
+    return events
+
+
+def _mutation_v2_bad_claim_class(events: list[dict]) -> list[dict]:
+    events = [_v2(e) for e in events]
+    events[0]["claim_class"] = "vibe"
+    return events
+
+
+def _mutation_v2_bad_supersession_kind(events: list[dict]) -> list[dict]:
+    events = [_v2(e) for e in events]
+    events[1]["supersession_kind"] = "overwrite"
+    return events
+
+
+def _mutation_v2_stores_a_derived_field(events: list[dict]) -> list[dict]:
+    """A stored end can drift from the revision that caused it."""
+    events = [_v2(e) for e in events]
+    events[0]["valid_to"] = "2027-01-01T00:00:00Z"
+    return events
+
+
+def _mutation_v2_stores_expired_at(events: list[dict]) -> list[dict]:
+    events = [_v2(e) for e in events]
+    events[0]["expired_at"] = "2027-01-01T00:00:00Z"
+    return events
+
+
 REGISTERED_MUTATIONS = [
+    ("bad-valid-from", _mutation_v2_missing_valid_from),
+    ("bad-claim-class", _mutation_v2_bad_claim_class),
+    ("bad-supersession-kind", _mutation_v2_bad_supersession_kind),
+    ("stored-derived-field", _mutation_v2_stores_a_derived_field),
+    ("stored-derived-field", _mutation_v2_stores_expired_at),
     ("missing-field", _mutation_missing_field),
     ("duplicate-id", _mutation_duplicate_id),
     ("malformed-id", _mutation_malformed_id),

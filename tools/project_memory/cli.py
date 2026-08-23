@@ -60,6 +60,19 @@ def build_parser() -> argparse.ArgumentParser:
     add.add_argument("--source", action="append", dest="source_refs")
     add.add_argument("--confidence", default="unknown", choices=["unknown", "low", "medium", "high"])
     add.add_argument("--status", default="active")
+    add.add_argument(
+        "--valid-from",
+        dest="valid_from",
+        default="",
+        help="ISO-8601 UTC time the fact became true, as distinct from when it was recorded",
+    )
+    add.add_argument(
+        "--claim-class",
+        dest="claim_class",
+        default="unclassified",
+        choices=["dispositional", "state", "unclassified"],
+        help="dispositional for a long-lived property, state for a transient one",
+    )
 
     supersede = commands.add_parser("supersede")
     supersede.add_argument("memory_id")
@@ -71,6 +84,22 @@ def build_parser() -> argparse.ArgumentParser:
     supersede.add_argument("--source", action="append", dest="source_refs")
     supersede.add_argument("--confidence", default="")
     supersede.add_argument("--status", default="")
+    supersede.add_argument(
+        "--kind",
+        dest="supersession_kind",
+        default="unclassified",
+        choices=["succession", "correction", "unclassified"],
+        help=(
+            "succession when the world changed, so the prior fact stopped being true; "
+            "correction when the prior record was wrong, so nothing about the world changed"
+        ),
+    )
+    supersede.add_argument(
+        "--valid-from",
+        dest="valid_from",
+        default="",
+        help="ISO-8601 UTC time the new fact became true",
+    )
     return parser
 
 
@@ -101,6 +130,8 @@ def main() -> int:
                 source_refs=args.source_refs,
                 confidence=args.confidence,
                 status=args.status,
+                valid_from=args.valid_from,
+                claim_class=args.claim_class,
             )
         elif args.command == "supersede":
             result = store.supersede(
@@ -113,6 +144,8 @@ def main() -> int:
                 source_refs=args.source_refs,
                 confidence=args.confidence,
                 status=args.status,
+                supersession_kind=args.supersession_kind,
+                valid_from=args.valid_from,
             )
         else:
             raise AssertionError(args.command)

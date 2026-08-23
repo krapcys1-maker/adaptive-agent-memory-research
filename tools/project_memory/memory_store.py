@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 ALLOWED_KINDS = {
     "candidate",
     "constraint",
@@ -33,6 +33,18 @@ ALLOWED_KINDS = {
     "session",
 }
 ALLOWED_CONFIDENCE = {"unknown", "low", "medium", "high"}
+
+# Version 2 fields. See memory/SCHEMA.md and
+# docs/04-systems/temporal-memory-model-comparison-v0.md.
+#
+# `valid_to` and `expired_at` are deliberately NOT written. They are derived at
+# read time from the superseding event by upcast.derive_temporal_view. Storing
+# them would create a second source for one fact, which is exactly the drift the
+# derived design exists to prevent, and an append-only log cannot update them on
+# the record they end anyway.
+ALLOWED_CLAIM_CLASSES = {"dispositional", "state", "unclassified"}
+ALLOWED_SUPERSESSION_KINDS = {"succession", "correction", "unclassified"}
+TIMESTAMP_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 TEXT_EXTENSIONS = {
     ".bib",
     ".csv",
@@ -170,6 +182,8 @@ class MemoryStore:
         confidence: str = "unknown",
         status: str = "active",
         related_ids: list[str] | str | None = None,
+        valid_from: str = "",
+        claim_class: str = "unclassified",
     ) -> dict[str, Any]:
         kind = _clean_string(kind, "kind", True).lower()
         if kind not in ALLOWED_KINDS:
@@ -177,6 +191,15 @@ class MemoryStore:
         confidence = _clean_string(confidence, "confidence", True).lower()
         if confidence not in ALLOWED_CONFIDENCE:
             raise MemoryError("confidence must be unknown, low, medium, or high")
+        claim_class = _clean_string(claim_class, "claim_class", True).lower()
+        if claim_class not in ALLOWED_CLAIM_CLASSES:
+            raise MemoryError(
+                f"claim_class must be one of: {', '.join(sorted(ALLOWED_CLAIM_CLASSES))}"
+            )
+        written_at = _utc_now()
+        valid_from = _clean_string(valid_from, "valid_from") or written_at
+        if not TIMESTAMP_PATTERN.match(valid_from):
+            raise MemoryError("valid_from must be ISO-8601 UTC as YYYY-MM-DDTHH:MM:SSZ")
         event = {
             "schema_version": SCHEMA_VERSION,
             "id": _new_id(),
@@ -189,8 +212,11 @@ class MemoryStore:
             "source_refs": _clean_list(source_refs, "source_refs"),
             "confidence": confidence,
             "status": _clean_string(status, "status", True),
-            "created_at": _utc_now(),
+            "created_at": written_at,
+            "valid_from": valid_from,
+            "claim_class": claim_class,
             "supersedes": None,
+            "supersession_kind": None,
             "related_ids": _clean_list(related_ids, "related_ids"),
         }
         return self._append(event)
@@ -207,6 +233,8 @@ class MemoryStore:
         source_refs: list[str] | str | None = None,
         confidence: str = "",
         status: str = "",
+        supersession_kind: str = "unclassified",
+        valid_from: str = "",
     ) -> dict[str, Any]:
         memory_id = _clean_string(memory_id, "memory_id", True)
         current = self.get(memory_id)
@@ -224,6 +252,15 @@ class MemoryStore:
             if source_refs is not None
             else previous.get("source_refs", [])
         )
+        supersession_kind = _clean_string(supersession_kind, "supersession_kind", True).lower()
+        if supersession_kind not in ALLOWED_SUPERSESSION_KINDS:
+            raise MemoryError(
+                f"supersession_kind must be one of: {', '.join(sorted(ALLOWED_SUPERSESSION_KINDS))}"
+            )
+        written_at = _utc_now()
+        valid_from = _clean_string(valid_from, "valid_from") or written_at
+        if not TIMESTAMP_PATTERN.match(valid_from):
+            raise MemoryError("valid_from must be ISO-8601 UTC as YYYY-MM-DDTHH:MM:SSZ")
         event = {
             "schema_version": SCHEMA_VERSION,
             "id": _new_id(),
@@ -236,8 +273,11 @@ class MemoryStore:
             "source_refs": new_sources,
             "confidence": new_confidence,
             "status": _clean_string(status, "status") or previous["status"],
-            "created_at": _utc_now(),
+            "created_at": written_at,
+            "valid_from": valid_from,
+            "claim_class": previous.get("claim_class", "unclassified"),
             "supersedes": memory_id,
+            "supersession_kind": supersession_kind,
             "supersession_reason": _clean_string(reason, "reason", True),
             "related_ids": previous.get("related_ids", []),
         }

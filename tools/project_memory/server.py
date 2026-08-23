@@ -138,6 +138,24 @@ TOOLS = [
                 "confidence": {"type": "string", "enum": ["unknown", "low", "medium", "high"], "default": "unknown"},
                 "status": {"type": "string", "default": "active"},
                 "related_ids": {"type": "array", "items": {"type": "string"}},
+                "valid_from": {
+                    "type": "string",
+                    "description": (
+                        "ISO-8601 UTC time the fact became true in the world, as distinct from "
+                        "created_at, when it was recorded. Defaults to now. valid_to and "
+                        "expired_at are never supplied: they are derived from the superseding "
+                        "event at read time."
+                    ),
+                },
+                "claim_class": {
+                    "type": "string",
+                    "enum": ["dispositional", "state", "unclassified"],
+                    "default": "unclassified",
+                    "description": (
+                        "dispositional for a long-lived property, state for a transient one. "
+                        "Leave unclassified rather than guessing."
+                    ),
+                },
             },
             "required": ["kind", "title", "summary"],
         },
@@ -157,6 +175,22 @@ TOOLS = [
                 "source_refs": {"type": "array", "items": {"type": "string"}},
                 "confidence": {"type": "string", "default": ""},
                 "status": {"type": "string", "default": ""},
+                "supersession_kind": {
+                    "type": "string",
+                    "enum": ["succession", "correction", "unclassified"],
+                    "default": "unclassified",
+                    "description": (
+                        "succession when the world changed, so the prior fact was true and stopped "
+                        "being true and its valid_to is derived from this event's valid_from. "
+                        "correction when the prior record was wrong, so nothing about the world "
+                        "changed and only its expired_at is derived. Leave unclassified rather "
+                        "than guessing; an invented interval reads afterwards as evidence."
+                    ),
+                },
+                "valid_from": {
+                    "type": "string",
+                    "description": "ISO-8601 UTC time the new fact became true. Defaults to now.",
+                },
             },
             "required": ["memory_id", "reason"],
         },

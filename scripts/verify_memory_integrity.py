@@ -57,6 +57,14 @@ TIMESTAMP_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 # The project rule is that these carry provenance.
 EVIDENCE_KINDS = {"finding", "failure"}
 
+ALLOWED_CLAIM_CLASSES = {"dispositional", "state", "unclassified"}
+ALLOWED_SUPERSESSION_KINDS = {"succession", "correction", "unclassified"}
+
+# valid_to and expired_at are derived from the successor at read time. A stored
+# copy would be a second source for one fact and could drift from the revision
+# that caused it, which is the whole reason the design derives them.
+DERIVED_FIELDS = ("valid_to", "expired_at")
+
 
 class Violation:
     def __init__(self, line: int, event_id: str, rule: str, detail: str) -> None:
@@ -211,6 +219,51 @@ def verify(events_path: Path) -> tuple[list[Violation], dict[str, Any]]:
                         f"kind '{kind}' asserts evidence and requires at least one source_ref",
                     )
                 )
+
+        if isinstance(event.get("schema_version"), int) and event["schema_version"] >= 2:
+            valid_from = str(event.get("valid_from", ""))
+            if not TIMESTAMP_PATTERN.match(valid_from):
+                violations.append(
+                    Violation(
+                        line_number,
+                        event_id,
+                        "bad-valid-from",
+                        "schema 2 requires valid_from as ISO-8601 UTC YYYY-MM-DDTHH:MM:SSZ",
+                    )
+                )
+            claim_class = event.get("claim_class")
+            if claim_class not in ALLOWED_CLAIM_CLASSES:
+                violations.append(
+                    Violation(
+                        line_number,
+                        event_id,
+                        "bad-claim-class",
+                        f"claim_class must be one of {sorted(ALLOWED_CLAIM_CLASSES)}, got {claim_class!r}",
+                    )
+                )
+            for field in DERIVED_FIELDS:
+                if event.get(field) is not None:
+                    violations.append(
+                        Violation(
+                            line_number,
+                            event_id,
+                            "stored-derived-field",
+                            f"'{field}' is derived from the successor and must never be stored; "
+                            f"a stored copy can drift from the revision that caused it",
+                        )
+                    )
+            if operation == "supersede":
+                kind_value = event.get("supersession_kind")
+                if kind_value not in ALLOWED_SUPERSESSION_KINDS:
+                    violations.append(
+                        Violation(
+                            line_number,
+                            event_id,
+                            "bad-supersession-kind",
+                            f"supersession_kind must be one of {sorted(ALLOWED_SUPERSESSION_KINDS)}, "
+                            f"got {kind_value!r}",
+                        )
+                    )
 
         if operation == "supersede":
             if not event.get("supersedes"):

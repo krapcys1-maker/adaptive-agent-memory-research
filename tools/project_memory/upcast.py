@@ -192,7 +192,17 @@ def derive_temporal_view(events: list[dict[str, Any]]) -> list[dict[str, Any]]:
     derives no ``valid_to``, because the log does not say which happened and
     inventing an interval would fabricate evidence.
     """
-    upcast = [upcast_event(event, 2) for event in events]
+    # Events written at version 2 carry no derived fields at all — the writer
+    # deliberately omits them, because storing them would create a second source
+    # for one fact. Upcasting a v2 event is a no-op, so the read shape has to be
+    # completed here rather than assumed.
+    upcast = []
+    for event in events:
+        current = upcast_event(event, 2)
+        for field in V2_DERIVED:
+            current.setdefault(field, None)
+        upcast.append(current)
+
     successor: dict[str, dict[str, Any]] = {}
     for event in upcast:
         target = event.get("supersedes")
