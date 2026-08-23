@@ -86,6 +86,7 @@ def build(seed: int, instances: int) -> tuple[list[dict[str, Any]], list[dict[st
                 "gold_event_id": event_id(*probe["gold_event"]),
                 "forbidden_event_id": event_id(*forbidden) if forbidden else None,
                 "answer_contains": probe["answer_contains"],
+                "answer_must_not_contain": probe.get("answer_must_not_contain") or [],
                 "why_hard": probe["why_hard"],
             }
         )
