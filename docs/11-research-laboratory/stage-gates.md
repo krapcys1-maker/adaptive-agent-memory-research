@@ -69,6 +69,8 @@ Required:
 - accepted data and threat models;
 - provider-neutral interfaces;
 - migration, export, correction, and deletion plan;
+- a data-lifecycle map through canonical storage, indexes, telemetry, reviewer packets, processors, and backups, with tested propagation receipts;
+- a causal identification contract for any learned utility signal, including unit, bundle exposure, interference, propensity support, censoring, and missingness;
 - explicit unknowns and rejected alternatives;
 - two independent reader/provider evaluations where subscriptions permit.
 

@@ -1,0 +1,103 @@
+{
+  "attestation_id": null,
+  "blocking_findings": [],
+  "findings": [
+    {
+      "evidence_locators": [],
+      "question_id": "A01",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    },
+    {
+      "evidence_locators": [],
+      "question_id": "A02",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    },
+    {
+      "evidence_locators": [],
+      "question_id": "A03",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    },
+    {
+      "evidence_locators": [],
+      "question_id": "A04",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    },
+    {
+      "evidence_locators": [],
+      "question_id": "A05",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    },
+    {
+      "evidence_locators": [],
+      "question_id": "A06",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    },
+    {
+      "evidence_locators": [],
+      "question_id": "A07",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    },
+    {
+      "evidence_locators": [],
+      "question_id": "A08",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    },
+    {
+      "evidence_locators": [],
+      "question_id": "A09",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    },
+    {
+      "evidence_locators": [],
+      "question_id": "A10",
+      "rationale": null,
+      "required_change": null,
+      "severity": null,
+      "verdict": null
+    }
+  ],
+  "gate_recommendations": {
+    "T1": null,
+    "T2": null,
+    "T3": null,
+    "T4": null
+  },
+  "overall_rationale": null,
+  "packet_id": "PMLAB-UTILITY-001-independent-audit-v0",
+  "residual_risks": [],
+  "reviewer": {
+    "family_or_affiliation": null,
+    "review_completed_at": null,
+    "review_started_at": null,
+    "reviewer_id_or_pseudonym": null,
+    "reviewer_kind": null
+  },
+  "source_revision": "pmlab-utility-t0.1-audit-subject-v0.1"
+}

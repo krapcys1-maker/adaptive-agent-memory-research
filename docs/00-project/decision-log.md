@@ -95,3 +95,15 @@ Reason: Incomplete-database theory shows that completeness is query-relative and
 Decision: Represent every required answer facet as a typed obligation and map entity, predicate/schema, time, namespace, and certificate scope per obligation. Keep translations and paraphrases of one semantic template in one split; hold out new compositions and schemas rather than random rows.
 
 Reason: PMLAB-CLOSURE v1's only remaining construction errors were multi-facet questions with different closure states. QDMR supplies a candidate decomposition language, while schema-linking, synonym-robustness, and compositional-generalization evidence shows that correct-looking in-distribution parsing can depend on lexical overlap and familiar structures.
+
+## 2026-08-23 — Default causal target is a context bundle, not every exposed memory
+
+Decision: Treat the task-level assigned context bundle as the primary future-utility treatment. Credit an individual memory only under a separately identified factorial, leave-one-out, or explicit exposure-mapping design. A dependence-cluster label alone does not solve interference.
+
+Reason: Multiple memories, repeated tasks, shared summaries, user learning, and policy updates violate the shortcut that each unit's outcome depends only on its own memory exposure. Copying one success label to every shown memory would train confounding and redundancy as utility.
+
+## 2026-08-23 — Hashes are integrity aids and linkable pseudonyms, not anonymity
+
+Decision: Prefer random opaque identifiers for telemetry joins. Treat unkeyed hashes derived from user content as potentially linkable personal data, define exact-byte or named canonicalization semantics for every digest, and separate minimal audit receipts from erasable content/linkage storage.
+
+Reason: Low-entropy content hashes permit dictionary attacks, JSON hashes are unstable without a byte contract, and append-only consistency does not implement export or erasure. Local storage still requires an explicit threat, access, retention, backup, and processor model.

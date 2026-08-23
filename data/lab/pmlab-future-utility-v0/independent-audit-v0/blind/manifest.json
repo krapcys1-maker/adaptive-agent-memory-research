@@ -1,0 +1,30 @@
+{
+  "author_answer_key_present": false,
+  "authority": "packet preparation and integrity only; no review, privacy approval, T1 authorization, or causal validation",
+  "builder_version": "future-utility-independent-audit-packet-v0.1",
+  "hashes": {
+    "attestation.json": "96543419f957f4752e8dbaa0e1a01d3424aecaf87f0be83a691c19a1b91a0781",
+    "questions.json": "5619211d75cb9fce1686a672e398b6c351d36db0064844b881125ae801dbf6e0",
+    "review-form.json": "36920f576ab300794e2ccb1922d8612a15cd073ca542d48d36c78f64d8afaaaa",
+    "review-manual.md": "17d06425f18ce6c54f43128010e386392e47209779631a737e99aa5e0cca9d78",
+    "subject-capture-policy.md": "479ad9080d8fa8137fe15c662f057109495aa4a90fd1a707ca40f3a86e95b72e",
+    "subject-experiment-manifest.json": "3a5600eaa74d738ff589d9878036e937fc6314c7ecab2d14df517fb5c05d71cd",
+    "subject-telemetry-protocol.md": "fd2de58ea6fec62e36301e3d11d1d5edb97a344b2bd3b34f2c461f001aa695f0",
+    "subject-telemetry-schema-v0.1.json": "5416ea189043ecefba3b670e6c07ba46c8bbccc79f9310bf3ab30360adc83eeb",
+    "subject-validation-report.json": "494348af099d37f4b636b70e4b3e3a796bb87494593b479e63d4b172f064c542"
+  },
+  "packet_id": "PMLAB-UTILITY-001-independent-audit-v0",
+  "packet_revision": "v0.1",
+  "question_count": 10,
+  "review_status": "not_started",
+  "reviewer": null,
+  "source_revision": "pmlab-utility-t0.1-audit-subject-v0.1",
+  "status": "blank-gold-free-packet-awaiting-review",
+  "subject_artifacts": [
+    "subject-capture-policy.md",
+    "subject-experiment-manifest.json",
+    "subject-telemetry-protocol.md",
+    "subject-telemetry-schema-v0.1.json",
+    "subject-validation-report.json"
+  ]
+}

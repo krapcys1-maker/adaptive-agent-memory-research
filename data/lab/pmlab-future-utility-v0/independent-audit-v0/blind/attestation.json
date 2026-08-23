@@ -1,0 +1,18 @@
+{
+  "attestation_id": null,
+  "conflicts_or_prior_exposure": null,
+  "family_or_affiliation": null,
+  "limitations": null,
+  "packet_manifest_sha256": null,
+  "reviewer_id_or_pseudonym": null,
+  "reviewer_kind": null,
+  "signature_or_verifiable_acknowledgement": null,
+  "source_revision": "pmlab-utility-t0.1-audit-subject-v0.1",
+  "statements": {
+    "actively_sought_falsifying_evidence": null,
+    "did_not_receive_author_answer_key": null,
+    "disclosed_conflicts_and_prior_exposure": null,
+    "reviewed_only_listed_subject_artifacts": null,
+    "understands_review_does_not_authorize_T2_T4": null
+  }
+}

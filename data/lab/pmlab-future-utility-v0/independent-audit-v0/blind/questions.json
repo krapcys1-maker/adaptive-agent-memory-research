@@ -1,0 +1,55 @@
+{
+  "packet_version": "v0",
+  "questions": [
+    {
+      "domain": "claim-boundary",
+      "question": "Does every artifact limit T0.1 to synthetic instrument integrity and keep T1-T4, adaptive policy, and canonical mutation locked?",
+      "question_id": "A01"
+    },
+    {
+      "domain": "unit-estimand",
+      "question": "Are task, memory, context bundle, assignment unit, analysis unit, and dependence cluster distinguished, with a primary estimand that is actually identified?",
+      "question_id": "A02"
+    },
+    {
+      "domain": "interference-credit",
+      "question": "Does the design avoid assigning a shared task outcome to every co-exposed memory and define an exposure mapping or a bundle-level contrast?",
+      "question_id": "A03"
+    },
+    {
+      "domain": "propensity-support",
+      "question": "Can the recorded assignment receipt reconstruct the probability of the realized action under the exact logging policy, action space, state, and safety overrides, with positivity diagnostics?",
+      "question_id": "A04"
+    },
+    {
+      "domain": "censoring-missingness",
+      "question": "Are structural inapplicability, loss or missing outcome, and no event by deadline distinct, with a frozen defensible analysis for informative censoring?",
+      "question_id": "A05"
+    },
+    {
+      "domain": "identifier-linkage",
+      "question": "Are content-derived hashes treated as linkable pseudonyms and protected against low-entropy dictionary attacks rather than called anonymous?",
+      "question_id": "A06"
+    },
+    {
+      "domain": "lifecycle-erasure",
+      "question": "Can export, correction, tombstone, erasure, derived-index rebuild, backup propagation, and external-processor propagation be executed and verified without retaining erased content in audit records?",
+      "question_id": "A07"
+    },
+    {
+      "domain": "security-access",
+      "question": "Are authentication, authorization, at-rest protection, key custody, access audit, retention, threat actors, and local/external processing boundaries explicit for natural data?",
+      "question_id": "A08"
+    },
+    {
+      "domain": "digest-semantics",
+      "question": "Does each digest name its purpose and cover exact bytes or a named canonicalization profile, including Unicode, number, key-order, and whitespace behavior?",
+      "question_id": "A09"
+    },
+    {
+      "domain": "audit-independence",
+      "question": "Are reviewer identity, conflicts, prior exposure, evidence inspected, limitations, and the difference between model challenge, human review, privacy review, and statistical reproduction disclosed?",
+      "question_id": "A10"
+    }
+  ]
+}
