@@ -1,0 +1,45 @@
+{
+  "artifact": "cupmem-operational-fit",
+  "system": "CUPMem",
+  "against": "the real implementation, not the double",
+  "measured": "adapter assumptions only; accuracy deliberately not scored",
+  "embedding_model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "target_model": "deepseek-chat",
+  "result": {
+    "admissible": true,
+    "problems": [],
+    "adapter": "CUPMem",
+    "probes_answered": 3,
+    "ingest_cost": {
+      "model_calls": {
+        "value": null,
+        "observability": "unobservable",
+        "lower_bound": false
+      },
+      "input_tokens": {
+        "value": null,
+        "observability": "unobservable",
+        "lower_bound": false
+      },
+      "output_tokens": {
+        "value": null,
+        "observability": "unobservable",
+        "lower_bound": false
+      },
+      "wall_microseconds": {
+        "value": 0,
+        "observability": "instrumented",
+        "lower_bound": false
+      },
+      "fully_known": false,
+      "is_lower_bound": false
+    },
+    "cost_fully_known": false,
+    "cost_is_lower_bound": false,
+    "mean_context_tokens": 101.333,
+    "abstentions": 0,
+    "query_mutates_state": "unknown",
+    "repeated_query_differed": true,
+    "note": "admissible means the adapter obeys the contract, never that the system is good. Rejecting one here costs nothing; discovering it mid-run costs the run"
+  }
+}

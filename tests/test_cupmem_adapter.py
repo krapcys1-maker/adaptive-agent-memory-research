@@ -57,7 +57,13 @@ class _EngineDouble:
         self.sessions = []
 
     def write_session(self, *, session, session_index, session_time):
-        self.sessions.append(session)
+        # Their real chunker keeps only role == "user" with non-empty content
+        # and silently drops the rest. The double used to accept anything, which
+        # is why it certified an adapter whose ingest wrote nothing at all.
+        kept = [m for m in session
+                if str(m.get("role", "")).strip() == "user"
+                and str(m.get("content", "")).strip()]
+        self.sessions.append(kept)
         if self.llm:
             self.llm.usage.calls += 1
             self.llm.usage.prompt_tokens += 100
@@ -68,7 +74,8 @@ class _EngineDouble:
             self.llm.usage.calls += 2
             self.llm.usage.prompt_tokens += 50
             self.llm.usage.completion_tokens += 20
-        records = [r for s in self.sessions for r in s]
+        records = [{"id": f"s{i}_{j}", "text": m["content"]}
+                   for i, s in enumerate(self.sessions) for j, m in enumerate(s)]
         return {
             "query_label": query_label, "query_text": query_text,
             "parsed_query": {"intent": "current_state"},

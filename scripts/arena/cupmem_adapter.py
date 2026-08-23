@@ -121,10 +121,13 @@ class CUPMemAdapter:
 
     name = "CUPMem"
 
-    def __init__(self, engine: Any, session_time_field: str = "timestamp") -> None:
+    def __init__(self, engine: Any, session_time_field: str = "timestamp",
+                 text_field: str = "text") -> None:
         self._engine = engine
         self._session_time_field = session_time_field
+        self._text_field = text_field
         self._sessions_written = 0
+        self._ingested_turns = 0
 
     def reset(self) -> None:
         self._engine.reset()
@@ -142,10 +145,34 @@ class CUPMemAdapter:
         writer sees and the arena fixes ingestion order across systems.
         """
         started = time.monotonic()
-        session_time = str(records[0].get(self._session_time_field, "")) if records else ""
+        session_time = ""
+        if records:
+            for field in (self._session_time_field, "timestamp", "day", "date", "valid_from"):
+                if records[0].get(field) not in (None, ""):
+                    session_time = str(records[0][field])
+                    break
+
+        # Their chunker keeps only messages with role == "user" and a non-empty
+        # "content", and silently drops everything else. Handing it our record
+        # shape ingested nothing at all, and the system then answered every
+        # probe from an empty store -- the adapter reported admissible while
+        # measuring pure confabulation. Translating the shape is the adapter's
+        # job; noticing that nothing survived translation is the contract's.
+        session = [
+            {"role": "user", "content": str(record.get(self._text_field, "")).strip()}
+            for record in records
+        ]
+        kept = [turn for turn in session if turn["content"]]
+        if records and not kept:
+            raise ValueError(
+                f"{self.name}: ingest translated {len(records)} records into zero "
+                f"usable turns. Answering probes after this would measure the "
+                f"model's priors, not the system's memory."
+            )
+        self._ingested_turns += len(kept)
 
         self._engine.write_session(
-            session=records,
+            session=session,
             session_index=self._sessions_written,
             session_time=session_time,
         )
