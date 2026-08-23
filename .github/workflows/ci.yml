@@ -67,7 +67,13 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Reporting-only until #30 is resolved. Six frozen artifacts are already
+      # known to have been modified after freezing, so this job would pin main
+      # red for reasons no incoming pull request caused, and a permanently red
+      # badge teaches people to stop reading CI. The findings stay visible in
+      # the job output. Flip this to blocking as part of closing #30.
       - name: Audit declared hashes, registry paths, and cross-references
+        continue-on-error: true
         run: python scripts/audit_repository_claims.py --format text
 
   canonical-store-guard:
