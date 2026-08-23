@@ -1,0 +1,31 @@
+{
+  "schema_version": "foundation-contract-review-packet-v0.1",
+  "packet_id": "PMLAB-FOUNDATION-CONTRACT-REVIEW-V0",
+  "status": "blind-packet-ready-for-freeze",
+  "subject_commits": {
+    "canonical_fixture": "a7b15d6d62abb929d2073390c4a6cf29b517ba48",
+    "delayed_reveal_prefix": "f9980825b0217cddce7f1f4bd84a0cff715a4ad8",
+    "delayed_reveal_fixture": "2bf98136eff5a06fe0055b4d0e21a5ff45d1e994"
+  },
+  "review_dimensions": ["canonical_evidence_identity", "temporal_semantics", "authorization_privacy_retention", "provenance_revision_causality", "stage_boundaries", "physical_loss_diagnosis", "receipt_evidence", "prefix_process_isolation", "counterfactual_fork", "reveal_gold_reader_boundary", "independence_and_external_validity", "unseen_attack_plan"],
+  "subject_artifacts": {
+    "docs/11-research-laboratory/foundation-canonical-event-and-stage-receipt-contract-v0.md": "7bde022284aaf374b03b20448c4fa60d4ea97087f8dd165a84f0c58bb0fb4b50",
+    "data/lab/pmlab-foundation-v0/contracts/canonical-event-v0.1.schema.json": "e81be0737f3d8e4118e8650d4ce847265e76f2ea931a13a7355290c98c328294",
+    "data/lab/pmlab-foundation-v0/contracts/stage-receipt-v0.1.schema.json": "62af72a89899bcaccb26be3eb10b464cdf0821a7a5d5e2a77b17a4f3b69a9711",
+    "data/lab/pmlab-foundation-v0/construction-v0/canonical-events.jsonl": "1f8d880ceb9e4ebd9016773f9a2971412574eb4f74f88b489ec64daa3459402a",
+    "data/lab/pmlab-foundation-v0/construction-v0/stage-receipts.jsonl": "e5b7dda974f27786ea4bc4eeda0a9a691c4a72f5d0d0a6158b8560f2396ab315",
+    "docs/11-research-laboratory/foundation-delayed-reveal-and-leakage-contract-v0.md": "91c64191ff4ba49d00eb89a485677251a1ac8677449353ffd06399855e342e4f",
+    "data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/history-prefix-v0.1.schema.json": "a03bab1b65874de06d8d9c7ea3a6ae564ee307909aab8d427a92ea93e49336c0",
+    "data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/task-reveal-v0.1.schema.json": "937b26f29b5776c1767c6ff5f90193213d111aa0a0c3344043ab9e8be9b1bf8e",
+    "data/lab/pmlab-foundation-v0/delayed-reveal-v0/contracts/reveal-gold-v0.1.schema.json": "eecebb3f174a129904e6039806607c19c9b2a9bbaa684fd2e6d32134b5f07403",
+    "data/lab/pmlab-foundation-v0/delayed-reveal-v0/prefix-freeze-v0/prefixes.jsonl": "ed7385f0f4767c415e7f72bc85829cd8f2e938542ce64447683cb826f7465b10",
+    "data/lab/pmlab-foundation-v0/delayed-reveal-v0/prefix-freeze-v0/write-side-access-receipt.json": "f9ff18e617d31c746fa27b042ff0ccdc4485dbf7f61ef9336c0f8b196d2f8ebd",
+    "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/reader/reveals.jsonl": "7bc356219475affdfb7bbb50e2910d469c0e9ec2ae1dcc6fb97ee2299b4634d4",
+    "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/gold/gold.jsonl": "d40e72ccb0b145a9bc5d792534dedb15a7c30bb8f0e07954846108dcc2672c07",
+    "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/gold/answer-state-catalog.json": "ab01d70faecef6b6422bfad45993e924f08d4d409999d6d018958ffb3e5fd055"
+  },
+  "packet_files": ["review-manual.md", "questions.json", "review-form.template.json", "attestation.json", "packet-manifest.json"],
+  "forbidden_before_review_freeze": ["memory/CURRENT_STATE.md", "memory/events.jsonl", "data/lab/pmlab-foundation-v0/construction-v0/construction-result.md", "data/lab/pmlab-foundation-v0/construction-v0/construction-validation-report.json", "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/AUDIT_FAILURE_V0.md", "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/invalid-mutations.json", "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/leakage-audit-report.json", "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/leakage-audit-result.md", "data/lab/api-screening/"],
+  "authority": "semantic design challenge only; cannot authorize PMLAB-FOUNDATION-001 or select product architecture"
+}
+

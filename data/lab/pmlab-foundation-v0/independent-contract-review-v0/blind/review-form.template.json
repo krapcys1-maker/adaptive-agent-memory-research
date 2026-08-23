@@ -1,0 +1,26 @@
+{
+  "schema_version": "foundation-contract-review-form-v0.1",
+  "packet_id": "PMLAB-FOUNDATION-CONTRACT-REVIEW-V0",
+  "reviewer": null,
+  "findings": [
+    {"question_id": "A01", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A02", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A03", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A04", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A05", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A06", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A07", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A08", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A09", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A10", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A11", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null},
+    {"question_id": "A12", "verdict": null, "severity": null, "evidence_locators": [], "rationale": null, "required_change": null}
+  ],
+  "overall_verdict": null,
+  "gate_recommendations": {"canonical_contract": null, "delayed_reveal_contract": null, "parent_experiment": "deny"},
+  "blocking_findings": [],
+  "residual_risks": [],
+  "overall_rationale": null,
+  "attestation_id": null
+}
+

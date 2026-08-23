@@ -1,0 +1,21 @@
+{
+  "schema_version": "foundation-contract-review-attestation-v0.1",
+  "attestation_id": null,
+  "reviewer_id_or_pseudonym": null,
+  "reviewer_kind": null,
+  "family_or_affiliation": null,
+  "packet_manifest_sha256": null,
+  "statements": {
+    "reviewed_only_packet_artifacts": null,
+    "did_not_view_construction_results": null,
+    "did_not_view_invalid_mutations": null,
+    "did_not_view_prior_model_reviews": null,
+    "treated_absent_controls_as_absent": null,
+    "did_not_author_subject_contracts_or_fixtures": null,
+    "parent_experiment_remains_denied": null
+  },
+  "conflicts_or_prior_exposure": null,
+  "limitations": null,
+  "signature_or_verifiable_acknowledgement": null
+}
+

@@ -1,0 +1,18 @@
+{
+  "schema_version": "foundation-contract-review-questions-v0.1",
+  "questions": [
+    {"question_id": "A01", "dimension": "canonical_evidence_identity", "question": "Can exact payload identity, storage reference, source locator, and span semantics be audited without treating derived summaries as canonical? Identify collisions, ambiguity, or missing integrity bindings."},
+    {"question_id": "A02", "dimension": "temporal_semantics", "question": "Do occurrence, observation, validity, transaction, correction, and supersession semantics support late corrections and as-of reconstruction without leaking future state?"},
+    {"question_id": "A03", "dimension": "authorization_privacy_retention", "question": "Are capture authorization, access scope, external processing, sensitivity, retention, denied capture, and later exposure separated sufficiently for a local-first system?"},
+    {"question_id": "A04", "dimension": "provenance_revision_causality", "question": "Can provenance, causal parents, corrections, and supersessions be checked for cycles, missing targets, ambiguous authority, and conflicting concurrent revisions?"},
+    {"question_id": "A05", "dimension": "stage_boundaries", "question": "Are F0-F5 boundaries exhaustive and non-overlapping enough to distinguish capture, durable-record, addressing, selection, reader, action, and evaluator failures?"},
+    {"question_id": "A06", "dimension": "physical_loss_diagnosis", "question": "Can the four-probe physical-loss rule make false positive or false negative claims under correlated probes, replication, encryption/key loss, remote copies, stale caches, or partial corruption?"},
+    {"question_id": "A07", "dimension": "receipt_evidence", "question": "Do receipt status, evidence references, hashes, authorization states, failure codes, and chaining permit independent replay, tamper detection, and unknown-state handling?"},
+    {"question_id": "A08", "dimension": "prefix_process_isolation", "question": "What does the prefix commit plus same-author access receipt actually prove, and which leakage paths remain through prior author knowledge, tools, filenames, timestamps, or unlogged reads?"},
+    {"question_id": "A09", "dimension": "counterfactual_fork", "question": "Does one byte-identical prefix with current, historical, and change queries establish non-unique future utility, or are the tasks too closely related to challenge write-side anticipation?"},
+    {"question_id": "A10", "dimension": "reveal_gold_reader_boundary", "question": "Are reveal, gold, state catalog, schedule, reader-visible fields, IDs, and hashes separated strongly enough to prevent task, answer, and consequence leakage?"},
+    {"question_id": "A11", "dimension": "independence_and_external_validity", "question": "Which conclusions remain blocked because one author designed the contract, fixture, mutations, validator, and repair, even with Git-separated freezes?"},
+    {"question_id": "A12", "dimension": "unseen_attack_plan", "question": "Specify the smallest unseen second-author fixture and semantic attack set needed before either contract may advance beyond construction."}
+  ]
+}
+
