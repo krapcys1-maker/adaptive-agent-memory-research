@@ -120,10 +120,15 @@ parallel with cross-encoder reranking; 91.4% on LongMemEval.
 
 ## What to take, what to keep, what to study
 
-**Take: the resolution half.** Trigram plus union-find with a deterministic
-canonical rule is simple, auditable, model-free and better than what we have,
-which is nothing — our arms never had a merge step at all. It fits an
-append-only store without modification.
+**Candidate for transplant: the resolution half.** Trigram plus union-find with a
+deterministic canonical rule is simple, auditable and model-free. Our arms never
+had a merge step at all, so it fills a gap rather than replacing anything, and it
+fits an append-only store without modification.
+
+**Its advantage over alternatives is unmeasured.** Reading code establishes how a
+mechanism is built and never that it beats one. Nothing here has compared it to
+anything on a shared harness, and calling it demonstrated would be the same
+claimed-versus-verified slip this project audits other people for.
 
 **Take: the `resolve` flag.** Literal-versus-resolvable is a distinction we lack
 and the `RARE-EXC` family is exactly where it matters. A flag like `--dist=no`
@@ -139,7 +144,31 @@ variation and cannot solve *referential* variation. "The new PM" and "Alice Chen
 share no trigrams, so if their extractor does not already resolve the coreference,
 the merge step cannot. Whether that gap matters, and how often, is measurable —
 and it is a sharper research question than the one we were asking, because it
-sits at the boundary of a mechanism that demonstrably works.
+sits at the boundary of a mechanism built on an explicit, checkable assumption.
+
+## Three classes of variance, and trigram covers one
+
+Their assumption makes the taxonomy visible:
+
+```
+1  SPELLING       Alice Chen · alice chen · Alice C.
+                  → trigram similarity. Solved here.
+
+2  LEXICAL ALIAS  billing service · invoice backend
+                  → alias table or semantic match. Not solved by trigram —
+                    the strings share almost no characters.
+
+3  REFERENTIAL    Alice Chen · the new PM · she · her replacement
+                  → coreference over discourse. Not a string problem at all.
+```
+
+`OBSOLETE` in our own corpus is class 1. The near-clone failure that motivated
+addressing is class 1 as well — twelve services phrased identically. Classes 2
+and 3 are untouched by anything either project has built, and no measurement
+here says how often they occur.
+
+That is a map of the problem rather than a choice of embedding, and it is the
+more useful output of this reading.
 
 ---
 
