@@ -180,7 +180,16 @@ def record_spend(usage: dict[str, Any], response_id: str, run_id: str, at: str) 
 
 
 def _present(fragment: str, text: str) -> bool:
-    """Whole-token match, not substring.
+    """Whole-token match against any accepted surface form.
+
+    A fragment may name alternatives with ``|``: ``five|5`` accepts either. The
+    first pilot marked every REDERIVE probe wrong because the corpus says "five
+    functions" and the model answered "5". Both are correct, and a scorer that
+    rejects one is measuring transcription rather than memory.
+
+    Alternation is deliberately not a general regular expression. A fragment is
+    corpus data, and letting corpus data compile into a pattern would make a
+    stray bracket silently change what a probe accepts.
 
     Plain ``in`` credited a fragment that merely appeared inside another token:
     the required value ``5`` was satisfied by the ``5`` in ``pool.py:145``, and
@@ -190,8 +199,11 @@ def _present(fragment: str, text: str) -> bool:
 
     Found by ``tests/test_corpus_h1_reader.py`` before the first paid call.
     """
-    pattern = r"(?<![0-9A-Za-z_])" + re.escape(fragment.lower()) + r"(?![0-9A-Za-z_])"
-    return re.search(pattern, text) is not None
+    for form in fragment.lower().split("|"):
+        form = form.strip()
+        if form and re.search(r"(?<![0-9A-Za-z_])" + re.escape(form) + r"(?![0-9A-Za-z_])", text):
+            return True
+    return False
 
 
 def score(answer: str, gold: dict[str, Any]) -> dict[str, Any]:

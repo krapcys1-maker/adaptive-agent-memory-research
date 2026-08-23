@@ -120,7 +120,8 @@ def test_every_gold_answer_is_actually_present_in_its_gold_event(corpus: dict) -
     for gold in corpus["gold"]:
         text = by_id.get(gold["gold_event_id"], "")
         for fragment in gold["answer_contains"]:
-            if fragment not in text:
+            # A fragment may name alternatives with "|"; at least one must appear.
+            if not any(form.strip() in text for form in fragment.split("|")):
                 unanswerable.append((gold["query_id"], fragment))
     assert not unanswerable, f"answer fragments absent from their gold event: {unanswerable[:5]}"
 

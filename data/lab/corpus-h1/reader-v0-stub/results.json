@@ -1098,7 +1098,7 @@
       "leaked": 0,
       "leaked_markers": [],
       "missing_fragments": [
-        "three"
+        "three|3"
       ],
       "query_id": "Q-REDERIVE-02",
       "retrieved": 10
@@ -1113,7 +1113,7 @@
       "leaked": 0,
       "leaked_markers": [],
       "missing_fragments": [
-        "six"
+        "six|6"
       ],
       "query_id": "Q-REDERIVE-03",
       "retrieved": 10
@@ -1128,7 +1128,7 @@
       "leaked": 0,
       "leaked_markers": [],
       "missing_fragments": [
-        "seven"
+        "seven|7"
       ],
       "query_id": "Q-REDERIVE-04",
       "retrieved": 10
@@ -1143,7 +1143,7 @@
       "leaked": 0,
       "leaked_markers": [],
       "missing_fragments": [
-        "seven"
+        "seven|7"
       ],
       "query_id": "Q-REDERIVE-05",
       "retrieved": 10
@@ -1171,7 +1171,7 @@
       "leaked": 0,
       "leaked_markers": [],
       "missing_fragments": [
-        "two"
+        "two|2"
       ],
       "query_id": "Q-REDERIVE-07",
       "retrieved": 10
@@ -1199,7 +1199,7 @@
       "leaked": 0,
       "leaked_markers": [],
       "missing_fragments": [
-        "seven"
+        "seven|7"
       ],
       "query_id": "Q-REDERIVE-09",
       "retrieved": 10
@@ -1214,7 +1214,7 @@
       "leaked": 0,
       "leaked_markers": [],
       "missing_fragments": [
-        "six"
+        "six|6"
       ],
       "query_id": "Q-REDERIVE-10",
       "retrieved": 10
@@ -1229,7 +1229,7 @@
       "leaked": 0,
       "leaked_markers": [],
       "missing_fragments": [
-        "three"
+        "three|3"
       ],
       "query_id": "Q-REDERIVE-11",
       "retrieved": 10

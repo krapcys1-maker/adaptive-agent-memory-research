@@ -346,7 +346,7 @@ def _rederivable(case_id: str, stream: Iterator[int], subject: str) -> dict[str,
             "question": f"How many functions does src/util/{package}.py export?",
             "gold_event": (case_id, 0),
             "forbidden_event": None,
-            "answer_contains": [_NUMBER_WORDS[count - 2]],
+            "answer_contains": [f"{_NUMBER_WORDS[count - 2]}|{count}"],
             "why_hard": "a good controller should arguably not spend budget retaining this, since "
                         "reading the file answers it; the case measures whether a system separates "
                         "worth-remembering from merely true",
