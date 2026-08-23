@@ -26,11 +26,11 @@ adapter  →  ARENA-0 fixtures  →  operational fit  →  infra dry-run  →  f
 
 | system | status |
 |---|---|
-| AAMR (reference) | adapter done, admissible, abstains on all fixtures |
-| CUPMem | **operational fit PASS**, nine of nine. Pilot running on four frozen units under a $3 cap |
-| Hindsight | not started |
-| Graphiti | not started |
-| Mem0 | not started |
+| AAMR (reference) | **pilot done, $0.00.** Stored nothing on 996 turns, abstained 4/4 |
+| CUPMem | **operational fit PASS**, nine of nine. **Pilot done, $1.5892** |
+| Mem0 | **pilot done, $0.2939.** No model at query time |
+| Hindsight | **pilot done, $1.8123.** pg0 embedded Postgres, local embeddings |
+| Graphiti | **BLOCKED.** Neither embedded backend runs here; adapter written, mechanism unmeasured |
 | Letta, MemOS, Cognee | later, if the first four leave a gap |
 
 **"Put it down" is a rule, not a suggestion.** After a system's frozen run, no
