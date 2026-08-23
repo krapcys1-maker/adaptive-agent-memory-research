@@ -60,7 +60,9 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from corpus.arms import ARM_NOTES, ARMS, DEFAULT_TOKEN_BUDGET, _before, _fill  # noqa: E402
+from corpus.arms import (  # noqa: E402
+    ARM_NOTES, ARMS, DEFAULT_TOKEN_BUDGET, _before, _fill, rank_demoted, supersession_rank,
+)
 from corpus.history_family_spec import _lcg  # noqa: E402
 from run_corpus_h1_baseline import build_index, load, search  # noqa: E402
 
@@ -283,6 +285,10 @@ def select(arm: str, events: list[dict[str, Any]], question: str, day: int,
            budget: int, connection: Any, by_id: dict[str, Any],
            stream: Any) -> list[dict[str, Any]]:
     """What this arm carries into the prompt, under the shared token budget."""
+    if arm == "rank-oracle":
+        ids = [e for e in search(connection, question, 60) if e in by_id]
+        return rank_demoted(events, question, day, budget,
+                            ranked_ids=ids, rank=stream)
     if arm == "fts5":
         # Ranked by relevance, then filled to the same budget every other arm
         # gets. A retrieval depth is not a budget: ten short events and ten long
@@ -302,6 +308,22 @@ def run(limit: int | None, stub: bool, key: str | None, run_id: str, at: str,
     by_id = {event["event_id"]: event for event in events}
 
     connection = build_index(events)
+
+    # Oracle chaining. A chain is one entity-and-property slot — Kuba.address is
+    # separate from Kuba.job, so changing employer must not renumber addresses.
+    # Deriving chains from raw text is the hard part and is not attempted here;
+    # supplying them measures the idea at its ceiling rather than measuring a
+    # grouping heuristic. A deployable version has to earn this map.
+    rank_map: dict[str, int] = {}
+    if arm == "rank-oracle":
+        labels = load(CORPUS / "prefix-v0" / "construction-labels.jsonl")
+        chains = {
+            row["event_id"]: row["event_id"].split("#")[0]
+            for row in labels
+            if {"obsolete-fact", "explicit-correction"} & set(row["properties"])
+        }
+        rank_map = supersession_rank(events, chains)
+
     # Round-robin across families rather than the first N by identifier. The
     # first paid pilot took queries[:10] and drew ten BILINGUAL probes, because
     # query ids sort alphabetically — it validated one family and looked like it
@@ -335,9 +357,11 @@ def run(limit: int | None, stub: bool, key: str | None, run_id: str, at: str,
     spent = 0.0
     for query in selected:
         gold = gold_of[query["query_id"]]
-        stream = _lcg(hash(query["query_id"]) & 0xFFFFFFFF)
+        # rank-oracle needs the chain map rather than a random stream; the
+        # parameter carries whichever the arm requires.
+        extra = rank_map if arm == "rank-oracle" else _lcg(hash(query["query_id"]) & 0xFFFFFFFF)
         kept = select(arm, events, query["question"], query["asked_on_day"],
-                      budget, connection, by_id, stream)
+                      budget, connection, by_id, extra)
         ranked = [event["event_id"] for event in kept]
         notes = [(n + 1, event["text"], event["day"]) for n, event in enumerate(kept)]
 
@@ -414,7 +438,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("--arm", default="fts5", choices=sorted({*ARMS, "fts5"}),
+    parser.add_argument("--arm", default="fts5", choices=sorted({*ARMS, "fts5", "rank-oracle"}),
                         help="retention or retrieval policy under test")
     parser.add_argument("--budget", type=int, default=DEFAULT_TOKEN_BUDGET,
                         help="shared token budget; identical across arms or the comparison is void")
