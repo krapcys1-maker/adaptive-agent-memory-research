@@ -1,6 +1,6 @@
 # Foundation compaction plus memory benchmark protocol v0
 
-Status: preregistration draft; design only; execution locked
+Status: preregistration draft; design only; parent execution locked; model-free event/receipt construction passed
 
 Experiment ID: `PMLAB-FOUNDATION-001`
 
@@ -155,5 +155,18 @@ If compaction alone matches memory on short or cheaply re-derivable tasks, repor
 - obtain independent review of the critical histories and actions;
 - run model-free construction and fault-localization tests;
 - register sample size/repetition and experiment-specific budget.
+
+## Model-free construction checkpoint
+
+`PMLAB-FOUNDATION-CONTRACT-001` freezes the canonical-event and F0-F5 stage-receipt
+contracts separately from this parent benchmark. Its exact fixture was committed at
+`a7b15d6`; the validator was committed at `ca5d4bc` before execution. The authored
+construction run passed 8/8 check groups and rejected all 12 registered invalid
+mutations at zero API cost. This satisfies only the model-free canonical and
+failure-localization construction prerequisite.
+
+It does not satisfy independent review, unseen-fixture replication, delayed-reveal
+leakage control, compactor, reader, external-system, sample-size, scorer, or budget
+gates. `PMLAB-FOUNDATION-001` therefore remains execution-locked.
 
 Evidence basis: `../04-systems/foundation-v0-architecture-decision.md`, `compression-benchmark-extension.md`, and `../04-systems/agentmem-repository-audit-v0.md`.

@@ -1,0 +1,24 @@
+{
+  "schema_version": "foundation-construction-completion-v0.1",
+  "contract_id": "PMLAB-FOUNDATION-CONTRACT-001",
+  "status": "completed-authored-model-free-construction",
+  "fixture_freeze_commit": "a7b15d6d62abb929d2073390c4a6cf29b517ba48",
+  "validator_freeze_commit": "ca5d4bc1cc11ecb397e9e9293e0b6dcf3b9b0149",
+  "same_author_audit": true,
+  "independent_review": false,
+  "model_api_used": false,
+  "api_cost_usd": 0,
+  "artifacts": [
+    {"path": "scripts/validate_foundation_contract_construction.py", "bytes": 26904, "sha256": "16eda140a62698990f6a5cc39a054e43a4a170c961c062262b883bd921427fca"},
+    {"path": "tests/test_validate_foundation_contract_construction.py", "bytes": 1980, "sha256": "760ad015e3e0ba5957cc02e60ad58c9fea43526b735a5af5276160ba02538908"},
+    {"path": "data/lab/pmlab-foundation-v0/construction-v0/construction-validation-report.json", "bytes": 3460, "sha256": "96dfec1531611e9a6cc03f042feef85b384ebfd7ca0f273584d57af08971d366"}
+  ],
+  "registered_counts": {"canonical_events": 2, "stage_receipts": 6, "invalid_mutations": 12},
+  "validation_checks_passed": 8,
+  "targeted_tests": {"passed": 4, "failed": 0},
+  "full_repository_tests": {"passed": 285, "failed": 0, "warnings": 2},
+  "parent_experiment_execution_authorized": false,
+  "claim_limit": "One frozen authored fixture agrees with one frozen same-author validator; no operational memory or architecture claim.",
+  "next_gate": "independent semantic review and unseen second-author traces; separately freeze delayed-reveal leakage contract"
+}
+

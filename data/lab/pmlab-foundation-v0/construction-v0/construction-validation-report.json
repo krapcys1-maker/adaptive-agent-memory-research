@@ -1,0 +1,123 @@
+{
+  "schema_version": "foundation-construction-validation-report-v0.1",
+  "contract_id": "PMLAB-FOUNDATION-CONTRACT-001",
+  "parent_experiment_id": "PMLAB-FOUNDATION-001",
+  "status": "passed-authored-model-free-construction",
+  "freeze_commit": "a7b15d6d62abb929d2073390c4a6cf29b517ba48",
+  "validator_head": "ca5d4bc1cc11ecb397e9e9293e0b6dcf3b9b0149",
+  "model_api_used": false,
+  "api_cost_usd": 0,
+  "independent_review": false,
+  "parent_execution_authorized": false,
+  "claim_limit": "Contract and validator agree on one frozen authored synthetic fixture; no operational memory claim.",
+  "counts": {
+    "canonical_events": 2,
+    "stage_receipts": 6,
+    "invalid_mutations": 12
+  },
+  "checks": [
+    {
+      "check_id": "frozen_bytes_match_manifest_and_commit",
+      "passed": true,
+      "count": 9
+    },
+    {
+      "check_id": "schemas_parse_and_pin_draft",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "check_id": "canonical_events_valid",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "check_id": "raw_content_hashes_and_lengths_match",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "check_id": "revision_and_temporal_invariants_valid",
+      "passed": true,
+      "count": 2
+    },
+    {
+      "check_id": "six_stage_trace_valid",
+      "passed": true,
+      "count": 6
+    },
+    {
+      "check_id": "physical_loss_rule_valid",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "check_id": "registered_invalid_mutations_rejected",
+      "passed": true,
+      "count": 12
+    }
+  ],
+  "mutation_results": [
+    {
+      "case_id": "INV-EVENT-EXTRA-FIELD",
+      "rejected": true,
+      "error": "event unexpected field: ['semantic_summary']"
+    },
+    {
+      "case_id": "INV-EVENT-UNAUTHORIZED",
+      "rejected": true,
+      "error": "capture_allowed must be true for canonical event"
+    },
+    {
+      "case_id": "INV-EVENT-BAD-HASH",
+      "rejected": true,
+      "error": "content hash mismatch"
+    },
+    {
+      "case_id": "INV-EVENT-REVERSED-VALIDITY",
+      "rejected": true,
+      "error": "valid interval is reversed or empty"
+    },
+    {
+      "case_id": "INV-EVENT-MISSING-REVISION-TARGET",
+      "rejected": true,
+      "error": "revision target must name an earlier event"
+    },
+    {
+      "case_id": "INV-EVENT-ORIGINAL-HAS-TARGET",
+      "rejected": true,
+      "error": "original revision must not have target or reason"
+    },
+    {
+      "case_id": "INV-RECEIPT-MISSING-CHECK",
+      "rejected": true,
+      "error": "missing required checks: ['raw_bytes_recoverable']"
+    },
+    {
+      "case_id": "INV-RECEIPT-FALSE-LOSS",
+      "rejected": true,
+      "error": "confirmed physical loss lacks four failed probes"
+    },
+    {
+      "case_id": "INV-RECEIPT-LOSS-WRONG-STAGE",
+      "rejected": true,
+      "error": "data loss not applicable outside F1"
+    },
+    {
+      "case_id": "INV-RECEIPT-PASS-WITH-FAIL",
+      "rejected": true,
+      "error": "pass receipt has non-pass check"
+    },
+    {
+      "case_id": "INV-RECEIPT-BROKEN-CHAIN",
+      "rejected": true,
+      "error": "previous receipt chain mismatch"
+    },
+    {
+      "case_id": "INV-RECEIPT-DUPLICATE-CHECK",
+      "rejected": true,
+      "error": "duplicate check"
+    }
+  ],
+  "next_gate": "independent semantic attack plus unseen second-author traces before any promotion"
+}
