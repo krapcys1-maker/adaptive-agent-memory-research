@@ -1,6 +1,6 @@
 {
   "run_id": "deepseek-v4-flash-foundation-contract-semantic-review-v2-20260823",
-  "status": "api-run-complete",
+  "status": "review-finalized",
   "model": "deepseek-v4-flash",
   "temperature": 0,
   "thinking": "disabled",
@@ -13,5 +13,6 @@
   },
   "authority": "author-operated M1 advisory; not independent review and cannot unlock the builder",
   "response_id": "7ff880bb-dd4a-4cf5-a0b8-76d6598ed392",
-  "cost_usd": 0.01086404
+  "cost_usd": 0.01086404,
+  "review_result_sha256": "8a04984eaa9f21786a1885d8a36a3ef4f9ce94b8b968f1b2048bb4b0424fd2af"
 }
