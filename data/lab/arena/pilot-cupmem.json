@@ -380,14 +380,14 @@
       "question_type": "knowledge-update",
       "slot": "update",
       "sessions_available": 51,
-      "sessions_ingested": 35,
-      "user_turns_ingested": 171,
+      "sessions_ingested": 50,
+      "user_turns_ingested": 244,
       "sessions_skipped_no_user_turn": 1,
       "ingest": {
-        "model_calls": 303,
-        "input_tokens": 665418,
-        "output_tokens": 27451,
-        "wall_seconds": 378.16
+        "model_calls": 463,
+        "input_tokens": 1104442,
+        "output_tokens": 44335,
+        "wall_seconds": 596.2
       },
       "per_session_calls": [
         1,
@@ -424,16 +424,31 @@
         1,
         8,
         16,
-        16
+        16,
+        13,
+        1,
+        1,
+        19,
+        19,
+        11,
+        12,
+        19,
+        9,
+        15,
+        21,
+        1,
+        8,
+        1,
+        10
       ],
       "status": "ingesting"
     }
   ],
   "status": "running",
   "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
-  "spend_usd": 1.4283,
-  "provider_calls": 1817,
-  "decoding_overrides": 504,
+  "spend_usd": 1.5654,
+  "provider_calls": 1977,
+  "decoding_overrides": 544,
   "decoding_override_values": [
     "{\"temperature\": 0.3}"
   ]

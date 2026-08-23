@@ -118,7 +118,59 @@ def build_cupmem(args, ledger):
     }
 
 
-SYSTEMS = {"aamr": build_aamr, "cupmem": build_cupmem}
+def build_mem0(args, ledger):
+    """Mem0, in its own venv, metered by the arena's proxy.
+
+    It exposes no usage counter, so the proxy is not an optimisation here — it is
+    the only place this system's cost can be read from. Its model calls are
+    pointed at `http://127.0.0.1:PORT/v1`, which enforces the arena decoding,
+    prices every response into the shared ledger, and refuses the request that
+    would cross either ceiling.
+
+    The embedder is pinned to the same local checkpoint CUPMem runs on. That is
+    an arena control of the same class as the decoding, recorded as enforced
+    rather than native: Mem0's own default is an OpenAI embedding endpoint, which
+    would put a second provider and a second bill inside one comparison.
+    """
+    from mem0 import Memory
+
+    from arena.mem0_adapter import BANK, Mem0Adapter
+    from arena.mem0_probe import Mem0StateProbe
+    from arena.provider_proxy import serve
+
+    _server, meter = serve("https://api.deepseek.com", load_key(), 0, ledger, args.cap_usd)
+    port = _server.server_address[1]
+
+    store = Path(args.mem0_store).resolve()
+    store.mkdir(parents=True, exist_ok=True)
+    memory = Memory.from_config({
+        "llm": {"provider": "openai", "config": {
+            "model": args.model, "api_key": "routed-through-the-arena-proxy",
+            "openai_base_url": f"http://127.0.0.1:{port}/v1"}},
+        "embedder": {"provider": "huggingface", "config": {
+            "model": str(Path(args.embedding_model_path).resolve())}},
+        "vector_store": {"provider": "qdrant", "config": {
+            "collection_name": "arena_pilot", "embedding_model_dims": 384,
+            "path": str(store), "on_disk": True}},
+    })
+    return {
+        "adapter": Mem0Adapter(memory, meter),
+        "probe": Mem0StateProbe(memory, BANK),
+        "provider": None,
+        "meter": meter,
+        "source": {
+            "system": "Mem0", "version": "1.0.6",
+            "vector_store": "qdrant, local path, on_disk",
+            "embedder_enforced": str(Path(args.embedding_model_path).resolve()),
+            "embedder_native_default": "openai text-embedding-3-small",
+            "embedder_override_reason": ("held constant with CUPMem's; the native "
+                                         "default would add a second provider and a "
+                                         "second bill inside one comparison"),
+        },
+    }
+
+
+SYSTEMS = {"aamr": build_aamr, "cupmem": build_cupmem, "mem0": build_mem0}
 
 
 def load_key() -> str:
@@ -144,6 +196,7 @@ def main() -> int:
     parser.add_argument("--cupmem-root", default=str(ROOT / "external/repos/icedreamc__STALE"))
     parser.add_argument("--embedding-model-path",
                         default=str(ROOT / "external/models/all-MiniLM-L6-v2"))
+    parser.add_argument("--mem0-store", default=str(ROOT / "external/venvs/mem0-store"))
     parser.add_argument("--out", default=None)
     args = parser.parse_args()
 
@@ -157,6 +210,9 @@ def main() -> int:
     units = load_units(SELECTION, CORPUS)
     built = SYSTEMS[args.system](args, ledger)
     adapter, probe, provider = built["adapter"], built["probe"], built["provider"]
+    #: Either the in-process wrapper or the proxy, whichever this system is
+    #: metered by. Both count calls and price them; neither is the system's own.
+    meter = built.get("meter") or provider
 
     record: dict[str, Any] = {
         "artifact": f"arena-{mode}-{args.system}",
@@ -170,9 +226,9 @@ def main() -> int:
         "started_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "selection": json.loads(SELECTION.read_text(encoding="utf-8"))["selection_sha256"],
         "source": built["source"],
-        "target_model": args.model if provider else "none — this system calls no model",
+        "target_model": args.model if meter else "none — this system calls no model",
         "decoding": {
-            "arena_enforced": ARENA_DECODING if provider else None,
+            "arena_enforced": ARENA_DECODING if meter else None,
             "preregistered": False,
             "provenance": ("adopted after a CUPMem run showed a repeated probe "
                            "returning different answers, so it is a control chosen "
@@ -192,12 +248,17 @@ def main() -> int:
 
     def flush(status: str) -> None:
         record["status"] = status
-        record["spend_usd"] = round(provider.spent_usd, 4) if provider else 0.0
-        record["provider_calls"] = len(provider.request_log) if provider else 0
-        if provider:
+        record["spend_usd"] = round(meter.spent_usd, 4) if meter else 0.0
+        if provider is not None:
+            record["provider_calls"] = len(provider.request_log)
             record["decoding_overrides"] = len(provider.overrides)
             record["decoding_override_values"] = sorted(
                 {json.dumps(c["overridden"], sort_keys=True) for c in provider.overrides})
+        elif built.get("meter") is not None:
+            record["provider_calls"] = len(built["meter"].calls)
+            record["meter"] = built["meter"].summary()
+        else:
+            record["provider_calls"] = 0
         record["night_ledger"] = ledger.summary()
         out.write_text(json.dumps(record, indent=2, default=str) + "\n", encoding="utf-8")
         raw_out.parent.mkdir(parents=True, exist_ok=True)
