@@ -1,0 +1,63 @@
+{
+  "constant_vectors_are_not_a_bug": "architectural difference does not guarantee error variance. A system scoring 0 of n or n of n on some failure type yields a constant vector and phi does not exist for that pair. It is reported undefined, never 0.0, which is what PMLAB-DECORR-E1 was built to do honestly",
+  "contract": "comparative memory systems, v0",
+  "correlation_is_two_level": "phi over a binary error vector answers whether two systems fail on the same probes. It cannot answer whether they fail the same way, so each failure type also gets its own one-hot vector and its own phi. Two systems can share an error rate, fail on the same probes, and diverge completely once type is separated",
+  "enforced_by": "scripts/comparative_lab.py::validate, which refuses rather than warns",
+  "example_record": {
+    "abstained": false,
+    "failure_stage": "retrieval",
+    "failure_type": "state_failure",
+    "probe_id": "probe_017",
+    "retrieved_tokens": 842,
+    "success": false,
+    "system": "Hindsight"
+  },
+  "failure_stages": [
+    "none",
+    "address",
+    "retrieval",
+    "state",
+    "conflict",
+    "reasoning",
+    "answer"
+  ],
+  "failure_types": [
+    "address_failure",
+    "retrieval_failure",
+    "state_failure",
+    "conflict_failure",
+    "reasoning_failure",
+    "abstention_miss"
+  ],
+  "frozen_at": "2026-08-24T05:00:00Z",
+  "git_commit": "d227003159ec8c2ac0b4cdb852cc0a8eeae60619",
+  "identical_across_every_system": [
+    "corpus_id",
+    "probe_set_sha256",
+    "reader_model",
+    "prompt_sha256",
+    "token_budget",
+    "judge",
+    "abstention_policy",
+    "failure_taxonomy_version"
+  ],
+  "interaction_term": {
+    "formula": "interaction = S(A+B) - S(A) - S(B) + S0",
+    "near_zero": "additive \u2014 the mechanisms address different failures",
+    "negative": "redundant, or the mechanisms interfere",
+    "positive": "synergistic \u2014 the pair exceeds the sum of independent effects",
+    "worked": "deltas of +6 and +8 giving +14 is additive; giving +8 is heavy redundancy; giving +17 is a positive interaction of about +3 over the sum of independent effects"
+  },
+  "issue": 51,
+  "per_probe_record_required_fields": [
+    "probe_id",
+    "system",
+    "success",
+    "abstained",
+    "failure_stage",
+    "failure_type",
+    "retrieved_tokens"
+  ],
+  "tested_by": "tests/test_comparative_lab.py \u2014 14 tests covering refusal, undefined phi and the interaction",
+  "why_frozen_before_the_first_system_is_read": "a contract written after the first system is in hand gets shaped by what that system happens to emit, and every later system is then measured against one system's conveniences"
+}
