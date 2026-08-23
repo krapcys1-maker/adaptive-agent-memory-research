@@ -387,7 +387,8 @@
         "model_calls": 463,
         "input_tokens": 1104442,
         "output_tokens": 44335,
-        "wall_seconds": 596.2
+        "wall_seconds": 596.2,
+        "usd": 0.347
       },
       "per_session_calls": [
         1,
@@ -441,13 +442,59 @@
         1,
         10
       ],
-      "status": "ingesting"
+      "status": "complete",
+      "state_digest_after_ingest_differs": true,
+      "stored_items": 225,
+      "query": {
+        "model_calls": 4,
+        "input_tokens": 40161,
+        "output_tokens": 1060,
+        "wall_seconds": 9.34,
+        "fully_known": true,
+        "observability": {
+          "model_calls": "native",
+          "input_tokens": "native",
+          "output_tokens": "native"
+        },
+        "repeat": {
+          "model_calls": 4,
+          "input_tokens": 39490,
+          "output_tokens": 1016,
+          "wall_seconds": 9.2,
+          "fully_known": true,
+          "observability": {
+            "model_calls": "native",
+            "input_tokens": "native",
+            "output_tokens": "native"
+          }
+        },
+        "wall_seconds_measured": 18.56,
+        "usd": 0.0238
+      },
+      "memory": {
+        "evidence_ids": 28,
+        "evidence_all_traceable": true,
+        "context_tokens": 588,
+        "context_tokens_measurable": true,
+        "context_tokens_is_floor": true,
+        "abstained": false,
+        "abstention_derivable": true,
+        "abstention_channel": "empty-composed-answer",
+        "premise_status": "SUPPORTED",
+        "query_mutates_state": "read_only",
+        "output_reproducible": "false"
+      },
+      "task": {
+        "crude_substring_match": true,
+        "metric": "substring containment of the gold answer, NOT LongMemEval's model judge. It under-counts every correct paraphrase and is a signal check, not a score",
+        "answer_chars": 81
+      }
     }
   ],
-  "status": "running",
+  "status": "complete",
   "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
-  "spend_usd": 1.5654,
-  "provider_calls": 1977,
+  "spend_usd": 1.5892,
+  "provider_calls": 1985,
   "decoding_overrides": 544,
   "decoding_override_values": [
     "{\"temperature\": 0.3}"
