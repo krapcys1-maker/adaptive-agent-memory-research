@@ -1,0 +1,43 @@
+{
+  "addendum_to": "AAMR-CANDIDATE-0",
+  "candidate_0_is_not_to_be_repaired": "fixing it against STALE would convert the benchmark into a development set and destroy the only property it was wanted for. It stands as the negative result",
+  "candidate_1_development_rules": [
+    "developed on new adversarial internal material, other datasets, general paraphrase, aliases, coreference, multiple entities and implicit properties",
+    "STALE question forms are not used as design input",
+    "frozen by digest before any external run"
+  ],
+  "git_commit": "70c66fc5fe50dcee13868410ac89ffbe32a95067",
+  "grammar_coverage_evidence": {
+    "address_extract entity (83% domain)": 0.0,
+    "address_extract property (93% domain)": 0.0017,
+    "entity_canon (0% domain vocabulary)": 0.4458,
+    "property_canon (84% domain)": 0.0017
+  },
+  "outcome": "NEGATIVE ARTIFACT \u2014 retained, not repaired",
+  "registered_at": "2026-08-24T04:30:00Z",
+  "stale_sealing_status_after_this": {
+    "before": "unseen external benchmark",
+    "consequence": "STALE remains a valid external test and is no longer sealed in the strongest sense. From here its question forms must not inform the design of CANDIDATE-1, and any final claim needs a second benchmark whose questions were never inspected \u2014 MemoryAgentBench conflict resolution or LongMemEval-V2",
+    "now": "question-text-only pre-scoring audit was performed before any model evaluation",
+    "what_was_not_read": "gold answers, labels, families, the success key, the scoring code",
+    "what_was_read": "1200 question strings, via a loader that takes one field and discards the record"
+  },
+  "statement": "deterministic addressing achieved perfect internal coverage and failed to transfer, because its language-to-address interface was coupled to the grammar of the corpus it was written against. Five of six supposedly general constructions match nothing on 1200 external questions, and the apparent 0.446 coverage comes from a catch-all preposition matcher yielding service.them, service.years and service.tomorrow",
+  "supplements_not_modifies": "c0410e2ff75750e3315d5b31fbf3f5623c54a9c9c67bad67d31247512a52a448",
+  "the_model_now_has_an_evidenced_place": {
+    "now_supported": "literal and grammatical rules do not transfer across corpora. That is the first failure mode in this project that a model is a plausible answer to, and it is narrow: resolving language to an address where deterministic rules abstain",
+    "previously_refuted": [
+      "a model is needed for property resolution \u2014 canonicalisation sufficed",
+      "a model is needed for entity resolution \u2014 canonicalisation sufficed internally"
+    ],
+    "question": "can a small model used only for unresolved language-to-address mapping generalise while the memory structure stays deterministic?",
+    "shape": "deterministic exact evidence first \u2014 identifiers, aliases, numbers, paths, schema matches. On abstention, a small model chooses from controlled candidate sets. A deterministic validator accepts or abstains. The model resolves language; it does not manage memory"
+  },
+  "what_failed": "the first bridge only: natural language to entity, property and scope",
+  "what_is_NOT_refuted": {
+    "addressable_state": "never received valid input on external data; untested, not refuted",
+    "retrieval_and_context": "untested externally",
+    "temporal_resolution": "never received valid input on external data; untested, not refuted",
+    "why_this_matters": "a low external score would have looked like a verdict on the whole architecture. The audit localises the failure to the component before the memory, which leaves every downstream claim open rather than damaged"
+  }
+}
