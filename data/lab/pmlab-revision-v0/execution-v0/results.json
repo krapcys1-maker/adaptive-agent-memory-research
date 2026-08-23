@@ -1,0 +1,965 @@
+{
+  "records": [
+    {
+      "answer": "hair is black",
+      "arm": "one_timestamp",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "one_timestamp",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "one_timestamp",
+      "case": "C1",
+      "correct": 0,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "hair is green",
+      "arm": "one_timestamp",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is green",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is green",
+      "arm": "one_timestamp",
+      "case": "C2",
+      "correct": 0,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is green",
+      "arm": "one_timestamp",
+      "case": "C2",
+      "correct": 0,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "rate is 7 percent",
+      "arm": "one_timestamp",
+      "case": "C3",
+      "correct": 0,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "rate is 7 percent",
+      "arm": "one_timestamp",
+      "case": "C3",
+      "correct": 0,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 68 kg",
+      "arm": "one_timestamp",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 68 kg",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "weight is 68 kg",
+      "arm": "one_timestamp",
+      "case": "C4",
+      "correct": 0,
+      "critical": false,
+      "expected": "weight is 60 kg",
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 68 kg",
+      "arm": "one_timestamp",
+      "case": "C4",
+      "correct": 0,
+      "critical": false,
+      "expected": "weight is 70 kg",
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is closed",
+      "arm": "one_timestamp",
+      "case": "C5",
+      "correct": 0,
+      "critical": true,
+      "expected": "status is open",
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is closed",
+      "arm": "one_timestamp",
+      "case": "C5",
+      "correct": 1,
+      "critical": false,
+      "expected": "status is closed",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is bob",
+      "arm": "one_timestamp",
+      "case": "C6",
+      "correct": 1,
+      "critical": false,
+      "expected": "owner is bob",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is bob",
+      "arm": "one_timestamp",
+      "case": "C6",
+      "correct": 0,
+      "critical": false,
+      "expected": "owner is alice",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "city is Warsaw",
+      "arm": "one_timestamp",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": "city is Warsaw",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "city is Warsaw",
+      "arm": "one_timestamp",
+      "case": "C7",
+      "correct": 0,
+      "critical": false,
+      "expected": null,
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "city is Warsaw",
+      "arm": "one_timestamp",
+      "case": "C7",
+      "correct": 0,
+      "critical": false,
+      "expected": null,
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "transaction_only",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "transaction_only",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "transaction_only",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "hair is green",
+      "arm": "transaction_only",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is green",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is green",
+      "arm": "transaction_only",
+      "case": "C2",
+      "correct": 0,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "transaction_only",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "rate is 7 percent",
+      "arm": "transaction_only",
+      "case": "C3",
+      "correct": 0,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "rate is 7 percent",
+      "arm": "transaction_only",
+      "case": "C3",
+      "correct": 0,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 68 kg",
+      "arm": "transaction_only",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 68 kg",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "weight is 60 kg",
+      "arm": "transaction_only",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 60 kg",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 70 kg",
+      "arm": "transaction_only",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 70 kg",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is open",
+      "arm": "transaction_only",
+      "case": "C5",
+      "correct": 1,
+      "critical": true,
+      "expected": "status is open",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is closed",
+      "arm": "transaction_only",
+      "case": "C5",
+      "correct": 1,
+      "critical": false,
+      "expected": "status is closed",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is bob",
+      "arm": "transaction_only",
+      "case": "C6",
+      "correct": 1,
+      "critical": false,
+      "expected": "owner is bob",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is bob",
+      "arm": "transaction_only",
+      "case": "C6",
+      "correct": 0,
+      "critical": false,
+      "expected": "owner is alice",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "city is Warsaw",
+      "arm": "transaction_only",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": "city is Warsaw",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": null,
+      "arm": "transaction_only",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": null,
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "city is Warsaw",
+      "arm": "transaction_only",
+      "case": "C7",
+      "correct": 0,
+      "critical": false,
+      "expected": null,
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "valid_only",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "valid_only",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "valid_only",
+      "case": "C1",
+      "correct": 0,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "hair is green",
+      "arm": "valid_only",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is green",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "valid_only",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "valid_only",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "rate is 5 percent",
+      "arm": "valid_only",
+      "case": "C3",
+      "correct": 1,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "rate is 5 percent",
+      "arm": "valid_only",
+      "case": "C3",
+      "correct": 1,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 68 kg",
+      "arm": "valid_only",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 68 kg",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "weight is 68 kg",
+      "arm": "valid_only",
+      "case": "C4",
+      "correct": 0,
+      "critical": false,
+      "expected": "weight is 60 kg",
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 68 kg",
+      "arm": "valid_only",
+      "case": "C4",
+      "correct": 0,
+      "critical": false,
+      "expected": "weight is 70 kg",
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is closed",
+      "arm": "valid_only",
+      "case": "C5",
+      "correct": 0,
+      "critical": true,
+      "expected": "status is open",
+      "leaked": 1,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is closed",
+      "arm": "valid_only",
+      "case": "C5",
+      "correct": 1,
+      "critical": false,
+      "expected": "status is closed",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is bob",
+      "arm": "valid_only",
+      "case": "C6",
+      "correct": 1,
+      "critical": false,
+      "expected": "owner is bob",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is alice",
+      "arm": "valid_only",
+      "case": "C6",
+      "correct": 1,
+      "critical": false,
+      "expected": "owner is alice",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "city is Warsaw",
+      "arm": "valid_only",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": "city is Warsaw",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": null,
+      "arm": "valid_only",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": null,
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": null,
+      "arm": "valid_only",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": null,
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "bitemporal",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "bitemporal",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "bitemporal",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "hair is green",
+      "arm": "bitemporal",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is green",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "bitemporal",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "bitemporal",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "rate is 5 percent",
+      "arm": "bitemporal",
+      "case": "C3",
+      "correct": 1,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "rate is 7 percent",
+      "arm": "bitemporal",
+      "case": "C3",
+      "correct": 0,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 68 kg",
+      "arm": "bitemporal",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 68 kg",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "weight is 60 kg",
+      "arm": "bitemporal",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 60 kg",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 70 kg",
+      "arm": "bitemporal",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 70 kg",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is open",
+      "arm": "bitemporal",
+      "case": "C5",
+      "correct": 1,
+      "critical": true,
+      "expected": "status is open",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is closed",
+      "arm": "bitemporal",
+      "case": "C5",
+      "correct": 1,
+      "critical": false,
+      "expected": "status is closed",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is bob",
+      "arm": "bitemporal",
+      "case": "C6",
+      "correct": 1,
+      "critical": false,
+      "expected": "owner is bob",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is alice",
+      "arm": "bitemporal",
+      "case": "C6",
+      "correct": 1,
+      "critical": false,
+      "expected": "owner is alice",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "city is Warsaw",
+      "arm": "bitemporal",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": "city is Warsaw",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": null,
+      "arm": "bitemporal",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": null,
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": null,
+      "arm": "bitemporal",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": null,
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "oracle",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is black",
+      "arm": "oracle",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is black",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "oracle",
+      "case": "C1",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "hair is green",
+      "arm": "oracle",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is green",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "oracle",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "hair is brown",
+      "arm": "oracle",
+      "case": "C2",
+      "correct": 1,
+      "critical": false,
+      "expected": "hair is brown",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "rate is 5 percent",
+      "arm": "oracle",
+      "case": "C3",
+      "correct": 1,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "rate is 5 percent",
+      "arm": "oracle",
+      "case": "C3",
+      "correct": 1,
+      "critical": false,
+      "expected": "rate is 5 percent",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 68 kg",
+      "arm": "oracle",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 68 kg",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "weight is 60 kg",
+      "arm": "oracle",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 60 kg",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "weight is 70 kg",
+      "arm": "oracle",
+      "case": "C4",
+      "correct": 1,
+      "critical": false,
+      "expected": "weight is 70 kg",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is open",
+      "arm": "oracle",
+      "case": "C5",
+      "correct": 1,
+      "critical": true,
+      "expected": "status is open",
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": "status is closed",
+      "arm": "oracle",
+      "case": "C5",
+      "correct": 1,
+      "critical": false,
+      "expected": "status is closed",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is bob",
+      "arm": "oracle",
+      "case": "C6",
+      "correct": 1,
+      "critical": false,
+      "expected": "owner is bob",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": "owner is alice",
+      "arm": "oracle",
+      "case": "C6",
+      "correct": 1,
+      "critical": false,
+      "expected": "owner is alice",
+      "leaked": 0,
+      "type": "valid_at"
+    },
+    {
+      "answer": "city is Warsaw",
+      "arm": "oracle",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": "city is Warsaw",
+      "leaked": 0,
+      "type": "current"
+    },
+    {
+      "answer": null,
+      "arm": "oracle",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": null,
+      "leaked": 0,
+      "type": "as_known_at"
+    },
+    {
+      "answer": null,
+      "arm": "oracle",
+      "case": "C7",
+      "correct": 1,
+      "critical": false,
+      "expected": null,
+      "leaked": 0,
+      "type": "valid_at"
+    }
+  ],
+  "summary": {
+    "arms": {
+      "bitemporal": {
+        "by_query_type": {
+          "as_known_at": 0.8571,
+          "current": 1.0,
+          "valid_at": 1.0
+        },
+        "critical_failures": 0,
+        "exact": 0.9444,
+        "future_leaks": 0
+      },
+      "one_timestamp": {
+        "by_query_type": {
+          "as_known_at": 0.0,
+          "current": 1.0,
+          "valid_at": 0.2
+        },
+        "critical_failures": 1,
+        "exact": 0.3889,
+        "future_leaks": 6
+      },
+      "oracle": {
+        "by_query_type": {
+          "as_known_at": 1.0,
+          "current": 1.0,
+          "valid_at": 1.0
+        },
+        "critical_failures": 0,
+        "exact": 1.0,
+        "future_leaks": 0
+      },
+      "transaction_only": {
+        "by_query_type": {
+          "as_known_at": 0.8571,
+          "current": 1.0,
+          "valid_at": 0.2
+        },
+        "critical_failures": 0,
+        "exact": 0.7222,
+        "future_leaks": 0
+      },
+      "valid_only": {
+        "by_query_type": {
+          "as_known_at": 0.4286,
+          "current": 1.0,
+          "valid_at": 1.0
+        },
+        "critical_failures": 1,
+        "exact": 0.7778,
+        "future_leaks": 4
+      }
+    },
+    "authority": "development measurement only; corpus authored by the agent that implemented the schema",
+    "cases": 7,
+    "events": 14,
+    "experiment_id": "PMLAB-REV-V0-001",
+    "queries": 18,
+    "registered_threshold": "zero critical future leakage or silent concurrent winner; exact pre-correction reconstruction",
+    "tier": "E-exploratory"
+  }
+}

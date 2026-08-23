@@ -1,0 +1,18 @@
+{"case": "C1", "expected": "hair is black", "note": "a correction replaces the belief outright", "subject": "c1", "type": "current"}
+{"at": "2026-02-01T00:00:00Z", "case": "C1", "expected": "hair is black", "note": "it was always black; only our record was wrong", "subject": "c1", "type": "valid_at"}
+{"at": "2026-02-01T00:00:00Z", "case": "C1", "expected": "hair is brown", "note": "in February we believed brown; the correction did not exist yet", "subject": "c1", "type": "as_known_at"}
+{"case": "C2", "expected": "hair is green", "subject": "c2", "type": "current"}
+{"at": "2026-03-01T00:00:00Z", "case": "C2", "expected": "hair is brown", "note": "brown was genuinely true in March; a succession closes an interval", "subject": "c2", "type": "valid_at"}
+{"at": "2026-03-01T00:00:00Z", "case": "C2", "expected": "hair is brown", "subject": "c2", "type": "as_known_at"}
+{"at": "2026-05-01T00:00:00Z", "case": "C3", "expected": "rate is 5 percent", "note": "the new rule was recorded but not yet in force", "subject": "c3", "type": "valid_at"}
+{"at": "2026-05-01T00:00:00Z", "case": "C3", "expected": "rate is 5 percent", "note": "a store ordering by write time alone answers 7 and is wrong", "subject": "c3", "type": "as_known_at"}
+{"case": "C4", "expected": "weight is 68 kg", "subject": "c4", "type": "current"}
+{"at": "2026-03-15T00:00:00Z", "case": "C4", "expected": "weight is 60 kg", "note": "the middle belief must be reconstructable, not just the first and last", "subject": "c4", "type": "as_known_at"}
+{"at": "2026-02-15T00:00:00Z", "case": "C4", "expected": "weight is 70 kg", "subject": "c4", "type": "as_known_at"}
+{"at": "2026-02-01T00:00:00Z", "case": "C5", "critical": true, "expected": "status is open", "note": "returning 'closed' is future-information leakage and blocks V1-V3", "subject": "c5", "type": "as_known_at"}
+{"case": "C5", "expected": "status is closed", "subject": "c5", "type": "current"}
+{"case": "C6", "expected": "owner is bob", "subject": "c6", "type": "current"}
+{"at": "2026-05-01T12:00:00Z", "case": "C6", "expected": "owner is alice", "note": "one second of resolution must still separate them", "subject": "c6", "type": "valid_at"}
+{"case": "C7", "expected": "city is Warsaw", "subject": "c7", "type": "current"}
+{"at": "2026-01-01T00:00:00Z", "case": "C7", "expected": null, "note": "nothing was known about c7 in January; a store that answers anyway is leaking", "subject": "c7", "type": "as_known_at"}
+{"at": "2026-01-01T00:00:00Z", "case": "C7", "expected": null, "subject": "c7", "type": "valid_at"}
