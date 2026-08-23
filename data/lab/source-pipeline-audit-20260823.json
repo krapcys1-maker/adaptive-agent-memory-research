@@ -1,11 +1,15 @@
 {
   "catalog_entries": 174,
   "catalog_entries_with_url": 171,
+  "catalog_reading_states": {
+    "unknown": 174
+  },
   "catalog_status_column_holds_publication_type_not_reading_state": 167,
+  "claims_with_no_resolvable_source": 1,
   "full_read_note_files": 26,
-  "gap": "The catalog cannot express whether a source was read. Its status column records publication type. The ledger distinguishes abstract-extracted from extracted, but only for claims, never for sources, so a source read in full and one skimmed for a single claim are indistinguishable in the catalog.",
+  "gap": "The catalog now carries reading_state alongside status, so the distinction between publication type and engagement is expressible. Every row starts at unknown, which means the record does not say rather than that the source is unread. The remaining gap is that some claims cite publications absent from the catalog. An earlier version reported that as 36 percent by lumping repository links, internal artifacts and unrecognised publication hosts together; classifying by host separates them.",
+  "internal_artifacts_correctly_uncatalogued": 3,
   "ledger_claims": 181,
-  "ledger_claims_whose_source_is_in_no_catalog": 65,
   "ledger_status_levels": {
     "abstract-extracted": 5,
     "candidate": 1,
@@ -25,29 +29,13 @@
     "synthesized": 2
   },
   "not_repaired": "Assigning a reading state to every catalogued source is a judgement about what was actually read. Guessing it would write a fabricated state into what reads afterwards as a record, so this audit reports and stops.",
-  "orphan_claim_ids": [
-    "AI-005",
-    "AI-010",
-    "AI-011",
-    "AI-012",
-    "AI-013",
-    "AI-014",
-    "AI-015",
-    "AI-016",
-    "AI-017",
-    "AI-018",
-    "AI-019",
-    "AI-020",
-    "AI-030",
-    "AI-031",
-    "AI-032",
-    "AI-033",
-    "AI-034",
-    "AI-035",
-    "AI-036",
-    "AI-037"
-  ],
+  "reading_state_still_unknown": 174,
+  "repository_sources_belonging_in_the_repo_catalog": 15,
   "sources_cited_by_a_claim": 114,
   "sources_never_cited": 57,
-  "sources_with_a_full_read_note": 18
+  "sources_with_a_full_read_note": 18,
+  "uncatalogued_publications": 46,
+  "unresolvable_claim_ids": [
+    "AI-005"
+  ]
 }

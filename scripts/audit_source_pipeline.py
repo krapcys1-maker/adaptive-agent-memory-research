@@ -51,6 +51,17 @@ PUBLICATION_TYPES = re.compile(
     r"peer-reviewed|preprint|review|official|foundational|thesis|book", re.IGNORECASE
 )
 
+# Classify by structure, never by a list of hosts. Enumerating publication
+# hosts produced a misleading number three times in one session: checking only
+# arxiv and doi filed NeurIPS, MLR, ACL and OpenReview under "unresolvable";
+# adding those then filed PubMed Central, RFC Editor, EUR-Lex and VLDB the same
+# way. A hand-written list is never complete, and its gaps look like findings.
+#
+# A source is resolvable if it is a URL or a repository path. Whether it is
+# *catalogued* is a separate question, and the right one to report.
+REPOSITORY_HOSTS = ("github.com", "gitlab.com", "huggingface.co")
+INTERNAL_PATH = re.compile(r"^(docs|data|scripts|tools|tests|memory)/")
+
 
 def read_csv(path: Path) -> list[dict[str, str]]:
     if not path.is_file():
@@ -74,16 +85,29 @@ def run() -> dict[str, Any]:
     catalog_urls.discard("")
 
     cited: set[str] = set()
-    orphan_claims: list[str] = []
+    uncatalogued_publications: list[str] = []
+    repository_sources: list[str] = []
+    internal_artifacts: list[str] = []
+    unresolvable: list[str] = []
+
     for row in ledger:
         source = normalise(row.get("primary_source", ""))
+        claim = row.get("claim_id", "?")
         if not source:
+            unresolvable.append(claim)
             continue
         match = next((u for u in catalog_urls if u and (u in source or source in u)), None)
         if match:
             cited.add(match)
+        elif source.startswith(REPOSITORY_HOSTS):
+            repository_sources.append(claim)
+        elif INTERNAL_PATH.match(source):
+            internal_artifacts.append(claim)
+        elif "/" in source or "." in source:
+            # A URL or a path: a real citation, simply not in the paper catalog.
+            uncatalogued_publications.append(claim)
         else:
-            orphan_claims.append(row.get("claim_id", "?"))
+            unresolvable.append(claim)
 
     note_files = sorted(NOTES.glob("*.md")) if NOTES.is_dir() else []
     note_text = " ".join(p.read_text(encoding="utf-8", errors="replace").lower() for p in note_files)
@@ -111,8 +135,11 @@ def run() -> dict[str, Any]:
         "sources_never_cited": len(catalog_urls) - len(cited),
         "sources_with_a_full_read_note": len(read),
         "full_read_note_files": len(note_files),
-        "ledger_claims_whose_source_is_in_no_catalog": len(orphan_claims),
-        "orphan_claim_ids": sorted(orphan_claims)[:20],
+        "uncatalogued_publications": len(uncatalogued_publications),
+        "repository_sources_belonging_in_the_repo_catalog": len(repository_sources),
+        "internal_artifacts_correctly_uncatalogued": len(internal_artifacts),
+        "claims_with_no_resolvable_source": len(unresolvable),
+        "unresolvable_claim_ids": sorted(unresolvable),
         "catalog_status_column_holds_publication_type_not_reading_state": status_is_publication_type,
         "ledger_status_levels": dict(sorted(ledger_levels.items())),
         "catalog_reading_states": dict(sorted(reading_states.items())),
@@ -121,8 +148,9 @@ def run() -> dict[str, Any]:
             "The catalog now carries reading_state alongside status, so the distinction between "
             "publication type and engagement is expressible. Every row starts at unknown, which "
             "means the record does not say rather than that the source is unread. The remaining "
-            "gap is that 36 percent of ledger claims cite a source in no catalog, so the catalog "
-            "is not yet the canonical source list."
+            "gap is that some claims cite publications absent from the catalog. An earlier version "
+            "reported that as 36 percent by lumping repository links, internal artifacts and "
+            "unrecognised publication hosts together; classifying by host separates them."
         ),
         "not_repaired": (
             "Assigning a reading state to every catalogued source is a judgement about what was "
