@@ -125,4 +125,5 @@ See:
 - [distributed shared memory, CRDT, provenance, and authorization audit v0](distributed-shared-memory-crdt-provenance-audit-v0.md);
 - [temporal provenance, versioning, and correction audit v0](temporal-provenance-versioning-and-correction-audit-v0.md);
 - [storage durability, crash consistency, and recovery audit v0](storage-durability-crash-consistency-and-recovery-audit-v0.md);
+- [prospective memory, cognitive offloading, and reminder audit v0](prospective-memory-cognitive-offloading-and-reminder-audit-v0.md);
 - [synthesis protocol](synthesis-protocol.md).

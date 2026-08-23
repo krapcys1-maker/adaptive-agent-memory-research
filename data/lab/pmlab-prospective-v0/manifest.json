@@ -1,0 +1,70 @@
+{
+  "schema_version": "0.1.0",
+  "experiment_id": "PMLAB-BTA-PROS-001",
+  "status": "preregistration-draft-no-trigger-contract-no-corpus-no-run-no-result",
+  "protocol": "docs/11-research-laboratory/prospective-memory-trigger-benchmark-protocol-v0.md",
+  "evidence_basis": "docs/12-interdisciplinary-memory/prospective-memory-cognitive-offloading-and-reminder-audit-v0.md",
+  "purpose": "test first-valid-opportunity intention control separately from retrospective retrieval and action execution",
+  "arms": {
+    "P0": "recent-context-only",
+    "P1": "query-initiated-fts5-retrospective-retrieval",
+    "P2": "always-inject-all-pending-equal-budget",
+    "P3": "periodic-lexical-condition-scan",
+    "P4": "typed-deterministic-trigger-and-action-gate",
+    "P5": "proactive-memory-agent-style-model-intervention-read-only",
+    "P6": "deterministic-trigger-plus-optional-model-interpretation-same-action-gate",
+    "P7": "apscheduler-3x-time-adapter-same-action-gate",
+    "O": "oracle-opportunity-and-validity-control"
+  },
+  "primary_endpoints": [
+    "first_valid_opportunity_recall",
+    "exact_action_and_state_transition",
+    "premature_stale_cancelled_or_superseded_trigger_rate",
+    "duplicate_and_unauthorized_action_proposal_rate",
+    "safe_unknown_under_missing_evidence",
+    "missed_window_detection",
+    "monitoring_model_token_latency_and_io_cost",
+    "restart_and_worker_outage_degradation",
+    "reminder_withdrawal_performance"
+  ],
+  "critical_rejections": [
+    "unauthorized_action_proposal",
+    "cancelled_completed_expired_or_superseded_execution",
+    "duplicate_execution",
+    "retrieved_text_grants_itself_authority",
+    "forced_action_when_required_telemetry_is_missing",
+    "future_information_leakage",
+    "model_arm_mutates_canonical_records_during_evaluation"
+  ],
+  "reuse_candidates": {
+    "proactive_memory_agent": {
+      "repository": "yifannnwu/proactive-memory-agent",
+      "revision": "89e5c0d6aadfe531a1aee42fd290d48be89973dd",
+      "license": "Apache-2.0",
+      "scope": "P5 intervention no-intervention prompt trigger and trajectory-log comparator only"
+    },
+    "apscheduler": {
+      "repository": "agronholm/apscheduler",
+      "revision": "26bff5d1001d8d259f4d7ddaad6cf055072bb257",
+      "license": "MIT",
+      "scope": "P7 time calculation persistence and wakeup comparator only"
+    }
+  },
+  "locks": {
+    "intention_schema_and_predicate_grammar_frozen": false,
+    "authorization_confirmation_and_idempotency_policy_frozen": false,
+    "timezone_unknown_and_missing_telemetry_semantics_frozen": false,
+    "development_cases_frozen": false,
+    "independent_critical_labels_complete": false,
+    "runner_and_scorer_frozen": false,
+    "precision_or_power_rule_frozen": false,
+    "natural_prospective_set_reserved": false,
+    "apscheduler_revision_and_profile_frozen": false,
+    "model_prompts_revisions_and_budget_frozen": false,
+    "model_worker_authorized": false,
+    "external_actions_authorized": false,
+    "execution_authorized": false
+  },
+  "result": null,
+  "authority": "laboratory design only; no autonomous action model spending dependency adoption or architecture promotion"
+}

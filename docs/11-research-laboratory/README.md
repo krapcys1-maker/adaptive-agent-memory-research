@@ -138,6 +138,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-probe-success-audit-v0/` — exact expected localization/cost curve for auditing first-pass healthy results under transient flips.
 - `docs/11-research-laboratory/probe-failure-domain-and-reliability-protocol.md` and `data/lab/probe-failure-domain-map-v0.csv` — v0.1 rules for independence, W0-W6 write/recovery evidence, empirical error rates, replica inventory, P10 alternate-domain recovery, P11 isolated restore drills, and safe physical-loss decisions.
 - `data/lab/pmlab-storage-injection-v0/` — real disposable fsync/read/checksum/file-loss construction test on two logical paths sharing Disk 0; explicitly not P10.
+- `docs/11-research-laboratory/prospective-memory-trigger-benchmark-protocol-v0.md` and `data/lab/pmlab-prospective-v0/` — design-only PMLAB-BTA-PROS-001 contract separating intention capture, cue observation, first valid opportunity, reminder delivery, authorization/idempotency, completion, and worker-outage behavior.
 - `data/lab/pmlab-forgetting-challenge-v0/parser-v0/` — label-free-at-runtime catalog parser baseline on observed development templates; not held out.
 - `data/lab/pmlab-forgetting-challenge-v0/parser-challenge-v1/` — post-freeze language/date perturbation set that falsifies parser v0 generality.
 - `data/lab/coverage-matrix.csv` — topic status and gaps.
