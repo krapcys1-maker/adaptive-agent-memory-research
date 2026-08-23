@@ -124,4 +124,5 @@ See:
 - [obligation decomposition and scope mapping synthesis](obligation-decomposition-and-scope-mapping-synthesis.md);
 - [distributed shared memory, CRDT, provenance, and authorization audit v0](distributed-shared-memory-crdt-provenance-audit-v0.md);
 - [temporal provenance, versioning, and correction audit v0](temporal-provenance-versioning-and-correction-audit-v0.md);
+- [storage durability, crash consistency, and recovery audit v0](storage-durability-crash-consistency-and-recovery-audit-v0.md);
 - [synthesis protocol](synthesis-protocol.md).

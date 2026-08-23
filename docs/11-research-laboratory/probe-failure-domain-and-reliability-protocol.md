@@ -1,6 +1,6 @@
-# Probe failure-domain and empirical reliability protocol v0
+# Probe failure-domain and empirical reliability protocol v0.1
 
-Status: design freeze v0; versioned research contract, not implementation evidence
+Status: design freeze v0.1; versioned research contract, not implementation evidence
 
 ## Purpose
 
@@ -32,6 +32,20 @@ Different commands, code paths, or retries are not sufficient. In map v0, direct
 
 P10, a separately inventoried replica with an alternate runtime, filesystem, device, and checksum implementation, is planned because no current probe supplies media independence.
 
+P11 is an isolated restore drill. It restores into a disposable target without overwriting the source, verifies exact byte hashes and accepted operation IDs, parses canonical schemas, rebuilds derived indexes, runs current/historical retrieval probes, and records achieved recovery point and recovery time. A backup copy, repository check, or SQLite structural integrity check does not substitute for P11.
+
+## Write-receipt evidence levels
+
+- `W0`: application accepted and assigned an operation ID;
+- `W1`: runtime buffer flush completed;
+- `W2`: atomic replace/database transaction returned;
+- `W3`: required file, journal/WAL, and directory sync returned under the declared VFS/device assumptions;
+- `W4`: a fresh process reopened and matched exact bytes/receipt after a restart;
+- `W5`: a separately inventoried alternate failure domain verified the same accepted content;
+- `W6`: P11 restored canonical content and rebuilt usable views while reconciling accepted IDs.
+
+Reports state the highest observed tier and its assumptions. They may not translate W2/W3 into independent recovery or W5 into a tested restore.
+
 ## Reliability measurements
 
 For each probe and each relevant failure injection, record:
@@ -59,6 +73,10 @@ Report marginal rates and joint contingency tables. Pairwise non-correlation is 
 10. reader/provider timeout and deterministic wrong answer with gold context;
 11. action adapter failure after a fixed correct answer;
 12. correlated failures that simultaneously affect nominally different probes.
+13. successful structural restore with one or more accepted logical records omitted;
+14. backup/repository manifest corruption and stale-but-valid snapshot;
+15. encryption-key loss, wrong key, or revoked recovery authority;
+16. primary and replica damaged by the same writer, account, controller, power, or deletion event.
 
 Each family includes clean controls, sham injection, and a recovery check after fault removal.
 
@@ -69,6 +87,9 @@ Each family includes clean controls, sham injection, and a recovery check after 
 - Sample other healthy results at a preregistered rate based on measured false-health bounds and consequence tier.
 - Never lower sampling because the current batch looks clean.
 - Never use emotional language as a consequence label; use explicit operational harm, reversibility, and recovery cost.
+- Never run a restore drill over the only remaining source or production target.
+- Treat checksum verification as detection and identity evidence, not recovery or completeness.
+- Reconcile restored canonical IDs with the independently retained accepted-write receipt manifest.
 
 ## Candidate gates for independent review
 
@@ -79,3 +100,5 @@ Before a confirmatory freeze, reviewers must set minimum decision coverage, real
 ## Versioning
 
 `data/lab/probe-failure-domain-map-v0.csv` is immutable after the first empirical run. Any dependency discovery or implementation change creates v1 and records which results are no longer comparable. Deployment-specific maps replace this generic design; they do not inherit independence claims automatically.
+
+Evidence basis: `../12-interdisciplinary-memory/storage-durability-crash-consistency-and-recovery-audit-v0.md`.
