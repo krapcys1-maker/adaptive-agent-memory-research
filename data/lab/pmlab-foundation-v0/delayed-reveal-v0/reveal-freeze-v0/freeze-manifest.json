@@ -1,0 +1,26 @@
+{
+  "schema_version": "foundation-reveal-freeze-manifest-v0.1",
+  "contract_id": "PMLAB-FOUNDATION-REVEAL-001",
+  "parent_experiment_id": "PMLAB-FOUNDATION-001",
+  "status": "reveal-gold-and-mutations-frozen-before-auditor",
+  "prefix_freeze_commit": "f9980825b0217cddce7f1f4bd84a0cff715a4ad8",
+  "prefix_id": "PFX-0000000000000001",
+  "prefix_sha256": "ed7385f0f4767c415e7f72bc85829cd8f2e938542ce64447683cb826f7465b10",
+  "prefix_commit_contains_reveal_or_gold": false,
+  "model_api_used": false,
+  "api_authorized": false,
+  "api_budget_usd": 0,
+  "auditor_built": false,
+  "independent_review": false,
+  "counts": {"reveals": 3, "gold_rows": 3, "answer_states": 3, "schedule_rows": 3, "invalid_mutations": 14},
+  "artifacts": [
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/reader/reveals.jsonl", "bytes": 1778, "sha256": "7bc356219475affdfb7bbb50e2910d469c0e9ec2ae1dcc6fb97ee2299b4634d4"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/gold/gold.jsonl", "bytes": 987, "sha256": "d40e72ccb0b145a9bc5d792534dedb15a7c30bb8f0e07954846108dcc2672c07"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/gold/answer-state-catalog.json", "bytes": 456, "sha256": "ab01d70faecef6b6422bfad45993e924f08d4d409999d6d018958ffb3e5fd055"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/schedule.jsonl", "bytes": 571, "sha256": "7aca7fc0bf08d9251751de2700b21c689065049c167a008936eaa10986946f2c"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/invalid-mutations.json", "bytes": 3584, "sha256": "de9c202c0703ed40846650f11d576c2619ef836d38fb2c7d480a04c1ae33ef0f"},
+    {"path": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/README.md", "bytes": 530, "sha256": "2f8bf15c4d5fc6c10c3f6f813846d4740b2b7ebe6de552885559fda4e96364ae"}
+  ],
+  "next_gate": "commit exact reveal/gold fixture, then build and freeze the L0-L4 auditor without changing prefix or reveal artifacts"
+}
+

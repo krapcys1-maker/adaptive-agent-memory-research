@@ -1,0 +1,10 @@
+{
+  "schema_version": "foundation-answer-state-catalog-v0.1",
+  "reader_visible": false,
+  "states": [
+    {"state_id": "STATE-000000000001", "answer_atoms": ["Birch"], "temporal_scope": "current_after_correction"},
+    {"state_id": "STATE-000000000002", "answer_atoms": ["Cedar"], "temporal_scope": "valid_on_2026-08-05"},
+    {"state_id": "STATE-000000000003", "answer_atoms": ["Cedar", "Birch", "correction"], "temporal_scope": "change_history"}
+  ]
+}
+

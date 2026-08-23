@@ -1,0 +1,20 @@
+{
+  "schema_version": "foundation-reveal-invalid-mutations-v0.1",
+  "cases": [
+    {"case_id": "INV-PREFIX-QUERY-FIELD", "target": "prefixes", "mutations": [{"op": "add", "id": "PFX-0000000000000001", "path": "/query", "value": "Which provider is current?"}], "expected_error": "prefix forbidden field"},
+    {"case_id": "INV-PREFIX-GOLD-FIELD", "target": "prefixes", "mutations": [{"op": "add", "id": "PFX-0000000000000001", "path": "/gold_id", "value": "GOLD-000000000001"}], "expected_error": "prefix forbidden field"},
+    {"case_id": "INV-ACCESS-REVEAL-READ", "target": "access", "mutations": [{"op": "append", "path": "/observed_read_paths", "value": "data/lab/pmlab-foundation-v0/delayed-reveal-v0/reveal-freeze-v0/reader/reveals.jsonl"}], "expected_error": "observed read outside allowlist"},
+    {"case_id": "INV-REVEAL-AUTHORED-BEFORE-PREFIX", "target": "reveals", "mutations": [{"op": "replace", "id": "RVL-0000000000000001", "path": "/authored_at", "value": "2026-08-23T07:57:00Z"}], "expected_error": "reveal authored before prefix freeze"},
+    {"case_id": "INV-REVEAL-AVAILABLE-BEFORE-CUTOFF", "target": "reveals", "mutations": [{"op": "replace", "id": "RVL-0000000000000001", "path": "/available_at", "value": "2026-08-10T14:00:02Z"}], "expected_error": "reveal not delayed"},
+    {"case_id": "INV-REVEAL-PREFIX-HASH", "target": "reveals", "mutations": [{"op": "replace", "id": "RVL-0000000000000001", "path": "/prefix_sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000"}], "expected_error": "prefix hash mismatch"},
+    {"case_id": "INV-REVEAL-SEMANTIC-ID", "target": "reveals", "mutations": [{"op": "replace", "id": "RVL-0000000000000001", "path": "/reveal_id", "value": "RVL-CURRENT-BIRCH"}], "expected_error": "reveal id format"},
+    {"case_id": "INV-FORK-TOO-SMALL", "target": "reveals", "mutations": [{"op": "remove", "id": "RVL-0000000000000003"}], "expected_error": "counterfactual fork requires at least three reveals"},
+    {"case_id": "INV-FORK-DIFFERENT-PREFIX", "target": "reveals", "mutations": [{"op": "replace", "id": "RVL-0000000000000003", "path": "/prefix_id", "value": "PFX-FFFFFFFFFFFFFFFF"}], "expected_error": "reveal prefix join"},
+    {"case_id": "INV-FORK-SAME-ANSWER-STATE", "target": "gold", "mutations": [{"op": "replace", "id": "GOLD-000000000002", "path": "/supported_answer_state", "value": "STATE-000000000001"}, {"op": "replace", "id": "GOLD-000000000003", "path": "/supported_answer_state", "value": "STATE-000000000001"}], "expected_error": "counterfactual answers not incompatible"},
+    {"case_id": "INV-FORK-SAME-EVIDENCE", "target": "gold", "mutations": [{"op": "replace", "id": "GOLD-000000000002", "path": "/required_event_ids", "value": ["EV-0000000000000002"]}, {"op": "replace", "id": "GOLD-000000000003", "path": "/required_event_ids", "value": ["EV-0000000000000002"]}], "expected_error": "counterfactual evidence sets do not differ"},
+    {"case_id": "INV-READER-GOLD-VISIBLE", "target": "reveals", "mutations": [{"op": "replace", "id": "RVL-0000000000000001", "path": "/reader_visible_fields", "value": ["reveal_id", "query", "language", "gold_id"]}], "expected_error": "reader visible fields"},
+    {"case_id": "INV-DUPLICATE-REVEAL-ID", "target": "reveals", "mutations": [{"op": "replace", "id": "RVL-0000000000000003", "path": "/reveal_id", "value": "RVL-0000000000000002"}], "expected_error": "duplicate reveal id"},
+    {"case_id": "INV-MISSING-GOLD-JOIN", "target": "gold", "mutations": [{"op": "remove", "id": "GOLD-000000000003"}], "expected_error": "reveal gold join"}
+  ]
+}
+
