@@ -7,7 +7,7 @@ This repository is a research workspace for local-first, model-agnostic LLM memo
 For every substantial task:
 
 1. Call `memory_status`, then `memory_context` with a task-specific query before making research or architecture decisions.
-2. Treat `memory/events.jsonl` and reviewed Markdown as the source of truth. The SQLite index is disposable.
+2. Treat `memory/events.jsonl` and reviewed Markdown as the source of truth. The SQLite index is disposable. `CURRENT_STATE.md` holds the short state; `DIAGNOSTICS_ARCHIVE.md` holds the full diagnostic history and is retrieved by search rather than always included.
 3. Record only durable information with `memory_add`: decisions, evidence-backed findings, explicit hypotheses, failures worth avoiding, open questions, or serious candidate systems.
 4. Give factual findings and decisions `source_refs`. Keep facts, hypotheses, preferences, and instructions in distinct `kind` values.
 5. When a conclusion changes, use `memory_supersede`; never rewrite or delete prior events to make history look consistent.

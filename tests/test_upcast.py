@@ -18,6 +18,7 @@ from pathlib import Path
 
 import pytest
 
+from tools.project_memory.memory_store import SCHEMA_VERSION
 from tools.project_memory.upcast import (
     UPCASTERS,
     V1_REQUIRED,
@@ -83,9 +84,24 @@ def test_upcasting_the_canonical_log_drops_no_field() -> None:
             assert result[key] == value, f"{original['id']}: upcast altered {key!r}"
 
 
-def test_canonical_log_is_currently_single_version() -> None:
+def test_canonical_log_may_hold_several_versions_at_once() -> None:
+    """A mixed-version log is the intended steady state, not a defect.
+
+    This test previously asserted the log held only version 1, which encoded an
+    assumption the design deliberately broke: upcasting exists precisely so old
+    events stay on disk as written while new ones are written at the current
+    version. It failed the moment the first version-2 event was appended, which
+    is the test working — it just pinned the wrong invariant.
+
+    What actually matters is that every version present is known to the reader
+    and none is newer than it can handle.
+    """
     versions = describe_versions(load_canonical())
-    assert set(versions) == {1}, f"expected only version 1 today, saw {versions}"
+    assert versions, "canonical log must not be empty"
+    assert set(versions) <= set(range(1, SCHEMA_VERSION + 1)), (
+        f"log holds a version this reader does not know: {versions}"
+    )
+    assert max(versions) <= SCHEMA_VERSION, "log is newer than the reader"
 
 
 # --------------------------------------------------------------------------- v1 to v2

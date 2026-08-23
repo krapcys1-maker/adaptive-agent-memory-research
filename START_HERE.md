@@ -1,6 +1,6 @@
 # Start Here
 
-Before substantial work, inspect [memory/CURRENT_STATE.md](memory/CURRENT_STATE.md) and retrieve a focused context bundle through the project-memory MCP server or CLI. See [memory/README.md](memory/README.md) for setup and usage.
+Before substantial work, inspect [memory/CURRENT_STATE.md](memory/CURRENT_STATE.md), with the full diagnostic history in [memory/DIAGNOSTICS_ARCHIVE.md](memory/DIAGNOSTICS_ARCHIVE.md), and retrieve a focused context bundle through the project-memory MCP server or CLI. See [memory/README.md](memory/README.md) for setup and usage.
 
 ## What we are building toward
 
