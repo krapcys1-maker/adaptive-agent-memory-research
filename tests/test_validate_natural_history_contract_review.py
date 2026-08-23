@@ -31,11 +31,20 @@ def completed_form():
     }
 
 
-def test_superseded_packet_rejects_completed_form(tmp_path):
+def test_completed_independent_form_validates(tmp_path):
     path = tmp_path / "review.json"
     path.write_text(json.dumps(completed_form()), encoding="utf-8")
+    receipt = MODULE.validate(path)
+    assert receipt["valid"] is True
+    assert receipt["independent_class"] is True
+
+
+def test_superseded_packet_rejects_every_form(tmp_path):
+    path = tmp_path / "review.json"
+    path.write_text(json.dumps(completed_form()), encoding="utf-8")
+    old_packet = ROOT / "data" / "lab" / "pmlab-natural-history-v0" / "independent-contract-review-v0"
     try:
-        MODULE.validate(path)
+        MODULE.validate(path, old_packet)
     except ValueError as error:
         assert "not active" in str(error)
     else:

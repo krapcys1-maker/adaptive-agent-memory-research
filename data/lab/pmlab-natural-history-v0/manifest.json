@@ -1,7 +1,7 @@
 {
   "schema_version": "0.2.0",
   "experiment_id": "PMLAB-NATURAL-RET-001",
-  "status": "post-token-feasibility-revised-contract-awaiting-new-independent-review-packet-no-corpus-no-result",
+  "status": "post-token-feasibility-revised-contract-v0.1-independent-review-packet-ready-no-corpus-no-result",
   "protocol": "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md",
   "design_artifacts": {
     "source_unit_schema": "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json",
@@ -10,6 +10,7 @@
     "pre_builder_audit": "data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md",
     "source_unit_contract_audit": "docs/07-literature/natural-history-source-unit-contract-audit-v0.md",
     "superseded_independent_contract_review_packet": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/packet-manifest.json",
+    "independent_contract_review_packet": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0.1/packet-manifest.json",
     "token_feasibility_audit": "data/lab/pmlab-natural-history-v0/token-feasibility-v0/manifest.json",
     "token_feasibility_report": "data/lab/pmlab-natural-history-v0/token-feasibility-v0/report.md"
   },
@@ -61,9 +62,9 @@
     "execution_authorized": false
   },
   "review_state": {
-    "independent_contract_review_packet_ready": false,
+    "independent_contract_review_packet_ready": true,
     "independent_contract_review_complete": false,
-    "review_source_commit": null,
+    "review_source_commit": "2d5948de285a7818d8ff28e5a3c2c1d0f6cec9d7",
     "superseded_review_source_commit": "ebe82013066afac292d6747102ec57e4ffa7ab84",
     "superseded_reason": "oversized-single-block fallback and reconstruction rule were incomplete before review began",
     "same_family_m1_counts_as_independent": false

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.1.0",
+  "packet_id": "PMLAB-NATURAL-RET-001-CONTRACT-REVIEW-V0.1",
+  "source_commit": "2d5948de285a7818d8ff28e5a3c2c1d0f6cec9d7",
+  "status": "ready-for-independent-review",
+  "supersedes_packet": "PMLAB-NATURAL-RET-001-CONTRACT-REVIEW-V0",
+  "review_dimensions": [
+    "historical_git_reconstruction",
+    "stable_unit_identity",
+    "markdown_unitization",
+    "oversize_split_and_token_ceiling",
+    "structured_row_canonicalization",
+    "duplicates_aliases_and_exclusions",
+    "backend_projection_and_byte_equality",
+    "query_privacy_and_capture_order",
+    "development_test_isolation"
+  ],
+  "forbidden_before_form_freeze": [
+    "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-20260823/",
+    "data/lab/api-screening/deepseek-v4-flash-natural-history-contract-review-v2-20260823/",
+    "data/lab/pmlab-natural-history-v0/independent-contract-review-v0/"
+  ],
+  "artifacts": {
+    "docs/11-research-laboratory/natural-history-retrieval-benchmark-protocol-v0.md": "ad1d2cd12efafb7e55fd488b86adae15f04703b34a945bc23c186dbe226e7a3f",
+    "docs/07-literature/natural-history-source-unit-contract-audit-v0.md": "461b69b839362ce4a3eee530169b142076db28f82e258f479aae1128c2c0d913",
+    "data/lab/pmlab-natural-history-v0/corpus-eligibility-audit-v0.md": "9bfe3b15edfc81f05f7f7f56ef7f611ea4bc6f682df20630a31cc6c54cb0e8a0",
+    "data/lab/pmlab-natural-history-v0/corpus-eligibility-policy-v0.json": "0ac6bacab27477a36b3985c17edce399d88b150065e73cb662003e7403855167",
+    "data/lab/pmlab-natural-history-v0/source-unit-contract-v0.schema.json": "1e54d56701b50273f747bd5600f64107d08bf2bb570dd77fb39bd37c9b76940c",
+    "data/lab/pmlab-natural-history-v0/query-log-contract-v0.schema.json": "d27f36d20e23d5aab3e7872d24686fe0dc08a16bd1cb7124194253f9e525badb",
+    "tests/test_natural_history_contracts.py": "ac65e01c67fce9b833b9756a4db975267a654cbcf7ca2edbf8498e1fd257cae0",
+    "data/lab/pmlab-natural-history-v0/token-feasibility-v0/manifest.json": "f59070e2268a385776d4207397def4ca03fc48763e6719117d284fd496745120",
+    "data/lab/pmlab-natural-history-v0/token-feasibility-v0/report.md": "68c338f3ff769fb795f3dc7e6df85d01d17027af8f58035aef5ba16654394ab5",
+    "data/lab/pmlab-natural-history-v0/token-feasibility-v0/summary.json": "63139780bf4050b713e46536114eceddf1c6b21f112c839f1df1dcb2ac37312b",
+    "data/lab/pmlab-natural-history-v0/token-feasibility-v0/tokenizer-files.json": "a0be16b58007e0ec14d4c7c497111edf8e58988c3073333a508ee99a086d8066",
+    "scripts/audit_natural_history_token_feasibility.py": "aca25d12eac301c95e71eac810e479062754651dead384f6fec0b4b9daa79c61",
+    "tests/test_audit_natural_history_token_feasibility.py": "ac581b84fc8d044c8ba721104ccd45030c44a2526afe99f10282924381ced3a8"
+  },
+  "authority": "design review only; cannot select a byte ceiling, authorize a builder or backend, start prospective testing, or select architecture"
+}

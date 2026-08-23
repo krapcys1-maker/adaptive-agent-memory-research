@@ -7,15 +7,17 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 from pathlib import Path
 from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKET = ROOT / "data" / "lab" / "pmlab-natural-history-v0" / "independent-contract-review-v0"
+PACKET = ROOT / "data" / "lab" / "pmlab-natural-history-v0" / "independent-contract-review-v0.1"
 MANIFEST = PACKET / "packet-manifest.json"
 DIMENSIONS = {
     "historical_git_reconstruction", "stable_unit_identity", "markdown_unitization",
+    "oversize_split_and_token_ceiling",
     "structured_row_canonicalization", "duplicates_aliases_and_exclusions",
     "backend_projection_and_byte_equality", "query_privacy_and_capture_order",
     "development_test_isolation",
@@ -26,20 +28,27 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def source_sha256(commit: str, relative: str) -> str:
+    content = subprocess.check_output(["git", "show", f"{commit}:{relative}"], cwd=ROOT)
+    return hashlib.sha256(content).hexdigest()
+
+
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise ValueError(message)
 
 
-def validate(path: Path) -> dict[str, Any]:
-    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+def validate(path: Path, packet_dir: Path = PACKET) -> dict[str, Any]:
+    packet_dir = packet_dir if packet_dir.is_absolute() else ROOT / packet_dir
+    manifest_path = packet_dir / "packet-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     require(manifest.get("status") == "ready-for-independent-review", "review packet is not active")
     form = json.loads(path.read_text(encoding="utf-8"))
     require(form["packet_id"] == manifest["packet_id"], "packet ID mismatch")
     require(form["source_commit"] == manifest["source_commit"], "source commit mismatch")
-    require(form["packet_manifest_sha256"] == sha256(MANIFEST), "packet manifest hash mismatch")
+    require(form["packet_manifest_sha256"] == sha256(manifest_path), "packet manifest hash mismatch")
     for relative, expected in manifest["artifacts"].items():
-        require(sha256(ROOT / relative) == expected, f"source artifact hash mismatch: {relative}")
+        require(source_sha256(manifest["source_commit"], relative) == expected, f"source artifact hash mismatch: {relative}")
     reviewer = form["reviewer"]
     require(set(reviewer) == {"reviewer_id", "reviewer_class", "model_family", "provider"}, "reviewer schema mismatch")
     require(isinstance(reviewer["reviewer_id"], str) and reviewer["reviewer_id"].strip(), "reviewer ID required")
@@ -50,7 +59,8 @@ def validate(path: Path) -> dict[str, Any]:
     require(set(attest) == {"not_an_author_of_reviewed_contract", "did_not_view_forbidden_advisory_paths", "did_not_view_builder_or_backend_output", "used_one_stateless_review_context"}, "attestation schema mismatch")
     require(all(value is True for value in attest.values()), "all blindness attestations must be true")
     rows = form["dimensions"]
-    require(len(rows) == 8 and {row["dimension"] for row in rows} == DIMENSIONS, "dimension coverage mismatch")
+    dimensions = set(manifest.get("review_dimensions", DIMENSIONS))
+    require(len(rows) == len(dimensions) and {row["dimension"] for row in rows} == dimensions, "dimension coverage mismatch")
     for row in rows:
         require(set(row) == {"dimension", "decision", "evidence", "required_change"}, "dimension schema mismatch")
         require(row["decision"] in {"accept", "revise", "reject"}, "invalid dimension decision")
@@ -78,8 +88,9 @@ def validate(path: Path) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("form", type=Path)
+    parser.add_argument("--packet-dir", type=Path, default=PACKET)
     args = parser.parse_args()
-    print(json.dumps(validate(args.form), ensure_ascii=False, indent=2))
+    print(json.dumps(validate(args.form, args.packet_dir), ensure_ascii=False, indent=2))
     return 0
 
 
