@@ -134,6 +134,44 @@ class ProjectMemoryTests(unittest.TestCase):
             "an append must change the canonical digest so a stale reader can notice",
         )
 
+    def test_glossary_expands_a_foreign_query_to_reach_english_records(self) -> None:
+        """A question asked in one language must reach records written in another.
+
+        PMLAB-XLANG-E1 measured Recall@10 of 0.156 for Polish queries against
+        this English store, with 26 of 45 returning no candidates at all.
+        """
+        (self.root / "memory" / "glossary.json").write_text(
+            json.dumps({"terms": {"pamieci": "memory", "wyszukiwanie": "retrieval"}}),
+            encoding="utf-8",
+        )
+        (self.root / "note-en.md").write_text(
+            "# Retrieval note\nLexical retrieval over durable memory.", encoding="utf-8"
+        )
+        store = MemoryStore(self.root)
+        store.rebuild_index()
+
+        self.assertEqual([], store.search("wyszukiwanie pamieci", expand=False))
+        self.assertTrue(store.search("wyszukiwanie pamieci", expand=True))
+
+    def test_expansion_leaves_a_query_without_glossary_terms_unchanged(self) -> None:
+        (self.root / "memory" / "glossary.json").write_text(
+            json.dumps({"terms": {"pamieci": "memory"}}), encoding="utf-8"
+        )
+        store = MemoryStore(self.root)
+        self.assertEqual("lexical baseline", store.expand_query("lexical baseline"))
+
+    def test_expansion_does_not_repeat_a_term_already_present(self) -> None:
+        (self.root / "memory" / "glossary.json").write_text(
+            json.dumps({"terms": {"pamieci": "memory"}}), encoding="utf-8"
+        )
+        store = MemoryStore(self.root)
+        self.assertEqual("memory pamieci", store.expand_query("memory pamieci"))
+
+    def test_a_missing_glossary_is_not_an_error(self) -> None:
+        store = MemoryStore(self.root)
+        self.assertEqual("wyszukiwanie", store.expand_query("wyszukiwanie"))
+        self.assertIsInstance(store.search("lexical"), list)
+
     def test_generated_work_directories_are_not_indexed(self) -> None:
         for name in ("work", "primary-work"):
             generated = self.root / "data" / "lab" / "benchmark" / name

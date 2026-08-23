@@ -67,6 +67,15 @@ TOOLS = [
                     "items": {"type": "string"},
                     "description": "Optional exact kinds such as memory:decision or document.",
                 },
+                "expand": {
+                    "type": "boolean",
+                    "default": True,
+                    "description": (
+                        "Expand the query through memory/glossary.json so a question asked in "
+                        "one language can reach records written in another. Set false to see "
+                        "raw lexical behaviour."
+                    ),
+                },
             },
             "required": ["query"],
         },
@@ -170,7 +179,10 @@ class McpServer:
         handlers: dict[str, Callable[[], Any]] = {
             "memory_status": lambda: self.store.status(),
             "memory_search": lambda: self.store.search(
-                arguments.get("query", ""), arguments.get("limit", 10), arguments.get("kinds")
+                arguments.get("query", ""),
+                arguments.get("limit", 10),
+                arguments.get("kinds"),
+                arguments.get("expand", True),
             ),
             "memory_context": lambda: self.store.context(
                 arguments.get("query", ""),

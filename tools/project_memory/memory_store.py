@@ -67,6 +67,10 @@ CONTEXT_STATE_SHARE = 0.4
 CONTEXT_SEPARATOR = "\n\n"
 CONTEXT_TRUNCATION_MARKER = "\n[truncated]"
 
+# Word characters only and Unicode-aware, so Polish diacritics tokenise as words
+# rather than splitting on them.
+GLOSSARY_TOKEN = re.compile(r"[^\W\d_]+", re.UNICODE)
+
 
 class MemoryError(ValueError):
     """Raised when a memory operation is invalid."""
@@ -108,6 +112,8 @@ class MemoryStore:
         self.events_path = self.memory_dir / "events.jsonl"
         self.index_dir = self.memory_dir / ".index"
         self.index_path = self.index_dir / "project_memory.sqlite3"
+        self.glossary_path = self.memory_dir / "glossary.json"
+        self._glossary_cache: dict[str, str] | None = None
         self.lock_path = self.memory_dir / ".events.lock"
         self.index_lock_path = self.memory_dir / ".index.lock"
 
@@ -296,7 +302,12 @@ class MemoryStore:
                 path = directory_path / filename
                 if path.suffix.lower() not in TEXT_EXTENSIONS:
                     continue
-                if path == self.events_path or path.stat().st_size > MAX_INDEXED_FILE_BYTES:
+                # The glossary is retrieval machinery, not research content. Indexing
+                # it makes it match the very foreign-language queries it exists to
+                # translate, so it returns itself as a hit.
+                if path in (self.events_path, self.glossary_path):
+                    continue
+                if path.stat().st_size > MAX_INDEXED_FILE_BYTES:
                     continue
                 yield path
 
@@ -408,9 +419,59 @@ class MemoryStore:
             raise MemoryError("query must contain at least one word or number")
         return " OR ".join(f'"{token}"' for token in tokens[:32])
 
-    def search(self, query: str, limit: int = 10, kinds: list[str] | str | None = None) -> list[dict[str, Any]]:
+    def _glossary(self) -> dict[str, str]:
+        """Load the operational query glossary, cached after the first read."""
+        if self._glossary_cache is None:
+            try:
+                document = json.loads(self.glossary_path.read_text(encoding="utf-8-sig"))
+                terms = document.get("terms", {})
+                self._glossary_cache = {
+                    str(k).lower(): str(v) for k, v in terms.items() if k and v
+                }
+            except (OSError, json.JSONDecodeError, AttributeError):
+                self._glossary_cache = {}
+        return self._glossary_cache
+
+    def expand_query(self, query: str) -> str:
+        """Append English project vocabulary for any glossary term in the query.
+
+        The lexical index matches tokens, so a question asked in one language
+        cannot reach records written in another. PMLAB-XLANG-E1 measured
+        Recall@10 at 0.156 for Polish queries against this English store, with
+        26 of 45 returning no candidates at all; expansion lifted it to 0.867.
+
+        Only terms actually present in the glossary contribute, so a query that
+        contains none is returned unchanged and English queries are unaffected.
+        """
+        glossary = self._glossary()
+        if not glossary:
+            return query
+        additions: list[str] = []
+        for token in GLOSSARY_TOKEN.findall(query.lower()):
+            english = glossary.get(token)
+            if english:
+                additions.extend(english.split())
+        if not additions:
+            return query
+        present = set(GLOSSARY_TOKEN.findall(query.lower()))
+        seen: set[str] = set()
+        extra = [
+            term
+            for term in additions
+            if term.lower() not in present and not (term in seen or seen.add(term))
+        ]
+        return f"{query} {' '.join(extra)}" if extra else query
+
+    def search(
+        self,
+        query: str,
+        limit: int = 10,
+        kinds: list[str] | str | None = None,
+        expand: bool = True,
+    ) -> list[dict[str, Any]]:
         self._ensure_index()
-        fts_query = self._fts_query(_clean_string(query, "query", True))
+        cleaned = _clean_string(query, "query", True)
+        fts_query = self._fts_query(self.expand_query(cleaned) if expand else cleaned)
         limit = max(1, min(int(limit), 50))
         kind_filters = _clean_list(kinds, "kinds")
         sql = """
