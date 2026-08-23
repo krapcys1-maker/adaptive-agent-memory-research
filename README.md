@@ -167,6 +167,18 @@ Everything goes through [CONTRIBUTING.md](CONTRIBUTING.md). Disagreement with a 
 - A retrieved memory is not automatically a useful memory.
 - Every added mechanism justifies itself in controlled evaluation.
 
+## Prior art, and what is actually open
+
+Two 2026 systems were verified in August 2026 and both occupy ground this page had been treating as open.
+
+[APEX-MEM](https://arxiv.org/abs/2604.14362) (ACL 2026, Amazon) implements entity-property-value triplets over an append-only store with query-time temporal resolution — the architecture this project converged on independently — at 88.88% LoCoMo and 86.2% LongMemEval. **Structured temporal memory is not a novel claim here and is not made as one.**
+
+[Verbatim Chunks Beat Extracted Artifacts](https://arxiv.org/html/2601.00821) finds extraction *losing* to raw chunks by 15.9 points on LoCoMo, with extraction gaps at 78.8% of failures. This project independently measured 85.7% abstention from a deterministic extractor — the same phenomenon, and a reason to take that paper's conclusion seriously rather than route around it.
+
+A-MAC and NEMORI reportedly occupy *future utility as a retention criterion*, which question 3 below states as open. That is being verified in [#48](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/48); until it resolves, read question 3 as **possibly closed**.
+
+What still looks unoccupied is not a system but a diagnostic programme: *when and why similarity stops being the right access mechanism*, measured through failure attribution, an oracle router ceiling, near-clone density and context cost. Full assessment in [related work and novelty](docs/00-project/related-work-and-novelty.md), including the process failure that let this be found late.
+
 ## The five research questions
 
 > Does an agent need complementary memory systems — an evidence-preserving episodic store for rapid learning from single experiences, and a slower semantic or procedural store that consolidates recurring evidence? And should transitions between them be governed by **measured future utility** rather than by semantic similarity?
