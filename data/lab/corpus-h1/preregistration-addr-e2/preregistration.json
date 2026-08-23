@@ -1,0 +1,75 @@
+{
+  "a_negative_result_is_a_result": "if automatic addressing cannot keep the advantage, the finding is that oracle addressing has value and the cost of identifying the address from raw language consumes it. That is publishable here on the same footing as a positive result",
+  "arms_in_order": [
+    "E2-A deterministic extraction only",
+    "E2-B small-model extraction only",
+    "E2-C deterministic with model fallback on ambiguity"
+  ],
+  "arms_note": "corpus, thresholds and metric definitions do not change between arms",
+  "bounds_from_ADDR_E1": {
+    "lexical": {
+      "candidates": 11.0,
+      "gold": 0.880952,
+      "stale": 0.547619,
+      "tokens": 245.5
+    },
+    "note": "the oracle's 1.000 gold recall is TAUTOLOGICAL and is not a target: the oracle address is the case identity and the gold belongs to that case. What must be retained is the advantage the construction does not determine \u2014 context, candidates, stale contamination",
+    "oracle_addressed": {
+      "candidates": 3.4,
+      "gold": 1.0,
+      "stale": 0.142857,
+      "tokens": 68.8
+    },
+    "oracle_router_lexical_union_dense": 0.928571
+  },
+  "corpus": {
+    "events": 538,
+    "gold_sha256": "964be5aba722e85bd82c29d3b3cebe1da58c036333cf72ab76d212571f4cac62",
+    "history_sha256": "665dc5f293f6505560adf60f9f40e49d67bd15d75fc1a5091dfa79be8dce6071",
+    "id": "corpus-h1 prefix-v0",
+    "probes": 84,
+    "queries_sha256": "8ebc0defba5cab8b39667251adfeffba511643ffcbed30b74ce394d578e7d2d6",
+    "seed": 20260823
+  },
+  "experiment_id": "PMLAB-H1-ADDR-E2",
+  "git_commit": "21edec61523a789e7608e6fa8c597ff7624b4eb8",
+  "implementation_must_follow": "no extractor exists at registration time; this file is frozen before one is written",
+  "metric_definitions": {
+    "abstention_rate": "probes where no address was assigned / eligible_probes. Reported, never a denominator",
+    "catastrophic_wrong_entity_rate": "probes assigned an address whose ENTITY differs from the true entity / eligible_probes. NOT over non-abstained probes",
+    "collision_rate": "distinct true slots that share one assigned address / distinct true slots",
+    "eligible_probes": "all 84 probes. Every rate below divides by this unless stated otherwise",
+    "fragmentation_rate": "distinct true slots whose records receive more than one assigned address / distinct true slots",
+    "gold_coverage": "probes whose gold event is inside the addressed context / eligible_probes",
+    "mean_context_tokens": "mean whitespace tokens of the addressed context over eligible_probes",
+    "stale_context_rate": "probes where a superseded record is inside the context / eligible_probes",
+    "wrong_property_rate": "probes with correct entity and wrong property / eligible_probes"
+  },
+  "overall_gates": {
+    "catastrophic_wrong_entity_rate": "< 0.01",
+    "collision_rate": "< 0.02",
+    "fragmentation_rate": "< 0.02",
+    "gold_coverage": ">= 0.95 of the oracle arm's coverage",
+    "mean_context_tokens": "< 100",
+    "stale_context_rate": "< 0.20"
+  },
+  "per_family_gate": {
+    "OBSOLETE_gold_coverage": ">= 0.85",
+    "OBSOLETE_stale_context_rate": "<= 0.30, against oracle 0.143 and lexical 1.000 on that family",
+    "no_success_claim_may_omit": "the full per-family table, fragmentation, and abstention_rate",
+    "report_required_for": [
+      "BILINGUAL",
+      "DELAYED",
+      "FAILFIX",
+      "OBSOLETE",
+      "POISON",
+      "RARE-EXC",
+      "REDERIVE"
+    ],
+    "why": "an overall pass can hide a failure in the family addressing was introduced for. Overall 0.96 with OBSOLETE at 0.72 would pass every gate above and solve nothing"
+  },
+  "registered_at": "2026-08-23T23:00:00Z",
+  "status": "preregistered-not-run",
+  "title": "Does imperfect automatic addressing keep the measured advantage of structural memory?",
+  "tokenizer": "whitespace words; not a model tokenizer, so budgets are exact in relative terms and approximate in absolute ones"
+}
