@@ -288,8 +288,8 @@ def mutate(dataset: dict[str, Any], case: dict[str, Any]) -> dict[str, Any]:
 def validate_all(dataset: dict[str, Any]) -> None:
     validate_prefixes(dataset["prefixes"], dataset["access"])
     validate_reveals(dataset["reveals"], dataset["prefixes"])
-    validate_gold(dataset["gold"], dataset["reveals"], dataset["states"])
     validate_counterfactual_fork(dataset["reveals"], dataset["gold"])
+    validate_gold(dataset["gold"], dataset["reveals"], dataset["states"])
     validate_schedule(dataset["schedule"], dataset["reveals"])
 
 
@@ -381,4 +381,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
