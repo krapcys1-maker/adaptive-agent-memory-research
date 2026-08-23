@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1.0",
+  "experiment_id": "PMLAB-PROC-001",
+  "status": "preregistration-draft-no-case-contract-no-corpus-no-run-no-result",
+  "protocol": "docs/11-research-laboratory/procedural-memory-retention-and-relearning-benchmark-protocol-v0.md",
+  "evidence_basis": "docs/10-comparative-biological-memory/motor-consolidation-savings-and-context-audit-v0.md",
+  "claims": [
+    "context_conditioned_expression",
+    "retention_access_separation",
+    "retention_relearning_dissociation",
+    "offline_intervention_incremental_value"
+  ],
+  "arms": {
+    "P0": "immutable-source-evidence-only",
+    "P1": "deterministic-latest-valid-procedure",
+    "P2": "P1-plus-versioned-context-selection",
+    "P3": "P2-plus-separate-relearning-propensity",
+    "P4": "P3-plus-frozen-offline-intervention",
+    "O": "oracle-stage-localized-control"
+  },
+  "primary_endpoints": [
+    "exact_task_success",
+    "critical_false_transfer_rate",
+    "ordinary-cue-versus-direct-id-recovery",
+    "delayed_exact_retention",
+    "attempts_to_relearning_criterion"
+  ],
+  "locks": {
+    "independent_protocol_review_complete": false,
+    "procedure_event_schema_frozen": false,
+    "privacy_and_governance_review_complete": false,
+    "development_cases_frozen": false,
+    "stage_labels_independently_reviewed": false,
+    "power_rule_frozen": false,
+    "model_and_tool_manifests_frozen": false,
+    "cross_family_replication_committed": false,
+    "offline_arm_authorized": false,
+    "execution_authorized": false
+  },
+  "result": null,
+  "authority": "laboratory design only; does not authorize implementation execution or architecture"
+}

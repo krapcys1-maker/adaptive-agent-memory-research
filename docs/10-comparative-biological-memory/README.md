@@ -96,3 +96,5 @@ No biological idea enters an architecture proposal until its note states:
 8. preregistered rejection criterion.
 
 See [source seeds](source-seeds.md) for the initial primary-study map. These seeds establish plausibility and vocabulary; they do not establish coverage.
+
+The first targeted contradiction pass is [motor consolidation, savings, and context audit v0](motor-consolidation-savings-and-context-audit-v0.md). It rejects a single motor-memory-strength construct and derives separate retention, access, context, execution, and relearning endpoints for a future procedural-memory benchmark.
