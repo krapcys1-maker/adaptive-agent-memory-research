@@ -1,0 +1,45 @@
+{
+  "audit_type": "post-run same-author completion audit",
+  "checks": {
+    "budget_ledger_has_exact_call_receipts_and_cost": true,
+    "claim_boundary_and_exception_preserved": true,
+    "construction_manifest_is_preserved_pre_run_snapshot": true,
+    "declared_prompt_raw_and_score_hashes_match": true,
+    "deterministic_result_audit_and_all_registered_gates_pass": true,
+    "exactly_one_successful_call_per_condition_and_no_retry": true,
+    "fixture_and_construction_audit_pass": true,
+    "fixture_bytes_match_freeze_commit": true,
+    "freeze_authorize_run_score_commit_order": true,
+    "model_and_decoding_match_protocol": true,
+    "preflight_passes_experiment_and_global_caps": true,
+    "prompt_and_leakage_audits_pass": true,
+    "prompt_runner_bytes_match_freeze_commit": true,
+    "raw_bytes_match_pre_score_freeze_commit": true,
+    "registered_fixture_coverage_present": true
+  },
+  "completion_decision": "First-reader build/freeze/authorize/execute/score/audit branch complete. Fixture is spent; full and compact formats remain candidates, governed order is not promoted.",
+  "experiment_id": "PMLAB-PACK-READER-001",
+  "limitations": [
+    "This completion receipt is deterministic but same-author; it is not independent review.",
+    "It proves committed artifact continuity and registered gates, not natural-history validity or architecture superiority.",
+    "The construction manifest intentionally remains the pre-run snapshot; execution status lives in the run manifest and this receipt."
+  ],
+  "milestones": {
+    "authorization_commit": "5f98277",
+    "fixture_freeze_commit": "365c0b6c0ae159b1517fbc87941aa33a8e369da2",
+    "prompt_runner_freeze_commit": "d870741e8bba6257d12288b23d1e8f367571ae6e",
+    "raw_response_freeze_commit": "1df509b7b71f144fb924ba3737ec6c919de5857e",
+    "score_and_result_commit": "b114865"
+  },
+  "observed": {
+    "bilingual_cases": 32,
+    "conditions": 128,
+    "http_calls": 128,
+    "result_exception_count": 1,
+    "retries": 0,
+    "run_cost_usd": 0.04026,
+    "semantic_groups": 16
+  },
+  "passed": true,
+  "remaining_external_validity_gate": "Unchanged cross-family replication or independently reviewed natural-history development is required before any format/order recommendation."
+}

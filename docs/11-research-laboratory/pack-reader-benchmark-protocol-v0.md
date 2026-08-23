@@ -1,8 +1,10 @@
 # Equal-evidence citation and order reader pilot v0
 
 Experiment ID: `PMLAB-PACK-READER-001`  
-Status: corpus, gold, source spans, and opaque schedule frozen before runner construction; no prompt packet or API run yet
+Status: first-reader synthetic compatibility branch completed; all frozen gates passed; fixture spent
 Authority: synthetic reader compatibility pilot only
+
+Post-run status note: the fixture froze at `365c0b6`, prompt/runner/scorer at `d870741`, authorization at `5f98277`, raw responses at `1df509b` before the gold join, and scoring/audit at `b114865`. This sentence is a status annotation after execution; the preregistered gates remain recoverable at the prompt-freeze commit and are not retroactively changed.
 
 ## Purpose
 
@@ -114,3 +116,11 @@ Execution remains locked until:
 4. [complete] all 128 prompts pass local evidence-identity and citation-resolution checks;
 5. [complete] the peak-cost preflight is below USD 0.50;
 6. [complete] project memory records the frozen commit and the fact that this is an M1 synthetic reader.
+
+## Completion receipt
+
+The DeepSeek V4 Flash arm made 128 stateless calls with zero retry/error for USD `0.04026000`, below the USD `0.50` experiment cap. All four arms reached 16/16 grouped exact answers with zero stale use and unresolved citations. One compact-governed Polish condition returned the correct answer atoms but substituted one resolvable non-supporting citation, leaving required-citation recall at `0.984375` in that arm. All registered compatibility gates still passed.
+
+`data/lab/pmlab-pack-reader-v0/execution-deepseek-v4-flash-v0/completion-audit.json` verifies the freeze/authorization/raw/score commit order, exact frozen bytes, 1,024 locator resolutions, no named treatment/gold leakage, model and decoding, cost preflight, 128 unique API receipts, zero retries, budget-ledger cost, raw and score hashes, deterministic metric reproduction, and the preserved claim boundary.
+
+This closes only the first-reader build/freeze/execute/audit branch. A different model family or independently reviewed natural-history development remains mandatory before any locator-format or order recommendation.
