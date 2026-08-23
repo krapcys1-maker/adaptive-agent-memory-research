@@ -87,9 +87,18 @@ def build_aamr(_args, _ledger):
     version. A floor arm that costs nothing is worth having.
     """
     from arena.aamr_adapter import AAMRAdapter
+    from arena.aamr_probe import AAMRStateProbe
 
-    return {"adapter": AAMRAdapter(), "probe": None, "provider": None,
-            "source": {"system": "AAMR-CANDIDATE-0", "in_repo": True}}
+    adapter = AAMRAdapter()
+    # A probe even here. Without one the pilot would record `unknown` for a
+    # system whose whole state is a dictionary this repository owns, and unknown
+    # is the honest answer only when nothing can be observed.
+    return {"adapter": adapter, "probe": AAMRStateProbe(adapter), "provider": None,
+            "source": {"system": "AAMR-CANDIDATE-0", "in_repo": True,
+                       "note": ("CANDIDATE-0 is a registered negative: its "
+                                "language-to-address bridge reached 1.000 internally "
+                                "and does not transfer. It is in the pilot as a free "
+                                "floor arm, measured as frozen rather than improved")}}
 
 
 def build_cupmem(args, ledger):
