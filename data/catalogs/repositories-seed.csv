@@ -1,64 +1,66 @@
 category,priority,download,repository,primary_use,notes
-production-memory,A,yes,mem0ai/mem0,baseline and production architecture,"Universal memory layer; inspect extraction update deletion and evaluation"
-stateful-agents,B,no,letta-ai/letta,project landing and historical reference,"Current main branch is a landing page; archived V1 source remains on archive branch"
-stateful-agents,A,yes,letta-ai/letta-code,current stateful-agent runtime,"Current Letta agent harness server channels identity and memory runtime"
-temporal-graph,A,yes,getzep/graphiti,temporal knowledge graph,"Inspect provenance validity intervals contradiction and graph retrieval"
-memory-sdk,A,yes,langchain-ai/langmem,hot-path and background memory,"Inspect semantic episodic procedural workflows and consolidation"
-memory-os,A,yes,MemTensor/MemOS,memory lifecycle platform,"Compare representation scheduling retrieval and evaluation"
-coding-agent-memory,A,yes,rohitg00/agentmemory,local persistent project memory,"Inspect filesystem/MCP/hooks retention and coding-agent integration"
-agentic-memory,A,yes,WujiangXu/A-mem,research reproduction,"Zettelkasten-inspired dynamic organization; compare update integrity and cost"
-agentic-memory,A,yes,WujiangXu/A-mem-sys,current library implementation,"Current implementation linked by the paper reproduction repository"
-agentic-memory,A,yes,agiresearch/A-mem,library implementation,"Production-oriented implementation related to A-MEM"
-graph-retrieval,A,yes,OSU-NLP-Group/HippoRAG,graph and associative retrieval,"Compare dense retrieval against graph plus personalized PageRank"
-hierarchical-memory,A,yes,zjunlp/LightMem,efficient memory and StructMem,"Contains modern benchmark harness and structured consolidation work"
-temporal-hierarchy,A,yes,TiMEM-AI/TiMEM,temporal hierarchical consolidation,"Review raw-to-persona hierarchy temporal continuity and licensing boundaries"
-benchmark,A,yes,xiaowu0162/LongMemEval,conversational long-term memory,"Five abilities; inspect current cleaned data version and evidence granularity"
-benchmark,A,yes,snap-research/locomo,long-term dialogue memory,"Dialog evidence event summaries temporal and causal QA; verify dataset license"
-benchmark,A,yes,xiaowu0162/LongMemEval-V2,experienced-agent memory,"High-priority final evaluation for workflow state failures and multimodal trajectories"
-benchmark,A,yes,mohammadtavakoli78/BEAM,million-token stress test,"Keep evaluation split isolated from training"
-benchmark,A,yes,HUST-AI-HYZ/MemoryAgentBench,incremental agent-memory evaluation,"Inspect accurate retrieval test-time learning and long-range understanding"
-benchmark,A,yes,mem0ai/memory-benchmarks,cross-system evaluation harness,"Audit prompts judges versions and any system-specific exceptions before use"
-benchmark,A,yes,MemTensor/OmniMemEval,user and agent memory evaluation,"Compare benchmark adapters and end-to-end evaluation"
-benchmark,A,yes,zjunlp/MemBase,cross-memory-layer benchmarking,"Modern LongMemEval and LoCoMo harness linked by LightMem; audit comparability"
-coding-trajectories,A,yes,choucisan/mimo-claude-code-traces-1k,failures recovery and effort labels,"Inspect data provenance license and suitability for outcome-derived labels"
-foundational-agent,B,yes,joonspk-research/generative_agents,recency importance relevance reflection,"Foundational memory-stream baseline and reflection behavior"
-foundational-agent,B,yes,noahshinn/reflexion,verbal reinforcement and reflection,"Study episodic feedback and downstream reuse"
-procedural-memory,B,yes,MineDojo/Voyager,skill library and lifelong embodied learning,"Study executable procedures curriculum and skill retrieval"
-experience-learning,B,yes,LeapLabTHU/ExpeL,experience extraction and reuse,"Study lessons from trajectories and cross-task transfer"
-conversational-memory,B,yes,zhongwanjun/MemoryBank-SiliconFriend,long-term user memory,"Inspect forgetting curve persona and memory update assumptions"
-hierarchical-retrieval,B,yes,parthsarthi03/raptor,tree-organized retrieval,"Compare recursive summaries with exact-evidence retrieval"
-graph-retrieval,B,no,microsoft/graphrag,graph RAG reference,"Large general RAG project; review selectively instead of cloning initially"
-benchmark,B,no,GoodAI/goodai-ltm-benchmark,long-term memory and continual-learning tests,"Large repository; inspect methodology and licensing before download"
-memory-governance,B,yes,rzhub/GateMem,shared-memory governance,"Study multi-principal access policy and evaluation"
-emotional-memory,C,yes,NOBI327/amygdala,emotion-weighted retrieval prototype,"Small exploratory project; use only as comparison to operational salience"
-curated-index,A,yes,IAAR-Shanghai/Awesome-AI-Memory,continuous paper and system discovery,"Use as a lead generator; independently verify every source"
-curated-index,A,yes,TeleAI-UAGI/Awesome-Agent-Memory,agent-memory bibliography,"Use as a lead generator; independently verify every source"
-tutorials,B,yes,NirDiamant/Agent_Memory_Techniques,runnable technique comparisons,"Useful for quickly reproducing architecture patterns; not primary evidence"
-context-management,B,no,horizon-llm/CoMem,decoupled context compression,"Comparison class; modifies context-management architecture beyond core local-store target"
-emerging-system,C,no,LycheeMem/LycheeMem,new long-term memory system,"Monitor; require paper and benchmark audit before promotion"
-emerging-system,C,no,TIMAN-group/PlugMem,new memory framework,"Monitor; inspect claims and independent reproducibility"
-governance,B,no,ProsusAI/MemEval,memory evaluation project,"Inspect scope and distinction from similarly named benchmarks"
-research-code,B,yes,amvjakob/wm-rate-distortion,rate-distortion working-memory reproduction,"Primary code for Figures 2-8; current revision lacks pinned Julia environment bundled data and license so reproduction is blocked pending dependency/data reconstruction"
-research-code,A,yes,zhuangziGiantfish/Unable-to-Forget,proactive-interference benchmark,"Pinned benchmark generator candidate; MIT; use core generation and error-position logic only after credential removal seed freezing parser tests and bug fixes"
-dense-retrieval,A,yes,huggingface/sentence-transformers,local multilingual embedding inference,"Primary inference and evaluation library candidate; pin package code and model revisions separately"
-dense-retrieval,A,yes,FlagOpen/FlagEmbedding,BGE-M3 dense and multi-function retrieval,"Resource-ceiling multilingual candidate; evaluate dense-only before any native sparse or multi-vector mode"
-vector-search,A,yes,facebookresearch/faiss,exact vector search reference,"Use IndexFlatIP only as a checked implementation of normalized exact cosine before testing approximate indexes"
-vector-storage,B,yes,asg017/sqlite-vec,portable SQLite vector extension,"Storage and deployment candidate only; do not confound it with the first embedding-quality comparison"
-benchmark,A,yes,sdadas/pirb,Polish dense sparse and hybrid retrieval benchmark,"Use as Polish transfer and method-design evidence; audit individual dataset licenses before downloading any corpus"
-utility-learning,A,yes,MemTensor/MemRL,reward-updated memory utility,"Closest open implementation of intent-experience-utility memories; audit reward assumptions and delayed-credit failure modes before reproduction"
-memory-distillation,A,yes,nemori-ai/nemori,prediction-error memory distillation,"Compare intrinsic surprise at write time with observed and causal downstream utility; do not equate the three"
-model-routing,B,yes,lm-sys/RouteLLM,learned model cascade baseline,"Reuse routing and cost-quality evaluation patterns only; its general-chat savings do not establish memory-manager performance"
-curated-index,A,yes,FeishuLuo/Evolving-LLM-Agent-Memory-Survey,agent-memory discovery map,"Pinned MIT index only; survey entries are leads and do not count as primary evidence"
-cognitive-benchmark,A,yes,xjtuleeyf/Locomo-Plus,cue-trigger and latent-constraint memory benchmark,"Pinned for audit; root has no license file and README defers license information so do not redistribute data or code"
-implicit-benchmark,A,yes,qinchonghanzuibang/ImplicitMemBench,procedural priming and conditioning benchmark,"Pinned MIT benchmark; audit judge prompts data provenance and first-action scoring before reproduction"
-learned-memory-controller,B,yes,ericjiang18/MemCon,adaptive retrieval planning consolidation and forgetting policy,"Very recent code candidate; README says MIT but root has no license file; reproduce frozen-rule baselines and distribution-shift harms before use"
-local-memory-contracts,A,yes,hjqcan/GoodMemory,typed evidence temporal records retrieval traces and evaluation gates,"MIT; reuse narrow contracts and tests only; full Windows checkout is blocked by long generated paths"
-cited-local-memory,A,yes,arhuman/mnemos,cited FTS5 retrieval path safety and deterministic RRF,"Root license is MIT despite missing GitHub license classification; Go runtime unavailable locally"
-compact-local-memory,B,yes,Beledarian/mcp-local-memory,SQLite FTS5 MCP comparator and explicit feedback ledger,"MIT; npm install fails locally on Node 24 because better-sqlite3 requires an unavailable native build"
-authoritative-markdown-memory,B,yes,jagoff/memo,Markdown source of truth context packs and atomic-write tests,"MIT; Python 3.13 and macOS/Linux product; reference boundaries rather than whole-package adoption"
-interoperability,A,no,modelcontextprotocol/python-sdk,official provider-neutral MCP server and client SDK,"MIT; pin a stable major and keep domain logic protocol-free"
-local-embedding-runtime,B,no,qdrant/fastembed,optional local dense retrieval adapter,"Apache-2.0; benchmark model quality license dimension latency and Polish transfer"
-database-encryption,B,no,sqlcipher/sqlcipher,optional encrypted SQLite boundary,"BSD-3-Clause; requires key-custody binary-platform backup and recovery audit"
-pii-screening,C,no,data-privacy-stack/presidio,optional PII detection and anonymization worker,"MIT; automated detection is incomplete and must not be treated as proof of safety"
-secret-screening,A,no,gitleaks/gitleaks,pre-ingestion and pre-commit secret scanner,"MIT core/CLI; separately licensed GitHub Action must not be conflated with the core"
-prospective-scheduling,B,no,agronholm/apscheduler,time-based durable job scheduling adapter,"MIT; pin stable 3.x; action authorization and event predicates remain project-owned"
+production-memory,A,yes,mem0ai/mem0,baseline and production architecture,Universal memory layer; inspect extraction update deletion and evaluation
+stateful-agents,B,no,letta-ai/letta,project landing and historical reference,Current main branch is a landing page; archived V1 source remains on archive branch
+stateful-agents,A,yes,letta-ai/letta-code,current stateful-agent runtime,Current Letta agent harness server channels identity and memory runtime
+temporal-graph,A,yes,getzep/graphiti,temporal knowledge graph,Inspect provenance validity intervals contradiction and graph retrieval
+memory-sdk,A,yes,langchain-ai/langmem,hot-path and background memory,Inspect semantic episodic procedural workflows and consolidation
+memory-os,A,yes,MemTensor/MemOS,memory lifecycle platform,Compare representation scheduling retrieval and evaluation
+coding-agent-memory,A,yes,rohitg00/agentmemory,local persistent project memory,Inspect filesystem/MCP/hooks retention and coding-agent integration
+agentic-memory,A,yes,WujiangXu/A-mem,research reproduction,Zettelkasten-inspired dynamic organization; compare update integrity and cost
+agentic-memory,A,yes,WujiangXu/A-mem-sys,current library implementation,Current implementation linked by the paper reproduction repository
+agentic-memory,A,yes,agiresearch/A-mem,library implementation,Production-oriented implementation related to A-MEM
+graph-retrieval,A,yes,OSU-NLP-Group/HippoRAG,graph and associative retrieval,Compare dense retrieval against graph plus personalized PageRank
+hierarchical-memory,A,yes,zjunlp/LightMem,efficient memory and StructMem,Contains modern benchmark harness and structured consolidation work
+temporal-hierarchy,A,yes,TiMEM-AI/TiMEM,temporal hierarchical consolidation,Review raw-to-persona hierarchy temporal continuity and licensing boundaries
+benchmark,A,yes,xiaowu0162/LongMemEval,conversational long-term memory,Five abilities; inspect current cleaned data version and evidence granularity
+benchmark,A,yes,snap-research/locomo,long-term dialogue memory,Dialog evidence event summaries temporal and causal QA; verify dataset license
+benchmark,A,yes,xiaowu0162/LongMemEval-V2,experienced-agent memory,High-priority final evaluation for workflow state failures and multimodal trajectories
+benchmark,A,yes,mohammadtavakoli78/BEAM,million-token stress test,Keep evaluation split isolated from training
+benchmark,A,yes,HUST-AI-HYZ/MemoryAgentBench,incremental agent-memory evaluation,Inspect accurate retrieval test-time learning and long-range understanding
+benchmark,A,yes,mem0ai/memory-benchmarks,cross-system evaluation harness,Audit prompts judges versions and any system-specific exceptions before use
+benchmark,A,yes,MemTensor/OmniMemEval,user and agent memory evaluation,Compare benchmark adapters and end-to-end evaluation
+benchmark,A,yes,zjunlp/MemBase,cross-memory-layer benchmarking,Modern LongMemEval and LoCoMo harness linked by LightMem; audit comparability
+coding-trajectories,A,yes,choucisan/mimo-claude-code-traces-1k,failures recovery and effort labels,Inspect data provenance license and suitability for outcome-derived labels
+foundational-agent,B,yes,joonspk-research/generative_agents,recency importance relevance reflection,Foundational memory-stream baseline and reflection behavior
+foundational-agent,B,yes,noahshinn/reflexion,verbal reinforcement and reflection,Study episodic feedback and downstream reuse
+procedural-memory,B,yes,MineDojo/Voyager,skill library and lifelong embodied learning,Study executable procedures curriculum and skill retrieval
+experience-learning,B,yes,LeapLabTHU/ExpeL,experience extraction and reuse,Study lessons from trajectories and cross-task transfer
+conversational-memory,B,yes,zhongwanjun/MemoryBank-SiliconFriend,long-term user memory,Inspect forgetting curve persona and memory update assumptions
+hierarchical-retrieval,B,yes,parthsarthi03/raptor,tree-organized retrieval,Compare recursive summaries with exact-evidence retrieval
+graph-retrieval,B,no,microsoft/graphrag,graph RAG reference,Large general RAG project; review selectively instead of cloning initially
+benchmark,B,no,GoodAI/goodai-ltm-benchmark,long-term memory and continual-learning tests,Large repository; inspect methodology and licensing before download
+memory-governance,B,yes,rzhub/GateMem,shared-memory governance,Study multi-principal access policy and evaluation
+emotional-memory,C,yes,NOBI327/amygdala,emotion-weighted retrieval prototype,Small exploratory project; use only as comparison to operational salience
+curated-index,A,yes,IAAR-Shanghai/Awesome-AI-Memory,continuous paper and system discovery,Use as a lead generator; independently verify every source
+curated-index,A,yes,TeleAI-UAGI/Awesome-Agent-Memory,agent-memory bibliography,Use as a lead generator; independently verify every source
+tutorials,B,yes,NirDiamant/Agent_Memory_Techniques,runnable technique comparisons,Useful for quickly reproducing architecture patterns; not primary evidence
+context-management,B,no,horizon-llm/CoMem,decoupled context compression,Comparison class; modifies context-management architecture beyond core local-store target
+emerging-system,C,no,LycheeMem/LycheeMem,new long-term memory system,Monitor; require paper and benchmark audit before promotion
+emerging-system,C,no,TIMAN-group/PlugMem,new memory framework,Monitor; inspect claims and independent reproducibility
+governance,B,no,ProsusAI/MemEval,memory evaluation project,Inspect scope and distinction from similarly named benchmarks
+research-code,B,yes,amvjakob/wm-rate-distortion,rate-distortion working-memory reproduction,Primary code for Figures 2-8; current revision lacks pinned Julia environment bundled data and license so reproduction is blocked pending dependency/data reconstruction
+research-code,A,yes,zhuangziGiantfish/Unable-to-Forget,proactive-interference benchmark,Pinned benchmark generator candidate; MIT; use core generation and error-position logic only after credential removal seed freezing parser tests and bug fixes
+dense-retrieval,A,yes,huggingface/sentence-transformers,local multilingual embedding inference,Primary inference and evaluation library candidate; pin package code and model revisions separately
+dense-retrieval,A,yes,FlagOpen/FlagEmbedding,BGE-M3 dense and multi-function retrieval,Resource-ceiling multilingual candidate; evaluate dense-only before any native sparse or multi-vector mode
+vector-search,A,yes,facebookresearch/faiss,exact vector search reference,Use IndexFlatIP only as a checked implementation of normalized exact cosine before testing approximate indexes
+vector-storage,B,yes,asg017/sqlite-vec,portable SQLite vector extension,Storage and deployment candidate only; do not confound it with the first embedding-quality comparison
+benchmark,A,yes,sdadas/pirb,Polish dense sparse and hybrid retrieval benchmark,Use as Polish transfer and method-design evidence; audit individual dataset licenses before downloading any corpus
+utility-learning,A,yes,MemTensor/MemRL,reward-updated memory utility,Closest open implementation of intent-experience-utility memories; audit reward assumptions and delayed-credit failure modes before reproduction
+memory-distillation,A,yes,nemori-ai/nemori,prediction-error memory distillation,Compare intrinsic surprise at write time with observed and causal downstream utility; do not equate the three
+model-routing,B,yes,lm-sys/RouteLLM,learned model cascade baseline,Reuse routing and cost-quality evaluation patterns only; its general-chat savings do not establish memory-manager performance
+curated-index,A,yes,FeishuLuo/Evolving-LLM-Agent-Memory-Survey,agent-memory discovery map,Pinned MIT index only; survey entries are leads and do not count as primary evidence
+cognitive-benchmark,A,yes,xjtuleeyf/Locomo-Plus,cue-trigger and latent-constraint memory benchmark,Pinned for audit; root has no license file and README defers license information so do not redistribute data or code
+implicit-benchmark,A,yes,qinchonghanzuibang/ImplicitMemBench,procedural priming and conditioning benchmark,Pinned MIT benchmark; audit judge prompts data provenance and first-action scoring before reproduction
+learned-memory-controller,B,yes,ericjiang18/MemCon,adaptive retrieval planning consolidation and forgetting policy,Very recent code candidate; README says MIT but root has no license file; reproduce frozen-rule baselines and distribution-shift harms before use
+local-memory-contracts,A,yes,hjqcan/GoodMemory,typed evidence temporal records retrieval traces and evaluation gates,MIT; reuse narrow contracts and tests only; full Windows checkout is blocked by long generated paths
+cited-local-memory,A,yes,arhuman/mnemos,cited FTS5 retrieval path safety and deterministic RRF,Root license is MIT despite missing GitHub license classification; Go runtime unavailable locally
+compact-local-memory,B,yes,Beledarian/mcp-local-memory,SQLite FTS5 MCP comparator and explicit feedback ledger,MIT; npm install fails locally on Node 24 because better-sqlite3 requires an unavailable native build
+authoritative-markdown-memory,B,yes,jagoff/memo,Markdown source of truth context packs and atomic-write tests,MIT; Python 3.13 and macOS/Linux product; reference boundaries rather than whole-package adoption
+interoperability,A,no,modelcontextprotocol/python-sdk,official provider-neutral MCP server and client SDK,MIT; pin a stable major and keep domain logic protocol-free
+local-embedding-runtime,B,no,qdrant/fastembed,optional local dense retrieval adapter,Apache-2.0; benchmark model quality license dimension latency and Polish transfer
+database-encryption,B,no,sqlcipher/sqlcipher,optional encrypted SQLite boundary,BSD-3-Clause; requires key-custody binary-platform backup and recovery audit
+pii-screening,C,no,data-privacy-stack/presidio,optional PII detection and anonymization worker,MIT; automated detection is incomplete and must not be treated as proof of safety
+secret-screening,A,no,gitleaks/gitleaks,pre-ingestion and pre-commit secret scanner,MIT core/CLI; separately licensed GitHub Action must not be conflated with the core
+prospective-scheduling,B,no,agronholm/apscheduler,time-based durable job scheduling adapter,MIT; pin stable 3.x; action authorization and event predicates remain project-owned
+reference-notes,medium,no,https://github.com/hiper2d/werewolf-ai-party-game,cross-provider empirical notes for multi-model experiment design,"docs/model-findings.md pinned at 21aa6bb. Measured provider behaviour across a multi-agent game: prompt-cache differences, reasoning-length variance, and structured-output refusals. Reference only; TypeScript, cloud-first, no code reuse."
+design-contrast,low,no,https://github.com/hiper2d/marlow,contrasting memory design: bounded lossy compaction versus append-only supersession,"handlers/grade_memory.py pinned at c142520. A personal automation agent with ~20 handlers, of which memory grading is one; not a memory research system. Useful only as the opposite design choice."
