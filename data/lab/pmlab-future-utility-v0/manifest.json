@@ -1,8 +1,8 @@
 {
   "experiment_id": "PMLAB-UTILITY-001",
   "title": "Longitudinal memory future-utility telemetry",
-  "version": "0.4.0-t0.1-audit",
-  "status": "t0.1-post-advisory-synthetic-schema-validated-gold-free-audit-packet-prepared-t1-locked",
+  "version": "0.4.1-t0.1-audit",
+  "status": "t0.1-model-challenge-completed-two-blockers-t1-locked",
   "execution_authorized": false,
   "t0_synthetic_validation_completed": true,
   "t1_natural_capture_authorized": false,
@@ -80,6 +80,19 @@
     "reviewer": null,
     "review_completed": false,
     "authority": "packet preparation only; author-operated model review is adversarial advice and cannot substitute for human privacy, legal, institutional, or statistical independence"
+  },
+  "model_challenge": {
+    "run_id": "deepseek-v4-flash-future-utility-t01-blind-audit-20260823",
+    "reviewer": "deepseek-v4-flash",
+    "reviewer_kind": "model_external_author_operated",
+    "status": "review-finalized",
+    "verdict_counts": {"pass": 1, "conditional": 7, "fail": 2, "not_assessable": 0},
+    "blocking_findings": ["A07", "A08"],
+    "gate_recommendations": {"T1": "deny", "T2": "deny", "T3": "deny", "T4": "deny"},
+    "cost_usd": 0.01060884,
+    "receipt": "data/lab/pmlab-future-utility-v0/independent-audit-v0/completed-review-receipt.json",
+    "disposition": "data/lab/pmlab-future-utility-v0/independent-audit-v0/model-review-disposition.md",
+    "authority": "M2 cross-family challenge only; not independent approval"
   },
   "t0_result_authority": "instrument integrity only; no natural capture, randomized exposure, adaptive policy, causal utility, retention, consolidation, or architecture claim",
   "protocol": "docs/11-research-laboratory/future-utility-telemetry-protocol-v0.md",

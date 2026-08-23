@@ -1,0 +1,29 @@
+{
+  "status": "completed-audit-form-integrity-valid",
+  "packet_id": "PMLAB-UTILITY-001-independent-audit-v0",
+  "source_revision": "pmlab-utility-t0.1-audit-subject-v0.1",
+  "reviewer_id_or_pseudonym": "deepseek-v4-flash",
+  "reviewer_kind": "model_external_author_operated",
+  "verdict_counts": {
+    "conditional": 7,
+    "fail": 2,
+    "not_assessable": 0,
+    "pass": 1
+  },
+  "severity_counts": {
+    "blocking": 2,
+    "major": 7,
+    "minor": 0,
+    "none": 1
+  },
+  "gate_recommendations": {
+    "T1": "deny",
+    "T2": "deny",
+    "T3": "deny",
+    "T4": "deny"
+  },
+  "completed_review_form_sha256": "d8e3bf587bbb21ee2c91de7486daa3f09eaf24749525ef9d20f6d6a74f9abb12",
+  "completed_attestation_sha256": "abe55edda0f8e7fc29909efffbc44469b313f71bdc0a195c0abd74b05983656a",
+  "blank_packet_manifest_sha256": "ac1046b2c94b0c924dc422e3ac00cf38369134e4c3661a6a86e1781c4d7ab18b",
+  "authority": "mechanical integrity receipt only; does not endorse findings or create legal, privacy, statistical, or institutional approval"
+}

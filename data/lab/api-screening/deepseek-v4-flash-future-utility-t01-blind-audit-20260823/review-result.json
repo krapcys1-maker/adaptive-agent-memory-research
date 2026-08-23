@@ -1,0 +1,142 @@
+{
+  "findings": [
+    {
+      "question_id": "A01",
+      "verdict": "pass",
+      "severity": "none",
+      "evidence_locators": [
+        "subject-experiment-manifest.json: execution_authorized=false, t1_natural_capture_authorized=false, t2_replay_authorized=false, t3_randomized_exposure_authorized=false, t4_utility_model_authorized=false, adaptive_policy_authorized=false, canonical_memory_mutation_authorized=false",
+        "subject-telemetry-protocol.md: Phase T0 — schema and replay validation, 'No scientific conclusion follows.'",
+        "subject-validation-report.json: authority 'T0 instrument integrity only; no natural capture, causal utility, randomized exposure, adaptive ranking, retention, consolidation, or architecture claim'"
+      ],
+      "rationale": "All artifacts consistently restrict claims to T0 synthetic instrument integrity. The manifest explicitly locks T1-T4 and adaptive/canonical mutation. The protocol and validation report reiterate that no scientific or causal conclusion follows from T0. No artifact claims natural capture or utility estimation.",
+      "required_change": null
+    },
+    {
+      "question_id": "A02",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "subject-telemetry-protocol.md: 'Target estimand' section, 'The primary default is now a task-level context-bundle intention-to-treat estimand.'",
+        "subject-telemetry-schema-v0.1.json: $defs.taskRegistered requires dependence_cluster_id; $defs.exposureAssignment requires assignment_id and propensity; $defs.exposureObservation requires assignment_id",
+        "subject-telemetry-protocol.md: 'A dependence-cluster ID supports analysis but does not solve interference.'"
+      ],
+      "rationale": "The protocol distinguishes task, memory, context bundle, and dependence cluster, and declares a task-level bundle ITT estimand. However, the schema does not explicitly bind the assignment unit to the analysis unit; exposure_assigned events are per memory_id, while the primary estimand is bundle-level. The dependence_cluster_id is present but not used to define the bundle or the analysis unit. The estimand is not fully identified because the exposure mapping from individual assignments to bundle-level exposure is not defined in the schema or protocol.",
+      "required_change": "Add a bundle-level exposure assignment event or a field in exposure_assigned that references a bundle_id and defines the bundle-level exposure mapping. Specify in the protocol how the task-level ITT estimand is identified from per-memory assignments, including the analysis unit and the exposure definition for the bundle."
+    },
+    {
+      "question_id": "A03",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "subject-telemetry-protocol.md: 'Target estimand' section, 'A task outcome must not be copied as causal credit to every co-exposed memory.'",
+        "subject-telemetry-schema-v0.1.json: $defs.exposureObservation includes context_packet_sha256 and competing memories are mentioned in protocol but not in schema",
+        "subject-telemetry-protocol.md: 'Confounds that must be logged or controlled' includes 'concurrent exposure to several correlated memories' and 'spillovers'"
+      ],
+      "rationale": "The protocol explicitly prohibits assigning shared task outcomes to every co-exposed memory and mentions competing memories, but the schema does not capture the full set of co-exposed memories in a structured way. The context_packet_sha256 is a hash, not a list of memory IDs, so the exposure mapping for bundle-level analysis is not directly reconstructable from telemetry. The protocol mentions a bundle-level contrast but does not define how to construct it from the recorded events.",
+      "required_change": "Add a field to exposure_observed (or a separate event) that lists all memory_ids exposed in the same context, or ensure context_packet_sha256 is accompanied by a structured list of exposed memory IDs. Define the exposure mapping and bundle-level contrast in the protocol, and ensure the schema supports it."
+    },
+    {
+      "question_id": "A04",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "subject-telemetry-schema-v0.1.json: $defs.exposureAssignment requires propensity, mechanism, arm, safety_exclusion; $defs.exposureObservation requires assignment_id",
+        "subject-telemetry-protocol.md: 'Phase T4 — utility-model evaluation' section, 'Before T3, the assignment receipt must bind the action space, realized action, realized-action probability, exact logging-policy version and state, candidate set, and safety overrides.'",
+        "subject-validation-report.json: invalid case T0-INV-003-MISSING-PROPENSITY"
+      ],
+      "rationale": "The schema records propensity, mechanism, arm, and safety_exclusion, and the protocol requires binding the action space and logging policy version. However, the schema does not include a logging_policy_version or state hash in exposure_assigned, nor does it capture the full action space (e.g., all possible arms) or the exact state used for assignment. The candidate_set_sha256 is in candidate_set_frozen, but the assignment receipt does not reference it. Positivity diagnostics are mentioned in the protocol but not implemented in the schema or T0 fixtures.",
+      "required_change": "Add fields to exposure_assigned for logging_policy_version, state_sha256, and candidate_set_sha256 (or reference the candidate_set_frozen event). Include a list of possible arms or a policy definition hash. Add a T0 fixture that tests positivity diagnostics (e.g., zero-support strata) and document how the realized-action probability is reconstructed."
+    },
+    {
+      "question_id": "A05",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "subject-telemetry-schema-v0.1.json: $defs.windowClosed includes censoring_reason enum with 'none', 'observation_window_ended', 'task_abandoned', 'outcome_unavailable', 'policy_change'",
+        "subject-telemetry-protocol.md: 'A predeclared deadline makes censoring visible; it does not make censoring ignorable. Structural inapplicability, an outcome lost or unobserved, and no event by the deadline must remain distinct.'",
+        "subject-validation-report.json: valid_stream censored_task_count=1, closed_task_count=2"
+      ],
+      "rationale": "The schema distinguishes several censoring reasons, but 'structural inapplicability' is not a distinct enum value; it would have to be mapped to 'outcome_unavailable' or 'task_abandoned'. The protocol requires a frozen defensible analysis for informative censoring, but no such analysis is specified in the artifacts. T0 only tests closure mismatch, not the handling of informative censoring.",
+      "required_change": "Add 'structural_inapplicability' as a distinct censoring_reason enum value. Specify a frozen analysis plan for informative censoring (e.g., inverse-probability weighting with diagnostics or bounds) in the protocol, and add T0 fixtures that test the distinction and the analysis."
+    },
+    {
+      "question_id": "A06",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "subject-capture-policy.md: 'Allowed fields' includes 'SHA-256 hashes of canonical content, outputs, packets, and candidate sets'",
+        "subject-telemetry-schema-v0.1.json: $defs.sha256 pattern '^[a-f0-9]{64}$'",
+        "subject-telemetry-protocol.md: 'Required artifacts before implementation' includes 'identifier and digest contract distinguishing opaque IDs, pseudonyms, exact-byte hashes, and named canonicalization'"
+      ],
+      "rationale": "The protocol acknowledges the need for an identifier and digest contract, but the artifacts do not provide one. Content hashes are used for memory content, outputs, and packets, and these are linkable pseudonyms for low-entropy content. The policy does not explicitly state that hashes are pseudonymous or protect against dictionary attacks. The schema does not include a field to indicate whether a hash is exact-byte or canonicalized.",
+      "required_change": "Add a digest contract document that defines each hash's purpose, canonicalization profile, and pseudonymity risk. In the schema, add a field to hashes indicating the canonicalization method (e.g., 'exact_bytes' or 'canonical_json'). Update the policy to state that content hashes are pseudonymous and must be treated as personal data if the content is identifiable."
+    },
+    {
+      "question_id": "A07",
+      "verdict": "fail",
+      "severity": "blocking",
+      "evidence_locators": [
+        "subject-capture-policy.md: 'Corrections and deletion' section, 'A production deletion mechanism will require a separate tombstone/export contract and an analysis of the conflict between audit retention and legal/user erasure. T0 does not claim that this problem is solved.'",
+        "subject-telemetry-protocol.md: 'Privacy and capture' section, 'user deletion and export must reach canonical and experimental layers through recorded tombstone/correction events'",
+        "subject-telemetry-schema-v0.1.json: No tombstone or export event type; correction event only targets scalar fields"
+      ],
+      "rationale": "The artifacts explicitly state that deletion is not solved and that a separate contract is required. The schema has no tombstone event type, and correction only allows scalar field corrections, not deletion of entire events. There is no mechanism for export, derived-index rebuild, backup propagation, or external-processor propagation. The protocol mentions tombstone/correction events but does not define them. This is a blocking gap for T1 natural capture, as erasure lifecycle is a prerequisite.",
+      "required_change": "Design and implement a tombstone event type that marks events for deletion while preserving audit integrity (e.g., by replacing content with a hash or null). Define export and erasure propagation mechanisms for all layers, including backups and external processors. Add T0 fixtures that test erasure and export, and document the conflict between audit retention and erasure."
+    },
+    {
+      "question_id": "A08",
+      "verdict": "fail",
+      "severity": "blocking",
+      "evidence_locators": [
+        "subject-capture-policy.md: 'Sensitivity rules' table and 'external_processing_allowed' field",
+        "subject-telemetry-schema-v0.1.json: privacy object includes access_scope enum ['local_research_only', 'approved_external_worker']",
+        "subject-telemetry-protocol.md: 'Privacy and capture' section, 'external workers receive the minimum packet and never the complete private history by default'"
+      ],
+      "rationale": "The artifacts specify access scopes and external processing rules, but there is no explicit authentication, authorization, at-rest protection, key custody, access audit, retention, or threat actor analysis. The protocol mentions 'privacy/capture review and threat model' as a required artifact, but it is not included in this packet. For natural data, these controls are essential and cannot be inferred.",
+      "required_change": "Provide a threat model and security architecture document that details authentication, authorization, encryption at rest, key management, access logging, retention policies, and threat actors. Specify how access_scope is enforced and audited. Add T0 fixtures that test access control enforcement (e.g., rejection of unauthorized access_scope)."
+    },
+    {
+      "question_id": "A09",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "subject-telemetry-schema-v0.1.json: $defs.sha256 pattern '^[a-f0-9]{64}$'",
+        "subject-telemetry-protocol.md: 'Required artifacts before implementation' includes 'identifier and digest contract distinguishing opaque IDs, pseudonyms, exact-byte hashes, and named canonicalization'",
+        "subject-validation-report.json: hashes include schema_sha256, valid_deliveries_sha256, invalid_cases_sha256"
+      ],
+      "rationale": "The schema defines a SHA-256 pattern but does not specify the canonicalization profile for hashing content, outputs, packets, or candidate sets. The protocol requires a digest contract, but it is not provided. The validation report hashes are computed over files, but the exact byte representation (e.g., JSON serialization order, Unicode normalization) is not documented. This ambiguity could lead to non-reproducible hashes.",
+      "required_change": "Add a digest contract document that specifies for each hash: the exact bytes or canonicalization profile (e.g., JSON canonicalization with sorted keys, UTF-8 normalization, number formatting), and the purpose. Update the schema to include a field indicating the canonicalization method for each hash. Add T0 fixtures that test hash stability across different serialization orders."
+    },
+    {
+      "question_id": "A10",
+      "verdict": "conditional",
+      "severity": "major",
+      "evidence_locators": [
+        "subject-experiment-manifest.json: advisory_review.run_id 'deepseek-v4-flash-future-utility-t0-review-20260823', evidence_tier 'M1-author-operated-model-advisory', verdict '2/2 accept_t0_with_limits', post_review_repairs_independently_reviewed=false",
+        "review-manual.md: 'Independence labels' section, 'model_external_author_operated'",
+        "subject-experiment-manifest.json: independent_audit.reviewer=null, review_completed=false"
+      ],
+      "rationale": "The manifest discloses that the prior review was author-operated and not independently reviewed. The independent audit is blank and awaiting review. However, the review manual does not require the reviewer to disclose their own prior exposure, model family, or organizational relation in the output; it only mentions attestation. The packet does not include evidence of what was inspected in the prior review or its limitations. The difference between model challenge and human review is stated, but not fully operationalized.",
+      "required_change": "Require the reviewer to disclose prior exposure, model family, organizational relation, and limitations in the review output. Include a section in the review manual that requires listing the evidence inspected and any conflicts. Ensure the independent audit packet includes a field for reviewer disclosures and that the final disposition documents how the review was independent."
+    }
+  ],
+  "gate_recommendations": {
+    "T1": "deny",
+    "T2": "deny",
+    "T3": "deny",
+    "T4": "deny"
+  },
+  "blocking_findings": [
+    "A07",
+    "A08"
+  ],
+  "residual_risks": [
+    "Even with T0 passing, the absence of a deletion mechanism means any natural capture could create irretrievable personal data, violating erasure rights.",
+    "Without a threat model and security controls, natural data could be exposed to unauthorized access or external processing, leading to privacy breaches.",
+    "The lack of a digest contract may cause hash mismatches across systems, undermining data integrity and reproducibility.",
+    "The bundle-level estimand is not fully identified, risking incorrect causal claims if T3 is ever authorized.",
+    "Informative censoring is not addressed with a frozen analysis, potentially biasing any future utility estimates."
+  ],
+  "overall_rationale": "The packet is well-scoped for T0 synthetic validation and correctly locks T1-T4. However, it fails to provide essential controls for natural capture: a deletion/erasure mechanism and a security threat model. These are blocking for T1. Additionally, several major gaps exist in estimand identification, exposure mapping, propensity reconstruction, censoring analysis, pseudonym handling, digest semantics, and audit independence. Therefore, T1 must be denied until these are addressed."
+}

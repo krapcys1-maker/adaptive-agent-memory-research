@@ -1,0 +1,11 @@
+{
+  "at": "2026-08-23T04:16:18Z",
+  "run_id": "deepseek-v4-flash-future-utility-t01-blind-audit-20260823",
+  "model": "deepseek-v4-flash",
+  "response_id": "a205b18d-a8f9-4950-92fd-34dc2228fe9f",
+  "prompt_tokens": 13743,
+  "completion_tokens": 3456,
+  "conservative_cost_usd": 0.01060884,
+  "pricing_basis": "all input charged at configured peak cache-miss rate",
+  "latency_ms": 26424.01
+}

@@ -16,6 +16,7 @@ PACKET = LAB / "independent-audit-v0"
 BLIND = PACKET / "blind"
 SOURCE_REVISION = "pmlab-utility-t0.1-audit-subject-v0.1"
 BUILDER_VERSION = "future-utility-independent-audit-packet-v0.1"
+COMPLETED_RECEIPT = PACKET / "completed-review-receipt.json"
 
 SUBJECTS = {
     "subject-telemetry-schema-v0.1.json": LAB / "telemetry-event-v0.1.schema.json",
@@ -182,6 +183,16 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
+    if COMPLETED_RECEIPT.exists():
+        if not args.check:
+            raise SystemExit("audit packet is frozen by a completed review receipt; create a new packet revision")
+        manifest_path = BLIND / "manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        mismatches = [name for name, expected in manifest["hashes"].items() if sha_bytes((BLIND / name).read_bytes()) != expected]
+        if mismatches:
+            raise SystemExit("frozen audit packet hash mismatch: " + ", ".join(mismatches))
+        print(canonical({"status": "frozen-reviewed-packet-current", "files": len(manifest["hashes"]) + 1, "questions": manifest["question_count"]}))
+        return 0
     outputs = build_outputs()
     stale = [
         str(path.relative_to(ROOT))

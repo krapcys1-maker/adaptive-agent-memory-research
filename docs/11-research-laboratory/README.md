@@ -83,6 +83,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-future-utility-v0/t0/` — completed synthetic T0 validation: exact retry collapse, append-only correction, explicit censoring, privacy rejection, and premature-U5 rejection; T1 remains locked.
 - `docs/07-literature/future-utility-causal-privacy-primary-source-audit.md` — primary-source falsification of bundle credit, interference, censoring, propensity, hashing, append-only erasure, and local-first privacy shortcuts.
 - `data/lab/pmlab-future-utility-v0/independent-audit-v0/blind/` — deterministic gold-free T0.1 audit packet with fixed questions, subject hashes, blank review form, and attestation; preparation is not independent approval.
+- `data/lab/pmlab-future-utility-v0/independent-audit-v0/model-review-disposition.md` — disposition of the frozen DeepSeek cross-family challenge: A07 lifecycle/erasure and A08 security/access are blocking, T1-T4 remain denied, and inaccurate model advice is explicitly rejected.
 - `docs/11-research-laboratory/compression-benchmark-extension.md` — preregistered repeated-compaction, model-change, semantic-completion, and factor-separated emotion tests.
 - `docs/11-research-laboratory/replay-benchmark-extension.md` — preregistered phase-conditioned replay, compression-throughput, and sampling-safety tests.
 - `docs/11-research-laboratory/revision-benchmark-extension.md` — preregistered versioning, non-mutating retrieval, return, and representation-dissociation tests.

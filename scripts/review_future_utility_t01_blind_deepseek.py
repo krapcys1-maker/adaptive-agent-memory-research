@@ -133,7 +133,9 @@ def freeze(commit: str) -> dict[str, Any]:
     git("cat-file", "-e", f"{commit}^{{commit}}")
     for name in ("job.json", "prompt.txt"):
         committed = subprocess.check_output(["git", "show", f"{commit}:data/lab/api-screening/{RUN_ID}/{name}"], cwd=ROOT)
-        if hashlib.sha256(committed).hexdigest() != manifest["hashes"][name]:
+        committed_text = committed.decode("utf-8").replace("\r\n", "\n")
+        working_text = (RUN_DIR / name).read_text(encoding="utf-8").replace("\r\n", "\n")
+        if committed_text != working_text:
             raise ValueError(f"{name} differs from frozen commit")
     manifest.update({"status": "frozen-input-awaiting-api", "prompt_freeze_commit": commit})
     shared.write_json(path, manifest)
@@ -230,4 +232,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -1,0 +1,18 @@
+{
+  "attestation_id": "DS-a205b18d-a8f9-4950-92fd-34dc2228fe9f",
+  "conflicts_or_prior_exposure": "Author-operated run; DeepSeek model family previously reviewed telemetry schema v0, but this API request received only the frozen T0.1 blind packet and no author answer key.",
+  "family_or_affiliation": "DeepSeek API",
+  "limitations": "No human, legal, privacy-professional, DPIA, institutional-independence, or statistical-reproduction authority; model output may be incomplete or wrong.",
+  "packet_manifest_sha256": "ac1046b2c94b0c924dc422e3ac00cf38369134e4c3661a6a86e1781c4d7ab18b",
+  "reviewer_id_or_pseudonym": "deepseek-v4-flash",
+  "reviewer_kind": "model_external_author_operated",
+  "signature_or_verifiable_acknowledgement": "DeepSeek response ID a205b18d-a8f9-4950-92fd-34dc2228fe9f bound to frozen run 76356ce",
+  "source_revision": "pmlab-utility-t0.1-audit-subject-v0.1",
+  "statements": {
+    "actively_sought_falsifying_evidence": true,
+    "did_not_receive_author_answer_key": true,
+    "disclosed_conflicts_and_prior_exposure": true,
+    "reviewed_only_listed_subject_artifacts": true,
+    "understands_review_does_not_authorize_T2_T4": true
+  }
+}
