@@ -1,0 +1,1399 @@
+{
+  "job_id": "PMLAB-PACK-002-M1-v2",
+  "review_focus": "Falsify the repaired serialization result and proposed reader-protocol gate without architecture authority.",
+  "v0_pre_run_failure": "# PMLAB-PACK-001 pre-run audit\n\nStatus: failed instrument before runner implementation or outcome observation  \nFrozen commit: `79137918d128cf6244c0462bd6b95fdac6ee39ea`\n\n## Fatal construct defect\n\nThe frozen compact arm specified one handle for each complete `path:line-line` locator. All 36 fixture records have distinct line ranges. A footer would therefore contain one complete path and line range for every included record, while the evidence line would additionally contain a handle. It could not exploit multiple records from the same source path and would generally be at least as expensive as the full-inline arm.\n\nThis contradicts the intended source-reuse mechanism in `H-PACK-02`. Running the protocol would answer whether an intentionally redundant serialization loses capacity, not whether a compact source dictionary helps.\n\n## Disposition\n\n- Do not implement or run v0.\n- Preserve its protocol, fixture, hashes, and registry row.\n- Reuse the untouched fixture in a new frozen protocol because no outcome or runner exists.\n- Repair only the treatment: map `[Snn]` to one source path and keep `Lstart-Lend` inline with each record.\n- Continue to require a complete in-pack dictionary, exact span resolution, byte-identical evidence, and explicit omissions.\n\nNo hypothesis result exists for v0.\n",
+  "v1_frozen_protocol": "# Exact citation and pack-order characterization v1\n\nExperiment ID: `PMLAB-PACK-002`  \nStatus: frozen repair protocol; runner not implemented  \nAuthority: synthetic implementation characterization only\n\n## Registered repair\n\nThis protocol inherits the question, fixture, pre-pack policy, order arms, budgets, metrics, interpretation limits, and reader-stage gate from frozen `PMLAB-PACK-001`. V0 produced no runner and no outcomes. V1 changes only the compact citation representation that failed the pre-run construct audit.\n\n## Frozen fixture\n\nUse byte-identical files from `data/lab/pmlab-pack-characterization-v0/`:\n\n- `corpus.jsonl` SHA-256 `2270bffe8d76a760f216ad4ac85328b6de8970bdc1c12cf90188d21f2315a8c8`;\n- `cases.jsonl` SHA-256 `da1f1a94d09cadcf0996ae102a6aa7e86ba1a72f95c2cb77ea28e66234dfc967`;\n- the four source hashes in its manifest.\n\nNo case, candidate order, required label, evidence text, locator, budget, or order rule changes.\n\n## Citation-format arms\n\n| Arm | Definition |\n|---|---|\n| `T0_TEXT_ONLY` | bucket marker plus byte-identical evidence; capacity ceiling with no citation claim |\n| `C0_FULL_INLINE` | `[path:line-line] <bucket> evidence` for every included record |\n| `C1_SOURCE_FOOTER` | `[Snn:Lstart-Lend] <bucket> evidence`, with one complete footer entry `[Snn]=path` per included source path |\n\nSource handles are assigned in first-included-source order. Multiple records from the same source reuse the same handle. A record is included only if its evidence line and the complete dictionary of the final pack fit. The dictionary must be in the same pack; an external sidecar is not allowed in the primary comparison.\n\n## Order arms\n\n- `O0_RETRIEVAL`: preserve supplied candidate rank after trust filtering.\n- `O1_GOVERNED`: stable current, supporting, stale/conflicting order.\n- `O2_REQUIRED_ORACLE`: privileged capacity ceiling with required current/supporting first, then other current/supporting, then stale.\n\n## Budgets and fixed algorithm\n\nRun `24 cases × 3 citation arms × 3 order arms × 4 budgets = 864` packs at 512, 768, 1024, and 1536 UTF-8 bytes.\n\nUse greedy first-fit-with-continue. Never truncate evidence, locator text, or dictionary entries. Filter supplied `trust=untrusted` records before ordering, log them, and keep stale/conflicting records explicitly marked.\n\n## Hypotheses\n\n- `H-PACK2-01`: at 768 bytes, `C1_SOURCE_FOOTER - C0_FULL_INLINE` macro required retention is at least `+0.05`, with zero citation, evidence, trust, stale-marker, omission-ledger, or budget defects.\n- `H-PACK2-02`: the compact-minus-full retention delta is positive in both the long-locator and required-source-reuse strata. Treat magnitude as descriptive on this authored sample.\n- `H-PACK2-03`: at least one budget has an absolute `O1_GOVERNED - O0_RETRIEVAL` required-retention difference of `>=0.05` for a cited format. This supports order as a capacity mechanism only.\n\n## Integrity gates\n\nEvery cited record must resolve from its serialized citation to the exact source path, line range, and byte-identical evidence. There must be zero orphan, ambiguous, missing, or duplicate-conflict handles; zero untrusted exposure; zero stale-marker loss; zero unreported omission; and zero budget violation. Any failure invalidates the implementation regardless of retention.\n\n`T0_TEXT_ONLY` is a capacity ceiling and cannot satisfy provenance. `O2_REQUIRED_ORACLE` is non-deployable. No result can select a reader order, classifier, compression model, retriever, or architecture.\n\n## Reader-stage gate\n\nA reader experiment requires all integrity gates plus a `>=0.05` retention difference at 768 bytes or the same directional difference across at least two adjacent budgets. It must use fresh answer-bearing cases, blinded condition labels, equal evidence IDs and bytes where possible, explicit stale-use and citation metrics, provider-neutral structured outputs, and a separately frozen API cap.\n",
+  "runner_source": "#!/usr/bin/env python3\n\"\"\"Execute frozen PMLAB-PACK-002 over fixed candidates and byte budgets.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport hashlib\nimport json\nimport platform\nimport statistics\nimport sys\nfrom collections import defaultdict\nfrom pathlib import Path\nfrom typing import Any\n\n\nROOT = Path(__file__).resolve().parents[1]\nFIXTURE = ROOT / \"data\" / \"lab\" / \"pmlab-pack-characterization-v0\"\nDEFAULT_OUTPUT = ROOT / \"data\" / \"lab\" / \"pmlab-pack-characterization-v1\" / \"execution-v0\"\nFREEZE_COMMIT = \"96c901fef3f4829ddbeac7e731bd2a526548d0a4\"\nBUDGETS = [512, 768, 1024, 1536]\nFORMAT_ARMS = [\"T0_TEXT_ONLY\", \"C0_FULL_INLINE\", \"C1_SOURCE_FOOTER\"]\nORDER_ARMS = [\"O0_RETRIEVAL\", \"O1_GOVERNED\", \"O2_REQUIRED_ORACLE\"]\nBUCKET_ORDER = {\"current\": 0, \"supporting\": 1, \"stale_conflicting\": 2}\n\n\ndef load_jsonl(path: Path) -> list[dict[str, Any]]:\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line]\n\n\ndef write_json(path: Path, value: Any) -> None:\n    path.parent.mkdir(parents=True, exist_ok=True)\n    path.write_text(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\", newline=\"\\n\")\n\n\ndef write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:\n    path.parent.mkdir(parents=True, exist_ok=True)\n    path.write_text(\n        \"\".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + \"\\n\" for row in rows),\n        encoding=\"utf-8\",\n        newline=\"\\n\",\n    )\n\n\ndef sha256(path: Path) -> str:\n    return hashlib.sha256(path.read_bytes()).hexdigest()\n\n\ndef locator(record: dict[str, Any]) -> str:\n    return f\"{record['source_path']}:{record['line_start']}-{record['line_end']}\"\n\n\ndef validate_fixture(corpus: list[dict[str, Any]], cases: list[dict[str, Any]]) -> None:\n    if len(corpus) != 36 or len(cases) != 24:\n        raise ValueError(\"frozen fixture shape changed\")\n    records = {row[\"record_id\"]: row for row in corpus}\n    if len(records) != len(corpus):\n        raise ValueError(\"duplicate record ID\")\n    for record in corpus:\n        lines = (ROOT / record[\"source_path\"]).read_text(encoding=\"utf-8\").splitlines()\n        resolved = \"\\n\".join(lines[record[\"line_start\"] - 1 : record[\"line_end\"]])\n        if resolved != record[\"text\"]:\n            raise ValueError(f\"source mismatch for {record['record_id']}\")\n    for case in cases:\n        if len(case[\"candidate_ids\"]) != 7 or len(set(case[\"candidate_ids\"])) != 7:\n            raise ValueError(f\"candidate shape changed for {case['case_id']}\")\n        if not set(case[\"required_ids\"]) <= set(case[\"candidate_ids\"]):\n            raise ValueError(f\"required item absent for {case['case_id']}\")\n        for record_id in case[\"required_ids\"]:\n            if records[record_id][\"trust\"] != \"reviewed\" or records[record_id][\"bucket\"] == \"stale_conflicting\":\n                raise ValueError(f\"unsafe required label for {case['case_id']}\")\n\n\ndef order_ids(case: dict[str, Any], records: dict[str, dict[str, Any]], arm: str) -> list[str]:\n    trusted = [record_id for record_id in case[\"candidate_ids\"] if records[record_id][\"trust\"] == \"reviewed\"]\n    original_rank = {record_id: rank for rank, record_id in enumerate(case[\"candidate_ids\"])}\n    required = set(case[\"required_ids\"])\n    if arm == \"O0_RETRIEVAL\":\n        return trusted\n    if arm == \"O1_GOVERNED\":\n        return sorted(trusted, key=lambda record_id: (BUCKET_ORDER[records[record_id][\"bucket\"]], original_rank[record_id]))\n    if arm == \"O2_REQUIRED_ORACLE\":\n        return sorted(\n            trusted,\n            key=lambda record_id: (\n                0 if record_id in required else (2 if records[record_id][\"bucket\"] == \"stale_conflicting\" else 1),\n                original_rank[record_id],\n            ),\n        )\n    raise ValueError(f\"unknown order arm {arm}\")\n\n\ndef serialize(format_arm: str, included: list[str], records: dict[str, dict[str, Any]]) -> tuple[str, dict[str, str]]:\n    if not included:\n        return \"\", {}\n    if format_arm == \"T0_TEXT_ONLY\":\n        lines = [f\"<{records[record_id]['bucket']}> {records[record_id]['text']}\" for record_id in included]\n        return \"\\n\".join(lines) + \"\\n\", {}\n    if format_arm == \"C0_FULL_INLINE\":\n        lines = [\n            f\"[{locator(records[record_id])}] <{records[record_id]['bucket']}> {records[record_id]['text']}\"\n            for record_id in included\n        ]\n        return \"\\n\".join(lines) + \"\\n\", {}\n    if format_arm == \"C1_SOURCE_FOOTER\":\n        source_handles: dict[str, str] = {}\n        for record_id in included:\n            source_path = records[record_id][\"source_path\"]\n            if source_path not in source_handles:\n                source_handles[source_path] = f\"S{len(source_handles) + 1:02d}\"\n        lines = [\n            f\"[{source_handles[records[record_id]['source_path']]}:L{records[record_id]['line_start']}-L{records[record_id]['line_end']}] \"\n            f\"<{records[record_id]['bucket']}> {records[record_id]['text']}\"\n            for record_id in included\n        ]\n        lines.append(\"SOURCES\")\n        lines.extend(f\"[{handle}]={source_path}\" for source_path, handle in source_handles.items())\n        return \"\\n\".join(lines) + \"\\n\", {handle: source_path for source_path, handle in source_handles.items()}\n    raise ValueError(f\"unknown format arm {format_arm}\")\n\n\ndef build_pack(\n    case: dict[str, Any],\n    records: dict[str, dict[str, Any]],\n    format_arm: str,\n    order_arm: str,\n    budget: int,\n) -> dict[str, Any]:\n    ordered = order_ids(case, records, order_arm)\n    included: list[str] = []\n    omitted = [\n        {\"record_id\": record_id, \"reason\": \"untrusted-pre-filter\"}\n        for record_id in case[\"candidate_ids\"]\n        if records[record_id][\"trust\"] != \"reviewed\"\n    ]\n    for record_id in ordered:\n        candidate_text, _ = serialize(format_arm, included + [record_id], records)\n        if len(candidate_text.encode(\"utf-8\")) <= budget:\n            included.append(record_id)\n        else:\n            omitted.append({\"record_id\": record_id, \"reason\": \"byte-budget\"})\n    text, source_map = serialize(format_arm, included, records)\n    required = set(case[\"required_ids\"])\n    critical = set(case[\"critical_required_ids\"])\n    required_retained = len(required & set(included)) / len(required)\n    critical_retained = None if not critical else len(critical & set(included)) / len(critical)\n    citation_errors: list[str] = []\n    evidence_errors: list[str] = []\n    stale_marker_errors: list[str] = []\n    for record_id in included:\n        record = records[record_id]\n        if record[\"text\"] not in text:\n            evidence_errors.append(record_id)\n        if record[\"bucket\"] == \"stale_conflicting\" and \"<stale_conflicting>\" not in text:\n            stale_marker_errors.append(record_id)\n        if format_arm == \"C0_FULL_INLINE\" and f\"[{locator(record)}]\" not in text:\n            citation_errors.append(record_id)\n        if format_arm == \"C1_SOURCE_FOOTER\":\n            matching = [handle for handle, source_path in source_map.items() if source_path == record[\"source_path\"]]\n            if len(matching) != 1:\n                citation_errors.append(record_id)\n            else:\n                handle = matching[0]\n                if f\"[{handle}:L{record['line_start']}-L{record['line_end']}]\" not in text:\n                    citation_errors.append(record_id)\n                if f\"[{handle}]={record['source_path']}\" not in text:\n                    citation_errors.append(record_id)\n    expected_omitted = set(case[\"candidate_ids\"]) - set(included)\n    reported_omitted = {row[\"record_id\"] for row in omitted}\n    untrusted_exposed = any(records[record_id][\"trust\"] != \"reviewed\" for record_id in included)\n    return {\n        \"experiment_id\": \"PMLAB-PACK-002\",\n        \"case_id\": case[\"case_id\"],\n        \"format_arm\": format_arm,\n        \"order_arm\": order_arm,\n        \"budget_utf8\": budget,\n        \"included_ids\": included,\n        \"omitted\": omitted,\n        \"pack_text\": text,\n        \"utf8_bytes\": len(text.encode(\"utf-8\")),\n        \"required_retention\": required_retained,\n        \"all_required_retained\": required_retained == 1.0,\n        \"critical_retention\": critical_retained,\n        \"required_position\": case[\"required_position\"],\n        \"required_count\": case[\"required_count\"],\n        \"required_source_reuse\": case[\"required_source_reuse\"],\n        \"required_locator_class\": case[\"required_locator_class\"],\n        \"source_map\": source_map,\n        \"citation_errors\": sorted(set(citation_errors)),\n        \"evidence_errors\": sorted(set(evidence_errors)),\n        \"stale_marker_errors\": sorted(set(stale_marker_errors)),\n        \"untrusted_exposed\": untrusted_exposed,\n        \"omission_ledger_complete\": expected_omitted == reported_omitted,\n        \"budget_compliant\": len(text.encode(\"utf-8\")) <= budget,\n    }\n\n\ndef mean(rows: list[dict[str, Any]], field: str) -> float:\n    return statistics.mean(float(row[field]) for row in rows)\n\n\ndef aggregate(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:\n    output: list[dict[str, Any]] = []\n    for budget in BUDGETS:\n        for format_arm in FORMAT_ARMS:\n            for order_arm in ORDER_ARMS:\n                selected = [\n                    row for row in rows\n                    if row[\"budget_utf8\"] == budget and row[\"format_arm\"] == format_arm and row[\"order_arm\"] == order_arm\n                ]\n                critical_rows = [row for row in selected if row[\"critical_retention\"] is not None]\n                output.append(\n                    {\n                        \"budget_utf8\": budget,\n                        \"format_arm\": format_arm,\n                        \"order_arm\": order_arm,\n                        \"packs\": len(selected),\n                        \"macro_required_retention\": mean(selected, \"required_retention\"),\n                        \"all_required_rate\": statistics.mean(row[\"all_required_retained\"] for row in selected),\n                        \"critical_retention\": mean(critical_rows, \"critical_retention\"),\n                        \"mean_included_records\": statistics.mean(len(row[\"included_ids\"]) for row in selected),\n                        \"mean_utf8_bytes\": mean(selected, \"utf8_bytes\"),\n                        \"integrity_pass\": all(\n                            not row[\"citation_errors\"]\n                            and not row[\"evidence_errors\"]\n                            and not row[\"stale_marker_errors\"]\n                            and not row[\"untrusted_exposed\"]\n                            and row[\"omission_ledger_complete\"]\n                            and row[\"budget_compliant\"]\n                            for row in selected\n                        ),\n                    }\n                )\n    return output\n\n\ndef metric(rows: list[dict[str, Any]], format_arm: str, order_arm: str | None, budget: int, stratum=None) -> float:\n    selected = [\n        row for row in rows\n        if row[\"format_arm\"] == format_arm\n        and row[\"budget_utf8\"] == budget\n        and (order_arm is None or row[\"order_arm\"] == order_arm)\n        and (stratum is None or stratum(row))\n    ]\n    return mean(selected, \"required_retention\")\n\n\ndef summarize(rows: list[dict[str, Any]], aggregates: list[dict[str, Any]]) -> dict[str, Any]:\n    full_768 = metric(rows, \"C0_FULL_INLINE\", None, 768)\n    compact_768 = metric(rows, \"C1_SOURCE_FOOTER\", None, 768)\n    long_delta = metric(rows, \"C1_SOURCE_FOOTER\", None, 768, lambda row: row[\"required_locator_class\"] == \"long\") - metric(\n        rows, \"C0_FULL_INLINE\", None, 768, lambda row: row[\"required_locator_class\"] == \"long\"\n    )\n    reuse_delta = metric(rows, \"C1_SOURCE_FOOTER\", None, 768, lambda row: row[\"required_source_reuse\"]) - metric(\n        rows, \"C0_FULL_INLINE\", None, 768, lambda row: row[\"required_source_reuse\"]\n    )\n    order_differences = []\n    for budget in BUDGETS:\n        for format_arm in (\"C0_FULL_INLINE\", \"C1_SOURCE_FOOTER\"):\n            difference = metric(rows, format_arm, \"O1_GOVERNED\", budget) - metric(rows, format_arm, \"O0_RETRIEVAL\", budget)\n            order_differences.append({\"budget_utf8\": budget, \"format_arm\": format_arm, \"governed_minus_retrieval\": difference})\n    integrity_pass = all(row[\"integrity_pass\"] for row in aggregates)\n    return {\n        \"experiment_id\": \"PMLAB-PACK-002\",\n        \"status\": \"completed-synthetic-development-characterization\",\n        \"architecture_selection_allowed\": False,\n        \"packs\": len(rows),\n        \"integrity_pass\": integrity_pass,\n        \"primary_768\": {\n            \"C0_FULL_INLINE_macro_required_retention\": full_768,\n            \"C1_SOURCE_FOOTER_macro_required_retention\": compact_768,\n            \"compact_minus_full\": compact_768 - full_768,\n        },\n        \"strata_768\": {\"long_locator_compact_minus_full\": long_delta, \"source_reuse_compact_minus_full\": reuse_delta},\n        \"order_differences\": order_differences,\n        \"hypotheses\": {\n            \"H_PACK2_01\": integrity_pass and compact_768 - full_768 >= 0.05,\n            \"H_PACK2_02\": long_delta > 0 and reuse_delta > 0,\n            \"H_PACK2_03\": any(abs(row[\"governed_minus_retrieval\"]) >= 0.05 for row in order_differences),\n        },\n        \"reader_stage_numeric_gate\": integrity_pass and (\n            abs(compact_768 - full_768) >= 0.05\n            or sum(\n                1\n                for budget in BUDGETS\n                if metric(rows, \"C1_SOURCE_FOOTER\", None, budget) - metric(rows, \"C0_FULL_INLINE\", None, budget) >= 0.05\n            ) >= 2\n        ),\n        \"authority\": \"visible authored serialization fixture; no reader or architecture claim\",\n    }\n\n\ndef report(summary: dict[str, Any], aggregates: list[dict[str, Any]]) -> str:\n    lines = [\n        \"# Exact source-handle citation and pack-order run v1\",\n        \"\",\n        \"Status: completed synthetic development characterization\",\n        \"\",\n        \"## Primary comparison\",\n        \"\",\n        \"| Metric at 768 bytes | Value |\",\n        \"|---|---:|\",\n        f\"| Full inline required retention | {summary['primary_768']['C0_FULL_INLINE_macro_required_retention']:.3f} |\",\n        f\"| Compact source-footer required retention | {summary['primary_768']['C1_SOURCE_FOOTER_macro_required_retention']:.3f} |\",\n        f\"| Compact minus full | {summary['primary_768']['compact_minus_full']:+.3f} |\",\n        f\"| Long-locator delta | {summary['strata_768']['long_locator_compact_minus_full']:+.3f} |\",\n        f\"| Source-reuse delta | {summary['strata_768']['source_reuse_compact_minus_full']:+.3f} |\",\n        \"\",\n        f\"Integrity gates: `{'pass' if summary['integrity_pass'] else 'fail'}`. Reader-stage numeric gate: `{'pass' if summary['reader_stage_numeric_gate'] else 'fail'}`.\",\n        \"\",\n        \"## Registered hypotheses\",\n        \"\",\n        *[f\"- `{name}`: `{'pass' if value else 'fail'}`\" for name, value in summary[\"hypotheses\"].items()],\n        \"\",\n        \"## Boundaries\",\n        \"\",\n        \"The fixture is authored and visible. The result measures serialization capacity only. It does not validate evidence truth, bucket inference, reader use, trust classification, compression models, or architecture selection.\",\n        \"\",\n    ]\n    return \"\\n\".join(lines)\n\n\ndef run(output: Path) -> dict[str, Any]:\n    corpus = load_jsonl(FIXTURE / \"corpus.jsonl\")\n    cases = load_jsonl(FIXTURE / \"cases.jsonl\")\n    validate_fixture(corpus, cases)\n    records = {row[\"record_id\"]: row for row in corpus}\n    rows = [\n        build_pack(case, records, format_arm, order_arm, budget)\n        for case in cases\n        for format_arm in FORMAT_ARMS\n        for order_arm in ORDER_ARMS\n        for budget in BUDGETS\n    ]\n    aggregates = aggregate(rows)\n    summary = summarize(rows, aggregates)\n    output.mkdir(parents=True, exist_ok=True)\n    write_jsonl(output / \"packs.jsonl\", rows)\n    write_json(output / \"aggregates.json\", aggregates)\n    write_json(output / \"summary.json\", summary)\n    (output / \"report.md\").write_text(report(summary, aggregates), encoding=\"utf-8\", newline=\"\\n\")\n    execution_manifest = {\n        \"experiment_id\": \"PMLAB-PACK-002\",\n        \"protocol_freeze_commit\": FREEZE_COMMIT,\n        \"runner\": \"scripts/run_pack_characterization.py\",\n        \"python\": sys.version,\n        \"platform\": platform.platform(),\n        \"dependencies\": \"Python standard library only\",\n        \"input_hashes\": {\"corpus.jsonl\": sha256(FIXTURE / \"corpus.jsonl\"), \"cases.jsonl\": sha256(FIXTURE / \"cases.jsonl\")},\n        \"output_hashes\": {\n            \"packs.jsonl\": sha256(output / \"packs.jsonl\"),\n            \"aggregates.json\": sha256(output / \"aggregates.json\"),\n            \"summary.json\": sha256(output / \"summary.json\"),\n        },\n        \"packs\": len(rows),\n        \"api_calls\": 0,\n        \"api_cost_usd\": 0,\n    }\n    write_json(output / \"execution-manifest.json\", execution_manifest)\n    return {\"summary\": summary, \"manifest\": execution_manifest}\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--output\", type=Path, default=DEFAULT_OUTPUT)\n    args = parser.parse_args()\n    output = args.output if args.output.is_absolute() else ROOT / args.output\n    result = run(output)\n    print(json.dumps(result, ensure_ascii=True, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+  "summary": {
+    "architecture_selection_allowed": false,
+    "authority": "visible authored serialization fixture; no reader or architecture claim",
+    "experiment_id": "PMLAB-PACK-002",
+    "hypotheses": {
+      "H_PACK2_01": true,
+      "H_PACK2_02": true,
+      "H_PACK2_03": true
+    },
+    "integrity_pass": true,
+    "order_differences": [
+      {
+        "budget_utf8": 512,
+        "format_arm": "C0_FULL_INLINE",
+        "governed_minus_retrieval": -0.02777777777777779
+      },
+      {
+        "budget_utf8": 512,
+        "format_arm": "C1_SOURCE_FOOTER",
+        "governed_minus_retrieval": 0.02777777777777779
+      },
+      {
+        "budget_utf8": 768,
+        "format_arm": "C0_FULL_INLINE",
+        "governed_minus_retrieval": 0.22916666666666663
+      },
+      {
+        "budget_utf8": 768,
+        "format_arm": "C1_SOURCE_FOOTER",
+        "governed_minus_retrieval": 0.27083333333333326
+      },
+      {
+        "budget_utf8": 1024,
+        "format_arm": "C0_FULL_INLINE",
+        "governed_minus_retrieval": 0.32638888888888895
+      },
+      {
+        "budget_utf8": 1024,
+        "format_arm": "C1_SOURCE_FOOTER",
+        "governed_minus_retrieval": 0.24305555555555558
+      },
+      {
+        "budget_utf8": 1536,
+        "format_arm": "C0_FULL_INLINE",
+        "governed_minus_retrieval": 0.0
+      },
+      {
+        "budget_utf8": 1536,
+        "format_arm": "C1_SOURCE_FOOTER",
+        "governed_minus_retrieval": 0.0
+      }
+    ],
+    "packs": 864,
+    "primary_768": {
+      "C0_FULL_INLINE_macro_required_retention": 0.7013888888888888,
+      "C1_SOURCE_FOOTER_macro_required_retention": 0.7893518518518519,
+      "compact_minus_full": 0.08796296296296302
+    },
+    "reader_stage_numeric_gate": true,
+    "status": "completed-synthetic-development-characterization",
+    "strata_768": {
+      "long_locator_compact_minus_full": 0.11111111111111116,
+      "source_reuse_compact_minus_full": 0.07407407407407407
+    }
+  },
+  "claim_relevant_aggregates": [
+    {
+      "all_required_rate": 0.7083333333333334,
+      "budget_utf8": 768,
+      "critical_retention": 1.0,
+      "format_arm": "T0_TEXT_ONLY",
+      "integrity_pass": true,
+      "macro_required_retention": 0.8888888888888888,
+      "mean_included_records": 5.583333333333333,
+      "mean_utf8_bytes": 694.375,
+      "order_arm": "O0_RETRIEVAL",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 0.9583333333333334,
+      "budget_utf8": 768,
+      "critical_retention": 1.0,
+      "format_arm": "T0_TEXT_ONLY",
+      "integrity_pass": true,
+      "macro_required_retention": 0.9861111111111112,
+      "mean_included_records": 5.583333333333333,
+      "mean_utf8_bytes": 687.875,
+      "order_arm": "O1_GOVERNED",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 1,
+      "budget_utf8": 768,
+      "critical_retention": 1.0,
+      "format_arm": "T0_TEXT_ONLY",
+      "integrity_pass": true,
+      "macro_required_retention": 1.0,
+      "mean_included_records": 5.583333333333333,
+      "mean_utf8_bytes": 688.0,
+      "order_arm": "O2_REQUIRED_ORACLE",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 0.3333333333333333,
+      "budget_utf8": 768,
+      "critical_retention": 0.5,
+      "format_arm": "C0_FULL_INLINE",
+      "integrity_pass": true,
+      "macro_required_retention": 0.4375,
+      "mean_included_records": 3.2916666666666665,
+      "mean_utf8_bytes": 674.625,
+      "order_arm": "O0_RETRIEVAL",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 0.4166666666666667,
+      "budget_utf8": 768,
+      "critical_retention": 0.5,
+      "format_arm": "C0_FULL_INLINE",
+      "integrity_pass": true,
+      "macro_required_retention": 0.6666666666666666,
+      "mean_included_records": 3.3333333333333335,
+      "mean_utf8_bytes": 684.9583333333334,
+      "order_arm": "O1_GOVERNED",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 1,
+      "budget_utf8": 768,
+      "critical_retention": 1.0,
+      "format_arm": "C0_FULL_INLINE",
+      "integrity_pass": true,
+      "macro_required_retention": 1.0,
+      "mean_included_records": 3.375,
+      "mean_utf8_bytes": 676.25,
+      "order_arm": "O2_REQUIRED_ORACLE",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 0.4166666666666667,
+      "budget_utf8": 768,
+      "critical_retention": 0.5833333333333334,
+      "format_arm": "C1_SOURCE_FOOTER",
+      "integrity_pass": true,
+      "macro_required_retention": 0.5486111111111112,
+      "mean_included_records": 3.6666666666666665,
+      "mean_utf8_bytes": 699.7916666666666,
+      "order_arm": "O0_RETRIEVAL",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 0.6666666666666666,
+      "budget_utf8": 768,
+      "critical_retention": 0.5833333333333334,
+      "format_arm": "C1_SOURCE_FOOTER",
+      "integrity_pass": true,
+      "macro_required_retention": 0.8194444444444444,
+      "mean_included_records": 3.7916666666666665,
+      "mean_utf8_bytes": 698.2916666666666,
+      "order_arm": "O1_GOVERNED",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 1,
+      "budget_utf8": 768,
+      "critical_retention": 1.0,
+      "format_arm": "C1_SOURCE_FOOTER",
+      "integrity_pass": true,
+      "macro_required_retention": 1.0,
+      "mean_included_records": 3.8333333333333335,
+      "mean_utf8_bytes": 702.4583333333334,
+      "order_arm": "O2_REQUIRED_ORACLE",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 1,
+      "budget_utf8": 1536,
+      "critical_retention": 1.0,
+      "format_arm": "T0_TEXT_ONLY",
+      "integrity_pass": true,
+      "macro_required_retention": 1.0,
+      "mean_included_records": 6,
+      "mean_utf8_bytes": 751.0416666666666,
+      "order_arm": "O0_RETRIEVAL",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 1,
+      "budget_utf8": 1536,
+      "critical_retention": 1.0,
+      "format_arm": "C0_FULL_INLINE",
+      "integrity_pass": true,
+      "macro_required_retention": 1.0,
+      "mean_included_records": 6,
+      "mean_utf8_bytes": 1278.25,
+      "order_arm": "O0_RETRIEVAL",
+      "packs": 24
+    },
+    {
+      "all_required_rate": 1,
+      "budget_utf8": 1536,
+      "critical_retention": 1.0,
+      "format_arm": "C1_SOURCE_FOOTER",
+      "integrity_pass": true,
+      "macro_required_retention": 1.0,
+      "mean_included_records": 6,
+      "mean_utf8_bytes": 1098.375,
+      "order_arm": "O0_RETRIEVAL",
+      "packs": 24
+    }
+  ],
+  "posthoc_768_pairs": [
+    {
+      "budget_utf8": 768,
+      "equal_cases": [
+        "PACK-01",
+        "PACK-02",
+        "PACK-03",
+        "PACK-04",
+        "PACK-05",
+        "PACK-06",
+        "PACK-08",
+        "PACK-09",
+        "PACK-11",
+        "PACK-13",
+        "PACK-15",
+        "PACK-16",
+        "PACK-17",
+        "PACK-18",
+        "PACK-20",
+        "PACK-21",
+        "PACK-22",
+        "PACK-23"
+      ],
+      "improved_cases": [
+        "PACK-07",
+        "PACK-10",
+        "PACK-12",
+        "PACK-14",
+        "PACK-19",
+        "PACK-24"
+      ],
+      "mean_compact_minus_full": 0.1111111111111111,
+      "order_arm": "O0_RETRIEVAL",
+      "per_case_delta": {
+        "PACK-01": 0.0,
+        "PACK-02": 0.0,
+        "PACK-03": 0.0,
+        "PACK-04": 0.0,
+        "PACK-05": 0.0,
+        "PACK-06": 0.0,
+        "PACK-07": 0.3333333333333333,
+        "PACK-08": 0.0,
+        "PACK-09": 0.0,
+        "PACK-10": 0.5,
+        "PACK-11": 0.0,
+        "PACK-12": 0.5,
+        "PACK-13": 0.0,
+        "PACK-14": 0.5,
+        "PACK-15": 0.0,
+        "PACK-16": 0.0,
+        "PACK-17": 0.0,
+        "PACK-18": 0.0,
+        "PACK-19": 0.3333333333333333,
+        "PACK-20": 0.0,
+        "PACK-21": 0.0,
+        "PACK-22": 0.0,
+        "PACK-23": 0.0,
+        "PACK-24": 0.5
+      },
+      "worse_cases": []
+    },
+    {
+      "budget_utf8": 768,
+      "equal_cases": [
+        "PACK-01",
+        "PACK-02",
+        "PACK-03",
+        "PACK-04",
+        "PACK-06",
+        "PACK-07",
+        "PACK-09",
+        "PACK-11",
+        "PACK-12",
+        "PACK-14",
+        "PACK-16",
+        "PACK-17",
+        "PACK-18",
+        "PACK-20",
+        "PACK-22",
+        "PACK-23"
+      ],
+      "improved_cases": [
+        "PACK-05",
+        "PACK-08",
+        "PACK-10",
+        "PACK-13",
+        "PACK-15",
+        "PACK-19",
+        "PACK-21",
+        "PACK-24"
+      ],
+      "mean_compact_minus_full": 0.1527777777777778,
+      "order_arm": "O1_GOVERNED",
+      "per_case_delta": {
+        "PACK-01": 0.0,
+        "PACK-02": 0.0,
+        "PACK-03": 0.0,
+        "PACK-04": 0.0,
+        "PACK-05": 0.5,
+        "PACK-06": 0.0,
+        "PACK-07": 0.0,
+        "PACK-08": 0.5,
+        "PACK-09": 0.0,
+        "PACK-10": 0.5,
+        "PACK-11": 0.0,
+        "PACK-12": 0.0,
+        "PACK-13": 0.5,
+        "PACK-14": 0.0,
+        "PACK-15": 0.3333333333333333,
+        "PACK-16": 0.0,
+        "PACK-17": 0.0,
+        "PACK-18": 0.0,
+        "PACK-19": 0.3333333333333333,
+        "PACK-20": 0.0,
+        "PACK-21": 0.5,
+        "PACK-22": 0.0,
+        "PACK-23": 0.0,
+        "PACK-24": 0.5
+      },
+      "worse_cases": []
+    },
+    {
+      "budget_utf8": 768,
+      "equal_cases": [
+        "PACK-01",
+        "PACK-02",
+        "PACK-03",
+        "PACK-04",
+        "PACK-05",
+        "PACK-06",
+        "PACK-07",
+        "PACK-08",
+        "PACK-09",
+        "PACK-10",
+        "PACK-11",
+        "PACK-12",
+        "PACK-13",
+        "PACK-14",
+        "PACK-15",
+        "PACK-16",
+        "PACK-17",
+        "PACK-18",
+        "PACK-19",
+        "PACK-20",
+        "PACK-21",
+        "PACK-22",
+        "PACK-23",
+        "PACK-24"
+      ],
+      "improved_cases": [],
+      "mean_compact_minus_full": 0.0,
+      "order_arm": "O2_REQUIRED_ORACLE",
+      "per_case_delta": {
+        "PACK-01": 0.0,
+        "PACK-02": 0.0,
+        "PACK-03": 0.0,
+        "PACK-04": 0.0,
+        "PACK-05": 0.0,
+        "PACK-06": 0.0,
+        "PACK-07": 0.0,
+        "PACK-08": 0.0,
+        "PACK-09": 0.0,
+        "PACK-10": 0.0,
+        "PACK-11": 0.0,
+        "PACK-12": 0.0,
+        "PACK-13": 0.0,
+        "PACK-14": 0.0,
+        "PACK-15": 0.0,
+        "PACK-16": 0.0,
+        "PACK-17": 0.0,
+        "PACK-18": 0.0,
+        "PACK-19": 0.0,
+        "PACK-20": 0.0,
+        "PACK-21": 0.0,
+        "PACK-22": 0.0,
+        "PACK-23": 0.0,
+        "PACK-24": 0.0
+      },
+      "worse_cases": []
+    }
+  ],
+  "posthoc_complete_pack_bytes": {
+    "C0_FULL_INLINE": 1278.25,
+    "C1_SOURCE_FOOTER": 1098.375,
+    "compact_minus_full": -179.875
+  },
+  "metric_receipt_768_nonoracle": [
+    {
+      "case": "PACK-01",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 741,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-01",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 690,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-01",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 712,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-01",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 742,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-02",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 747,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-02",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 653,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-02",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 742,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-02",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 747,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-03",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 680,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-03",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 617,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-03",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 724,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-03",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 583,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-04",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 683,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-04",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 740,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-04",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 569,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-04",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 751,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-05",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 664,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-05",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 599,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-05",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 708,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-05",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 726,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-06",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 595,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-06",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 725,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-06",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 712,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-06",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 722,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-07",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 733,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-07",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 754,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-07",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.3333333333333333,
+      "bytes": 737,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-07",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 720,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-08",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 716,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-08",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 757,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-08",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 675,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-08",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 693,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-09",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 761,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-09",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 647,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-09",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 758,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-09",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 708,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-10",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 728,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-10",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 728,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-10",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 759,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-10",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 708,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-11",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 722,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-11",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 672,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-11",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 631,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-11",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 638,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-12",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 645,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-12",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 712,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-12",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 759,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-12",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 621,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-13",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 645,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-13",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 574,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-13",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 689,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-13",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 699,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-14",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 730,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-14",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 669,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-14",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 762,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-14",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 761,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-15",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 659,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-15",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 584,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-15",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 703,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-15",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 0.6666666666666666,
+      "bytes": 725,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-16",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 594,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-16",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 717,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-16",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 694,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-16",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 728,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-17",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 643,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-17",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 756,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-17",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 687,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-17",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 727,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-18",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 735,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-18",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 733,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-18",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 654,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-18",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 730,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-19",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 671,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-19",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 617,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-19",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.3333333333333333,
+      "bytes": 675,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-19",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 0.6666666666666666,
+      "bytes": 678,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-20",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 718,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-20",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 740,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-20",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 684,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-20",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 649,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-21",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 544,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-21",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 599,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-21",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 686,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-21",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 660,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-22",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 693,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-22",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 711,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-22",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 1.0,
+      "bytes": 671,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-22",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 630,
+      "reuse": false,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-23",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 565,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-23",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 754,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-23",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 705,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-23",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 0.3333333333333333,
+      "bytes": 720,
+      "reuse": true,
+      "locator_class": "short_or_mixed",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-24",
+      "format": "C0_FULL_INLINE",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.0,
+      "bytes": 579,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-24",
+      "format": "C0_FULL_INLINE",
+      "order": "O1_GOVERNED",
+      "retention": 0.5,
+      "bytes": 691,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-24",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O0_RETRIEVAL",
+      "retention": 0.5,
+      "bytes": 699,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    },
+    {
+      "case": "PACK-24",
+      "format": "C1_SOURCE_FOOTER",
+      "order": "O1_GOVERNED",
+      "retention": 1.0,
+      "bytes": 693,
+      "reuse": false,
+      "locator_class": "long",
+      "integrity_pass": true
+    }
+  ],
+  "execution_manifest": {
+    "api_calls": 0,
+    "api_cost_usd": 0,
+    "dependencies": "Python standard library only",
+    "experiment_id": "PMLAB-PACK-002",
+    "input_hashes": {
+      "cases.jsonl": "da1f1a94d09cadcf0996ae102a6aa7e86ba1a72f95c2cb77ea28e66234dfc967",
+      "corpus.jsonl": "2270bffe8d76a760f216ad4ac85328b6de8970bdc1c12cf90188d21f2315a8c8"
+    },
+    "output_hashes": {
+      "aggregates.json": "26571140b29ea47551d4f41cb571aee3ce5f1a82c9ab2ab1bddf1c3d6b82c684",
+      "packs.jsonl": "4145c30546a24299e9c3a8a0283e5ddb0208a98b3d6d601723c1787d5f1e820c",
+      "summary.json": "ae2504fb30c0a771f0b5cb0715379e193c519d98472ce5625ad333d794909989"
+    },
+    "packs": 864,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "protocol_freeze_commit": "96c901fef3f4829ddbeac7e731bd2a526548d0a4",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "runner": "scripts/run_pack_characterization.py"
+  },
+  "reproducibility_receipt": {
+    "experiment_id": "PMLAB-PACK-002",
+    "status": "two-fresh-process-byte-identical-reproduction",
+    "protocol_freeze_commit": "96c901fef3f4829ddbeac7e731bd2a526548d0a4",
+    "primary_packs_sha256": "4145c30546a24299e9c3a8a0283e5ddb0208a98b3d6d601723c1787d5f1e820c",
+    "repeat_packs_sha256": "4145c30546a24299e9c3a8a0283e5ddb0208a98b3d6d601723c1787d5f1e820c",
+    "identical": true,
+    "repeat_artifact": "ignored tmp/pmlab-pack-characterization-v1-repeat",
+    "api_calls": 0,
+    "api_cost_usd": 0
+  },
+  "author_report": "# Exact source-handle citation and pack-order run v1\n\nStatus: completed synthetic development characterization after freeze `96c901f`\nAuthority: serialization capacity only; no reader, classifier, retrieval, or architecture claim\n\n## Primary result\n\nAll 864 packs passed exact span resolution, byte-identical evidence, trust filtering, stale-marker, omission-ledger, and UTF-8 budget gates. Two fresh processes produced byte-identical `packs.jsonl` SHA-256 `4145c30546a24299e9c3a8a0283e5ddb0208a98b3d6d601723c1787d5f1e820c`.\n\nAt 768 bytes, averaged across the three frozen order arms:\n\n| Format | Macro required retention |\n|---|---:|\n| Full inline locator | 0.701 |\n| Compact source handle plus in-pack footer | 0.789 |\n| Compact minus full | **+0.088** |\n\nThe compact-minus-full delta was `+0.111` in the registered long-locator stratum and `+0.074` when required records reused a source path. `H-PACK2-01` and the registered directional `H-PACK2-02` therefore pass on this visible fixture.\n\n## Budget and order interaction\n\n| Budget | Format | Retrieval order | Governed order | Required oracle |\n|---:|---|---:|---:|---:|\n| 512 | full inline | 0.375 | 0.347 | 0.931 |\n| 512 | compact footer | 0.403 | 0.431 | 0.868 |\n| 768 | full inline | 0.438 | 0.667 | 1.000 |\n| 768 | compact footer | 0.549 | 0.819 | 1.000 |\n| 1024 | full inline | 0.604 | 0.931 | 1.000 |\n| 1024 | compact footer | 0.743 | 0.986 | 1.000 |\n| 1536 | full inline | 1.000 | 1.000 | 1.000 |\n| 1536 | compact footer | 1.000 | 1.000 | 1.000 |\n\nThe compact representation is not uniformly better. At 512 bytes in the required-oracle arm it scored `0.868` versus `0.931` for full inline because the `SOURCES` footer has a fixed cost and very small packs may not reuse enough paths. At 1536 bytes both cited formats fit all trusted records, so retention ties. Post-hoc paired case IDs and reversals are recorded in `posthoc-analysis.json` without retuning.\n\nWith evidence and format fixed, governed-minus-retrieval retention at 768 bytes was `+0.229` for full inline and `+0.271` for compact citations. At 512 bytes the direction was small and format-dependent; at 1536 it disappeared. `H-PACK2-03` passes only as evidence that ordering can change capacity under pressure. It does not show that a reader will use governed order better.\n\n## Serialization cost\n\nWhen the 1536-byte budget allowed every trusted candidate, full inline packs averaged `1278.2` bytes and compact source-footer packs averaged `1098.4` bytes, a descriptive saving of `179.8` bytes (`14.1%`). This is fixture-dependent and reflects its path lengths and source reuse.\n\n## Decisions\n\n- Preserve `C0_FULL_INLINE` as the simplest exact citation baseline.\n- Advance `C1_SOURCE_FOOTER` to a fresh controlled reader experiment; do not make it the default yet.\n- Advance `O0_RETRIEVAL` and `O1_GOVERNED` as reader arms. Keep `O2_REQUIRED_ORACLE` only as a capacity ceiling.\n- Do not add LLMLingua, RECOMP, learned compression, retrieval, or automatic trust/bucket inference to the reader test.\n- The future reader experiment must equalize included evidence IDs and bytes where possible. Otherwise format capacity and reader comprehension remain confounded.\n\n## Limitations\n\n- All records and labels are authored and visible.\n- Required-source reuse is a registered case property, not a causal isolation of all candidate-path reuse.\n- Greedy first-fit-with-continue is only one packing algorithm.\n- UTF-8 bytes are provider-neutral but not equal to provider token counts.\n- No model read the compact handles or footer, so citation emission, answer accuracy, stale use, and position bias remain unknown.\n- No uncertainty or generalization claim is made from 24 constructed cases.\n\n## Gate decision\n\nThe deterministic integrity and numeric reader-stage gates pass. This authorizes drafting and freezing a fresh reader protocol; it does not authorize an API call until condition blinding, answer-bearing cases, equal-evidence controls, scoring rules, model manifest, and cost cap are frozen.\n",
+  "authority_boundary": "Visible authored serialization fixture only; no reader, independent labels, natural transfer, or architecture authority."
+}

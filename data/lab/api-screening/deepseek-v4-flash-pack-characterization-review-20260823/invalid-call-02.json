@@ -1,0 +1,11 @@
+{
+  "at": "2026-08-23T05:33:33Z",
+  "run_id": "deepseek-v4-flash-pack-characterization-review-20260823",
+  "model": "deepseek-v4-flash",
+  "response_id": "336b7d7b-773c-4810-965f-2fa447233e00",
+  "prompt_tokens": 53500,
+  "completion_tokens": 6000,
+  "conservative_cost_usd": 0.03146,
+  "pricing_basis": "all input charged at configured peak cache-miss rate",
+  "latency_ms": 27617.67
+}
