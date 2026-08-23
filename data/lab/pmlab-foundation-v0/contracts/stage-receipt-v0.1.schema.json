@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-foundation-v0/contracts/stage-receipt-v0.1.schema.json",
+  "title": "Foundation diagnostic stage receipt v0.1",
+  "description": "Structural contract. Stage-specific checks, trace chain, state consistency, and physical-loss rules are enforced by the frozen construction validator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "receipt_id", "trace_id", "sequence", "previous_receipt_id", "stage", "status", "observed_at", "component", "authorization_state", "input_refs", "output_refs", "checks", "failure_codes", "data_loss_state", "note"],
+  "properties": {
+    "schema_version": {"const": "foundation-stage-receipt-v0.1"},
+    "receipt_id": {"type": "string", "pattern": "^RCPT-[A-F0-9]{16}$"},
+    "trace_id": {"type": "string", "pattern": "^TRACE-[A-F0-9]{12}$"},
+    "sequence": {"type": "integer", "minimum": 0, "maximum": 5},
+    "previous_receipt_id": {"type": ["string", "null"], "pattern": "^RCPT-[A-F0-9]{16}$"},
+    "stage": {"enum": ["F0_CAPTURE", "F1_DURABLE_RECORD", "F2_INDEX_ADDRESS", "F3_SELECT_PACK", "F4_READER_USE", "F5_ACTION_EVAL"]},
+    "status": {"enum": ["pass", "fail", "unknown", "skipped"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "component": {
+      "type": "object", "additionalProperties": false, "required": ["name", "version"],
+      "properties": {"name": {"type": "string", "minLength": 1, "maxLength": 100}, "version": {"type": "string", "minLength": 1, "maxLength": 100}}
+    },
+    "authorization_state": {"enum": ["authorized", "denied", "unknown", "not_applicable"]},
+    "input_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+    "output_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+    "checks": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["check_id", "status", "evidence_ref"],
+        "properties": {"check_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,79}$"}, "status": {"enum": ["pass", "fail", "unknown", "skipped"]}, "evidence_ref": {"type": ["string", "null"], "maxLength": 300}}
+      }
+    },
+    "failure_codes": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,79}$"}},
+    "data_loss_state": {"enum": ["confirmed", "ruled_out", "unknown", "not_applicable"]},
+    "note": {"type": ["string", "null"], "maxLength": 500}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "id", "sha256"],
+      "properties": {"kind": {"enum": ["source", "canonical_event", "canonical_bytes", "index_snapshot", "retrieval_set", "context_pack", "reader_output", "action_receipt", "evaluation"]}, "id": {"type": "string", "minLength": 1, "maxLength": 200}, "sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]}}
+    }
+  }
+}
+

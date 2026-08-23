@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/data/lab/pmlab-foundation-v0/contracts/canonical-event-v0.1.schema.json",
+  "title": "Foundation canonical event v0.1",
+  "description": "Structural contract. Cross-record, hash, ordering, privacy, revision, and time invariants are enforced by the frozen construction validator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "event_id", "idempotency_key", "event_type", "evidence", "time", "actor", "scope", "authorization", "provenance", "revision"],
+  "properties": {
+    "schema_version": {"const": "foundation-canonical-event-v0.1"},
+    "event_id": {"type": "string", "pattern": "^EV-[A-F0-9]{16}$"},
+    "idempotency_key": {"type": "string", "pattern": "^IDEM-[A-F0-9]{16}$"},
+    "event_type": {"enum": ["message_observed", "tool_result_observed", "file_span_observed", "decision_recorded", "outcome_observed", "correction_recorded"]},
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["content_sha256", "byte_length", "media_type", "storage_ref", "source_locator", "source_object_sha256", "exact_span"],
+      "properties": {
+        "content_sha256": {"$ref": "#/$defs/sha256"},
+        "byte_length": {"type": "integer", "minimum": 1},
+        "media_type": {"type": "string", "minLength": 1, "maxLength": 100},
+        "storage_ref": {"type": "string", "pattern": "^data/lab/pmlab-foundation-v0/construction-v0/raw/[A-Za-z0-9._-]+$"},
+        "source_locator": {"type": "string", "minLength": 1, "maxLength": 500},
+        "source_object_sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "exact_span": {
+          "anyOf": [
+            {"type": "null"},
+            {"type": "object", "additionalProperties": false, "required": ["unit", "start", "end"], "properties": {"unit": {"enum": ["utf8_byte", "unicode_codepoint", "line"]}, "start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 1}}}
+          ]
+        }
+      }
+    },
+    "time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["occurred_at", "observed_at", "valid_from", "valid_to", "transaction_at", "precision", "timezone"],
+      "properties": {
+        "occurred_at": {"type": ["string", "null"], "format": "date-time"},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "valid_from": {"type": ["string", "null"], "format": "date-time"},
+        "valid_to": {"type": ["string", "null"], "format": "date-time"},
+        "transaction_at": {"type": "string", "format": "date-time"},
+        "precision": {"enum": ["second", "minute", "hour", "day", "unknown"]},
+        "timezone": {"type": "string", "minLength": 1, "maxLength": 100}
+      }
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_id", "actor_kind"],
+      "properties": {"actor_id": {"type": "string", "minLength": 1, "maxLength": 120}, "actor_kind": {"enum": ["user", "model", "tool", "system", "external"]}}
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workspace_id", "session_id", "task_id"],
+      "properties": {"workspace_id": {"type": "string", "minLength": 1, "maxLength": 120}, "session_id": {"type": ["string", "null"], "maxLength": 120}, "task_id": {"type": ["string", "null"], "maxLength": 120}}
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capture_basis", "capture_allowed", "external_processing_allowed", "sensitivity", "access_scopes", "retention_class", "governance_receipt_id"],
+      "properties": {
+        "capture_basis": {"enum": ["synthetic", "explicit_user_scope", "project_artifact_allowlist"]},
+        "capture_allowed": {"const": true},
+        "external_processing_allowed": {"type": "boolean"},
+        "sensitivity": {"enum": ["none", "internal", "personal", "secret"]},
+        "access_scopes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["local_research", "approved_external_worker", "user_only"]}},
+        "retention_class": {"enum": ["synthetic_disposable", "project_research", "restricted"]},
+        "governance_receipt_id": {"type": ["string", "null"], "pattern": "^GOV-[A-F0-9]{12}$"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["producer_component", "producer_version", "upstream_event_ids", "causal_parent_ids"],
+      "properties": {
+        "producer_component": {"type": "string", "minLength": 1, "maxLength": 100},
+        "producer_version": {"type": "string", "minLength": 1, "maxLength": 100},
+        "upstream_event_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EV-[A-F0-9]{16}$"}},
+        "causal_parent_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EV-[A-F0-9]{16}$"}}
+      }
+    },
+    "revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relation", "target_event_id", "reason"],
+      "properties": {
+        "relation": {"enum": ["original", "corrects", "supersedes"]},
+        "target_event_id": {"type": ["string", "null"], "pattern": "^EV-[A-F0-9]{16}$"},
+        "reason": {"type": ["string", "null"], "maxLength": 240}
+      }
+    }
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}
+

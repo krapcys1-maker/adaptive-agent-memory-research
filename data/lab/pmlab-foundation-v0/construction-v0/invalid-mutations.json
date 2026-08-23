@@ -1,0 +1,18 @@
+{
+  "schema_version": "foundation-construction-invalid-mutations-v0.1",
+  "cases": [
+    {"case_id": "INV-EVENT-EXTRA-FIELD", "target": "events", "mutations": [{"op": "add", "event_id": "EV-0000000000000001", "path": "/semantic_summary", "value": "Unreviewed derived text"}], "expected_error": "unexpected field"},
+    {"case_id": "INV-EVENT-UNAUTHORIZED", "target": "events", "mutations": [{"op": "replace", "event_id": "EV-0000000000000001", "path": "/authorization/capture_allowed", "value": false}], "expected_error": "capture_allowed"},
+    {"case_id": "INV-EVENT-BAD-HASH", "target": "events", "mutations": [{"op": "replace", "event_id": "EV-0000000000000001", "path": "/evidence/content_sha256", "value": "0000000000000000000000000000000000000000000000000000000000000000"}], "expected_error": "content hash mismatch"},
+    {"case_id": "INV-EVENT-REVERSED-VALIDITY", "target": "events", "mutations": [{"op": "replace", "event_id": "EV-0000000000000001", "path": "/time/valid_to", "value": "2026-07-31T09:00:00Z"}], "expected_error": "valid interval"},
+    {"case_id": "INV-EVENT-MISSING-REVISION-TARGET", "target": "events", "mutations": [{"op": "replace", "event_id": "EV-0000000000000002", "path": "/revision/target_event_id", "value": "EV-FFFFFFFFFFFFFFFF"}], "expected_error": "revision target"},
+    {"case_id": "INV-EVENT-ORIGINAL-HAS-TARGET", "target": "events", "mutations": [{"op": "replace", "event_id": "EV-0000000000000001", "path": "/revision/target_event_id", "value": "EV-0000000000000002"}], "expected_error": "original revision"},
+    {"case_id": "INV-RECEIPT-MISSING-CHECK", "target": "receipts", "mutations": [{"op": "remove_check", "receipt_id": "RCPT-0000000000000002", "check_id": "raw_bytes_recoverable"}], "expected_error": "missing required checks"},
+    {"case_id": "INV-RECEIPT-FALSE-LOSS", "target": "receipts", "mutations": [{"op": "replace", "receipt_id": "RCPT-0000000000000002", "path": "/data_loss_state", "value": "confirmed"}], "expected_error": "confirmed physical loss"},
+    {"case_id": "INV-RECEIPT-LOSS-WRONG-STAGE", "target": "receipts", "mutations": [{"op": "replace", "receipt_id": "RCPT-0000000000000003", "path": "/data_loss_state", "value": "confirmed"}], "expected_error": "data loss not applicable"},
+    {"case_id": "INV-RECEIPT-PASS-WITH-FAIL", "target": "receipts", "mutations": [{"op": "replace_check", "receipt_id": "RCPT-0000000000000004", "check_id": "authorization_filter_passed", "field": "status", "value": "fail"}], "expected_error": "pass receipt has non-pass check"},
+    {"case_id": "INV-RECEIPT-BROKEN-CHAIN", "target": "receipts", "mutations": [{"op": "replace", "receipt_id": "RCPT-0000000000000005", "path": "/previous_receipt_id", "value": "RCPT-FFFFFFFFFFFFFFFF"}], "expected_error": "previous receipt"},
+    {"case_id": "INV-RECEIPT-DUPLICATE-CHECK", "target": "receipts", "mutations": [{"op": "duplicate_check", "receipt_id": "RCPT-0000000000000006", "check_id": "evaluator_correct"}], "expected_error": "duplicate check"}
+  ]
+}
+

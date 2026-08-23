@@ -1,0 +1,33 @@
+{
+  "schema_version": "foundation-construction-freeze-v0.1",
+  "contract_id": "PMLAB-FOUNDATION-CONTRACT-001",
+  "parent_experiment_id": "PMLAB-FOUNDATION-001",
+  "status": "contract-and-authored-fixture-frozen-before-validator",
+  "created_at": "2026-08-23T00:00:00Z",
+  "model_api_required": false,
+  "api_authorized": false,
+  "api_budget_usd": 0,
+  "product_implementation": false,
+  "runner_present_at_freeze": false,
+  "construction_claim_only": true,
+  "counts": {
+    "canonical_events": 2,
+    "stage_receipts": 6,
+    "diagnostic_stages": 6,
+    "invalid_mutation_cases": 12,
+    "raw_payload_files": 2
+  },
+  "artifacts": [
+    {"path": "docs/11-research-laboratory/foundation-canonical-event-and-stage-receipt-contract-v0.md", "bytes": 6636, "sha256": "7bde022284aaf374b03b20448c4fa60d4ea97087f8dd165a84f0c58bb0fb4b50"},
+    {"path": "data/lab/pmlab-foundation-v0/contracts/canonical-event-v0.1.schema.json", "bytes": 5556, "sha256": "e81be0737f3d8e4118e8650d4ce847265e76f2ea931a13a7355290c98c328294"},
+    {"path": "data/lab/pmlab-foundation-v0/contracts/stage-receipt-v0.1.schema.json", "bytes": 3081, "sha256": "62af72a89899bcaccb26be3eb10b464cdf0821a7a5d5e2a77b17a4f3b69a9711"},
+    {"path": "data/lab/pmlab-foundation-v0/construction-v0/raw/observation-001.txt", "bytes": 58, "sha256": "1f9326b80e12e5b6eed8abe627e97d07d529f86c16b647e30eec7f79bdcec076"},
+    {"path": "data/lab/pmlab-foundation-v0/construction-v0/raw/correction-001.txt", "bytes": 57, "sha256": "e66681bbb8e377bc0a87aa7ab48e723ebccc49d66da3d249d623a3ce97671fb8"},
+    {"path": "data/lab/pmlab-foundation-v0/construction-v0/canonical-events.jsonl", "bytes": 2951, "sha256": "1f8d880ceb9e4ebd9016773f9a2971412574eb4f74f88b489ec64daa3459402a"},
+    {"path": "data/lab/pmlab-foundation-v0/construction-v0/stage-receipts.jsonl", "bytes": 6114, "sha256": "e5b7dda974f27786ea4bc4eeda0a9a691c4a72f5d0d0a6158b8560f2396ab315"},
+    {"path": "data/lab/pmlab-foundation-v0/construction-v0/invalid-mutations.json", "bytes": 3006, "sha256": "18755685970f42b7ec4e329a3f34eb1747fb32e2a057125b1f70ff7f530a054b"},
+    {"path": "data/lab/pmlab-foundation-v0/construction-v0/README.md", "bytes": 905, "sha256": "29b5e21192589c8b371673d2690a7b1c68bec6659592e02934e1147aedcce28c"}
+  ],
+  "next_gate": "commit these exact bytes, then build a dependency-free validator without changing the fixture"
+}
+

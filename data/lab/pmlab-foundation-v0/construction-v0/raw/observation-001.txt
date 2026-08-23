@@ -1,0 +1,2 @@
+Synthetic observation: Project Pine uses provider Cedar.
+

@@ -11,7 +11,8 @@
   },
   "scale_tokens": [100000, 1000000, 5000000, 10000000],
   "frozen": {
-    "canonical_event_contract": false,
+    "canonical_event_contract": true,
+    "failure_localization_contract": true,
     "open_compactor": false,
     "history_generator": false,
     "delayed_task_reveals": false,
