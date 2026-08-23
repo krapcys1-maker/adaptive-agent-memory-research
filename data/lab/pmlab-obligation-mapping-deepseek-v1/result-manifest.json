@@ -9,7 +9,7 @@
     "predictions.jsonl": "85c93537df11194911e9082f72232281dd4f4716127bd94d39198a6ef9760197",
     "scored-results.jsonl": "1ef62ef267dd7edced5e08427b3beb13c0bfd9c34f0ae7517a9efa115db5148e",
     "score-summary.json": "3901ea0d9989df9de32b69f35f85191576e0ae711f10cfa9d7b6eecf3de01bb2",
-    "report.md": "c2c9bcfa8d1516bbb03ec16e521522996e3222a5bd20309b9c0c4ce8ed4b507b"
+    "report.md": "11b5a74eb932e196f6f5be0b7bdcd5ea7ce8388d9a6bdcc72d040cc289fe013b"
   },
   "authority": "optional comparator; not gold; not held out"
 }

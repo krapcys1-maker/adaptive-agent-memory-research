@@ -67,14 +67,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      # Reporting-only while #30 is open. Six frozen artifacts are known to
-      # have been modified after freezing, so gating on them would pin main red
-      # for reasons no incoming pull request caused, and a permanently red badge
-      # teaches people to stop reading CI. The cross-platform half of the
-      # problem is fixed, so this is now six findings rather than twenty-three.
-      # Flip to blocking as part of closing #30.
+      # Blocking. #26 and #30 are resolved and the audit reports zero critical
+      # findings, so a broken freeze is now caught the day it is introduced
+      # rather than discovered months later by an external reviewer.
       - name: Audit declared hashes, registry paths, and cross-references
-        continue-on-error: true
         run: python scripts/audit_repository_claims.py --format text
 
   canonical-store-guard:

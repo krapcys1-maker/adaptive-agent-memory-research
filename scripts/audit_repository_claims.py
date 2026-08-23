@@ -130,8 +130,37 @@ def resolve_declared_target(manifest: Path, key: str, key_path: list[str]) -> tu
     return None
 
 
+SUPERSEDED_MARKER = "SUPERSEDED.json"
+
+
+def superseded_by_marker(manifest: Path) -> Path | None:
+    """Return the marker declaring this manifest's directory superseded, if any.
+
+    A superseded packet keeps the bytes it actually declared. Its digests are
+    stale rather than false: they described the repository correctly at the
+    freeze commit. Reporting them as live breaks would push the project towards
+    rewriting historical freezes to silence an audit, which is precisely the
+    behaviour this project refuses.
+    """
+    for directory in (manifest.parent, *manifest.parent.parents):
+        if directory == ROOT.parent:
+            break
+        marker = directory / SUPERSEDED_MARKER
+        if marker.is_file():
+            return marker
+        if directory == ROOT:
+            break
+    return None
+
+
 def check_declared_hashes(findings: list[Finding], counters: Counter) -> None:
     for manifest in iter_files(ROOT / "data", {".json"}):
+        if manifest.name == SUPERSEDED_MARKER:
+            continue
+        marker = superseded_by_marker(manifest)
+        if marker is not None:
+            counters["declarations_in_superseded_packets"] += 1
+            continue
         try:
             payload = json.loads(manifest.read_text(encoding="utf-8-sig"))
         except (json.JSONDecodeError, OSError):

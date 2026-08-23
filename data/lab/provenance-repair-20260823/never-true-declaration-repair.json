@@ -1,0 +1,21 @@
+{
+  "classification": "declaration never described any committed state",
+  "declared_after": "11b5a74eb932e196f6f5be0b7bdcd5ea7ce8388d9a6bdcc72d040cc289fe013b",
+  "declared_before": "c2c9bcfa8d1516bbb03ec16e521522996e3222a5bd20309b9c0c4ce8ed4b507b",
+  "diagnosis": "The digest was computed and then the file was edited before it was committed, so the manifest and the repository were never in agreement. This is an ordering defect at freeze time, not a later modification of a frozen artifact.",
+  "evidence": {
+    "commit": "0066961",
+    "commits_touching_target": 1,
+    "crlf_variant_matches_declared": false,
+    "declared_digest_matches_any_file_at_head": false,
+    "declared_digest_matches_any_historical_version": false,
+    "digest_at_that_commit": "11b5a74eb932e196f6f5be0b7bdcd5ea7ce8388d9a6bdcc72d040cc289fe013b"
+  },
+  "issue": 30,
+  "key": "report.md",
+  "manifest": "data/lab/pmlab-obligation-mapping-deepseek-v1/result-manifest.json",
+  "recorded_at": "2026-08-23T10:42:34Z",
+  "target": "data/lab/pmlab-obligation-mapping-deepseek-v1/report.md",
+  "what_was_not_done": "The report content was not altered. Only the declaration changed, and both values are recorded here so the correction is auditable.",
+  "why_the_committed_bytes_are_authoritative": "The declared byte sequence has never existed in this repository, so there is nothing to restore. The committed 965-byte report is the version that was recorded, cited and reviewed. Correcting the declaration makes the manifest describe reality; leaving it would preserve a statement that was never true of anything."
+}

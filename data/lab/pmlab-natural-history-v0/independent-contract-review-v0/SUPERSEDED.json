@@ -1,0 +1,17 @@
+{
+  "cause": "The contracts this packet froze were subsequently revised by 'Revise natural history source unit contracts' (3f27498), 'Audit and harden natural history contracts' (ebe8201), and 'audit natural-history token feasibility' (2d5948d). Packet v0.1 was prepared against the revised contracts, but v0 was left in place without a supersession marker, so its declarations continued to read as live claims.",
+  "declarations_status": "Correct when frozen at 44b2b9b, and correct about the state of the repository at that commit. They are stale, not false: 5 of the 7 declared files were edited afterwards.",
+  "evidence": {
+    "at_freeze_commit_44b2b9b": "all seven declared digests matched",
+    "at_head": "2 of 7 match; the other 5 describe pre-revision bytes",
+    "successor_at_head": "13 of 13 match"
+  },
+  "no_reviewer_was_exposed": "Independent review of this packet had not started when it was superseded, so no review work is invalidated.",
+  "reason": "Replaced by independent-contract-review-v0.1, which is the packet a reviewer should use.",
+  "recorded_at": "2026-08-23T11:35:00Z",
+  "recorded_by": "provenance audit of issue #30",
+  "repair_rule": "Nothing in this directory is modified. A superseded packet keeps the bytes it actually declared; rewriting them would destroy the record of what was frozen and when.",
+  "status": "superseded",
+  "superseded_by": "data/lab/pmlab-natural-history-v0/independent-contract-review-v0.1",
+  "tracked_in": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/30"
+}
