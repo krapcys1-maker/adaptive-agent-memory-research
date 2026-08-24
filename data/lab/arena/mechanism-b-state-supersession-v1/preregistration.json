@@ -1,0 +1,245 @@
+{
+  "artifact": "arena-mechanism-b-state-supersession-v1-preregistration",
+  "design_only": true,
+  "new_api_spend_usd": 0.0,
+  "no_experiment_run": true,
+  "parent_commit": "4ec6b3c7e18a82bee6401e523c0f3c98438a75d2",
+  "predecessor_decision": "PM-20260824-23cd74aa",
+
+  "mechanism": {
+    "name": "CURRENT_STATE_OVER_HISTORY",
+    "one_sentence": "At context-assembly time, group retrieved memory items sharing a deterministically-detected state key, render the item with the latest session timestamp as 'Current state', and render the rest as an explicit, provenance-preserving 'History (superseded)' block instead of a flat undifferentiated list.",
+    "stage": "read-side only, post-retrieval, pre-render; no Mem0/host write-path or storage change",
+    "source_systems": [
+      "StateMemBench/StateMemWrapper (arXiv:2608.19652) -- Resolve step, precedence rule 1 of 4 ('later supersedes earlier'), isolated from the other 3 rules and from the LLM-mediated Trace step",
+      "STALE (arXiv:2605.06527) -- problem framing only (conflict detection); its own adjudication mechanism (LLM-over-schema) is not transplanted",
+      "AAMR-internal: memory/SCHEMA.md -- the project_memory tool's own bitemporal, append-only, current-view-derived-by-replay design, already operating in this repo, offered as an existence proof of the same architectural principle at the tooling layer, not the arena/Mem0 layer",
+      "AAMR-internal: data/lab/pmlab-stale-e1/execution-v0/report.md -- n=9 empirical measurement that content/embedding similarity cannot separate a superseded fact from its replacement (mean percentile 0.9948; stale nearest-neighbor 6/9 without a metadata filter)"
+    ],
+    "not_transplanted": [
+      "StateMem's TurnEncoder (per-turn LLM call) or StateStore (write-path integration)",
+      "StateMem's dependency-graph Rechecker (over-propagated -12.5pp in its own paper on one subset)",
+      "StateMemWrapper's precedence rules 2-4 (standing-vs-one-off, derived-quantity recomputation, explicit-expiry) -- out of scope for V1",
+      "StateAuditor's post-hoc draft-audit direction (a distinct architectural shape, listed as Candidate 5, not selected)",
+      "STALE's LLM adjudicator"
+    ]
+  },
+
+  "target_failure": {
+    "name": "STALE_STATE_CONFUSION",
+    "canonical_example": "T1: user works at Microsoft. T2: user leaves Microsoft. T3: user works at Google. Question: where does the user currently work? Failure: retrieval contains all three facts; system/reader treats them symmetrically or selects a stale one.",
+    "submodes_v1_covers": {
+      "A_DIRECT_SUPERSESSION": "old value -> new value, same state key",
+      "B_NEGATION_REVOCATION": "fact -> explicitly no longer true, no replacement value asserted",
+      "C_RETURN_REACTIVATION": "A -> B -> A"
+    },
+    "submodes_v1_explicitly_out_of_scope": {
+      "D_MULTI_ATTRIBUTE_STATE": "one entity, multiple independently-changing fields -- partially exercised only as an adversarial negative control (R4), not as its own regime with dedicated probes",
+      "E_DEPENDENCY_CASCADE": "change in one state invalidating derived facts -- no dependency graph in V1; flagged as a forward risk in negative regimes (over-propagation) even though not implemented",
+      "F_AMBIGUOUS_UPDATE": "new statement may or may not supersede the old one -- deferred; see regimes.R5_deferred"
+    }
+  },
+
+  "state_key_definition": {
+    "strategy_selected": "A_deterministic_normalized_pattern",
+    "why_not_B": "Schema-based keys assigned via construction-time metadata (mirroring how this arena already threads metadata['timestamp']) would answer the key-matching question only for hand-authored synthetic probes, not for the transplant mechanism itself -- it would not test whether state keys can be recovered from real, uncontrolled Mem0 fact text at all. Rejected for V1 as not actually exercising the mechanism.",
+    "why_not_C": "LLM-assisted keying (embedding clustering or an LLM call) is more general but introduces a second confound into a test whose primary question is about deterministic precedence rendering, and adds per-item cost. Documented as a future extension only, explicitly flagged as cost/confound, not used in V1.",
+    "why_not_D": "Hybrid (deterministic first pass + LLM fallback on ambiguous cases) is the natural v2 once V1 measures Option A's coverage/miss rate on real corpus text -- not needed for a first mechanistic screen on hand-authored probes designed to trigger the fixed template set.",
+    "runtime_no_gold_access": "The key-extraction function operates only on retrieved item text (regex/keyword match, case-insensitive substring). It never sees the question, the expected answer, or any judge/gold artifact. Construction-time probe design (which facts are meant to share a key) and runtime key-matching (how the mechanism actually decides) are kept separate: the mechanism must independently rediscover the intended grouping from text alone for the mechanistic metrics (section metrics.mechanistic) to mean anything.",
+    "templates_v1": [
+      {"key": "EMPLOYER", "triggers": ["work at", "works at", "working at", "job at", "employed at", "started working at", "started at", "left * for", "rejoined"], "capture": "organization name token following trigger"},
+      {"key": "RESIDENCE_CITY", "triggers": ["moved to", "live in", "living in", "relocated to", "moved from", "moved back to"], "capture": "city name token"},
+      {"key": "RELATIONSHIP_STATUS", "triggers": ["engaged to", "got engaged", "got married", "married", "divorced"], "capture": "status label, not a proper noun"},
+      {"key": "DIET", "triggers": ["vegetarian", "vegan", "eating meat again", "stopped being vegetarian", "stopped being vegan"], "capture": "diet label"},
+      {"key": "GYM_MEMBERSHIP:<gym>", "triggers": ["gym membership at", "canceled my", "canceled ... membership"], "capture": "sub-keyed by named gym"},
+      {"key": "MEDICATION:<name>", "triggers": ["prescribed", "medication", "took me off the"], "capture": "sub-keyed by named drug/condition"},
+      {"key": "PET:<name>", "triggers": ["adopted a cat named", "adopted a dog named", "adopted a second"], "capture": "sub-keyed by the pet's own proper name -- deliberately keeps different pets separate"},
+      {"key": "LANGUAGE_LEARNING:<language>", "triggers": ["learning", "started learning", "also started learning"], "capture": "sub-keyed by named language -- deliberately keeps different languages separate"},
+      {"key": "ADDRESS:<home|work>", "triggers": ["home address", "work address"], "capture": "sub-keyed by address type -- deliberately keeps home vs work separate despite the shared word 'address'"}
+    ],
+    "known_fragility": "Coverage-limited to 9 fixed templates; a genuine supersession phrased outside these patterns is a false negative (missed match), not a false positive. This is the honest cost of Option A and is explicitly why V1 is a mechanistic screen, not a claim of general-purpose state-key extraction."
+  },
+
+  "update_rule": "later session timestamp (evidence_times, already available in the existing Mem0 adapter's deep_retrieval block, the same field TEMPORAL_ANCHOR_AT_CONTEXT already reads) wins as CURRENT for a given matched key.",
+  "supersession_rule": "when >=2 retrieved items share a state key, the item with the latest timestamp is rendered as current; every other item with that key is rendered in a separate History block, each annotated with its own timestamp and an explicit 'superseded' marker plus a pointer to which item superseded it (by anonymized position, not by item id, to avoid leaking retrieval-order information the reader wasn't given before).",
+  "retrieval_rule": "unchanged -- identical retrieval call, identical budget, identical ranked item list as BASE. The mechanism only transforms the already-retrieved list before rendering; it does not change what is retrieved or in what order it was retrieved.",
+
+  "context_rendering": {
+    "base": "unchanged: every retrieved item rendered as '- {text}', one per line, in retrieval order (fixed_reader.py::user_message, unmodified).",
+    "plus_b": "retrieved items are partitioned by detected state key. Items with no detected key render exactly as in BASE, interleaved in original order. Items sharing a key are pulled into two labeled blocks appended after the undetected-key items: 'Current state:' (one line per key, its latest item) and 'History (superseded):' (remaining items per key, each tagged with its own date and 'superseded by a later update')."
+  },
+
+  "ambiguity_handling": "if two items sharing a key have the identical latest timestamp (a tie), or if the key-matching confidence is a single-template partial match on an edge phrase, the mechanism does NOT guess: both items render in the Current block unchanged (falls back to BASE-equivalent behavior for that key only), and the tie is logged as a mechanistic-metric event, not silently resolved.",
+  "failure_fallback": "if state-key extraction fails to fire on any item in a probe (0 matches), +B is byte-identical to BASE for that context -- the mechanism must be inert, not harmful, when its own detection has nothing to act on.",
+  "what_it_does_not_do": [
+    "does not modify Mem0 storage, extraction, or retrieval ranking",
+    "does not delete or hide any retrieved item's provenance -- every item remains in the rendered context, only its position/label changes",
+    "does not attempt cross-key dependency propagation (failure mode E)",
+    "does not resolve ambiguous updates (failure mode F) -- ambiguous cases fall back to BASE-equivalent rendering per ambiguity_handling",
+    "does not use an LLM at any point in the V1 mechanism itself"
+  ],
+
+  "provenance_requirements": [
+    "source item id (Mem0 evidence_id) retained per rendered line, exactly as already available -- not newly introduced",
+    "source session timestamp retained and displayed per rendered line",
+    "old value and new value both remain textually present in the rendered context (never deleted)",
+    "transition type displayed: 'current' or 'superseded'",
+    "supersession relation is positional/explicit in the rendering (which block an item is in), not merely implied by order"
+  ],
+
+  "append_only_discipline": "no memory item is ever dropped from the delivered context by this mechanism (see failure_fallback and what_it_does_not_do). The destructive-overwrite alternative (Candidate 3 on the board, DETERMINISTIC_LATEST_VALID_VALUE) was considered and explicitly not selected, flagged as a major design risk per the mandatory append-only principle.",
+
+  "regimes": {
+    "R1_CLEAN_SUPERSESSION": {"count": 3, "probe_ids": ["SUP1_EMPLOYER", "SUP2_CITY", "SUP3_RELATIONSHIP_STATUS"]},
+    "R2_REVOCATION": {"count": 3, "probe_ids": ["REV1_GYM_MEMBERSHIP", "REV2_DIET", "REV3_MEDICATION"]},
+    "R3_RETURN": {"count": 3, "probe_ids": ["RET1_JOB", "RET2_CITY", "RET3_DIET"]},
+    "R4_NO_UPDATE_CONTROL": {"count": 3, "probe_ids": ["CTL1_MULTI_PET", "CTL2_MULTI_SKILL", "CTL3_MULTI_ADDRESS_TYPE"]},
+    "R5_deferred": {"count": 0, "note": "AMBIGUOUS_UPDATE is well-specifiable without gold-aware logic (mechanistic false-supersession-rate check, not a benchmark-accuracy check) but deliberately deferred out of V1 per the explicit instruction not to assume the first test must cover every submode. Candidate for a v1.1 probe extension (+2-3 probes), not V1."},
+    "total_probes": 12,
+    "rationale": "matches the explicitly-suggested 12-probe / 3-3-3-3 distribution; no deviation proposed. Distribution frozen before any probe content was checked against expected behavior."
+  },
+
+  "probe_plan": [
+    {"probe_id": "SUP1_EMPLOYER", "regime": "R1_CLEAN_SUPERSESSION", "state_key": "EMPLOYER",
+     "turns": [
+       {"date": "2023-01-15", "text": "I just started a new job at Microsoft."},
+       {"date": "2023-06-20", "text": "I recently left Microsoft and started at Google."}],
+     "question": "Where do I currently work?", "expected_current": "Google", "expected_history": ["Microsoft"]},
+    {"probe_id": "SUP2_CITY", "regime": "R1_CLEAN_SUPERSESSION", "state_key": "RESIDENCE_CITY",
+     "turns": [
+       {"date": "2022-03-01", "text": "I just moved to Seattle."},
+       {"date": "2023-11-10", "text": "I moved from Seattle to Austin last month."}],
+     "question": "What city do I currently live in?", "expected_current": "Austin", "expected_history": ["Seattle"]},
+    {"probe_id": "SUP3_RELATIONSHIP_STATUS", "regime": "R1_CLEAN_SUPERSESSION", "state_key": "RELATIONSHIP_STATUS",
+     "turns": [
+       {"date": "2021-08-05", "text": "I got engaged to my partner."},
+       {"date": "2023-02-14", "text": "We got married last weekend."}],
+     "question": "Am I engaged or married?", "expected_current": "married", "expected_history": ["engaged"]},
+
+    {"probe_id": "REV1_GYM_MEMBERSHIP", "regime": "R2_REVOCATION", "state_key": "GYM_MEMBERSHIP:PowerFit",
+     "turns": [
+       {"date": "2022-05-01", "text": "I signed up for a gym membership at PowerFit."},
+       {"date": "2023-04-18", "text": "I canceled my PowerFit gym membership."}],
+     "question": "Do I currently have a gym membership at PowerFit?", "expected_current": "no / canceled", "expected_history": ["had a PowerFit membership"]},
+    {"probe_id": "REV2_DIET", "regime": "R2_REVOCATION", "state_key": "DIET",
+     "turns": [
+       {"date": "2022-09-12", "text": "I'm following a strict vegetarian diet."},
+       {"date": "2023-07-03", "text": "I stopped being vegetarian a few months ago."}],
+     "question": "Am I currently vegetarian?", "expected_current": "no", "expected_history": ["was vegetarian"]},
+    {"probe_id": "REV3_MEDICATION", "regime": "R2_REVOCATION", "state_key": "MEDICATION:allergy",
+     "turns": [
+       {"date": "2023-01-20", "text": "My doctor prescribed me a daily allergy medication."},
+       {"date": "2023-05-15", "text": "My doctor took me off the allergy medication since my symptoms improved."}],
+     "question": "Am I currently taking the allergy medication?", "expected_current": "no", "expected_history": ["was prescribed it"]},
+
+    {"probe_id": "RET1_JOB", "regime": "R3_RETURN", "state_key": "EMPLOYER",
+     "turns": [
+       {"date": "2022-02-01", "text": "I started working at Acme Corp."},
+       {"date": "2022-11-15", "text": "I left Acme Corp for a role at Globex."},
+       {"date": "2023-08-01", "text": "I rejoined Acme Corp."}],
+     "question": "Where do I currently work?", "expected_current": "Acme Corp", "expected_history": ["Globex", "earlier Acme Corp stint"]},
+    {"probe_id": "RET2_CITY", "regime": "R3_RETURN", "state_key": "RESIDENCE_CITY",
+     "turns": [
+       {"date": "2021-06-01", "text": "I moved to Denver."},
+       {"date": "2022-09-01", "text": "I relocated from Denver to Chicago."},
+       {"date": "2023-10-01", "text": "I moved back to Denver."}],
+     "question": "What city do I currently live in?", "expected_current": "Denver", "expected_history": ["Chicago", "earlier Denver stint"]},
+    {"probe_id": "RET3_DIET", "regime": "R3_RETURN", "state_key": "DIET",
+     "turns": [
+       {"date": "2022-01-10", "text": "I started eating vegan."},
+       {"date": "2022-12-05", "text": "I stopped being vegan and started eating meat again."},
+       {"date": "2023-09-20", "text": "I went back to a vegan diet."}],
+     "question": "Am I currently vegan?", "expected_current": "yes", "expected_history": ["ate meat for a period", "earlier vegan stint"]},
+
+    {"probe_id": "CTL1_MULTI_PET", "regime": "R4_NO_UPDATE_CONTROL", "state_key": "PET:<name> (two distinct keys)",
+     "turns": [
+       {"date": "2022-04-01", "text": "I adopted a cat named Whiskers."},
+       {"date": "2023-02-10", "text": "I adopted a second cat named Luna."}],
+     "question": "How many cats do I have and what are their names?", "expected_current": "both Whiskers and Luna, additive", "expected_history": [],
+     "adversarial_purpose": "must NOT be collapsed into a single PET key with Luna as 'current' and Whiskers as 'superseded' -- different pets, not a state change"},
+    {"probe_id": "CTL2_MULTI_SKILL", "regime": "R4_NO_UPDATE_CONTROL", "state_key": "LANGUAGE_LEARNING:<language> (two distinct keys)",
+     "turns": [
+       {"date": "2022-06-01", "text": "I'm learning Spanish."},
+       {"date": "2023-03-15", "text": "I also started learning Japanese."}],
+     "question": "What languages am I learning?", "expected_current": "both Spanish and Japanese, additive", "expected_history": [],
+     "adversarial_purpose": "must NOT be collapsed into a single LANGUAGE key with Japanese as 'current' and Spanish as 'superseded'"},
+    {"probe_id": "CTL3_MULTI_ADDRESS_TYPE", "regime": "R4_NO_UPDATE_CONTROL", "state_key": "ADDRESS:<home|work> (two distinct keys)",
+     "turns": [
+       {"date": "2022-05-01", "text": "My home address is 12 Oak Street."},
+       {"date": "2023-01-01", "text": "My work address is 500 Market Street."}],
+     "question": "What is my home address and what is my work address?", "expected_current": "both retained distinctly", "expected_history": [],
+     "adversarial_purpose": "must NOT be collapsed into a single ADDRESS key despite the shared word 'address' -- home and work are different attributes"}
+  ],
+
+  "arms": ["BASE", "+B"],
+  "arms_shared": ["retrieval budget", "reader model/prompt/temperature/max_tokens", "judge", "retrieval ranking", "Mem0 ingest (one per probe, shared by both arms -- +B is purely a post-retrieval render transform)"],
+  "arms_confound_flag": "context token count differs slightly between BASE and +B (block headers add a small, fixed number of tokens per probe) -- tracked explicitly as a metric, not hidden.",
+
+  "metrics": {
+    "primary": ["accuracy", "repairs (BASE wrong -> +B correct)", "regressions (BASE correct -> +B wrong)", "net repairs",
+                "current-state accuracy (R1+R2+R3 probes only)", "historical-question accuracy (none in V1's 12 -- flagged as a gap, see unresolved_questions)",
+                "false supersession rate (R4 probes: did +B wrongly collapse two distinct keys)", "state-key collision rate", "token delta", "latency delta"],
+    "mechanistic_per_probe": ["was correct state present in retrieved items?", "was stale state present in retrieved items?",
+                              "did +B mark supersession correctly for R1/R2/R3?", "did reader's answer use the current-state block?",
+                              "did +B hide information needed for a historical sub-question (N/A for V1's 12 -- no historical-question probes)",
+                              "did +B create a wrong supersession on an R4 control probe?"]
+  },
+
+  "success_gate": {
+    "label": "MECHANISM_B_EXPLORATORY_SUPPORTED",
+    "conditions_all_required": [
+      "positive net repairs (repairs > regressions) across the 9 R1+R2+R3 probes",
+      "zero false-supersession events across the 3 R4 control probes (false_supersession_rate == 0/3)",
+      "no systematic harm on R4 (R4 accuracy under +B >= R4 accuracy under BASE)",
+      "mechanism-level trace shows the intended causal path on every repair (reader's answer text traceably uses the Current-state block, not a coincidental match)"
+    ]
+  },
+  "failure_gate": {
+    "label": "MECHANISM_B_FAIL",
+    "conditions_any_triggers": [
+      "no positive repair signal (net repairs <= 0)",
+      "false supersession common (>=1 of 3 R4 controls wrongly collapsed)",
+      "any regression traceable to the mechanism suppressing or relabeling information the reader needed and had access to under BASE",
+      "effect attributable only to added context/token volume rather than the current/history structuring itself (checked via the token-delta metric and per-probe trace)",
+      "implementation required a state-key rule that referenced the probe's own expected_current/expected_history fields (a host- or gold-specific oracle, not a general pattern)"
+    ]
+  },
+  "replication_gate": {
+    "v1_ceiling_status": "EXPLORATORY_SUPPORTED at most, even on a clean PASS -- never REPLICATED_VALIDATED_TRANSPLANT",
+    "path_to_replication": "a fresh, independently-constructed or gold-blind-selected probe set (candidate real-corpus source: LongMemEval-S's 'knowledge-update' category, 78 units in the full corpus, 0 used anywhere in this arena to date -- verified this pass) run under the same protocol, per the roadmap's existing Stage-2 pattern (docs/research/RESEARCH_ROADMAP_EVIDENCE_DRIVEN_V1.md, Stage 2 definition), before any REPLICATED_VALIDATED_TRANSPLANT status is claimed."
+  },
+
+  "estimated_cost": {
+    "implementation": "$0.00 API (deterministic Python transform + probe authoring)",
+    "first_arena_run_if_later_authorized": {
+      "ingest": "12 probes x a short 2-3-turn synthetic conversation each (far smaller than a real 40+-session LongMemEval unit at ~$0.074/unit per the roadmap's own F9 figure) -- projected ~$0.01-0.02/probe, ~$0.15-0.20 total",
+      "reader": "12 probes x 2 arms x ~$0.0006/call (roadmap F9 figure) = ~$0.014",
+      "judge": "12 probes x 2 arms x ~$0.00005/call = ~$0.001",
+      "expected_total": "~$0.15-0.25",
+      "worst_case_cap_recommendation": "$0.30"
+    },
+    "not_executed_this_turn": true
+  },
+
+  "frankenstein_relevance": {
+    "vs_temporal_anchor_family": "PARTIALLY_OVERLAPPING -- not ORTHOGONAL. Per docs/research/CROSS_PAPER_HYPOTHESIS_MAP_2026-08-24.md's own framing, AAMR's temporal-anchor work is 'a narrower, already-in-flight instance of this broader [state/supersession] family.' Both mechanisms consume the same evidence_times metadata and both aim at delivering the right version/timing of a fact to the reader. They differ in intervention shape: TEMPORAL_ANCHOR_AT_CONTEXT uniformly annotates every item with its date and does no grouping, filtering, or precedence logic; CURRENT_STATE_OVER_HISTORY actively restructures which items appear where, based on a detected key match, and is inert when no key matches. A future BASE/+A/+B/+A+B grid (once a temporal mechanism replicates) is a genuinely open interaction question, not a redundancy that can be assumed.",
+    "vs_raw_provenance_family": "ORTHOGONAL. Raw provenance (E3/C4) targets missing/absent detail recovery from raw session text; this mechanism targets which of several PRESENT, already-retrieved facts is current. Different failure territory (absence vs conflicting-presence); no shared code path or shared retrieved-item property.",
+    "vs_harmful_sibling_failure": "PARTIALLY_OVERLAPPING. Both are 'reader picks the wrong item among several plausible retrieved candidates,' but the underlying confusion differs: harmful-sibling (H5, e.g. E1's 'Spirit' case) is a same-time confusion between two DIFFERENT entities that are semantically similar (Spirit Airlines vs Delta); STALE_STATE_CONFUSION is a same-entity confusion ACROSS TIME (Microsoft then, Google now). Distinguishing axis: entity-identity vs temporal-validity. A state-key match that is too loose could, in principle, misfire in an H5-adjacent way (grouping two different entities under one key) -- this is exactly what the R4 adversarial controls (CTL1/CTL2/CTL3) are designed to catch."
+  },
+
+  "future_interaction_test_note_only_not_run": {
+    "grid": "BASE / +A / +B / +A+B",
+    "A_definition": "a FUTURE, independently REPLICATED temporal mechanism -- explicitly NOT the current TEMPORAL_ANCHOR_AT_CONTEXT, which has not cleared Stage-2 replication (PM-20260824-8dc62d48, PM-20260824-36f46bed) and therefore cannot stand as 'A' in this grid yet.",
+    "B_definition": "CURRENT_STATE_OVER_HISTORY, once independently validated per the replication_gate above.",
+    "status": "not scheduled, not authorized, recorded for future reference only per docs/research/RESEARCH_ROADMAP_EVIDENCE_DRIVEN_V1.md section 11's Frankenstein gate, which requires both mechanisms independently replicated before this grid may run."
+  },
+
+  "hard_cap_recommendation_usd": 0.30,
+
+  "unresolved_questions": [
+    "V1's 12 probes contain zero dedicated historical-question probes (e.g., 'where did I used to work before my current job?') -- the mechanism's stated risk of hiding history-needed-information (section 12's negative regime) is therefore NOT directly measured by V1's metrics; historical_question_accuracy has no data to compute from in this design. A v1.1 extension should add 2-3 such probes before the success gate can be considered complete evidence rather than partial evidence.",
+    "State-key strategy (Option A, 9 fixed templates) is measured only against probes deliberately constructed to trigger those templates -- V1 cannot measure the template set's real-corpus miss rate (false negatives on genuine supersessions phrased outside the 9 patterns). This is the central open question before any real-corpus (e.g., knowledge-update category) replication.",
+    "The tie-handling rule (identical timestamps fall back to BASE-equivalent rendering) is untested by any of the 12 probes as constructed -- no probe currently has a same-timestamp collision. Could be added cheaply to a v1.1 set.",
+    "Whether Mem0's own extraction step ever merges/dedupes two temporally-distinct statements about the same key into one stored item (which would defeat this mechanism before it ever runs) is unknown -- Mem0's near-duplicate suppression (roadmap F13, CODE_VERIFIED) is documented for redundant restatements, not verified either way for genuine value changes. Worth a cheap, deterministic check (reading stored items after a real ingest of one R1 probe) before spending on the full 12-probe run."
+  ]
+}

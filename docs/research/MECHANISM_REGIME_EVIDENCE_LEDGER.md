@@ -95,6 +95,25 @@ Cumulative, append-oriented. Entries are added or superseded (with a `superseded
 
 ---
 
+## Entry F — `CURRENT_STATE_OVER_HISTORY` (candidate, design-preregistered only)
+
+- **MECHANISM:** read-side, post-retrieval, pre-render. Groups retrieved items sharing a deterministically-detected state key; renders the latest-timestamped item as `Current state:`, the rest as a provenance-preserving `History (superseded):` block. Isolated from StateMemWrapper's Resolve step, precedence rule 1 of 4 ("later supersedes earlier") only — rules 2–4 and the LLM-mediated Trace step are explicitly not transplanted.
+- **REGIME:** `RELATIVE_EVENT_TIME` is not the axis here — regime is `STATE_KEY_MATCHED_WITH_TIMESTAMP_ORDERING`: ≥2 retrieved items share a state key detected by one of 9 fixed deterministic templates, and their session timestamps differ.
+- **FAILURE_TARGETED:** `STALE_STATE_CONFUSION`, submodes A (direct supersession) and C (return/reactivation) directly; B (revocation) partially — see design doc for the full breakdown. D (multi-attribute), E (dependency cascade), F (ambiguous update) explicitly out of scope for V1.
+- **OBSERVED_EFFECT:** N/A — no experiment has run. This is a design + preregistration only.
+- **SOURCE_EXPERIMENTS:** none run. Design: [`MECHANISM_B_STATE_SUPERSESSION_DESIGN_V1.md`](MECHANISM_B_STATE_SUPERSESSION_DESIGN_V1.md), preregistration `data/lab/arena/mechanism-b-state-supersession-v1/preregistration.json`. Internal supporting evidence (not this mechanism, but the failure mode it targets): `data/lab/pmlab-stale-e1/execution-v0/report.md` (n=9, content similarity cannot separate a stale fact from its replacement; already cited as F17 in `RESEARCH_ROADMAP_EVIDENCE_DRIVEN_V1.md`).
+- **EXTERNAL_SUPPORT:** StateMemBench/StateMemWrapper (arXiv:2608.19652, MEASURED by the source paper, independently recomputed by the frontier-map pass, not yet independently replicated by anyone outside that paper); STALE (arXiv:2605.06527); StateAuditor (arXiv:2608.01619, honest self-reported non-replication on a second benchmark).
+- **CONFIDENCE:** N/A — untested in AAMR. External support for the general family is real but single-paper/days-old for the specific source (StateMemBench).
+- **KNOWN_COUNTEREXAMPLES:** N/A — nothing measured yet.
+- **STATUS:** `EXTERNAL_SIGNAL, AAMR_UNTESTED, DESIGN_PREREGISTERED`.
+- **RISK / COUNTEREXAMPLE TO GUARD AGAINST:** state-key over-matching could collapse two genuinely distinct, co-existing facts (different entities sharing surface vocabulary) into a false supersession — this is the same shape of error as `HARMFUL_SIBLING_DISTRACTION` (Entry C) but on the temporal-validity axis rather than the entity-identity axis. V1's R4 adversarial control probes are specifically designed to catch this before any positive result could be trusted.
+- **LAST_UPDATED:** 2026-08-24.
+- **SUPERSEDES:** none.
+- **SUPERSEDED_BY:** none.
+- **NEXT_TRIGGER:** a future turn separately authorizing the actual `MECHANISM_B_STATE_SUPERSESSION_V1` run (12 probes, BASE vs +B, projected ≈$0.15–0.25, recommended cap $0.30). Not authorized by this entry.
+
+---
+
 ## Backlog (not run, not authorized here)
 
 ### `ZERO_ANSWER_DISPERSION_DIAGNOSTIC` (frontier H2)
