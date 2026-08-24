@@ -1,0 +1,94 @@
+{
+  "artifact": "arena-pilot-mem0",
+  "mode": "pilot",
+  "system": "Mem0",
+  "contract_version": "ARENA-0.1",
+  "contract_digest": "e68be19fb33aac46fe760497303a78a0f487feec5a457ebea930337b10d3e9aa",
+  "runner_digest": "2a4e2f57c53a205d2db151ae6720bfd9df4c56757ae940d8b616defcaeaf9f17",
+  "adapter_digest": "ae94df2fc58ec80c21c800b18c96c284686061ce37da0be01dad9fdc2a9f7201",
+  "started_at": "2026-08-24T04:34:22+00:00",
+  "selection": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "selection_id": "arena-expansion-v1",
+  "only_origin": null,
+  "source": {
+    "system": "Mem0",
+    "version": "1.0.6",
+    "vector_store": "qdrant, local path, on_disk",
+    "embedder_enforced": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\models\\all-MiniLM-L6-v2",
+    "embedder_native_default": "openai text-embedding-3-small",
+    "embedder_override_reason": "held constant with CUPMem's; the native default would add a second provider and a second bill inside one comparison",
+    "telemetry": "disabled by the arena; this system posts usage analytics to an external service by default"
+  },
+  "target_model": "deepseek-chat",
+  "decoding": {
+    "arena_enforced": {
+      "temperature": 0
+    },
+    "preregistered": false,
+    "provenance": "adopted after a CUPMem run showed a repeated probe returning different answers, so it is a control chosen in response to an observation, not before one. It is not any system's own decoding"
+  },
+  "spend_cap_usd": 1.25,
+  "total_cap_usd": 4.0,
+  "state_probe_available": true,
+  "units": [
+    {
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "sessions_available": 41,
+      "sessions_ingested": 0,
+      "user_turns_ingested": 0,
+      "sessions_skipped_no_user_turn": 0,
+      "ingest": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "wall_seconds": 0.0
+      },
+      "per_session_calls": [],
+      "status": "ingesting"
+    }
+  ],
+  "status": "failed",
+  "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
+  "spend_usd": 0,
+  "meter_baseline": {
+    "calls": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0
+  },
+  "meter_baseline_usd": 0,
+  "provider_calls": 0,
+  "meter": {
+    "calls": 0,
+    "refused_calls": 1,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "usd": 0,
+    "unknown_usage_calls": 0,
+    "arena_enforced_decoding": {
+      "temperature": 0
+    },
+    "decoding_overrides": 0,
+    "decoding_override_values": [],
+    "native_requested_decoding": []
+  },
+  "meter_note": "`meter` holds the proxy's running totals, which include anything it served before this run. `spend_usd` and `provider_calls` are this run's own, taken as a delta from the baseline",
+  "night_ledger": {
+    "path": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\data\\lab\\arena\\spend-ledger.jsonl",
+    "total_usd": 6.090761,
+    "total_cap_usd": 4.0,
+    "by_run": {
+      "mem0-calibration": 0.025094,
+      "mem0-pilot": 1.055148,
+      "hindsight-pilot": 2.334746,
+      "graphiti-calibration": 0.005908,
+      "pilot-judge": 0.004692,
+      "hindsight-expansion": 2.664696,
+      "fixed-reader": 0.000511
+    },
+    "calls": 4752
+  },
+  "failed_with": "APIStatusError: Error code: 402 - {'error': {'type': 'arena_spend_cap', 'message': 'the night has spent $6.0908 across 7 runs; the next call could cost up to $0.0200 and the total cap is $4.00. Stopping below it.', 'note': 'the request was never forwarded, so nothing was spent'}}",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\scripts\\arena\\run_pilot.py\", line 503, in main\n    cost = adapter.ingest(records)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\scripts\\arena\\mem0_adapter.py\", line 128, in ingest\n    self._memory.add(messages=kept, user_id=self._bank,\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\mem0\\memory\\main.py\", line 377, in add\n    vector_store_result = future1.result()\n                          ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\mem0\\memory\\main.py\", line 439, in _add_to_vector_store\n    response = self.llm.generate_response(\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\mem0\\llms\\openai.py\", line 138, in generate_response\n    response = self.client.chat.completions.create(**params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\openai\\_utils\\_utils.py\", line 298, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\openai\\resources\\chat\\completions\\completions.py\", line 1296, in create\n    return self._post(\n           ^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\openai\\_base_client.py\", line 1381, in post\n    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\openai\\_base_client.py\", line 1154, in request\n    raise self._make_status_error_from_response(err.response) from None\nopenai.APIStatusError: Error code: 402 - {'error': {'type': 'arena_spend_cap', 'message': 'the night has spent $6.0908 across 7 runs; the next call could cost up to $0.0200 and the total cap is $4.00. Stopping below it.', 'note': 'the request was never forwarded, so nothing was spent'}}\n"
+}

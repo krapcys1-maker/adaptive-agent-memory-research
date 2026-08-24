@@ -360,6 +360,9 @@ def main() -> int:
     parser.add_argument("--system", required=True, choices=sorted(SYSTEMS))
     parser.add_argument("--cap-usd", type=float, default=3.00)
     parser.add_argument("--total-cap-usd", type=float, default=10.00)
+    parser.add_argument("--cap-scope", default=None,
+                        help="prefix naming this experiment; the total cap counts "
+                             "only runs under it, not everything ever spent")
     parser.add_argument("--calibrate-sessions", type=int, default=0)
     parser.add_argument("--model", default="deepseek-chat")
     parser.add_argument("--base-url", default="https://api.deepseek.com/v1")
@@ -392,7 +395,9 @@ def main() -> int:
     raw_out = ROOT / f"data/lab/arena/raw/{selection_id}/{args.system}.json"
 
     ledger = SpendLedger(total_cap_usd=args.total_cap_usd,
-                         run_id=f"{args.system}-{mode}")
+                         run_id=f"{args.cap_scope}{args.system}-{mode}"
+                         if args.cap_scope else f"{args.system}-{mode}",
+                         cap_scope=args.cap_scope)
     units = load_units(selection_path, CORPUS)
     if args.only_origin:
         units = [u for u in units if u["_meta"].get("origin") == args.only_origin]

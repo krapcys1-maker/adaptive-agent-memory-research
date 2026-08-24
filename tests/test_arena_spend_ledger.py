@@ -143,3 +143,50 @@ def test_the_summary_names_the_file_it_is_the_authority_for(tmp_path: Path) -> N
     assert summary["total_cap_usd"] == 10.0
     assert summary["calls"] == 1
     assert summary["path"] == str(path)
+
+
+# ------------------------------------------------------------- the cap's scope
+
+
+def test_an_unscoped_cap_counts_everything_ever_spent(tmp_path: Path) -> None:
+    path = tmp_path / "ledger.jsonl"
+    SpendLedger(path, run_id="last-week").record(9.0)
+    with pytest.raises(TotalCapReached):
+        SpendLedger(path, total_cap_usd=4.0, run_id="today").check(reserve_usd=0.02)
+
+
+def test_a_scoped_cap_counts_only_this_experiment(tmp_path: Path) -> None:
+    """The defect this exists for.
+
+    A $4 cap meant "$4 for this rerun" and was checked against a session total of
+    $6, so it refused the first call of a run that had spent nothing. Correct
+    arithmetic, wrong question, and it cost a run's worth of setup to find.
+    """
+    path = tmp_path / "ledger.jsonl"
+    SpendLedger(path, run_id="pilot-cupmem").record(6.09)
+    ledger = SpendLedger(path, total_cap_usd=4.0, run_id="rerun-mem0",
+                         cap_scope="rerun-")
+    ledger.check(reserve_usd=0.02)          # nothing spent under this scope yet
+    assert ledger.scoped_usd() == 0.0
+    assert ledger.total_usd() == 6.09       # the earlier spend stays on the record
+
+
+def test_a_scoped_cap_still_stops_its_own_experiment(tmp_path: Path) -> None:
+    path = tmp_path / "ledger.jsonl"
+    SpendLedger(path, run_id="pilot-cupmem").record(6.09)
+    SpendLedger(path, run_id="rerun-mem0").record(3.99)
+    ledger = SpendLedger(path, total_cap_usd=4.0, run_id="rerun-hindsight",
+                         cap_scope="rerun-")
+    with pytest.raises(TotalCapReached, match="rerun-"):
+        ledger.check(reserve_usd=0.02)
+
+
+def test_the_scope_never_hides_spend_from_the_record(tmp_path: Path) -> None:
+    """Scoping a cap must not scope the accounting."""
+    path = tmp_path / "ledger.jsonl"
+    SpendLedger(path, run_id="older").record(2.0)
+    SpendLedger(path, run_id="rerun-x").record(1.0)
+    summary = SpendLedger(path, cap_scope="rerun-").summary()
+    assert summary["total_usd"] == 3.0
+    assert summary["scoped_usd"] == 1.0
+    assert set(summary["by_run"]) == {"older", "rerun-x"}
