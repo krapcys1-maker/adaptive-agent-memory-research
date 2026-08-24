@@ -122,6 +122,19 @@ def main() -> int:
                 "precision_at_k": retrieval.get("precision_at_k", UNKNOWN),
                 "stored_items": unit_metric.get("stored_items", UNKNOWN),
                 "mutation": memory.get("query_mutates_state", UNKNOWN),
+                # A state digest that moved between two fingerprints taken either
+                # side of a query is evidence that state changed, and not evidence
+                # that the query changed it. Hindsight consolidates on a background
+                # worker whose schedule the arena does not control, so the cause is
+                # not attributable from this measurement and is not guessed.
+                "causal_query_mutation": (
+                    "read_only" if memory.get("query_mutates_state") == "read_only"
+                    else UNKNOWN),
+                "causal_why": (
+                    "state unchanged, so no mutation to attribute"
+                    if memory.get("query_mutates_state") == "read_only"
+                    else "state changed; this system runs a background consolidation "
+                         "worker, so the query is not established as the cause"),
                 "reproducible": memory.get("output_reproducible", UNKNOWN),
                 "abstained": memory.get("abstained", UNKNOWN),
             }
@@ -155,6 +168,7 @@ def main() -> int:
             "stale_why": "the corpus marks answer sessions, not superseded ones",
             "mean_stored_items": mean([c["stored_items"] for c in cells]),
             "mutation": sorted({str(c["mutation"]) for c in cells}),
+            "causal_query_mutation": sorted({str(c["causal_query_mutation"]) for c in cells}),
             "reproducible": sorted({str(c["reproducible"]) for c in cells}),
             "abstentions": sum(1 for c in cells if c["abstained"] is True),
             "ingest_usd": round(ingest, 4),
@@ -164,8 +178,26 @@ def main() -> int:
 
     profiles = {s: profile(s) for s in SYSTEMS}
     temporal = {s: per_type.get("temporal-reasoning", {}).get(s, []) for s in SYSTEMS}
-    replicated = (sum(temporal["hindsight"]) > sum(temporal["mem0"])
-                  and len(temporal["hindsight"]) >= 3)
+    hits = {s: sum(temporal[s]) for s in SYSTEMS}
+    n_temporal = len(temporal["hindsight"])
+
+    # A first version of this called any Hindsight lead over three units
+    # "replicated". That is too generous and it would have shipped: leading
+    # 1-of-3 against 0-of-3 is a one-unit margin, which is exactly the margin the
+    # pilot already had at 1-of-1 against 0-of-1. The sample grew and the margin
+    # did not, so the claim under test got WEAKER, not confirmed.
+    #
+    # Replication has to mean the effect held its rate, not merely its sign.
+    margin = hits["hindsight"] - hits["mem0"]
+    rate = hits["hindsight"] / n_temporal if n_temporal else 0.0
+    if margin <= 0:
+        verdict = "disappeared"
+    elif rate >= 0.66 and margin >= 2:
+        verdict = "replicated"
+    elif margin >= 2:
+        verdict = "weak but larger than the pilot"
+    else:
+        verdict = "weakened: the margin stayed at one unit while the sample tripled"
 
     report = {
         "artifact": "arena-expansion-report",
@@ -183,9 +215,36 @@ def main() -> int:
         "temporal_claim": {
             "under_test": ("the pilot's single temporal unit was answered by Hindsight "
                            "and by nobody else"),
-            "hindsight": f"{sum(temporal['hindsight'])}/{len(temporal['hindsight'])}",
-            "mem0": f"{sum(temporal['mem0'])}/{len(temporal['mem0'])}",
-            "verdict": "replicated" if replicated else "not replicated on this sample",
+            "hindsight": f"{hits['hindsight']}/{n_temporal}",
+            "mem0": f"{hits['mem0']}/{n_temporal}",
+            "margin_units": margin,
+            "pilot_margin_units": 1,
+            "verdict": verdict,
+            "reading": ("the pilot's margin was one unit out of one. Tripling the "
+                        "temporal sample left the margin at one unit out of three, so "
+                        "the sign survived and the rate did not. Hindsight is still "
+                        "the only system to answer any temporal unit, and one unit is "
+                        "not a mechanism"),
+            "and_the_lead_is_not_temporal": (
+                "Hindsight's overall lead is 4-2 and only one of those four is "
+                "temporal. The other three are two knowledge-update and one "
+                "single-session-user, so whatever separates these systems on this "
+                "sample is not concentrated in the type this run was built to test"),
+        },
+        "the_result_that_does_not_depend_on_n": {
+            "claim": "retrieval is not the bottleneck for either system",
+            "evidence": ("Mem0 put a gold session in front of its reader in 4 of 5 "
+                         "observable units at a mean rank of 1.0; Hindsight in 5 of 5. "
+                         "They then answered 2 of 10 and 4 of 10. The gold session was "
+                         "retrieved and the answer was still wrong in most units of "
+                         "both systems"),
+            "what_it_does_not_identify": ("where downstream the failure is. Neither "
+                                          "system composes an answer — both return a "
+                                          "stored memory — so a judge comparing a "
+                                          "memory against a gold answer may be scoring "
+                                          "a task neither system performs. That is a "
+                                          "hypothesis this data cannot separate from "
+                                          "genuine reasoning failure"),
         },
         "caveats": [
             "ten units, a confirmatory sample designed after the pilot",

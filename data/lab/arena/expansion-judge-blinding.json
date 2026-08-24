@@ -1,0 +1,7 @@
+{
+  "salt": "arena-expansion-judge-v1",
+  "mapping": {
+    "mem0": "candidate_Q_f06e",
+    "hindsight": "candidate_H_1dd6"
+  }
+}

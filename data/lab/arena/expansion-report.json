@@ -1,0 +1,501 @@
+{
+  "artifact": "arena-expansion-report",
+  "selection": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "selection_id": "arena-expansion-v1",
+  "confirmatory": "DESIGNED AFTER SEEING THE PILOT RESULT. temporal-reasoning is deliberately over-represented at 3 of 10 against a corpus proportion near 1 in 6. That buys power on the question worth asking and forfeits the right to read the overall accuracy as an estimate of LongMemEval performance. It must never be presented as a random sample",
+  "is_a_leaderboard": false,
+  "systems": {
+    "mem0": {
+      "answered": "2/10",
+      "accuracy": 0.2,
+      "by_type": {
+        "knowledge-update": "2/3",
+        "multi-session": "0/2",
+        "single-session-user": "0/2",
+        "temporal-reasoning": "0/3"
+      },
+      "mean_evidence": 10.0,
+      "mean_context_tokens": 106.3,
+      "gold_in_context_rate": "4/5",
+      "mean_gold_rank": 1.0,
+      "mean_precision_at_k": 0.54,
+      "retrieval_unobservable_units": 5,
+      "stale_or_conflict_rate": "UNKNOWN",
+      "stale_why": "the corpus marks answer sessions, not superseded ones",
+      "mean_stored_items": 280.8,
+      "mutation": [
+        "read_only"
+      ],
+      "causal_query_mutation": [
+        "read_only"
+      ],
+      "reproducible": [
+        "true"
+      ],
+      "abstentions": 0,
+      "ingest_usd": 0.7592,
+      "query_usd": 0.0,
+      "total_usd": 0.7592
+    },
+    "hindsight": {
+      "answered": "4/10",
+      "accuracy": 0.4,
+      "by_type": {
+        "knowledge-update": "2/3",
+        "multi-session": "0/2",
+        "single-session-user": "1/2",
+        "temporal-reasoning": "1/3"
+      },
+      "mean_evidence": 155.0,
+      "mean_context_tokens": 3157.8,
+      "gold_in_context_rate": "5/5",
+      "mean_gold_rank": 22.4,
+      "mean_precision_at_k": 0.12,
+      "retrieval_unobservable_units": 5,
+      "stale_or_conflict_rate": "UNKNOWN",
+      "stale_why": "the corpus marks answer sessions, not superseded ones",
+      "mean_stored_items": 554.4,
+      "mutation": [
+        "mutates_by_design",
+        "read_only"
+      ],
+      "causal_query_mutation": [
+        "UNKNOWN",
+        "read_only"
+      ],
+      "reproducible": [
+        "false",
+        "true"
+      ],
+      "abstentions": 0,
+      "ingest_usd": 4.4238,
+      "query_usd": 0.029,
+      "total_usd": 4.4528
+    }
+  },
+  "per_type": {
+    "knowledge-update": {
+      "n": 3,
+      "mem0": "2/3",
+      "hindsight": "2/3"
+    },
+    "multi-session": {
+      "n": 2,
+      "mem0": "0/2",
+      "hindsight": "0/2"
+    },
+    "single-session-user": {
+      "n": 2,
+      "mem0": "0/2",
+      "hindsight": "1/2"
+    },
+    "temporal-reasoning": {
+      "n": 3,
+      "mem0": "0/3",
+      "hindsight": "1/3"
+    }
+  },
+  "per_probe": [
+    {
+      "question_id": "ba358f49",
+      "slot": "short",
+      "type": "multi-session",
+      "origin": "arena-pilot-v1",
+      "mem0": {
+        "judged": false,
+        "judge_run": "pilot-judged",
+        "metrics_run": "pilot-mem0",
+        "evidence": 10,
+        "context_tokens": 112,
+        "gold_in_context": "UNKNOWN",
+        "gold_rank": "UNKNOWN",
+        "precision_at_k": "UNKNOWN",
+        "stored_items": 216,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": false,
+        "judge_run": "pilot-judged",
+        "metrics_run": "pilot-hindsight",
+        "evidence": 175,
+        "context_tokens": 3245,
+        "gold_in_context": "UNKNOWN",
+        "gold_rank": "UNKNOWN",
+        "precision_at_k": "UNKNOWN",
+        "stored_items": 532,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      }
+    },
+    {
+      "question_id": "gpt4_98f46fc6",
+      "slot": "medium",
+      "type": "temporal-reasoning",
+      "origin": "arena-pilot-v1",
+      "mem0": {
+        "judged": false,
+        "judge_run": "pilot-judged",
+        "metrics_run": "pilot-mem0",
+        "evidence": 10,
+        "context_tokens": 98,
+        "gold_in_context": "UNKNOWN",
+        "gold_rank": "UNKNOWN",
+        "precision_at_k": "UNKNOWN",
+        "stored_items": 224,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": true,
+        "judge_run": "pilot-judged",
+        "metrics_run": "pilot-hindsight",
+        "evidence": 188,
+        "context_tokens": 3330,
+        "gold_in_context": "UNKNOWN",
+        "gold_rank": "UNKNOWN",
+        "precision_at_k": "UNKNOWN",
+        "stored_items": 555,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      }
+    },
+    {
+      "question_id": "58bf7951",
+      "slot": "long",
+      "type": "single-session-user",
+      "origin": "arena-pilot-v1",
+      "mem0": {
+        "judged": false,
+        "judge_run": "pilot-judged",
+        "metrics_run": "pilot-mem0",
+        "evidence": 10,
+        "context_tokens": 108,
+        "gold_in_context": "UNKNOWN",
+        "gold_rank": "UNKNOWN",
+        "precision_at_k": "UNKNOWN",
+        "stored_items": 221,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": false,
+        "judge_run": "pilot-judged",
+        "metrics_run": "pilot-hindsight",
+        "evidence": 159,
+        "context_tokens": 3208,
+        "gold_in_context": "UNKNOWN",
+        "gold_rank": "UNKNOWN",
+        "precision_at_k": "UNKNOWN",
+        "stored_items": 624,
+        "mutation": "mutates_by_design",
+        "causal_query_mutation": "UNKNOWN",
+        "causal_why": "state changed; this system runs a background consolidation worker, so the query is not established as the cause",
+        "reproducible": "false",
+        "abstained": false
+      }
+    },
+    {
+      "question_id": "6a27ffc2",
+      "slot": "update",
+      "type": "knowledge-update",
+      "origin": "arena-pilot-v1",
+      "mem0": {
+        "judged": true,
+        "judge_run": "pilot-judged",
+        "metrics_run": "pilot-mem0",
+        "evidence": 10,
+        "context_tokens": 93,
+        "gold_in_context": "UNKNOWN",
+        "gold_rank": "UNKNOWN",
+        "precision_at_k": "UNKNOWN",
+        "stored_items": 235,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": true,
+        "judge_run": "pilot-judged",
+        "metrics_run": "pilot-hindsight",
+        "evidence": 164,
+        "context_tokens": 3182,
+        "gold_in_context": "UNKNOWN",
+        "gold_rank": "UNKNOWN",
+        "precision_at_k": "UNKNOWN",
+        "stored_items": 528,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      }
+    },
+    {
+      "question_id": "gpt4_f420262c",
+      "slot": "temporal-reasoning-1",
+      "type": "temporal-reasoning",
+      "origin": "arena-expansion-v1",
+      "mem0": {
+        "judged": false,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-mem0",
+        "evidence": 10,
+        "context_tokens": 121,
+        "gold_in_context": true,
+        "gold_rank": 1,
+        "precision_at_k": 1.0,
+        "stored_items": 221,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": false,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-hindsight",
+        "evidence": 142,
+        "context_tokens": 3074,
+        "gold_in_context": true,
+        "gold_rank": 1,
+        "precision_at_k": 0.1831,
+        "stored_items": 549,
+        "mutation": "mutates_by_design",
+        "causal_query_mutation": "UNKNOWN",
+        "causal_why": "state changed; this system runs a background consolidation worker, so the query is not established as the cause",
+        "reproducible": "false",
+        "abstained": false
+      }
+    },
+    {
+      "question_id": "gpt4_f49edff3",
+      "slot": "temporal-reasoning-2",
+      "type": "temporal-reasoning",
+      "origin": "arena-expansion-v1",
+      "mem0": {
+        "judged": false,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-mem0",
+        "evidence": 10,
+        "context_tokens": 122,
+        "gold_in_context": true,
+        "gold_rank": 1,
+        "precision_at_k": 0.3,
+        "stored_items": 254,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": false,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-hindsight",
+        "evidence": 157,
+        "context_tokens": 3149,
+        "gold_in_context": true,
+        "gold_rank": 9,
+        "precision_at_k": 0.0892,
+        "stored_items": 521,
+        "mutation": "mutates_by_design",
+        "causal_query_mutation": "UNKNOWN",
+        "causal_why": "state changed; this system runs a background consolidation worker, so the query is not established as the cause",
+        "reproducible": "false",
+        "abstained": false
+      }
+    },
+    {
+      "question_id": "eace081b",
+      "slot": "knowledge-update-1",
+      "type": "knowledge-update",
+      "origin": "arena-expansion-v1",
+      "mem0": {
+        "judged": false,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-mem0",
+        "evidence": 10,
+        "context_tokens": 85,
+        "gold_in_context": true,
+        "gold_rank": 1,
+        "precision_at_k": 0.6,
+        "stored_items": 316,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": true,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-hindsight",
+        "evidence": 143,
+        "context_tokens": 3129,
+        "gold_in_context": true,
+        "gold_rank": 1,
+        "precision_at_k": 0.1049,
+        "stored_items": 517,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "false",
+        "abstained": false
+      }
+    },
+    {
+      "question_id": "69fee5aa",
+      "slot": "knowledge-update-2",
+      "type": "knowledge-update",
+      "origin": "arena-expansion-v1",
+      "mem0": {
+        "judged": true,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-mem0",
+        "evidence": 10,
+        "context_tokens": 96,
+        "gold_in_context": "UNOBSERVABLE",
+        "gold_rank": "UNOBSERVABLE",
+        "precision_at_k": "UNOBSERVABLE",
+        "stored_items": 363,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": false,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-hindsight",
+        "evidence": 173,
+        "context_tokens": 3112,
+        "gold_in_context": "UNOBSERVABLE",
+        "gold_rank": "UNOBSERVABLE",
+        "precision_at_k": "UNOBSERVABLE",
+        "stored_items": 520,
+        "mutation": "mutates_by_design",
+        "causal_query_mutation": "UNKNOWN",
+        "causal_why": "state changed; this system runs a background consolidation worker, so the query is not established as the cause",
+        "reproducible": "false",
+        "abstained": false
+      }
+    },
+    {
+      "question_id": "gpt4_59c863d7",
+      "slot": "multi-session-1",
+      "type": "multi-session",
+      "origin": "arena-expansion-v1",
+      "mem0": {
+        "judged": false,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-mem0",
+        "evidence": 10,
+        "context_tokens": 130,
+        "gold_in_context": true,
+        "gold_rank": 1,
+        "precision_at_k": 0.8,
+        "stored_items": 387,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": false,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-hindsight",
+        "evidence": 132,
+        "context_tokens": 3071,
+        "gold_in_context": true,
+        "gold_rank": 4,
+        "precision_at_k": 0.2045,
+        "stored_items": 486,
+        "mutation": "mutates_by_design",
+        "causal_query_mutation": "UNKNOWN",
+        "causal_why": "state changed; this system runs a background consolidation worker, so the query is not established as the cause",
+        "reproducible": "false",
+        "abstained": false
+      }
+    },
+    {
+      "question_id": "311778f1",
+      "slot": "single-session-user-1",
+      "type": "single-session-user",
+      "origin": "arena-expansion-v1",
+      "mem0": {
+        "judged": false,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-mem0",
+        "evidence": 10,
+        "context_tokens": 98,
+        "gold_in_context": false,
+        "gold_rank": null,
+        "precision_at_k": 0.0,
+        "stored_items": 371,
+        "mutation": "read_only",
+        "causal_query_mutation": "read_only",
+        "causal_why": "state unchanged, so no mutation to attribute",
+        "reproducible": "true",
+        "abstained": false
+      },
+      "hindsight": {
+        "judged": true,
+        "judge_run": "expansion-judged",
+        "metrics_run": "expansion-hindsight",
+        "evidence": 117,
+        "context_tokens": 3078,
+        "gold_in_context": true,
+        "gold_rank": 97,
+        "precision_at_k": 0.0256,
+        "stored_items": 712,
+        "mutation": "mutates_by_design",
+        "causal_query_mutation": "UNKNOWN",
+        "causal_why": "state changed; this system runs a background consolidation worker, so the query is not established as the cause",
+        "reproducible": "false",
+        "abstained": false
+      }
+    }
+  ],
+  "temporal_claim": {
+    "under_test": "the pilot's single temporal unit was answered by Hindsight and by nobody else",
+    "hindsight": "1/3",
+    "mem0": "0/3",
+    "margin_units": 1,
+    "pilot_margin_units": 1,
+    "verdict": "weakened: the margin stayed at one unit while the sample tripled",
+    "reading": "the pilot's margin was one unit out of one. Tripling the temporal sample left the margin at one unit out of three, so the sign survived and the rate did not. Hindsight is still the only system to answer any temporal unit, and one unit is not a mechanism",
+    "and_the_lead_is_not_temporal": "Hindsight's overall lead is 4-2 and only one of those four is temporal. The other three are two knowledge-update and one single-session-user, so whatever separates these systems on this sample is not concentrated in the type this run was built to test"
+  },
+  "the_result_that_does_not_depend_on_n": {
+    "claim": "retrieval is not the bottleneck for either system",
+    "evidence": "Mem0 put a gold session in front of its reader in 4 of 5 observable units at a mean rank of 1.0; Hindsight in 5 of 5. They then answered 2 of 10 and 4 of 10. The gold session was retrieved and the answer was still wrong in most units of both systems",
+    "what_it_does_not_identify": "where downstream the failure is. Neither system composes an answer \u2014 both return a stored memory \u2014 so a judge comparing a memory against a gold answer may be scoring a task neither system performs. That is a hypothesis this data cannot separate from genuine reasoning failure"
+  },
+  "caveats": [
+    "ten units, a confirmatory sample designed after the pilot",
+    "temporal-reasoning is 3 of 10 here against roughly 1 in 6 in the corpus, so the overall accuracy is a weighted average of a weighting we chose",
+    "four units are reused pilot observations and six are new; provenance is recorded per cell",
+    "retrieval metrics map evidence to sessions by date and are UNOBSERVABLE where a haystack repeats one"
+  ]
+}
