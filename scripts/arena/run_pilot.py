@@ -49,6 +49,7 @@ from arena.adapter_v0_1 import CONTRACT_VERSION, contract_digest  # noqa: E402
 from arena.decoding import (  # noqa: E402
     ARENA_DECODING, PRICE_PER_MTOK, FixedDecoding, SpendCapReached,
 )
+from arena.retrieval_truth import measure as retrieval_measure  # noqa: E402
 from arena.run_arena_pilot import as_records, cost_fields, crude_match  # noqa: E402
 from arena.spend_ledger import SpendLedger, TotalCapReached  # noqa: E402
 
@@ -370,7 +371,13 @@ def main() -> int:
     parser.add_argument("--hindsight-url", default="http://127.0.0.1:8801")
     parser.add_argument("--proxy-url", default="http://127.0.0.1:8799")
     parser.add_argument("--out", default=None)
+    parser.add_argument("--selection", default=str(SELECTION),
+                        help="frozen selection manifest to run")
+    parser.add_argument("--only-origin", default=None,
+                        help="run only units whose manifest origin matches, so a "
+                             "reused unit is not paid for twice")
     args = parser.parse_args()
+    selection_path = Path(args.selection)
 
     os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
     mode = "calibration" if args.calibrate_sessions else "pilot"
@@ -379,7 +386,11 @@ def main() -> int:
 
     ledger = SpendLedger(total_cap_usd=args.total_cap_usd,
                          run_id=f"{args.system}-{mode}")
-    units = load_units(SELECTION, CORPUS)
+    units = load_units(selection_path, CORPUS)
+    if args.only_origin:
+        units = [u for u in units if u["_meta"].get("origin") == args.only_origin]
+        if not units:
+            raise SystemExit(f"no units with origin {args.only_origin!r}")
     built = SYSTEMS[args.system](args, ledger)
     adapter, probe, provider = built["adapter"], built["probe"], built["provider"]
     #: Either the in-process wrapper or the proxy, whichever this system is
@@ -402,7 +413,9 @@ def main() -> int:
         "adapter_digest": digest_of(ROOT / f"scripts/arena/{args.system}_adapter.py")
         if (ROOT / f"scripts/arena/{args.system}_adapter.py").exists() else None,
         "started_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "selection": json.loads(SELECTION.read_text(encoding="utf-8"))["selection_sha256"],
+        "selection": json.loads(selection_path.read_text(encoding="utf-8"))["selection_sha256"],
+        "selection_id": json.loads(selection_path.read_text(encoding="utf-8")).get("selection_id"),
+        "only_origin": args.only_origin,
         "source": built["source"],
         "target_model": args.model if meter else "none — this system calls no model",
         "decoding": {
@@ -543,6 +556,11 @@ def main() -> int:
                                        == (repeat.text, repeat.evidence_ids) else "false",
                 "declared_mutation_mode": getattr(adapter, "query_mutates_state", "unknown"),
             }
+
+            # Retrieval against the corpus's own gold sessions, mapped by session
+            # date. Mechanical: no guessing which passage a memory came from.
+            unit_record["retrieval"] = retrieval_measure(
+                unit, answer.system_metadata.get("evidence_times") or [])
 
             gold = str(unit.get("answer", ""))
             unit_record["task"] = {

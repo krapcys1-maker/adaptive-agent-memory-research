@@ -261,7 +261,13 @@ class HindsightAdapter:
             system_metadata={
                 "answer_channel": ANSWER_CHANNEL,
                 "retrieved": len(results),
-                "scores": [item.get("score") for item in results][:10],
+                "scores": [item.get("scores") or item.get("score") for item in results][:10],
+                # The event time each recalled memory carries, in the order
+                # recalled. Reported raw so the harness can map evidence back to a
+                # corpus session by date rather than by guessing.
+                "evidence_times": [
+                    str(item.get("mentioned_at") or item.get("date") or "")
+                    for item in results],
                 "abstention_derivable": True,
                 "abstention_channel": "empty result set",
                 "cost_observability": self._cost_observability(),

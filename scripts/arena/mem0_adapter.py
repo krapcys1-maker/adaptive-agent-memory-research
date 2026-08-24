@@ -152,6 +152,13 @@ class Mem0Adapter:
                 "answer_channel": ANSWER_CHANNEL,
                 "retrieved": len(results),
                 "scores": [item.get("score") for item in results][:10],
+                # The session timestamp each retrieved memory carries, in the
+                # order retrieved. Reported raw so the harness can map evidence
+                # back to a corpus session mechanically, by date, rather than by
+                # guessing which passage a memory came from.
+                "evidence_times": [
+                    str((item.get("metadata") or {}).get("timestamp", "") or "")
+                    for item in results],
                 # Returning nothing is the only decline this system can express,
                 # and it is derivable, so `abstained` is a measurement here.
                 "abstention_derivable": True,

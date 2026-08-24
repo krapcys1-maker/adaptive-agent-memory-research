@@ -1,0 +1,182 @@
+{
+  "artifact": "arena-expansion-selection",
+  "selection_id": "arena-expansion-v1",
+  "frozen_at": "2026-08-24T03:32:35+00:00",
+  "status": "frozen before either system ran on the six new units",
+  "purpose": "test one claim from the four-unit pilot: that Hindsight answers temporal-reasoning questions the other systems do not",
+  "confirmatory_not_representative": "DESIGNED AFTER SEEING THE PILOT RESULT. temporal-reasoning is deliberately over-represented at 3 of 10 against a corpus proportion near 1 in 6. That buys power on the question worth asking and forfeits the right to read the overall accuracy as an estimate of LongMemEval performance. It must never be presented as a random sample",
+  "source": {
+    "corpus": "LongMemEval-S cleaned",
+    "dataset_commit": "98d7416c24c778c2fee6e6f3006e7a073259d48f",
+    "sha256": "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442",
+    "location": "ignored local cache; nothing from it is committed"
+  },
+  "rule": {
+    "salt": "arena-expansion-v1:",
+    "tie_break": "ascending sha256(salt + question_id)",
+    "kept_from": "arena-pilot-v1, all four, unchanged",
+    "added_quotas": {
+      "temporal-reasoning": 2,
+      "knowledge-update": 2,
+      "multi-session": 1,
+      "single-session-user": 1
+    },
+    "universe": "answerable rows of a known type, matching session/date/id lengths, at least one has_answer turn, non-empty answer_session_ids \u2014 the pilot's filter, unchanged",
+    "blind_to": "every system's answers, scores, costs and behaviour. The ordering is a hash of a public question id",
+    "types_left_out": "single-session-assistant and single-session-preference. Adding an untried type to a confirmatory run mixes a new question into an experiment designed to answer an old one"
+  },
+  "composition": {
+    "multi-session": 2,
+    "temporal-reasoning": 3,
+    "single-session-user": 2,
+    "knowledge-update": 3
+  },
+  "reuse": {
+    "units_reused": 4,
+    "units_new": 6,
+    "why_reuse_is_sound": "each unit is an independent observation: the runner resets the system and ingests one unit's haystack from empty before querying it, so a unit's result does not depend on which other units ran. The apparatus is unchanged from the runs that produced them",
+    "apparatus_unchanged_since": "Mem0 was rerun with the full-paging state probe, and Hindsight ran with the ISO timestamp normalisation on both retain and recall. Both fixes predate the results being reused"
+  },
+  "units": [
+    {
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "sessions": 41,
+      "turns": 409,
+      "user_turns": 204,
+      "words": 76287,
+      "gold_evidence_sessions": 2,
+      "dates_unique": true,
+      "rank_key": "73f9f3070ff732e392dd2317b30ad58c9aa487a2755d2ae1791dfeccc67eedac",
+      "slot": "short",
+      "origin": "arena-pilot-v1"
+    },
+    {
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "sessions": 49,
+      "turns": 490,
+      "user_turns": 243,
+      "words": 79385,
+      "gold_evidence_sessions": 2,
+      "dates_unique": true,
+      "rank_key": "205307e355cb4a3de58dc825c120024fad68b4257680bc2da74404c169cb8842",
+      "slot": "medium",
+      "origin": "arena-pilot-v1"
+    },
+    {
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "sessions": 57,
+      "turns": 616,
+      "user_turns": 305,
+      "words": 78842,
+      "gold_evidence_sessions": 1,
+      "dates_unique": true,
+      "rank_key": "9d5a780a697f9a21353b76e036cea09c030448c08282e38031c0a65eadb7ebf6",
+      "slot": "long",
+      "origin": "arena-pilot-v1"
+    },
+    {
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "sessions": 51,
+      "turns": 493,
+      "user_turns": 244,
+      "words": 77718,
+      "gold_evidence_sessions": 2,
+      "dates_unique": true,
+      "rank_key": "1f7e7867db04675232fae99a466b24c55f4497079e4ed3bd513db119647dc795",
+      "slot": "update",
+      "origin": "arena-pilot-v1"
+    },
+    {
+      "question_id": "gpt4_f420262c",
+      "question_type": "temporal-reasoning",
+      "sessions": 47,
+      "turns": 495,
+      "user_turns": 246,
+      "words": 78055,
+      "gold_evidence_sessions": 5,
+      "dates_unique": true,
+      "rank_key": "008f06e7fe7d928de9a305487021e0ee376a20fa341f4ae26e5edf0a4128fcce",
+      "slot": "temporal-reasoning-1",
+      "origin": "arena-expansion-v1"
+    },
+    {
+      "question_id": "gpt4_f49edff3",
+      "question_type": "temporal-reasoning",
+      "sessions": 47,
+      "turns": 498,
+      "user_turns": 248,
+      "words": 77313,
+      "gold_evidence_sessions": 3,
+      "dates_unique": true,
+      "rank_key": "00f4c9c56b7de4ed1f19dfb13420a4f19544205b8a767af4099ed48ed22ffbd3",
+      "slot": "temporal-reasoning-2",
+      "origin": "arena-expansion-v1"
+    },
+    {
+      "question_id": "eace081b",
+      "question_type": "knowledge-update",
+      "sessions": 47,
+      "turns": 489,
+      "user_turns": 242,
+      "words": 80287,
+      "gold_evidence_sessions": 2,
+      "dates_unique": true,
+      "rank_key": "04a412cb5d80d5d1964da125fe9f8b5224d1e00ebcdfe9595ee3b8ebafcbe715",
+      "slot": "knowledge-update-1",
+      "origin": "arena-expansion-v1"
+    },
+    {
+      "question_id": "69fee5aa",
+      "question_type": "knowledge-update",
+      "sessions": 49,
+      "turns": 483,
+      "user_turns": 240,
+      "words": 78099,
+      "gold_evidence_sessions": 2,
+      "dates_unique": false,
+      "rank_key": "05d434eb452ef47843f5cb7977fef5ca31f910f6ac70d343f7a7566e1d5b1904",
+      "slot": "knowledge-update-2",
+      "origin": "arena-expansion-v1"
+    },
+    {
+      "question_id": "gpt4_59c863d7",
+      "question_type": "multi-session",
+      "sessions": 47,
+      "turns": 481,
+      "user_turns": 239,
+      "words": 78451,
+      "gold_evidence_sessions": 4,
+      "dates_unique": true,
+      "rank_key": "01c9f046dba661b88eca018222517a1a59a8038529cd66430c07aeb96bb78036",
+      "slot": "multi-session-1",
+      "origin": "arena-expansion-v1"
+    },
+    {
+      "question_id": "311778f1",
+      "question_type": "single-session-user",
+      "sessions": 52,
+      "turns": 500,
+      "user_turns": 248,
+      "words": 81500,
+      "gold_evidence_sessions": 1,
+      "dates_unique": true,
+      "rank_key": "00e8956560db973390ed21d1a6967385bcdd6db160e724be379d1f01d56256d1",
+      "slot": "single-session-user-1",
+      "origin": "arena-expansion-v1"
+    }
+  ],
+  "totals": {
+    "units": 10,
+    "sessions": 487,
+    "user_turns": 2459,
+    "words": 785937,
+    "units_with_unique_session_dates": 9
+  },
+  "withheld": "no conversation, question text, answer or evidence id leaves the cache",
+  "selection_sha256": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "new_units_sha256": "d0135f457fe719dfeb56549a39949a6c080abcb730961e8cd9f5890c57089c8e"
+}
