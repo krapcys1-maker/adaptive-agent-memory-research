@@ -1,0 +1,634 @@
+{
+  "artifact": "arena-sibling-entity-enumeration-v1",
+  "selection": "data\\lab\\arena\\sibling-entity-enumeration-v1\\selection.json",
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "ingest": [
+    {
+      "question_id": "15745da0",
+      "question_type": "single-session-user",
+      "sessions_available": 47,
+      "sessions_ingested": 47,
+      "user_turns_ingested": 235,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 211,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.070326
+    },
+    {
+      "question_id": "10d9b85a",
+      "question_type": "multi-session",
+      "sessions_available": 44,
+      "sessions_ingested": 44,
+      "user_turns_ingested": 232,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 227,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.141163
+    },
+    {
+      "question_id": "1192316e",
+      "question_type": "multi-session",
+      "sessions_available": 42,
+      "sessions_ingested": 42,
+      "user_turns_ingested": 233,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 217,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.213908
+    },
+    {
+      "question_id": "0ea62687",
+      "question_type": "multi-session",
+      "sessions_available": 43,
+      "sessions_ingested": 43,
+      "user_turns_ingested": 227,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 213,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.284579
+    },
+    {
+      "question_id": "2c63a862",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 54,
+      "sessions_ingested": 54,
+      "user_turns_ingested": 262,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 227,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.359531
+    },
+    {
+      "question_id": "2a1811e2",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 46,
+      "sessions_ingested": 46,
+      "user_turns_ingested": 237,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 232,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.430015
+    },
+    {
+      "question_id": "0ddfec37",
+      "question_type": "knowledge-update",
+      "sessions_available": 50,
+      "sessions_ingested": 49,
+      "user_turns_ingested": 239,
+      "sessions_skipped_no_user_turn": 1,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 209,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.502703
+    },
+    {
+      "question_id": "1568498a",
+      "question_type": "single-session-assistant",
+      "sessions_available": 47,
+      "sessions_ingested": 47,
+      "user_turns_ingested": 237,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 204,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.571551
+    }
+  ],
+  "ingest_stopped_by_cap": null,
+  "n_units_preregistered": 8,
+  "n_units": 8,
+  "stopped_by_cap": null,
+  "spend": {
+    "total_usd": 0.574796,
+    "cap_usd": 0.6,
+    "remaining_usd": 0.025204
+  },
+  "results": [
+    {
+      "question_id": "15745da0",
+      "question_type": "single-session-user",
+      "question": "How long have I been collecting vintage cameras?",
+      "gold": "three months",
+      "mechanism_trace": {
+        "categories_found": {},
+        "plural_categories": {},
+        "flagged": false,
+        "inert": true
+      },
+      "base_context_n": 10,
+      "plus_e_context": [
+        "Collecting vintage cameras for three months",
+        "Interested in vintage camera repair services",
+        "Has 17 vintage cameras including a Brownie Hawkeye acquired last week",
+        "Has a vintage timepiece that needs repair",
+        "Has a 1970s Sony Walkman from a garage sale",
+        "Concerned about the decline of traditional crafts and trades and wants to preserve them",
+        "Considering creating a photography portfolio",
+        "Considering creating a photography blog",
+        "Considering attending more photography workshops and conferences",
+        "Frustrated that traditional crafts and trades are undervalued and seen as outdated by society"
+      ],
+      "base_answer": "Based on the provided context, you have been collecting vintage cameras for three months.",
+      "plus_e_answer": "Based on the provided context, you have been collecting vintage cameras for three months.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_e_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_e_correct": true
+    },
+    {
+      "question_id": "10d9b85a",
+      "question_type": "multi-session",
+      "question": "How many days did I spend attending workshops, lectures, and conferences in April?",
+      "gold": "3 days",
+      "mechanism_trace": {
+        "categories_found": {},
+        "plural_categories": {},
+        "flagged": false,
+        "inert": true
+      },
+      "base_context_n": 10,
+      "plus_e_context": [
+        "Recently started waking up 15 minutes earlier on Tuesdays and Thursdays to meditate and practice yoga poses",
+        "Considering attending a music festival later this year",
+        "Has been enjoying restorative yoga classes at a studio near work",
+        "Planning to take the Studio Tour multiple times",
+        "Planning to visit Universal Studios Hollywood at least once a month",
+        "Averages around 7,000 steps per day and is moderately active",
+        "Has been doing yoga for about 3 months",
+        "Started using a new yoga app that sends reminders and has many classes and tutorials",
+        "Planning to commit to meditating 3 times a week",
+        "Planning to go for a morning walk today"
+      ],
+      "base_answer": "Based on the provided context, I cannot determine how many days you spent attending workshops, lectures, and conferences in April. The context does not contain any information about your attendance at such events.",
+      "plus_e_answer": "Based on the provided context, I cannot determine how many days you spent attending workshops, lectures, and conferences in April. The context does not contain any information about your attendance at such events.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_e_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_e_correct": false
+    },
+    {
+      "question_id": "1192316e",
+      "question_type": "multi-session",
+      "question": "What is the total time it takes I to get ready and commute to work?",
+      "gold": "an hour and a half",
+      "mechanism_trace": {
+        "categories_found": {},
+        "plural_categories": {},
+        "flagged": false,
+        "inert": true
+      },
+      "base_context_n": 10,
+      "plus_e_context": [
+        "Daily commute to work takes about 30 minutes",
+        "Recent road trip was about 4 hours each way",
+        "Morning routine takes about an hour including 20-minute meditation, 30-minute workout, and quick breakfast",
+        "Trip duration about 2 weeks",
+        "Thinking of setting up daily routine to stay informed, 30 minutes in morning and 30 minutes in evening",
+        "Drove to Asheville last month from home, about 4.5 hours away",
+        "Interested in listening to audiobooks or podcasts during commute",
+        "Wants to know miles needed for one-way business class from Chicago to London on United",
+        "Working from home more often",
+        "Trying to improve productivity and time management skills"
+      ],
+      "base_answer": "Based on the provided context, your morning routine takes about an hour, and your daily commute takes about 30 minutes. Therefore, the total time to get ready and commute to work is about 1 hour and 30 minutes.",
+      "plus_e_answer": "Based on the provided context, your morning routine takes about an hour, and your daily commute takes about 30 minutes. Therefore, the total time to get ready and commute to work is about 1 hour and 30 minutes.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_e_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_e_correct": true
+    },
+    {
+      "question_id": "0ea62687",
+      "question_type": "multi-session",
+      "question": "How much more miles per gallon was my car getting a few months ago compared to now?",
+      "gold": "2",
+      "mechanism_trace": {
+        "categories_found": {},
+        "plural_categories": {},
+        "flagged": false,
+        "inert": true
+      },
+      "base_context_n": 10,
+      "plus_e_context": [
+        "Getting around 28 miles per gallon in the city lately",
+        "Oil change is overdue by about 1000 miles",
+        "Thinking of getting a new air filter for the car",
+        "Thinking of getting a tune-up for car soon",
+        "Considering checking tire pressure to improve fuel efficiency",
+        "Saving around $50 per month on feed costs",
+        "Keeping track of car's maintenance",
+        "Invested in a new area rug for bedroom about two months ago",
+        "Recently built a model of a Ford Mustang car",
+        "Planning to check air filter, spark plugs, and tire pressure"
+      ],
+      "base_answer": "Based on the provided context, I cannot determine how many more miles per gallon your car was getting a few months ago compared to now. The context only mentions your current city mileage (28 mpg) and plans to improve fuel efficiency, but it does not include any past fuel economy figures.",
+      "plus_e_answer": "Based on the provided context, I cannot determine how many more miles per gallon your car was getting a few months ago compared to now. The context only mentions your current city mileage (28 mpg) and does not include any past fuel efficiency figures.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_e_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_e_correct": false
+    },
+    {
+      "question_id": "2c63a862",
+      "question_type": "temporal-reasoning",
+      "question": "How many days did it take for me to find a house I loved after starting to work with Rachel?",
+      "gold": "14 days. 15 days (including the last day) is also acceptable.",
+      "mechanism_trace": {
+        "categories_found": {},
+        "plural_categories": {},
+        "flagged": false,
+        "inert": true
+      },
+      "base_context_n": 10,
+      "plus_e_context": [
+        "Started working with Rachel on 2/15",
+        "Working with a real estate agent named Rachel",
+        "Met Rachel at a music festival recently and had a blast",
+        "Planning a road trip with friend Rachel soon",
+        "Visited Rachel at the hospital after she gave birth to Jack",
+        "Considering making an offer on a house seen on 3/1",
+        "Wrote a personalized gift note for Rachel and Jack",
+        "Got pre-approved for a mortgage on February 10th for $350,000",
+        "Lent old crate to friend Sarah a few weeks ago when she got a new puppy, waiting for her to return it",
+        "Planning to reach out to Rachel Lee to discuss potential collaboration opportunities"
+      ],
+      "base_answer": "Based on the provided context, you started working with Rachel on 2/15 and saw a house you loved on 3/1. That is 14 days later.",
+      "plus_e_answer": "Based on the provided context, you started working with Rachel on 2/15 and saw a house you loved on 3/1. That is a span of 14 days.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_e_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_e_correct": true
+    },
+    {
+      "question_id": "2a1811e2",
+      "question_type": "temporal-reasoning",
+      "question": "How many days had passed between the Hindu festival of Holi and the Sunday mass at St. Mary's Church?",
+      "gold": "21 days. 22 days (including the last day) is also acceptable.",
+      "mechanism_trace": {
+        "categories_found": {},
+        "plural_categories": {},
+        "flagged": false,
+        "inert": true
+      },
+      "base_context_n": 10,
+      "plus_e_context": [
+        "Attended Holi celebration at local temple on February 26th",
+        "Attended Sunday mass at St. Mary's Church on March 19th",
+        "Enjoyed throwing colors and learning about Holi's significance",
+        "Caught up with cousin Emma at St. Mary's Church last Sunday and exchanged numbers to meet for brunch later that week",
+        "Sat in the third pew from the front at St. Mary's Church next to cousin Emma who was visiting",
+        "Made a delicious chicken tikka masala last weekend",
+        "Wants to visit Toshogu Shrine and Rinno-ji Temple in Nikko",
+        "Was moved by Father John's sermon on forgiveness and compassion at St. Mary's Church last Sunday",
+        "Interested in buying colorful powders for next year's Holi",
+        "Tried Gujarati snacks at the local temple"
+      ],
+      "base_answer": "Based on the provided context, Holi was attended on February 26th and the Sunday mass was on March 19th. That is a span of 21 days.",
+      "plus_e_answer": "Based on the provided context, Holi was attended on February 26th and the Sunday mass was on March 19th. That is a span of 21 days.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_e_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_e_correct": true
+    },
+    {
+      "question_id": "0ddfec37",
+      "question_type": "knowledge-update",
+      "question": "How many autographed baseballs have I added to my collection in the first three months of collection?",
+      "gold": "15",
+      "mechanism_trace": {
+        "categories_found": {},
+        "plural_categories": {},
+        "flagged": false,
+        "inert": true
+      },
+      "base_context_n": 10,
+      "plus_e_context": [
+        "Added 20 autographed baseballs to collection in past few months",
+        "Got a signed baseball of Mike Trout last week, has 15 autographed baseballs since started collecting three months ago",
+        "Thinking of selling some autographed baseballs to make room for new additions",
+        "Considering selling some vinyl records to make space in collection",
+        "Looking for information on Mike Trout's latest stats",
+        "Thinking of attending a stamp show next quarter, interested in notable stamp shows or exhibitions in next few months",
+        "Thinking of expanding vinyl record collection to include more international pressings, interested in resources for finding rare records from Japan",
+        "Has 25 cousins, 17 females and 8 males",
+        "Has been attending many book events recently and enjoys meeting authors",
+        "Planning to buy a laptop sleeve from Etsy for $30 with a fun design"
+      ],
+      "base_answer": "Based on the provided context, you have added 15 autographed baseballs to your collection in the first three months.",
+      "plus_e_answer": "Based on the provided context, you have added 15 autographed baseballs to your collection in the first three months.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_e_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_e_correct": true
+    },
+    {
+      "question_id": "1568498a",
+      "question_type": "single-session-assistant",
+      "question": "I'm looking back at our previous chess game and I was wondering, what was the move you made after 27. Kg2 Bd5+?",
+      "gold": "28. Kg3",
+      "mechanism_trace": {
+        "categories_found": {},
+        "plural_categories": {},
+        "flagged": false,
+        "inert": true
+      },
+      "base_context_n": 10,
+      "plus_e_context": [
+        "Lakers won the game",
+        "Played Rocket League online with Alex today",
+        "사용자가 'start game'을 누르면 나오는 다음 페이지를 만들어야 한다",
+        "Finished a game on PS4 that was an emotional rollercoaster with a memorable ending and characters",
+        "Averaging around 8,000 steps per day, goal is 10,000 steps",
+        "Recently caught an NBA playoff game with friends at a sports bar",
+        "Impressed with the team's young core, especially LeBron James and Anthony Davis",
+        "Convinced friend Alex to start playing Rocket League",
+        "Trying to get back into playing basketball regularly",
+        "Ate way too many wings"
+      ],
+      "base_answer": "Based on the provided context, I cannot determine the move you made after 27. Kg2 Bd5+ in our chess game. The context does not contain any information about a chess game.",
+      "plus_e_answer": "Based on the provided context, I cannot determine the move you made after 27. Kg2 Bd5+ in our chess game. The context does not contain any information about a chess game.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_e_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_e_correct": false
+    }
+  ]
+}

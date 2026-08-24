@@ -10,16 +10,18 @@
     {"experiment_id": "mechb-v1-repair", "purpose": "Mechanism B one repair retest", "cap_scope": "mechb-v1-repair-", "cost_usd": 0.041754, "cumulative_cost_usd": 0.064069, "decision_produced": "DROP (V1 harness), mechanism unexercised not refuted"},
     {"experiment_id": "rawprov-fresh-v1", "purpose": "Mechanism C fresh replication (8 units, 3 arms)", "cap_scope": "rawprov-fresh-", "cost_usd": 0.575419, "cumulative_cost_usd": 0.639488, "decision_produced": "REPLICATED_VALIDATED_TRANSPLANT -- campaign's first validated mechanism"},
     {"experiment_id": "mechd-v1", "purpose": "Mechanism D exploratory ingest (interrupted by provider cap at 4/5 units)", "cap_scope": "mechd-v1-", "cost_usd": 0.345535, "cumulative_cost_usd": 0.985023, "decision_produced": "ingest bug found+fixed live; 4/5 units cleanly completed, preserved"},
-    {"experiment_id": "mechd-v1-cont", "purpose": "Mechanism D continuation: reader+judge only on the 4 completed units, zero re-ingest", "cap_scope": "mechd-v1-cont-", "cost_usd": 0.001626, "cumulative_cost_usd": 0.986649, "decision_produced": "MECHANISM_D_FAIL -- DROP (regime mismatch, small n, not a refutation)"}
+    {"experiment_id": "mechd-v1-cont", "purpose": "Mechanism D continuation: reader+judge only, zero re-ingest", "cap_scope": "mechd-v1-cont-", "cost_usd": 0.001626, "cumulative_cost_usd": 0.986649, "decision_produced": "MECHANISM_D_FAIL -- DROP (regime mismatch, small n)"},
+    {"experiment_id": "meche-v1", "purpose": "Mechanism E exploratory (8 units, harmful-sibling entity enumeration)", "cap_scope": "meche-v1-", "cost_usd": 0.574796, "cumulative_cost_usd": 1.561445, "decision_produced": "MECHANISM_E_FAIL -- DROP (regime mismatch, mechanism never fired 0/8)"}
   ],
-  "remaining_usd": 9.013351,
-  "remaining_after_reserve_usd": 7.513351,
+  "remaining_usd": 8.438555,
+  "remaining_after_reserve_usd": 6.938555,
   "mechanisms_closed": [
     "Mechanism B: CURRENT_STATE_OVER_HISTORY -- DROP (V1 harness)",
     "Mechanism C: RAW_PROVENANCE (C4) -- REPLICATED_VALIDATED_TRANSPLANT (first validated mechanism)",
-    "Mechanism D: RETRIEVAL_CONFIDENCE_SIGNAL -- DROP (regime mismatch, small n)"
+    "Mechanism D: RETRIEVAL_CONFIDENCE_SIGNAL -- DROP (regime mismatch, small n)",
+    "Mechanism E: SAME_CATEGORY_ENTITY_ENUMERATION -- DROP (regime mismatch, never fired)"
   ],
-  "consecutive_failed_families_count": 1,
+  "consecutive_failed_families_count": 2,
   "validated_mechanisms_count": 1,
-  "note": "Mechanism D failed but does not extend a 2-in-a-row streak (C succeeded between B and D). 1 of 3 needed for STOP condition B. Still need a 2nd REPLICATED_VALIDATED_TRANSPLANT mechanism before any interaction test unlocks. Continuing autonomously to Mechanism E per contract -- no STOP condition met, no permission needed."
+  "note": "D and E are consecutive failures (C succeeded between B and D, breaking that earlier streak). At 2 of 3 needed for STOP condition B (3 consecutive families fail). Emerging lesson recorded in both D and E closures: narrow/templated-precondition mechanisms risk regime-mismatch nulls at this sample scale; RAW_PROVENANCE's universal precondition is why it alone succeeded cleanly. Mechanism F selection (if attempted) should weight this heavily or the campaign should consider whether continuing to search for a second validated mechanism via this method is still the best use of remaining budget."
 }

@@ -181,4 +181,22 @@ Cumulative, append-oriented. Entries are added or superseded (with a `superseded
 
 ---
 
+## Entry J — `SAME_CATEGORY_ENTITY_ENUMERATION` — DROP (regime mismatch, mechanism never fired)
+
+- **MECHANISM:** read-side, deterministic. 22-category-suffix entity template (Airlines, Museum, Hotel, ...); enumerates distinct entities when ≥2 share a category. Zero LLM. Bug found+fixed pre-spend (sentence-initial verb over-capture), reverified against the real historical `gpt4_f420262c` case.
+- **REGIME (target, untested at scale):** ≥2 distinct same-category entities co-retrieved. Correlates, on the one known real instance, with wide-breadth retrieval (208 items) — not exercised by this test's `native`/`compact` (~10-item) operating point.
+- **FAILURE_TARGETED:** `HARMFUL_SIBLING_DISTRACTION` (Entry C).
+- **OBSERVED_EFFECT:** NULL — mechanism fired 0/8 times; inert (byte-identical to BASE) on every unit. Not a false positive, not a false negative, not exercised at all.
+- **SOURCE_EXPERIMENTS:** `PM-20260824-fd63ec2d`; [`SAME_CATEGORY_ENTITY_ENUMERATION_V1.md`](SAME_CATEGORY_ENTITY_ENUMERATION_V1.md); `data/lab/arena/sibling-entity-enumeration-v1/{selection.json, results.json}`. Spend $0.574796.
+- **EXTERNAL_SUPPORT:** arXiv:2606.10388 ("Right Family, Wrong Skill").
+- **CONFIDENCE:** LOW on the mechanism (never exercised) — MEDIUM that its precondition is rare at this project's standard `compact` retrieval breadth specifically (as opposed to rare in general — the one real case occurred at a much wider breadth).
+- **KNOWN_COUNTEREXAMPLES:** none observed (nothing fired to be right or wrong about).
+- **STATUS:** `DROP (regime mismatch, mechanism never exercised)`.
+- **CAMPAIGN-LEVEL LESSON:** two consecutive mechanisms (Entry I, Entry J) now closed as regime-mismatch nulls, both narrow/templated preconditions vs. `RAW_PROVENANCE`'s (Entry H) universal one (Mem0 always compresses). Future candidates should weight precondition commonality heavily, or explicitly test at varied retrieval breadth.
+- **LAST_UPDATED:** 2026-08-24.
+- **SUPERSEDES:** none. **SUPERSEDED_BY:** none.
+- **NEXT_TRIGGER:** a breadth-varied test (e.g. at the `_3000`/wide operating point, matching the one known real case's actual conditions) would be a fairer test of this mechanism's precondition. Not scheduled here.
+
+---
+
 *Full mechanistic detail and per-unit transcripts for this update: [`TEMPORAL_ALIGNMENT_AND_DISTRACTION_ARCHAEOLOGY_V1.md`](TEMPORAL_ALIGNMENT_AND_DISTRACTION_ARCHAEOLOGY_V1.md), [`analysis.json`](../../data/lab/arena/temporal-alignment-and-distraction-archaeology-v1/analysis.json).*

@@ -1,0 +1,24 @@
+{
+  "artifact": "arena-sibling-entity-enumeration-v1-selection",
+  "purpose": "Mechanism E exploratory test: SAME_CATEGORY_ENTITY_ENUMERATION, targeting HARMFUL_SIBLING_DISTRACTION (Ledger Entry C).",
+  "frozen_before_any_ingest": true,
+  "excludes_note": "all 33 units used anywhere in this arena to date (original 10 + Stage2's 10 + RAW_PROVENANCE's 8 + Mechanism D's 5, including the dropped/incomplete 08e075c7). _abs variants also excluded.",
+  "selection_rule": {
+    "inputs_used": ["question_type"],
+    "inputs_never_used": ["answer", "gold", "haystack content", "prior correctness", "which units happen to mention multiple same-category entities"],
+    "method": "deterministic category quota (3 multi-session, 2 temporal-reasoning, 1 single-session-user, 1 single-session-assistant, 1 knowledge-update -- 8 total), first-by-question_id-sort within category after exclusion. Weighted toward multi-session/temporal-reasoning (richer, longer conversation histories -> more opportunities for repeated entity mentions across many sessions) -- a category-structure-based prior, not a content-based one, matching the same discipline as prior selections in this campaign.",
+    "size_note": "8 units (matching RAW_PROVENANCE's proven exploratory-to-replication-sized sample) rather than a smaller 5-unit sample, given Mechanism D's lesson that a too-small sample risks a regime-mismatch null before the target precondition (here: 2+ same-category entities actually co-occurring in one unit's retrieval) is ever observed even once."
+  },
+  "units": [
+    {"question_id": "0ea62687", "question_type": "multi-session"},
+    {"question_id": "10d9b85a", "question_type": "multi-session"},
+    {"question_id": "1192316e", "question_type": "multi-session"},
+    {"question_id": "2a1811e2", "question_type": "temporal-reasoning"},
+    {"question_id": "2c63a862", "question_type": "temporal-reasoning"},
+    {"question_id": "15745da0", "question_type": "single-session-user"},
+    {"question_id": "1568498a", "question_type": "single-session-assistant"},
+    {"question_id": "0ddfec37", "question_type": "knowledge-update"}
+  ],
+  "n_units": 8,
+  "candidate_pool_size_after_exclusion": 437
+}
