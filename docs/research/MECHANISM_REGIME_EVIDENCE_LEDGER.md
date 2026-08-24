@@ -199,4 +199,22 @@ Cumulative, append-oriented. Entries are added or superseded (with a `superseded
 
 ---
 
+## Entry K — `RETRIEVAL_RANK_ANNOTATION` — DROP (fired everywhere, net negative)
+
+- **MECHANISM:** read-side, deterministic, unconditional. Every retrieved item annotated `[rank N/M, relevance X.XX]`, always — no threshold gate (direct fix for Entries I/J's regime-mismatch problem).
+- **REGIME:** universal — fires on every non-empty retrieval by construction. Confirmed: 8/8 units fired in this test (contrast with Entry J's 0/8).
+- **FAILURE_TARGETED:** reader mis-weighting evidence without explicit confidence signal.
+- **OBSERVED_EFFECT:** NET NEGATIVE. 8 fresh units: 0 repairs, 1 regression (`06f04340`, a preference-rubric question — `+F`'s answer covers the same substantive content as `BASE` but adds a tangent and a closing hedge ("cannot be fully determined"), judged wrong where `BASE`'s decisive answer was judged correct).
+- **SOURCE_EXPERIMENTS:** `PM-20260824-d7372cde`; [`RETRIEVAL_RANK_ANNOTATION_V1.md`](RETRIEVAL_RANK_ANNOTATION_V1.md); `data/lab/arena/retrieval-rank-annotation-v1/{selection.json, results.json}`. Spend $0.581880.
+- **EXTERNAL_SUPPORT:** none specific; general motivation from the "confident-but-wrong" family (frontier map #5).
+- **CONFIDENCE:** MEDIUM that unconditional rank/score annotation, as minimally rendered here, does not help and carries a mild regression risk — LOW that this generalizes beyond n=8.
+- **KNOWN_COUNTEREXAMPLES:** none positive; the one changed case is the regression itself.
+- **CROSS-CUTTING PATTERN CONFIRMED:** the regression matches "judge-penalized epistemic caution," already recorded independently in E1's `+SRC` regressions and Stage 2's `031748ae`/`0977f2af` — now observed a third time under an unrelated mechanism. This is now a recurring, cross-mechanism risk of context-annotation interventions in this harness, worth flagging for any future annotation-style mechanism design.
+- **STATUS:** `DROP (fired universally, net negative on n=8)`.
+- **LAST_UPDATED:** 2026-08-24.
+- **SUPERSEDES:** none. **SUPERSEDED_BY:** none.
+- **NEXT_TRIGGER:** not scheduled — this closes the campaign's mechanism search per STOP condition B (3 consecutive failed families: Entries I, J, K). See `AUTONOMOUS_MEMORY_MECHANISM_CAMPAIGN_V1.md` for the full campaign closure.
+
+---
+
 *Full mechanistic detail and per-unit transcripts for this update: [`TEMPORAL_ALIGNMENT_AND_DISTRACTION_ARCHAEOLOGY_V1.md`](TEMPORAL_ALIGNMENT_AND_DISTRACTION_ARCHAEOLOGY_V1.md), [`analysis.json`](../../data/lab/arena/temporal-alignment-and-distraction-archaeology-v1/analysis.json).*

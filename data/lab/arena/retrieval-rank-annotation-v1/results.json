@@ -1,0 +1,722 @@
+{
+  "artifact": "arena-retrieval-rank-annotation-v1",
+  "selection": "data\\lab\\arena\\retrieval-rank-annotation-v1\\selection.json",
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "ingest": [
+    {
+      "question_id": "19b5f2b3",
+      "question_type": "single-session-user",
+      "sessions_available": 43,
+      "sessions_ingested": 43,
+      "user_turns_ingested": 239,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 207,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.066678
+    },
+    {
+      "question_id": "129d1232",
+      "question_type": "multi-session",
+      "sessions_available": 48,
+      "sessions_ingested": 48,
+      "user_turns_ingested": 225,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 207,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.136441
+    },
+    {
+      "question_id": "06f04340",
+      "question_type": "single-session-preference",
+      "sessions_available": 55,
+      "sessions_ingested": 54,
+      "user_turns_ingested": 249,
+      "sessions_skipped_no_user_turn": 1,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 211,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.212857
+    },
+    {
+      "question_id": "157a136e",
+      "question_type": "multi-session",
+      "sessions_available": 47,
+      "sessions_ingested": 47,
+      "user_turns_ingested": 251,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 253,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.291202
+    },
+    {
+      "question_id": "2ebe6c90",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 43,
+      "sessions_ingested": 43,
+      "user_turns_ingested": 240,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 202,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.352518
+    },
+    {
+      "question_id": "2ebe6c92",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 48,
+      "sessions_ingested": 47,
+      "user_turns_ingested": 242,
+      "sessions_skipped_no_user_turn": 1,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 235,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.429368
+    },
+    {
+      "question_id": "0e4e4c46",
+      "question_type": "knowledge-update",
+      "sessions_available": 49,
+      "sessions_ingested": 49,
+      "user_turns_ingested": 239,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 222,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.501336
+    },
+    {
+      "question_id": "16c90bf4",
+      "question_type": "single-session-assistant",
+      "sessions_available": 55,
+      "sessions_ingested": 55,
+      "user_turns_ingested": 253,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 227,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.578212
+    }
+  ],
+  "ingest_stopped_by_cap": null,
+  "n_units_preregistered": 8,
+  "n_units": 8,
+  "stopped_by_cap": null,
+  "spend": {
+    "total_usd": 0.58188,
+    "cap_usd": 0.65,
+    "remaining_usd": 0.06812
+  },
+  "results": [
+    {
+      "question_id": "19b5f2b3",
+      "question_type": "single-session-user",
+      "question": "How long was I in Japan for?",
+      "gold": "two weeks",
+      "mechanism_trace": {
+        "n_items": 10,
+        "n_scored": 10,
+        "always_fires": true,
+        "inert": false
+      },
+      "base_context": [
+        "Spent two weeks traveling solo around Japan",
+        "Considering visiting other parts of Asia after Japan",
+        "Planning a trip to Asia and considering visiting Japan",
+        "Stayed in small hostels and guesthouses during solo trip to Japan",
+        "Visited an onsen in the mountains during trip to Japan",
+        "Visited Fushimi Inari Shrine in Japan a few months ago",
+        "Thinking of visiting South Korea",
+        "Heard great things about Seoul and the food there",
+        "Turned 37 last month",
+        "Enjoying warmer weather and started taking morning walks on the first day of spring"
+      ],
+      "plus_f_context": [
+        "[rank 1/10, relevance 0.71] Spent two weeks traveling solo around Japan",
+        "[rank 2/10, relevance 0.57] Considering visiting other parts of Asia after Japan",
+        "[rank 3/10, relevance 0.56] Planning a trip to Asia and considering visiting Japan",
+        "[rank 4/10, relevance 0.51] Stayed in small hostels and guesthouses during solo trip to Japan",
+        "[rank 5/10, relevance 0.50] Visited an onsen in the mountains during trip to Japan",
+        "[rank 6/10, relevance 0.49] Visited Fushimi Inari Shrine in Japan a few months ago",
+        "[rank 7/10, relevance 0.30] Thinking of visiting South Korea",
+        "[rank 8/10, relevance 0.26] Heard great things about Seoul and the food there",
+        "[rank 9/10, relevance 0.21] Turned 37 last month",
+        "[rank 10/10, relevance 0.20] Enjoying warmer weather and started taking morning walks on the first day of spring"
+      ],
+      "base_answer": "Based on the provided context, you spent two weeks traveling solo around Japan.",
+      "plus_f_answer": "Based on the provided context, you spent two weeks traveling solo around Japan.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_f_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_f_correct": true
+    },
+    {
+      "question_id": "129d1232",
+      "question_type": "multi-session",
+      "question": "How much money did I raise in total through all the charity events I participated in?",
+      "gold": "$5,850",
+      "mechanism_trace": {
+        "n_items": 10,
+        "n_scored": 10,
+        "always_fires": true,
+        "inert": false
+      },
+      "base_context": [
+        "Recently participated in a charity walk and raised $250",
+        "Helped organize a charity yoga event that raised $600 for a local animal shelter",
+        "Thinking about organizing a charity event, possibly a charity run or fundraising dinner",
+        "Participated in a Bike-a-Thon for Cancer Research and raised $5,000 with team",
+        "Earned 3,000 points on Fetch Rewards, equivalent to $30",
+        "Planning to research charities focusing on education and children's welfare",
+        "Redeemed 500 points from SaveMore for a $5 discount on last grocery bill",
+        "Used a 20% off coupon on last online shopping order on Amazon on March 15th, saving around $25 on total bill of $125",
+        "Budget for gift is around $100-$200",
+        "Recently met someone at a charity event who introduced zero-waste living"
+      ],
+      "plus_f_context": [
+        "[rank 1/10, relevance 0.66] Recently participated in a charity walk and raised $250",
+        "[rank 2/10, relevance 0.59] Helped organize a charity yoga event that raised $600 for a local animal shelter",
+        "[rank 3/10, relevance 0.53] Thinking about organizing a charity event, possibly a charity run or fundraising dinner",
+        "[rank 4/10, relevance 0.51] Participated in a Bike-a-Thon for Cancer Research and raised $5,000 with team",
+        "[rank 5/10, relevance 0.43] Earned 3,000 points on Fetch Rewards, equivalent to $30",
+        "[rank 6/10, relevance 0.36] Planning to research charities focusing on education and children's welfare",
+        "[rank 7/10, relevance 0.34] Redeemed 500 points from SaveMore for a $5 discount on last grocery bill",
+        "[rank 8/10, relevance 0.32] Used a 20% off coupon on last online shopping order on Amazon on March 15th, saving around $25 on total bill of $125",
+        "[rank 9/10, relevance 0.31] Budget for gift is around $100-$200",
+        "[rank 10/10, relevance 0.27] Recently met someone at a charity event who introduced zero-waste living"
+      ],
+      "base_answer": "Based on the provided context, you raised $250 from a charity walk, $600 from a charity yoga event, and $5,000 from a Bike-a-Thon for Cancer Research. In total, that comes to $5,850.",
+      "plus_f_answer": "Based on the provided context, you raised $250 from a charity walk and $5,000 from a Bike-a-Thon, for a total of $5,250. The charity yoga event you helped organize raised $600, but since you organized it rather than participated in it, it is not included in this total.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_f_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_f_correct": true
+    },
+    {
+      "question_id": "06f04340",
+      "question_type": "single-session-preference",
+      "question": "What should I serve for dinner this weekend with my homegrown ingredients?",
+      "gold": "The user would prefer dinner suggestions that incorporate their homegrown cherry tomatoes and herbs like basil and mint, highlighting recipes that showcase their garden produce. They might not prefer suggestions that do not utilize these specific ingredients or do not emphasize the use of homegrown elements.",
+      "mechanism_trace": {
+        "n_items": 10,
+        "n_scored": 10,
+        "always_fires": true,
+        "inert": false
+      },
+      "base_context": [
+        "Looking for healthy lunch ideas with mixed greens and vinaigrette dressing",
+        "Looking for new breakfast recipes",
+        "Looking for new recipe ideas using fresh basil and mint",
+        "Planning to add fresh flowers to table setting for the birthday dinner",
+        "Served a Spicy Mango Margarita at a BBQ party last weekend, using jalapeno peppers, mango puree, tequila, lime juice, and agave syrup",
+        "Recently packed a quinoa salad with roasted vegetables, mixed greens, and vinaigrette dressing",
+        "Planning a family dinner for mom's 60th birthday",
+        "Interested in trying healthier breakfast options, quick and easy within 15 minutes",
+        "Loves combination of espresso and mascarpone cheese",
+        "Chose Blueberry Lemon Glaze (Option 2) for the cake"
+      ],
+      "plus_f_context": [
+        "[rank 1/10, relevance 0.58] Looking for healthy lunch ideas with mixed greens and vinaigrette dressing",
+        "[rank 2/10, relevance 0.56] Looking for new breakfast recipes",
+        "[rank 3/10, relevance 0.50] Looking for new recipe ideas using fresh basil and mint",
+        "[rank 4/10, relevance 0.48] Planning to add fresh flowers to table setting for the birthday dinner",
+        "[rank 5/10, relevance 0.45] Served a Spicy Mango Margarita at a BBQ party last weekend, using jalapeno peppers, mango puree, tequila, lime juice, and agave syrup",
+        "[rank 6/10, relevance 0.45] Recently packed a quinoa salad with roasted vegetables, mixed greens, and vinaigrette dressing",
+        "[rank 7/10, relevance 0.44] Planning a family dinner for mom's 60th birthday",
+        "[rank 8/10, relevance 0.43] Interested in trying healthier breakfast options, quick and easy within 15 minutes",
+        "[rank 9/10, relevance 0.41] Loves combination of espresso and mascarpone cheese",
+        "[rank 10/10, relevance 0.39] Chose Blueberry Lemon Glaze (Option 2) for the cake"
+      ],
+      "base_answer": "Based on your memory, you have fresh basil and mint, mixed greens, and are planning a family dinner for your mom's 60th birthday this weekend. A great option would be a grilled or roasted main dish (like chicken or fish) topped with a fresh basil-mint pesto or salsa verde, served alongside a mixed greens salad with your favorite vinaigrette. For dessert, you've already chosen the Blueberry Lemon Glaze cake, which would pair beautifully with the fresh mint as a garnish.",
+      "plus_f_answer": "Based on your homegrown ingredients, I can suggest a few options. You have fresh basil and mint, which could be used in a new recipe. You also have mixed greens and vinaigrette dressing, which you've enjoyed in a healthy quinoa salad with roasted vegetables. For a main course, you could consider a dish featuring your jalapeno peppers, like a spicy margarita to start, though that's more of a drink. Since you're planning a family dinner for your mom's 60th birthday, you could incorporate these elements into a festive meal. However, the context doesn't specify exactly what other homegrown ingredients you have, so the answer cannot be fully determined from the provided context.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_f_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_f_correct": false
+    },
+    {
+      "question_id": "157a136e",
+      "question_type": "multi-session",
+      "question": "How many years older is my grandma than me?",
+      "gold": "43",
+      "mechanism_trace": {
+        "n_items": 10,
+        "n_scored": 10,
+        "always_fires": true,
+        "inert": false
+      },
+      "base_context": [
+        "Grandma is energetic and sharp at 75",
+        "Grandma's 75th birthday celebration at aunt's house was inspiring",
+        "Age is 32",
+        "Mom made an amazing chocolate mocha cake for my birthday, which was a week after grandma's celebration",
+        "Thinking about using grandfather's old tools to fix up the farmhouse",
+        "Looking for gift ideas for mom's birthday",
+        "Thinking about renovating own house and inherited old tools from grandfather, using some to fix up own house",
+        "Is in their 30s",
+        "Considering renovating an old farmhouse on a 5-acre property inherited from late grandfather in the countryside",
+        "Got sister a silver necklace from a jewelry store for her birthday three weeks ago, costing around $50"
+      ],
+      "plus_f_context": [
+        "[rank 1/10, relevance 0.60] Grandma is energetic and sharp at 75",
+        "[rank 2/10, relevance 0.48] Grandma's 75th birthday celebration at aunt's house was inspiring",
+        "[rank 3/10, relevance 0.41] Age is 32",
+        "[rank 4/10, relevance 0.41] Mom made an amazing chocolate mocha cake for my birthday, which was a week after grandma's celebration",
+        "[rank 5/10, relevance 0.32] Thinking about using grandfather's old tools to fix up the farmhouse",
+        "[rank 6/10, relevance 0.32] Looking for gift ideas for mom's birthday",
+        "[rank 7/10, relevance 0.32] Thinking about renovating own house and inherited old tools from grandfather, using some to fix up own house",
+        "[rank 8/10, relevance 0.31] Is in their 30s",
+        "[rank 9/10, relevance 0.28] Considering renovating an old farmhouse on a 5-acre property inherited from late grandfather in the countryside",
+        "[rank 10/10, relevance 0.26] Got sister a silver necklace from a jewelry store for her birthday three weeks ago, costing around $50"
+      ],
+      "base_answer": "Based on the provided context, your grandma is 75 and you are 32. Therefore, she is 43 years older than you.",
+      "plus_f_answer": "Based on the provided context, your grandma is 75 and you are 32. Therefore, she is 43 years older than you.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_f_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_f_correct": true
+    },
+    {
+      "question_id": "2ebe6c90",
+      "question_type": "temporal-reasoning",
+      "question": "How many days did it take me to finish 'The Nightingale' by Kristin Hannah?",
+      "gold": "21 days. 22 days (including the last day) is also acceptable.",
+      "mechanism_trace": {
+        "n_items": 10,
+        "n_scored": 10,
+        "always_fires": true,
+        "inert": false
+      },
+      "base_context": [
+        "Finished reading 'The Nightingale' by Kristin Hannah today",
+        "About halfway through 'The Song of Achilles'",
+        "Hoping to finish 'The Song of Achilles' by the end of the month",
+        "Looking for historical fiction audiobooks similar to 'The Nightingale'",
+        "Reading 'The Song of Achilles' in short bursts before bed",
+        "Currently reading 'The Song of Achilles' and enjoying it",
+        "Currently reading 'The Star-Touched Queen'",
+        "Plans to set aside 10 minutes in the morning for mindfulness",
+        "Taking Japanese language classes three times a week",
+        "Raven asks Madi if she'll be okay if Raven steps out"
+      ],
+      "plus_f_context": [
+        "[rank 1/10, relevance 0.71] Finished reading 'The Nightingale' by Kristin Hannah today",
+        "[rank 2/10, relevance 0.45] About halfway through 'The Song of Achilles'",
+        "[rank 3/10, relevance 0.40] Hoping to finish 'The Song of Achilles' by the end of the month",
+        "[rank 4/10, relevance 0.38] Looking for historical fiction audiobooks similar to 'The Nightingale'",
+        "[rank 5/10, relevance 0.32] Reading 'The Song of Achilles' in short bursts before bed",
+        "[rank 6/10, relevance 0.29] Currently reading 'The Song of Achilles' and enjoying it",
+        "[rank 7/10, relevance 0.29] Currently reading 'The Star-Touched Queen'",
+        "[rank 8/10, relevance 0.26] Plans to set aside 10 minutes in the morning for mindfulness",
+        "[rank 9/10, relevance 0.24] Taking Japanese language classes three times a week",
+        "[rank 10/10, relevance 0.23] Raven asks Madi if she'll be okay if Raven steps out"
+      ],
+      "base_answer": "The provided context does not specify how many days it took to finish 'The Nightingale'.",
+      "plus_f_answer": "The provided context does not contain information about how many days it took to finish 'The Nightingale'.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_f_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_f_correct": false
+    },
+    {
+      "question_id": "2ebe6c92",
+      "question_type": "temporal-reasoning",
+      "question": "Which book did I finish a week ago?",
+      "gold": "'The Nightingale' by Kristin Hannah",
+      "mechanism_trace": {
+        "n_items": 10,
+        "n_scored": 10,
+        "always_fires": true,
+        "inert": false
+      },
+      "base_context": [
+        "Finished reading 'The Nightingale' by Kristin Hannah today",
+        "Has been meaning to get into reading fiction again",
+        "Started actively participating in the 'Book Lovers' group discussions today",
+        "Interested in fiction genre book recommendations",
+        "Booked the trip a few weeks ago",
+        "Interested in mystery and thriller novels",
+        "Interested in books that reimagine classic stories or retell them from different perspectives",
+        "Looking for audiobook recommendations in self-help and history genres",
+        "Interested in exploring Neil Gaiman's works in fantasy genre",
+        "Has read 'The Poppy War' and enjoyed it"
+      ],
+      "plus_f_context": [
+        "[rank 1/10, relevance 0.46] Finished reading 'The Nightingale' by Kristin Hannah today",
+        "[rank 2/10, relevance 0.43] Has been meaning to get into reading fiction again",
+        "[rank 3/10, relevance 0.42] Started actively participating in the 'Book Lovers' group discussions today",
+        "[rank 4/10, relevance 0.42] Interested in fiction genre book recommendations",
+        "[rank 5/10, relevance 0.40] Booked the trip a few weeks ago",
+        "[rank 6/10, relevance 0.38] Interested in mystery and thriller novels",
+        "[rank 7/10, relevance 0.38] Interested in books that reimagine classic stories or retell them from different perspectives",
+        "[rank 8/10, relevance 0.37] Looking for audiobook recommendations in self-help and history genres",
+        "[rank 9/10, relevance 0.37] Interested in exploring Neil Gaiman's works in fantasy genre",
+        "[rank 10/10, relevance 0.37] Has read 'The Poppy War' and enjoyed it"
+      ],
+      "base_answer": "Based on the provided context, you finished reading 'The Nightingale' by Kristin Hannah today, not a week ago. The context does not mention which book you finished a week ago.",
+      "plus_f_answer": "Based on the provided context, the answer cannot be determined. The context only mentions finishing 'The Nightingale' today, not a week ago.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_f_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_f_correct": false
+    },
+    {
+      "question_id": "0e4e4c46",
+      "question_type": "knowledge-update",
+      "question": "What is my current highest score in Ticket to Ride?",
+      "gold": "132 points",
+      "mechanism_trace": {
+        "n_items": 10,
+        "n_scored": 10,
+        "always_fires": true,
+        "inert": false
+      },
+      "base_context": [
+        "Highest score in Ticket to Ride is 132 points",
+        "Eager to keep improving in Ticket to Ride",
+        "Enjoying the strategy aspect of Ticket to Ride",
+        "Interested in games similar to Ticket to Ride with similar strategy and complexity",
+        "Looking for a good whitewater kayak training session for total beginners on class 2 whitewater",
+        "Planning to book a flight for upcoming anniversary",
+        "Splurged on a seat with more legroom for an additional $100",
+        "Needs to get vintage Omega Seamaster appraised for insurance purposes",
+        "Considering a river cruise along the Seine",
+        "Excited to try Sage Gimlet or Sage Spritz with Hendrick's gin"
+      ],
+      "plus_f_context": [
+        "[rank 1/10, relevance 0.85] Highest score in Ticket to Ride is 132 points",
+        "[rank 2/10, relevance 0.61] Eager to keep improving in Ticket to Ride",
+        "[rank 3/10, relevance 0.52] Enjoying the strategy aspect of Ticket to Ride",
+        "[rank 4/10, relevance 0.41] Interested in games similar to Ticket to Ride with similar strategy and complexity",
+        "[rank 5/10, relevance 0.25] Looking for a good whitewater kayak training session for total beginners on class 2 whitewater",
+        "[rank 6/10, relevance 0.24] Planning to book a flight for upcoming anniversary",
+        "[rank 7/10, relevance 0.24] Splurged on a seat with more legroom for an additional $100",
+        "[rank 8/10, relevance 0.22] Needs to get vintage Omega Seamaster appraised for insurance purposes",
+        "[rank 9/10, relevance 0.21] Considering a river cruise along the Seine",
+        "[rank 10/10, relevance 0.20] Excited to try Sage Gimlet or Sage Spritz with Hendrick's gin"
+      ],
+      "base_answer": "Your highest score in Ticket to Ride is 132 points.",
+      "plus_f_answer": "Your current highest score in Ticket to Ride is 132 points.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_f_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_f_correct": true
+    },
+    {
+      "question_id": "16c90bf4",
+      "question_type": "single-session-assistant",
+      "question": "I'm looking back at our previous conversation about the Seco de Cordero recipe from Ancash. You mentioned using a light or medium-bodied beer, but I was wondering if you could remind me what type of beer you specifically recommended?",
+      "gold": "I recommended using a Pilsner or Lager for the recipe.",
+      "mechanism_trace": {
+        "n_items": 10,
+        "n_scored": 10,
+        "always_fires": true,
+        "inert": false
+      },
+      "base_context": [
+        "Plans to try the Seco de Cordero recipe with a Pilsner beer",
+        "Looking for dessert suggestions to pair with Seco de Cordero",
+        "Interested in cooking a classic dish from Ancash",
+        "Likes the Cantaloupe Mint Collins and Spicy Mango Margarita ideas",
+        "Considering whether to prioritize bars with extensive beer selection or wider variety of food options",
+        "Interested in summer cocktail recipes",
+        "Excited to try the recipe this weekend",
+        "Has tried grilling pineapple slices for cocktails",
+        "Interested in other classic Peruvian recipes",
+        "Not a big fan of wine, loves craft beer, looking for breweries in Napa Valley"
+      ],
+      "plus_f_context": [
+        "[rank 1/10, relevance 0.63] Plans to try the Seco de Cordero recipe with a Pilsner beer",
+        "[rank 2/10, relevance 0.57] Looking for dessert suggestions to pair with Seco de Cordero",
+        "[rank 3/10, relevance 0.48] Interested in cooking a classic dish from Ancash",
+        "[rank 4/10, relevance 0.39] Likes the Cantaloupe Mint Collins and Spicy Mango Margarita ideas",
+        "[rank 5/10, relevance 0.39] Considering whether to prioritize bars with extensive beer selection or wider variety of food options",
+        "[rank 6/10, relevance 0.38] Interested in summer cocktail recipes",
+        "[rank 7/10, relevance 0.34] Excited to try the recipe this weekend",
+        "[rank 8/10, relevance 0.34] Has tried grilling pineapple slices for cocktails",
+        "[rank 9/10, relevance 0.33] Interested in other classic Peruvian recipes",
+        "[rank 10/10, relevance 0.33] Not a big fan of wine, loves craft beer, looking for breweries in Napa Valley"
+      ],
+      "base_answer": "Based on the provided context, the specific type of beer recommended for the Seco de Cordero recipe is not mentioned. The context only notes a plan to try the recipe with a Pilsner beer.",
+      "plus_f_answer": "Based on the provided context, I cannot determine the specific type of beer recommended for the Seco de Cordero recipe. The context only mentions a plan to try the recipe with a Pilsner beer.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_f_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_f_correct": false
+    }
+  ]
+}
