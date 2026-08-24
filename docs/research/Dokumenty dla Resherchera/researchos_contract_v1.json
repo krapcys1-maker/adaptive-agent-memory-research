@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1",
-  "generatedAt": "2026-08-24T19:42:56+00:00",
-  "aamrCommit": "6634fd6e40d92b538583545b7e9b62281e07aa33",
+  "generatedAt": "2026-08-24T21:15:02+00:00",
+  "aamrCommit": "ed0e5174ad8d35d3d7bf8229c4ce0544d863aafd",
   "note": "Snapshot only, not source of truth -- see docs/research/MECHANISM_REGIME_EVIDENCE_LEDGER.md and memory/events.jsonl.",
   "testability": [
     {
@@ -14,7 +14,7 @@
     {
       "capability": "write-side extraction",
       "status": "CAN_TEST_NOW",
-      "reason": "vendor-patch mechanics proven end-to-end by Entry O",
+      "reason": "vendor-patch mechanics proven end-to-end twice by Entry O/P (calibration + exploratory + replication all ran cleanly); the specific Entry O/P mechanism's repair rate turned out low (~1/14) but that is a mechanism-efficacy finding, not a testability limitation",
       "source": "TESTABILITY_ENVELOPE.md#write-side-extraction",
       "reopen_condition": null
     },
@@ -149,8 +149,8 @@
     {
       "gap_id": "GAP-001",
       "title": "Write-time extraction completeness, replication",
-      "status": "WAITING_FOR_EXPERIMENT",
-      "priority": "HIGH",
+      "status": "CLOSED",
+      "priority": "N/A",
       "testability_status": "CAN_TEST_NOW",
       "source": "OPEN_TESTABLE_GAPS.md#gap-001",
       "blocked_by": []
@@ -210,7 +210,8 @@
       "testability_status": "CANNOT_TEST_NOW",
       "source": "OPEN_TESTABLE_GAPS.md#gap-007",
       "blocked_by": [
-        "GAP-001"
+        "GAP-002",
+        "GAP-003"
       ]
     }
   ],
@@ -327,9 +328,16 @@
       "aliases": [
         "ProMem-style completeness check"
       ],
-      "status": "VALIDATED",
+      "status": "REGIME_DEPENDENT",
       "ledger_entry": "O",
       "source": "DO_NOT_REDISCOVER.md#entry-o"
+    },
+    {
+      "canonical_name": "EXTRACTION_COMPLETENESS_VERIFICATION_PASS (fresh replication)",
+      "aliases": [],
+      "status": "FAILED_REPLICATION",
+      "ledger_entry": "P",
+      "source": "DO_NOT_REDISCOVER.md#entry-p"
     }
   ],
   "researchRequests": [

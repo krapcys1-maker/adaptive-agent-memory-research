@@ -3,7 +3,7 @@
   "schemaVersion": "1",
   "testability": [
     {"capability": "read-side transformation", "status": "CAN_TEST_NOW", "reason": "dominant tested category, zero Mem0 changes", "source": "TESTABILITY_ENVELOPE.md#read-side-transformation", "reopen_condition": null},
-    {"capability": "write-side extraction", "status": "CAN_TEST_NOW", "reason": "vendor-patch mechanics proven end-to-end by Entry O", "source": "TESTABILITY_ENVELOPE.md#write-side-extraction", "reopen_condition": null},
+    {"capability": "write-side extraction", "status": "CAN_TEST_NOW", "reason": "vendor-patch mechanics proven end-to-end twice by Entry O/P (calibration + exploratory + replication all ran cleanly); the specific Entry O/P mechanism's repair rate turned out low (~1/14) but that is a mechanism-efficacy finding, not a testability limitation", "source": "TESTABILITY_ENVELOPE.md#write-side-extraction", "reopen_condition": null},
     {"capability": "deterministic post-processing", "status": "CAN_TEST_NOW", "reason": "pure Python transforms, unit-tested at $0", "source": "TESTABILITY_ENVELOPE.md#deterministic-post-processing", "reopen_condition": null},
     {"capability": "text-derived signals", "status": "CAN_TEST_NOW", "reason": "HyDE (Entry M) confirms feasibility", "source": "TESTABILITY_ENVELOPE.md#text-derived-signals", "reopen_condition": null},
     {"capability": "embedding-derived signals", "status": "CAN_TEST_NOW", "reason": "Mem0 search() free, local FastEmbed/MiniLM", "source": "TESTABILITY_ENVELOPE.md#embedding-derived-signals", "reopen_condition": null},
@@ -24,13 +24,13 @@
     {"capability": "custom logprobs", "status": "UNKNOWN", "reason": "not explicitly forbidden by scope.md, but never checked against the actual DeepSeek API endpoint", "source": "TESTABILITY_ENVELOPE.md#custom-logprobs", "reopen_condition": "AAMR performs the $0 API check"}
   ],
   "openGaps": [
-    {"gap_id": "GAP-001", "title": "Write-time extraction completeness, replication", "status": "WAITING_FOR_EXPERIMENT", "priority": "HIGH", "testability_status": "CAN_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-001", "blocked_by": []},
+    {"gap_id": "GAP-001", "title": "Write-time extraction completeness, replication", "status": "CLOSED", "priority": "N/A", "testability_status": "CAN_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-001", "blocked_by": []},
     {"gap_id": "GAP-002", "title": "Retrieval-ranking-miss beyond single-shot HyDE", "status": "OPEN", "priority": "MEDIUM", "testability_status": "CAN_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-002", "blocked_by": []},
     {"gap_id": "GAP-003", "title": "Structured write-time temporal field (subtype 3, alternative design)", "status": "OPEN", "priority": "MEDIUM-HIGH", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-003", "blocked_by": []},
     {"gap_id": "GAP-004", "title": "Assistant-turn-scoping-loss (subtype 4)", "status": "BLOCKED", "priority": "MEDIUM", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-004", "blocked_by": ["design decision: isolated ingest path, not a change to shared as_records()"]},
     {"gap_id": "GAP-005", "title": "Compact-vs-raw sufficiency gate (cost-efficiency framing)", "status": "OPEN", "priority": "MEDIUM", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-005", "blocked_by": []},
     {"gap_id": "GAP-006", "title": "Reranking", "status": "SATURATED", "priority": "LOW", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-006", "blocked_by": []},
-    {"gap_id": "GAP-007", "title": "Controller / interaction test", "status": "WAITING_FOR_EXPERIMENT", "priority": "N/A", "testability_status": "CANNOT_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-007", "blocked_by": ["GAP-001"]}
+    {"gap_id": "GAP-007", "title": "Controller / interaction test", "status": "WAITING_FOR_EXPERIMENT", "priority": "N/A", "testability_status": "CANNOT_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-007", "blocked_by": ["GAP-002", "GAP-003"]}
   ],
   "doNotRediscover": [
     {"canonical_name": "TEMPORAL_ANCHOR_AT_CONTEXT (SESSION_EVENT_ALIGNED)", "aliases": [], "status": "REGIME_DEPENDENT", "ledger_entry": "A", "source": "DO_NOT_REDISCOVER.md#entry-a"},
@@ -46,7 +46,8 @@
     {"canonical_name": "SECOND_HOP_ASSOCIATIVE_EXPANSION", "aliases": ["A-MEM-style second hop"], "status": "DROP", "ledger_entry": "L", "source": "DO_NOT_REDISCOVER.md#entry-l"},
     {"canonical_name": "HYDE_QUERY_REFORMULATION", "aliases": ["HyDE"], "status": "DROP", "ledger_entry": "M", "source": "DO_NOT_REDISCOVER.md#entry-m"},
     {"canonical_name": "TEMPORAL_ANCHOR_AT_CONTEXT (TEMPORAL_BOUNDARY)", "aliases": [], "status": "FAILED_REPLICATION", "ledger_entry": "N", "source": "DO_NOT_REDISCOVER.md#entry-n"},
-    {"canonical_name": "EXTRACTION_COMPLETENESS_VERIFICATION_PASS", "aliases": ["ProMem-style completeness check"], "status": "VALIDATED", "ledger_entry": "O", "source": "DO_NOT_REDISCOVER.md#entry-o"}
+    {"canonical_name": "EXTRACTION_COMPLETENESS_VERIFICATION_PASS", "aliases": ["ProMem-style completeness check"], "status": "REGIME_DEPENDENT", "ledger_entry": "O", "source": "DO_NOT_REDISCOVER.md#entry-o"},
+    {"canonical_name": "EXTRACTION_COMPLETENESS_VERIFICATION_PASS (fresh replication)", "aliases": [], "status": "FAILED_REPLICATION", "ledger_entry": "P", "source": "DO_NOT_REDISCOVER.md#entry-p"}
   ],
   "researchRequests": [
     {"id": "arr-2026-08-24-001", "status": "OPEN", "priority": "MEDIUM", "linked_gap": "GAP-005", "standalone": false, "requires_capabilities": ["embedding-derived signals", "retrieval-score-derived signals"], "source": "RESEARCH_REQUESTS/2026-08-24_research_request_compact-raw-sufficiency-gate.md"}

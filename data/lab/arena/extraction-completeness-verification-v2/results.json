@@ -1,0 +1,794 @@
+{
+  "artifact": "arena-extraction-completeness-verification-v2",
+  "selection": "data\\lab\\arena\\extraction-completeness-verification-v2\\selection.json",
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "ingest": [
+    {
+      "question_id": "25e5aa4f",
+      "question_type": "single-session-user",
+      "base": {
+        "sessions_available": 45,
+        "sessions_ingested": 45,
+        "user_turns_ingested": 252,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 258,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "plusj": {
+        "sessions_available": 45,
+        "sessions_ingested": 45,
+        "user_turns_ingested": 252,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 320,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "cumulative_spend_usd": 0.179883
+    },
+    {
+      "question_id": "2318644b",
+      "question_type": "multi-session",
+      "base": {
+        "sessions_available": 41,
+        "sessions_ingested": 41,
+        "user_turns_ingested": 260,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 222,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "plusj": {
+        "sessions_available": 41,
+        "sessions_ingested": 41,
+        "user_turns_ingested": 260,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 317,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "cumulative_spend_usd": 0.337338
+    },
+    {
+      "question_id": "0a34ad58",
+      "question_type": "single-session-preference",
+      "base": {
+        "sessions_available": 42,
+        "sessions_ingested": 42,
+        "user_turns_ingested": 242,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 243,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "plusj": {
+        "sessions_available": 42,
+        "sessions_ingested": 42,
+        "user_turns_ingested": 242,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 294,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "cumulative_spend_usd": 0.502328
+    },
+    {
+      "question_id": "27016adc",
+      "question_type": "multi-session",
+      "base": {
+        "sessions_available": 45,
+        "sessions_ingested": 45,
+        "user_turns_ingested": 243,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 226,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "plusj": {
+        "sessions_available": 45,
+        "sessions_ingested": 45,
+        "user_turns_ingested": 243,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 270,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "cumulative_spend_usd": 0.662978
+    },
+    {
+      "question_id": "5e1b23de",
+      "question_type": "temporal-reasoning",
+      "base": {
+        "sessions_available": 45,
+        "sessions_ingested": 45,
+        "user_turns_ingested": 220,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 199,
+        "contamination_status": "UNOBSERVABLE",
+        "foreign": null
+      },
+      "plusj": {
+        "sessions_available": 45,
+        "sessions_ingested": 45,
+        "user_turns_ingested": 220,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 292,
+        "contamination_status": "UNOBSERVABLE",
+        "foreign": null
+      },
+      "cumulative_spend_usd": 0.817752
+    },
+    {
+      "question_id": "2133c1b5",
+      "question_type": "knowledge-update",
+      "base": {
+        "sessions_available": 51,
+        "sessions_ingested": 51,
+        "user_turns_ingested": 258,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 217,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "plusj": {
+        "sessions_available": 51,
+        "sessions_ingested": 51,
+        "user_turns_ingested": 258,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 287,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "cumulative_spend_usd": 0.992982
+    },
+    {
+      "question_id": "1cea1afa",
+      "question_type": "knowledge-update",
+      "base": {
+        "sessions_available": 49,
+        "sessions_ingested": 49,
+        "user_turns_ingested": 241,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 224,
+        "contamination_status": "UNOBSERVABLE",
+        "foreign": null
+      },
+      "plusj": {
+        "sessions_available": 49,
+        "sessions_ingested": 49,
+        "user_turns_ingested": 241,
+        "sessions_skipped_no_user_turn": 0,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 262,
+        "contamination_status": "UNOBSERVABLE",
+        "foreign": null
+      },
+      "cumulative_spend_usd": 1.166039
+    },
+    {
+      "question_id": "1d4da289",
+      "question_type": "single-session-assistant",
+      "base": {
+        "sessions_available": 55,
+        "sessions_ingested": 54,
+        "user_turns_ingested": 250,
+        "sessions_skipped_no_user_turn": 1,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 213,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "plusj": {
+        "sessions_available": 55,
+        "sessions_ingested": 54,
+        "user_turns_ingested": 250,
+        "sessions_skipped_no_user_turn": 1,
+        "store_before_reset": 0,
+        "store_after_reset": 0,
+        "store_after_ingest": 225,
+        "contamination_status": "PASS",
+        "foreign": 0
+      },
+      "cumulative_spend_usd": 1.335745
+    }
+  ],
+  "ingest_stopped_by_cap": null,
+  "n_units_preregistered": 8,
+  "n_units": 8,
+  "stopped_by_cap": null,
+  "spend": {
+    "total_usd": 1.338754,
+    "cap_usd": 1.35,
+    "remaining_usd": 0.011246
+  },
+  "results": [
+    {
+      "question_id": "25e5aa4f",
+      "question_type": "single-session-user",
+      "question": "Where did I complete my Bachelor's degree in Computer Science?",
+      "gold": "University of California, Los Angeles (UCLA)",
+      "base_context": [
+        "Completed undergrad in CS from UCLA",
+        "Considering pursuing a Master's degree in Data Science",
+        "Narrowed down options to Stanford, Berkeley, and Carnegie Mellon",
+        "Interested in the Coursera - Data Science Specialization course",
+        "Interested in learning more about data science and analytics",
+        "Working in the tech industry for a while",
+        "Requested a 30 day study plan to learn tech sales and become an SDR or BDR",
+        "Has background in digital marketing and training in software quality assurance, manual testing, and web development",
+        "Has training in quality assurance software testing",
+        "Helping first-year college students develop a one-year SMART plan for career goals"
+      ],
+      "plusj_context": [
+        "Completed undergrad in CS from UCLA",
+        "Considering pursuing a Master's degree in Data Science",
+        "Narrowed down options to Stanford, Berkeley, and Carnegie Mellon",
+        "Interested in the Coursera - Data Science Specialization course",
+        "Interested in learning more about data science and analytics",
+        "Working in the tech industry for a while",
+        "Interested in average salary of a software engineer in San Francisco",
+        "Requested a 30 day study plan to learn tech sales and become an SDR or BDR",
+        "Interested in scholarships or assistantships for the programs",
+        "Excited to dive into the capstone project and demonstrate skills in data science"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "You completed your Bachelor's degree in Computer Science at UCLA.",
+      "plusj_answer": "You completed your Bachelor's degree in Computer Science at UCLA.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plusj_correct": true
+    },
+    {
+      "question_id": "2318644b",
+      "question_type": "multi-session",
+      "question": "How much more did I spend on accommodations per night in Hawaii compared to Tokyo?",
+      "gold": "$270",
+      "base_context": [
+        "Stayed in a hostel in Tokyo that cost around $30 per night when went solo last January",
+        "Planning a trip to Japan and looking for affordable accommodation options",
+        "Booked a luxurious resort in Maui costing over $300 per night",
+        "Planning to visit Meiji Shrine",
+        "Has had amazing street food in Tokyo before and looking forward to trying more",
+        "Planning to visit popular tourist spots in Tokyo such as Shibuya Crossing and Tokyo Tower",
+        "Planning a trip to Maui and looking for outdoor activities and hiking trails",
+        "Planning to go on the trip during a weekday",
+        "Budget is $50-75 per person",
+        "Prefers a private room if possible"
+      ],
+      "plusj_context": [
+        "Stayed in a hostel in Tokyo that cost around $30 per night when went solo last January",
+        "Planning a trip to Japan and looking for affordable accommodation options",
+        "Booked a luxurious resort in Maui costing over $300 per night",
+        "Planning to visit Tokyo Tower",
+        "Planning to visit Meiji Shrine",
+        "Had amazing street food in Tokyo before and looking forward to trying more",
+        "Planning a trip to Maui and looking for outdoor activities and hiking trails",
+        "Planning to go on the trip during a weekday",
+        "Budget is $50-75 per person",
+        "Prefers a private room if possible"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, you spent about $270 more per night in Hawaii compared to Tokyo.",
+      "plusj_answer": "Based on the provided context, you spent $270 more per night in Hawaii ($300) compared to Tokyo ($30).",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plusj_correct": true
+    },
+    {
+      "question_id": "0a34ad58",
+      "question_type": "single-session-preference",
+      "question": "I’m a bit anxious about getting around Tokyo. Do you have any helpful tips?",
+      "gold": "The user would prefer responses that utilize their existing resources, such as their Suica card and TripIt app, to provide personalized tips for navigating Tokyo's public transportation. They might not prefer general tips or recommendations that do not take into account their prior preparations.",
+      "base_context": [
+        "Heading to Tokyo soon",
+        "Planning to visit the Tokyo Tower",
+        "Planning to do some shopping in Tokyo",
+        "Staying at the Park Hyatt Tokyo",
+        "Loved trip to Japan in June",
+        "Nervous about the trip",
+        "Planning to visit the Tsukiji Fish Market and try fresh sushi for breakfast",
+        "Planning to take a guided tour to Nikko National Park",
+        "Planning a trip to Asia, interested in solo travel destinations",
+        "Planning to visit the Tsukiji Fish Market"
+      ],
+      "plusj_context": [
+        "Heading to Tokyo soon",
+        "Planning to visit the Tokyo Tower",
+        "Planning to do some shopping in Tokyo",
+        "Staying at the Park Hyatt Tokyo",
+        "Planning a trip to Asia, interested in solo travel destinations similar to Japan",
+        "Loved trip to Japan in June",
+        "Nervous about the trip",
+        "Planning to take a guided tour to Nikko National Park",
+        "Planning to visit the Tsukiji Fish Market",
+        "Interested in suggestions on what to do or see on campus"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, I can see you're planning a trip to Tokyo and feeling nervous about it. However, the context does not contain any specific tips about getting around the city. I can only confirm that you have plans to visit Tokyo Tower, go shopping, stay at the Park Hyatt Tokyo, visit the Tsukiji Fish Market, and take a guided tour to Nikko National Park. For transportation advice, I'd recommend checking a local transit guide or asking a travel expert, as that information isn't available here.",
+      "plusj_answer": "Based on the provided context, I can see you're planning a trip to Tokyo and feeling nervous about it. However, the context does not contain any specific tips about getting around the city. I can only confirm that you have plans to visit Tokyo Tower, the Tsukiji Fish Market, and take a guided tour to Nikko National Park, but I don't have information on transportation or navigation advice.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plusj_correct": false
+    },
+    {
+      "question_id": "27016adc",
+      "question_type": "multi-session",
+      "question": "What percentage of the countryside property's price is the cost of the renovations I plan to do on my current house?",
+      "gold": "10%",
+      "base_context": [
+        "Renovations estimated to cost around $20,000",
+        "Planning to do renovations to current house",
+        "Considering buying a 5-acre plot of land in the countryside",
+        "Interested in a 5-acre property listed at $200,000",
+        "Wants to know environmental factors to consider when buying rural property",
+        "Planning to start renovation project in the spring",
+        "Renovations include adding a deck and a patio",
+        "Concerned about property taxes on the 5-acre property",
+        "Wants to understand how appraisals work for rural property",
+        "Interested in rental car rates in Massa during peak season"
+      ],
+      "plusj_context": [
+        "Renovations estimated to cost around $20,000",
+        "Planning to do renovations to current house",
+        "Looking at a 5-acre property listed at $200,000",
+        "Considering buying a 5-acre plot of land in the countryside",
+        "Unsure about how to determine property value and wants to know about appraisals for rural property",
+        "Wondering if there's a way to minimize the impact of the renovations on property taxes",
+        "Interested in the process of buying rural property",
+        "Planning to start renovation project in the spring",
+        "Wants to know environmental factors to consider when buying rural property and how to identify red flags",
+        "Renovations include adding a deck and a patio"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, the renovations are estimated to cost around $20,000, and the countryside property is listed at $200,000. Therefore, the renovation cost is 10% of the property's price.",
+      "plusj_answer": "Based on the provided context, the renovations are estimated to cost $20,000, and the countryside property is listed at $200,000. Therefore, the renovation cost is 10% of the property's price.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plusj_correct": true
+    },
+    {
+      "question_id": "5e1b23de",
+      "question_type": "temporal-reasoning",
+      "question": "How many months ago did I attend the photography workshop?",
+      "gold": "3",
+      "base_context": [
+        "Attended a 3-day photography workshop in a nearby city today, learned about different techniques and styles of photography",
+        "Recently gotten into photography",
+        "Attended a guided tour about Impressionist art at the Art Museum, interested in behind-the-scenes tours and special events",
+        "Planning a photoshoot with friends next weekend",
+        "Particularly interested in behind-the-scenes tours focusing on conservation and restoration of Impressionist paintings",
+        "Signed up for a pottery class last week and is enjoying it",
+        "Attended a lecture series at the Science Museum about a month and a half ago, interested in fractals in nature and art",
+        "Attended a hunter's safety course recently",
+        "Had been working on proposal for weeks before submitting it",
+        "Started a new job on September 1st"
+      ],
+      "plusj_context": [
+        "Attended a 3-day photography workshop in a nearby city today",
+        "Recently gotten into photography",
+        "Interested in photography inspiration and tips",
+        "Planning a photoshoot with friends next weekend",
+        "Attended a guided tour about Impressionist art at the Art Museum",
+        "Interested in behind-the-scenes tours at the Art Museum, particularly conservation and restoration of Impressionist paintings",
+        "Signed up for a pottery class last week and is enjoying it",
+        "Attended a lecture series at the Science Museum about a month and a half ago, interested in fractals in nature and art",
+        "Trying to develop a workflow to organize and manage photos after a shoot",
+        "Attended a hunter's safety course recently"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "The answer cannot be determined from the provided context.",
+      "plusj_answer": "The answer cannot be determined from the provided context.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plusj_correct": false
+    },
+    {
+      "question_id": "2133c1b5",
+      "question_type": "knowledge-update",
+      "question": "How long have I been living in my current apartment in Harajuku?",
+      "gold": "3 months",
+      "base_context": [
+        "Living in Tokyo for a month in a studio apartment in Harajuku",
+        "Prefers staying in Matsumoto over Hakuba Valley",
+        "Interested in accommodations at Hyatt Regency Maui Resort & Spa with separate bedrooms and living areas",
+        "Interested in kid-friendly accommodations on Oahu and Maui with separate bedrooms and living area",
+        "Planning to visit Matsumoto Castle, Nawate Street, Matsumoto Folkcraft Museum, and Zenko-ji Temple",
+        "Interested in checking out Meiji Shrine",
+        "Exploring a new neighborhood every Sunday",
+        "Found a great coffee shop in Daikanyama",
+        "Interested in illuminations at Minato Mirai 21",
+        "Planning a week-long vacation to Hawaii in December with family"
+      ],
+      "plusj_context": [
+        "Living in Tokyo for a month in a studio apartment in Harajuku",
+        "Prefers staying in Matsumoto over Hakuba Valley",
+        "Interested in accommodations at Hyatt Regency Maui Resort & Spa with separate bedrooms and living areas",
+        "Planning to visit Zenko-ji Temple",
+        "Looking for kid-friendly accommodations on Oahu and Maui with separate bedrooms and living areas",
+        "Interested in checking out Meiji Shrine",
+        "Planning to visit Matsumoto Castle",
+        "Planning to visit Nawate Street",
+        "Exploring a new neighborhood every Sunday",
+        "Wants to know whether to prioritize Matsumoto Castle or Zenko-ji Temple"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, you have been living in your current apartment in Harajuku for one month.",
+      "plusj_answer": "Based on the provided context, you have been living in your current apartment in Harajuku for one month.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plusj_correct": false
+    },
+    {
+      "question_id": "1cea1afa",
+      "question_type": "knowledge-update",
+      "question": "How many Instagram followers do I currently have?",
+      "gold": "600",
+      "base_context": [
+        "Has 600 followers on Instagram",
+        "Reached 500 followers last week",
+        "Trying to increase social media presence, especially on Instagram",
+        "Planning to post a poll on Instagram story with 3 options: More writing tips and advice, More behind-the-scenes content, More sneak peeks of manuscript",
+        "Will communicate with followers and set expectations",
+        "Wants to try Q&A session using Question Sticker feature in Instagram Stories",
+        "Requested a tweet table for movies 1-5 with new data added to the persona",
+        "Plans to follow artists on social media and enter contests to get backstage passes",
+        "Posting a reminder on Instagram Story about Q&A session tomorrow",
+        "Has been making a lot of salads lately"
+      ],
+      "plusj_context": [
+        "Has 600 followers on Instagram",
+        "Reached 500 followers last week",
+        "Trying to increase social media presence, especially on Instagram",
+        "Considering using Instagram Poll feature to ask followers what they'd like to see more of",
+        "Planning to ask followers about their preferences",
+        "Planning to post a poll on Instagram story",
+        "Planning to ask followers to share thoughts in comments",
+        "Considering using Instagram Stories to share writing process",
+        "Will communicate with followers and set expectations",
+        "Noticed followers love seeing photos of cat Luna"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, you currently have 600 followers on Instagram.",
+      "plusj_answer": "Based on the provided context, you currently have 600 followers on Instagram.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plusj_correct": true
+    },
+    {
+      "question_id": "1d4da289",
+      "question_type": "single-session-assistant",
+      "question": "I was thinking about our previous conversation about data privacy and security. You mentioned that companies use two-factor authentication to enhance security. Can you remind me what kind of two-factor authentication methods you were referring to?",
+      "gold": "I mentioned biometric authentication or one-time passwords (OTP) as examples of two-factor authentication methods.",
+      "base_context": [
+        "User thinks protecting their data is too much hassle and doesn't want to remember many passwords or go through extra steps to access their information",
+        "Interested in yoga-specific trackers",
+        "Interested in The Container Store's Elfa System for closet organization",
+        "Owns a Fitbit Charge 3",
+        "Considering using thematic analysis for qualitative data",
+        "Has been using Netflix and MUBI a lot lately, and has been to the cinema a few times",
+        "Looking for new yoga routines",
+        "Completed literature review on social media addiction on February 10th",
+        "Thinking of visiting the Willis Tower (formerly Sears Tower)",
+        "Interested in marketing strategies for growing membership of the Catholic Knights of the Southern Cross men's organisation"
+      ],
+      "plusj_context": [
+        "Thinks protecting data is too much hassle, does not want to remember different passwords or go through extra steps, wants companies to make it easier",
+        "Does not see why companies need to go through trouble to protect data, thinks their information is not valuable",
+        "The user wants a data model for a loyalty program based on data-enriched tokens.",
+        "Research topic includes social media use and mental health",
+        "Has qualitative data",
+        "Research topic is social media addiction",
+        "Interested in yoga-specific trackers",
+        "Interested in The Container Store's Elfa System for closet organization",
+        "Owns a Fitbit Charge 3",
+        "The user thinks it is ridiculous to suggest that literature has any real effect on people's behavior."
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on our previous conversation, I can't recall the specific two-factor authentication methods I mentioned. The context I have doesn't include that detail.",
+      "plusj_answer": "Based on our previous conversation, I cannot recall specifying particular two-factor authentication methods. The context only notes your general views on data protection, not the specific methods discussed.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plusj_correct": false
+    }
+  ]
+}

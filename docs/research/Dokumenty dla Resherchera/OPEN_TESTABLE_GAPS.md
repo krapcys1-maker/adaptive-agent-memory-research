@@ -8,23 +8,23 @@ Statusy: `OPEN` | `BLOCKED` | `WAITING_FOR_EXPERIMENT` | `SATURATED` | `CLOSED`.
 
 - **title:** Czy `EXTRACTION_COMPLETENESS_VERIFICATION_PASS` (Entry O) replikuje na świeżej próbce?
 - **target_failure:** write-time extraction loss (bundled enumerations, omitted facts) — absence subtype (1).
-- **status:** WAITING_FOR_EXPERIMENT
-- **priority:** HIGH
-- **why_it_matters:** Entry O jest jedynym `EXPLORATORY_SUPPORTED` mechanizmem tej kampanii poza `RAW_PROVENANCE`. Świeża replikacja to jedyny brakujący krok do statusu `REPLICATED_VALIDATED_TRANSPLANT` — a to byłby drugi zwalidowany mechanizm projektu, odblokowujący interaction test.
-- **what_is_known:** n=6 (zredukowane z preregistrowanych 8 po cost-cap interruption), 1 genuine traceable repair, 1 reclassified jako judge noise, 0 regresji. Kalibracja: 4/4 list cases split poprawnie po jednej rewizji promptu.
-- **what_is_unknown:** czy repair rate (1/6 = ~17%) replikuje na świeżej próbce; czy judge-noise pattern się powtórzy.
-- **what_was_already_tested:** patrz `EXTRACTION_COMPLETENESS_VERIFICATION_PASS_V1.md`.
-- **allowed_mechanism_space:** identyczny mechanizm, świeża selekcja jednostek (gold-blind).
-- **disallowed_mechanism_space:** modyfikacja promptu/logiki completeness-check bez nowej kalibracji (per "don't retune the same failed action" — choć to nie jest failed, disciplina jest ta sama).
-- **required_preconditions:** żaden nowy — infrastruktura już istnieje (`scripts/arena/run_extraction_completeness_v1.py`, vendor patch już zaaplikowany i zwalidowany).
-- **desired_external_evidence:** n/a — to jest czysto AAMR-side replication, nie potrzebuje ResearchOS.
-- **research_question:** n/a (to jest eksperyment AAMR, nie pytanie badawcze).
-- **candidate_value_if_found:** drugi zwalidowany mechanizm projektu.
-- **estimated_experiment_cost_band:** ~$1.20-1.50 (dual-bank ingest, jak oryginalny test).
-- **dependencies:** żadne.
-- **blocked_by:** nic — WAITING_FOR_EXPERIMENT oznacza tu "czeka na AAMR-side scheduling", nie na ResearchOS.
-- **reopen/close condition:** zamyka się po świeżej replikacji (SATURATED jeśli replikuje i zostaje zwalidowany; CLOSED z powrotem do DO_NOT_REDISCOVER jeśli nie replikuje).
-- **last_updated:** 2026-08-24.
+- **status:** CLOSED
+- **priority:** N/A (zamknięte)
+- **why_it_matters:** Entry O był jedynym `EXPLORATORY_SUPPORTED` mechanizmem tej kampanii poza `RAW_PROVENANCE`. Świeża replikacja była jedynym brakującym krokiem do statusu `REPLICATED_VALIDATED_TRANSPLANT`.
+- **what_is_known:** replikacja WYKONANA (`data/lab/arena/extraction-completeness-verification-v2`, 8 świeżych jednostek, czysto do końca, oba operacyjne problemy z v1 naprawione proaktywnie). Wynik: 0 net repairs, 0 regresji — `MECHANISM_J_REPLICATION_FAILED` (Ledger Entry P). Mechanizm odpalał na każdej jednostce, ale 4 BASE-wrong jednostki w tej próbce trafiły na TRZY różne, już udokumentowane inne absence subtypes (temporal-representation-loss, knowledge-update/supersession, assistant-turn-scoping-loss), nie na target regime tego mechanizmu.
+- **what_is_unknown:** rzeczywisty repair rate (obecnie ~1/14 ≈ 7% łącznie v1+v2) pozostaje niepewny przy tak rzadkim precondition -- większa próbka mogłaby dać czystszy sygnał, ale nie jest tu zaplanowana (budget-conscious pause, patrz `autonomous-research-budget-v2/ledger.json`).
+- **what_was_already_tested:** patrz `EXTRACTION_COMPLETENESS_VERIFICATION_PASS_V1.md` i `_V2.md`.
+- **allowed_mechanism_space:** n/a — zamknięte.
+- **disallowed_mechanism_space:** identyczny mechanizm bez subtype-pre-screeningu (patrz reopen_condition).
+- **required_preconditions:** —
+- **desired_external_evidence:** n/a.
+- **research_question:** n/a.
+- **candidate_value_if_found:** n/a — Entry O pozostaje `EXPLORATORY_SUPPORTED`, nie zwalidowany, nie porzucony.
+- **estimated_experiment_cost_band:** zrealizowane: $1.338754 (v2).
+- **dependencies:** —
+- **blocked_by:** —
+- **reopen/close condition:** większa (>8 jednostek) LUB subtype-pre-screened (gold-blind, strukturalna nie treściowa) próbka specyficznie wzbogacona o pytania z bundled-enumeration shape.
+- **last_updated:** 2026-08-25.
 
 ## GAP-002 — Retrieval-ranking-miss beyond single-shot HyDE
 
@@ -146,17 +146,17 @@ Statusy: `OPEN` | `BLOCKED` | `WAITING_FOR_EXPERIMENT` | `SATURATED` | `CLOSED`.
 - **status:** WAITING_FOR_EXPERIMENT
 - **priority:** N/A (structural gate, nie do testowania samo w sobie)
 - **why_it_matters:** to jest cel kampanii wyższego poziomu (2 zwalidowane mechanizmy + interaction test = zbliżenie do global STOP tego etapu).
-- **what_is_known:** 1 zwalidowany mechanizm (Entry H). Entry O `EXPLORATORY_SUPPORTED`, potrzebuje GAP-001's replikacji.
-- **what_is_unknown:** czy GAP-001 replikuje.
+- **what_is_known:** 1 zwalidowany mechanizm (Entry H). GAP-001 (Entry O's replikacja) zamknięty NEGATYWNIE (Entry P, `MECHANISM_J_REPLICATION_FAILED`) — Entry O pozostaje `EXPLORATORY_SUPPORTED`, nie zwalidowany.
+- **what_is_unknown:** czy GAP-002 lub GAP-003 dostarczy drugiego zwalidowanego mechanizmu.
 - **what_was_already_tested:** n/a.
 - **allowed_mechanism_space:** n/a — nie dla ResearchOS teraz.
-- **disallowed_mechanism_space:** **NIE wysyłać ResearchOS po router/controller mechanizm teraz** — precondition (≥2 zwalidowane mechanizmy z measured regime variance) niespełniony.
-- **required_preconditions:** GAP-001 replikuje pozytywnie (LUB GAP-002/003 dostarczy alternatywnego drugiego mechanizmu).
+- **disallowed_mechanism_space:** **NIE wysyłać ResearchOS po router/controller mechanizm teraz** — precondition (≥2 zwalidowane mechanizmy z measured regime variance) niespełniony, i pozostaje niespełniony po zamknięciu GAP-001.
+- **required_preconditions:** GAP-002 LUB GAP-003 dostarczy drugiego zwalidowanego mechanizmu (GAP-001 już wyczerpany negatywnie).
 - **desired_external_evidence:** n/a teraz.
 - **research_question:** n/a teraz.
 - **candidate_value_if_found:** n/a teraz.
 - **estimated_experiment_cost_band:** n/a teraz.
-- **dependencies:** GAP-001 (primary), GAP-002/GAP-003 (alternative paths do drugiego mechanizmu).
-- **blocked_by:** GAP-001.
-- **reopen/close condition:** otwiera się automatycznie, gdy GAP-001 (lub GAP-002/003) osiąga `REPLICATED_VALIDATED_TRANSPLANT`.
-- **last_updated:** 2026-08-24.
+- **dependencies:** GAP-002, GAP-003 (jedyne pozostałe ścieżki do drugiego mechanizmu po zamknięciu GAP-001).
+- **blocked_by:** GAP-002, GAP-003.
+- **reopen/close condition:** otwiera się automatycznie, gdy GAP-002 lub GAP-003 osiąga `REPLICATED_VALIDATED_TRANSPLANT`.
+- **last_updated:** 2026-08-25.

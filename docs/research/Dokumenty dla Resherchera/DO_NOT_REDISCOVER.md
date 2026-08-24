@@ -218,14 +218,30 @@ Dozwolone statusy: `VALIDATED` | `REPLICATED_VALIDATED` | `FAILED` | `FAILED_REP
 
 - **canonical_name:** EXTRACTION_COMPLETENESS_VERIFICATION_PASS
 - **aliases:** ProMem-style completeness check, write-time "what did you miss" pass
-- **status:** `VALIDATED` (`EXPLORATORY_SUPPORTED` dokładnie — nie jeszcze `REPLICATED_VALIDATED`)
+- **status:** `REGIME_DEPENDENT` (`EXPLORATORY_SUPPORTED` przy exploratory teście, `FAILED_REPLICATION` na fresh replikacji — nigdy `REPLICATED_VALIDATED`, nigdy `DROP`)
 - **source_system:** ProMem (measured direct na LongMemEval, ablation izolujący ten etap)
-- **AAMR_experiment_ids:** kalibracja (`PM-20260824-9d020373`), exploratory test (n=6, `PM-20260824-195a1656`)
-- **result:** 1 genuine, traceable repair (power-bank fact split z niewłaściwej ramy travel-organizing), 1 druga nominalna "naprawa" poprawnie reklasyfikowana jako judge noise, 0 regresji.
-- **failure_reason:** n/a — to jest pozytywny wynik.
-- **positive_regime:** sesje z enumerable listą (numbered, comma/and-separated), którą Mem0's własna ekstrakcja bunduje w jeden fact string.
-- **negative_regime:** żaden zaobserwowany; nietrafiony write-time extraction loss wymagający cross-session agregacji (`2311e44b`, page-count arithmetic) pozostaje nienaprawiony, bez szkody.
-- **precondition_status:** confirmed real, CODE_VERIFIED w pinned venv (shipped few-shot example uczy merging).
-- **do_not_retry:** n/a — ten mechanizm CZEKA na świeżą replikację (GAP-001), nie jest zamknięty jako failed.
-- **reopen_condition:** n/a — patrz GAP-001 dla następnego kroku.
-- **related_mechanisms:** GAP-001 (bezpośrednia kontynuacja), GAP-003 (pokrewny write-side subtype-3 kandydat), Entry E (poprzednia write-side próba, inny mechanizm).
+- **AAMR_experiment_ids:** kalibracja (`PM-20260824-9d020373`), exploratory test v1 (n=6, `PM-20260824-195a1656`), fresh replication v2 (n=8, `PM-20260824-df787f9d`)
+- **result:** v1: 1 genuine, traceable repair (power-bank fact split z niewłaściwej ramy travel-organizing), 1 druga nominalna "naprawa" poprawnie reklasyfikowana jako judge noise, 0 regresji. v2 (świeża replikacja, Entry P): 0 net repairs, 0 regresji — mechanizm odpalał na każdej jednostce, ale 4 BASE-wrong jednostki trafiły na TRZY różne inne, już udokumentowane absence subtypes (temporal-representation-loss, knowledge-update/supersession, assistant-turn-scoping-loss), nie na target regime tego mechanizmu.
+- **failure_reason:** replikacja: regime-rarity, nie flaw w mechanizmie — łączny repair rate v1+v2 to ~1/14 (~7%) świeżych jednostek pokazujących rzeczywisty target precondition.
+- **positive_regime:** sesje z enumerable listą (numbered, comma/and-separated), którą Mem0's własna ekstrakcja bunduje w jeden fact string -- POTWIERDZONY realny (v1), ale RZADKI (~1/14 świeżych jednostek).
+- **negative_regime:** cross-session write-time extraction loss (`2311e44b`); temporal-representation-loss (`5e1b23de`); knowledge-update/supersession (`2133c1b5`); assistant-turn-scoping-loss (`1d4da289`) — wszystkie strukturalnie poza zasięgiem tego mechanizmu, 0 szkody w każdym przypadku.
+- **precondition_status:** confirmed real (CODE_VERIFIED w pinned venv, shipped few-shot example uczy merging) ale RZADKI w praktyce -- nie replikuje niezawodnie przy n=6-8.
+- **do_not_retry:** identyczny mechanizm bez subtype-pre-screeningu przy podobnym n (6-8) — prawdopodobnie znowu wylosuje inny absence subtype.
+- **reopen_condition:** większa (>8 jednostek) LUB subtype-pre-screened (gold-blind, strukturalna) próbka specyficznie wzbogacona o pytania z bundled-enumeration shape.
+- **related_mechanisms:** GAP-003 (pokrewny write-side subtype-3 kandydat), Entry E (poprzednia write-side próba, inny mechanizm), Entries M/N (ten sam "confirmed-real-precondition, small-n draw missed it" pattern, teraz obserwowany 4. raz w tej kampanii).
+
+### Entry P — `EXTRACTION_COMPLETENESS_VERIFICATION_PASS` (fresh replication)
+
+- **canonical_name:** EXTRACTION_COMPLETENESS_VERIFICATION_PASS (replikacja Entry O)
+- **aliases:** patrz Entry O.
+- **status:** `FAILED_REPLICATION` na gate (0 repairs, wymagane ≥1), ale 0 regresji — Entry O pozostaje `EXPLORATORY_SUPPORTED`, nie `DROP`.
+- **source_system:** patrz Entry O.
+- **AAMR_experiment_ids:** replikacja v2 (n=8, `PM-20260824-df787f9d`)
+- **result:** 0 net repairs, 0 regresji na 8 świeżych jednostkach. Mechanizm odpalał uniwersalnie (kontekst różnił się w każdej jednostce), ale nigdy nie zmienił osądzonego wyniku.
+- **failure_reason:** small-n draw property — 4 BASE-wrong jednostki trafiły na 3 różne, inne absence subtypes.
+- **positive_regime:** patrz Entry O — teraz potwierdzone jako rzadki (~1/14).
+- **negative_regime:** patrz Entry O.
+- **precondition_status:** confirmed safe (0/2 samples z regresją), efficacy rzadka.
+- **do_not_retry:** identyczny design bez pre-screeningu przy podobnym n.
+- **reopen_condition:** patrz Entry O.
+- **related_mechanisms:** Entry O, Entry N (identyczny "FAIL_ON_REPLICATION_GATE, 0 regresji" shape).
