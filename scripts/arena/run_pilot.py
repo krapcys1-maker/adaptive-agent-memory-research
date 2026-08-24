@@ -382,7 +382,14 @@ def main() -> int:
     os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
     mode = "calibration" if args.calibrate_sessions else "pilot"
     out = Path(args.out or ROOT / f"data/lab/arena/pilot-{args.system}.json")
-    raw_out = ROOT / f"data/lab/arena/pilot-raw/{args.system}.json"
+    # Namespaced by selection. A fixed per-system path let the expansion run
+    # overwrite the pilot's raw answers for the same system: the file is written
+    # on every flush, so the loss happened within seconds of the run starting and
+    # before anything had been judged. The committed judgements survived and the
+    # answer text did not.
+    selection_id = json.loads(selection_path.read_text(encoding="utf-8")).get(
+        "selection_id", selection_path.stem)
+    raw_out = ROOT / f"data/lab/arena/raw/{selection_id}/{args.system}.json"
 
     ledger = SpendLedger(total_cap_usd=args.total_cap_usd,
                          run_id=f"{args.system}-{mode}")

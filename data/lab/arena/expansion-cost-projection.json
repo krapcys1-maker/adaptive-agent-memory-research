@@ -1,0 +1,30 @@
+{
+  "artifact": "arena-expansion-cost-projection",
+  "recorded_at": "2026-08-24T03:35:50+00:00",
+  "selection": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "new_units": 6,
+  "new_sessions": 289,
+  "new_user_turns": 1463,
+  "reused_units": 4,
+  "rate_basis": "each system's own four-unit pilot: total spend over 197 sessions",
+  "projection_usd": {
+    "mem0": 0.4312,
+    "hindsight": 2.6587,
+    "judge": 0.0025,
+    "total": 3.0924
+  },
+  "caps_usd": {
+    "mem0": 1.25,
+    "hindsight": 5.5,
+    "judge": 0.25,
+    "total": 7.0
+  },
+  "within_caps": {
+    "mem0": true,
+    "hindsight": true,
+    "judge": true,
+    "total": true
+  },
+  "is_a_floor": "Mem0's per-session cost was measured flat across the pilot, so its figure should hold. Hindsight's rose 4.7 to 6.4 calls per session across its calibration, so its figure is a floor and the cap is what actually bounds it",
+  "enforcement": "per-run cap and shared night ledger, both refused beneath the provider"
+}

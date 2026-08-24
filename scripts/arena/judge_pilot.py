@@ -171,24 +171,37 @@ def anonymous_label(system: str, salt: str) -> str:
     return f"candidate_{chr(65 + int(digest[:8], 16) % 26)}_{digest[:4]}"
 
 
-def load_cases() -> list[dict[str, Any]]:
-    selection = json.loads(SELECTION.read_text(encoding="utf-8"))
+def load_cases(selection_path: Path, systems: tuple[str, ...],
+               raw_files: dict[str, list[Path]]) -> list[dict[str, Any]]:
+    """Every frozen answer to be judged, from one or more raw files per system.
+
+    A system's answers can come from more than one run — the expansion reuses the
+    pilot's four units and pays only for six new ones — so each raw file is read
+    and the run it came from is carried through to the judgement. Answers are
+    taken exactly as the systems produced them: not trimmed, not normalised, not
+    repaired, not reordered.
+    """
+    selection = json.loads(selection_path.read_text(encoding="utf-8"))
     by_qid = {u["question_id"]: u for u in selection["units"]}
     cases: list[dict[str, Any]] = []
-    for system in SYSTEMS:
-        for entry in json.loads((RAW / f"{system}.json").read_text(encoding="utf-8")):
-            unit = by_qid[entry["question_id"]]
-            cases.append({
-                "system": system,
-                "question_id": entry["question_id"],
-                "question_type": unit["question_type"],
-                "slot": unit["slot"],
-                "question": entry["question"],
-                "gold": entry["gold"],
-                # Frozen. Not trimmed, not normalised, not repaired.
-                "response": entry["answer"],
-                "abstention": entry["question_id"].endswith("_abs"),
-            })
+    for system in systems:
+        for path in raw_files[system]:
+            for entry in json.loads(path.read_text(encoding="utf-8")):
+                unit = by_qid.get(entry["question_id"])
+                if unit is None:
+                    continue  # an answer to a unit this selection does not contain
+                cases.append({
+                    "system": system,
+                    "run": path.stem,
+                    "question_id": entry["question_id"],
+                    "question_type": unit["question_type"],
+                    "slot": unit["slot"],
+                    "question": entry["question"],
+                    "gold": entry["gold"],
+                    # Frozen. Not trimmed, not normalised, not repaired.
+                    "response": entry["answer"],
+                    "abstention": entry["question_id"].endswith("_abs"),
+                })
     return cases
 
 
@@ -202,10 +215,23 @@ def main() -> int:
     parser.add_argument("--mapping-out",
                         default=str(ROOT / "data/lab/arena/pilot-judge-blinding.json"))
     parser.add_argument("--project-only", action="store_true")
+    parser.add_argument("--selection", default=str(SELECTION))
+    parser.add_argument("--systems", default=",".join(SYSTEMS))
+    parser.add_argument("--raw", action="append", default=None,
+                        help="system=path, repeatable; defaults to pilot-raw/<system>.json")
     args = parser.parse_args()
 
-    cases = load_cases()
-    blinding = {system: anonymous_label(system, args.salt) for system in SYSTEMS}
+    systems = tuple(s.strip() for s in args.systems.split(",") if s.strip())
+    raw_files: dict[str, list[Path]] = {s: [] for s in systems}
+    for spec in (args.raw or []):
+        system, _, path = spec.partition("=")
+        raw_files[system.strip()].append(Path(path.strip()))
+    for system in systems:
+        if not raw_files[system]:
+            raw_files[system] = [RAW / f"{system}.json"]
+
+    cases = load_cases(Path(args.selection), systems, raw_files)
+    blinding = {system: anonymous_label(system, args.salt) for system in systems}
 
     # -- projection, before a single call ------------------------------------
     prompts = [prompt_for(c["question_type"], c["question"], c["gold"],
@@ -261,6 +287,7 @@ def main() -> int:
                     "slot": case["slot"],
                     "response_chars": len(case["response"]),
                     "abstention_prompt": case["abstention"],
+                    "run": case["run"],
                     "passes": [],
                     "stable": True,
                     "disputed": False,
@@ -283,6 +310,7 @@ def main() -> int:
                 "slot": case["slot"],
                 "response_chars": len(case["response"]),
                 "abstention_prompt": case["abstention"],
+                "run": case["run"],
                 "passes": passes,
                 "stable": passes[0]["label"] == passes[1]["label"],
                 "disputed": len(passes) == 3,
@@ -298,7 +326,9 @@ def main() -> int:
     record = {
         "artifact": "arena-pilot-judged",
         "recorded_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "selection": json.loads(SELECTION.read_text(encoding="utf-8"))["selection_sha256"],
+        "selection": json.loads(Path(args.selection).read_text(encoding="utf-8"))["selection_sha256"],
+        "selection_id": json.loads(Path(args.selection).read_text(encoding="utf-8")).get("selection_id"),
+        "raw_files": {s: [str(p) for p in raw_files[s]] for s in systems},
         "protocol": {
             "source": "LongMemEval src/evaluation/evaluate_qa.py",
             "repository": "xiaowu0162/LongMemEval",

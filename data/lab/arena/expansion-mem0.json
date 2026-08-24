@@ -1,0 +1,245 @@
+{
+  "artifact": "arena-pilot-mem0",
+  "mode": "pilot",
+  "system": "Mem0",
+  "contract_version": "ARENA-0.1",
+  "contract_digest": "e68be19fb33aac46fe760497303a78a0f487feec5a457ebea930337b10d3e9aa",
+  "runner_digest": "b995f4b4ac843425df4372b4c1c75c92ddac2e347ae240cdd9a3998b2268e5e1",
+  "adapter_digest": "0d719093f77d8cfe1237dc8107c869bd099623dca4fc64fbe50b5c79b795b604",
+  "started_at": "2026-08-24T03:36:38+00:00",
+  "selection": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "selection_id": "arena-expansion-v1",
+  "only_origin": "arena-expansion-v1",
+  "source": {
+    "system": "Mem0",
+    "version": "1.0.6",
+    "vector_store": "qdrant, local path, on_disk",
+    "embedder_enforced": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\models\\all-MiniLM-L6-v2",
+    "embedder_native_default": "openai text-embedding-3-small",
+    "embedder_override_reason": "held constant with CUPMem's; the native default would add a second provider and a second bill inside one comparison",
+    "telemetry": "disabled by the arena; this system posts usage analytics to an external service by default"
+  },
+  "target_model": "deepseek-chat",
+  "decoding": {
+    "arena_enforced": {
+      "temperature": 0
+    },
+    "preregistered": false,
+    "provenance": "adopted after a CUPMem run showed a repeated probe returning different answers, so it is a control chosen in response to an observation, not before one. It is not any system's own decoding"
+  },
+  "spend_cap_usd": 1.25,
+  "total_cap_usd": 7.0,
+  "state_probe_available": true,
+  "units": [
+    {
+      "question_id": "gpt4_f420262c",
+      "question_type": "temporal-reasoning",
+      "slot": "temporal-reasoning-1",
+      "sessions_available": 47,
+      "sessions_ingested": 47,
+      "user_turns_ingested": 246,
+      "sessions_skipped_no_user_turn": 0,
+      "ingest": {
+        "model_calls": 81,
+        "input_tokens": 126486,
+        "output_tokens": 33724,
+        "wall_seconds": 221.85999999999999,
+        "usd": 0.0712
+      },
+      "per_session_calls": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "status": "complete",
+      "state_digest_after_ingest_differs": true,
+      "stored_items": 221,
+      "query": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "wall_seconds": 0.02,
+        "fully_known": true,
+        "observability": {
+          "model_calls": "instrumented",
+          "input_tokens": "instrumented",
+          "output_tokens": "instrumented"
+        },
+        "repeat": {
+          "model_calls": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "wall_seconds": 0.02,
+          "fully_known": true,
+          "observability": {
+            "model_calls": "instrumented",
+            "input_tokens": "instrumented",
+            "output_tokens": "instrumented"
+          }
+        },
+        "wall_seconds_measured": 0.05,
+        "usd": 0.0
+      },
+      "memory": {
+        "evidence_ids": 10,
+        "evidence_all_traceable": true,
+        "context_tokens": 121,
+        "context_tokens_measurable": true,
+        "context_tokens_is_floor": false,
+        "abstained": false,
+        "abstention_derivable": true,
+        "abstention_channel": "empty result set",
+        "premise_status": null,
+        "query_mutates_state": "read_only",
+        "output_reproducible": "true",
+        "declared_mutation_mode": "unknown"
+      },
+      "retrieval": {
+        "observable": true,
+        "gold_sessions": 5,
+        "retrieved": 10,
+        "evidence_mapped": 10,
+        "evidence_unmapped": 0,
+        "gold_in_context": true,
+        "gold_rank": 1,
+        "gold_hits": 10,
+        "precision_at_k": 1.0,
+        "distinct_sessions_retrieved": 3,
+        "stale_or_conflicting": "UNOBSERVABLE",
+        "stale_why": "the corpus marks answer sessions, not superseded ones; labelling staleness would require reading the passages"
+      },
+      "task": {
+        "crude_substring_match": false,
+        "metric": "substring containment of the gold answer, NOT LongMemEval's model judge. It under-counts every correct paraphrase and is a signal check, not a score",
+        "answer_chars": 24
+      },
+      "reset_returns_to_empty": false
+    },
+    {
+      "question_id": "gpt4_f49edff3",
+      "question_type": "temporal-reasoning",
+      "slot": "temporal-reasoning-2",
+      "sessions_available": 47,
+      "sessions_ingested": 21,
+      "user_turns_ingested": 112,
+      "sessions_skipped_no_user_turn": 0,
+      "ingest": {
+        "model_calls": 37,
+        "input_tokens": 55949,
+        "output_tokens": 13836,
+        "wall_seconds": 93.31
+      },
+      "per_session_calls": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "status": "ingesting"
+    }
+  ],
+  "status": "running",
+  "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
+  "spend_usd": 0.1016,
+  "meter_baseline": {
+    "calls": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0
+  },
+  "meter_baseline_usd": 0,
+  "provider_calls": 118,
+  "meter": {
+    "calls": 118,
+    "refused_calls": 0,
+    "prompt_tokens": 182435,
+    "completion_tokens": 47560,
+    "usd": 0.101573,
+    "unknown_usage_calls": 0,
+    "arena_enforced_decoding": {
+      "temperature": 0
+    },
+    "decoding_overrides": 118,
+    "decoding_override_values": [
+      "{\"temperature\": 0.1}"
+    ],
+    "native_requested_decoding": [
+      "{\"temperature\": 0.1}"
+    ]
+  },
+  "meter_note": "`meter` holds the proxy's running totals, which include anything it served before this run. `spend_usd` and `provider_calls` are this run's own, taken as a delta from the baseline",
+  "night_ledger": {
+    "path": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\data\\lab\\arena\\spend-ledger.jsonl",
+    "total_usd": 3.264671,
+    "total_cap_usd": 7.0,
+    "by_run": {
+      "mem0-calibration": 0.025094,
+      "mem0-pilot": 0.691379,
+      "hindsight-pilot": 2.334746,
+      "graphiti-calibration": 0.005908,
+      "pilot-judge": 0.002488,
+      "hindsight-expansion": 0.205069
+    },
+    "calls": 2641
+  }
+}
