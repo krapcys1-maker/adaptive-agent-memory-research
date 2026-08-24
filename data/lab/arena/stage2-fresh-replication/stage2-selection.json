@@ -1,0 +1,130 @@
+{
+  "artifact": "arena-stage2-fresh-replication-selection",
+  "selection_id": "arena-stage2-fresh-v1",
+  "frozen_at_note": "frozen before any ingest/reader/judge call this phase",
+  "purpose": "Stage 2 fresh replication of TEMPORAL_ANCHOR_AT_CONTEXT (E1), on units never used anywhere in this arena before",
+  "excludes": [
+    "311778f1",
+    "58bf7951",
+    "69fee5aa",
+    "6a27ffc2",
+    "ba358f49",
+    "eace081b",
+    "gpt4_59c863d7",
+    "gpt4_98f46fc6",
+    "gpt4_f420262c",
+    "gpt4_f49edff3"
+  ],
+  "excludes_abs_variants": true,
+  "selection_rule": {
+    "inputs_used": [
+      "question_type (corpus category metadata)",
+      "question text (task shape only)"
+    ],
+    "inputs_never_used": [
+      "answer",
+      "answer_session_ids",
+      "haystack_dates",
+      "haystack_session_ids",
+      "haystack_sessions content",
+      "any retrieval output",
+      "any prior correctness"
+    ],
+    "classifier": "fixed regex/keyword rule over question_type + question text, applied uniformly to all 490 fresh candidates before any candidate was individually inspected for this selection; script: stage2_select.py logic reproduced in this manifest",
+    "tie_break": "stable sort by question_id ascending within each regime bucket, first-N taken",
+    "target_mix": "5 TEMPORAL_POSITIVE + 2 TEMPORAL_BOUNDARY + 3 NON_TEMPORAL_CONTROL = 7/10 (70%) temporal, 3/10 (30%) control",
+    "bucket_sizes_before_selection": {
+      "TEMPORAL_POSITIVE": 75,
+      "TEMPORAL_BOUNDARY": 78,
+      "NON_TEMPORAL_CONTROL": 307
+    },
+    "documented_imperfect_fits": [
+      "07741c45 classified TEMPORAL_POSITIVE on a weak current-state-lookup shape rather than a clean ordering/duration shape; predicted +TIME_POSSIBLY_HELP rather than EXPECTED_TO_HELP to reflect this",
+      "001be529 contains the word \"how long\" but is single-session, hence NON_TEMPORAL_CONTROL (no cross-item anchoring possible on a single-session lookup)",
+      "00ca467f has an implicit date-range filter (\"in March\") but is a counting task, not an ordering/duration task, kept as NON_TEMPORAL_CONTROL"
+    ]
+  },
+  "units": [
+    {
+      "question_id": "01493427",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-01493427",
+      "predicted_regime": "TEMPORAL_POSITIVE",
+      "prediction": "+TIME_EXPECTED_TO_HELP",
+      "classification_note": "knowledge-update boundary counting since a point in time"
+    },
+    {
+      "question_id": "031748ae",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-031748ae",
+      "predicted_regime": "TEMPORAL_POSITIVE",
+      "prediction": "+TIME_EXPECTED_TO_HELP",
+      "classification_note": "knowledge-update, value as of a past starting point"
+    },
+    {
+      "question_id": "07741c45",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-07741c45",
+      "predicted_regime": "TEMPORAL_POSITIVE",
+      "prediction": "+TIME_POSSIBLY_HELP",
+      "classification_note": "knowledge-update, current-state lookup, weaker temporal-composition shape"
+    },
+    {
+      "question_id": "0977f2af",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-0977f2af",
+      "predicted_regime": "TEMPORAL_POSITIVE",
+      "prediction": "+TIME_EXPECTED_TO_HELP",
+      "classification_note": "knowledge-update, explicit before-relation to a named event"
+    },
+    {
+      "question_id": "0bb5a684",
+      "question_type": "temporal-reasoning",
+      "slot": "stage2-temporal_positive-0bb5a684",
+      "predicted_regime": "TEMPORAL_POSITIVE",
+      "prediction": "+TIME_EXPECTED_TO_HELP",
+      "classification_note": "temporal-reasoning, explicit days-before relation between two named events"
+    },
+    {
+      "question_id": "08f4fc43",
+      "question_type": "temporal-reasoning",
+      "slot": "stage2-temporal_boundary-08f4fc43",
+      "predicted_regime": "TEMPORAL_BOUNDARY",
+      "prediction": "+TIME_POSSIBLY_HELP",
+      "classification_note": "temporal-reasoning, duration-between-two-events arithmetic"
+    },
+    {
+      "question_id": "0bc8ad92",
+      "question_type": "temporal-reasoning",
+      "slot": "stage2-temporal_boundary-0bc8ad92",
+      "predicted_regime": "TEMPORAL_BOUNDARY",
+      "prediction": "+TIME_POSSIBLY_HELP",
+      "classification_note": "temporal-reasoning, duration-since arithmetic"
+    },
+    {
+      "question_id": "001be529",
+      "question_type": "single-session-user",
+      "slot": "stage2-non_temporal_control-001be529",
+      "predicted_regime": "NON_TEMPORAL_CONTROL",
+      "prediction": "NO_EFFECT_EXPECTED",
+      "classification_note": "single-session-user, contains \"how long\" but single-session so no cross-item anchoring needed"
+    },
+    {
+      "question_id": "00ca467f",
+      "question_type": "multi-session",
+      "slot": "stage2-non_temporal_control-00ca467f",
+      "predicted_regime": "NON_TEMPORAL_CONTROL",
+      "prediction": "NO_EFFECT_EXPECTED",
+      "classification_note": "multi-session count-within-a-period, not an ordering/duration task"
+    },
+    {
+      "question_id": "0100672e",
+      "question_type": "multi-session",
+      "slot": "stage2-non_temporal_control-0100672e",
+      "predicted_regime": "NON_TEMPORAL_CONTROL",
+      "prediction": "NO_EFFECT_EXPECTED",
+      "classification_note": "multi-session factual aggregation, no temporal element"
+    }
+  ],
+  "selection_sha256": "79427d30d5c5a1787ca4a78916c0b6731f8cc26d8422deeaac54ac653eb55fe3"
+}

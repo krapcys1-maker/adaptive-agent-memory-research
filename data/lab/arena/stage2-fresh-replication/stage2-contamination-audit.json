@@ -1,0 +1,124 @@
+{
+  "artifact": "arena-stage2-contamination-audit",
+  "units": [
+    {
+      "question_id": "01493427",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 229,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": 0,
+      "contamination_status": "PASS",
+      "gold_in_context_deep": true,
+      "gold_rank_deep": 1
+    },
+    {
+      "question_id": "031748ae",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 248,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": 0,
+      "contamination_status": "PASS",
+      "gold_in_context_deep": true,
+      "gold_rank_deep": 1
+    },
+    {
+      "question_id": "07741c45",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 199,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": 0,
+      "contamination_status": "PASS",
+      "gold_in_context_deep": true,
+      "gold_rank_deep": 1
+    },
+    {
+      "question_id": "0977f2af",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 232,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": null,
+      "contamination_status": "UNOBSERVABLE",
+      "gold_in_context_deep": "UNOBSERVABLE",
+      "gold_rank_deep": "UNOBSERVABLE"
+    },
+    {
+      "question_id": "0bb5a684",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 213,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": null,
+      "contamination_status": "UNOBSERVABLE",
+      "gold_in_context_deep": "UNOBSERVABLE",
+      "gold_rank_deep": "UNOBSERVABLE"
+    },
+    {
+      "question_id": "08f4fc43",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 201,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": 0,
+      "contamination_status": "PASS",
+      "gold_in_context_deep": true,
+      "gold_rank_deep": 1
+    },
+    {
+      "question_id": "0bc8ad92",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 208,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": 0,
+      "contamination_status": "PASS",
+      "gold_in_context_deep": true,
+      "gold_rank_deep": 1
+    },
+    {
+      "question_id": "001be529",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 241,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": 0,
+      "contamination_status": "PASS",
+      "gold_in_context_deep": true,
+      "gold_rank_deep": 1
+    },
+    {
+      "question_id": "00ca467f",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 221,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": 0,
+      "contamination_status": "PASS",
+      "gold_in_context_deep": true,
+      "gold_rank_deep": 1
+    },
+    {
+      "question_id": "0100672e",
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "stored_items": 213,
+      "reset_postcondition_pass": true,
+      "foreign_from_other_units": 0,
+      "contamination_status": "PASS",
+      "gold_in_context_deep": true,
+      "gold_rank_deep": 1
+    }
+  ],
+  "all_reset_pass": true,
+  "all_contamination_pass": true,
+  "reset_failures": [],
+  "contamination_failures": [],
+  "unobservable_units": [
+    "0977f2af",
+    "0bb5a684"
+  ],
+  "unobservable_reason": "own haystack_dates are not unique, same condition documented throughout this project for 69fee5aa in the original 10-unit set -- not a contamination signal, just an unmappable own-session check"
+}

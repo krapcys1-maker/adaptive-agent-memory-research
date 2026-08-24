@@ -1,0 +1,129 @@
+{
+  "artifact": "arena-stage2-fresh-replication-analysis",
+  "base_score": "7/10",
+  "time_score": "6/10",
+  "delta": -1,
+  "flips_to_correct": [
+    "08f4fc43",
+    "0bc8ad92"
+  ],
+  "regressions": [
+    "00ca467f",
+    "031748ae",
+    "0977f2af"
+  ],
+  "unchanged": [
+    "001be529",
+    "0100672e",
+    "01493427",
+    "07741c45",
+    "0bb5a684"
+  ],
+  "predicted_repairs_in_TEMPORAL_POSITIVE": [],
+  "unexpected_repairs": [
+    "08f4fc43",
+    "0bc8ad92"
+  ],
+  "NET_PREDICTED_REPAIRS": -3,
+  "NET_ALL_REPAIRS_MINUS_REGRESSIONS": -1,
+  "by_regime": {
+    "TEMPORAL_POSITIVE": {
+      "units": [
+        "01493427",
+        "031748ae",
+        "07741c45",
+        "0977f2af",
+        "0bb5a684"
+      ],
+      "base_correct": 4,
+      "time_correct": 2,
+      "flips_to_correct": [],
+      "regressions": [
+        "031748ae",
+        "0977f2af"
+      ]
+    },
+    "TEMPORAL_BOUNDARY": {
+      "units": [
+        "08f4fc43",
+        "0bc8ad92"
+      ],
+      "base_correct": 0,
+      "time_correct": 2,
+      "flips_to_correct": [
+        "08f4fc43",
+        "0bc8ad92"
+      ],
+      "regressions": []
+    },
+    "NON_TEMPORAL_CONTROL": {
+      "units": [
+        "001be529",
+        "00ca467f",
+        "0100672e"
+      ],
+      "base_correct": 3,
+      "time_correct": 2,
+      "flips_to_correct": [],
+      "regressions": [
+        "00ca467f"
+      ]
+    }
+  },
+  "transcripts": {
+    "08f4fc43": {
+      "question": "How many days had passed between the Sunday mass at St. Mary's Church and the Ash Wednesday service at the cathedral?",
+      "gold": "30 days. 31 days (including the last day) is also acceptable.",
+      "base_answer": "The answer cannot be determined from the provided context.",
+      "time_answer": "Based on the provided context, the Sunday mass at St. Mary's Church was on January 2nd, and the Ash Wednesday service was on February 1st. That is 30 days apart.",
+      "predicted_regime": "TEMPORAL_BOUNDARY",
+      "event": "flip_to_correct"
+    },
+    "031748ae": {
+      "question": "How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?",
+      "gold": "When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers",
+      "base_answer": "Based on the provided context, you lead a team of 4 engineers.",
+      "time_answer": "Based on the provided context, you lead a team of 4 engineers. The context does not specify how many engineers you led when you first started your role as Senior Software Engineer.",
+      "predicted_regime": "TEMPORAL_POSITIVE",
+      "event": "regression"
+    },
+    "00ca467f": {
+      "question": "How many doctor's appointments did I go to in March?",
+      "gold": "2",
+      "base_answer": "Based on the provided context, you had two doctor's appointments in March: a follow-up with orthopedic surgeon Dr. Thompson on March 20th, and a diagnosis of bronchitis by Dr. Smith on March 3rd.",
+      "time_answer": "Based on the provided context, you had one doctor's appointment in March: a follow-up with orthopedic surgeon Dr. Thompson on March 20th.",
+      "predicted_regime": "NON_TEMPORAL_CONTROL",
+      "event": "regression"
+    },
+    "0977f2af": {
+      "question": "What new kitchen gadget did I invest in before getting the Air Fryer?",
+      "gold": "Instant Pot",
+      "base_answer": "Based on the provided context, I cannot determine what new kitchen gadget you invested in before getting the Air Fryer. The context only mentions that you got an Air Fryer yesterday and that you have a new Instant Pot.",
+      "time_answer": "Based on the provided context, I cannot determine what new kitchen gadget you invested in before getting the Air Fryer. The context only mentions that you got an Air Fryer and a new Instant Pot, but does not specify which one came first.",
+      "predicted_regime": "TEMPORAL_POSITIVE",
+      "event": "regression"
+    },
+    "0bc8ad92": {
+      "question": "How many months have passed since I last visited a museum with a friend?",
+      "gold": "5",
+      "base_answer": "Based on the provided context, I cannot determine how many months have passed since you last visited a museum with a friend. The context mentions a behind-the-scenes tour of the Science Museum with a friend who is a chemistry professor, but it does not specify when that visit occurred.",
+      "time_answer": "Based on the provided context, your last visit to a museum with a friend was on October 22, 2022, when you went on a behind-the-scenes tour of the Science Museum with a friend who is a chemistry professor. Since the current date is February 18, 2023, approximately 4 months have passed since that visit.",
+      "predicted_regime": "TEMPORAL_BOUNDARY",
+      "event": "flip_to_correct"
+    }
+  },
+  "transcript_mechanistic_findings": {
+    "08f4fc43": "TEMPORAL_INFORMATION_USED=YES. Reader explicitly cites both rendered anchor dates (Jan 2, Feb 1) and computes a 30-day gap, matching gold. Clean mechanism-consistent repair, landed in TEMPORAL_BOUNDARY not the predicted TEMPORAL_POSITIVE bucket.",
+    "0bc8ad92": "TEMPORAL_INFORMATION_USED=YES. Reader cites the rendered anchor date (Oct 22, 2022) and a 'current date' reference, computes ~4 months; gold is 5 but the frozen judge's own TEMPORAL template explicitly forgives off-by-one duration errors, so this reads as a real, judge-valid repair, not noise.",
+    "031748ae": "TEMPORAL_INFORMATION_USED=YES, and well-founded: the 'leads 4 engineers' fact is anchor-dated 2023-10-24, five months after the 'new role' fact (2023-05-11) -- the reader correctly notices this gap and hedges that the STARTING count isn't specified, rather than assuming '4' was the starting number the way BASE silently did. A more epistemically careful answer, judge-penalized for the added hedge.",
+    "0977f2af": "TEMPORAL_INFORMATION_USED=NO for both arms -- neither answer uses any date reasoning; both are near-identical honest abstentions that both happen to mention the gold entity ('Instant Pot') while explaining they can't order the two purchases. The flip from correct to wrong reads as judge phrasing-sensitivity (the +TIME answer's more explicit 'does not specify which one came first' framing), not a mechanism effect.",
+    "00ca467f": "TEMPORAL_INFORMATION_USED=YES, and this is the mechanistically clearest negative-transfer case. Both March medical facts share the SAME session anchor [2023-03-27] (a single later catch-up session recalling two distinct earlier events, one dated 'March 3rd' and one 'March 20th' INSIDE the fact text). +TIME renders only the session-recording date, not the in-text event dates; the reader undercounts to 1, dropping the March 3rd bronchitis visit. This is exactly the boundary condition the session-timestamp-vs-resolved-event-date distinction predicts: when a question needs the date named INSIDE a fact rather than the date the fact was recorded, a session anchor that diverges from it can compete with and crowd out correct in-text temporal reasoning."
+  },
+  "cost_usd": {
+    "ingest": 0.715117,
+    "reader": 0.022894,
+    "judge": 0.00194,
+    "total": 0.739964,
+    "cap_usd": 1.0
+  }
+}

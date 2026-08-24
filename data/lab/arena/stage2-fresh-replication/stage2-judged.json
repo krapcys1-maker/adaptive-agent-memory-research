@@ -1,0 +1,623 @@
+{
+  "artifact": "arena-mem0-breadth-judged",
+  "recorded_at": "2026-08-24T10:16:57+00:00",
+  "selection": "79427d30d5c5a1787ca4a78916c0b6731f8cc26d8422deeaac54ac653eb55fe3",
+  "arms_judged": [
+    "stage2_base",
+    "stage2_time"
+  ],
+  "protocol": {
+    "source": "LongMemEval src/evaluation/evaluate_qa.py, reused via judge_pilot.py import",
+    "repository": "xiaowu0162/LongMemEval",
+    "commit": "9e0b455f4ef0e2ab8f2e582289761153549043fc",
+    "template_sha256": {
+      "generic": "fba020ba3d57982efdc9a937c1c01f897b789a608c7f88e60244121f6505e5bc",
+      "temporal": "8d33a5fdd83afeeb4592454a965eab43d1fcb2dedc042d1d3892f4254be6c273",
+      "knowledge_update": "183a9b3a6197ec620940f610cdc1207201ec98c1113dd633ea685cfc322fafac",
+      "preference": "741ee3bcbea7ff5e8ed359acef61d2f8ded3de021bbcff6ee13de455f2e2aa9b",
+      "abstention": "5c0b365a1e1d06db36377c735432b56e122ca3c428f89faf61d43a0d5a7e050b"
+    },
+    "label_rule": "'yes' in response.lower(); binary, no partial credit",
+    "parameters": {
+      "n": 1,
+      "temperature": 0,
+      "max_tokens": 10
+    },
+    "identical_to": "arena-pilot-judge / arena-fixed-reader-v1 judge protocol"
+  },
+  "blinding": {
+    "salt": "arena-mem0-breadth-judge-v1",
+    "mapping_file": "stage2-judge-blinding.json"
+  },
+  "cost": {
+    "calls": 40,
+    "prompt_tokens": 7036,
+    "completion_tokens": 40,
+    "usd": 0.001944,
+    "cap_usd": 0.1,
+    "projected_usd": 0.00264
+  },
+  "stopped_by_cap": null,
+  "judgements": [
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "01493427",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-01493427",
+      "response_chars": 114,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 131,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 131,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "031748ae",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-031748ae",
+      "response_chars": 62,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 156,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 156,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "07741c45",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-07741c45",
+      "response_chars": 75,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 123,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 123,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "0977f2af",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-0977f2af",
+      "response_chars": 218,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 151,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 151,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "0bb5a684",
+      "question_type": "temporal-reasoning",
+      "slot": "stage2-temporal_positive-0bb5a684",
+      "response_chars": 124,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 243,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 243,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "08f4fc43",
+      "question_type": "temporal-reasoning",
+      "slot": "stage2-temporal_boundary-08f4fc43",
+      "response_chars": 58,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 221,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 221,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "0bc8ad92",
+      "question_type": "temporal-reasoning",
+      "slot": "stage2-temporal_boundary-0bc8ad92",
+      "response_chars": 286,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 244,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 244,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "001be529",
+      "question_type": "single-session-user",
+      "slot": "stage2-non_temporal_control-001be529",
+      "response_chars": 66,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 134,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 134,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "00ca467f",
+      "question_type": "multi-session",
+      "slot": "stage2-non_temporal_control-00ca467f",
+      "response_chars": 195,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 164,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 164,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_Z_43c0",
+      "question_id": "0100672e",
+      "question_type": "multi-session",
+      "slot": "stage2-non_temporal_control-0100672e",
+      "response_chars": 97,
+      "abstention_prompt": false,
+      "run": "stage2_base",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 146,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 146,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_base"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "01493427",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-01493427",
+      "response_chars": 114,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 131,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 131,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_time"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "031748ae",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-031748ae",
+      "response_chars": 180,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 177,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 177,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "stage2_time"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "07741c45",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-07741c45",
+      "response_chars": 85,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 124,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 124,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "stage2_time"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "0977f2af",
+      "question_type": "knowledge-update",
+      "slot": "stage2-temporal_positive-0977f2af",
+      "response_chars": 237,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 156,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 156,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "stage2_time"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "0bb5a684",
+      "question_type": "temporal-reasoning",
+      "slot": "stage2-temporal_positive-0bb5a684",
+      "response_chars": 150,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 248,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 248,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_time"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "08f4fc43",
+      "question_type": "temporal-reasoning",
+      "slot": "stage2-temporal_boundary-08f4fc43",
+      "response_chars": 161,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 252,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 252,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_time"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "0bc8ad92",
+      "question_type": "temporal-reasoning",
+      "slot": "stage2-temporal_boundary-0bc8ad92",
+      "response_chars": 303,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 259,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 259,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_time"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "001be529",
+      "question_type": "single-session-user",
+      "slot": "stage2-non_temporal_control-001be529",
+      "response_chars": 88,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 138,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 138,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_time"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "00ca467f",
+      "question_type": "multi-session",
+      "slot": "stage2-non_temporal_control-00ca467f",
+      "response_chars": 137,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 149,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 149,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "stage2_time"
+    },
+    {
+      "candidate": "candidate_E_e4e3",
+      "question_id": "0100672e",
+      "question_type": "multi-session",
+      "slot": "stage2-non_temporal_control-0100672e",
+      "response_chars": 223,
+      "abstention_prompt": false,
+      "run": "stage2_time",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 171,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 171,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "stage2_time"
+    }
+  ]
+}
