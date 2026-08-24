@@ -1,0 +1,8 @@
+{
+  "salt": "arena-mem0-breadth-judge-v1",
+  "mapping": {
+    "hindsight_mem0_matched": "candidate_I_309d",
+    "hindsight_500": "candidate_C_78b7",
+    "hindsight_1000": "candidate_O_113d"
+  }
+}

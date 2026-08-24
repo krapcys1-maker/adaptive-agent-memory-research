@@ -42,6 +42,13 @@ def main() -> int:
                              "scope total refuses the first call, because the scope "
                              "already holds the ingest that produced these contexts")
     parser.add_argument("--cap-scope", default="clean-")
+    parser.add_argument("--run-id", default="clean-breadth-reader",
+                        help="ledger run_id. Must start with --cap-scope's prefix or "
+                             "--total-cap-usd silently stops gating this run's own spend "
+                             "-- found by reusing this script for the Hindsight ablation "
+                             "fix with --cap-scope ablation-fix- while this stayed "
+                             "hardcoded to clean-breadth-reader, so the intended cap "
+                             "never matched any of this run's own ledger lines")
     parser.add_argument("--out-dir", default=str(ARENA / "raw/mem0-breadth"))
     parser.add_argument("--project-only", action="store_true")
     args = parser.parse_args()
@@ -63,7 +70,7 @@ def main() -> int:
     from arena.run_pilot import load_key
 
     ledger = SpendLedger(total_cap_usd=args.total_cap_usd,
-                         run_id="clean-breadth-reader", cap_scope=args.cap_scope)
+                         run_id=args.run_id, cap_scope=args.cap_scope)
     client = FixedDecoding(OpenAI(api_key=load_key(), base_url=args.base_url),
                            fixed={"temperature": READER_PARAMS["temperature"]},
                            spend_cap_usd=args.cap_usd, shared_ledger=ledger)

@@ -59,6 +59,9 @@ def main() -> int:
     parser.add_argument("--total-cap-usd", type=float, default=1.00,
                         help="the whole experiment's ceiling, counted over --cap-scope")
     parser.add_argument("--cap-scope", default="clean-")
+    parser.add_argument("--run-id", default="clean-breadth-judge",
+                        help="ledger run_id, must start with --cap-scope's prefix -- see "
+                             "run_breadth_reader.py's --run-id help for why this matters")
     parser.add_argument("--salt", default="arena-mem0-breadth-judge-v1")
     parser.add_argument("--out", default=str(ARENA / "mem0-breadth-judged.json"))
     parser.add_argument("--mapping-out", default=str(ARENA / "mem0-breadth-judge-blinding.json"))
@@ -89,7 +92,7 @@ def main() -> int:
 
     from arena.run_pilot import load_key
 
-    ledger = SpendLedger(total_cap_usd=args.total_cap_usd, run_id="clean-breadth-judge",
+    ledger = SpendLedger(total_cap_usd=args.total_cap_usd, run_id=args.run_id,
                          cap_scope=args.cap_scope)
     client = FixedDecoding(OpenAI(api_key=load_key(), base_url=args.base_url),
                            fixed={"temperature": JUDGE_PARAMS["temperature"]},

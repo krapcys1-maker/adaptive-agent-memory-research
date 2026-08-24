@@ -94,13 +94,19 @@ def truncate(items: list[str], budget: int) -> list[str]:
     Never partial items: half a memory is a context no system would ever have
     produced, and a reader shown one is being asked a question about an artefact
     of this script.
+
+    Stops at the first item that does not fit rather than skipping past it to
+    pack a smaller later one in. The result is always `items[:len(kept)]` -- a
+    genuine prefix, never a repack -- which is also what lets the caller read
+    off `evidence_times[:len(kept)]` instead of re-deriving alignment by
+    matching item text (a scheme that breaks silently on any duplicate item).
     """
     kept: list[str] = []
     used = 0
     for item in items:
         size = len(item.split())
         if used + size > budget:
-            continue
+            break
         kept.append(item)
         used += size
     return kept
@@ -165,7 +171,13 @@ def build_arms(data: dict[str, Any]) -> list[dict[str, Any]]:
             items = hind.get("context_texts") or []
             times = hind.get("evidence_times") or []
             keep = truncate(items, int(budget))
-            kept_times = [times[i] for i, item in enumerate(items) if item in keep][:len(keep)]
+            # `truncate` now always returns a true prefix (STOP, not skip-on-
+            # overflow), so the times aligned with `keep` are simply the same
+            # prefix of `times`. The previous `item in keep` scheme matched by
+            # *text*, not position -- silently wrong whenever two evidence
+            # items shared identical text, since `in` would match either
+            # occurrence regardless of which one was actually retained.
+            kept_times = times[:len(keep)]
             arms.append({
                 "arm": name, "question_id": qid, "slot": unit["slot"],
                 "question_type": unit["question_type"], "question": row["question"],

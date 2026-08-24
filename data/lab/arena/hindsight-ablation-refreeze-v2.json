@@ -1,0 +1,41 @@
+{
+  "artifact": "arena-mechanism-ablation-refreeze-v2",
+  "supersedes": "mechanism-ablation.json (arena-mechanism-ablation-v1, original frozen manifest)",
+  "purpose": "close the last known methodological gap from arena-mem0-breadth-ablation-v1: mechanism_ablation.py had the same continue-vs-break truncation bug as mem0_breadth_arms.py, and is what produced the reused Hindsight context-size curve (4/10, 6/10, 6/10) this experiment compared Mem0 against.",
+  "no_new_hindsight_ingest_or_retrieval": true,
+  "source_of_truth_for_hindsight_context": "data/lab/arena/raw/arena-expansion-v1/hindsight.json, verified unchanged since the original ablation run (mtime and content predate today's Mem0 work; the audit's own reconstruction matched the historically recorded context_items/context_tokens/gold_state exactly once the mem0-matched budget was pinned -- see below)",
+  "what_was_fixed": {
+    "truncate_continue_to_break": "same defect and same fix as mem0_breadth_arms.py: STOP at the first item that overflows the budget instead of skipping it to pack a smaller later one in.",
+    "kept_times_alignment": "kept_times was computed as `[times[i] for i,item in enumerate(items) if item in keep][:len(keep)]` -- matching evidence times to kept items by TEXT, not position. Provably coincides with the correct `times[:len(keep)]` whenever keep is a true prefix (which it always is now), but that safety depended entirely on truncate() never skipping. Replaced with direct positional slicing; simpler and unconditionally correct.",
+    "regression_tests": "tests/test_mechanism_ablation.py: 5 tests -- stop-not-skip, duplicate-text items considered independently by position, prefix invariant, an end-to-end build_arms() case with a duplicated item text that would trip a text-matching alignment, and gold_rank counting only retained evidence.",
+    "ledger_run_id_bug_found_while_reusing_run_breadth_reader.py/run_breadth_judge.py": "both scripts hardcoded their own ledger run_id, so passing --cap-scope ablation-fix- for this correction did not actually scope anything (the ledger lines still carried run_id=clean-breadth-reader/clean-breadth-judge from the Mem0 breadth work, which happens to satisfy neither prefix meaningfully once reused across experiments). The $0.10 cap for this correction was therefore enforced only by the flat --cap-usd per-run ceilings (0.05+0.05), not by scope tracking. No overspend resulted (true combined cost was $0.0080), but the scope mechanism itself did not gate it as intended. Fixed by adding --run-id to both scripts, defaulting to their prior hardcoded values so existing behavior is unchanged."
+  },
+  "mem0_matched_budget_provenance": "raw/arena-expansion-v1/mem0.json is NOT a stable artifact -- it is silently overwritten by the newest Mem0 run against the same selection_id, which is exactly what happened this session (the clean rerun overwrote it around 06:58 UTC). Recomputing the hindsight_mem0_matched budget from it today would silently swap in the CLEAN Mem0 context sizes instead of the CONTAMINATED ones the original ablation actually matched against. Pinned instead to the budget_tokens value recorded per-unit in the original raw/mechanism-ablation/outputs.json, so only the truncation rule changed -- nothing else about what is being measured did.",
+  "audit_method": "current (pre-fix) build_arms() was imported and re-run against the still-frozen raw/arena-expansion-v1/hindsight.json to reconstruct exactly what context each of the 30 (arm,unit) pairs used; reconstruction cross-validated at 30/30 against the historically recorded context_items/context_tokens/gold_state once the matched budget was pinned. The fixed build_arms() was then run to produce the corrected 30 arms. No provider call in either step.",
+  "diff_result": {
+    "context_changed": "18 of 30: hindsight_mem0_matched 6/10, hindsight_500 5/10, hindsight_1000 7/10",
+    "gold_state_changed": "0 of 30 -- the bug changed which filler evidence surrounded the truncation boundary, not whether gold was retained, on this data",
+    "judged_label_changed_by_the_fix": "1 of 30 (gpt4_f420262c, hindsight_mem0_matched, False->True; gold was already in context both before and after)"
+  },
+  "hashes": {
+    "git_revision_at_freeze": "61284c699e2f451118a196d99ed27944d679bf76",
+    "mechanism_ablation_py_sha256_AFTER_FIX": "959c02e8b40707f346e994c99dbc4009d6e56e4f8962f918acb62ece631edd16",
+    "test_mechanism_ablation_py_sha256": "ed862c6c4096dabc231f9b5e0f87fbd5aaaddab7e2df884e1551ce31f4a10fc9",
+    "run_breadth_reader_py_sha256_AFTER_RUN_ID_FIX": "4059a31fd2e9d82c08bcf5302e5819840a54f6cf9e2c9ea0436c6170277060ce",
+    "run_breadth_judge_py_sha256_AFTER_RUN_ID_FIX": "3d40414e1fb5dd89008cac8c0d444ba49bb97769dbe78dc3b6143b71e4ec0b15",
+    "corrected_hindsight_ablation_arms_json_sha256": "1e9915cf5394dbe4b62ffd06c7d1c41b98f4bce62de5a2140c6fa48d9ee7b4be",
+    "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+    "judge_protocol_sha256": "3d17349cc6e2710475eaa818c6e4a57f8dd7412baa5f4b336087c0b789013703"
+  },
+  "reused_without_new_payment": {
+    "hindsight_full_3117_score": "7/10, from fixed-reader-judged-all.json, untouched: no truncation is ever applied to this arm so the bug cannot affect it",
+    "hindsight_retrieval_and_ingest": "entirely reused, per instruction; no new Hindsight call of any kind this correction"
+  },
+  "caps": {"run_cap_usd_reader": 0.05, "run_cap_usd_judge": 0.05, "intended_scope_cap_usd": 0.10, "cap_scope": "ablation-fix-"},
+  "spend": {
+    "delta_reader_18_calls_usd": 0.0048,
+    "delta_judge_60_calls_usd": 0.0032,
+    "total_this_correction_usd": 0.008,
+    "note": "true total taken from the raw output files' own recorded cost_usd, not from ledger run_id buckets, because of the run_id-scoping gap described above. Both figures independently corroborate: 0.0048+0.0032=0.0080 matches the ledger's raw delta over this correction's wall-clock window."
+  }
+}
