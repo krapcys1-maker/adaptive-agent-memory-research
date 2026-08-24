@@ -76,6 +76,25 @@ Cumulative, append-oriented. Entries are added or superseded (with a `superseded
 
 ---
 
+## Entry E — `EVENT_TIME_RESOLUTION_AT_EXTRACTION`
+
+- **MECHANISM:** `EVENT_TIME_RESOLUTION_AT_EXTRACTION` — write-side, distinct from `TEMPORAL_ANCHOR_AT_CONTEXT` (Entries A/B, which are read-side only, do not touch extraction). Adds one instruction bullet to Mem0's fact-extraction prompt, immediately after the (already correct, per `PER_SESSION_REFERENCE_DATE_AT_EXTRACTION`) `"Today's date is ..."` line, telling the model to resolve relative time expressions ("today", "yesterday", "last month", "next year", etc.) against that date and store the resolved absolute date, while never fabricating one when the text gives insufficient information.
+- **REGIME:** `RELATIVE_EVENT_TIME_WITH_VALID_REFERENCE_DATE` — extraction of a fact containing a relative time expression, under a correct, correctly-threaded per-session reference date.
+- **FAILURE_TARGETED:** the `00ca467f`-style session-vs-event-time negative-transfer mode (Entry B) at its root, by storing the resolved event date directly instead of requiring read-side reconciliation between a rendered session anchor and an in-text date.
+- **OBSERVED_EFFECT:** NEGATIVE / NULL. Calibration ([`EVENT_TIME_RESOLUTION_CALIBRATION_V1.md`](EVENT_TIME_RESOLUTION_CALIBRATION_V1.md)) found the instruction changed extraction behavior in **0 of 5** cases — CONTROL and TREATMENT produced byte-identical extracted fact text in every case, including the four relative-time-bearing ones. `TREATMENT_RESOLVED = 0/4`. The instruction, as minimally phrased, is inert on `deepseek-chat` for this prompt structure.
+- **SOURCE_EXPERIMENTS:** this calibration only (`PM-20260824-e9f15438` preregistration; verdict recorded in a companion project-memory event). No benchmark run — capability calibration only, 10 calls, $0.002811 spend against a $0.03 cap.
+- **EXTERNAL_SUPPORT:** none cited; not researched this pass (no web research performed, per scope).
+- **CONFIDENCE:** MEDIUM that the specific minimal-instruction design is inert (clean, unambiguous, zero-effect-in-5/5-cases result) — LOW on whether ANY instruction-based approach could work, since only one wording was tried and the pre-registered discipline explicitly forbids iterating wording after a FAIL without separate approval.
+- **KNOWN_COUNTEREXAMPLES:** none — the null result was uniform across all 5 cases, no case showed partial or inconsistent behavior.
+- **STATUS:** `CALIBRATION_FAILED`. Full E2 (a benchmark-scale run of this mechanism) is **`NOT_ELIGIBLE`** on this evidence.
+- **RISK / COUNTEREXAMPLE TO GUARD AGAINST IN ANY FUTURE DESIGN:** `SESSION_TIME MUST NOT OVERRIDE EXPLICIT EVENT_TIME` — untested here (this calibration used only bare relative expressions, no case had a competing in-text explicit date for the model to potentially override), but any future write-side design that resolves event dates must preserve an explicitly-stated in-text date rather than silently substituting the session reference date, per the negative-transfer mechanism already documented in Entry B.
+- **LAST_UPDATED:** 2026-08-24.
+- **SUPERSEDES:** none.
+- **SUPERSEDED_BY:** none.
+- **NEXT_TRIGGER:** a separately-approved few-shot or structurally-different treatment (e.g., a dedicated `resolved_date` output field instead of in-line text resolution) would need its own pre-registration and calibration before any further consideration. Not authorized or scheduled by this document.
+
+---
+
 ## Backlog (not run, not authorized here)
 
 ### `ZERO_ANSWER_DISPERSION_DIAGNOSTIC` (frontier H2)

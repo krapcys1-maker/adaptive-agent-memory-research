@@ -1,0 +1,34 @@
+{
+  "artifact": "arena-event-time-resolution-calibration-v1-patch-manifest",
+  "treatment_name": "EVENT_TIME_RESOLUTION_AT_EXTRACTION",
+  "builds_on": "PER_SESSION_REFERENCE_DATE_AT_EXTRACTION (data/lab/arena/base-plus-x-v1/vendor-patch/manifest.json), already applied and calibrated INERT on its own -- reference_date threading alone does not change extraction behavior. This patch adds exactly one further, additive change on top of it: an explicit instruction to use that date.",
+  "not_yet_claimed_as": "validated benchmark improvement -- this is a capability calibration only: can the model be induced to resolve relative time expressions to absolute dates at extraction time, under this minimal instruction. Whether that changes end-to-end LongMemEval accuracy is untested.",
+  "pinned_package": {
+    "name": "mem0ai",
+    "version": "1.0.6",
+    "source": "PyPI, installed in external/venvs/mem0 (gitignored venv, not the source of truth for this record)"
+  },
+  "files_touched": {
+    "mem0/memory/utils.py": {
+      "baseline_sha256": "3ca63bed9b8080342a91c74819be41faa92c6f71a03a473c40bfc8eb1f6af0ed",
+      "baseline_note": "the already-reference-date-patched file, i.e. PER_SESSION_REFERENCE_DATE_AT_EXTRACTION's patched_sha256 in data/lab/arena/base-plus-x-v1/vendor-patch/manifest.json -- confirmed identical before this edit was applied.",
+      "patched_sha256": "994656285d2b03a31c1826e99e6bbf6564aaf14b6ac5bd127262d8d33da2bae3"
+    }
+  },
+  "patch_file": "data/lab/arena/event-time-resolution-calibration-v1/vendor-patch/EVENT_TIME_RESOLUTION_AT_EXTRACTION.patch",
+  "baseline_snapshot": "data/lab/arena/event-time-resolution-calibration-v1/vendor-patch/mem0-1.0.6-plus-refdate/mem0/memory/utils.py -- checked into the repo so the treatment is reproducible without the gitignored venv",
+  "the_one_logical_change": {
+    "file": "mem0/memory/utils.py",
+    "what": "get_fact_retrieval_messages(..., resolve_relative_time=False) -- new optional fourth parameter. When True, a new helper _with_temporal_resolution_instruction() inserts one instruction bullet immediately after the (already reference_date-substituted) \"- Today's date is YYYY-MM-DD.\" line: resolve relative time expressions (today/yesterday/tomorrow/last month/next year) against that date when unambiguous, never fabricate one otherwise. False (the default) returns the prompt byte-identical to the PER_SESSION_REFERENCE_DATE_AT_EXTRACTION baseline -- no change to any existing caller.",
+    "not_changed": [
+      "main.py call sites (untouched -- this calibration calls get_fact_retrieval_messages directly, same pattern as the prior calibration script)",
+      "dedup logic",
+      "retrieval logic",
+      "reader",
+      "few-shot examples",
+      "any other prompt wording"
+    ]
+  },
+  "no_other_changes": true,
+  "diff_stat": "1 file changed (mem0/memory/utils.py: one new module constant, one new compiled regex, one new helper function, one new optional parameter threaded through both branches of get_fact_retrieval_messages); confirmed by direct diff -u against the checked-in baseline snapshot, see the .patch file"
+}

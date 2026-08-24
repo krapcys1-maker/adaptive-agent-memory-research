@@ -11083,3 +11083,13 @@
 {"at": "2026-08-24T10:16:55+00:00", "completion_tokens": 1, "model": "deepseek-chat", "prompt_tokens": 149, "run_id": "stage2-judge", "usd": 4.133e-05}
 {"at": "2026-08-24T10:16:56+00:00", "completion_tokens": 1, "model": "deepseek-chat", "prompt_tokens": 171, "run_id": "stage2-judge", "usd": 4.727e-05}
 {"at": "2026-08-24T10:16:57+00:00", "completion_tokens": 1, "model": "deepseek-chat", "prompt_tokens": 171, "run_id": "stage2-judge", "usd": 4.727e-05}
+{"at": "2026-08-24T10:59:47+00:00", "completion_tokens": 18, "model": "deepseek-chat", "prompt_tokens": 940, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.0002736, "via": "proxy"}
+{"at": "2026-08-24T10:59:48+00:00", "completion_tokens": 18, "model": "deepseek-chat", "prompt_tokens": 1011, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.00029277, "via": "proxy"}
+{"at": "2026-08-24T10:59:49+00:00", "completion_tokens": 15, "model": "deepseek-chat", "prompt_tokens": 939, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.00027003, "via": "proxy"}
+{"at": "2026-08-24T10:59:50+00:00", "completion_tokens": 15, "model": "deepseek-chat", "prompt_tokens": 1010, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.0002892, "via": "proxy"}
+{"at": "2026-08-24T10:59:51+00:00", "completion_tokens": 13, "model": "deepseek-chat", "prompt_tokens": 938, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.00026756, "via": "proxy"}
+{"at": "2026-08-24T10:59:52+00:00", "completion_tokens": 13, "model": "deepseek-chat", "prompt_tokens": 1009, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.00028673, "via": "proxy"}
+{"at": "2026-08-24T10:59:53+00:00", "completion_tokens": 17, "model": "deepseek-chat", "prompt_tokens": 939, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.00027223, "via": "proxy"}
+{"at": "2026-08-24T10:59:54+00:00", "completion_tokens": 17, "model": "deepseek-chat", "prompt_tokens": 1010, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.0002914, "via": "proxy"}
+{"at": "2026-08-24T10:59:55+00:00", "completion_tokens": 19, "model": "deepseek-chat", "prompt_tokens": 940, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.0002747, "via": "proxy"}
+{"at": "2026-08-24T10:59:56+00:00", "completion_tokens": 18, "model": "deepseek-chat", "prompt_tokens": 1011, "run_id": "e2-calib-run", "usage_known": true, "usd": 0.00029277, "via": "proxy"}

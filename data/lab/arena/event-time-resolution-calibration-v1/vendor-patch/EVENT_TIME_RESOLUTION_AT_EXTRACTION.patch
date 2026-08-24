@@ -1,0 +1,66 @@
+--- a/mem0/memory/utils.py
++++ b/mem0/memory/utils.py
+@@ -26,7 +26,36 @@
+     return _TODAYS_DATE_LINE.sub(f"Today's date is {reference_date}.", prompt)
+ 
+ 
+-def get_fact_retrieval_messages(message, is_agent_memory=False, reference_date=None):
++#: ARENA PATCH (event-time-resolution-calibration-v1) -- calibrates a second,
++#: separate treatment on top of PER_SESSION_REFERENCE_DATE_AT_EXTRACTION. That
++#: earlier patch supplies a correct reference_date but no instruction to use
++#: it; calibration confirmed it is inert (relative expressions like "today"
++#: are preserved verbatim in extracted facts, see
++#: data/lab/arena/base-plus-x-v1/calibration-per-session-reference-date.json).
++#: This adds exactly one instruction bullet, inserted immediately after the
++#: "Today's date is ..." line, telling the model to resolve relative time
++#: expressions against that date when unambiguous and to never fabricate one
++#: otherwise. No other wording changes; no few-shot examples added.
++_TEMPORAL_RESOLUTION_INSTRUCTION = (
++    "- When a fact contains a relative time expression such as \"today\", "
++    "\"yesterday\", \"tomorrow\", \"last month\", or \"next year\", resolve it "
++    "against the reference date above and store the fact with the "
++    "corresponding absolute date whenever this can be done unambiguously. "
++    "Do not invent a date when the text does not provide enough temporal "
++    "information."
++)
++_TODAYS_DATE_BULLET_LINE = re.compile(r"^- Today's date is \d{4}-\d{2}-\d{2}\.$", re.MULTILINE)
++
++
++def _with_temporal_resolution_instruction(prompt: str, enabled: bool) -> str:
++    if not enabled:
++        return prompt
++    return _TODAYS_DATE_BULLET_LINE.sub(
++        lambda m: f"{m.group(0)}\n{_TEMPORAL_RESOLUTION_INSTRUCTION}", prompt, count=1)
++
++
++def get_fact_retrieval_messages(message, is_agent_memory=False, reference_date=None,
++                                 resolve_relative_time=False):
+     """Get fact retrieval messages based on the memory type.
+ 
+     Args:
+@@ -36,14 +65,23 @@
+             prompt's few-shot examples don't otherwise constrain) to substitute
+             for the prompt's hardcoded "Today's date is ...". None preserves the
+             original, unpatched behavior exactly.
++        resolve_relative_time: ARENA PATCH (event-time-resolution-calibration-v1)
++            -- when True, inserts one explicit instruction telling the model to
++            resolve relative time expressions against reference_date. False (the
++            default) preserves PER_SESSION_REFERENCE_DATE_AT_EXTRACTION's exact
++            behavior with no instruction added.
+ 
+     Returns:
+         tuple: (system_prompt, user_prompt)
+     """
+     if is_agent_memory:
+-        return _with_reference_date(AGENT_MEMORY_EXTRACTION_PROMPT, reference_date), f"Input:\n{message}"
++        prompt = _with_reference_date(AGENT_MEMORY_EXTRACTION_PROMPT, reference_date)
++        prompt = _with_temporal_resolution_instruction(prompt, resolve_relative_time)
++        return prompt, f"Input:\n{message}"
+     else:
+-        return _with_reference_date(USER_MEMORY_EXTRACTION_PROMPT, reference_date), f"Input:\n{message}"
++        prompt = _with_reference_date(USER_MEMORY_EXTRACTION_PROMPT, reference_date)
++        prompt = _with_temporal_resolution_instruction(prompt, resolve_relative_time)
++        return prompt, f"Input:\n{message}"
+ 
+ 
+ def get_fact_retrieval_messages_legacy(message):
