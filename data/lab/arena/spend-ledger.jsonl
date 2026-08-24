@@ -8855,3 +8855,28 @@
 {"at": "2026-08-24T05:47:01+00:00", "completion_tokens": 1, "model": "deepseek-chat", "prompt_tokens": 225, "run_id": "pilot-judge", "usd": 6.185e-05}
 {"at": "2026-08-24T05:47:03+00:00", "completion_tokens": 1, "model": "deepseek-chat", "prompt_tokens": 157, "run_id": "pilot-judge", "usd": 4.349e-05}
 {"at": "2026-08-24T05:47:04+00:00", "completion_tokens": 1, "model": "deepseek-chat", "prompt_tokens": 157, "run_id": "pilot-judge", "usd": 4.349e-05}
+{"at": "2026-08-24T06:15:52+00:00", "completion_tokens": 59, "model": "deepseek-chat", "prompt_tokens": 1031, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00034327, "via": "proxy"}
+{"at": "2026-08-24T06:15:54+00:00", "completion_tokens": 108, "model": "deepseek-chat", "prompt_tokens": 1557, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00053919, "via": "proxy"}
+{"at": "2026-08-24T06:15:55+00:00", "completion_tokens": 5, "model": "deepseek-chat", "prompt_tokens": 1009, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00027793, "via": "proxy"}
+{"at": "2026-08-24T06:15:56+00:00", "completion_tokens": 5, "model": "deepseek-chat", "prompt_tokens": 949, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00026173, "via": "proxy"}
+{"at": "2026-08-24T06:15:57+00:00", "completion_tokens": 61, "model": "deepseek-chat", "prompt_tokens": 1042, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00034844, "via": "proxy"}
+{"at": "2026-08-24T06:16:00+00:00", "completion_tokens": 255, "model": "deepseek-chat", "prompt_tokens": 1661, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00072897, "via": "proxy"}
+{"at": "2026-08-24T06:16:01+00:00", "completion_tokens": 134, "model": "deepseek-chat", "prompt_tokens": 1174, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00046438, "via": "proxy"}
+{"at": "2026-08-24T06:16:05+00:00", "completion_tokens": 543, "model": "deepseek-chat", "prompt_tokens": 1831, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00109167, "via": "proxy"}
+{"at": "2026-08-24T06:16:06+00:00", "completion_tokens": 81, "model": "deepseek-chat", "prompt_tokens": 1150, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.0003996, "via": "proxy"}
+{"at": "2026-08-24T06:16:10+00:00", "completion_tokens": 697, "model": "deepseek-chat", "prompt_tokens": 1949, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00129293, "via": "proxy"}
+{"at": "2026-08-24T06:16:12+00:00", "completion_tokens": 93, "model": "deepseek-chat", "prompt_tokens": 1252, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00044034, "via": "proxy"}
+{"at": "2026-08-24T06:16:17+00:00", "completion_tokens": 902, "model": "deepseek-chat", "prompt_tokens": 2027, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00153949, "via": "proxy"}
+{"at": "2026-08-24T06:16:18+00:00", "completion_tokens": 82, "model": "deepseek-chat", "prompt_tokens": 1230, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.0004223, "via": "proxy"}
+{"at": "2026-08-24T06:16:24+00:00", "completion_tokens": 985, "model": "deepseek-chat", "prompt_tokens": 2111, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00165347, "via": "proxy"}
+{"at": "2026-08-24T06:16:26+00:00", "completion_tokens": 204, "model": "deepseek-chat", "prompt_tokens": 1339, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00058593, "via": "proxy"}
+{"at": "2026-08-24T06:16:33+00:00", "completion_tokens": 1335, "model": "deepseek-chat", "prompt_tokens": 2288, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00208626, "via": "proxy"}
+{"at": "2026-08-24T06:16:34+00:00", "completion_tokens": 113, "model": "deepseek-chat", "prompt_tokens": 1261, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00046477, "via": "proxy"}
+{"at": "2026-08-24T06:16:40+00:00", "completion_tokens": 1044, "model": "deepseek-chat", "prompt_tokens": 2135, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00172485, "via": "proxy"}
+{"at": "2026-08-24T06:16:42+00:00", "completion_tokens": 62, "model": "deepseek-chat", "prompt_tokens": 998, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00033766, "via": "proxy"}
+{"at": "2026-08-24T06:16:45+00:00", "completion_tokens": 425, "model": "deepseek-chat", "prompt_tokens": 1772, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00094594, "via": "proxy"}
+{"at": "2026-08-24T06:16:47+00:00", "completion_tokens": 166, "model": "deepseek-chat", "prompt_tokens": 1310, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.0005363, "via": "proxy"}
+{"at": "2026-08-24T06:16:51+00:00", "completion_tokens": 811, "model": "deepseek-chat", "prompt_tokens": 2007, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00143399, "via": "proxy"}
+{"at": "2026-08-24T06:16:53+00:00", "completion_tokens": 100, "model": "deepseek-chat", "prompt_tokens": 1032, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00038864, "via": "proxy"}
+{"at": "2026-08-24T06:16:57+00:00", "completion_tokens": 727, "model": "deepseek-chat", "prompt_tokens": 1968, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00133106, "via": "proxy"}
+{"at": "2026-08-24T06:16:59+00:00", "completion_tokens": 167, "model": "deepseek-chat", "prompt_tokens": 1283, "run_id": "clean-mem0-pilot", "usage_known": true, "usd": 0.00053011, "via": "proxy"}
