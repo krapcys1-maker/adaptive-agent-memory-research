@@ -1,0 +1,21 @@
+{
+  "artifact": "arena-rerun-cost-projection",
+  "selection": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "units": 10,
+  "sessions": 487,
+  "rate_basis": "each system's own measured spend over the 486 sessions it has ingested",
+  "usd_per_session": {
+    "mem0": 0.001562,
+    "hindsight": 0.009197
+  },
+  "projection_usd": {
+    "mem0_10u": 0.7608,
+    "hindsight_10u": 4.479,
+    "reader_30_arms": 0.03,
+    "judging": 0.004,
+    "total": 5.2738
+  },
+  "cap_usd": 4.0,
+  "verdict": "OVER CAP",
+  "why_the_earlier_estimate_was_low": "the ~$3.10 figure quoted when this rerun was proposed was the cost of the SIX new expansion units, not of all ten. The four reused pilot units also need their contexts regenerated, because contexts were never persisted for any unit, and those four are 197 of the 486 sessions"
+}
