@@ -370,6 +370,9 @@ def main() -> int:
     parser.add_argument("--embedding-model-path",
                         default=str(ROOT / "external/models/all-MiniLM-L6-v2"))
     parser.add_argument("--mem0-store", default=str(ROOT / "external/venvs/mem0-store"))
+    parser.add_argument("--deep-limit", type=int, default=0,
+                        help="also record a deeper slice of the same ranking, so "
+                             "breadth arms can be built without a second ingest")
     parser.add_argument("--graphiti-store", default=str(ROOT / "external/venvs/graphiti-store"))
     parser.add_argument("--hindsight-url", default="http://127.0.0.1:8801")
     parser.add_argument("--proxy-url", default="http://127.0.0.1:8799")
@@ -485,7 +488,18 @@ def main() -> int:
             if args.calibrate_sessions:
                 sessions, dates = sessions[:args.calibrate_sessions], dates[:args.calibrate_sessions]
 
+            # Store size around the reset, as numbers rather than a boolean. The
+            # previous run recorded only `reset_returns_to_empty` and that field
+            # read False for ten units without anything stopping.
+            before_reset = adapter.stored_count() if hasattr(adapter, "stored_count") else None
             adapter.reset()
+            after_reset = adapter.stored_count() if hasattr(adapter, "stored_count") else None
+            if after_reset:
+                raise RuntimeError(
+                    f"{args.system}: {after_reset} memories survived reset before unit "
+                    f"{meta['slot']}. This unit's results would carry the previous "
+                    "unit's memories, so the run stops here rather than producing them."
+                )
             empty_digest = fingerprint()
 
             unit_record: dict[str, Any] = {
@@ -493,6 +507,8 @@ def main() -> int:
                 "slot": meta["slot"], "sessions_available": len(unit["haystack_sessions"]),
                 "sessions_ingested": 0, "user_turns_ingested": 0,
                 "sessions_skipped_no_user_turn": 0,
+                "store_before_reset": before_reset,
+                "store_after_reset": after_reset,
                 "ingest": {"model_calls": 0, "input_tokens": 0, "output_tokens": 0,
                            "wall_seconds": 0.0},
                 "per_session_calls": [], "status": "ingesting",
@@ -524,6 +540,8 @@ def main() -> int:
             unit_record["state_digest_after_ingest_differs"] = (
                 None if probe is None else after_ingest != empty_digest)
             unit_record["stored_items"] = len(probe.stored_ids()) if probe else None
+            unit_record["store_after_ingest"] = (
+                adapter.stored_count() if hasattr(adapter, "stored_count") else None)
 
             if args.calibrate_sessions:
                 unit_record["status"] = "calibrated"
@@ -582,6 +600,14 @@ def main() -> int:
                            "is a signal check, not a score"),
                 "answer_chars": len(answer.text),
             }
+            deep = None
+            if args.deep_limit and hasattr(adapter, "deep_context"):
+                deep = adapter.deep_context(unit["question"], args.deep_limit)
+                unit_record["deep_retrieval"] = {
+                    k: v for k, v in deep.items() if k != "context_texts"
+                } | {"context_tokens": sum(len(t.split())
+                                           for t in deep["context_texts"])}
+
             raw.append({
                 "question_id": unit["question_id"], "question": unit.get("question"),
                 "gold": gold, "answer": answer.text, "repeat_answer": repeat.text,
@@ -593,6 +619,10 @@ def main() -> int:
                 "context_texts": answer.system_metadata.get("context_texts"),
                 "evidence_times": answer.system_metadata.get("evidence_times"),
                 "gold_session_ids": unit.get("answer_session_ids"),
+                # A deeper slice of the SAME ranking, so breadth arms need no
+                # second ingest. Absent when --deep-limit is not given.
+                "deep_context_texts": (deep or {}).get("context_texts"),
+                "deep_evidence_times": (deep or {}).get("evidence_times"),
             })
 
             unit_record["status"] = "complete"

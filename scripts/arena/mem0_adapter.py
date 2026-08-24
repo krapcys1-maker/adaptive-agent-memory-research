@@ -215,6 +215,33 @@ class Mem0Adapter:
             },
         )
 
+    def deep_context(self, question: str, limit: int) -> dict[str, Any]:
+        """The same search, asked for more of the same ranking.
+
+        Their `search` returns the top `limit` by score, so the first ten rows of
+        a deep call are the ten a default call returns. This exists so the
+        breadth arms are built from ONE clean run rather than from a second
+        ingest, and it is separate from `query` so the native arm stays native.
+
+        Free in provider terms: Mem0's search made zero model calls in every
+        measured run, so asking twice costs nothing.
+        """
+        payload = self._memory.search(query=question, user_id=self._bank, limit=limit)
+        results = _results(payload)
+        texts = [t for t in (_memory_text(item) for item in results) if t]
+        return {
+            "limit": limit,
+            "retrieved": len(results),
+            "context_texts": list(dict.fromkeys(texts)),
+            "evidence_ids": [str(i.get("id", "")) for i in results if i.get("id")],
+            "evidence_times": [str((i.get("metadata") or {}).get("timestamp", "") or "")
+                               for i in results],
+        }
+
+    def stored_count(self) -> int:
+        """How many memories the bank holds right now. Used to prove a reset."""
+        return self._stored()
+
     # ------------------------------------------------------------------ helpers
 
     def _meter_snapshot(self) -> dict[str, int] | None:

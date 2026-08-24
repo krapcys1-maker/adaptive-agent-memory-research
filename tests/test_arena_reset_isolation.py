@@ -108,3 +108,51 @@ def test_an_already_empty_store_resets_without_complaint() -> None:
     adapter = Mem0Adapter(_CappedStore())
     adapter.reset()
     adapter.reset()
+
+
+# ------------------------------------------- the runner's own validity condition
+
+
+def test_the_runner_refuses_to_continue_on_residue() -> None:
+    """A number and a stop, not a boolean and a shrug.
+
+    The contaminated run recorded `reset_returns_to_empty: False` for ten
+    consecutive units and produced results anyway. The guard now reads the store
+    size after every reset and raises.
+    """
+    source = (ROOT / "scripts/arena/run_pilot.py").read_text(encoding="utf-8")
+    block = source[source.index("before_reset = adapter.stored_count()"):]
+    block = block[:block.index("empty_digest = fingerprint()")]
+    assert "if after_reset:" in block
+    assert "raise RuntimeError" in block
+    assert "carry the previous" in block
+
+
+def test_the_runner_records_store_size_around_every_reset() -> None:
+    source = (ROOT / "scripts/arena/run_pilot.py").read_text(encoding="utf-8")
+    for field in ("store_before_reset", "store_after_reset", "store_after_ingest"):
+        assert f'"{field}"' in source, field
+
+
+def test_a_deep_slice_starts_with_the_native_slice() -> None:
+    """Breadth arms must extend the native ranking, not reorder it.
+
+    Their search returns the top `limit` by score, so the first ten rows of a
+    deep call are the ten a default call returns. If that ever stops holding, the
+    breadth curve would be measuring a different ranking at every budget.
+    """
+    store = _CappedStore()
+    adapter = Mem0Adapter(store, limit=10)
+    _ingest(adapter, "A", 40)
+    native = adapter.query("anything?").system_metadata["context_texts"]
+    deep = adapter.deep_context("anything?", limit=40)["context_texts"]
+    assert deep[:len(native)] == native
+    assert len(deep) > len(native)
+
+
+def test_stored_count_reports_the_whole_bank_not_a_page() -> None:
+    """The count that proves a reset must not itself be capped at 100."""
+    store = _CappedStore()
+    adapter = Mem0Adapter(store)
+    _ingest(adapter, "A", 250)
+    assert adapter.stored_count() == 250

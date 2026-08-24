@@ -1,0 +1,48 @@
+{
+  "artifact": "arena-mem0-clean-rerun-v1",
+  "frozen_at": "2026-08-24T06:15:20+00:00",
+  "purpose": "one clean Mem0 run after the reset fix, to replace every contaminated Mem0 measurement and to build the breadth arms from the same run",
+  "code_revision": "8db572c463b2b6d3aa760b173ca01d844e988f68",
+  "selection_sha256": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "selection_id": "arena-expansion-v1",
+  "adapter_sha256": "9788bba62b389ce062565367b55244787b27aeda39c37d837a5629a16541c917",
+  "runner_sha256": "b1f112ede7f9f8f05a135cef1ccb65534a8cc11dc37ad905c5cdb868a1f0bad2",
+  "probe_sha256": "90a07f4c9720bd8f4d2c7a8097eb6419c5db58807206bcd9f3d5ad58ba49b9ad",
+  "reader_prompt_sha256": "7e126afaa8cf4a0506df77af394639f68fb506df77e80704b3c976ae1b5a5d64",
+  "judge_protocol_sha256": "3d17349cc6e2710475eaa818c6e4a57f8dd7412baa5f4b336087c0b789013703",
+  "reset_fix": "reset() loops delete_all until the bank measures empty, bounded at 64 passes, and raises if it stops shrinking. The runner reads the store size after every reset and refuses to continue on residue.",
+  "validity_condition": "store_after_reset must be 0 for all ten units, or the run stops",
+  "deep_limit": 400,
+  "deep_limit_rationale": "enough of the same ranking to reach a 3000-token budget; Mem0's search makes zero model calls so the extra query is free, and the native arm is still measured at limit 10",
+  "budgets": {
+    "original": "native limit 10",
+    "500": 500,
+    "1000": 1000,
+    "3000": 3000
+  },
+  "truncation_rule": "whole evidence items, original ranked order, add while the next fits; no re-ranking, no gold-aware selection",
+  "reused_without_payment": {
+    "hindsight_curve": {
+      "102": "4/10",
+      "500": "6/10",
+      "1000": "6/10",
+      "3117": "7/10"
+    },
+    "question_only": "0/10"
+  },
+  "not_rerun": [
+    "hindsight",
+    "cupmem",
+    "aamr",
+    "baseline"
+  ],
+  "superseded_artifacts_stay_invalid": "every prior Mem0 artefact keeps INVALIDATED_BY_CROSS_UNIT_CONTAMINATION; no old Mem0 conclusion is restored by this run",
+  "projection_usd": {
+    "mem0_clean_ingest": 0.7637,
+    "reader_arms_40": 0.031,
+    "judging_80": 0.012,
+    "total": 0.8067
+  },
+  "cap_usd": 1.0,
+  "within_cap": true
+}
