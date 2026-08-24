@@ -1,0 +1,674 @@
+{
+  "artifact": "arena-temporal-anchor-boundary-v3",
+  "selection": "data\\lab\\arena\\temporal-anchor-boundary-v3\\selection.json",
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "ingest": [
+    {
+      "question_id": "b3c15d39",
+      "question_type": "multi-session",
+      "sessions_available": 51,
+      "sessions_ingested": 50,
+      "user_turns_ingested": 248,
+      "sessions_skipped_no_user_turn": 1,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 229,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.076293
+    },
+    {
+      "question_id": "60bf93ed",
+      "question_type": "multi-session",
+      "sessions_available": 51,
+      "sessions_ingested": 51,
+      "user_turns_ingested": 245,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 236,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.15542
+    },
+    {
+      "question_id": "b46e15ed",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 46,
+      "sessions_ingested": 46,
+      "user_turns_ingested": 238,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 179,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.217203
+    },
+    {
+      "question_id": "bbf86515",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 45,
+      "sessions_ingested": 45,
+      "user_turns_ingested": 240,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 202,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.286161
+    },
+    {
+      "question_id": "c8090214",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 47,
+      "sessions_ingested": 46,
+      "user_turns_ingested": 228,
+      "sessions_skipped_no_user_turn": 1,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 200,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.352947
+    },
+    {
+      "question_id": "a3045048",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 53,
+      "sessions_ingested": 53,
+      "user_turns_ingested": 288,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 234,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.429534
+    },
+    {
+      "question_id": "6613b389",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 41,
+      "sessions_ingested": 41,
+      "user_turns_ingested": 226,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 210,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.492769
+    },
+    {
+      "question_id": "8c18457d",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 41,
+      "sessions_ingested": 40,
+      "user_turns_ingested": 216,
+      "sessions_skipped_no_user_turn": 1,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 200,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.555297
+    }
+  ],
+  "ingest_stopped_by_cap": null,
+  "n_units_preregistered": 8,
+  "n_units": 8,
+  "stopped_by_cap": null,
+  "spend": {
+    "total_usd": 0.559315,
+    "cap_usd": 0.75,
+    "remaining_usd": 0.190685
+  },
+  "results": [
+    {
+      "question_id": "b3c15d39",
+      "question_type": "multi-session",
+      "question": "How many days did it take for me to receive the new remote shutter release after I ordered it?",
+      "gold": "5 days. 6 days (including the last day) is also acceptable.",
+      "base_context": [
+        "Recently got a new remote shutter release that arrived on February 10th",
+        "Ordered a new remote shutter release online on February 5th and it's working great",
+        "Lost remote shutter release during a photo walk on February 5th and ordered a new one online",
+        "Planning to order a new tripod next week",
+        "Considering selling old tripod online or to local camera store",
+        "Planning to order a new portable and lightweight tripod next week",
+        "Bought a high-end moisturizer from La Mer for around $1,500",
+        "Recently got a new camera bag from Peak Design and loves it",
+        "Used a 15% off coupon from Sephora's email last month to buy a new eyeshadow palette",
+        "Started collecting vinyl records a few months ago"
+      ],
+      "plus_time_context": [
+        "[2023-03-01] Recently got a new remote shutter release that arrived on February 10th",
+        "[2023-03-01] Ordered a new remote shutter release online on February 5th and it's working great",
+        "[2023-03-01] Lost remote shutter release during a photo walk on February 5th and ordered a new one online",
+        "[2023-03-01] Planning to order a new tripod next week",
+        "[2023-03-01] Considering selling old tripod online or to local camera store",
+        "[2023-03-01] Planning to order a new portable and lightweight tripod next week",
+        "[2023-03-01] Bought a high-end moisturizer from La Mer for around $1,500",
+        "[2023-03-01] Recently got a new camera bag from Peak Design and loves it",
+        "[2023-03-01] Used a 15% off coupon from Sephora's email last month to buy a new eyeshadow palette",
+        "[2023-03-01] Started collecting vinyl records a few months ago"
+      ],
+      "base_answer": "Based on the provided context, the remote shutter release was ordered on February 5th and arrived on February 10th, which means it took 5 days to arrive.",
+      "plus_time_answer": "Based on the provided context, the remote shutter release was ordered on February 5th and arrived on February 10th, which means it took 5 days to arrive.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_time_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_time_correct": true
+    },
+    {
+      "question_id": "60bf93ed",
+      "question_type": "multi-session",
+      "question": "How many days did it take for my laptop backpack to arrive after I bought it?",
+      "gold": "5 days. 6 days (including the last day) is also acceptable.",
+      "base_context": [
+        "Started using a new laptop backpack, arrived on 1/20, great for carrying work laptop",
+        "Bought a backpack from Amazon on 1/15 that is comfortable and has space for laptop and chargers, used daily for work",
+        "Organized computer files and folders on February 5th, created new folder structure, moved work documents to cloud, unsubscribed from newsletters",
+        "Did a system update on January 28th to fix laptop Wi-Fi connectivity issues",
+        "Went on a week-long vacation to Disney World 4 months ago",
+        "Installed a new graphics card in December, installed it on February 10th",
+        "Went on a trip to Hawaii 3 months ago",
+        "Has had souvenirs that didn't turn out as expected",
+        "Usually takes about 30 minutes to an hour to scan headlines and read in-depth articles on current events, politics, and business while reading The New York Times",
+        "Cleaned desktop computer on February 1st, removed dust and dirt from fans and vents"
+      ],
+      "plus_time_context": [
+        "[2023-01-24] Started using a new laptop backpack, arrived on 1/20, great for carrying work laptop",
+        "[2023-01-24] Bought a backpack from Amazon on 1/15 that is comfortable and has space for laptop and chargers, used daily for work",
+        "[2023-01-24] Organized computer files and folders on February 5th, created new folder structure, moved work documents to cloud, unsubscribed from newsletters",
+        "[2023-01-24] Did a system update on January 28th to fix laptop Wi-Fi connectivity issues",
+        "[2023-01-24] Went on a week-long vacation to Disney World 4 months ago",
+        "[2023-01-24] Installed a new graphics card in December, installed it on February 10th",
+        "[2023-01-24] Went on a trip to Hawaii 3 months ago",
+        "[2023-01-24] Has had souvenirs that didn't turn out as expected",
+        "[2023-01-24] Usually takes about 30 minutes to an hour to scan headlines and read in-depth articles on current events, politics, and business while reading The New York Times",
+        "[2023-01-24] Cleaned desktop computer on February 1st, removed dust and dirt from fans and vents"
+      ],
+      "base_answer": "Based on the provided context, the backpack was bought on 1/15 and arrived on 1/20, which means it took 5 days to arrive.",
+      "plus_time_answer": "Based on the provided context, the backpack was bought on January 15th and arrived on January 20th, which means it took 5 days to arrive.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_time_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_time_correct": true
+    },
+    {
+      "question_id": "b46e15ed",
+      "question_type": "temporal-reasoning",
+      "question": "How many months have passed since I participated in two charity events in a row, on consecutive days?",
+      "gold": "2",
+      "base_context": [
+        "Has been doing a lot of charity events lately",
+        "Looking for tips on staying organized and managing time effectively when volunteering for multiple charity events",
+        "Participated in the 24-Hour Bike Ride charity event, cycled for 4 hours non-stop to raise money for a local children's hospital",
+        "Preparing for the road trip, used charity event cycling to build endurance",
+        "Participated in the 'Walk for Hunger' charity event today with colleagues, walking 5 kilometers to raise money for the local food bank",
+        "Participated in the 'Ride to Cure Cancer' charity bike ride and rode 40 miles on road bike recently",
+        "Had an outreach event at the church to help people dealing with grief during the holidays",
+        "Attended a charity gala organized by the Cancer Research Foundation at a fancy hotel in downtown today, where the event raised over $100,000 for cancer research",
+        "Has a marathon on April 17, 2023",
+        "Volunteered at the 'Books for Kids' charity book drive event at local library, helping to sort and pack over 500 books for underprivileged kids"
+      ],
+      "plus_time_context": [
+        "[2023-03-19] Has been doing a lot of charity events lately",
+        "[2023-03-19] Looking for tips on staying organized and managing time effectively when volunteering for multiple charity events",
+        "[2023-02-14] Participated in the 24-Hour Bike Ride charity event, cycled for 4 hours non-stop to raise money for a local children's hospital",
+        "[2023-02-14] Preparing for the road trip, used charity event cycling to build endurance",
+        "[2023-03-19] Participated in the 'Walk for Hunger' charity event today with colleagues, walking 5 kilometers to raise money for the local food bank",
+        "[2023-02-15] Participated in the 'Ride to Cure Cancer' charity bike ride and rode 40 miles on road bike recently",
+        "[2023-02-08] Had an outreach event at the church to help people dealing with grief during the holidays",
+        "[2023-01-30] Attended a charity gala organized by the Cancer Research Foundation at a fancy hotel in downtown today, where the event raised over $100,000 for cancer research",
+        "[2023-02-05] Has a marathon on April 17, 2023",
+        "[2023-02-15] Volunteered at the 'Books for Kids' charity book drive event at local library, helping to sort and pack over 500 books for underprivileged kids"
+      ],
+      "base_answer": "Based on the provided context, I cannot determine how many months have passed since you participated in two charity events on consecutive days. The context does not specify the dates of the events or mention that any two events occurred on consecutive days.",
+      "plus_time_answer": "Based on the provided context, you participated in the 'Ride to Cure Cancer' charity bike ride on February 15, 2023, and the 'Books for Kids' charity book drive on February 15, 2023. These were on the same day, not consecutive days. The context does not mention you participating in two charity events on consecutive days.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_time_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_time_correct": false
+    },
+    {
+      "question_id": "bbf86515",
+      "question_type": "temporal-reasoning",
+      "question": "How many days before the 'Rack Fest' did I participate in the 'Turbocharged Tuesdays' event?",
+      "gold": "4 days.",
+      "base_context": [
+        "Attended Rack Fest event in nearby city on June 18th",
+        "Completed a 5K event on October 15th",
+        "Looking for a local track day event for the Mustang",
+        "Planning to attend a street festival this weekend",
+        "Jo Peninsulas runs weekly sessions every Friday to run through programs and answer questions, bookable via https://calendly.com/wemakeimpact/12-sdg-s-with-we-make-impact",
+        "Planning to participate in a sprint triathlon on November 1st",
+        "Recently started taking tennis lessons on Saturdays",
+        "Had a conversation with a stranger at a street festival a few weeks ago about personal struggles and triumphs",
+        "Plans family gathering for around 2-3 hours before the dinner party",
+        "Training for a sprint triathlon on November 1st"
+      ],
+      "plus_time_context": [
+        "[2023-06-28] Attended Rack Fest event in nearby city on June 18th",
+        "[2023-06-28] Completed a 5K event on October 15th",
+        "[2023-06-28] Looking for a local track day event for the Mustang",
+        "[2023-06-28] Planning to attend a street festival this weekend",
+        "[2023-06-28] Jo Peninsulas runs weekly sessions every Friday to run through programs and answer questions, bookable via https://calendly.com/wemakeimpact/12-sdg-s-with-we-make-impact",
+        "[2023-06-28] Planning to participate in a sprint triathlon on November 1st",
+        "[2023-06-28] Recently started taking tennis lessons on Saturdays",
+        "[2023-06-28] Had a conversation with a stranger at a street festival a few weeks ago about personal struggles and triumphs",
+        "[2023-06-28] Plans family gathering for around 2-3 hours before the dinner party",
+        "[2023-06-28] Training for a sprint triathlon on November 1st"
+      ],
+      "base_answer": "The provided context does not mention a \"Turbocharged Tuesdays\" event, so the answer cannot be determined from the provided context.",
+      "plus_time_answer": "Based on the provided context, there is no information about a \"Turbocharged Tuesdays\" event. Therefore, the answer cannot be determined from the provided context.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_time_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_time_correct": false
+    },
+    {
+      "question_id": "c8090214",
+      "question_type": "temporal-reasoning",
+      "question": "How many days before I bought the iPhone 13 Pro did I attend the Holiday Market?",
+      "gold": "7 days. 8 days (including the last day) is also acceptable.",
+      "base_context": [
+        "Attended the annual Holiday Market at the local mall a week before Black Friday",
+        "Owns an iPhone 13 Pro, bought at a discounted price of $800 from Best Buy on Black Friday (regular price $1,000)",
+        "Considering getting a piece of jewelry from the Holiday Market to go along with the phone case",
+        "Trip will last 3 days",
+        "Saw unique handmade jewelry at the Holiday Market",
+        "Preparing for the Easter Market on April 16th",
+        "Bought a 4K TV from Amazon on Cyber Monday with 30% off original price of $1,200",
+        "Planning a trip to San Francisco in a few weeks",
+        "Spent around 5 hours on Saturday working on the coffee table",
+        "Market stall fee is $50 for the day"
+      ],
+      "plus_time_context": [
+        "[2023-12-10] Attended the annual Holiday Market at the local mall a week before Black Friday",
+        "[2023-12-10] Owns an iPhone 13 Pro, bought at a discounted price of $800 from Best Buy on Black Friday (regular price $1,000)",
+        "[2023-12-10] Considering getting a piece of jewelry from the Holiday Market to go along with the phone case",
+        "[2023-12-10] Trip will last 3 days",
+        "[2023-12-10] Saw unique handmade jewelry at the Holiday Market",
+        "[2023-12-10] Preparing for the Easter Market on April 16th",
+        "[2023-12-10] Bought a 4K TV from Amazon on Cyber Monday with 30% off original price of $1,200",
+        "[2023-12-10] Planning a trip to San Francisco in a few weeks",
+        "[2023-12-10] Spent around 5 hours on Saturday working on the coffee table",
+        "[2023-12-10] Market stall fee is $50 for the day"
+      ],
+      "base_answer": "Based on the provided context, the iPhone 13 Pro was bought on Black Friday, and the Holiday Market was attended a week before Black Friday. Therefore, you attended the Holiday Market 7 days before buying the iPhone.",
+      "plus_time_answer": "Based on the provided context, the iPhone 13 Pro was bought on Black Friday, and the Holiday Market was attended a week before Black Friday. Therefore, you attended the Holiday Market 7 days before buying the iPhone.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_time_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_time_correct": true
+    },
+    {
+      "question_id": "a3045048",
+      "question_type": "temporal-reasoning",
+      "question": "How many days before my best friend's birthday party did I order her gift?",
+      "gold": "7 days. 8 days (including the last day) is also acceptable.",
+      "base_context": [
+        "Celebrated best friend's 30th birthday party on April 22nd, she loved the personalized photo album",
+        "Ordered personalized photo album from Shutterfly on 15th April for best friend's birthday",
+        "Thinking of getting a small gift for Rachel to commemorate her engagement",
+        "Looking for gift ideas for sister-in-law's sister who got married last December",
+        "Posted a story about birthday celebration on Instagram, got around 30 replies",
+        "Wedding anniversary is on July 22nd",
+        "Close friend Rachel got engaged on May 15th",
+        "Photo album arrived on 20th April",
+        "Planning Rachel's bachelorette party",
+        "Planning to write a heartfelt letter to Rachel to commemorate her engagement"
+      ],
+      "plus_time_context": [
+        "[2022-05-15] Celebrated best friend's 30th birthday party on April 22nd, she loved the personalized photo album",
+        "[2022-05-15] Ordered personalized photo album from Shutterfly on 15th April for best friend's birthday",
+        "[2022-05-15] Thinking of getting a small gift for Rachel to commemorate her engagement",
+        "[2022-05-15] Looking for gift ideas for sister-in-law's sister who got married last December",
+        "[2022-05-15] Posted a story about birthday celebration on Instagram, got around 30 replies",
+        "[2022-05-15] Wedding anniversary is on July 22nd",
+        "[2022-05-15] Close friend Rachel got engaged on May 15th",
+        "[2022-05-15] Photo album arrived on 20th April",
+        "[2022-05-15] Planning Rachel's bachelorette party",
+        "[2022-05-15] Planning to write a heartfelt letter to Rachel to commemorate her engagement"
+      ],
+      "base_answer": "Based on the provided context, the gift was ordered on April 15th, and the birthday party was on April 22nd. That is 7 days before the party.",
+      "plus_time_answer": "Based on the provided context, the gift was ordered on April 15th, and the birthday party was on April 22nd. That is 7 days before the party.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_time_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_time_correct": true
+    },
+    {
+      "question_id": "6613b389",
+      "question_type": "temporal-reasoning",
+      "question": "How many months before my anniversary did Rachel get engaged?",
+      "gold": "2",
+      "base_context": [
+        "Close friend Rachel got engaged on May 15th",
+        "Thinking of getting a small gift for Rachel to commemorate her engagement",
+        "Planning to write a heartfelt letter to Rachel to commemorate her engagement",
+        "Considering a customized photo frame with a picture of Rachel's engagement ring for Rachel's engagement gift",
+        "Wedding anniversary is coming up on July 22nd",
+        "Planning Rachel's bachelorette party",
+        "Anniversary is on July 22nd",
+        "Planning a weekend getaway to the beach in August for Rachel's bachelorette party",
+        "Attended cousin's wedding on June 10th at a vineyard",
+        "Planning to reach out to friend Rachel, who also lost her mom recently, to talk about shared experiences and support each other"
+      ],
+      "plus_time_context": [
+        "[2023-07-07] Close friend Rachel got engaged on May 15th",
+        "[2023-07-07] Thinking of getting a small gift for Rachel to commemorate her engagement",
+        "[2023-07-07] Planning to write a heartfelt letter to Rachel to commemorate her engagement",
+        "[2023-07-07] Considering a customized photo frame with a picture of Rachel's engagement ring for Rachel's engagement gift",
+        "[2023-07-07] Wedding anniversary is coming up on July 22nd",
+        "[2023-07-07] Planning Rachel's bachelorette party",
+        "[2023-07-07] Anniversary is on July 22nd",
+        "[2023-07-07] Planning a weekend getaway to the beach in August for Rachel's bachelorette party",
+        "[2023-07-07] Attended cousin's wedding on June 10th at a vineyard",
+        "[2023-07-07] Planning to reach out to friend Rachel, who also lost her mom recently, to talk about shared experiences and support each other"
+      ],
+      "base_answer": "Based on the provided context, Rachel got engaged on May 15th, and your anniversary is on July 22nd. That is approximately 2 months before your anniversary.",
+      "plus_time_answer": "Based on the provided context, Rachel got engaged on May 15th, and your anniversary is on July 22nd. That is approximately 2 months before your anniversary.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_time_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_time_correct": true
+    },
+    {
+      "question_id": "8c18457d",
+      "question_type": "temporal-reasoning",
+      "question": "How many days had passed between the day I bought a gift for my brother's graduation ceremony and the day I bought a birthday gift for my best friend?",
+      "gold": "7 days. 8 days (including the last day) is also acceptable.",
+      "base_context": [
+        "Got a silver necklace with a tiny pendant for best friend's 30th birthday on the 15th of March",
+        "Got a $10 gift card to a coffee shop for neighbor who helped with dog-sitting while away on a trip last month",
+        "Trying to be more thoughtful and intentional with gift purchasing habits",
+        "Recently got a wireless headphone for brother as a graduation gift on 3/8",
+        "Still interested in getting those earrings, similar to the silver necklace for best friend's 30th birthday",
+        "Made a quilt for sister's birthday",
+        "Looking for gift ideas for sister's birthday",
+        "Recently got a silver necklace with a tiny pendant for another friend, and it was a hit",
+        "Wants a personalized gift related to quilting or sewing",
+        "Considering getting a gift for neighbor who helped with dog-sitting last month"
+      ],
+      "plus_time_context": [
+        "[2023-03-29] Got a silver necklace with a tiny pendant for best friend's 30th birthday on the 15th of March",
+        "[2023-03-29] Got a $10 gift card to a coffee shop for neighbor who helped with dog-sitting while away on a trip last month",
+        "[2023-03-29] Trying to be more thoughtful and intentional with gift purchasing habits",
+        "[2023-03-29] Recently got a wireless headphone for brother as a graduation gift on 3/8",
+        "[2023-03-29] Still interested in getting those earrings, similar to the silver necklace for best friend's 30th birthday",
+        "[2023-03-29] Made a quilt for sister's birthday",
+        "[2023-03-29] Looking for gift ideas for sister's birthday",
+        "[2023-03-29] Recently got a silver necklace with a tiny pendant for another friend, and it was a hit",
+        "[2023-03-29] Wants a personalized gift related to quilting or sewing",
+        "[2023-03-29] Considering getting a gift for neighbor who helped with dog-sitting last month"
+      ],
+      "base_answer": "Based on the provided context, the gift for your brother's graduation was purchased on 3/8, and the birthday gift for your best friend was purchased on the 15th of March. Therefore, 7 days had passed between the two purchases.",
+      "plus_time_answer": "Based on the provided context, the gift for your brother's graduation was purchased on 3/8, and the gift for your best friend's birthday was purchased on 3/15. That is a difference of 7 days.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_time_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_time_correct": true
+    }
+  ]
+}

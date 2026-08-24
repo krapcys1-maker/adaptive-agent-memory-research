@@ -14,11 +14,11 @@ Cumulative, append-oriented. Entries are added or superseded (with a `superseded
 - **EXTERNAL_SUPPORT:** none directly cited; consistent with the general intuition in temporal-grounding literature that explicit timestamps aid duration/ordering reasoning.
 - **CONFIDENCE:** MEDIUM — real, transcript-confirmed effect, but only two clean independent positive instances across two experiments; regime boundary (alignment) is itself only partially validated (see Entry B for where it breaks).
 - **KNOWN_COUNTEREXAMPLES:** `08f4fc43` repairs despite `SESSION_EVENT_DIVERGENT` alignment — because the fact carries its own explicit in-text date, making the divergence harmless. This means "alignment" alone is not the full boundary condition; presence of a usable date (session anchor OR in-text) for a *bounded lookup* task appears closer to the real condition.
-- **STATUS:** `TEMPORAL_ANCHOR_SUPPORTED` (exploratory, E1) `QUALIFIED_BY` Stage 2 fresh replication — narrowed from "ordering questions in general" to "bounded lookups/arithmetic over explicitly-or-well-anchored named events."
+- **STATUS:** `TEMPORAL_ANCHOR_SUPPORTED` (exploratory, E1) `QUALIFIED_BY` Stage 2 fresh replication — narrowed from "ordering questions in general" to "bounded lookups/arithmetic over explicitly-or-well-anchored named events." **UPDATE (Mechanism I, Entry N):** the further-narrowed `TEMPORAL_BOUNDARY`-only replication this note called for has now been run (8 fresh units) — 0 net repairs, but also 0 regressions, a third consecutive clean-null-or-positive sample. Status remains `SUPPORTED, qualified` — not elevated to `REPLICATED_VALIDATED_TRANSPLANT`, not weakened either. See Entry N for full detail.
 - **LAST_UPDATED:** 2026-08-24.
 - **SUPERSEDES:** none.
 - **SUPERSEDED_BY:** none.
-- **NEXT_TRIGGER:** a further replication specifically targeting `TEMPORAL_BOUNDARY`-shaped (bounded lookup/arithmetic) questions, gold-blind selected, would sharpen this regime boundary further. Not authorized or scheduled by this document.
+- **NEXT_TRIGGER:** a further replication specifically targeting `TEMPORAL_BOUNDARY`-shaped (bounded lookup/arithmetic) questions, gold-blind selected, would sharpen this regime boundary further. Now run — see Entry N.
 
 ---
 
@@ -253,3 +253,21 @@ Cumulative, append-oriented. Entries are added or superseded (with a `superseded
 - **LAST_UPDATED:** 2026-08-24.
 - **SUPERSEDES:** none. **SUPERSEDED_BY:** none.
 - **NEXT_TRIGGER:** a larger sample, or one specifically pre-screened at $0 (via `memory.get_all()` full-store dumps, gold-blind) for units where the missing fact is confirmed present-but-unranked, would give this candidate a fairer test of its actual confirmed precondition. Not scheduled here per "don't retune the same failed action" discipline — Campaign V2 instead pivots to the higher-priority subtype (3) finding below.
+
+---
+
+## Entry N — `TEMPORAL_ANCHOR_AT_CONTEXT` × `TEMPORAL_BOUNDARY` (narrow confirmatory replication) — `FAIL` on gate, third consecutive clean/non-negative sample
+
+- **MECHANISM:** `TEMPORAL_ANCHOR_AT_CONTEXT` (Entry A), tested via a dedicated, gold-blind selection restricted to the `TEMPORAL_BOUNDARY` sub-regime only — a fixed regex classifier (`is_temporal_boundary()`, question text only) matching duration/arithmetic-between-two-events questions, structurally excluding the many-item filter/count shape behind Entry B's one regression.
+- **REGIME:** `TEMPORAL_BOUNDARY` as classified by question shape — the narrower regime Stage 2's own report (Entry A/B) flagged as the natural next confirmatory target.
+- **FAILURE_TARGETED:** same as Entry A — reader unable to date-arithmetic facts whose only anchor is an unrendered session timestamp.
+- **OBSERVED_EFFECT:** NULL. 8 fresh, gold-blind units, all `TEMPORAL_BOUNDARY`-classified. `+TIME` byte-for-byte judgment-identical to `BASE` on 8/8 — 0 repairs, 0 regressions. Both `BASE`-wrong units were retrieval-absence failures (the needed dated pair, or the needed session entirely, was never retrieved into the top-10) rather than "dates present but unrendered" — the specific gap `+TIME` targets. One unit (`bbf86515`) structurally exhibited the exact `SESSION_EVENT_DIVERGENT` pattern behind Entry B's regression (all 10 retrieved items shared one recap-session's date, diverging from at least one item's own in-text date) but caused **no new harm**, since the unit was already unanswerable from a total retrieval miss regardless of date rendering.
+- **SOURCE_EXPERIMENTS:** `PM-20260824-717e8277` (preregistration); [`TEMPORAL_ANCHOR_BOUNDARY_V3.md`](TEMPORAL_ANCHOR_BOUNDARY_V3.md); `data/lab/arena/temporal-anchor-boundary-v3/{selection.json, results.json}`. Spend $0.559315.
+- **EXTERNAL_SUPPORT:** none new; this is AAMR-internal evidence, ranked above external literature per this project's own evidence hierarchy.
+- **CONFIDENCE:** MEDIUM-HIGH that this mechanism is *safe* within its stated regime — three independent AAMR samples now (E1, Stage 2's `TEMPORAL_BOUNDARY` bucket, this test) show zero regressions when the regime classifier correctly applies. LOW-MEDIUM on *efficacy at typical exploratory sample sizes* — genuine "dates present but unrendered" repair opportunities have so far only appeared in Stage 2's original 2-unit bucket, not in this fresh 8-unit draw.
+- **KNOWN_COUNTEREXAMPLES:** none negative; `bbf86515`'s structural divergent-anchor recurrence caused no measurable harm this time, which is reassuring but an n of 1 (swamped by an unrelated total retrieval miss, so not a clean test of whether the trap itself is now harmless or just didn't get the chance to bite).
+- **STATUS:** `FAIL_ON_REPLICATION_GATE (0 repairs, required ≥2) — mechanism remains SUPPORTED/qualified (Entry A), not elevated to REPLICATED_VALIDATED_TRANSPLANT, not weakened`.
+- **CROSS-CUTTING FINDING:** both `BASE`-wrong units in this sample were retrieval-absence, the same subtype-mismatch pattern seen in Entry M (`HYDE_QUERY_REFORMULATION`) — a third consecutive Campaign V2 mechanism whose designed target (a real, project-confirmed failure subtype) simply didn't co-occur often enough with `BASE`-wrong outcomes in an 6-8-unit gold-blind draw to produce a repair. This suggests exploratory-test sample sizes in the 6-8 range may be systematically underpowered for any mechanism whose target failure subtype is a *minority* share of this project's overall failure mix, even when that subtype is real and confirmed.
+- **LAST_UPDATED:** 2026-08-24.
+- **SUPERSEDES:** none (updates, does not replace, Entry A's `NEXT_TRIGGER`). **SUPERSEDED_BY:** none.
+- **NEXT_TRIGGER:** a larger-n or pre-screened (at $0, gold-blind, e.g. selecting only fresh units where a $0 precondition check confirms a genuine unrendered-but-needed date pair exists) test would give this mechanism a fairer shot at clearing the replication bar. Not scheduled here — Campaign V2's 3rd consecutive mechanism-family failure (G, H, I) triggers the contract's strategy-pivot condition: return to external discovery to rebuild the candidate pool, rather than a fourth ad hoc pick.

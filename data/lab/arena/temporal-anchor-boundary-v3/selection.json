@@ -1,0 +1,26 @@
+{
+  "artifact": "arena-temporal-anchor-boundary-v3-selection",
+  "purpose": "Mechanism I: third confirmatory test of TEMPORAL_ANCHOR_AT_CONTEXT, narrowly scoped to the TEMPORAL_BOUNDARY sub-regime only (Ledger Entries A/B). Campaign V2's third candidate, selected from AAMR-internal accumulated evidence rather than the external discovery pool.",
+  "frozen_before_any_ingest": true,
+  "excludes_note": "all 63 units used or examined anywhere in this arena to date (55 pre-Mechanism-H + 6 second-hop-expansion-v1 fresh units already counted in that 55 + 6 hyde-query-reformulation-v1 fresh units + their own _abs variants by base id). Exact list embedded in the freeze script's own excluded set at build time.",
+  "selection_rule": {
+    "inputs_used": ["question_type", "question text (task shape only, fixed regex classifier)"],
+    "inputs_never_used": ["answer", "gold", "haystack content", "prior correctness"],
+    "classifier": "is_temporal_boundary() in scripts/arena/temporal_anchor_at_context.py -- question_type in {temporal-reasoning, multi-session} AND question text matches a duration/arithmetic pattern (\"how many/long ... days/weeks/months ...\" + a two-event relation word: since/between/after/before/had passed/did it take/took/from-to). Structurally excludes filter/count-many-item shapes (Ledger Entry B's known negative-transfer trap: 00ca467f, a many-item count question with a diverging session-vs-event-date anchor) by construction -- every matched question asks for one duration value between at most two named events.",
+    "method": "fixed classifier applied to all fresh (post-exclusion) LongMemEval-S candidates before any individual inspection; deduped by base id (drops _abs siblings of an already-matched base); stable question_id-ascending sort; first 8 taken.",
+    "matched_pool_size_before_truncation": 25,
+    "why_8_not_6": "this is a confirmatory replication of an already-twice-tested mechanism (E1 exploratory positive; Stage 2 fresh replication net-negative overall but 2/2 clean positive specifically within this narrower sub-regime) rather than a first exploratory test of a brand-new candidate -- matches RAW_PROVENANCE's own successful 8-unit fresh-replication scale that elevated it to REPLICATED_VALIDATED_TRANSPLANT."
+  },
+  "regime_rationale": "TEMPORAL_BOUNDARY (duration/arithmetic between two named events) is the one sub-regime where TEMPORAL_ANCHOR_AT_CONTEXT has shown a clean signal in every AAMR sample it has appeared in to date: E1 (qualitative, gpt4_f420262c-style ordering), and cleanly in Stage 2 (08f4fc43, 0bc8ad92 -- 2/2 flips wrong-to-correct, 0 regressions). All 3 of Stage 2's regressions occurred outside this bucket (2 in TEMPORAL_POSITIVE, 1 in NON_TEMPORAL_CONTROL via the diverging-anchor trap this classifier structurally avoids).",
+  "units": [
+    {"question_id": "60bf93ed", "question_type": "multi-session"},
+    {"question_id": "6613b389", "question_type": "temporal-reasoning"},
+    {"question_id": "8c18457d", "question_type": "temporal-reasoning"},
+    {"question_id": "a3045048", "question_type": "temporal-reasoning"},
+    {"question_id": "b3c15d39", "question_type": "multi-session"},
+    {"question_id": "b46e15ed", "question_type": "temporal-reasoning"},
+    {"question_id": "bbf86515", "question_type": "temporal-reasoning"},
+    {"question_id": "c8090214", "question_type": "temporal-reasoning"}
+  ],
+  "n_units": 8
+}
