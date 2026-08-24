@@ -4,9 +4,9 @@
   "system": "Mem0",
   "contract_version": "ARENA-0.1",
   "contract_digest": "e68be19fb33aac46fe760497303a78a0f487feec5a457ebea930337b10d3e9aa",
-  "runner_digest": "2a4e2f57c53a205d2db151ae6720bfd9df4c56757ae940d8b616defcaeaf9f17",
+  "runner_digest": "4ef5e14c614037ec7ce337f6914fd55e4d7ab54cf37409f9b181f3b42c8404d2",
   "adapter_digest": "ae94df2fc58ec80c21c800b18c96c284686061ce37da0be01dad9fdc2a9f7201",
-  "started_at": "2026-08-24T04:34:22+00:00",
+  "started_at": "2026-08-24T04:37:04+00:00",
   "selection": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
   "selection_id": "arena-expansion-v1",
   "only_origin": null,
@@ -36,47 +36,70 @@
       "question_type": "multi-session",
       "slot": "short",
       "sessions_available": 41,
-      "sessions_ingested": 0,
-      "user_turns_ingested": 0,
+      "sessions_ingested": 16,
+      "user_turns_ingested": 73,
       "sessions_skipped_no_user_turn": 0,
       "ingest": {
-        "model_calls": 0,
-        "input_tokens": 0,
-        "output_tokens": 0,
-        "wall_seconds": 0.0
+        "model_calls": 28,
+        "input_tokens": 42517,
+        "output_tokens": 10966,
+        "wall_seconds": 74.32
       },
-      "per_session_calls": [],
+      "per_session_calls": [
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
       "status": "ingesting"
     }
   ],
-  "status": "failed",
+  "status": "running",
   "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
-  "spend_usd": 0,
+  "spend_usd": 0.0235,
   "meter_baseline": {
     "calls": 0,
     "prompt_tokens": 0,
     "completion_tokens": 0
   },
   "meter_baseline_usd": 0,
-  "provider_calls": 0,
+  "provider_calls": 28,
   "meter": {
-    "calls": 0,
-    "refused_calls": 1,
-    "prompt_tokens": 0,
-    "completion_tokens": 0,
-    "usd": 0,
+    "calls": 28,
+    "refused_calls": 0,
+    "prompt_tokens": 42517,
+    "completion_tokens": 10966,
+    "usd": 0.023542,
     "unknown_usage_calls": 0,
     "arena_enforced_decoding": {
       "temperature": 0
     },
-    "decoding_overrides": 0,
-    "decoding_override_values": [],
-    "native_requested_decoding": []
+    "decoding_overrides": 28,
+    "decoding_override_values": [
+      "{\"temperature\": 0.1}"
+    ],
+    "native_requested_decoding": [
+      "{\"temperature\": 0.1}"
+    ]
   },
   "meter_note": "`meter` holds the proxy's running totals, which include anything it served before this run. `spend_usd` and `provider_calls` are this run's own, taken as a delta from the baseline",
   "night_ledger": {
     "path": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\data\\lab\\arena\\spend-ledger.jsonl",
-    "total_usd": 6.090761,
+    "total_usd": 6.114303,
+    "scoped_usd": 0.023542,
+    "cap_scope": "rerun-",
     "total_cap_usd": 4.0,
     "by_run": {
       "mem0-calibration": 0.025094,
@@ -85,10 +108,9 @@
       "graphiti-calibration": 0.005908,
       "pilot-judge": 0.004692,
       "hindsight-expansion": 2.664696,
-      "fixed-reader": 0.000511
+      "fixed-reader": 0.000511,
+      "rerun-mem0-pilot": 0.023542
     },
-    "calls": 4752
-  },
-  "failed_with": "APIStatusError: Error code: 402 - {'error': {'type': 'arena_spend_cap', 'message': 'the night has spent $6.0908 across 7 runs; the next call could cost up to $0.0200 and the total cap is $4.00. Stopping below it.', 'note': 'the request was never forwarded, so nothing was spent'}}",
-  "traceback": "Traceback (most recent call last):\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\scripts\\arena\\run_pilot.py\", line 503, in main\n    cost = adapter.ingest(records)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\scripts\\arena\\mem0_adapter.py\", line 128, in ingest\n    self._memory.add(messages=kept, user_id=self._bank,\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\mem0\\memory\\main.py\", line 377, in add\n    vector_store_result = future1.result()\n                          ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\mem0\\memory\\main.py\", line 439, in _add_to_vector_store\n    response = self.llm.generate_response(\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\mem0\\llms\\openai.py\", line 138, in generate_response\n    response = self.client.chat.completions.create(**params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\openai\\_utils\\_utils.py\", line 298, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\openai\\resources\\chat\\completions\\completions.py\", line 1296, in create\n    return self._post(\n           ^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\openai\\_base_client.py\", line 1381, in post\n    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pamiec LLM\\adaptive-agent-memory-research\\external\\venvs\\mem0\\Lib\\site-packages\\openai\\_base_client.py\", line 1154, in request\n    raise self._make_status_error_from_response(err.response) from None\nopenai.APIStatusError: Error code: 402 - {'error': {'type': 'arena_spend_cap', 'message': 'the night has spent $6.0908 across 7 runs; the next call could cost up to $0.0200 and the total cap is $4.00. Stopping below it.', 'note': 'the request was never forwarded, so nothing was spent'}}\n"
+    "calls": 4780
+  }
 }

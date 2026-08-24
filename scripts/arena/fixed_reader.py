@@ -88,6 +88,8 @@ def load_arms(selection: Path) -> tuple[list[dict[str, Any]], list[dict[str, Any
     raw: dict[str, dict[str, dict[str, Any]]] = {}
     for system in SYSTEMS:
         raw[system] = {}
+        # Newest first: the rerun exists to supply the contexts the earlier runs
+        # discarded, so its entries win. `setdefault` below keeps the first seen.
         for path in (ARENA / f"raw/arena-expansion-v1/{system}.json",
                      ARENA / f"pilot-raw/{system}.json"):
             if not path.exists():
@@ -105,6 +107,20 @@ def load_arms(selection: Path) -> tuple[list[dict[str, Any]], list[dict[str, Any
     with corpus.open(encoding="utf-8") as handle:
         by_qid = {row["question_id"]: row for row in json.load(handle)
                   if row.get("question_id") in units}
+
+    # Baselines already generated under an identical reader configuration.
+    already_baselined: set[str] = set()
+    previous = ARENA / "fixed-reader.json"
+    prior_outputs = ARENA / "raw/fixed-reader/outputs.json"
+    if previous.exists() and prior_outputs.exists():
+        record = json.loads(previous.read_text(encoding="utf-8"))
+        same = (record.get("reader", {}).get("system_prompt_sha256") == prompt_hash()
+                and record.get("reader", {}).get("parameters") == READER_PARAMS)
+        if same:
+            already_baselined = {
+                o["question_id"] for o in
+                json.loads(prior_outputs.read_text(encoding="utf-8"))
+                if o.get("_arm") == "baseline"}
 
     runnable: list[dict[str, Any]] = []
     unobservable: list[dict[str, Any]] = []
@@ -125,8 +141,12 @@ def load_arms(selection: Path) -> tuple[list[dict[str, Any]], list[dict[str, Any
                             "measurement")})
             else:
                 runnable.append(case)
-        if question:
-            # The baseline needs no context and is therefore always runnable.
+        if question and qid not in already_baselined:
+            # The baseline needs no context and is therefore always runnable —
+            # but it is also deterministic in its inputs, so a baseline already
+            # generated under the same reader, prompt and parameters is reused
+            # rather than paid for again. Reuse is refused if any of those three
+            # differ, because then it is not the same arm.
             runnable.append({"arm": "baseline", "question_id": qid,
                              "slot": unit["slot"], "question_type": unit["question_type"],
                              "question": question, "gold": gold, "context": None})
