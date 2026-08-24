@@ -218,3 +218,20 @@ Cumulative, append-oriented. Entries are added or superseded (with a `superseded
 ---
 
 *Full mechanistic detail and per-unit transcripts for this update: [`TEMPORAL_ALIGNMENT_AND_DISTRACTION_ARCHAEOLOGY_V1.md`](TEMPORAL_ALIGNMENT_AND_DISTRACTION_ARCHAEOLOGY_V1.md), [`analysis.json`](../../data/lab/arena/temporal-alignment-and-distraction-archaeology-v1/analysis.json).*
+
+---
+
+## Entry L — `SECOND_HOP_ASSOCIATIVE_EXPANSION` — DROP (regime confirmed, mechanism doesn't help: semantic drift)
+
+- **MECHANISM:** read-side, one extra free Mem0 `search()` call seeded by the top-1 retrieved item's own text (A-MEM-inspired pseudo-relevance-feedback, adapted to Mem0's flat `search()` — no link graph). Appends the first genuinely-new (not in top-10 by id) hit as `[associated] <text>`, capped at 1. Inert when nothing new is returned. Campaign V2's first candidate: selected via external-discovery-first strategy after a 28-entry candidate pool and top-3 archaeology (see `EXTERNAL_DISCOVERY_CANDIDATE_POOL_V2.md`); the two higher-ranked candidates were both disqualified pre-spend (one on a false CODE_VERIFIED claim about this project's Mem0 version, one on prior contradicting evidence, one already tested to ceiling).
+- **REGIME (target):** cross-session synthesis gaps beyond `RAW_PROVENANCE`'s single-hop reach (`078150f1`-class misses, Entry H).
+- **FAILURE_TARGETED:** `RAW_PROVENANCE`'s own documented limitation — it only ever reaches the one session behind Mem0's top-1 hit.
+- **OBSERVED_EFFECT:** NULL. 6 fresh, gold-blind units. Mechanism fired (genuinely new item) on 2/6 (33%) — consistent with the $0 precondition check (~25% on a different, already-examined 8-unit set), i.e. **not** a regime-mismatch null like Entries I/J. Net repairs 0, regressions 0. In both fired cases the associated item was topically irrelevant to the query (pulled in for similarity to the top-1 item, not to the question) — on one unit (`1a8a66a6`) this irrelevant addition still visibly perturbed a `temperature=0` reader's answer content/confidence without changing correctness, a new instability data point distinct from the "judge-penalized epistemic caution" pattern (Entries I/J/K).
+- **SOURCE_EXPERIMENTS:** `PM-20260824-9dcd4352` (preregistration); [`SECOND_HOP_ASSOCIATIVE_EXPANSION_V1.md`](SECOND_HOP_ASSOCIATIVE_EXPANSION_V1.md); `data/lab/arena/second-hop-expansion-v1/{selection.json, results.json}`. Spend $0.414206.
+- **EXTERNAL_SUPPORT:** A-MEM (agiresearch/A-mem, NeurIPS 2025) link-expansion pattern; CODE_VERIFIED via repo inspection during Campaign V2 discovery, REPO_ARTIFACT not directly transplanted (this project has no link graph, so the query itself was adapted to seed via Mem0's existing `search()`).
+- **CONFIDENCE:** MEDIUM that seeding hop-2 by top-1's text (rather than by the original query) is a structural mismatch for this task — HIGH that this specific n=6 sample showed no benefit.
+- **KNOWN_COUNTEREXAMPLES:** none positive; both fired cases returned irrelevant associated content.
+- **STATUS:** `DROP (regime confirmed, mechanism doesn't help — semantic drift from seeding by top-1 text instead of by query)`.
+- **LAST_UPDATED:** 2026-08-24.
+- **SUPERSEDES:** none. **SUPERSEDED_BY:** none.
+- **NEXT_TRIGGER:** a query-seeded (rather than top-1-seeded) second hop would directly test whether the drift is the actual cause — not scheduled here per "don't retune the same failed action" discipline. **CAMPAIGN V2 LESSON:** external-discovery-first correctly avoided a near-zero-fire-rate regime mismatch (this candidate's precondition really does fire at a moderate, non-trivial rate) but did not avoid mechanism-level failure — external evidence de-risks precondition existence, not causal efficacy in this harness. This is failure 1 of 3 toward Campaign V2's strategy-pivot STOP threshold (not a global stop).

@@ -1,0 +1,21 @@
+{
+  "artifact": "autonomous-research-budget-v2",
+  "campaign": "AUTONOMOUS_CAMPAIGN_V2 -- external-discovery-first strategy",
+  "hard_total_cap_usd": 5.00,
+  "preferred_total_usd": 3.00,
+  "discovery_research_preferred_usd": 1.00,
+  "per_mechanism_before_replication_preferred_usd": 0.50,
+  "replication_preferred_usd": 0.75,
+  "carries_forward_from": "autonomous-research-budget-v1 (Campaign V1, separate $10 cap, closed at $2.143325 spend -- not counted against this $5 cap)",
+  "campaign_status": "RUNNING -- 1 mechanism closed (G: DROP), 0 of 3 consecutive failures toward strategy-pivot threshold met yet",
+  "stages": [
+    {"experiment_id": "discovery-v2", "purpose": "External discovery workflow: 12 agents, 28-candidate pool, top-3 archaeology", "cap_scope": "n/a (research/reading only, zero paid model calls)", "cost_usd": 0.0, "cumulative_cost_usd": 0.0, "decision_produced": "28-candidate pool; top 2 disqualified pre-spend (false CODE_VERIFIED claim; already-tested-to-ceiling); Mechanism G selected"},
+    {"experiment_id": "mechg-v1", "purpose": "Mechanism G exploratory (6 units, SECOND_HOP_ASSOCIATIVE_EXPANSION)", "cap_scope": "mechg-v1-", "cost_usd": 0.414206, "cumulative_cost_usd": 0.414206, "decision_produced": "MECHANISM_G_FAIL -- DROP (regime confirmed 2/6 fired, mechanism doesn't help: semantic drift)"}
+  ],
+  "total_spend_usd": 0.414206,
+  "remaining_usd": 4.585794,
+  "consecutive_failed_families_count": 1,
+  "validated_mechanisms_count_this_campaign": 0,
+  "validated_mechanisms_count_project_total": 1,
+  "note": "Project-wide validated count (1, RAW_PROVENANCE) carries over from Campaign V1 -- Campaign V2 has not yet added a second. Per Campaign V2 STOP semantics, 3 consecutive mechanism failures triggers a strategy-level pivot (return to external discovery), not a program stop; only 1 failure recorded so far (G)."
+}

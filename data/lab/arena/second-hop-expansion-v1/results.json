@@ -1,0 +1,548 @@
+{
+  "artifact": "arena-second-hop-expansion-v1",
+  "selection": "data\\lab\\arena\\second-hop-expansion-v1\\selection.json",
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "ingest": [
+    {
+      "question_id": "1e043500",
+      "question_type": "single-session-user",
+      "sessions_available": 50,
+      "sessions_ingested": 50,
+      "user_turns_ingested": 253,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 212,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.074462
+    },
+    {
+      "question_id": "1a8a66a6",
+      "question_type": "multi-session",
+      "sessions_available": 51,
+      "sessions_ingested": 51,
+      "user_turns_ingested": 248,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 237,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.148797
+    },
+    {
+      "question_id": "1c549ce4",
+      "question_type": "multi-session",
+      "sessions_available": 45,
+      "sessions_ingested": 45,
+      "user_turns_ingested": 229,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 222,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.214505
+    },
+    {
+      "question_id": "370a8ff4",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 46,
+      "sessions_ingested": 46,
+      "user_turns_ingested": 245,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 181,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.276729
+    },
+    {
+      "question_id": "0f05491a",
+      "question_type": "knowledge-update",
+      "sessions_available": 45,
+      "sessions_ingested": 45,
+      "user_turns_ingested": 242,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 202,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.344945
+    },
+    {
+      "question_id": "18dcd5a5",
+      "question_type": "single-session-assistant",
+      "sessions_available": 50,
+      "sessions_ingested": 50,
+      "user_turns_ingested": 248,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 209,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.411998
+    }
+  ],
+  "ingest_stopped_by_cap": null,
+  "n_units_preregistered": 6,
+  "n_units": 6,
+  "stopped_by_cap": null,
+  "spend": {
+    "total_usd": 0.414206,
+    "cap_usd": 0.5,
+    "remaining_usd": 0.085794
+  },
+  "results": [
+    {
+      "question_id": "1e043500",
+      "question_type": "single-session-user",
+      "question": "What is the name of the playlist I created on Spotify?",
+      "gold": "Summer Vibes",
+      "mechanism_trace": {
+        "n_compact": 10,
+        "hop2_fired": true,
+        "hop2_new_items": 0,
+        "inert": true
+      },
+      "base_context": [
+        "Created a Spotify playlist called Summer Vibes with chill tracks for relaxing or working out",
+        "Looking for a music streaming service to discover new music, especially ambient and lo-fi genres",
+        "Interested in organizing TV show watchlist across different platforms",
+        "Wants an outline for the video",
+        "Attended a music festival last month with friends, saw The Lumineers and The 1975",
+        "User is listing various food items including shredded mozzarella/cheddar mix, pasta types, sponge puddings, and cheesecakes.",
+        "Trying to get back into playing the guitar",
+        "Decided to make the template freely available for download",
+        "Loving earthy tones lately",
+        "Wants a hook for the video"
+      ],
+      "plus_g_context": [
+        "Created a Spotify playlist called Summer Vibes with chill tracks for relaxing or working out",
+        "Looking for a music streaming service to discover new music, especially ambient and lo-fi genres",
+        "Interested in organizing TV show watchlist across different platforms",
+        "Wants an outline for the video",
+        "Attended a music festival last month with friends, saw The Lumineers and The 1975",
+        "User is listing various food items including shredded mozzarella/cheddar mix, pasta types, sponge puddings, and cheesecakes.",
+        "Trying to get back into playing the guitar",
+        "Decided to make the template freely available for download",
+        "Loving earthy tones lately",
+        "Wants a hook for the video"
+      ],
+      "base_answer": "Based on the provided context, the playlist you created on Spotify is called **Summer Vibes**.",
+      "plus_g_answer": "Based on the provided context, the playlist you created on Spotify is called **Summer Vibes**.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_g_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_g_correct": true
+    },
+    {
+      "question_id": "1a8a66a6",
+      "question_type": "multi-session",
+      "question": "How many magazine subscriptions do I currently have?",
+      "gold": "2",
+      "mechanism_trace": {
+        "n_compact": 10,
+        "hop2_fired": true,
+        "hop2_new_items": 1,
+        "inert": false
+      },
+      "base_context": [
+        "Got a new book subscription box",
+        "Canceled Forbes magazine subscription in early March because articles weren't interesting",
+        "Gained 25 new followers interested in fitness and wellness",
+        "Goal to finish at least one book every two weeks",
+        "Subscribed to The New Yorker in early February",
+        "Has been reading more frequently since February, particularly on weekends and days off from work",
+        "Interested in personal finance podcasts and resources for investment decisions",
+        "Interested in exhibitions featuring emerging artists",
+        "Wants weekly targets with KPIs for the first 3 months of opening the business",
+        "Interested in creating content that resonates with new followers"
+      ],
+      "plus_g_context": [
+        "Got a new book subscription box",
+        "Canceled Forbes magazine subscription in early March because articles weren't interesting",
+        "Gained 25 new followers interested in fitness and wellness",
+        "Goal to finish at least one book every two weeks",
+        "Subscribed to The New Yorker in early February",
+        "Has been reading more frequently since February, particularly on weekends and days off from work",
+        "Interested in personal finance podcasts and resources for investment decisions",
+        "Interested in exhibitions featuring emerging artists",
+        "Wants weekly targets with KPIs for the first 3 months of opening the business",
+        "Interested in creating content that resonates with new followers",
+        "[associated] Planning to use Wave or FreshBooks for payment tracking"
+      ],
+      "base_answer": "Based on the provided context, I can confirm you have a subscription to The New Yorker. However, the context does not specify whether you have any other magazine subscriptions, so the total number cannot be determined.",
+      "plus_g_answer": "Based on the provided context, you have one magazine subscription: The New Yorker. You canceled your Forbes subscription in early March.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_g_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_g_correct": false
+    },
+    {
+      "question_id": "1c549ce4",
+      "question_type": "multi-session",
+      "question": "What is the total cost of the car cover and detailing spray I purchased?",
+      "gold": "$140",
+      "mechanism_trace": {
+        "n_compact": 10,
+        "hop2_fired": true,
+        "hop2_new_items": 0,
+        "inert": true
+      },
+      "base_context": [
+        "Thinking of getting a detailing spray for car's exterior, had good experience with a $20 one from Amazon that removed tar and bug stains",
+        "Wondering if can claim cost of waterproof car cover on car insurance, cost $120",
+        "Planning to contact insurance provider about claiming cost of waterproof car cover",
+        "Thinking of getting a detailing kit for car",
+        "Recently got a waterproof car cover to protect car's paint",
+        "Planning to get Meguiar's Gold Class Car Care Kit, price around $60-$70",
+        "Looking for a kit for general cleaning and maintenance, and interior detailing",
+        "Interested in pricing and selling vintage cameras",
+        "Car's oil change is overdue by about 1000 miles",
+        "Car's paint is pretty sensitive, needs something gentle"
+      ],
+      "plus_g_context": [
+        "Thinking of getting a detailing spray for car's exterior, had good experience with a $20 one from Amazon that removed tar and bug stains",
+        "Wondering if can claim cost of waterproof car cover on car insurance, cost $120",
+        "Planning to contact insurance provider about claiming cost of waterproof car cover",
+        "Thinking of getting a detailing kit for car",
+        "Recently got a waterproof car cover to protect car's paint",
+        "Planning to get Meguiar's Gold Class Car Care Kit, price around $60-$70",
+        "Looking for a kit for general cleaning and maintenance, and interior detailing",
+        "Interested in pricing and selling vintage cameras",
+        "Car's oil change is overdue by about 1000 miles",
+        "Car's paint is pretty sensitive, needs something gentle"
+      ],
+      "base_answer": "Based on the provided context, the total cost is $140. This is calculated by adding the $120 cost of the waterproof car cover to the $20 cost of the detailing spray.",
+      "plus_g_answer": "Based on the provided context, the car cover cost $120 and the detailing spray cost $20, for a total of $140.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_g_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_g_correct": true
+    },
+    {
+      "question_id": "370a8ff4",
+      "question_type": "temporal-reasoning",
+      "question": "How many weeks had passed since I recovered from the flu when I went on my 10th jog outdoors?",
+      "gold": "15",
+      "mechanism_trace": {
+        "n_compact": 10,
+        "hop2_fired": true,
+        "hop2_new_items": 0,
+        "inert": true
+      },
+      "base_context": [
+        "Went on 10th jog outdoors today and feels great to be back in shape after harsh winter",
+        "Recovered from the flu today",
+        "Planning to get back into exercise routine",
+        "Considering jogging with short intervals",
+        "Weekly mileage is around 60-70 miles",
+        "Started taking yoga classes on Tuesdays and Thursdays",
+        "Finished a 5K run with a personal best time of 27 minutes and 42 seconds at the Midsummer 5K Run",
+        "Has been doing outdoor activities like gardening",
+        "Total expenses for the past three months were around $5,000, including feed, vet bills, and equipment",
+        "Planning to use Vaporfly Next% for speed workouts and shorter races"
+      ],
+      "plus_g_context": [
+        "Went on 10th jog outdoors today and feels great to be back in shape after harsh winter",
+        "Recovered from the flu today",
+        "Planning to get back into exercise routine",
+        "Considering jogging with short intervals",
+        "Weekly mileage is around 60-70 miles",
+        "Started taking yoga classes on Tuesdays and Thursdays",
+        "Finished a 5K run with a personal best time of 27 minutes and 42 seconds at the Midsummer 5K Run",
+        "Has been doing outdoor activities like gardening",
+        "Total expenses for the past three months were around $5,000, including feed, vet bills, and equipment",
+        "Planning to use Vaporfly Next% for speed workouts and shorter races"
+      ],
+      "base_answer": "Based on the provided context, the number of weeks that passed between recovering from the flu and the 10th outdoor jog cannot be determined.",
+      "plus_g_answer": "Based on the provided context, the number of weeks that passed between recovering from the flu and the 10th outdoor jog cannot be determined.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_g_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_g_correct": false
+    },
+    {
+      "question_id": "0f05491a",
+      "question_type": "knowledge-update",
+      "question": "How many stars do I need to reach the gold level on my Starbucks Rewards app?",
+      "gold": "120",
+      "mechanism_trace": {
+        "n_compact": 10,
+        "hop2_fired": true,
+        "hop2_new_items": 0,
+        "inert": true
+      },
+      "base_context": [
+        "Needs 120 stars to reach gold level on Starbucks Rewards",
+        "Trying to reach gold level on Starbucks Rewards app",
+        "Uses Starbucks Rewards app",
+        "Earns points for each purchase or workout",
+        "Needs 50 more points to get a free drink at The Daily Grind",
+        "Redeemed 200 points last month for a $10 gift card at Page & Co.",
+        "Makes a purchase every Monday, Wednesday, and Friday at The Daily Grind to earn points",
+        "Used a $10 gift card from redeeming 200 points at Page & Co. last month",
+        "Has accumulated 450 points since joining Page & Co.'s Booklover's Rewards",
+        "Gets a free coffee every fifth purchase at coffee shop near bus stop"
+      ],
+      "plus_g_context": [
+        "Needs 120 stars to reach gold level on Starbucks Rewards",
+        "Trying to reach gold level on Starbucks Rewards app",
+        "Uses Starbucks Rewards app",
+        "Earns points for each purchase or workout",
+        "Needs 50 more points to get a free drink at The Daily Grind",
+        "Redeemed 200 points last month for a $10 gift card at Page & Co.",
+        "Makes a purchase every Monday, Wednesday, and Friday at The Daily Grind to earn points",
+        "Used a $10 gift card from redeeming 200 points at Page & Co. last month",
+        "Has accumulated 450 points since joining Page & Co.'s Booklover's Rewards",
+        "Gets a free coffee every fifth purchase at coffee shop near bus stop"
+      ],
+      "base_answer": "Based on the provided context, you need 120 stars to reach gold level on Starbucks Rewards.",
+      "plus_g_answer": "Based on the provided context, you need 120 stars to reach gold level on Starbucks Rewards.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_g_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_g_correct": true
+    },
+    {
+      "question_id": "18dcd5a5",
+      "question_type": "single-session-assistant",
+      "question": "I'm going back to our previous chat about the Lost Temple of the Djinn one-shot. Can you remind me how many mummies the party will face in the temple?",
+      "gold": "4",
+      "mechanism_trace": {
+        "n_compact": 10,
+        "hop2_fired": true,
+        "hop2_new_items": 2,
+        "inert": false
+      },
+      "base_context": [
+        "Attended a spiritual retreat at a local Buddhist temple",
+        "Wants a surprise twist in the final battle",
+        "Visited cemetery with mom before the reunion",
+        "Wants a D&D one shot for level 8 PCs",
+        "Planning a party for upcoming March Madness games",
+        "Wants cool lair actions",
+        "Planning to visit Oconaluftee Indian Village and Cherokee Heritage Center",
+        "Took photos and performed a musical number with siblings at the reunion",
+        "Interested in Hannover Messe event in April",
+        "Wants to make a pasta dish similar to one had at Sophia's house"
+      ],
+      "plus_g_context": [
+        "Attended a spiritual retreat at a local Buddhist temple",
+        "Wants a surprise twist in the final battle",
+        "Visited cemetery with mom before the reunion",
+        "Wants a D&D one shot for level 8 PCs",
+        "Planning a party for upcoming March Madness games",
+        "Wants cool lair actions",
+        "Planning to visit Oconaluftee Indian Village and Cherokee Heritage Center",
+        "Took photos and performed a musical number with siblings at the reunion",
+        "Interested in Hannover Messe event in April",
+        "Wants to make a pasta dish similar to one had at Sophia's house",
+        "[associated] Meditation and yoga sessions helped me relax and focus"
+      ],
+      "base_answer": "Based on the provided context, I cannot determine how many mummies the party will face in the Lost Temple of the Djinn one-shot. The context does not contain any details about that specific adventure.",
+      "plus_g_answer": "Based on the provided context, the number of mummies the party will face in the Lost Temple of the Djinn one-shot cannot be determined.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_g_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_g_correct": false
+    }
+  ]
+}

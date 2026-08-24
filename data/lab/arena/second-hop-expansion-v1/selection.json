@@ -1,0 +1,23 @@
+{
+  "artifact": "arena-second-hop-expansion-v1-selection",
+  "purpose": "Mechanism G exploratory test: SECOND_HOP_ASSOCIATIVE_EXPANSION, Campaign V2's first paid test after the external discovery phase.",
+  "frozen_before_any_ingest": true,
+  "excludes_note": "all 49 units used or examined anywhere in this arena to date, including the 8 RAW_PROVENANCE units used for this mechanism's own $0 precondition check (excluded specifically because that check examined their content/answers in detail, breaking blindness for a fresh test). _abs variants also excluded.",
+  "selection_rule": {
+    "inputs_used": ["question_type"],
+    "inputs_never_used": ["answer", "gold", "haystack content", "prior correctness", "second-hop precondition-check results on any of these specific units"],
+    "method": "deterministic category quota (2 multi-session, 1 temporal-reasoning, 1 knowledge-update, 1 single-session-user, 1 single-session-assistant -- 6 total), first-by-question_id-sort within category after exclusion. Weighted toward multi-session (this mechanism's explicit target: cross-session synthesis gaps) as a category-structure prior, not content-based.",
+    "size_note": "6 units, smaller than RAW_PROVENANCE's 8-unit replication -- this is Mechanism G's first exploratory test (contract preference <$0.50 per mechanism before replication), with a verified-but-moderate (~25%) precondition fire rate from the $0 check on a different, already-examined unit set."
+  },
+  "precondition_evidence": "See docs/research/EXTERNAL_DISCOVERY_CANDIDATE_POOL_V2.md: LongMemEval-S's own corpus (500 questions) shows 250 need exactly 2 gold sessions (largest single bucket), 324 need 2+ -- verified directly from local corpus data, not just cited. A live $0 check on the 8 already-ingested RAW_PROVENANCE units found compact top-10 retrieval already spans 2-7 distinct sessions per unit, and a second-hop query (seeded from the top-1 hit's own text) surfaces a genuinely new item beyond the top-10 in 2/8 (25%) of those units -- moderate, not near-zero.",
+  "units": [
+    {"question_id": "1a8a66a6", "question_type": "multi-session"},
+    {"question_id": "1c549ce4", "question_type": "multi-session"},
+    {"question_id": "370a8ff4", "question_type": "temporal-reasoning"},
+    {"question_id": "0f05491a", "question_type": "knowledge-update"},
+    {"question_id": "1e043500", "question_type": "single-session-user"},
+    {"question_id": "18dcd5a5", "question_type": "single-session-assistant"}
+  ],
+  "n_units": 6,
+  "candidate_pool_size_after_exclusion": 421
+}
