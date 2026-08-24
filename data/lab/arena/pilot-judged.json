@@ -1,0 +1,445 @@
+{
+  "artifact": "arena-pilot-judged",
+  "recorded_at": "2026-08-24T02:57:44+00:00",
+  "selection": "e8a848ed9c8a8440625f218516219b37b4a5ad681502cd45a8ff3fc687fb86a9",
+  "protocol": {
+    "source": "LongMemEval src/evaluation/evaluate_qa.py",
+    "repository": "xiaowu0162/LongMemEval",
+    "commit": "9e0b455f4ef0e2ab8f2e582289761153549043fc",
+    "templates_verbatim": true,
+    "template_sha256": {
+      "generic": "fba020ba3d57982efdc9a937c1c01f897b789a608c7f88e60244121f6505e5bc",
+      "temporal": "8d33a5fdd83afeeb4592454a965eab43d1fcb2dedc042d1d3892f4254be6c273",
+      "knowledge_update": "183a9b3a6197ec620940f610cdc1207201ec98c1113dd633ea685cfc322fafac",
+      "preference": "741ee3bcbea7ff5e8ed359acef61d2f8ded3de021bbcff6ee13de455f2e2aa9b",
+      "abstention": "5c0b365a1e1d06db36377c735432b56e122ca3c428f89faf61d43a0d5a7e050b"
+    },
+    "label_rule": "'yes' in response.lower(); binary, no partial credit",
+    "parameters": {
+      "n": 1,
+      "temperature": 0,
+      "max_tokens": 10
+    }
+  },
+  "judge_model": {
+    "model": "deepseek-chat",
+    "provider": "DeepSeek",
+    "official_model_zoo": [
+      "gpt-4o-mini-2024-07-18",
+      "gpt-4o-2024-08-06",
+      "meta-llama/Meta-Llama-3.1-70B-Instruct"
+    ],
+    "deviation": "this machine has a DeepSeek credential and no OpenAI one. Prompt, parameters and label rule are LongMemEval's; the model is not. Scores here are comparable within this run and NOT directly comparable with published LongMemEval numbers",
+    "seed": "not supported by this provider",
+    "determinism": "not assumed. Measured at 3 distinct outputs in 20 identical structured requests, which is why every answer is judged twice"
+  },
+  "blinding": {
+    "method": "stable pseudonym per system from sha256(salt + system)",
+    "salt": "arena-pilot-judge-v1",
+    "note": "the official prompt carries only question, gold and response, so no system identity could reach the judge in any case",
+    "mapping_file": "pilot-judge-blinding.json"
+  },
+  "cost": {
+    "calls": 24,
+    "prompt_tokens": 3942,
+    "completion_tokens": 24,
+    "usd": 0.001091,
+    "cap_usd": 0.25,
+    "projected_usd": 0.00195
+  },
+  "stopped_by_cap": null,
+  "judgements": [
+    {
+      "candidate": "candidate_M_e703",
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "response_chars": 0,
+      "abstention_prompt": false,
+      "passes": [],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "not_sent_to_judge": "empty response to an answerable question: nothing to contain the correct answer",
+      "_system": "aamr"
+    },
+    {
+      "candidate": "candidate_M_e703",
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "slot": "medium",
+      "response_chars": 0,
+      "abstention_prompt": false,
+      "passes": [],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "not_sent_to_judge": "empty response to an answerable question: nothing to contain the correct answer",
+      "_system": "aamr"
+    },
+    {
+      "candidate": "candidate_M_e703",
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "slot": "long",
+      "response_chars": 0,
+      "abstention_prompt": false,
+      "passes": [],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "not_sent_to_judge": "empty response to an answerable question: nothing to contain the correct answer",
+      "_system": "aamr"
+    },
+    {
+      "candidate": "candidate_M_e703",
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "slot": "update",
+      "response_chars": 0,
+      "abstention_prompt": false,
+      "passes": [],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "not_sent_to_judge": "empty response to an answerable question: nothing to contain the correct answer",
+      "_system": "aamr"
+    },
+    {
+      "candidate": "candidate_T_a3d5",
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "response_chars": 42,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 128,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 128,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_system": "mem0"
+    },
+    {
+      "candidate": "candidate_T_a3d5",
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "slot": "medium",
+      "response_chars": 32,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 205,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 205,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_system": "mem0"
+    },
+    {
+      "candidate": "candidate_T_a3d5",
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "slot": "long",
+      "response_chars": 92,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 139,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 139,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_system": "mem0"
+    },
+    {
+      "candidate": "candidate_T_a3d5",
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "slot": "update",
+      "response_chars": 121,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 134,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 134,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_system": "mem0"
+    },
+    {
+      "candidate": "candidate_M_0f95",
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "response_chars": 236,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 172,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 172,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_system": "cupmem"
+    },
+    {
+      "candidate": "candidate_M_0f95",
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "slot": "medium",
+      "response_chars": 341,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 264,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 264,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_system": "cupmem"
+    },
+    {
+      "candidate": "candidate_M_0f95",
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "slot": "long",
+      "response_chars": 302,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 180,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 180,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_system": "cupmem"
+    },
+    {
+      "candidate": "candidate_M_0f95",
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "slot": "update",
+      "response_chars": 81,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 126,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 126,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_system": "cupmem"
+    },
+    {
+      "candidate": "candidate_B_550e",
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "response_chars": 57,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 133,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 133,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_system": "hindsight"
+    },
+    {
+      "candidate": "candidate_B_550e",
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "slot": "medium",
+      "response_chars": 68,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 216,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 216,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_system": "hindsight"
+    },
+    {
+      "candidate": "candidate_B_550e",
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "slot": "long",
+      "response_chars": 113,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 141,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 141,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_system": "hindsight"
+    },
+    {
+      "candidate": "candidate_B_550e",
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "slot": "update",
+      "response_chars": 113,
+      "abstention_prompt": false,
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 133,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 133,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_system": "hindsight"
+    }
+  ]
+}

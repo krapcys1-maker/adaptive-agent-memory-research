@@ -1,0 +1,397 @@
+{
+  "artifact": "arena-pilot-judged-report",
+  "selection": "e8a848ed9c8a8440625f218516219b37b4a5ad681502cd45a8ff3fc687fb86a9",
+  "protocol": {
+    "source": "LongMemEval src/evaluation/evaluate_qa.py",
+    "repository": "xiaowu0162/LongMemEval",
+    "commit": "9e0b455f4ef0e2ab8f2e582289761153549043fc",
+    "templates_verbatim": true,
+    "template_sha256": {
+      "generic": "fba020ba3d57982efdc9a937c1c01f897b789a608c7f88e60244121f6505e5bc",
+      "temporal": "8d33a5fdd83afeeb4592454a965eab43d1fcb2dedc042d1d3892f4254be6c273",
+      "knowledge_update": "183a9b3a6197ec620940f610cdc1207201ec98c1113dd633ea685cfc322fafac",
+      "preference": "741ee3bcbea7ff5e8ed359acef61d2f8ded3de021bbcff6ee13de455f2e2aa9b",
+      "abstention": "5c0b365a1e1d06db36377c735432b56e122ca3c428f89faf61d43a0d5a7e050b"
+    },
+    "label_rule": "'yes' in response.lower(); binary, no partial credit",
+    "parameters": {
+      "n": 1,
+      "temperature": 0,
+      "max_tokens": 10
+    }
+  },
+  "judge_model": {
+    "model": "deepseek-chat",
+    "provider": "DeepSeek",
+    "official_model_zoo": [
+      "gpt-4o-mini-2024-07-18",
+      "gpt-4o-2024-08-06",
+      "meta-llama/Meta-Llama-3.1-70B-Instruct"
+    ],
+    "deviation": "this machine has a DeepSeek credential and no OpenAI one. Prompt, parameters and label rule are LongMemEval's; the model is not. Scores here are comparable within this run and NOT directly comparable with published LongMemEval numbers",
+    "seed": "not supported by this provider",
+    "determinism": "not assumed. Measured at 3 distinct outputs in 20 identical structured requests, which is why every answer is judged twice"
+  },
+  "judge_cost_usd": 0.001091,
+  "judge_stability": {
+    "answers": 16,
+    "stable_across_two_passes": 16,
+    "needed_a_third_pass": 0
+  },
+  "is_a_leaderboard": false,
+  "why_not": "four units per system, one question per type, and a binary judge. These are observed outcomes on a frozen sample, not estimates of anything",
+  "systems": {
+    "aamr": {
+      "judged_score": "0/4",
+      "substring_score": "0/4",
+      "pilot_cost_usd": 0.0,
+      "usd_per_correct": null,
+      "query_calls": 0,
+      "query_usd": 0.0,
+      "ingest_usd": 0.0,
+      "context_tokens": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence_ids": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "abstained": 4,
+      "mutation": [
+        "read_only"
+      ],
+      "reproducible": [
+        "true"
+      ],
+      "stored_items": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "per_probe": {
+        "ba358f49": {
+          "slot": "short",
+          "type": "multi-session",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "gpt4_98f46fc6": {
+          "slot": "medium",
+          "type": "temporal-reasoning",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "58bf7951": {
+          "slot": "long",
+          "type": "single-session-user",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "6a27ffc2": {
+          "slot": "update",
+          "type": "knowledge-update",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        }
+      }
+    },
+    "mem0": {
+      "judged_score": "1/4",
+      "substring_score": "1/4",
+      "pilot_cost_usd": 0.2939,
+      "usd_per_correct": 0.2939,
+      "query_calls": 0,
+      "query_usd": 0.0,
+      "ingest_usd": 0.2939,
+      "context_tokens": [
+        112,
+        98,
+        108,
+        93
+      ],
+      "evidence_ids": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "abstained": 0,
+      "mutation": [
+        "read_only"
+      ],
+      "reproducible": [
+        "true"
+      ],
+      "stored_items": [
+        216,
+        224,
+        221,
+        235
+      ],
+      "per_probe": {
+        "ba358f49": {
+          "slot": "short",
+          "type": "multi-session",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "gpt4_98f46fc6": {
+          "slot": "medium",
+          "type": "temporal-reasoning",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "58bf7951": {
+          "slot": "long",
+          "type": "single-session-user",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "6a27ffc2": {
+          "slot": "update",
+          "type": "knowledge-update",
+          "judge": true,
+          "stable": true,
+          "disputed": false,
+          "substring": true
+        }
+      }
+    },
+    "cupmem": {
+      "judged_score": "1/4",
+      "substring_score": "1/4",
+      "pilot_cost_usd": 1.5892,
+      "usd_per_correct": 1.5892,
+      "query_calls": 28,
+      "query_usd": 0.1091,
+      "ingest_usd": 1.4802,
+      "context_tokens": [
+        829,
+        613,
+        779,
+        588
+      ],
+      "evidence_ids": [
+        36,
+        28,
+        31,
+        28
+      ],
+      "abstained": 0,
+      "mutation": [
+        "read_only"
+      ],
+      "reproducible": [
+        "false"
+      ],
+      "stored_items": [
+        217,
+        252,
+        221,
+        225
+      ],
+      "per_probe": {
+        "ba358f49": {
+          "slot": "short",
+          "type": "multi-session",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "gpt4_98f46fc6": {
+          "slot": "medium",
+          "type": "temporal-reasoning",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "58bf7951": {
+          "slot": "long",
+          "type": "single-session-user",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "6a27ffc2": {
+          "slot": "update",
+          "type": "knowledge-update",
+          "judge": true,
+          "stable": true,
+          "disputed": false,
+          "substring": true
+        }
+      }
+    },
+    "hindsight": {
+      "judged_score": "2/4",
+      "substring_score": "1/4",
+      "pilot_cost_usd": 1.8123,
+      "usd_per_correct": 0.9062,
+      "query_calls": 1,
+      "query_usd": 0.0105,
+      "ingest_usd": 1.7917,
+      "context_tokens": [
+        3245,
+        3330,
+        3208,
+        3182
+      ],
+      "evidence_ids": [
+        175,
+        188,
+        159,
+        164
+      ],
+      "abstained": 0,
+      "mutation": [
+        "mutates_by_design",
+        "read_only"
+      ],
+      "reproducible": [
+        "false",
+        "true"
+      ],
+      "stored_items": [
+        532,
+        555,
+        624,
+        528
+      ],
+      "per_probe": {
+        "ba358f49": {
+          "slot": "short",
+          "type": "multi-session",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "gpt4_98f46fc6": {
+          "slot": "medium",
+          "type": "temporal-reasoning",
+          "judge": true,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "58bf7951": {
+          "slot": "long",
+          "type": "single-session-user",
+          "judge": false,
+          "stable": true,
+          "disputed": false,
+          "substring": false
+        },
+        "6a27ffc2": {
+          "slot": "update",
+          "type": "knowledge-update",
+          "judge": true,
+          "stable": true,
+          "disputed": false,
+          "substring": true
+        }
+      }
+    }
+  },
+  "substring_versus_judge": {
+    "disagreements": [
+      {
+        "system": "hindsight",
+        "question_id": "gpt4_98f46fc6",
+        "type": "temporal-reasoning",
+        "slot": "medium",
+        "judge": true,
+        "substring": false,
+        "kind": "substring false negative"
+      }
+    ],
+    "false_negatives": 1,
+    "false_positives": 0
+  },
+  "per_type_caveat": "one question per type. A per-type column here is a single observation, not a rate",
+  "spending_decision": {
+    "hindsight": {
+      "verdict": "PROMOTE",
+      "because": [
+        "the only system that answered the temporal-reasoning unit, and the only one whose judged score exceeded its substring proxy",
+        "no model call at query time, so extending it multiplies ingestion cost only and the query column stays flat",
+        "delivers 3,200-3,300 context tokens against Mem0's 100: a different operating point, not a better score at the same one",
+        "evidence is 159-188 ids per probe and every one traceable to something it stores"
+      ],
+      "against": [
+        "the most expensive ingestion measured, $1.79 for four units",
+        "one unit reported mutates_by_design, and the probe cannot say whether the query or their background consolidation worker caused it"
+      ]
+    },
+    "mem0": {
+      "verdict": "PROMOTE",
+      "because": [
+        "six times cheaper than either other model-backed system and scored the same as CUPMem",
+        "cost per session is FLAT while CUPMem's more than doubles as the store fills, so it is the only system whose price at 20 units follows from its price at 4",
+        "zero model calls at query time",
+        "a 20-unit run projects to about $1.50"
+      ],
+      "against": [
+        "no answer channel: its score is its top retrieved memory, so a QA metric is reading a store as though it were a reader",
+        "smallest context of any system, 93-112 tokens"
+      ]
+    },
+    "cupmem": {
+      "verdict": "HOLD",
+      "because": [
+        "matched Mem0's score at 5.4 times the cost, and is the only system paying 4-8 model calls per query on top",
+        "ingestion cost grows with the store, so 20 units is not five times the four-unit figure and any projection is a floor",
+        "the only system whose output was not reproducible on any unit"
+      ],
+      "against_dropping": [
+        "it is the only system that composes an answer rather than returning a record, which is a different task and may be why an extraction metric scores it badly",
+        "its premise verdict and current/historical/transition model are the mechanism this project came to compare, and none of that was measured"
+      ]
+    },
+    "aamr": {
+      "verdict": "HOLD",
+      "because": [
+        "0 of 4, and it stored nothing at all: 996 user turns produced zero addresses, so the retrieval half never ran",
+        "as a scored competitor it is finished, which was already on the record as a registered negative"
+      ],
+      "against_dropping": [
+        "it costs nothing and it is the arena's floor. Without it the judge's empty-response defect would not have been found",
+        "a zero-cost arm on every future run is how the next metric artefact gets caught"
+      ]
+    },
+    "graphiti": {
+      "verdict": "HOLD",
+      "because": [
+        "BLOCKED on deployment; not measured on anything"
+      ],
+      "against_dropping": [
+        "its temporal model is why it is in this arena, and Hindsight answering the temporal unit is exactly the signal that makes a temporal-graph system worth reaching for",
+        "unblocking it costs infrastructure, not benchmark spend"
+      ]
+    }
+  },
+  "decision_basis": "not accuracy alone. At four units accuracy separates almost nothing, so the decision reads cost, query behaviour, context volume, evidence behaviour, cost shape and operational state together"
+}

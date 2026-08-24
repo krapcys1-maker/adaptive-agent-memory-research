@@ -1,0 +1,9 @@
+{
+  "salt": "arena-pilot-judge-v1",
+  "mapping": {
+    "aamr": "candidate_M_e703",
+    "mem0": "candidate_T_a3d5",
+    "cupmem": "candidate_M_0f95",
+    "hindsight": "candidate_B_550e"
+  }
+}
