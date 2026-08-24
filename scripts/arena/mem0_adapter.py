@@ -156,6 +156,13 @@ class Mem0Adapter:
                 # order retrieved. Reported raw so the harness can map evidence
                 # back to a corpus session mechanically, by date, rather than by
                 # guessing which passage a memory came from.
+                # The delivered context itself, not merely its size. Counting
+                # tokens and discarding the text made a later experiment
+                # impossible: the fixed-reader run needed exactly this and the
+                # stores had already been reset per unit, so nothing could be
+                # looked up. A measurement that cannot be re-read is a
+                # measurement that can only be taken once.
+                "context_texts": list(dict.fromkeys(texts)),
                 "evidence_times": [
                     str((item.get("metadata") or {}).get("timestamp", "") or "")
                     for item in results],

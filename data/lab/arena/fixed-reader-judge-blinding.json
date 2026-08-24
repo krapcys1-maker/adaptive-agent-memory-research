@@ -1,0 +1,6 @@
+{
+  "salt": "arena-fixed-reader-judge-v1",
+  "mapping": {
+    "baseline": "candidate_A_f6cd"
+  }
+}

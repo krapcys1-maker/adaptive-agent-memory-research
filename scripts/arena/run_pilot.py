@@ -581,6 +581,12 @@ def main() -> int:
                 "question_id": unit["question_id"], "question": unit.get("question"),
                 "gold": gold, "answer": answer.text, "repeat_answer": repeat.text,
                 "evidence_ids": answer.evidence_ids,
+                # What the system actually put in front of its reader, in the
+                # order it delivered it. Without this a later experiment can only
+                # re-run retrieval, and re-running retrieval is not the same
+                # measurement.
+                "context_texts": answer.system_metadata.get("context_texts"),
+                "evidence_times": answer.system_metadata.get("evidence_times"),
                 "gold_session_ids": unit.get("answer_session_ids"),
             })
 

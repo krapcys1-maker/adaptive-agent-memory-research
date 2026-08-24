@@ -265,6 +265,13 @@ class HindsightAdapter:
                 # The event time each recalled memory carries, in the order
                 # recalled. Reported raw so the harness can map evidence back to a
                 # corpus session by date rather than by guessing.
+                # The delivered context itself, not merely its size. Counting
+                # tokens and discarding the text made a later experiment
+                # impossible: the fixed-reader run needed exactly this and the
+                # stores had already been reset per unit, so nothing could be
+                # looked up. A measurement that cannot be re-read is a
+                # measurement that can only be taken once.
+                "context_texts": list(dict.fromkeys(texts)),
                 "evidence_times": [
                     str(item.get("mentioned_at") or item.get("date") or "")
                     for item in results],

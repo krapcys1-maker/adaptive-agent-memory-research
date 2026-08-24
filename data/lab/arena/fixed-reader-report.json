@@ -1,0 +1,142 @@
+{
+  "artifact": "arena-fixed-reader-report",
+  "status": "PARTIAL \u2014 memory arms BLOCKED",
+  "runnable_arms": {
+    "baseline": 10,
+    "mem0": 0,
+    "hindsight": 0
+  },
+  "blocker": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement",
+  "totals": {
+    "baseline": 0,
+    "mem0": 2,
+    "hindsight": 4
+  },
+  "per_type": {
+    "multi-session": {
+      "baseline": 0,
+      "mem0": 0,
+      "hindsight": 0,
+      "n": 2
+    },
+    "temporal-reasoning": {
+      "baseline": 0,
+      "mem0": 0,
+      "hindsight": 1,
+      "n": 3
+    },
+    "single-session-user": {
+      "baseline": 0,
+      "mem0": 0,
+      "hindsight": 1,
+      "n": 2
+    },
+    "knowledge-update": {
+      "baseline": 0,
+      "mem0": 2,
+      "hindsight": 2,
+      "n": 3
+    }
+  },
+  "per_probe": [
+    {
+      "slot": "short",
+      "type": "multi-session",
+      "baseline": false,
+      "mem0_gold": "UNKNOWN",
+      "mem0": false,
+      "hindsight_gold": "UNKNOWN",
+      "hindsight": false
+    },
+    {
+      "slot": "medium",
+      "type": "temporal-reasoning",
+      "baseline": false,
+      "mem0_gold": "UNKNOWN",
+      "mem0": false,
+      "hindsight_gold": "UNKNOWN",
+      "hindsight": true
+    },
+    {
+      "slot": "long",
+      "type": "single-session-user",
+      "baseline": false,
+      "mem0_gold": "UNKNOWN",
+      "mem0": false,
+      "hindsight_gold": "UNKNOWN",
+      "hindsight": false
+    },
+    {
+      "slot": "update",
+      "type": "knowledge-update",
+      "baseline": false,
+      "mem0_gold": "UNKNOWN",
+      "mem0": true,
+      "hindsight_gold": "UNKNOWN",
+      "hindsight": true
+    },
+    {
+      "slot": "temporal-reasoning-1",
+      "type": "temporal-reasoning",
+      "baseline": false,
+      "mem0_gold": true,
+      "mem0": false,
+      "hindsight_gold": true,
+      "hindsight": false
+    },
+    {
+      "slot": "temporal-reasoning-2",
+      "type": "temporal-reasoning",
+      "baseline": false,
+      "mem0_gold": true,
+      "mem0": false,
+      "hindsight_gold": true,
+      "hindsight": false
+    },
+    {
+      "slot": "knowledge-update-1",
+      "type": "knowledge-update",
+      "baseline": false,
+      "mem0_gold": true,
+      "mem0": false,
+      "hindsight_gold": true,
+      "hindsight": true
+    },
+    {
+      "slot": "knowledge-update-2",
+      "type": "knowledge-update",
+      "baseline": false,
+      "mem0_gold": "UNOBSERVABLE",
+      "mem0": true,
+      "hindsight_gold": "UNOBSERVABLE",
+      "hindsight": false
+    },
+    {
+      "slot": "multi-session-1",
+      "type": "multi-session",
+      "baseline": false,
+      "mem0_gold": true,
+      "mem0": false,
+      "hindsight_gold": true,
+      "hindsight": false
+    },
+    {
+      "slot": "single-session-user-1",
+      "type": "single-session-user",
+      "baseline": false,
+      "mem0_gold": false,
+      "mem0": false,
+      "hindsight_gold": true,
+      "hindsight": true
+    }
+  ],
+  "memory_helped": [
+    "medium",
+    "update",
+    "knowledge-update-1",
+    "knowledge-update-2",
+    "single-session-user-1"
+  ],
+  "memory_hurt": [],
+  "caveat": "the mem0 and hindsight columns are WITHOUT the fixed reader \u2014 they are the ten-unit results, where each system's answer is its top stored memory. They are not comparable to the baseline as reader-vs-reader; the comparison the experiment was designed for could not run"
+}

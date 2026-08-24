@@ -1,0 +1,8 @@
+{
+  "salt": "arena-fixed-reader-v1",
+  "mapping": {
+    "mem0": "context_H_8de5",
+    "hindsight": "context_L_03cd",
+    "baseline": "context_O_774d"
+  }
+}

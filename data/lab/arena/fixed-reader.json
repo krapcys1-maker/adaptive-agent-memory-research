@@ -1,0 +1,241 @@
+{
+  "artifact": "arena-fixed-reader",
+  "recorded_at": "2026-08-24T04:16:27+00:00",
+  "selection": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "question": "does a common reader change the Mem0/Hindsight comparison, and does memory beat a reader working from its own priors",
+  "reader": {
+    "model": "deepseek-chat",
+    "provider": "DeepSeek",
+    "system_prompt": "You are answering a question using the provided memory context.\n\nUse the memory context as the primary source of evidence.\nAnswer the question directly and concisely.\nDo not mention the memory system or the retrieval process.\nIf the context does not contain enough information, say that the answer cannot be determined from the provided context.",
+    "system_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+    "parameters": {
+      "temperature": 0,
+      "max_tokens": 300
+    },
+    "identical_across_arms": true,
+    "one_generation_per_context": true,
+    "variance": "one generation per context at this stage. Any single output that turns out to carry a conclusion is marked as needing replication rather than multiplied now"
+  },
+  "blinding": {
+    "salt": "arena-fixed-reader-v1",
+    "mapping_file": "fixed-reader-blinding.json",
+    "note": "the reader is told only the question and the context"
+  },
+  "arms": {
+    "mem0": 0,
+    "hindsight": 0,
+    "baseline": 10
+  },
+  "unobservable": [
+    {
+      "arm": "mem0",
+      "question_id": "ba358f49",
+      "slot": "short",
+      "question_type": "multi-session",
+      "question": "How many years will I be when my friend Rachel gets married?",
+      "gold": "33",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "ba358f49",
+      "slot": "short",
+      "question_type": "multi-session",
+      "question": "How many years will I be when my friend Rachel gets married?",
+      "gold": "33",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "mem0",
+      "question_id": "gpt4_98f46fc6",
+      "slot": "medium",
+      "question_type": "temporal-reasoning",
+      "question": "Which event did I participate in first, the charity gala or the charity bake sale?",
+      "gold": "I participated in the charity bake sale first.",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "gpt4_98f46fc6",
+      "slot": "medium",
+      "question_type": "temporal-reasoning",
+      "question": "Which event did I participate in first, the charity gala or the charity bake sale?",
+      "gold": "I participated in the charity bake sale first.",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "mem0",
+      "question_id": "58bf7951",
+      "slot": "long",
+      "question_type": "single-session-user",
+      "question": "What play did I attend at the local community theater?",
+      "gold": "The Glass Menagerie",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "58bf7951",
+      "slot": "long",
+      "question_type": "single-session-user",
+      "question": "What play did I attend at the local community theater?",
+      "gold": "The Glass Menagerie",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "mem0",
+      "question_id": "6a27ffc2",
+      "slot": "update",
+      "question_type": "knowledge-update",
+      "question": "How many videos of Corey Schafer's Python programming series have I completed so far?",
+      "gold": "30",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "6a27ffc2",
+      "slot": "update",
+      "question_type": "knowledge-update",
+      "question": "How many videos of Corey Schafer's Python programming series have I completed so far?",
+      "gold": "30",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "mem0",
+      "question_id": "gpt4_f420262c",
+      "slot": "temporal-reasoning-1",
+      "question_type": "temporal-reasoning",
+      "question": "What is the order of airlines I flew with from earliest to latest before today?",
+      "gold": "JetBlue, Delta, United, American Airlines",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "gpt4_f420262c",
+      "slot": "temporal-reasoning-1",
+      "question_type": "temporal-reasoning",
+      "question": "What is the order of airlines I flew with from earliest to latest before today?",
+      "gold": "JetBlue, Delta, United, American Airlines",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "mem0",
+      "question_id": "gpt4_f49edff3",
+      "slot": "temporal-reasoning-2",
+      "question_type": "temporal-reasoning",
+      "question": "Which three events happened in the order from first to last: the day I helped my friend prepare the nursery, the day I helped my cousin pick out stuff for her baby shower, and the day I ordered a customized phone case for my friend's birthday?",
+      "gold": "First, I helped my friend prepare the nursery, then I helped my cousin pick out stuff for her baby shower, and lastly, I ordered a customized phone case for my friend's birthday.",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "gpt4_f49edff3",
+      "slot": "temporal-reasoning-2",
+      "question_type": "temporal-reasoning",
+      "question": "Which three events happened in the order from first to last: the day I helped my friend prepare the nursery, the day I helped my cousin pick out stuff for her baby shower, and the day I ordered a customized phone case for my friend's birthday?",
+      "gold": "First, I helped my friend prepare the nursery, then I helped my cousin pick out stuff for her baby shower, and lastly, I ordered a customized phone case for my friend's birthday.",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "mem0",
+      "question_id": "eace081b",
+      "slot": "knowledge-update-1",
+      "question_type": "knowledge-update",
+      "question": "Where am I planning to stay for my birthday trip to Hawaii?",
+      "gold": "Oahu",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "eace081b",
+      "slot": "knowledge-update-1",
+      "question_type": "knowledge-update",
+      "question": "Where am I planning to stay for my birthday trip to Hawaii?",
+      "gold": "Oahu",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "mem0",
+      "question_id": "69fee5aa",
+      "slot": "knowledge-update-2",
+      "question_type": "knowledge-update",
+      "question": "How many pre-1920 American coins do I have in my collection?",
+      "gold": "38",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "69fee5aa",
+      "slot": "knowledge-update-2",
+      "question_type": "knowledge-update",
+      "question": "How many pre-1920 American coins do I have in my collection?",
+      "gold": "38",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "mem0",
+      "question_id": "gpt4_59c863d7",
+      "slot": "multi-session-1",
+      "question_type": "multi-session",
+      "question": "How many model kits have I worked on or bought?",
+      "gold": "I have worked on or bought five model kits. The scales of the models are: Revell F-15 Eagle (scale not mentioned), Tamiya 1/48 scale Spitfire Mk.V, 1/16 scale German Tiger I tank, 1/72 scale B-29 bomber, and 1/24 scale '69 Camaro.",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "gpt4_59c863d7",
+      "slot": "multi-session-1",
+      "question_type": "multi-session",
+      "question": "How many model kits have I worked on or bought?",
+      "gold": "I have worked on or bought five model kits. The scales of the models are: Revell F-15 Eagle (scale not mentioned), Tamiya 1/48 scale Spitfire Mk.V, 1/16 scale German Tiger I tank, 1/72 scale B-29 bomber, and 1/24 scale '69 Camaro.",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "mem0",
+      "question_id": "311778f1",
+      "slot": "single-session-user-1",
+      "question_type": "single-session-user",
+      "question": "How many hours did I spend watching documentaries on Netflix last month?",
+      "gold": "10",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    },
+    {
+      "arm": "hindsight",
+      "question_id": "311778f1",
+      "slot": "single-session-user-1",
+      "question_type": "single-session-user",
+      "question": "How many hours did I spend watching documentaries on Netflix last month?",
+      "gold": "10",
+      "context": null,
+      "why": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement"
+    }
+  ],
+  "unobservable_count": 20,
+  "cost": {
+    "calls": 10,
+    "prompt_tokens": 868,
+    "completion_tokens": 251,
+    "usd": 0.00051,
+    "cap_usd": 0.3,
+    "projected_usd": 0.003596
+  },
+  "stopped_by_cap": null
+}
