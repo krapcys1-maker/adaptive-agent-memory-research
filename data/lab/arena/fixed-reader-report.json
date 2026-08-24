@@ -1,142 +1,394 @@
 {
   "artifact": "arena-fixed-reader-report",
-  "status": "PARTIAL \u2014 memory arms BLOCKED",
-  "runnable_arms": {
-    "baseline": 10,
-    "mem0": 0,
-    "hindsight": 0
+  "selection": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "reader": {
+    "model": "deepseek-chat",
+    "provider": "DeepSeek",
+    "system_prompt": "You are answering a question using the provided memory context.\n\nUse the memory context as the primary source of evidence.\nAnswer the question directly and concisely.\nDo not mention the memory system or the retrieval process.\nIf the context does not contain enough information, say that the answer cannot be determined from the provided context.",
+    "system_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+    "parameters": {
+      "temperature": 0,
+      "max_tokens": 300
+    },
+    "identical_across_arms": true,
+    "one_generation_per_context": true,
+    "variance": "one generation per context at this stage. Any single output that turns out to carry a conclusion is marked as needing replication rather than multiplied now"
   },
-  "blocker": "the delivered context text was not persisted for this probe, and the store was reset per unit, so it cannot be looked up. Re-running retrieval would be a different measurement",
+  "cost_usd": {
+    "reader": 0.013222,
+    "judging": 0.003163
+  },
+  "judge_stability": {
+    "answers": 30,
+    "stable": 30,
+    "disputed": 0
+  },
   "totals": {
-    "baseline": 0,
-    "mem0": 2,
-    "hindsight": 4
+    "mem0": {
+      "correct": "4/10",
+      "accuracy": 0.4,
+      "gold_in_context": "8/9",
+      "mean_gold_rank": 1.0,
+      "mean_precision_at_k": 0.578,
+      "mean_context_tokens": 105.6
+    },
+    "hindsight": {
+      "correct": "7/10",
+      "accuracy": 0.7,
+      "gold_in_context": "9/9",
+      "mean_gold_rank": 10.44,
+      "mean_precision_at_k": 0.088,
+      "mean_context_tokens": 3116.8
+    },
+    "baseline": {
+      "correct": "0/10",
+      "accuracy": 0.0,
+      "gold_in_context": "UNKNOWN",
+      "mean_gold_rank": "UNKNOWN",
+      "mean_precision_at_k": "UNKNOWN",
+      "mean_context_tokens": "UNKNOWN"
+    }
   },
   "per_type": {
-    "multi-session": {
-      "baseline": 0,
-      "mem0": 0,
-      "hindsight": 0,
-      "n": 2
+    "knowledge-update": {
+      "n": 3,
+      "mem0": "2/3",
+      "hindsight": "2/3",
+      "baseline": "0/3"
     },
-    "temporal-reasoning": {
-      "baseline": 0,
-      "mem0": 0,
-      "hindsight": 1,
-      "n": 3
+    "multi-session": {
+      "n": 2,
+      "mem0": "0/2",
+      "hindsight": "1/2",
+      "baseline": "0/2"
     },
     "single-session-user": {
-      "baseline": 0,
-      "mem0": 0,
-      "hindsight": 1,
-      "n": 2
+      "n": 2,
+      "mem0": "1/2",
+      "hindsight": "2/2",
+      "baseline": "0/2"
     },
-    "knowledge-update": {
-      "baseline": 0,
-      "mem0": 2,
-      "hindsight": 2,
-      "n": 3
+    "temporal-reasoning": {
+      "n": 3,
+      "mem0": "1/3",
+      "hindsight": "2/3",
+      "baseline": "0/3"
     }
+  },
+  "failure_decomposition": {
+    "BOTH_MEMORY_ARMS_CORRECT": 3,
+    "BOTH_MEMORY_ARMS_WRONG": 2,
+    "MEMORY_ASSISTED_SUCCESS": 8,
+    "RETRIEVAL_FAILURE:mem0": 1,
+    "RETRIEVED_READER_WRONG:hindsight": 2,
+    "RETRIEVED_READER_WRONG:mem0": 4,
+    "UNKNOWN:hindsight": 1,
+    "UNKNOWN:mem0": 1
   },
   "per_probe": [
     {
+      "question_id": "ba358f49",
       "slot": "short",
       "type": "multi-session",
-      "baseline": false,
-      "mem0_gold": "UNKNOWN",
-      "mem0": false,
-      "hindsight_gold": "UNKNOWN",
-      "hindsight": false
+      "arms": {
+        "mem0": {
+          "correct": false,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.3,
+          "context_tokens": 105,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": false,
+          "gold_in_context": true,
+          "gold_rank": 5,
+          "precision_at_k": 0.0327,
+          "context_tokens": 3220,
+          "evidence": 153
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "RETRIEVED_READER_WRONG:mem0",
+        "RETRIEVED_READER_WRONG:hindsight",
+        "BOTH_MEMORY_ARMS_WRONG"
+      ]
     },
     {
+      "question_id": "gpt4_98f46fc6",
       "slot": "medium",
       "type": "temporal-reasoning",
-      "baseline": false,
-      "mem0_gold": "UNKNOWN",
-      "mem0": false,
-      "hindsight_gold": "UNKNOWN",
-      "hindsight": true
+      "arms": {
+        "mem0": {
+          "correct": false,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.9,
+          "context_tokens": 92,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 3,
+          "precision_at_k": 0.0854,
+          "context_tokens": 3237,
+          "evidence": 164
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "RETRIEVED_READER_WRONG:mem0",
+        "MEMORY_ASSISTED_SUCCESS"
+      ]
     },
     {
+      "question_id": "58bf7951",
       "slot": "long",
       "type": "single-session-user",
-      "baseline": false,
-      "mem0_gold": "UNKNOWN",
-      "mem0": false,
-      "hindsight_gold": "UNKNOWN",
-      "hindsight": false
+      "arms": {
+        "mem0": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.7,
+          "context_tokens": 108,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.0563,
+          "context_tokens": 3117,
+          "evidence": 142
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "BOTH_MEMORY_ARMS_CORRECT",
+        "MEMORY_ASSISTED_SUCCESS"
+      ]
     },
     {
+      "question_id": "6a27ffc2",
       "slot": "update",
       "type": "knowledge-update",
-      "baseline": false,
-      "mem0_gold": "UNKNOWN",
-      "mem0": true,
-      "hindsight_gold": "UNKNOWN",
-      "hindsight": true
+      "arms": {
+        "mem0": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.3,
+          "context_tokens": 84,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.0272,
+          "context_tokens": 3077,
+          "evidence": 147
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "BOTH_MEMORY_ARMS_CORRECT",
+        "MEMORY_ASSISTED_SUCCESS"
+      ]
     },
     {
+      "question_id": "gpt4_f420262c",
       "slot": "temporal-reasoning-1",
       "type": "temporal-reasoning",
-      "baseline": false,
-      "mem0_gold": true,
-      "mem0": false,
-      "hindsight_gold": true,
-      "hindsight": false
+      "arms": {
+        "mem0": {
+          "correct": false,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 1.0,
+          "context_tokens": 126,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.1799,
+          "context_tokens": 3095,
+          "evidence": 139
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "RETRIEVED_READER_WRONG:mem0",
+        "MEMORY_ASSISTED_SUCCESS"
+      ]
     },
     {
+      "question_id": "gpt4_f49edff3",
       "slot": "temporal-reasoning-2",
       "type": "temporal-reasoning",
-      "baseline": false,
-      "mem0_gold": true,
-      "mem0": false,
-      "hindsight_gold": true,
-      "hindsight": false
+      "arms": {
+        "mem0": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.3,
+          "context_tokens": 122,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": false,
+          "gold_in_context": true,
+          "gold_rank": 8,
+          "precision_at_k": 0.1006,
+          "context_tokens": 3139,
+          "evidence": 159
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "RETRIEVED_READER_WRONG:hindsight",
+        "MEMORY_ASSISTED_SUCCESS"
+      ]
     },
     {
+      "question_id": "eace081b",
       "slot": "knowledge-update-1",
       "type": "knowledge-update",
-      "baseline": false,
-      "mem0_gold": true,
-      "mem0": false,
-      "hindsight_gold": true,
-      "hindsight": true
+      "arms": {
+        "mem0": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.7,
+          "context_tokens": 85,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 0.1168,
+          "context_tokens": 3096,
+          "evidence": 137
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "BOTH_MEMORY_ARMS_CORRECT",
+        "MEMORY_ASSISTED_SUCCESS"
+      ]
     },
     {
+      "question_id": "69fee5aa",
       "slot": "knowledge-update-2",
       "type": "knowledge-update",
-      "baseline": false,
-      "mem0_gold": "UNOBSERVABLE",
-      "mem0": true,
-      "hindsight_gold": "UNOBSERVABLE",
-      "hindsight": false
+      "arms": {
+        "mem0": {
+          "correct": false,
+          "gold_in_context": "UNOBSERVABLE",
+          "gold_rank": "UNOBSERVABLE",
+          "precision_at_k": "UNOBSERVABLE",
+          "context_tokens": 92,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": false,
+          "gold_in_context": "UNOBSERVABLE",
+          "gold_rank": "UNOBSERVABLE",
+          "precision_at_k": "UNOBSERVABLE",
+          "context_tokens": 3139,
+          "evidence": 172
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "UNKNOWN:mem0",
+        "UNKNOWN:hindsight",
+        "BOTH_MEMORY_ARMS_WRONG"
+      ]
     },
     {
+      "question_id": "gpt4_59c863d7",
       "slot": "multi-session-1",
       "type": "multi-session",
-      "baseline": false,
-      "mem0_gold": true,
-      "mem0": false,
-      "hindsight_gold": true,
-      "hindsight": false
+      "arms": {
+        "mem0": {
+          "correct": false,
+          "gold_in_context": true,
+          "gold_rank": 1,
+          "precision_at_k": 1.0,
+          "context_tokens": 131,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 5,
+          "precision_at_k": 0.1832,
+          "context_tokens": 3054,
+          "evidence": 131
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "RETRIEVED_READER_WRONG:mem0",
+        "MEMORY_ASSISTED_SUCCESS"
+      ]
     },
     {
+      "question_id": "311778f1",
       "slot": "single-session-user-1",
       "type": "single-session-user",
-      "baseline": false,
-      "mem0_gold": false,
-      "mem0": false,
-      "hindsight_gold": true,
-      "hindsight": true
+      "arms": {
+        "mem0": {
+          "correct": false,
+          "gold_in_context": false,
+          "gold_rank": null,
+          "precision_at_k": 0.0,
+          "context_tokens": 111,
+          "evidence": 10
+        },
+        "hindsight": {
+          "correct": true,
+          "gold_in_context": true,
+          "gold_rank": 69,
+          "precision_at_k": 0.0088,
+          "context_tokens": 2994,
+          "evidence": 114
+        },
+        "baseline": {
+          "correct": false
+        }
+      },
+      "classes": [
+        "RETRIEVAL_FAILURE:mem0",
+        "MEMORY_ASSISTED_SUCCESS"
+      ]
     }
   ],
-  "memory_helped": [
-    "medium",
-    "update",
-    "knowledge-update-1",
-    "knowledge-update-2",
-    "single-session-user-1"
-  ],
-  "memory_hurt": [],
-  "caveat": "the mem0 and hindsight columns are WITHOUT the fixed reader \u2014 they are the ten-unit results, where each system's answer is its top stored memory. They are not comparable to the baseline as reader-vs-reader; the comparison the experiment was designed for could not run"
+  "is_a_leaderboard": false,
+  "caveat": "ten units, one reader generation per context, a binary judge and a confirmatory sample. Any single output that carries a conclusion is marked as needing replication rather than treated as a rate"
 }

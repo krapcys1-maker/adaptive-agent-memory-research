@@ -1,0 +1,7 @@
+{
+  "salt": "arena-fixed-reader-judge-v2",
+  "mapping": {
+    "mem0": "candidate_Y_0720",
+    "hindsight": "candidate_I_a14c"
+  }
+}
