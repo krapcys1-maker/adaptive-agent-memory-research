@@ -1,0 +1,33 @@
+{
+  "artifact": "autonomous-research-budget-v1",
+  "hard_total_cap_usd": 10.00,
+  "preferred_total_usd": [3, 6],
+  "reserve_usd": 1.50,
+  "started_at_commit": "96336ea9ced6a7d8e957d47406ab14d80be54f92",
+  "cap_scope_prefix_convention": "autoresearch tracked via per-experiment cap_scope in data/lab/arena/spend-ledger.jsonl; this file summarizes decisions and running totals",
+  "stages": [
+    {
+      "experiment_id": "mechb-v1",
+      "purpose": "MECHANISM_B_STATE_SUPERSESSION_V1 original exploratory run, 12 preregistered probes",
+      "model": "deepseek-chat",
+      "cap_scope": "mechb-v1-",
+      "cost_usd": 0.022315,
+      "cumulative_cost_usd": 0.022315,
+      "decision_produced": "FAIL gate technically triggered (net repairs = 0); zero-cost archaeology required before deciding repair vs drop"
+    },
+    {
+      "experiment_id": "mechb-v1-repair",
+      "purpose": "one permitted repair retest: filler-spaced turns, testing the adjacency-causes-consolidation hypothesis",
+      "model": "deepseek-chat",
+      "cap_scope": "mechb-v1-repair-",
+      "cost_usd": 0.041754,
+      "cumulative_cost_usd": 0.064069,
+      "decision_produced": "repair hypothesis falsified; mechanism core action never fired in either run; DROP (V1 harness, this host), mechanism logic unexercised not refuted"
+    }
+  ],
+  "remaining_usd": 9.935931,
+  "remaining_after_reserve_usd": 8.435931,
+  "mechanisms_closed": ["Mechanism B: CURRENT_STATE_OVER_HISTORY -- DROP (V1 harness)"],
+  "consecutive_failed_families_count": 1,
+  "note": "circuit breaker (section 23B) triggers a campaign STOP at 3 consecutive failed families; Mechanism B counts as 1. Proceeding to Stage 3: select mechanism 2."
+}

@@ -109,8 +109,28 @@ Cumulative, append-oriented. Entries are added or superseded (with a `superseded
 - **RISK / COUNTEREXAMPLE TO GUARD AGAINST:** state-key over-matching could collapse two genuinely distinct, co-existing facts (different entities sharing surface vocabulary) into a false supersession — this is the same shape of error as `HARMFUL_SIBLING_DISTRACTION` (Entry C) but on the temporal-validity axis rather than the entity-identity axis. V1's R4 adversarial control probes are specifically designed to catch this before any positive result could be trusted.
 - **LAST_UPDATED:** 2026-08-24.
 - **SUPERSEDES:** none.
+- **SUPERSEDED_BY:** Entry G (Stage 1 exploratory test run and closed).
+- **NEXT_TRIGGER:** superseded — see Entry G.
+
+---
+
+## Entry G — `CURRENT_STATE_OVER_HISTORY` (Stage 1 result: harness precondition never met, DROP)
+
+- **MECHANISM:** same as Entry F, which this supersedes with a measured (not merely designed) status.
+- **REGIME:** `STATE_KEY_MATCHED_WITH_TIMESTAMP_ORDERING` — but empirically, this regime **never arose** in either the original or repaired Stage 1 run: `current_history_split` (the mechanism's core action) fired **zero times across 24 probe-executions**.
+- **FAILURE_TARGETED:** `STALE_STATE_CONFUSION` — untested, not refuted (see below).
+- **OBSERVED_EFFECT:** `UNEXERCISED, NOT NEGATIVE`. Original run: BASE 12/12, `+B` 12/12, net repairs 0 — explained entirely by Mem0 1.0.6's own write-time ADD/UPDATE/DELETE reconciliation fully consolidating 8 of 9 R1/R2/R3 probes' sequential same-key statements into a single surviving memory before the mechanism ever saw competing items (verified at $0 via `memory.get_all()` reads on the persisted store). One repair retest (filler-spaced turns, the one permitted repair per the campaign's repair-budget rule) tested the hypothesis that turn-adjacency caused this — **the hypothesis was wrong**: state-carrying facts still fully consolidated to one item regardless of spacing, because Mem0's "existing memories" comparison is semantic/embedding-based, not proximity-based. One nominal flip (`RET3_DIET`, BASE wrong → `+B` correct) traced to a context-reordering side effect of the passthrough implementation, not the intended Current/History logic — not counted as a real repair.
+- **SOURCE_EXPERIMENTS:** [`MECHANISM_B_STAGE1_RESULTS_V1.md`](MECHANISM_B_STAGE1_RESULTS_V1.md); `data/lab/arena/mechanism-b-state-supersession-v1/{stage1-raw.json, stage1-archaeology.json, stage1-repair-raw.json}`. Spend: $0.022315 (original) + $0.041754 (repair) = $0.064069.
+- **EXTERNAL_SUPPORT:** unchanged from Entry F.
+- **CONFIDENCE:** HIGH that this specific V1 harness on this host (Mem0 1.0.6) cannot exercise the mechanism as designed. LOW/UNKNOWN on the mechanism's own merit — it was never falsified, only untested (its logic behaved correctly in every case it had material to act on: 0/3 false supersession on R4 controls across both runs, correct tie-safe no-guess fallback on `SUP3`).
+- **KNOWN_COUNTEREXAMPLES:** N/A for the mechanism itself. For the *host*: `RET1_JOB` shows Mem0's own write-time consolidation is not even reliably recency-correct (kept the middle of three sequential facts, not the latest).
+- **NEW_INFRASTRUCTURE_FINDING (not previously recorded):** Mem0 1.0.6's UPDATE path can silently overwrite `metadata.timestamp` on an *existing* memory to match a later, textually-unrelated `add()` call's date, even when that memory's own text is left unchanged (`SUP3`: "Got engaged to my partner" kept its wording, lost its true date). This weakens `evidence_times` as a trustworthy recency signal for *any* mechanism that depends on it, including `TEMPORAL_ANCHOR_AT_CONTEXT` (Entries A/B).
+- **STATUS:** `DROP (V1 harness, this host) — MECHANISM_LOGIC_UNEXERCISED, NOT REFUTED`.
+- **RISK / COUNTEREXAMPLE TO GUARD AGAINST:** unchanged from Entry F (state-key over-matching), still untested since the mechanism never ran its core path.
+- **LAST_UPDATED:** 2026-08-24.
+- **SUPERSEDES:** Entry F.
 - **SUPERSEDED_BY:** none.
-- **NEXT_TRIGGER:** a future turn separately authorizing the actual `MECHANISM_B_STATE_SUPERSESSION_V1` run (12 probes, BASE vs +B, projected ≈$0.15–0.25, recommended cap $0.30). Not authorized by this entry.
+- **NEXT_TRIGGER:** a future harness that either bypasses/observes Mem0's own update-decision step directly, or builds probes from real, far-separated multi-session LongMemEval conversations (genuinely untested whether that changes Mem0's consolidation behavior), would be required before this mechanism could be meaningfully tested on Mem0 again. Not scheduled by this entry. The infrastructure finding (metadata-timestamp overwrite) should be checked before trusting `evidence_times` in any future experiment.
 
 ---
 
