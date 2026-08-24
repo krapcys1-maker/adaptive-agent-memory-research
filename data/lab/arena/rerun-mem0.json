@@ -36,14 +36,15 @@
       "question_type": "multi-session",
       "slot": "short",
       "sessions_available": 41,
-      "sessions_ingested": 16,
-      "user_turns_ingested": 73,
+      "sessions_ingested": 41,
+      "user_turns_ingested": 204,
       "sessions_skipped_no_user_turn": 0,
       "ingest": {
-        "model_calls": 28,
-        "input_tokens": 42517,
-        "output_tokens": 10966,
-        "wall_seconds": 74.32
+        "model_calls": 74,
+        "input_tokens": 121753,
+        "output_tokens": 36484,
+        "wall_seconds": 232.13,
+        "usd": 0.073
       },
       "per_session_calls": [
         2,
@@ -61,32 +62,118 @@
         2,
         2,
         2,
-        1
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
       ],
-      "status": "ingesting"
+      "status": "complete",
+      "state_digest_after_ingest_differs": true,
+      "stored_items": 220,
+      "query": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "wall_seconds": 0.03,
+        "fully_known": true,
+        "observability": {
+          "model_calls": "instrumented",
+          "input_tokens": "instrumented",
+          "output_tokens": "instrumented"
+        },
+        "repeat": {
+          "model_calls": 0,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "wall_seconds": 0.05,
+          "fully_known": true,
+          "observability": {
+            "model_calls": "instrumented",
+            "input_tokens": "instrumented",
+            "output_tokens": "instrumented"
+          }
+        },
+        "wall_seconds_measured": 0.08,
+        "usd": 0.0
+      },
+      "memory": {
+        "evidence_ids": 10,
+        "evidence_all_traceable": true,
+        "context_tokens": 105,
+        "context_tokens_measurable": true,
+        "context_tokens_is_floor": false,
+        "abstained": false,
+        "abstention_derivable": true,
+        "abstention_channel": "empty result set",
+        "premise_status": null,
+        "query_mutates_state": "read_only",
+        "output_reproducible": "true",
+        "declared_mutation_mode": "unknown"
+      },
+      "retrieval": {
+        "observable": true,
+        "gold_sessions": 2,
+        "retrieved": 10,
+        "evidence_mapped": 10,
+        "evidence_unmapped": 0,
+        "gold_in_context": true,
+        "gold_rank": 1,
+        "gold_hits": 3,
+        "precision_at_k": 0.3,
+        "distinct_sessions_retrieved": 8,
+        "stale_or_conflicting": "UNOBSERVABLE",
+        "stale_why": "the corpus marks answer sessions, not superseded ones; labelling staleness would require reading the passages"
+      },
+      "task": {
+        "crude_substring_match": false,
+        "metric": "substring containment of the gold answer, NOT LongMemEval's model judge. It under-counts every correct paraphrase and is a signal check, not a score",
+        "answer_chars": 42
+      }
     }
   ],
   "status": "running",
   "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
-  "spend_usd": 0.0235,
+  "spend_usd": 0.073,
   "meter_baseline": {
     "calls": 0,
     "prompt_tokens": 0,
     "completion_tokens": 0
   },
   "meter_baseline_usd": 0,
-  "provider_calls": 28,
+  "provider_calls": 74,
   "meter": {
-    "calls": 28,
+    "calls": 74,
     "refused_calls": 0,
-    "prompt_tokens": 42517,
-    "completion_tokens": 10966,
-    "usd": 0.023542,
+    "prompt_tokens": 121753,
+    "completion_tokens": 36484,
+    "usd": 0.073006,
     "unknown_usage_calls": 0,
     "arena_enforced_decoding": {
       "temperature": 0
     },
-    "decoding_overrides": 28,
+    "decoding_overrides": 74,
     "decoding_override_values": [
       "{\"temperature\": 0.1}"
     ],
@@ -97,8 +184,8 @@
   "meter_note": "`meter` holds the proxy's running totals, which include anything it served before this run. `spend_usd` and `provider_calls` are this run's own, taken as a delta from the baseline",
   "night_ledger": {
     "path": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\data\\lab\\arena\\spend-ledger.jsonl",
-    "total_usd": 6.114303,
-    "scoped_usd": 0.023542,
+    "total_usd": 6.163767,
+    "scoped_usd": 0.073006,
     "cap_scope": "rerun-",
     "total_cap_usd": 4.0,
     "by_run": {
@@ -109,8 +196,8 @@
       "pilot-judge": 0.004692,
       "hindsight-expansion": 2.664696,
       "fixed-reader": 0.000511,
-      "rerun-mem0-pilot": 0.023542
+      "rerun-mem0-pilot": 0.073001
     },
-    "calls": 4780
+    "calls": 4826
   }
 }

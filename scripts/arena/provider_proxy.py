@@ -256,9 +256,13 @@ def main() -> int:
     parser.add_argument("--run-id", default="proxy")
     parser.add_argument("--cap-usd", type=float, default=3.0)
     parser.add_argument("--total-cap-usd", type=float, default=10.0)
+    parser.add_argument("--cap-scope", default=None,
+                        help="prefix naming this experiment; the total cap counts "
+                             "only runs under it, not everything ever spent")
     args = parser.parse_args()
 
-    ledger = SpendLedger(total_cap_usd=args.total_cap_usd, run_id=args.run_id)
+    ledger = SpendLedger(total_cap_usd=args.total_cap_usd, run_id=args.run_id,
+                         cap_scope=args.cap_scope)
     server, state = serve(args.upstream, load_key(), args.port, ledger, args.cap_usd)
     print(f"arena proxy on http://127.0.0.1:{args.port}/v1 -> {args.upstream}; "
           f"run cap ${args.cap_usd}, night cap ${args.total_cap_usd}, "
