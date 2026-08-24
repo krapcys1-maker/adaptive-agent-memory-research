@@ -529,5 +529,13 @@
     "calls": 366
   },
   "superseded_by": "pilot-mem0.json",
-  "superseded_reason": "the state probe took Mem0's default get_all limit of 100 and read a truncated page. stored_items reported exactly 100 for every unit, evidence_all_traceable reported False on every unit, and query_mutates_state read_only rested on a fingerprint that covered a prefix of the store. The cost and task figures in this file are unaffected and were reproduced by the rerun; the memory figures are artefacts. Kept rather than deleted."
+  "superseded_reason": "the state probe took Mem0's default get_all limit of 100 and read a truncated page. stored_items reported exactly 100 for every unit, evidence_all_traceable reported False on every unit, and query_mutates_state read_only rested on a fingerprint that covered a prefix of the store. The cost and task figures in this file are unaffected and were reproduced by the rerun; the memory figures are artefacts. Kept rather than deleted.",
+  "contamination": {
+    "status": "INVALIDATED_BY_CROSS_UNIT_CONTAMINATION",
+    "reason": "Mem0's reset deleted at most 100 memories per call while every unit stored 220-392, so each unit ran against 120-292 residual memories from earlier units. 8 of 100 delivered evidence items came from other selection units, and residue also suppressed what Mem0 stored.",
+    "audit": "cross-unit-contamination-audit.json",
+    "kept": "not deleted and not overwritten; superseded when a clean rerun exists",
+    "hindsight_unaffected": true,
+    "scope": "all four units (already superseded for another reason)"
+  }
 }

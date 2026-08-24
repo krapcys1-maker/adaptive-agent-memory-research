@@ -1,0 +1,20 @@
+{
+  "artifact": "arena-contamination-rerun-projection",
+  "necessary": {
+    "mem0_10_unit_rerun": "REQUIRED. Every Mem0 number in the project rests on a contaminated store. One clean ingest regenerates the contexts and lets the compact arm, the breadth arms and the provenance arms all be rebuilt from it."
+  },
+  "not_necessary": {
+    "hindsight": "reset verified empty on all ten units and zero delivered evidence maps to another unit. Nothing to redo, and its context curve 4/6/6/7 stands.",
+    "question_only_baseline": "no memory involved; 0/10 stands",
+    "cupmem": "its engine reset reassigns its collections and the operational-fit run verified a byte-identical state digest either side of reset",
+    "aamr": "stored nothing at all on any unit"
+  },
+  "projection_usd": {
+    "mem0_10_unit_clean_rerun": 0.7637,
+    "fixed_reader_mem0_arm_10": 0.007,
+    "breadth_arms_500_1000_3000": 0.024,
+    "judging_all_new_mem0_arms": 0.012,
+    "total": 0.8067
+  },
+  "note": "the reader and judge arms are cheap because they consume persisted contexts. The ingest is the whole bill, as it has been throughout."
+}

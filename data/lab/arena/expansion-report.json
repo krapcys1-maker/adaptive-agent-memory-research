@@ -497,5 +497,13 @@
     "temporal-reasoning is 3 of 10 here against roughly 1 in 6 in the corpus, so the overall accuracy is a weighted average of a weighting we chose",
     "four units are reused pilot observations and six are new; provenance is recorded per cell",
     "retrieval metrics map evidence to sessions by date and are UNOBSERVABLE where a haystack repeats one"
-  ]
+  ],
+  "contamination": {
+    "status": "INVALIDATED_BY_CROSS_UNIT_CONTAMINATION",
+    "reason": "Mem0's reset deleted at most 100 memories per call while every unit stored 220-392, so each unit ran against 120-292 residual memories from earlier units. 8 of 100 delivered evidence items came from other selection units, and residue also suppressed what Mem0 stored.",
+    "audit": "cross-unit-contamination-audit.json",
+    "kept": "not deleted and not overwritten; superseded when a clean rerun exists",
+    "hindsight_unaffected": true,
+    "scope": "the mem0 column is affected; the hindsight column is not"
+  }
 }

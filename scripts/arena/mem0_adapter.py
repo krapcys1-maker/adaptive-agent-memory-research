@@ -91,14 +91,52 @@ class Mem0Adapter:
 
     # ----------------------------------------------------------------- contract
 
+    #: How many delete passes to attempt before giving up. Their `delete_all`
+    #: removes at most 100 rows per call and our units held 220-392, so one pass
+    #: was never enough; a bound rather than `while True` because a store that
+    #: stops shrinking must raise instead of spinning.
+    MAX_RESET_PASSES = 64
+
+    def _stored(self) -> int:
+        payload = self._memory.get_all(user_id=self._bank, limit=100_000)
+        rows = payload.get("results") if isinstance(payload, dict) else payload
+        return len(rows or [])
+
     def reset(self) -> None:
-        try:
+        """Empty the bank, and prove it before returning.
+
+        Their `delete_all` resolves the rows to remove with
+        `vector_store.list(filters=...)` and passes no limit, while that method
+        defaults to `limit=100`. One call therefore deletes at most a hundred
+        memories however many the store holds.
+
+        The first version of this method called it once and wrapped it in
+        `try/except Exception: pass`. Both halves were wrong. Every arena unit
+        stored 220-392 memories, so every reset left 120-292 behind, and by the
+        tenth unit four of ten delivered evidence items belonged to four
+        different earlier units — measured, not suspected. Contamination also
+        reached the write path: as residue grew, Mem0's reconciliation
+        increasingly chose UPDATE or NOOP over ADD, so later units stored fewer
+        of their own memories.
+
+        A reset either empties the store or raises. Silence is what let a
+        contaminated store produce ten units of results that looked fine.
+        """
+        for _ in range(self.MAX_RESET_PASSES):
+            before = self._stored()
+            if not before:
+                return
             self._memory.delete_all(user_id=self._bank)
-        except Exception:  # noqa: BLE001
-            # An empty scope raises in some backends. Nothing to clear is the
-            # state reset is for, so it is not an error — but it is also not
-            # silently assumed: the state probe checks the digest returned.
-            pass
+            if self._stored() >= before:
+                break  # no progress; a further pass would only spin
+        remaining = self._stored()
+        if remaining:
+            raise RuntimeError(
+                f"{self.name}: the bank {self._bank!r} could not be emptied — "
+                f"{remaining} memories remain after {self.MAX_RESET_PASSES} delete "
+                "passes. Continuing would let this unit's results carry the "
+                "previous unit's memories."
+            )
 
     def ingest(self, records: list[dict[str, Any]]) -> Cost:
         started = time.monotonic()

@@ -390,5 +390,13 @@
     }
   ],
   "is_a_leaderboard": false,
-  "caveat": "ten units, one reader generation per context, a binary judge and a confirmatory sample. Any single output that carries a conclusion is marked as needing replication rather than treated as a rate"
+  "caveat": "ten units, one reader generation per context, a binary judge and a confirmatory sample. Any single output that carries a conclusion is marked as needing replication rather than treated as a rate",
+  "contamination": {
+    "status": "INVALIDATED_BY_CROSS_UNIT_CONTAMINATION",
+    "reason": "Mem0's reset deleted at most 100 memories per call while every unit stored 220-392, so each unit ran against 120-292 residual memories from earlier units. 8 of 100 delivered evidence items came from other selection units, and residue also suppressed what Mem0 stored.",
+    "audit": "cross-unit-contamination-audit.json",
+    "kept": "not deleted and not overwritten; superseded when a clean rerun exists",
+    "hindsight_unaffected": true,
+    "scope": "the mem0 arm (4/10) rests on contaminated contexts; hindsight (7/10) and baseline (0/10) are unaffected"
+  }
 }

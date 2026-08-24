@@ -845,5 +845,13 @@
       "hindsight-expansion": 2.14492
     },
     "calls": 4365
+  },
+  "contamination": {
+    "status": "INVALIDATED_BY_CROSS_UNIT_CONTAMINATION",
+    "reason": "Mem0's reset deleted at most 100 memories per call while every unit stored 220-392, so each unit ran against 120-292 residual memories from earlier units. 8 of 100 delivered evidence items came from other selection units, and residue also suppressed what Mem0 stored.",
+    "audit": "cross-unit-contamination-audit.json",
+    "kept": "not deleted and not overwritten; superseded when a clean rerun exists",
+    "hindsight_unaffected": true,
+    "scope": "all six units"
   }
 }

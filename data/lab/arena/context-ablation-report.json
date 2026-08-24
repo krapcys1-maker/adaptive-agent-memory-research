@@ -269,5 +269,13 @@
     "status": "PROMOTE",
     "meaning": "the most justified next mechanism for an isolated test, not a proven one"
   },
-  "not_a_leaderboard": true
+  "not_a_leaderboard": true,
+  "contamination": {
+    "status": "INVALIDATED_BY_CROSS_UNIT_CONTAMINATION",
+    "reason": "Mem0's reset deleted at most 100 memories per call while every unit stored 220-392, so each unit ran against 120-292 residual memories from earlier units. 8 of 100 delivered evidence items came from other selection units, and residue also suppressed what Mem0 stored.",
+    "audit": "cross-unit-contamination-audit.json",
+    "kept": "not deleted and not overwritten; superseded when a clean rerun exists",
+    "hindsight_unaffected": true,
+    "scope": "every mem0 arm (compact 4/10, compact+raw 4/9, raw-only 3/9) rests on contaminated contexts; the hindsight context curve is unaffected"
+  }
 }
