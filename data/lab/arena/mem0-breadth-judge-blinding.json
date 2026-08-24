@@ -1,0 +1,9 @@
+{
+  "salt": "arena-mem0-breadth-judge-v1",
+  "mapping": {
+    "mem0_original": "candidate_D_361f",
+    "mem0_500": "candidate_E_87ce",
+    "mem0_1000": "candidate_L_0882",
+    "mem0_3000": "candidate_V_b5b6"
+  }
+}

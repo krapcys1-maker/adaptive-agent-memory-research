@@ -36,13 +36,20 @@ BUDGETS = (500, 1000, 3000)
 
 
 def truncate(items: list[str], budget: int) -> list[str]:
-    """Whole items, original order, while the next still fits."""
+    """Whole items, original order, while the next still fits.
+
+    Stops at the first item that does not fit rather than skipping past it,
+    so the result is always a genuine prefix of `items`. Scanning past an
+    oversized item to pack a smaller later one would make a "budget" arm not
+    a truncation of the ranking anymore but a repack of it — the same defect
+    class as reordering, just arrived at by omission instead of sorting.
+    """
     kept: list[str] = []
     used = 0
     for item in items:
         size = len(item.split())
         if used + size > budget:
-            continue
+            break
         kept.append(item)
         used += size
     return kept

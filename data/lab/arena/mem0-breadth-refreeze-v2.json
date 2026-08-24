@@ -1,0 +1,63 @@
+{
+  "artifact": "arena-mem0-breadth-refreeze-v2",
+  "supersedes": "mem0-clean-rerun-manifest.json (frozen_at 2026-08-24T06:15:20+00:00)",
+  "frozen_at": "2026-08-24T07:15:00+00:00",
+  "why_this_refreeze_exists": "the v1 manifest never covered mem0_breadth_arms.py or run_breadth_reader.py, because neither file existed yet at v1 freeze time. Both were then written and run in the same session without a refreeze. This is not a cap-wiring-only refreeze: while verifying it, a real bug was found in mem0_breadth_arms.py's truncate() (continue instead of break on overflow) and fixed. Recorded explicitly rather than glossed over.",
+  "cap_wiring_change_only": false,
+  "what_actually_changed_since_v1": {
+    "unchanged_verified_by_hash": [
+      "retrieval and ranking (mem0_adapter.py, mem0_probe.py, run_pilot.py all hash-identical to v1 and to clean-mem0.json's own recorded runner_digest/adapter_digest)",
+      "reader prompt and parameters (fixed_reader.py hash-identical to v1; run_breadth_reader.py imports READER_PROMPT/READER_PARAMS rather than restating them)",
+      "judge protocol templates, label rule and parameters (judge_pilot.py hash-identical to v1; run_breadth_judge.py imports them rather than restating them)",
+      "token budgets: native limit 10, 500, 1000, 3000 (unchanged)"
+    ],
+    "genuinely_new_since_v1": [
+      "mem0_breadth_arms.py: new file at v1 freeze time, now exists. No provider calls. Builds arms from clean-mem0.json's persisted native + deep contexts.",
+      "run_breadth_reader.py: new file at v1 freeze time, now exists. Adds the corrected 3-way cap split (--cap-usd run ceiling, --total-cap-usd scope ceiling, --cap-scope) that v1's sibling fixed_reader.py never had.",
+      "run_breadth_judge.py: new file, added this session. Imports judge_pilot.py's protocol unchanged and adds the same 3-way cap split, because judge_pilot.py's own SpendLedger call has no total_cap_usd/cap_scope and was never going to be scope-tracked otherwise."
+    ],
+    "bug_found_and_fixed_this_session": {
+      "where": "scripts/arena/mem0_breadth_arms.py, truncate()",
+      "defect": "used `continue` instead of `break` when an item did not fit the token budget, so it skipped an oversized item and kept scanning for a smaller later one instead of stopping. Violates the frozen truncation rule (whole items, ranked order, STOP on first overflow, no skip-on-overflow).",
+      "measured_impact": "17 of 30 (unit,budget) truncations at 500 and 1000 tokens produced a different kept-item set than the correct stop-on-overflow rule; 0 of 10 at 3000 tokens (every unit's full deep retrieval already fits under 3000, so no truncation ever triggers there). gold_in_context/gold_rank labels were unaffected for all 40 arms (0 changed) -- the bug changed which filler items surrounded the gold, not whether gold was retrieved.",
+      "same_latent_pattern_elsewhere_NOT_fixed_this_session": "scripts/arena/mechanism_ablation.py has byte-identical truncate() logic (also `continue`), which is what produced the reused Hindsight 4/6/6/7 curve. Not touched: Hindsight is out of scope for this experiment per explicit instruction not to rerun it. Flagged as an open question for a separate decision, not investigated further here.",
+      "fix": "changed continue to break; added tests/test_mem0_breadth_arms.py (5 tests) pinning the stop-on-overflow, prefix-only, whole-items-only behavior.",
+      "remediation": "arms rebuilt (free, no provider calls); only the 17 affected (arm,question_id) reader calls were re-run against corrected context (run_breadth_reader.py --arms mem0-breadth-arms-delta.json), not all 40; the 23 unaffected original answers were kept and merged in unchanged. The original flawed arms/outputs are retained on disk as *-SUPERSEDED-skip-on-overflow-bug.* for audit, not deleted."
+    }
+  },
+  "hashes": {
+    "git_revision": "5b2d5cb56c503f99a9555494fd941ef679b0018a",
+    "selection_sha256": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+    "selection_id": "arena-expansion-v1",
+    "adapter_sha256": "9788bba62b389ce062565367b55244787b27aeda39c37d837a5629a16541c917",
+    "runner_sha256": "b1f112ede7f9f8f05a135cef1ccb65534a8cc11dc37ad905c5cdb868a1f0bad2",
+    "probe_sha256": "90a07f4c9720bd8f4d2c7a8097eb6419c5db58807206bcd9f3d5ad58ba49b9ad",
+    "reader_file_sha256": "7e126afaa8cf4a0506df77af394639f68fb506df77e80704b3c976ae1b5a5d64",
+    "reader_prompt_string_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+    "judge_protocol_sha256": "3d17349cc6e2710475eaa818c6e4a57f8dd7412baa5f4b336087c0b789013703",
+    "mem0_breadth_arms_py_sha256_AFTER_FIX": "3da827201450fcee5f327e151a5ca2cd39255f325f5166596ee3d6759ea7c187",
+    "run_breadth_reader_py_sha256": "029ced28ed90bf5fb3d2b8925b86dea4f21892e639025ac694eb995f70e71330",
+    "run_breadth_judge_py_sha256": "7777a68d7933355050ab8be064ddc53952a61faf0ea4dc88e7583ce29f0307fc",
+    "clean_mem0_json_sha256": "4d0bba24270956f94e07c6ca7baa894a4d78e59e8b92b562a392b40d5b9c47aa",
+    "mem0_breadth_arms_json_sha256_AFTER_FIX": "4baf7bea922ba685c795457a7a258a8de6180e6dd205e197ac70d4b32bdf835d"
+  },
+  "budgets": {"original": "native limit 10", "500": 500, "1000": 1000, "3000": 3000},
+  "truncation_rule": "whole evidence items, original ranked order, add while the next fits; STOP (break) on first overflow; no skip-on-overflow; no re-ranking; no gold-aware selection",
+  "token_budget_rules": "identical to v1; unaffected by the bugfix, which changed which items are kept under an unchanged budget ceiling, not the ceiling itself",
+  "ranking_context_assembly_rules": "native = Mem0 limit=10 result verbatim; wider arms = prefix of one deeper limit=400 call on the same ranking, truncated by the (now-corrected) whole-item budget rule. Both calls read one clean ingest; no re-retrieval.",
+  "caps": {
+    "reader_run_cap_usd": 0.05,
+    "judge_run_cap_usd": 0.20,
+    "total_cap_usd": 1.00,
+    "cap_scope": "clean-"
+  },
+  "spend_at_refreeze": {
+    "clean_mem0_ingest": 0.740452,
+    "breadth_reader_original_plus_delta": 0.023023,
+    "breadth_judge": 0.004132,
+    "scoped_total_usd": 0.767607,
+    "remaining_under_cap_usd": 0.232393
+  },
+  "not_rerun": ["hindsight", "cupmem", "aamr", "baseline / question-only"],
+  "superseded_artifacts_stay_invalid": "every prior Mem0 artefact still keeps INVALIDATED_BY_CROSS_UNIT_CONTAMINATION; this refreeze does not restore any old Mem0 conclusion"
+}
