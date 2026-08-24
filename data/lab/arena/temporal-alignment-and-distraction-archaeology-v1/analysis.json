@@ -1,0 +1,285 @@
+{
+  "artifact": "arena-temporal-alignment-and-distraction-archaeology-v1",
+  "zero_cost": true,
+  "new_api_spend_usd": 0.0,
+  "source_experiments": {
+    "E1": "PM-20260824-2d603195 / docs/research/READ_SIDE_TEMPORAL_ANCHOR_V1.md",
+    "Stage2": "PM-20260824-8dc62d48 / docs/research/TEMPORAL_ANCHOR_FRESH_REPLICATION_V1.md, commit b45402a1984f236329279b54bd0b05c2f9612581"
+  },
+  "definitions": {
+    "SESSION_TIME": "timestamp of the session/message the memory item was formed from",
+    "EVENT_TIME": "the time of the event described in the fact",
+    "RESOLVED_EVENT_TIME": "an event time unambiguously derivable from the fact's own text plus a reference date",
+    "TEMPORAL_ALIGNMENT.ALIGNED": "session time is a good proxy for event time on this reasoning task",
+    "TEMPORAL_ALIGNMENT.DIVERGENT": "session time and event time differ in a way that could change the answer",
+    "TEMPORAL_ALIGNMENT.AMBIGUOUS": "cannot be safely determined from available evidence",
+    "TEMPORAL_ALIGNMENT.NON_TEMPORAL": "time is not material to the question"
+  },
+  "stage2_units": [
+    {
+      "unit_id": "01493427",
+      "question": "How many new postcards have I added to my collection since I started collecting again?",
+      "preregistered_regime": "TEMPORAL_POSITIVE",
+      "base_label": true,
+      "treatment_label": true,
+      "outcome": "UNCHANGED_CORRECT",
+      "session_timestamps_delivered": ["2023-11-30", "2023-08-11"],
+      "relevant_fact_text": [
+        "[2023-11-30] Has added 25 new postcards to collection since starting collecting again",
+        "[2023-11-30] Has 17 new postcards since starting collecting again"
+      ],
+      "event_time_status": "NOT_APPLICABLE",
+      "temporal_alignment": "NON_TEMPORAL",
+      "notes": "Gold (25) is a single pre-computed aggregate fact already stated verbatim in the store; a CONFLICTING competing count (17) sits at the same session anchor, so dates cannot disambiguate between them even in principle. Both arms correctly pick 25 regardless of anchoring -- consistent with a competing-facts pattern seen elsewhere in this research thread (E1 archaeology, Corey Schafer video count), not with temporal composition.",
+      "timestamp_used_by_reader": "NO",
+      "distractor_status": "NO_DISTRACTOR",
+      "distractor_source_item_ids": [],
+      "wrong_answer_traceability": "NOT_APPLICABLE (answer correct in both arms)",
+      "effect": "NEUTRAL",
+      "evidence_refs": ["data/lab/arena/stage2-fresh-replication/stage2-arms.json#01493427",
+                       "data/lab/arena/raw/stage2-reader/stage2_base.json#01493427",
+                       "data/lab/arena/raw/stage2-reader/stage2_time.json#01493427"]
+    },
+    {
+      "unit_id": "031748ae",
+      "question": "How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?",
+      "preregistered_regime": "TEMPORAL_POSITIVE",
+      "base_label": true,
+      "treatment_label": false,
+      "outcome": "REGRESSION",
+      "session_timestamps_delivered": ["2023-05-11 (new role fact)", "2023-10-24 (team-size fact)"],
+      "relevant_fact_text": [
+        "[2023-05-11] New role as Senior Software Engineer",
+        "[2023-10-24] Leads a team of 4 engineers"
+      ],
+      "event_time_status": "EXPLICIT (session-anchor dates only; no additional in-text date on either fact)",
+      "temporal_alignment": "DIVERGENT",
+      "notes": "Only ONE team-size fact ('4 engineers') is retrievable anywhere in the delivered context, anchored five months after the new-role fact. BASE silently treated '4' as the starting count (matching only half of gold, apparently enough for the binary judge). +TIME correctly notices the anchor gap and refuses to assume '4' is the STARTING count, producing an honest, well-founded hedge that the binary judge then scores wrong because it no longer flatly asserts a number. This is a genuine, positive engagement with the session-time signal that the judge protocol penalizes, not a reasoning failure.",
+      "timestamp_used_by_reader": "YES",
+      "distractor_status": "NO_DISTRACTOR",
+      "distractor_source_item_ids": [],
+      "wrong_answer_traceability": "NOT_APPLICABLE -- the +TIME answer contains no fabricated or wrong factual content; the change is an added hedge/omission, not a false claim traceable to a sibling item",
+      "effect": "HURT (via judge-penalized epistemic caution, not via a temporal-reasoning error)",
+      "evidence_refs": ["data/lab/arena/stage2-fresh-replication/stage2-arms.json#031748ae",
+                       "data/lab/arena/raw/stage2-reader/stage2_base.json#031748ae",
+                       "data/lab/arena/raw/stage2-reader/stage2_time.json#031748ae"]
+    },
+    {
+      "unit_id": "07741c45",
+      "question": "Where do I currently keep my old sneakers?",
+      "preregistered_regime": "TEMPORAL_POSITIVE",
+      "base_label": false,
+      "treatment_label": false,
+      "outcome": "UNCHANGED_WRONG",
+      "session_timestamps_delivered": ["2023-05-25 (current-state fact)", "2023-05-29 (plan fact)"],
+      "relevant_fact_text": [
+        "[2023-05-25] Has old sneakers stored under bed that smell",
+        "[2023-05-29] Planning to store old sneakers in a shoe rack"
+      ],
+      "event_time_status": "EXPLICIT (session anchors only)",
+      "temporal_alignment": "AMBIGUOUS",
+      "notes": "Gold ('shoe rack in closet') matches the LATER-dated fact, but that fact is phrased as a PLAN ('planning to store'), not a confirmed completed action; the EARLIER-dated fact states the CURRENT stored location in the present tense ('has... stored under bed'). Both arms default to the earlier, confirmed-state fact over the later, merely-intended one -- a defensible reading that dates alone do not resolve, since the real ambiguity is plan-vs-executed, not which fact is more recent. Documented at selection time as a weak-fit TEMPORAL_POSITIVE case (current-state lookup); this confirms that characterization.",
+      "timestamp_used_by_reader": "UNCLEAR",
+      "distractor_status": "NO_DISTRACTOR",
+      "distractor_source_item_ids": [],
+      "wrong_answer_traceability": "TRACEABLE (both arms' 'under the bed' answer is a genuine stored fact, not confabulated) but reflects a plan-vs-executed reasoning gap, not entity confusion",
+      "effect": "NEUTRAL (wrong in both arms, unaffected by anchoring)",
+      "evidence_refs": ["data/lab/arena/stage2-fresh-replication/stage2-arms.json#07741c45"]
+    },
+    {
+      "unit_id": "0977f2af",
+      "question": "What new kitchen gadget did I invest in before getting the Air Fryer?",
+      "preregistered_regime": "TEMPORAL_POSITIVE",
+      "base_label": true,
+      "treatment_label": false,
+      "outcome": "REGRESSION",
+      "session_timestamps_delivered": ["2023-05-21 (both relevant facts, same session)"],
+      "relevant_fact_text": [
+        "[2023-05-21] Got an Air Fryer yesterday and wants to make crispy sweet potato fries",
+        "[2023-05-21] Has a new Instant Pot and is interested in pressure cooking recipes"
+      ],
+      "event_time_status": "UNRESOLVED (Air Fryer fact has a relative cue, 'yesterday', relative to an unstated reference; Instant Pot fact has no date cue of any kind)",
+      "temporal_alignment": "AMBIGUOUS",
+      "notes": "Both facts share one session anchor and there is no explicit or resolvable ordering signal between them anywhere in the delivered context -- the true order is genuinely not derivable from what was retrieved, in either arm. BASE and +TIME give near-identical honest abstentions, each independently mentioning the gold entity ('Instant Pot') while explaining they cannot establish an order. TEMPORAL_INFORMATION_USED: NO in both arms. The flip from correct to wrong reads as judge phrasing-sensitivity to +TIME's more explicit 'does not specify which one came first' framing, not a mechanism effect.",
+      "timestamp_used_by_reader": "NO",
+      "distractor_status": "NO_DISTRACTOR",
+      "distractor_source_item_ids": [],
+      "wrong_answer_traceability": "NOT_APPLICABLE -- both answers are honest abstentions naming the correct entity, not wrong claims",
+      "effect": "UNCLEAR (judge-phrasing artifact, not a temporal or distraction mechanism)",
+      "evidence_refs": ["data/lab/arena/stage2-fresh-replication/stage2-arms.json#0977f2af",
+                       "data/lab/arena/raw/stage2-reader/stage2_base.json#0977f2af",
+                       "data/lab/arena/raw/stage2-reader/stage2_time.json#0977f2af"]
+    },
+    {
+      "unit_id": "0bb5a684",
+      "question": "How many days before the team meeting I was preparing for did I attend the workshop on 'Effective Communication in the Workplace'?",
+      "preregistered_regime": "TEMPORAL_POSITIVE",
+      "base_label": true,
+      "treatment_label": true,
+      "outcome": "UNCHANGED_CORRECT",
+      "session_timestamps_delivered": ["not required -- see notes"],
+      "relevant_fact_text": ["(dates already explicit in-text in both arms: workshop Jan 10, meeting Jan 17)"],
+      "event_time_status": "EXPLICIT",
+      "temporal_alignment": "NON_TEMPORAL (mechanism-irrelevant: both dates were already stated directly in the fact text, independent of any rendered session anchor)",
+      "notes": "BASE already answers correctly by citing 'January 10th' and 'January 17th' -- dates explicit in the underlying fact text regardless of anchoring. This is a clean case where the mechanism was never needed: the reader could already do the arithmetic from in-text dates alone.",
+      "timestamp_used_by_reader": "NO (used in-text dates, not the rendered anchor, in both arms)",
+      "distractor_status": "NO_DISTRACTOR",
+      "distractor_source_item_ids": [],
+      "wrong_answer_traceability": "NOT_APPLICABLE",
+      "effect": "NEUTRAL",
+      "evidence_refs": ["data/lab/arena/raw/stage2-reader/stage2_base.json#0bb5a684"]
+    },
+    {
+      "unit_id": "08f4fc43",
+      "question": "How many days had passed between the Sunday mass at St. Mary's Church and the Ash Wednesday service at the cathedral?",
+      "preregistered_regime": "TEMPORAL_BOUNDARY",
+      "base_label": false,
+      "treatment_label": true,
+      "outcome": "REPAIR",
+      "session_timestamps_delivered": ["2023-02-20 (both relevant facts, same later recap session)"],
+      "relevant_fact_text": [
+        "[2023-02-20] Attended Ash Wednesday service at the cathedral on February 1st",
+        "[2023-02-20] Attended Sunday mass at St. Mary's Church on January 2nd"
+      ],
+      "event_time_status": "EXPLICIT (each fact states its own event date directly in-text: 'on February 1st', 'on January 2nd')",
+      "temporal_alignment": "DIVERGENT (session anchor 2023-02-20 differs from both in-text event dates) but NOT HARMFUL here",
+      "notes": "Both needed event dates are explicit in the fact text itself; the reader's +TIME answer quotes exactly those in-text dates ('January 2nd', 'February 1st'), not the shared session anchor, and computes 30 days, matching gold. BASE, given the identical fact text without any rendered anchor, answered 'cannot be determined' despite the dates being present in the text all along -- suggesting the uniform per-item date tag increased the reader's propensity to actively parse and compare in-text dates across a long list, rather than supplying information that was otherwise missing. INFERENCE, not directly provable from a single transcript pair.",
+      "timestamp_used_by_reader": "YES",
+      "distractor_status": "NO_DISTRACTOR",
+      "distractor_source_item_ids": [],
+      "wrong_answer_traceability": "NOT_APPLICABLE (answer correct)",
+      "effect": "HELPED",
+      "evidence_refs": ["data/lab/arena/stage2-fresh-replication/stage2-arms.json#08f4fc43",
+                       "data/lab/arena/raw/stage2-reader/stage2_base.json#08f4fc43",
+                       "data/lab/arena/raw/stage2-reader/stage2_time.json#08f4fc43"]
+    },
+    {
+      "unit_id": "0bc8ad92",
+      "question": "How many months have passed since I last visited a museum with a friend?",
+      "preregistered_regime": "TEMPORAL_BOUNDARY",
+      "base_label": false,
+      "treatment_label": true,
+      "outcome": "REPAIR",
+      "session_timestamps_delivered": ["2022-10-22 (target visit)", "2023-02-18 (later, unrelated museum visits)"],
+      "relevant_fact_text": [
+        "[2022-10-22] Went on a behind-the-scenes tour of the Science Museum with a friend who is a chemistry professor",
+        "[2023-02-18] Attended a guided tour at the Natural History Museum yesterday with dad"
+      ],
+      "event_time_status": "RESOLVABLE (session anchor doubles as the event date for the target fact; a 'current date' the reader appears to have taken from elsewhere in context, February 18 2023, provides the reference point)",
+      "temporal_alignment": "ALIGNED for the target fact (session anchor is a good proxy for the museum-with-a-friend event)",
+      "notes": "Gold is 5 months; the reader computes ~4 (Oct 22, 2022 to Feb 18, 2023 is closer to 4 months). The frozen judge's own TEMPORAL template explicitly instructs not to penalize off-by-one duration errors, so this passes legitimately under the standing protocol -- not noise, not a lucky judge error, a correct application of the existing rule. One candidate distractor exists (the Feb 18 Natural History Museum visit, 'with dad' not 'with a friend') but the reader correctly excludes it by the friend-vs-dad distinction -- see distraction analysis.",
+      "timestamp_used_by_reader": "YES",
+      "distractor_status": "TRACEABLE_DISTRACTOR_PRESENT_BUT_AVOIDED",
+      "distractor_source_item_ids": ["stage2_time#0bc8ad92 item 2 (Natural History Museum, with dad, dated 2023-02-18)"],
+      "wrong_answer_traceability": "NOT_APPLICABLE (answer correct; the near-miss distractor was successfully rejected, worth recording as a control case for H5)",
+      "effect": "HELPED",
+      "evidence_refs": ["data/lab/arena/stage2-fresh-replication/stage2-arms.json#0bc8ad92",
+                       "data/lab/arena/raw/stage2-reader/stage2_time.json#0bc8ad92"]
+    },
+    {
+      "unit_id": "001be529",
+      "question": "How long did I wait for the decision on my asylum application?",
+      "preregistered_regime": "NON_TEMPORAL_CONTROL",
+      "base_label": true,
+      "treatment_label": true,
+      "outcome": "UNCHANGED_CORRECT",
+      "session_timestamps_delivered": ["2023-05-28"],
+      "relevant_fact_text": ["[2023-05-28] Asylum application took over a year to get approved"],
+      "event_time_status": "EXPLICIT (duration stated directly, no arithmetic needed)",
+      "temporal_alignment": "NON_TEMPORAL",
+      "notes": "Single-session, single explicit fact, exactly matching the pre-registered control prediction: no cross-item anchoring possible or needed.",
+      "timestamp_used_by_reader": "NO",
+      "distractor_status": "NO_DISTRACTOR",
+      "distractor_source_item_ids": [],
+      "wrong_answer_traceability": "NOT_APPLICABLE",
+      "effect": "NEUTRAL",
+      "evidence_refs": ["data/lab/arena/raw/stage2-reader/stage2_base.json#001be529"]
+    },
+    {
+      "unit_id": "00ca467f",
+      "question": "How many doctor's appointments did I go to in March?",
+      "preregistered_regime": "NON_TEMPORAL_CONTROL",
+      "base_label": true,
+      "treatment_label": false,
+      "outcome": "REGRESSION",
+      "session_timestamps_delivered": ["2023-03-27 (shared session anchor for both target facts and several unrelated March-tagged facts)"],
+      "relevant_fact_text": [
+        "[2023-03-27] Diagnosed with bronchitis by Dr. Smith on March 3rd",
+        "[2023-03-27] Had a follow-up appointment with orthopedic surgeon Dr. Thompson on March 20th, knee is healing well"
+      ],
+      "event_time_status": "EXPLICIT (each fact states its own event date in-text: 'March 3rd', 'March 20th')",
+      "temporal_alignment": "DIVERGENT and HARMFUL: the shared session anchor (March 27, itself in March) sits alongside several other same-session facts unrelated to doctor visits, all bearing the identical tag",
+      "notes": "This is the clearest genuine negative-transfer case in the sample. Content is unchanged between arms; only the per-item date tag was added. BASE correctly lists both March visits from their in-text dates. +TIME drops the bronchitis visit and undercounts to 1. Both target facts DO carry explicit in-text dates (ruling out a pure 'anchor replaces missing date' story, cf. 08f4fc43 where anchoring helped despite an identical structural setup). The differentiating factor appears to be TASK TYPE: 08f4fc43/0bc8ad92 are two-item duration lookups; 00ca467f is a filter-and-count task across many same-session items sharing one identical tag, several of which are medical-adjacent but not appointments (Dr. Patel gastroenterology consideration, Dr. Smith/Johnson hand-numbness planning). INFERENCE, not fully provable from one transcript pair: the uniform, repeated session tag may compete with in-text dates specifically under a counting/filtering task, in a way it does not under a two-item lookup task.",
+      "timestamp_used_by_reader": "YES (but leading to a worse outcome)",
+      "distractor_status": "NO_ENTITY_DISTRACTOR (the dropped item is itself correct, not confused with a different wrong entity; the failure is a date-signal conflict on the correct item, not H5-style sibling substitution)",
+      "distractor_source_item_ids": [],
+      "wrong_answer_traceability": "the omission is of a genuine, correct, still-present fact -- not a fabrication and not traceable to any other item's content",
+      "effect": "HURT",
+      "evidence_refs": ["data/lab/arena/stage2-fresh-replication/stage2-arms.json#00ca467f",
+                       "data/lab/arena/raw/stage2-reader/stage2_base.json#00ca467f",
+                       "data/lab/arena/raw/stage2-reader/stage2_time.json#00ca467f"]
+    },
+    {
+      "unit_id": "0100672e",
+      "question": "How much did I spend on each coffee mug for my coworkers?",
+      "preregistered_regime": "NON_TEMPORAL_CONTROL",
+      "base_label": true,
+      "treatment_label": true,
+      "outcome": "UNCHANGED_CORRECT",
+      "session_timestamps_delivered": ["2023-05-28 (both relevant facts, same session)"],
+      "relevant_fact_text": [
+        "[2023-05-28] Spent $60 on coffee mugs for coworkers",
+        "[2023-05-28] Purchased 5 coffee mugs with funny quotes related to profession for coworkers during holiday season"
+      ],
+      "event_time_status": "NOT_APPLICABLE",
+      "temporal_alignment": "NON_TEMPORAL",
+      "notes": "Correctly answered $12 in both arms, but +TIME's phrasing adds a hedge ('does not explicitly confirm that this was the price per mug') that still happens to state the number and pass the judge -- a fourth instance in this sample of +TIME inducing more cautious phrasing without a temporal cause available (both relevant facts share one session, nothing to disambiguate by date). Consistent with the E1 +SRC pattern and the 031748ae/0977f2af cases: rendering per-item annotations of any kind appears to shift the reader toward more hedged phrasing generally, not only when genuinely useful temporal information is present.",
+      "timestamp_used_by_reader": "NO",
+      "distractor_status": "NO_DISTRACTOR",
+      "distractor_source_item_ids": [],
+      "wrong_answer_traceability": "NOT_APPLICABLE (correct in both arms)",
+      "effect": "NEUTRAL (borderline -- see notes on induced hedging)",
+      "evidence_refs": ["data/lab/arena/raw/stage2-reader/stage2_base.json#0100672e",
+                       "data/lab/arena/raw/stage2-reader/stage2_time.json#0100672e"]
+    }
+  ],
+  "h5_primary_case_E1_gpt4_f420262c": {
+    "source_experiment": "E1, not Stage 2",
+    "question": "What is the order of airlines I flew with from earliest to latest before today?",
+    "gold": "JetBlue, Delta, United, American Airlines",
+    "wrong_fragment_investigated": "Spirit",
+    "wrong_answer_full": "1. American Airlines 2. United Airlines 3. JetBlue 4. Spirit Airlines",
+    "search_scope": "frozen mem0_3000 delivered context only (208 items), data/lab/arena/mem0-breadth-arms.json",
+    "relevant_correct_evidence_items": [
+      "0: Had a terrible in-flight entertainment system on a flight from New York to Los Angeles on February 10th",
+      "2: Had a terrible experience with American Airlines' entertainment system...",
+      "3: Took a round-trip flight from Boston to Atlanta today (the Delta flight, airline name not stated in this item)",
+      "7: Had a 1-hour delay on a United Airlines flight from Boston to Chicago...",
+      "9: Just got back from a red-eye flight on JetBlue from San Francisco to Boston...",
+      "13: Planning a trip to Miami later this year and wants to redeem Delta SkyMiles for a free trip (the multi-hop link to 'Delta' the reader needed to make)"
+    ],
+    "sibling_items_found": [
+      "5: Curious about Spirit Airlines' baggage policies (rank 5, immediately adjacent to the relevant flight cluster at ranks 0,2,3,7,9)",
+      "12: Planning a spring break trip to Fort Lauderdale in March and flying Spirit Airlines (a genuine but FUTURE, not-yet-taken Spirit Airlines trip)"
+    ],
+    "classification": "TRACEABLE_DISTRACTOR",
+    "reasoning": "Spirit Airlines is a real, present, semantically-adjacent (same domain: airline preferences and travel plans) item at close rank proximity to the four genuinely relevant flight facts. The correct 4th airline (Delta) requires a multi-hop link between two separate items (the unnamed Boston-Atlanta flight and a separate Delta SkyMiles mention) that the reader apparently did not make; Spirit Airlines, by contrast, is directly named and sits right next to the relevant cluster, making it the path of least resistance for a 4th list entry. This is a clean, concrete instance of the harmful-sibling pattern: correct evidence present, a plausible wrong-sibling entity also present nearby, reader selects the wrong variant instead of doing the harder multi-hop resolution for the correct one."
+  },
+  "distraction_check_stage2_repair_and_regression_cases": {
+    "method": "for each of the 5 Stage 2 repair/regression units, checked whether the specific wrong (or previously-wrong, now-correct) content is traceable to a different, semantically-similar item in the same delivered context",
+    "result_summary": "0 of 5 Stage 2 cases show H5-style entity-level sibling distraction. 031748ae and 0977f2af's changes are hedges/omissions with no fabricated content to trace. 00ca467f's regression is a same-entity date-signal conflict (SESSION_TIME vs EVENT_TIME), mechanistically distinct from H5. 08f4fc43 and 0bc8ad92 are repairs (nothing wrong to trace); 0bc8ad92 additionally shows a near-miss distractor (a different museum visit, 'with dad') that the reader correctly avoided, recorded as a useful negative control for H5."
+  },
+  "temporal_alignment_table": {
+    "ALIGNED": {"units": ["0bc8ad92"], "repairs": 1, "regressions": 0, "neutral": 0},
+    "DIVERGENT": {"units": ["031748ae", "08f4fc43", "00ca467f"], "repairs": 1, "regressions": 2, "neutral": 0},
+    "AMBIGUOUS": {"units": ["07741c45", "0977f2af"], "repairs": 0, "regressions": 1, "neutral": 1},
+    "NON_TEMPORAL": {"units": ["01493427", "0bb5a684", "001be529", "0100672e"], "repairs": 0, "regressions": 0, "neutral": 4},
+    "note": "DIVERGENT contains both of Stage 2's real repairs (08f4fc43) counted alongside its one clean negative-transfer regression (00ca467f) and one judge-penalized-hedge regression (031748ae) -- divergence alone does not predict direction; whether the fact text carries an EXPLICIT in-text date the reader can fall back on, and whether the task is a two-item lookup vs a many-item filter/count, appear to matter more than alignment status alone. See report for the full reconciliation."
+  },
+  "distraction_table": {
+    "TRACEABLE_DISTRACTOR": {"cases": ["E1: gpt4_f420262c (BASE arm, pre-existing, not a Stage 2 arm-comparison case)"], "repairs": 0, "regressions": 0, "unchanged_wrong": 1},
+    "TRACEABLE_DISTRACTOR_AVOIDED": {"cases": ["0bc8ad92 (repair, distractor present but correctly rejected)"], "repairs": 1, "regressions": 0, "unchanged": 0},
+    "NO_DISTRACTOR": {"cases": ["01493427", "031748ae", "07741c45", "0977f2af", "00ca467f", "001be529", "0100672e", "08f4fc43"], "repairs": 1, "regressions": 3, "unchanged": 4},
+    "note": "Within Stage 2 specifically, +TIME did not measurably change attention/selection toward wrong entities (0 new sibling-distraction cases created or resolved by the treatment). The one clear H5 case in this whole research thread remains E1's pre-existing gpt4_f420262c BASE answer, unrelated to the +TIME treatment itself."
+  }
+}
