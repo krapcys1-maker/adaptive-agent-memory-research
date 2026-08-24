@@ -164,14 +164,14 @@
       "question_type": "temporal-reasoning",
       "slot": "temporal-reasoning-2",
       "sessions_available": 47,
-      "sessions_ingested": 21,
-      "user_turns_ingested": 112,
+      "sessions_ingested": 41,
+      "user_turns_ingested": 213,
       "sessions_skipped_no_user_turn": 0,
       "ingest": {
-        "model_calls": 37,
-        "input_tokens": 55949,
-        "output_tokens": 13836,
-        "wall_seconds": 93.31
+        "model_calls": 73,
+        "input_tokens": 112605,
+        "output_tokens": 29888,
+        "wall_seconds": 199.34000000000003
       },
       "per_session_calls": [
         1,
@@ -194,6 +194,26 @@
         2,
         2,
         2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
         2
       ],
       "status": "ingesting"
@@ -201,25 +221,25 @@
   ],
   "status": "running",
   "not_a_leaderboard": "four units, one run, a crude correctness proxy and a decoder that is not reproducible. A difference of a few points here is noise, not an advantage",
-  "spend_usd": 0.1016,
+  "spend_usd": 0.1345,
   "meter_baseline": {
     "calls": 0,
     "prompt_tokens": 0,
     "completion_tokens": 0
   },
   "meter_baseline_usd": 0,
-  "provider_calls": 118,
+  "provider_calls": 154,
   "meter": {
-    "calls": 118,
+    "calls": 154,
     "refused_calls": 0,
-    "prompt_tokens": 182435,
-    "completion_tokens": 47560,
-    "usd": 0.101573,
+    "prompt_tokens": 239091,
+    "completion_tokens": 63612,
+    "usd": 0.134528,
     "unknown_usage_calls": 0,
     "arena_enforced_decoding": {
       "temperature": 0
     },
-    "decoding_overrides": 118,
+    "decoding_overrides": 154,
     "decoding_override_values": [
       "{\"temperature\": 0.1}"
     ],
@@ -230,16 +250,16 @@
   "meter_note": "`meter` holds the proxy's running totals, which include anything it served before this run. `spend_usd` and `provider_calls` are this run's own, taken as a delta from the baseline",
   "night_ledger": {
     "path": "D:\\Pamiec LLM\\adaptive-agent-memory-research\\data\\lab\\arena\\spend-ledger.jsonl",
-    "total_usd": 3.264671,
+    "total_usd": 3.497953,
     "total_cap_usd": 7.0,
     "by_run": {
       "mem0-calibration": 0.025094,
-      "mem0-pilot": 0.691379,
+      "mem0-pilot": 0.724336,
       "hindsight-pilot": 2.334746,
       "graphiti-calibration": 0.005908,
       "pilot-judge": 0.002488,
-      "hindsight-expansion": 0.205069
+      "hindsight-expansion": 0.405399
     },
-    "calls": 2641
+    "calls": 2803
   }
 }
