@@ -1,0 +1,10 @@
+{
+  "salt": "arena-context-ablation-judge-v1",
+  "mapping": {
+    "hindsight_mem0_matched": "candidate_Q_e8a1",
+    "hindsight_500": "candidate_C_18ac",
+    "hindsight_1000": "candidate_W_3bb0",
+    "mem0_compact_plus_raw": "candidate_V_7614",
+    "mem0_raw_only": "candidate_P_b57b"
+  }
+}

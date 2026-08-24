@@ -1,0 +1,80 @@
+{
+  "artifact": "arena-mechanism-ablation-v1",
+  "frozen_at": "2026-08-24T05:40:15+00:00",
+  "question": "does Hindsight's advantage come from context VOLUME, or from information Mem0's compaction discards",
+  "code_revision": "fc911116a69074d34fc95469d76f9085597253f2",
+  "source_selection_sha256": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "source_context_artifacts": {
+    "mem0": "4fbac6742667fd75addbdaa9c996b4a87d75b5bcf08ea95a2a450f4f1acbbb94",
+    "hindsight": "ada1031a4347de04b544ed26a9c73fc1b1f1703c5981ea5bbc2d8b30aca007a6"
+  },
+  "reader": {
+    "model": "deepseek-chat",
+    "system_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+    "parameters": {
+      "temperature": 0,
+      "max_tokens": 300
+    },
+    "identical_to": "arena-fixed-reader-v1"
+  },
+  "judge_protocol_sha256": "3d17349cc6e2710475eaa818c6e4a57f8dd7412baa5f4b336087c0b789013703",
+  "token_unit": "whitespace-split words, the same unit context_tokens already uses",
+  "transformation_rules": {
+    "truncation": "whole evidence items, original order, add while the next fits the budget. No re-ranking, no summarising, and no item chosen using the gold answer",
+    "budgets": {
+      "hindsight_mem0_matched": "per-probe Mem0 context_tokens",
+      "hindsight_500": 500,
+      "hindsight_1000": 1000
+    },
+    "mem0_provenance": "the raw source session whose date matches Mem0's TOP-1 retrieved memory, verbatim, appended after the compact context. Chosen by rank, never by gold",
+    "provenance_mapping": "session date only. A unit whose haystack repeats a date is UNOBSERVABLE rather than guessed"
+  },
+  "failure_modes_kept_apart": {
+    "GOLD_DROPPED_BY_BUDGET": "the budget cut the gold evidence out",
+    "GOLD_PRESENT_BUT_CONTEXT_INSUFFICIENT": "it survived the budget and the answer still fell"
+  },
+  "reused_arms": {
+    "hindsight_full": "arena-fixed-reader, identical reader config",
+    "mem0_compact": "arena-fixed-reader, identical reader config",
+    "question_only": "arena-fixed-reader baseline, 0/10"
+  },
+  "arms_planned": {
+    "hindsight_mem0_matched": 10,
+    "hindsight_500": 10,
+    "hindsight_1000": 10,
+    "mem0_compact_plus_raw": 9,
+    "mem0_raw_only": 9
+  },
+  "unobservable": [
+    {
+      "arm": "mem0_compact_plus_raw",
+      "question_id": "69fee5aa",
+      "slot": "knowledge-update-2",
+      "question_type": "knowledge-update",
+      "question": "How many pre-1920 American coins do I have in my collection?",
+      "gold": "38",
+      "context": null,
+      "unobservable": "top-1 provenance could not be resolved mechanically: this unit's haystack dates do not uniquely identify a session"
+    },
+    {
+      "arm": "mem0_raw_only",
+      "question_id": "69fee5aa",
+      "slot": "knowledge-update-2",
+      "question_type": "knowledge-update",
+      "question": "How many pre-1920 American coins do I have in my collection?",
+      "gold": "38",
+      "context": null,
+      "unobservable": "top-1 provenance could not be resolved mechanically: this unit's haystack dates do not uniquely identify a session"
+    }
+  ],
+  "projected_usd": 0.05742,
+  "cap_usd": 0.5,
+  "generated": 48,
+  "stopped_by_cap": null,
+  "reader_cost": {
+    "calls": 48,
+    "prompt_tokens": 79360,
+    "completion_tokens": 1970,
+    "usd": 0.023594
+  }
+}

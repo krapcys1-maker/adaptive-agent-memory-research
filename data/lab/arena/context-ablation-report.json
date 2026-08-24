@@ -1,0 +1,273 @@
+{
+  "artifact": "arena-context-ablation-v1",
+  "supersedes_naming": "written as arena-mechanism-ablation-v1 in the frozen manifest",
+  "frozen_manifest": "data/lab/arena/mechanism-ablation.json",
+  "source_selection_sha256": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "source_context_artifacts": {
+    "mem0": "4fbac6742667fd75addbdaa9c996b4a87d75b5bcf08ea95a2a450f4f1acbbb94",
+    "hindsight": "ada1031a4347de04b544ed26a9c73fc1b1f1703c5981ea5bbc2d8b30aca007a6"
+  },
+  "reader": {
+    "model": "deepseek-chat",
+    "system_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+    "parameters": {
+      "temperature": 0,
+      "max_tokens": 300
+    },
+    "identical_to": "arena-fixed-reader-v1"
+  },
+  "token_unit": "whitespace-split words, the same unit context_tokens already uses",
+  "transformation_rules": {
+    "truncation": "whole evidence items, original order, add while the next fits the budget. No re-ranking, no summarising, and no item chosen using the gold answer",
+    "budgets": {
+      "hindsight_mem0_matched": "per-probe Mem0 context_tokens",
+      "hindsight_500": 500,
+      "hindsight_1000": 1000
+    },
+    "mem0_provenance": "the raw source session whose date matches Mem0's TOP-1 retrieved memory, verbatim, appended after the compact context. Chosen by rank, never by gold",
+    "provenance_mapping": "session date only. A unit whose haystack repeats a date is UNOBSERVABLE rather than guessed"
+  },
+  "cost_usd": {
+    "reader": 0.023594,
+    "judging": 0.005165,
+    "total": 0.028759,
+    "cap": 0.5
+  },
+  "judge_stability": {
+    "answers": 48,
+    "stable": 48,
+    "disputed": 0
+  },
+  "arms": {
+    "question_only": {
+      "arm": "question_only",
+      "n": 10,
+      "correct": 0,
+      "accuracy": 0.0,
+      "mean_tokens": 0,
+      "gold_retained": null
+    },
+    "hindsight_mem0_matched": {
+      "arm": "hindsight_mem0_matched",
+      "n": 10,
+      "correct": 4,
+      "accuracy": 0.4,
+      "mean_tokens": 102.0,
+      "gold_retained": "7/9"
+    },
+    "hindsight_500": {
+      "arm": "hindsight_500",
+      "n": 10,
+      "correct": 6,
+      "accuracy": 0.6,
+      "mean_tokens": 499.3,
+      "gold_retained": "8/9"
+    },
+    "hindsight_1000": {
+      "arm": "hindsight_1000",
+      "n": 10,
+      "correct": 6,
+      "accuracy": 0.6,
+      "mean_tokens": 997.8,
+      "gold_retained": "8/9"
+    },
+    "hindsight_full": {
+      "arm": "hindsight_full",
+      "n": 10,
+      "correct": 7,
+      "accuracy": 0.7,
+      "mean_tokens": 3116.8,
+      "gold_retained": "9/9"
+    },
+    "mem0_compact": {
+      "arm": "mem0_compact",
+      "n": 10,
+      "correct": 4,
+      "accuracy": 0.4,
+      "mean_tokens": 105.6,
+      "gold_retained": "8/9"
+    },
+    "mem0_compact_plus_raw": {
+      "arm": "mem0_compact_plus_raw",
+      "n": 9,
+      "correct": 4,
+      "accuracy": 0.444,
+      "mean_tokens": 2265.7,
+      "gold_retained": "8/9"
+    },
+    "mem0_raw_only": {
+      "arm": "mem0_raw_only",
+      "n": 9,
+      "correct": 3,
+      "accuracy": 0.333,
+      "mean_tokens": 2158.6,
+      "gold_retained": "8/9"
+    }
+  },
+  "per_probe": [
+    {
+      "slot": "short",
+      "type": "multi-session",
+      "question_only": false,
+      "hindsight_mem0_matched": false,
+      "hindsight_500": false,
+      "hindsight_1000": false,
+      "hindsight_full": false,
+      "mem0_compact": false,
+      "mem0_compact_plus_raw": false,
+      "mem0_raw_only": false
+    },
+    {
+      "slot": "medium",
+      "type": "temporal-reasoning",
+      "question_only": false,
+      "hindsight_mem0_matched": true,
+      "hindsight_500": true,
+      "hindsight_1000": false,
+      "hindsight_full": true,
+      "mem0_compact": false,
+      "mem0_compact_plus_raw": false,
+      "mem0_raw_only": false
+    },
+    {
+      "slot": "long",
+      "type": "single-session-user",
+      "question_only": false,
+      "hindsight_mem0_matched": true,
+      "hindsight_500": true,
+      "hindsight_1000": true,
+      "hindsight_full": true,
+      "mem0_compact": true,
+      "mem0_compact_plus_raw": true,
+      "mem0_raw_only": true
+    },
+    {
+      "slot": "update",
+      "type": "knowledge-update",
+      "question_only": false,
+      "hindsight_mem0_matched": true,
+      "hindsight_500": true,
+      "hindsight_1000": true,
+      "hindsight_full": true,
+      "mem0_compact": true,
+      "mem0_compact_plus_raw": true,
+      "mem0_raw_only": true
+    },
+    {
+      "slot": "temporal-reasoning-1",
+      "type": "temporal-reasoning",
+      "question_only": false,
+      "hindsight_mem0_matched": false,
+      "hindsight_500": true,
+      "hindsight_1000": true,
+      "hindsight_full": true,
+      "mem0_compact": false,
+      "mem0_compact_plus_raw": false,
+      "mem0_raw_only": false
+    },
+    {
+      "slot": "temporal-reasoning-2",
+      "type": "temporal-reasoning",
+      "question_only": false,
+      "hindsight_mem0_matched": false,
+      "hindsight_500": false,
+      "hindsight_1000": false,
+      "hindsight_full": false,
+      "mem0_compact": true,
+      "mem0_compact_plus_raw": true,
+      "mem0_raw_only": false
+    },
+    {
+      "slot": "knowledge-update-1",
+      "type": "knowledge-update",
+      "question_only": false,
+      "hindsight_mem0_matched": false,
+      "hindsight_500": true,
+      "hindsight_1000": true,
+      "hindsight_full": true,
+      "mem0_compact": true,
+      "mem0_compact_plus_raw": true,
+      "mem0_raw_only": true
+    },
+    {
+      "slot": "knowledge-update-2",
+      "type": "knowledge-update",
+      "question_only": false,
+      "hindsight_mem0_matched": false,
+      "hindsight_500": false,
+      "hindsight_1000": false,
+      "hindsight_full": false,
+      "mem0_compact": false,
+      "mem0_compact_plus_raw": null,
+      "mem0_raw_only": null
+    },
+    {
+      "slot": "multi-session-1",
+      "type": "multi-session",
+      "question_only": false,
+      "hindsight_mem0_matched": false,
+      "hindsight_500": false,
+      "hindsight_1000": true,
+      "hindsight_full": true,
+      "mem0_compact": false,
+      "mem0_compact_plus_raw": false,
+      "mem0_raw_only": false
+    },
+    {
+      "slot": "single-session-user-1",
+      "type": "single-session-user",
+      "question_only": false,
+      "hindsight_mem0_matched": true,
+      "hindsight_500": true,
+      "hindsight_1000": true,
+      "hindsight_full": true,
+      "mem0_compact": false,
+      "mem0_compact_plus_raw": false,
+      "mem0_raw_only": false
+    }
+  ],
+  "mem0_provenance": {
+    "COMPACT_WRONG_RAW_FIXES": 0,
+    "RAW_CAUSES_REGRESSION": 0,
+    "fixed_probes": [],
+    "regressed_probes": [],
+    "unobservable": 1,
+    "unobservable_why": "one unit's haystack repeats a session date, so top-1 provenance cannot be resolved mechanically"
+  },
+  "failure_modes": {
+    "GOLD_DROPPED_BY_BUDGET": 4,
+    "GOLD_PRESENT_READER_WRONG": 12,
+    "dropped": [
+      {
+        "arm": "hindsight_mem0_matched",
+        "slot": "temporal-reasoning-2"
+      },
+      {
+        "arm": "hindsight_mem0_matched",
+        "slot": "single-session-user-1"
+      },
+      {
+        "arm": "hindsight_500",
+        "slot": "single-session-user-1"
+      },
+      {
+        "arm": "hindsight_1000",
+        "slot": "single-session-user-1"
+      }
+    ]
+  },
+  "conclusion": {
+    "hindsight_curve": "4/10 at 102 tok, 6/10 at 500, 6/10 at 1000, 7/10 at 3117",
+    "at_mem0_budget": "Hindsight scores exactly 4/10 at Mem0's own per-probe token budget \u2014 identical to Mem0. The advantage is not present at equal context size",
+    "causal_reading": "in an ablation where ONLY the context budget varies, accuracy tracks the budget monotonically. That is causal evidence for context breadth on this frozen sample, and nothing more general",
+    "saturation": "most of the gain arrives by 500 tokens; 500 and 1000 are identical at 6/10, and the tenth unit only lands at full",
+    "provenance_refuted": "raw provenance fixes NOTHING: 0 of Mem0's failures are repaired by appending the full raw source session of its top-1 hit, and 0 regress. H3 is refuted on this sample",
+    "raw_alone_is_worse": "raw-only scores 3/9 against compact+raw and compact at 4/9, so the compact memory contributes something the raw session does not"
+  },
+  "promotion": {
+    "mechanism": "BROAD_CONTEXT_EXPANSION",
+    "status": "PROMOTE",
+    "meaning": "the most justified next mechanism for an isolated test, not a proven one"
+  },
+  "not_a_leaderboard": true
+}
