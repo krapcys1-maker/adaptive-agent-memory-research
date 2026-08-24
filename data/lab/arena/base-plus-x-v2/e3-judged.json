@@ -1,0 +1,565 @@
+{
+  "artifact": "arena-mem0-breadth-judged",
+  "recorded_at": "2026-08-24T09:12:07+00:00",
+  "selection": "a4d252f1066878291c8debfb4bcf49d7533bff26df024bc648499afec027ccb3",
+  "arms_judged": [
+    "mem0_compact_plus_raw",
+    "mem0_raw_only"
+  ],
+  "protocol": {
+    "source": "LongMemEval src/evaluation/evaluate_qa.py, reused via judge_pilot.py import",
+    "repository": "xiaowu0162/LongMemEval",
+    "commit": "9e0b455f4ef0e2ab8f2e582289761153549043fc",
+    "template_sha256": {
+      "generic": "fba020ba3d57982efdc9a937c1c01f897b789a608c7f88e60244121f6505e5bc",
+      "temporal": "8d33a5fdd83afeeb4592454a965eab43d1fcb2dedc042d1d3892f4254be6c273",
+      "knowledge_update": "183a9b3a6197ec620940f610cdc1207201ec98c1113dd633ea685cfc322fafac",
+      "preference": "741ee3bcbea7ff5e8ed359acef61d2f8ded3de021bbcff6ee13de455f2e2aa9b",
+      "abstention": "5c0b365a1e1d06db36377c735432b56e122ca3c428f89faf61d43a0d5a7e050b"
+    },
+    "label_rule": "'yes' in response.lower(); binary, no partial credit",
+    "parameters": {
+      "n": 1,
+      "temperature": 0,
+      "max_tokens": 10
+    },
+    "identical_to": "arena-pilot-judge / arena-fixed-reader-v1 judge protocol"
+  },
+  "blinding": {
+    "salt": "arena-mem0-breadth-judge-v1",
+    "mapping_file": "e3-judge-blinding.json"
+  },
+  "cost": {
+    "calls": 36,
+    "prompt_tokens": 6926,
+    "completion_tokens": 36,
+    "usd": 0.00191,
+    "cap_usd": 0.1,
+    "projected_usd": 0.002553
+  },
+  "stopped_by_cap": null,
+  "judgements": [
+    {
+      "candidate": "candidate_T_28b6",
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "response_chars": 247,
+      "abstention_prompt": false,
+      "run": "mem0_compact_plus_raw",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 171,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 171,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "mem0_compact_plus_raw"
+    },
+    {
+      "candidate": "candidate_T_28b6",
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "slot": "medium",
+      "response_chars": 160,
+      "abstention_prompt": false,
+      "run": "mem0_compact_plus_raw",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 229,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 229,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_compact_plus_raw"
+    },
+    {
+      "candidate": "candidate_T_28b6",
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "slot": "long",
+      "response_chars": 82,
+      "abstention_prompt": false,
+      "run": "mem0_compact_plus_raw",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 140,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 140,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_compact_plus_raw"
+    },
+    {
+      "candidate": "candidate_T_28b6",
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "slot": "update",
+      "response_chars": 112,
+      "abstention_prompt": false,
+      "run": "mem0_compact_plus_raw",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 132,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 132,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_compact_plus_raw"
+    },
+    {
+      "candidate": "candidate_T_28b6",
+      "question_id": "gpt4_f420262c",
+      "question_type": "temporal-reasoning",
+      "slot": "temporal-reasoning-1",
+      "response_chars": 297,
+      "abstention_prompt": false,
+      "run": "mem0_compact_plus_raw",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 252,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 252,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "mem0_compact_plus_raw"
+    },
+    {
+      "candidate": "candidate_T_28b6",
+      "question_id": "gpt4_f49edff3",
+      "question_type": "temporal-reasoning",
+      "slot": "temporal-reasoning-2",
+      "response_chars": 259,
+      "abstention_prompt": false,
+      "run": "mem0_compact_plus_raw",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 319,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 319,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_compact_plus_raw"
+    },
+    {
+      "candidate": "candidate_T_28b6",
+      "question_id": "eace081b",
+      "question_type": "knowledge-update",
+      "slot": "knowledge-update-1",
+      "response_chars": 64,
+      "abstention_prompt": false,
+      "run": "mem0_compact_plus_raw",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 120,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 120,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_compact_plus_raw"
+    },
+    {
+      "candidate": "candidate_T_28b6",
+      "question_id": "gpt4_59c863d7",
+      "question_type": "multi-session",
+      "slot": "multi-session-1",
+      "response_chars": 169,
+      "abstention_prompt": false,
+      "run": "mem0_compact_plus_raw",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 237,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 237,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "mem0_compact_plus_raw"
+    },
+    {
+      "candidate": "candidate_T_28b6",
+      "question_id": "311778f1",
+      "question_type": "single-session-user",
+      "slot": "single-session-user-1",
+      "response_chars": 95,
+      "abstention_prompt": false,
+      "run": "mem0_compact_plus_raw",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 138,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 138,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_compact_plus_raw"
+    },
+    {
+      "candidate": "candidate_W_eb52",
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "response_chars": 182,
+      "abstention_prompt": false,
+      "run": "mem0_raw_only",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 152,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 152,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "mem0_raw_only"
+    },
+    {
+      "candidate": "candidate_W_eb52",
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "slot": "medium",
+      "response_chars": 174,
+      "abstention_prompt": false,
+      "run": "mem0_raw_only",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 235,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 235,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "mem0_raw_only"
+    },
+    {
+      "candidate": "candidate_W_eb52",
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "slot": "long",
+      "response_chars": 113,
+      "abstention_prompt": false,
+      "run": "mem0_raw_only",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 145,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 145,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_raw_only"
+    },
+    {
+      "candidate": "candidate_W_eb52",
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "slot": "update",
+      "response_chars": 93,
+      "abstention_prompt": false,
+      "run": "mem0_raw_only",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 129,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 129,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_raw_only"
+    },
+    {
+      "candidate": "candidate_W_eb52",
+      "question_id": "gpt4_f420262c",
+      "question_type": "temporal-reasoning",
+      "slot": "temporal-reasoning-1",
+      "response_chars": 345,
+      "abstention_prompt": false,
+      "run": "mem0_raw_only",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 259,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 259,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "mem0_raw_only"
+    },
+    {
+      "candidate": "candidate_W_eb52",
+      "question_id": "gpt4_f49edff3",
+      "question_type": "temporal-reasoning",
+      "slot": "temporal-reasoning-2",
+      "response_chars": 231,
+      "abstention_prompt": false,
+      "run": "mem0_raw_only",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 303,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 303,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "mem0_raw_only"
+    },
+    {
+      "candidate": "candidate_W_eb52",
+      "question_id": "eace081b",
+      "question_type": "knowledge-update",
+      "slot": "knowledge-update-1",
+      "response_chars": 78,
+      "abstention_prompt": false,
+      "run": "mem0_raw_only",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 123,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 123,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_raw_only"
+    },
+    {
+      "candidate": "candidate_W_eb52",
+      "question_id": "gpt4_59c863d7",
+      "question_type": "multi-session",
+      "slot": "multi-session-1",
+      "response_chars": 211,
+      "abstention_prompt": false,
+      "run": "mem0_raw_only",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 242,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "no",
+          "label": false,
+          "prompt_tokens": 242,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": false,
+      "_arm": "mem0_raw_only"
+    },
+    {
+      "candidate": "candidate_W_eb52",
+      "question_id": "311778f1",
+      "question_type": "single-session-user",
+      "slot": "single-session-user-1",
+      "response_chars": 91,
+      "abstention_prompt": false,
+      "run": "mem0_raw_only",
+      "passes": [
+        {
+          "pass": "A",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 137,
+          "completion_tokens": 1
+        },
+        {
+          "pass": "B",
+          "raw": "yes",
+          "label": true,
+          "prompt_tokens": 137,
+          "completion_tokens": 1
+        }
+      ],
+      "stable": true,
+      "disputed": false,
+      "label": true,
+      "_arm": "mem0_raw_only"
+    }
+  ]
+}

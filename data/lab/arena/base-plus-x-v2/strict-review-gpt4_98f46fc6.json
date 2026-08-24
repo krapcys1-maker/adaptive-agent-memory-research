@@ -1,0 +1,31 @@
+{
+  "artifact": "arena-strict-review-annotation",
+  "purpose": "append-only manual re-read of one probe's historical judge label; does NOT alter the historical label",
+  "no_api_call": true,
+  "target": {
+    "question_id": "gpt4_98f46fc6",
+    "arm": "hindsight_full",
+    "source_file": "data/lab/arena/fixed-reader-judged-all.json"
+  },
+  "question": "Which event did I participate in first, the charity gala or the charity bake sale?",
+  "gold": "I participated in the charity bake sale first.",
+  "answer_under_review": "Based on the provided context, the charity bake sale is scheduled for today, March 15, 2023. There is no mention of a charity gala in the context, so the answer cannot be determined from the provided context.",
+  "historical_judge_label": {
+    "label": true,
+    "stable": true,
+    "disputed": false,
+    "passes": [{"pass": "A", "raw": "yes"}, {"pass": "B", "raw": "yes"}],
+    "unchanged_by_this_annotation": true
+  },
+  "strict_manual_reading": {
+    "verdict": "STRICT_WRONG",
+    "reasoning": "The answer explicitly declines to assert an ordering ('cannot be determined from the provided context') because it says the gala is not mentioned. It does not state or imply the bake sale was first. Gold requires a definitive first-event claim. An explicit non-answer to an answerable, definitively-gold-answered question does not contain the correct answer under any reasonable reading, strict or otherwise -- it is functionally an abstention, not a hedge that happens to be right. Not AMBIGUOUS: there is no plausible reading under which this text asserts the bake sale happened first.",
+    "likely_cause_of_the_loose_protocol_label": "surface lexical overlap with the gold framing (mentions the bake sale, a date) satisfied the official LongMemEval judge's binary 'contains the correct answer' heuristic without the judge checking whether a definitive ordering claim was actually made -- a previously-documented category of judge looseness in this project (see git history: 'the benchmark's own judge, and the empty answer it scored correct')."
+  },
+  "headline_impact": {
+    "hindsight_full_protocol_score": "7/10",
+    "hindsight_full_strict_score": "6/10",
+    "computation": "10 units, 7 protocol-correct; this one unit flips protocol-correct -> strict-wrong; no other unit re-reviewed in this pass (out of scope: only this one probe was in scope for Stage 0's strict re-read instruction)",
+    "downstream_effect": "the corrected clean-Mem0-vs-Hindsight equal-budget gap statement (matched/500/1000 tied at 5/6/6, full arm Hindsight 7 vs Mem0 3000's 5) narrows further under the strict reading to 6 vs 5 at the widest points -- a 1-unit gap, not 2, before E1 even runs."
+  }
+}

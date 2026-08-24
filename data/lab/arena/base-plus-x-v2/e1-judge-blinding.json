@@ -1,0 +1,9 @@
+{
+  "salt": "arena-mem0-breadth-judge-v1",
+  "mapping": {
+    "mem0_native_time": "candidate_T_4d83",
+    "mem0_native_src": "candidate_O_6376",
+    "mem0_wide_time": "candidate_I_cbe9",
+    "mem0_wide_src": "candidate_R_e75b"
+  }
+}
