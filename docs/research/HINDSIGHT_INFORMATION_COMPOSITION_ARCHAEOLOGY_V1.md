@@ -3,6 +3,18 @@
 Diagnosis only. No new paid provider call, no rerun, no BASE+X implementation.
 Full structured data: [`data/lab/arena/hindsight-archaeology-v1/information-composition-v1.json`](../../data/lab/arena/hindsight-archaeology-v1/information-composition-v1.json).
 
+> **Correction (see `data/lab/arena/base-plus-x-v1/`):** section 9's Mem0 code
+> citations below described `external/repos/mem0ai__mem0`'s HEAD checkout, not
+> the actually-running pinned `mem0ai==1.0.6` in `external/venvs/mem0`. The
+> causal diagnosis (Mem0's extraction is not grounded on the real historical
+> date) was reconfirmed against the correct source and is, if anything, more
+> precise there. A narrow patch built on the corrected source
+> (`PER_SESSION_REFERENCE_DATE_AT_EXTRACTION`) was calibrated with one
+> `$0.02`-capped call and found **not** to change extraction behavior on its
+> own — see `data/lab/arena/base-plus-x-v1/calibration-per-session-reference-date.json`.
+> Project memory: `PM-20260824-b697ecc3` (citation correction),
+> `PM-20260824-c76d8a96` (calibration result).
+
 ## Epistemic key
 
 Every claim below is tagged. Don't read across tags as equally certain.

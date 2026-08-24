@@ -1,0 +1,34 @@
+{
+  "artifact": "arena-mem0-base-plus-x-v1-patch-manifest",
+  "treatment_name": "PER_SESSION_REFERENCE_DATE_AT_EXTRACTION",
+  "not_yet_claimed_as": "full Hindsight-style temporal grounding -- this is narrower and must not be described as such until independently earned",
+  "pinned_package": {
+    "name": "mem0ai",
+    "version": "1.0.6",
+    "source": "PyPI, installed in external/venvs/mem0 (gitignored venv, not the source of truth for this record)"
+  },
+  "files_touched": {
+    "mem0/memory/utils.py": {
+      "original_sha256": "94a04bb6ce0d142d4dbbe7716651c9181a74ebdea848ac09d4b3e653ea50910c",
+      "patched_sha256": "3ca63bed9b8080342a91c74819be41faa92c6f71a03a473c40bfc8eb1f6af0ed"
+    },
+    "mem0/memory/main.py": {
+      "original_sha256": "e8ab42de3f80b987c14fc78a187c3ce20677e8b4b8579b6742c2e16767cba1a1",
+      "patched_sha256": "d084275e7764bdafa6c3916ad5d84daa2b5f04151ed4937d6dd2192139b90731"
+    }
+  },
+  "patch_file": "data/lab/arena/base-plus-x-v1/vendor-patch/PER_SESSION_REFERENCE_DATE_AT_EXTRACTION.patch",
+  "original_files_snapshot": "data/lab/arena/base-plus-x-v1/vendor-patch/mem0-1.0.6/mem0/memory/{main.py,utils.py} -- checked into the repo so the treatment is reproducible without the gitignored venv",
+  "changes_exactly_two": {
+    "a_optional_reference_date_param": {
+      "file": "mem0/memory/utils.py",
+      "what": "get_fact_retrieval_messages(message, is_agent_memory=False, reference_date=None) -- new optional third parameter. When truthy, a regex substitution replaces the hardcoded \"Today's date is YYYY-MM-DD.\" line (previously frozen at process-import time via datetime.now()) in whichever of USER_MEMORY_EXTRACTION_PROMPT / AGENT_MEMORY_EXTRACTION_PROMPT is selected. reference_date=None (the default) returns the prompt unmodified -- byte-identical to calling the original, unpatched function."
+    },
+    "b_metadata_timestamp_threaded_into_extraction": {
+      "file": "mem0/memory/main.py",
+      "what": "_add_to_vector_store(), both the sync Memory class and the async AsyncMemory class (two call sites, identical patch): reference_date = (metadata or {}).get(\"timestamp\") or None, then passed to get_fact_retrieval_messages(..., reference_date=reference_date). No other line changed. metadata[\"timestamp\"] was already being set correctly per-session by the arena's own scripts/arena/mem0_adapter.py::Mem0Adapter.ingest() before this patch existed -- it was stored but never reached the extraction prompt."
+    }
+  },
+  "no_other_changes": true,
+  "diff_stat": "2 files changed (mem0/memory/main.py two call sites, mem0/memory/utils.py one function + one new helper + one new module constant); confirmed by direct diff -u against the checked-in original snapshot, see the .patch file"
+}
