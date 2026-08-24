@@ -164,4 +164,21 @@ Cumulative, append-oriented. Entries are added or superseded (with a `superseded
 
 ---
 
+## Entry I — `RETRIEVAL_CONFIDENCE_SIGNAL` — DROP (regime mismatch, small n)
+
+- **MECHANISM:** read-side, deterministic. Appends one fixed, content-free note when the top-1 vs top-2 Mem0 retrieval score margin is below 0.10; inert otherwise. Uses Mem0's own already-returned scores, zero LLM.
+- **REGIME (target, untested):** gold answer retrieved but not top-ranked, under genuine score ambiguity (near-tied top candidates).
+- **FAILURE_TARGETED:** reader over-trusting the most prominent retrieved item when retrieval itself is ambiguous — distinct axis from `RAW_PROVENANCE` (Entry H, content absence) and the dropped state mechanism (Entry G, temporal validity).
+- **OBSERVED_EFFECT:** NULL. 4 fresh, gold-blind units (n reduced from preregistered 5 after a provider-cap interruption on the 5th unit, mid-run — disclosed, see `RETRIEVAL_CONFIDENCE_SIGNAL_V1.md`). 3/4 flagged (margin < 0.10). Net repairs 0, regressions 0. Answer *text* visibly changes on all 3 flagged units (reader reacts to the note) but correctness never does.
+- **SOURCE_EXPERIMENTS:** `PM-20260824-3885f6ac` (preregistration); [`RETRIEVAL_CONFIDENCE_SIGNAL_V1.md`](RETRIEVAL_CONFIDENCE_SIGNAL_V1.md); `data/lab/arena/retrieval-confidence-signal-v1/{selection.json, results.json}`. Spend $0.347161 (mostly ingest, before the interruption).
+- **EXTERNAL_SUPPORT:** "When Confidence Takes the Wrong Path" (arXiv:2606.22728, frontier map family #5); this project's own prior roadmap flagged the score-margin gap as worth a free check.
+- **CONFIDENCE:** LOW on the mechanism itself (untested precondition) — HIGH that this specific n=4 sample did not contain the target regime: the 2 flagged-and-wrong units are both absence failures (needed fact missing from the top-10 retrieved set entirely, not present-but-buried), which no prominence-flagging note can fix by construction.
+- **KNOWN_COUNTEREXAMPLES:** none observed — no case showed the mechanism causing harm; it simply never had the chance to help.
+- **STATUS:** `DROP (small-n, regime mismatch) — MECHANISM_UNTESTED_AT_TARGET_PRECONDITION`. Transform itself verified correct (8/8 unit tests, no LLM) and confirmed to reach the reader (answer text changes) — not an implementation failure.
+- **LAST_UPDATED:** 2026-08-24.
+- **SUPERSEDES:** none. **SUPERSEDED_BY:** none.
+- **NEXT_TRIGGER:** a future sample specifically screened (still gold-blindly, e.g. by retrieval-score-margin computed from an already-persisted store at $0, without reference to gold) for near-tied-top-score cases where gold is present-but-not-top-1 would be a fairer test of this mechanism's actual precondition. Not scheduled here — per the campaign's "don't tune the same failed action" discipline, no second attempt was made this pass.
+
+---
+
 *Full mechanistic detail and per-unit transcripts for this update: [`TEMPORAL_ALIGNMENT_AND_DISTRACTION_ARCHAEOLOGY_V1.md`](TEMPORAL_ALIGNMENT_AND_DISTRACTION_ARCHAEOLOGY_V1.md), [`analysis.json`](../../data/lab/arena/temporal-alignment-and-distraction-archaeology-v1/analysis.json).*

@@ -1,0 +1,409 @@
+{
+  "artifact": "arena-retrieval-confidence-signal-v1",
+  "selection": "data\\lab\\arena\\retrieval-confidence-signal-v1\\selection.json",
+  "margin_threshold": 0.1,
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "ingest": [
+    {
+      "question_id": "118b2229",
+      "question_type": "single-session-user",
+      "store_after_ingest_reused_from_prior_run": 204,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0
+    },
+    {
+      "question_id": "0a995998",
+      "question_type": "multi-session",
+      "store_after_ingest_reused_from_prior_run": 254,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null
+    },
+    {
+      "question_id": "09ba9854",
+      "question_type": "multi-session",
+      "store_after_ingest_reused_from_prior_run": 232,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null
+    },
+    {
+      "question_id": "0db4c65d",
+      "question_type": "temporal-reasoning",
+      "store_after_ingest_reused_from_prior_run": 248,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0
+    }
+  ],
+  "dropped_unit": "08e075c7",
+  "dropped_unit_reason": "provider cap stopped mid-ingest on this unit in the original run; not resumed to avoid double-paying or relying on an untested partial-store state; see run_retrieval_confidence_v1.py's bug-discipline note",
+  "n_units_preregistered": 5,
+  "n_units": 4,
+  "stopped_by_cap": null,
+  "spend_this_continuation": {
+    "total_usd": 0.001626,
+    "cap_usd": 0.05,
+    "remaining_usd": 0.048374
+  },
+  "spend_original_ingest_run": {
+    "cap_scope": "mechd-v1-",
+    "total_usd": 0.345535,
+    "cap_usd": 0.35,
+    "note": "4 units fully ingested before the cap stopped"
+  },
+  "results": [
+    {
+      "question_id": "118b2229",
+      "question_type": "single-session-user",
+      "question": "How long is my daily commute to work?",
+      "gold": "45 minutes each way",
+      "scores": [
+        0.7552397098772599,
+        0.48465474992228014,
+        0.4584727060652538,
+        0.36185859779535934,
+        0.33196637501684517,
+        0.29731415434714537,
+        0.2908687337033066,
+        0.28460289880019934,
+        0.2538322585296311,
+        0.21976413407883955
+      ],
+      "mechanism_trace": {
+        "n_items": 10,
+        "top1_score": 0.7552397098772599,
+        "top2_score": 0.48465474992228014,
+        "margin": 0.270585,
+        "flagged": false,
+        "inert": true
+      },
+      "base_context": [
+        "Daily commute takes 45 minutes each way",
+        "Only been doing shorter rides on the weekends",
+        "Enjoys audiobooks during daily commute",
+        "Planning to rely on public transport and walk or bike",
+        "Considering signing up for a 20-mile cycling event along the coast in two months",
+        "Completed a 5K run in 32 minutes and 15 seconds, a personal best, after training for about six weeks",
+        "Visited the Santa Cruz Wharf during the day trip last week",
+        "Looking for tips on staying motivated to exercise regularly",
+        "Moving to Melbourne soon",
+        "Will go with the Telstra Medium Plan"
+      ],
+      "plus_d_context": [
+        "Daily commute takes 45 minutes each way",
+        "Only been doing shorter rides on the weekends",
+        "Enjoys audiobooks during daily commute",
+        "Planning to rely on public transport and walk or bike",
+        "Considering signing up for a 20-mile cycling event along the coast in two months",
+        "Completed a 5K run in 32 minutes and 15 seconds, a personal best, after training for about six weeks",
+        "Visited the Santa Cruz Wharf during the day trip last week",
+        "Looking for tips on staying motivated to exercise regularly",
+        "Moving to Melbourne soon",
+        "Will go with the Telstra Medium Plan"
+      ],
+      "base_answer": "Based on the provided context, your daily commute takes 45 minutes each way.",
+      "plus_d_answer": "Based on the provided context, your daily commute takes 45 minutes each way.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_d_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_d_correct": true
+    },
+    {
+      "question_id": "0a995998",
+      "question_type": "multi-session",
+      "question": "How many items of clothing do I need to pick up or return from a store?",
+      "gold": "3",
+      "scores": [
+        0.4923134229961021,
+        0.45435488198402024,
+        0.4357569745661815,
+        0.41556320030311383,
+        0.4100587056746584,
+        0.3927849144841814,
+        0.3896738048760402,
+        0.35445624325582253,
+        0.3399468255176473,
+        0.3302141383196497
+      ],
+      "mechanism_trace": {
+        "n_items": 10,
+        "top1_score": 0.4923134229961021,
+        "top2_score": 0.45435488198402024,
+        "margin": 0.037959,
+        "flagged": true,
+        "inert": false
+      },
+      "base_context": [
+        "Planning to organize closet by season, storing winter clothes like thick grey scarf and gloves in boxes and bringing out spring clothes like yellow sundress",
+        "Plans to start using reusable shopping bags and water bottles",
+        "Plans to be more mindful of storing and disposing of eco-friendly items",
+        "Has a lot of garment patterns",
+        "Planning to do laundry this weekend",
+        "Planning to organize closet this weekend",
+        "Wants tips on properly storing and maintaining eco-friendly grocery options",
+        "Looking for company name ideas for a streetwear clothing brand",
+        "Looking for advice on storing comic book collection",
+        "Selling eco-friendly home goods"
+      ],
+      "plus_d_context": [
+        "Planning to organize closet by season, storing winter clothes like thick grey scarf and gloves in boxes and bringing out spring clothes like yellow sundress",
+        "Plans to start using reusable shopping bags and water bottles",
+        "Plans to be more mindful of storing and disposing of eco-friendly items",
+        "Has a lot of garment patterns",
+        "Planning to do laundry this weekend",
+        "Planning to organize closet this weekend",
+        "Wants tips on properly storing and maintaining eco-friendly grocery options",
+        "Looking for company name ideas for a streetwear clothing brand",
+        "Looking for advice on storing comic book collection",
+        "Selling eco-friendly home goods",
+        "Note: the top-ranked memories above have similar relevance scores. Before answering, check whether a less prominent item above answers the specific question more directly, rather than defaulting to the most prominent one."
+      ],
+      "base_answer": "Based on the provided context, I cannot determine how many items of clothing you need to pick up or return from a store. The context does not mention any pending pickups or returns.",
+      "plus_d_answer": "Based on the provided context, the answer cannot be determined. There is no information about any clothing items to pick up or return from a store.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_d_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_d_correct": false
+    },
+    {
+      "question_id": "09ba9854",
+      "question_type": "multi-session",
+      "question": "How much will I save by taking the train from the airport to my hotel instead of a taxi?",
+      "gold": "$50",
+      "scores": [
+        0.7605726691234609,
+        0.7580505898479508,
+        0.5498282220830322,
+        0.46715921525153786,
+        0.29686174154563116,
+        0.2816451432794578,
+        0.28075053444371983,
+        0.2717223306420663,
+        0.2618605554918949,
+        0.26009726185671883
+      ],
+      "mechanism_trace": {
+        "n_items": 10,
+        "top1_score": 0.7605726691234609,
+        "top2_score": 0.7580505898479508,
+        "margin": 0.002522,
+        "flagged": true,
+        "inert": false
+      },
+      "base_context": [
+        "Considering taking the train from the airport to the hotel",
+        "Considering taking a taxi from the airport to the hotel due to luggage, but finds it expensive (around $60)",
+        "Friend mentioned train fare is around $10",
+        "Thinking of asking the hotel for transportation recommendations",
+        "Booked a hotel in Tokyo",
+        "Planning a coffee meetup with Alex",
+        "Planning a photography trip",
+        "Considering joining Jack for a hike",
+        "Flying into Narita International Airport",
+        "Hotel is in the Shinjuku district"
+      ],
+      "plus_d_context": [
+        "Considering taking the train from the airport to the hotel",
+        "Considering taking a taxi from the airport to the hotel due to luggage, but finds it expensive (around $60)",
+        "Friend mentioned train fare is around $10",
+        "Thinking of asking the hotel for transportation recommendations",
+        "Booked a hotel in Tokyo",
+        "Planning a coffee meetup with Alex",
+        "Planning a photography trip",
+        "Considering joining Jack for a hike",
+        "Flying into Narita International Airport",
+        "Hotel is in the Shinjuku district",
+        "Note: the top-ranked memories above have similar relevance scores. Before answering, check whether a less prominent item above answers the specific question more directly, rather than defaulting to the most prominent one."
+      ],
+      "base_answer": "Based on the provided context, you would save around $50 by taking the train instead of a taxi. This is calculated by comparing the taxi fare of approximately $60 to the train fare of approximately $10.",
+      "plus_d_answer": "Based on the provided context, you would save $50 by taking the train instead of a taxi. This is calculated by subtracting the train fare of $10 from the taxi cost of $60.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_d_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_d_correct": true
+    },
+    {
+      "question_id": "0db4c65d",
+      "question_type": "temporal-reasoning",
+      "question": "How many days had passed since I finished reading 'The Seven Husbands of Evelyn Hugo' when I attended the book reading event at the local library, where the author of 'The Silent Patient' is discussing her latest thriller novel?",
+      "gold": "18 days. 19 days (including the last day) is also acceptable.",
+      "scores": [
+        0.6563946191116482,
+        0.6088236859634502,
+        0.45815767375339433,
+        0.43551360357045454,
+        0.3873721724637013,
+        0.3073578535606796,
+        0.30211748926306337,
+        0.2770807262614392,
+        0.270496541487498,
+        0.2638668273150375
+      ],
+      "mechanism_trace": {
+        "n_items": 10,
+        "top1_score": 0.6563946191116482,
+        "top2_score": 0.6088236859634502,
+        "margin": 0.047571,
+        "flagged": true,
+        "inert": false
+      },
+      "base_context": [
+        "Attended a book reading event at the local library today where the author of 'The Silent Patient' was discussing her latest thriller novel",
+        "Finished reading 'The Seven Husbands of Evelyn Hugo' by Taylor Jenkins Reid today",
+        "Recently started a book journal to track reading",
+        "Currently listening to a thriller novel",
+        "Started a book journal in early January and is enjoying it",
+        "Looking for book recommendations for thrillers",
+        "Found that reading a book for at least 20 minutes before lights out helps relax and reduce screen time",
+        "Curious about typical timeframe for asylum process",
+        "Participated in an online book club on Facebook",
+        "Interested in organizing book journal chronologically and by genre"
+      ],
+      "plus_d_context": [
+        "Attended a book reading event at the local library today where the author of 'The Silent Patient' was discussing her latest thriller novel",
+        "Finished reading 'The Seven Husbands of Evelyn Hugo' by Taylor Jenkins Reid today",
+        "Recently started a book journal to track reading",
+        "Currently listening to a thriller novel",
+        "Started a book journal in early January and is enjoying it",
+        "Looking for book recommendations for thrillers",
+        "Found that reading a book for at least 20 minutes before lights out helps relax and reduce screen time",
+        "Curious about typical timeframe for asylum process",
+        "Participated in an online book club on Facebook",
+        "Interested in organizing book journal chronologically and by genre",
+        "Note: the top-ranked memories above have similar relevance scores. Before answering, check whether a less prominent item above answers the specific question more directly, rather than defaulting to the most prominent one."
+      ],
+      "base_answer": "The provided context does not specify the dates on which you finished reading 'The Seven Husbands of Evelyn Hugo' or attended the book reading event, so the number of days cannot be determined.",
+      "plus_d_answer": "Based on the provided context, the answer cannot be determined. The memory notes that you finished reading *The Seven Husbands of Evelyn Hugo* and attended the book reading event, but it does not specify the dates of either event, so the number of days between them cannot be calculated.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_d_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_d_correct": false
+    }
+  ]
+}

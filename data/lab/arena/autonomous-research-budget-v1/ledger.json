@@ -6,38 +6,20 @@
   "started_at_commit": "96336ea9ced6a7d8e957d47406ab14d80be54f92",
   "cap_scope_prefix_convention": "autoresearch tracked via per-experiment cap_scope in data/lab/arena/spend-ledger.jsonl; this file summarizes decisions and running totals",
   "stages": [
-    {
-      "experiment_id": "mechb-v1",
-      "purpose": "MECHANISM_B_STATE_SUPERSESSION_V1 original exploratory run, 12 preregistered probes",
-      "cap_scope": "mechb-v1-",
-      "cost_usd": 0.022315,
-      "cumulative_cost_usd": 0.022315,
-      "decision_produced": "FAIL gate triggered (net repairs = 0); zero-cost archaeology required"
-    },
-    {
-      "experiment_id": "mechb-v1-repair",
-      "purpose": "one permitted repair retest: filler-spaced turns",
-      "cap_scope": "mechb-v1-repair-",
-      "cost_usd": 0.041754,
-      "cumulative_cost_usd": 0.064069,
-      "decision_produced": "repair hypothesis falsified; DROP (V1 harness, this host), mechanism logic unexercised not refuted"
-    },
-    {
-      "experiment_id": "rawprov-fresh-v1",
-      "purpose": "RAW_PROVENANCE_FRESH_REPLICATION_V1: 8 fresh gold-blind units, 3 arms (compact/compact+raw/raw_only)",
-      "cap_scope": "rawprov-fresh-",
-      "cost_usd": 0.575419,
-      "cumulative_cost_usd": 0.639488,
-      "decision_produced": "RAW_PROVENANCE_REPLICATED_SUPPORTED -> REPLICATED_VALIDATED_TRANSPLANT, campaign's first validated mechanism (compact 5/8, +raw 6/8, raw_only 4/8, 1 repair, 0 regressions)"
-    }
+    {"experiment_id": "mechb-v1", "purpose": "Mechanism B exploratory (12 probes)", "cap_scope": "mechb-v1-", "cost_usd": 0.022315, "cumulative_cost_usd": 0.022315, "decision_produced": "FAIL gate; archaeology required"},
+    {"experiment_id": "mechb-v1-repair", "purpose": "Mechanism B one repair retest", "cap_scope": "mechb-v1-repair-", "cost_usd": 0.041754, "cumulative_cost_usd": 0.064069, "decision_produced": "DROP (V1 harness), mechanism unexercised not refuted"},
+    {"experiment_id": "rawprov-fresh-v1", "purpose": "Mechanism C fresh replication (8 units, 3 arms)", "cap_scope": "rawprov-fresh-", "cost_usd": 0.575419, "cumulative_cost_usd": 0.639488, "decision_produced": "REPLICATED_VALIDATED_TRANSPLANT -- campaign's first validated mechanism"},
+    {"experiment_id": "mechd-v1", "purpose": "Mechanism D exploratory ingest (interrupted by provider cap at 4/5 units)", "cap_scope": "mechd-v1-", "cost_usd": 0.345535, "cumulative_cost_usd": 0.985023, "decision_produced": "ingest bug found+fixed live; 4/5 units cleanly completed, preserved"},
+    {"experiment_id": "mechd-v1-cont", "purpose": "Mechanism D continuation: reader+judge only on the 4 completed units, zero re-ingest", "cap_scope": "mechd-v1-cont-", "cost_usd": 0.001626, "cumulative_cost_usd": 0.986649, "decision_produced": "MECHANISM_D_FAIL -- DROP (regime mismatch, small n, not a refutation)"}
   ],
-  "remaining_usd": 9.360512,
-  "remaining_after_reserve_usd": 7.860512,
+  "remaining_usd": 9.013351,
+  "remaining_after_reserve_usd": 7.513351,
   "mechanisms_closed": [
     "Mechanism B: CURRENT_STATE_OVER_HISTORY -- DROP (V1 harness)",
-    "Mechanism C: RAW_PROVENANCE (C4) -- REPLICATED_VALIDATED_TRANSPLANT (first validated mechanism)"
+    "Mechanism C: RAW_PROVENANCE (C4) -- REPLICATED_VALIDATED_TRANSPLANT (first validated mechanism)",
+    "Mechanism D: RETRIEVAL_CONFIDENCE_SIGNAL -- DROP (regime mismatch, small n)"
   ],
-  "consecutive_failed_families_count": 0,
+  "consecutive_failed_families_count": 1,
   "validated_mechanisms_count": 1,
-  "note": "Mechanism C succeeded, resetting the consecutive-failure count. Interaction test (contract section 21) requires 2 REPLICATED_VALIDATED_TRANSPLANT mechanisms -- only 1 exists so far. Next: select an independent mechanism D, or extend/deepen RAW_PROVENANCE (e.g. multi-hop), per contract section 11."
+  "note": "Mechanism D failed but does not extend a 2-in-a-row streak (C succeeded between B and D). 1 of 3 needed for STOP condition B. Still need a 2nd REPLICATED_VALIDATED_TRANSPLANT mechanism before any interaction test unlocks. Continuing autonomously to Mechanism E per contract -- no STOP condition met, no permission needed."
 }
