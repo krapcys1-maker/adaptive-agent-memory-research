@@ -1,0 +1,98 @@
+--- a/mem0/memory/main.py
++++ b/mem0/memory/main.py
+@@ -28,6 +28,7 @@
+ from mem0.memory.utils import (
+     ensure_json_instruction,
+     extract_json,
++    get_completeness_check_messages,
+     get_fact_retrieval_messages,
+     parse_messages,
+     parse_vision_messages,
+@@ -431,7 +432,17 @@
+             # Determine if this should use agent memory extraction based on agent_id presence
+             # and role types in messages
+             is_agent_memory = self._should_use_agent_memory_extraction(messages, metadata)
+-            system_prompt, user_prompt = get_fact_retrieval_messages(parsed_messages, is_agent_memory)
++            # ARENA PATCH (hindsight-archaeology-v1 / arena-mem0-base-plus-x-v1):
++            # thread the caller-supplied historical timestamp (already present in
++            # `metadata` -- the arena's Mem0Adapter.ingest() has set it from the
++            # real session date since before this patch existed, it just never
++            # reached the extraction prompt) into the "Today's date is ..." line
++            # instead of leaving every fact grounded on the frozen, wrong,
++            # process-start real-world date. `metadata` is None for some call
++            # sites, hence the guard.
++            reference_date = (metadata or {}).get("timestamp") or None
++            system_prompt, user_prompt = get_fact_retrieval_messages(
++                parsed_messages, is_agent_memory, reference_date=reference_date)
+ 
+         # Ensure 'json' appears in prompts for json_object response format compatibility
+         system_prompt, user_prompt = ensure_json_instruction(system_prompt, user_prompt)
+@@ -460,6 +471,49 @@
+             logger.error(f"Error in new_retrieved_facts: {e}")
+             new_retrieved_facts = []
+ 
++        # ARENA PATCH (extraction-completeness-verification-v1) -- optional
++        # second LLM call re-checking extraction completeness against the
++        # original text, appending anything the first pass omitted. Gated by
++        # metadata["completeness_check_enabled"] (absent/False by default --
++        # every existing call site is byte-identical to unpatched behavior).
++        # Sync path only -- this project's Mem0Adapter is synchronous.
++        if (metadata or {}).get("completeness_check_enabled"):
++            completeness_system, completeness_user = get_completeness_check_messages(
++                parsed_messages, new_retrieved_facts)
++            completeness_system, completeness_user = ensure_json_instruction(
++                completeness_system, completeness_user)
++            completeness_response = self.llm.generate_response(
++                messages=[
++                    {"role": "system", "content": completeness_system},
++                    {"role": "user", "content": completeness_user},
++                ],
++                response_format={"type": "json_object"},
++            )
++            try:
++                completeness_response = remove_code_blocks(completeness_response)
++                completeness_parsed = (json.loads(completeness_response)
++                                       if completeness_response.strip() else {})
++                facts_to_add = completeness_parsed.get("facts_to_add", []) or []
++                facts_to_replace = completeness_parsed.get("facts_to_replace", []) or []
++            except Exception as e:
++                logger.error(f"Error in completeness check: {e}")
++                facts_to_add, facts_to_replace = [], []
++            for replacement in facts_to_replace:
++                original = str(replacement.get("original", "")).strip()
++                split_into = [str(s).strip() for s in (replacement.get("split_into") or []) if str(s).strip()]
++                if not original or not split_into:
++                    continue
++                new_retrieved_facts = [f for f in new_retrieved_facts
++                                       if f.strip().lower() != original.lower()]
++                new_retrieved_facts.extend(split_into)
++            for missed in facts_to_add:
++                missed = str(missed).strip()
++                if missed and not any(
++                    missed.lower() in existing.lower() or existing.lower() in missed.lower()
++                    for existing in new_retrieved_facts
++                ):
++                    new_retrieved_facts.append(missed)
++
+         if not new_retrieved_facts:
+             logger.debug("No new facts retrieved from input. Skipping memory update LLM call.")
+ 
+@@ -1462,7 +1516,17 @@
+             # Determine if this should use agent memory extraction based on agent_id presence
+             # and role types in messages
+             is_agent_memory = self._should_use_agent_memory_extraction(messages, metadata)
+-            system_prompt, user_prompt = get_fact_retrieval_messages(parsed_messages, is_agent_memory)
++            # ARENA PATCH (hindsight-archaeology-v1 / arena-mem0-base-plus-x-v1):
++            # thread the caller-supplied historical timestamp (already present in
++            # `metadata` -- the arena's Mem0Adapter.ingest() has set it from the
++            # real session date since before this patch existed, it just never
++            # reached the extraction prompt) into the "Today's date is ..." line
++            # instead of leaving every fact grounded on the frozen, wrong,
++            # process-start real-world date. `metadata` is None for some call
++            # sites, hence the guard.
++            reference_date = (metadata or {}).get("timestamp") or None
++            system_prompt, user_prompt = get_fact_retrieval_messages(
++                parsed_messages, is_agent_memory, reference_date=reference_date)
+ 
+         # Ensure 'json' appears in prompts for json_object response format compatibility
+         system_prompt, user_prompt = ensure_json_instruction(system_prompt, user_prompt)

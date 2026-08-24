@@ -1,0 +1,38 @@
+{
+  "artifact": "arena-extraction-completeness-verification-v1-patch-manifest",
+  "treatment_name": "EXTRACTION_COMPLETENESS_VERIFICATION_PASS",
+  "not_yet_claimed_as": "validated benchmark improvement -- this patch is the mechanism itself, gated off by default; calibration and exploratory-test results are recorded separately (data/lab/arena/extraction-completeness-verification-v1/calibration.json and results.json), not implied by this manifest.",
+  "selected_via": "docs/research/EXTERNAL_DISCOVERY_CANDIDATE_POOL_V3.md, a 12-agent discovery-rebuild workflow triggered by Campaign V2's 3-consecutive-failure strategy pivot. Rank 3 in the deduped pool (composite 567), archaeology verdict STRONG_CANDIDATE -- highest-confidence verdict of the top 3, most direct match to this campaign's own named priority-1 gap (write-time extraction loss).",
+  "pinned_package": {
+    "name": "mem0ai",
+    "version": "1.0.6",
+    "source": "PyPI, installed in external/venvs/mem0 (gitignored venv, not the source of truth for this record)"
+  },
+  "builds_on": [
+    "PER_SESSION_REFERENCE_DATE_AT_EXTRACTION (data/lab/arena/base-plus-x-v1/vendor-patch/manifest.json) -- already applied; reference_date threading is untouched by this patch.",
+    "EVENT_TIME_RESOLUTION_AT_EXTRACTION (data/lab/arena/event-time-resolution-calibration-v1/vendor-patch/manifest.json) -- already applied to utils.py; resolve_relative_time defaults False in every call this project makes, untouched by this patch."
+  ],
+  "calibration_driven_revision": "The FIRST version of this patch asked get_completeness_check_messages() only about facts 'OMITTED' from the extracted list, returning an additive missed_facts array. Calibration (data/lab/arena/extraction-completeness-verification-v1/calibration.json, first run, cap_scope mechj-calib-) found this version INERT on every one of the 4 list-bearing synthetic cases: an already-merged fact (e.g. 'Favorite movies are Inception, Interstellar, and Tenet') technically contains every item's name, so nothing reads as 'missing' under that wording, even though the extraction obviously bundled 3 distinct items into 1 fact. This is a real design gap caught by calibration BEFORE any paid exploratory spend, not a retry of a failed paid mechanism -- exactly the discipline calibration exists for (mirrors this project's own EVENT_TIME_RESOLUTION_AT_EXTRACTION precedent, but here the calibration caught a fixable prompt-design issue rather than confirming inertness). The prompt and merge logic were revised to explicitly ask for two distinct correction kinds -- MISSING (facts_to_add) and BUNDLED (facts_to_replace: [{original, split_into}]) -- and a second calibration run (cap_scope mechj-calib2-, then a corrected-parsing rerun at mechj-calib3- after a separate bug was found in the calibration SCRIPT's own key-parsing, not the mechanism) confirmed the revised version correctly splits all 4/4 list-bearing cases and leaves the negative control untouched (0 fabrication). Hashes below are for the FINAL, calibration-passed version only.",
+  "files_touched": {
+    "mem0/memory/utils.py": {
+      "baseline_sha256": "994656285d2b03a31c1826e99e6bbf6564aaf14b6ac5bd127262d8d33da2bae3",
+      "baseline_note": "= event-time-resolution-calibration-v1's own patched_sha256 -- confirmed identical (recomputed directly) before this edit was applied. Reference content still available at data/lab/arena/event-time-resolution-calibration-v1/vendor-patch/mem0-1.0.6-plus-refdate/mem0/memory/utils.py (not re-copied here).",
+      "patched_sha256": "855bf2482265c7d5e348ef027bbcb22604a2650d70b1c8b2a5cc349d8802bf07",
+      "what_changed": "one new, purely additive function get_completeness_check_messages(parsed_messages, already_extracted_facts) -> (system_prompt, user_prompt), inserted immediately before get_fact_retrieval_messages. Builds a prompt asking the model to find (1) facts missing entirely and (2) already-extracted facts that bundle multiple distinct enumerable items and should be split, returning {\"facts_to_add\": [...], \"facts_to_replace\": [{\"original\":..., \"split_into\":[...]}]}. Nothing else in this file changed -- confirmed by direct diff against the pre-edit file."
+    },
+    "mem0/memory/main.py": {
+      "baseline_sha256": "d084275e7764bdafa6c3916ad5d84daa2b5f04151ed4937d6dd2192139b90731",
+      "baseline_note": "= base-plus-x-v1's own patched_sha256 for main.py (event-time-resolution-calibration-v1 did not touch main.py) -- confirmed identical (recomputed directly) before this edit was applied. Reference content still available at data/lab/arena/base-plus-x-v1/vendor-patch/mem0-1.0.6/mem0/memory/main.py (not re-copied here).",
+      "patched_sha256": "e74060057d5e2e02a4605efe3759f03eb256724e821cc8e6224ae2e8e8a83a7f",
+      "what_changed": "(a) get_completeness_check_messages added to the mem0.memory.utils import block. (b) inside the SYNC Memory._add_to_vector_store() only (this project's Mem0Adapter is synchronous; the AsyncMemory twin at ~line 1424 is untouched), immediately after new_retrieved_facts is parsed and before the 'No new facts retrieved' debug log: if metadata.get('completeness_check_enabled') is truthy, issue one additional self.llm.generate_response() call built from get_completeness_check_messages(), parse facts_to_replace (remove the named original fact, splice in its split_into items) then facts_to_add (append any item not already present, case-insensitive substring dedup), before new_retrieved_facts flows into the existing-memory search / update-decision / vector-store-write logic, all of which are otherwise completely unchanged. Gate defaults to falsy (absent from metadata), so every existing call site -- including this project's own BASE Mem0 store construction, used by every other mechanism in this campaign -- is byte-identical to unpatched (pre-this-patch) behavior."
+    }
+  },
+  "patch_files": [
+    "data/lab/arena/extraction-completeness-verification-v1/vendor-patch/EXTRACTION_COMPLETENESS_VERIFICATION_PASS.utils.patch",
+    "data/lab/arena/extraction-completeness-verification-v1/vendor-patch/EXTRACTION_COMPLETENESS_VERIFICATION_PASS.main.patch"
+  ],
+  "patch_file_note": "the .main.patch file is a diff against base-plus-x-v1's PRISTINE original main.py snapshot (no clean post-PER_SESSION_REFERENCE_DATE_AT_EXTRACTION-only snapshot of main.py was preserved by that earlier patch), so it shows the cumulative reference_date threading (unchanged by this patch) plus this patch's own new insertion together -- the what_changed field above states precisely and only what THIS patch added, verified by direct pre/post sha256 comparison around this specific edit, not by the diff's own scope.",
+  "baseline_snapshot": "data/lab/arena/extraction-completeness-verification-v1/vendor-patch/mem0-1.0.6-plus-refdate-plus-temporal/mem0/memory/{main.py,utils.py} -- the exact pre-this-patch file content, checked into the repo so the treatment is reproducible without the gitignored venv.",
+  "gate_design": "metadata['completeness_check_enabled'], read the same way reference_date already reads from metadata (main.py:442) -- threaded per-call via Mem0Adapter, not a global config flag, so BASE and +ARM ingests in the same process can use different banks/settings without any risk of cross-contamination.",
+  "no_other_changes": true
+}
