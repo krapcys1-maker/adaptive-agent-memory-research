@@ -1,6 +1,6 @@
 # Do Not Rediscover
 
-Transkrypcja `docs/research/MECHANISM_REGIME_EVIDENCE_LEDGER.md` (Entries A-O) do formatu ResearchOS. **Ledger jest źródłem prawdy** — ten plik jest pochodną, regenerowaną, nie edytowaną ręcznie niezależnie.
+Transkrypcja `docs/research/MECHANISM_REGIME_EVIDENCE_LEDGER.md` (Entries A-Q) do formatu ResearchOS. **Ledger jest źródłem prawdy** — ten plik jest pochodną, regenerowaną, nie edytowaną ręcznie niezależnie.
 
 Dozwolone statusy: `VALIDATED` | `REPLICATED_VALIDATED` | `FAILED` | `FAILED_REPLICATION` | `DROP` | `PAUSED` | `PRECONDITION_UNAVAILABLE` | `PRECONDITION_ABSENT` | `REGIME_DEPENDENT` | `ALREADY_OWNED` | `EXTERNAL_ONLY` | `UNKNOWN`.
 
@@ -245,3 +245,19 @@ Dozwolone statusy: `VALIDATED` | `REPLICATED_VALIDATED` | `FAILED` | `FAILED_REP
 - **do_not_retry:** identyczny design bez pre-screeningu przy podobnym n.
 - **reopen_condition:** patrz Entry O.
 - **related_mechanisms:** Entry O, Entry N (identyczny "FAIL_ON_REPLICATION_GATE, 0 regresji" shape).
+
+### Entry Q — `SEMANTIC_ENTROPY_SUFFICIENCY_GATE`
+
+- **canonical_name:** SEMANTIC_ENTROPY_SUFFICIENCY_GATE
+- **aliases:** semantic-entropy-escalation-gate (ResearchOS's original name, `rmc-2026-08-24-001`), sample-and-cluster black-box entropy gate, SUGAR-style compact-vs-raw gate
+- **status:** `FAILED`
+- **source_system:** SUGAR (arXiv 2501.04899), Kuhn et al. (Nature 2024, black-box semantic entropy). Pierwszy kandydat tej kampanii pochodzący z ResearchOS handoff (`rmc-2026-08-24-001`), nie z AAMR's własnej discovery-rebuild puli.
+- **AAMR_experiment_ids:** kalibracja (`PM-20260825-41d5d71e`, $0, reuse już-oznaczonych danych), przyczynowy test (`PM-20260825-e88248ff`, n=6, $0.435904)
+- **result:** BASE 3/6, GATE 3/6, 0 regresji, escalacja odpaliła selektywnie (2/6) ale 0/2 traceable repairs. Kalibracja sama w sobie była czysta (separacja +0.804) — to remedy i trigger na konkretnej próbce zawiodły, nie sam podstawowy sygnał.
+- **failure_reason:** dwa złożone problemy. (1) Trigger niepewny na n=2 escalated: 1 prawdziwy positive, 1 clustering artifact (embedding-cosine clustering rozdzieliło niemal identyczne odpowiedzi na 3 klastry). (2) Remedy (`raw_session()`, top-1-anchored, single-hop, bez session-level date stamps) dziedziczy dokładnie te same ograniczenia co `RAW_PROVENANCE` (Entry H) — oba escalated units trafiły na już znane absence subtypes: retrieval-ranking-miss (2) skomponowany z assistant-turn-scoping-loss (4) w jednym przypadku, i (nieescalowany, ale wciąż zły) temporal-representation-loss (3) w drugim, żaden z nich strukturalnie nienaprawialny przez ten konkretny remedy.
+- **positive_regime:** teoretyczna — absence-type failures (informacja rzeczywiście nieobecna w compact context). Nie zaobserwowano na tej próbce.
+- **negative_regime:** presence-type failures (informacja obecna, reader błędnie nie generalizuje/nie stosuje) — dokładnie ryzyko, które ResearchOS's własny kandydat nazwał `possible_negative_regime` PRZED testem. Także: absence-type failures poza zasięgiem top-1-anchored single-hop remedy (subtypes 2, 3, 4).
+- **precondition_status:** podstawowy sygnał (semantic entropy separuje known-sufficient/known-insufficient) confirmed real w kalibracji — ale trigger (embedding-cosine clustering) i remedy (single-hop raw injection) każdy z osobna niewystarczające na tym failure mix.
+- **do_not_retry:** identyczny design (embedding-cosine trigger + top-1-anchored `raw_session()` remedy) bez zmiany co najmniej jednego z dwóch komponentów.
+- **reopen_condition:** kandydat proponujący (a) inną metodę clusteringu dla triggera (np. bidirectional NLI entailment zamiast embedding-cosine, żeby uniknąć `0edc2aef`-class artefaktu), LUB (b) inny remedy niż top-1-anchored single-hop raw injection (np. multi-hop, albo remedy niosący session-level date stamps) — z jasnym uzasadnieniem, dlaczego omija te dwie konkretne, zmierzone porażki.
+- **related_mechanisms:** Entry H (`RAW_PROVENANCE`, remedy code shared, limitations inherited), Entry I (`RETRIEVAL_CONFIDENCE_SIGNAL`, pokrewny ale różny sygnał — score margin, nie sample-and-cluster entropy), GAP-002/GAP-003 (inne, niezależne kandydaci na te same absence subtypes 2/3).

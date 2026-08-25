@@ -1,0 +1,21 @@
+{
+  "artifact": "arena-semantic-entropy-gate-v1-selection",
+  "purpose": "SEMANTIC_ENTROPY_SUFFICIENCY_GATE exploratory causal test -- responds to ResearchOS candidate rmc-2026-08-24-001 and AAMR's own research request arr-2026-08-24-001 (GAP-005), following a positive $0-cost calibration (data/lab/arena/semantic-entropy-sufficiency-calibration-v1/calibration.json: mean entropy sufficient=0.300 vs insufficient=1.104, separation +0.804, clean and in the theoretically expected direction on 8 already-known-labeled units).",
+  "frozen_before_any_ingest": true,
+  "excludes_note": "all 85 units used or examined anywhere in this arena to date (every prior mechanism's selection.json, recursively globbed, including the 8 units reused for the semantic-entropy calibration itself, which were already part of raw-provenance-fresh-replication-v1's own selection and thus already excluded). _abs variants excluded by base id too.",
+  "selection_rule": {
+    "inputs_used": ["question_type"],
+    "inputs_never_used": ["answer", "gold", "haystack content", "prior correctness", "the calibration's own already-examined 8 units"],
+    "method": "1 unit per LongMemEval-S category (6 categories), first-by-question_id-sort within category after exclusion. Unweighted -- this candidate's target (compact-vs-raw sufficiency, gated by sample-disagreement) is not category-specific by design.",
+    "size_note": "6 units -- appropriately lean for a first exploratory causal test given remaining campaign budget (~$1.04 of $5.00 hard cap at preregistration time, past the $3.00 preferred threshold)."
+  },
+  "units": [
+    {"question_id": "22d2cb42", "question_type": "knowledge-update"},
+    {"question_id": "2788b940", "question_type": "multi-session"},
+    {"question_id": "1de5cff2", "question_type": "single-session-assistant"},
+    {"question_id": "0edc2aef", "question_type": "single-session-preference"},
+    {"question_id": "29f2956b", "question_type": "single-session-user"},
+    {"question_id": "6e984301", "question_type": "temporal-reasoning"}
+  ],
+  "n_units": 6
+}

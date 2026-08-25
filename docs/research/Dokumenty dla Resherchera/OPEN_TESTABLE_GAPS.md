@@ -97,8 +97,8 @@ Statusy: `OPEN` | `BLOCKED` | `WAITING_FOR_EXPERIMENT` | `SATURATED` | `CLOSED`.
 
 - **title:** Czy istnieje tani proxy sygnał przewidujący, kiedy `RAW_PROVENANCE`'s ~21x token overhead jest warty zapłacenia?
 - **target_failure:** n/a — to nie jest failure-repair, to jest cost-efficiency question na już zwalidowanym mechanizmie.
-- **status:** OPEN
-- **priority:** MEDIUM (nie HIGH — `RAW_PROVENANCE` już działa bezwarunkowo bez obserwowanych regresji; to pytanie o efektywność, nie o poprawność)
+- **status:** CLOSED
+- **priority:** N/A (zamknięte)
 - **why_it_matters:** **To jest dokładnie luka, którą celuje ResearchOS's istniejący kandydat (`semantic-entropy-escalation-gate`), ale z odświeżonym uzasadnieniem.** Kandydat zakładał, że wartość raw fallback jest wciąż nierozstrzygnięta — to już nieprawda (Entry H, `REPLICATED_VALIDATED_TRANSPLANT`). Prawdziwe uzasadnienie: zmierzony ~21x narzut tokenów (mean, 8 units, zakres 5.6x-32.1x) na bezwarunkowe zastosowanie `RAW_PROVENANCE` — bramka miałaby wartość kosztową, nie korekcyjną.
 - **what_is_known:** Entry H (raw fallback pomaga, bez regresji, bezwarunkowo); token overhead ratio (patrz wyżej); Entry I (`RETRIEVAL_CONFIDENCE_SIGNAL`, score-margin proxy) DROP z powodu regime mismatch — nie testuje TEGO konkretnego pytania (czy compact jest wystarczający), testował inne (czy top1/top2 margin jest wąski).
 - **what_is_unknown:** czy jakikolwiek tani, gold-free proxy sygnał (semantic entropy, retrieval confidence, score margin, candidate-set statistics) koreluje z rzeczywistą niewystarczalnością compact representation w TYM projekcie.
@@ -109,13 +109,14 @@ Statusy: `OPEN` | `BLOCKED` | `WAITING_FOR_EXPERIMENT` | `SATURATED` | `CLOSED`.
 - **desired_external_evidence:** zmierzone (nie tylko claimed) wyniki sample-and-cluster semantic entropy albo pokrewnych proxy sygnałów, SPECYFICZNIE dla decyzji compact-vs-raw-escalation w PERSYSTENTNEJ agent memory (nie jednorazowego "retrieve or not" w single-turn RAG — ResearchOS's własny kandydat już to rozróżnienie nazwał jako otwartą, nieprzetestowaną transfer question).
 - **negative_evidence_wanted:** czy istnieją znane przypadki, gdzie semantic-entropy-style sygnały failują specyficznie na "gold present but reader still wrong" failure mode (dominujący w tym projekcie per ResearchOS's własny kandydat, §possible_negative_regime) — zamiast na "gold absent" (gdzie te sygnały są teoretycznie najsilniejsze).
 - **precondition_questions:** czy istnieje tani sposób odróżnienia "compact wystarczy" od "compact nie wystarczy" bez dostępu do gold, mierzalny na już-zebranych AAMR danych (np. korelacja między istniejącym `RAW_PROVENANCE` repair/no-repair rozkładem i jakimkolwiek kandydackim sygnałem) przed budową pełnego mechanizmu.
-- **research_question:** patrz `RESEARCH_REQUESTS/2026-08-24_research_request_compact-raw-sufficiency-gate.md`.
-- **candidate_value_if_found:** obniżyłby koszt operacyjny `RAW_PROVENANCE` bez utraty jego już-zmierzonej korzyści — wartościowe dla przyszłej fazy produktowej (koszt-per-query), mniej pilne dla samej fazy badawczej.
-- **estimated_experiment_cost_band:** $0.05-0.15 dla pierwszego cheap-proxy testu (per ResearchOS's własny szacunek, nieodrzucony przez AAMR).
-- **dependencies:** żadne twarde — `RAW_PROVENANCE` już zwalidowany (Entry H), nic nie blokuje testu bramki.
-- **blocked_by:** nic.
-- **reopen/close condition:** SATURATED jeśli żaden przetestowany proxy nie koreluje z rzeczywistą niewystarczalnością; OPEN→testowany po pierwszym cheap precondition checku.
-- **last_updated:** 2026-08-24.
+- **research_question:** n/a — zamknięte. Patrz `RESEARCH_REQUESTS/2026-08-24_research_request_compact-raw-sufficiency-gate.md` (CLOSED) dla pełnej historii.
+- **what_is_known (update 2026-08-25):** ResearchOS's kandydat `rmc-2026-08-24-001` (`SEMANTIC_ENTROPY_SUFFICIENCY_GATE`) przetestowany bezpośrednio przez AAMR — $0 kalibracja (separacja +0.804, czysta) → 6-jednostkowy przyczynowy test świeżych, gold-blind jednostek. Wynik: `MECHANISM_SEG_FAIL` (Ledger Entry Q) — 0/2 traceable repairs mimo selektywnego odpalania (2/6); trigger niepewny (1 prawdziwy positive, 1 clustering artifact na n=2); remedy (`raw_session()`, top-1-anchored) dziedziczy dokładnie te same ograniczenia co `RAW_PROVENANCE` (single-hop, brak session-level date stamps) — oba escalated units trafiły na już znane absence subtypes (2, 4), których ten remedy nie mógł naprawić z konstrukcji.
+- **candidate_value_if_found:** zrealizowane negatywnie — żaden przetestowany proxy (semantic entropy, sample-and-cluster) nie skorelował się z użyteczną naprawą na tej próbce. Przyszły kandydat z INNYM remedy (nie top-1-anchored single-hop) lub INNĄ metodą clusteringu (nie embedding-cosine, np. bidirectional NLI entailment) nie byłby duplikatem — patrz `DO_NOT_REDISCOVER.md` Entry Q, `do_not_retry`.
+- **estimated_experiment_cost_band:** zrealizowane: $0.003309 (kalibracja) + $0.435904 (test) = $0.439213.
+- **dependencies:** —
+- **blocked_by:** —
+- **reopen/close condition:** reopen jeśli przyszły kandydat proponuje inny remedy (nie top-1-anchored raw injection) lub inną metodę clusteringu dla triggera, z nowym uzasadnieniem dlaczego omija te dwie konkretne, zmierzone porażki.
+- **last_updated:** 2026-08-25.
 
 ## GAP-006 — Reranking
 

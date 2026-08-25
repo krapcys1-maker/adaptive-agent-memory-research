@@ -1,7 +1,9 @@
 ---
 id: arr-2026-08-24-001
 type: RESEARCH_REQUEST
-status: OPEN
+status: CLOSED
+closed: 2026-08-25
+closed_reason: AAMR tested ResearchOS's own existing candidate (rmc-2026-08-24-001) directly rather than waiting for further literature search -- AAMR_MEASURED evidence, the bar this request's own stop_condition treated as sufficient to close regardless of outcome direction. Result MECHANISM_SEG_FAIL (Ledger Entry Q, DROP) -- see docs/research/rmc-2026-08-24-001_aamr-review.md and docs/research/SEMANTIC_ENTROPY_SUFFICIENCY_GATE_V1.md.
 created: 2026-08-24
 source: AAMR
 target: ResearchOS

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1",
-  "generatedAt": "2026-08-24T21:15:02+00:00",
-  "aamrCommit": "ed0e5174ad8d35d3d7bf8229c4ce0544d863aafd",
+  "generatedAt": "2026-08-25T03:25:33+00:00",
+  "aamrCommit": "8b234ec13947f0c7f2ac8540d4d51bb5d202d5b3",
   "note": "Snapshot only, not source of truth -- see docs/research/MECHANISM_REGIME_EVIDENCE_LEDGER.md and memory/events.jsonl.",
   "testability": [
     {
@@ -70,9 +70,9 @@
     {
       "capability": "compact-vs-raw gating",
       "status": "CAN_TEST_WITH_PRECONDITION",
-      "reason": "value proposition is now cost-efficiency (~21.4x token overhead), not correctness (raw fallback already validated)",
+      "reason": "value proposition is cost-efficiency (~21.4x token overhead), not correctness (raw fallback already validated); two cheap-proxy signals tested and DROPped (Entry I score-margin, Entry Q semantic entropy) -- GAP-005 closed",
       "source": "TESTABILITY_ENVELOPE.md#compact-vs-raw-gating",
-      "reopen_condition": null
+      "reopen_condition": "a candidate proposing a signal outside the already-tested families, or the same signal with a different (non-top-1-anchored) remedy"
     },
     {
       "capability": "supersession",
@@ -187,8 +187,8 @@
     {
       "gap_id": "GAP-005",
       "title": "Compact-vs-raw sufficiency gate (cost-efficiency framing)",
-      "status": "OPEN",
-      "priority": "MEDIUM",
+      "status": "CLOSED",
+      "priority": "N/A",
       "testability_status": "CAN_TEST_WITH_PRECONDITION",
       "source": "OPEN_TESTABLE_GAPS.md#gap-005",
       "blocked_by": []
@@ -338,12 +338,22 @@
       "status": "FAILED_REPLICATION",
       "ledger_entry": "P",
       "source": "DO_NOT_REDISCOVER.md#entry-p"
+    },
+    {
+      "canonical_name": "SEMANTIC_ENTROPY_SUFFICIENCY_GATE",
+      "aliases": [
+        "semantic-entropy-escalation-gate",
+        "SUGAR-style compact-vs-raw gate"
+      ],
+      "status": "FAILED",
+      "ledger_entry": "Q",
+      "source": "DO_NOT_REDISCOVER.md#entry-q"
     }
   ],
   "researchRequests": [
     {
       "id": "arr-2026-08-24-001",
-      "status": "OPEN",
+      "status": "CLOSED",
       "priority": "MEDIUM",
       "linked_gap": "GAP-005",
       "standalone": false,

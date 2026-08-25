@@ -11,7 +11,7 @@
     {"capability": "context composition", "status": "CAN_TEST_NOW", "reason": "used by nearly every tested mechanism", "source": "TESTABILITY_ENVELOPE.md#context-composition", "reopen_condition": null},
     {"capability": "reranking", "status": "CAN_TEST_WITH_PRECONDITION", "reason": "infrastructurally trivial but PRECONDITION_MOSTLY_ABSENT: gold_rank=1 in 17/17 observed retrievals", "source": "TESTABILITY_ENVELOPE.md#reranking", "reopen_condition": "gold-blind sample at different breadth shows gold_rank>1"},
     {"capability": "raw provenance expansion", "status": "CAN_TEST_NOW", "reason": "validated (Ledger Entry H)", "source": "TESTABILITY_ENVELOPE.md#raw-provenance-expansion", "reopen_condition": null},
-    {"capability": "compact-vs-raw gating", "status": "CAN_TEST_WITH_PRECONDITION", "reason": "value proposition is now cost-efficiency (~21.4x token overhead), not correctness (raw fallback already validated)", "source": "TESTABILITY_ENVELOPE.md#compact-vs-raw-gating", "reopen_condition": null},
+    {"capability": "compact-vs-raw gating", "status": "CAN_TEST_WITH_PRECONDITION", "reason": "value proposition is cost-efficiency (~21.4x token overhead), not correctness (raw fallback already validated); two cheap-proxy signals tested and DROPped (Entry I score-margin, Entry Q semantic entropy) -- GAP-005 closed", "source": "TESTABILITY_ENVELOPE.md#compact-vs-raw-gating", "reopen_condition": "a candidate proposing a signal outside the already-tested families, or the same signal with a different (non-top-1-anchored) remedy"},
     {"capability": "supersession", "status": "CAN_TEST_WITH_PRECONDITION", "reason": "naive design PRECONDITION_ABSENT (Mem0's own reconciliation absorbs it); intervention must be inside get_update_memory_messages, now proven feasible by Entry O's patch pattern", "source": "TESTABILITY_ENVELOPE.md#supersession", "reopen_condition": null},
     {"capability": "contradiction handling", "status": "CAN_TEST_WITH_PRECONDITION", "reason": "same constraint as supersession", "source": "TESTABILITY_ENVELOPE.md#contradiction-handling", "reopen_condition": null},
     {"capability": "provenance routing", "status": "CAN_TEST_WITH_PRECONDITION", "reason": "tied to compact-vs-raw gating", "source": "TESTABILITY_ENVELOPE.md#provenance-routing", "reopen_condition": null},
@@ -28,7 +28,7 @@
     {"gap_id": "GAP-002", "title": "Retrieval-ranking-miss beyond single-shot HyDE", "status": "OPEN", "priority": "MEDIUM", "testability_status": "CAN_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-002", "blocked_by": []},
     {"gap_id": "GAP-003", "title": "Structured write-time temporal field (subtype 3, alternative design)", "status": "OPEN", "priority": "MEDIUM-HIGH", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-003", "blocked_by": []},
     {"gap_id": "GAP-004", "title": "Assistant-turn-scoping-loss (subtype 4)", "status": "BLOCKED", "priority": "MEDIUM", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-004", "blocked_by": ["design decision: isolated ingest path, not a change to shared as_records()"]},
-    {"gap_id": "GAP-005", "title": "Compact-vs-raw sufficiency gate (cost-efficiency framing)", "status": "OPEN", "priority": "MEDIUM", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-005", "blocked_by": []},
+    {"gap_id": "GAP-005", "title": "Compact-vs-raw sufficiency gate (cost-efficiency framing)", "status": "CLOSED", "priority": "N/A", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-005", "blocked_by": []},
     {"gap_id": "GAP-006", "title": "Reranking", "status": "SATURATED", "priority": "LOW", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-006", "blocked_by": []},
     {"gap_id": "GAP-007", "title": "Controller / interaction test", "status": "WAITING_FOR_EXPERIMENT", "priority": "N/A", "testability_status": "CANNOT_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-007", "blocked_by": ["GAP-002", "GAP-003"]}
   ],
@@ -47,9 +47,10 @@
     {"canonical_name": "HYDE_QUERY_REFORMULATION", "aliases": ["HyDE"], "status": "DROP", "ledger_entry": "M", "source": "DO_NOT_REDISCOVER.md#entry-m"},
     {"canonical_name": "TEMPORAL_ANCHOR_AT_CONTEXT (TEMPORAL_BOUNDARY)", "aliases": [], "status": "FAILED_REPLICATION", "ledger_entry": "N", "source": "DO_NOT_REDISCOVER.md#entry-n"},
     {"canonical_name": "EXTRACTION_COMPLETENESS_VERIFICATION_PASS", "aliases": ["ProMem-style completeness check"], "status": "REGIME_DEPENDENT", "ledger_entry": "O", "source": "DO_NOT_REDISCOVER.md#entry-o"},
-    {"canonical_name": "EXTRACTION_COMPLETENESS_VERIFICATION_PASS (fresh replication)", "aliases": [], "status": "FAILED_REPLICATION", "ledger_entry": "P", "source": "DO_NOT_REDISCOVER.md#entry-p"}
+    {"canonical_name": "EXTRACTION_COMPLETENESS_VERIFICATION_PASS (fresh replication)", "aliases": [], "status": "FAILED_REPLICATION", "ledger_entry": "P", "source": "DO_NOT_REDISCOVER.md#entry-p"},
+    {"canonical_name": "SEMANTIC_ENTROPY_SUFFICIENCY_GATE", "aliases": ["semantic-entropy-escalation-gate", "SUGAR-style compact-vs-raw gate"], "status": "FAILED", "ledger_entry": "Q", "source": "DO_NOT_REDISCOVER.md#entry-q"}
   ],
   "researchRequests": [
-    {"id": "arr-2026-08-24-001", "status": "OPEN", "priority": "MEDIUM", "linked_gap": "GAP-005", "standalone": false, "requires_capabilities": ["embedding-derived signals", "retrieval-score-derived signals"], "source": "RESEARCH_REQUESTS/2026-08-24_research_request_compact-raw-sufficiency-gate.md"}
+    {"id": "arr-2026-08-24-001", "status": "CLOSED", "priority": "MEDIUM", "linked_gap": "GAP-005", "standalone": false, "requires_capabilities": ["embedding-derived signals", "retrieval-score-derived signals"], "source": "RESEARCH_REQUESTS/2026-08-24_research_request_compact-raw-sufficiency-gate.md"}
   ]
 }
