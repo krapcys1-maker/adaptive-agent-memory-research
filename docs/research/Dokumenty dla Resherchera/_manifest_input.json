@@ -25,9 +25,9 @@
   ],
   "openGaps": [
     {"gap_id": "GAP-001", "title": "Write-time extraction completeness, replication", "status": "CLOSED", "priority": "N/A", "testability_status": "CAN_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-001", "blocked_by": []},
-    {"gap_id": "GAP-002", "title": "Retrieval-ranking-miss beyond single-shot HyDE", "status": "OPEN", "priority": "MEDIUM", "testability_status": "CAN_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-002", "blocked_by": []},
-    {"gap_id": "GAP-003", "title": "Structured write-time temporal field (subtype 3, alternative design)", "status": "OPEN", "priority": "MEDIUM-HIGH", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-003", "blocked_by": []},
-    {"gap_id": "GAP-004", "title": "Assistant-turn-scoping-loss (subtype 4)", "status": "BLOCKED", "priority": "MEDIUM", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-004", "blocked_by": ["design decision: isolated ingest path, not a change to shared as_records()"]},
+    {"gap_id": "GAP-002", "title": "Retrieval-ranking-miss / retrieval-anchor failure", "status": "OPEN", "priority": "HIGH", "testability_status": "CAN_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-002", "blocked_by": []},
+    {"gap_id": "GAP-003", "title": "Structured write-time temporal field (subtype 3, alternative design)", "status": "OPEN", "priority": "HIGH", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-003", "blocked_by": []},
+    {"gap_id": "GAP-004", "title": "Assistant-turn-scoping-loss (subtype 4)", "status": "BLOCKED", "priority": "HIGH", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-004", "blocked_by": ["design decision: isolated ingest path, not a change to shared as_records()"]},
     {"gap_id": "GAP-005", "title": "Compact-vs-raw sufficiency gate (cost-efficiency framing)", "status": "CLOSED", "priority": "N/A", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-005", "blocked_by": []},
     {"gap_id": "GAP-006", "title": "Reranking", "status": "SATURATED", "priority": "LOW", "testability_status": "CAN_TEST_WITH_PRECONDITION", "source": "OPEN_TESTABLE_GAPS.md#gap-006", "blocked_by": []},
     {"gap_id": "GAP-007", "title": "Controller / interaction test", "status": "WAITING_FOR_EXPERIMENT", "priority": "N/A", "testability_status": "CANNOT_TEST_NOW", "source": "OPEN_TESTABLE_GAPS.md#gap-007", "blocked_by": ["GAP-002", "GAP-003"]}
@@ -51,6 +51,7 @@
     {"canonical_name": "SEMANTIC_ENTROPY_SUFFICIENCY_GATE", "aliases": ["semantic-entropy-escalation-gate", "SUGAR-style compact-vs-raw gate"], "status": "FAILED", "ledger_entry": "Q", "source": "DO_NOT_REDISCOVER.md#entry-q"}
   ],
   "researchRequests": [
-    {"id": "arr-2026-08-24-001", "status": "CLOSED", "priority": "MEDIUM", "linked_gap": "GAP-005", "standalone": false, "requires_capabilities": ["embedding-derived signals", "retrieval-score-derived signals"], "source": "RESEARCH_REQUESTS/2026-08-24_research_request_compact-raw-sufficiency-gate.md"}
+    {"id": "arr-2026-08-24-001", "status": "CLOSED", "priority": "MEDIUM", "linked_gap": "GAP-005", "standalone": false, "requires_capabilities": ["embedding-derived signals", "retrieval-score-derived signals"], "source": "RESEARCH_REQUESTS/2026-08-24_research_request_compact-raw-sufficiency-gate.md"},
+    {"id": "arr-2026-08-25-001", "status": "OPEN", "priority": "HIGH", "linked_gap": "GAP-002", "also_targets_gaps": ["GAP-003", "GAP-004"], "standalone": false, "requires_capabilities": [], "source": "RESEARCH_REQUESTS/2026-08-25_research_request_three-precise-failure-modes.md"}
   ]
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1",
-  "generatedAt": "2026-08-25T03:25:33+00:00",
-  "aamrCommit": "8b234ec13947f0c7f2ac8540d4d51bb5d202d5b3",
+  "generatedAt": "2026-08-25T03:56:16+00:00",
+  "aamrCommit": "5ae0b6b6661cd6db6acb60627ea1b0a7d719ceb6",
   "note": "Snapshot only, not source of truth -- see docs/research/MECHANISM_REGIME_EVIDENCE_LEDGER.md and memory/events.jsonl.",
   "testability": [
     {
@@ -157,9 +157,9 @@
     },
     {
       "gap_id": "GAP-002",
-      "title": "Retrieval-ranking-miss beyond single-shot HyDE",
+      "title": "Retrieval-ranking-miss / retrieval-anchor failure",
       "status": "OPEN",
-      "priority": "MEDIUM",
+      "priority": "HIGH",
       "testability_status": "CAN_TEST_NOW",
       "source": "OPEN_TESTABLE_GAPS.md#gap-002",
       "blocked_by": []
@@ -168,7 +168,7 @@
       "gap_id": "GAP-003",
       "title": "Structured write-time temporal field (subtype 3, alternative design)",
       "status": "OPEN",
-      "priority": "MEDIUM-HIGH",
+      "priority": "HIGH",
       "testability_status": "CAN_TEST_WITH_PRECONDITION",
       "source": "OPEN_TESTABLE_GAPS.md#gap-003",
       "blocked_by": []
@@ -177,7 +177,7 @@
       "gap_id": "GAP-004",
       "title": "Assistant-turn-scoping-loss (subtype 4)",
       "status": "BLOCKED",
-      "priority": "MEDIUM",
+      "priority": "HIGH",
       "testability_status": "CAN_TEST_WITH_PRECONDITION",
       "source": "OPEN_TESTABLE_GAPS.md#gap-004",
       "blocked_by": [
@@ -362,6 +362,19 @@
         "retrieval-score-derived signals"
       ],
       "source": "RESEARCH_REQUESTS/2026-08-24_research_request_compact-raw-sufficiency-gate.md"
+    },
+    {
+      "id": "arr-2026-08-25-001",
+      "status": "OPEN",
+      "priority": "HIGH",
+      "linked_gap": "GAP-002",
+      "also_targets_gaps": [
+        "GAP-003",
+        "GAP-004"
+      ],
+      "standalone": false,
+      "requires_capabilities": [],
+      "source": "RESEARCH_REQUESTS/2026-08-25_research_request_three-precise-failure-modes.md"
     }
   ]
 }

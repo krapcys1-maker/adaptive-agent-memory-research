@@ -26,37 +26,37 @@ Statusy: `OPEN` | `BLOCKED` | `WAITING_FOR_EXPERIMENT` | `SATURATED` | `CLOSED`.
 - **reopen/close condition:** większa (>8 jednostek) LUB subtype-pre-screened (gold-blind, strukturalna nie treściowa) próbka specyficznie wzbogacona o pytania z bundled-enumeration shape.
 - **last_updated:** 2026-08-25.
 
-## GAP-002 — Retrieval-ranking-miss beyond single-shot HyDE
+## GAP-002 — Retrieval-ranking-miss / retrieval-anchor failure
 
-- **title:** Czy multi-query fan-out / ranking-miss detection naprawia więcej niż pojedynczy HyDE?
-- **target_failure:** retrieval-ranking-miss — absence subtype (2), potwierdzony realny precondition (Entry M), ale niedostatecznie próbkowany.
+- **title:** Czy multi-query fan-out / ranking-miss detection naprawia więcej niż pojedynczy HyDE? Czy remedy zakotwiczone gdzie indziej niż top-1 naprawia RETRIEVAL_ANCHOR_FAILURE?
+- **target_failure:** dwie POKREWNE, ale rozróżnialne twarze absence subtype (2): (a) **query-side ranking-miss** — gold fact obecny w store, ale poza top-10 dla dosłownego pytania (Entry M's target); (b) **remedy-side anchor failure, `RETRIEVAL_ANCHOR_FAILURE`** — nowo zaostrzone przez Entry Q (`1de5cff2`): nawet gdy trigger poprawnie wykrywa niewystarczalność, remedy (`raw_session()`) jest zakotwiczone WYŁĄCZNIE do Mem0's własnego top-1 hit; gdy ten top-1 jest topically zły, remedy dokłada nieistotny raw content zamiast pomagać. To nie jest problem query reformulation (a) — to problem TEGO, do czego remedy patrzy, niezależnie od tego, jak dobre jest query.
 - **status:** OPEN
-- **priority:** MEDIUM
-- **why_it_matters:** Entry M potwierdził realny precondition (fact present-in-store-but-unranked, 2/2 w $0 checku) ale świeża 6-unitowa próbka nie trafiła na ten konkretny subtyp. Kandydaci z discovery-rebuild v3 (`MULTI_QUERY_FUSION_RETRIEVAL`, rank 5; `RANKING_MISS_DETECTION_GATE`, rank 8) celują w to samo zjawisko, ale z konsensusem/detekcją zamiast pojedynczego strzału — mogą być mniej podatne na "wrong subtype drawn" problem.
-- **what_is_known:** patrz Entry M, `EXTERNAL_DISCOVERY_CANDIDATE_POOL_V3.md`.
-- **what_is_unknown:** czy multi-query fan-out faktycznie zwiększa trafność na tym konkretnym subtypie w tym harnessie.
-- **what_was_already_tested:** pojedynczy HyDE (Entry M, DROP na tej próbce, precondition confirmed real gdzie indziej).
-- **allowed_mechanism_space:** read-side, query-time reformulation/fan-out, embedding-based.
-- **disallowed_mechanism_space:** dokładnie ten sam single-shot HyDE bez modyfikacji (per "don't retune the same failed action").
-- **required_preconditions:** żadne nowe infrastrukturalnie.
-- **desired_external_evidence:** primary-source measured numbers dla multi-query/RRF-style fan-out na benchmarkach podobnych do LongMemEval — już częściowo dostarczone przez discovery-rebuild v3 (SmartSearch 88.4% na LongMemEval-S wprost, RAG-Fusion +19% NDCG@10 ogólna domena).
-- **research_question:** czy dodatkowa, niezależnie zweryfikowana literatura o multi-query fan-out w kontekście agent-memory (nie ogólny RAG) istnieje, i czy są tam znane failure modes poza tym, co discovery-rebuild v3 już znalazł (unconditional fan-out może szkodzić już-precyzyjnym zapytaniom).
-- **negative_evidence_wanted:** czy istnieją znane przypadki, gdzie multi-query fan-out pogarsza wynik na benchmarku podobnym do LongMemEval.
-- **candidate_value_if_found:** kolejny kandydat na drugi zwalidowany mechanizm, jeśli GAP-001 nie replikuje.
-- **estimated_experiment_cost_band:** ~$0.50-0.80 (podobne do Entry M, plus koszt dodatkowych query calls).
+- **priority:** HIGH (podniesiony 2026-08-25 — jeden z trzech precyzyjnych celów nowego research requestu `arr-2026-08-25-001`)
+- **why_it_matters:** Entry M potwierdził realny precondition dla (a) (fact present-in-store-but-unranked, 2/2 w $0 checku) ale świeża 6-unitowa próbka nie trafiła na ten konkretny subtyp. Entry Q (2026-08-25) dostarczył CODE_VERIFIED evidence dla (b): `raw_session()` (używany zarówno przez `RAW_PROVENANCE`, Entry H, jak i `SEMANTIC_ENTROPY_SUFFICIENCY_GATE`, Entry Q) deterministycznie podąża za rank-1 hitem Mem0's własnego `search()` — gdy ten jest zły, każdy mechanizm dziedziczący ten kod remedy dziedziczy też tę słabość, niezależnie od jakości triggera decydującego KIEDY eskalować. Kandydaci z discovery-rebuild v3 (`MULTI_QUERY_FUSION_RETRIEVAL`, rank 5; `RANKING_MISS_DETECTION_GATE`, rank 8) celują w (a), nie w (b) — żaden dotychczasowy kandydat nie celuje bezpośrednio w (b).
+- **what_is_known:** patrz Entry M (a), Entry Q (b), `EXTERNAL_DISCOVERY_CANDIDATE_POOL_V3.md`.
+- **what_is_unknown:** czy multi-query fan-out faktycznie zwiększa trafność na (a) w tym harnessie; czy jakikolwiek multi-candidate/multi-hop remedy design naprawia (b) bez utraty (b)'s prostoty/taniości.
+- **what_was_already_tested:** pojedynczy HyDE (Entry M, DROP na tej próbce, precondition confirmed real gdzie indziej) — celował w (a). (b) nigdy nie testowany jako osobny target — tylko obserwowany jako ubocza porażka wewnątrz Entry H i Entry Q.
+- **allowed_mechanism_space:** read-side, query-time reformulation/fan-out (dla a), LUB read-side remedy-selection niezakotwiczony wyłącznie do top-1 (np. multi-candidate raw injection, confidence-gated anchor selection) (dla b) — embedding-based, bez fine-tuningu.
+- **disallowed_mechanism_space:** dokładnie ten sam single-shot HyDE bez modyfikacji (per "don't retune the same failed action"); dokładnie ten sam top-1-anchored `raw_session()` bez zmiany anchor-selection logiki.
+- **required_preconditions:** żadne nowe infrastrukturalnie dla (a). Dla (b): `raw_session()`/`session_map` już istnieją i są frozen/reużywalne — rozszerzenie do multi-candidate wymaga tylko iterowania po top-K zamiast top-1.
+- **desired_external_evidence:** primary-source measured numbers dla multi-query/RRF-style fan-out (a) — już częściowo dostarczone przez discovery-rebuild v3 (SmartSearch 88.4% na LongMemEval-S wprost, RAG-Fusion +19% NDCG@10 ogólna domena). Dla (b): measured evidence o remedy-anchor-selection strategiach w retrieval-augmented systemach (nie tylko trigger/UQ literatura — to jest INNE pytanie niż SUGAR/semantic entropy, które już przetestowano, Entry Q).
+- **research_question:** patrz `RESEARCH_REQUESTS/2026-08-25_research_request_three-precise-failure-modes.md`.
+- **negative_evidence_wanted:** dla (a) — czy istnieją znane przypadki, gdzie multi-query fan-out pogarsza wynik na benchmarku podobnym do LongMemEval. Dla (b) — czy istnieją znane przypadki, gdzie multi-candidate/multi-hop remedy selection zwiększa koszt bez poprawy trafności (np. przez rozmycie kontekstu wieloma słabymi kandydatami zamiast jednym mocnym).
+- **candidate_value_if_found:** kolejny kandydat na drugi zwalidowany mechanizm.
+- **estimated_experiment_cost_band:** ~$0.50-0.80 dla (a) (podobne do Entry M); nieznane dla (b), zależy od projektu (prawdopodobnie podobne, reużywa Entry H's arm-building code).
 - **dependencies:** żadne twarde — niezależne od GAP-001.
 - **blocked_by:** nic.
-- **reopen/close condition:** zamyka się po pierwszym pełnym teście eksploracyjnym tego kandydata.
-- **last_updated:** 2026-08-24.
+- **reopen/close condition:** zamyka się po pierwszym pełnym teście eksploracyjnym kandydata celującego w (a) LUB (b) — osobno, nie łącznie (to są dwa różne mechanizmy nawet jeśli ten sam gap number).
+- **last_updated:** 2026-08-25.
 
 ## GAP-003 — Structured write-time temporal field (subtype 3, alternative design)
 
 - **title:** Czy `DETERMINISTIC_TEMPORAL_RESOLVER_POSTPROCESS` (structured field, nie inline substitution) naprawia temporal-representation-loss?
 - **target_failure:** temporal-representation-loss — absence subtype (3), największy pojedynczy klaster w projekcie (4/13+ BASE-wrong units).
 - **status:** OPEN
-- **priority:** MEDIUM-HIGH
+- **priority:** HIGH (podniesiony 2026-08-25 — jeden z trzech precyzyjnych celów nowego research requestu `arr-2026-08-25-001`, tam nazwany `TEMPORAL_REPRESENTATION_LOSS`)
 - **why_it_matters:** subtype (3) to największy nienaprawiony klaster. Entry E (inline instruction) był `CALIBRATION_FAILED` — inert. Entry N (read-side TEMPORAL_ANCHOR, restricted to TEMPORAL_BOUNDARY) był `FAIL_ON_REPLICATION_GATE`, ale bez regresji. Discovery-rebuild v3's archeologia (rank 2 kandydat) zidentyfikowała konkretny, prawdopodobny root cause Entry E's porażki: few-shot examples w promptcie *modelują* usuwanie relative-time słów, neutralizując dodaną instrukcję. Structured JSON field (osobne detekcja + deterministyczne rozwiązanie w Pythonie, bez LLM arithmetic) to nowy, nietestowany kąt.
-- **what_is_known:** patrz `EXTERNAL_DISCOVERY_CANDIDATE_POOL_V3.md` DETERMINISTIC_TEMPORAL_RESOLVER_POSTPROCESS archaeology (VIABLE_WITH_CAVEATS verdict).
+- **what_is_known:** patrz `EXTERNAL_DISCOVERY_CANDIDATE_POOL_V3.md` DETERMINISTIC_TEMPORAL_RESOLVER_POSTPROCESS archaeology (VIABLE_WITH_CAVEATS verdict). Entry Q (2026-08-25, `6e984301`) dostarczył kolejną, niezależną, primary-source-verified instancję: gold wymagał arytmetyki dat między dwiema sesjami (11 lutego → 4 marca = 3 soboty), i ani compact context, ani `raw_session()`'s remedy format (czysty `user:/assistant:` tekst, bez session-level date stamps) nigdy nie niosą informacji potrzebnej do tej arytmetyki — potwierdza, że nawet mechanizmy skierowane na inne subtype'y (jak Entry Q) rutynowo trafiają na subtype (3) jako "collateral" niepowodzenie, dalej wzmacniając priorytet tego gapa.
 - **what_is_unknown:** czy structured-field design faktycznie omija few-shot-modeling problem.
 - **what_was_already_tested:** Entry E (inline instruction, inert); Entry A/N (read-side rendering, nie write-side resolution).
 - **allowed_mechanism_space:** write-side, structured JSON output field + deterministyczny post-processing (stdlib `datetime`, bez LLM arithmetic).
@@ -76,9 +76,9 @@ Statusy: `OPEN` | `BLOCKED` | `WAITING_FOR_EXPERIMENT` | `SATURATED` | `CLOSED`.
 - **title:** Czy włączenie assistant-authored turns do ingestu naprawia `single-session-assistant` category (11.2% benchmarku)?
 - **target_failure:** assistant-turn-scoping-loss — nowy, czwarty absence subtype, odkryty podczas Mechanism H's archeologii. `as_records()` (shared ingest function, używana przez BASE każdego mechanizmu w projekcie) celowo odrzuca wszystkie assistant-role turns przed dotarciem do Mem0 (deliberate CUPMem-comparability design, nie bug). 4/4 obserwowane `single-session-assistant` units project-wide to `BASE`-wrong, spójne z jedną wspólną przyczyną.
 - **status:** BLOCKED
-- **priority:** MEDIUM
+- **priority:** HIGH (podniesiony 2026-08-25 — jeden z trzech precyzyjnych celów nowego research requestu `arr-2026-08-25-001`, tam nazwany `ASSISTANT_TURN_REPRESENTATION_LOSS`; nadal BLOCKED na design decision, nie na budget)
 - **why_it_matters:** 56/500 (11.2%) pytań w LongMemEval-S to ta kategoria, strukturalnie zablokowana obecnym designem harnessu — nie problem jakości ekstrakcji Mem0, tylko zakresu tego, co w ogóle dociera do Mem0.
-- **what_is_known:** direct corpus inspection (`16c90bf4`) potwierdza: gold answer istnieje wyłącznie w assistant's turn; user's turn ma tylko częściowe echo.
+- **what_is_known:** direct corpus inspection (`16c90bf4`) potwierdza: gold answer istnieje wyłącznie w assistant's turn; user's turn ma tylko częściowe echo. Entry Q (`1de5cff2`, 2026-08-25) dostarczył 6. niezależną, code-verified instancję (nie tylko corpus-inspected — prześledzone przez faktyczny `as_records()` w kodzie), skomponowaną dodatkowo z GAP-002(b)'s retrieval-anchor failure: gdy potrzebny fakt jest structurally unreachable (ten gap), jakikolwiek remedy zakotwiczony do "najbliższej" sesji (GAP-002b) trafi w złą, tylko powierzchownie podobną sesję zamiast się poddać — dwa gaps mogą współwystępować w jednej jednostce.
 - **what_is_unknown:** czy włączenie assistant turns faktycznie naprawia te przypadki (nietestowane), i czy to zaburza fair-comparison-z-CUPMem cel, dla którego `as_records()` je odrzuca.
 - **what_was_already_tested:** nic bezpośrednio — to obserwacja, nie test.
 - **allowed_mechanism_space:** OSOBNA ścieżka ingestu dla nowego banku/mechanizmu (nowy zestaw rekordów włączający assistant turns), NIE modyfikacja `as_records()` samej (to zepsułoby współdzielony BASE każdego innego mechanizmu w projekcie).
