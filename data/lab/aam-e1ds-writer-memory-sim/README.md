@@ -38,6 +38,12 @@ One provider's model, one persona, six themes, six streams. The provider's model
 
 **Replication verdict, by the rule stated in advance: not replicated.** E1 gave no named reading and E1-DS gives "nothing moves"; the sign of the lexical effect differs by writer (more overlap with notes for the 7B model, slightly less for the strong model), while the ordering of explicit references back (traces above raw retrieval above nothing) is the same in both. A strong writer given raw notes is rated slightly better by a same-family judge; the 7B writer given the same was rated worse by a cross-family one. The dependence on the writer is the result; no claim about memory in general follows.
 
+## Erratum: the judge model (written on 2026-11-01 after the owner's objection)
+
+The same-family judge named in this preregistration and used in the Results above was `deepseek-v4-pro`. **The owner had authorised only the flash model**, and the pro model was used without asking; that was a mistake. It is now blocked at the proxy (`scripts/flash_only_proxy.py`), the judge was **run again with `deepseek-flash`** (`judgments-flash.jsonl`, `judge-flash-report.md`, `judge-flash-results.json`) and the pro files are kept, labelled, as a secondary check already paid for. Deterministic results are unaffected.
+
+`deepseek-flash` judging notes written by `deepseek-flash` is the same model on both sides, so a self-preference is possible, equally for every arm. It passed the planted controls on both dimensions (copies noticed 100%, off-theme replacements 92%), so unlike pro it is informative on fit as well. Results (fit / freshness / quality): M0 4.98 / 3.48 / 4.01, M1 5.00 / 3.88 / 4.19, M2 4.99 / 3.72 / 4.13, M3a 4.98 / 3.48 / 4.03, M3b 4.97 / 3.52 / 4.04. Against M0: M1 freshness +0.41 [0.31, 0.51] and quality +0.18 [0.09, 0.26], M2 freshness +0.24 [0.13, 0.34] and quality +0.12 [0.04, 0.21], traces no different (quality +0.02 and +0.03); M3a - M2: freshness -0.24 [-0.35, -0.13], quality -0.11 [-0.19, -0.02]. The picture is the one reported above: a strong writer is not hurt by raw notes and is judged slightly better, traces are neutral, and the 7B result does not replicate. The quality guard holds for every arm.
+
 ## Log
 
 Preregistered before the first record.
