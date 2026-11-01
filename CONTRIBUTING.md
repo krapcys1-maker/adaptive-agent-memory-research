@@ -157,6 +157,10 @@ If you are reviewing a frozen packet: use only the `blind/` directory of that pa
 
 A reviewer with prior exposure can still provide useful criticism. Disclose the exposure; it does not disqualify the contribution, it just means that contribution alone cannot satisfy the blind gate. A model family already used for advisory review cannot be the sole independent reviewer.
 
+## Licensing of contributions
+
+Code (`tools/`, `scripts/`, `tests/`, `.github/`) is Apache-2.0; documentation, research notes and experiment data are CC BY 4.0. The path map is [`REUSE.toml`](REUSE.toml) and the third-party notices are in [`NOTICE`](NOTICE). By opening a pull request you agree that your contribution is licensed under the licence of the path it touches (inbound = outbound), and that you have the right to contribute it. Do not commit text, data or code you may not redistribute.
+
 ## Code of conduct
 
 All participants are expected to adhere to our [Code of Conduct](CODE_OF_CONDUCT.md).

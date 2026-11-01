@@ -1,10 +1,16 @@
 cff-version: 1.2.0
-title: Adaptive Agent Memory Research
-message: If this research workspace is useful, please cite the repository and the primary sources referenced by the specific material you use.
-type: dataset
+title: "Adaptive Agent Memory Research"
+message: "If you use this work, please cite it as below, and cite the primary sources of the specific material you use."
+type: software
 authors:
-  - family-names: Community contributors
-repository-code: https://github.com/krapcys1-maker/adaptive-agent-memory-research
-license: CC-BY-4.0
+  - name: "Adaptive Agent Memory Research contributors"
+repository-code: "https://github.com/krapcys1-maker/adaptive-agent-memory-research"
+license: [Apache-2.0, CC-BY-4.0]
 version: 0.1.0
 date-released: 2026-08-22
+abstract: "Open research on local-first, model-agnostic long-term memory for LLM agents: a dependency-free reference engine plus a pre-registered, negative-result-preserving experiment ledger."
+keywords:
+  - llm-agents
+  - long-term-memory
+  - benchmark
+  - reproducibility

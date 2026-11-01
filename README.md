@@ -7,7 +7,7 @@ A local-first, model-agnostic memory system that decides what to keep from<br>
 
 <p align="center">
 <a href="https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml"><img src="https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-<a href="LICENSE"><img src="https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg" alt="License: CC BY 4.0"></a>
+<a href="#license"><img src="https://img.shields.io/badge/License-Apache%202.0%20%2B%20CC%20BY%204.0-blue.svg" alt="License: Apache-2.0 for code, CC BY 4.0 for documentation and data"></a>
 <img src="https://img.shields.io/badge/engine%20dependencies-none-brightgreen" alt="The memory engine has no dependencies">
 <img src="https://img.shields.io/badge/API%20key-not%20required-blue" alt="No API key">
 <a href="https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue"><img src="https://img.shields.io/github/issues/krapcys1-maker/adaptive-agent-memory-research/good%20first%20issue?label=good%20first%20issues&color=7057ff" alt="Good first issues"></a>
@@ -252,4 +252,8 @@ Repository content is written in English so contributors can collaborate interna
 
 ## License
 
-Original content is released under [CC BY 4.0](LICENSE). External repositories, datasets, and papers keep their own licenses and are not redistributed here.
+- Code (`tools/`, `scripts/`, `tests/`, `.github/`): [Apache-2.0](LICENSE).
+- Documentation, research notes and the experiment data produced here (`docs/`, `data/`, `memory/`): [CC BY 4.0](LICENSES/CC-BY-4.0.txt).
+- `data/lab/arena/*/vendor-patch/` holds modified copies of Mem0 1.0.6 (Apache-2.0); see [NOTICE](NOTICE).
+- LongMemEval (MIT) is quoted in arena result files; LoCoMo (CC BY-NC 4.0) is not redistributed. Other systems, datasets and papers keep their own licences.
+- Contributions are accepted under the licence of the path they touch (inbound = outbound). The path map is [`REUSE.toml`](REUSE.toml).
