@@ -1,0 +1,33 @@
+{
+ "experiment": "WMB slice 0 judge battery (T0 core)",
+ "inputs_sha256": {
+  "opublikowane.jsonl": "a775f381d08619a522b5699527a66e1ffd4b0747245bd71f8bd036dff75d71bb",
+  "replay/pairs.jsonl": "0e92f828e1c50e93c87dd8021b710a21f70f2467b516ff93621e07bcd8073477",
+  "replay/prep.json": "f7cd207aacdc41b92ea64edd8a7c9ff78c292b54986be567ad3328cad706a565",
+  "replay/records.jsonl": "553f7d964ebd1a8860fbffb5e577b76aa562adcaf6b9f06f0181e4e854450d8e"
+ },
+ "model": "deepseek-flash through the flash-only metering proxy",
+ "parameters": {
+  "families": [
+   "aa",
+   "copy",
+   "callback",
+   "spurious",
+   "null"
+  ],
+  "family_size": 40,
+  "null_note": "Nothing to add here.",
+  "seed": 20261101
+ },
+ "rules": {
+  "format_failure_max": 0.02,
+  "order_consistency_min": 0.7,
+  "tie_rate_min": 0.9,
+  "win_share_min": 0.925
+ },
+ "script_sha256": {
+  "scripts/wmb/contract.py": "77b100356ade33bc9ea2b19caac614acdfd8638c634060f0ea84e38eee481a6b",
+  "scripts/wmb/stats.py": "99b851a5f9311ed5ede72dc7d76c733b37f45238dcf54e621128256c8b93a906",
+  "scripts/wmb/t0_battery.py": "7fe8f352d322250e31f7b29c6d9ce1d4837b79f8dfda3a9439db09db9163f460"
+ }
+}
