@@ -1,0 +1,114 @@
+{
+ "arms": [
+  "M0",
+  "M1",
+  "M2",
+  "M3a",
+  "M3b"
+ ],
+ "contrasts": [
+  [
+   "M1",
+   "M0"
+  ],
+  [
+   "M2",
+   "M0"
+  ],
+  [
+   "M3a",
+   "M0"
+  ],
+  [
+   "M3b",
+   "M0"
+  ],
+  [
+   "M3a",
+   "M2"
+  ],
+  [
+   "M3b",
+   "M2"
+  ],
+  [
+   "M3b",
+   "M3a"
+  ]
+ ],
+ "dynamics": {
+  "importance": "1 + 0.5 * uses - 0.5 * age_days / 30, clipped to [0.25, 3]",
+  "link_by_joint_use": 0.25,
+  "link_by_keywords_jaccard_min": 0.2,
+  "link_cap": 1.0,
+  "use": "later entry shown the trace, explicit reference to earlier writing, at least 2 shared keywords"
+ },
+ "experiment": "AAM-E1-SIM writer memory simulation",
+ "primary": {
+  "bootstrap": {
+   "draws": 10000,
+   "interval": 0.95,
+   "resample": "(stream seed, day) pairs",
+   "seed": 20261101
+  },
+  "guard": {
+   "max_drop_against_M0": 0.1,
+   "measure": "hook_coverage"
+  },
+  "measure": "overlap4",
+  "ngram": 4,
+  "practical_threshold": 0.05,
+  "window_days": 400
+ },
+ "retrieval": {
+  "bm25_b": 0.75,
+  "bm25_k1": 1.2,
+  "m3b_direct": 2,
+  "m3b_neighbour_min_weight": 0.15,
+  "method": "BM25 over lower-cased content words, query = theme + hook, documents carry a theme tag",
+  "shown": 3
+ },
+ "script_sha256": {
+  "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
+  "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
+ },
+ "secondary": [
+  "union_novelty",
+  "overlap8",
+  "rep_rate (overlap4 >= 0.25)",
+  "callback_strict",
+  "callback_ext",
+  "hook_coverage",
+  "words",
+  "shown_copy8"
+ ],
+ "status": "exploratory, tier E, not registered; synthetic persona and prompts authored by an agent; one small local model",
+ "stream": {
+  "analysis_days_from": 7,
+  "days": 36,
+  "hooks_per_theme": 6,
+  "stream_seeds": [
+   1,
+   2,
+   3
+  ],
+  "themes": 6
+ },
+ "writer": {
+  "model": "qwen2.5:7b-instruct",
+  "num_ctx": 4096,
+  "sampling_seed": "stream seed * 1000 + day, shared by all arms",
+  "server": "local Ollama",
+  "trace_options": {
+   "num_predict": 120,
+   "temperature": 0.0,
+   "top_p": 1.0
+  },
+  "trace_seed": 7,
+  "write_options": {
+   "num_predict": 320,
+   "temperature": 0.8,
+   "top_p": 0.95
+  }
+ }
+}
