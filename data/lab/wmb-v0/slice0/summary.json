@@ -1,0 +1,84 @@
+{
+ "aggregates": {
+  "aa": {
+   "first_position_share_among_non_ties": null,
+   "format_failures": 0,
+   "tasks": 40,
+   "tie_rate": 1.0,
+   "verdicts": 80,
+   "wilson95": [
+    0.0,
+    0.088
+   ],
+   "win_share": 0.0,
+   "wins": 0
+  },
+  "callback": {
+   "first_position_share_among_non_ties": 0.7234,
+   "format_failures": 0,
+   "tasks": 24,
+   "tie_rate": 0.0208,
+   "verdicts": 48,
+   "wilson95": [
+    0.043,
+    0.31
+   ],
+   "win_share": 0.125,
+   "wins": 3
+  },
+  "copy": {
+   "first_position_share_among_non_ties": 0.5,
+   "format_failures": 0,
+   "tasks": 40,
+   "tie_rate": 0.0,
+   "verdicts": 80,
+   "wilson95": [
+    0.912,
+    1.0
+   ],
+   "win_share": 1.0,
+   "wins": 40
+  },
+  "null": {
+   "first_position_share_among_non_ties": 0.5,
+   "format_failures": 0,
+   "tasks": 40,
+   "tie_rate": 0.0,
+   "verdicts": 80,
+   "wilson95": [
+    0.871,
+    0.996
+   ],
+   "win_share": 0.975,
+   "wins": 39
+  },
+  "retest_agreement": {
+   "same_verdict": 1.0,
+   "verdicts": 80
+  },
+  "spurious": {
+   "first_position_share_among_non_ties": 0.5,
+   "format_failures": 0,
+   "tasks": 40,
+   "tie_rate": 0.0,
+   "verdicts": 80,
+   "wilson95": [
+    0.912,
+    1.0
+   ],
+   "win_share": 1.0,
+   "wins": 40
+  }
+ },
+ "meta": {
+  "rules": {
+   "order_consistency_min": 0.7,
+   "tie_rate_min": 0.9,
+   "win_share_min": 0.925
+  },
+  "script": "t0_battery.py"
+ },
+ "records": 448,
+ "records_file": "judgments.jsonl",
+ "records_sha256": "0111691e3a76c63655bd8fc0615f9d3f0a38658d81e823f03db46534adcfa36b"
+}

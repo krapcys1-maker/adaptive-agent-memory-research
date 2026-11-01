@@ -1,0 +1,95 @@
+{
+ "families": {
+  "aa": {
+   "first_position_share_among_non_ties": null,
+   "format_failures": 0,
+   "tasks": 40,
+   "tie_rate": 1.0,
+   "verdicts": 80,
+   "wilson95": [
+    0.0,
+    0.088
+   ],
+   "win_share": 0.0,
+   "wins": 0
+  },
+  "callback": {
+   "first_position_share_among_non_ties": 0.7234,
+   "format_failures": 0,
+   "tasks": 24,
+   "tie_rate": 0.0208,
+   "verdicts": 48,
+   "wilson95": [
+    0.043,
+    0.31
+   ],
+   "win_share": 0.125,
+   "wins": 3
+  },
+  "copy": {
+   "first_position_share_among_non_ties": 0.5,
+   "format_failures": 0,
+   "tasks": 40,
+   "tie_rate": 0.0,
+   "verdicts": 80,
+   "wilson95": [
+    0.912,
+    1.0
+   ],
+   "win_share": 1.0,
+   "wins": 40
+  },
+  "null": {
+   "first_position_share_among_non_ties": 0.5,
+   "format_failures": 0,
+   "tasks": 40,
+   "tie_rate": 0.0,
+   "verdicts": 80,
+   "wilson95": [
+    0.871,
+    0.996
+   ],
+   "win_share": 0.975,
+   "wins": 39
+  },
+  "retest_agreement": {
+   "same_verdict": 1.0,
+   "verdicts": 80
+  },
+  "spurious": {
+   "first_position_share_among_non_ties": 0.5,
+   "format_failures": 0,
+   "tasks": 40,
+   "tie_rate": 0.0,
+   "verdicts": 80,
+   "wilson95": [
+    0.912,
+    1.0
+   ],
+   "win_share": 1.0,
+   "wins": 40
+  }
+ },
+ "minimum_detectable_win_rate": {
+  "100": 0.6451,
+  "160": 0.6105,
+  "214": 0.5959,
+  "300": 0.5823,
+  "43": 0.7199
+ },
+ "order_consistency": {
+  "consistent": 469,
+  "pairs": 664,
+  "share": 0.7063
+ },
+ "readings": {
+  "aa_ties": true,
+  "callback_seen": false,
+  "copy_seen": true,
+  "format_ok": true,
+  "judge_usable_as_secondary": false,
+  "null_seen": true,
+  "order_consistent": true,
+  "spurious_seen": true
+ }
+}
