@@ -67,9 +67,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      # Blocking. #26 and #30 are resolved and the audit reports zero critical
-      # findings, so a broken freeze is now caught the day it is introduced
-      # rather than discovered months later by an external reviewer.
+      # Blocking on critical findings only: a declared hash that matches neither
+      # the working copy nor the Git blob, i.e. a freeze broken after it was
+      # declared. A drift explained by a <manifest>.DRIFT.json note is reported as
+      # low and does not block; medium and low findings are printed and do not
+      # fail the job. A broken freeze is caught the day it is introduced rather
+      # than discovered months later by an external reviewer.
       - name: Audit declared hashes, registry paths, and cross-references
         run: python scripts/audit_repository_claims.py --format text
 
