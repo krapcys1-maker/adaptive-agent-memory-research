@@ -32,6 +32,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import writer_memory_sim as sim  # noqa: E402
 
 ARMS: Tuple[str, ...] = ("A0", "A1", "A2", "A3")
+CONTROL_ARM = "A0i"          # the instruction without any notes: separates the effect of the notes from the effect of the instruction
+ALL_ARMS: Tuple[str, ...] = ARMS + (CONTROL_ARM,)
 SHOWN = 3
 Generate = Callable[[str, str, int, Dict[str, float]], Dict[str, object]]
 
@@ -181,18 +183,23 @@ def make_stream(seed: int, days: int = 60, followups: int = 12, first_followup_d
     if days - followups > len(POOL):
         raise ValueError("the pool has only %d stories" % len(POOL))
     rng = sim.Lcg(seed)
-    follow_days = sorted(rng.shuffled(range(first_followup_day, days + 1))[:followups])
-    gaps = rng.shuffled(FOLLOWUP_GAPS[:followups])
-    base_of: Dict[int, int] = {}
-    used = set()
-    for day, gap in zip(follow_days, gaps):
-        for g in [gap] + [x for x in range(1, 8) if x != gap]:
-            base = day - g
-            if base >= 1 and base not in follow_days and base not in used:
-                base_of[day], used = base, used | {base}
+    for _attempt in range(200):       # a draw that leaves some follow-up without a free base is redrawn (it happened for 3 of the first 39 seeds)
+        follow_days = sorted(rng.shuffled(range(first_followup_day, days + 1))[:followups])
+        gaps = rng.shuffled(FOLLOWUP_GAPS[:followups])
+        base_of: Dict[int, int] = {}
+        used: set = set()
+        for day, gap in zip(follow_days, gaps):
+            for g in [gap] + [x for x in range(1, 8) if x != gap]:
+                base = day - g
+                if base >= 1 and base not in follow_days and base not in used:
+                    base_of[day], used = base, used | {base}
+                    break
+            else:
                 break
-        else:
-            raise ValueError("no free base for a follow-up on day %d" % day)
+        if len(base_of) == followups:
+            break
+    else:
+        raise ValueError("no stream with %d follow-ups could be built for seed %d" % (followups, seed))
     fresh_days = [d for d in range(1, days + 1) if d not in base_of]
     order = rng.shuffled(range(len(POOL)))
     story_of = {d: order[k] for k, d in enumerate(fresh_days)}
@@ -260,7 +267,7 @@ class ArmState:
 
     def memory(self, day: int, vectors: Sequence[Sequence[float]]) -> Tuple[str, List[int]]:
         """The notes block for day `day` and the earlier days it draws on. vectors[d - 1] is the embedding of the task input of day d."""
-        if self.arm == "A0" or not self.notes:
+        if self.arm in ("A0", CONTROL_ARM) or not self.notes:
             return "", []
         ranked = sorted(((cosine(vectors[day - 1], vectors[d - 1]), d) for d in self.notes), key=lambda p: (-p[0], -p[1]))[:SHOWN]
         if self.arm != "A1":
@@ -285,10 +292,10 @@ class ArmState:
             self.traces[day] = trace
 
 
-def build_prompt(task: dict, block: str) -> str:
+def build_prompt(task: dict, block: str, instruction_only: bool = False) -> str:
     parts = ["Item: " + task["hook"], ""]
-    if block:
-        parts += ["Notes from your own earlier entries (they may or may not be relevant today):", block, "",
+    if block or instruction_only:
+        parts += ["Notes from your own earlier entries (they may or may not be relevant today):", block or "(none)", "",
                   "Use the notes only if they help. Do not repeat what you have already said; build on it, correct it, or refer back to it briefly "
                   "when the item is a development of something you wrote before.", ""]
     parts += ["Write today's note: about 90 words, in the first person, plain prose, no title and no labels."]
@@ -311,7 +318,7 @@ def clean_note(raw: str) -> str:
 
 def write_note(state: ArmState, task: dict, seed: int, vectors: Sequence[Sequence[float]], generate: Generate) -> dict:
     block, shown = state.memory(task["day"], vectors)
-    result = generate(PERSONA, build_prompt(task, block), seed * 1000 + task["day"], WRITE_OPTS)
+    result = generate(PERSONA, build_prompt(task, block, state.arm == CONTROL_ARM), seed * 1000 + task["day"], WRITE_OPTS)
     text = clean_note(str(result["text"]))
     trace = None
     if state.arm == "A3":

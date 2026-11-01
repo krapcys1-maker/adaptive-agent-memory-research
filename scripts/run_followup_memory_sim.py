@@ -33,7 +33,7 @@ def main(argv: Optional[List[str]] = None, embedder=None) -> int:
     parser.add_argument("--seeds", type=int, nargs="+", required=True)
     parser.add_argument("--days", type=int, default=60)
     parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument("--arms", nargs="+", default=list(fu.ARMS), choices=list(fu.ARMS))
+    parser.add_argument("--arms", nargs="+", default=list(fu.ARMS), choices=list(fu.ALL_ARMS))
     args = parser.parse_args(argv)
     meta_path = args.records.with_name("run-meta.json")
     meta = {"model": args.model, "endpoint": "OpenAI-compatible, through a local metering proxy", "tau": args.tau, "write_options": fu.WRITE_OPTS,

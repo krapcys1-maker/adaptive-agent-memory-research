@@ -156,3 +156,23 @@ def test_the_runner_drives_the_harness_through_a_stub_endpoint_and_refuses_a_cha
         assert runner.main(args[:6] + ["--tau", "0.6"] + args[8:], embedder=FakeEmbedder()) == 2
     finally:
         provider.close()
+
+
+def test_streams_that_built_on_the_first_draw_are_unchanged_and_seeds_that_once_failed_now_build() -> None:
+    fingerprints = {11: "de3854f4fcf5ce42", 13: "1b9365f23b3af51f", 14: "e187b92ceb3b334f", 15: "0c06f76d0f3bbf97", 16: "78755d924d9db7bc",
+                    100: "9598966a60ed1aa1", 101: "629388fd8dccf0fa", 102: "f6c8bad797abf627"}
+    for seed, expected in fingerprints.items():
+        assert hashlib.sha256(json.dumps(fu.make_stream(seed), sort_keys=True).encode()).hexdigest()[:16] == expected
+    for seed in (5, 12, 23):                           # the first draw left a follow-up without a free base
+        stream = fu.make_stream(seed)
+        assert sum(t["kind"] == "followup" for t in stream) == 12 and all(1 <= t["day"] - t["base_day"] <= 7 for t in stream if t["kind"] == "followup")
+
+
+def test_the_control_arm_gets_the_instruction_without_notes_and_the_other_arms_are_unchanged() -> None:
+    task = {"hook": "An item."}
+    plain, control, noted = fu.build_prompt(task, ""), fu.build_prompt(task, "", True), fu.build_prompt(task, "[Your note from day 2] x")
+    assert "Do not repeat" not in plain and "Do not repeat" in control and "(none)" in control
+    assert control.replace("(none)", "[Your note from day 2] x") == noted
+    stream, vectors, state = build_state(fu.CONTROL_ARM)
+    fill(stream, state, 20)
+    assert state.memory(21, vectors) == ("", []) and fu.ALL_ARMS == fu.ARMS + ("A0i",)

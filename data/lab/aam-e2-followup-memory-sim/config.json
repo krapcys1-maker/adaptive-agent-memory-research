@@ -1,9 +1,14 @@
 {
+ "amendments_before_any_record_was_read": {
+  "control_arm_A0i": "the instruction without notes; a gain counts only against A0 and A0i",
+  "stream_builder_redraw": "seeds 5, 12 and 23 failed on the first draw; streams that built are unchanged (fingerprints pinned in the tests)"
+ },
  "arms": [
   "A0",
   "A1",
   "A2",
-  "A3"
+  "A3",
+  "A0i"
  ],
  "budget": {
   "hard_cap_usd": 12,
@@ -75,11 +80,11 @@
   "threshold_rule": "highest step of 0.05 that keeps 90% of the true follow-up -> story pairs on the calibration streams"
  },
  "script_sha256": {
-  "scripts/analyze_followup_memory_sim.py": "f071049dc3a64c8063974c0d2d1eb4e355713d2e27704e3e1742db1cd6e3c37d",
-  "scripts/followup_memory_sim.py": "6bc1650b67ace716deee6647a2e201da725036116b38c3fce4ce46f0c77d8c36",
+  "scripts/analyze_followup_memory_sim.py": "85252260e16029b4e26da48ef34cf71acacc221ce9757f9afba9cf178d469da4",
+  "scripts/followup_memory_sim.py": "cc5483a1e7ba00b8ef11bbf42ebb21a0db9a81d738b8ab35ec2b438892e06f53",
   "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
   "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",
-  "scripts/run_followup_memory_sim.py": "193413c63b1a0163229780f4078e06203801861a34678b6d956db43de30a39d6",
+  "scripts/run_followup_memory_sim.py": "853d83f5237b834020170bff5a098d446e5cdf0268aa5c0c5b8ee181168b0811",
   "scripts/run_writer_memory_sim_openai.py": "cb305fac5a6e3b19bc1f8bf2daea5f8d8b02caa26779cc6c3d47b39108e7056d",
   "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
  },

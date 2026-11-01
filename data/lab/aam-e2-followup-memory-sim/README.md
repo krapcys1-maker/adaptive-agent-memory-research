@@ -17,6 +17,7 @@ AAM-E1-SIM and AAM-E1-DS gave the writer notes about its own earlier entries in 
 | A0 | nothing |
 | A1 | the three earlier notes whose task input is most similar to today's, always, in full (raw retrieval with no relevance bar) |
 | A2 | the same, but only notes whose similarity reaches the threshold (possibly nothing), in full |
+| A0i | (control) the same header and instruction as the arms with notes, with "(none)" as the notes |
 | A3 | the same threshold, but a short trace (gist, angle, left open) of each matching note instead of the note, written by the same model at temperature 0 |
 
 - **Retrieval.** The embedding (`sentence-transformers/all-MiniLM-L6-v2`, offline, CPU) of today's item against the embedding of each earlier item, as a live pipeline that stores task inputs would do. **Threshold calibrated beforehand from the items alone**, on streams that are not used in the experiment (seeds 100 to 102, no model text): the highest threshold in steps of 0.05 that keeps 90% of the true follow-up -> story pairs. Result: **0.70** (follow-up cosines: minimum 0.57, median 0.88; 0 of 141 fresh days have any earlier item at 0.70 or above). This retrieval is close to ideal by construction; a real one is worse (the live account's notes are in a narrow field), which the experiment does not test.
@@ -40,6 +41,14 @@ Paired contrasts over (stream, day), percentile bootstrap (10,000 draws, seed 20
 
 A judge dimension that fails its controls is reported as uninformative and not used for a reading. A disagreement in sign between the two judges is reported as unresolved. Thresholds are not retuned after the run, and a null is reported as one.
 
+## Amendments made before any record was read
+
+Written on 2026-11-01 while the writer processes were still running. No record had been read: only row counts and the exit state of the processes.
+
+1. **A stream could not be built.** The process for stream seeds 11 and 12 stopped at seed 12 with "no free base for a follow-up on day 26": the first draw of follow-up days left one follow-up without a free earlier story. (Seeds 5 and 23 fail the same way.) `make_stream` now redraws in that case. The streams that built on the first draw are unchanged, and a test pins their fingerprints (seeds 11, 13, 14, 15, 16 and the calibration seeds 100 to 102); stream 12 is run now with the amended script.
+2. **A control arm for the instruction.** Arm **A0i** gets the same header and instruction as the arms with notes, with "(none)" in place of the notes. Without it every contrast against A0 is notes plus instruction, which an independent review of AAM-E1-SIM pointed out and which applies here too. A0i is run on all six streams after the other arms, with the amended script (its prompts and the arms A0 to A3 are untouched by the amendment). The rule for "memory helps where it is relevant" now requires the gain on follow-up CONTINUITY against **both** A0 and A0i, and A0i - A0 is reported.
+3. **No change to the primary measure, the threshold of 0.70, or the readings.** The deterministic overlap is secondary here for a reason the same review gave for AAM-E1-SIM: a repetition measure that is already near its floor cannot show a reduction, so the primary is judge-based.
+
 ## Limits
 
 One provider's model as the writer, one persona, sixty authored stories, six streams. Items restate the story they develop, which makes retrieval easy; a live follow-up may not. The judge is a model. Continuity is judged against the arm's own earlier note, so an arm whose earlier notes are poor is judged against a poor reference. The experiment does not test learning from outcomes, the persona, or any real reader.
@@ -53,3 +62,5 @@ One provider's model as the writer, one persona, sixty authored stories, six str
 Preregistered before the first record.
 
 - 2026-11-01 16:35: the analysis and judge script (measures, planted controls, readings applied mechanically) and its nine tests were committed, with its digest in config.json, while the three writer processes were running (seed 11 day 52/60  +4 notes  elapsed 156s) and before any record had been read.
+
+- 2026-11-01 16:38: amendments above committed with refreshed digests while the writer processes were running (seed 14 day 47/60  +4 notes  elapsed 345s); no record had been read.

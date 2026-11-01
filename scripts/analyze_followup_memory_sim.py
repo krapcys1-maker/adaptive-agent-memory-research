@@ -32,7 +32,8 @@ import writer_memory_sim as sim  # noqa: E402
 
 ANALYSIS_FROM = 8
 KINDS = ("followup", "fresh")
-CONTRASTS = (("A1", "A0"), ("A2", "A0"), ("A3", "A0"), ("A2", "A1"), ("A3", "A1"), ("A3", "A2"))
+CONTRASTS = (("A1", "A0"), ("A2", "A0"), ("A3", "A0"), ("A2", "A1"), ("A3", "A1"), ("A3", "A2"),
+             ("A0i", "A0"), ("A1", "A0i"), ("A2", "A0i"), ("A3", "A0i"))
 DIMENSIONS = ("fit", "fresh", "continuity", "quality")
 GROUNDING_COSINE = 0.5
 PRIMARY_THRESHOLD = 0.5
@@ -101,7 +102,7 @@ def contrast(table: Dict[tuple, dict], key_of, a: str, b: str, kind: str, metric
 
 def measures_analysis(rows: Sequence[dict], embedder=None, draws: int = ana.DRAWS) -> dict:
     table = measure_all(rows, embedder)
-    arms = [a for a in fu.ARMS if any(r["arm"] == a for r in rows)]
+    arms = [a for a in fu.ALL_ARMS if any(r["arm"] == a for r in rows)]
     get = lambda cell, metric: cell.get(metric)  # noqa: E731
     cache: Dict[int, list] = {}
     means = {kind: {arm: {m: mean([c[m] for (a, s, d), c in table.items() if a == arm and c["kind"] == kind and d >= ANALYSIS_FROM]) for m in METRICS}
@@ -204,7 +205,7 @@ def judge_analysis(judgments: Sequence[dict], draws: int = ana.DRAWS) -> dict:
             j.update({d: v for d, v in parse_scores(j["raw"]).items() if j.get(d) is None})
     real = [j for j in judgments if not j.get("control")]
     controls = [j for j in judgments if j.get("control")]
-    arms = [a for a in fu.ARMS if any(j["arm"] == a for j in real)]
+    arms = [a for a in fu.ALL_ARMS if any(j["arm"] == a for j in real)]
     cell = {(j["arm"], j["seed"], j["day"]): j for j in real}
     cache: Dict[int, list] = {}
     means = {kind: {arm: {d: mean([j[d] for j in real if j["arm"] == arm and j["kind"] == kind]) for d in DIMENSIONS} for arm in arms} for kind in KINDS}
@@ -248,8 +249,9 @@ def reading_for_judge(result: dict) -> dict:
     def quality(name: str) -> Optional[dict]:
         return (fresh.get(name) or {}).get("quality")
 
-    gain = {arm: cont("%s-A0" % arm) for arm in ("A2", "A3")}
-    gains = [arm for arm, g in gain.items() if g and g["mean"] >= PRIMARY_THRESHOLD and g["ci_low"] > 0]
+    controls = ["A0"] + (["A0i"] if "A0i" in result["arms"] else [])        # a gain counts only against every no-notes control that was run
+    gain = {arm: [cont("%s-%s" % (arm, control)) for control in controls] for arm in ("A2", "A3")}
+    gains = [arm for arm, gs in gain.items() if all(g and g["mean"] >= PRIMARY_THRESHOLD and g["ci_low"] > 0 for g in gs)]
     guard_ok = all(not (q and q["mean"] <= -FRESH_QUALITY_HARM and q["ci_high"] < 0) for q in (quality("A2-A0"), quality("A3-A0")))
     always = quality("A1-A0")
     tn = cont("A3-A2")
