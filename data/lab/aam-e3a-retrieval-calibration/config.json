@@ -15,6 +15,10 @@
    "1": "the same general area, a different point",
    "2": "the same specific story, claim or question, or a direct follow-up"
   },
+  "scale_versions": {
+   "v1": "first preregistered scale; failed the control rule (52.6% of random controls rated 0)",
+   "v2": "amended after v1 was read: being about AI is not a connection"
+  },
   "second_judge": {
    "judge_dependent_if_below": 0.4,
    "model": "qwen2.5:14b-instruct",
@@ -49,7 +53,7 @@
   "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
   "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",
   "scripts/published_notes_baseline.py": "d8b5963a6e6074cc5c8c4ca293f0b301fc99d7c37a928ad39a038b058962e760",
-  "scripts/retrieval_calibration.py": "cea96a0b369662d47203efb4373be6d2c5fe5729f7d349d5977cf835581fe625",
+  "scripts/retrieval_calibration.py": "02d1c5ac0c622b646b0647cdd8479a536ac6a4079abc49b5a399aa3634ab4088",
   "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
   "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
  },

@@ -66,12 +66,21 @@ def control_pairs(vectors: Sequence[Sequence[float]], taken: Sequence[dict], see
     return out
 
 
-def judge_prompt(new_note: str, earlier_note: str) -> str:
+SCALES = {
+    # v1 was the first preregistered scale. Its random negative controls failed (about half were rated 1, "the same general area",
+    # because every note of the account is about AI), so v2 states that being about AI is not a connection.
+    "v1": ("0 = unrelated, or only a very loose connection\n1 = the same general area but a different point\n"
+           "2 = the same specific story, claim or question, or a direct follow-up\n"),
+    "v2": ("Both notes come from an account that writes about AI, so being about AI, or about the same broad field, is not a connection.\n"
+           "0 = nothing specific in common\n1 = the same specific subject, entity or question, but the new note makes a different point\n"
+           "2 = the same specific story, claim or result, or a direct follow-up\n"),
+}
+
+
+def judge_prompt(new_note: str, earlier_note: str, scale: str = "v1") -> str:
     return ("Two notes by the same author, written on different days.\n\nNEW NOTE (the one being written):\n%s\n\nEARLIER NOTE (written before it):\n%s\n\n"
-            "If the author were writing the new note, would being reminded of the earlier note help?\nScore:\n"
-            "0 = unrelated, or only a very loose connection\n1 = the same general area but a different point\n"
-            "2 = the same specific story, claim or question, or a direct follow-up\n\nReply with one line in the form RELEVANCE: <0-2>."
-            % (new_note, earlier_note))
+            "If the author were writing the new note, would being reminded of the earlier note help?\nScore:\n%s\n"
+            "Reply with one line in the form RELEVANCE: <0-2>." % (new_note, earlier_note, SCALES[scale]))
 
 
 def parse_relevance(raw: str) -> Optional[int]:
@@ -83,7 +92,8 @@ def key(pair: dict) -> Tuple:
     return (pair["i"], pair["j"], pair["kind"])
 
 
-def run(items: Sequence[sbm.Item], vectors: Sequence[Sequence[float]], out: Path, generate: backends.Generate, workers: int = 8, log=print) -> int:
+def run(items: Sequence[sbm.Item], vectors: Sequence[Sequence[float]], out: Path, generate: backends.Generate, workers: int = 8, log=print,
+        scale: str = "v1") -> int:
     top = candidate_pairs(vectors)
     pairs = top + control_pairs(vectors, top)
     done = set()
@@ -93,7 +103,7 @@ def run(items: Sequence[sbm.Item], vectors: Sequence[Sequence[float]], out: Path
     lock, written = threading.Lock(), 0
 
     def one(pair: dict) -> dict:
-        raw = str(generate(JUDGE_SYSTEM, judge_prompt(items[pair["i"]].text, items[pair["j"]].text), JUDGE_SEED, JUDGE_OPTS)["text"])
+        raw = str(generate(JUDGE_SYSTEM, judge_prompt(items[pair["i"]].text, items[pair["j"]].text, scale), JUDGE_SEED, JUDGE_OPTS)["text"])
         return dict(pair, relevance=parse_relevance(raw), raw=raw.strip()[:60])
 
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool, out.open("a", encoding="utf-8") as handle:
@@ -186,6 +196,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     run_p.add_argument("--base-url", default="http://127.0.0.1:8798/v1")
     run_p.add_argument("--embedding-model", default="sentence-transformers/all-MiniLM-L6-v2")
     run_p.add_argument("--workers", type=int, default=8)
+    run_p.add_argument("--scale", choices=sorted(SCALES), default="v1")
     an_p = sub.add_parser("analyse")
     an_p.add_argument("judgments", type=Path)
     an_p.add_argument("--json", type=Path, default=None)
@@ -197,7 +208,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 items = sbm.parse_items(handle)
             vectors = pnb.embed_texts([i.text for i in items], args.embedding_model)
             generate = backends.ollama_generate(args.model) if args.backend == "ollama" else backends.openai_generate(args.base_url, args.model)
-            print("done: %d new judgments" % run(items, vectors, args.out, generate, args.workers, log=lambda line: print(line, flush=True)))
+            print("done: %d new judgments" % run(items, vectors, args.out, generate, args.workers, log=lambda line: print(line, flush=True), scale=args.scale))
             return 0
         judgments = [json.loads(line) for line in args.judgments.read_text(encoding="utf-8").splitlines() if line.strip()]
         result = analyse(judgments)

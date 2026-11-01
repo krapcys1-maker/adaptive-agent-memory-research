@@ -69,6 +69,10 @@ def test_relevance_is_parsed_from_a_one_line_reply_and_a_missing_one_is_none() -
 def test_the_prompt_asks_about_the_new_note_and_the_earlier_one_and_nothing_else() -> None:
     prompt = rc.judge_prompt("alpha text", "beta text")
     assert "alpha text" in prompt and "beta text" in prompt and prompt.index("alpha text") < prompt.index("beta text") and "RELEVANCE: <0-2>" in prompt
+    assert "being about AI" not in prompt                                          # v1 is unchanged
+    sharper = rc.judge_prompt("alpha text", "beta text", "v2")
+    assert "being about AI, or about the same broad field, is not a connection" in sharper and "RELEVANCE: <0-2>" in sharper
+    assert rc.SCALES["v1"] != rc.SCALES["v2"]
 
 
 def test_a_run_judges_every_pair_once_resumes_and_stores_indices_never_text(tmp_path: Path) -> None:
