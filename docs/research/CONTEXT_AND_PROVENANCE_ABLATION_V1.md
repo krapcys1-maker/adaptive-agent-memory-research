@@ -1,5 +1,23 @@
 # Context and provenance ablation, v1
 
+> **Superseded in part — see [`MECHANISM_REGIME_EVIDENCE_LEDGER.md`](MECHANISM_REGIME_EVIDENCE_LEDGER.md)
+> (Entries H and R) and [`CLEAN_RAW_PROVENANCE_RETEST_V2.md`](CLEAN_RAW_PROVENANCE_RETEST_V2.md).**
+> Added 2026-11-01. Nothing below has been edited; it is kept as the record of what was believed at
+> the time. Two harness defects were found after this report was written.
+> (1) Mem0's reset deleted at most a hundred rows per call, so each unit ran on the previous unit's
+> residue (commit `8db572c`). Every Mem0 number in sections 4–5 (compact 4/10, compact+raw 4/9,
+> raw-only 3/9, "zero repairs") was computed on those contaminated stores; the clean retest calls the
+> earlier data "not valid evidence", and the decision in section 8 to drop `RAW_PROVENANCE_EXPANSION`
+> is **withdrawn**. On clean stores the same three arms score 5/9, 6/9 and 4/9 with one repair, and a
+> fresh 8-unit replication gave 5/8, 6/8 and 4/8; the ledger says what that does and does not show.
+> (2) The truncation rule in the context-size curve skipped, instead of stopping at, the first item
+> that overflowed the budget. With that fixed, Hindsight at Mem0's own budget scores 5/10, not the
+> 4/10 stated in section 3, and the clean curves are Mem0 5, 6, 6, 5 and Hindsight 5, 6, 6, 7 of 10
+> at native/matched, 500, 1,000 and 3,000 tokens
+> ([`HINDSIGHT_INFORMATION_COMPOSITION_ARCHAEOLOGY_V1.md`](HINDSIGHT_INFORMATION_COMPOSITION_ARCHAEOLOGY_V1.md),
+> section 1). Read sections 3 and 7–8 together with those numbers.
+> All measurements are on Mem0 1.0.6 and Hindsight 0.9.1, not on current releases.
+
 `arena-context-ablation-v1` · frozen manifest
 [`data/lab/arena/mechanism-ablation.json`](../../data/lab/arena/mechanism-ablation.json) ·
 machine-readable result
