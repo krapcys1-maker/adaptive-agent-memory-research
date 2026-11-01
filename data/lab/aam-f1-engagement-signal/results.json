@@ -1,0 +1,286 @@
+{
+ "dispersion": {
+  "D": 0.717,
+  "notes": 202,
+  "null_95": [
+   0.812,
+   1.23
+  ],
+  "p_mc": 0.9995,
+  "pooled_like_rate": 0.12325
+ },
+ "early": {
+  "12": {
+   "likes_rho": 0.8202,
+   "notes": 132,
+   "views_rho": 0.8246
+  },
+  "24": {
+   "likes_rho": 0.9593,
+   "notes": 199,
+   "views_rho": 0.9471
+  },
+  "48": {
+   "likes_rho": 0.9905,
+   "notes": 201,
+   "views_rho": 0.9929
+  },
+  "6": {
+   "likes_rho": 0.6972,
+   "notes": 172,
+   "views_rho": 0.5905
+  }
+ },
+ "notes": 202,
+ "notes_per_day_last_30_days": 2.63,
+ "period": [
+  "2026-08-23",
+  "2026-10-28"
+ ],
+ "planted": {
+  "likes": {
+   "category": "SPROSTOWANIE",
+   "factor": 1.5,
+   "mse_recent": 0.2777,
+   "n_eval": 142,
+   "skill": {
+    "full": {
+     "ci95": [
+      -0.1997,
+      0.1889
+     ],
+     "value": 0.0061
+    },
+    "global_mean": {
+     "ci95": [
+      -0.2886,
+      0.1379
+     ],
+     "value": -0.0517
+    },
+    "typ": {
+     "ci95": [
+      0.0125,
+      0.2563
+     ],
+     "value": 0.1443
+    }
+   }
+  },
+  "views": {
+   "category": "SPROSTOWANIE",
+   "factor": 1.5,
+   "mse_recent": 0.3168,
+   "n_eval": 142,
+   "skill": {
+    "full": {
+     "ci95": [
+      -0.125,
+      0.1605
+     ],
+     "value": 0.0232
+    },
+    "global_mean": {
+     "ci95": [
+      -0.9213,
+      -0.0589
+     ],
+     "value": -0.3342
+    },
+    "typ": {
+     "ci95": [
+      0.097,
+      0.2936
+     ],
+     "value": 0.1756
+    }
+   }
+  }
+ },
+ "power": {
+  "likes": {
+   "0.25:160": 0.827,
+   "0.25:20": 0.153,
+   "0.25:40": 0.304,
+   "0.25:80": 0.524,
+   "0.5:160": 1.0,
+   "0.5:20": 0.423,
+   "0.5:40": 0.686,
+   "0.5:80": 0.943,
+   "0:160": 0.056,
+   "0:20": 0.052,
+   "0:40": 0.043,
+   "0:80": 0.057,
+   "1:160": 1.0,
+   "1:20": 0.754,
+   "1:40": 0.972,
+   "1:80": 1.0
+  },
+  "views": {
+   "0.25:160": 0.999,
+   "0.25:20": 0.365,
+   "0.25:40": 0.643,
+   "0.25:80": 0.912,
+   "0.5:160": 1.0,
+   "0.5:20": 0.782,
+   "0.5:40": 0.979,
+   "0.5:80": 1.0,
+   "0:160": 0.047,
+   "0:20": 0.047,
+   "0:40": 0.051,
+   "0:80": 0.04,
+   "1:160": 1.0,
+   "1:20": 0.991,
+   "1:40": 1.0,
+   "1:80": 1.0
+  }
+ },
+ "readings": {
+  "early_24h_stands_in": {
+   "likes": true,
+   "views": true
+  },
+  "features_carry_signal": {
+   "likes": {
+    "full": false,
+    "typ": false
+   },
+   "views": {
+    "full": false,
+    "typ": false
+   }
+  },
+  "instrument_detects_planted_effect": {
+   "likes": true,
+   "views": true
+  },
+  "like_rate_varies_beyond_chance": false,
+  "likes_usable_per_note": true,
+  "per_arm_for_80_percent_power": {
+   "likes": {
+    "0.25": 160,
+    "0.5": 80,
+    "1": 40
+   },
+   "views": {
+    "0.25": 80,
+    "0.5": 40,
+    "1": 20
+   }
+  },
+  "power_false_positive_rate_likes": {
+   "160": 0.056,
+   "20": 0.052,
+   "40": 0.043,
+   "80": 0.057
+  },
+  "power_false_positive_rate_views": {
+   "160": 0.047,
+   "20": 0.047,
+   "40": 0.051,
+   "80": 0.04
+  }
+ },
+ "replies": {
+  "dispersion": {
+   "D": 1.41,
+   "notes": 28,
+   "null_95": [
+    0.429,
+    1.918
+   ],
+   "p_mc": 0.1661,
+   "pooled_like_rate": 0.12308
+  },
+  "resolution": {
+   "likes_q25_50_75": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "notes": 59,
+   "share_interactions_ge_1": 0.2373,
+   "share_likes_ge_1": 0.2203,
+   "share_replies_ge_1": 0.1356,
+   "share_restacks_ge_1": 0.0169,
+   "views_q25_50_75": [
+    0.0,
+    0.0,
+    2.0
+   ]
+  }
+ },
+ "resolution": {
+  "likes_q25_50_75": [
+   1.0,
+   2.0,
+   3.0
+  ],
+  "notes": 202,
+  "share_interactions_ge_1": 0.9604,
+  "share_likes_ge_1": 0.9505,
+  "share_replies_ge_1": 0.1139,
+  "share_restacks_ge_1": 0.0743,
+  "views_q25_50_75": [
+   10.0,
+   14.0,
+   21.0
+  ]
+ },
+ "skill": {
+  "likes": {
+   "mse_recent": 0.2206,
+   "n_eval": 142,
+   "skill": {
+    "full": {
+     "ci95": [
+      -0.4237,
+      -0.0907
+     ],
+     "value": -0.2409
+    },
+    "global_mean": {
+     "ci95": [
+      -0.526,
+      0.1251
+     ],
+     "value": -0.1358
+    },
+    "typ": {
+     "ci95": [
+      -0.12,
+      0.0324
+     ],
+     "value": -0.0332
+    }
+   }
+  },
+  "views": {
+   "mse_recent": 0.2633,
+   "n_eval": 142,
+   "skill": {
+    "full": {
+     "ci95": [
+      -0.3349,
+      -0.0076
+     ],
+     "value": -0.1366
+    },
+    "global_mean": {
+     "ci95": [
+      -1.4324,
+      -0.1121
+     ],
+     "value": -0.5077
+    },
+    "typ": {
+     "ci95": [
+      -0.0752,
+      0.0674
+     ],
+     "value": 0.0005
+    }
+   }
+  }
+ }
+}
