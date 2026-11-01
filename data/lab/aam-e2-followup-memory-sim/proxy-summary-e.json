@@ -1,0 +1,18 @@
+{
+  "calls": 3672,
+  "refused_calls": 0,
+  "prompt_tokens": 1089069,
+  "completion_tokens": 420086,
+  "usd": 0.756143,
+  "unknown_usage_calls": 0,
+  "arena_enforced_decoding": {
+    "thinking": {
+      "type": "disabled"
+    }
+  },
+  "decoding_overrides": 0,
+  "decoding_override_values": [],
+  "native_requested_decoding": [
+    "{\"thinking\": null}"
+  ]
+}

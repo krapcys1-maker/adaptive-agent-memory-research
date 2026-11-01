@@ -190,3 +190,16 @@ def test_the_command_line_analyses_pairwise_results(rows, tmp_path: Path, capsys
     assert afu.main(["pair-analyse", str(out), "--json", str(tmp_path / "p.json"), "--md", str(tmp_path / "p.md")]) == 0
     capsys.readouterr()
     assert "AAM-E2-FU pairwise judge" in (tmp_path / "p.md").read_text(encoding="utf-8") and "reading" in json.loads((tmp_path / "p.json").read_text(encoding="utf-8"))
+
+
+def test_the_judge_analysis_command_line_takes_name_equals_path_pairs_and_the_pairwise_results(rows, tmp_path: Path, capsys: pytest.CaptureFixture) -> None:
+    records = tmp_path / "records.jsonl"
+    records.write_text("\n".join(json.dumps(r) for r in rows) + "\n", encoding="utf-8")
+    judged, paired = tmp_path / "j.jsonl", tmp_path / "p.jsonl"
+    afu.judge_run(rows, judged, fake_judge, workers=4, log=lambda line: None, controls_each=6)
+    afu.pair_run(rows, paired, fake_pair_judge, workers=4, log=lambda line: None, controls_each=4)
+    assert afu.main(["judge-analyse", str(records), "fake=%s" % judged, "--pairwise", str(paired), "--json", str(tmp_path / "r.json"), "--md", str(tmp_path / "r.md")]) == 0
+    capsys.readouterr()
+    data = json.loads((tmp_path / "r.json").read_text(encoding="utf-8"))
+    assert set(data["judges"]) == {"fake"} and data["pairwise"]["judge_informative"] and data["readings"]["memory_helps_where_relevant"] is True
+    assert "pairwise" in data["readings"]["per_judge"] and "Readings stated in advance" in (tmp_path / "r.md").read_text(encoding="utf-8")

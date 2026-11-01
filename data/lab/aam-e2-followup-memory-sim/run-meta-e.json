@@ -1,0 +1,43 @@
+{
+  "model": "deepseek-flash",
+  "endpoint": "OpenAI-compatible, through a local metering proxy",
+  "tau": 0.7,
+  "write_options": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "num_predict": 260
+  },
+  "trace_options": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "num_predict": 120
+  },
+  "seeds": [
+    14,
+    15,
+    16
+  ],
+  "days": 60,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "harness_sha256": "cc5483a1e7ba00b8ef11bbf42ebb21a0db9a81d738b8ab35ec2b438892e06f53",
+  "backends_sha256": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
+  "first_started": "2026-11-01T16:39:19",
+  "proxy_at_start": {
+    "calls": 2955,
+    "refused_calls": 0,
+    "prompt_tokens": 954009,
+    "completion_tokens": 349686,
+    "usd": 0.642237,
+    "unknown_usage_calls": 0,
+    "arena_enforced_decoding": {
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "decoding_overrides": 0,
+    "decoding_override_values": [],
+    "native_requested_decoding": [
+      "{\"thinking\": null}"
+    ]
+  }
+}

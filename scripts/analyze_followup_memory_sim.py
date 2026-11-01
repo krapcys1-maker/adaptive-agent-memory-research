@@ -469,7 +469,7 @@ def main(argv: Optional[List[str]] = None, embedder=None) -> int:
     pa.add_argument("--md", type=Path)
     a = sub.add_parser("judge-analyse")
     a.add_argument("records", type=Path)
-    a.add_argument("judgments", type=Path, nargs="+", help="NAME=PATH pairs, e.g. v4pro=judgments-v4pro.jsonl")
+    a.add_argument("judgments", nargs="+", help="NAME=PATH pairs, e.g. flash=judgments-flash.jsonl")
     a.add_argument("--pairwise", type=Path, default=None, help="results of pair-run, counted as one more judge")
     a.add_argument("--json", type=Path)
     a.add_argument("--md", type=Path)

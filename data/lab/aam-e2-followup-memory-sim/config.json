@@ -26,6 +26,10 @@
    "informative_if_noticed_at_least": 0.75,
    "other_story": 12
   },
+  "judge_of_record": {
+   "model": "deepseek-flash",
+   "reason": "the owner authorised only the flash model; pro is blocked at the proxy (scripts/flash_only_proxy.py)"
+  },
   "pairwise": {
    "control": "real A0 note against a copy of the earlier note, must win in at least 75%",
    "interval_above": 0.5,
@@ -39,7 +43,8 @@
   },
   "v4_pro": {
    "model": "deepseek-v4-pro",
-   "scope": "all notes"
+   "scope": "all notes",
+   "status": "used in a first pass without the owner's authorisation; results kept as a labelled secondary check; replaced as judge of record by deepseek-flash"
   }
  },
  "measures": {
@@ -87,7 +92,8 @@
   "threshold_rule": "highest step of 0.05 that keeps 90% of the true follow-up -> story pairs on the calibration streams"
  },
  "script_sha256": {
-  "scripts/analyze_followup_memory_sim.py": "1e883aadd31f4ea6d7bed62de6ae0044f4a90b28e0a3ba4872fa00ba4b102f2e",
+  "scripts/analyze_followup_memory_sim.py": "72daece0eb7a9ccb7d17cc997803714dc66f7bfd74cda9397569574a3a3eea96",
+  "scripts/flash_only_proxy.py": "26554fad694a2688284d36abd3675a4fbf276c55154631b626a2f812e1c1ae6a",
   "scripts/followup_memory_sim.py": "cc5483a1e7ba00b8ef11bbf42ebb21a0db9a81d738b8ab35ec2b438892e06f53",
   "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
   "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",

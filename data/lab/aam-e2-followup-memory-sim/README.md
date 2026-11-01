@@ -51,6 +51,35 @@ Written on 2026-11-01 while the writer processes were still running. No record h
 
 4. **A pairwise judge for the follow-up stratum.** The pointwise judge showed a ceiling effect in AAM-E1-DS, so a second judge compares notes in pairs. For each follow-up item and each pair of arms (A1-A0, A2-A0, A3-A0, A2-A1, A3-A2, A0i-A0, A2-A0i, A3-A0i) it sees the item, the arm's earlier note on the story and the two notes, in both orders, and answers which builds better on the earlier note (WINNER: 1, 2 or TIE; `deepseek-v4-pro` through the proxy). Control: the real A0 note against a copy of the earlier note (12 follow-ups, both orders); the real note must win in at least 75% of these or the judge is not used. Reading: an arm wins against a no-notes arm if its win rate is at least 0.60 with the interval above 0.5, against both A0 and A0i. The pairwise judge counts as one more judge in the rule for "memory helps where it is relevant": every informative judge must agree.
 
+## Results (written on 2026-11-01 after the preregistered analyses had been run)
+
+**The run.** 1,800 notes (6 streams x 60 days x 5 arms including the control A0i), `deepseek-flash` as the writer, in several processes; the proxy summaries are in `proxy-summary-*.json` and the run metadata in `run-meta-*.json` (the processes for streams 11, 13 to 16 ran with the first version of the script, stream 12 and the control arm with the amended one, whose changes cannot affect the other arms).
+
+**A deviation, and its repair.** The preregistration named `deepseek-v4-pro` as the judge. The owner had authorised `deepseek-flash` only. The first judging pass used the pro model, which the owner objected to; the pro model was then **blocked at the proxy** (`scripts/flash_only_proxy.py`: any other model is answered with 403 and never forwarded), and every judge of this experiment was **run again with `deepseek-flash`, which is the judge of record** below. The pro results (`*-pro.*`) are kept, labelled, as an already-paid secondary check; they point the same way (pairwise win rates 0.81 and 0.79 for A2 and A3 over A0, and always-on memory lowering fresh quality by 0.21; the pro pointwise continuity sits at 5.0 for every arm).
+
+**Deterministic measures (days 8 to 60; `report-measures.md`).**
+
+| Arm | explicit reference back in follow-ups | grounded reference in follow-ups | explicit reference on fresh items ("spurious") | overlap4 |
+|---|---|---|---|---|
+| A0 none | 2.8% | 2.8% | 0.0% | 0.036 |
+| A0i instruction only | 5.6% | 4.2% | 0.0% | 0.034 |
+| A1 always-on raw | 66.7% | 55.6% | **30.1%** | 0.040 |
+| A2 thresholded raw | 63.9% | 48.6% | 0.0% | 0.032 |
+| A3 thresholded traces | 83.3% | **73.6%** | 0.0% | 0.035 |
+
+The instruction without notes (A0i) does not make the writer refer back (A0i - A0 not distinguishable from zero), so the references come from the notes. Always-on raw retrieval makes the writer refer back to earlier notes on 30% of the fresh items, where they are irrelevant. Traces give 25 points more grounded references than raw notes in the same situation (A3 - A2 +0.250 [0.139, 0.375]). Lexical overlap and length do not differ between arms.
+
+**Judge of record, `deepseek-flash`** (`report-judges.md`; it passed its planted controls: 100% of the copies and of the other-story replacements noticed, pairwise control 24 of 24).
+- Pointwise continuity of follow-up notes (1 to 5): A0 4.72, A0i 4.44, A1 4.94, A2 4.93, A3 4.97. Against A0: A2 +0.21 [0.08, 0.33], A3 +0.25 [0.14, 0.38]; against A0i: A2 +0.49 [0.33, 0.64], A3 +0.53 [0.39, 0.68]. The instruction alone lowers continuity (A0i - A0 -0.28 [-0.46, -0.11]): told to refer back with nothing to refer to, the writer does worse.
+- Pairwise (which note builds better on the earlier note, both orders; win rate of the first over the second): A2 over A0 0.847 [0.778, 0.910], A3 over A0 0.875 [0.806, 0.931], A2 over A0i 0.882, A3 over A0i 0.854, A2 over A1 0.722 [0.646, 0.799], **A3 over A2 0.694 [0.625, 0.764]**, A0i over A0 0.528 (no preference).
+- On fresh items always-on memory is worse (A1 - A0: quality -0.17 [-0.26, -0.09], fit -0.22, freshness -0.48); the thresholded arms are not (quality -0.03 [-0.11, 0.04] for both).
+
+**The readings stated in advance, applied mechanically.** *Memory helps where it is relevant:* the pointwise judge says no and the pairwise judge says yes, so by the rule (all informative judges must agree) the result is **unresolved**. The disagreement has a plain cause: the pointwise scale has a ceiling (A0 already scores 4.72, so the largest possible gain is 0.28 and the practical threshold of 0.5 could not be met by any arm), which is the same kind of defect as the threshold of AAM-E1-SIM; the pairwise judge has no ceiling and prefers the memory arms in 85 to 88% of the comparisons, with the instruction-only control at chance. *Always-on memory harms fresh notes:* **yes**. *Traces against notes:* equivalent by the pointwise judge, traces better by the pairwise judge (0.694) and by grounded references (+25 points).
+
+**Reading.** Where an earlier note carries information the writer does not otherwise have, giving the writer that note (or a short trace of it) makes the follow-up note refer back to it accurately far more often than chance and, by the pairwise judge, makes it a better continuation; the benefit is not the instruction and not length. Injecting memory regardless of relevance does damage: spurious references on 30% of fresh items and lower judged fit, freshness and quality. A relevance threshold removes the damage, and a short trace is at least as good as the full note and better on grounded references and in the pairwise comparison. This is the first result of this series in which memory helps a writer, and it holds only where retrieval is close to ideal: the threshold of 0.70 was calibrated on item texts that restate their story and let through no spurious match on fresh days. It is one provider's model judged by the same provider's model, on authored stories.
+
+**Decision recorded for the live-memory plan.** (1) The first live arm is **thresholded traces**; no always-on injection. (2) The threshold has to be calibrated on the live retrieval (AAM-E3A did not certify one; 0.6 on note-to-note cosine is a post-hoc starting value), and the live comparison should use a pairwise judge, because pointwise scores saturate. (3) The next test is the one this design avoids: imperfect retrieval, with follow-ups that do not restate their story and fresh items of the same theme as distractors.
+
 ## Limits
 
 One provider's model as the writer, one persona, sixty authored stories, six streams. Items restate the story they develop, which makes retrieval easy; a live follow-up may not. The judge is a model. Continuity is judged against the arm's own earlier note, so an arm whose earlier notes are poor is judged against a poor reference. The experiment does not test learning from outcomes, the persona, or any real reader.
@@ -68,3 +97,5 @@ Preregistered before the first record.
 - 2026-11-01 16:38: amendments above committed with refreshed digests while the writer processes were running (seed 14 day 47/60  +4 notes  elapsed 345s); no record had been read.
 
 - 2026-11-01 16:45: the pairwise judge (amendment 4) and its tests were committed with the refreshed digest of the analysis script while the control-arm runs were finishing; no E2 record had been read.
+
+- 2026-11-01 16:57: results written. Two things changed after records were read, both disclosed above: the judge model (pro replaced by flash on the owner's instruction, every judge re-run) and the judge-analysis command line (it rejected NAME=PATH pairs; fixed and tested, no effect on any number). Digests refreshed.
