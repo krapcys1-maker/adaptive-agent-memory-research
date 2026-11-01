@@ -77,3 +77,5 @@ Reproduce the run: `python scripts/writer_memory_sim.py --records PATH --seeds 1
 ## Log
 
 Preregistered before the first registered record.
+
+- 2026-11-01 15:38: analysis script and its tests committed, digest added to config.json, while the run was in progress (seed 1 day  5/36  +5 entries  elapsed 114s) and before any outcome had been read. The harness digest is unchanged.

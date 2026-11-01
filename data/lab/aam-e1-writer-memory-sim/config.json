@@ -69,6 +69,7 @@
   "shown": 3
  },
  "script_sha256": {
+  "scripts/analyze_writer_memory_sim.py": "5c45089ae21764902030b27c02af531d02ac0c8e347850eb2c353c76436159af",
   "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
   "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
  },
