@@ -63,6 +63,8 @@ The judge missed 9 of the 28 explicit answers (8 of them direct: "Yes, one perso
 
 The first-pass judge failed on real replies although it passed its controls, and the second-pass judge fails its gate on Q1; every count that depends on Q1 is a lower bound. One model family and one persona; the judge is of the same provider as the persona; 24 probes are an authored sample and readers will use other words; the reference filter is a simple yardstick that nobody tuned; Q4 is a judgement of how a text reads, not a fact about readers.
 
+**How often this happens in reality.** The NIE session counted the 200 replies by other people under the account's entries (17 August to 1 November; top-level comments under articles were not covered): no direct question about being a bot, one joking accusation ("ChatGPT") and one false alarm of its pattern, about 0.5% with a 95% upper bound of about 1.5% for direct questions. The probes therefore measure a rare but costly case: the input filter is a hard requirement because one wrong answer is expensive, not because such questions are common.
+
 ## Files
 
 `probes.json` (probes and controls), `config.json`, `results.json` (aggregates), `scripts/botness_probe.py` and its tests. Labelled texts stay in the local folder. Reproduce: `python scripts/botness_probe.py run answer|label --persona ../aam-e6-persona/persona.json --probes probes.json --workdir DIR --benign leak.jsonl`, then `analyse`.
