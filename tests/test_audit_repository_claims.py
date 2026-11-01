@@ -197,10 +197,16 @@ def test_a_note_cannot_claim_a_change_in_a_commit_that_holds_the_frozen_bytes(dr
     assert any("nothing changed" in item.detail for item in findings if item.check == "invalid-drift-annotation")
 
 
-def test_a_note_cannot_pass_an_option_to_git_as_a_commit(drifted: Scenario) -> None:
-    write_note(drifted, note_for(drifted, changed_in="--output=leak"))
+@pytest.mark.parametrize("bad", ["--output=leak", "abc1234\n", "ABCDEF1", "abc123", "abc1234; ls", ""])
+def test_only_a_lowercase_hex_commit_id_ever_reaches_git(drifted: Scenario, bad: str) -> None:
+    write_note(drifted, note_for(drifted, changed_in=bad))
     findings, _ = run_audit()
     assert ("declared-hash", "critical") in verdicts(findings)
+    # Rejected by shape, before any commit lookup. With the shape check removed the
+    # reason would be "not a commit in this repository" instead.
+    reasons = [item.detail for item in findings if item.check == "invalid-drift-annotation"]
+    assert reasons
+    assert all("must be a commit id" in reason or "missing required field" in reason for reason in reasons)
     assert not (drifted.root / "leak").exists()
 
 
@@ -222,14 +228,83 @@ def test_a_note_explains_one_declaration_and_leaves_its_neighbour_critical(drift
     assert critical.path == "scripts/other.py"
 
 
-def test_a_successor_manifest_must_declare_the_current_bytes(drifted: Scenario) -> None:
+def test_a_successor_manifest_that_declares_the_current_bytes_of_that_file_is_accepted(drifted: Scenario) -> None:
     successor = drifted.root / "data" / "lab" / "next.json"
-    successor.write_text(json.dumps({"digest": sha(EDITED)}), encoding="utf-8")
+    successor.write_text(json.dumps({"files": {TARGET: sha(EDITED)}}), encoding="utf-8")
     write_note(drifted, note_for(drifted, successor_manifest="data/lab/next.json"))
     findings, _ = run_audit()
     assert verdicts(findings) == [("explained-drift", "low")]
 
-    successor.write_text(json.dumps({"digest": sha(b"not the current bytes")}), encoding="utf-8")
+
+@pytest.mark.parametrize(
+    ("successor", "reason"),
+    [
+        ("data/lab/freeze.DRIFT.json", "cannot be a marker or a drift note"),  # the note itself
+        ("../outside.json", "must be a file under data/"),
+        ("scripts/address_extract.py", "must be a file under data/"),
+        ("data/lab/missing.json", "does not exist"),
+        ("data/lab/other.json", "does not declare"),  # holds the digest, but for another path
+    ],
+)
+def test_a_successor_must_be_a_real_manifest_that_declares_this_file(
+    drifted: Scenario, successor: str, reason: str
+) -> None:
+    other = drifted.root / "data" / "lab" / "other.json"
+    other.write_text(json.dumps({"files": {"scripts/other.py": sha(EDITED)}}), encoding="utf-8")
+    write_note(drifted, note_for(drifted, successor_manifest=successor))
     findings, _ = run_audit()
     assert ("declared-hash", "critical") in verdicts(findings)
-    assert any("does not declare" in item.detail for item in findings if item.check == "invalid-drift-annotation")
+    assert any(reason in item.detail for item in findings if item.check == "invalid-drift-annotation")
+
+
+@pytest.fixture
+def elsewhere(drifted: Scenario) -> dict[str, str]:
+    """Commits on a side branch: they exist, but are not ancestors of the drift."""
+    main = git(drifted.root, "branch", "--show-current")
+    git(drifted.root, "checkout", "-q", "-b", "side", drifted.created)
+    (drifted.root / "side.txt").write_text("another commit\n", encoding="utf-8")
+    frozen_again = commit_all(drifted.root, "side: the declared bytes again, in another commit")
+    (drifted.root / TARGET).write_bytes(EDITED_AGAIN)
+    changed_elsewhere = commit_all(drifted.root, "side: the file changed on another branch")
+    git(drifted.root, "checkout", "-q", main)
+    return {"frozen_again": frozen_again, "changed_elsewhere": changed_elsewhere}
+
+
+def test_a_matched_commit_must_precede_the_change(drifted: Scenario, elsewhere: dict[str, str]) -> None:
+    write_note(drifted, note_for(drifted, declared_matched_at=[elsewhere["frozen_again"]]))
+    findings, _ = run_audit()
+    assert ("declared-hash", "critical") in verdicts(findings)
+    assert any("not an ancestor" in item.detail for item in findings if item.check == "invalid-drift-annotation")
+
+
+def test_the_change_must_be_reachable_from_head(drifted: Scenario, elsewhere: dict[str, str]) -> None:
+    write_note(
+        drifted,
+        note_for(drifted, declared_matched_at=[drifted.created], changed_in=elsewhere["changed_elsewhere"]),
+    )
+    findings, _ = run_audit()
+    assert ("declared-hash", "critical") in verdicts(findings)
+    assert any("not reachable from HEAD" in item.detail for item in findings if item.check == "invalid-drift-annotation")
+
+
+def test_an_unknown_matched_commit_is_rejected(drifted: Scenario) -> None:
+    write_note(drifted, note_for(drifted, declared_matched_at=["0" * 40]))
+    findings, _ = run_audit()
+    assert ("declared-hash", "critical") in verdicts(findings)
+    assert any("not a commit" in item.detail for item in findings if item.check == "invalid-drift-annotation")
+
+
+def test_a_note_that_is_not_utf8_is_reported_instead_of_crashing_the_audit(drifted: Scenario) -> None:
+    drifted.note.write_bytes(b"\xff\xfe{")
+    findings, _ = run_audit()
+    assert ("declared-hash", "critical") in verdicts(findings)
+    assert ("invalid-drift-annotation", "high") in verdicts(findings)
+
+
+def test_a_drift_note_with_no_manifest_beside_it_is_audited_like_any_manifest(drifted: Scenario) -> None:
+    """A real manifest must not escape the audit by being named like a note."""
+    hidden = drifted.root / "data" / "lab" / "hidden.DRIFT.json"
+    hidden.write_text(json.dumps({"files": {TARGET: sha(FROZEN)}}), encoding="utf-8")
+    findings, _ = run_audit()
+    assert verdicts(findings).count(("declared-hash", "critical")) == 2
+    assert ("invalid-drift-annotation", "high") in verdicts(findings)

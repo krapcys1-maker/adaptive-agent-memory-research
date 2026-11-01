@@ -17,10 +17,11 @@ Checks
                       registry, and vice versa.
 
 A declared hash that no longer matches can be explained but never silenced. A
-note named <manifest>.DRIFT.json, next to the manifest, downgrades exactly one
-declaration from critical to a low "explained-drift" finding, and only when the
-note proves, from Git, that the declaration was true at an earlier commit and
-names the commit that changed the file. See read_drift_annotation.
+note named <manifest>.DRIFT.json, next to the manifest, downgrades the declaration
+it names (one manifest, one file, one declared digest) from critical to a low
+"explained-drift" finding, and only when the note proves, from Git, that the
+declaration was true at an earlier commit and names the commit that changed the
+file. See prove_drift.
 
 It reports. It never repairs: deciding what to do about a broken freeze is a
 provenance decision that belongs to a human and to project memory.
@@ -88,8 +89,9 @@ def git_blob(relative: str) -> bytes | None:
     return result.stdout if result.returncode == 0 else None
 
 
-# A commit id read from a JSON note is passed to Git, so it must look like one.
-COMMIT_ID = re.compile(r"^[0-9a-f]{7,40}$")
+# A commit id read from a JSON note is passed to Git, so it must look like one. Always
+# use fullmatch: a trailing "$" would also accept a trailing newline.
+COMMIT_ID = re.compile(r"[0-9a-f]{7,40}")
 
 
 def git_blob_at(commit: str, relative: str) -> bytes | None:
@@ -242,7 +244,8 @@ def load_drift_annotation(annotation: Path) -> tuple[dict[str, Any] | None, str]
     """Parse a drift note and check its shape. Says nothing yet about whether it is true."""
     try:
         document = json.loads(annotation.read_text(encoding="utf-8-sig"))
-    except (OSError, json.JSONDecodeError) as error:
+    except (OSError, ValueError) as error:
+        # ValueError covers both invalid JSON and undecodable bytes.
         return None, f"unreadable or invalid JSON: {error}"
     if not isinstance(document, dict):
         return None, "must be a JSON object"
@@ -270,16 +273,22 @@ def prove_drift(document: dict[str, Any], target_relative: str, declared: str, w
     * ``changed_in`` exists, is reachable from HEAD, and holds different bytes;
     * ``current_sha256`` equals the file's bytes today, so a further edit voids the
       note and has to be explained again;
-    * if ``successor_manifest`` is given, that manifest exists and declares
-      ``current_sha256``.
+    * if ``successor_manifest`` is given, it is a manifest under data/ (not a note or a
+      marker) that declares ``current_sha256`` for this very file.
+
+    What it does not prove: that ``changed_in`` is the first change after the freeze, or
+    that it follows the manifest's own commit. Those stay the author's claim, recorded in
+    the note; the audit insists on the Git-derived facts above.
     """
     if document["current_sha256"] != working_digest:
         return "the file changed again after this note was written (current_sha256 no longer matches its bytes)"
     matched = document["declared_matched_at"]
     changed_in = document["changed_in"]
-    if not isinstance(matched, list) or not all(isinstance(item, str) and COMMIT_ID.match(item) for item in matched):
+    if not isinstance(matched, list) or not all(
+        isinstance(item, str) and COMMIT_ID.fullmatch(item) for item in matched
+    ):
         return "declared_matched_at must be a list of commit ids"
-    if not isinstance(changed_in, str) or not COMMIT_ID.match(changed_in):
+    if not isinstance(changed_in, str) or not COMMIT_ID.fullmatch(changed_in):
         return "changed_in must be a commit id"
     if not git_commit_exists(changed_in):
         return f"changed_in {changed_in} is not a commit in this repository"
@@ -298,22 +307,47 @@ def prove_drift(document: dict[str, Any], target_relative: str, declared: str, w
         return f"changed_in {changed_in} is not reachable from HEAD"
     successor = document.get("successor_manifest")
     if successor:
-        path = ROOT / str(successor)
+        path = (ROOT / str(successor)).resolve()
+        if (ROOT / "data").resolve() not in path.parents:
+            return f"successor_manifest must be a file under data/: {successor}"
         if not path.is_file():
             return f"successor_manifest does not exist: {successor}"
+        if path.name == SUPERSEDED_MARKER or path.name.endswith(DRIFT_SUFFIX):
+            return f"successor_manifest cannot be a marker or a drift note: {successor}"
         try:
             payload = json.loads(path.read_text(encoding="utf-8-sig"))
-        except (OSError, json.JSONDecodeError) as error:
+        except (OSError, ValueError) as error:
             return f"successor_manifest is unreadable: {error}"
-        if not any(value == working_digest for _, _, value in walk_json(payload, [])):
-            return f"successor_manifest {successor} does not declare current_sha256"
+        target = (ROOT / target_relative).resolve()
+        for key_path, key, value in walk_json(payload, []):
+            if value != working_digest:
+                continue
+            resolved = resolve_declared_target(path, key, key_path)
+            if resolved is not None and resolved[1] and resolved[0].resolve() == target:
+                break
+        else:
+            return f"successor_manifest {successor} does not declare current_sha256 for {target_relative}"
     return ""
 
 
 def check_declared_hashes(findings: list[Finding], counters: Counter) -> None:
     for manifest in iter_files(ROOT / "data", {".json"}):
-        if manifest.name == SUPERSEDED_MARKER or manifest.name.endswith(DRIFT_SUFFIX):
+        if manifest.name == SUPERSEDED_MARKER:
             continue
+        if manifest.name.endswith(DRIFT_SUFFIX):
+            companion = manifest.with_name(manifest.name[: -len(DRIFT_SUFFIX)] + ".json")
+            if companion.is_file():
+                continue  # a drift note: it is read when its own manifest is checked
+            counters["invalid_drift_annotations"] += 1
+            findings.append(
+                Finding(
+                    "invalid-drift-annotation",
+                    "high",
+                    manifest.relative_to(ROOT).as_posix(),
+                    f"there is no {companion.name} beside it, so it explains nothing. "
+                    f"It is checked as an ordinary manifest instead.",
+                )
+            )
         reported_invalid_notes: set[str] = set()
         governing = superseded_by_marker(manifest)
         if governing is not None:
