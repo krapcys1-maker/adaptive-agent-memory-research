@@ -1,0 +1,63 @@
+{
+ "arms": [
+  "R0",
+  "R0i",
+  "R1",
+  "R2",
+  "R3"
+ ],
+ "budget": {
+  "hard_cap_usd": 12,
+  "ledger": "data/lab/aam-deepseek-2026-11/spend-ledger.jsonl",
+  "owner_budget_usd": 15
+ },
+ "data": {
+  "notes": 234,
+  "period": "2026-08-16 to 2026-11-01",
+  "tasks": 214,
+  "warmup_notes": 20
+ },
+ "experiment": "AAM-E5-REPLAY memory arms replayed on the live account's real published history",
+ "judge": {
+  "control": "R0 note against a copy of the earlier note on 12 candidate tasks, must win at least 75%",
+  "mode": "pairwise, both orders",
+  "model": "deepseek-flash",
+  "non_candidate_sample": 80
+ },
+ "readings": {
+  "bootstrap": {
+   "draws": 10000,
+   "seed": 20261101
+  },
+  "harm_if_interval_below": 0.5,
+  "interval_above": 0.5,
+  "win_rate_needed": 0.6
+ },
+ "retrieval": {
+  "candidate_share": 0.2,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "query": "one-sentence brief of the new note",
+  "shown": 3
+ },
+ "script_sha256": {
+  "scripts/analyze_followup_memory_sim.py": "72daece0eb7a9ccb7d17cc997803714dc66f7bfd74cda9397569574a3a3eea96",
+  "scripts/analyze_writer_memory_sim.py": "5c45089ae21764902030b27c02af531d02ac0c8e347850eb2c353c76436159af",
+  "scripts/flash_only_proxy.py": "26554fad694a2688284d36abd3675a4fbf276c55154631b626a2f812e1c1ae6a",
+  "scripts/followup_memory_sim.py": "cc5483a1e7ba00b8ef11bbf42ebb21a0db9a81d738b8ab35ec2b438892e06f53",
+  "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
+  "scripts/replay_memory_sim.py": "644deb455acd9954b3e0cbee0d9f8c306ac19aeafbe338b32b94f8a1917ec16c",
+  "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
+  "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
+ },
+ "status": "data-based feasibility test, tier E, not registered; real notes and model-written notes stay outside the repository",
+ "writer": {
+  "endpoint": "flash-only metering proxy",
+  "model": "deepseek-flash",
+  "options": {
+   "num_predict": 260,
+   "temperature": 0.8,
+   "top_p": 0.95
+  },
+  "persona": "generic card of AAM-E2-FU"
+ }
+}
