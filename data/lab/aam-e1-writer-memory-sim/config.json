@@ -44,6 +44,25 @@
   "use": "later entry shown the trace, explicit reference to earlier writing, at least 2 shared keywords"
  },
  "experiment": "AAM-E1-SIM writer memory simulation",
+ "judge": {
+  "control_seed": 2026,
+  "controls_each": 12,
+  "dimensions": [
+   "fit",
+   "fresh",
+   "voice",
+   "quality"
+  ],
+  "informative_if_controls_noticed_at_least": 0.75,
+  "model": "qwen2.5:14b-instruct",
+  "options": {
+   "num_predict": 40,
+   "temperature": 0.0,
+   "top_p": 1.0
+  },
+  "quality_guard_drop": 0.3,
+  "seed": 11
+ },
  "primary": {
   "bootstrap": {
    "draws": 10000,
@@ -70,6 +89,8 @@
  },
  "script_sha256": {
   "scripts/analyze_writer_memory_sim.py": "5c45089ae21764902030b27c02af531d02ac0c8e347850eb2c353c76436159af",
+  "scripts/judge_writer_memory_sim.py": "b281c3f6fe2d8245fdab62b435b0962e28ffdef357b8b89e083248b23f2e3091",
+  "scripts/llm_backends.py": "a18fbabb4c503237d4bd29dd59e5de9db3de81abd3bba95234ab5a8c9d3b7307",
   "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
   "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
  },

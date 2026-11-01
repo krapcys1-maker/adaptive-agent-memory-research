@@ -74,8 +74,21 @@ One small quantised model; one synthetic persona; six themes; three streams of 3
 
 Reproduce the run: `python scripts/writer_memory_sim.py --records PATH --seeds 1 2 3` with the model named in `config.json` served by a local Ollama. The entries themselves are not bit-reproducible across machines; the analysis of the stored records is.
 
+## Addendum A: a blind LLM judge (written on 2026-11-01 while the registered run was still in progress, before any outcome was read)
+
+The lexical measures cannot see quality. After the run, `scripts/judge_writer_memory_sim.py` scores every analysis-day entry (days 7 to 36 of the three streams and five arms) with `qwen2.5:14b-instruct` at temperature 0, blind to the arm. Four scores from 1 to 5: fit to the day's trigger, freshness against the same author's earlier entries on the theme (the latest two, taken from the same arm), voice against the persona card, and overall quality.
+
+Planted controls show whether the judge can tell anything: 12 entries replaced by a copy of the author's previous entry on the theme and 12 replaced by an entry on another theme, drawn from arm M0 with a fixed seed. A dimension counts as informative only if at least 75% of its controls score 2 or lower on it (freshness for the copies, fit for the replacements); otherwise it is reported as uninformative and not used.
+
+Guard: an arm whose mean quality is lower than M0 by 0.30 or more, with a bootstrap interval below zero, gets no credit for a repetition win. The judge is a 14B model of the same family as the 7B writer, which is a limit and not a remedy; an independent judge (another family, or a human sample) would be a further step. The judge's results are reported beside the registered analysis and never instead of it.
+
+## Addendum B: how far this simulation can speak for the live account (written on the same occasion)
+
+A read-only snapshot of the live account's published notes (see `docs/11-research-laboratory/published-notes-baseline-2026-11-01.md`) shows lexical repetition at the floor (mean 4-gram overlap with one earlier note 0.018) and no explicit callback, while about one note in five has a semantically related earlier note, mostly from the previous week. This simulation is a stress test: every entry has a same-theme predecessor six days earlier. Its effect sizes cannot be carried over to the live account without scaling them to the share of tasks that have something to retrieve, which is about a fifth there.
+
 ## Log
 
 Preregistered before the first registered record.
 
 - 2026-11-01 15:38: analysis script and its tests committed, digest added to config.json, while the run was in progress (seed 1 day  5/36  +5 entries  elapsed 114s) and before any outcome had been read. The harness digest is unchanged.
+- 2026-11-01 16:02: addenda A (blind judge with planted controls) and B (external validity against the live account's baseline), the judge script and the backends module committed, digests added to config.json; the registered run was in progress (seed 2 day 34/36  +5 entries  elapsed 1609s) and no outcome had been read.
