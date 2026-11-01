@@ -23,8 +23,14 @@ it is -0.050 with a 95% bootstrap interval of [-0.125, +0.0125]. The two qualify
 decision rules both fire: a summary index with expansion is at least as good, and dense retrieval over
 everything (F2, 0.200) is not below D, so D is no better than conventional retrieval. D is not
 distinguishable from the shuffled-pointer control (S 0.049; D minus S +0.026, interval [-0.016, +0.072]).
-Where D could be read as better than nothing, the effect is lexical: it rises in C1 (0.200) and not in
-C2 (0.088) or C3 (0.075). A null is a complete answer; this is one, in this synthetic world.
+Against the shuffled control D is clearly better in C1, where cue and target share words (D minus S +0.099
+at C=250 and R=10%), by a smaller margin whose interval touches zero in C2 (+0.044), and by +0.026 in C3.
+**Read this null narrowly.** The primary cell could not have returned SUPPORTED, and the Stage 0 table already
+showed it (notes below). An independent review of the final version also judged that the C3 result was close
+to guaranteed for this D: it has no abstraction step, the generator was tuned until the embedder sees C3 cue
+and target as unrelated, and there is no positive control (with every event stored D reaches a recall at
+11 events of 0.40 in C1, where BM25 reaches 1.00, and 0.15 in C3). It is a null about a word-cluster index in
+this synthetic world, not evidence that associative traces fail.
 
 ## The question
 
@@ -57,7 +63,8 @@ torch versions or hardware.
 150 experiences over 30 days, three goal phases, each in a different one of six domains; 12 probes per
 world, four in each cell. Every probe has a target (day 2-9, at least 14 days before the cue, carrying a
 reference code that is the gold answer), a cue (day 21-30, a task in the current domain), and three decoys
-placed before the cue: two surface or domain decoys, and for C3 a lookalike with the opposite outcome.
+placed before the cue: two surface decoys and one domain decoy in C1 and C2, and in C3 one surface decoy, one
+domain decoy and a lookalike with the opposite outcome.
 
 * **C1**: about 40% of the cue's content words occur in the target (measured on the development seeds: mean 0.380).
 * **C2**: no shared content word after stop-word removal and light stemming; same topic, different words.
@@ -105,8 +112,10 @@ test seed:
   failed the same way. Tests sweep the whole grid.
 * Gate in front of every use of the test seeds (`generate --allow-test-seeds`, `stage1`, `stage2-plan`):
   `config.json` digests equal the current scripts, Stage 0 passed on the same digests, on exactly seeds
-  0-4, with the real embedder. `--allow-digest-mismatch` is gone. Stage 1 refuses to run twice (one look)
-  and runs only the frozen test seeds; `--dev-dry-run` exists for mechanics on development seeds and
+  0-4, with the real embedder. `--allow-digest-mismatch` is gone. Stage 1 refuses to overwrite results in its
+  output folder and runs only the frozen test seeds (nothing outside that folder records that the test seeds were
+  evaluated, so a second look with another `--out` is not prevented; an independent review found this, and the
+  frozen scripts are not changed); `--dev-dry-run` exists for mechanics on development seeds and
   writes elsewhere. Stage 2 plan on the test seeds also needs a real Stage 1 result.
 * Stage 2 hardening: the cap must be finite, positive and at most $5; the plan's reader must equal the
   frozen `READER` (model, endpoint, parameters) and the endpoint and model used are the constants, not the
@@ -205,8 +214,11 @@ Written after Stage 1; they change no number above and no generated file.
 * **The primary cell could not have confirmed the hypothesis.** In C3 at R=10% D stores the gold event in 20%
   of the probes (`gold stored`), so no association rule can put it in the context more often than that; Oc,
   D's own store with perfect association, reaches 0.200. The best comparator reached 0.125, so the largest
-  gap any D could have shown was 0.075, below the pre-declared +0.15. The verdict NOT SUPPORTED at R=10% is
-  therefore partly built into the design. Checked against `stage1/records.jsonl` by recomputation: D 0.075,
+  gap any association rule on this D's stored set could have shown was 0.075, below the pre-declared +0.15.
+  SUPPORTED could not have been returned at the primary cell, and the committed Stage 0 table already showed it
+  (development seeds, same cell: Oc 0.350 against a best comparator of 0.250, a ceiling gap of 0.10), so the
+  test seeds were used when the outcome at the primary cell was predictable. The verdict NOT SUPPORTED says only
+  that D is below its own ceiling. Checked against `stage1/records.jsonl` by recomputation: D 0.075,
   Sum-raw 0.125, D stored 0.200, bootstrap [-0.125, +0.0125], all matching the report. Stage 0 lacks a
   feasibility gate: before the test seeds are touched, the best case for D (Oc minus the best comparator)
   must be able to clear the threshold.
@@ -258,7 +270,7 @@ MODEL="<local directory holding all-MiniLM-L6-v2; this code never downloads it>"
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 "$DENSE" scripts/run_goalshift_e0.py stage0 --embedder minilm --model-dir "$MODEL"
 "$DEV"   scripts/run_goalshift_e0.py generate --write-config      # freeze the digests after Stage 0 passed
-"$DENSE" scripts/run_goalshift_e0.py stage1 --embedder minilm --model-dir "$MODEL"   # once; refuses a second look
+"$DENSE" scripts/run_goalshift_e0.py stage1 --embedder minilm --model-dir "$MODEL"   # once; refuses to overwrite its output folder
 ```
 
 Any edit to one of the three scripts changes the digests: rerun Stage 0, refreeze, and (because Stage 1
