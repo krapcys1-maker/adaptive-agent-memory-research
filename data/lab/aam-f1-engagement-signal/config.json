@@ -1,0 +1,57 @@
+{
+ "data": {
+  "input_sha256": {
+   "odpowiedzi.jsonl": "03746e7186c35de4c4a0e94f35a5fd277d6b76e4707419f577a63e24046edd67",
+   "wyniki_notek.jsonl": "004bd8c0214eaa465e57a181b8f7f2a499c7fc5e109876a9a0e458b3b049934b"
+  },
+  "notes_export": "wyniki_notek.jsonl (234 notes, 16 August to 1 November 2026, 202 with a 72 hour measurement)",
+  "replies_export": "odpowiedzi.jsonl (883 replies and comments, secondary)"
+ },
+ "experiment": "AAM-F1 is there learnable signal in the live account's real engagement numbers",
+ "parameters": {
+  "bootstrap": "moving blocks of 5 consecutive evaluation notes, 2000 draws",
+  "dispersion_draws": 10000,
+  "early_hours": [
+   6,
+   12,
+   24,
+   48
+  ],
+  "history_only_notes": 60,
+  "min_known_notes": 10,
+  "planted_factor": 1.5,
+  "power": {
+   "control_arm": "binomially thinned by 1/(1+delta)",
+   "per_arm": [
+    20,
+    40,
+    80,
+    160
+   ],
+   "pool": "last 100 notes with a 72 hour measurement",
+   "relative_increase": [
+    0.25,
+    0.5,
+    1.0
+   ],
+   "simulations_per_cell": 1000,
+   "test": "Mann-Whitney two-sided at 5%"
+  },
+  "recent_baseline_notes": 20,
+  "ridge": 10.0,
+  "seed": 20261101,
+  "type_shrinkage": 5.0
+ },
+ "readings": {
+  "early_24h_stands_in": "Spearman between the reading taken 12 to 24 hours after publication and the 72 hour value >= 0.9 for views and >= 0.8 for likes, on at least 30 notes",
+  "features_carry_signal": "skill over the recency baseline >= 0.05 with the 95% interval above 0, per outcome, for the type-only model and the full model",
+  "instrument_detects_planted_effect": "the type-only model on data with a planted +50% effect in the commonest type meets the same condition, per outcome",
+  "like_rate_varies_beyond_chance": "Pearson dispersion D >= 1.5 and Monte Carlo p < 0.01",
+  "likes_usable_per_note": "share of notes with at least one like at 72 hours >= 0.5",
+  "power_valid": "false positive rate at no effect between 0.02 and 0.09 in every cell"
+ },
+ "script_sha256": {
+  "scripts/engagement_signal.py": "4194c52a4fa3452c9358f4c947800e61448385324e6514c42d665211bded30a1"
+ },
+ "tier": "E (model-free, existing data, no paid calls)"
+}
