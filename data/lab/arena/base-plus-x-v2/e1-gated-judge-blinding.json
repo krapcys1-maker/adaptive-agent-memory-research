@@ -1,0 +1,9 @@
+{
+  "salt": "arena-mem0-breadth-judge-v1",
+  "mapping": {
+    "mem0_native_both": "candidate_I_6558",
+    "mem0_wide_both": "candidate_O_d658",
+    "mem0_native_placebo": "candidate_T_d238",
+    "mem0_wide_placebo": "candidate_W_8a31"
+  }
+}

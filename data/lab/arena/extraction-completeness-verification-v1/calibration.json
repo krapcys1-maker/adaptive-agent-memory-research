@@ -1,0 +1,145 @@
+{
+  "artifact": "arena-extraction-completeness-verification-v1-calibration",
+  "treatment_definition": "EXTRACTION_COMPLETENESS_VERIFICATION_PASS: after Mem0's normal extraction call returns new_retrieved_facts, one additional LLM call re-reads the original text against those facts and proposes any standalone facts omitted, especially individual items within an enumerated list.",
+  "prompt_diff": "data/lab/arena/extraction-completeness-verification-v1/vendor-patch/EXTRACTION_COMPLETENESS_VERIFICATION_PASS.{utils,main}.patch",
+  "call_shape": "get_fact_retrieval_messages() + generate_response() for baseline (the real, unmodified extraction path), then get_completeness_check_messages() + generate_response() against that same real baseline output -- no memory.add() pipeline, no update-decision call, no vector-store write. 2 calls per case.",
+  "cases": [
+    {
+      "case_id": "CASE1_INLINE_AND_LIST",
+      "note": "byte-for-byte matches the extraction prompt's own few-shot pattern (2-item 'and' list -> 1 merged fact), extended to 3 items -- the clearest, most predictable test of the merge behavior.",
+      "input_text": "My favorite movies are Inception, Interstellar, and Tenet. I could watch them again anytime.",
+      "baseline_facts": [
+        "My favorite movies are Inception, Interstellar, and Tenet"
+      ],
+      "baseline_cost_usd": 0.000277,
+      "raw_completeness_response": "{\"facts_to_add\": [], \"facts_to_replace\": [{\"original\": \"My favorite movies are Inception, Interstellar, and Tenet\", \"split_into\": [\"My favorite movie is Inception\", \"My favorite movie is Interstellar\", \"My favorite movie is Tenet\"]}]}",
+      "facts_to_add": [],
+      "facts_to_replace": [
+        {
+          "original": "My favorite movies are Inception, Interstellar, and Tenet",
+          "split_into": [
+            "My favorite movie is Inception",
+            "My favorite movie is Interstellar",
+            "My favorite movie is Tenet"
+          ]
+        }
+      ],
+      "corrected_facts": [
+        "My favorite movie is Inception",
+        "My favorite movie is Interstellar",
+        "My favorite movie is Tenet"
+      ],
+      "completeness_cost_usd": 0.000151,
+      "changed_behavior": true
+    },
+    {
+      "case_id": "CASE2_NUMBERED_LIST",
+      "note": "explicit numbered list, a shape not directly modeled by any existing few-shot example",
+      "input_text": "Here are my top 3 goals this year: 1. Run a marathon 2. Learn Spanish 3. Save $5000 for a trip to Japan.",
+      "baseline_facts": [
+        "Top 3 goals this year: run a marathon, learn Spanish, save $5000 for a trip to Japan"
+      ],
+      "baseline_cost_usd": 0.000292,
+      "raw_completeness_response": "{\"facts_to_add\": [], \"facts_to_replace\": [{\"original\": \"Top 3 goals this year: run a marathon, learn Spanish, save $5000 for a trip to Japan\", \"split_into\": [\"Goal: run a marathon\", \"Goal: learn Spanish\", \"Goal: save $5000 for a trip to Japan\"]}]}",
+      "facts_to_add": [],
+      "facts_to_replace": [
+        {
+          "original": "Top 3 goals this year: run a marathon, learn Spanish, save $5000 for a trip to Japan",
+          "split_into": [
+            "Goal: run a marathon",
+            "Goal: learn Spanish",
+            "Goal: save $5000 for a trip to Japan"
+          ]
+        }
+      ],
+      "corrected_facts": [
+        "Goal: run a marathon",
+        "Goal: learn Spanish",
+        "Goal: save $5000 for a trip to Japan"
+      ],
+      "completeness_cost_usd": 0.00017,
+      "changed_behavior": true
+    },
+    {
+      "case_id": "CASE3_SPECIFIC_ENTITIES",
+      "note": "specific named entities + a count, testing whether individual titles survive",
+      "input_text": "I bought 3 books today: Dune, Foundation, and Neuromancer.",
+      "baseline_facts": [
+        "Bought 3 books today: Dune, Foundation, and Neuromancer"
+      ],
+      "baseline_cost_usd": 0.00028,
+      "raw_completeness_response": "{\"facts_to_add\": [], \"facts_to_replace\": [{\"original\": \"Bought 3 books today: Dune, Foundation, and Neuromancer\", \"split_into\": [\"Bought Dune today\", \"Bought Foundation today\", \"Bought Neuromancer today\"]}]}",
+      "facts_to_add": [],
+      "facts_to_replace": [
+        {
+          "original": "Bought 3 books today: Dune, Foundation, and Neuromancer",
+          "split_into": [
+            "Bought Dune today",
+            "Bought Foundation today",
+            "Bought Neuromancer today"
+          ]
+        }
+      ],
+      "corrected_facts": [
+        "Bought Dune today",
+        "Bought Foundation today",
+        "Bought Neuromancer today"
+      ],
+      "completeness_cost_usd": 0.000152,
+      "changed_behavior": true
+    },
+    {
+      "case_id": "CASE4_LIST_AMID_OTHER_CONTENT",
+      "note": "more realistic: a list embedded among unrelated content, matching this project's real observed failure shape",
+      "input_text": "I've been really busy lately. I signed up for pottery, salsa dancing, and rock climbing classes this month. Also thinking about getting a new bike.",
+      "baseline_facts": [
+        "Signed up for pottery, salsa dancing, and rock climbing classes this month",
+        "Thinking about getting a new bike"
+      ],
+      "baseline_cost_usd": 0.000289,
+      "raw_completeness_response": "{\"facts_to_add\": [], \"facts_to_replace\": [{\"original\": \"Signed up for pottery, salsa dancing, and rock climbing classes this month\", \"split_into\": [\"Signed up for pottery class this month\", \"Signed up for salsa dancing class this month\", \"Signed up for rock climbing class this month\"]}]}",
+      "facts_to_add": [],
+      "facts_to_replace": [
+        {
+          "original": "Signed up for pottery, salsa dancing, and rock climbing classes this month",
+          "split_into": [
+            "Signed up for pottery class this month",
+            "Signed up for salsa dancing class this month",
+            "Signed up for rock climbing class this month"
+          ]
+        }
+      ],
+      "corrected_facts": [
+        "Thinking about getting a new bike",
+        "Signed up for pottery class this month",
+        "Signed up for salsa dancing class this month",
+        "Signed up for rock climbing class this month"
+      ],
+      "completeness_cost_usd": 0.000163,
+      "changed_behavior": true
+    },
+    {
+      "case_id": "CASE5_NO_LIST_NEGATIVE_CONTROL",
+      "note": "negative control -- no enumerable list; missed_facts should come back empty (no over-triggering/hallucination)",
+      "input_text": "I love hiking on weekends and usually go with my dog.",
+      "baseline_facts": [
+        "Loves hiking on weekends and usually goes with their dog"
+      ],
+      "baseline_cost_usd": 0.000272,
+      "raw_completeness_response": "{\"facts_to_add\": [], \"facts_to_replace\": []}",
+      "facts_to_add": [],
+      "facts_to_replace": [],
+      "corrected_facts": [
+        "Loves hiking on weekends and usually goes with their dog"
+      ],
+      "completeness_cost_usd": 9.6e-05,
+      "changed_behavior": false
+    }
+  ],
+  "cases_with_recovered_facts": 4,
+  "spend": {
+    "total_usd": 0.002142,
+    "cap_usd": 0.05,
+    "remaining_usd": 0.047858
+  }
+}

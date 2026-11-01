@@ -1,0 +1,151 @@
+{
+  "artifact": "arena-provenance-clean-v2-e3",
+  "experiment": "E3 clean raw-provenance retest",
+  "no_new_mem0_ingest": true,
+  "no_hindsight_calls": true,
+  "observable_units": [
+    "311778f1",
+    "58bf7951",
+    "6a27ffc2",
+    "ba358f49",
+    "eace081b",
+    "gpt4_59c863d7",
+    "gpt4_98f46fc6",
+    "gpt4_f420262c",
+    "gpt4_f49edff3"
+  ],
+  "unobservable_units": [
+    "69fee5aa"
+  ],
+  "unobservable_reason": "top-1 provenance could not be resolved mechanically: this unit's haystack dates do not uniquely identify a session",
+  "scores": {
+    "compact_native_base_9_observable": "5/9",
+    "compact_plus_raw": "6/9",
+    "raw_only": "4/9"
+  },
+  "COMPACT_WRONG_RAW_FIXES": [
+    "6a27ffc2"
+  ],
+  "RAW_CAUSES_REGRESSION": [],
+  "per_unit": {
+    "311778f1": {
+      "compact": true,
+      "compact_plus_raw": true,
+      "raw_only": true
+    },
+    "58bf7951": {
+      "compact": true,
+      "compact_plus_raw": true,
+      "raw_only": true
+    },
+    "6a27ffc2": {
+      "compact": false,
+      "compact_plus_raw": true,
+      "raw_only": true
+    },
+    "ba358f49": {
+      "compact": false,
+      "compact_plus_raw": false,
+      "raw_only": false
+    },
+    "eace081b": {
+      "compact": true,
+      "compact_plus_raw": true,
+      "raw_only": true
+    },
+    "gpt4_59c863d7": {
+      "compact": false,
+      "compact_plus_raw": false,
+      "raw_only": false
+    },
+    "gpt4_98f46fc6": {
+      "compact": true,
+      "compact_plus_raw": true,
+      "raw_only": false
+    },
+    "gpt4_f420262c": {
+      "compact": false,
+      "compact_plus_raw": false,
+      "raw_only": false
+    },
+    "gpt4_f49edff3": {
+      "compact": true,
+      "compact_plus_raw": true,
+      "raw_only": false
+    }
+  },
+  "failure_detail_gold_presence": [
+    {
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "slot": "update",
+      "gold_in_context_in_compact": true,
+      "gold_rank_in_compact": 1,
+      "repaired_by_raw": true,
+      "classification": "GOLD_PRESENT_IN_COMPACT"
+    },
+    {
+      "question_id": "ba358f49",
+      "question_type": "multi-session",
+      "slot": "short",
+      "gold_in_context_in_compact": true,
+      "gold_rank_in_compact": 1,
+      "repaired_by_raw": false,
+      "classification": "GOLD_PRESENT_IN_COMPACT"
+    },
+    {
+      "question_id": "gpt4_59c863d7",
+      "question_type": "multi-session",
+      "slot": "multi-session-1",
+      "gold_in_context_in_compact": true,
+      "gold_rank_in_compact": 1,
+      "repaired_by_raw": false,
+      "classification": "GOLD_PRESENT_IN_COMPACT"
+    },
+    {
+      "question_id": "gpt4_f420262c",
+      "question_type": "temporal-reasoning",
+      "slot": "temporal-reasoning-1",
+      "gold_in_context_in_compact": true,
+      "gold_rank_in_compact": 1,
+      "repaired_by_raw": false,
+      "classification": "GOLD_PRESENT_IN_COMPACT"
+    }
+  ],
+  "category_breakdown_of_compact_failures": {
+    "knowledge-update": {
+      "failures": 1,
+      "repaired": 1
+    },
+    "multi-session": {
+      "failures": 2,
+      "repaired": 0
+    },
+    "temporal-reasoning": {
+      "failures": 1,
+      "repaired": 0
+    }
+  },
+  "repair_transcript_6a27ffc2": {
+    "compact": "You have completed 20 videos so far.",
+    "compact_plus_raw": "Based on the provided context, you have completed 30 videos of Corey Schafer's Python programming series so far."
+  },
+  "specific_unit_checks": {
+    "ba358f49": {
+      "compact": false,
+      "compact_plus_raw": false,
+      "raw_only": false,
+      "repaired": false
+    },
+    "69fee5aa": {
+      "status": "UNOBSERVABLE",
+      "reason": "top-1 provenance could not be resolved mechanically: this unit's haystack dates do not uniquely identify a session"
+    },
+    "gpt4_f420262c": {
+      "compact": false,
+      "compact_plus_raw": false,
+      "raw_only": false,
+      "repaired": false
+    }
+  }
+}

@@ -1,0 +1,893 @@
+{
+  "artifact": "arena-mechanism-b-state-supersession-v1-stage1",
+  "preregistration": "data\\lab\\arena\\mechanism-b-state-supersession-v1\\preregistration.json",
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "n_probes_run": 12,
+  "n_probes_expected": 12,
+  "stopped_by_cap": null,
+  "spend": {
+    "total_usd": 0.022315,
+    "cap_usd": 0.4,
+    "remaining_usd": 0.377685
+  },
+  "results": [
+    {
+      "probe_id": "SUP1_EMPLOYER",
+      "regime": "R1_CLEAN_SUPERSESSION",
+      "state_key": "EMPLOYER",
+      "question": "Where do I currently work?",
+      "expected_current": "Google",
+      "question_type_used": "knowledge-update",
+      "stored_after_ingest": 1,
+      "context_texts": [
+        "Recently left Microsoft and started at Google"
+      ],
+      "evidence_times": [
+        "2023-06-20"
+      ],
+      "plus_b_context": [
+        "Recently left Microsoft and started at Google"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "EMPLOYER": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "You currently work at Google.",
+      "plus_b_answer": "You currently work at Google.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 7,
+      "context_tokens_plus_b": 7
+    },
+    {
+      "probe_id": "SUP2_CITY",
+      "regime": "R1_CLEAN_SUPERSESSION",
+      "state_key": "RESIDENCE_CITY",
+      "question": "What city do I currently live in?",
+      "expected_current": "Austin",
+      "question_type_used": "knowledge-update",
+      "stored_after_ingest": 1,
+      "context_texts": [
+        "Moved from Seattle to Austin last month"
+      ],
+      "evidence_times": [
+        "2023-11-10"
+      ],
+      "plus_b_context": [
+        "Moved from Seattle to Austin last month"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "RESIDENCE_CITY": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "Based on the provided context, you currently live in Austin.",
+      "plus_b_answer": "Based on the provided context, you currently live in Austin.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 7,
+      "context_tokens_plus_b": 7
+    },
+    {
+      "probe_id": "SUP3_RELATIONSHIP_STATUS",
+      "regime": "R1_CLEAN_SUPERSESSION",
+      "state_key": "RELATIONSHIP_STATUS",
+      "question": "Am I engaged or married?",
+      "expected_current": "married",
+      "question_type_used": "knowledge-update",
+      "stored_after_ingest": 2,
+      "context_texts": [
+        "Got engaged to my partner",
+        "We got married last weekend"
+      ],
+      "evidence_times": [
+        "2023-02-14",
+        "2023-02-14"
+      ],
+      "plus_b_context": [
+        "Got engaged to my partner",
+        "We got married last weekend"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "RELATIONSHIP_STATUS": {
+            "indices": [
+              0,
+              1
+            ],
+            "action": "tie_or_missing_fallback"
+          }
+        },
+        "ties": [
+          "RELATIONSHIP_STATUS"
+        ],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "Based on the provided context, you are married.",
+      "plus_b_answer": "Based on the provided context, you are married.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 10,
+      "context_tokens_plus_b": 10
+    },
+    {
+      "probe_id": "REV1_GYM_MEMBERSHIP",
+      "regime": "R2_REVOCATION",
+      "state_key": "GYM_MEMBERSHIP:PowerFit",
+      "question": "Do I currently have a gym membership at PowerFit?",
+      "expected_current": "no / canceled",
+      "question_type_used": "knowledge-update",
+      "stored_after_ingest": 1,
+      "context_texts": [
+        "Canceled PowerFit gym membership"
+      ],
+      "evidence_times": [
+        "2023-04-18"
+      ],
+      "plus_b_context": [
+        "Canceled PowerFit gym membership"
+      ],
+      "mechanism_trace": {
+        "groups": {},
+        "ties": [],
+        "zero_match": true,
+        "inert": true
+      },
+      "base_answer": "No, based on the provided context, your PowerFit gym membership was canceled.",
+      "plus_b_answer": "No, you do not currently have a gym membership at PowerFit, as it was canceled.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 4,
+      "context_tokens_plus_b": 4
+    },
+    {
+      "probe_id": "REV2_DIET",
+      "regime": "R2_REVOCATION",
+      "state_key": "DIET",
+      "question": "Am I currently vegetarian?",
+      "expected_current": "no",
+      "question_type_used": "knowledge-update",
+      "stored_after_ingest": 1,
+      "context_texts": [
+        "Stopped being vegetarian a few months ago"
+      ],
+      "evidence_times": [
+        "2023-07-03"
+      ],
+      "plus_b_context": [
+        "Stopped being vegetarian a few months ago"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "DIET": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "No, you are not currently vegetarian.",
+      "plus_b_answer": "No, you are not currently vegetarian.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 7,
+      "context_tokens_plus_b": 7
+    },
+    {
+      "probe_id": "REV3_MEDICATION",
+      "regime": "R2_REVOCATION",
+      "state_key": "MEDICATION:allergy",
+      "question": "Am I currently taking the allergy medication?",
+      "expected_current": "no",
+      "question_type_used": "knowledge-update",
+      "stored_after_ingest": 1,
+      "context_texts": [
+        "Doctor took me off the allergy medication since symptoms improved"
+      ],
+      "evidence_times": [
+        "2023-05-15"
+      ],
+      "plus_b_context": [
+        "Doctor took me off the allergy medication since symptoms improved"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "MEDICATION:allergy": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "No, you are not currently taking the allergy medication.",
+      "plus_b_answer": "No, you are not currently taking the allergy medication.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 10,
+      "context_tokens_plus_b": 10
+    },
+    {
+      "probe_id": "RET1_JOB",
+      "regime": "R3_RETURN",
+      "state_key": "EMPLOYER",
+      "question": "Where do I currently work?",
+      "expected_current": "Acme Corp",
+      "question_type_used": "knowledge-update",
+      "stored_after_ingest": 1,
+      "context_texts": [
+        "Rejoined Acme Corp."
+      ],
+      "evidence_times": [
+        "2023-08-01"
+      ],
+      "plus_b_context": [
+        "Rejoined Acme Corp."
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "EMPLOYER": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "Based on the provided context, you currently work at Acme Corp.",
+      "plus_b_answer": "Based on the provided context, you currently work at Acme Corp.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 3,
+      "context_tokens_plus_b": 3
+    },
+    {
+      "probe_id": "RET2_CITY",
+      "regime": "R3_RETURN",
+      "state_key": "RESIDENCE_CITY",
+      "question": "What city do I currently live in?",
+      "expected_current": "Denver",
+      "question_type_used": "knowledge-update",
+      "stored_after_ingest": 1,
+      "context_texts": [
+        "Moved back to Denver"
+      ],
+      "evidence_times": [
+        "2023-10-01"
+      ],
+      "plus_b_context": [
+        "Moved back to Denver"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "RESIDENCE_CITY": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "Based on the provided context, you currently live in Denver.",
+      "plus_b_answer": "Based on the provided context, you currently live in Denver.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 4,
+      "context_tokens_plus_b": 4
+    },
+    {
+      "probe_id": "RET3_DIET",
+      "regime": "R3_RETURN",
+      "state_key": "DIET",
+      "question": "Am I currently vegan?",
+      "expected_current": "yes",
+      "question_type_used": "knowledge-update",
+      "stored_after_ingest": 1,
+      "context_texts": [
+        "Went back to a vegan diet"
+      ],
+      "evidence_times": [
+        "2023-09-20"
+      ],
+      "plus_b_context": [
+        "Went back to a vegan diet"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "DIET": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "Yes, you are currently vegan.",
+      "plus_b_answer": "Yes, you are currently vegan.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 6,
+      "context_tokens_plus_b": 6
+    },
+    {
+      "probe_id": "CTL1_MULTI_PET",
+      "regime": "R4_NO_UPDATE_CONTROL",
+      "state_key": "PET:<name> (two distinct keys)",
+      "question": "How many cats do I have and what are their names?",
+      "expected_current": "both Whiskers and Luna, additive",
+      "question_type_used": "multi-session",
+      "stored_after_ingest": 2,
+      "context_texts": [
+        "Adopted a second cat named Luna",
+        "Adopted a cat named Whiskers"
+      ],
+      "evidence_times": [
+        "2023-02-10",
+        "2022-04-01"
+      ],
+      "plus_b_context": [
+        "Adopted a second cat named Luna",
+        "Adopted a cat named Whiskers"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "PET:Luna": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          },
+          "PET:Whiskers": {
+            "indices": [
+              1
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "Based on the provided context, you have two cats named Luna and Whiskers.",
+      "plus_b_answer": "You have two cats named Whiskers and Luna.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 11,
+      "context_tokens_plus_b": 11
+    },
+    {
+      "probe_id": "CTL2_MULTI_SKILL",
+      "regime": "R4_NO_UPDATE_CONTROL",
+      "state_key": "LANGUAGE_LEARNING:<language> (two distinct keys)",
+      "question": "What languages am I learning?",
+      "expected_current": "both Spanish and Japanese, additive",
+      "question_type_used": "multi-session",
+      "stored_after_ingest": 2,
+      "context_texts": [
+        "Is learning Spanish",
+        "Started learning Japanese"
+      ],
+      "evidence_times": [
+        "2022-06-01",
+        "2023-03-15"
+      ],
+      "plus_b_context": [
+        "Is learning Spanish",
+        "Started learning Japanese"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "LANGUAGE_LEARNING:Spanish": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          },
+          "LANGUAGE_LEARNING:Japanese": {
+            "indices": [
+              1
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "You are learning Spanish and Japanese.",
+      "plus_b_answer": "You are learning Spanish and Japanese.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 6,
+      "context_tokens_plus_b": 6
+    },
+    {
+      "probe_id": "CTL3_MULTI_ADDRESS_TYPE",
+      "regime": "R4_NO_UPDATE_CONTROL",
+      "state_key": "ADDRESS:<home|work> (two distinct keys)",
+      "question": "What is my home address and what is my work address?",
+      "expected_current": "both retained distinctly",
+      "question_type_used": "multi-session",
+      "stored_after_ingest": 2,
+      "context_texts": [
+        "Work address is 500 Market Street",
+        "Home address is 12 Oak Street"
+      ],
+      "evidence_times": [
+        "2023-01-01",
+        "2022-05-01"
+      ],
+      "plus_b_context": [
+        "Work address is 500 Market Street",
+        "Home address is 12 Oak Street"
+      ],
+      "mechanism_trace": {
+        "groups": {
+          "ADDRESS:work": {
+            "indices": [
+              0
+            ],
+            "action": "single_item_passthrough"
+          },
+          "ADDRESS:home": {
+            "indices": [
+              1
+            ],
+            "action": "single_item_passthrough"
+          }
+        },
+        "ties": [],
+        "zero_match": false,
+        "inert": true
+      },
+      "base_answer": "Your home address is 12 Oak Street, and your work address is 500 Market Street.",
+      "plus_b_answer": "Your home address is 12 Oak Street, and your work address is 500 Market Street.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_b_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_b_correct": true,
+      "context_tokens_base": 12,
+      "context_tokens_plus_b": 12
+    }
+  ]
+}

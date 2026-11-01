@@ -1,0 +1,840 @@
+{
+  "artifact": "arena-raw-provenance-fresh-replication-v1",
+  "selection": "data\\lab\\arena\\raw-provenance-fresh-replication-v1\\selection.json",
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "ingest": [
+    {
+      "question_id": "0862e8bf",
+      "question_type": "single-session-user",
+      "sessions_available": 50,
+      "sessions_ingested": 50,
+      "user_turns_ingested": 243,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 171,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.062067
+    },
+    {
+      "question_id": "06878be2",
+      "question_type": "single-session-preference",
+      "sessions_available": 48,
+      "sessions_ingested": 47,
+      "user_turns_ingested": 218,
+      "sessions_skipped_no_user_turn": 1,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 221,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.131177
+    },
+    {
+      "question_id": "099778bb",
+      "question_type": "multi-session",
+      "sessions_available": 46,
+      "sessions_ingested": 46,
+      "user_turns_ingested": 231,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 198,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.197981
+    },
+    {
+      "question_id": "078150f1",
+      "question_type": "multi-session",
+      "sessions_available": 46,
+      "sessions_ingested": 46,
+      "user_turns_ingested": 274,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 256,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.273306
+    },
+    {
+      "question_id": "0bc8ad93",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 47,
+      "sessions_ingested": 46,
+      "user_turns_ingested": 240,
+      "sessions_skipped_no_user_turn": 1,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 198,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.337549
+    },
+    {
+      "question_id": "07741c44",
+      "question_type": "knowledge-update",
+      "sessions_available": 50,
+      "sessions_ingested": 50,
+      "user_turns_ingested": 254,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 213,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.411422
+    },
+    {
+      "question_id": "06db6396",
+      "question_type": "knowledge-update",
+      "sessions_available": 51,
+      "sessions_ingested": 51,
+      "user_turns_ingested": 240,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 232,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.488978
+    },
+    {
+      "question_id": "0e5e2d1a",
+      "question_type": "single-session-assistant",
+      "sessions_available": 46,
+      "sessions_ingested": 46,
+      "user_turns_ingested": 223,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 206,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.558693
+    }
+  ],
+  "n_units": 8,
+  "stopped_by_cap": null,
+  "spend": {
+    "total_usd": 0.575419,
+    "cap_usd": 0.75,
+    "remaining_usd": 0.174581
+  },
+  "results": [
+    {
+      "question_id": "0862e8bf",
+      "question_type": "single-session-user",
+      "question": "What is the name of my cat?",
+      "gold": "Luna",
+      "arms": {
+        "mem0_compact": {
+          "answer": "Your cat's name is Luna.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 89,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_compact_plus_raw": {
+          "answer": "Your cat's name is Luna.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 2154,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_raw_only": {
+          "answer": "Based on the conversation, your cat's name is Luna.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 2065,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        }
+      }
+    },
+    {
+      "question_id": "06878be2",
+      "question_type": "single-session-preference",
+      "question": "Can you suggest some accessories that would complement my current photography setup?",
+      "gold": "The user would prefer suggestions of Sony-compatible accessories or high-quality photography gear that can enhance their photography experience. They may not prefer suggestions of other brands' equipment or low-quality gear.",
+      "arms": {
+        "mem0_compact": {
+          "answer": "Based on your interest in external battery packs for your Sony A7R IV, a high-capacity power bank with USB-C Power Delivery (PD) would be a great complement to your setup. Additionally, since you're planning multi-day kayaking or canoeing trips, a dry bag or waterproof camera housing would be essential to protect your gear. For your tripod interest, a quick-release plate or a leveling base would pair well with the Gitzo GT3543LS.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 104,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_compact_plus_raw": {
+          "answer": "Based on your interest in the Gitzo GT3543LS tripod and your Sony A7R IV, a compatible ballhead would be a key accessory. The Gitzo GH3382QD is designed to work with that tripod model. Additionally, given your interest in external battery packs for on-the-go charging, a high-capacity pack with USB-C PD support would complement your setup well.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 3339,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_raw_only": {
+          "answer": "Based on our conversation, you have a Sony A7R IV, a Godox V1 flash, a Sony 24-70mm f/2.8 lens, and are considering a Gitzo GT3543LS tripod. To complement this setup, I can suggest a few accessories:\n\n- **For your flash**: A diffuser or softbox for the Godox V1 to soften the light for portraits, and a set of wireless triggers (like the Godox X2T-S) to use the flash off-camera.\n- **For your camera**: A spare battery and a dual battery charger, since the A7R IV is power-hungry, and a high-quality UV or clear protective filter for your 24-70mm lens to shield the front element.\n- **For your tripod**: A compatible ballhead (like the Gitzo GH3382QD) if you don't already have one, and a quick-release plate system for faster mounting.\n- **For general use**: A remote shutter release for long exposures, and a set of ND filters for landscape or long-exposure photography.\n\nThese accessories would enhance your versatility and protect your gear. Let me know if you'd like more details on any of these!",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 3235,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        }
+      }
+    },
+    {
+      "question_id": "099778bb",
+      "question_type": "multi-session",
+      "question": "What percentage of leadership positions do women hold in the my company?",
+      "gold": "20%",
+      "arms": {
+        "mem0_compact": {
+          "answer": "Based on the provided context, women hold 20% of the leadership positions in your company (20 out of 100).",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 128,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_compact_plus_raw": {
+          "answer": "Based on the provided context, women hold 20% of the leadership positions in your company.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 2405,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_raw_only": {
+          "answer": "The answer cannot be determined from the provided context.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "no",
+                "label": false
+              },
+              {
+                "pass": "B",
+                "raw": "no",
+                "label": false
+              }
+            ],
+            "label": false,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": false,
+          "context_tokens": 2277,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        }
+      }
+    },
+    {
+      "question_id": "078150f1",
+      "question_type": "multi-session",
+      "question": "How much more money did I raise than my initial goal in the charity cycling event?",
+      "gold": "$50",
+      "arms": {
+        "mem0_compact": {
+          "answer": "Based on the provided context, I cannot determine your initial goal for the charity cycling event, so I cannot calculate how much more you raised than that goal. The context only states that you raised $250 in donations.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "no",
+                "label": false
+              },
+              {
+                "pass": "B",
+                "raw": "no",
+                "label": false
+              }
+            ],
+            "label": false,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": false,
+          "context_tokens": 105,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_compact_plus_raw": {
+          "answer": "The provided context does not specify your initial fundraising goal for the charity cycling event, so the answer cannot be determined from the provided context.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "no",
+                "label": false
+              },
+              {
+                "pass": "B",
+                "raw": "no",
+                "label": false
+              }
+            ],
+            "label": false,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": false,
+          "context_tokens": 2581,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_raw_only": {
+          "answer": "The provided context does not specify your initial fundraising goal, so the answer cannot be determined from the provided context.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "no",
+                "label": false
+              },
+              {
+                "pass": "B",
+                "raw": "no",
+                "label": false
+              }
+            ],
+            "label": false,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": false,
+          "context_tokens": 2476,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        }
+      }
+    },
+    {
+      "question_id": "0bc8ad93",
+      "question_type": "temporal-reasoning",
+      "question": "I mentioned visiting a museum two months ago. Did I visit with a friend or not?",
+      "gold": "No, you did not visit with a friend.",
+      "arms": {
+        "mem0_compact": {
+          "answer": "Based on the provided context, you visited the Science Museum with a friend who is a chemistry professor. However, the context does not specify whether this visit occurred two months ago.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "no",
+                "label": false
+              },
+              {
+                "pass": "B",
+                "raw": "no",
+                "label": false
+              }
+            ],
+            "label": false,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": false,
+          "context_tokens": 128,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_compact_plus_raw": {
+          "answer": "Based on the provided context, you visited the Science Museum with a friend who is a chemistry professor. However, the context does not specify whether this visit occurred two months ago.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "no",
+                "label": false
+              },
+              {
+                "pass": "B",
+                "raw": "no",
+                "label": false
+              }
+            ],
+            "label": false,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": false,
+          "context_tokens": 2045,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_raw_only": {
+          "answer": "Based on the provided context, you visited the Science Museum with a friend who is a chemistry professor.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "no",
+                "label": false
+              },
+              {
+                "pass": "B",
+                "raw": "no",
+                "label": false
+              }
+            ],
+            "label": false,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": false,
+          "context_tokens": 1917,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        }
+      }
+    },
+    {
+      "question_id": "07741c44",
+      "question_type": "knowledge-update",
+      "question": "Where do I initially keep my old sneakers?",
+      "gold": "under my bed",
+      "arms": {
+        "mem0_compact": {
+          "answer": "Based on the provided context, you initially keep your old sneakers under your bed.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 102,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_compact_plus_raw": {
+          "answer": "Based on the provided context, your old sneakers are currently under your bed.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 2375,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_raw_only": {
+          "answer": "Based on the provided context, your old sneakers are currently taking up space in your closet.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "no",
+                "label": false
+              },
+              {
+                "pass": "B",
+                "raw": "no",
+                "label": false
+              }
+            ],
+            "label": false,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": false,
+          "context_tokens": 2273,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        }
+      }
+    },
+    {
+      "question_id": "06db6396",
+      "question_type": "knowledge-update",
+      "question": "How many projects have I completed since starting painting classes?",
+      "gold": "5",
+      "arms": {
+        "mem0_compact": {
+          "answer": "Based on the provided context, you have completed 5 painting projects since starting painting classes.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 98,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_compact_plus_raw": {
+          "answer": "You have completed 5 painting projects since starting painting classes.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 2580,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_raw_only": {
+          "answer": "You have completed 5 projects since starting painting classes.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 2482,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        }
+      }
+    },
+    {
+      "question_id": "0e5e2d1a",
+      "question_type": "single-session-assistant",
+      "question": "I wanted to follow up on our previous conversation about binaural beats for anxiety and depression. Can you remind me how many subjects were in the study published in the journal Music and Medicine that found significant reductions in symptoms of depression, anxiety, and stress?",
+      "gold": "38 subjects",
+      "arms": {
+        "mem0_compact": {
+          "answer": "Based on the provided context, I cannot determine the number of subjects in that specific study. The context only notes that you were seeking examples of studies on binaural beats for anxiety and depression, but it does not include the details of the study published in *Music and Medicine*.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "no",
+                "label": false
+              },
+              {
+                "pass": "B",
+                "raw": "no",
+                "label": false
+              }
+            ],
+            "label": false,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": false,
+          "context_tokens": 109,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_compact_plus_raw": {
+          "answer": "The study published in the journal *Music and Medicine* involved 38 subjects.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 609,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        },
+        "mem0_raw_only": {
+          "answer": "Based on our previous conversation, the study published in the journal *Music and Medicine* involved 38 subjects.",
+          "judged": {
+            "passes": [
+              {
+                "pass": "A",
+                "raw": "yes",
+                "label": true
+              },
+              {
+                "pass": "B",
+                "raw": "yes",
+                "label": true
+              }
+            ],
+            "label": true,
+            "stable": true,
+            "disputed": false
+          },
+          "correct": true,
+          "context_tokens": 500,
+          "gold_state": {
+            "observable": true,
+            "gold_in_context": true,
+            "gold_rank": 1
+          }
+        }
+      }
+    }
+  ]
+}

@@ -13,20 +13,21 @@ python tasks.py check
 
 `python tasks.py check` runs every gate CI runs, in the order CI runs them, and
 exits non-zero if any of them fails. It is the answer to *"did I break
-anything?"* and the one command a pull request must pass. Takes about 25
-seconds.
+anything?"* and the one command a pull request must pass. It takes about half
+a minute once the one-time install (about 230 MB, mostly `transformers`, which
+is needed only to import one frozen audit script) is done.
 
-The test suite should pass. One test is marked `xfail` because of a known
-cross-platform defect that is tracked in an open issue, so you will see either
-`1 xfailed` on Linux or `1 xpassed` on Windows. Both are expected; neither
-means your checkout is broken.
+The test suite should pass with no failures. A green run still reports some
+skipped tests. Most need optional local inputs that a fresh clone does not have
+(a Mem0 virtualenv, a CUPMem checkout, `ripgrep`); skipping them is expected.
 
-The other targets, for when you do not want to wait for the whole thing:
+The other targets, for when you do not want to wait for the whole thing
+(timings measured on one laptop):
 
 ```bash
 python tasks.py fast      # ~0.3s -- memory integrity + source pipeline; fine in a pre-commit hook
-python tasks.py test      # ~12s  -- the test suite alone
-python tasks.py audit     # ~14s  -- both audits, without the test suite
+python tasks.py test      # ~25s  -- the test suite alone
+python tasks.py audit     # ~7s   -- both audits, without the test suite
 python tasks.py --list    # what each target runs, and roughly how long it takes
 ```
 
@@ -155,6 +156,10 @@ Independent review remains the strongest tier of evidence and the project's scar
 If you are reviewing a frozen packet: use only the `blind/` directory of that packet, complete and hash the review form and attestation before any reveal comparison, and do not modify author labels. Independent, advisory, author, and adjudicated labels stay as separate records.
 
 A reviewer with prior exposure can still provide useful criticism. Disclose the exposure; it does not disqualify the contribution, it just means that contribution alone cannot satisfy the blind gate. A model family already used for advisory review cannot be the sole independent reviewer.
+
+## Licensing of contributions
+
+Code (`tools/`, `scripts/`, `tests/`, `.github/workflows/`) is Apache-2.0; documentation, research notes and experiment data are CC BY 4.0. The path map is [`REUSE.toml`](REUSE.toml) and the third-party notices are in [`NOTICE`](NOTICE). By opening a pull request you agree that your contribution is licensed under the licence of the path it touches (inbound = outbound), and that you have the right to contribute it. Do not commit text, data or code you may not redistribute.
 
 ## Code of conduct
 

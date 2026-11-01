@@ -1,5 +1,25 @@
 # Related Work and Positioning — 2026-08-24
 
+> **Update 2026-11-01 — the empirical sections of this document are superseded in part.** Nothing below
+> has been edited; it is kept as the record of what was believed on 2026-08-24. Three statements no
+> longer hold:
+>
+> - "Provenance fallback (refuted)" and the decision to drop `RAW_PROVENANCE_EXPANSION` were computed on
+>   cross-unit-contaminated Mem0 stores (the defect is explained in the banner of
+>   [`CONTEXT_AND_PROVENANCE_ABLATION_V1.md`](CONTEXT_AND_PROVENANCE_ABLATION_V1.md)). On clean stores the
+>   mechanism produced 1 repair in 9 and then 1 in 8 fresh units, with 0 regressions
+>   ([ledger Entry H](MECHANISM_REGIME_EVIDENCE_LEDGER.md)). That is a small effect (2 repairs in 17 units)
+>   on legacy versions, and one of the two repairs is a question about what the assistant said, which the
+>   harness deliberately leaves out of the compact context (ledger Entry R).
+> - "At Mem0's own per-probe budget Hindsight scores 4/10 — exactly Mem0's score" is superseded: after a
+>   truncation-rule fix it is 5/10, and Mem0's own native score is also 5/10.
+> - The `BASE`/`+A`/`+B`/`+A+B` interaction ablation that this document positions as the project's
+>   contribution is locked until a second mechanism is independently validated. Only one mechanism has
+>   reached that status, so no interaction result exists.
+>
+> All measurements here are on Mem0 1.0.6 and Hindsight 0.9.1. Mem0 2.x (released 2026-04-16) rewrote
+> extraction and retrieval, and none of this has been re-run on current versions.
+
 Status: first pass, external-request-triggered, primary-source verified for every arXiv ID cited below.
 Author: Claude (Opus 5), acting as a research assistant on explicit instruction not to implement, not to tune, and not to try to confirm the project's own hypothesis.
 Scope: the mechanism-transplant / operating-regimes research direction described to the assistant as the project's current possible trajectory (`docs/00-project/operating-plan-and-rules.md` Phases A–D, `docs/04-systems/comparative-memory-systems-lab.md`). This is **not** a review of the whole repository.

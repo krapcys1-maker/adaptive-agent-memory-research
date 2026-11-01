@@ -1,0 +1,23 @@
+{
+  "artifact": "arena-hyde-query-reformulation-v1-selection",
+  "purpose": "Mechanism H exploratory test: HYDE_QUERY_REFORMULATION, Campaign V2's second candidate after Mechanism G's DROP.",
+  "frozen_before_any_ingest": true,
+  "excludes_note": "all 55 units used or examined anywhere in this arena to date (49 pre-Campaign-V2 + the 6 fresh units from second-hop-expansion-v1). _abs variants excluded by base id too.",
+  "selection_rule": {
+    "inputs_used": ["question_type"],
+    "inputs_never_used": ["answer", "gold", "haystack content", "prior correctness", "the $0 absence/precondition checks performed on OTHER already-examined units"],
+    "method": "deterministic: 1 unit per LongMemEval-S category (6 categories), first-by-question_id-sort within category after exclusion. Unweighted -- HyDE's target precondition (question/fact phrasing mismatch) is architecturally universal per LongMemEval's own construction methodology, not category-gated, so no category is up-weighted.",
+    "size_note": "6 units, matching Mechanism G's exploratory scale (contract preference <$0.50 per mechanism before replication)."
+  },
+  "precondition_evidence": "See docs/research/HYDE_QUERY_REFORMULATION_V1.md for the full $0 diagnostic: across all 11 BASE-wrong units observed project-wide to date, 9/11 were retrieval-absence failures (not 'evidence present but misread', the precondition CoVe/RARR/self-consistency-style mechanisms need). A direct full-store dump (memory.get_all(), zero cost) on 2 of those absence units found the missing fact WAS present in the full store but outside the top-10, and a hand-written HyDE-style hypothetical query (not the literal question) moved it from absent to rank 1 in both cases -- a strong, confirmed, non-hypothetical precondition. Independent support: LongMemEval's own primary-source construction methodology (arXiv:2410.10813, appendix A.1) states evidence sessions are built to 'convey the evidence statement indirectly' rather than in the question's own words.",
+  "units": [
+    {"question_id": "07b6f563", "question_type": "single-session-preference"},
+    {"question_id": "10e09553", "question_type": "knowledge-update"},
+    {"question_id": "1903aded", "question_type": "single-session-assistant"},
+    {"question_id": "1f2b8d4f", "question_type": "multi-session"},
+    {"question_id": "1faac195", "question_type": "single-session-user"},
+    {"question_id": "4dfccbf7", "question_type": "temporal-reasoning"}
+  ],
+  "n_units": 6,
+  "candidate_pool_size_after_exclusion": 438
+}

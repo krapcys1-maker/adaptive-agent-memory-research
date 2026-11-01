@@ -1,0 +1,9 @@
+Files under this directory are modified copies of Mem0 1.0.6 (https://github.com/mem0ai/mem0),
+Copyright the Mem0 (mem0ai) authors, licensed under the Apache License, Version 2.0.
+
+The licence text is LICENSES/Apache-2.0.txt at the root of this repository; take it with these
+files if you copy them elsewhere.
+
+They were modified for the AAMR arena. The modifications are the hunks in the *.patch files and
+in manifest.json beside this file. The copies themselves carry no extra header because their
+SHA-256 digests are pinned by manifest.json.

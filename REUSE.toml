@@ -1,0 +1,101 @@
+# Licensing map for adaptive-agent-memory-research (REUSE 3.3 format).
+#
+# Why a path map and not per-file SPDX headers: hundreds of tracked files are
+# digest-pinned by other tracked files, and .gitattributes sets `* -text` so their
+# bytes must stay exact. Inserting a header into any of them would break a declared
+# SHA-256. This file attaches licence information without touching a byte.
+#
+# Rule of the format: when several [[annotations]] match a file, only the last one
+# applies. The tables therefore run from general to specific.
+# Validate with:  pip install reuse && reuse lint
+
+version = 1
+
+# 1. DEFAULT: research text, data, ledgers, experiment records, memory log, templates.
+[[annotations]]
+path = "**"
+precedence = "closest"
+SPDX-FileCopyrightText = "2026 Adaptive Agent Memory Research contributors"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+# 2. CODE AND BUILD/CONFIG: the project-memory engine, experiment scripts, tests, CI.
+[[annotations]]
+path = [
+  "tools/**",
+  "scripts/**",
+  "tests/**",
+  "pytest.ini",
+  "requirements-dev.txt",
+  ".github/workflows/**",
+  ".mcp.json",
+  ".codex/**",
+  ".gitattributes",
+  ".gitignore",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "2026 Adaptive Agent Memory Research contributors"
+SPDX-License-Identifier = "Apache-2.0"
+
+# 3. ARENA RESULT FILES quote LongMemEval questions, gold answers and retrieved contexts
+#    (MIT, (c) 2024 Di Wu). Our analysis stays CC BY 4.0; the excerpts stay MIT.
+[[annotations]]
+path = "data/lab/arena/**"
+precedence = "closest"
+SPDX-FileCopyrightText = [
+  "2026 Adaptive Agent Memory Research contributors",
+  "2024 Di Wu (LongMemEval benchmark excerpts)",
+]
+SPDX-License-Identifier = "CC-BY-4.0 AND MIT"
+
+# 4. VENDORED MEM0 SNAPSHOTS AND PATCHES (mem0ai 1.0.6, Apache-2.0). The files are
+#    digest-pinned, so the notice lives here, in NOTICE and in a NOTICE.txt beside
+#    each vendor-patch directory, never inside the files.
+[[annotations]]
+path = [
+  "data/lab/arena/**/vendor-patch/mem0-*/**",
+  "data/lab/arena/**/vendor-patch/*.patch",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = [
+  "Mem0 contributors (https://github.com/mem0ai/mem0)",
+  "2026 Adaptive Agent Memory Research contributors (arena patch hunks)",
+]
+SPDX-License-Identifier = "Apache-2.0"
+SPDX-FileComment = "Derived from mem0ai 1.0.6 (PyPI). Changes are the hunks in the adjacent *.patch files and the manifest.json beside them."
+
+# 5. THIRD-PARTY PAPER ABSTRACTS (plain text rebuilt from OpenAlex inverted indexes).
+#    The compilation is ours; the abstract wording stays with its rights holders.
+[[annotations]]
+path = [
+  "data/catalogs/papers-discovered.csv",
+  "data/lab/api-screening/deepseek-v4-flash-screening-125-20260822/jobs.jsonl",
+  "data/lab/api-screening/deepseek-v4-flash-pilot-20260822/jobs.jsonl",
+  "data/lab/api-screening/deepseek-v4-flash-pilot-v2-20260822/jobs.jsonl",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "2026 Adaptive Agent Memory Research contributors (selection and arrangement only)"
+SPDX-License-Identifier = "CC-BY-4.0 AND LicenseRef-Third-Party-Abstracts"
+
+# 6. SINGLE-FILE EXCEPTIONS.
+[[annotations]]
+path = "scripts/arena/judge_pilot.py"
+precedence = "closest"
+SPDX-FileCopyrightText = [
+  "2026 Adaptive Agent Memory Research contributors",
+  "2024 Di Wu (LongMemEval evaluation prompt templates reproduced verbatim)",
+]
+SPDX-License-Identifier = "Apache-2.0 AND MIT"
+
+[[annotations]]
+path = "tasks.py"
+precedence = "closest"
+SPDX-FileCopyrightText = "2026 Dipak Chaudhari"
+SPDX-License-Identifier = "CC-BY-4.0"
+SPDX-FileComment = "Contributed in PR #44 while the repository licence was CC BY 4.0. Move to Apache-2.0 only after the author agrees, or rewrite it."
+
+[[annotations]]
+path = "CODE_OF_CONDUCT.md"
+precedence = "closest"
+SPDX-FileCopyrightText = "Contributor Covenant authors (adapted by the project contributors)"
+SPDX-License-Identifier = "CC-BY-4.0"
+SPDX-FileComment = "Adapted from the Contributor Covenant (contributor-covenant.org), which is itself CC BY 4.0. Keep the attribution line."

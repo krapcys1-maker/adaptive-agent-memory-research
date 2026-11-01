@@ -1,0 +1,541 @@
+{
+  "artifact": "arena-hyde-query-reformulation-v1",
+  "selection": "data\\lab\\arena\\hyde-query-reformulation-v1\\selection.json",
+  "hyde_prompt_sha256": "cb28868bc8411bfaf719ab763c8f3adcb716e8ac0f50465caaf24f088cfac603",
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "ingest": [
+    {
+      "question_id": "1faac195",
+      "question_type": "single-session-user",
+      "sessions_available": 45,
+      "sessions_ingested": 45,
+      "user_turns_ingested": 246,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 221,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.07292
+    },
+    {
+      "question_id": "07b6f563",
+      "question_type": "single-session-preference",
+      "sessions_available": 52,
+      "sessions_ingested": 52,
+      "user_turns_ingested": 260,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 217,
+      "contamination_status": "UNOBSERVABLE",
+      "foreign_from_other_units": null,
+      "cumulative_spend_usd": 0.148146
+    },
+    {
+      "question_id": "1f2b8d4f",
+      "question_type": "multi-session",
+      "sessions_available": 51,
+      "sessions_ingested": 51,
+      "user_turns_ingested": 260,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 190,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.213368
+    },
+    {
+      "question_id": "4dfccbf7",
+      "question_type": "temporal-reasoning",
+      "sessions_available": 47,
+      "sessions_ingested": 47,
+      "user_turns_ingested": 259,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 252,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.289098
+    },
+    {
+      "question_id": "10e09553",
+      "question_type": "knowledge-update",
+      "sessions_available": 45,
+      "sessions_ingested": 45,
+      "user_turns_ingested": 234,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 258,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.36539
+    },
+    {
+      "question_id": "1903aded",
+      "question_type": "single-session-assistant",
+      "sessions_available": 47,
+      "sessions_ingested": 47,
+      "user_turns_ingested": 241,
+      "sessions_skipped_no_user_turn": 0,
+      "store_before_reset": 0,
+      "store_after_reset": 0,
+      "store_after_ingest": 202,
+      "contamination_status": "PASS",
+      "foreign_from_other_units": 0,
+      "cumulative_spend_usd": 0.434697
+    }
+  ],
+  "ingest_stopped_by_cap": null,
+  "n_units_preregistered": 6,
+  "n_units": 6,
+  "stopped_by_cap": null,
+  "spend": {
+    "total_usd": 0.437383,
+    "cap_usd": 0.5,
+    "remaining_usd": 0.062617
+  },
+  "results": [
+    {
+      "question_id": "1faac195",
+      "question_type": "single-session-user",
+      "question": "Where does my sister Emily live?",
+      "gold": "Denver",
+      "hypothetical": "Emily lives in Portland now.",
+      "mechanism_trace": {
+        "new_items_from_hyde_query": 4,
+        "identical_top10": false
+      },
+      "base_context": [
+        "Planning to visit sister Emily in Denver soon and looking for kid-friendly attractions there",
+        "Planning to bring niece Emma, who takes piano lessons, to a concert or show in Denver to inspire her love for music",
+        "Friend Emily recommended spinning",
+        "Lives near 33rd street and 3rd avenue",
+        "Spent 5 days at aunt's house in Miami",
+        "Has been living in Tokyo, Japan for about 6 months",
+        "User is in the Midwest",
+        "Wants to know Maria's availability on Tuesdays or Thursdays",
+        "Interested in Ryokan Sanga and its kaiseki dinner",
+        "Has a long haired rabbit"
+      ],
+      "plus_h_context": [
+        "Planning to visit sister Emily in Denver soon and looking for kid-friendly attractions there",
+        "Lives near 33rd street and 3rd avenue",
+        "Friend Emily recommended spinning",
+        "Planning to bring niece Emma, who takes piano lessons, to a concert or show in Denver to inspire her love for music",
+        "User is in the Midwest",
+        "Went to a music festival last month and met a guy named Alex who shares taste in indie music, exchanged numbers and have been keeping in touch",
+        "Spent 5 days at aunt's house in Miami",
+        "Went to New York City on February 17th for a friend's birthday party, stayed for 3 nights, took subway",
+        "User plans to visit Hocking Hills in early May",
+        "Open to reading books from local authors from city or region"
+      ],
+      "base_answer": "Based on the provided context, your sister Emily lives in Denver.",
+      "plus_h_answer": "Based on the provided context, your sister Emily lives in Denver.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_h_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_h_correct": true
+    },
+    {
+      "question_id": "07b6f563",
+      "question_type": "single-session-preference",
+      "question": "Can you suggest some useful accessories for my phone?",
+      "gold": "The user would prefer suggestions of accessories that are compatible with an iPhone 13 Pro, such as high-quality screen protectors, durable cases, portable power banks, or phone wallet cases. They may not prefer suggestions of accessories that are not compatible with Apple products or do not enhance the functionality or protection of their phone.",
+      "hypothetical": "I always keep a pop socket on the back of my phone for a better grip.",
+      "mechanism_trace": {
+        "new_items_from_hyde_query": 5,
+        "identical_top10": false
+      },
+      "base_context": [
+        "Looking for a phone wallet case for iPhone 13 Pro",
+        "Looking for a new screen protector for iPhone 13 Pro",
+        "Considering getting a screen protector for Fitbit Charge 4",
+        "Interested in OtterBox wallet case",
+        "Prefers weighted keys, plays piano and synth sounds, wants recording capabilities and USB connectivity, portability not important",
+        "Already has a portable power bank from Best Buy",
+        "Likes to listen to pop music when needing a boost",
+        "Went shopping with roommate for apartment, bought new pillows, throw blanket, cleaning supplies, and paper products",
+        "Looking for inspiration for next outfit",
+        "Interested in exploring other features on Disney+"
+      ],
+      "plus_h_context": [
+        "Looking for a new screen protector for iPhone 13 Pro",
+        "Likes to listen to pop music when needing a boost",
+        "Considering getting a screen protector for Fitbit Charge 4",
+        "Looking for a phone wallet case for iPhone 13 Pro",
+        "Considering buying a handbag from Kate Spade or Michael Kors",
+        "Needs to replace band on Fitbit Charge 4, original one has started to fray",
+        "Already has a portable power bank from Best Buy",
+        "Struggling with fingerpicking technique on ukulele",
+        "Wants practice exercises or drills to improve aim",
+        "Planning to get Taylor GS Mini serviced due to high action causing left hand discomfort, will take to guitar tech Joe at Guitar Central by end of this month"
+      ],
+      "base_answer": "Based on your interest in a wallet case and screen protector for your iPhone 13 Pro, I'd suggest looking into the OtterBox wallet case you mentioned, paired with a durable screen protector. For your Fitbit Charge 4, a screen protector would also be a useful addition.",
+      "plus_h_answer": "Based on your interests, here are some useful accessories for your iPhone 13 Pro: a screen protector and a phone wallet case.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_h_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_h_correct": true
+    },
+    {
+      "question_id": "1f2b8d4f",
+      "question_type": "multi-session",
+      "question": "What is the difference in price between my luxury boots and the similar pair found at the budget store?",
+      "gold": "$750",
+      "hypothetical": "My luxury boots cost me $800, but the budget store's knockoffs were only $60.",
+      "mechanism_trace": {
+        "new_items_from_hyde_query": 1,
+        "identical_top10": false
+      },
+      "base_context": [
+        "Wants to find similar boots to the luxury boots at a lower price point",
+        "Bought a pair of boots that they love but thinks could have found similar for cheaper",
+        "The luxury boots are black ankle boots with a heel from a luxury brand",
+        "Willing to spend $50-$100 on similar boots",
+        "Found similar boots at a budget store for $50, which made them think about spending habits",
+        "Recently splurged on a pair of boots for $800, but it was a tough lesson in overspending",
+        "Found a great pair of vintage jeans for $10 at a thrift store or discount retailer",
+        "Thinking of buying a new pair of jeans",
+        "Used to be a luxury shopper but making an effort to scale back and explore budget-friendly options",
+        "Looking for budget-friendly fashion advice"
+      ],
+      "plus_h_context": [
+        "Recently splurged on a pair of boots for $800, but it was a tough lesson in overspending",
+        "Found similar boots at a budget store for $50, which made them think about spending habits",
+        "Wants to find similar boots to the luxury boots at a lower price point",
+        "Bought a pair of boots that they love but thinks could have found similar for cheaper",
+        "Willing to spend $50-$100 on similar boots",
+        "The luxury boots are black ankle boots with a heel from a luxury brand",
+        "Found a great pair of vintage jeans for $10 at a thrift store or discount retailer",
+        "Used to be a luxury shopper but making an effort to scale back and explore budget-friendly options",
+        "Looking at thrift stores and discount retailers for affordable options",
+        "Looking for budget-friendly fashion advice"
+      ],
+      "base_answer": "Based on the provided context, the difference in price is $750. The luxury boots cost $800, and the similar pair at the budget store cost $50.",
+      "plus_h_answer": "The difference in price is $750.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_h_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_h_correct": true
+    },
+    {
+      "question_id": "4dfccbf7",
+      "question_type": "temporal-reasoning",
+      "question": "How many days had passed since I started taking ukulele lessons when I decided to take my acoustic guitar to the guitar tech for servicing?",
+      "gold": "24 days. 25 days (including the last day) is also acceptable.",
+      "hypothetical": "I'd been at it for about three weeks when I finally dropped off my acoustic for a setup.",
+      "mechanism_trace": {
+        "new_items_from_hyde_query": 6,
+        "identical_top10": false
+      },
+      "base_context": [
+        "Started taking ukulele lessons with friend Rachel today",
+        "Took Taylor GS Mini to guitar tech for servicing due to high action causing discomfort in left hand",
+        "Thinking about getting a new guitar amp, currently using Fender Mustang I V2 for practice",
+        "Plans to take Taylor GS Mini to guitar tech Joe at Guitar Central by end of this month",
+        "Attended a workshop on suspension tuning",
+        "Interested in online course 'Racing Suspension Setup' by Racing School of New England",
+        "Wants an amp suitable for both practice and small gigs",
+        "Averages 2-3 hours of audiobook listening per day during commutes and lunch breaks",
+        "Recently finished a 4-week online course on social media marketing that ended on September 10",
+        "Asked how often to condition leather shoes"
+      ],
+      "plus_h_context": [
+        "Thinking about getting a new guitar amp, currently using Fender Mustang I V2 for practice",
+        "Had a full dress rehearsal last night that had issues with sound system and set changes",
+        "Averages 2-3 hours of audiobook listening per day during commutes and lunch breaks",
+        "Considering Fender Acoustic 40 and Fishman Loudbox Mini for Taylor GS Mini",
+        "Purchased new smart speaker with Alexa on March 25th",
+        "Wants an amp suitable for both practice and small gigs",
+        "Decided to go with Sonos Beam Soundbar",
+        "Already has Sonos speakers in house",
+        "Looking for a soundbar that is easy to set up and provides good sound quality",
+        "Plans to take Taylor GS Mini to guitar tech Joe at Guitar Central by end of this month"
+      ],
+      "base_answer": "Based on the provided context, the exact number of days cannot be determined. The context states that you started ukulele lessons and took your guitar for servicing, but it does not specify the dates of either event.",
+      "plus_h_answer": "Based on the provided context, this information is not available. The context mentions plans to take the Taylor GS Mini to guitar tech Joe but does not mention ukulele lessons or when they started.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_h_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_h_correct": false
+    },
+    {
+      "question_id": "10e09553",
+      "question_type": "knowledge-update",
+      "question": "How many largemouth bass did I catch with Alex on the earlier fishing trip to Lake Michigan before the 7/22 trip?",
+      "gold": "7",
+      "hypothetical": "I caught three largemouth bass with Alex on that earlier Lake Michigan trip.",
+      "mechanism_trace": {
+        "new_items_from_hyde_query": 2,
+        "identical_top10": false
+      },
+      "base_context": [
+        "Caught 7 largemouth bass on a trip to Lake Michigan with Alex on 7/10",
+        "Was with Alex on 7/22 and caught 9 largemouth bass",
+        "Planning another fishing trip to Lake Michigan",
+        "Interested in trying new lures for bass fishing",
+        "Planning to fish from Illinois, around the Waukegan harbor area",
+        "Thinking of using spinnerbaits and plastic worms as lures again",
+        "Getting back into fishing and hunting and trying to keep track of gear and experiences",
+        "Planning to try out deer calls during next hunting trip",
+        "Has about 8 weeks before the race",
+        "Interested in deer hunting, considering getting a tree stand for this season"
+      ],
+      "plus_h_context": [
+        "Caught 7 largemouth bass on a trip to Lake Michigan with Alex on 7/10",
+        "Was with Alex on 7/22 and caught 9 largemouth bass",
+        "Planning another fishing trip to Lake Michigan",
+        "Interested in trying new lures for bass fishing",
+        "Planning to fish from Illinois, around the Waukegan harbor area",
+        "Thinking of using spinnerbaits and plastic worms as lures again",
+        "Getting back into fishing and hunting and trying to keep track of gear and experiences",
+        "Planning to try out deer calls during next hunting trip",
+        "Had a playdate with Rocky and Bella last week",
+        "Went on a weekend trip with friends in May to New York City"
+      ],
+      "base_answer": "Based on the provided context, you caught 7 largemouth bass on the earlier trip to Lake Michigan with Alex on 7/10.",
+      "plus_h_answer": "Based on the provided context, you caught 7 largemouth bass on the earlier trip to Lake Michigan with Alex on 7/10.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_h_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plus_h_correct": true
+    },
+    {
+      "question_id": "1903aded",
+      "question_type": "single-session-assistant",
+      "question": "I think we discussed work from home jobs for seniors earlier. Can you remind me what was the 7th job in the list you provided?",
+      "gold": "Transcriptionist.",
+      "hypothetical": "The seventh one was a customer service representative for a telehealth company.",
+      "mechanism_trace": {
+        "new_items_from_hyde_query": 5,
+        "identical_top10": false
+      },
+      "base_context": [
+        "Looking for work from home job ideas for seniors",
+        "User is interested in automating or delegating tasks in business and homeschooling",
+        "Participated in Arts and Crafts Fair, Earth Day Market, and other events",
+        "Recently taken on more leadership tasks in role",
+        "Started waking up at 7:15 instead of 7:30 to have more time to relax before work",
+        "Sold 5 candles and 2 jars of blueberry jam at the Arts and Crafts Fair, earning $85",
+        "User explained a new use case about lowering job level in requisition, requiring a note with use case title, name, date, reasoning, and activity feed date, then updating approval chain to self as sole approver, editing job level, and approving instantly",
+        "Has worked as a Marketing Specialist for about 2 years",
+        "Interested in career inside logistics field",
+        "Interested in amenities and services at EWR"
+      ],
+      "plus_h_context": [
+        "Has worked as a Marketing Specialist for about 2 years",
+        "Bought their EP at the merchandise booth",
+        "Interested in career inside logistics field",
+        "Interested in Sunday Riley Power Couple and Dr. Barbara Sturm Super Anti-Aging Serum",
+        "Recently taken on more leadership tasks in role",
+        "Ideal clients are likely individuals seeking psychotherapy, possibly interested in deep emotional work",
+        "Started waking up at 7:15 instead of 7:30 to have more time to relax before work",
+        "Zumba instructor is Rachel",
+        "Has a new basketball training company called ProX aka Professional Experience",
+        "User explained a new use case about lowering job level in requisition, requiring a note with use case title, name, date, reasoning, and activity feed date, then updating approval chain to self as sole approver, editing job level, and approving instantly"
+      ],
+      "base_answer": "Based on the provided context, I cannot determine the 7th job in the list of work-from-home job ideas for seniors. The context only mentions that the user is looking for such ideas, but does not include the actual list.",
+      "plus_h_answer": "Based on the provided context, I cannot determine the 7th job in a list of work-from-home jobs for seniors. The context does not contain any information about that discussion or list.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plus_h_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plus_h_correct": false
+    }
+  ]
+}

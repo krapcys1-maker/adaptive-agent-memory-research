@@ -1,0 +1,23 @@
+{
+  "artifact": "arena-extraction-completeness-verification-v1-selection",
+  "purpose": "Mechanism J exploratory test: EXTRACTION_COMPLETENESS_VERIFICATION_PASS, Campaign V2's first write-side (extraction-time) mechanism, selected from the discovery-rebuild pool (v3) after the strategy-pivot triggered by Mechanisms G/H/I's consecutive failures. Calibration-passed (PM-20260824-9d020373) before this spend.",
+  "frozen_before_any_ingest": true,
+  "excludes_note": "all 69 units used or examined anywhere in this arena to date (every prior mechanism's selection.json, recursively globbed). _abs variants excluded by base id too.",
+  "selection_rule": {
+    "inputs_used": ["question_type"],
+    "inputs_never_used": ["answer", "gold", "haystack content", "prior correctness", "the calibration synthetic cases (which were hand-written, not drawn from the corpus)"],
+    "method": "deterministic: 1 unit per LongMemEval-S category (6 categories) plus 1 extra each for multi-session and knowledge-update (structural prior: these categories most often involve multiple distinct facts/events, a plausible -- not gold-referenced -- proxy for where write-time extraction loss is likeliest to matter), first-by-question_id-sort within category after exclusion.",
+    "size_note": "8 units, matching this project's typical replication-adjacent exploratory scale (RAW_PROVENANCE's own validating run, Mechanism I's confirmatory replication) given this mechanism's larger code-surface change (a real write-side vendor patch, not a read-side render transform) warrants a correspondingly careful test."
+  },
+  "units": [
+    {"question_id": "184da446", "question_type": "knowledge-update"},
+    {"question_id": "18bc8abd", "question_type": "knowledge-update"},
+    {"question_id": "21d02d0d", "question_type": "multi-session"},
+    {"question_id": "2311e44b", "question_type": "multi-session"},
+    {"question_id": "1b9b7252", "question_type": "single-session-assistant"},
+    {"question_id": "09d032c9", "question_type": "single-session-preference"},
+    {"question_id": "21436231", "question_type": "single-session-user"},
+    {"question_id": "4dfccbf8", "question_type": "temporal-reasoning"}
+  ],
+  "n_units": 8
+}

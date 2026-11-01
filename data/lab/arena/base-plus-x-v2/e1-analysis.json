@@ -1,0 +1,370 @@
+{
+  "artifact": "arena-base-plus-x-v2-e1",
+  "experiment": "E1 read-side temporal anchoring micro-grid",
+  "mechanisms": {
+    "time": "TEMPORAL_ANCHOR_AT_CONTEXT",
+    "src": "SOURCE_TAG_AT_CONTEXT",
+    "both": "TEMPORAL_ANCHOR_AT_CONTEXT+SOURCE_TAG_AT_CONTEXT",
+    "placebo": "TOKEN_OVERHEAD_PLACEBO"
+  },
+  "predictions_registered_at": "PM-20260824-d4155074",
+  "predicted_flip_targets": [
+    "ba358f49",
+    "gpt4_f420262c",
+    "gpt4_f49edff3"
+  ],
+  "predicted_non_effect": [
+    "69fee5aa",
+    "gpt4_59c863d7"
+  ],
+  "cells": {
+    "mem0_native_time": {
+      "operating_point": "native",
+      "treatment": "time",
+      "base_arm": "mem0_original",
+      "score": "7/10",
+      "flips_to_correct": [
+        "ba358f49",
+        "gpt4_f420262c"
+      ],
+      "regressions": [],
+      "predicted_flips_net_of_regressions": 2,
+      "predicted_flips": [
+        "ba358f49",
+        "gpt4_f420262c"
+      ],
+      "unexpected_flips": [],
+      "unchanged": [
+        "311778f1",
+        "58bf7951",
+        "69fee5aa",
+        "6a27ffc2",
+        "eace081b",
+        "gpt4_59c863d7",
+        "gpt4_98f46fc6",
+        "gpt4_f49edff3"
+      ],
+      "avg_context_tokens": 121.0,
+      "avg_base_context_tokens": 111.0,
+      "token_delta": 10.0,
+      "per_unit_labels": {
+        "ba358f49": true,
+        "gpt4_98f46fc6": true,
+        "58bf7951": true,
+        "6a27ffc2": false,
+        "gpt4_f420262c": true,
+        "gpt4_f49edff3": true,
+        "eace081b": true,
+        "69fee5aa": false,
+        "gpt4_59c863d7": false,
+        "311778f1": true
+      }
+    },
+    "mem0_native_src": {
+      "operating_point": "native",
+      "treatment": "src",
+      "base_arm": "mem0_original",
+      "score": "4/10",
+      "flips_to_correct": [],
+      "regressions": [
+        "gpt4_f49edff3"
+      ],
+      "predicted_flips_net_of_regressions": -1,
+      "predicted_flips": [],
+      "unexpected_flips": [],
+      "unchanged": [
+        "311778f1",
+        "58bf7951",
+        "69fee5aa",
+        "6a27ffc2",
+        "ba358f49",
+        "eace081b",
+        "gpt4_59c863d7",
+        "gpt4_98f46fc6",
+        "gpt4_f420262c"
+      ],
+      "avg_context_tokens": 141.0,
+      "avg_base_context_tokens": 111.0,
+      "token_delta": 30.0,
+      "per_unit_labels": {
+        "ba358f49": false,
+        "gpt4_98f46fc6": true,
+        "58bf7951": true,
+        "6a27ffc2": false,
+        "gpt4_f420262c": false,
+        "gpt4_f49edff3": false,
+        "eace081b": true,
+        "69fee5aa": false,
+        "gpt4_59c863d7": false,
+        "311778f1": true
+      }
+    },
+    "mem0_native_both": {
+      "operating_point": "native",
+      "treatment": "both",
+      "base_arm": "mem0_original",
+      "score": "6/10",
+      "flips_to_correct": [
+        "gpt4_f420262c"
+      ],
+      "regressions": [],
+      "predicted_flips_net_of_regressions": 1,
+      "predicted_flips": [
+        "gpt4_f420262c"
+      ],
+      "unexpected_flips": [],
+      "unchanged": [
+        "311778f1",
+        "58bf7951",
+        "69fee5aa",
+        "6a27ffc2",
+        "ba358f49",
+        "eace081b",
+        "gpt4_59c863d7",
+        "gpt4_98f46fc6",
+        "gpt4_f49edff3"
+      ],
+      "avg_context_tokens": 151.0,
+      "avg_base_context_tokens": 111.0,
+      "token_delta": 40.0,
+      "per_unit_labels": {
+        "ba358f49": false,
+        "gpt4_98f46fc6": true,
+        "58bf7951": true,
+        "6a27ffc2": false,
+        "gpt4_f420262c": true,
+        "gpt4_f49edff3": true,
+        "eace081b": true,
+        "69fee5aa": false,
+        "gpt4_59c863d7": false,
+        "311778f1": true
+      }
+    },
+    "mem0_native_placebo": {
+      "operating_point": "native",
+      "treatment": "placebo",
+      "base_arm": "mem0_original",
+      "score": "5/10",
+      "flips_to_correct": [],
+      "regressions": [],
+      "predicted_flips_net_of_regressions": 0,
+      "predicted_flips": [],
+      "unexpected_flips": [],
+      "unchanged": [
+        "311778f1",
+        "58bf7951",
+        "69fee5aa",
+        "6a27ffc2",
+        "ba358f49",
+        "eace081b",
+        "gpt4_59c863d7",
+        "gpt4_98f46fc6",
+        "gpt4_f420262c",
+        "gpt4_f49edff3"
+      ],
+      "avg_context_tokens": 121.0,
+      "avg_base_context_tokens": 111.0,
+      "token_delta": 10.0,
+      "per_unit_labels": {
+        "ba358f49": false,
+        "gpt4_98f46fc6": true,
+        "58bf7951": true,
+        "6a27ffc2": false,
+        "gpt4_f420262c": false,
+        "gpt4_f49edff3": true,
+        "eace081b": true,
+        "69fee5aa": false,
+        "gpt4_59c863d7": false,
+        "311778f1": true
+      }
+    },
+    "mem0_wide_time": {
+      "operating_point": "wide",
+      "treatment": "time",
+      "base_arm": "mem0_3000",
+      "score": "8/10",
+      "flips_to_correct": [
+        "ba358f49",
+        "gpt4_f420262c",
+        "gpt4_f49edff3"
+      ],
+      "regressions": [],
+      "predicted_flips_net_of_regressions": 3,
+      "predicted_flips": [
+        "ba358f49",
+        "gpt4_f420262c",
+        "gpt4_f49edff3"
+      ],
+      "unexpected_flips": [],
+      "unchanged": [
+        "311778f1",
+        "58bf7951",
+        "69fee5aa",
+        "6a27ffc2",
+        "eace081b",
+        "gpt4_59c863d7",
+        "gpt4_98f46fc6"
+      ],
+      "avg_context_tokens": 2612.9,
+      "avg_base_context_tokens": 2385.7,
+      "token_delta": 227.2,
+      "per_unit_labels": {
+        "ba358f49": true,
+        "gpt4_98f46fc6": true,
+        "58bf7951": true,
+        "6a27ffc2": true,
+        "gpt4_f420262c": true,
+        "gpt4_f49edff3": true,
+        "eace081b": true,
+        "69fee5aa": false,
+        "gpt4_59c863d7": false,
+        "311778f1": true
+      }
+    },
+    "mem0_wide_src": {
+      "operating_point": "wide",
+      "treatment": "src",
+      "base_arm": "mem0_3000",
+      "score": "4/10",
+      "flips_to_correct": [],
+      "regressions": [
+        "gpt4_98f46fc6"
+      ],
+      "predicted_flips_net_of_regressions": -1,
+      "predicted_flips": [],
+      "unexpected_flips": [],
+      "unchanged": [
+        "311778f1",
+        "58bf7951",
+        "69fee5aa",
+        "6a27ffc2",
+        "ba358f49",
+        "eace081b",
+        "gpt4_59c863d7",
+        "gpt4_f420262c",
+        "gpt4_f49edff3"
+      ],
+      "avg_context_tokens": 3067.3,
+      "avg_base_context_tokens": 2385.7,
+      "token_delta": 681.6,
+      "per_unit_labels": {
+        "ba358f49": false,
+        "gpt4_98f46fc6": false,
+        "58bf7951": true,
+        "6a27ffc2": true,
+        "gpt4_f420262c": false,
+        "gpt4_f49edff3": false,
+        "eace081b": true,
+        "69fee5aa": false,
+        "gpt4_59c863d7": false,
+        "311778f1": true
+      }
+    },
+    "mem0_wide_both": {
+      "operating_point": "wide",
+      "treatment": "both",
+      "base_arm": "mem0_3000",
+      "score": "7/10",
+      "flips_to_correct": [
+        "gpt4_f420262c",
+        "gpt4_f49edff3"
+      ],
+      "regressions": [],
+      "predicted_flips_net_of_regressions": 2,
+      "predicted_flips": [
+        "gpt4_f420262c",
+        "gpt4_f49edff3"
+      ],
+      "unexpected_flips": [],
+      "unchanged": [
+        "311778f1",
+        "58bf7951",
+        "69fee5aa",
+        "6a27ffc2",
+        "ba358f49",
+        "eace081b",
+        "gpt4_59c863d7",
+        "gpt4_98f46fc6"
+      ],
+      "avg_context_tokens": 3294.5,
+      "avg_base_context_tokens": 2385.7,
+      "token_delta": 908.8,
+      "per_unit_labels": {
+        "ba358f49": false,
+        "gpt4_98f46fc6": true,
+        "58bf7951": true,
+        "6a27ffc2": true,
+        "gpt4_f420262c": true,
+        "gpt4_f49edff3": true,
+        "eace081b": true,
+        "69fee5aa": false,
+        "gpt4_59c863d7": false,
+        "311778f1": true
+      }
+    },
+    "mem0_wide_placebo": {
+      "operating_point": "wide",
+      "treatment": "placebo",
+      "base_arm": "mem0_3000",
+      "score": "7/10",
+      "flips_to_correct": [
+        "ba358f49",
+        "gpt4_59c863d7"
+      ],
+      "regressions": [],
+      "predicted_flips_net_of_regressions": 1,
+      "predicted_flips": [
+        "ba358f49"
+      ],
+      "unexpected_flips": [
+        "gpt4_59c863d7"
+      ],
+      "unchanged": [
+        "311778f1",
+        "58bf7951",
+        "69fee5aa",
+        "6a27ffc2",
+        "eace081b",
+        "gpt4_98f46fc6",
+        "gpt4_f420262c",
+        "gpt4_f49edff3"
+      ],
+      "avg_context_tokens": 2612.9,
+      "avg_base_context_tokens": 2385.7,
+      "token_delta": 227.2,
+      "per_unit_labels": {
+        "ba358f49": true,
+        "gpt4_98f46fc6": true,
+        "58bf7951": true,
+        "6a27ffc2": true,
+        "gpt4_f420262c": false,
+        "gpt4_f49edff3": false,
+        "eace081b": true,
+        "69fee5aa": false,
+        "gpt4_59c863d7": true,
+        "311778f1": true
+      }
+    }
+  },
+  "gpt4_f420262c_transcript_comparison": {
+    "native_base": "Based on the provided context, the order of airlines you flew with from earliest to latest before today is:\n\n1. American Airlines (flight from New York to Los Angeles on February 10th)\n2. United Airlines (flight from Boston to Chicago, which had a 1-hour delay)\n3. JetBlue (red-eye flight from San Francisco to Boston)",
+    "native_time": "Based on the provided context, the order of airlines you flew with from earliest to latest is:\n\n1. JetBlue (red-eye flight from San Francisco to Boston, around November 17, 2022)\n2. United Airlines (flight from Boston to Chicago, around January 28, 2023)\n3. American Airlines (flight from New York to Los Angeles, on February 10, 2023)",
+    "wide_base": "Based on the provided context, the order of airlines you flew with from earliest to latest is:\n\n1. **American Airlines** – flight from New York to Los Angeles on February 10th\n2. **United Airlines** – flight from Boston to Chicago (1-hour delay)\n3. **JetBlue** – red-eye flight from San Francisco to Boston\n4. **Spirit Airlines** – round-trip flight from Boston to Atlanta today",
+    "wide_time": "Based on the provided context, the order of airlines you flew with from earliest to latest is:\n\n1. JetBlue (red-eye flight from San Francisco to Boston)\n2. United Airlines (flight from Boston to Chicago)\n3. American Airlines (flight from New York to Los Angeles)"
+  },
+  "explained_regressions": {
+    "gpt4_f49edff3__mem0_native_src": {
+      "gold": "First, I helped my friend prepare the nursery, then I helped my cousin pick out stuff for her baby shower, and lastly, I ordered a customized phone case for my friend's birthday.",
+      "base_answer": "Based on the provided context, the order from first to last is:\n\n1. The day you helped your friend prepare the nursery (spent an entire Sunday afternoon shopping at Buy Buy Baby).\n2. The day you helped your cousin pick out stuff for her baby shower (at Target).\n3. The day you ordered a customized phone case for your friend's birthday (today).",
+      "treatment_answer": "Based on the provided context, the order of these events cannot be determined. The context does not provide dates for any of these three events.",
+      "explanation": "BASE guessed a chronological order from mere list order/relative wording ('today') and happened to match gold. +SRC's answer explicitly reports the context has no dates and declines to order the events -- a more epistemically honest abstention that the binary judge scores WRONG on an answerable question, per this project's own established convention."
+    },
+    "gpt4_98f46fc6__mem0_wide_src": {
+      "gold": "I participated in the charity bake sale first.",
+      "base_answer": "Based on the provided context, the charity bake sale is happening today, while the charity gala is scheduled for tonight. Therefore, you participated in the charity bake sale first.",
+      "treatment_answer": "Based on the provided context, the order of these events cannot be determined.",
+      "explanation": "Same pattern: BASE inferred an order from 'today'/'tonight' framing; +SRC declines to infer an order at all. Same abstention-under-added-annotation effect as the other +SRC regression."
+    }
+  },
+  "gold_f420262c": "JetBlue, Delta, United, American Airlines"
+}

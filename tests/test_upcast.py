@@ -263,13 +263,22 @@ def test_the_real_log_derives_without_error_and_ends_only_superseded_records() -
     view = derive_temporal_view(events)
     assert len(view) == len(events)
 
-    superseded = {
-        str(event["supersedes"]) for event in events if event.get("supersedes")
+    successor_of = {
+        str(event["supersedes"]): event for event in events if event.get("supersedes")
     }
     for event in view:
-        if event["id"] in superseded:
+        following = successor_of.get(event["id"])
+        if following is not None:
             assert event["expired_at"] is not None, f"{event['id']} was superseded but never expired"
         else:
             assert event["expired_at"] is None, f"{event['id']} has no successor but was expired"
-        # No v1 supersession is classified, so no valid_to may be derived yet.
-        assert event["valid_to"] is None
+        # valid_to is derived only from a classified succession. Corrections, every
+        # version-1 (unclassified) supersession and records with no successor derive none.
+        if following is not None and following.get("supersession_kind") == "succession":
+            assert event["valid_to"] == following.get("valid_from"), (
+                f"{event['id']} valid_to is not its successor's valid_from"
+            )
+        else:
+            assert event["valid_to"] is None, (
+                f"{event['id']} derived a valid_to without a classified succession"
+            )

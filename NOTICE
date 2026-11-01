@@ -1,0 +1,42 @@
+Adaptive Agent Memory Research
+Copyright 2026 Adaptive Agent Memory Research contributors.
+
+Licensing at a glance (the path map is REUSE.toml; the licence texts are in LICENSES/):
+  Software (tools/, scripts/, tests/, .github/workflows/, pytest.ini, requirements-dev.txt):
+      Apache License 2.0 (LICENSE, LICENSES/Apache-2.0.txt)
+  Documentation, research notes and the experiment data produced here
+  (docs/, data/, memory/, *.md, CITATION.cff):
+      Creative Commons Attribution 4.0 International (LICENSES/CC-BY-4.0.txt)
+  tasks.py was contributed by Dipak Chaudhari (dchaudhari7177, PR #44) while the
+  repository was licensed CC BY 4.0. It keeps that licence until its author agrees
+  to relicense it or it is rewritten.
+
+Third-party material
+
+  Mem0 (https://github.com/mem0ai/mem0), version 1.0.6, Apache License 2.0.
+      Modified copies of mem0/memory/main.py and mem0/memory/utils.py are kept under
+      data/lab/arena/*/vendor-patch/ so that the experiments can be reproduced. The
+      modifications are the hunks in the *.patch files and in manifest.json beside
+      them; the Mem0 authors' copyright applies to the unmodified parts. The Mem0
+      repository has no NOTICE file.
+
+  LongMemEval (Wu et al., 2024; https://github.com/xiaowu0162/LongMemEval), MIT.
+      Copyright (c) 2024 Di Wu. The permission text is LICENSES/MIT.txt. Result files
+      under data/lab/arena/ quote questions, gold answers and retrieved contexts from
+      the benchmark, and scripts/arena/judge_pilot.py reproduces its evaluation prompt
+      templates. The benchmark's filler sessions derive from ShareGPT and UltraChat.
+
+  LoCoMo (Maharana et al., 2024), CC BY-NC 4.0.
+      No LoCoMo text is tracked here. Do not commit any into a tree presented as
+      Apache-2.0 or CC BY.
+
+  Hindsight (vectorize-io, MIT) and Graphiti (getzep, Apache-2.0) are used as
+  installed packages only and are not redistributed.
+
+  Paper abstracts reproduced next to OpenAlex metadata are not relicensed; see
+  LICENSES/LicenseRef-Third-Party-Abstracts.txt.
+
+Papers, datasets, trademarks and quoted material remain under their owners' terms
+and are not relicensed by this repository. "Mem0" and "Hindsight" are marks of their
+owners. Results here refer to the versions installed in the arena environments
+(Mem0 1.0.6, Hindsight 0.9.1 as packaged), not to current releases.

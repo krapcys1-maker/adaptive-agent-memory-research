@@ -1,0 +1,17 @@
+{
+  "artifact": "autonomous-research-budget-v3",
+  "campaign": "AUTONOMOUS_CAMPAIGN_V3 -- precise-target strategy, gated by arr-2026-08-25-001",
+  "hard_total_cap_usd": 10.00,
+  "authorized_by": "user, 2026-08-25, explicit top-up (\"daje ci jeszcze 10 dolarow budzetu\")",
+  "carries_forward_from": "autonomous-research-budget-v2 (Campaign V2, $5.00 cap, FROZEN/closed at $4.393354 spend, $0.606646 unused and left untouched -- not counted against this cap, not merged into it). Project-wide validated mechanism count (1, RAW_PROVENANCE, Entry H) carries over.",
+  "gating_condition": "NO spend is authorized under this cap until a candidate returned against arr-2026-08-25-001 (docs/research/Dokumenty dla Resherchera/RESEARCH_REQUESTS/2026-08-25_research_request_three-precise-failure-modes.md) clears AAMR's own pre-declared filter, all four required: (1) CAN_TEST_NOW per TESTABILITY_ENVELOPE.md; (2) not a duplicate per DO_NOT_REDISCOVER.md (16 entries, A-Q); (3) targets exactly ONE of the three named failure modes -- ASSISTANT_TURN_REPRESENTATION_LOSS (GAP-004), RETRIEVAL_ANCHOR_FAILURE (GAP-002, part b), or TEMPORAL_REPRESENTATION_LOSS (GAP-003); (4) has a cheap causal contrast, reusing existing frozen arm-building code where possible. If no candidate qualifies, this ledger stays at $0 spend indefinitely -- WAITING_FOR_RESEARCH is the expected, correct state, not a reason to lower the bar or resume ad hoc candidate-picking.",
+  "per_mechanism_sizing_note": "User's own stated sizing guidance for a single mechanism's calibration+exploratory cycle is ~$2-3, replication only after a genuine positive signal (same calibration-before-full-test, exploratory-before-replication discipline as every mechanism in Campaign V2). This $10 ceiling is headroom, not a target to spend -- it comfortably covers calibration + exploratory + one replication for the eventual winning candidate with real safety reserve, or (if warranted by evidence quality) sequential attempts on more than one qualifying candidate -- but each individual mechanism attempt should still be scoped and cost-gated on its own terms, not treated as one large undifferentiated pool.",
+  "campaign_status": "WAITING_FOR_RESEARCH -- funded and ready, but spend-frozen until arr-2026-08-25-001 returns a qualifying candidate. Explicitly NOT a resumption of Campaign V2's ad hoc GAP-002/003/004 candidate-picking pattern -- that pattern is what this precise pivot replaced. No stage has run; no cost-gate print has been produced yet because no experiment has been designed yet.",
+  "stages": [],
+  "total_spend_usd": 0.0,
+  "remaining_usd": 10.00,
+  "consecutive_failed_families_count": 0,
+  "validated_mechanisms_count_this_campaign": 0,
+  "validated_mechanisms_count_project_total": 1,
+  "note": "This is a NEW budget ledger, not a top-up of the closed/frozen Campaign V2 ledger (data/lab/arena/autonomous-research-budget-v2/ledger.json, preserved as-is, final state $4.393354/$5.00) -- per the user's own explicit instruction ('Nowy budzet, ale pod konkretny mechanizm... nie na szukanie'). Created the moment the $10 authorization was given, but the gating_condition above means it stays at $0 spend until ResearchOS returns something AAMR's own filter accepts. Do not treat the existence of this budget as license to design or run any new experiment absent a qualifying candidate."
+}

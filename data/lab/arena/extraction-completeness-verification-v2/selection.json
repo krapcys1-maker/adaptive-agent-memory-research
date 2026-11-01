@@ -1,0 +1,23 @@
+{
+  "artifact": "arena-extraction-completeness-verification-v2-selection",
+  "purpose": "Mechanism J fresh gold-blind replication (GAP-001 in docs/research/Dokumenty dla Resherchera/OPEN_TESTABLE_GAPS.md). v1 (data/lab/arena/extraction-completeness-verification-v1) was EXPLORATORY_SUPPORTED (n=6, 1 genuine traceable repair, 0 regressions) -- this replication tests whether the repair rate holds on a fresh sample, matching RAW_PROVENANCE's own exploratory-to-validated path.",
+  "frozen_before_any_ingest": true,
+  "excludes_note": "all 77 units used or examined anywhere in this arena to date (every prior mechanism's selection.json, recursively globbed, including v1's own 8 preregistered units). _abs variants excluded by base id too.",
+  "selection_rule": {
+    "inputs_used": ["question_type"],
+    "inputs_never_used": ["answer", "gold", "haystack content", "prior correctness"],
+    "method": "identical to v1: 1 unit per LongMemEval-S category (6 categories) plus 1 extra each for multi-session and knowledge-update (same structural prior as v1, kept identical for a clean replication -- not re-derived post-hoc), first-by-question_id-sort within category after exclusion.",
+    "size_note": "8 units, matching v1's preregistered (though not fully completed, due to a cost-cap interruption) size."
+  },
+  "units": [
+    {"question_id": "1cea1afa", "question_type": "knowledge-update"},
+    {"question_id": "2133c1b5", "question_type": "knowledge-update"},
+    {"question_id": "2318644b", "question_type": "multi-session"},
+    {"question_id": "27016adc", "question_type": "multi-session"},
+    {"question_id": "1d4da289", "question_type": "single-session-assistant"},
+    {"question_id": "0a34ad58", "question_type": "single-session-preference"},
+    {"question_id": "25e5aa4f", "question_type": "single-session-user"},
+    {"question_id": "5e1b23de", "question_type": "temporal-reasoning"}
+  ],
+  "n_units": 8
+}

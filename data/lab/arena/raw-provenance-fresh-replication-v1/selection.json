@@ -1,0 +1,39 @@
+{
+  "artifact": "arena-raw-provenance-fresh-replication-v1-selection",
+  "purpose": "Fresh replication of RAW_PROVENANCE_CONDITIONAL_SIGNAL (E3/C4, docs/research/CLEAN_RAW_PROVENANCE_RETEST_V2.md), on units never used anywhere in this arena before -- 'Mechanism C' for the autonomous research campaign, PM-20260824-23cd74aa lineage.",
+  "frozen_before_any_ingest": true,
+  "excludes": [
+    "311778f1", "58bf7951", "69fee5aa", "6a27ffc2", "ba358f49", "eace081b",
+    "gpt4_59c863d7", "gpt4_98f46fc6", "gpt4_f420262c", "gpt4_f49edff3",
+    "001be529", "00ca467f", "0100672e", "01493427", "031748ae", "07741c45",
+    "08f4fc43", "0977f2af", "0bb5a684", "0bc8ad92"
+  ],
+  "excludes_note": "the original 10 (expansion-selection.json) plus Stage 2's fresh 10 (stage2-selection.json) -- all 20 units used anywhere in this arena to date. _abs variants of any candidate also excluded.",
+  "selection_rule": {
+    "inputs_used": ["question_type (corpus category metadata)"],
+    "inputs_never_used": ["answer", "gold", "haystack content", "haystack_session_ids",
+                          "prior correctness on any system", "raw provenance benefit hypothesis for this specific unit"],
+    "method": "deterministic category quota (2 knowledge-update, 2 multi-session, 1 temporal-reasoning, 1 single-session-user, 1 single-session-assistant, 1 single-session-preference -- 8 total), unit chosen as the first N by lexicographic question_id sort within each category after excluding used units and _abs variants. Not biased toward categories expected to favor raw provenance specifically -- RAW_PROVENANCE's target failure (compact-context absence or under-detail) is not category-specific by the mechanism's own definition, unlike the temporal branch's deliberate temporal-reasoning bias.",
+    "why_not_biased_to_knowledge_update_only": "E3's one repair happened to be knowledge-update, but E3's own report explicitly found the failure regime was 'competing facts / under-detail', not a category property -- biasing entirely toward knowledge-update would be closer to gold-aware post-hoc curve-fitting than a legitimate prior. A 2-unit quota (proportionate emphasis, not exclusivity) is the compromise."
+  },
+  "haystack_session_overlap_check": {
+    "purpose": "LongMemEval-S intentionally reuses haystack sessions across multiple questions about the same simulated user profile -- this is a corpus-design property, not a contamination bug (each unit still gets its own isolated, reset Mem0 bank; no vector-store-level leakage is possible). Checked, not assumed, before freezing.",
+    "per_unit_session_overlap_with_the_20_excluded_units": {
+      "06db6396": 1, "07741c44": 3, "078150f1": 1, "099778bb": 1,
+      "0bc8ad93": 0, "0862e8bf": 2, "0e5e2d1a": 0, "06878be2": 0
+    },
+    "conclusion": "small (0-3 of 40-50 sessions), consistent with Stage 2's own precedent (which excluded only exact question_id matches, not haystack-session overlap) -- not disqualifying. No unit swapped out on this basis."
+  },
+  "units": [
+    {"question_id": "06db6396", "question_type": "knowledge-update"},
+    {"question_id": "07741c44", "question_type": "knowledge-update"},
+    {"question_id": "078150f1", "question_type": "multi-session"},
+    {"question_id": "099778bb", "question_type": "multi-session"},
+    {"question_id": "0bc8ad93", "question_type": "temporal-reasoning"},
+    {"question_id": "0862e8bf", "question_type": "single-session-user"},
+    {"question_id": "0e5e2d1a", "question_type": "single-session-assistant"},
+    {"question_id": "06878be2", "question_type": "single-session-preference"}
+  ],
+  "n_units": 8,
+  "candidate_pool_size_after_exclusion": 478
+}

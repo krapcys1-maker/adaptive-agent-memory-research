@@ -1,0 +1,233 @@
+{
+ "arm_config": {
+  "cluster_threshold": 0.55,
+  "concepts_per_event": 5,
+  "goal_weight": 0.5,
+  "min_concept_df": 2,
+  "min_concept_len": 4,
+  "novelty_weight": 0.5,
+  "query_mode": "cue_goal",
+  "query_threshold": 0.55,
+  "recent_share": 0.4,
+  "shuffles": 20,
+  "spread_cap": 1.0,
+  "spread_cooc_norm": 3.0,
+  "spread_neighbours": 8,
+  "spread_weight": 0.5,
+  "summary_words": 8
+ },
+ "arms": [
+  "A",
+  "F1",
+  "F2",
+  "B3",
+  "Del",
+  "Sum",
+  "Sum-raw",
+  "D",
+  "O",
+  "Oc",
+  "S"
+ ],
+ "budgets": {
+  "context_words": [
+   100,
+   250,
+   500
+  ],
+  "retained_share": [
+   0.1,
+   0.25
+  ],
+  "unit": "whitespace-split words (corpus H1 convention); chars/4 reported as a second column"
+ },
+ "dev_seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "experiment": "AAM-E0 delayed relevance at fixed budgets",
+ "generator_version": "goalshift-v0.2",
+ "metric": {
+  "primary": "gold = reference code present in the delivered text (strict)",
+  "secondary": "gold_id = gold event id present (a summary counts)"
+ },
+ "primary": {
+  "bootstrap": {
+   "draws": 10000,
+   "interval": 0.95,
+   "resample": "scenarios",
+   "seed": 20261101
+  },
+  "cell": "C3",
+  "comparators": [
+   "Del",
+   "Sum",
+   "Sum-raw"
+  ],
+  "comparison_tolerance": 1e-09,
+  "context_words": 250,
+  "practical_threshold": 0.15,
+  "retained_share": 0.1,
+  "sum_raw_band": 0.05
+ },
+ "script_sha256": {
+  "scripts/corpus/goalshift.py": "50248a04ec292171b5c5e24fd339104db083fe5a73b4ba2136c9398b5099cd9c",
+  "scripts/corpus/goalshift_arms.py": "4ac5f1648fba2793df84fc1d7fc6bd3ed2797eeae97457363b0e4b51073b50de",
+  "scripts/run_goalshift_e0.py": "b3b353bd877fd3929e55428d64a43f6201fe2f385673ac756a92ec7e5f070411"
+ },
+ "sensitivity_variants": [
+  [
+   "primary: concept df>=2, stem>=4 letters, cluster/query threshold 0.55",
+   {}
+  ],
+  [
+   "v0.1 concept rule: any df, stem>=3 letters",
+   {
+    "min_concept_df": 1,
+    "min_concept_len": 3
+   }
+  ],
+  [
+   "cluster/query threshold 0.45",
+   {
+    "cluster_threshold": 0.45,
+    "query_threshold": 0.45
+   }
+  ],
+  [
+   "cluster/query threshold 0.65",
+   {
+    "cluster_threshold": 0.65,
+    "query_threshold": 0.65
+   }
+  ]
+ ],
+ "stage0_gates": {
+  "c1_overlap_each": [
+   0.2,
+   0.6
+  ],
+  "c1_overlap_mean": [
+   0.3,
+   0.5
+  ],
+  "headroom_high": 0.8,
+  "headroom_low": 0.2,
+  "importance_rank_share": [
+   0.3,
+   0.7
+  ],
+  "min_decoys": 2,
+  "oracle_min": 0.95,
+  "sem_c2_c3_min_diff": 0.1,
+  "sem_low_max_gap": 0.1,
+  "sem_similar_min_gap": 0.15,
+  "shuffle_margin": 0.1
+ },
+ "stage2": {
+  "arms": [
+   "A",
+   "F2",
+   "Del",
+   "Sum-raw",
+   "D"
+  ],
+  "ledger": "data/lab/aam-e0-delayed-relevance/stage2-ledger.json (JSON lines)",
+  "max_cap_usd": 5.0,
+  "reader": {
+   "base_url": "https://api.deepseek.com/v1",
+   "model": "deepseek-v4-flash",
+   "parameters": {
+    "max_tokens": 300,
+    "temperature": 0
+   }
+  },
+  "scoring": "gold_answer contained in answer"
+ },
+ "status": "exploratory, tier E, not registered; synthetic worlds authored by an agent",
+ "test_seeds": [
+  100,
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110,
+  111,
+  112,
+  113,
+  114,
+  115,
+  116,
+  117,
+  118,
+  119
+ ],
+ "world": {
+  "c1_target_overlap": 0.4,
+  "cells": [
+   "C1",
+   "C2",
+   "C3"
+  ],
+  "consequence_probs": [
+   0.55,
+   0.25,
+   0.15,
+   0.05
+  ],
+  "days": 30,
+  "domains": [
+   "logistics",
+   "hiring",
+   "finance",
+   "product",
+   "security",
+   "data"
+  ],
+  "events": 150,
+  "min_gap_days": 14,
+  "phases": [
+   [
+    1,
+    10
+   ],
+   [
+    11,
+    20
+   ],
+   [
+    21,
+    30
+   ]
+  ],
+  "probes_per_cell": 4,
+  "role_balance": "alternate worlds take alternate halves of the 8 roles",
+  "roles": [
+   "estimate_slip",
+   "failed_approach",
+   "hard_constraint",
+   "late_approval",
+   "scale_surprise",
+   "silent_dependency",
+   "single_owner",
+   "unreliable_party"
+  ],
+  "target_days": [
+   2,
+   9
+  ],
+  "words_per_event": [
+   12,
+   35
+  ],
+  "write_time_fields": "consequence and novelty drawn by position only, independent of kind and text (uninformative by construction)"
+ }
+}

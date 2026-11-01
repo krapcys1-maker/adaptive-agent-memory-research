@@ -1,0 +1,508 @@
+{
+  "artifact": "arena-extraction-completeness-verification-v1",
+  "selection": "data\\lab\\arena\\extraction-completeness-verification-v1\\selection.json",
+  "reader_prompt_sha256": "2a8fb5aba9ef531256e3eec1b76ff4d899506afc2f178cc415e750c15c0343ec",
+  "ingest": [
+    {
+      "question_id": "21436231",
+      "question_type": "single-session-user",
+      "base_store_reused_from_prior_run": 245,
+      "plusj_store_reused_from_prior_run": 306,
+      "base_contamination_status": "PASS",
+      "base_foreign": 0,
+      "plusj_contamination_status": "PASS",
+      "plusj_foreign": 0
+    },
+    {
+      "question_id": "09d032c9",
+      "question_type": "single-session-preference",
+      "base_store_reused_from_prior_run": 216,
+      "plusj_store_reused_from_prior_run": 266,
+      "base_contamination_status": "PASS",
+      "base_foreign": 0,
+      "plusj_contamination_status": "PASS",
+      "plusj_foreign": 0
+    },
+    {
+      "question_id": "2311e44b",
+      "question_type": "multi-session",
+      "base_store_reused_from_prior_run": 216,
+      "plusj_store_reused_from_prior_run": 336,
+      "base_contamination_status": "PASS",
+      "base_foreign": 0,
+      "plusj_contamination_status": "PASS",
+      "plusj_foreign": 0
+    },
+    {
+      "question_id": "21d02d0d",
+      "question_type": "multi-session",
+      "base_store_reused_from_prior_run": 235,
+      "plusj_store_reused_from_prior_run": 336,
+      "base_contamination_status": "UNOBSERVABLE",
+      "base_foreign": null,
+      "plusj_contamination_status": "UNOBSERVABLE",
+      "plusj_foreign": null
+    },
+    {
+      "question_id": "4dfccbf8",
+      "question_type": "temporal-reasoning",
+      "base_store_reused_from_prior_run": 231,
+      "plusj_store_reused_from_prior_run": 305,
+      "base_contamination_status": "PASS",
+      "base_foreign": 0,
+      "plusj_contamination_status": "PASS",
+      "plusj_foreign": 0
+    },
+    {
+      "question_id": "184da446",
+      "question_type": "knowledge-update",
+      "base_store_reused_from_prior_run": 214,
+      "plusj_store_reused_from_prior_run": 318,
+      "base_contamination_status": "PASS",
+      "base_foreign": 0,
+      "plusj_contamination_status": "PASS",
+      "plusj_foreign": 0
+    }
+  ],
+  "dropped_units": [
+    "18bc8abd",
+    "1b9b7252"
+  ],
+  "dropped_units_reason": "the arena cost cap stopped mid-ingest before these 2 units' banks were created in the original run; not resumed, to avoid double-paying or relying on an untested partial-store state; see run_extraction_completeness_v1.py's cost-cap behavior",
+  "n_units_preregistered": 8,
+  "n_units": 6,
+  "stopped_by_cap": null,
+  "spend_this_continuation": {
+    "total_usd": 0.00241,
+    "cap_usd": 0.06,
+    "remaining_usd": 0.05759
+  },
+  "spend_original_ingest_run": {
+    "cap_scope": "mechj-v1-",
+    "total_usd": 1.196073,
+    "cap_usd": 1.2,
+    "note": "6 units fully ingested on both BASE and +J banks before the cap stopped"
+  },
+  "results": [
+    {
+      "question_id": "21436231",
+      "question_type": "single-session-user",
+      "question": "How many largemouth bass did I catch on my fishing trip to Lake Michigan?",
+      "gold": "12",
+      "base_context": [
+        "Caught 12 largemouth bass on last trip to Lake Michigan",
+        "Planning a fishing trip to Lake Michigan with friends",
+        "Has experience fishing in Lake Michigan and found spinner lures worked better for trout than live bait",
+        "Thinking of organizing a fly fishing trip to Montana or Colorado next summer",
+        "Thinking of taking a class to learn more about fly fishing, especially tying own flies",
+        "Thinking of restocking tackle box with size 2 hooks and chartreuse plastic worms",
+        "Considering Fender Acoustic 40 and Fishman Loudbox Mini",
+        "Favorite documentary is Blackfish",
+        "Located in the Pacific Northwest",
+        "Considering checking out Rattlesnake Ridge Trail"
+      ],
+      "plusj_context": [
+        "Caught 12 largemouth bass on last trip to Lake Michigan",
+        "Has experience fishing in Lake Michigan",
+        "Planning a fishing trip to Lake Michigan with friends",
+        "Found spinner lures worked better for trout than live bait in Lake Michigan",
+        "Thinking of organizing a fly fishing trip to Montana or Colorado next summer",
+        "Thinking of taking a class to learn more about fly fishing, especially tying own flies",
+        "Thinking of restocking tackle box with size 2 hooks and chartreuse plastic worms",
+        "Planning to try out Fender Acoustic 40 and Fishman Loudbox Mini",
+        "Favorite documentary is Blackfish",
+        "Considering checking out Rattlesnake Ridge Trail"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "You caught 12 largemouth bass on your last trip to Lake Michigan.",
+      "plusj_answer": "You caught 12 largemouth bass on your last trip to Lake Michigan.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plusj_correct": true
+    },
+    {
+      "question_id": "09d032c9",
+      "question_type": "single-session-preference",
+      "question": "I've been having trouble with the battery life on my phone lately. Any tips?",
+      "gold": "The user would prefer responses that build upon their previous mention of purchasing a portable power bank, such as suggestions on how to optimize its use, like ensuring it's fully charged before use. They might also appreciate tips on utilizing battery-saving features on their phone. The user may not prefer responses that suggest alternative solutions or unrelated advice.",
+      "base_context": [
+        "Has been doing a lot of high-intensity jogging and cycling",
+        "Spends 30-40 minutes commuting to work every day",
+        "Wants tips on how to remind themselves to drink more water",
+        "Has been on a plane every 2-3 weeks for the past 3 months",
+        "Looking for workout playlist recommendations for jogging and cycling",
+        "Just got back from a week-long beach vacation where didn't do much exercise",
+        "Looking for advice on organizing tech accessories like portable power bank and wireless charging pad for travel",
+        "Started planning the trip about 6 weeks ago",
+        "Looking to get back on track with exercise routine after vacation",
+        "Budget for flights and hotels is around $5,000 per person"
+      ],
+      "plusj_context": [
+        "Has been flying every 2-3 weeks for the past 3 months",
+        "Has been doing a lot of high-intensity jogging and cycling",
+        "Has been watching a lot of Netflix lately",
+        "Has a new portable power bank and wireless charging pad",
+        "Spends around 30-40 minutes commuting to work every day",
+        "Wants tips on how to remind themselves to drink more water",
+        "Has an Apple Watch",
+        "Has a wireless charging pad",
+        "Interested in establishing a consistent daily routine to improve productivity",
+        "Looking for workout playlist recommendations for jogging and cycling"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, I cannot answer your question about phone battery life. The context contains no information about phone troubleshooting or battery optimization tips.",
+      "plusj_answer": "Based on your recent activity, your phone battery drain is likely tied to heavy use during commutes and workouts. Since you have a new portable power bank and wireless charging pad, make it a habit to top up your phone during your 30-40 minute commute and keep it on the charging pad at your desk or nightstand. Also, consider lowering screen brightness and closing background apps during high-intensity jogging or cycling sessions, as GPS and music streaming can drain battery quickly.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plusj_correct": true
+    },
+    {
+      "question_id": "2311e44b",
+      "question_type": "multi-session",
+      "question": "How many pages do I have left to read in 'The Nightingale'?",
+      "gold": "190",
+      "base_context": [
+        "Currently reading 'The Nightingale' by Kristin Hannah, on page 250",
+        "Goal to read 50 books by end of year, already read 12 books",
+        "Reading National Geographic regularly",
+        "Reading speed is slower, reading 'Sapiens' at 10-20 pages a week",
+        "Considering increasing days dedicated to reading and alternating between graphic novels/manga and denser non-fiction",
+        "Wants to increase reading speed and retention",
+        "Reads a mix of dense non-fiction and graphic novels",
+        "Considering a 'Words of Wisdom' card for guests to write notes for Sarah and her baby",
+        "Wants to apply principles from 'Atomic Habits' and 'Deep Work' to reading habits",
+        "Interested in non-fiction books that are not too dense and easy to read"
+      ],
+      "plusj_context": [
+        "Currently reading 'The Nightingale' by Kristin Hannah, on page 250",
+        "Goal to read 50 books by end of year, already read 12 books",
+        "Reading National Geographic regularly",
+        "Wants to schedule reading sessions, eliminate distractions, and practice active reading",
+        "The user is writing a 5000-word introduction for the workbook companion.",
+        "Reads graphic novels and manga, which are quicker to get through",
+        "The user is writing a 5000-word chapter 1 titled 'The Importance of Time Management'.",
+        "Considering increasing days dedicated to reading and alternating between graphic novels/manga and denser non-fiction",
+        "Wants to increase reading speed and retention",
+        "The user wants the introduction to be 450 characters and 1 paragraph."
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, the total number of pages in 'The Nightingale' is not mentioned, so the number of pages left to read cannot be determined.",
+      "plusj_answer": "The answer cannot be determined from the provided context.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plusj_correct": false
+    },
+    {
+      "question_id": "21d02d0d",
+      "question_type": "multi-session",
+      "question": "How many fun runs did I miss in March due to work commitments?",
+      "gold": "2",
+      "base_context": [
+        "Missed a 5K fun run on March 26th due to work",
+        "Attends weekly 5K fun runs at local park, missed March 5th due to work",
+        "Completed first full marathon on April 10th",
+        "Prefers running on Saturday mornings and Wednesday evenings",
+        "Looking to plan training schedule for next few months",
+        "Can dedicate 5-6 days a week for training with one or two rest days",
+        "Training for a local triathlon in July",
+        "Thinking of booking the trip for late January or early February",
+        "Will get a few more training rides before bike fitting",
+        "Attending a lot of workout classes"
+      ],
+      "plusj_context": [
+        "Missed a 5K fun run on March 26th due to work",
+        "Attends weekly 5K fun runs at local park, missed March 5th run due to work",
+        "Completed first full marathon on April 10th",
+        "Prefers running on Saturday mornings and Wednesday evenings",
+        "Thinking of booking the trip for late January or early February to avoid peak holiday season",
+        "Looking to plan training schedule for next few months",
+        "Three weeks have passed since the last day of summer",
+        "Can dedicate 5-6 days a week for training with one or two rest days",
+        "Training for a local triathlon in July",
+        "Will get a few more training rides before bike fitting"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, you missed two fun runs in March due to work commitments: one on March 5th and one on March 26th.",
+      "plusj_answer": "Based on the provided context, you missed two fun runs in March due to work: one on March 5th and one on March 26th.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plusj_correct": true
+    },
+    {
+      "question_id": "4dfccbf8",
+      "question_type": "temporal-reasoning",
+      "question": "What did I do with Rachel on the Wednesday two months ago?",
+      "gold": "I started taking ukulele lessons with Rachel.",
+      "base_context": [
+        "Started taking ukulele lessons with friend Rachel today and finds it fun",
+        "Last month played Codenames at Sarah's place and had fun",
+        "Had a meeting on March 1st and got suggestions from group member Rachel on improving data analysis section",
+        "Struggling with fingerpicking technique on ukulele, getting exercises from Rachel",
+        "Enjoying game nights with friends lately",
+        "Just got back from a trip to Hawaii today",
+        "Went to an Imagine Dragons concert last month at the Xfinity Center",
+        "Loves plot twists",
+        "Took Max to the vet for his first check-up and vaccination on February 15th",
+        "Last traveled with family about 6 months ago"
+      ],
+      "plusj_context": [
+        "Started taking ukulele lessons with friend Rachel today and finds it fun",
+        "Last month played Codenames at Sarah's place and had fun",
+        "Had a meeting on March 1st and got suggestions from group member Rachel on improving data analysis section",
+        "Struggling with fingerpicking technique on ukulele, getting exercises from Rachel",
+        "Felt the marathon was a culmination of everything watched over the past few days",
+        "Enjoying game nights with friends lately",
+        "Mom's birthday is coming up soon",
+        "Just got back from a trip to Hawaii today",
+        "Went to an Imagine Dragons concert last month at the Xfinity Center",
+        "Loves plot twists"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, I cannot determine what you did with Rachel on the Wednesday two months ago. The context mentions starting ukulele lessons with Rachel and getting fingerpicking exercises from her, but it does not specify the exact date or day of the week for those activities.",
+      "plusj_answer": "Based on the provided context, I cannot determine what you did with Rachel on the Wednesday two months ago. The context mentions taking ukulele lessons with Rachel and getting fingerpicking exercises from her, but it does not specify any activities on a particular Wednesday two months ago.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "no",
+            "label": false
+          },
+          {
+            "pass": "B",
+            "raw": "no",
+            "label": false
+          }
+        ],
+        "label": false,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": false,
+      "plusj_correct": true
+    },
+    {
+      "question_id": "184da446",
+      "question_type": "knowledge-update",
+      "question": "How many pages of 'A Short History of Nearly Everything' have I read so far?",
+      "gold": "220",
+      "base_context": [
+        "Reading 'A Short History of Nearly Everything' and currently on page 220",
+        "Currently reading 'The Nightingale' with 440 pages",
+        "Goal to read 50 books by end of year, already read 12",
+        "Reading speed is slower, reading 'Sapiens' at 10-20 pages a week",
+        "Reads a mix of dense non-fiction and graphic novels",
+        "Considering increasing reading days and alternating between graphic novels/manga and non-fiction",
+        "Planning to create an Evernote notebook for novel with notes on character profiles, scene ideas, and writing reflections",
+        "Enjoys The Wall Street Journal's online content, especially editorials",
+        "Plans to create relaxing bedtime routine with reading and journaling",
+        "Considering incorporating reading and journaling into bedtime routine"
+      ],
+      "plusj_context": [
+        "Reading 'A Short History of Nearly Everything', on page 220, just finished reading about the discovery of DNA structure",
+        "Is reading 'The Nightingale' with 440 pages",
+        "Has already read 12 books so far",
+        "Reading speed is slower, reading 'Sapiens' at a pace of 10-20 pages a week",
+        "Goal is to read 50 books by the end of the year",
+        "Reads dense non-fiction",
+        "Is considering increasing the number of days dedicated to reading",
+        "Planning to create an Evernote notebook for novel with notes on character profiles, scene ideas, and writing reflections",
+        "Reads a book for 30 minutes as part of bedtime routine",
+        "Reads manga"
+      ],
+      "base_context_n": 10,
+      "plusj_context_n": 10,
+      "base_answer": "Based on the provided context, you are currently on page 220 of 'A Short History of Nearly Everything'.",
+      "plusj_answer": "Based on the provided context, I cannot determine how many pages of 'A Short History of Nearly Everything' you have read so far. The context only mentions that you are on page 220 of that book.",
+      "base_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "plusj_judged": {
+        "passes": [
+          {
+            "pass": "A",
+            "raw": "yes",
+            "label": true
+          },
+          {
+            "pass": "B",
+            "raw": "yes",
+            "label": true
+          }
+        ],
+        "label": true,
+        "stable": true,
+        "disputed": false
+      },
+      "base_correct": true,
+      "plusj_correct": true
+    }
+  ]
+}

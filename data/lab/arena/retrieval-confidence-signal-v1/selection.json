@@ -1,0 +1,33 @@
+{
+  "artifact": "arena-retrieval-confidence-signal-v1-selection",
+  "purpose": "Mechanism D exploratory test: RETRIEVAL_CONFIDENCE_SIGNAL, a score-margin-based uncertainty flag using Mem0's own retrieval scores.",
+  "frozen_before_any_ingest": true,
+  "excludes": [
+    "311778f1", "58bf7951", "69fee5aa", "6a27ffc2", "ba358f49", "eace081b",
+    "gpt4_59c863d7", "gpt4_98f46fc6", "gpt4_f420262c", "gpt4_f49edff3",
+    "001be529", "00ca467f", "0100672e", "01493427", "031748ae", "07741c45",
+    "08f4fc43", "0977f2af", "0bb5a684", "0bc8ad92",
+    "06db6396", "07741c44", "078150f1", "099778bb", "0bc8ad93", "0862e8bf", "0e5e2d1a", "06878be2"
+  ],
+  "excludes_note": "all 28 units used anywhere in this arena to date (original 10 + Stage2's 10 + RAW_PROVENANCE fresh-replication's 8). _abs variants also excluded.",
+  "selection_rule": {
+    "inputs_used": ["question_type"],
+    "inputs_never_used": ["answer", "gold", "haystack content", "retrieval scores for these specific units",
+                          "prior correctness on any system"],
+    "method": "deterministic category quota (2 multi-session, 1 temporal-reasoning, 1 knowledge-update, 1 single-session-user -- 5 total, exploratory sizing per the campaign's <$0.30-preferred budget), first-by-question_id-sort within category after exclusion.",
+    "size_note": "kept smaller than RAW_PROVENANCE's fresh-replication (8 units) because this is the EXPLORATORY stage for a new mechanism (contract preference <$0.30), not yet a replication -- a larger fresh sample is reserved for a later replication stage only if this exploratory test succeeds."
+  },
+  "threshold_calibration": {
+    "note": "MARGIN_THRESHOLD=0.10 (scripts/arena/retrieval_confidence_signal.py) was chosen from the natural spread of already-collected, already-paid-for retrieval scores on the 8 RAW_PROVENANCE fresh-replication units (range ~0.025-0.34, inspected via a zero-cost Memory.search() call against the already-persisted store -- search makes no LLM call) -- a round, non-degenerate cutpoint chosen BEFORE this mechanism's own probe set was selected, not fit to this experiment's own results.",
+    "reused_units_not_retested": "the 8 units used for threshold calibration are NOT reused in this experiment's own probe set -- they were already read/analyzed in depth for RAW_PROVENANCE and are excluded above."
+  },
+  "units": [
+    {"question_id": "09ba9854", "question_type": "multi-session"},
+    {"question_id": "0a995998", "question_type": "multi-session"},
+    {"question_id": "0db4c65d", "question_type": "temporal-reasoning"},
+    {"question_id": "08e075c7", "question_type": "knowledge-update"},
+    {"question_id": "118b2229", "question_type": "single-session-user"}
+  ],
+  "n_units": 5,
+  "candidate_pool_size_after_exclusion": 442
+}

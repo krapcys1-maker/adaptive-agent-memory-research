@@ -1,0 +1,90 @@
+--- a/mem0/memory/main.py
++++ b/mem0/memory/main.py
+@@ -431,7 +431,17 @@
+             # Determine if this should use agent memory extraction based on agent_id presence
+             # and role types in messages
+             is_agent_memory = self._should_use_agent_memory_extraction(messages, metadata)
+-            system_prompt, user_prompt = get_fact_retrieval_messages(parsed_messages, is_agent_memory)
++            # ARENA PATCH (hindsight-archaeology-v1 / arena-mem0-base-plus-x-v1):
++            # thread the caller-supplied historical timestamp (already present in
++            # `metadata` -- the arena's Mem0Adapter.ingest() has set it from the
++            # real session date since before this patch existed, it just never
++            # reached the extraction prompt) into the "Today's date is ..." line
++            # instead of leaving every fact grounded on the frozen, wrong,
++            # process-start real-world date. `metadata` is None for some call
++            # sites, hence the guard.
++            reference_date = (metadata or {}).get("timestamp") or None
++            system_prompt, user_prompt = get_fact_retrieval_messages(
++                parsed_messages, is_agent_memory, reference_date=reference_date)
+ 
+         # Ensure 'json' appears in prompts for json_object response format compatibility
+         system_prompt, user_prompt = ensure_json_instruction(system_prompt, user_prompt)
+@@ -1462,7 +1472,17 @@
+             # Determine if this should use agent memory extraction based on agent_id presence
+             # and role types in messages
+             is_agent_memory = self._should_use_agent_memory_extraction(messages, metadata)
+-            system_prompt, user_prompt = get_fact_retrieval_messages(parsed_messages, is_agent_memory)
++            # ARENA PATCH (hindsight-archaeology-v1 / arena-mem0-base-plus-x-v1):
++            # thread the caller-supplied historical timestamp (already present in
++            # `metadata` -- the arena's Mem0Adapter.ingest() has set it from the
++            # real session date since before this patch existed, it just never
++            # reached the extraction prompt) into the "Today's date is ..." line
++            # instead of leaving every fact grounded on the frozen, wrong,
++            # process-start real-world date. `metadata` is None for some call
++            # sites, hence the guard.
++            reference_date = (metadata or {}).get("timestamp") or None
++            system_prompt, user_prompt = get_fact_retrieval_messages(
++                parsed_messages, is_agent_memory, reference_date=reference_date)
+ 
+         # Ensure 'json' appears in prompts for json_object response format compatibility
+         system_prompt, user_prompt = ensure_json_instruction(system_prompt, user_prompt)
+--- a/mem0/memory/utils.py
++++ b/mem0/memory/utils.py
+@@ -8,20 +8,42 @@
+ )
+ 
+ 
+-def get_fact_retrieval_messages(message, is_agent_memory=False):
++#: ARENA PATCH (hindsight-archaeology-v1 / arena-mem0-base-plus-x-v1) --
++#: both extraction prompts hardcode "Today's date is {datetime.now():%Y-%m-%d}."
++#: as a module-level f-string, evaluated once at import time. For a corpus of
++#: 2022/2023-dated conversations ingested by a process that started in 2026,
++#: this anchors every relative-time expression ("yesterday", "next week") to
++#: the wrong real-world date, and there was previously no way to override it
++#: per call. `_with_reference_date` does a plain string substitution against
++#: that fixed line so a caller-supplied historical date can ground extraction
++#: instead. No other change to either prompt's wording or instructions.
++_TODAYS_DATE_LINE = re.compile(r"Today's date is \d{4}-\d{2}-\d{2}\.")
++
++
++def _with_reference_date(prompt: str, reference_date):
++    if not reference_date:
++        return prompt
++    return _TODAYS_DATE_LINE.sub(f"Today's date is {reference_date}.", prompt)
++
++
++def get_fact_retrieval_messages(message, is_agent_memory=False, reference_date=None):
+     """Get fact retrieval messages based on the memory type.
+-    
++
+     Args:
+         message: The message content to extract facts from
+         is_agent_memory: If True, use agent memory extraction prompt, else use user memory extraction prompt
+-        
++        reference_date: ARENA PATCH -- optional 'YYYY-MM-DD' (or any string the
++            prompt's few-shot examples don't otherwise constrain) to substitute
++            for the prompt's hardcoded "Today's date is ...". None preserves the
++            original, unpatched behavior exactly.
++
+     Returns:
+         tuple: (system_prompt, user_prompt)
+     """
+     if is_agent_memory:
+-        return AGENT_MEMORY_EXTRACTION_PROMPT, f"Input:\n{message}"
++        return _with_reference_date(AGENT_MEMORY_EXTRACTION_PROMPT, reference_date), f"Input:\n{message}"
+     else:
+-        return USER_MEMORY_EXTRACTION_PROMPT, f"Input:\n{message}"
++        return _with_reference_date(USER_MEMORY_EXTRACTION_PROMPT, reference_date), f"Input:\n{message}"
+ 
+ 
+ def get_fact_retrieval_messages_legacy(message):
