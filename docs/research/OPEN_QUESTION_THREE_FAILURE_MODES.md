@@ -1,13 +1,14 @@
 # Open question: three failure modes of long-term memory for LLM agents
 
-Public, self-contained English version of the standing research request `arr-2026-08-25-001`, written in Polish and kept in
+Adapted English version, dated 2026-11-01, of the standing research request `arr-2026-08-25-001`. The request itself is frozen; it is written in Polish and kept in
 [`Dokumenty dla Resherchera/RESEARCH_REQUESTS/2026-08-25_research_request_three-precise-failure-modes.md`](Dokumenty%20dla%20Resherchera/RESEARCH_REQUESTS/2026-08-25_research_request_three-precise-failure-modes.md).
-Status of the request: open, no candidate has been tested against it. Public version dated 2026-11-01.
+This version follows the request's three failure modes and four acceptance criteria. It adds, as of 2026-11-01: the Mem0 and Hindsight version caveat, the version re-baseline as a precondition (the frozen request and the V3 budget ledger's gating condition say nothing about versions), and the section "Our commitments". Those additions are drafts for the owner to confirm before this text is published anywhere.
+Status of the request: open, no candidate has been tested against it.
 
 ## Read this first: what the measurements are about
 
 * **Every measurement behind this question was taken on `mem0ai` 1.0.6 and `hindsight_api_slim` 0.9.1.** These are the pinned versions recorded in the
-  result files (`data/lab/arena/pilot-mem0.json`, `data/lab/arena/expansion-hindsight.json`) and in the licence map `REUSE.toml`.
+  result files (`data/lab/arena/pilot-mem0.json`, `data/lab/arena/expansion-hindsight.json`); the licence map `REUSE.toml` records the Mem0 pin only.
 * **Mem0 2.x rewrote extraction and retrieval.** Mem0 v2.0.0, released 2026-04-16, replaced the add/update/delete extraction with a single-pass,
   ADD-only extraction, made retrieval fuse semantic, keyword (BM25) and entity-matching signals into one score, and, in its own release notes,
   captures agent-generated facts as memories "for the first time" (source: the v2.0.0 release notes on GitHub). On 2026-11-01 the newest releases we saw were Mem0 2.2.1 (2026-09-25) and Hindsight 1.1.0 (2026-10-21).
@@ -23,7 +24,7 @@ The benchmark is LongMemEval-S (500 questions, MIT licence for the dataset card)
 ## Background in four sentences
 
 This project compared long-term memory systems for LLM agents, then tried a series of small, preregistered read-side and write-side changes to one of them (Mem0),
-each on a handful of fresh, gold-blind questions, and logged each one in [`MECHANISM_REGIME_EVIDENCE_LEDGER.md`](MECHANISM_REGIME_EVIDENCE_LEDGER.md) with its units, its counts and its verdict.
+each on a handful of questions (most later tests used fresh, gold-blind units; the first positive result, E3, reused a sample derived from an earlier 10-unit sample, which is why a fresh replication was run), and logged each one in [`MECHANISM_REGIME_EVIDENCE_LEDGER.md`](MECHANISM_REGIME_EVIDENCE_LEDGER.md) with its units, its counts and its verdict.
 Most closed entries are drops, failed calibrations or failed replication gates; negative results are kept in the ledger.
 The one mechanism that cleared this project's replication gate (Entry H: append the raw source session behind the top-1 retrieval hit to Mem0's compact context) did so on thin
 evidence: **2 repairs in 17 observable units with 0 regressions on legacy versions, and one of those two repairs is a question about what the assistant said (`0e5e2d1a`, type `single-session-assistant`),
@@ -97,7 +98,7 @@ We ask for at most one to three candidates in total, not per mode. Propose the s
 
 ## Our commitments
 
-* Units and arms are frozen before any run; unit selection is gold-blind; at most one repair attempt per mechanism.
+* Units and arms are frozen before any run; unit selection is gold-blind for new tests; at most one repair attempt per mechanism.
 * The first step of any accepted proposal is the version re-baseline described at the top.
 * We publish the result whichever way it falls, nulls and regressions included, with the library versions and n.
 * Small-n results are labelled exploratory. Nothing is called a general finding after one small sample.

@@ -52,7 +52,7 @@ Result files (selections, judged labels, token counts) live under [`../../data/l
 * [`RELATED_WORK_AND_POSITIONING_2026-08-24.md`](RELATED_WORK_AND_POSITIONING_2026-08-24.md): related work and where this project sits.
 * Budget ledgers, as JSON: [`../../data/lab/arena/autonomous-research-budget-v1/ledger.json`](../../data/lab/arena/autonomous-research-budget-v1/ledger.json), [`v2`](../../data/lab/arena/autonomous-research-budget-v2/ledger.json), [`v3`](../../data/lab/arena/autonomous-research-budget-v3/ledger.json).
 
-Some documents cite files that are not in this repository (for example a "frontier map" of the literature written in a parallel session). Where a link in an older report does not resolve, the file was not published; the ledger does not depend on it.
+Some documents cite files that are not in this repository (for example a "frontier map" of the literature written in a parallel session). Where a link in an older report does not resolve, the file was not published. The ledger's measured results do not depend on those files, but its external-support citations (in Entries D, F and H, and in the backlog) do, and they cannot be checked from this repository.
 
 ## The two Polish-named folders
 
@@ -60,7 +60,7 @@ Two folders next to the reports have Polish names and a one-way protocol between
 
 * [`Dokumenty dla Resherchera/`](Dokumenty%20dla%20Resherchera/) ("documents for the researcher"): the **outbox**, written by this project, in Polish. It states what the project can and cannot test now ([`TESTABILITY_ENVELOPE.md`](Dokumenty%20dla%20Resherchera/TESTABILITY_ENVELOPE.md)), the open gaps ([`OPEN_TESTABLE_GAPS.md`](Dokumenty%20dla%20Resherchera/OPEN_TESTABLE_GAPS.md)),
   the mechanisms already tried that should not be proposed again ([`DO_NOT_REDISCOVER.md`](Dokumenty%20dla%20Resherchera/DO_NOT_REDISCOVER.md)), and the requests themselves under [`RESEARCH_REQUESTS/`](Dokumenty%20dla%20Resherchera/RESEARCH_REQUESTS/).
-  Its own [`README.md`](Dokumenty%20dla%20Resherchera/README.md) explains the protocol. It is a snapshot, not a source of truth: the ledger wins any disagreement. The standing request, `2026-08-25_research_request_three-precise-failure-modes.md`, is the Polish original of [`OPEN_QUESTION_THREE_FAILURE_MODES.md`](OPEN_QUESTION_THREE_FAILURE_MODES.md); read the English one.
+  Its own [`README.md`](Dokumenty%20dla%20Resherchera/README.md) explains the protocol. It is a snapshot, not a source of truth: the ledger wins any disagreement. The standing request, `2026-08-25_research_request_three-precise-failure-modes.md`, is the frozen Polish request; [`OPEN_QUESTION_THREE_FAILURE_MODES.md`](OPEN_QUESTION_THREE_FAILURE_MODES.md) is an adapted English version (its header lists what it adds), and that is the one to read.
 * `Dokumenty z Resherchera/` ("documents from the researcher"): the **inbox**, written by the external agent, in the opposite direction. It is **not tracked** in this repository, so links to it from some documents and from project-memory records do not resolve here.
 
 ## Status words you will meet
