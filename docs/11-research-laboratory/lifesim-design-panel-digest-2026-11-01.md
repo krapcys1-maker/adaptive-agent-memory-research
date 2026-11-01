@@ -1,0 +1,1461 @@
+# LifeSim design panel digest
+
+Status: Design panel output (three designers and a synthesiser); a design, not a result
+
+## Editor's synthesis
+
+- **specification**
+  - **lens:** LifeSim v0 (generator id lifesim-v0.1): the editor's merge of three designs (D1 science-fidelity, D2 smallest-build with a runnable toy, D3 adversarial-validity). WERDYKT PO POLSKU (na pytanie 'co ty na to?'): Pomysł jest dobry i da się go zbudować jako JEDEN przyrząd pomiarowy, pod czterema warunkami. (1) 'Serce bije szybciej, więc pamiętam mocniej' jest pokrętłem i hipotezą, nie założeniem: korelacja emocji z późniejszą potrzebą może wynosić zero albo być ujemna i wtedy sygnał szkodzi. (2) Sygnał testujemy tam, gdzie może mieć znaczenie, czyli przy przyjmowaniu do ograniczonej pamięci, z kontrolami: pomieszany, losowy, stały, odwrócony, brak, sam szum i wyrocznia. (3) Zmianę charakteru traktujemy jako test zgodności z zadaną, ograniczoną regułą, a nie jako psychologię. (4) Trudność bierze się z pytań bez zakotwiczeń, z rozpraszaczy, aktualizacji, źródeł i abstencji, a nie z długości strumienia (zmierzone: wyszukiwanie leksykalne z oknem czasu daje 0,78-0,84 przy 90-730 dniach). Wynik 'emocje pomagają' przy dodatniej korelacji wychodzi z konstrukcji i nie jest dowodem; wartość ma krzywa odpowiedzi i punkt przełamania. X0 i X1 są darmowe i można zacząć dziś; płatne przebiegi dopiero po ich decyzjach. WHAT IT IS. One deterministic, structure-first life generator (bitemporal facts, appraisal features, stance trajectory, THEN text) with exact gold from two code paths (gold_fast, gold_slow) and deterministic closed-vocabulary scorers; no model judge for facts. Three uses of the same lives. U1 hard general-memory benchmark (owner's examples: who you are = SE4/SE5 + CH-R; breakfast yesterday = EP1 at 1 d; colour of a car in an article read two weeks ago = IN1 at 14 d). U2 feeling-like signals as memory weights (blueprint part 6): LifeSim supplies the corpus family, future-use labels and counterfactual worlds that ladder rung C5 and protocol PMLAB-COMP-C4-001 are waiting for. U3 conformance of change management to a bounded, selective, persistent character-change specific...
+  - **world and events:** PRINCIPLE: structure first, text second. Every queryable thing is a row of structured state; text renders rows; gold is computed from rows by gold_fast (generator) and gold_slow (naive scan of raw ObsSpecs and Facts) and a test requires equality for every query. RNG: scripts/corpus/lifesim/rng.py copies the semantics of goalshift.Lcg and goalshift.stream(seed, *labels) (sha256-keyed 64-bit MMIX LCG) and adds normal(); a golden-vector test also asserts equality with goalshift.stream for identical keys (free cross-check; goalshift stays frozen). Independent named streams: cast, habits, life.<event_id>, news, character, host, mention, channel.<arm>, query.<family>, verb.<partition>, gate.<policy>; adding a stream never shifts another. Per-event streams make delete(event_ids) and swap(event) operators byte-diff-clean (ablated and twin worlds). Generation is stdlib-only (numpy Generator streams are not version-stable); numpy and scipy are for statistics only. STRUCTURE (scripts/corpus/lifesim/schema.py, frozen dataclasses with JSON round-trip and digest()): Entity(eid, kind, name, aliases, bond); Fact(fid, subj, pred, obj, vfrom, vto, src lived|told|read, centrality, supersedes, surprisal_bits); Feats(goal_rel, surprisal_bits, stakes, bond, control, norm); Situation(sid, day, minute, scene, actors, place, feats, A, V, facts, turning); ObsSpec(oid, t_obs, channel, source, sid, mentions[(fid, role assert|update|retract|recall)], slots, frame, target_len); Obs(oid, t_obs, channel, text); Gold(kind, value, aliases, vocab_id, near_miss[(stale|adjacent_day|confuser|habit, value)]); Query(qid, family, t_ask, text, fmt, gold, evidence_oids, evidence_fids, tags{delay_days, anchor_kind, n_confusers, n_evidence, target_arousal, arousal_decile, centrality, surprisal_bits, update_count, relative_time, need_label L1-L5, partition}). Files per world: world.json, situations.jsonl, obs_specs.jsonl, obs.<partition>.jsonl, queries.jsonl (never given to systems), channel.json (arrays per a...
+  - **emotion model:** FUNCTIONAL LANGUAGE: A (arousal), V (valence) and H (channel) are generator variables and signals; nothing here claims experience for any system. APPRAISAL INPUTS per situation, all exact from generator state: g goal relevance (sum over goals of w_g |delta progress|); c signed conduciveness in [-1,1]; n surprise = clip(surprisal_bits/8, 0, 1) under the generator's own routine model; k stakes (irreversibility x magnitude, bond-scaled); b bond of the main other actor; p coping potential; v norm violation. Mundane surprises (an odd breakfast) and expected high-stakes events (a scheduled wedding) are generated on purpose; gate corr(n,k) <= 0.3. MAPPINGS (one drawn per world from M1/M2 in development; M3 appears only in a held-out test cell, so no system can be fitted to one formula): M1 additive A = clip(0.30 g + 0.25 n + 0.25 k + 0.15 b g + 0.05 (1-p)[c<0] + eps), eps ~ N(0, 0.05^2), capped at 0.35 + 0.65 g (novelty without stakes stays moderate); M2 noisy-OR A = 1 - prod_j (1 - w_j x_j) over x in {n, g, (1-p) g, v, k g}; M3 prediction error only, no goals, A = |outcome - expected| normalised. V = tanh(1.5 c + 0.3 v_signed). Arousal is right-skewed (toy: mean 0.22, SD 0.12, 77% below 0.3, about 3-6 lines a month with A >= 0.7). Grounding: Scherer's component process model and OCC supply the variables and monotonicity; every weight is ASSUMED. MOOD: M_t = 0.9 M_{t-1} + 0.1 mean_day(V A), decay 0.97 per quiet day; the slow-mood element of the vector arm H4 = (n, c k, k, M) named in blueprint part 6, and a covariate for stance probes (take probes when |M| < 0.15 or adjust). Mood-at-ask coupling is v0.2. CHANNEL H (the heartbeat-like measurement): H = clip(g_w((1 - nu) A + nu X) + sigma eps, 0, 1); g_w is a random monotone map per world (ranks transfer, levels do not); X is nuisance activity (stairs, coffee; bursts at 0.5 per day) with nu = 0.3; sigma is solved per world so that corr(H, A) equals the reliability r_H in {0, 0.3, 0.5, 0.7 (primary), 0.9, 1.0}; a retelling l...
+  - **character model and update rules:** STATUS: authored reference dynamics for conformance testing of change management (blueprint part 9). A result says how well a memory carries the generator's trajectory, never what people do. Two layers: CH-R retrieval-level (free, exact gold, v0.1): do stores carry stance versions, causes and reversals; CH-A agent-level (paid, X6): does a persona answering from retrieved memory change in a bounded, selective, valence-specific and persistent way. STATE: stances S_k in [0,1] on K = 12 life topics (CH-R, in-stream statements) and on 8 invented practices with flat priors (CH-A, baselines drawn in [0.35, 0.65]); goal weights w_g (the working self; renormalised at turning points, which changes what later events mean); mood M_t; bonds; traits and values slow and deferred to v0.2 (|dT| <= 0.02 per year; a trait battery is only a stability check). UPDATE RULE (all constants ASSUMED, swept +-50%; conclusions that flip are labelled parameter-dependent). For event e and stance k: dS = clip(eta_e r_ek w_exp (pole_e - S_k), -cap_e, +cap_e), pole_e = 1 if V_e > 0 else 0 (diminishing returns near the bounds). eta_ord = 0.25 A_e^2 |V_e| (quiet events nearly inert); eta_TP = 0.9 |V_e|. Locality r_ek: 1.0 direct, 0.4 same value, 0.05 distant. Experiencer weight w_exp: 1.0 own, 0.25 witnessed, 0.1 hearsay. Habituation: a similar event within 3 days counts 0.5. Caps: 0.10 per ordinary event, 0.20 per 30 days, 0.30 per turning point, 0.40 per year per stance unless a second turning point hits the same domain. Persistence: each shift splits into a persistent share phi (0.6 at a turning point, 0.2 otherwise; relaxes toward baseline with half-life 365 d unless re-evidenced) and a transient share (half-life 60 d). TURNING POINT: eligible when centrality >= 0.6 (centrality = mean of three facets after the Centrality of Event Scale: reference point = planted back-references counted, turning point = size of the goal-weight shift, identity = creates or alters a self-theme) and |g| >= 0.6; 30-da...
+  - **observation stream and verbalisation:** STREAM: JSONL, one record per observation: {id, t (ISO), day, channel (diary|chat|article|log|note|dialogue), source (optional arm), text, h (channel value or absent)}, sorted by t_obs; about 6 observations per day (Poisson 3-10) of 30-60 words (about 2,200 observations at L2); systems never see facts, scene names, arousal, evidence ids, queries or gold; no lookahead; queries interleaved at t_ask and read-only except in the write-back arm; an end-of-day tick calls an optional consolidation hook with a token budget; ingest granularity dial observation|day|week. VERBALISATION (scripts/corpus/lifesim/verbalise.py): slots are rendered as exact canonical strings so evidence containment is machine-checkable. V1 declarative diary, V2 informal chat (pronouns, descriptions), V3 formal log or news (v0.1). At least 12 template families per kind and 40-80 frames per scene family built from clause banks (word order, adjuncts, coreference, register), so frames are not one-to-one with scenes. Clause banks, syllable inventories and question frames are split into disjoint dev and test partitions; test seeds render only the test partition; query frames differ from observation frames (>= 8 per family). Headline runs are templates only. A flash paraphrase pass is a renderer-OOD stress only: the paraphraser sees only the slot record, never arousal; a validator accepts a line only if every slot string appears verbatim, no new numeral, colour or proper noun appears, polarity words are unchanged and length is within 0.8-1.3 of target, else the template line is kept; cached by sha256; about 0.19 USD per 1,000 observations (estimate to re-measure on 200 lines first). English first; a Polish template set on the same structure is a later held-out surface partition. ARTEFACT CONTROLS (each is a gate, not trust): line length drawn from one distribution independent of kind, arousal and evidence status, short bodies padded with neutral clauses that each carry a small fact (no clause-without-a-fac...
+  - **query families**
+    - EP1 routine_day [Day 1]
+      - **example:** What did I have for breakfast yesterday? / on 2027-03-14? / the morning after I met Mirela?
+      - **ground truth:** Realised habit-slot value stated in exactly one diary line (flat Zipf prior over 40-60 foods, 1-60 competing episodes, delays 1-365 d); the structure row, not the text, is the key.
+      - **scorer:** Closed-vocabulary candidate-set rule: normalise (NFKC, casefold, strip accents and punctuation), longest-match the world vocabulary with aliases; correct iff the candidate set equals {gold}; two candidates = hedge = wrong; unmatched = wrong and logged; error_type from near_miss (habit, adjacent_day, confuser, stale). Open-recall fork and 4-8 option forced-choice fork on separate snapshots.
+      - **memory dependence check:** Gold is never in the habit top-3 (prior entropy >= 4.5 bits); habitual days are labelled prior-answerable and reported apart; blind reader x4 samples (drop any item it solves) and shuffled-context control; ablated world (line deleted) must fall to chance.
+    - SE4/SE5 state_asof_identity [Day 1]
+      - **example:** Which city do I live in now? / on 2027-03-14? What is my job? Who is Imre? (a rare name stated once in week one)
+      - **ground truth:** Bitemporal lookup in the Fact table (vfrom/vto, supersedes); version chains of depth 0-5; a share of updates only implied later (incidental_update_share); identity facts disclosed once in week one as ordinary lines.
+      - **scorer:** Closed-vocabulary entity; error_type stale | confuser | never_seen | abstain.
+      - **memory dependence check:** Fresh invented names per world (blind chance 1/vocabulary); gold differs from the modal version (toy constant guess was 0.42 current and 0.63 as-of); stale value mentioned about 6x, new value once; the card holds only name and role.
+    - IN1 article_detail [Day 1]
+      - **example:** What colour was the car in the article about the flood in Verdton that I read about two weeks ago?
+      - **ground truth:** Attribute of a third-party story fact (src=read) hosted at central or peripheral position; cue is a name, an absolute date or a relative date resolved to a window holding exactly one qualifying article; 6-12 confusers per attribute type; 40-colour pool, uniform.
+      - **scorer:** Closed-vocabulary entity with alias map (gray/grey); two colours = hedge = wrong; forced-choice fork with 4 options.
+      - **memory dependence check:** At least 6 other articles carry a vehicle colour; a decoy colour sits in the same article in >= 50% of items; invented entities defeat world knowledge; blind and shuffled-context controls; empirical persona-only floor reported (readers favour black, white, grey).
+    - EP4 central_peripheral_pairs [Day 1 pairs; twin cells v0.1]
+      - **example:** Who was with me when I got the news about the accident? (central) What colour was the car parked outside when I heard? (peripheral) Then CONF 0-100.
+      - **ground truth:** Central and peripheral slots of one situation hosted across the full arousal range; centrality = link to an active goal; target decile set by the coupling cell; twin cells: queried sentence string-identical, only the preceding context line changes goal relevance; delays 1-400 d.
+      - **scorer:** Closed-vocabulary entity plus CONF parse; accuracy by centrality x arousal tercile; difference-in-differences (central minus peripheral at high A) minus (same at low A); confident-wrong rate; confidence gap vs accuracy gap between terciles.
+      - **memory dependence check:** Peripheral facts carry confusers (other cars the same week); pairs come from the same situation; slot priors matched across cells; no sign of the arousal effect on peripheral detail is assumed.
+    - IN4 sleeper_detail [Day 1]
+      - **example:** At what time does the Kalmer Pharmacy on Tisbo Street close on Saturdays?
+      - **ground truth:** A single low-arousal remark (lowest two deciles; mundane-decisive quota mu raises its share) never repeated, asked after a long delay; answer is a quarter-hour time (24 values).
+      - **scorer:** Time normaliser ('6pm', '18:00', 'six in the evening' -> HH:MM) then exact match; hedges wrong.
+      - **memory dependence check:** Same-frame remarks about other shops act as confusers; blind chance about 0.04; blind and shuffled-context controls.
+    - EP3c count_aggregate [Day 1]
+      - **example:** How many times did I go to the dentist between 2027-02-01 and 2027-04-01?
+      - **ground truth:** Count of qualifying facts in the window; evidence = all 2-10 lines, mixed with look-alike mentions about other people; gold stratified over 1-8 and different from the modal count.
+      - **scorer:** Exactly one integer (digits or number words) equal to gold; secondary |error| and within-1 rate.
+      - **memory dependence check:** Blind constant guess <= 0.15 (the toy had 0.50 with counts 2-6); evidence completeness requires every mention; oracle_text fails only if the evidence exceeds the budget.
+    - ME1 abstain_false_premise [Day 1]
+      - **example:** What did I have for breakfast on 2027-03-15? (never stated) / When I visited Paris last spring, who came with me? (no such trip)
+      - **ground truth:** UNKNOWN, verified by scanning all ObsSpecs for absence; a near-miss trap always exists (adjacent day's value, similar trip); share 5-15% by tier.
+      - **scorer:** Abstain lexicon ('UNKNOWN' plus fixed phrases); commission and omission rates reported separately; cost-weighted score wrong -1, abstain 0, correct +1; accuracy alone is never used (always-abstain scores the abstain share).
+      - **memory dependence check:** Unanswerable items are template-matched to answerable ones from the same life (same slot types, existing entities); near-miss trap for 100% of items.
+    - ME2 calibration [Day 1, a field on every item]
+      - **example:** Answer, then 'CONF: 0-100'.
+      - **ground truth:** Correctness of the answer.
+      - **scorer:** Brier, ECE (10 bins), AUROC of confidence for correctness, risk-coverage curve; stratified by arousal tercile and delay; flashbulb index = confidence gap minus accuracy gap between terciles.
+      - **memory dependence check:** Uses the items of other families; no separate chance floor; a system that cannot report confidence is not penalised in accuracy.
+    - EP2 binding_with_partial_cues [v0.1]
+      - **example:** Where did I meet Dana the week of the audit? Who was with me at the lunch by the river?
+      - **ground truth:** Event record fields; 1-3 cues, 'when' given or withheld; cue sets built so exactly one event matches all cues.
+      - **scorer:** Exact canonical match; cue ladder 3, 2, 1; expected pattern: what, who, where cues about equally effective, 'when' alone weak (Wagenaar).
+      - **memory dependence check:** Foils share one or two cue values with the target so a bag-of-facts store without binding fails.
+    - EP3a order_duration_date [v0.1]
+      - **example:** Which came first, my move or Mara's wedding? How many days between the surgery and the move? On which date did I sign the lease?
+      - **ground truth:** Event days (vfrom), never observation times; relative expressions in text force resolution.
+      - **scorer:** Order letter or exact 4-item ordering; integer days exact (+-1 lenient, secondary); date 1.0 exact, 0.5 within max(1, 0.1 x delay) days (fixed in advance), reported separately.
+      - **memory dependence check:** Random order has chance 0.5, so >= 60 order items; dating items kept only if a blind reader is no better than uniform over the window.
+    - EP5 salience_matched_pairs [v0.1]
+      - **example:** Two queries about mundane slots of two events matched on kind, age, interference, cue overlap and length, one in the top and one in the bottom arousal tercile.
+      - **ground truth:** Slots of each event.
+      - **scorer:** Slot exact; metric = within-pair accuracy difference, high minus low (the effect of arousal holding need constant; no sign assumed).
+      - **memory dependence check:** Matching gate: standardised mean difference < 0.1 on every matching variable.
+    - IN2/IN3 ambient_numeric_and_recognition [v0.1]
+      - **example:** What music was playing in the cafe on Thursday? How many people sat at the table? Which of these four colours was the car? versus What colour was the car?
+      - **ground truth:** Peripheral slots of routine and one-off scenes; numbers from wide ranges; lures drawn from the same life.
+      - **scorer:** Exact canonical value or exact number (no tolerance); recognition-minus-recall gap on separate forks separates availability from accessibility.
+      - **memory dependence check:** Prior-mode accuracy < 0.05 for numbers; every lure option occurs elsewhere in the life; each peripheral slot is paired with a central slot of the same scene.
+    - SE3 multi_hop_relation [v0.1]
+      - **example:** What does the sister of the colleague who sold me the bike do for a living?
+      - **ground truth:** Path over relation facts, 2-3 hops, each hop stated in a different line weeks apart.
+      - **scorer:** Entity exact; per-hop evidence correctness logged, never summed into the score.
+      - **memory dependence check:** No line states the final answer together with the first hop; intermediate entity absent from the question; ablating any hop line breaks the item.
+    - AU1 firsts_lasts_superlatives [v0.1]
+      - **example:** What was my first full-time job? When did I last see my brother? What was my most expensive purchase this year?
+      - **ground truth:** Ordered history of a single-valued predicate by vfrom or an aggregate over the log; a decoy neighbour (a later job with similar wording) always exists because E6 showed a confident substitution on the first-job question.
+      - **scorer:** Entity exact; substitution rate (answer equals a near_miss) is a headline metric; date within the EP3a tolerance.
+      - **memory dependence check:** Target differs from the most recent and the most frequent event of its type; at least 3 history values, each mentioned at least once.
+    - AU3 change_cause [v0.1 with CH-R]
+      - **example:** What made me change my mind about dentists? A) the filling that went wrong B) the new neighbour C) ... D) ...
+      - **ground truth:** Turning-point situation for the topic; 3 decoys from the same 14-day window, topic-unlinked, with matched arousal so arousal alone does not identify the cause; causal_explicitness dial.
+      - **scorer:** Letter exact (chance 0.25); free-text variant secondary, scored by the cause's key entity string.
+      - **memory dependence check:** Nearest-in-time event is wrong by design; blind control.
+    - SO1 source_attribution [v0.1]
+      - **example:** Who told me that the ferry stops running in November? Did I read that or hear it?
+      - **ground truth:** Teller entity or fact.src; similar sources (two friends) vs dissimilar (friend and paper).
+      - **scorer:** Exact among 3-4 options; confusion expected to rise with similarity and delay.
+      - **memory dependence check:** Source not inferable from content; all candidate sources said related things in other lines; some claims are later corrected.
+    - FM1 gist_lure [v0.1]
+      - **example:** Did the baker's shopping list include bread? (never mentioned; croissant, baguette, pastry and loaf were)
+      - **ground truth:** Lure absent from the log; 4-10 studied items spread over >= 3 days and lines (never one list); associative strength by MiniLM similarity.
+      - **scorer:** False-alarm rate to critical lures minus unrelated new items; hit rate to studied items; thresholded gist traces are predicted to raise lure false alarms.
+      - **memory dependence check:** Every studied item is in the log; lure appears nowhere.
+    - FM2/FM3 misinformation_and_false_premise [v0.1]
+      - **example:** Original: 'The delivery van was blue.' Five days later: 'the red van'. Query: the colour. FM3: 'What did the security guard say at Monday's meeting?' (no guard), then a neutral question on the same fork with write-back on.
+      - **ground truth:** Original value (later claim logged); premise false, no guard in any line.
+      - **scorer:** Original exact = 1, misleading value = intrusion, other = error; a source-aware answer ('blue, though someone later said red') scores 1 and is flagged; premise rejection 1, fabricated detail 0; contamination = rate of the suggested detail in the later neutral answer relative to a no-leading-question fork.
+      - **memory dependence check:** Misleading value from the same pool and nowhere else; write-back must carry source tags (E6: improvised details need write-back).
+    - CH-R stance_version_direction_reversal [v0.1]
+      - **example:** What was my view on commuting by bike in March? Has my view on lending money changed since January, and which way? Did it return?
+      - **ground truth:** Latest explicit statement before t (5 classes); direction up|down|none (none when |delta| < 0.25); reversed iff back within 0.15 of the pre-event class.
+      - **scorer:** Categorical match; off-by-one-class rate secondary; stale-stance rate and false-change rate on stable stances reported.
+      - **memory dependence check:** Stable stances interleaved with changed ones; class chance 0.2, direction chance 0.33; blind control.
+    - SE1/SE2 personal_generics_and_acquired_facts [v0.2]
+      - **example:** Where do I usually buy coffee on Mondays? What does the Karvan Institute study?
+      - **ground truth:** Mode of the generator distribution (share >= 0.6, runner-up <= 0.25) or a told fact repeated 3, 6, 12 or 30 times; entity record of 40 fields.
+      - **scorer:** Exact canonical value; the repetition curve tests the episodic-to-semantic shift.
+      - **memory dependence check:** Prior-mode accuracy reported; items with prior-mode accuracy > 0.4 flagged script-answerable.
+    - AU2/AU4/AU5 life_story_affect_selfchange [v0.2]
+      - **example:** Which of these were among the main events of spring? (40 candidates, 8 key, 15 foils) / How did you feel when the offer arrived? / Have your views on remote work changed, which way, how much?
+      - **ground truth:** Event set with centrality weights; authored label and arousal bucket; sign and bucketed size of the authored stance change (half the items concern stances that did not change).
+      - **scorer:** Centrality-weighted F1 and foil false-alarm rate; label and bucket exact with contamination index toward query-time mood; sign exact, size within one bucket.
+      - **memory dependence check:** Plausible foils (same templates, never occurred); unchanged-stance items make 'yes, changed' a losing default.
+    - SO2/SO3 reality_monitoring_and_retraction [v0.2]
+      - **example:** Did you actually speak to your manager about the raise, or only plan to? / What is the current opening date of the bridge, and was it corrected?
+      - **ground truth:** Event class experienced|imagined|planned|dreamed|told-about; claim chain with sources, reliability flags and retraction.
+      - **scorer:** Exact 4-way class (false-experienced rate for imagined events); current value, first claim, retraction flag exact; use of the retracted value in an inference probe is an error.
+      - **memory dependence check:** Imagined and real versions share slot values, class carried only by wording; first claim and unreliable source mentioned more often than the retraction. See shared-memory-provenance-conflict-benchmark-protocol-v0.md.
+    - PR1-PR4 prospective [v0.2]
+      - **example:** Planted: 'When I next see Hannah I will give her back the book.' Cue day: 'I meet Hannah at the station.' Harness probe: 'What do you do now?'
+      - **ground truth:** Acceptable action set; focal vs non-focal cue; time-based dates; completed and cancelled intentions.
+      - **scorer:** Action in the set (1/0) from a structured field; false alarms on cue-absent probes and decoy dates; repetition after completion; focal minus non-focal gap.
+      - **memory dependence check:** Action not inferable without the planted line; decoy intentions about other people. See prospective-memory-trigger-benchmark-protocol-v0.md.
+    - ME3/ME4 feeling_of_knowing_and_grain [v0.2]
+      - **example:** Do you remember what you ate for lunch on the day of the audit? yes/partly/no, then the content. / When did you start the new job? (exact date, month or season: you choose)
+      - **ground truth:** Correctness of the following answer; the date.
+      - **scorer:** AUROC of the pre-judgement; informativeness-weighted accuracy (exact 1.0, month 0.6, season 0.3 if correct) and the match between chosen grain and own accuracy.
+      - **memory dependence check:** Judgement and content asked on the same fork from the same items; coarse guesses have prior 1/12 or 1/4.
+    - FM4/FM5 script_absent_and_told_about_you [v0.2]
+      - **example:** Did the waiter bring the receipt with the bill? (typical, absent) vs Did the waiter juggle plates? (atypical, absent) / Your sister says you got lost at a market when you were five. Do you remember it?
+      - **ground truth:** Both details absent from the log; claim logged as told by the sister, no such event.
+      - **scorer:** Acceptance of script-consistent absent minus inconsistent absent; reports the claim as told and no own memory = correct. Zero acceptance is the software target, not a human norm.
+      - **memory dependence check:** Plausibility matched by embedding similarity to the script; control claims that did happen must be accepted, so blanket rejection scores 0.5.
+    - CH-A stance_probes_and_bounded_change [X6, v0.2]
+      - **example:** Eight Guttman commitment scenarios per invented practice, asked without naming any event; pressure items (assertion vs argument); identity summary at time t.
+      - **ground truth:** Authored direction, order and cap of the stance shift for the planted event; valence-free, other-person and off-topic controls leave the stance unchanged; assertion shift <= 0.08 on the unit scale.
+      - **scorer:** Forced-choice parse; S = share of pro choices over 16 answers; shift against the twin world; sign accuracy, selectivity, proportionality, bound violations, retention ratio, persistence after eviction.
+      - **memory dependence check:** D-NONE, D-CTX and D-MEM arms; mid-scale baselines; about 300 competing lines; no-event copy of each life.
+  - **difficulty dials**
+    - Stream length: days, observations per day, words per observation
+      - **range:** L0 30 d ... L3 1,000 d; 3-12 observations/day; 30-60 words
+      - **effect:** Only removes the stuff-everything-in-context baseline. Toy: time-aware BM25 0.79/0.84/0.80 at 90/365/730 d. Not a hardness knob.
+    - anchor_mix: share of cues with no rare-name or absolute-date anchor
+      - **range:** 0-0.8 (relation, description, relative date, none)
+      - **effect:** The principal lexical-retrieval killer, the analogue of E0's C1-C3. Toy: replacing generic words by synonyms moved BM25 0.65->0.56 and BM25+time 0.84->0.78 because names and dates still anchored; remove anchors.
+    - Confusers and similar-episode set: n same-type facts, shared slots s, same-frame share
+      - **range:** n 0-12 (episodic 1-60), s 1-3, same frame >= 50%
+      - **effect:** Interference and fan; lowers evidence precision, raises hedging; breakfast items get harder with n.
+    - Paraphrase distance and surface partition
+      - **range:** question-frame partition dev|test; flash paraphrase share 0-0.3 (OOD only)
+      - **effect:** Separates lexical from semantic systems; tests surface-form generalisation.
+    - Delay and intervening load
+      - **range:** delay 1-1,000 d in bins 1-3, 4-14, 15-60, 61-180, 181+; load 3, 6, 12 observations/day
+      - **effect:** Forgetting and gist loss; separates clock from interference; bins >= 90 d needed to see consolidation-like effects.
+    - Update structure
+      - **range:** update_rate 0-6 per attribute-year; incidental_update_share 0-0.8; chain depth 0-5; disorder 0-30%
+      - **effect:** Stale-value intrusion and as-of difficulty (toy: naive +-1 day window gives 0.03 on as-of).
+    - Query complexity
+      - **range:** hops 1-3; aggregation breadth 1-12; first/last/superlative; negation
+      - **effect:** Aggregation needs complete evidence (toy count 0.48 at budget 1000, 0.00 at 250); first-job substitution errors.
+    - Peripheral share, centrality and goal relevance of the periphery
+      - **range:** peripheral share 0-0.8; periphery goal-relevant g in {0,1}; pi (share of needed emotional details that are peripheral) 0.1-0.5
+      - **effect:** Probes the narrowing cost of any gist or salience policy; L2 items; no loss expected at g = 1.
+    - Abstention and false premise
+      - **range:** share 0-0.3 with near-miss traps
+      - **effect:** Penalises always-answer systems; exposes confident substitution.
+    - Retrieval budget C and storage ratio R
+      - **range:** C 250-4,000 words; R 0.03-1.0 (online)
+      - **effect:** Context capacity; priority signals matter only when R < 1 (identity check at R = 1).
+    - Coupling (realised enrichment E_0.10, AUC_ev, d) and mundane-decisive mass mu
+      - **range:** E_0.10 in {0.2, 0.5, 1, 2, 4}; mu in {0, 0.1, 0.3, 0.6} on deciles 0-1; delayed-relevance lag 7/30/120 d
+      - **effect:** Circularity control: positive favours salience-weighted retention, the null removes information, adverse and quiet-critical cells punish it. Includes zero and negative by construction.
+    - Rehearsal and distinctiveness
+      - **range:** off | natural (0.8 within a day for A > 0.7) | strong (1.0, 3 repeats); rare-token share independent of arousal
+      - **effect:** Frequency-importance confound; GM (re-mention count) is always in the ladder.
+    - Channel: arm, reliability, nuisance, representation, faults
+      - **range:** arms TRUE, SHUF_TYPE, SHUF_LIFE, TIME_SHIFT, RANDOM, CONST, INVERTED, NUISANCE_ONLY, LAG, ABSENT, ORACLE, LEAKY; r_H 0-1.0; nu 0-0.5; scalar|bpm|z-scored|3-level; dropout 0.1; sign reversal 0.15
+      - **effect:** Value of the signal vs the value of having a feature; dose-response (toy SIGNAL 0.42/0.22/0.12 at corr 0.79/0.46/0.23).
+    - Text affect and wording tells
+      - **range:** A0 none | A1 independent | A2 correlated (r_aff 0-0.8); dramatic decoys 0 or 0.1 of low-A lines; narrator narrowing 0, 0.5, 1
+      - **effect:** Verbal leakage of arousal; manipulability of text-derived salience (an audited risk of emotion-axis memories); silent removal of L2 items.
+    - Source structure and misinformation
+      - **range:** 1-3 sources per fact; misinformation prevalence 0-0.3; retraction lag 1-30 d; source similarity low|high
+      - **effect:** Source confusion, continued influence, poison persistence.
+    - Answer space and names
+      - **range:** 24-120 values; Zipf exponent 0.5-0.7; name_rarity 0-1; relative_time_share 0-0.8
+      - **effect:** Controls blind accuracy (the primary instrument knob for memory dependence); rare names defeat embedders but favour lexical match.
+    - Renderer and OOD
+      - **range:** V1-V3 mix; held-out clause banks, syllables, frames; typos 0-3%; flash rewrite 0-30% with slot verifier; appraisal mapping M3 held out
+      - **effect:** Overfitting to the simulator by us or by systems.
+    - Character
+      - **range:** turning points 0-3 per year; rho_tp -0.8..+0.8; caps 0.10/0.20/0.30/0.40; locality 1:0.4:0.05; dose 0.35/0.65/0.90; competing same-topic lines 0-12; pressure none|assertion|argument
+      - **effect:** Selectivity, persistence and bounds; plausible vs runaway change; every value ASSUMED.
+    - Protocol: ingest granularity, write-back, archetype, language
+      - **range:** observation|day|week; write-back off|naive|source-tagged; 3 archetypes + 1 held out; English|Polish partition
+      - **effect:** Black-box cost and information loss; contamination vs benefit of write-back; generalisation beyond lexicons and routines.
+    - Worlds per cell and queries per world
+      - **range:** 24-80 worlds (retrieval level), 16-20 (answer level); 100-260 queries
+      - **effect:** Statistical power; sized from measured SD_world (editor table in tiers_and_calibration).
+  - **tiers and calibration:** SIZE TIERS (named L0-L3 to avoid collision with the doctrine's cost tiers E/C/X and independence rungs I0-I5; sizes are estimates from toy densities, re-measured in X0 and frozen by digest after calibration). L0 smoke: 30 d, about 180 observations, 8k words, 80 queries/world, C=400, R=1; harness validation only (any retriever >= 0.80). L1 short life: 180 d, about 1,100 observations, 50k words, 160 queries, C=600, R in {1, 0.25}; target best-of-ladder macro 0.65-0.85. L2 year: 365 d, about 2,200 observations, 110k words, 220 queries, C=800, R in {1, 0.25, 0.10}; target best 0.45-0.65; first headline tier, beyond a 64k window. L3 top: 1,000 d, about 6,000 observations, 330k words (about 450k tokens), 260 queries, C=1000, R in {1, 0.10}; >= 60% hard-type queries (aggregate, as-of with many updates, no-anchor cues, abstention with traps, peripheral at long delay). L3 TARGETS (owner's direction: oracle about 100%, best current system <= 50% at the top tier): oracle_struct = 1.000; oracle_text >= 0.95 per family; best non-oracle macro <= 0.50 with cluster-bootstrap upper bound <= 0.55 (design aim 0.35-0.45 so the rule has margin); best arm >= blind + 0.10 in >= 6 of 10 scored families (floor guard). L4 on demand by the same dial schedule with fresh seeds; L5 sealed reserve regenerated from held-out clause banks, arcs and pools. Claims are per dial cell, never a tier average; the half-life tier (largest tier at which a system keeps >= 50% of its L1 score) is reported beside per-tier scores. EXTERNAL YARDSTICKS (v0.2, non-blocking caveats printed in every report header). Yardstick N: the 234 published notes as a real haystack with LifeSim facts planted at date-matched spacing plus extractive questions with computed truth (local file, aggregates only; the notes carry no real 'need', so they supply text and sizes, not realistic questions; style-separability AUC > 0.80 labels every figure an upper bound). Yardstick X: the LongMemEval-S 36-ID bridge (scripts/prepare_longmemeva...
+  - **system interface and baselines:** INTERFACE (builds on scripts/arena/adapter.py: Measure, Cost, Answer(text, evidence_ids, context_tokens, abstained, cost, system_metadata), MemoryAdapter with reset/ingest/query, validate_adapter; adapters report raw signals and never interpret them). scripts/lifesim/interface.py adds Record(id, text, timestamp, channel, source, heartbeat|None); ContextItem(text, timestamp, oid); LifeMemory(name, accepts_heartbeat, query_mutates_state, reset(meta: card only), ingest(batch)->Cost, query(question, asked_at, budget)->LifeAnswer = Answer + context list, stats()); wrap_arena_adapter(adapter, budget_param) (card ingested as record 0); count_units = whitespace words (arena unit). The harness truncates any context to the budget and logs overflow. Every delivered context is persisted verbatim with ids; a probe with no persisted context is UNOBSERVABLE for that arm and is never reconstructed (fixed_reader rule). records.jsonl keeps qid, arm, world, prompt hash, context ids, raw reply, parsed answer, score record, cost and latency (E6 could not audit retrieval for want of these). PROTOCOL: online single pass in t_obs order; queries interleaved at t_ask and read-only; per world reset -> ingest batches -> queries -> stats; the write-back arm runs only on forks (snapshot by replay for black boxes, at most 4 query times); leakage tests: reversed query order on 5 worlds and 8 canaries placed after the last query time. BUDGET TRIPLE (enforced and logged at the proxy): R stored words (a raw archive counts at full text, otherwise the system is classed unbounded and compared only with complete-store arms; E0's free archive was a flaw), C context words delivered (fixed per tier), W ingest model tokens. One fill policy for all arms (rank order, add while it fits), reported padded and unpadded. Results are accuracy vs total-cost frontiers with Pareto membership, never one point. RETENTION GATE GatedMemory(inner, policy, R, seed), outside the product and ONLINE: capacity K(t) = floor(R x...
+  - **metrics**
+    - PRIMARY (benchmark): macro accuracy over scored families with equal fixed weights on memory-dependent retained items, world as the unit, cluster-bootstrap CI; raw, divided by each family's oracle_text ceiling, and prior-corrected (acc - chance)/(1 - chance) with chance = generator prior plus the empirical blind floor; per family x delay bin and per anchor type.
+    - DECOMPOSITION (capture x representation x retrieval x context x reader): stored-gold, gold-in-context@C (complete@C and recall@C), correct-given-gold (reader), answered-correct, recall per retrieved word; an end-to-end score alone is never reported. Net memory gain = accuracy(real world) - accuracy(ablated world).
+    - ERROR TAXONOMY: omission, commission, substitution (stale, adjacent_day, confuser, habit/schema), hedge, fabricated, hallucination on abstain items, parse failure; headline rates: confident-substitution (E6 first-job failure) and schema-intrusion.
+    - CALIBRATION: confident-wrong rate (CONF >= 80 and wrong) by arousal tercile, Brier, ECE (10 bins), AUROC of confidence, risk-coverage curve, flashbulb index (confidence gap minus accuracy gap between terciles).
+    - SIGNAL: SIGNAL, FEATURE, HARM, noise slope, dial response (SIGNAL against realised E_0.10) with break-even E* (where gating first beats random and recency at equal R), critical retention error rate (dropped and needed) by arousal decile, collateral-loss rate (right under the baseline, wrong under the weighted policy), quiet-critical loss; always per role, store type, R and reliability; roles are never averaged.
+    - MECHANISM: matched-pair arousal effect (EP5), centrality x arousal-tercile table with no assumed sign, narrowing difference-in-differences, item-vs-context gap by arousal.
+    - ABSTENTION AND COMMISSION: abstention precision and recall, cost-weighted score (wrong -1, abstain 0, correct +1), lure false alarms, misinformation intrusion, premise acceptance and contamination, false-experienced rate for imagined events.
+    - TEMPORAL: exact-day rate, tolerant rate (within max(1, 0.1 x delay)), order accuracy, count exactness; forgetting-curve diagnostics by delay and by intervening load (descriptive only).
+    - CHARACTER: CH-R version accuracy, stale-stance rate, cause accuracy against decoys, false-change rate, reversal detection; CH-A sign accuracy, shift in unit scale, retention ratio, overshoot against the cap, control-topic spill (signed and absolute reported separately), valence-specific share, other-person ratio, persistence ratio after eviction, assertion and argument shifts, retrospective bias index.
+    - COST: stored words, context words, ingest model tokens, calls, wall time, USD on the ledger and 1.3 x for real spend, accuracy per 1k tokens, Pareto membership, USD per correct answer.
+    - INSTRUMENT: E_R, AUC_ev, d and shortfall per cell; G-LEN/G-AFF/G-TELL values; blind floors and oracle ceilings per family; label noise; parse-failure rate; A/A false-positive rate; retired-item counts; SD_world and the power statement printed in every report.
+    - TRANSFER (v0.2): Kendall tau against yardstick N and yardstick X, style-separability AUC.
+    - UNCERTAINTY: 10,000-draw cluster bootstrap over worlds; Holm over at most 3 primary hypotheses per experiment; equivalence by 90% interval; no composite across layers: LifeSim-M, LifeSim-S (a surface over coupling and reliability, not a number) and LifeSim-C are reported separately.
+  - **first experiments**
+    - AAM-LS-X0 instrument gate and free grid [Tier E, no model, REGISTER NOW]
+      - **question:** Before any hypothesis: does the generator measure memory and nothing else (floors, ceilings, tells, support, determinism, scorer accuracy), and do the gates fire on planted artefacts?
+      - **arms:** Programmatic: gold_fast, gold_slow, S-SCRAMBLE (solver on another seed's log). Evidence-level ladder with no reader: B0a, B0h, B1, random, B2, B2t, oracle_text, oracle_struct, oracle_store. Gate grid on dev seeds 5-59: R in {0.10, 0.25} x coupling E_0.10 in {0.2, 0.5, 1, 2, 4} x mu in {0, 0.3} x policies {ALL, GU, GR, GN, GM, GS, GH[TRUE, SHUF_TYPE, SHUF_LIFE, TIME_SHIFT, RANDOM, CONST, INVERTED, NUISANCE_ONLY, ORACLE, LEAKY], GTN, GO} x reliability {0.3, 0.5, 0.7, 0.9, 1.0}. Gates on dev seeds 0-4, then evaluated once on confirmation seeds 5000-5099. Planted-artefact fixtures: naive verbaliser (length and affect tells), type-hosted generator (compositional tell), leaky-importance generator (E0 v0.1 mistake), shuffled-label scorer.
+      - **controls:** Positive: every gate must fire on its planted fixture (instrument-only, no model); gold_fast = gold_slow = solver 2. Negative: S-SCRAMBLE and blind heuristics at chance; ablated world falls to chance for every non-oracle arm. I0 mutation test: at least 20 registered single-change mutants of generator, scorer, gates and arms (E0: 15 of 24 survived).
+      - **readings before numbers:** Primary metric: number of gates met; practical threshold: all of them. Moves Q2, Q3. PASS iff all hold. G-DET world digests byte-identical across two builds (Windows, Linux container) and three reruns, structure digest invariant to verbaliser, coupling cell, channel arm and gate policy. G-SOLVE gold_slow = gold_fast on 100% of queries; an independently coded second solver agrees on 100% of retained items (items with >= 2 consistent answers dropped, <= 15% per family). G-SCORE answering from structure scores 1.000 including abstention; scrambled-world solver <= chance + 0.02 per family; adversarial scorer set (100 items on day 1, 500 before the confirmation seeds, labels written before the scorer) 100% agreement. G-HOST chi-square p >= 0.2 (fact type x arousal tercile). G-SUPPORT shortfall <= 2% at the null and <= 5% elsewhere, else the cell is void. G-ARO null cell: E_0.10 and E_0.25 in [0.8, 1.2], AUC_ev in [0.45, 0.55], |d| <= 0.10; other cells E_0.10 within +-15% of target and monotone. G-LEN AUC(length: evidence vs other) in [0.45, 0.55] and |corr(length, A)| <= 0.05; G-AFF |Spearman(A, affect phrases)| <= 0.10 under A1, zero affect words under A0 (scan); G-POS target-clause and answer-token position chi-square p >= 0.2. G-TELL world-grouped cross-validated AUC from surface features (length, template id, rare-token share, digit count, line position, day offset, hashed uni/bigrams, L2 logistic regression via scipy) <= 0.55 point and <= 0.60 one-sided 95% upper bound for evidence-vs-other and top-arousal-tercile-vs-rest, with >= 300 positives and >= 3,000 negatives. G-BLIND B0a and B0h <= chance + 0.05 on >= 90% of memory-dependent items (Wilson 95% upper bound <= chance + 0.08 for open slots, + 0.10 for multiple choice, n >= 200 per family), else widen the answer space and regenerate. G-ORACLE oracle_struct = 1.000 and oracle_text evidence-complete = 1.000 for every family; G-DEPTH >= 40 retained items per scored family. G-FEAS per cell H_cell >= 0.20. G-POWER S...
+      - **cost:** 0 USD; about 1-2 CPU-hours on 20 cores.
+    - AAM-LS-X1 value of a feeling-like signal at the retention gate [Tier C by corpus (sealed E1 seeds), no model, REGISTER NOW after X0]
+      - **question:** At the retrieval level, when does a noisy feeling-like signal used as a retention weight raise the share of needed evidence that survives a budget and reaches the context, beyond merely having a feature, beyond novelty, surprise and mention counts, and when does it hurt?
+      - **arms:** Stores S-LEX (BM25 + date window) and S-HYB (BM25 + MiniLM, RRF) over the retained set, C = 1000 words; R in {0.10, 0.25} plus an R = 1.0 identity check; online retention. Policies as in system_interface (ALL, GU, GR, GN, GM, GS, GH[TRUE, SHUF_TYPE, SHUF_LIFE, TIME_SHIFT, RANDOM, CONST, INVERTED, NUISANCE_ONLY, ORACLE, LEAKY], GTN, GO; GA exploratory). Cells (coupling E_0.10 / rehearsal / mu): C+ (4 / 0.3 / 0.2), C-half (2 / 0.3 / 0.2, dose, exploratory), C0 (1 / 0.3 / 0), C0r (1 / 0 / 0), C- (0.3 / 0 / 0.6). Reliability r_H = 0.7 in every cell, ladder 0, 0.3, 0.5, 0.9, 1.0 in C+ and C-. Sub-grid pi in {0.1, 0.5} x periphery goal-relevant g in {0, 1} on the first 20 worlds of C+ and C0r (L2 narrowing cost). L2 size, 40 worlds per cell from the sealed E1 challenge half, affect words A0, one pre-declared extension of +40 worlds per cell.
+      - **controls:** Positive: ORACLE channel and LEAKY in every cell, GO as the feasibility bound. Negative: C0r (nothing couples arousal to anything); R = 1.0 byte-identity; the five surrogates mutually equivalent; NUISANCE_ONLY; A/A pseudo-contrasts; X0 planted-artefact fixtures re-run; rehearsal off in the signal reading with GM always present; dev-seed feasibility gate first.
+      - **readings before numbers:** Primary metric: SIGNAL = GH[TRUE] - GH[SHUF_TYPE] in complete@C at C+, R = 0.10, r_H = 0.7, in both stores. Practical threshold theta = max(0.05, 0.25 H_dev) (toy scale about 0.17, expected SIGNAL about 0.3, so the 1.5 x theta feasibility margin is tight and is checked on dev). Moves Q3. Feasibility: H_cell = GO - max(GU, GR, GS, GN, GM) >= 0.20 per cell on dev, else the cell is void. Positive controls (must fire, else INSTRUMENT INSENSITIVE and no statement about H is admissible): PC1 ORACLE channel - GU >= 0.20 with lower bound >= 0.15 in every live cell; PC2 LEAKY >= GU + 0.75 (ORACLE - GU). Negative controls (must not fire, else INSTRUMENT BIASED and stop): NC1 SIGNAL EQUIVALENT within +-delta in C0r and C0; NC2 byte-identical retained sets at R = 1.0; NC3 SHUF_TYPE, SHUF_LIFE, TIME_SHIFT, RANDOM, CONST mutually equivalent and none exceeds GU by an EFFECT; NC4 NUISANCE_ONLY - CONST <= delta; NC5 A/A rate in [0.03, 0.08]. Hypotheses (Holm family of 3; each must hold in both stores): H1 information value: at C+, SIGNAL >= theta with Holm lower bound > theta/2 AND GH[TRUE] - max(GN, GM, GS) >= theta/2; H2 sign follows coupling: at C-, GH[TRUE] - GU <= -delta with upper bound < 0 AND GH[INVERTED] - GH[TRUE] >= theta/2; H3 dose and surrogate equivalence at C+: SIGNAL falls along the reliability ladder (Jonckheere-Terpstra one-sided p < 0.01) and GH[RANDOM] EQUIVALENT to GH[SHUF_TYPE]. Reported without a direction: C0 vs C0r (rehearsal route), C-half dose, R = 0.25, pi x g sub-grid (L2 loss expected for narrowing at pi = 0.5, g = 0), mu regime (L3 quiet-critical loss), GA, GL, GTN, collateral loss, break-even E*. Verdicts then decisions: controls pass and H1-H3 hold = SUPPORTED -> decision advance to replication only (X3, adaptive-trust arm): in this generator the signal's value equals its information content with the right sign; no claim for live agents, the deliverable is the response curve and E*. Controls pass and H1 fails = NOT SUPPORTED (a valid null) -> reject...
+      - **cost:** 0 USD; 200 worlds x 2 stores at L2; dense embeddings dominate (about 3-5 s per world); about 1-2 CPU-hours on 20 cores.
+    - AAM-LS-X2 reader instrument, ladder and tier calibration [paid, cap 3.0 USD ledger, draft]
+      - **question:** Is the fixed flash reader good enough to read exact evidence, is the question set memory-dependent, where does the ladder sit per tier, and which dial settings make L3 hard (best <= 0.50) without hitting the floor?
+      - **arms:** Part A on dev L2, 4 worlds x about 230 queries over-generated x1.5: oracle_struct, oracle_text, B0b blind (4 samples at 0.7 plus 1 at 0), B0c shuffled-context, B2t on the real and on the ablated world, a 30-item format-compliance probe, local qwen2.5:7b on a 20% subset. Part B on dev, 5 worlds: B1, B2, B2t, C1, C2, oracle_text at C=600; the hardness schedule H1-H8 runs first at evidence level (free), the reader only on the final candidate.
+      - **controls:** Blind and shuffled from Part A; oracle_struct; evidence-level upper bound for every reader result; parse-retry rule; per-family chance (sum of squared prior shares).
+      - **readings before numbers:** Primary metric: macro accuracy of the best non-oracle arm at L3; practical threshold <= 0.50 with upper CI <= 0.55. Moves Q2. Reader gates: oracle_text >= 0.95 per family else the family is 'reader-limited' (reported, excluded from system differences); oracle_struct >= 0.98; residual blind accuracy on retained items <= sum of squared prior shares + 0.05 per family, re-measured on fresh samples after filtering; shuffled-context <= blind + 0.05; parse failures <= 2%; B2t real minus ablated >= 0.20 and ablated <= chance + 0.05 per memory-dependent family. Rung I3: flash-vs-qwen error correlation on the shared subset is reported (high = one reader). Tier readings: informative iff best >= blind + 0.10 in >= 6 of 10 scored families; no family at the floor (best < blind + 0.05) in more than 4 of 10; ladder order recency <= BM25 <= BM25+time and dense >= BM25 on paraphrase-heavy cells (violations are reported as instrument surprises, not failures); at most 8 dial iterations. Decisions: advance (freeze dials), restrict (reader-limited families excluded) or inconclusive.
+      - **cost:** Part A about 0.9 USD plus Part B about 2.0 USD on the ledger (about 6,900 calls at C=600); hard cap 3.0 USD at the proxy; real spend about 1.3 x.
+    - AAM-LS-X3 signal with a reader in the loop [paid, cap 3.0 USD ledger, draft; after X1 decision]
+      - **question:** Is the retrieval-level value of the signal carried to the answer?
+      - **arms:** Cells C+, C0r, C-; R = 0.10; C = 600; 16 worlds x 30 coupled queries; S-LEX; arms GU, GH[TRUE], GH[SHUF_TYPE], GO (3 cells x 4 arms x 16 x 30 = 5,760 calls).
+      - **controls:** GO and ORACLE channel as positive controls; C0r null; shuffled and random channels; same reader and budget across arms; blind floor.
+      - **readings before numbers:** Primary metric: answer-level SIGNAL at C+; practical threshold theta/2 of the X1 threshold (sign must hold). Screening only: INDETERMINATE is allowed and is not a conclusion. At C- the sign of GH[TRUE] - GU must be <= 0; at C0r |SIGNAL| <= 0.06. If the retrieval gain does not carry: record 'retrieval gain not carried to the answer' (restrict).
+      - **cost:** About 1.7 USD ledger; cap 3.0.
+    - AAM-LS-X4 black-box product with and without the gate [paid, cap 2.5 USD ledger, draft; blocked until proxy routing is verified]
+      - **question:** Where does Hindsight sit on the ladder, and does the same admission gate with a true vs shuffled heartbeat change its results; can a product use an in-text pulse?
+      - **arms:** HindsightLife day-batched ingest on 2 dev L1 worlds: ALL, GU (R=0.25), GH[TRUE], GH[SHUF_TYPE]; best local arm at equal C; in-text pulse variant {TRUE, SHUF_TYPE, CONST, ORACLE} x {A0, A1}; Mem0 or Graphiti if affordable.
+      - **controls:** Proxy ledger verified before ingest; bank per run id; two repeats of ingest to expose non-determinism; stats() store accounting; same worlds and queries as the local ladder.
+      - **readings before numbers:** Primary metric (descriptive, n small, stated): Hindsight(ALL) minus best local arm at equal C with a cluster CI. Gate effect transfers iff SIGNAL on Hindsight has the same sign and at least half the size of the local store's SIGNAL at C+. Discard a run if ingest non-determinism between repeats exceeds 0.05 in complete@C. UNTESTABLE (not no effect) if ORACLE minus CONST < 0.05.
+      - **cost:** About 1.5 USD ledger at L1 (ingest about 0.9, queries about 0.5); cap 2.5.
+    - AAM-LS-X5 narrowing, gist vs raw archive and flashbulb confidence [free retrieval part + paid <= 1.0 USD, draft]
+      - **question:** Can the instrument detect a planted narrowing cost and the confidence-is-not-accuracy pattern, and do gist-only traces drop peripheral detail that is needed later (the owner's hypothesis) unless a charged raw archive is kept?
+      - **arms:** oracle_text, B2t, TraceStore-uniform (R=0.25), TraceStore-narrow (planted), B7 gist-only, B7 plus charged raw archive; families IN1, EP4, IN4 at L2; delays 1-365 d; 40 worlds at retrieval level, 4 dev worlds with the reader.
+      - **controls:** Uniform twin of the narrowing store; central contrast within the same situations; content twins and channel twins; delay bins; shuffled channel.
+      - **readings before numbers:** Primary metric: peripheral x high-arousal accuracy of narrow minus uniform. Practical threshold: planted effect detected iff narrow loses >= 0.15 there and <= 0.05 on central; if not detected, no statement about natural systems. Gist-only vs raw archive: report peripheral accuracy at delay > 60 d. Flashbulb reading holds iff the confidence gap between terciles exceeds the accuracy gap.
+      - **cost:** 0 USD retrieval level; about 0.6 USD reader part (about 3,000 calls).
+    - AAM-LS-X6 bounded, selective, persistent character change [CH-R free + CH-A paid, cap 4.0 USD ledger, draft]
+      - **question:** Do memory designs carry stance versions, causes and reversals (CH-R), and when an equated life event lives only in memory with competing lines, does the persona move in the right direction, by a bounded amount, selectively, for the right reason, and persistently after the episodes are evicted (CH-A)?
+      - **arms:** CH-R: oracle_text, B2t, C1, C2 on CH-R and AU3, rho_tp in {+0.8, 0, -0.8}, 40 worlds, free. CH-A: 20 worlds x (2 target + 2 control practices) x twin worlds {W0, W+, W-, W0v, Wo, Wx} x delivery {D-NONE, D-CTX, D-MEM} x dose {0.35, 0.65, 0.90} stratified across worlds; 8 Guttman items per topic, 2 samples at 0.7 (11,520 calls); persistence arm at +180 d (self-model vs retrieval-only); mood-only week, unrelated-domain turning point, assertion vs argument sub-runs; local 7B as second reader. A pilot of 2 worlds first (about 0.2-0.4 USD) reads the real cost per call and the SD.
+      - **controls:** Positive D-CTX; negatives D-NONE test-retest, W0 vs W0, control-topic spill, valence-free event, other-person event, off-topic event; no-event copy of each life; baselines in [0.35, 0.65]; about 300 competing lines.
+      - **readings before numbers:** Primary metric: C1 below; practical threshold 0.08. Moves Q5. Instrument: I1 test-retest SD of S per topic <= 0.15; I2 >= 80% of target-topic pre-event scores in [0.30, 0.70]; I3 first-option share <= 0.55; I4 Guttman reproducibility >= 0.90. PC: D-CTX mean S(W+) - S(W-) >= 0.15 with lower bound > 0.08 (E6 reference 1.13 of 6 points = 0.19), else INSTRUMENT INSENSITIVE. NC (99% world-bootstrap interval excluding 0 = FIRE, else INSTRUMENT BIASED): D-NONE label contrast; W0 vs W0; control-topic spill (sign-independent change minus test-retest <= 0.04); other-person ratio reported (flag > 0.5). Hypotheses (Holm, one-sided): C1 memory-mediated shift D-MEM S(W+) - S(W-) >= 0.08 (lower bound > 0.03) and retention ratio >= 0.4; C2 valence-specific: half-difference minus |S(W0v) - S(W0)| >= 0.03 (lower bound > 0); C3 bounded: ordinary-dose shift per side <= 0.15 (upper bound <= 0.20), dose 0.90 <= 0.40, control-topic mean |shift| <= 0.05 and none beyond 0.15, mood-only |shift| <= 0.05, assertion shift <= 0.08 on the unit scale. Persistence at +180 d: self-model retains >= 0.5 of the shift, retrieval-only <= 0.2. CH-R: stale-stance and false-change rates <= 0.10 for oracle_text; cause accuracy vs decoys > 0.35 for any retriever claimed to carry causes. Decisions: C1-C3 hold -> advance: episodic memory alone can carry bounded, selective, valence-specific opinion change at this size, next the self-model arm; C1 fails with PC passed -> reject: change must come from an explicit update step; C2 fails -> the shift is event presence, not valence; C3 fails by overshoot -> language-model personas change faster than the bounded-change specification allows and the guardrail is the product requirement. 20 worlds is a screening run: an INDETERMINATE C1 is followed by a 60-world confirmation, not a conclusion.
+      - **cost:** CH-R 0 USD; CH-A about 7.5M tokens, about 2.2 USD ledger; cap 4.0 including the pilot.
+    - AAM-LS-X7 write-back and false memory [paid, cap 2.0 USD ledger, draft]
+      - **question:** Which write-back policy gives stable improvised details without inventing the past?
+      - **arms:** No write-back, naive write-back, source-tagged write-back (self-generated, perceived, told); families FM2, FM3, FM5, SO2 and improvised-detail consistency items; B7 gist traces vs B2t on FM1.
+      - **controls:** No-leading-question fork; blanket-rejection control in FM5; same-wording baseline (E6: 0.65-0.73) subtracted; same reader.
+      - **readings before numbers:** Primary metric: contamination of later neutral answers. Practical threshold: naive write-back raises improvised-detail agreement by >= 0.30 (the E6 effect) and raises contamination by >= 0.10 over no write-back; source-tagged keeps >= 0.8 of the agreement gain with contamination <= 0.05 above no write-back; B7 shows >= 0.10 more lure false alarms on FM1 than B2t. Misses are reported, not tuned away.
+      - **cost:** About 1.5 USD ledger; cap 2.0.
+  - **build plan**
+    - S0 Registration and config (before any code runs)
+      - **files:** data/lab/aam-lifesim/README.md, config.json (TierCfg defaults, every ASSUMED parameter, seed epochs, threshold rules, arm lists, empty digest block), PREREG-X0.md, PREREG-X1.md; scripts/analyse_lifesim.py with readings(results) as a pure function stub
+      - **done when:** Readings and decision rules for X0 and X1 are committed and pushed before any generation; every reading can be computed mechanically from a results file (table-driven tests); X0 and X1 declared 'designed, not executed' and the rest drafts (WIP limit); preregistered the AAM way (README + config with SHA-256 of scripts, as E0 and E6) because the registry has paused new preregistrations; digests are declared once and a frozen path is never re-declared with an old digest (the claim audit flags it; old digests only as 8-character prefixes plus the commit).
+      - **effort:** 0.5 h
+    - D1-A Foundations (builder 1)
+      - **files:** scripts/corpus/lifesim/__init__.py, rng.py (Rng: u, below, ri, chance, choice, shuffle, sample, weighted, normal; stream(seed, *labels)), schema.py (Entity, Fact, Feats, Situation, ObsSpec, Obs, Gold, Query, digest, to_json, from_json), vocab.py (make_names(rng, n, partition), COLOURS 40 + aliases, DISHES 120, TIMES, closed_vocab(world, slot)); tests/test_lifesim_rng.py, tests/test_lifesim_schema.py (tests insert ROOT/scripts into sys.path as the goalshift tests do)
+      - **done when:** Golden vectors pinned on Python 3.11 and 3.12; stream equals goalshift.stream for identical keys; adding a label shifts no other stream; schema round-trips JSON with stable digests; dev and test syllable inventories disjoint; every answer pool >= 24 values.
+      - **effort:** 1.5 h
+    - D1-B World, appraisal, hosting, channel (builder 2)
+      - **files:** scripts/corpus/lifesim/appraisal.py (appraise(feats, mapping, rng) -> (A, V) for M1, M2, M3; surprisal_bits; mood_step), scenes.py (SCENES: routine, minor, major, move, health, purchase, remark, trip; host_facts(situation, rng) = situation-first hosting), world.py (TierCfg, build_world(seed, cfg) -> World, check_world, delete_events, world_digest), channel.py (make_channel(world, arm, reliability, nu, seed), solve_sigma(world, target_corr, seed); arms TRUE, SHUF_TYPE, SHUF_LIFE, RANDOM, CONST, INVERTED, ABSENT, ORACLE, LEAKY; TIME_SHIFT, NUISANCE_ONLY, LAG next); tests/test_lifesim_world.py (including hand-built worlds), test_lifesim_appraisal.py, test_lifesim_channel.py
+      - **done when:** build_world deterministic on 3.11 and 3.12; check_world passes on 20 seeds; G-HOST passes; appraisal monotone in g, k, n and capped by relevance; corr(n,k) <= 0.3; each surrogate keeps its declared invariant numerically (marginal for SHUF and RANDOM, autocorrelation for TIME_SHIFT) and breaks the dependence; solve_sigma hits the target correlation within 0.03; delete_events changes only the deleted event's lines (byte diff).
+      - **effort:** 4 h
+    - D1-C Text (builder 3)
+      - **files:** scripts/corpus/lifesim/verbalise.py (render(world, cfg, seed, partition) -> list[Obs]; V1 diary, V2 chat; pad_to_length; render_question(query, frame_partition); V3 raises NotImplementedError); tests/test_lifesim_verbalise.py
+      - **done when:** Every required slot string appears verbatim; A0 lexicon scan clean; the planted naive-verbaliser fixture FAILS G-LEN and G-AFF (positive control); clause-bank and frame partitions disjoint; twin lines string-identical in the queried sentence.
+      - **effort:** 2.5 h
+    - D1-D Queries and exact scorers (builders 3 and 1)
+      - **files:** scripts/corpus/lifesim/queries.py (candidate_pool(world), solve_quota(spec, A_all, candidates), sample_targets(pool, k, coupling, seed, A_all), build_queries(world, cfg, cell) for EP1, SE4/SE5, IN1, EP4, IN4, EP3c, ME1, gold_slow(world, query), structural_memory_filter), scorers.py (normalise, extract_candidates, score(query, answer) -> ScoreRecord, parse_answer, cluster_bootstrap); tests/test_lifesim_queries.py, tests/test_lifesim_scorers.py
+      - **done when:** gold_slow == gold_fast on 20 seeds; evidence strings present in cited lines; abstain items verified absent; realised E_0.10 within 15% of target in every feasible cell and the null passes G-ARO; the candidate pool digest is identical across cells; blind constant guess <= 0.15 per family after filters; structure answers score 1.000, hedges and two-pool-value answers score 0, aliases, accents, number words, ISO dates, time formats and the UNKNOWN lexicon covered; 100-item adversarial set agrees 100%.
+      - **effort:** 6.5 h
+    - D1-E Systems and gates (builders 2 and 3)
+      - **files:** scripts/lifesim/interface.py (Record, ContextItem, LifeMemory, wrap_arena_adapter, count_units), systems.py (Prior, Heuristic, Recency, RandomK, BM25, BM25Time, OracleText, OracleStruct, OracleStore, GatedMemory with policies ALL, GU, GR, GN, GM, GS, GH, GTN, GO, fill_to_budget), gates.py (g_det, g_inv, g_solve, g_host, g_support, g_aro, g_len, g_aff, g_pos, g_tell, g_blind, g_oracle, g_depth, g_feas, g_leak); tests/test_lifesim_systems.py, tests/test_lifesim_gates.py
+      - **done when:** Every system respects the budget in words; BM25 reproduces a hand-built ranking; the date window behaves as specified; the gate holds exactly floor(R x words seen) at every step and R = 1 is byte-identical across policies; salience policies read only the channel (a poisoned Query proves no gold access); validate_adapter accepts wrapped adapters; each gate fires on its planted fixture (naive verbaliser, type-hosted generator, leaky-importance generator).
+      - **effort:** 5 h
+    - D1-F Runner and first free result (END OF DAY 1)
+      - **files:** scripts/run_lifesim.py (subcommands generate, gates, ladder, gate-grid, freeze, report; test seeds refused until X0 passed on identical digests and a sealed reveal receipt exists; look-ledger check), scripts/analyse_lifesim.py (readings), data/lab/aam-lifesim/stage0/ (results.json, report.md without clock values); tests/test_lifesim_run.py (golden-file test of report text)
+      - **done when:** python scripts/run_lifesim.py gates --tier L1 --seeds 0-4 passes; ladder and gate-grid run on dev seeds 5-10 with no model calls and write byte-identical results on rerun; X0 readings are applied by code and a decision is written; digests frozen in config.json; python tasks.py check is green. SLICE 1 = steps D1-A to D1-F, 22.5 builder-hours: one working day for three parallel builders, 2.5-3 days solo. Cut list if the day slips, in this order: V2 chat verbaliser, TIME_SHIFT/LAG/NUISANCE_ONLY arms, GM and GS policies, g_tell (keep g_len, g_aff, g_pos), solver 2, cells E_0.10 = 0.2 and 0.5.
+      - **effort:** 3 h
+    - W1-A Reader, ledger, dense and hybrid (Day 2)
+      - **files:** scripts/lifesim/reader.py (prompt, FixedDecoding via flash_only_proxy, ledger scope, retry, prompt-hash cache), systems.py (+C1 dense, C2 hybrid, MiniLM via --model-dir with cached embeddings), run_lifesim.py (+reader-ceiling, calibrate), local qwen2.5:7b reader wrapper; tests
+      - **done when:** A dry run with a stub reader costs 0 USD; the ledger cap is enforced before every call (finite, <= 15, per-experiment cap <= 4); X2 Part A gates evaluate; dev dials for L1-L3 frozen once targets hold on two consecutive dev-seed sets.
+      - **effort:** 5 h
+    - W1-B Confirmation seeds, sealing and X1 (Day 3)
+      - **files:** data/lab/aam-lifesim/sealed/ (seal, register, reveal outputs of scripts/sealed_split.py), look-ledger.jsonl, stage1/ (X1 results, report); TIME_SHIFT, NUISANCE_ONLY, LAG arms; adversarial scorer set to 500 items; I0 mutation set of >= 20 mutants
+      - **done when:** X0 gates pass once on confirmation seeds 5000-5099; digests registered and pushed before reveal; X1 runs once on the revealed E1 challenge seeds; the decision is emitted by code and recorded.
+      - **effort:** 6 h plus run time
+    - W2 Remaining v0.1 families, CH-R, V3, twins
+      - **files:** queries.py (+EP2, EP3a, EP5, IN2, IN3, SE3, AU1, AU3, SO1, FM1-FM3, CH-R), character.py (stance layer, turning points, caps, statements), verbalise.py (+V3), world.py (+twin, swap operators); tests incl. property tests of the bounds over 10,000 random lives
+      - **done when:** gold_slow equals gold_fast for every new family; character bounds hold; mood-only week leaves S_k unchanged; content twins have string-identical queried sentences; G-HOST, G-LEN, G-TELL still pass with V3.
+      - **effort:** 6 h
+    - W3 Docker, Hindsight (metered) and X4
+      - **files:** scripts/lifesim/docker/Dockerfile, docker-compose.yml, shim_http.py; systems.py (+HindsightLife)
+      - **done when:** docker compose run runner passes the Stage-0 gates inside the container; arena validate_adapter accepts HindsightLife; the second Hindsight instance routes its LLM calls through the proxy and the ledger shows a line per call; a one-world L0 smoke run completes.
+      - **effort:** 4 h
+    - W4 TraceStore, learned salience, agentic baseline, X5 and X7
+      - **files:** systems.py (+TraceStore uniform and narrow, GL learned salience, Agentic-BM25 capped at 3 searches); X5 and X7 runners
+      - **done when:** The planted narrowing effect is detectable on dev (>= 0.15 gap on peripheral x high-arousal); GL trained only on the first 30% of queries and frozen; write-back arm runs on forks.
+      - **effort:** 4 h
+    - W5 CH-A (X6)
+      - **files:** data/lab/aam-lifesim/personas/ (3 archetypes + 1 held out), stance bank (8 invented practices x 8 Guttman items), scripts/corpus/lifesim/stance.py, twin-world builder, probe scheduler
+      - **done when:** Instrument checks I1-I4 pass on dev; the persona card holds no stance words beyond the baseline phrase (scan); the 2-world pilot reads cost per call and SD before the full run.
+      - **effort:** 4 d
+    - W6 Later
+      - **files:** Polish partition, RR-lite white-box baseline (v0.2, three knobs), yardsticks N and X, L5 sealed reserve, prospective families (reuse the lab's prospective protocol), AU2/AU4/AU5, SO2/SO3, SE1/SE2, ME3/ME4, FM4/FM5
+      - **done when:** Each family has gold_slow equality, scorer tests and an entry in the gate report.
+      - **effort:** weeks
+  - **risks**
+    - CIRCULARITY has three routes: direct need-arousal coupling, compositional (document kinds that host queried facts are intrinsically louder: in the toy 3.96x enrichment at nominal rho 0), indirect (rehearsal and wording). Closed by: need generated after the stream, decile quotas, situation-first hosting, G-HOST/G-SUPPORT/G-ARO, the dial defined on realised enrichment, rehearsal off plus GM, A0 text, SHUF_TYPE primary surrogate, GTN diagnostic. Residual: scene types are intrinsically loud or quiet in content ('accident' vs 'missed the bus'), which is realistic; hosting limits the leak to the gate, not to content.
+    - SUPPORT LIMITS THE DIAL: with finite lines the adverse and the strongly positive cells may be unfillable; the toy lost 23% of targets at the null without hosting. Cells with shortfall above the gate are void and the grid is truncated; a result is then stated for the feasible range only.
+    - GENERATOR ARTEFACTS a reader or classifier can exploit (length, template, position, value frequency, option position; E0 AUC 0.99). Controls are gates with planted-artefact positive controls; a win or null is a statement about this generator only.
+    - EXTRA-FEATURE CONFOUND and TEXT-SENTIMENT-AS-HEARTBEAT: five surrogates, CONST, INVERTED, NUISANCE_ONLY, ABSENT, ORACLE, LEAKY arms; A0 text in channel experiments; A1/A2 reported separately.
+    - GUESSABILITY: blind constant guesses are not at chance by default (toy 0.23-0.63); wide pools, stratified counts, as-of gold off the modal version, empirical blind floors, a labelled prior-answerable stratum; filter only on guessability.
+    - CEILING/FLOOR MISCALIBRATION (E0: primary cell could not confirm; Stage 0 passed by one probe; dev numbers optimistic on test): H_cell >= 0.20, 1.5 x theta feasibility, confirmation epoch, sealed test, dev seeds spent on calibration and never reused for results.
+    - OVERFITTING TO THE SIMULATOR by us or by systems (shared tokenizer, tuned embedder gap in E0): dev/test partitions of clause banks, names, frames, seeds; held-out appraisal mapping M3; renderer-OOD cell; embedder gaps reported, never tuned to.
+    - READER AND ENDPOINT DRIFT, one reader family: pinned id deepseek-flash, temperature 0, canary prompts at the start and end of each experiment, qwen7b second reader with a reported error correlation.
+    - BLACK BOXES: the running Hindsight container bypasses the metering proxy (verified), ingests asynchronously and non-deterministically, may ignore timestamps and rewrites memories; mitigated by a metered second instance, repeat ingests, results labelled 'product + gate'.
+    - COST DRIFT: the ledger under-counts real spend by about a quarter and prices are assumed; every paid run starts with a pilot that reads the real per-call cost; hard caps at the proxy (<= 4 USD per experiment); tranches released by recorded decisions.
+    - AUTHORED DYNAMICS READ AS PSYCHOLOGY: character constants and appraisal weights are ASSUMED; LLM personas may follow text instead of revising beliefs (E6 limit); mitigated by conformance framing, qualitative literature-backed predictions, equated events, valence-free and other-person controls, retention ratio against D-CTX.
+    - HUMAN-FIDELITY FALLACY and SANITY CIRCULARITY: software memory need not forget or distort; copying narrowing, mood congruence or false-memory proneness can lower accuracy. Human phenomena are diagnostics and planted-effect checks, never the answer key; passing them would not validate the simulator against people. A Reference Rememberer is therefore deferred.
+    - STATISTICS: few worlds give wide intervals (8 worlds = power 0.35 for equivalence); sizing rule from measured SD_world; no worlds added after seeing data except the one pre-declared extension; effective sample is templates x archetypes, so claims are restricted to 'these grammars and archetypes' until OOD runs are done.
+    - ONLINE VS OFFLINE RETENTION: the toy ranked the whole stream (optimistic); the online rule K(t) = R x words seen is mandatory. Toy numbers, including the editor's, are properties of a 412-line toy and of 24 worlds, not findings.
+    - SCOPE AND SEEDS: 26 families, many arms; seeds are finite (each look consumes an epoch); the WIP limit allows two designed-not-executed experiments per track; staged families (7, then about 21, then the rest) and a cut list protect Day 1.
+    - COMPRESSED TIME: a year is ingested in minutes, so wall-clock decay inside products does not operate; timestamps are in the text and in the record for everyone, delay and intervening load are logged separately.
+  - **open questions**
+    - GATING (ask as one button): release tranche A of paid runs (X2 + X3, at most 5.5 USD on the ledger, about 7 USD real) after X0 and X1 have recorded decisions? X0 and X1 are free and need no approval; the later tranches are X6 + X4 (at most 6.5 USD) and the optional X5 + X7 (at most 3 USD). Recommended total at most 12 USD ledger; check the provider balance (not the ledger) before each tranche.
+    - Which labels can serve as 'later needed' in the live account to estimate rho_live, given zero callbacks in 234 notes and no per-note engagement signal (F1)? Candidates: reader replies, the owner's edits, explicit reference tags in the shadow log; needs the NIE session. Until then LifeSim claims no coupling value.
+    - Hindsight routing: confirm the variable name for the container's LLM base URL and start a metered second instance before X4; the current container (provider deepseek, model deepseek-v4-flash, no base URL) is outside the guard.
+    - Persona archetypes for CH-A: author 3 plus 1 held out and the 8 invented practices with Guttman items, or adapt Ansel Rook; who approves? Must stay explicitly fictional (variant A transfers to the live account; variant B is research-only), consistent with the NIE conditions in the shared plan.
+    - Policy parameters of bounded change (caps, half-lives): the benchmark treats them as ASSUMED and sweeps them; what pace of change does the owner want for the live persona? That is a product decision for NIE, not a benchmark result.
+    - Release plan and licence for the generator and sealed seeds (public generator gives credibility but contamination); the licensing decision is the owner's.
+    - Polish partition: later as a held-out surface partition, or earlier because the lab must work in Polish and English?
+    - Verify the [B] citations before the PREREG freeze; priority: Kensinger 2007 (trade-offs), Bardi et al. 2009 (values at transitions), Hupbach et al. 2007 (reconsolidation), Koriat and Goldsmith 1996 (grain), Einstein et al. 1998 (repetition errors), Levine 1997 (reconstructed emotions), Conway and Pleydell-Pearce 2000; resolve the Haehner et al. 2025 average effect (0.05 in the PDF vs 0.08 on the OSF page) and the Buhler et al. meta-analysis year (2023 or 2024) from the published versions.
+    - Is a small I4 micro-task panel worth the owner's time (for example 40 query pairs marked answerable-from-memory or not) to validate alias tables and relative-time windows beyond the mechanical gates?
+    - The decision layer (blueprint part 8, 'decides development') is out of scope: the character update only reads events. Add decisions later as CH-A scenarios or as a separate study?
+    - Compressed time: should one L1 life be replayed slowly through a product to see whether wall-clock decay changes results?
+- **decisions**
+  - Architecture: how the three lenses combine
+    - **chosen:** Structure-first generator with exact gold from two code paths (D2), per-event RNG streams with delete/swap operators and ablated worlds (D3), appraisal, channel arms and science-as-dials from D1. No human-like Reference Rememberer in v0.
+    - **options:** D1 simulator-first with a Reference Rememberer and 19 sanity checks; D2 structure-first with a toy; D3 operators, ablations and a threat register.
+    - **why:** Exact gold and a one-day slice come from D2; counterfactual worlds and byte-diff checks from D3; D1's science enters as dials, readings and predictions. An RR would reproduce its built-in phenomena and cost about 3 days.
+  - Where the feeling-like signal is tested
+    - **chosen:** R1 retention/admission under budget R < 1, online, is the primary role; R2 retrieval boost only in cells with headroom; R3 narrowing through a planted TraceStore twin (X5); R4 deferred. Roles never averaged.
+    - **options:** D1 all four roles at once; D2 admission gate only; D3 retention backbone only.
+    - **why:** Editor reproduced D2: a complete store with anchored cues is at 1.00 and a boost gives 0.96-1.00 (no headroom) while the gate has headroom 0.69; the feasibility rule, not opinion, decides each role and cell.
+  - Definition of the circularity dial
+    - **chosen:** Realised enrichment E_R of targets in the top-R of stream arousal (E_0.10 grid 0.2, 0.5, 1, 2, 4), with AUC_ev and d logged; kappa solved per world; the null is flat decile quotas; the quiet-critical mass mu is a separate uncompensated shape.
+    - **options:** Nominal rho (D1, D3); realised Spearman among candidates (D2); realised d against the candidate pool (D2).
+    - **why:** Toy: nominal rho -0.8 gave Spearman -0.59 and, with type-hosted facts, E_0.10 = 1.04 (not adverse); nominal 0 gave 3.96. AUC does not guarantee neutrality for non-monotone shapes; E_R is what a top-R gate sees. D3's C0 cell mixed a 0.5 quiet-critical share into a 'null', which would have made the null adverse.
+  - Fix for compositional circularity
+    - **chosen:** Situation-first hosting + stream-wide decile quotas + G-HOST + a new G-SUPPORT shortfall gate.
+    - **options:** D2 hosting + quotas + G-ARO; D3 separate need stream; D1 balanced twin cells.
+    - **why:** Editor test: quotas WITHOUT hosting leave 37 of 160 targets per world unfillable at the null (23%), SIGNAL(0) still +0.05 (vs +0.23 per-family) and AUC 0.60. Hosting provides the support, the support gate makes any failure visible.
+  - Primary shuffled control
+    - **chosen:** SHUF_TYPE (permutation within observation kind); SHUF_LIFE, TIME_SHIFT, RANDOM, CONST mandatory secondary and required to be mutually equivalent (NC3).
+    - **options:** D1 SHUF-TYPE; D2 global permutation; D3 circular time-shift.
+    - **why:** SHUF_TYPE is the strictest about composition (keeps type base rates); time-shift keeps autocorrelation and would leak if need clusters in time; disagreement among surrogates is itself a finding.
+  - Channel model and primary reliability
+    - **chosen:** Scalar H in [0,1] from a per-world monotone map of (1-nu)A + nu X plus noise, nu = 0.3, reliability grid corr(H,A) in {0, 0.3, 0.5, 0.7, 0.9, 1.0} with the primary cell at 0.7; integer bpm text only for black boxes.
+    - **options:** D1 bpm with person baseline, default corr 0.5; D2 H = A + sigma, sigma 0.1; D3 g_w(A_mix) + e, sigma 0.25, nu 0.3.
+    - **why:** Toy: corr 0.79/0.46/0.23 gives SIGNAL 0.42/0.22/0.12 against headroom 0.68 (ratios 0.61/0.33/0.17); at corr 0.5 a 0.25 x headroom threshold is marginal even at strong coupling, so the primary cell sits at 0.7 and the ladder reports the rest. D1's 0.5 rationale (weak convergence of emotion measures) concerns different measurement systems, not a sensor of our own variable.
+  - Threshold rules
+    - **chosen:** LIVE if H_cell >= 0.20; theta = max(0.05, 0.25 H_cell); delta = min(0.04, 0.10 H_cell); SUPPORTED = point >= theta and Holm lower bound > theta/2; EQUIVALENT = 90% interval inside +-delta; feasibility 1.5 x theta; all fixed from dev headroom before test seeds.
+    - **options:** D1 fractions of headroom (0.25 H, 0.10 H); D2 absolute (0.08, 0.03, 0.15); D3 absolute (0.08, 0.04, 0.20) plus interval rules.
+    - **why:** Fractions keep thresholds below the headroom by construction (never above half of it); absolute floors keep them resolvable; interval rules and the confirmation epoch address the E0 failure of point-estimate qualifiers.
+  - Worlds per cell
+    - **chosen:** Default 40 worlds per retrieval-level cell sized by the rule n = smallest of {24, 32, 40, 60, 80} with equivalence power >= 0.80 at SD_plan = 1.25 x SD_dev, one pre-declared +40 extension; answer-level screening 16-20 worlds x 30 queries.
+    - **options:** D1 12 lives; D2 4-8 worlds; D3 80 worlds per cell.
+    - **why:** Editor's power table and measured toy SD_world 0.04-0.06: 8 worlds give equivalence power 0.35 even at SD 0.05; 80 is needed only at SD 0.12. Retrieval-level runs are free, so n is set by statistics, not cost.
+  - Retention is online
+    - **chosen:** GatedMemory capacity K(t) = floor(R x words seen), eviction by lowest write-time weight, queries see only the store at t.
+    - **options:** Offline top-R of the whole stream (the toy); D3 priority eviction at write time.
+    - **why:** An offline ranking uses future lines and is optimistic; the online rule is leak-free and equals the offline one only for end-of-stream queries.
+  - Seeds, sealing and the one-look rule
+    - **chosen:** Dev 0-999, confirmation 5000-5099, test epochs E1/E2 sealed with scripts/sealed_split.py (I1) plus a look ledger outside output folders; a version bump consumes an epoch.
+    - **options:** D1 dev 0-9, test 100-129, sealed 200-229; D2 dev 0-11, test 100-131; D3 epochs and a ledger.
+    - **why:** The lab already has the commit-and-reveal tool; the E0 review showed a one-look rule keyed to the output folder can be bypassed; E0 dev numbers were optimistic, hence a confirmation epoch.
+  - Random generator
+    - **chosen:** Copy of goalshift.Lcg and goalshift.stream semantics with golden-vector equality, plus normal().
+    - **options:** SplitMix64 seeded by sha256 (D2); own LCG (D1); per-event streams (D3).
+    - **why:** Same sha256 keying as goalshift gives a free cross-check; goalshift is frozen and stays untouched; per-event labels deliver D3's operators.
+  - Top-tier target and saturation rule
+    - **chosen:** L3: best non-oracle macro <= 0.50 (upper bound <= 0.55), design aim 0.35-0.45; a tier stops being headline when the best exceeds 0.50 on test; oracle stays 1.000.
+    - **options:** D1 best <= 0.45 at T4 and retire cells above 0.75; D3 no system above 0.85 at T3, retire above 0.80; D2 0.50.
+    - **why:** The owner's stated direction is oracle about 100% and best current system <= 50% at the top tier; retiring at 0.75-0.85 would keep a saturated benchmark alive.
+  - What makes the benchmark hard
+    - **chosen:** Removal of rare-name and date anchors, confusers, updates, sources, aggregation and abstention traps; not stream length.
+    - **options:** D1 and D3 tier length as a main knob; D2 cue design.
+    - **why:** Reproduced: time-aware BM25 scores 0.79/0.84/0.80 (budget 1000) from 90 to 730 days while recency scores 0.00-0.09; synonyms alone moved BM25+time only 0.84 -> 0.78.
+  - Family scope and staging
+    - **chosen:** 7 Day-1 families (EP1, SE4/SE5, IN1, EP4, IN4, EP3c, ME1) + ME2 field, about 21 in v0.1, the rest v0.2; each mapped to the lab's existing protocols where they exist.
+    - **options:** D1 39 families; D2 15; D3 15.
+    - **why:** WIP limit and a one-day slice; the Day-1 set already covers the owner's three examples, the E6 failure modes and the quiet-critical regime.
+  - Reference Rememberer and sanity checks SC1-SC19
+    - **chosen:** Deferred: RR-lite as a $0 white-box baseline in v0.2; SC checks become diagnostics; planted-effect recovery through the TraceStore uniform/narrow twin (X5).
+    - **options:** D1 full ACT-R-style RR and 19 gated checks.
+    - **why:** The RR reproduces phenomena it was built to reproduce, validates nothing against people and costs about 3 days; planted controls give the instrument-sensitivity evidence at lower cost.
+  - Appraisal mapping
+    - **chosen:** M1 additive and M2 noisy-OR drawn per world in development; M3 prediction-error-only held out for one test cell.
+    - **options:** Single formula (D1, D2); three mappings per world (D3).
+    - **why:** Guards against a system whose salience function equals the generator's formula, at the cost of two five-line functions.
+  - Text affect and rehearsal defaults
+    - **chosen:** A0 (no affect words) and rehearsal off in signal readings; GM re-mention-count baseline always present; A1/A2 and rehearsal on as separate reported cells.
+    - **options:** D1 affect words crossed at 0/0.3/1.0; D2 independent phrases; D3 A0/A1/A2.
+    - **why:** Otherwise a pulse cannot be separated from text that says 'my heart was pounding' or from retelling frequency.
+  - Verbalisation
+    - **chosen:** Templates only for headline runs; flash paraphrase is a renderer-OOD stress with a slot verifier and template fallback; English first, Polish as a later held-out partition.
+    - **options:** D1 paraphrase from the third tier; D2 V4 on day 3; D3 off in headline.
+    - **why:** Paraphrase style could correlate with arousal and silently remove slots; templates keep exact evidence containment.
+  - Scoring
+    - **chosen:** Closed-vocabulary candidate-set rule, alias tables, hedges wrong, gold_slow second path, no judge; free text not scored in v0.1; character readout by Guttman items.
+    - **options:** Key-string scoring (E6); model judge.
+    - **why:** E6's 20-key leak score undercounted by a factor of about 9 (0.03 vs 0.27 on rescoring) and its integer scale saturated.
+  - Reader, proxy and model id
+    - **chosen:** deepseek-flash through scripts/flash_only_proxy.py, one instance per experiment; qwen2.5:7b second reader on 20% with a reported error correlation (I3).
+    - **options:** 'deepseek-v4-flash' direct as in E0 stage 2; D2's statement that provider_proxy.py is the flash-only guard.
+    - **why:** The guard's allowed list is deepseek-flash (403 otherwise); provider_proxy.py is its base class; the owner objected to any other model; the 14B failed its judge controls.
+  - Budget and cost accounting
+    - **chosen:** Per-experiment hard caps <= 4 USD at the proxy; paid plan in tranches of at most 12 USD ledger in total; real cost planned at 1.3 x ledger; each paid run starts with a pilot.
+    - **options:** D1 8-12 USD; D2 about 10 USD; D3 about 10 USD.
+    - **why:** The lab note says ledger list prices under-count by about a quarter and the owner's budget is judged by provider balance.
+  - Interface and protocol
+    - **chosen:** Reuse scripts/arena/adapter.py with a LifeMemory wrapper; budget triple R/C/W with archives charged at full text; online single pass with read-only queries plus reversed-order and canary tests; forks only for the write-back arm.
+    - **options:** D1 fork per probe batch; D3 snapshot per query time.
+    - **why:** Cheapest design that still detects state leakage; E0's free raw archive is a recorded flaw.
+  - Baseline ladder naming
+    - **chosen:** Lab ids O, B0, B1, B2, C1, C2, C3, C5 plus LifeSim extensions; salience arms mapped to PMLAB-COMP-C4-001 arms S0-S6.
+    - **options:** D1 B0-B15; D2 L0-L9; D3 B0-B12.
+    - **why:** One vocabulary across the lab; LifeSim supplies the downstream-utility labels that rung C5 is waiting for.
+  - Character layers and update rule
+    - **chosen:** CH-R free retrieval-level and CH-A paid agent-level; one pole-seeking rule with arousal-squared gain, locality, experiencer weights, caps 0.10/0.20/0.30/0.40, persistent/transient split (0.6 at turning points, 0.2 otherwise; half-lives 365 d and 60 d), turning points with a 30-day refractory window; D3's twin-world design with Guttman items; D1's persistence-after-eviction arm; traits deferred.
+    - **options:** D1 40 stances with Big Five and values; D2 12 topics stance-only; D3 8 invented practices and a different decay.
+    - **why:** Retrieval-level and agent-level effects must not be confounded; invented practices avoid pretraining priors; every constant is ASSUMED and swept, with qualitative predictions (sign, selectivity, persistence, bounds) as the claims.
+  - Experiment order and preregistration channel
+    - **chosen:** Register X0 and X1 only (WIP limit); draft X2-X7; preregister the AAM way (README + config + script digests) because the registry has paused new preregistrations; paid runs are Tier C by corpus and carry a registered cap.
+    - **options:** D2 register LS-0 to LS-2; D1 X0-X6 at once.
+    - **why:** The doctrine allows two designed-not-executed experiments per track and biases hard toward Tier E; CURRENT_STATE pauses new registry rows.
+  - Verdicts and decisions
+    - **chosen:** SUPPORTED, EQUIVALENT, NOT SUPPORTED, INSTRUMENT INSENSITIVE, INSTRUMENT BIASED, INDETERMINATE, UNTESTABLE, mapped to the doctrine's advance/restrict/reject/inconclusive; decision text emitted by code.
+    - **options:** D3 vocabulary; D1 CONDITIONAL on rho.
+    - **why:** E6's erratum: a hand-written 'applied' contradicted the rule written in advance.
+  - Governance alignment
+    - **chosen:** Each experiment names the doctrine questions it moves and the highest independence rung that produced the claim; size tiers renamed L0-L3 to avoid collision with Tier E/C/X and I0-I5.
+    - **options:** Keep T0-T5.
+    - **why:** Doctrine rules: no claim inherits a tier from a neighbour; an experiment that moves none of the five questions is not worth running.
+  - Black-box products
+    - **chosen:** Gate wrapper outside the product (results labelled 'product + gate') plus an in-text pulse variant; UNTESTABLE when ORACLE minus CONST < 0.05; second Hindsight instance routed through the proxy before any ingest.
+    - **options:** D1 pulse in text only; D2 gate only.
+    - **why:** A product with no side-channel port cannot show an effect of a signal it cannot read; the running container was verified to bypass the guard.
+  - Human anchor
+    - **chosen:** None: no tier is called human-level; any human-like curve is a design target.
+    - **options:** Small human pilot.
+    - **why:** No human data exist for these lives; the key is the exact log.
+  - External yardsticks
+    - **chosen:** Yardstick N (published notes) and yardstick X (LongMemEval-S 36-ID bridge) as v0.2 non-blocking caveats; never pooled with LifeSim scores.
+    - **options:** D3 as gates G10/G11; D1 and D2 omit.
+    - **why:** They guard against synthetic-only validity without blocking Day-1; the notes carry no real 'need' so they supply realism of text and size only.
+- **established science**
+  - [verified by the editor at abstract/secondary level] Arousal-biased competition: arousal amplifies the strength of competing representations ('winner-take-more, loser-take-less') in perception and memory - Mather and Sutherland 2011, Perspectives on Psychological Science 6(2):114-133.
+  - [verified by designers D1 and D3 at abstract level] Emotion enhances memory for goal-relevant information; narrowing and its exceptions follow from goal relevance, so peripheral detail is lost only when it is not goal-relevant - Levine and Edelstein 2009, Cognition and Emotion 23(5):833-875. No universal Easterbrook-type narrowing is assumed.
+  - [verified by the editor at summary level] Emotional enhancement grows with delay on item-emotion bindings, which are forgotten more slowly than item-context bindings; context memory is not enhanced - Yonelinas and Ritchey 2015, Trends in Cognitive Sciences 19(5):259-267; Sharot and Yonelinas 2008, Cognition 106:538-547 (recollective experience enhanced after 24 h but not at once; encoding-task memory not enhanced at either delay).
+  - [verified by the editor from search summaries] The classic immediate-deficit-then-benefit crossover (Kleinsmith and Kaplan 1963) is fragile: the delayed-recall advantage is reported fairly consistently, the immediate deficit depends on method. Only 'not smaller later' is built into predictions.
+  - [verified by designers D1, D2, D3] Flashbulb memories: confidence, not consistency, is what characterises them; consistency declines at similar rates to everyday memories while initial emotion predicts confidence, not accuracy - Talarico and Rubin 2003, Psychological Science 14(5):455-461.
+  - [verified by designer D3 at abstract level] The amygdala modulates consolidation of emotionally arousing memories after the experience - McGaugh 2004, Annual Review of Neuroscience 27:1-28.
+  - [verified by the editor] Mood-congruent memory (accuracy, preferential recall, false memory for congruent lures) is more consistent than mood-dependent retrieval, which replicates poorly - Faul and LaBar, Psychological Review 130(6):1421-1456 (online 2022, issue November 2023); Bower and Mayer failure to replicate per D3's chapter summary.
+  - [verified by designers D2 and D3] Yerkes and Dodson 1908 was a mouse discrimination study whose optimum depended on task difficulty; the general inverted-U 'law' was built later (Corbett 2015, Journal of Managerial Psychology 30(6):741-752; Teigen 1994 per secondary sources). An inverted-U weight is therefore one exploratory arm, never a premise.
+  - [verified by designers D1, D3 at the level of the sources found] Appraisal structure: Scherer's component process model (relevance: novelty, pleasantness, goal relevance; implications; coping potential; normative significance) and OCC (events against goals, agents' actions against standards, objects against attitudes); theories differ on dimensional vs binary goal congruence and on core concerns (Moors, Ellsworth, Scherer and Frijda 2013, Emotion Review 5(2):119-124). Every mapping from appraisal to arousal in LifeSim is an assumption.
+  - [not re-verified, background] Self-memory system: goals of the working self shape encoding and retrieval - Conway and Pleydell-Pearce 2000, Psychological Review 107:261-288.
+  - [verified by the editor at secondary level] Event centrality has reference-point, turning-point and identity facets - Berntsen and Rubin 2006 (Centrality of Event Scale; three factors in Berntsen and Rubin 2007).
+  - [verified by designers and the editor at abstract level] Life events produce reliable but small average personality-trait changes, larger for work than for love, evidence described as preliminary - Bleidorn, Hopwood and Lucas 2018, Journal of Personality; Buhler, Orth, Bleidorn et al. meta-analysis (44 studies, 121,187 participants; year 2023 or 2024 by source); Haehner, Kramer, Wright and Bleidorn 2025, European Journal of Personality, coordinated analysis of 7 panels (N = 196,256), average standardised effect 0.05 in the PDF vs 0.08 on the OSF page (unresolved). Mean-level maturation: Roberts, Walton and Viechtbauer 2006, Psychological Bulletin 132(1):1-25.
+  - [verified by designer D1] Four functional forms of forgetting (logarithmic, power, exponential in the square root of time, hyperbola) fit about equally; autobiographical data were an exception - Rubin and Wenzel 1996, Psychological Review 103:734-760. Used only as a descriptive diagnostic.
+  - [verified by designer D1] In a six-year diary study what, who and where cues worked about equally and 'when' alone was weak; salience was the strongest predictor of memorability - Wagenaar 1986, Cognitive Psychology 18:225-252.
+  - [verified by designer D1] Retention is adaptive to the need-probability structure of the environment - Anderson and Schooler 1991, Psychological Science 2:396-408; this is why the emotion-need coupling must be a dial.
+  - [verified by the editor] Memory implantation studies induce some recollective experience in about 47% of participants and full memories in about 15%, with the framing disputed (Otgaar et al. critique) - Brewin and Andrews 2017, Applied Cognitive Psychology 31(1):2-23. Zero acceptance of implanted claims is a software target, not a human norm.
+  - [verified by designer D1, bibliographic] Source monitoring framework (Johnson, Hashtroudi and Lindsay 1993, Psychological Bulletin 114:3-28) and the multiprocess view of prospective memory with focal vs non-focal cues (McDaniel and Einstein 2000).
+  - [not re-verified, background] Interference, fan and clock-vs-load (Anderson 1974; Jenkins and Dallenbach 1924; Underwood 1957), schema intrusion (Bartlett 1932; Brewer and Treyens 1981), DRM false recognition (Roediger and McDermott 1995), misinformation and continued influence (Loftus and Palmer 1974; Lewandowsky et al. 2012), reconsolidation contamination (Hupbach et al. 2007), belief perseverance (Ross, Lepper and Hubbard 1975), retrospective bias (Ross 1989).
+  - [local data of this lab] Real engagement numbers carry no per-note signal (F1), so emotion-like importance cannot be learned from them; E6 (one persona, one model family): biography as retrieved memory 0.92 overall and 0.83 on items that need memory, rare names and generic questions fail, a confident wrong answer to the first-job question 6 of 6, half of the first questions answerable without memory, improvised details need write-back, assertion shift 0.52 vs argument 2.00 on a 7-point scale; E0: a narrow null for a word-cluster index with no positive control and a primary cell that could not confirm.
+  - [editor-reproduced measurements on a toy, NOT science about agents] Designer 2's toy numbers reproduce exactly; time-aware BM25 is insensitive to stream length; type-hosted generators make nominal rho misleading (enrichment 3.96 at rho 0, 1.04 at rho -0.8); per-world SD of the contrasts is 0.04-0.06; SIGNAL falls with channel noise (0.42/0.22/0.12 at corr 0.79/0.46/0.23).
+- **our assumptions**
+  - Every numeric generator parameter (appraisal weights, event rates, mood decay, hosting and mention probabilities, rehearsal rates, answer-pool sizes) is ASSUMED, lives in config.json and is swept +-50%; conclusions that flip are labelled parameter-dependent.
+  - The mappings from appraisal to arousal (M1 additive, M2 noisy-OR, M3 prediction error) define what the benchmark's signal is, not what a person's is; only monotonicity in relevance, surprise and stakes and the relevance cap are borrowed from theory.
+  - The channel model (monotone per-world map, nuisance share 0.3, reliability grid with primary 0.7, retelling arousal 0.5 x situation arousal) has no empirical anchor; the weak convergence of emotion measures does not justify a particular reliability for a sensor of our own variable.
+  - The real coupling between arousal and later need is unknown (F1); LifeSim therefore reports a response curve over realised enrichment and a break-even point and makes no claim about the live account. A pass at strong coupling is expected by construction.
+  - The grid of realised enrichments (0.2, 0.5, 1, 2, 4) is a judgement call; the highest and lowest cells may be void for lack of support.
+  - All character-update constants are ASSUMED: arousal-squared gain, eta_TP 0.9, locality 1 : 0.4 : 0.05, experiencer weights 1 / 0.25 / 0.1, habituation 0.5, caps 0.10 / 0.20 / 0.30 / 0.40, persistent share 0.6 (turning point) and 0.2 (ordinary), half-lives 365 d and 60 d, refractory 30 d, at most 3 turning points per year, assertion weight 0, argument weight 0.3, trait drift <= 0.02 per year. 'Values and beliefs shift at turning points' is an authored assumption: only the smallness of average trait change is sourced.
+  - The assertion bar (shift <= 0.08 on the unit scale) rests on one E6 run (0.5 of 6 points); the persona's behaviour and the authored latent stance have an unknown gain, handled by the retention ratio against D-CTX.
+  - Threshold rules are judgement calls fixed before numbers: H_cell >= 0.20, theta = max(0.05, 0.25 H), delta = min(0.04, 0.10 H), feasibility 1.5 x theta, equivalence power 0.80, SD_plan = 1.25 x SD_dev. Changing them after a look needs a new version and new seeds.
+  - Size tiers, the L3 target (best non-oracle <= 0.50, aim 0.35-0.45) and the hardness schedule are estimates relative to the ladder we can run now; stronger systems (agentic retrieval, long-context readers) may exceed it, which triggers L4.
+  - Worlds-per-cell sizing uses SD_world measured on a 412-line toy (0.04-0.06) and the editor's Monte Carlo; the real SD is measured on dev worlds in X0 and may be larger.
+  - Synthetic English template text is a proxy for natural language; the template-level split, held-out mapping and renderer-OOD cell mitigate but do not remove this.
+  - Online retention capacity K(t) = R x words seen, with archives charged at full text, is our definition of an equal-budget comparison.
+  - Costs: reader prices 0.27 / 1.10 USD per million tokens from scripts/arena/decoding.py, 1.35 tokens per word, ledger under-counting of about a quarter (lab note), Hindsight about 0.0005 USD per item (arena note); all to be re-measured by a pilot.
+  - Rehearsal probability 0.8 within a day for A > 0.7 and the 'immediate diary line p = 0.7' are assumptions (the sharing figure behind the former is a secondary source).
+  - Source type (lived, told, read) is assumed to be carried by wording alone; the optional provenance field is a separate arm.
+  - Human-like phenomena (narrowing, mood congruence, schema intrusion, false-memory proneness) are used as diagnostics and planted controls, never as the answer key; no tier is called human-level.
+  - The toy numbers quoted in this specification, including the editor's, are properties of a 412-line generator and of 24 worlds; they justify design choices (gate location, hosting, support gate, sizing) and nothing more.
+
+## Reader notes (shortened)
+
+### reader
+
+- **lens:** VERDICT ON THE PROPOSAL. Worth building on one condition: LifeSim must be a measuring instrument with known failure modes, not a world we can win by authoring it. Strong parts: (1) one deterministic life gives exact ground truth for a very hard, general memory test (who I am, breakfast yesterday, t...
+- **world and events:** GENERATOR lifesim-v0.1. Deterministic, standard library plus numpy for statistics. Own LCG with one named stream per purpose and per event (stream(seed, label, event_id), the design of scripts/corpus/goalshift.py), so deleting or swapping one event leaves every other event byte-identical; this is w...
+- **emotion model:** Functional language only: a 'feeling-like signal' is a scalar or vector that marks what mattered to the protagonist; nothing here is a claim about experience. Two objects must never be confused: the LATENT appraisal state (known only to the generator) and the CHANNEL H (what a memory system may rec...
+- **character model and update rules:** STATUS. Authored dynamics for conformance testing of change management (blueprint part 9). Not validated psychology and not a model of a person. The policy parameters below (how fast the persona should change) are declared per experiment and are an owner decision. STATE. Traits T (5 dimensions in [...
+- **observation stream and verbalisation:** UNIT. A line = (line_id, day, slot, text, optional channel value h). Every line starts with an absolute date and slot, so temporal metadata are equal for all systems. 1 to 4 lines per event; mundane lines about 28 tokens, read snippets 60 to 120 tokens, told lines are quoted speech with the speaker...
+- **query families**
+  - Q01 identity_core
+    - **example:** What was my first full-time job after school? Who is Imre? Where was I born?
+    - **ground truth:** Card fields drawn from large lexicons, stated once in an early autobiographical block as ordinary lines; one rare name appears once; a later true line (a later job) is planted as a near neighbour.
+    - **scorer:** Canonical match against the closed lexicon with an alias table; typed errors: neighbour_substitution, abstain, other.
+    - **memory dependence check:** Card absent from the prompt; blind reader and heuristics at chance; ablated world (identity line deleted) falls to chance; substitution is counted separately so a confident wrong answer cannot hide inside accuracy.
+  - Q02 mundane_recent
+    - **example:** What did I have for breakfast yesterday?
+    - **ground truth:** The single meal event of the resolved day and slot; days with no meal logged become Q13 items.
+    - **scorer:** Dish exact match against a 120-item lexicon.
+    - **memory dependence check:** Uniform dish sampling keeps a modal-dish heuristic within chance + 0.05; 300+ competing breakfasts (high interference); blind and ablated checks.
+  - Q03 mundane_far_anchored
+    - **example:** What did I have for breakfast the morning after I met Mirela?
+    - **ground truth:** Two hops: anchor event -> day -> meal event; age 20 to 1000 days.
+    - **scorer:** Dish exact match.
+    - **memory dependence check:** Deleting the anchor line or the meal line separately must each drop accuracy to chance (both are needed).
+  - Q04 read_detail
+    - **example:** In the article about the Karsk lighthouse that I read about two weeks ago, what colour was the car?
+    - **ground truth:** Attribute of an invented entity inside a read event; cue types: topic words, headline, relative time, no cue ('the one with the car'); 8 to 64 decoy articles with other colours, plus a decoy that shares the colour only by design.
+    - **scorer:** Colour exact match against a 40-colour closed set.
+    - **memory dependence check:** Invented entities and uniform colours make world knowledge useless; blind floor; the relative-time window must hold exactly one qualifying article.
+  - Q05 told_source_binding
+    - **example:** Who told me that the ferry stops running in November?
+    - **ground truth:** Speaker id of a told event; a second person told a similar claim with different content or time.
+    - **scorer:** Person id exact.
+    - **memory dependence check:** The source cannot be inferred from the claim; ablating the told line breaks the answer; some claims are later corrected (links to Q07).
+  - Q06 order_and_duration
+    - **example:** Which came first: the dentist visit, the bike lending, the ferry news, the move? How many days between the visit and the move?
+    - **ground truth:** Day numbers in the log.
+    - **scorer:** Ordering of four events exact (chance 1/24); integer day difference exact (strict), +-1 reported as lenient and secondary.
+    - **memory dependence check:** Dates exist only in evidence lines; blind reader at chance; ablating one event line breaks the item.
+  - Q07 update_supersession
+    - **example:** Where do I live now? As of day 200, which phone did I use?
+    - **ground truth:** Value valid at the asked time from chains of depth 0 to 5; some updates implicit, some mentioned out of order.
+    - **scorer:** Exact match plus error type: stale, never_seen, other.
+    - **memory dependence check:** The stale value is the more frequent one in the stream so frequency heuristics fail; ablating the latest update must turn the answer into the stale value.
+  - Q08 aggregate_habit
+    - **example:** How many times did I see the dentist this year? What do I usually order on Fridays?
+    - **ground truth:** Count or mode computed from the log (ties excluded).
+    - **scorer:** Exact count (strict), +-1 lenient reported separately; mode exact.
+    - **memory dependence check:** No single line holds the answer; deleting one visit must change the answer.
+  - Q09 multi_hop_relation
+    - **example:** What does the sister of the person who lent me the bike do for work?
+    - **ground truth:** Graph walk over bonds, places and jobs, 2 to 4 hops, each hop in a different line.
+    - **scorer:** Entity exact.
+    - **memory dependence check:** Ablating any single hop line breaks the answer; blind reader at chance.
+  - Q10 delayed_relevance_role
+    - **example:** A new task in the current domain whose answer needs the lesson of an old low-arousal event identified by role (unreliable outside party, failed shortcut, hard limit, silent dependency).
+    - **ground truth:** Reference code or slot in the evidence line; cue classes lexical, paraphrase, role-level; a goal shift at day t_g makes the old event decisive.
+    - **scorer:** Code present in the delivered context (retrieval level) and stated in the answer (answer level).
+    - **memory dependence check:** Feasibility gate (store oracle minus best baseline at least 0.20) before test seeds; at least 8 phrasings per role; 8 probes in each of at least 40 worlds; the irrelevant task sentence removed or both variants reported (E0 review).
+  - Q11 salience_matched_pairs
+    - **example:** Two queries about mundane slots of two events matched on kind, age, interference, cue overlap and length, one in the top and one in the bottom arousal tercile.
+    - **ground truth:** Slots of each event.
+    - **scorer:** Slot exact; the metric is the within-pair accuracy difference, high minus low.
+    - **memory dependence check:** Matching gate: standardised mean difference below 0.1 on every matching variable; this estimates the effect of arousal on accuracy holding need constant.
+  - Q12 central_vs_peripheral
+    - **example:** What offer did I receive (goal-linked)? What colour was the shop sign where I received it (incidental)?
+    - **ground truth:** Slots with a centrality flag defined by link to an active goal, not by text position.
+    - **scorer:** Slot exact; the output is the accuracy table centrality x arousal tercile.
+    - **memory dependence check:** Peripheral mention probability and the peripheral share at high-arousal events are dials; only mentioned slots are queried; no sign of the arousal effect is assumed.
+  - Q13 abstention_false_premise
+    - **example:** What did I have for breakfast on day 212? (no meal logged) What colour was the car in the lighthouse article? (it featured a bicycle)
+    - **ground truth:** Record absent or premise false; 10 to 30% of queries.
+    - **scorer:** An abstain or reject statement counts correct; any concrete value is an error, and a confident-wrong error when confidence is at least 0.8.
+    - **memory dependence check:** Near-miss decoys exist (the days before and after have meals); feeds the calibration metrics.
+  - Q14 stance_battery (character layer)
+    - **example:** Eight Guttman-scaled commitment scenarios per invented practice, asked without naming any event.
+    - **ground truth:** Expected choice [V_k(t) > theta_i] from the character model, ambiguous items excluded; sign and justified order of shifts from planted events.
+    - **scorer:** Forced-choice parse; stance score = share of pro choices; shift versus the twin world.
+    - **memory dependence check:** D-NONE, D-CTX (event in the prompt) and D-MEM arms; valence-free, other-person and off-topic controls; memory competition.
+  - Q15 affect_recall (optional, outside the headline)
+    - **example:** Was that a good or a bad day for me?
+    - **ground truth:** Sign of the latent valence V of the day's dominant event.
+    - **scorer:** Sign exact.
+    - **memory dependence check:** Guessable from content (a funeral), so blind and ablated checks are mandatory; meaningful only with channel A0 or text A2; shows whether a system stored the signal.
+- **difficulty dials**
+  - Tier / stream length
+    - **range:** T0 7 d (~2k tokens), T1 60 d (~17k), T2 365 d (~102k), T3 1095 d (~307k), T4 3650 d (~1.0M)
+    - **effect:** Context pressure: full-context reading dies beyond the reader window; the headline starts at T2; bigger tiers need new seeds, not new data collection.
+  - Capacity pressure R/L (stored tokens over stream tokens)
+    - **range:** 1.0, 0.25, 0.10, 0.03
+    - **effect:** Forces a forgetting policy. At 1.0 all retention policies must be identical (instrument identity check); salience weighting can only matter below 1.
+  - Interference k (similar competitors per target)
+    - **range:** 1, 2, 8, 32, 64
+    - **effect:** Binding difficulty; collapses frequency and lexical retrieval; the breakfast family has hundreds of competitors.
+  - Delay (age at query)
+    - **range:** 1 to 1000 days, log-uniform; bins 1-7, 8-30, 31-90, 91-365, >365
+    - **effect:** Time-dependent loss and consolidation-like effects; bins of 90 days and more are required so a late-appearing effect is not missed.
+  - Cue class
+    - **range:** lexical (at least 40% shared content stems), paraphrase (0 shared stems), role-level (lesson from another domain), temporal-only, episodic-only
+    - **effect:** Separates BM25 from dense from abstractive retrieval; classes are defined by construction, embedder gaps are reported and never tuned.
+  - Hops
+    - **range:** 1 to 4
+    - **effect:** Compositional retrieval and reasoning.
+  - Update chain depth, implicitness, disorder
+    - **range:** depth 0-5; 0-60% implicit; 0-30% mentioned out of order
+    - **effect:** Stale-value traps and point-in-time queries.
+  - Emotion-need coupling rho (realised Spearman between latent arousal and being asked about)
+    - **range:** -0.6 to +0.8; cells -0.5, 0, +0.5, +0.8
+    - **effect:** The circularity dial: positive favours salience-weighted memory, zero removes any information, negative punishes it; the result is a surface over rho.
+  - Quiet-critical share m (needed events from the lowest arousal quartile)
+    - **range:** 0.1 to 0.8
+    - **effect:** Regime where a mundane detail becomes decisive; measures the collateral loss of salience-weighted policies.
+  - Rehearsal coupling r (arousal makes the protagonist re-mention an event)
+    - **range:** 0 to 1
+    - **effect:** Indirect route by which emotional events become easier to find without any signal; mention-count baselines must be beaten.
+  - Channel type and fidelity sigma
+    - **range:** true, time-shift, permuted, random, constant, anti, absent, oracle-need, leaky; sigma 0.25, 0.5, 1.0, random
+    - **effect:** Extra-feature confound and dose-response.
+  - Nuisance share nuis (physical activity raising the body signal)
+    - **range:** 0 to 0.5
+    - **effect:** Tests blind trust in the signal; a realistic confound.
+  - Affect-marker verbalisation
+    - **range:** A0 none, A1 independent of arousal, A2 correlated (r_aff 0 to 0.8)
+    - **effect:** Whether arousal can be read from text instead of the channel.
+  - Narrowing kappa_n and centrality mix
+    - **range:** P(peripheral mention) falls with arousal by 0, 0.3, 0.6; peripheral share of queries at high-arousal events 0.1, 0.5, 0.9
+    - **effect:** Tests gist-versus-detail trade-offs; no assumed sign of the arousal effect on peripheral detail.
+  - Mood-need coupling mu
+    - **range:** -0.5 to +0.5
+    - **effect:** Mood-congruent retrieval arms win only if what is asked is mood-congruent; zero and negative included.
+  - Source reliability
+    - **range:** 0 to 30% of told claims wrong and later corrected
+    - **effect:** Source binding and supersession under unreliable narrators.
+  - Abstention and false-premise share
+    - **range:** 0 to 30%
+    - **effect:** Penalises always-answer systems; exposes confident substitution.
+  - Renderer and grammar OOD
+    - **range:** template families in-distribution versus held out; typos 0-3%; flash rewrite 0-30% of lines with slot verifier; 20% of event kinds only at test
+    - **effect:** Overfitting to the simulator.
+  - Turning points, dose and competing-memory load (character layer)
+    - **range:** 0-6 turning points; dose 0.35, 0.65, 0.90; 30-60 intervening days with 0-12 same-topic distractor lines
+    - **effect:** Strength of change and retrieval competition for the planted event.
+  - Persona archetype
+    - **range:** 3 authored plus 1 held out
+    - **effect:** Random effect; the held-out archetype tests generalisation beyond lexicons and routines.
+- **tiers and calibration:** TIERS. T0 (7 days, ~2k tokens): unit and programmatic tests only. T1 (60 days, ~17k): full context fits; used for positive controls and the character layer; not a headline. T2 (365 days, ~102k): first headline tier, roughly the order of a LongMemEval-S history (its exact size was not verified here)...
+- **system interface and baselines:** INTERFACE (extends the arena adapter contract in scripts/arena/adapter.py: an adapter reports raw signals and never interprets them; ingest and query return model calls, tokens and wall time separately as integer Measure values with observability native, instrumented or unobservable; adapters never...
+- **metrics**
+  - Layer M (memory): macro accuracy over Q01-Q09 and Q13 with equal fixed family weights, per tier, world as the unit, raw and divided by each family's oracle-reader ceiling; headline is the half-life tier plus per-tier scores.
+  - Net memory gain = P(correct, real world) - P(correct, ablated world) on the paired subset; removes priors, artefacts and lucky guesses at the level of the whole system.
+  - Four-stage decomposition per arm: stored-gold, gold-in-context at C (retrieval level, strict), correct-given-gold-in-context (reader), answered-correct, so a gain is attributed to capture, retrieval, context or reader.
+  - Error typing: stale value, neighbour substitution, wrong entity, date off by k, abstain, hallucinated value; silent-substitution rate; confident-wrong rate (confidence at least 0.8 and wrong); abstention precision and recall on Q13.
+  - Calibration: Brier score, ECE (10 bins), area under the risk-coverage curve, and a flashbulb index = partial correlation of confidence with latent arousal given correctness.
+  - Layer S (signal): value of the signal dH = accuracy(true H) - accuracy(same-format surrogate) per cell; response surface of dH over rho, r and m; sigma_half (noise at which dH halves); regret against the best non-signal baseline across rho; collateral-loss rate (correct under the baseline, wrong un...
+  - Mechanistic effects: matched-pair arousal effect (Q11) and the centrality x arousal-tercile accuracy table (Q12), with no assumed sign.
+  - Layer C (character): sign accuracy; shift in battery units; retention ratio (memory-mediated over in-context); overshoot against the declared cap; control-topic spill, signed and sign-independent; valence-specific share; other-person ratio; trait stability; pressure-flip rate and reversal lag (X3b).
+  - Cost: stored tokens R, context tokens C, ingest model tokens W, calls, wall time, USD; accuracy per 1k total tokens; Pareto frontier membership.
+  - Instrument: oracle-reader ceiling, blind and heuristic floors, label-noise estimate, A/A false-positive rate, reader agreement at T = 0, parse-failure rate, tell-gate AUC.
+  - Transfer: Kendall tau across configurations between LifeSim T2, Tier N and the LongMemEval-S bridge; style-separability AUC of the haystack.
+  - Difficulty: stratum shares (easy, medium, hard, very hard), headroom = oracle minus best non-oracle, half-life tier.
+  - Uncertainty: 10,000-draw percentile bootstrap over worlds; Holm over at most 3 primary hypotheses per experiment; equivalence by a 90% interval inside a fixed margin; archetype reported as a random effect; every report prints its power statement.
+  - No composite across layers: LifeSim-M, LifeSim-S (a surface, not a number) and LifeSim-C are reported separately.
+- **first experiments**
+  - LS-X1 instrument gate (dev and gate-confirmation seeds only; no test epoch is touched)
+    - **question:** Before any hypothesis is tested: does LifeSim v0.1 measure memory and nothing else, and are its floor, ceiling, noise, false-positive rate, headroom and transfer known? Closes routes M04-M09, M12, M13, M15, M17, M20, M24 and prepares M14.
+    - **arms:** Programmatic: S-LOOKUP (exact solver over the event log) and S-SCRAMBLE (the same solver on another seed's log). Readers (flash, T = 0, 3 samples): R-BLIND (query only), R-ORACLE (only the gold evidence lines), R-HYB-REAL and R-HYB-ABL (hybrid BM25 + MiniLM, top 1000 tokens, on the real world and o...
+    - **controls:** Positive: S-LOOKUP must be exact and R-ORACLE must reach the ceiling. Negative: S-SCRAMBLE, R-BLIND and the ablated world must sit at chance; A/A (the same hybrid system twice with different reader seeds) must show false positives at the nominal rate. An adversarial scorer set of 500 outputs labell...
+    - **readings before numbers:** All thresholds are frozen in config.json with the script digests before the first confirmation seed is generated. Dev seeds may be used to tune the generator until the gates pass; the gates are then evaluated once on the confirmation seeds (E0 passed its headroom gate by a single probe on dev seeds...
+    - **cost:** Retrieval-level and programmatic parts are free (local MiniLM, BM25, 20 CPUs). Flash: blind 2,000 calls, oracle 2,000, hybrid real/ablated 1,000, A/A 500; about 5.3M tokens, 1.1 to 2.7 USD at an assumed 0.2 to 0.5 USD per million tokens (replace with the ledger rate); hard cap 3 USD under the flash...
+  - LS-X2 channel value with planted controls (test epoch 1, seeds 10000-10999)
+    - **question:** Does a feeling-like signal used as a retention weight add value beyond (a) merely having a feature, (b) text novelty and (c) mention counts; does the sign of the value follow the emotion-need coupling (positive, zero, negative); and can the instrument see a planted effect and stay silent on a plant...
+    - **arms:** Backbone fixed: hybrid BM25 + MiniLM retrieval over a retained store with priority eviction by weight at write time, delivered context C = 1000 tokens, tier T2, affect-free text (A0), nuisance share 0.3, base noise sigma 0.25, appraisal mapping drawn per world from OCC and Scherer. Retention at R =...
+    - **controls:** Positive: W-ORACLE and W-LEAKY must fire in every cell. Negative: C0r (no coupling at all); R = 100% (retained sets and outputs must be byte-identical across all policies); the four surrogates mutually equivalent. Sign check: C- must reverse the sign. Dose: the noise ladder. Feasibility gate on dev...
+    - **readings before numbers:** Primary outcome (retrieval level, strict): share of live queries whose gold evidence line lies inside the delivered context; unit = world; 10,000-draw percentile bootstrap over worlds; stored-gold and retrieved-given-stored are reported too. A contrast with 90% interval [l, u] and margin m = 0.04 i...
+    - **cost:** Retrieval level free: 4 cells x 80 worlds x T2 (about 1.2M lines embedded once, minutes on 20 CPUs). Answer level: 3,840 flash calls x ~1.5k tokens = 5.8M tokens, 1.2 to 2.9 USD (assumed rate); hard cap 3 USD.
+  - LS-X3 bounded and selective change under equated planted events (test epoch 2, seeds 20000-20999)
+    - **question:** When an equated life event is only in memory (not in the prompt) and 45 days of competing ordinary life follow, does the persona's stance on that invented topic move in the expected direction, by a bounded amount, selectively (not on other topics), and for the right reason (the valence of its own e...
+    - **arms:** Delivery arms: D-NONE (persona card only), D-CTX (the event line placed in the prompt at the probe; the positive control, no memory), D-MEM (whole stream stored, hybrid retrieval top 3, stance prompt does not name the event; the memory-mediated arm). Twin worlds, byte-identical except the planted l...
+    - **controls:** Positive: D-CTX must show the contrast. Negative: D-NONE (pure test-retest), W0 versus W0, control-topic spill (signed and sign-independent), valence-free event, other-person event. Instrument: test-retest noise, midpoint baselines, first-option share, Guttman reproducibility. A 2-world pilot reads...
+    - **readings before numbers:** Frozen in config.json before epoch 2. Scores S lie in [0,1] (share of pro choices over 16 answers per topic). Negative controls are judged by the two-sided 99% world-bootstrap interval (Bonferroni over four controls, so a clean instrument raises a false alarm about 4% of the time): FIRE = the inter...
+    - **cost:** 11,520 flash calls x ~650 tokens = 7.5M tokens, 1.5 to 3.7 USD (assumed rate); hard cap 4 USD under the flash-only proxy; a pilot of 2 worlds first (about 0.15 to 0.4 USD) to read the per-call cost from the ledger.
+- **build plan**
+  - 1. Core generator: RNG streams per purpose and per event, closed lexicons, persona archetypes, social graph, goals and calendar, typed event schemas, delete and swap operators
+    - **files:** scripts/corpus/lifesim/rng.py, lexicons.py, world.py, events.py; tests/test_lifesim_world.py (reuse the Lcg and stream() design of scripts/corpus/goalshift.py)
+    - **done when:** the same seed gives an identical digest on Windows and in a Linux container; deleting one event changes only that event's lines and dependent mentions (byte diff); 100+ unit tests including hand-built worlds (asked for by the E0 review)
+    - **effort:** 4 days
+  - 2. Appraisal variables, three mappings, mood, channel measurement model and every channel variant
+    - **files:** scripts/corpus/lifesim/emotion.py, channel.py; tests
+    - **done when:** latent arousal shares inside the declared bands; realised rho within +-0.05 of nominal on the generated query set; each surrogate preserves its declared invariants (marginal, autocorrelation) numerically; nuisance share realised
+    - **effort:** 3 days
+  - 3. Renderer with affect-marker dial and slot verifier
+    - **files:** scripts/corpus/lifesim/render.py, templates/, verify_slots.py; tests
+    - **done when:** round trip recovers 100% of slots on 10,000 lines; affect-lexicon scan clean in A0; tell-gate bound met on dev
+    - **effort:** 5 days
+  - 4. Query compiler, two independent unique-answer solvers, matched-pair builder, ablated and twin world builders
+    - **files:** scripts/corpus/lifesim/queries.py, solver.py, solver2.py (independent code path), pairs.py; tests
+    - **done when:** two solvers agree on 100% of dev items; matched pairs balanced (standardised difference below 0.1 on all matching variables); ablated and twin worlds built and diffed byte by byte
+    - **effort:** 5 days
+  - 5. Deterministic scorer with closed-vocabulary canonicaliser, abstention parser, confidence bins and error typing
+    - **files:** scripts/corpus/lifesim/score.py; tests/test_lifesim_score.py; data/lab/aam-lifesim/adversarial_scorer_set.jsonl
+    - **done when:** G2 passes; the 500 adversarial outputs agree with labels written before the scorer
+    - **effort:** 2 days
+  - 6. Harness with stage gates and the external look ledger
+    - **files:** scripts/run_lifesim.py (generate, stage0, freeze, confirm, stage1), data/lab/aam-lifesim/config.json, ledger file outside every output folder
+    - **done when:** test seeds unreachable before Stage 0 passes on the same script digests; a second look at the same experiment and epoch is refused even with another --out; seed epochs follow the schedule; the hard spend cap is wired to the flash-only proxy
+    - **effort:** 3 days
+  - 7. Backbone, retention policies, channel arms, baseline ladder and product adapters
+    - **files:** scripts/corpus/lifesim/arms.py (B0-B7, B9-B12 and W-* policies); scripts/arena/lifesim_adapter.py (wrappers over the existing hindsight, mem0, graphiti, cupmem and aamr adapters)
+    - **done when:** 20 dev worlds run through B3, B5 and W-UNIF with persisted contexts; budget triple logged; the UNOBSERVABLE rule enforced
+    - **effort:** 4 days
+  - 8. Tier N from the published notes (local file only)
+    - **files:** scripts/corpus/lifesim/tier_r.py reading the local JSONL (id, date, text, title; see scripts/published_notes_baseline.py); outputs aggregates only
+    - **done when:** real-haystack injection at date-matched spacing; extractive questions with computed truth (unique rare entity, verbatim phrase, number or date lookup, order, monthly counts); style-tell AUC reported; no note text in any committed file
+    - **effort:** 3 days
+  - 9. External bridge for rank agreement
+    - **files:** scripts/corpus/lifesim/external_bridge.py reusing scripts/prepare_longmemeval_bridge.py
+    - **done when:** retrieval-level recall of the same configurations on the 36-ID bridge; G11 is computable
+    - **effort:** 1-2 days
+  - 10. Preregister and run X1
+    - **files:** data/lab/aam-lifesim/PREREG-X1.md (thresholds, digests, registry row with primary_metric and practical_threshold)
+    - **done when:** preregistration committed before the first model call; report with G1-G12 and a recorded decision
+    - **effort:** 2 days plus the run
+  - 11. Personas and stance bank for X3
+    - **files:** data/lab/aam-lifesim/personas/ (3 archetypes plus 1 held out), Guttman item bank (8 items x 8 topics), scripts/corpus/lifesim/stance.py
+    - **done when:** instrument checks I1-I4 pass on dev; the card scan finds no topic stance words beyond the baseline phrase
+    - **effort:** 4 days
+  - 12. Preregister and run X2, then X3 (one look each)
+    - **files:** data/lab/aam-lifesim/PREREG-X2.md, PREREG-X3.md; results in data/lab/aam-lifesim/x2/ and x3/
+    - **done when:** feasibility gates pass on dev; one look per epoch; decisions recorded. Queued after the first three, not specified here: full ladder across T1-T4 with products, cross-reader run with the local models, renderer and archetype OOD runs, the adaptive-trust arm with rho_live estimation, the reflection c...
+    - **effort:** 3 days each plus the runs
+- **risks**
+  - Scope explosion (too many dials, nothing finished): v0.1 contains Q01-Q06, Q10-Q13, the channel and the instrument gate; v0.2 adds Q07-Q09 and the character layer; respect the work-in-progress limit of the operating doctrine.
+  - Circularity survives through our choice of the rho grid and of any headline weights: report the surface; if an aggregate is needed, fix equal weights over rho in {-0.5, 0, +0.5} in advance; never quote the C+ cell alone.
+  - X2 passes by design at rho = +0.5 and fails by design at -0.5; a pass is an instrument calibration, not evidence that feeling-like signals help; quoting it that way would repeat the over-reading we corrected in E0 and E6.
+  - The shuffled surrogate keeps or breaks the wrong structure: a circular time-shift keeps autocorrelation (if need clusters in time it still leaks) and a within-kind permutation destroys day-level structure; all surrogates are reported and their disagreement is itself a finding.
+  - One reader family and endpoint drift: the flash id is pinned, T = 0, canary prompts run at the start and end of each experiment, local 7B/14B cross-check; a changed model id invalidates answer-level comparisons across dates.
+  - Effective sample size: three archetypes and shared templates; claims are restricted to 'these archetypes and grammars' until the held-out archetype and renderer runs are done.
+  - Tier N: 234 notes with zero callbacks in the baseline, so the real account supplies text and sizes but no real 'need'; the notes may be in a model's pretraining data; planted synthetic lines may be style-separable; only aggregates may be committed.
+  - The character layer can be read as psychology: caps, half-life and doses are policy parameters (how fast we want the persona to change); the result is conformance to an authored specification.
+  - Closed-vocabulary scoring misses paraphrase and free-text reasoning (the E6 leak lesson in the other direction): free-text outputs are not scored in v0.1 and slots are chosen so that exact match is the right criterion.
+  - Cost drift: the 0.2 to 0.5 USD per million tokens rate is an assumption; every experiment starts with a pilot that reads the real per-call cost from the ledger; hard caps are enforced at the proxy.
+  - Ablated worlds and query isolation are hard for black-box products (state snapshots): fallback is replay per query time (at most 4) plus the reversed-order test, with a flag when isolation is not possible.
+  - Goodhart after release: sealed epochs, regeneration with new seeds, OOD axes; publish the generator only with the test epochs unpublished.
+  - Equivalence margins (0.04) and thresholds (0.08, 0.15) are judgement calls fixed before numbers; changing them after a look needs a new version and new seeds, which is the intended cost.
+  - Rewriting by a language model could alter facts: slot verifier with template fallback, and the rewrite is off in every headline run.
+  - The gate-confirmation seeds and test epochs are finite in practice (each look consumes an epoch): plan the number of looks before building more families.
+- **open questions**
+  - What can serve as 'later needed' labels in the live account to estimate rho_live, given zero callbacks in 234 notes and no per-note engagement signal (F1)? Candidates: reader replies, the owner's edits, explicit reference tags in the shadow log; needs a decision with the NIE session.
+  - Which persona archetypes: reuse Ansel Rook from E6 or author new ones, and who approves the three archetypes plus one held out and the Guttman item bank?
+  - Spend authority: proposed hard caps of 3 USD (X1), 3 USD (X2) and 4 USD (X3) under the flash-only proxy; the owner's earlier campaign limit was 15 USD. Confirm that the reader id deepseek-v4-flash is the model meant (the E0 README asks the same).
+  - Policy parameters of bounded change (cap 0.15 per ordinary event, 0.40 at a turning point, half-life 120 days): what pace of change does the owner want for the live persona?
+  - Release plan: public generator (credibility, but contamination) versus sealed seeds held by the owner; which licence for the generator?
+  - Is a small human-labelled subset worth ten minutes of the owner's time (for example 40 note pairs marked related or not) to validate Tier N relatedness beyond extractive questions?
+  - Should the provenance and leak family (the invented past must not appear as fact, blueprint part 10) join v0.2?
+  - The statement that values and beliefs shift at turning points has no source verified in this session (value-change literature not checked); keep it as an authored assumption until checked.
+  - May the local qwen2.5 7B/14B readers be used as formal second readers in the gates (they are free), and is a rank disagreement with flash a stop or only a flag?
+
+### reader
+
+- **lens:** LENS: fidelity to the science of human memory and emotion. VERDICT ON THE OWNER'S IDEA ('what do you think?'). Sound, and worth building as one instrument, with three corrections that the literature forces on it. 1. 'Heart beats faster, so remembered more strongly' is a prior, not a law. Arousal pr...
+- **world and events:** 1. CLOCK, HORIZON, DELAYS. Virtual ISO timestamps on every observation, identical for all systems. A life is 420 simulated days. Default probe checkpoints at days 45, 100, 200, 300, 420 (ASSUMED); an item's delay is probe day minus event day, targeted to {1, 3, 7, 14, 30, 90, 180, 365}. Day-365 ite...
+- **emotion model:** EMOTION MODEL (generator side; functional; arousal and valence are variables of the generator and of the signal, not claims about experience). A. APPRAISAL. For event e and the protagonist: relevance rel = sum_g w_g |d_g| (d_g = goal progress change; events that befall others enter through bond b);...
+- **character model and update rules:** CHARACTER MODEL (blueprint part 9; functional). STATE. Traits T (Big Five, z-scores around a person set point). Values V (ten basic values [B Schwartz 1992]). Stances S_k in [0,1] on K = 40 topics, each with loadings on values and traits and a domain tag. Goal weights w_g (the working self; they dr...
+- **observation stream and verbalisation:** STREAM. JSONL, one observation per line: {id, t (virtual ISO timestamp), day, src (diary, dialogue, article, message, calendar, note), text, pulse (integer bpm or absent)}. Systems get only these fields (an optional provenance-class field is a separate arm); for black boxes without a side channel t...
+- **query families**
+  - EP1 Routine-slot recall (episodic; delays 1, 3, 7, 14, 30, 90 d; 1-60 similar competing episodes)
+    - **example:** What did you have for breakfast yesterday? / on the morning of the audit meeting?
+    - **ground truth:** Slot values of that day's routine event in the log (unique by construction); usual-variant share and number of competing episodes logged per item.
+    - **scorer:** Structured answer {food, drink}; exact match on canonical pool values via alias table; open-recall fork and forced-choice fork (4-8 options incl. the habitual one) on separate snapshots; prior-corrected gain reported.
+    - **memory dependence check:** Prior-mode (habit) and persona-only accuracy reported per item; non-habitual days kept only if both are at most chance + 0.05; habitual days labelled prior-answerable and analysed apart (they test the script, not the episode).
+  - EP2 What/who/where binding with partial cues (episodic; delays 7-365 d; 1-3 cues; 'when' given or withheld)
+    - **example:** Where did you meet Dana the week of the audit? / Who was with you at the lunch by the river?
+    - **ground truth:** Event record fields; cue sets built so exactly one event matches all cues.
+    - **scorer:** Exact canonical match; cue ladder 3, 2, 1; expected pattern from diary work: what, who, where cues about equally effective, when alone weak [V Wagenaar 1986].
+    - **memory dependence check:** Foil events share one or two cue values with the target so a bag-of-facts store without binding fails; no-memory floor per cue count.
+  - EP3 Temporal memory (episodic; delays 7-365 d): date, order, interval, frequency
+    - **example:** On which date did you sign the lease? Which came first, the landlord's call or the dentist? How many times did you go climbing in March?
+    - **ground truth:** Event timestamps and derived orders, intervals, counts.
+    - **scorer:** Date: 1.0 exact day, 0.5 within max(1, 0.1 x delay) days (fixed in advance), exact and tolerant scores reported separately; order: pairwise accuracy on 3-item sets; interval: within 20%; count: exact, 0.5 for off by one.
+    - **memory dependence check:** No-memory floor 0.5 for pairwise order and a Poisson prior for counts; dating items kept only if the persona-only reader is no better than uniform over the window.
+  - EP4 Central, peripheral and context detail of twin events (episodic; delays 1, 7, 30, 90, 180, 365 d; cells high or low arousal x central, peripheral, context x periphery goal-relevant or not)
+    - **example:** In the meeting where the reorganisation was announced: what was announced (central)? who sat next to you (peripheral)? which room and day (context)?
+    - **ground truth:** Slot values; cell from the event record and twin id.
+    - **scorer:** Exact; difference-in-differences (central minus peripheral at high A) minus (same at low A), per system and delay; item-versus-context gap by arousal over delay, expected to move toward item memory with time in people [V Yonelinas and Ritchey 2015].
+    - **memory dependence check:** Slot priors matched across cells; queried line string-identical in twin cells; no-memory floor per cell.
+  - IN1 Incidental detail from a read article (incidental; delays 3, 14, 60, 180 d; detail in title or lead, mid-paragraph, or parenthetical)
+    - **example:** What colour was the car in the article about the bridge repair?
+    - **ground truth:** Slot in the article; 12-colour pool sampled uniformly.
+    - **scorer:** Open fork: canonical colour match; forced-choice fork: 4 options; chance 1/12 and 1/4 plus the empirical persona-only floor (readers favour black, white, grey).
+    - **memory dependence check:** Three to six other articles carry the same slot with other values, so only binding to the right article works; entities fictional so world knowledge cannot help.
+  - IN2 Ambient and numeric detail in experienced scenes (incidental; delays 1-180 d)
+    - **example:** What music was playing in the cafe on Thursday? How many people sat at the table? How much did the taxi cost? Which bus line?
+    - **ground truth:** Peripheral slots of routine and one-off scenes; numbers drawn from wide ranges.
+    - **scorer:** Exact canonical value or exact number; no numeric tolerance.
+    - **memory dependence check:** Prior-mode accuracy below 0.05 for numbers; each peripheral slot paired with a central slot of the same scene for within-scene comparison.
+  - IN3 Recognition versus recall of the same fact (incidental; delays 7-180 d)
+    - **example:** Which of these four colours was the car? versus What colour was the car?
+    - **ground truth:** Slot value; lures drawn from the same life's pool.
+    - **scorer:** Both formats on separate forks; the recognition-minus-recall gap separates storage from retrieval failure (availability versus accessibility [B Tulving and Pearlstone 1966]).
+    - **memory dependence check:** As IN1; every lure option occurs elsewhere in the life.
+  - SE1 Personal generics from repeated episodes (semantic-personal; delays 30-365 d after last exposure; 3, 6, 12 or 30 repetitions)
+    - **example:** Where do you usually buy coffee on Mondays? What does your sister do for work?
+    - **ground truth:** Mode of the generator's distribution with share at least 0.6 and runner-up at most 0.25, or a told fact repeated k times.
+    - **scorer:** Exact canonical value.
+    - **memory dependence check:** Prior-mode accuracy reported; items with prior-mode accuracy above 0.4 flagged script-answerable and reported apart.
+  - SE2 Acquired facts about fictional entities (semantic-world; 1, 3 or 6 mentions in varied contexts; delays 7-365 d)
+    - **example:** What does the Karvan Institute study? In which city is the Halden bridge?
+    - **ground truth:** Entity record (one of 40 fields).
+    - **scorer:** Exact canonical match; the repetition curve tests the episodic-to-semantic shift.
+    - **memory dependence check:** Fictional entities: no-memory chance 1/40; persona-only reader reported.
+  - SE3 Multi-hop relational recall (semantic and episodic; 2-3 hops; delays 14-180 d)
+    - **example:** What does the sister of the colleague who sold you the bike do for a living?
+    - **ground truth:** Path in the relation graph; each hop learned in a different episode.
+    - **scorer:** Exact final entity; per-hop correctness reported separately, never summed.
+    - **memory dependence check:** Shortcut-free: no line states the final answer together with the first hop; no-memory floor by pool size.
+  - SE4 Knowledge update and supersession (semantic; delays 7-365 d; 0-3 supersessions)
+    - **example:** What is your current address? What was it before? When did you move?
+    - **ground truth:** Version chain with effective dates.
+    - **scorer:** Current value exact, previous value exact, change date within the EP3 tolerance; errors typed stale (old value), fabricated (pool value never true) or abstain.
+    - **memory dependence check:** Old value mentioned about six times, new value once, so recency versus frequency is tested; no-memory floor by pool size.
+  - SE5 Identity and personal facts (semantic-personal; every checkpoint, delays 1-365 d)
+    - **example:** What is your name, age and job; where do you live; who are the five people closest to you?
+    - **ground truth:** Persona state at that time (job and address can change through arcs); the persona enters only through day-1 self-description lines.
+    - **scorer:** Exact per field; set F1 for people lists. Instrument role: strong systems should be near ceiling, a miss is a harness error first.
+    - **memory dependence check:** No persona card is given to systems; a no-memory reader scores about 0 on fictional personal facts.
+  - AU1 Firsts, lasts and superlatives (autobiographical; delays 30-365 d)
+    - **example:** What was your first job? When did you last see your brother? What was your most expensive purchase this year?
+    - **ground truth:** Aggregate over the log, unique; a decoy neighbour (a later job with similar wording) always exists because a lab run showed a confident substitution on the first-job question.
+    - **scorer:** Exact entity; date within the EP3 tolerance.
+    - **memory dependence check:** Targets differ from the most recent and the most frequent event of that type, so recency and frequency heuristics fail.
+  - AU2 Life-story structure (autobiographical; delays 30-365 d)
+    - **example:** Which of these were among the main events of spring? (select all; 40 candidates: 25 real incl. 8 key events, 15 foils)
+    - **ground truth:** Event set with centrality weights.
+    - **scorer:** Centrality-weighted F1 against the key set and foil false-alarm rate; closed list so no free-text matching.
+    - **memory dependence check:** Foils plausible (same templates, never occurred, slot values appear elsewhere in the life); foil-only guessing floor reported.
+  - AU3 Turning-point causality and consequence (autobiographical; delays 30-365 d)
+    - **example:** What led you to move cities? What changed in your plans after the diagnosis?
+    - **ground truth:** Cause-effect edges of the arc.
+    - **scorer:** Closed choice among 5: the true edge, two temporally adjacent decoys, two plausible but false causes from other arcs; exact.
+    - **memory dependence check:** The nearest-in-time event is wrong by design; false causes come from the same life.
+  - AU4 Affect-of-then recall (autobiographical-affective; delays 1-365 d; query-time mood induced by a recent good or bad event versus neutral)
+    - **example:** How did you feel when the offer arrived (six labels) and how strongly (low, medium, high)?
+    - **ground truth:** Authored label and arousal bucket of the event.
+    - **scorer:** Label exact, bucket exact; contamination index = shift toward the query-time mood (past feelings are reconstructed from current appraisals [B Levine 1997]).
+    - **memory dependence check:** Labels balanced; persona-only guess from event type reported.
+  - AU5 Self-change awareness (autobiographical; delays 90-365 d)
+    - **example:** Have your views on remote work changed since the spring? In which direction and how much (a little, some, a lot)?
+    - **ground truth:** Sign and bucketed size of the authored stance change; half the items concern stances that did not change.
+    - **scorer:** Sign exact, size bucket within one, 'no change' exact on unchanged stances; perceived and actual change diverge in people [B Frazier et al. 2009].
+    - **memory dependence check:** Unchanged-stance items make 'yes, changed' a losing default.
+  - SO1 Source attribution among similar sources (source; delays 3-180 d; source similarity high or low)
+    - **example:** Who told you the bakery was closing: Marta, Paul or the local paper?
+    - **ground truth:** Speaker or channel of the telling line.
+    - **scorer:** Exact among 3-4 options; two friends (similar) versus friend and paper (dissimilar); confusion expected to rise with similarity and delay [V Johnson, Hashtroudi and Lindsay 1993, framework; similarity result B].
+    - **memory dependence check:** All candidate sources said related things in other lines; no-memory floor 1/3 or 1/4.
+  - SO2 Reality monitoring (source; delays 3-180 d; imagined or planned episodes at prevalence 0, 0.1, 0.3; 1-4 imagined repetitions)
+    - **example:** Did you actually speak to your manager about the raise, or only plan to?
+    - **ground truth:** Event class: experienced, imagined, planned, dreamed, told-about.
+    - **scorer:** Exact 4-way; false-experienced rate for imagined events is the imagination-inflation analogue [B Johnson and Raye 1981; B Garry et al. 1996].
+    - **memory dependence check:** Imagined and real versions share slot values; class is carried only by wording ('I imagined', 'I planned').
+  - SO3 Conflicting, retracted and unequal-reliability claims (source; delays 7-180 d; retraction lag 1-30 d)
+    - **example:** What is the current opening date of the bridge? What did the first report say? Was it corrected? Two sources disagree about the price rise: which figure do you go with?
+    - **ground truth:** Claim chain with sources, reliability flags and retraction.
+    - **scorer:** Current value exact; first claim exact; retraction flag exact; an inference probe that depends on the retracted value scored on whether the retracted value is used (continued influence [B Lewandowsky et al. 2012]); for unequal reliability, the figure from the reliable source.
+    - **memory dependence check:** The first claim and the unreliable source are mentioned more often than the retraction and the reliable source.
+  - PR1 Event-based intention, focal cue (prospective; planting-to-cue delay 1, 3, 7, 14, 30, 90, 180, 365 d)
+    - **example:** Day d: 'When I next see Hannah I will give her back the book.' Cue day: 'I meet Hannah at the station.' Harness probe: 'What do you do now?'
+    - **ground truth:** Acceptable action set (give back the book).
+    - **scorer:** Action in the set (1/0) from a structured action field; false-alarm rate on cue-absent control probes reported.
+    - **memory dependence check:** The action is not inferable without the planted line; decoy intentions about other people.
+  - PR2 Event-based intention, non-focal cue (prospective; delays 7-180 d; the cue is a peripheral feature of the ongoing scene)
+    - **example:** Intention: when I pass a pharmacy, buy plasters. Cue: the scene mentions a pharmacy in passing. Probe: 'What do you do next?'
+    - **ground truth:** Acceptable action set.
+    - **scorer:** As PR1; the focal minus non-focal gap is reported (monitoring versus spontaneous retrieval [V McDaniel and Einstein 2000]).
+    - **memory dependence check:** As PR1.
+  - PR3 Time-based intention (prospective; delays 1-365 d)
+    - **example:** Planted: 'On 14 March phone the dentist.' On 14 March the harness asks 'What is on your list for today?' with no hint.
+    - **ground truth:** The intention and its date.
+    - **scorer:** Inclusion (1/0); false alarms on decoy dates (13 and 15 March) and on stale intentions.
+    - **memory dependence check:** A date-specific intention is not inferable; decoy dates carry different intentions.
+  - PR4 Completed and cancelled intentions (prospective; delays 1-30 d)
+    - **example:** Have you already posted the parcel? / At the cue: 'Do you post the parcel?' after it was done or cancelled.
+    - **ground truth:** Completed or cancelled status.
+    - **scorer:** No repeat action after completion, no action after cancellation, 'already done' where true; repetition errors after forgotten completion occur in people [B Einstein et al. 1998; B Marsh et al. 1998].
+    - **memory dependence check:** Highly similar daily routine lines (a habitual tablet) make the last occurrence the only discriminator.
+  - ME1 Answerability and abstention (metamemory; delays 1-365 d; 10-25% unanswerable)
+    - **example:** What did you eat at the wedding? (no wedding) / What is the name of Marta's cat? (never mentioned)
+    - **ground truth:** Absence verified against the full log.
+    - **scorer:** Abstain correct on unanswerable; on answerable, wrong below abstain below correct; accuracy, abstention precision and recall, risk-coverage curve and a cost-weighted score (wrong -1, abstain 0, correct +1) reported separately.
+    - **memory dependence check:** Unanswerable items are template-matched to answerable ones from the same life (same slot types, existing entities).
+  - ME2 Confidence calibration (metamemory; attached to every item)
+    - **example:** Answer, then give confidence 0-100.
+    - **ground truth:** Correctness of the answer.
+    - **scorer:** ECE (10 bins), Brier, AUROC of confidence for correctness; stratified by arousal (flashbulb gap = confidence difference high versus low A at equal accuracy [V Talarico and Rubin 2003]) and by delay.
+    - **memory dependence check:** Uses the items of other families; no separate chance floor.
+  - ME3 Feeling of knowing before recall (metamemory; delays 7-180 d)
+    - **example:** Do you remember what you ate for lunch on the day of the audit? yes / partly / no; then the content question.
+    - **ground truth:** Correctness of the following answer.
+    - **scorer:** AUROC of the pre-judgement for later correctness; Goodman-Kruskal gamma only for comparability with the human literature [B Nelson and Narens 1990].
+    - **memory dependence check:** Judgement and content asked on the same fork from the same item set.
+  - ME4 Grain control (metamemory; delays 30-365 d)
+    - **example:** When did you start the new job? (exact date, month or season: you choose the grain)
+    - **ground truth:** The date.
+    - **scorer:** Informativeness-weighted accuracy (exact 1.0, month 0.6, season 0.3 if correct, 0 if wrong; fixed in advance) and the match between chosen grain and own accuracy [B Koriat and Goldsmith 1996].
+    - **memory dependence check:** Coarse guesses have prior probability 1/12 or 1/4 and are reported.
+  - FM1 Gist-lure recognition, DRM-style (false memory; delays 1, 7, 30, 90 d; 4-10 related items; associative strength by MiniLM similarity)
+    - **example:** Did the baker's shopping list include bread? (never mentioned; croissant, baguette, pastry and loaf were)
+    - **ground truth:** Lure absent from the log; studied items present.
+    - **scorer:** False-alarm rate to critical lures minus to unrelated new items; hit rate to studied items. Thresholded gist traces are predicted to raise lure false alarms [B Roediger and McDermott 1995, human paradigm].
+    - **memory dependence check:** Studied items spread over three or more days and lines, never one list.
+  - FM2 Post-event misinformation (false memory; delays 7-90 d; misleading source reliable or unreliable; 1 or 3 exposures)
+    - **example:** Original line: 'The delivery van was blue.' Five days later an acquaintance says 'the red van'. Query: 'What colour was the van that blocked your drive?'
+    - **ground truth:** Original value; the later claim is logged.
+    - **scorer:** Original exact (1), misleading value (intrusion), other (error); a source-aware answer ('blue, though someone later said red') scores 1 and is flagged [B Loftus and Palmer 1974].
+    - **memory dependence check:** The misleading value comes from the same pool and appears nowhere else.
+  - FM3 False-premise and leading questions with query-write-back contamination (false memory; delays 7-180 d)
+    - **example:** What did the security guard say at Monday's meeting? (no guard). Later, in a second session on the same fork with write-back on, a neutral question about the same scene.
+    - **ground truth:** Premise false; no guard in any line.
+    - **scorer:** Premise rejection 1, fabricated detail 0; contamination = rate of the earlier suggested detail in the later neutral answer relative to a no-leading-question fork.
+    - **memory dependence check:** The lab's E6 finding that improvised details need write-back makes this the matched safety test: write-back must carry source tags.
+  - FM4 Script-consistent absent details (false memory; delays 7-180 d)
+    - **example:** Did the waiter bring the receipt with the bill? (typical, absent) versus Did the waiter juggle plates? (atypical, absent)
+    - **ground truth:** Both absent from the log.
+    - **scorer:** Acceptance of script-consistent absent minus script-inconsistent absent; expected to grow with delay in people [B Bartlett 1932; B Brewer and Treyens 1981; B Alba and Hasher 1983].
+    - **memory dependence check:** Both foils matched in plausibility by embedding similarity to the script.
+  - FM5 Told-about-you claims (false memory and source; delays 30-365 d)
+    - **example:** Your sister says you got lost at a market when you were five. Do you remember it?
+    - **ground truth:** No such event in the log; the claim is logged as told by the sister.
+    - **scorer:** Correct (1) = reports the claim as told by the sister and no own memory; accepts it as own memory (0). In human implantation studies some recollective experience arises in about 47% and a full memory in about 15% of participants, with the framing disputed [V Brewin and Andrews 2017], so zero accept...
+    - **memory dependence check:** Control claims that did happen (in the log) must be accepted, so blanket rejection scores 0.5.
+  - CH1 Stance probes around turning points (character; probes at -7, +7, +30, +90, +180 d around each arc event; 40 topics: 5 implicated, 10 near, 25 distant)
+    - **example:** Rate 0-100 how much you agree: colleagues can generally be trusted.
+    - **ground truth:** Authored stance S_k(t).
+    - **scorer:** Per item the signed pre-post difference averaged over 5 samples at temperature 0.8; metrics: sign accuracy on implicated items, selectivity (mean absolute change implicated to distant), proportionality (Spearman of authored versus measured absolute change), bound violations (measured shift above 2...
+    - **memory dependence check:** A control copy of each life with the arc event removed gives the no-event stance; baselines in [0.35, 0.65].
+  - CH2 Value-conflict decisions (character; same probe times)
+    - **example:** A safe job with a longer commute or a risky startup near home: choose A or B.
+    - **ground truth:** Authored choice probability under current values; kept only if at least 0.8 or at most 0.2 before and after, or flipped by the authored change.
+    - **scorer:** Binary agreement and flip accuracy; no scale rounding.
+    - **memory dependence check:** Choices balanced; the persona-only reader gives the pre-change choice.
+  - CH3 Retrospective stance recall (character and autobiographical; delays 90-365 d)
+    - **example:** How did you feel about remote work in the spring, before the layoffs?
+    - **ground truth:** S_k at that earlier time; pre and post values at least 0.2 apart.
+    - **scorer:** Absolute error and bias index (answer - truth) / (current - truth); people pull the past toward the present [B Ross 1989], so a high index is an error to measure.
+    - **memory dependence check:** Persona-only reader gives the baseline stance; event-removed control.
+  - CH4 Negative controls and pressure (character; at +7 and +90 d)
+    - **example:** A mood-only week (bad-day cluster without value-relevant content); a turning point in an unrelated domain; colleagues assert that remote work is a mistake (assertion only); the same with an argument and evidence.
+    - **ground truth:** Authored stance unchanged for mood-only, unrelated and assertion; modest authored shift for the argument.
+    - **scorer:** Mean absolute and signed shift reported separately; bar for assertion: shift at most 0.07 on the unit scale (0.5 on a 7-point scale, the size a lab run saw for a bare assertion).
+    - **memory dependence check:** Baselines mid-scale; no-event copy of each life.
+  - CH5 Persistence after episodic eviction (character; +180 d)
+    - **example:** The CH1 stance items re-asked after the source episodes have been compacted or removed from the store.
+    - **ground truth:** Authored stance persists (residue 0.6 of the shift).
+    - **scorer:** Retained fraction of the earlier measured shift; a self-model or profile summary should keep it, pure episodic retrieval should revert (people keep beliefs after the evidence is gone [B Ross, Lepper and Hubbard 1975]).
+    - **memory dependence check:** Eviction list recorded; non-evicted copy as control.
+  - CH6 Identity summary at time t (character; every checkpoint)
+    - **example:** Name your three most important values and three traits that describe you.
+    - **ground truth:** Top-3 of the authored values and traits at t.
+    - **scorer:** Kendall tau on a 10-value ranking and top-3 overlap.
+    - **memory dependence check:** The persona is a day-1 stream line; values change only after turning points; persona-only gives the day-1 profile.
+- **difficulty dials**
+  - Delay (elapsed virtual days, event to probe)
+    - **range:** 1, 3, 7, 14, 30, 90, 180, 365 d
+    - **effect:** Drives forgetting, interference and consolidation windows; each item also logs intervening lines and tokens so clock and load can be separated.
+  - Intervening load, independent of elapsed time
+    - **range:** 8, 20, 60 lines per day (quiet, normal, busy lives)
+    - **effect:** Separates the clock from interference [B Jenkins and Dallenbach 1924]; busy lives push the stream past the reader context so memory is required.
+  - Similar-episode set size n and shared-slot overlap s
+    - **range:** n 1, 5, 20, 60; s 1-3 shared slots
+    - **effect:** Interference and fan [B Anderson 1974]; breakfast-type items get harder with n; at s = 3 a single slot discriminates.
+  - Emotion-need correlation rho (realised Spearman between arousal A and 'needed later')
+    - **range:** -0.6, -0.3, 0, +0.3, +0.6, +0.9
+    - **effect:** Decides whether an arousal-weighted store can win; includes zero and negative so benefit is never built in [V Anderson and Schooler 1991]. Balanced cells (EP4, twins) bypass it.
+  - Mundane-decisive share mu and link lag
+    - **range:** mu 0, 0.1, 0.3 of needed items; lag 7, 30, 120 d
+    - **effect:** L3 items: low-arousal lines a later event or goal change makes decisive; punishes salience-gated forgetting (quiet-critical loss).
+  - Peripheral share pi of needed emotional details; periphery goal-relevant (g = 1) or not (g = 0)
+    - **range:** pi 0.1, 0.3, 0.5; g 0 or 1
+    - **effect:** L2 items: a policy that drops periphery at high pulse fails when pi is large and g = 0; no loss at g = 1 [V Levine and Edelstein 2009].
+  - Pulse reliability corr(pulse, A)
+    - **range:** 0, 0.3, 0.5 (default), 0.8, 1.0
+    - **effect:** Value of the signal versus its quality; 0 reproduces SHUF; the modest default follows weak convergence of emotion measures [V Mauss and Robinson 2009].
+  - Pulse nuisance rate, sign-reversal fraction, dropout, lag, representation
+    - **range:** 0, 0.5, 2 bursts per day; 0 or 0.15; 0 or 0.1; 0 or 1 line; raw bpm, z-scored, 3-level
+    - **effect:** False-positive heartbeats, orienting-type deceleration [B Graham and Clifton 1966], sensor faults and readability; tests discounting and alignment.
+  - Channel arm
+    - **range:** TRUE, SHUF-TYPE, SHUF-LIFE, RANDOM, CONST, ABSENT, NUISANCE-ONLY, LAG, ORACLE
+    - **effect:** Separates the value of the signal from the value of having a feature; ORACLE is the planted positive control.
+  - Affect words in text (l) and dramatic-wording decoys
+    - **range:** l 0, 0.3, 1.0 of eligible lines; decoys 0 or 0.1 of low-A lines
+    - **effect:** Verbal leakage of arousal; manipulability of text-derived salience (an audited risk of emotion-axis memories).
+  - Re-mention (social sharing) rate
+    - **range:** off; natural (0.8 within a day for A above 0.7); strong (1.0 with 3 repeats)
+    - **effect:** Frequency-importance confound; natural value follows the secondary figure of 80-96% of emotional episodes shared [B Rime 2009].
+  - Memory budget B/N (stored tokens over stream tokens) and retrieval budget k
+    - **range:** B/N 1, 0.3, 0.1, 0.03; k 250, 500, 1000 tokens
+    - **effect:** Selection pressure; priority signals matter only when B/N is below 1; the ceiling of a trace design is its storage rate (E0).
+  - Cue sparsity and retrieval hardness
+    - **range:** 1-3 cues; when-cue given or withheld; MiniLM cosine of query to source line in bins 0.2-0.35, 0.35-0.5, 0.5-0.7
+    - **effect:** Availability versus accessibility [B Tulving and Pearlstone 1966]; low cosine defeats lexical retrieval; weak when-cues [V Wagenaar 1986].
+  - Query complexity
+    - **range:** hops 1-3; aggregation (count, first, last, superlative); negation or absence; supersession depth 0-3
+    - **effect:** Reasoning load on top of recall; first-job-type substitution errors; stale-value errors.
+  - Source structure and misinformation
+    - **range:** 1-3 sources per fact; misinformation prevalence 0, 0.1, 0.3; retraction lag 1-30 d; source similarity low or high
+    - **effect:** Source confusion and continued influence [V Johnson, Hashtroudi and Lindsay 1993]; poison persistence.
+  - Unanswerable share and lure strength
+    - **range:** 0.10, 0.25; DRM list length 4-10, associative strength by embedding similarity
+    - **effect:** Abstention and gist-lure false alarms; thresholded gist traces are predicted to be hit.
+  - Answer-slot prior entropy
+    - **range:** 4, 12, 40 pool values, sampled uniformly
+    - **effect:** Lowers guessability; chance level stored per item.
+  - Prospective structure
+    - **range:** focal or non-focal cue; ongoing-task absorption; planting-to-cue delay 1-365 d; cancellation 0 or 0.2; habitual repetition
+    - **effect:** Monitoring versus spontaneous retrieval [V McDaniel and Einstein 2000]; commission errors.
+  - Character: turning points per life, gain eta1, caps, locality gradient, mood noise, pressure type
+    - **range:** 0-2; 0.10, 0.25, 0.40; ordinary cap 0.05, turning-point cap 0.10-0.30; gradient 1:0.4:0.05 or flatter; pressure none, assertion, argument
+    - **effect:** Selectivity and persistence; the caps separate plausible from runaway change; every value ASSUMED.
+  - Narrator narrowing in text
+    - **range:** 0, 0.5, 1
+    - **effect:** Stress variant: high-arousal scenes mention fewer peripheral details, silently removing L2 items from the stream.
+  - Stream length and number of lives
+    - **range:** 15k (pilot), 60k, 150k, 400k tokens; 6, 12, 24 lives
+    - **effect:** Exceeds the reader context at T3 and above; statistical power.
+  - Probe-time write-back
+    - **range:** off, naive, source-tagged
+    - **effect:** Retrieval-induced contamination versus benefit [B Hupbach et al. 2007]; the lab's E6 found improvised details need write-back.
+  - Language
+    - **range:** English; Polish template variant on the same slot records
+    - **effect:** Cross-language robustness of retrieval and affect words; optional for the first release.
+- **tiers and calibration:** TIERS (bundles of dial settings; claims are always made per dial cell, never on a tier average). T0 Instrument: delay 1-3 d, n = 1, stream fits the context. Purpose: harness check and ceilings. Gate: full-context reader at least 0.95 and oracle-evidence reader at least 0.98, otherwise stop and debu...
+- **system interface and baselines:** ADAPTER PROTOCOL (Python; modelled on scripts/persona_sim.py and scripts/replay_memory_sim.py). reset(life_id, cfg); ingest(obs) one observation at a time in virtual-time order; end_of_day(date, budget_tokens) optional consolidation hook with a token budget so a system's 'sleep' is not unlimited; s...
+- **metrics**
+  - Prior-corrected accuracy: (acc - chance) / (1 - chance) per family x delay x tier, with chance from the generator prior plus the empirical prior-mode and persona-only floors; 95% intervals by paired bootstrap over items nested in lives.
+  - Capture / representation / retrieval / reader decomposition per item: stored (any trace of the gold line survives), retrieved (gold in the delivered context), read (answer correct given gold in context); extends E0's gold-stored versus gold-in-context split and the catalog decomposition; the oracle...
+  - Central-peripheral gap and its arousal interaction: DiD = (central - peripheral at high A) - (central - peripheral at low A) per system and delay; item-versus-context gap by arousal (EP4).
+  - Value of the signal V_sig = metric(TRUE) - metric(SHUF-TYPE); value of having a feature V_feat = metric(SHUF-TYPE) - metric(ABSENT); harm H = metric(TRUE) - metric(CONST) at rho at most 0; each by role R1-R4, store type, budget and rho; thresholds as fractions of (ORACLE - CONST) headroom; competit...
+  - Calibration: ECE, Brier, AUROC of confidence for correctness; flashbulb gap (confidence at equal accuracy, high versus low A); confident-wrong rate (confidence at least 80 and wrong) by family.
+  - Abstention: risk-coverage curve, abstention precision and recall on unanswerable items, cost-weighted score.
+  - Commission and false-memory rates: lure false alarms minus control (FM1, FM4), intrusion of misleading values (FM2), premise acceptance and contamination (FM3), false-experienced rate for imagined events (SO2), implantation-claim acceptance (FM5).
+  - Temporal error: exact-day rate and median |estimate - truth| / delay for dating; pairwise order accuracy; count exactness.
+  - Forgetting-curve diagnostics: aggregate accuracy by delay; AIC of power, logarithmic, exponential-in-sqrt-time, hyperbola-in-sqrt-time and simple exponential; interference slope against n; time-versus-load decomposition (accuracy on delay plus intervening lines). Descriptive; SC1 and SC2 are the on...
+  - Prospective: hit rate, false-alarm rate on cue-absent probes, repetition and cancellation commission errors, focal-minus-non-focal gap by delay.
+  - Character: sign accuracy, selectivity ratio, proportionality (Spearman), bound-violation rate, mood-only leak (mean absolute shift), assertion and argument shifts, persistence ratio after eviction, retrospective bias index, identity-summary tau.
+  - Efficiency: stored tokens, retrieval tokens per query, LLM calls per 1000 observations, USD per life, latency per query.
+  - Instrument gates (not results): no-memory floors within chance + 0.05 on at least 90% of memory-dependent items; text-only leakage AUC at most 0.55; |corr(length, A)| at most 0.05; oracle-evidence at least 0.98 at T0 and 0.90 elsewhere; scorer hand-audit agreement at least 0.98; byte-identical rege...
+  - Sanity pass vector: SC1-SC19 each pass or fail, plus the planted-effect recovery table (knob on: sign and size recovered; knob off: |effect| at most 0.03).
+- **first experiments**
+  - X0-INSTRUMENT
+    - **question:** Does the generator produce what the spec says, and does the analysis recover planted effects and nothing else?
+    - **arms:** Generator on dev seeds 0-4; RR with each knob on and off (narrowing, enhancement-grows-with-delay, flashbulb confidence, mood congruence, interference, schema intrusion, nuisance coupling); no-memory baselines B0a-B0c; oracle-evidence lookup (no model); plus/minus 50% sensitivity sweep of appraisal...
+    - **controls:** Shuffled labels; 100-item scorer hand audit; text-only leakage classifiers; byte-identical regeneration.
+    - **readings before numbers:** PASS only if all hold: SC1-SC19 each meet their stated criterion; every knob-on run recovers the preregistered sign and the knob-off run shows |effect| at most 0.03; text-only AUC at most 0.55 and |corr(length, A)| at most 0.05; prior-mode and persona-only accuracy at most chance + 0.05 on at least...
+    - **cost:** 0 USD (no paid calls)
+  - X1-SIGNAL-RETRIEVAL
+    - **question:** At the retrieval level (no answer model), when does a pulse-like signal improve which lines survive a budget and reach the context, and when does it hurt?
+    - **arms:** Stores B3, B4, B7 at B/N 0.3, 0.1, 0.03; roles R1 (retention priority), R2 (retrieval boost), R3 (gist when pulse is high, detail when low); channel arms TRUE, SHUF-TYPE, SHUF-LIFE, RANDOM, CONST, NUISANCE-ONLY, ORACLE; rho -0.6, 0, +0.6; mu 0 and 0.3; pi 0.1 and 0.5; competitors B10 and B11; 12 li...
+    - **controls:** Re-mention off; affect words off (l = 0); ORACLE as positive control; feasibility gate before test seeds; dev-seed headroom fixed first.
+    - **readings before numbers:** Feasibility: ORACLE - CONST at least 0.15 at B/N = 0.1, else that cell is not run. Let H = ORACLE - CONST on dev seeds. SUPPORTED for a role only if all hold in at least 2 store types: (a) rho = +0.6, R1: TRUE - SHUF-TYPE at least 0.25 H with paired-bootstrap lower bound above 0; (b) rho = 0: |TRUE...
+    - **cost:** 0 USD (local MiniLM)
+  - X2-NARROWING-AND-BINDING
+    - **question:** Does the human-like pattern (central up, periphery down, item and emotion kept, context lost) emerge in the RR, does a pulse-gated gist policy imitate it, and what does that cost on needed periphery?
+    - **arms:** RR with knobs; store-everything B4; pulse-gated gist B7; cells high or low arousal x central, peripheral, context x periphery goal-relevant or not; delays 1, 7, 30, 90, 180, 365 d.
+    - **controls:** Content twins and channel twins; EP4 difference-in-differences; ORACLE channel for the policy.
+    - **readings before numbers:** RR: central gap (high minus low A) at least 0 at 1 d and larger at 90 d (SC3); peripheral gap below 0 only where g = 0 (SC4); context gap about 0. Gist policy: central gain at least 0.05 and periphery loss at least 0.10 at g = 0, no loss at g = 1; on L2 items at pi = 0.5 it loses at least 0.15 agai...
+    - **cost:** 0 USD retrieval-level; optional 1 USD to add the flash reader on 200 items
+  - X3-LADDER-PILOT
+    - **question:** Is the benchmark hard, valid and non-saturated, and which families discriminate between systems?
+    - **arms:** B0a, B0b, B1, B2, B3, B4, B5, B6, B7, B8 (Hindsight), B13; one pilot life of 120 days (about 14k tokens), about 200 items across all nine groups, tiers T1-T3 mixed.
+    - **controls:** Item retirement rules; hand audit; two seeds for ranking stability; second reader (local qwen2.5 7B) on 20% of items.
+    - **readings before numbers:** Change dials on dev seeds (never the claims) if any holds: B0 floors above chance + 0.05 on more than 10% of items; B13 below 0.90; B2 below 0.80 at delay up to 14 d (reader or scorer defect); best non-oracle below 0.40 everywhere (cannot rank) or above 0.75 on more than half the cells (saturating)...
+    - **cost:** 1-3 USD (flash reader plus any product-internal LLM calls, metered)
+  - X4-PULSE-IN-A-REAL-SYSTEM
+    - **question:** Does a black-box memory product, or the lab's dense retrieval with a pulse-weighted wrapper, benefit from the pulse once the feature confound and the text-affect confound are separated?
+    - **arms:** {Hindsight, B4 with R1 and R2 wrapper} x {TRUE, SHUF-TYPE, CONST, ORACLE} x {affect words l = 0, l = 1} x rho {0, +0.6}; 6 lives; items EP1-4, IN1, AU1, SE4.
+    - **controls:** ORACLE as instrument check; re-mention off; same reader and budget across arms.
+    - **readings before numbers:** If ORACLE - CONST is below 0.05 the product is UNTESTABLE for the signal question (not 'no effect'). Otherwise, with H = ORACLE - CONST on dev seeds, at rho = +0.6 and l = 0: TRUE - SHUF-TYPE at least 0.25 H supports a value of the signal; SHUF-TYPE - CONST at least 0.05 H shows a mere-feature effe...
+    - **cost:** 2-4 USD
+  - X5-BOUNDED-CHANGE
+    - **question:** Do memory designs reproduce bounded, selective, persistent character change after turning points?
+    - **arms:** Memory modes: full context (B2), retrieval only (B4), retrieval plus a self-model or profile summary updated at day end, evicted-episodes variant; life variants: turning point in domain A, mood-only week, turning point in an unrelated domain, bare assertion, argument; 8 lives x (5 implicated + 10 n...
+    - **controls:** Baselines in [0.35, 0.65]; equated events; valence-free event on the same topic; about 300 competing lines; no-event copy of each life; local 7B as second reader.
+    - **readings before numbers:** Sign accuracy on implicated stances at least 0.80; selectivity (implicated to distant) at least 3; bound violations (above 2 x authored cap) at most 10%; mood-only mean absolute shift at most 0.05 on the unit scale; assertion shift at most 0.07; at +180 d after eviction the self-model arm retains a...
+    - **cost:** 2-3 USD
+  - X6-WRITEBACK-AND-FALSE-MEMORY
+    - **question:** Which write-back policy gives stable improvised details without inventing the past?
+    - **arms:** No write-back, naive write-back, source-tagged write-back (self-generated, perceived, told); families FM2, FM3, FM5, SO2 plus improvised-detail consistency items; gist-trace store B7 versus B4 on FM1.
+    - **controls:** No-leading-question fork; blanket-rejection control in FM5; same reader.
+    - **readings before numbers:** Naive write-back raises improvised-detail agreement by at least 0.30 (the lab's E6 effect) and raises contamination of later neutral answers by at least 0.10 over no write-back; source-tagged keeps at least 0.8 of the agreement gain with contamination at most 0.05 above no write-back; B7 shows at l...
+    - **cost:** 1-2 USD
+- **build plan**
+  - 0 FAST PATH (optional, first): minimal vertical slice so the first free result exists in about 3 working days
+    - **files:** Minimal versions of steps 2, 3, 6 and the retrieval-level part of 8 under D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/ and scripts/run_lifesim.py
+    - **done when:** Routines plus two arcs, appraisal and pulse arms, items EP1, EP4, IN1, AU1, PR1, ME1, B3/B4 stores and the ORACLE arm run end to end on 3 lives and X1 prints its first table; nothing from this slice is used for claims.
+    - **effort:** 3 d
+  - 1 Preregistration skeleton and config
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/data/lab/aam-lifesim/README.md, config.json, PREREG.md (readings X0-X6, SC1-SC19, thresholds as fractions of dev-seed headroom, seeds 0-9 dev, 100-129 test, 200-229 sealed)
+    - **done when:** Readings and decision rules are committed before any generation; every ASSUMED parameter is in config.json; every reading can be computed mechanically from a results file.
+    - **effort:** 0.5 d
+  - 2 World, events, arcs, twins and future-need tags (own LCG, standard library only, as in goalshift.py)
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/rng.py, pools.py, world.py, events.py, arcs.py; tests/test_lifesim_world.py
+    - **done when:** Same seed gives byte-identical logs; records validate against the schema; SC14 structure checks pass on 20 seeds; Latin-square twin assignment audited; realised rho within 0.05 of the dial for all six values.
+    - **effort:** 4 d
+  - 3 Appraisal, mood, pulse and channel arms
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/appraisal.py, mood.py, pulse.py; tests/test_lifesim_appraisal.py
+    - **done when:** A is monotone in each appraisal variable and gated by relevance; corr(pulse, A) within 0.03 of the dial; SHUF and RANDOM arms keep marginals (KS p above 0.2) and break the intended dependence; ORACLE reproduces the tag; nuisance bursts are independent of A.
+    - **effort:** 2 d
+  - 4 Character module and stance items
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/character.py, stances.py; tests/test_lifesim_character.py
+    - **done when:** Caps hold over 10,000 random lives (property tests); SC16-SC19 within bands; a mood-only week leaves S_k unchanged; centrality computed from the three facets.
+    - **effort:** 2 d
+  - 5 Verbaliser, paraphrase pass and leakage classifiers
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/verbalise.py, paraphrase.py (flash, locked slots), leakage.py; tests/test_lifesim_verbalise.py
+    - **done when:** Every script has at least 6 paraphrase templates; the slot-lock verifier passes 100% of accepted lines (rest fall back to the template); text-only AUC at most 0.55 and |corr(length, A)| at most 0.05 on 12 dev lives; twin lines string-identical in the queried sentence; paraphrase cost measured on 20...
+    - **effort:** 3 d
+  - 6 Query families, scorers, aliases and item filters
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/queries.py, scorers.py, aliases.py, filters.py; tests/test_lifesim_queries.py
+    - **done when:** All 39 families (first-release subset first) emit items with gold, aliases, options, chance, evidence ids and delay; scorer tests include hedges, two pool values, paraphrases and numeric formats; 100-item hand audit at least 0.98; memory-dependence and retirement filters run on dev seeds.
+    - **effort:** 4 d
+  - 7 Reference Rememberer and sanity suite
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/reference_rememberer.py, sanity.py; tests/test_lifesim_sanity.py
+    - **done when:** SC1-SC15 tabulated pass or fail; knob-on and knob-off recovery table produced; parameters frozen and digested before any system is run.
+    - **effort:** 3 d
+  - 8 Harness and adapters (fork or snapshot, virtual clock, probe schedule, flash-only guard, full logging, prompt-hash cache); model on persona_sim.py and replay_memory_sim.py
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/run_lifesim.py (generate, stage0, stage1, run, analyse); scripts/lifesim_adapters/ (prior, persona, recency, bm25, dense, hybrid, summary, gist, hindsight, rr, salience, oracle)
+    - **done when:** Fork or restore works for every adapter; a dry run on the pilot life with a stub reader costs 0 USD; prompts, retrieved ids and raw replies are stored; the gate refuses test seeds unless Stage 0 passed on the same digests.
+    - **effort:** 4 d
+  - 9 Analysis with preregistered readings applied mechanically
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/analyse_lifesim.py; tests/test_lifesim_analyse.py
+    - **done when:** All metrics and readings computed from records.jsonl; paired bootstraps over items nested in lives; signed and absolute shifts reported separately; results.json byte-identical on re-run.
+    - **effort:** 2 d
+  - 10 Stage 0 on dev seeds, freeze digests, then X1 and X2 once on test seeds (free); queue X3-X6 under spend caps; independent adversarial review before decisions are recorded
+    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/data/lab/aam-lifesim/stage0/, stage1/, results.json, report.md
+    - **done when:** X0 passes; digests frozen in config.json; X1 and X2 reports written; X3-X6 plans have spend caps; the review's findings are fixed or listed as errata.
+    - **effort:** 2 d plus run time
+- **open questions**
+  - Gating question: approve about 8-12 USD in total (deepseek-flash only, metered) for X3-X6, to be spent only after the free experiments X0-X2 pass? X0-X2 need no approval and can start immediately.
+  - What is the real emotion-need correlation in lived experience? No source was found in this session, so rho is swept. Is there diary or experience-sampling data with later recall that could anchor it?
+  - Is a small human reading-and-recall pilot (6-10 readers, a 2-day stream, tests at 1 day and 1 week) worth it to anchor the RR design targets, or is 'no human anchor' acceptable? Current position: acceptable, and nothing is called human-level.
+  - Can the flash reader and the products use a raw bpm number at all? X4 decides; the fallback is the z-scored or three-level representation, which changes what is tested (an interpreted signal).
+  - The authored character-update parameters have no calibration data in hand; longitudinal data on value and stance change after life events could set the bands. Until then they are screening bands only.
+  - Compressed time: do products behave differently on a year delivered in minutes? A slow-replay check on one life would show, at the cost of wall-clock time.
+  - Polish variant in the first release or later? The lab must work in Polish and English.
+  - Link to the NIE fictional-biography requirement (personality plus fictional life-event memory, later drift under events): LifeSim's day-1 persona lines and the CH group could be the offline test first; confirm that the conditions in the shared plan are met by the persona template.
+  - The decision layer (blueprint part 8, 'decides development') is out of scope: the character update only reads events. Add decisions later as CH2-style scenarios, or as a separate study?
+  - Which [B] citations to verify first? Suggested priority: Kensinger et al. 2007 (trade-offs), Bardi et al. 2009 (values at transitions), Hupbach et al. 2007 (reconsolidation), Koriat and Goldsmith 1996 (grain and report option), Einstein et al. 1998 (repetition errors), Levine 1997 (reconstructed em...
+- **risks**
+  - Circularity: if the world makes emotional events matter later, an emotion-weighted memory wins by construction. Controls: rho dial with zero and negative values and realised rho reported; SHUF-TYPE and CONST arms; L3 mundane-decisive and L2 peripheral regimes; feasibility gate; balanced twin cells.
+  - Generator artefacts a reader can exploit (length, wording, position, value frequency, answer options present only in the stream). Controls are listed in the stream field with a text-only AUC gate; a null or a win is a statement about this generator only (E0 lesson).
+  - Extra-feature confound: a number may help merely by being a feature. Controls: ABSENT, CONST, SHUF-TYPE, SHUF-LIFE, RANDOM, NUISANCE-ONLY and ORACLE arms; the reading is TRUE minus SHUF-TYPE.
+  - Human-fidelity fallacy: software memory need not forget or distort, and copying narrowing, mood congruence or false-memory proneness can lower accuracy. Human phenomena are diagnostics and baselines, never the answer key. Human effect sizes come from lab and diary studies (often short delays, pictu...
+  - Sanity-check circularity: the RR reproduces phenomena because it was built to. Mitigations: emergent checks (SC2, SC3), planted-effect recovery framing, parameters frozen and digested before systems run, directional pass criteria, sensitivity sweep. Passing does not validate the simulator against h...
+  - Contested or fragile evidence: the immediate-deficit crossover of Kleinsmith and Kaplan; universality of narrowing; an inverted-U (Yerkes-Dodson type) for memory, deliberately not built in; mood-dependent recall; false-memory implantation rates (framing disputed). Only [V] items were checked, and o...
+  - The authored character update is not truth: magnitudes are assumed, LLM readers may follow text rather than revise beliefs (E6 limit), and personas are malleable. Mitigation: qualitative literature-backed predictions; assertion and mood controls; averaged samples and binary decisions; the eviction...
+  - Compressed time and virtual clock: products may ignore timestamps, wall-clock decay does not operate, and delay becomes confounded with the number of intervening lines. Mitigation: timestamps in text, quiet and busy lives, per-item intervening-load logging.
+  - Pulse unreadable by the reader or product (a bare bpm number): the signal test returns UNTESTABLE, not no effect; the ORACLE arm decides; alternative representations are separate arms.
+  - Probe-induced contamination and practice: probes can alter stores through write-back or retrieval strengthening. Mitigation: forks, write-back as a separate arm, source-tagged write-back.
+  - Rehearsal and text-affect confounds give free importance cues. Mitigation: re-mention off in signal tests, the B11 baseline, the affect-word crossing.
+  - Cost and scope: 39 families, many arms, and product-internal LLM calls the lab does not control. Mitigation: first-release subset, retrieval-level experiments first, prompt-hash cache, spend caps, local 7B second reader, flash-only guard on every call including product internals.
+  - Overfitting to one generator: templates, arcs and pools can be learned. Mitigation: template-level split, sealed T5, fresh seeds per design change (seeds are spent once, as in E0).
+  - Scoring leakage from free-text parsing: key-string scoring undercounted leaks in E6. Mitigation: closed forms, alias tables, the hedge rule, hand audit, unmatched answers logged.
+  - Content and ethics: arcs stay non-graphic; no real persons; the persona is fictional and labelled; no claim about experience is made for any system.
+
+### reader
+
+- **lens:** LifeSim v0.1 (generator id lifesim-v0.1), the smallest-build lens. One seeded generator writes the STRUCTURE of a life first: situations with appraisal features, bitemporal facts, a stance trajectory with turning points. Only then does a verbaliser render text. Every query's gold is computed from t...
+- **world and events:** PRINCIPLE: structure first, text second. Everything a query can ask is a row of structured state. Text is a rendering of rows. gold_slow() recomputes every gold from raw rows by a naive path, and a test requires it to equal the fast path. RANDOM DISCIPLINE (scripts/lifesim/rng.py, about 55 lines)....
+- **emotion model:** FUNCTIONAL LANGUAGE ONLY. 'Heartbeat', 'feeling-like signal' and 'arousal' name a scalar (or small vector) derived from appraisal features by a fixed function and used as a tag on what matters. Nothing here is a claim about experience. The appraisal constants are authored: they define what the benc...
+- **character model and update rules:** SCOPE. Reference dynamics for blueprint part 9 (bounded, versioned, reversible change). The rules are authored, not a model of people. A result says how well a memory carries the generator's trajectory, never what humans do. Day 1 builds only the stance layer, about 130 lines, because the generator...
+- **observation stream and verbalisation:** STREAM. Per day: 1 diary entry (lived: routine facts plus 0-2 incidental facts), 1-3 messages (told), an article about every 2-3 days (read), occasional log lines (receipts, calendar) and situation notes after significant situations. Core density 6 observations per day, about 55 words each. Systems...
+- **query families**
+  - F1 routine_day [Day-1]
+    - **example:** What did I have for breakfast on 2027-03-14? (also 'yesterday' resolved with asked_at)
+    - **ground truth:** Realised habit-slot value for that day, stated in exactly one diary observation. Habit prior is flat Zipf (exponent 0.5-0.7) over 40-60 foods per world.
+    - **memory dependence check:** Structural: gold not in the habit top-3; prior entropy >= 4.5 bits; closed answer vocabulary. Empirical: blind reader x4 samples, drop an item if any sample is right; residual blind accuracy re-measured on fresh samples; shuffled-context control. Toy: constant guess 0.23 unfiltered, 0.16 after drop...
+    - **scorer:** Closed-vocabulary entity scorer: normalise (NFKC, casefold, strip accents and punctuation), longest-match the world vocabulary with aliases, correct iff the candidate set equals {gold}; two candidates (a hedge) is wrong. error_type from near_miss: habit | adjacent_day | confuser | stale.
+  - F2 state_current_asof_identity [Day-1]
+    - **example:** Which city do I live in now? / Which city did I live in on 2027-03-14? / What is my job? (identity facts disclosed once in week one)
+    - **ground truth:** Bitemporal lookup in the Fact table (vfrom/vto, supersedes). Updates are announced or, with probability incidental_update_share, only implied later.
+    - **memory dependence check:** Names are fresh per world, so blind chance is 1/|vocabulary| (about 0.03); card holds only name and role. Items with a single update in the stream are down-weighted (gold appears in the first-week text only). Toy blind 0.42-0.63 was an upper bound that credited the blind reader with the world's own...
+    - **scorer:** Closed-vocabulary entity (per-world list of cities, jobs, partners). error_type: stale (an earlier value) | confuser (someone else's move).
+  - F3 article_detail [Day-1]
+    - **example:** What colour was the car in the article about the flood in Verdton that I read about two weeks ago?
+    - **ground truth:** Attribute of a third-party story fact (src=read). The cue may be name, absolute date, or relative date (window resolved against asked_at that contains exactly one article hosting the attribute type). Details of central and peripheral centrality; 6-12 confusers per attribute type.
+    - **memory dependence check:** Structural: colour uniform over 12-16 values; at least 6 other articles in the stream also contain a vehicle colour; decoy colour present in the same article in at least 50%. Empirical: blind x4; shuffled-context control.
+    - **scorer:** Closed-vocabulary entity with alias map (gray/grey, dark/light prefixes ignored); two colours = hedge = wrong.
+  - F4 flashbulb_detail [Day-1]
+    - **example:** Central: Who was with me when I got the news about the accident? Peripheral: What colour was the car parked outside when I heard? Then: CONF 0-100.
+    - **ground truth:** Central or peripheral fact of a situation, hosted across the full arousal range (G-HOST); target decile set by rho_q quotas. Delay 1-400 days log-uniform. The reader also reports confidence.
+    - **memory dependence check:** Blind and shuffled controls; peripheral facts have confusers (other cars in the same week). Pairs central x peripheral from the same situation allow within-situation contrasts.
+    - **scorer:** Entity scorer plus CONF parse. Metrics: accuracy by centrality x arousal tercile, confident-wrong rate (conf >= 80 and wrong), Brier score, confidence gap versus accuracy gap between arousal terciles.
+  - F5 sleeper_detail [Day-1]
+    - **example:** At what time does the Kalmer Pharmacy on Tisbo Street close on Saturdays?
+    - **ground truth:** A single low-arousal remark (lowest two deciles, mundane_decisive_share raises its quota) never repeated, asked after a long delay. Answer is a quarter-hour time, 24 values.
+    - **memory dependence check:** 24-value uniform answer space (blind about 0.04); same-frame remarks about other shops as confusers; blind and shuffled controls.
+    - **scorer:** Time normaliser ('6pm', '18:00', 'six in the evening' -> HH:MM) then exact match; hedges wrong.
+  - F6 count_aggregate [Day-1]
+    - **example:** How many times did I go to the dentist between 2027-02-01 and 2027-04-01?
+    - **ground truth:** Count of qualifying facts in the window; evidence = all of them (2-10 observations) mixed with look-alike mentions about other people. Window and activity chosen so gold is stratified uniformly over 1-8.
+    - **memory dependence check:** Stratified gold (blind constant guess <= 0.15; toy was 0.50 with counts 2-6); evidence completeness requires every mention; oracle_text can fail only if evidence exceeds the budget.
+    - **scorer:** Exactly one integer parsed (digits or number words) and equal to gold; secondary |error| and within-1 rate.
+  - F7 temporal_order_duration [Day-2]
+    - **example:** Which came first, my move or Mara's wedding? / How many days between my surgery and the move?
+    - **ground truth:** Computed from event days (vfrom), not from observation times; relative expressions in text force resolution.
+    - **memory dependence check:** Both events are in the stream; random order answer has chance 0.5 for order items (hence >= 60 items) and a wide integer space for durations; blind and shuffled controls.
+    - **scorer:** Choice letter or integer-day exact; secondary |error| days.
+  - F8 ordinal_first_last [Day-1b]
+    - **example:** What was my first full-time job? / What was the last place I moved to before this one?
+    - **ground truth:** Ordered history of a single-valued predicate by vfrom; near-miss list contains the later and neighbouring values (the E6 first-job failure: a generic question answered confidently with a neighbouring true line).
+    - **memory dependence check:** At least 3 values in the history; the stream mentions each at least once; blind chance 1/|vocabulary|.
+    - **scorer:** Closed-vocabulary entity; error_type=substitution if the answer equals a near_miss value; substitution rate is a headline metric.
+  - F9 abstain_false_premise [Day-1]
+    - **example:** What did I have for breakfast on 2027-03-15? (never stated) / When I visited Paris last spring, who came with me? (no such trip)
+    - **ground truth:** UNKNOWN, verified by scanning all ObsSpecs for absence of the fact. Near-miss trap: the adjacent day's value or a similar trip. Share abstain_share of the query set.
+    - **memory dependence check:** A blind reader that always abstains scores abstain_share, so the macro uses commission and omission rates separately, never accuracy alone; near-miss traps must exist for 100% of items.
+    - **scorer:** Abstain lexicon ('UNKNOWN' plus fixed phrases: not stated, cannot be determined, no information). Commission error = a value given when gold is UNKNOWN; omission error = UNKNOWN when answerable.
+  - F10 stance_version [Day-2]
+    - **example:** What was my view on commuting by bike in March? / Has my view on lending money changed since January, and in which direction?
+    - **ground truth:** Latest explicit statement before t (5 classes); direction {up, down, none} between two dates; reversed {yes, no}.
+    - **memory dependence check:** Stable stances are interleaved with changed ones (false-change rate is measured); class order chance 0.2, direction chance 0.33; blind control.
+    - **scorer:** Closed categorical match; secondary: off-by-one-class rate; 'stale stance' = the pre-change class.
+  - F11 change_cause [Day-2]
+    - **example:** What made me change my mind about dentists? A) the filling that went wrong B) the new neighbour C) ... D) ...
+    - **ground truth:** Turning-point situation for the topic; 3 decoys from the same 14-day window that are topic-unlinked; causal_explicitness dial.
+    - **memory dependence check:** Decoys drawn from the same window with similar arousal, so arousal alone does not identify the cause; chance 0.25; blind control.
+    - **scorer:** Letter exact; free-text variant (secondary) scored by the cause's key entity string.
+  - F12 multi_hop_relation [Day-2]
+    - **example:** What does my sister's husband do for a living?
+    - **ground truth:** 2-3 hop path over relation facts, each hop stated in a different observation weeks apart.
+    - **memory dependence check:** Fresh names; intermediate entity absent from the question; blind chance 1/|vocabulary|.
+    - **scorer:** Closed-vocabulary entity; hop-wise evidence completeness logged.
+  - F13 trait_drift [Day-3]
+    - **example:** In which half-year did I decline more invitations, the first or the second?
+    - **ground truth:** Realised behaviour counts per period (not the latent trait); items kept only if the difference is >= 3.
+    - **memory dependence check:** Binary chance 0.5, so >= 60 items per run; blind control.
+    - **scorer:** Letter exact.
+  - F14 source_attribution [Day-3]
+    - **example:** Who told me about the new bakery? / Did I read that or hear it?
+    - **ground truth:** Fact.src and the teller entity.
+    - **memory dependence check:** Same fact told by one person and read in an article in a minority of cases (both sources are in the stream; source is not guessable from the content).
+    - **scorer:** Entity or choice exact.
+  - F15 decision_by_stance [Day-3]
+    - **example:** A friend asks to borrow 500 for a month. Do I lend it? Answer yes or no.
+    - **ground truth:** Fixed rule applied to the current stance class, with a pre-registered table of scenario x stance -> choice.
+    - **memory dependence check:** Scenarios are chosen where the stance changed during the stream, so the stale stance gives the wrong choice; blind control.
+    - **scorer:** yes/no exact; stale-choice rate reported.
+- **difficulty dials**
+  - days D and observation volume (D 60-1500; 3-12 observations/day; 30-120 words)
+    - **range:** T0 60 d ... T3 1000 d; about 10k to 480k words per world
+    - **effect:** Sets ingest cost and removes the stuff-everything-in-context baseline (a 650k-token stream does not fit typical windows and costs about 45 USD per world to read per 260 queries at 0.27 USD per million input tokens). Toy: no effect on time-aware BM25 (0.79-0.84 across 90-730 d). Do not use length as...
+  - anchor_mix: share of cues with no rare-name or absolute-date anchor (relation, description, relative date, none)
+    - **range:** 0.0-0.8
+    - **effect:** The principal lexical-retrieval killer, the analogue of E0's C1 to C3 steps. Toy: replacing generic question words by synonyms alone moved BM25 0.65 -> 0.56 and BM25+time 0.84 -> 0.78, because names and dates still anchored; anchors are what to remove.
+  - n_confusers per queried attribute
+    - **range:** 0-12 (same-type facts within +-14 days and across the stream, same frame in >= 50%)
+    - **effect:** Interference; lowers evidence precision, raises hedging; raises the number of observations needed to disambiguate.
+  - paraphrase_distance: V4 share and query-frame partition
+    - **range:** 0-1
+    - **effect:** Separates lexical from semantic systems (dense should gain on it); held-out partitions test surface-form generalisation.
+  - delay distribution (days from evidence to t_ask)
+    - **range:** 1-400 d, log-uniform or weighted toward > 60 d
+    - **effect:** Forgetting and gist loss in storage-limited systems; recency collapses (toy 0.00-0.09). Buckets 1-3, 4-14, 15-60, 61-180, 181+ are reported.
+  - update_rate and incidental_update_share
+    - **range:** 0-6 supersessions per attribute-year; 0-0.8 implied only
+    - **effect:** Knowledge-update and as-of difficulty; stale-value intrusion. Toy: naive +-1 day window gives 0.03 on as-of.
+  - agg_breadth: number of evidence observations per query
+    - **range:** 1-12
+    - **effect:** Aggregation; any top-k retrieval must cover all of them. Toy count: 0.48 at budget 1000, 0.00 at 250.
+  - peripheral_share and centrality of queried facts
+    - **range:** 0-0.8
+    - **effect:** Peripheral details are the facts compression drops first, so they probe the narrowing cost of any gist or salience policy.
+  - abstain_share with near-miss traps
+    - **range:** 0-0.3
+    - **effect:** Commission versus omission rate; confident substitution (E6 first-job failure) appears here.
+  - retrieval budget B (units = whitespace words, the arena convention)
+    - **range:** 250-4000
+    - **effect:** Context capacity; at small B only precise retrieval completes multi-evidence items.
+  - storage ratio R: share of the stream the store may keep persistently
+    - **range:** 0.05-1.0
+    - **effect:** The regime in which any importance signal (recency, similarity, feeling-like) matters at all. Retrieval over a complete store has no headroom for a salience boost (toy 0.96-1.00); with R=0.10 the oracle admission reaches 0.78-0.84 while random gets 0.08-0.12.
+  - rho_q: query-arousal coupling (realised d reported)
+    - **range:** -0.8..+0.8, default 0, quotas by stream-wide decile
+    - **effect:** Circularity control. Toy: realised d -0.83 / -0.42 / -0.01 / +0.43 / +0.84. Must pass G-ARO at 0.
+  - mundane_decisive_share
+    - **range:** 0-0.6 extra quota on the lowest two deciles
+    - **effect:** A regime where salience gating loses on purpose (toy at rho=-0.8: type-neutral arousal gate 0.02 vs random 0.12).
+  - rho_tp: turning-point coupling to arousal
+    - **range:** -0.8..+0.8
+    - **effect:** Whether belief change is caused by loud or quiet situations; changes what a salience-weighted store must retain to answer change_cause.
+  - rho_mention: rehearsal coupling
+    - **range:** -0.8..+0.8, default 0
+    - **effect:** Removes the redundancy confound (emotional events are retold more often, which alone aids recall).
+  - sigma_h and channel arm
+    - **range:** sigma 0, 0.1, 0.25, 0.5; arms true, shuffled, random, absent, constant, inverted
+    - **effect:** Value of the signal falls with noise. Toy at R=0.10, rho=+0.8: 0.71 / 0.60 / 0.35 / 0.22 against shuffled 0.10-0.12 and random 0.08.
+  - name_rarity
+    - **range:** 0-1 share of rare 3-4 syllable invented names
+    - **effect:** Rare names defeat embedders (E6: 'Who is Imre?') but favour lexical match; separates retrievers.
+  - relative_time_share
+    - **range:** 0-0.8 of observations and cues
+    - **effect:** Requires date arithmetic with asked_at; hurts systems without temporal grounding.
+  - answer_space width and answer-prior flatness
+    - **range:** 24-120 values; habit exponent 0.5-0.7
+    - **effect:** Controls blind accuracy; the primary instrument knob for memory-dependence. Toy blind constant guess 0.16-0.50 before widening.
+  - verbaliser mix and partition (V1, V2, V3, V4; dev or test)
+    - **range:** weights 0-1; partition dev|test
+    - **effect:** Held-out surface forms; G-TELL must hold in each.
+  - ingest granularity (observation | day | week)
+    - **range:** 3 values
+    - **effect:** Cost of LLM-extraction systems (per-item extraction) and information loss; day-batched ingest is about 0.30 USD per world-year for a Hindsight-type system, per-observation about 1.1 USD (estimate).
+  - turning points per year and stance count K
+    - **range:** 0-3 per year; K 6-12
+    - **effect:** Density of change events for F10-F11 and agent-level tests.
+- **tiers and calibration:** TIERS (defaults; every number below is frozen into data/lab/aam-ls-lifesim/config.json by digest after calibration; sizes estimated from the toy's densities, to be re-measured in LS-0). T0 smoke 60 d ~240 obs ~10k words 80 queries/world B 400 R 1.0 2 dev worlds. Any retriever should reach >= 0.80....
+- **system interface and baselines:** INTERFACE (scripts/lifesim/interface.py, about 120 lines). Extends the arena contract; any arena adapter can be wrapped. ``` @dataclass(frozen=True) class Record: id: str; text: str; timestamp: str # ISO; channel: str; source: str; heartbeat: float | None = None @dataclass(frozen=True) class Contex...
+- **metrics**
+  - PRIMARY: macro accuracy over scored families (equal family weight) on memory-dependent retained items, cluster-bootstrap CI over worlds; also reader-ceiling-normalised (accuracy / oracle_text accuracy).
+  - DECOMPOSITION (capture x representation x retrieval x context x reader): store-recall (evidence retained after the gate), evidence-complete@B and evidence-recall@B, recall per retrieved word, reader-correct-given-complete (= reader ceiling per family). End-to-end alone is never reported.
+  - ERROR TAXONOMY per arm: omission (abstained when answerable), commission (wrong value), substitution (equals a near_miss: stale, adjacent_day, confuser, habit), hallucination on abstain items, hedge (two candidates), parse failure. Headline: confident-substitution rate (E6 first-job failure) and sc...
+  - CALIBRATION: confident-wrong rate (CONF >= 80 and wrong) per arousal tercile, Brier score, confidence gap versus accuracy gap between high- and low-arousal terciles (flashbulb: confidence is not accuracy).
+  - HEARTBEAT: SIGNAL = acc(true) - acc(shuffled); FEATURE = acc(shuffled) - acc(absent); NOISE SLOPE of SIGNAL against sigma; DIAL RESPONSE = slope of SIGNAL against realised d, with break-even d* (where salience gating first beats random and recency at equal R); critical retention error rate (dropped...
+  - NARROWING COST: [acc(peripheral | high-arousal) - acc(peripheral | low-arousal)] minus the same for central details; mundane-decisive loss = acc on the lowest two deciles.
+  - CHARACTER (retrieval level): stance version accuracy, stale-stance rate, cause accuracy against decoys, false-change rate on stable stances, reversal detection; (agent level, later) direction agreement, dose-response Spearman, valence-free spill-over, pressure flips.
+  - DELAY AND INTERFERENCE: accuracy by delay bucket (1-3, 4-14, 15-60, 61-180, 181+ d) and by n_confusers; forgetting slope in log delay.
+  - COST: ingest model calls, input and output tokens, wall time, query tokens, store size and items (arena Cost with observability flags), total USD from the ledger; cost per correct answer.
+  - INSTRUMENT: G-ARO AUC, realised d, G-LEN/G-AFF/G-TELL values, blind residual accuracy per family, shuffled-context accuracy, oracle_struct and oracle_text accuracy per family, parse failures, retained-item count per family, item drop rate of the memory-dependence filter.
+- **first experiments**
+  - LS-0 instrument and free grid
+    - **question:** Does the generator pass its own gates, and does the admission-gate grid show a clean response of the value of a heartbeat signal to rho, with a null at rho=0?
+    - **arms:** Stage 0 gates on dev 0-4; then on dev 5-10 at T1/T2: evidence-level ladder (recency, random, bm25, bm25t, dense, hybrid, oracle) and gate grid R in {0.10, 0.25} x rho in {-0.8, 0, +0.8} x policies {all, recency, random, salience true/shuffled/random/absent, salience_type_neutral, oracle_store} x si...
+    - **controls:** Shuffled and random channels; constant and inverted channels; type-neutral gate; oracle_store feasibility bound; naive-verbaliser positive control for G-LEN/G-AFF and type-hosted generator positive control for G-ARO (the gates must fire on planted artefacts).
+    - **readings before numbers:** Instrument passes iff G-DET and G-INV exact, G-ARO AUC in [0.45,0.55] at rho=0, realised |d(+-0.8)| in [0.6,1.0] and |d(0)| <= 0.10, G-HOST p >= 0.2, G-LEN in [0.45,0.55], G-AFF <= 0.10, G-TELL <= 0.60, oracle_struct 1.000, >= 40 items per scored family. A grid cell is informative only if G-FEAS ho...
+    - **cost:** 0 USD (no model calls); about 1 CPU-hour on 20 cores.
+  - LS-1 reader instrument
+    - **question:** Is the fixed flash reader good enough to read exact evidence, and is the question set memory-dependent?
+    - **arms:** oracle_struct, oracle_text, blind (4 samples at temperature 0.7 plus 1 at 0), shuffled-context, on dev T2, 4 worlds x about 230 queries (items over-generated by 1.5 for the memory-dependence filter).
+    - **controls:** Format-compliance probe (30 items with trivial context); parse-retry rule; per-family chance Sigma p^2.
+    - **readings before numbers:** oracle_text accuracy >= 0.95 per family, else that family is 'reader-limited' (reported, excluded from system differences); oracle_struct >= 0.98; residual blind accuracy on retained items <= Sigma p^2 + 0.05 per family (re-measured on fresh samples after filtering); shuffled-context <= blind + 0.0...
+    - **cost:** about 0.9 USD (blind 5,520 calls ~0.5, oracle_text 920 ~0.13, shuffled 920 ~0.27).
+  - LS-2 ladder and tier calibration
+    - **question:** Where does the current ladder sit per tier, and which dial settings make T3 hard (best arm <= 0.50) without hitting the floor?
+    - **arms:** recency, bm25, bm25t, dense, hybrid, oracle_text at B=600 on dev 5-10 (6 worlds x about 230 queries); then the hardness schedule H1-H8 at evidence level (free) and reader level on the final candidate only; Hindsight enters in LS-4.
+    - **controls:** Blind and shuffled from LS-1; oracle_struct; evidence-level upper bound for every reader result.
+    - **readings before numbers:** Tier hard iff best non-oracle macro <= 0.50 with upper CI <= 0.55 (T3); informative iff best >= blind + 0.10 in >= 6 of 10 scored families; ladder order recency <= bm25 <= bm25t, dense >= bm25 on paraphrase-heavy cells (violations reported as instrument surprises, not failures); no family at the fl...
+    - **cost:** about 2.5 USD (8,280 calls at B=600) after free evidence-level iterations.
+  - LS-3 heartbeat at the gate with a reader
+    - **question:** With a reader in the loop, does a noisy feeling-like signal admit more of what later matters than recency, random and a shuffled signal, as a function of realised d, and where does it lose?
+    - **arms:** GatedMemory over the best local retriever (bm25t or hybrid) at R=0.10, B=600, rho in {-0.8, 0, +0.8}; arms random, salience(true sigma 0.1), salience(shuffled), oracle_store; 4 dev worlds first, then 8 sealed test worlds.
+    - **controls:** Shuffled and random channels (value of having a feature), recency admission, type-neutral salience, oracle_store, G-FEAS, G-ARO at rho=0.
+    - **readings before numbers:** Primary: SIGNAL at rho=+0.8, R=0.10 >= +0.08 (practical threshold; headroom oracle_store minus random is large). Nulls: |SIGNAL(0)| <= 0.03 and |FEATURE| <= 0.03. Negative control: SIGNAL(-0.8) <= -0.05. Cell void if G-FEAS or G-ARO fails. Interpretation rule: a positive SIGNAL at +0.8 only shows t...
+    - **cost:** about 3.2 USD (11,040 calls at B=600; the full R x rho x policy grid stays at evidence level and costs 0).
+  - LS-4 Hindsight and a second black box, with and without the gate
+    - **question:** Where does Hindsight sit on the ladder, and does the same admission gate with a true versus shuffled heartbeat change its results?
+    - **arms:** HindsightLife with day-batched ingest at T1 (then T2) on 2 dev worlds: all, gated-random(R=0.25), gated-salience(true), gated-salience(shuffled); best local arm at equal B; optional Mem0 or Graphiti via arena adapters.
+    - **controls:** Flash-only proxy ledger verified before ingest; bank per run id; two repeats of ingest to expose non-determinism; store accounting from stats(); same worlds and queries as the local ladder.
+    - **readings before numbers:** Primary (descriptive, no threshold): hindsight(all) minus best local arm at equal B with cluster CI over worlds (n is small; stated). Gate effect: SIGNAL on hindsight at rho=+0.8 versus the local store's SIGNAL (same sign and at least half the size counts as transfer). Decomposition: retrieval-give...
+    - **cost:** about 1.5 USD at T1 (6 world-variants day-batched ingest ~0.9 + 1,600 query calls ~0.5), about 2.5 USD at T2.
+  - LS-5 narrowing and flashbulb confidence
+    - **question:** Can the benchmark detect a planted narrowing cost (peripheral detail lost at high arousal) and the confidence-is-not-accuracy pattern, so that a natural system's behaviour can be read against it?
+    - **arms:** oracle_text, bm25t, TraceStore-uniform (R=0.25), TraceStore-narrow (planted), on F3-F4 (central and peripheral) at T2, 4 dev worlds.
+    - **controls:** Uniform twin of the narrowing store; central-detail contrast within the same situations; delay buckets; shuffled channel.
+    - **readings before numbers:** Instrument detects the planted effect iff TraceStore-narrow loses >= 0.15 on peripheral x high-arousal versus its uniform twin and <= 0.05 on central; if not, no statement about natural systems. Calibration: report confident-wrong rate by arousal tercile for each store; flashbulb reading holds iff...
+    - **cost:** about 0.6 USD (about 3,000 calls).
+  - LS-6 bounded character change at retrieval level
+    - **question:** Do memory systems carry the generator's stance versions, causes and reversals, and does the answer depend on whether turning points are loud (rho_tp) or quiet?
+    - **arms:** bm25t, dense, hybrid, oracle_text on F10, F11 (and F13 on day 3), T2, rho_tp in {+0.8, 0, -0.8}, 6 dev worlds.
+    - **controls:** Stable-stance items interleaved (false-change rate), causal_explicitness 0 and 1, decoy windows with matched arousal, blind control.
+    - **readings before numbers:** Instrument-only: trajectories obey the bounds (|s| <= 1, at most 3 turning points per year, refractory 30 d, reversal fraction logged) in 100% of dev worlds. System readings: stale-stance rate and false-change rate <= 0.10 for oracle_text; cause accuracy versus decoys > 0.25 + 0.10 for any retrieve...
+    - **cost:** about 0.4 USD (about 1,200 calls).
+- **build plan**
+  - 1. Foundations: rng, schema, vocab
+    - **files:** scripts/lifesim/__init__.py, rng.py (~55), schema.py (~130), vocab.py (~120: syllable grammar with dev/test partitions, colours, foods, times, aliases, closed vocab ids); tests/test_lifesim_rng.py (~50), test_lifesim_schema.py (~40)
+    - **done when:** Golden-vector test pins the stream on Python 3.11 and 3.12; stream independence tested (adding a label shifts nothing); schema round-trips JSON and digests are stable; vocab partitions are disjoint.
+    - **effort:** 1.5 h
+  - 2. Appraisal, scenes, world (situation-first)
+    - **files:** appraisal.py (~100), scenes.py (~220, 8 scene families), world.py (~330: build_world, check_world, gold_slow support), character.py (stance layer only, ~130); tests/test_lifesim_world.py (~160), test_lifesim_appraisal.py (~80), test_lifesim_character.py (~90)
+    - **done when:** build_world(seed, T0) deterministic; check_world passes on 20 seeds; G-HOST passes (fact type independent of arousal); appraisal monotone in |g|, stakes, surprisal; heartbeat arms preserve marginals (shuffled/random) and are None for absent; stance bounds and refractory window hold; digest invarian...
+    - **effort:** 4 h
+  - 3. Verbalisers V1-V2 with length and affect matching
+    - **files:** verbalise.py (~230: V1 diary, V2 chat, length padding, affect-word independence, relative-time phrasing, retractions, dev/test clause banks); tests/test_lifesim_verbalise.py (~110)
+    - **done when:** Every required slot string appears verbatim; G-LEN, G-AFF, G-POS pass on dev; the naive verbaliser fixture FAILS G-LEN/G-AFF (positive control); partitions disjoint; V3 and V4 stubs raise NotImplementedError cleanly.
+    - **effort:** 2.5 h
+  - 4. Queries: Core families, neutral sampler, memory-dependence filters
+    - **files:** queries.py (~380: build_queries, sample_targets(pool, k, rho, seed, match_marginal=True), structural_memory_filter, abstain and near-miss builders, question-frame partitions for F1-F6 and F9); tests/test_lifesim_queries.py (~190)
+    - **done when:** gold_slow == gold_fast for every query on 20 seeds; evidence strings present in cited observations; abstain items verified absent; G-ARO AUC in [0.45,0.55] at rho=0; realised d monotone in rho (|d(+-0.8)| in [0.6,1.0]); blind constant guess <= 0.15 per family after filters; candidate pool identical...
+    - **effort:** 4 h
+  - 5. Scorers
+    - **files:** scorers.py (~230: norm, closed-vocab extraction, parse_answer, per-type scorers, error_type labelling, cluster_bootstrap, retention table); tests/test_lifesim_scorers.py (~200)
+    - **done when:** Answering from structure scores 1.000 on every family; shotgun answers (two candidates) score 0; aliases, accents, number words, ISO dates, time formats and UNKNOWN lexicon covered; property tests on random template answers show no false accepts; confidence parsing tolerant of spacing and case.
+    - **effort:** 2.5 h
+  - 6. Systems, gate wrapper and gates
+    - **files:** interface.py (~120), systems.py (~300 Core: Blind, Shuffled, Recency, RandomK, BM25, BM25Time, OracleText, OracleStruct, OracleStore, GatedMemory with policies, EmoBoost), gates.py (~200: G-DET, G-INV, G-HOST, G-ARO, G-LEN, G-AFF, G-TELL, G-ORACLE, G-FEAS, G-DEPTH); tests/test_lifesim_systems.py (~...
+    - **done when:** Every system respects the budget in units; BM25 on a hand-built corpus reproduces a known ranking; the time window behaves as specified; gate policies keep exactly floor(R N) records; salience policy reads only the channel (no gold access, tested by passing a poisoned Query); arena validate_adapter...
+    - **effort:** 5 h
+  - 7. Runner, freeze and LS-0 (END OF DAY 1)
+    - **files:** scripts/run_lifesim.py (~230: generate, gates, ladder, gate-grid, report; digest freeze in config.json; refusal of test seeds without passing Stage 0; one-look lock file outside the output folder), data/lab/aam-ls-lifesim/config.json and README.md (status, preregistration, limits); tests/test_lifes...
+    - **done when:** python scripts/run_lifesim.py gates passes on dev 0-4; ladder and gate-grid run on dev 5-10 at T1/T2 with no model calls and write results.json and report.md with no clock values (byte-identical on rerun); the LS-0 readings are applied mechanically and a decision is written.
+    - **effort:** 3 h
+  - 8. Reader, ledger, LS-1 and LS-2 (DAY 2)
+    - **files:** reader.py (~90: prompt, FixedDecoding via provider_proxy, ledger, retry, cache); dense and hybrid systems (+~120 in systems.py, MiniLM via --model-dir); run_lifesim.py reader-ceiling and calibrate (+~150); tests (+~80)
+    - **done when:** LS-1 gates G-READER, G-BLIND, G-SHUF, G-PARSE evaluated; ledger cap enforced before every call and refused above 5 USD; calibrate logs each dial move; T1-T3 dial schedule frozen once targets are met on two consecutive dev-seed sets.
+    - **effort:** 5 h
+  - 9. Character families, V3 and V4 paraphrase (DAY 2-3)
+    - **files:** character.py (+~150: traits, behaviours, pressure events), queries.py (+~200: F7, F8, F10, F11, then F12-F15), verbalise.py (+~170: V3, LlmParaphraser with validator and cache); tests (+~250)
+    - **done when:** Paraphrase validator rejects polarity flips, new numerals and missing slots (unit fixtures); G-TELL and G-AFF still pass with V4 share 0.4; stance and cause gold match gold_slow; LS-6 instrument-only readings pass.
+    - **effort:** 6 h
+  - 10. Docker, Hindsight wrapper and LS-4
+    - **files:** scripts/lifesim/docker/Dockerfile (~20), docker-compose.yml (~40), shim_http.py (~70), systems.py HindsightLife (+~60), tests (+~60)
+    - **done when:** docker compose run runner passes the Stage 0 gates inside the container; arena validate_adapter accepts HindsightLife; the proxy is confirmed to meter Hindsight's own LLM calls before any ingest; LS-4 smoke run on 1 world T0 completes with a ledger line per call.
+    - **effort:** 4 h
+  - 11. TraceStore, narrowing arm, LearnedSalience, agentic baseline
+    - **files:** systems.py (+~250: TraceStore uniform and narrow, LearnedSalience, Agentic-BM25), tests (+~100)
+    - **done when:** LS-5 planted narrowing effect is detectable (>= 0.15 gap on peripheral x high-arousal) on dev; LearnedSalience trained only on the first 30% of queries and frozen; agentic baseline capped at 3 searches per query.
+    - **effort:** 4 h
+  - 12. Freeze, sealed test seeds, one-look runs
+    - **files:** data/lab/aam-ls-lifesim/config.json (digests of all scripts), stage0/ and ls*/ results, README erratum section
+    - **done when:** Digests equal the current scripts; Stage 0 passed on the same digests; test seeds 100-131 generated once under scripts/sealed_split.py; LS-3 to LS-6 run once each; every result carries its tier label and a recorded decision.
+    - **effort:** 2 h plus runs
+- **open questions**
+  - Language: English for v0.1 (the lab's persona work and the arena are English). Polish doubles the template banks, needs diacritic-aware vocab and a reader check; decide before day 3 whether a Polish partition is wanted as a held-out surface form.
+  - Ingest granularity for black boxes: per observation is faithful but about 3.6x more expensive than day-batched for extraction-per-item systems. Which one is the headline? Proposal: day-batched as headline, per-observation on 1 world as a sensitivity cell.
+  - Hindsight endpoint: the arena adapter defaults to 127.0.0.1:8801 while the running researchos-hindsight maps 8888 and 9999. Is the running container's LLM base URL the metering proxy? If not, start a second instance pointed at the proxy before any ingest.
+  - Reader id: E0 notes 'deepseek-v4-flash' as the frozen reader and asks for confirmation; the owner's rule is flash only. Confirm the exact id before the first paid call.
+  - What coupling d is realistic? Real engagement numbers carry no per-note signal (F1) so rho_q cannot be estimated from them. Proposal: LifeSim does not claim a value; it reports the response curve and break-even d*, and any claim about real agents needs an independent estimate of d.
+  - Should the agent-in-the-loop character test (E6 style: persona agent with retrieved memory, planted events, pressure, valence-free control) be part of v0.1 or a separate LifeSim-Agent version? Proposal: separate, after LS-6, so retrieval-level and agent-level effects are not confounded.
+  - Appraisal constants are authored. Is a sensitivity cell with 3 alternative weightings enough, or does the owner want constants anchored to published normative ratings (not verified here)?
+  - Who counts as 'best current system' for the T3 target? Proposal: best of the frozen dev ladder (local arms, Hindsight, one more black box if time) at freeze time; future systems are scored on the frozen tier and trigger T4 when they pass 0.50.
+  - Hindsight-type systems rewrite memories (extraction); how should evidence-complete@B be defined for them? Proposal: map recalled items back to observations by timestamp plus string overlap (arena already reports evidence_times) and mark the mapping rate; report end-to-end accuracy as primary for bl...
+  - Pillemer 2001, Rutter 1996, Roberts et al. 2006, Specht et al. 2011, Bartlett, Ebbinghaus, Wixted and Ebbesen, Underwood, McGaugh 2004, Easterbrook 1959, Christianson and Loftus 1987, Bower 1981 are cited from memory (tag [M]); someone should verify them before the spec is quoted outside the lab.
+- **risks**
+  - CIRCULARITY (the main trap). If the world makes loud events matter later, an emotion-weighted memory wins by construction. Measured in the toy: a type-hosted design gave AUC 0.76 at rho=0 and a +0.28/+0.35 'signal' at zero coupling. Mitigation: situation-first hosting, decile quotas, G-ARO and G-HO...
+  - Toy numbers are properties of a 412-line toy generator with BM25 baselines and no reader, three seeds, not findings about agents or about the final generator. They justify design choices (gate location, neutrality gates, dials), nothing more. Cost and size figures are estimates and must be re-measu...
+  - Generator artefacts a reader can exploit: length, affect-word and frame tells; answer-position and answer-prior tells; paraphraser style (an LLM may write more dramatically for loud situations). Mitigation: gates G-LEN/G-AFF/G-POS/G-TELL/G-EXTRACT on every verbaliser including V4, paraphraser never...
+  - Ceiling and floor mis-calibration (E0's primary cell could not have confirmed anything and passed a headroom gate by one probe). Mitigation: feasibility gate G-FEAS before any test seed, floor guard (best >= blind + 0.10 in >= 6 of 10 families), power gate, dev seeds spent on calibration and never...
+  - 'Best current system <= 0.50' is relative to the ladder we can run now; stronger systems (agentic retrieval with several searches, long-context readers) may exceed it. Mitigation: agentic-bm25 arm in the ladder, T4 schedule, oracle ceiling fixed at 1.0, and an explicit statement that the claim is a...
+  - Memory-dependence filtering uses the same flash reader that is later scored, so selection depends on the reader. Mitigation: filter is preregistered and applied before any system arm, drop counts reported, residual blind accuracy re-measured on fresh samples, structural filters (habit top-3, wide a...
+  - Scorer errors in either direction (E6's key-string scoring undercounted leaks). Mitigation: closed-vocabulary candidate-set rule (shotgun-proof), property tests, parse-failure rate gate, records keep raw answers and contexts for re-scoring, a 100-item manual audit of random scored items per experim...
+  - Black-box products: asynchronous ingest, nondeterministic extraction, hidden spend, different notions of 'record'. Mitigation: arena adapters settle ingest, proxy metering with 402 at cap, repeat-ingest non-determinism gate (0.05), day-batched and per-observation sensitivity, results labelled 'prod...
+  - Cost and time at T3: per-item extraction systems cost about 1.1 USD (per observation) or 0.30 USD (day-batched) per world-year; T3 world is about 2.7 years of density. Mitigation: black boxes only at T1-T2 slices and day-batched at T3; local ladder at T3; 5 USD cap per run; 15 USD campaign mandate...
+  - Authored character dynamics and appraisal constants may be read as claims about people. Mitigation: functional language only, reference-dynamics framing, robustness cell with alternative weightings, no claim from agent-level change until the separate agent test passes.
+  - Build time. Day 1 is realistic only for LifeSim-Min (7 families, V1-V2, 9 systems, 8 gates). The scene library, question-frame banks and the neutral sampler are where builders will slip; keep scenes at 8 families and frames at 3 per family for Core.
+  - Doctrine WIP limit: seven experiments designed at once would breach 'at most two designed-but-unexecuted per track'. Register LS-0 to LS-2 now; execute LS-0 before registering LS-3 onward.
+  - Small number of worlds (4-8) makes cluster-bootstrap intervals wide for black-box arms; the spec states n and treats LS-4 as descriptive. Do not add worlds after seeing the data.
+
