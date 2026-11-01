@@ -236,6 +236,12 @@ def test_the_live_corpus_raises_no_question_beyond_the_known_ones() -> None:
     result does not depend on when the suite runs, and the questions already
     raised are listed above so that a new one fails the build while a resolved
     one only shrinks the list.
+
+    A record appended later that cites a file this repository does not track
+    raises a new question and fails this test until the file is committed or the
+    question is added to KNOWN_OPEN_QUESTIONS: that is the detector doing its job.
+    Records written after LIVE_CORPUS_AS_OF are future-dated to the age-based
+    detectors, which therefore cannot fire on them.
     """
     raised = {
         (item["detector"], item["memory_id"], item["evidence"])

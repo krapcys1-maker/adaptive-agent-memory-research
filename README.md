@@ -77,7 +77,7 @@ The append-only log, the controller and retrieval are built and running — that
 
 ## What we have measured
 
-Of 74 registered experiments, 39 are completed or retracted, 20 are blocked on corpora that have not been built yet (corpus H1, below, is the first), 7 were invalidated or only partly valid, and 8 are designs or review packets awaiting execution; `python scripts/registry_summary.py` prints the current counts. All are exploratory and none is independently reviewed, so read these as measurements rather than settled science — but they are measurements, and the data is in the repository.
+Of 74 registered experiments, 39 are completed or retracted, 20 are blocked (waiting on a corpus, four of them also on independent review), 7 were invalidated or only partly valid, and 8 are designs or review packets awaiting execution; `python scripts/registry_summary.py` prints the current counts. All are exploratory and none is independently reviewed, so read these as measurements rather than settled science — but they are measurements, and the data is in the repository.
 
 **A superseded fact is maximally similar to the fact that replaced it.** Mean cosine 0.816 between an old fact and its replacement, against a corpus baseline of 0.372 — two pairs at 1.000. With the metadata filter removed, the stale version was the nearest neighbour in 6 of 9 cases and its median rank was 1. *Content cannot separate a retired fact from its successor. Only bookkeeping can.* → `PMLAB-STALE-E1`
 
@@ -85,7 +85,7 @@ Of 74 registered experiments, 39 are completed or retracted, 20 are blocked on c
 
 **A 220 MB local multilingual embedder lifted Polish-query recall@10 from 0.156 to 0.978** — but a hand-built glossary already reached 0.867, and the queries are translated memory titles looked up against their own ids, not questions. Safety was not measured in this run; a separate, smaller one (`PMLAB-REUSE-CHAR-001`) found 0.200 forbidden intrusion for dense retrieval against 0.050 for lexical search. → `PMLAB-XLANG-E2`
 
-**An association graph over memory lowered Recall@5 by 0.114** (95% CI −0.179 to −0.054); at Recall@10 the difference is −0.039 and its interval includes zero. The earlier, favourable version of this result was **retracted by us**: its leakage control removed one edge where it needed to remove several, so the gold-generating group reassembled over two hops. → `PMLAB-ASSOC-E2` retracted, `PMLAB-ASSOC-E3`
+**An association graph over memory lowered Recall@5 by 0.114** on the mechanical-gold stratum (95% CI −0.179 to −0.054); at Recall@10 the difference there is −0.039 and its interval includes zero, while the smaller authored-gold stratum points the same way (−0.052 at @5, −0.056 at @10). The earlier, favourable version of this result was **retracted by us**: its leakage control removed one edge where it needed to remove several, so the gold-generating group reassembled over two hops. → `PMLAB-ASSOC-E2` retracted, `PMLAB-ASSOC-E3`
 
 **A benchmark can score perfect recall and still hand the agent the wrong answer — but this result does not currently reproduce.** The committed baseline reports **1.000 recall@10** for the poisoned-instruction family and the poisoned line ranked *above* the genuine rule in **25%** of probes. Re-running the committed script on the current tree gives 0 of 12 for that family (recall@10 still 1.000) and an overall recall@10 of 0.881 against the committed 0.810, so the committed result and the corpus have drifted apart. Until the baseline is re-run and recorded, treat the 25% as unreplicated: it was one lexical arm on one synthetic corpus, and at most it is evidence about what recall can hide, not a measurement of memory systems. → `PMLAB-H1-BASE-E1`
 
@@ -252,7 +252,7 @@ Repository content is written in English so contributors can collaborate interna
 
 ## License
 
-- Code (`tools/`, `scripts/`, `tests/`, `.github/`): [Apache-2.0](LICENSE).
+- Code (`tools/`, `scripts/`, `tests/`, `.github/workflows/`): [Apache-2.0](LICENSE).
 - Documentation, research notes and the experiment data produced here (`docs/`, `data/`, `memory/`): [CC BY 4.0](LICENSES/CC-BY-4.0.txt).
 - `data/lab/arena/*/vendor-patch/` holds modified copies of Mem0 1.0.6 (Apache-2.0); see [NOTICE](NOTICE).
 - LongMemEval (MIT) is quoted in arena result files; LoCoMo (CC BY-NC 4.0) is not redistributed. Other systems, datasets and papers keep their own licences.

@@ -18,8 +18,8 @@ a minute once the one-time install (about 230 MB, mostly `transformers`, which
 is needed only to import one frozen audit script) is done.
 
 The test suite should pass with no failures. A green run still reports some
-skipped tests: they need optional local inputs that a fresh clone does not have
-(a Mem0 virtualenv, a CUPMem checkout, `ripgrep`), and skipping them is expected.
+skipped tests. Most need optional local inputs that a fresh clone does not have
+(a Mem0 virtualenv, a CUPMem checkout, `ripgrep`); skipping them is expected.
 
 The other targets, for when you do not want to wait for the whole thing
 (timings measured on one laptop):
@@ -159,7 +159,7 @@ A reviewer with prior exposure can still provide useful criticism. Disclose the 
 
 ## Licensing of contributions
 
-Code (`tools/`, `scripts/`, `tests/`, `.github/`) is Apache-2.0; documentation, research notes and experiment data are CC BY 4.0. The path map is [`REUSE.toml`](REUSE.toml) and the third-party notices are in [`NOTICE`](NOTICE). By opening a pull request you agree that your contribution is licensed under the licence of the path it touches (inbound = outbound), and that you have the right to contribute it. Do not commit text, data or code you may not redistribute.
+Code (`tools/`, `scripts/`, `tests/`, `.github/workflows/`) is Apache-2.0; documentation, research notes and experiment data are CC BY 4.0. The path map is [`REUSE.toml`](REUSE.toml) and the third-party notices are in [`NOTICE`](NOTICE). By opening a pull request you agree that your contribution is licensed under the licence of the path it touches (inbound = outbound), and that you have the right to contribute it. Do not commit text, data or code you may not redistribute.
 
 ## Code of conduct
 

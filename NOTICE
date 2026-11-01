@@ -2,7 +2,7 @@ Adaptive Agent Memory Research
 Copyright 2026 Adaptive Agent Memory Research contributors.
 
 Licensing at a glance (the path map is REUSE.toml; the licence texts are in LICENSES/):
-  Software (tools/, scripts/, tests/, .github/, pytest.ini, requirements-dev.txt):
+  Software (tools/, scripts/, tests/, .github/workflows/, pytest.ini, requirements-dev.txt):
       Apache License 2.0 (LICENSE, LICENSES/Apache-2.0.txt)
   Documentation, research notes and the experiment data produced here
   (docs/, data/, memory/, *.md, CITATION.cff):
@@ -17,8 +17,8 @@ Third-party material
       Modified copies of mem0/memory/main.py and mem0/memory/utils.py are kept under
       data/lab/arena/*/vendor-patch/ so that the experiments can be reproduced. The
       modifications are the hunks in the *.patch files and in manifest.json beside
-      them; the Mem0 authors' copyright applies to the unmodified parts. Mem0
-      publishes no NOTICE file.
+      them; the Mem0 authors' copyright applies to the unmodified parts. The Mem0
+      repository has no NOTICE file.
 
   LongMemEval (Wu et al., 2024; https://github.com/xiaowu0162/LongMemEval), MIT.
       Copyright (c) 2024 Di Wu. The permission text is LICENSES/MIT.txt. Result files
