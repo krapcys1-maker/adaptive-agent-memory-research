@@ -1,0 +1,114 @@
+{
+ "budget": {
+  "balance_check": "provider balance read before and after, recorded in run-meta.json",
+  "cap_scope": "e1",
+  "hard_cap_usd": 12,
+  "ledger": "data/lab/aam-deepseek-2026-11/spend-ledger.jsonl",
+  "owner_budget_usd": 15,
+  "price_per_mtok_list_usd": {
+   "input": 0.27,
+   "output": 1.1
+  }
+ },
+ "contrasts": [
+  [
+   "M1",
+   "M0"
+  ],
+  [
+   "M2",
+   "M0"
+  ],
+  [
+   "M3a",
+   "M0"
+  ],
+  [
+   "M3b",
+   "M0"
+  ],
+  [
+   "M3a",
+   "M2"
+  ],
+  [
+   "M3b",
+   "M2"
+  ],
+  [
+   "M3b",
+   "M3a"
+  ]
+ ],
+ "experiment": "AAM-E1-DS replication of AAM-E1-SIM with a strong writer on fresh streams",
+ "judges": {
+  "cross_family_primary": {
+   "backend": "ollama",
+   "model": "qwen2.5:14b-instruct"
+  },
+  "rule": "same prompt, controls, informative-dimension rule and quality guard as addendum A of AAM-E1-SIM; disagreement in sign is reported as unresolved",
+  "same_family_secondary": {
+   "backend": "OpenAI-compatible through the proxy",
+   "model": "deepseek-v4-pro"
+  }
+ },
+ "primary": {
+  "bootstrap": {
+   "draws": 10000,
+   "interval": 0.95,
+   "resample": "(stream seed, day) pairs",
+   "seed": 20261101
+  },
+  "guard": {
+   "max_drop_against_M0": 0.1,
+   "measure": "hook_coverage"
+  },
+  "measure": "overlap4",
+  "ngram": 4,
+  "practical_threshold": 0.05,
+  "window_days": 400
+ },
+ "same_design_as": "data/lab/aam-e1-writer-memory-sim/config.json (arms, stream, measures, analysis, thresholds and readings unchanged)",
+ "script_sha256": {
+  "scripts/analyze_writer_memory_sim.py": "5c45089ae21764902030b27c02af531d02ac0c8e347850eb2c353c76436159af",
+  "scripts/judge_writer_memory_sim.py": "44c0bcdb9f43e53ae1fe198453e89c42f689b8944e61af314ac8dc11252f2ab7",
+  "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
+  "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",
+  "scripts/run_writer_memory_sim_openai.py": "cb305fac5a6e3b19bc1f8bf2daea5f8d8b02caa26779cc6c3d47b39108e7056d",
+  "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
+  "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
+ },
+ "status": "exploratory, tier E, not registered; synthetic persona and prompts authored by an agent; one provider's model",
+ "stream": {
+  "analysis_days_from": 7,
+  "days": 36,
+  "stream_seeds": [
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ]
+ },
+ "writer": {
+  "endpoint": "OpenAI-compatible, through the local metering proxy scripts/metered_proxy.py",
+  "model": "deepseek-flash",
+  "note": "the provider ignores the seed field; the records are the data",
+  "request_fields_added_by_the_proxy": {
+   "thinking": {
+    "type": "disabled"
+   }
+  },
+  "trace_options": {
+   "num_predict": 120,
+   "temperature": 0.0,
+   "top_p": 1.0
+  },
+  "write_options": {
+   "num_predict": 320,
+   "temperature": 0.8,
+   "top_p": 0.95
+  }
+ }
+}

@@ -58,7 +58,10 @@ def openai_chat(base_url: str, model: str, system: str, user: str, seed: int, op
             with urllib.request.urlopen(request, timeout=timeout) as handle:
                 data = json.load(handle)
             usage = data.get("usage") or {}
-            return {"text": data["choices"][0]["message"].get("content") or "", "prompt_tokens": usage.get("prompt_tokens"),
+            content = data["choices"][0]["message"].get("content") or ""
+            if not content.strip():
+                raise ValueError("empty completion (finish_reason=%s)" % data["choices"][0].get("finish_reason"))
+            return {"text": content, "prompt_tokens": usage.get("prompt_tokens"),
                     "gen_tokens": usage.get("completion_tokens"), "wall_s": round(time.time() - started, 2)}
         except urllib.error.HTTPError as failure:
             if failure.code == 402:

@@ -82,6 +82,10 @@ Planted controls show whether the judge can tell anything: 12 entries replaced b
 
 Guard: an arm whose mean quality is lower than M0 by 0.30 or more, with a bootstrap interval below zero, gets no credit for a repetition win. The judge is a 14B model of the same family as the 7B writer, which is a limit and not a remedy; an independent judge (another family, or a human sample) would be a further step. The judge's results are reported beside the registered analysis and never instead of it.
 
+## Addendum C: a second, cross-family judge (written on 2026-11-01 while the registered run was still in progress, before any outcome was read)
+
+A paid-API model became available after addendum A was written. The same judge procedure is therefore also run with `deepseek-v4-pro` (a different family from the Qwen writer) through the local metering proxy, in non-thinking mode at temperature 0, with the same prompt, the same planted controls (the same 24 entries), the same informative-dimension rule and the same quality guard. Both judges are reported beside the registered analysis. If both are informative on a dimension and disagree in the sign of a contrast, the contrast is reported as unresolved. The spend is bounded by the proxy's ledger cap of 12 USD for the whole phase (`data/lab/aam-deepseek-2026-11/spend-ledger.jsonl`). A replication of this design with a strong writer on six fresh streams is preregistered separately in `data/lab/aam-e1ds-writer-memory-sim/README.md`.
+
 ## Addendum B: how far this simulation can speak for the live account (written on the same occasion)
 
 A read-only snapshot of the live account's published notes (see `docs/11-research-laboratory/published-notes-baseline-2026-11-01.md`) shows lexical repetition at the floor (mean 4-gram overlap with one earlier note 0.018) and no explicit callback, while about one note in five has a semantically related earlier note, mostly from the previous week. This simulation is a stress test: every entry has a same-theme predecessor six days earlier. Its effect sizes cannot be carried over to the live account without scaling them to the share of tasks that have something to retrieve, which is about a fifth there.
@@ -92,3 +96,5 @@ Preregistered before the first registered record.
 
 - 2026-11-01 15:38: analysis script and its tests committed, digest added to config.json, while the run was in progress (seed 1 day  5/36  +5 entries  elapsed 114s) and before any outcome had been read. The harness digest is unchanged.
 - 2026-11-01 16:02: addenda A (blind judge with planted controls) and B (external validity against the live account's baseline), the judge script and the backends module committed, digests added to config.json; the registered run was in progress (seed 2 day 34/36  +5 entries  elapsed 1609s) and no outcome had been read.
+
+- 2026-11-01 16:11: addendum C (second, cross-family judge) added and the digests of the judge script and the backends module refreshed in config.json (both changed after addendum A: a command-line option for the OpenAI-compatible backend and a guard against empty completions); the registered run was in progress (seed 3 day 21/36  +5 entries  elapsed 2108s); no outcome had been read. The harness and analysis digests are unchanged.

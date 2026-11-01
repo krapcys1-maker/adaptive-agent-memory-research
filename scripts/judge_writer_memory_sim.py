@@ -200,6 +200,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     run_p.add_argument("records", type=Path)
     run_p.add_argument("--out", type=Path, required=True)
     run_p.add_argument("--model", default="qwen2.5:14b-instruct")
+    run_p.add_argument("--backend", choices=("ollama", "openai"), default="ollama",
+                       help="ollama: a local server; openai: any OpenAI-compatible endpoint, e.g. the local metering proxy of a paid API")
+    run_p.add_argument("--base-url", default="http://127.0.0.1:8799/v1")
     run_p.add_argument("--workers", type=int, default=2)
     an_p = sub.add_parser("analyse")
     an_p.add_argument("records", type=Path)
@@ -209,8 +212,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     args = parser.parse_args(argv)
     try:
         if args.command == "run":
-            written = run(sim.load_records(args.records), args.out, backends.ollama_generate(args.model), args.workers,
-                          log=lambda line: print(line, flush=True))
+            generate = (backends.ollama_generate(args.model) if args.backend == "ollama"
+                        else backends.openai_generate(args.base_url, args.model))
+            written = run(sim.load_records(args.records), args.out, generate, args.workers, log=lambda line: print(line, flush=True))
             print("done: %d new judgments" % written)
             return 0
         result = analyse(load_jsonl(args.judgments))
