@@ -223,8 +223,9 @@ Written after Stage 1; they change no number above and no generated file.
   feasibility gate: before the test seeds are touched, the best case for D (Oc minus the best comparator)
   must be able to clear the threshold.
 * **What the run does show.** At R=25% D stores the gold in 50% of the C3 probes and puts it in the context in
-  8.75%, against 50% for Oc and 10.5% for the shuffled control: the loss is in association, not in storage,
-  and in C3 D's association is not distinguishable from random pointers. In C1, where cue and target share
+  8.75%, against 50% for Oc and 10.5% for the shuffled control: within this D the loss is in association, not
+  in storage, and in C3 D's association is not distinguishable from random pointers (see the review below for
+  why that result was close to guaranteed for a word-cluster index). In C1, where cue and target share
   words, D reaches 0.20 against 0.10 for S, so the trace links words, not roles. Dense retrieval over the
   whole archive (F2) reaches 0.20 in C3 at 250 words and 0.325 at 500 words, so even unconstrained dense
   retrieval finds only a fifth to a third of the role-level lessons.
@@ -254,6 +255,67 @@ Written after Stage 1; they change no number above and no generated file.
   - Outcome, costs and rejection condition: `config.json`, fixed before the test seeds (the first note
     describes the one flaw found afterwards).
   - Reversible: a new directory, no frozen file touched (the claims audit exits 0).
+
+## Independent review of the final version (2026-11-01)
+
+Three independent agents re-checked the final version, read-only, on a scratch clone and on development seeds only
+(arms and scoring; statistics, gates and reproducibility; design and construct validity).
+
+**What held.** No bug was found in any arm or in the scoring. An independent re-implementation of the budget logic
+matched the engine, 17 hand-built-world tests passed, every figure in the Stage 1 report, `results.json` and this
+README re-derives exactly from `stage1/records.jsonl` (including all seven bootstrap intervals), a dense Stage 0
+re-run is byte-identical, the 86 tests pass, and the script digests agree across `config.json`, Stage 0, Stage 1
+and the working tree. Nothing found changes the verdict. What was found concerns what the verdict means:
+
+* **The C3 null was close to guaranteed for this D.** The generator was tuned until the embedder sees C3 cue and
+  target as unrelated (semantic gap 0.045, gate at most 0.10), and D associates only through single-word embedding
+  similarity and word co-occurrence, with no abstraction step. There is no positive control: with every event
+  stored D reaches a recall at 11 events of 0.40 in C1 (BM25: 1.00), 0.00 in C2 and 0.15 in C3 (shuffled
+  pointers 0.10). This is a null about a word-cluster index, not about associative traces.
+* **Budget geometry.** A 150-event world holds about 2,470 words (about 2,210 visible at the cue day), so C is about
+  4.5%, 11% and 22% of it and R = 10% is about 221 words, smaller than C = 250: Del and Sum deliver their whole
+  store, Sum-raw expands about 68% of its store from the free raw archive, and 40% of R buys a recency window that
+  cannot hold any gold. Traces cost about 5.5 words, summaries 8 and raw text about 16.6, so at equal R the arms
+  store 19%, 13% and 6% of the older events: D's lead in "gold stored" is partly bookkeeping, and D, Sum-raw and O
+  rely on a raw archive that costs nothing.
+* **Fill policy.** D delivers only activated events, so its context is under-filled (164 of 250 words in the primary
+  cell, against 219 to 245 for Del, Sum-raw and F2). Padding it lifts D on development seeds from 0.20 to 0.30; on
+  the test seeds the estimate is about +0.03, which flips no statement.
+* **Targets are not low-salience at the text level.** They are the longest and earliest events and use template
+  families no filler uses (a classifier on length, day and wording separates them with AUC about 0.99). Only the two
+  authored importance fields are uninformative.
+* **C3 differs from C2 in more than abstraction** (the target's domain, template family, length and decoy set); the
+  C3 cue starts with a task sentence that is irrelevant to the role and dominates the query (the role sentence alone
+  puts the target in MiniLM's top 11 in 50% of probes, against 15% for the whole cue); only 3 task frames exist per
+  domain. "Relevant only after a goal change" is framing, not a manipulated variable.
+* **Effective sample.** The 20 scenarios resample world-to-world variation but not template variation: the 80 C3
+  probes are draws from 32 role phrase pairs, and the primary contrast rests on 8 discordant probes (D only 2,
+  Sum-raw only 6; exact McNemar p = 0.29).
+* **D's concept rule** (document frequency of at least 2) departs from plain TF-IDF: it drops each probe's unique
+  content words and keeps generator noise (reused first names, reference-tag words). It understates D's lexical route
+  (development seeds, everything stored, C1: 0.60 against 1.00 with a frequency of at least 1); the sensitivity table
+  covers C3 only. No variant tried helped D in C3. Development numbers for D are optimistic against test (C3, R = 25%:
+  0.30 against 0.0875), so they should not size effects.
+* **Tests.** 15 of 24 single-change mutants of the arms survive the repository tests (among them a future-vocabulary
+  leak and D ignoring the goal), and no Stage 0 gate reads D's retrieval at all.
+* **Smaller items.** Sum cannot score on the strict metric by construction (the code is at the end of every text, so an
+  8-word lead never holds it), so the best of the three comparators is in effect Del or Sum-raw. The one-look rule is
+  keyed to the output folder. The v0.1 figures in the Stage 0 report are constants without a source file.
+  Development seeds cover two of the six cue domains. Stage 2 has a few edge gaps (its token limit is not re-checked
+  against the frozen reader at run time, and the $5 cap is per ledger file). `ArmConfig.query_mode` does not reach
+  the trace arms. The shuffles of probes that share a cue day and R are not independent across probes.
+
+**Not fixed here.** The three scripts are frozen by digest, and `config.json` and the result files declare those
+digests, so none of this was changed in them; fixes go to a new version. The reviewers' list for it: Stage 0 gates
+that put the test seeds out of reach until they pass (the oracle on D's footing minus the best comparator at least 0.30
+on development worlds; D with everything stored near BM25 in C1 and above the shuffled control); R defined as the
+older-event budget with a recency control cell; one fill policy for all arms, reported with and without padding;
+coverage-matched contrasts; equal length and day distributions for targets and a tell gate; a cue without the irrelevant
+task sentence (or both variants reported) and many more phrasings per role; at least 40 worlds with 8 probes each; a
+concept rule that keeps unique words and excludes generator noise; a model-written trace arm with its controls
+(shuffled model tags, random tags of equal cost, model-written summaries, D with everything stored, and dense retrieval
+with a read-time query rewrite); an interval rule instead of a point-estimate qualifier; the hand-built-world tests; a
+lock outside the output folder for the one-look rule.
 
 ## How to run
 
