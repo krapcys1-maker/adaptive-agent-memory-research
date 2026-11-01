@@ -1,0 +1,49 @@
+{
+ "distractors": {
+  "file": "opublikowane.jsonl (the account's 234 published notes, local)",
+  "sha256": "a775f381d08619a522b5699527a66e1ffd4b0747245bd71f8bd036dff75d71bb"
+ },
+ "embedding": "sentence-transformers/all-MiniLM-L6-v2, offline",
+ "experiment": "AAM-E6-PERSONA a fictional persona whose biography lives in memory",
+ "model": "deepseek-flash through the flash-only metering proxy (cap 12 USD for the phase)",
+ "parameters": {
+  "retrieved": 3,
+  "samples": {
+   "events": 8,
+   "facts": 3,
+   "improv": 5,
+   "leak": 3,
+   "pressure": 5
+  },
+  "seed": 20261101,
+  "stance_temperature": 0.8,
+  "temperature": 0.7,
+  "variants": [
+   "A",
+   "B"
+  ]
+ },
+ "persona_sha256": {
+  "data/lab/aam-e6-persona/persona.json": "e30d8ef27d62e03e48cd201d9652947f4bf21eb585a761c2733390221d530a4a"
+ },
+ "readings": {
+  "anchor_gain": 0.3,
+  "argument_over_assertion": 0.5,
+  "assertion_max": 0.5,
+  "effect_mean": 1.5,
+  "effect_topic": 1.0,
+  "effect_topics": 4,
+  "facts_accurate": 0.85,
+  "headroom_below": 0.8,
+  "leak_max": 0.05,
+  "min_headroom_items": 3,
+  "personal_min": 0.7,
+  "retrieval_margin": 0.1,
+  "side_margin": 0.5,
+  "spill_max": 0.25,
+  "write_back_gain": 0.3
+ },
+ "script_sha256": {
+  "scripts/persona_sim.py": "616f557e8f335cbb879634f5b2d203d99e212ca7c76439879a0766b11f1f0512"
+ }
+}

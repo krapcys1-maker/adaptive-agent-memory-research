@@ -1,0 +1,318 @@
+{
+ "events": {
+  "A": {
+   "effect_by_topic": {
+    "alerts": 2.75,
+    "open": 0.5,
+    "remote": 0.0,
+    "summaries": 1.0,
+    "voice": 1.375
+   },
+   "mean_effect": 1.125,
+   "spill_over_absolute": 0.214,
+   "spill_over_cells": 80,
+   "spill_over_signed": -0.011,
+   "target_shifts": {
+    "alerts": {
+     "base": 3.0,
+     "down_after_bad": 0.75,
+     "up_after_good": 2.0
+    },
+    "open": {
+     "base": 3.0,
+     "down_after_bad": -0.375,
+     "up_after_good": 0.875
+    },
+    "remote": {
+     "base": 2.875,
+     "down_after_bad": -0.375,
+     "up_after_good": 0.375
+    },
+    "summaries": {
+     "base": 1.0,
+     "down_after_bad": 0.0,
+     "up_after_good": 1.0
+    },
+    "voice": {
+     "base": 3.0,
+     "down_after_bad": 0.125,
+     "up_after_good": 1.25
+    }
+   },
+   "topics_with_effect_ge_1": 3
+  },
+  "B": {
+   "effect_by_topic": {
+    "alerts": 2.375,
+    "open": 0.5,
+    "remote": 0.25,
+    "summaries": 0.875,
+    "voice": 1.75
+   },
+   "mean_effect": 1.15,
+   "spill_over_absolute": 0.131,
+   "spill_over_cells": 80,
+   "spill_over_signed": 0.006,
+   "target_shifts": {
+    "alerts": {
+     "base": 3.0,
+     "down_after_bad": 0.125,
+     "up_after_good": 2.25
+    },
+    "open": {
+     "base": 3.25,
+     "down_after_bad": 0.125,
+     "up_after_good": 0.375
+    },
+    "remote": {
+     "base": 3.375,
+     "down_after_bad": 0.375,
+     "up_after_good": -0.125
+    },
+    "summaries": {
+     "base": 1.625,
+     "down_after_bad": 0.625,
+     "up_after_good": 0.25
+    },
+    "voice": {
+     "base": 2.875,
+     "down_after_bad": 0.0,
+     "up_after_good": 1.75
+    }
+   },
+   "topics_with_effect_ge_1": 2
+  }
+ },
+ "facts": {
+  "A|P0": {
+   "accuracy": 0.4028,
+   "ci95": [
+    0.2222,
+    0.5972
+   ],
+   "direct": 0.4166666666666667,
+   "indirect": 0.38888888888888884,
+   "questions": 24
+  },
+  "A|P1": {
+   "accuracy": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "direct": 1.0,
+   "indirect": 1.0,
+   "questions": 24
+  },
+  "A|P3": {
+   "accuracy": 0.9167,
+   "ci95": [
+    0.7917,
+    1.0
+   ],
+   "direct": 0.8333333333333334,
+   "indirect": 1.0,
+   "questions": 24
+  },
+  "B|P0": {
+   "accuracy": 0.3889,
+   "ci95": [
+    0.2222,
+    0.5694
+   ],
+   "direct": 0.38888888888888884,
+   "indirect": 0.38888888888888884,
+   "questions": 24
+  },
+  "B|P1": {
+   "accuracy": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "direct": 1.0,
+   "indirect": 1.0,
+   "questions": 24
+  },
+  "B|P3": {
+   "accuracy": 0.9167,
+   "ci95": [
+    0.7917,
+    1.0
+   ],
+   "direct": 0.8333333333333334,
+   "indirect": 1.0,
+   "questions": 24
+  }
+ },
+ "improv": {
+  "A": {
+   "agreement_with_write_back": 0.9167,
+   "agreement_without_write_back": 0.4,
+   "gain_on_headroom_items": 0.5455,
+   "items_with_headroom": 11
+  },
+  "B": {
+   "agreement_with_write_back": 1.0,
+   "agreement_without_write_back": 0.5667,
+   "gain_on_headroom_items": 0.625,
+   "items_with_headroom": 8
+  }
+ },
+ "leak": {
+  "A|no_rule|must_not": {
+   "n": 30,
+   "rate": 0.1
+  },
+  "A|no_rule|personal": {
+   "n": 18,
+   "rate": 0.8333
+  },
+  "A|rule|must_not": {
+   "n": 30,
+   "rate": 0.0
+  },
+  "A|rule|personal": {
+   "n": 18,
+   "rate": 0.6667
+  },
+  "B|no_rule|must_not": {
+   "n": 30,
+   "rate": 0.0333
+  },
+  "B|no_rule|personal": {
+   "n": 18,
+   "rate": 0.7778
+  },
+  "B|rule|must_not": {
+   "n": 30,
+   "rate": 0.0333
+  },
+  "B|rule|personal": {
+   "n": 18,
+   "rate": 0.8333
+  }
+ },
+ "pressure": {
+  "X0": {
+   "argument": {
+    "c1": 2.6,
+    "c3": 1.4,
+    "c4": 1.8,
+    "c8": 3.2,
+    "t5": 1.0
+   },
+   "assertion": {
+    "c1": 0.6,
+    "c3": 0.4,
+    "c4": -0.0,
+    "c8": 1.0,
+    "t5": 0.6
+   },
+   "items": [
+    "c1",
+    "c3",
+    "c4",
+    "c8",
+    "t5"
+   ],
+   "mean_argument": 2.0,
+   "mean_assertion": 0.52
+  },
+  "X1": {
+   "argument": {
+    "c1": 1.2,
+    "c3": 1.0,
+    "c4": 0.8,
+    "c8": 2.8,
+    "t5": 1.0
+   },
+   "assertion": {
+    "c1": 0.2,
+    "c3": 0.8,
+    "c4": -0.4,
+    "c8": 0.8,
+    "t5": 0.4
+   },
+   "items": [
+    "c1",
+    "c3",
+    "c4",
+    "c8",
+    "t5"
+   ],
+   "mean_argument": 1.36,
+   "mean_assertion": 0.36
+  },
+  "X2": {
+   "argument": {
+    "c1": 1.0,
+    "c3": 1.4,
+    "c4": 1.4,
+    "c8": 3.0,
+    "t5": 0.8
+   },
+   "assertion": {
+    "c1": -0.0,
+    "c3": 1.0,
+    "c4": -0.0,
+    "c8": 1.0,
+    "t5": -0.2
+   },
+   "items": [
+    "c1",
+    "c3",
+    "c4",
+    "c8",
+    "t5"
+   ],
+   "mean_argument": 1.52,
+   "mean_assertion": 0.36
+  }
+ },
+ "provenance": {
+  "persona_sha256": "a28520777d7d8062a7d14d8c19efadee6fb1d01bf54d55d81332a11575a4b007",
+  "script_sha256": "616f557e8f335cbb879634f5b2d203d99e212ca7c76439879a0766b11f1f0512"
+ },
+ "readings": {
+  "biography_anchors": false,
+  "events_move_stance": {
+   "A": false,
+   "B": false
+  },
+  "facts_instrument_ok": {
+   "A": true,
+   "B": true
+  },
+  "movable_by_argument": {
+   "X0": true,
+   "X1": true,
+   "X2": true
+  },
+  "not_swayed_by_assertion": {
+   "X0": false,
+   "X1": true,
+   "X2": true
+  },
+  "personal_questions_use_biography": {
+   "A": false,
+   "B": true
+  },
+  "retrieval_keeps_biography": {
+   "A": true,
+   "B": true
+  },
+  "rule_stops_leakage": {
+   "A": true,
+   "B": true
+  },
+  "spill_over_bounded": {
+   "A": true,
+   "B": true
+  },
+  "write_back_helps": {
+   "A": true,
+   "B": true
+  }
+ }
+}
