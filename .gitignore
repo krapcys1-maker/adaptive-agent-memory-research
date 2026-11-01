@@ -35,3 +35,12 @@ Thumbs.db
 /data/lab/arena/pilot-raw/
 /external/venvs/
 /data/lab/arena/raw/
+
+# Defence in depth: secrets never belong in the tree (the sealed-split secret lives outside it)
+.env.*
+!.env.example
+.*secret*
+*.pem
+*.key
+.aamr-sealed-*
+.claude/settings.local.json
