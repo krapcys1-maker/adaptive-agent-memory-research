@@ -1,0 +1,17 @@
+Third-party paper abstracts (not relicensed)
+
+Some files in this repository reproduce the plain-text abstract of published papers next to
+bibliographic metadata taken from OpenAlex. OpenAlex releases its metadata under CC0, but it
+distributes abstracts only as word-position indexes and does not grant rights in the abstract
+wording. The wording of each abstract remains the property of its authors or publisher and is
+NOT licensed to you by this repository.
+
+What this repository does license (CC BY 4.0): its own selection, arrangement, queries, scores
+and annotations around those abstracts.
+
+What you may do: read the abstracts for research evaluation; follow `landing_page`, `doi` or
+`openalex_id` to the original; regenerate the abstract text yourself from the OpenAlex API.
+For any other use, obtain permission from the rights holder of the paper concerned.
+
+Removal: if you are a rights holder and want an abstract removed, open an issue in this
+repository and it will be removed from the current tree promptly.
