@@ -25,7 +25,7 @@ It can rule things out. If raw history raises repetition, it should not be injec
 | M0 | nothing (no notes, no instruction) |
 | M1 | the last three entries in full (what a naive agent loop does) |
 | M2 | the three earlier entries most similar to today's trigger, in full (raw own-history retrieval) |
-| M3a | one short trace per earlier entry (gist, angle, left open, five keywords, written by the same model at temperature 0 right after the entry); the three most similar traces |
+| M3a | one short trace per earlier entry (gist, angle, left open and five keywords, written by the same model at temperature 0 right after the entry); the three most similar traces. The note shown to the writer holds the entry's title, the gist, the angle and what was left open; the keywords are used only for retrieval and links (corrected after the review) |
 | M3b | M3a plus dynamic importance and association (below) |
 
 **Retrieval (M2, M3a, M3b).** BM25 (k1 = 1.2, b = 0.75) over lower-cased content words; the query is the theme plus the hook; each document carries its theme as a tag; a tie goes to the more recent entry; nothing is shown when no document scores above zero.
@@ -88,7 +88,42 @@ A paid-API model became available after addendum A was written. The same judge p
 
 ## Addendum B: how far this simulation can speak for the live account (written on the same occasion)
 
-A read-only snapshot of the live account's published notes (see `docs/11-research-laboratory/published-notes-baseline-2026-11-01.md`) shows lexical repetition at the floor (mean 4-gram overlap with one earlier note 0.018) and no explicit callback, while about one note in five has a semantically related earlier note, mostly from the previous week. This simulation is a stress test: every entry has a same-theme predecessor six days earlier. Its effect sizes cannot be carried over to the live account without scaling them to the share of tasks that have something to retrieve, which is about a fifth there.
+A read-only snapshot of the live account's published notes (see `docs/11-research-laboratory/published-notes-baseline-2026-11-01.md`) shows lexical repetition at the floor (mean 4-gram overlap with one earlier note 0.018) and no explicit callback, while about one note in five has a semantically related earlier note, mostly from the previous week. This simulation is a stress test: every entry has a same-theme predecessor one to eleven days earlier (about six on average; corrected after the review). Its effect sizes cannot be carried over to the live account without scaling them to the share of tasks that have something to retrieve, which is about a fifth there.
+
+## Results of the registered run (written on 2026-11-01 after the preregistered analysis had been run)
+
+**The run.** 540 entries (3 streams x 36 days x 5 arms), `qwen2.5:7b-instruct` (digest in `run-meta.json`), 41 minutes; the harness digest in the run metadata equals the one frozen in `config.json`. Analysis: `report.md`, `results.json`. Judges: `judge-v4pro-report.md` (the cross-family judge of addendum C), `judge-qwen14b-report.md` (the same-family judge of addendum A).
+
+**The readings stated in advance, applied mechanically, did not fire.** Raw history helps: no. Raw history hurts: no (M2 - M0 is +0.036, below 0.05). Traces beat entries: no (M3a - M2 is -0.026, below 0.05 in size). Dynamics add: no. Nothing moves: no, only because M1 - M0 is +0.060. These "no" answers must not be read as findings. An independent review made while the run was in progress, using only the two smoke files, found that **the practical threshold of 0.05 is larger than the whole level of overlap4 in arm M0** (0.016 here; 0.049 in AAM-E1-DS), so the three readings that need a reduction could not fire whatever memory did. The effects below are therefore read descriptively, with the intervals of the preregistered bootstrap, which is approximate because the 90 pairs come from three streams.
+
+**What the data show** (analysis days 7 to 36; mean over 90 entries per arm; per-stream directions agree unless stated):
+
+| Arm | overlap4 | explicit references back | words | judged fit / fresh / quality (cross-family judge) |
+|---|---|---|---|---|
+| M0 none | 0.016 | 0.0% | 124 | 4.48 / 3.59 / 3.30 |
+| M1 last three entries | 0.077 | 5.6% | 174 | 3.83 / 2.68 / 2.83 |
+| M2 raw retrieval | 0.052 | 2.2% | 174 | 3.99 / 2.79 / 3.02 |
+| M3a traces | 0.026 | 15.6% | 139 | 4.18 / 2.97 / 3.03 |
+| M3b traces + dynamics | 0.031 | 12.2% | 136 | 4.14 / 2.92 / 3.02 |
+
+- **Raw entries in the prompt raised lexical self-overlap and length, and lowered judged freshness, fit and quality.** M1 - M0 in overlap4 is +0.060 [0.045, 0.079]; M2 - M0 +0.036 [0.024, 0.049]. Judged quality: M1 -0.47 [-0.64, -0.29], M2 -0.28 [-0.46, -0.10] against M0; M1 violates the quality guard (a drop of 0.30 or more with an interval below zero), M2 and the traces hold it narrowly.
+- **Traces did much less damage than raw entries and are the format that produced explicit references back.** M3a - M2 in overlap4 is -0.026 [-0.040, -0.015] (same sign in all three streams); judged fit +0.19 [0.01, 0.37] and freshness +0.18 [0.00, 0.36] above M2, equal on quality; explicit references back 15.6% and 12.2% against 2.2% for raw retrieval and 0% for no memory.
+- **Dynamic importance and association added nothing measurable** (M3b - M3a: overlap4 +0.005 [-0.001, 0.011], quality -0.01). The review adds that this test was weak: reinforcement was nearly inert at the observed reference rate, so M3b differed from M3a mainly by an age discount and a neighbour slot. It is not evidence against dynamics in general.
+- **The hook-coverage guard was not violated** by any arm (largest drop 0.04, interval including zero).
+- **The same-family judge (`qwen2.5:14b-instruct`) is uninformative and is not used:** it noticed 50% of the copied entries on freshness and 33% of the off-theme replacements on fit (the rule requires 75%), and scored almost everything 5 on fit and voice. The cross-family judge noticed 100% and 83%, so it is informative on freshness and fit. Its parser first missed one-line replies (43 of 474, mostly in arm M0); the parser was fixed after the judge results had been seen and the scores were re-derived from the stored replies, with no new calls.
+
+**AAM-E1-DS** (`data/lab/aam-e1ds-writer-memory-sim`, the strong model on six fresh streams) did not replicate the direction of the lexical effect: memory arms had slightly *lower* overlap4 than M0 (M2 - M0 -0.015 [-0.020, -0.011], M3b - M0 -0.014, M3a - M0 -0.009, M1 - M0 -0.004 and not distinguishable from zero), so "nothing moves" holds by the rule; explicit references back rose with traces (8.9% and 8.3%) as against 1.1% for no memory and 5.0% for raw retrieval, the same ordering as here. Its judge results are in its own README.
+
+**Review findings that bear on how far this reaches** (an independent review by three reviewers and five verifiers made while the run was in progress, with no outcome seen; no critical finding):
+- M0 lacks the instruction ("do not repeat what you have said; build on it ...") that the memory arms carry, so every contrast against M0 is notes plus instruction. AAM-E2-FU adds a control arm for this; E1 has none.
+- Retrieval uses the theme tag, an oracle label, and generic hook words, and always fills three slots; M1 is mostly an off-theme window. M1 is therefore a poor stand-in for "what a naive agent loop does".
+- The shared sampling seed does not couple the arms (28 of 56 smoke pairs with identical prompts gave different text); pairing removes theme and hook variance only. The intervals treat entries as independent although they come from three streams, so they are too narrow.
+- The explicit-reference pattern (`callback_ext`) fires on some narrated "I wrote ..." sentences contrary to its description, and the same function gates M3b's reinforcement. The persona card's own motif sentence makes up about 6% of the overlap measure.
+- The registered run had no validation of malformed replies and stored no raw reply; the counts of empty, label-bearing or truncated entries are therefore not recoverable.
+
+**Reading.** For a 7B writer in a stress stream where every entry has an earlier entry on the same theme, giving the writer its own earlier entries does not make it repeat itself less and does not make its entries better; it makes them longer, more similar to what it already wrote and, by a cross-family judge, somewhat worse. A compact trace is the better unit than the entry itself, for repetition, length and above all for producing references back. For a strong writer the lexical effects are small and of the opposite sign; the dependence on the writer is itself the finding. Nothing here shows that memory improves a writer, and nothing about a real account follows (see addendum B).
+
+**Decision recorded for the live-memory plan.** (1) Do not inject raw recent entries into the live agent. (2) The candidate for the first live arm is a thresholded trace, to be tested in AAM-E2-FU where memory has something to offer. (3) Keep the quality guard and be ready for a null or a negative result. (4) Defer dynamic importance and association; this test could not have justified them. (5) Any future repetition measure needs a practical threshold below the baseline level of the measure.
 
 ## Log
 
@@ -98,3 +133,5 @@ Preregistered before the first registered record.
 - 2026-11-01 16:02: addenda A (blind judge with planted controls) and B (external validity against the live account's baseline), the judge script and the backends module committed, digests added to config.json; the registered run was in progress (seed 2 day 34/36  +5 entries  elapsed 1609s) and no outcome had been read.
 
 - 2026-11-01 16:11: addendum C (second, cross-family judge) added and the digests of the judge script and the backends module refreshed in config.json (both changed after addendum A: a command-line option for the OpenAI-compatible backend and a guard against empty completions); the registered run was in progress (seed 3 day 21/36  +5 entries  elapsed 2108s); no outcome had been read. The harness and analysis digests are unchanged.
+
+- 2026-11-01 16:41: results written. The judge script was changed once after its first results had been seen: its parser required each label at the start of a line and missed one-line replies (43 of 474 judgments in AAM-E1-SIM, mostly arm M0), so the parser was loosened and the scores were re-derived from the stored replies without new calls; the digest in config.json is the final one. The independent review of the harness, the analysis and the design (three reviewers, five verifiers; no critical finding) is summarised in the results of AAM-E1-SIM.

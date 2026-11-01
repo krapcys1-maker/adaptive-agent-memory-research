@@ -17,8 +17,31 @@ A reading of E1 (raw history helps, raw history hurts, traces beat entries, dyna
 
 One provider's model, one persona, six themes, six streams. The provider's model and its serving can change between the day of the run and any later attempt to reproduce it. Cost at the list price over-counts. Everything in the limits of E1 applies.
 
+## Results (written on 2026-11-01 after the preregistered analysis had been run)
+
+**The run.** 1,080 entries (6 streams x 36 days x 5 arms), `deepseek-flash` in non-thinking mode, 14 minutes; 1,512 calls including the traces, 650k prompt and 216k completion tokens, 0.41 USD at the arena's list price (`proxy-summary.json`). The harness digest in the run metadata equals the one frozen in `config.json`. The provider balance read before and after the run (`balance-before.json`, 24.14 USD, and 23.27 USD read afterwards) also covers judge calls made for other experiments in the same interval, so it is a check on the order of magnitude and not a per-run figure. Analysis: `report.md`, `results.json`.
+
+**The readings stated in advance: "nothing moves" holds** (every difference in overlap4 is below the practical threshold of 0.05; the other four readings do not fire). As the independent review of AAM-E1-SIM pointed out, the threshold exceeds the level of overlap4 in arm M0 (0.049 here), so no reduction reading could fire; the effects are read descriptively.
+
+| Arm | overlap4 | explicit references back | words | judged fit / fresh / quality (same-family judge) |
+|---|---|---|---|---|
+| M0 none | 0.049 | 1.1% | 133 | 4.99 / 4.06 / 4.78 |
+| M1 last three entries | 0.045 | 3.9% | 139 | 5.00 / 4.15 / 4.88 |
+| M2 raw retrieval | 0.034 | 5.0% | 139 | 5.00 / 4.13 / 4.93 |
+| M3a traces | 0.040 | 8.9% | 137 | 5.00 / 4.06 / 4.78 |
+| M3b traces + dynamics | 0.035 | 8.3% | 135 | 4.99 / 4.06 / 4.77 |
+
+- **Lexical overlap: memory arms were slightly lower than no memory**, the opposite sign to the 7B writer of AAM-E1-SIM: M2 - M0 -0.015 [-0.020, -0.011], M3b - M0 -0.014 [-0.019, -0.009], M3a - M0 -0.009 [-0.014, -0.004], M1 - M0 -0.004 [-0.010, 0.002]. Five of six streams agree on the sign for M2 and M3b.
+- **Explicit references back were highest with traces** (M3a - M0 +0.078 [0.033, 0.122], M3b - M0 +0.072 [0.039, 0.111], M2 - M0 +0.039 [0.006, 0.078]), the same ordering as in AAM-E1-SIM. The rate of M0 is not zero (1.1%), so a model that was given no notes still produces some phrases the pattern accepts.
+- **Judge `deepseek-v4-pro` (the same provider as the writer, so open to self-preference, equally for every arm).** Informative on freshness (all copies noticed) and **uninformative on fit** (58% of the off-theme replacements noticed against the 75% required; fit sits at 5.0 for nearly everything). Quality: M2 +0.15 [0.09, 0.21] and M1 +0.11 [0.03, 0.18] above M0, traces equal to M0 (+0.01, -0.01), traces 0.14 to 0.16 below raw retrieval. Freshness: M1 +0.09 [0.03, 0.15], M2 +0.07 [0.01, 0.13] above M0. The quality guard holds for every arm. Everything sits near the ceiling of the scale, so these are small differences on a compressed range.
+- **The local `qwen2.5:14b-instruct` judge** (the cross-family judge here) ran on the same entries; its results are added to `judge-qwen14b-report.md` when the run ends, and are used only if it passes its controls, which it did not in AAM-E1-SIM.
+
+**Replication verdict, by the rule stated in advance: not replicated.** E1 gave no named reading and E1-DS gives "nothing moves"; the sign of the lexical effect differs by writer (more overlap with notes for the 7B model, slightly less for the strong model), while the ordering of explicit references back (traces above raw retrieval above nothing) is the same in both. A strong writer given raw notes is rated slightly better by a same-family judge; the 7B writer given the same was rated worse by a cross-family one. The dependence on the writer is the result; no claim about memory in general follows.
+
 ## Log
 
 Preregistered before the first record.
 
 - 2026-11-01 16:11: preregistered, with the digests of all seven scripts, before the first record; the registered run of AAM-E1-SIM was still in progress and no outcome of it had been read.
+
+- 2026-11-01 16:41: results written. The judge script was changed once after its first results had been seen: its parser required each label at the start of a line and missed one-line replies (43 of 474 judgments in AAM-E1-SIM, mostly arm M0), so the parser was loosened and the scores were re-derived from the stored replies without new calls; the digest in config.json is the final one. The independent review of the harness, the analysis and the design (three reviewers, five verifiers; no critical finding) is summarised in the results of AAM-E1-SIM.

@@ -1,0 +1,24 @@
+{
+  "model": "qwen2.5:7b-instruct",
+  "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+  "ollama_version": "0.40.13",
+  "write_options": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "num_predict": 320
+  },
+  "trace_options": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "num_predict": 120
+  },
+  "num_ctx": 4096,
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "days": 36,
+  "harness_sha256": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297",
+  "first_started": "2026-11-01T15:36:00"
+}

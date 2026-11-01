@@ -50,6 +50,7 @@ def fake_judge(system: str, user: str, seed: int, opts: dict) -> dict:
 def test_scores_are_read_from_plain_bold_and_slash_forms_and_missing_ones_are_none() -> None:
     assert judge.parse_scores("FIT: 4\nFRESH: 2\nVOICE: 5\nQUALITY: 3") == {"fit": 4, "fresh": 2, "voice": 5, "quality": 3}
     assert judge.parse_scores("**FIT**: 4/5\n- fresh = 2\nVoice: 5.\nQUALITY: 3") == {"fit": 4, "fresh": 2, "voice": 5, "quality": 3}
+    assert judge.parse_scores("FIT: 4, FRESH: 3, VOICE: 3, QUALITY: 3") == {"fit": 4, "fresh": 3, "voice": 3, "quality": 3}   # one-line reply
     partial = judge.parse_scores("FIT: 7\nFRESH: 3")
     assert partial == {"fit": None, "fresh": 3, "voice": None, "quality": None}
 
@@ -107,6 +108,13 @@ def test_analysis_reads_repetition_and_off_topic_entries_off_the_scores_and_chec
     assert result["contrasts"]["M2-M0"]["fresh"]["mean"] < 0 and result["contrasts"]["M2-M0"]["fresh"]["ci_high"] < 0
     assert result["quality_guard_holds"]["M2"] is False       # the repeating arm also loses overall quality in this fake judge
     assert "# AAM-E1-SIM judge results" in judge.report(result)
+
+
+def test_analysis_re_derives_missing_scores_from_the_stored_reply() -> None:
+    rows = [{"control": None, "seed": 1, "arm": "M0", "day": 7 + i, "fit": 4, "fresh": None, "voice": None, "quality": None,
+             "raw": "FIT: 4, FRESH: 3, VOICE: 2, QUALITY: 5"} for i in range(4)]
+    result = judge.analyse(rows, draws=50)
+    assert result["unparsed"] == 0 and result["arm_means"]["M0"] == {"fit": 4, "fresh": 3, "voice": 2, "quality": 5}
 
 
 def test_a_judge_that_cannot_tell_is_declared_uninformative() -> None:
