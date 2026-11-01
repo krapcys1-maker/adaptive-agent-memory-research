@@ -12,6 +12,7 @@ How much that is worth, said plainly:
 * The evidence is **2 repairs in 17 observable units with 0 regressions, on legacy library versions** (`mem0ai` 1.0.6). An exact two-sided sign test on 2 against 0 gives p = 0.5. The ledger's label `REPLICATED_VALIDATED_TRANSPLANT` is a procedural ladder term, not a significance claim.
 * One of the two repairs, `0e5e2d1a`, is a `single-session-assistant` question: it asks about what the assistant said, and the harness deliberately drops assistant turns before they reach Mem0 (`as_records()` in `scripts/arena/run_arena_pilot.py`). The other repair is `6a27ffc2`, a knowledge-update question.
 * The plus-raw context is about 21 times longer than the compact one (mean per-unit ratio 21.36x). Table below.
+* Only the fresh replication is a same-run comparison. In E3 the compact arm is the frozen `mem0_original` arm of an earlier run, reused and not re-queried (`docs/research/CLEAN_RAW_PROVENANCE_RETEST_V2.md`), while plus-raw and raw-only were queried afresh; the provider does not guarantee identical answers for identical requests (item 3 below), so the E3 repair cannot be separated from a re-draw. The pooled test statistic below treats both samples alike and should be read with that in mind.
 * The ledger's own account: every measurement in Entries A to Q was taken on `mem0ai` 1.0.6 and `hindsight_api_slim` 0.9.1, not on current releases.
 
 ## Level 0: recompute the ledger's numbers. No key, no cost, no network, about a second
@@ -24,7 +25,7 @@ python scripts/arena/verify_arena_numbers.py
 
 It recomputes, from the tracked result files, the per-arm counts the ledger quotes for the fresh replication and the E3 sample, the repairs and regressions, the combined 17 units, the recorded spend of the replication
 and the mean token overhead, compares each with the number it parses out of the ledger text, and prints per-unit token counts for compact versus plus-raw. Exit status: 0 all match; 1 a recomputed number differs from the ledger;
-2 a required file is missing or malformed. The unit tests for the script are `python -m pytest tests/test_verify_arena_numbers.py` (needs `pytest`, see `requirements-dev.txt`).
+2 a required file is missing, unreadable or malformed (including duplicate rows and labels that are not booleans). The unit tests for the script are `python -m pytest tests/test_verify_arena_numbers.py` (needs `pytest`; `pip install pytest` is enough).
 
 Output of the run on 2026-11-01 (Python 3.12.10; also run under Python 3.11.13 with the same exit status 0):
 
@@ -59,20 +60,20 @@ fresh replication, tokens as stored in results.json
   0e5e2d1a   single-session-assistant        109      609      500     5.6x
   mean of per-unit ratios 21.36x (min 5.6x, max 32.1x); pooled ratio 20.96x
 PASS  fresh: compact_plus_raw tokens == compact tokens + raw_only tokens for every unit
-PASS  fresh: mean per-unit overhead rounds to the ledger's ~21.4x  | recomputed 21.36x
+PASS  fresh: mean per-unit overhead rounds to the ledger's ~21.4x (quoted in Entry Q)  | recomputed 21.36x
 E3 sample, DERIVED: the E3 files store no token count for the plus-raw context, so it is taken as compact tokens
 (mem0-breadth-arms.json) + raw session tokens (e3-arms.json); the fresh data above shows this sum is exact there.
   unit           type                compact     +raw    ratio
   311778f1       single-session-user      101     2654    26.3x
   58bf7951       single-session-user      117     1735    14.8x
-  6a27ffc2       knowledge-update         100     2988    29.9x
-  ba358f49       multi-session             114     2574    22.6x
-  eace081b       knowledge-update         100     2234    22.3x
-  gpt4_59c863d7  multi-session             142     3173    22.3x
-  gpt4_98f46fc6  temporal-reasoning        92     2233    24.3x
-  gpt4_f420262c  temporal-reasoning       126     2379    18.9x
-  gpt4_f49edff3  temporal-reasoning       126     1917    15.2x
-NOTE  The plus-raw arm carries roughly 5x to 32x more context than compact. raw_only is about as long as plus-raw yet scored lower (4/8 and 4/9 against 6/8 and 6/9), so length alone does not explain the repairs; but no arm here holds length fixed while removing the relevant text, so these files cannot rule length out either.
+  6a27ffc2       knowledge-update        100     2988    29.9x
+  ba358f49       multi-session           114     2574    22.6x
+  eace081b       knowledge-update        100     2234    22.3x
+  gpt4_59c863d7  multi-session           142     3173    22.3x
+  gpt4_98f46fc6  temporal-reasoning       92     2233    24.3x
+  gpt4_f420262c  temporal-reasoning      126     2379    18.9x
+  gpt4_f49edff3  temporal-reasoning      126     1917    15.2x
+NOTE  The plus-raw arm carries 5.6x to 32.1x more context than compact (fresh and derived E3 units). raw_only is about as long as plus-raw yet scored lower (4/8 against 6/8 in the fresh replication, 4/9 against 6/9 in E3), so length alone does not explain the repairs; but no arm here holds length fixed while removing the relevant text, so these files cannot rule length out either.
 
 all checks passed
 ```
@@ -85,9 +86,9 @@ Please also read the statistics line honestly: 2 repairs and 0 regressions in 17
 
 ## What cannot be reproduced yet, and why
 
-We have not run Level 1 or Level 2 below for this document, and we do not claim that they are runnable by a stranger today.
+We have not re-run the ingest, read or judge steps described below for this document, and we do not claim that a stranger can run them today.
 
-1. **The raw contexts and the Mem0 stores are git-ignored.** `/data/lab/arena/raw/`, `/data/lab/arena/pilot-raw/` and `/external/venvs/` are in `.gitignore`, because they hold corpus text, gold answers and an installed environment. What is tracked is answers, judge labels, token counts and selections. Re-reading or re-judging the fresh replication from the repository alone is not possible.
+1. **The raw contexts and the Mem0 stores are git-ignored.** `/data/lab/arena/raw/`, `/data/lab/arena/pilot-raw/` and `/external/venvs/` are in `.gitignore`, because they hold corpus text, gold answers and an installed environment. What is tracked is answers, judge labels, token counts and selections; the tracked result files also carry the questions and gold answers, and `e3-arms.json` carries the context items the E3 reader was given. Re-reading or re-judging the fresh replication from the repository alone is not possible.
 2. **Re-running needs the old libraries, Windows paths and a manual setup.** The measurements used `mem0ai` 1.0.6 and Hindsight `hindsight_api_slim` 0.9.1 in virtual environments under `external/venvs/`. We found no pinned dependency file for the arena in the repository (`requirements-dev.txt` is for the tests). Several scripts put `external/venvs/mem0/Lib/site-packages` on `sys.path`, which is the Windows virtual-environment layout. The result files carry absolute Windows paths (for example `D:\Pamiec LLM\...`) as provenance. Embeddings used `sentence-transformers/all-MiniLM-L6-v2` at revision `1110a243fdf4706b3f48f1d95db1a4f5529b4d41` (`data/lab/arena/embedding-model-provenance.json`), held constant across systems.
 3. **A paid model API, with a local spend proxy.** Reader and judge are `deepseek-chat`, reached through `scripts/arena/provider_proxy.py`, which expects a `DEEPSEEK_API_KEY` in a git-ignored `.env`. Nothing in this repository contains a key; do not commit one. The judge prompts and label rule are LongMemEval's, the model is not the one its authors use, so scores are not comparable with published LongMemEval numbers. The provider does not guarantee identical answers for identical requests (`data/lab/arena/decoder-reproducibility.json`: `reproducible_everywhere: false`), so a re-run is expected to differ in places and should be compared as same or different label per arm per unit, not as byte equality.
 4. **The dataset is not in the repository.** LongMemEval-S is MIT-licensed (dataset card). Download `longmemeval_s_cleaned.json` yourself from `xiaowu0162/longmemeval-cleaned`; this project used revision `98d7416c24c778c2fee6e6f3006e7a073259d48f`, SHA-256 `d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442` (`docs/06-datasets/longmemeval-public-bridge-audit.md`), and the code looks for it under `external/datasets/longmemeval-cleaned-98d7416c24c7/`. Keep upstream's licence with it. Publicly reported defects in that file: [`docs/research/LONGMEMEVAL_KNOWN_GOLD_DEFECTS.md`](docs/research/LONGMEMEVAL_KNOWN_GOLD_DEFECTS.md).
@@ -100,12 +101,12 @@ All figures are token-derived estimates at a fixed list price (0.27 and 1.10 US 
 
 | Item | Spend | Source |
 |---|---|---|
-| Fresh replication, 8 units, 3 arms, from ingest to judged labels | 0.575419 USD (about 0.072 per unit) | `raw-provenance-fresh-replication-v1/results.json`, `autonomous-research-budget-v2/ledger.json` |
+| Fresh replication, 8 units, 3 arms, from ingest to judged labels | 0.575419 USD (about 0.072 per unit) | `data/lab/arena/raw-provenance-fresh-replication-v1/results.json`, `data/lab/arena/autonomous-research-budget-v2/ledger.json` |
 | E3 retest, 9 observable units: reader 0.016483 + judge 0.001907 | 0.018390 USD (reused an earlier Mem0 ingest, which is among the git-ignored files) | `docs/research/CLEAN_RAW_PROVENANCE_RETEST_V2.md` |
-| Re-judging one 3-arm answer set | pennies; the 36 judge calls of the E3 judging cost 0.00191 USD | `base-plus-x-v2/e3-judged.json` |
-| Mechanism campaign V1 (stopped after three failed families) | 2.143325 USD | `autonomous-research-budget-v1/ledger.json` |
-| Mechanism campaign V2 | 4.393354 USD | `autonomous-research-budget-v2/ledger.json` |
-| Every recorded model call in the arena, pilots and Hindsight runs included | about 19.44 USD over 19,585 calls | `spend-ledger.jsonl` |
+| Re-judging answers: the E3 judging (2 arms x 9 units, 36 judge calls) cost 0.00191 USD, so about 0.001 USD per 9 answers | pennies | `data/lab/arena/base-plus-x-v2/e3-judged.json` |
+| Mechanism campaign V1 (stopped after three failed families) | 2.143325 USD | `data/lab/arena/autonomous-research-budget-v1/ledger.json` |
+| Mechanism campaign V2 | 4.393354 USD | `data/lab/arena/autonomous-research-budget-v2/ledger.json` |
+| Every recorded model call in the arena, pilots and Hindsight runs included | about 19.44 USD over 19,585 calls | `data/lab/arena/spend-ledger.jsonl` |
 
 A fresh ingest of one unit (46 to 51 sessions into Mem0) cost about 0.06 to 0.08 USD in the replication, and ingest was about 97 percent of that run's spend (0.559 of 0.575 USD by the end of the eighth ingest); ingest, not reading or judging, is the dominant cost of rerunning anything.
 

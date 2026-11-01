@@ -1,23 +1,28 @@
 #!/usr/bin/env python3
-"""Recompute the numbers the evidence ledger quotes for Entry H, offline.
+"""Recompute the main numbers the evidence ledger quotes for Entry H, offline.
 
 Entry H of docs/research/MECHANISM_REGIME_EVIDENCE_LEDGER.md claims that
 appending the raw source session behind Mem0's top-1 retrieval hit to its
 compact context ("compact_plus_raw") repaired one unit in each of two samples
 (E3: 9 observable units; fresh replication: 8 units), with no regressions.
 
-This script reads the tracked result files, recomputes every number the ledger
-quotes for Entry H, compares them with the numbers it parses out of the ledger
-text, and prints per-unit context token counts for compact versus
-compact_plus_raw, because the plus-raw arm is about twenty times longer and the
-data cannot separate "more of the right text" from "simply more text".
+This script reads the tracked result files, recomputes the counts the ledger
+quotes (correct answers per arm in both samples, the two repairs, zero
+regressions, the combined unit count, the replication spend, and the token
+overhead, which a later entry quotes), compares them with the numbers it parses
+out of the ledger text, and prints per-unit context token counts for compact
+versus compact_plus_raw, because the plus-raw arm is about twenty times longer
+and the data cannot separate "more of the right text" from "simply more text".
+It does not recompute the E3 spend, the combined spend or the per-unit gold
+rank that Entry H also mentions.
 
 Properties: standard library only, no network, no API key, no files outside the
 repository, writes nothing.
 
 Exit status: 0 every check passed; 1 at least one recomputed number differs
-from the ledger's quoted number; 2 usage error or a required file is missing
-or malformed.
+from the ledger's quoted number; 2 usage error, or a required file is missing,
+unreadable or malformed (including a result file with duplicate rows or a
+label that is not a boolean).
 
 Usage: python scripts/arena/verify_arena_numbers.py [--repo PATH]
 """
@@ -69,7 +74,7 @@ def read_text(repo: Path, rel: Path) -> str:
         raise InputError("refusing to read outside the repository: " + str(path))
     try:
         return path.read_text(encoding="utf-8")
-    except OSError as exc:
+    except (OSError, UnicodeDecodeError) as exc:
         raise InputError("cannot read " + str(rel) + ": " + str(exc))
 
 
@@ -80,8 +85,24 @@ def load_json(repo: Path, rel: Path) -> Any:
         raise InputError("not valid JSON: " + str(rel) + ": " + str(exc))
 
 
-def label_true(judged: Any) -> bool:
-    return bool(judged.get("label") is True)
+def label_true(judged: Any, where: str = "a judgement") -> bool:
+    label = judged.get("label")
+    if not isinstance(label, bool):
+        raise InputError("%s has a label that is not a boolean: %r" % (where, label))
+    return label
+
+
+def one_row_per_unit(rows: List[Dict[str, Any]], arm_key: str, arm: str, source: str) -> Dict[str, Dict[str, Any]]:
+    """The rows of one arm keyed by unit id; a unit that appears twice is an input error."""
+    out: Dict[str, Dict[str, Any]] = {}
+    for row in rows:
+        if row[arm_key] != arm:
+            continue
+        unit = row["question_id"]
+        if unit in out:
+            raise InputError("%s has two rows for unit %s in arm %s" % (source, unit, arm))
+        out[unit] = row
+    return out
 
 
 # --------------------------------------------------------------------------- ledger
@@ -101,8 +122,9 @@ def quoted(ledger: str) -> Dict[str, Any]:
     spend = re.search(r"replication \$(\d+\.\d+)", h)
     units = re.search(r"across (\d+) combined observable units", h)
     overhead = re.search(r"~(\d+\.\d)x token overhead", ledger)
-    if len(triples) != 2 or len(repairs) != 2 or not spend or not units:
-        raise InputError("could not parse the Entry H figures out of the ledger text")
+    if len(triples) != 2 or len(repairs) != 2 or not spend or not units or not overhead:
+        raise InputError("could not parse the Entry H figures, or the quoted token overhead, out of the ledger text")
+    entries = re.findall(r"^## (Entry \w+)", ledger[:overhead.start()], flags=re.MULTILINE)
     return {
         "e3": tuple(int(x) for x in triples[0]),
         "fresh": tuple(int(x) for x in triples[1]),
@@ -111,7 +133,8 @@ def quoted(ledger: str) -> Dict[str, Any]:
         "fresh_spend": spend.group(1),
         "units_total": int(units.group(1)),
         "zero_regressions": "Zero regressions in both runs" in h,
-        "overhead": float(overhead.group(1)) if overhead else None,
+        "overhead": float(overhead.group(1)),
+        "overhead_entry": entries[-1] if entries else "the ledger",
     }
 
 
@@ -160,7 +183,7 @@ def fresh_sample(repo: Path) -> Dict[str, Any]:
         rows.append({
             "id": unit["question_id"],
             "type": unit["question_type"],
-            "label": {a: label_true(arms[a]["judged"]) for a in ARMS},
+            "label": {a: label_true(arms[a]["judged"], "fresh unit %s arm %s" % (unit["question_id"], a)) for a in ARMS},
             "tokens": {a: int(arms[a]["context_tokens"]) for a in ARMS},
             "observable": bool(arms["mem0_compact_plus_raw"]["gold_state"]["observable"]),
         })
@@ -169,15 +192,19 @@ def fresh_sample(repo: Path) -> Dict[str, Any]:
 
 def e3_sample(repo: Path) -> Dict[str, Any]:
     arms = load_json(repo, E3_ARMS)["arms"]
-    plus_arms = {a["question_id"]: a for a in arms if a["arm"] == "mem0_compact_plus_raw"}
+    plus_arms = one_row_per_unit(arms, "arm", "mem0_compact_plus_raw", "e3-arms.json")
     observable = sorted(plus_arms)
     judged = load_json(repo, E3_JUDGED)["judgements"]
-    plus = {j["question_id"]: label_true(j) for j in judged if j["_arm"] == "mem0_compact_plus_raw"}
-    only = {j["question_id"]: label_true(j) for j in judged if j["_arm"] == "mem0_raw_only"}
-    compact = {j["question_id"]: label_true(j)
-               for j in load_json(repo, BREADTH_JUDGED)["judgements"] if j["_arm"] == "mem0_original"}
-    compact_tokens = {a["question_id"]: int(a["context_tokens"])
-                      for a in load_json(repo, BREADTH_ARMS)["arms"] if a["arm"] == "mem0_original"}
+    plus = {u: label_true(j, "e3-judged.json unit %s (plus-raw)" % u)
+            for u, j in one_row_per_unit(judged, "_arm", "mem0_compact_plus_raw", "e3-judged.json").items()}
+    only = {u: label_true(j, "e3-judged.json unit %s (raw-only)" % u)
+            for u, j in one_row_per_unit(judged, "_arm", "mem0_raw_only", "e3-judged.json").items()}
+    compact = {u: label_true(j, "mem0-breadth-judged.json unit %s" % u)
+               for u, j in one_row_per_unit(load_json(repo, BREADTH_JUDGED)["judgements"], "_arm", "mem0_original",
+                                            "mem0-breadth-judged.json").items()}
+    compact_tokens = {u: int(a["context_tokens"])
+                      for u, a in one_row_per_unit(load_json(repo, BREADTH_ARMS)["arms"], "arm", "mem0_original",
+                                                   "mem0-breadth-arms.json").items()}
     rows = []
     for q in observable:
         rows.append({
@@ -264,18 +291,21 @@ def run(repo: Path) -> int:
     pooled = sum(r["tokens"]["mem0_compact_plus_raw"] for r in fresh["rows"]) / float(sum(r["tokens"]["mem0_compact"] for r in fresh["rows"]))
     print("  mean of per-unit ratios %.2fx (min %.1fx, max %.1fx); pooled ratio %.2fx" % (mean_ratio, min(ratios), max(ratios), pooled))
     rep.check("fresh: compact_plus_raw tokens == compact tokens + raw_only tokens for every unit", additive)
-    if q["overhead"] is not None:
-        rep.check("fresh: mean per-unit overhead rounds to the ledger's ~%.1fx" % q["overhead"], round(mean_ratio, 1) == q["overhead"],
-                  "recomputed %.2fx" % mean_ratio)
+    rep.check("fresh: mean per-unit overhead rounds to the ledger's ~%.1fx (quoted in %s)" % (q["overhead"], q["overhead_entry"]),
+              round(mean_ratio, 1) == q["overhead"], "recomputed %.2fx" % mean_ratio)
     print("E3 sample, DERIVED: the E3 files store no token count for the plus-raw context, so it is taken as compact tokens")
     print("(mem0-breadth-arms.json) + raw session tokens (e3-arms.json); the fresh data above shows this sum is exact there.")
     print("  %-14s %-18s %8s %8s %8s" % ("unit", "type", "compact", "+raw", "ratio"))
+    e3_ratios = []
     for r in e3["rows"]:
         plus_tokens = r["compact_tokens"] + r["raw_session_tokens"]
-        print("  %-14s %-18s %8d %8d %7.1fx" % (r["id"], r["type"], r["compact_tokens"], plus_tokens, plus_tokens / float(r["compact_tokens"])))
-    rep.note("The plus-raw arm carries roughly 5x to 32x more context than compact. raw_only is about as long as plus-raw yet scored "
-             "lower (4/8 and 4/9 against 6/8 and 6/9), so length alone does not explain the repairs; but no arm here holds length "
-             "fixed while removing the relevant text, so these files cannot rule length out either.")
+        e3_ratios.append(plus_tokens / float(r["compact_tokens"]))
+        print("  %-14s %-18s %8d %8d %7.1fx" % (r["id"], r["type"], r["compact_tokens"], plus_tokens, e3_ratios[-1]))
+    all_ratios = ratios + e3_ratios
+    rep.note("The plus-raw arm carries %.1fx to %.1fx more context than compact (fresh and derived E3 units). raw_only is about as long "
+             "as plus-raw yet scored lower (%d/%d against %d/%d in the fresh replication, %d/%d against %d/%d in E3), so length alone "
+             "does not explain the repairs; but no arm here holds length fixed while removing the relevant text, so these files cannot "
+             "rule length out either." % (min(all_ratios), max(all_ratios), o, n, p, n, o3, n3, p3, n3))
 
     print("")
     if rep.failures:
@@ -302,8 +332,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     except InputError as exc:
         print("input error: " + str(exc), file=sys.stderr)
         return 2
-    except (KeyError, IndexError, TypeError) as exc:
-        print("input error: unexpected structure in a result file (%s: %s)" % (type(exc).__name__, exc), file=sys.stderr)
+    except (KeyError, IndexError, TypeError, AttributeError, ValueError) as exc:
+        print("input error: unexpected structure or content in an input file (%s: %s)" % (type(exc).__name__, exc), file=sys.stderr)
         return 2
 
 
