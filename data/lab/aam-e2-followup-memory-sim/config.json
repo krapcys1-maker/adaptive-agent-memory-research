@@ -1,0 +1,138 @@
+{
+ "arms": [
+  "A0",
+  "A1",
+  "A2",
+  "A3"
+ ],
+ "budget": {
+  "hard_cap_usd": 12,
+  "ledger": "data/lab/aam-deepseek-2026-11/spend-ledger.jsonl",
+  "owner_budget_usd": 15,
+  "price_per_mtok_list_usd": {
+   "input": 0.27,
+   "output": 1.1
+  }
+ },
+ "experiment": "AAM-E2-FU follow-up memory simulation",
+ "judges": {
+  "controls": {
+   "copy": 12,
+   "informative_if_noticed_at_least": 0.75,
+   "other_story": 12
+  },
+  "qwen": {
+   "model": "qwen2.5:14b-instruct",
+   "scope": "all follow-ups and a random quarter of the fresh notes"
+  },
+  "v4_pro": {
+   "model": "deepseek-v4-pro",
+   "scope": "all notes"
+  }
+ },
+ "measures": {
+  "analysis_days_from": 8,
+  "deterministic": [
+   "overlap4",
+   "callback_ext",
+   "grounded_callback (follow-ups, cosine >= 0.5 to the arm's own note on the story)",
+   "spurious_callback (fresh)",
+   "words"
+  ],
+  "judge": [
+   "fit",
+   "fresh",
+   "quality",
+   "continuity (follow-ups only)"
+  ]
+ },
+ "primary": {
+  "bootstrap": {
+   "draws": 10000,
+   "interval": 0.95,
+   "seed": 20261101
+  },
+  "guard": {
+   "harm_if_drop_at_least": 0.15,
+   "measure": "judged quality of fresh notes"
+  },
+  "measure": "judged continuity of follow-up notes",
+  "practical_threshold": 0.5
+ },
+ "retrieval": {
+  "calibration_result": {
+   "followup_cosine_median": 0.8752,
+   "followup_cosine_min": 0.5741,
+   "followup_pairs": 36,
+   "fresh_days": 141,
+   "fresh_days_with_a_spurious_match": 0
+  },
+  "device": "cpu",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "query": "today's item against earlier items",
+  "shown": 3,
+  "threshold": 0.7,
+  "threshold_rule": "highest step of 0.05 that keeps 90% of the true follow-up -> story pairs on the calibration streams"
+ },
+ "script_sha256": {
+  "scripts/followup_memory_sim.py": "6bc1650b67ace716deee6647a2e201da725036116b38c3fce4ce46f0c77d8c36",
+  "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
+  "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",
+  "scripts/run_followup_memory_sim.py": "193413c63b1a0163229780f4078e06203801861a34678b6d956db43de30a39d6",
+  "scripts/run_writer_memory_sim_openai.py": "cb305fac5a6e3b19bc1f8bf2daea5f8d8b02caa26779cc6c3d47b39108e7056d",
+  "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
+ },
+ "status": "exploratory, tier E, not registered; synthetic learner, items and prompts authored by an agent; one provider's model as the writer",
+ "stream": {
+  "calibration_seeds": [
+   100,
+   101,
+   102
+  ],
+  "days": 60,
+  "first_followup_day": 8,
+  "followup_gaps_days": [
+   1,
+   1,
+   1,
+   2,
+   2,
+   2,
+   3,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "followups": 12,
+  "stories": 60,
+  "stream_seeds": [
+   11,
+   12,
+   13,
+   14,
+   15,
+   16
+  ]
+ },
+ "writer": {
+  "endpoint": "OpenAI-compatible through the local metering proxy",
+  "model": "deepseek-flash",
+  "request_fields_added_by_the_proxy": {
+   "thinking": {
+    "type": "disabled"
+   }
+  },
+  "trace_options": {
+   "num_predict": 120,
+   "temperature": 0.0,
+   "top_p": 1.0
+  },
+  "write_options": {
+   "num_predict": 260,
+   "temperature": 0.8,
+   "top_p": 0.95
+  }
+ }
+}
