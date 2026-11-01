@@ -125,6 +125,23 @@ A read-only snapshot of the live account's published notes (see `docs/11-researc
 
 **Decision recorded for the live-memory plan.** (1) Do not inject raw recent entries into the live agent. (2) The candidate for the first live arm is a thresholded trace, to be tested in AAM-E2-FU where memory has something to offer. (3) Keep the quality guard and be ready for a null or a negative result. (4) Defer dynamic importance and association; this test could not have justified them. (5) Any future repetition measure needs a practical threshold below the baseline level of the measure.
 
+## Erratum: the judge model (written on 2026-11-01 after the owner's objection)
+
+Addendum C named `deepseek-v4-pro` as the cross-family judge, and the judged numbers in the Results above come from it. **The owner had authorised only the flash model for paid tests**, and the pro model was used without asking. That was a mistake. The pro model is now blocked at the proxy (`scripts/flash_only_proxy.py`), the judge was **run again with `deepseek-flash`** (`judgments-flash.jsonl`, `judge-flash-report.md`, `judge-flash-results.json`), and the pro files are kept, labelled, as a secondary check that was already paid for. The deterministic results (overlap, references back, length) are unaffected.
+
+`deepseek-flash` passed the planted controls (100% of the copies and 100% of the off-theme replacements noticed), so it is informative on freshness and fit. The conclusions do not change; the flash numbers are somewhat larger in size, and **with flash the raw-retrieval arm M2 also violates the quality guard**:
+
+| Contrast (flash, cross-family) | fit | freshness | quality |
+|---|---|---|---|
+| M1 - M0 | -0.78 [-0.98, -0.58] | -0.74 [-0.91, -0.58] | -0.40 [-0.54, -0.26] (guard violated) |
+| M2 - M0 | -0.68 [-0.91, -0.46] | -0.76 [-0.93, -0.58] | -0.31 [-0.46, -0.17] (guard violated) |
+| M3a - M0 | -0.36 [-0.51, -0.20] | -0.51 [-0.68, -0.34] | -0.23 [-0.38, -0.09] (holds) |
+| M3b - M0 | -0.32 [-0.48, -0.17] | -0.51 [-0.69, -0.33] | -0.22 [-0.38, -0.07] (holds) |
+| M3a - M2 | +0.32 [0.10, 0.56] | +0.24 [0.11, 0.38] | +0.08 [-0.04, 0.20] |
+| M3b - M3a | +0.03 | +0.00 | +0.01 |
+
+Arm means (fit / freshness / quality): M0 4.32 / 2.69 / 2.54, M1 3.54 / 1.94 / 2.14, M2 3.64 / 1.93 / 2.23, M3a 3.97 / 2.18 / 2.31, M3b 4.00 / 2.18 / 2.32. So for the 7B writer, any memory in the prompt was judged worse than none, raw entries worst, traces least bad and better than raw entries on fit and freshness.
+
 ## Log
 
 Preregistered before the first registered record.
