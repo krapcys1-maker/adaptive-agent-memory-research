@@ -16,6 +16,12 @@ Checks
 5. orphan-experiments experiment identifiers referenced in docs exist in the
                       registry, and vice versa.
 
+A declared hash that no longer matches can be explained but never silenced. A
+note named <manifest>.DRIFT.json, next to the manifest, downgrades exactly one
+declaration from critical to a low "explained-drift" finding, and only when the
+note proves, from Git, that the declaration was true at an earlier commit and
+names the commit that changed the file. See read_drift_annotation.
+
 It reports. It never repairs: deciding what to do about a broken freeze is a
 provenance decision that belongs to a human and to project memory.
 """
@@ -80,6 +86,32 @@ def git_blob(relative: str) -> bytes | None:
         ["git", "show", f"HEAD:{relative}"], cwd=ROOT, capture_output=True, check=False
     )
     return result.stdout if result.returncode == 0 else None
+
+
+# A commit id read from a JSON note is passed to Git, so it must look like one.
+COMMIT_ID = re.compile(r"^[0-9a-f]{7,40}$")
+
+
+def git_blob_at(commit: str, relative: str) -> bytes | None:
+    """The bytes of ``relative`` at ``commit``. The caller has validated ``commit``."""
+    result = subprocess.run(
+        ["git", "show", f"{commit}:{relative}"], cwd=ROOT, capture_output=True, check=False
+    )
+    return result.stdout if result.returncode == 0 else None
+
+
+def git_commit_exists(commit: str) -> bool:
+    result = subprocess.run(
+        ["git", "cat-file", "-e", f"{commit}^{{commit}}"], cwd=ROOT, capture_output=True, check=False
+    )
+    return result.returncode == 0
+
+
+def git_is_ancestor(older: str, newer: str) -> bool:
+    result = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", older, newer], cwd=ROOT, capture_output=True, check=False
+    )
+    return result.returncode == 0
 
 
 def walk_json(value: Any, key_path: list[str]) -> Iterable[tuple[list[str], str, Any]]:
@@ -184,10 +216,105 @@ def superseded_by_marker(manifest: Path) -> tuple[Path, dict[str, Any] | None, s
     return None
 
 
+DRIFT_SUFFIX = ".DRIFT.json"
+DRIFT_STATUS = "declaration-drift-explained"
+
+# A note weakens a check, so like a supersession marker it is fail-closed: every
+# field must be present and every claim in it is re-derived from Git, not trusted.
+DRIFT_REQUIRED = (
+    "status",
+    "manifest",
+    "path",
+    "declared_sha256",
+    "declared_matched_at",
+    "changed_in",
+    "current_sha256",
+    "reason",
+    "recorded_at",
+)
+
+
+def drift_annotation_for(manifest: Path) -> Path:
+    return manifest.with_name(manifest.stem + DRIFT_SUFFIX)
+
+
+def load_drift_annotation(annotation: Path) -> tuple[dict[str, Any] | None, str]:
+    """Parse a drift note and check its shape. Says nothing yet about whether it is true."""
+    try:
+        document = json.loads(annotation.read_text(encoding="utf-8-sig"))
+    except (OSError, json.JSONDecodeError) as error:
+        return None, f"unreadable or invalid JSON: {error}"
+    if not isinstance(document, dict):
+        return None, "must be a JSON object"
+    missing = [field for field in DRIFT_REQUIRED if not document.get(field)]
+    if missing:
+        return None, f"missing required field(s): {', '.join(missing)}"
+    if document["status"] != DRIFT_STATUS:
+        return None, f"status must be {DRIFT_STATUS!r}, got {document['status']!r}"
+    return document, ""
+
+
+def prove_drift(document: dict[str, Any], target_relative: str, declared: str, working_digest: str) -> str:
+    """Re-derive every claim in a drift note. Returns "" when all hold, else the first that fails.
+
+    A freeze can be broken honestly: the file was edited after its manifest was
+    committed, and the manifest was never rewritten. Rewriting the manifest to
+    match would destroy the evidence, and a directory-wide supersession marker
+    would silence every declaration beside it. A drift note explains exactly one
+    declaration instead, and keeps it visible as a low finding.
+
+    It is accepted only if all of the following re-derive from Git:
+
+    * every commit in ``declared_matched_at`` holds bytes that hash to the declared
+      digest, so the declaration was once true, and precedes ``changed_in``;
+    * ``changed_in`` exists, is reachable from HEAD, and holds different bytes;
+    * ``current_sha256`` equals the file's bytes today, so a further edit voids the
+      note and has to be explained again;
+    * if ``successor_manifest`` is given, that manifest exists and declares
+      ``current_sha256``.
+    """
+    if document["current_sha256"] != working_digest:
+        return "the file changed again after this note was written (current_sha256 no longer matches its bytes)"
+    matched = document["declared_matched_at"]
+    changed_in = document["changed_in"]
+    if not isinstance(matched, list) or not all(isinstance(item, str) and COMMIT_ID.match(item) for item in matched):
+        return "declared_matched_at must be a list of commit ids"
+    if not isinstance(changed_in, str) or not COMMIT_ID.match(changed_in):
+        return "changed_in must be a commit id"
+    if not git_commit_exists(changed_in):
+        return f"changed_in {changed_in} is not a commit in this repository"
+    for commit in matched:
+        if not git_commit_exists(commit):
+            return f"declared_matched_at names {commit}, which is not a commit in this repository"
+        blob = git_blob_at(commit, target_relative)
+        if blob is None or digest_bytes(blob) != declared:
+            return f"{target_relative} at {commit} does not hash to the declared digest, so it was never true there"
+        if not git_is_ancestor(commit, changed_in):
+            return f"{commit} is not an ancestor of changed_in {changed_in}"
+    changed_blob = git_blob_at(changed_in, target_relative)
+    if changed_blob is None or digest_bytes(changed_blob) == declared:
+        return f"{target_relative} at changed_in {changed_in} still holds the declared bytes, so nothing changed there"
+    if not git_is_ancestor(changed_in, "HEAD"):
+        return f"changed_in {changed_in} is not reachable from HEAD"
+    successor = document.get("successor_manifest")
+    if successor:
+        path = ROOT / str(successor)
+        if not path.is_file():
+            return f"successor_manifest does not exist: {successor}"
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8-sig"))
+        except (OSError, json.JSONDecodeError) as error:
+            return f"successor_manifest is unreadable: {error}"
+        if not any(value == working_digest for _, _, value in walk_json(payload, [])):
+            return f"successor_manifest {successor} does not declare current_sha256"
+    return ""
+
+
 def check_declared_hashes(findings: list[Finding], counters: Counter) -> None:
     for manifest in iter_files(ROOT / "data", {".json"}):
-        if manifest.name == SUPERSEDED_MARKER:
+        if manifest.name == SUPERSEDED_MARKER or manifest.name.endswith(DRIFT_SUFFIX):
             continue
+        reported_invalid_notes: set[str] = set()
         governing = superseded_by_marker(manifest)
         if governing is not None:
             marker, document, rejection = governing
@@ -267,6 +394,51 @@ def check_declared_hashes(findings: list[Finding], counters: Counter) -> None:
                     )
                 )
                 continue
+            note = drift_annotation_for(manifest)
+            if note.is_file():
+                relative_note = note.relative_to(ROOT).as_posix()
+                document, rejection = load_drift_annotation(note)
+                if document is None:
+                    if relative_note not in reported_invalid_notes:
+                        reported_invalid_notes.add(relative_note)
+                        counters["invalid_drift_annotations"] += 1
+                        findings.append(
+                            Finding(
+                                "invalid-drift-annotation",
+                                "high",
+                                relative_note,
+                                f"{rejection}. Suppressing nothing; declarations are still checked.",
+                            )
+                        )
+                elif (
+                    document["manifest"] == relative_manifest
+                    and document["path"] == relative_target
+                    and document["declared_sha256"] == value
+                ):
+                    problem = prove_drift(document, relative_target, value, working)
+                    if not problem:
+                        counters["explained_drift"] += 1
+                        findings.append(
+                            Finding(
+                                "explained-drift",
+                                "low",
+                                relative_target,
+                                f"declared digest in {relative_manifest} under '{key}' no longer matches; "
+                                f"explained by {relative_note}: it matched at "
+                                f"{', '.join(document['declared_matched_at'])} and changed in {document['changed_in']}.",
+                            )
+                        )
+                        continue
+                    counters["invalid_drift_annotations"] += 1
+                    findings.append(
+                        Finding(
+                            "invalid-drift-annotation",
+                            "high",
+                            relative_note,
+                            f"{problem}. Suppressing nothing; the declaration is still reported as broken.",
+                        )
+                    )
+                # A note that concerns a different declaration explains nothing here.
             counters["match_neither"] += 1
             findings.append(
                 Finding(
