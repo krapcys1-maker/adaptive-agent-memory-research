@@ -1,0 +1,1244 @@
+# Ready-made memory benchmarks on GitHub and how to keep a benchmark hard (research digest, 2026-11-01)
+
+Status: agent-read digest of primary sources by Claude Code workflow readers and an editor; most numbers reached the readers through small-model extraction of partial pages, so every figure is a lead to verify before it is relied on; the lab's own results are cited from their READMEs (after the 2026-11-01 erratum). Two readers: verification of 25 named GitHub candidates plus discovery, and non-saturation and difficulty dials.
+
+## Reader notes (shortened)
+
+### Hardness and non-saturation: how memory and long-context benchmarks saturated (dated trajectories, what broke them), which stayed hard and...
+
+- **findings**
+  - Public memory benchmarks do measure memory and cover most of track T1 (recall, knowledge updates and supersession, temporal reasoning, multi-session aggregation, abstention). They are a valid external yardstick. In the sources read for thi...
+    - **evidence strength:** measured
+    - **source:** READMEs and abstracts of LongMemEval, LoCoMo, MemoryAgentBench, BEAM, LongMemEval-V2, MemoryArena
+  - LongMemEval-S (about 115k tokens) was hard at release: GPT-4o 87.0 (oracle) to 60.6 (30.3 percent relative drop), Llama 3.1 70B 71.0 to 45.4 (36.1), Llama 3.1 8B 66.0 to 34.2 (48.1); with Chain-of-Note GPT-4o 92.4 to 64.0.
+    - **evidence strength:** measured
+    - **source:** arXiv 2410.10813 Sec. 3.4; LongMemEval README
+  - Length of history is the main source of LongMemEval difficulty for plain readers: with histories about 10x shorter (3-6 sessions, 97 questions) GPT-4o reading everything scored 91.8, while ChatGPT with GPT-4o scored 57.7 and Coze 33.0 (GPT...
+    - **evidence strength:** measured
+    - **source:** arXiv 2410.10813 Sec. 3.4
+  - LongMemEval-S trajectory (dated): 60.6 percent full-context GPT-4o (2024-10) to 91.4 percent Hindsight with Gemini-3 Pro (Dec 2025) to 94.87 percent Mastra Observational Memory with gpt-5-mini (vendor page, 2026). About 14 months from 60 t...
+    - **evidence strength:** asserted
+    - **source:** arXiv 2512.12818 Table 3; https://mastra.ai/research/observational-memory
+  - Claims of 97 to 99 percent on LongMemEval-S need metric care and are partly unverified. Supermemory's own page (May 2026) headlines 97 percent overall Recall@20 with aggregation, a retrieval metric, judged with gpt-4o. The ~99 percent ASMR...
+    - **evidence strength:** asserted
+    - **source:** https://supermemory.ai/research.md; WebSearch snippets (gentic.news, runtimewire)
+  - The LongMemEval maintainers themselves moved on: histories were cleaned in 2025/09 'to prevent interference on answer correctness' (change log is a Google Sheet, not opened) and LongMemEval-V2 (agentic web trajectories) was released 2026/0...
+    - **evidence strength:** measured
+    - **source:** LongMemEval and LongMemEval-V2 READMEs
+  - LME-V2 stays far from saturated one year later and shows a floor-to-ceiling spread: small/medium tier accuracy: no retrieval 1.3/1.3, RAG query-to-slice 42.8/38.1, RAG plus notes 51.0/45.9, AgentRunbook-R 58.6/57.0, Codex coding agent 69.9...
+    - **evidence strength:** measured
+    - **source:** https://xiaowu0162.github.io/longmemeval-v2/; arXiv 2605.12493 abstract (best 72.5 average, RAG 48.5, Codex 69.3)
+  - Oracle ceilings on natural evidence are not near 100 percent. LME-V2 pilot: Qwen3.5-9B scores 1.6 with no context, about 59.6 with oracle trajectories, about 82.5 with oracle slices plus notes; GPT-5.4-mini 4.5 / 65.3 / 86.3; Codex plus GP...
+    - **evidence strength:** measured
+    - **source:** arXiv 2605.12493; LongMemEval paper; Mastra page; datapace and vectorize READMEs
+  - LoCoMo was easy to outgrow by length alone: conversations average 300 turns and 9K tokens (up to 35 sessions). At release human overall F1 was 87.9 (single-hop 95.1, multi-hop 85.8, temporal 92.6, open-domain 75.4, adversarial 89.4) versus...
+    - **evidence strength:** measured
+    - **source:** arXiv 2402.17753
+  - An independent audit found LoCoMo's key and judge unreliable at the level where top scores are decided: 99 of 1,540 questions (6.4 percent) have wrong golden answers, so the ceiling is 93.57 percent; the LLM judge accepts 62.81 percent of...
+    - **evidence strength:** measured
+    - **source:** https://github.com/dial481/locomo-audit; https://github.com/BrianV1981/locomo-v2
+  - On LoCoMo the answer prompt moves the judged score as much as the memory system does: independent full-context GPT-4.1-mini scores 92.62 percent (std 0.13, 3 runs) with a long chain-of-thought answer prompt (67.9 words average) but 81.95 p...
+    - **evidence strength:** measured
+    - **source:** https://github.com/dial481/locomo-audit (fc-baseline and key findings table)
+  - 'LoCoMo-v2 is 100 percent solvable' means a corrected answer key (156 corrections: 99 score-corrupting plus 57 citation-only), 1,923 brittle evidence arrays deleted, 63 dead-image questions removed (1,860 remain; 1,207 text-only, 653 image...
+    - **evidence strength:** asserted
+    - **source:** https://github.com/BrianV1981/locomo-v2
+  - MemoryAgentBench FactConsolidation (counterfactual supersession) is far from saturated and shows multi-hop plus supersession as the strongest hardness lever. Accuracy single-hop / multi-hop: GPT-4o 60/5, GPT-4o-mini 45/5, Claude-3.7-Sonnet...
+    - **evidence strength:** measured
+    - **source:** arXiv 2507.05257 Table 3, Sec. 4.2, App. L; MemoryAgentBench README
+  - A stronger reasoning model does not rescue multi-hop supersession once context grows: o4-mini on a small FactConsolidation version scores single-hop 100 at 6K tokens but 61 at 32K, multi-hop 80 at 6K but 14 at 32K; GPT-4o multi-hop 28 to 1...
+    - **evidence strength:** measured
+    - **source:** arXiv 2507.05257 Sec. 4.3.4
+  - Cross-harness numbers are not comparable: MemoryAgentBench's incremental-injection LME(S*) column gives GPT-4o 32.0 and GPT-5-mini 63.3, while the original LongMemEval paper gives GPT-4o 60.6 on S.
+    - **evidence strength:** measured
+    - **source:** arXiv 2507.05257 Table 3; arXiv 2410.10813
+  - BEAM (generated conversations of 100K, 500K, 1M and 10M tokens; 100 conversations, 2,000 validated probes, ten abilities) is hard even at 100K for mid-size readers. Average over the ten abilities at 100K: long-context vanilla 0.24-0.28, RA...
+    - **evidence strength:** measured
+    - **source:** arXiv 2510.27246 Table 1, Sec. 4.2, scoring section
+  - BEAM exposes two scoring traps relevant to the draft: abstention is inflated by retrieval (RAG arms abstain correctly 0.65-0.80 at 100K), and contradiction resolution is at the floor for every arm (0.006-0.05 at 100K). Event ordering (0.17...
+    - **evidence strength:** measured
+    - **source:** arXiv 2510.27246 Table 1
+  - BEAM is the closest published analogue of the draft generator: conversation plans (bullet lists, including initial-fact and revision pairs for knowledge update) are expanded to turns with indices; an LLM proposes probes and answers with so...
+    - **evidence strength:** measured
+    - **source:** arXiv 2510.27246
+  - MemoryArena (Feb 2026) argues that agents with near-saturated performance on LoCoMo-style recall benchmarks do poorly on interdependent multi-session tasks, i.e. compounding where later steps need memory from earlier ones is a harder regim...
+    - **evidence strength:** measured
+    - **source:** arXiv 2602.16313 abstract
+  - RULER stayed informative by exposing complexity dials and an effective-length metric. Despite near-perfect vanilla NIAH, only half of 17 models keep satisfactory performance at 32K; threshold = Llama2-7B at 4K (85.6). The table is 2024-era...
+    - **evidence strength:** measured
+    - **source:** https://github.com/NVIDIA/RULER; arXiv 2404.06654
+  - NoLiMa shows paraphrase distance is a strong dial that was still unsaturated months after release. With minimal lexical overlap, 11 of 13 models fall below 50 percent of their short-context base at 32K; GPT-4o 99.3 to 69.7 (32K) to 56.0 (1...
+    - **evidence strength:** measured
+    - **source:** https://github.com/adobe-research/NoLiMa; arXiv 2502.05167
+  - BABILong stayed hard for plain LLMs (popular models effectively use 10-20 percent of context; RAG about 60 percent on single-fact QA independent of length) but it is also the cautionary tale for a public generator: recurrent memory transfo...
+    - **evidence strength:** measured
+    - **source:** arXiv 2406.10149; https://github.com/booydar/babilong
+  - LongBench v2 is hard by construction with adversarial filtering plus a human ceiling, but erodes fast: items that all three screening LLMs (GPT-4o-mini, GLM-4-Air, GLM-4-Flash) get right are rejected as too easy, and so are items an expert...
+    - **evidence strength:** measured
+    - **source:** arXiv 2412.15204; https://longbench2.github.io/
+  - Interference and unleaked synthetic design are well documented: OpenAI MRCR hides 2, 4 or 8 identical-ask needles (for example 'write a poem about tapirs') among distractors drawn from the same distribution (gpt-4o generated, 438 entities,...
+    - **evidence strength:** measured
+    - **source:** https://huggingface.co/datasets/openai/mrcr; arXiv 2409.12640
+  - HELMET (59 long-context models) finds that synthetic NIAH does not reliably predict downstream performance, that its seven application categories correlate weakly with each other, and that most models reach perfect NIAH while differing on...
+    - **evidence strength:** measured
+    - **source:** arXiv 2410.02694
+  - Chroma's Context Rot study (18 LLMs) reports: all families do better on a focused (~300 tokens) than a full (~113k tokens) LongMemEval prompt (306 prompts); lower needle-question similarity degrades faster with length; one versus four dist...
+    - **evidence strength:** measured
+    - **source:** https://www.trychroma.com/research/context-rot
+  - Position matters: relevant information at the start or end of context is used best and accuracy drops for information in the middle, even for long-context models.
+    - **evidence strength:** measured
+    - **source:** arXiv 2307.03172
+  - Saturation is common and fast, and hidden test data is not what protects a benchmark. The ICML 2026 study of 60 LLM benchmarks (14 properties each) finds nearly half show saturation, rates rising with age; expert curation is associated wit...
+    - **evidence strength:** measured
+    - **source:** arXiv 2602.16763; https://icml.cc/virtual/2026/poster/63311; arXiv 2203.04592
+  - Benchmark-design position papers and live benchmarks: Bowman and Dahl argue benchmarks must be valid, reliably annotated, large enough to show differences and low in bias, and that adversarial data collection does not fix these root causes...
+    - **evidence strength:** argued
+    - **source:** arXiv 2104.02145, 2104.14337, 2406.19314, 2505.24760
+  - Exact scoring is feasible and used where answers are short: MemoryAgentBench scores most datasets by substring exact match, MRCR by a programmatic ratio with an anti-guess hash, Michelangelo by accuracy. Model judges are used by LongMemEva...
+    - **evidence strength:** measured
+    - **source:** arXiv 2507.05257; MRCR card; arXiv 2409.12640; arXiv 2410.10813; arXiv 2510.27246
+  - Templated and generator-made benchmarks leak shortcuts and get learned. Hypothesis-only models reach 67 percent on SNLI and 53 percent on MultiNLI without the premise; hypothesis-only baselines beat the majority class on a number of NLI da...
+    - **evidence strength:** measured
+    - **source:** arXiv 1803.02324, 1805.01042, 1612.03969, 2410.05229, 1502.05698; BABILong README
+  - Exact ground truth is not automatic even with programmatic or human-checked generation: LoCoMo 6.4 percent wrong keys after human editing; MRCR about 5 percent wrong ground truth and about 10 percent malformed needle counts until a Dec 202...
+    - **evidence strength:** measured
+    - **source:** locomo-audit; MRCR card; LongMemEval README; arXiv 2510.27246
+  - A plain file-and-grep agent is a strong baseline, but the available evidence is small or confounded. LME-V2: Codex file agent 69.9/68.7 versus RAG 42.8/38.1 (different readers). RinDig: a markdown-folder memory is 'statistically indistingu...
+    - **evidence strength:** measured
+    - **source:** LME-V2 page; RinDig README; Datapace README
+  - Floors are as dangerous as ceilings: LME-V2 no-retrieval 1.3 percent (a good blind floor, best system 74.9); BEAM contradiction resolution about 0.03 for every arm; MAB multi-hop 1-7 percent for all but one system. A top tier must be calib...
+    - **evidence strength:** measured
+    - **source:** LME-V2 page; arXiv 2510.27246 Table 1; arXiv 2507.05257 Table 3
+  - Erosion timeline suggests designing the top tier below 50 percent best-of-panel at release: LongMemEval-S 60 to 91-95 in about 14 months (self-reports); LoCoMo judged accuracy from 72.90 (Mem0 paper full-context GPT-4o-mini, as quoted by t...
+    - **evidence strength:** argued
+    - **source:** findings above
+  - Official DeepSeek pricing (per 1M tokens) for deepseek-flash, 1M context: input cache hit 0.003 off-peak / 0.006 peak, cache miss 0.15 / 0.30, output 0.60 / 1.20 USD. deepseek-v4-pro: 0.022/0.044, 0.66/1.32, 1.98/3.96. Off-peak is half of...
+    - **evidence strength:** measured
+    - **source:** https://api-docs.deepseek.com/quick_start/pricing
+  - Reproducibility of the memory-benchmark ecosystem is thin: the registry of 207 benchmarks records 139 with an official script, 31 with public data, 37 paper-only, and zero smoke-tested or full-run verified. Several 2026 repos have no licen...
+    - **evidence strength:** measured
+    - **source:** https://github.com/Fengzdadi/memory-bench-registry
+  - The Hindsight authors' AMB README asserts that LoCoMo and LongMemEval were designed for 32k-context models, that naive dump-everything scores competitively, and that small changes to judge or prompt swing accuracy by double digits; it ship...
+    - **evidence strength:** asserted
+    - **source:** https://github.com/vectorize-io/agent-memory-benchmark
+  - Statistical power needs planning: the LoCoMo audit shows 56 percent of adjacent per-category comparisons are statistically indistinguishable; with n=300 items per cell the 95 percent half-width at p=0.5 is 5.7 points, and a paired comparis...
+    - **evidence strength:** argued
+    - **source:** locomo-audit; own calculation
+- **candidates**
+  - LongMemEval-S (cleaned 2025/09) with oracle file
+    - **url:** https://github.com/xiaowu0162/LongMemEval
+    - **measures:** Information extraction, multi-session reasoning, temporal reasoning, knowledge updates, abstention over timestamped user-assistant chats.
+    - **scoring:** GPT-4o judge with question-type prompts (over 97 percent agreement with humans per paper); retrieval Recall@k and NDCG@k from answer-session labels (abstention skipped).
+    - **licence:** MIT (code); dataset licence on Hugging Face not verified
+    - **fit to tracks:** T1 external yardstick for recall, updates, temporal and abstention; not writing, persona or archive.
+    - **decision:** adopt
+    - **why:** Cheap, well known, has an oracle file, and lets us check that our reader pipeline and flash judge behave sensibly before trusting our own tiers; expect near-ceiling numbers from strong readers so it cannot discriminate top systems.
+    - **items and size:** 500 questions; S about 115k tokens (about 40-50 sessions); M about 500 sessions (about 1.5M tokens); 30 abstention questions.
+    - **runnable:** Yes: python scripts and run_generation.sh; needs an OpenAI-compatible judge (swap from GPT-4o changes comparability).
+    - **known flaws:** Interference found and cleaned 2025/09; filler sessions come from ShareGPT and UltraChat; only 6 percent abstention; GPT-4o judge dependence; vendor claims of 95-99 percent mix metrics.
+    - **reported scores and saturation:** 60.6 (GPT-4o full-context, 2024-10) to 91.4 (Hindsight, Dec 2025) to 94.87 (Mastra with gpt-5-mini); oracle GPT-4o 87.0 in paper, 82.4 in Mastra's run; treat as near saturated.
+  - LongMemEval-V2
+    - **url:** https://github.com/xiaowu0162/LongMemEval-V2
+    - **measures:** Long-term memory of web and enterprise agent trajectories: static state recall, dynamic state tracking, workflow knowledge, environment gotchas, premise awareness.
+    - **scoring:** LLM judge (default gpt-5.2) plus latency; small and medium public tiers.
+    - **licence:** Apache-2.0
+    - **fit to tracks:** None directly (agent environments, multimodal); design reference for tiers, oracle forms and latency reporting.
+    - **decision:** reference-only
+    - **why:** Different domain and heavy to run, but it is the best current example of a memory benchmark with a floor (1.3 percent no retrieval), a ceiling study (oracle slices and notes) and headroom (best 74.9/70.1).
+    - **items and size:** 451 manually curated questions; up to 500 trajectories and 115M tokens per haystack; 25M-115M tokens per haystack on the page.
+    - **runnable:** Yes in principle (conda env, vLLM endpoints, Codex binary) but costly; not run.
+    - **known flaws:** Baselines use different readers (Qwen3.5-9B vs gpt-5.4-mini); leaderboard empty; very long latency for agent arms.
+    - **reported scores and saturation:** No retrieval 1.3; RAG 42.8/38.1; Codex 69.9/68.7; AgentRunbook-C 74.9/70.1 (small/medium). Not saturated.
+  - LoCoMo, LoCoMo-v2 and locomo-audit
+    - **url:** https://github.com/dial481/locomo-audit
+    - **measures:** Very long-term conversational memory: single-hop, multi-hop, temporal, open-domain, adversarial questions.
+    - **scoring:** F1 in the original paper; LLM-as-judge in later work; v2 uses end-to-end judge only.
+    - **licence:** snap-research/locomo NOASSERTION; locomo-v2 NOASSERTION; audit repo unknown (fc-baseline header CC-BY-NC-4.0)
+    - **fit to tracks:** T1 only, and mostly as a cautionary example.
+    - **decision:** reference-only
+    - **why:** Saturated and audited: wrong keys cap scores at 93.57 percent, the judge accepts 62.81 percent of vague wrong answers, conversations are 9K tokens. Use the audit's corrected key only if a LoCoMo sanity run is wanted, and mind the licences.
+    - **items and size:** 10 conversations, about 1,540-1,990 questions; 446 adversarial; v2: 1,860 questions after removing 63 dead-image ones.
+    - **runnable:** Yes; the audit includes its own full-context baseline scripts.
+    - **known flaws:** 6.4 percent wrong keys; judge leniency; 10 percent dead image links; category n from 96 to 841; adversarial category unevaluated in published results.
+    - **reported scores and saturation:** Human F1 87.9 (2024); judged full-context 72.9 (Mem0 paper claim) to 92.62 (audit); system claim 92.32 near the ceiling.
+  - MemoryAgentBench (FactConsolidation, EventQA)
+    - **url:** https://github.com/HUST-AI-HYZ/MemoryAgentBench
+    - **measures:** Four competencies: accurate retrieval, test-time learning, long-range understanding, selective forgetting via counterfactual fact edits (FactConsolidation single-hop and multi-hop).
+    - **scoring:** Mostly substring exact match; LLM judge only for LongMemEval and Bench-Sum.
+    - **licence:** MIT
+    - **fit to tracks:** T1 supersession and multi-hop; a hard external anchor and a precedent for exact scoring.
+    - **decision:** adapt
+    - **why:** Unsaturated (best multi-hop 28 percent) and exactly scored; re-implement the FactConsolidation idea inside our generator, and run its FC-SH/FC-MH once as an external anchor for our reader.
+    - **items and size:** FactConsolidation about 262K tokens per context, 'inject once, query many'; other datasets reformulated from existing ones.
+    - **runnable:** Yes (conda, HF data, .env with API keys); not run here.
+    - **known flaws:** Synthetic counterfactual edits are not natural text; incremental-injection protocol changes numbers (LME(S*) 32.0 vs 60.6 for GPT-4o); extremely low multi-hop scores risk a floor effect.
+    - **reported scores and saturation:** FC-MH: GPT-4o 5, GPT-5-mini 28 (best), RAG 1-7; o4-mini on small version 80 at 6K to 14 at 32K.
+  - BEAM (Beyond a Million Tokens)
+    - **url:** https://github.com/mohammadtavakoli78/BEAM
+    - **measures:** Ten memory abilities (abstention, contradiction resolution, event ordering, information extraction, instruction following, knowledge update, multi-hop, preference following, summarization, temporal reasoning) over generated conversations of 100K to 10M tokens.
+    - **scoring:** LLM judge against rubric nuggets (not exact).
+    - **licence:** MIT
+    - **fit to tracks:** T1 external anchor at 100K-1M; generation pipeline is the closest analogue to the draft.
+    - **decision:** adapt
+    - **why:** Copy the plan-to-turns-to-probes-with-provenance structure and human validation step; do not copy the nugget judge. Run the 100K split as a hard anchor if cost allows.
+    - **items and size:** 100 conversations, 2,000 validated questions, lengths 100K/500K/1M/10M.
+    - **runnable:** Repo exists (167 stars); README not read; dependence on GPT-4.1-class generation and Qwen2.5-32B in the authors' setup.
+    - **known flaws:** LLM-judged; abstention inflated by RAG; contradiction resolution at floor (0.03); 10M tier cannot be read whole by any baseline.
+    - **reported scores and saturation:** At 100K averages 0.24-0.36 across arms; not saturated.
+  - BABILong
+    - **url:** https://github.com/booydar/babilong
+    - **measures:** Reasoning over bAbI facts hidden in PG19 text (20 tasks, up to 10M tokens).
+    - **scoring:** Exact answer match per task.
+    - **licence:** Apache-2.0 (PG19 Apache-2.0; bAbI licence not checked)
+    - **fit to tracks:** Reader and long-context diagnostic; design reference for dials.
+    - **decision:** reference-only
+    - **why:** Shows both the power of procedural dials (supporting facts, length) and the risk (fine-tuning on the public generator solves it).
+    - **items and size:** 100 or 1000 samples per task and length (0 to 10M); 5k-per-task train split.
+    - **runnable:** Yes; HF datasets and scripts.
+    - **known flaws:** Template facts stand out from background; learnable; 2026 leaderboard not read.
+    - **reported scores and saturation:** Popular LLMs use 10-20 percent of context; RAG about 60 percent on single fact; RMT fine-tuned to 50M tokens.
+  - RULER
+    - **url:** https://github.com/NVIDIA/RULER
+    - **measures:** Synthetic long-context tasks: NIAH variants, variable tracking, aggregation, QA, with configurable complexity.
+    - **scoring:** Programmatic match; effective length = longest length above 85.6 (Llama2-7B at 4K).
+    - **licence:** Apache-2.0
+    - **fit to tracks:** Dial grammar and effective-length metric for our harness.
+    - **decision:** reference-only
+    - **why:** Gives the cleanest published vocabulary for difficulty dials; data is old-model calibrated.
+    - **items and size:** 13 tasks, lengths 4K-128K+, generated on demand.
+    - **runnable:** Yes.
+    - **known flaws:** Top 2024 model already 94.4 at 128K; 2026 status not checked; synthetic.
+    - **reported scores and saturation:** Gemini-1.5-pro >128K effective; only half of 17 models effective at 32K.
+  - NoLiMa
+    - **url:** https://github.com/adobe-research/NoLiMa
+    - **measures:** Needle retrieval with minimal question-needle lexical overlap; NoLiMa-Hard subset.
+    - **scoring:** Programmatic; effective length at 85 percent of base score.
+    - **licence:** NOASSERTION (check before reuse)
+    - **fit to tracks:** Paraphrase-distance dial and metric.
+    - **decision:** adapt
+    - **why:** Implement the lexical-overlap control and the base-score-relative effective-length metric in our own code instead of reusing data of unclear licence.
+    - **items and size:** Needle set with 26 placements per length (11 at 64K/128K); lengths 250 to 128K.
+    - **runnable:** Yes (API providers supported).
+    - **known flaws:** NoLiMa-Hard chosen from earlier failures (adversarial filtering ages); last update 2025-07-17.
+    - **reported scores and saturation:** GPT-4o 99.3 to 69.7 at 32K; o3 on Hard 100 to 58.5 at 32K.
+  - LongBench v2
+    - **url:** https://github.com/THUDM/LongBench
+    - **measures:** Deep understanding and reasoning over 8k-2M word contexts, six task categories, multiple choice.
+    - **scoring:** Accuracy on 4-way multiple choice (25 percent chance).
+    - **licence:** MIT (data licence not verified)
+    - **fit to tracks:** None directly; method reference for adversarial filtering and human ceilings.
+    - **decision:** reference-only
+    - **why:** Best documented recipe for a human ceiling (53.7 at 15 minutes) and screening by weak LLMs plus a 3-minute human rule.
+    - **items and size:** 503 questions.
+    - **runnable:** Yes.
+    - **known flaws:** Multiple choice; leaderboard stale (2025-05-06); filters tied to the 2024 screening models.
+    - **reported scores and saturation:** o1-preview 57.7 beat humans at release; 63.3 by May 2025.
+  - HELMET
+    - **url:** https://github.com/princeton-nlp/HELMET
+    - **measures:** Seven application-centric long-context categories up to 128K.
+    - **scoring:** Model-based and programmatic metrics per category.
+    - **licence:** MIT
+    - **fit to tracks:** Validity method: do synthetic rankings predict application rankings.
+    - **decision:** reference-only
+    - **why:** Supplies the argument and the correlation-analysis template for checking that our synthetic tiers rank systems like our real 234-note archive.
+    - **items and size:** 59 models evaluated in the paper.
+    - **runnable:** Yes.
+    - **known flaws:** Not a memory benchmark.
+    - **reported scores and saturation:** NIAH near perfect for most models while other categories differ.
+  - OpenAI MRCR and Michelangelo
+    - **url:** https://huggingface.co/datasets/openai/mrcr
+    - **measures:** Interference among near-identical requests (2, 4, 8 needles) and latent-structure reasoning with IDK.
+    - **scoring:** SequenceMatcher ratio with mandatory hash prefix (MRCR); accuracy (Michelangelo).
+    - **licence:** MRCR licence not read; Michelangelo data release not verified
+    - **fit to tracks:** Near-duplicate and abstention design reference.
+    - **decision:** adapt
+    - **why:** Take the hash-prefix anti-guess scoring idea and the same-distribution-needle principle; build our own near-duplicate entities.
+    - **items and size:** MRCR: 100 samples per bin, 8 bins from 4K to 1M tokens.
+    - **runnable:** MRCR: yes (HF dataset).
+    - **known flaws:** MRCR had about 5 percent wrong ground truth and about 10 percent malformed needle counts until 2025-12-05.
+    - **reported scores and saturation:** All frontier models fall off before 32K in Michelangelo's 2024 figure.
+  - vectorize-io/agent-memory-benchmark (AMB)
+    - **url:** https://github.com/vectorize-io/agent-memory-benchmark
+    - **measures:** Ingest-retrieve-generate-judge harness over several datasets (PersonaMem, LoCoMo, LongMemEval, MemBench, PrecisionMemBench).
+    - **scoring:** Gemini judge; PrecisionMemBench asserts memories that must and must not be returned (retrieval mode).
+    - **licence:** none (cannot copy code)
+    - **fit to tracks:** T1 harness ideas, oracle mode, must-not-return scoring for T2/T4 spurious references.
+    - **decision:** reference-only
+    - **why:** Authors are the Hindsight team (conflict of interest) and there is no licence; use as design precedent.
+    - **items and size:** Dataset-dependent.
+    - **runnable:** Yes (uv, GEMINI_API_KEY).
+    - **known flaws:** No licence; vendor claims unverified.
+    - **reported scores and saturation:** Asserts LoCoMo and LongMemEval are outgrown by long-context models.
+  - datapace-ai/agent-memory-benchmark
+    - **url:** https://github.com/datapace-ai/agent-memory-benchmark
+    - **measures:** Vendor-neutral comparison of memory products and baselines (oracle, window, file) with accuracy, tokens, latency, forgetting curve by distance, stale-serve rate after a fact changes.
+    - **scoring:** Three published judge rules.
+    - **licence:** none
+    - **fit to tracks:** Panel design template; stale-serve rate metric.
+    - **decision:** reference-only
+    - **why:** Good panel structure; evidence is a ten-question one-seed pilot only.
+    - **items and size:** Pilot: 10 questions, 1 seed.
+    - **runnable:** Yes, free models via OpenRouter.
+    - **known flaws:** Tiny sample; no licence.
+    - **reported scores and saturation:** Nobody beat file search in the pilot; the answering model moved the ceiling more than any memory system.
+  - RinDig/cost-of-remembering
+    - **url:** https://github.com/RinDig/cost-of-remembering
+    - **measures:** Filesystem memory built by an agent versus full context on LongMemEval-S (cleaned), accuracy and token cost.
+    - **scoring:** LongMemEval judge.
+    - **licence:** NOASSERTION
+    - **fit to tracks:** Design of a file-based baseline arm.
+    - **decision:** reference-only
+    - **why:** This is the repo behind the claim that a plain filesystem memory matches long context; n is about 39 and the authors flag low confidence in the accuracy half.
+    - **items and size:** n=5 to 39 per arm; four arms about 330 USD at n=40.
+    - **runnable:** Yes, with smoke tests that cost nothing.
+    - **known flaws:** Small n, ordering reversed twice, paper PDF not read.
+    - **reported scores and saturation:** Accuracy 'statistically indistinguishable', 97 percent fewer tokens.
+  - MemoryArena
+    - **url:** https://arxiv.org/abs/2602.16313
+    - **measures:** Interdependent multi-session agentic tasks (web navigation, preference-constrained planning, progressive search, sequential formal reasoning).
+    - **scoring:** Task success (details not read).
+    - **licence:** not checked
+    - **fit to tracks:** Compounding dial; T2-style use of memory.
+    - **decision:** reference-only
+    - **why:** Evidence that compounding tasks stay hard where recall is saturated.
+    - **items and size:** Not read.
+    - **runnable:** memoryarena.github.io (not opened).
+    - **known flaws:** Only the abstract was read.
+    - **reported scores and saturation:** Abstract: agents near-saturated on LoCoMo perform poorly.
+  - Context Rot (Chroma)
+    - **url:** https://www.trychroma.com/research/context-rot
+    - **measures:** Effect of input length, needle-question similarity, distractors and haystack structure on 18 LLMs, incl. LongMemEval focused versus full.
+    - **scoring:** Accuracy, charts only.
+    - **licence:** not checked
+    - **fit to tracks:** Evidence for the paraphrase, distractor and coherence dials.
+    - **decision:** reference-only
+    - **why:** Vendor report with a useful shuffled-versus-coherent result; numbers not extractable.
+    - **items and size:** 306 LongMemEval prompts.
+    - **runnable:** Not checked.
+    - **known flaws:** Vendor; charts only.
+    - **reported scores and saturation:** Accuracy degrades with length for all models.
+  - LiveBench and Reasoning Gym (technique sources)
+    - **url:** https://arxiv.org/abs/2406.19314
+    - **measures:** Monthly refreshed objective-answer questions (LiveBench); 100 plus procedural generators with verifiers and adjustable complexity (Reasoning Gym).
+    - **scoring:** Automatic ground truth.
+    - **licence:** not checked
+    - **fit to tracks:** Method precedent for fresh seeds, refresh cadence and verifiers.
+    - **decision:** reference-only
+    - **why:** Show that refresh and verifiable generators are standard practice; neither addresses memory.
+    - **items and size:** n/a
+    - **runnable:** Not checked.
+    - **known flaws:** Not memory benchmarks.
+    - **reported scores and saturation:** LiveBench top models below 70 percent at release (2024).
+- **design verdict**
+  - Procedural world generator with a structured ground-truth state
+    - **verdict:** keep
+    - **why:** Every hard benchmark surveyed that stayed informative is generated with dials (RULER, BABILong, Michelangelo, BEAM, Reasoning Gym), and the structured state is what gives gold labels for retrieval and callbacks that the real archive lacks.
+    - **change:** Make the state an append-only event log (entities, typed relations, validity intervals, modality of each mention). Rendering is a separate stage that only projects subsets of the log into text. Keep the schema frozen per release and version it.
+  - Exact answers from the state, no model judge
+    - **verdict:** keep
+    - **why:** The LoCoMo judge accepts 62.81 percent of vague wrong answers and the answer prompt shifts scores about 10 points; MemoryAgentBench and MRCR show exact programmatic scoring works for short answers.
+    - **change:** Closed answer types only (entity id, normalised date, integer, set with F1). The system under test returns JSON {answer, abstain, evidence_ids}; score the answer exactly and score evidence ids against gold as a diagnostic. Add an anti-guess token like MRCR's hash prefix where free text is unavoidab...
+  - Guaranteeing exact ground truth after LLM rendering
+    - **verdict:** add
+    - **why:** LLM rendering can add or drop facts; even programmatic MRCR shipped about 5 percent wrong ground truth and LoCoMo 6.4 percent after human editing.
+    - **change:** Per note: the renderer gets a facts-to-express list and a facts-forbidden list. An independent extractor (different model or prompt) re-extracts triples; accept only if intended facts are recovered (target 99 percent or more) and no unplanned queryable fact appears; regenerate otherwise. Resolve al...
+  - Question families (recall, multi-hop, temporal and as-of, supersession, counting, contradiction, abstention, rare names and numbers, paraphrase, near-duplicates, long-range)
+    - **verdict:** change
+    - **why:** Difficulty in the literature comes from supersession plus multi-hop (MAB: 80 to 14 for o4-mini between 6K and 32K), paraphrase distance (NoLiMa) and interference (MRCR), not from rare strings, which make lexical retrieval trivial.
+    - **change:** Demote rare names and numbers to a sanity family of 5 percent or less; make confusable names and numbers (near-duplicates) the main lexical-defeating device. Define contradiction as 'which statement is current' and 'flag that statement B conflicts with state from note A', and calibrate it away from...
+  - Abstention traps built from plausible never-happened events
+    - **verdict:** change
+    - **why:** BEAM shows RAG arms look good on abstention (0.65-0.80) simply by retrieving nothing; LongMemEval has only 6 percent abstention and no evidence location; Michelangelo uses 70 percent IDK to test calibration.
+    - **change:** Build traps as one-slot perturbations of real events (swap entity, shift date, negate), verify absence in the closed-world log, make sure the trap's strings occur elsewhere in the corpus (so lexical absence is not a cue), pair each trap with an answerable twin, score abstention precision and recall...
+  - Callback scoring from a sidecar against gold relevant earlier notes
+    - **verdict:** change
+    - **why:** The sidecar is self-reported and gameable (emit everything for recall, nothing for precision), and 'shares a storyline or entity' defines what is valid to cite, not what a good writer should cite. No source read validates a gold set for 'should call back'; the failed model-rated relevance scale in...
+    - **change:** Score three parts: validity (every emitted reference must exist and the claim attached to it must match the log: hard, deterministic), salience recall (against a subset the generator marks as narratively salient, soft), and spurious (any reference to something not in the log: hard). Cross-check eac...
+  - Fresh seeds make contamination impossible
+    - **verdict:** change
+    - **why:** True for instance facts, false for generator regularities: bAbI was solved and BABILong was learned by fine-tuned models on its public training split; the ICML saturation study finds hidden test data gives no protection.
+    - **change:** Publish the schema and a dev generator, keep the test renderer prompts, style packs and test seeds private, hold out a style pack and template family in test, rotate them on a schedule, and treat 'trained on the public generator' as a separate track. Expert-curated hand-written adversarial families...
+  - Difficulty dials
+    - **verdict:** keep
+    - **why:** Dial grammars exist and work (RULER, BABILong, Michelangelo, BEAM), and effects differ by 10x between dials.
+    - **change:** Treat dial settings as nominal until measured: fit accuracy as a function of dials per system (logistic model with interactions), choose tiers from the fit, and add the missing dials in the table below (modality and decoys, retroactive mentions, evidence dispersion, compounding, rendering diversity...
+  - Keeping generated text natural so a reader cannot exploit the generator
+    - **verdict:** add
+    - **why:** Needles that differ in style or distribution from the haystack are detectable (MRCR deliberately draws needles from the distractor distribution; Michelangelo requires similar distributions and no short-circuits; Chroma finds coherent haystacks harder than shuffled ones).
+    - **change:** Render evidence and filler with the same pipeline (no needle-specific path); decide which facts get queried only after rendering; use at least 3 renderers (deepseek-flash, a second API model if allowed, local Qwen2.5 14B) and style packs derived from the 234 real notes; sample names from large real...
+  - Blind and trick baselines as a gate (not in the draft)
+    - **verdict:** add
+    - **why:** Half of our first biography questions were answerable from the persona card; annotation-artifact work shows hypothesis-only models reach 53-67 percent on NLI; LME-V2's no-retrieval floor of 1.3 percent is the target pattern.
+    - **change:** B1 question only, B2 question plus persona card, B3 question plus history of a different seed (same template, different facts), B4 regex or slot extractor taking the last match, B5 BM25 top snippet with extractive answer, B6 majority-answer prior per question template, B7 always abstain, B8 most-re...
+  - Oracle near 100 percent and best system at 50 percent or less on the top tier
+    - **verdict:** change
+    - **why:** Natural-text oracles are not near 100 (87.0, 82.4, 59.6-65.3 on raw LME-V2 evidence), and best-of-panel erodes within months (LongBench v2 +5.6 in five months; MAB multi-hop 5 to 28 in a year).
+    - **change:** Use three oracles: O1 program over the gold state (100 percent, a unit test of keys), O2 reader given gold evidence notes (reported, not a ceiling), O3 reader given gold structured facts for the item (require 98 percent or more). Define 'best current system' as best-of-panel with 95 percent CI, rel...
+  - Real-data tier replaying the 234 notes
+    - **verdict:** keep
+    - **why:** HELMET shows synthetic rankings can fail to predict real-task rankings, and the real archive is the ecological test of our actual use.
+    - **change:** Use it for style statistics (renderer prompts, length and date distributions), a small hand-labelled gold set, and a rank-correlation check (Kendall tau between systems on synthetic T1 and on real tier). Do not claim hardness for it; it has no structured truth and is at LongMemEval-S scale.
+  - External yardsticks (public benchmarks)
+    - **verdict:** add
+    - **why:** They do measure memory and give comparability; but numbers differ by harness (GPT-4o 32.0 vs 60.6 on LongMemEval-S) and judge.
+    - **change:** Run LongMemEval-S cleaned (oracle and full) as a pipeline sanity check, MemoryAgentBench FactConsolidation single and multi-hop as a hard exact-scored anchor, and BEAM 100K if budget allows; always swap the judge to flash explicitly and report that change; never mix F1, LLM-judge and Recall@k numbe...
+  - Saturation monitor, retirement rules, power and cost reporting
+    - **verdict:** add
+    - **why:** Nearly half of 60 LLM benchmarks saturate and rates rise with age; LongMemEval was cleaned and succeeded within 19 months; the audit shows small cells hide differences.
+    - **change:** Report per cell: n, CI, tokens per question, latency, stale-serve rate, evidence-id precision and recall. Use at least 300 items per family-by-tier cell. Apply the triggers in the calibration plan.
+  - Adversarial filtering against a panel (not in the draft)
+    - **verdict:** add
+    - **why:** LongBench v2 and NoLiMa-Hard use screening models or earlier failures; this raises hardness but ties the benchmark to the panel and ages with it, and Bowman and Dahl argue it does not fix root causes.
+    - **change:** If used, filter on dev seeds only and report both filtered and unfiltered scores on fresh test seeds; never filter against the systems being ranked.
+- **difficulty dials**
+  - 1. Supersession depth (updates per fact) combined with multi-hop depth over relations
+    - **range:** Tiers T0/T1/T2/T3/T4: hops 1 / up to 2 / up to 3 / up to 3 (30 percent of items at 3) / up to 4; updates per fact 0-1 / up to 2 / up to 4 / up to 6 / up to 8; 30 percent of items ask the current value, 15 percent ask the value as of a date (T2 and above). Report stale-serve rate separately.
+    - **expected effect:** Largest measured lever: o4-mini on FactConsolidation drops from 100/80 (single/multi-hop) at 6K tokens to 61/14 at 32K; best of all MAB systems on multi-hop is 28 percent at 262K; BEAM contradiction resolution is about 0.03 for every arm at 100K. Because it can overshoot into a floor, tune the shar...
+  - 2. Paraphrase distance (lexical overlap between question and evidence span)
+    - **range:** Levels L0 verbatim names and key words; L1 synonyms and aliases; L2 descriptive reference without a name (relation, role, place); L3 implicit, needs inference. Control by content-lemma Jaccard of question and evidence span at most 0.5 / 0.3 / 0.15 / 0.05. Mix per tier: T0 L0-L1; T1 L0-L2 (60/30/10)...
+    - **expected effect:** Strong and cheap: with literal match removed GPT-4o falls 99.3 to 69.7 at 32K and 56.0 at 128K, 11 of 13 models fall below 50 percent of base at 32K; defeats grep and BM25 baselines.
+  - 3. Near-duplicate entities and repeated event types (interference)
+    - **range:** Share of entities with at least one confusable sibling (same first name or role, edit distance 2 or less): 0 / 25 / 50 / 75 / 90 percent; repeated same-type events per quarter 1-2 / 3 / 5 / 8 / 12; for the same attribute, 2 / 4 / 8 distinct holders at T2, T3, T4 (MRCR needle counts).
+    - **expected effect:** Monotone degradation for retrieval and grep (size not measured for memory systems; MRCR and Chroma show decline with 2 to 8 same-distribution needles and with 1 to 4 distractors, and the effect compounds). Expect to be the main separator between full-context readers and retrieval systems.
+  - 4. Aggregation size (count, sum, list over scattered items)
+    - **range:** Items to combine k: up to 3 / 5 / 10 / 25 / 50; include zero-count and k=1 cases; answer is an integer or an exact set scored by F1.
+    - **expected effect:** Exhaustive aggregation defeats top-k retrieval whenever k exceeds the retrieval depth and defeats step-limited grep; BEAM shows event ordering 0.17-0.20 and summarization 0.02-0.24 for vanilla long-context at 100K. Size of the effect for memory systems is not directly measured.
+  - 5. Abstention traps (share and closeness)
+    - **range:** Share of items 5 / 10 / 15 / 15 / 20 percent; near-miss (one slot perturbed) 0 / 50 / 100 / 100 / 100 percent; every trap has an answerable twin; trap strings must occur elsewhere in the corpus.
+    - **expected effect:** Prevents the RAG-style 'retrieve nothing, say unknown' strategy from scoring (BEAM RAG abstention 0.65-0.80 at 100K) and tests calibration (Michelangelo IDK at 70 percent). Measure abstention precision and recall jointly.
+  - 6. History length (notes N; replies at 3.8 per note as in the real archive)
+    - **range:** T0/T1/T2/T3/T4: N = 50 / 234 / 1,000 / 5,000 / 20,000 notes, about 0.04M / 0.18M / 0.75M / 3.8M / 15M tokens (assumes about 450 tokens per note and 80 per reply; measure on the real archive). Full-context reading with a 1M window is possible only up to T2.
+    - **expected effect:** Reader-dependent and weaker than dials 1-3 for 2026 readers below about 1M tokens, but it decides which architectures can run at all and drives cost. LongMemEval: 30-48 percent relative drop at about 115k for 2024 readers; BEAM: no baseline can read 10M.
+  - 7. Temporal span and as-of complexity
+    - **range:** Span 6 months / 2 years / 5 years / 10 years / 10 years; relative-date expressions in text 0 / 10 / 20 / 20 / 30 percent with recorded resolution rules; as-of questions 5 / 10 / 15 / 15 / 20 percent; event-ordering questions over up to 3 / 4 / 6 / 8 / 10 events.
+    - **expected effect:** Raises hardness for recency heuristics; BEAM temporal reasoning 0.10-0.19 and event ordering 0.17-0.20 for vanilla at 100K. Risk: relative dates caused wrong keys in LoCoMo (for example 'last Saturday'), so resolution must be deterministic.
+  - 8. Evidence dispersion and distance
+    - **range:** Distinct notes needed per answer 1 / 1-2 / 2-3 / 3-5 / 3-6; evidence positions uniform over the history with at least 20 percent in the first tenth and at least 20 percent in the last tenth; distance from question time reported in notes.
+    - **expected effect:** Moderate; position effects exist for readers (start and end favoured) and a forgetting curve by distance is a cheap diagnostic.
+  - 9. Noise ratio (non-queryable decor and chatter)
+    - **range:** Share of tokens that carry no queryable fact: 50 / 70 / 85 / 95 / 98 percent; decor is generated by the same pipeline and may carry plausible but unqueried facts.
+    - **expected effect:** Dilution lowers retrieval precision and reader accuracy; BABILong readers use only 10-20 percent of context; LME-V2 notes that answer-bearing trajectories are sparse. Coherent decor is harder than shuffled decor (Chroma), so prefer storyline-coherent filler.
+  - 10. Modality and decoys (hypothetical, negated, retracted, other-person statements)
+    - **range:** Share of fact mentions that are not asserted self-state: 0 / 10 / 20 / 30 / 40 percent; ground truth records modality and supersession only counts asserted self-state.
+    - **expected effect:** Defeats 'take the last mention' and keyword heuristics. Not measured in any benchmark read; argued.
+  - 11. Retroactive and out-of-order information
+    - **range:** Flashbacks, late corrections and notes about older events published later: 0 / 5 / 10 / 15 / 20 percent of mentions.
+    - **expected effect:** Breaks position-based supersession shortcuts and separates event time from publication time. Not measured; argued.
+  - 12. Compounding depth (dependent steps)
+    - **range:** Dependent steps per task 1 / 1 / 2 / 3 / 4, with step k using the correct answer of step k-1 supplied only if the system had it right (or a fixed oracle chain as an alternative); share of items with compounding 0 / 0 / 10 / 20 / 30 percent. For T2 writing tasks, number of grounded callbacks require...
+    - **expected effect:** Errors multiply with depth; MemoryArena reports poor results for agents that look saturated on recall benchmarks; multi-hop MAB behaves similarly.
+  - 13. Rendering diversity (anti-exploit control)
+    - **range:** Renderers x style packs: 1x2 / 2x3 / 3x4 / 3x4 / 4x5 (with one style pack and one template family held out for test); at least 30 surface realisations per fact type; metadata fields randomised.
+    - **expected effect:** Not a difficulty dial; reduces the chance that a reader or fine-tuned model learns the generator, which solved bAbI and BABILong. Verify with adversarial validation and regex baselines.
+  - 14. Answer-space size and canonicalisation (control)
+    - **range:** Closed answer types only; answer distributions balanced (counts uniform over 0..k, dates uniform over span); no multiple choice unless chance is reported (LongBench v2 uses 4-way, 25 percent chance).
+    - **expected effect:** Keeps chance and prior baselines near zero so a 5-point lead means something.
+- **calibration plan:** CALIBRATION PLAN (steps 0-7; thresholds are my proposals, justified by the evidence in findings; everything marked 'assumption' must be measured in the first pilot). 0. Fix definitions before spending anything. - Oracles: O1 = program over the gold state (must be 100 percent on every item; it is a...
+- **traps**
+  - Comparing numbers across metrics or harnesses: Recall@20 versus QA accuracy (Supermemory 97 percent versus 71.2 and 60.2 in one table), F1 versus LLM-judge (LoCoMo), and incremental-injection versus full-history (GPT-4o 32.0 versus 60.6 on LongMemEval-S).
+  - The answer prompt and judge generosity move judged scores by about 10 points (LoCoMo audit); any claim from a different prompt or judge is not a like-for-like result.
+  - '100 percent solvable' (LoCoMo-v2) means a corrected key and a possible ceiling, not that the task is easy; the original had a 93.57 percent ceiling.
+  - Vendor and system-author self-reports (Hindsight, Mastra, Supermemory, EverMemOS) are assertions; one has a third-party reproduction of 38.38 percent against a 92.32 percent claim, and the 99 percent ASMR post was reportedly a parody (secondary sources only).
+  - An 'oracle' built from natural text is not an upper bound (LongMemEval oracle 87.0 and 82.4; Mastra's system beat the oracle by 2 points; LME-V2 raw oracle 60-65 for small readers). Use a structured oracle as the unit test and report evidence-only oracles separately.
+  - Floor effects: BEAM contradiction resolution about 0.03 and MAB multi-hop 1-7 percent give no discrimination; calibrate from both ends.
+  - Abstention can be gamed by retrieval-based systems (BEAM RAG 0.65-0.80); score precision and recall together and pair traps with answerable twins.
+  - Fresh seeds do not stop learning the generator (bAbI, BABILong); hidden test data was not protective in the ICML saturation study; expert curation and size were.
+  - Adversarial filtering against a panel (LongBench v2, NoLiMa-Hard) raises hardness but ties the benchmark to that panel; evaluate on fresh seeds and report unfiltered scores.
+  - LLM-rendered text can contain extra or missing facts and then 'exact' keys are wrong (LoCoMo 6.4 percent, MRCR about 5 percent); coherent distractors are harder than shuffled ones (Chroma), so lazy filler lowers difficulty.
+  - Relative dates in text ('last Saturday') produced wrong keys in LoCoMo; keep absolute dates in metadata and recorded resolution rules.
+  - Names and numbers sampled by an LLM come from a narrow set; measure entropy, otherwise entity guessing and regex tricks work.
+  - Agentic grep is a strong baseline: it matches or beats RAG by a wide margin in LME-V2 and parity claims exist at small n; include it in the panel or the top tier will look harder than it is. Conversely, the n of 5-39 behind the 'filesystem matches long context' claim is far too small to show equali...
+  - Small cells hide differences (LoCoMo categories 96-841; open-domain needs a 15-point gap); report CIs and use at least 300 items per cell.
+  - 'Best current system at or below 50 percent at release' is perishable: LongBench v2 was beaten by reasoning models within months; design the top tier to about 35-45 percent.
+  - Licences: vectorize AMB and Datapace have none; LoCoMo, NoLiMa, RinDig are NOASSERTION; reimplement ideas rather than copying code or data.
+  - Source handling: several pages were read through a small-model WebFetch summary (LME-V2 site, LongBench v2 leaderboard (stale), MRCR card, Chroma, DeepSeek pricing, ICML poster); pdftotext scrambled some tables (BEAM Table 1 after the 100K block, LME-V2 Fig. 4, Hindsight per-category rows).
+- **uncertainties**
+  - The primary Supermemory ASMR post (the ~99 percent claim and the 'parody' statement) could not be read; both rest on search snippets and trade articles.
+  - BEAM absolute scores at 500K, 1M and 10M were not extracted reliably from the PDF text; only the 100K block (checked against the paper's own percentages) and the paper's improvement percentages are used.
+  - LME-V2 oracle numbers were attributed to models by position in interleaved figure text; the exact mapping may be off by a row.
+  - No 2026 full-context LongMemEval-S baseline for frontier readers (GPT-5, Gemini 2.5/3, Claude) was found; full-context readers may already be at 80-90 percent, which would make the 'dump everything' route competitive on LongMemEval-S as the AMB README asserts.
+  - Status of RULER, BABILong and NoLiMa for 2026 frontier models was not checked (RULER table is 2024-era, NoLiMa updated 2025-07, BABILong leaderboard not read, LongBench v2 leaderboard last updated 2025-05).
+  - The LoCoMo audit is not peer reviewed and its statements about third-party reproduction are allegations; I did not re-run its scripts. The Penfield write-up was read only as a search snippet.
+  - The ICML saturation result is observational (60 benchmarks, 14 properties); the 'small size drives saturation' point is only in a lay summary and the benchmark count for Ott et al. only in a search summary.
+  - DeepSeek prices come from a small-model summary of the official page without an effective date; token counts per note and reply, retry rates and agentic-arm costs in the cost estimate are assumptions to be measured on a T0 pilot.
+  - The expected effect sizes for near-duplicates, aggregation, modality and retroactive-information dials are extrapolated from synthetic long-context benchmarks, not measured on memory systems; the pilot sweep must measure them.
+  - 'Best current system' is limited by the paid-call rule (flash only) and local models; frontier systems outside that rule could score higher on the same tiers, so the release claim should say 'best of the stated panel'.
+  - MemoryArena, Context Rot, BEAM README and repo, HELMET and BABILong papers were read at abstract or summary level only.
+- **gaps not covered by anything found**
+  - No benchmark among those read scores memory use inside generated writing: grounded callbacks, spurious references to earlier pieces, repetition. BEAM has instruction and preference following and summarization, but no gold set of valid references for a new piece.
+  - No published ground truth for 'related earlier note' or 'should call back'; the generator gives validity by construction but not appropriateness, and no source validates such a salience label.
+  - No benchmark read covers a small single-author publication archive with serial storylines (234 notes, 883 replies); all are chat or agent-trajectory histories.
+  - No published calibration procedure targets 'structured oracle near 100 percent, best system at most 50 percent'; the closest are LongBench v2 (human ceiling), RULER and NoLiMa (effective length) and LME-V2 (oracle forms). The plan above is my synthesis.
+  - No source reports the cost of generating a fresh instance for BEAM, LongMemEval or LoCoMo, so the cost estimate has no external check.
+  - No study found that tests whether LLM-rendered synthetic memory data can be separated from real text by a classifier, or that synthetic-tier rankings predict real-archive rankings for memory systems (the HELMET-style validity check does not exist for memory).
+  - No independent, dated, like-for-like score history for LongMemEval-S frontier readers in 2026, nor an independent reproduction of the 97-99 percent claims.
+  - Persona and biography integrity benchmarks (PersonaGym, PersonaMem, persona drift) and their saturation behaviour were outside this slice and were not examined.
+
+Sources read (37):
+
+- https://github.com/xiaowu0162/LongMemEval (GitHub README (1186 stars, MIT, created 2024-10-10, pushed 2026-05-11); gh api raw README saved locally; sed/grep of data description, S/M/oracle files, filler s...)
+- https://arxiv.org/abs/2410.10813 (paper: LongMemEval (ICLR 2025); arXiv API abstract plus PDF via pdftotext; grep/sed of Section 3.4 and the oracle-vs-S an...)
+- https://github.com/xiaowu0162/LongMemEval-V2 (GitHub README (201 stars, Apache-2.0, created 2026-05-11, pushed 2026-08-09); first 6.5k characters via gh api)
+- https://arxiv.org/abs/2605.12493 (paper: LongMemEval-V2; arXiv API abstract plus pdftotext grep of the oracle pilot (Fig. 4, App. B.2); the two-pa...)
+- https://xiaowu0162.github.io/longmemeval-v2/ (project page with baseline table; WebFetch (page converted and answered by a small model; numbers not re-checked against th...)
+- https://arxiv.org/abs/2402.17753 (paper: LoCoMo (snap-research/locomo, 1255 stars, licence NOASSERTION); arXiv API abstract plus pdftotext grep of Table 2 (rows partly scrambled); repo metadata...)
+- https://github.com/dial481/locomo-audit (independent audit repo (22 stars, updated 2026-10-29); gh api raw README (first 6k chars) and fc-baseline/README.md (first 2.8k chars); the audi...)
+- https://github.com/BrianV1981/locomo-v2 (GitHub README (9 stars, licence NOASSERTION, pushed 2026-05-22); first 6.5k of 14.5k characters)
+- https://penfieldlabs.substack.com/p/we-audited-locomo-64-of-the-answer (blog write-up of the same audit; WebSearch snippet only, page not opened)
+- https://github.com/HUST-AI-HYZ/MemoryAgentBench (GitHub README (483 stars, MIT, pushed 2026-09-25); first 4.2k characters via gh api)
+- https://arxiv.org/abs/2507.05257 (paper: MemoryAgentBench (ICLR 2026); abstract plus pdftotext grep/sed of Table 3, Sec. 4.3.3-4.3.4, Table 5-6, scoring notes)
+- https://arxiv.org/abs/2510.27246 (paper: BEAM and LIGHT (ICLR 2026 version); abstract plus pdftotext sed of Table 1, Sec. 4.2, Table 4, probe generation, scoring line...)
+- https://github.com/mohammadtavakoli78/BEAM (BEAM repo (167 stars, MIT, created 2025-10-28, pushed 2026-08-31); metadata only via gh api (found from a paper footnote); README not read)
+- https://github.com/booydar/babilong (GitHub README (259 stars, Apache-2.0); key lines via grep/sed (task table, leaderboard note, train split, RMT remarks))
+- https://arxiv.org/abs/2406.10149 (paper: BABILong; arXiv API abstract only)
+- https://github.com/NVIDIA/RULER (GitHub README (1629 stars, Apache-2.0); results table rows and the complexity-configuration table via grep/sed)
+- https://arxiv.org/abs/2404.06654 (paper: RULER; arXiv API abstract only)
+- https://github.com/adobe-research/NoLiMa (GitHub README (209 stars, licence NOASSERTION); both result tables (NoLiMa and NoLiMa-Hard), effective-length definition and update log v...)
+- https://arxiv.org/abs/2502.05167 (paper: NoLiMa (ICML 2025); arXiv API abstract only)
+- https://arxiv.org/abs/2412.15204 (paper: LongBench v2 (THUDM/LongBench, 1252 stars, MIT); abstract plus pdftotext grep of the data-filtering steps; README v2 lines)
+- https://longbench2.github.io/ (leaderboard; WebFetch (small-model summary of the table))
+- https://arxiv.org/abs/2410.02694 (paper: HELMET (princeton-nlp/HELMET, 231 stars, MIT); arXiv API abstract only; README grep)
+- https://huggingface.co/datasets/openai/mrcr (dataset card: OpenAI MRCR; WebFetch (small-model summary of the card))
+- https://arxiv.org/abs/2409.12640 (paper: Michelangelo (latent structure queries); abstract plus pdftotext grep of design, complexity, IDK and MRCR lines)
+- https://www.trychroma.com/research/context-rot (vendor technical report: Context Rot; WebFetch (small-model summary; results are in charts, exact numbers not available))
+- https://arxiv.org/abs/2602.16763 (paper: When AI Benchmarks Plateau (ICML 2026); arXiv API abstract plus WebFetch of https://icml.cc/virtual/2026/poster/63311 (abstract a...)
+- https://arxiv.org/abs/2203.04592 (paper: Ott et al., benchmark creation and saturation (Nature Communications 2022); arXiv API abstract (middle truncated by my script) plus WebSearch summary for the benchma...)
+- https://arxiv.org/abs/2512.12818 (paper: Hindsight technical report (system authors' own evaluation); pdftotext grep of the abstract, Table 3 overall row and text; per-category rows are offse...)
+- https://github.com/vectorize-io/agent-memory-benchmark (GitHub README (159 stars, no licence, pushed 2026-10-31); README read in full (3.7k chars))
+- https://github.com/datapace-ai/agent-memory-benchmark (GitHub README (2 stars, no licence, pilot of 2026-09-07); first 2.6k characters)
+- https://github.com/RinDig/cost-of-remembering (GitHub README and run notes (40 stars, licence NOASSERTION); first 4.3k characters plus lines 104-152; the LaTeX/PDF paper and result files not opened)
+- https://github.com/Fengzdadi/memory-bench-registry (registry README (210 stars, MIT); first 2.2k characters plus keyword grep of the 171 KB file)
+- https://supermemory.ai/research.md (vendor research page (Supermemory); curl, full text (1.9 KB); also curl+grep of https://supermemory.ai/research/longmembench/)
+- https://mastra.ai/research/observational-memory (vendor research page (Mastra); curl of 467 KB HTML plus grep of the result paragraphs)
+- https://api-docs.deepseek.com/quick_start/pricing (official pricing page; WebFetch (small-model summary of the table))
+- https://arxiv.org/abs/2410.05229 (GSM-Symbolic), 1803.02324 (Annotation Artifacts), 1805.01042 (Hypothesis-only baselines), 1612.03969 (EntNet), 1502.05698 (bAbI), 2505.24760 (Reasoning Gym), 2406.19314 (LiveBench), 2104.14337 (Dynabench), 2104.02145 (Bowman and Dahl), 1908.06177 (CLUTRR), 2307.03172 (Lost in the Middle), 2504.19413 (Mem0), 2601.02163 (EverMemOS), 2601.02872 (LongBench Pro), 2602.16313 (MemoryArena) (paper abstracts; arXiv API; abstracts printed with the middle cut out for longer ones, so only first and l...)
+- WebSearch results (LongMemEval 95-99 percent claims; LoCoMo audit; full-context baselines; DeepSeek price aggregators; benchmark saturation) (search snippets; result summaries only; used for leads and flagged where they are the sole source)
+
+### Ready-made shortlist: verification of the 25 named GitHub candidates plus discovery (memory-bench registry, issue trackers, GitHub search,...
+
+- **findings**
+  - Correction confirmed: public benchmarks do measure memory directly (recall, update, temporal reasoning, abstention, multi-session, contradiction handling) and memory is what they are about, so they are the right external yardstick for T1....
+    - **evidence strength:** measured
+    - **source:** https://github.com/Fengzdadi/memory-bench-registry ; READMEs of the benchmarks named; search logs of this run (absence claims are limited by weak GitHub multi-word search)
+  - LongMemEval is scored by an LLM judge, not deterministically: gpt-4o-2024-08-06 by default, temperature 0, yes/no, with type-specific prompts. The knowledge-update prompt accepts an answer that also mentions the old value if the new value...
+    - **evidence strength:** measured
+    - **source:** https://github.com/xiaowu0162/LongMemEval/blob/main/src/evaluation/evaluate_qa.py
+  - LongMemEval has known data defects reported by users: gold or annotation errors in several questions, conflicting or incorrect timing data in the cleaned set, duplicate filler sessions in 13 S histories, an incomplete has_answer label. It...
+    - **evidence strength:** measured
+    - **source:** https://github.com/xiaowu0162/LongMemEval/issues
+  - LongMemEval-S is near saturation by self-report: 96.2% (481/500, GPT-4o judge, Claude Opus 4.6 reader), 93.6%, 92.0%, 88.8%, a '100% accuracy' claim whose issue titles cite two gold errors, PwC Chronos preprint 95.6% (92.6% low setting), M...
+    - **evidence strength:** asserted
+    - **source:** https://github.com/xiaowu0162/LongMemEval/issues ; https://github.com/JordanMcCann/agentmemory ; https://arxiv.org/abs/2603.16862 (via search summary)
+  - LoCoMo's ceiling is below 100% and its judges were lenient: an independent audit reports 99 of 1,540 questions (6.4%) with wrong golden answers (ceiling 93.57%) and a judge that accepted 62.81% of deliberately wrong but topical answers; th...
+    - **evidence strength:** measured
+    - **source:** https://github.com/dial481/locomo-audit ; https://github.com/snap-research/locomo/issues ; https://github.com/vectorize-io/agent-memory-benchmark/tree/main/src/memory_bench/dataset
+  - A stricter LoCoMo variant exists: LoCoMo-Refined (1,382 questions, 337 revised, judge Qwen3-14B) reports judge agreement with 300 human labels of 43.67% for the original judge versus 86.33% for the refined one, and a best score of 82.65% (...
+    - **evidence strength:** asserted
+    - **source:** https://github.com/mem-eval-suite/LoCoMo_refined
+  - The community 'LoCoMo-v2, 100% solvable' label is a self-description, not a demonstrated result: the README argues 75 of 862 image URLs are dead (63 questions depend on them) and cites the audit's 99 errors, but I saw no run reaching 100%.
+    - **evidence strength:** asserted
+    - **source:** https://github.com/BrianV1981/locomo-v2
+  - The 'filesystem memory matches long-context accuracy on LongMemEval' claim is an underpowered result: on 39 LongMemEval-S questions (Claude Sonnet 5 reader, GPT-4o judge) long-context scored 0.872, guided filesystem 0.744, autonomous 0.615...
+    - **evidence strength:** measured
+    - **source:** https://github.com/RinDig/cost-of-remembering
+  - Headroom is not gone on newer public suites, but most published numbers use older or smaller models. STALE best overall 55.2% (Gemini-3.1-pro; premise resistance 0-30 for nearly all models); LifeBench top systems 55.2% (v1 abstract); Perso...
+    - **evidence strength:** measured
+    - **source:** https://github.com/icedreamc/STALE ; https://arxiv.org/html/2510.27246 ; https://arxiv.org/html/2603.01966 ; https://arxiv.org/html/2507.05257 ; https://export.arxiv.org/api/query?id_list=2603.03781,2504.14225,2512.06688,2608.19652,2607.12385
+  - History length is a real, measured difficulty dial, and it can reorder systems: MemoryAgentBench FC-MH for o4-mini falls from 80.0 (6K) to 14.0 (32K); BEAM vanilla averages drop from 0.24-0.28 at 100K to 0.10-0.13 at 10M; in Ground Truth F...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2507.05257 ; https://arxiv.org/html/2510.27246 ; https://arxiv.org/html/2607.21962
+  - Judge noise is large even with ground truth, which supports exact scoring for T1 and planted-control validation wherever a judge remains: cross-family re-judging of 8,985 answers agreed 87.9% (kappa 0.60) with DeepSeek systematically stric...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2607.21962 ; https://arxiv.org/html/2603.05890 ; https://github.com/vectorize-io/agent-memory-benchmark/blob/main/src/memory_bench/dataset/beam.py
+  - The core of our draft already has close prior art, so it is not novel but is viable: Ground Truth First uses a deterministic seeded life-script sampler (facts with validity intervals, volatility classes, source channels), an LLM renderer,...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2607.21962 ; https://github.com/1754955896/LifeBench ; https://github.com/AGI-Eval-Official/amemgym ; https://github.com/icedreamc/STALE ; https://github.com/GoodAI/goodai-ltm-benchmark ; https://github.com/booydar/babilong
+  - Renderer fidelity is the weak point of any generator-with-ground-truth: Ground Truth First audits only that planted facts are present in rendered text, not that unsupported additions are absent (its own stated limitation); LoCoMo's wrong g...
+    - **evidence strength:** argued
+    - **source:** https://arxiv.org/html/2607.21962 ; https://github.com/dial481/locomo-audit
+  - Items answerable from priors are a documented risk for generated memory benchmarks: Ground Truth First asserts that frontier models score 70-85% on 'MemGym' diagnostics from priors when entities are not fictionalised (it does not say which...
+    - **evidence strength:** asserted
+    - **source:** https://arxiv.org/html/2607.21962 ; https://arxiv.org/html/2603.01966
+  - Deterministic retrieval-set scoring with must-return and must-not-return assertions exists: PrecisionMemBench has 89 scored cases over a 35-belief seed corpus (supersession chains, alias resolution, cross-user isolation, noise isolation ac...
+    - **evidence strength:** measured
+    - **source:** https://github.com/tenurehq/precisionmembench ; https://github.com/vectorize-io/agent-memory-benchmark
+  - Memory can hurt, so a no-memory control is mandatory: MemTrapBench reports that every memory strategy underperformed the no-memory setting and the strongest dropped more than 10%; PersistBench reports median failure rates of 53% (cross-dom...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2608.20202 ; https://arxiv.org/abs/2602.01146
+  - Persona-stability work exists but targets assistant identity or instructions, not an invented biography with events: persona_drift (self-chats, drift within eight rounds), ContextEcho (25-probe identity suite, 23 targets, a roughly 110-tok...
+    - **evidence strength:** measured
+    - **source:** https://github.com/likenneth/persona_drift ; https://github.com/Accenture/ContextEcho ; https://github.com/vsamuel2003/PersonaGym ; https://github.com/morecry/CharacterEval
+  - AI-identity disclosure evaluations exist and are adjacent to T3/T4 probes: Self-Transparency Failures in Expert-Persona LLMs (disclosure 99.8-99.9% with no persona versus 3.5-30.8% under professional personas; permission in the prompt lift...
+    - **evidence strength:** asserted
+    - **source:** https://arxiv.org/pdf/2606.00168 ; https://arxiv.org/pdf/2511.21569v7 ; https://icml.cc/virtual/2026/78614 (search-summary level)
+  - No benchmark found scores callbacks, grounded versus spurious references to earlier outputs, or repetition against a writer's own archive. Nearest neighbours: ConStory-Bench (2,000 prompts, 5 error categories and 19 subtypes, judge o4-mini...
+    - **evidence strength:** argued
+    - **source:** https://arxiv.org/html/2603.05890 ; https://arxiv.org/abs/2601.07033 ; https://arxiv.org/abs/2605.26492 ; https://arxiv.org/abs/2606.01811 ; https://arxiv.org/abs/2510.17281 ; https://arxiv.org/abs/2407.11016
+  - Deterministic scoring precedents to copy: PersonaMem answer letter extraction (a-d), MemoryAgentBench accuracy on FactConsolidation and EventQA, StateMemBench closed-pool grading (current / superseded / fails), Ground Truth First abstentio...
+    - **evidence strength:** measured
+    - **source:** https://github.com/bowen-upenn/PersonaMem ; https://export.arxiv.org/api/query?id_list=2608.19652,2609.14976 ; https://arxiv.org/html/2607.21962
+  - Cost and DeepSeek feasibility evidence: AMemGym data synthesis about 0.40 USD per instance with gpt-4.1, user simulator 0.17 USD (gpt-4.1) or 0.02 USD (deepseek-v3, minimal effect on results), evaluating gpt-4.1 about 13 USD; OAMB reports...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2603.01966 ; https://github.com/rocke2020/open-agent-memory-benchmark ; https://github.com/1754955896/LifeBench
+  - The registry that indexes this field did not run anything: reproducibility levels are paper_only 37, data_public 31, official_script 139, smoke_tested 0, full_run 0, so 'official_script' means a script exists, not that it was run. AMB is t...
+    - **evidence strength:** measured
+    - **source:** https://github.com/Fengzdadi/memory-bench-registry ; https://github.com/vectorize-io/agent-memory-benchmark
+  - AMB's argument that million-token windows make LoCoMo and LongMemEval unable to separate systems is a vendor argument, only partly supported: on LongMemEval-S Sonnet-5 long-context (0.872) beat the filesystem arms at n=39, Ground Truth Fir...
+    - **evidence strength:** argued
+    - **source:** https://github.com/vectorize-io/agent-memory-benchmark ; https://github.com/datapace-ai/agent-memory-benchmark ; https://arxiv.org/html/2510.27246
+  - Small samples dominate the harness repos: OAMB compares three systems on 60 questions (Hindsight 57/60, Mem0 52/60, OpenViking 51/60) and declines to name a winner; datapace has 10 questions; RinDig 39; LoCoMo's per-category n ranges from...
+    - **evidence strength:** measured
+    - **source:** https://github.com/rocke2020/open-agent-memory-benchmark ; https://github.com/dial481/locomo-audit
+- **candidates**
+  - LongMemEval (cleaned S / M / oracle)
+    - **url:** https://github.com/xiaowu0162/LongMemEval
+    - **measures:** Chat-assistant long-term memory: information extraction, multi-session reasoning, knowledge updates, temporal reasoning, abstention, plus single-session user/assistant/preference types.
+    - **items and size:** 500 questions; S about 115k tokens (~40 sessions) per history, M about 500 sessions, oracle = evidence sessions only; turn-level has_answer and answer_session_ids labels; a history compiler can lengthen haystacks with ShareGPT/UltraChat filler (length is the only dial).
+    - **scoring:** LLM judge: gpt-4o-2024-08-06 default (gpt-4o-mini or local llama-3.1-70b selectable), temperature 0, 10 tokens, yes/no with per-type prompts; knowledge-update prompt tolerates a mentioned old value; abstention prompt checks unanswerable flag.
+    - **licence:** MIT (repo and cleaned HF dataset tag).
+    - **fit to tracks:** T1 (recall, update, temporal, abstention; evidence labels); T5 anchor. Not T2-T4.
+    - **decision:** adopt
+    - **why:** Best-known anchor to validate our reader and judge harness (the oracle file must score near ceiling); not a hardness source because every self-report is near the ceiling.
+    - **runnable:** Python 3.9, evaluation-only lite env; needs OpenAI key or local vLLM judge; no Docker; swapping the judge to deepseek-flash needs a model_zoo patch and makes results non-comparable with published GPT-4o numbers (my inference).
+    - **reported scores and saturation:** Paper abstract: about 30% accuracy drop for commercial assistants and long-context models (2024). Self-reports in issues/READMEs 88.8-96.2%, one 100% claim, Chronos 95.6% preprint, Hindsight 91.4% paper / 94.6% vendor page; all unverified and heterogeneous.
+    - **known flaws:** Gold and annotation errors, duplicate filler in 13 histories, lenient knowledge-update judging, 500 items (4 points is 20 questions).
+  - STALE (implicit memory invalidation) with CUP-Mem
+    - **url:** https://github.com/icedreamc/STALE
+    - **measures:** Whether an agent notices that a stored fact was implicitly invalidated: State Resolution, Premise Resistance (the query carries an outdated assumption), Implicit Policy Adaptation; two implicit-conflict types.
+    - **items and size:** 400 expert-validated conflict scenarios, 1,200 queries, 100+ topics, contexts up to about 150K tokens; data about 306 MB JSON; generation pipeline Step0-Step3 from ontology seeds included.
+    - **scoring:** LLM judge (judge_prompts.py; default Gemini-3.1-flash-lite per registry; prompts not read in detail).
+    - **licence:** MIT code; CC BY 4.0 data (via registry).
+    - **fit to tracks:** T1 supersession and false-premise abstention; informs the T4 'never invent a reference' gate.
+    - **decision:** adopt
+    - **why:** Far from saturated on exactly our failure of interest (latest value, outdated premise) and ships a generator that can mint fresh scenarios.
+    - **runnable:** Python with API keys; judge or model swap to deepseek-flash plausible but untested.
+    - **reported scores and saturation:** README table: Gemini-3.1-pro 55.2 overall (best), Qwen3.5-27B 31.3, Claude-Opus-4.6 28.3, GPT-5.4 15.7, GPT-4o-mini 8.7; premise resistance 0-30 for all. Single paper, authors' own numbers.
+    - **known flaws:** Young (2026-05), 22 stars, LLM-generated scenarios, judge-based, no independent replication seen.
+  - MemoryAgentBench (FactConsolidation, EventQA and reformulated sets)
+    - **url:** https://github.com/HUST-AI-HYZ/MemoryAgentBench
+    - **measures:** Accurate retrieval, test-time learning, long-range understanding, conflict resolution; FactConsolidation (counterfactual edits with serial numbers, newest wins) and EventQA (choose the next event of a novel).
+    - **items and size:** 2,071 questions, 103k-1.44M tokens (registry); inject once, query many times; FactConsolidation at 6K, 32K, 64K, 262K.
+    - **scoring:** Mostly accuracy on short answers or multiple choice; README says the longmemeval and infbench_sum parts need a gpt-4o judge; the paper appendix on judges was not read.
+    - **licence:** MIT.
+    - **fit to tracks:** T1 supersession (FC), event order (EventQA), length dial.
+    - **decision:** adopt
+    - **why:** Deterministic, length-scalable supersession test with a demonstrated collapse; closest ready-made match to our supersession and multi-hop dials.
+    - **runnable:** Python, HF data; ICLR 2026; not run by me.
+    - **reported scores and saturation:** Paper: all methods fail multi-hop FactConsolidation (best 28.0, GPT-5-mini); o4-mini FC-MH 80.0 at 6K but 14.0 at 32K.
+    - **known flaws:** Synthetic counterfactual facts from MQuAKE edits, not conversational; README header mislabelled as LongMemEval overview; judge usage per dataset unverified.
+  - BEAM (Beyond a Million Tokens)
+    - **url:** https://github.com/mohammadtavakoli78/BEAM
+    - **measures:** Long-term memory over coherent chats of 100K/128K to 10M tokens across ten abilities: extraction, multi-hop, knowledge update, temporal, abstention, contradiction resolution, event ordering, instruction following, preference following, summarization.
+    - **items and size:** 100 conversations (128K 20, 500K 35, 1M 35, 10M 10), 2,000 validated questions (2 per ability per chat); LLM-generated with human review; generator prompts and probing-question code in the repo.
+    - **scoring:** LLM judge against atomic nuggets scored 0/0.5/1 per ability; event ordering by Kendall tau-b; judge named GPT-4.1-mini in the registry, AMB defaults to gemini-3.5-flash and warns the judge moves the score.
+    - **licence:** Code MIT; data CC BY-SA 4.0 (registry; share-alike).
+    - **fit to tracks:** T1 at long lengths, especially contradiction resolution and event ordering; nugget rubric format reusable for T2.
+    - **decision:** adopt
+    - **why:** Largest public difficulty ladder with an unsolved ability (contradiction resolution 0.000-0.037); use the 100K-1M slices, treat 10M as too costly.
+    - **runnable:** Python; repo 695 MB because chats are included; judge needs an API model (deepseek-flash swap untested).
+    - **reported scores and saturation:** Table 1 (weak 2025 models): vanilla 0.24-0.28 at 100K, 0.10-0.13 at 10M; best 10M 0.266 (Llama Maverick with LIGHT); abstention easiest (0.75 vanilla Gemini at 10M).
+    - **known flaws:** Baselines are small 2025 models, so current headroom is unknown; LLM-written questions; nugget scoring depends on judge.
+  - PersonaMem (v1)
+    - **url:** https://github.com/bowen-upenn/PersonaMem
+    - **measures:** Dynamic user profiling: tracking evolving preferences and choosing personalised responses across multi-session chats.
+    - **items and size:** Over 180 user-chatbot histories, up to 60 sessions, 15 tasks (abstract); AMB packages 32k/128k/1M variants.
+    - **scoring:** Four-option multiple choice; the model ends with a letter that inference.py extracts deterministically.
+    - **licence:** MIT (repo); dataset card not opened.
+    - **fit to tracks:** T1 evolving-preference tracking (user side, not the writer's own history).
+    - **decision:** adopt
+    - **why:** Free deterministic scoring and unsaturated, easy to slice at 32k as a cross-check of the harness.
+    - **runnable:** Python with API keys; data on HF.
+    - **reported scores and saturation:** Abstract (2025-04): GPT-4.1, o4-mini, GPT-4.5, o1, Gemini-2.0 about 50% overall; v2 abstract 37-48% for frontier models.
+    - **known flaws:** Chance is 25%; synthetic LLM dialogues; models are 2025 generation.
+  - AMemGym (interactive on-policy memory benchmark)
+    - **url:** https://github.com/AGI-Eval-Official/amemgym
+    - **measures:** Assistant converses with an LLM-simulated user whose structured state variables change by period; multiple-choice questions map to state values; diagnoses write, read and utilisation failures.
+    - **items and size:** 20 profiles x 10 questions = 200; base 11 periods (128K+ context), extra 21 periods (512K+); 2-3 state variables per question; 4-7 options; env generator amemgym.env.gen and configs.
+    - **scoring:** Multiple-choice accuracy normalised to an upper bound ('memory score'); simulator gpt-4.1 (deepseek-v3 alternative); I could not confirm from the text read that option matching is fully deterministic.
+    - **licence:** MIT.
+    - **fit to tracks:** T1 and T3 (state trajectory to options, user simulator, periods); T5 cost reporting.
+    - **decision:** adapt
+    - **why:** Best open precedent for structured state to options to score with a simulator; reuse the periods/state/option design and oracle-normalised reporting, but fictionalise entities and keep our own deterministic scoring.
+    - **runnable:** uv; OPENAI_API_KEY and OPENAI_BASE_URL environment variables (OpenAI-compatible, so DeepSeek feasible); data v1.base on HF.
+    - **reported scores and saturation:** Best native LLM 0.336, best memory agent 0.291; all LLMs above 0.8 of the upper bound at short context but mostly below 50% later; no system above about 0.34.
+    - **known flaws:** LLM-generated states and utterances; 20 profiles; a third-party paper asserts priors leak when entities are not fictionalised (unverified).
+  - LifeBench (life-event simulator and benchmark)
+    - **url:** https://github.com/1754955896/LifeBench
+    - **measures:** Long-horizon multi-source personal memory over simulated lives: persona to plans to daily events to phone records to QA with evidence and scoring points; 9 categories incl. knowledge update, conflict detection, hidden information, pattern recognition, unanswerable.
+    - **items and size:** v2.0: 10 users, one year, 57,486 events, 47,409 phone records, 3,380 QA, Chinese and English (v1: 2,003 QA); about 3.66M tokens per context (registry).
+    - **scoring:** LLM judge (GPT-5.1-mini in paper per registry; AMB's lifebench judge prompt is explicitly generous); leaderboard macro accuracy reported with DeepSeek-V4-Flash.
+    - **licence:** Apache-2.0.
+    - **fit to tracks:** T1 (event memory, knowledge update, conflict detection), design reference for our life simulator.
+    - **decision:** adapt
+    - **why:** Open seeded simulator (persona_gen with seed and diversity flags, scripts/run.py) with the closest category list to our T1; study its event tree and evidence labelling before building ours.
+    - **runnable:** Python; repo 624 MB; evaluation lives in a separate LifeBench_eval repo (not opened).
+    - **reported scores and saturation:** v1 abstract: top memory systems 55.2% accuracy.
+    - **known flaws:** LLM-driven simulation without a shown formal state ledger, phone-log centric rather than published writing, generous judge prompt in AMB.
+  - Agent Memory Benchmark (AMB, Vectorize)
+    - **url:** https://github.com/vectorize-io/agent-memory-benchmark
+    - **measures:** Harness that ingests datasets into a memory provider, retrieves, generates and judges; datasets locomo, locomo-fixed, longmemeval-s, personamem (32k/128k/1M), beam (100k-10m), lifebench, precisionmembench, sdebench; modes rag, agentic_rag, agent, retrieval, coding; oracle mode ingests only gold doc...
+    - **items and size:** No own items; repackages third-party sets; 252 files, 791 MB with committed run outputs.
+    - **scoring:** Gemini answer model and Gemini judge (BEAM default gemini-3.5-flash, registry says Gemini 2.5 Flash-Lite elsewhere); LongMemEval prompts ported; LoCoMo and LifeBench prompts tell the judge to be generous; PrecisionMemBench runs with no LLM.
+    - **licence:** None stated (all rights reserved by default).
+    - **fit to tracks:** T1 runner and T5 token/latency accounting; provider list includes hindsight, mem0, cognee, mastra, supermemory, bm25.
+    - **decision:** adapt
+    - **why:** Fastest way to put our existing Hindsight system through several public sets, and its oracle and retrieval-only modes mirror our oracle-context control and no-judge scoring.
+    - **runnable:** Python 3.11+, uv, GEMINI_API_KEY; the OpenAI client is built without base_url, so OPENAI_BASE_URL could redirect to DeepSeek (inference, untested); no Dockerfile seen in the files I grepped.
+    - **reported scores and saturation:** No scores in the README; leaderboard is on a website I did not open; vendor reports Hindsight 94.6% on LongMemEval (search summary).
+    - **known flaws:** Vendor-run with its own system on top, no paper, no licence, generous judges, committed outputs.
+  - Open Agent Memory Benchmark (OAMB)
+    - **url:** https://github.com/rocke2020/open-agent-memory-benchmark
+    - **measures:** Reproducible comparison of self-hosted memory systems through their native APIs on a balanced LongMemEval-S subset, with answer-visible context tokens, indexing tokens and latency.
+    - **items and size:** LME-60 (60 shared LongMemEval-S questions) x 3 providers = 180 judged results.
+    - **scoring:** LongMemEval judge rubrics via an OpenAI-compatible endpoint; paired statistics in the report.
+    - **licence:** Apache-2.0 (datasets and third-party parts keep their own).
+    - **fit to tracks:** T1 anchor on Hindsight; T5 (token and latency accounting).
+    - **decision:** adapt
+    - **why:** Docker Compose pinning of provider versions, checksum-verified dataset and token accounting are the right pattern for running our Hindsight container reproducibly.
+    - **runnable:** Python 3.11+, uv, Docker Compose; keyless embedding endpoint allowed; its provider pins (Hindsight 0.9.2) may differ from our container (not checked).
+    - **reported scores and saturation:** Hindsight 57/60 (95.0%), Mem0 52/60 (86.7%), OpenViking 51/60 (85.0%); Mem0 used 59% less answer-visible context; no winner declared.
+    - **known flaws:** n=60; indexing-token coverage partial; the author's 500-question reproduction used V4 Pro for answers.
+  - PrecisionMemBench
+    - **url:** https://github.com/tenurehq/precisionmembench
+    - **measures:** Retrieval precision, noise isolation across topic drift, session latency, belief mutability; each case asserts which beliefs must and must not be returned.
+    - **items and size:** 89 scored cases (77 single-turn, 12 session-turn assertions) over 35 seed beliefs; 13 configurations in the paper (arXiv 2605.11325).
+    - **scoring:** Deterministic set assertions, no LLM.
+    - **licence:** MIT.
+    - **fit to tracks:** T2 (grounded versus spurious references as set logic), T1 supersession exclusion.
+    - **decision:** adapt
+    - **why:** Take the must/must-not assertion formulation for scoring callbacks against gold relevant sets; the data itself is too small and vendor-built.
+    - **runnable:** AMB runs it in retrieval mode; standalone runtime not checked.
+    - **reported scores and saturation:** Baselines under half of active passes, precision 0.22 or below; its own vendor system passes everything.
+    - **known flaws:** Tiny, built by the vendor of the best-scoring system, English synthetic beliefs.
+  - MemRiskBench
+    - **url:** https://github.com/fuxue-mingzhu/MemRiskBench
+    - **measures:** Memory risks in long-horizon agents: stale facts, conflicting updates, cross-scope leakage, revoked-memory reuse, constraint decay, scored from execution traces.
+    - **items and size:** 120 scripted deterministic episodes; five locally run quantised models (Qwen2.5 1.5B/3B/7B and others via llama.cpp).
+    - **scoring:** Deterministic trace-grounded checks; no LLM judge on the pass/fail path (abstract).
+    - **licence:** None stated; 0 stars; README still has placeholder clone URLs.
+    - **fit to tracks:** T4 gate design, partly T3 leakage.
+    - **decision:** adapt
+    - **why:** Right shape for hard gates (scripted episode, trace check, no judge) and runs fully offline on local models; rewrite rather than depend on it.
+    - **runnable:** Python 3.11, conda, llama.cpp with GGUF models; fits a local $0 setup, not tested.
+    - **reported scores and saturation:** No headline scores in the abstract.
+    - **known flaws:** Immature (0 stars), no licence, small.
+  - PersistBench
+    - **url:** https://github.com/ivaxi0s/PersistBench
+    - **measures:** Safety risks of persistent memories: cross-domain leakage of remembered facts and memory-induced sycophancy.
+    - **items and size:** 500 questions (registry); 18 LLMs evaluated; single-turn with memories in the system prompt.
+    - **scoring:** LLM judge Kimi-K2-Thinking (registry); README recommends the Inspect-native version in UKGovernmentBEIS/inspect_evals (not verified).
+    - **licence:** None stated.
+    - **fit to tracks:** T3 leakage of fiction, T4 (probe design).
+    - **decision:** adapt
+    - **why:** Closest measured analogue to 'fiction leaking into unrelated contexts'; reuse the probe design with our own deterministic checks.
+    - **runnable:** Python; judge not in our flash-only list.
+    - **reported scores and saturation:** Median failure 53% cross-domain and 97% sycophancy (abstract).
+    - **known flaws:** Single-turn, judge-based, no licence.
+  - AI-identity disclosure evaluations (RealityTest, IsThisABotBench, Self-Transparency Failures in Expert-Persona LLMs)
+    - **url:** https://arxiv.org/pdf/2606.00168
+    - **measures:** Whether a model discloses it is an AI when a persona or operator instruction pushes against it, and how users probe identity.
+    - **items and size:** RealityTest 3,152 probes from about 750 participants in 49 countries and five languages; Self-Transparency audit uses professional personas; IsThisABotBench agentic with eight models (all from search summaries).
+    - **scoring:** RealityTest grader sorts replies into disclosure, human claim, ambiguous; Self-Transparency uses an LLM judge validated against humans.
+    - **licence:** Not determined.
+    - **fit to tracks:** T3 probes about its nature, T4 'never claim to be human' (probe source only; the gate itself should stay a deterministic filter).
+    - **decision:** adapt
+    - **why:** Real, human-written identity probes and a measured effect of persona framing are exactly what our probe set lacks; availability and licence must be checked first.
+    - **runnable:** Unknown.
+    - **reported scores and saturation:** Disclosure 99.8-99.9% with no persona versus 3.5-30.8% under professional personas; permission in the prompt lifts 23.7% to 65.8%.
+    - **known flaws:** Read only through search summaries; GitHub search did not find code.
+  - Ground Truth First (longitudinal memory instrument) and Veracium
+    - **url:** https://arxiv.org/abs/2607.21962
+    - **measures:** Longitudinal memory over 9-week synthetic user histories: single-fact, temporal, knowledge-update, expired-state, conflict resolution, abstention and false-premise abstention, injection probes (15 types).
+    - **items and size:** 383 validated questions; 14 short-horizon users (275 q) plus 6 tenure users (108 q at weeks 3, 6, 9); renderer Amazon Nova Pro.
+    - **scoring:** Versioned LLM judge (claude-sonnet-5) with a full DeepSeek v3.2 re-judge; abstention by a deterministic text rule.
+    - **licence:** Veracium library MIT; corpus CC BY 4.0 and generator MIT promised, package 'in preparation'.
+    - **fit to tracks:** Closest prior art to our whole T1 draft; also injection probes for T4.
+    - **decision:** reference-only
+    - **why:** Not runnable yet, but it is the template for ground-truth-first design and shows the pitfalls (judge noise, unaudited renderer precision, six user clusters).
+    - **runnable:** Not as a benchmark; Veracium repo has bench/run_bench.py and specs/ corpora but no clean generator release that I could identify.
+    - **reported scores and saturation:** Week 9 accuracy: hybrid 93.2, graph 90.4, vector 74.7, map 78.4, no memory 16.7.
+    - **known flaws:** One answerer (Haiku) sharing a family with the judge, hybrid system tuned on the dev corpus, cross-family judge stricter.
+  - GoodAI LTM Benchmark
+    - **url:** https://github.com/GoodAI/goodai-ltm-benchmark
+    - **measures:** Long-term memory and information integration in one long conversation with interleaved tests and filler.
+    - **items and size:** 33 tests, one long simulated interaction, context about 2k to 10k filler variants (registry); tests generated by code.
+    - **scoring:** Mostly code checks with a GPT-4-class judge for some tests (registry).
+    - **licence:** Not asserted (NOASSERTION); last push 2024-12-17.
+    - **fit to tracks:** T1 design precedent (code-generated tests, interleaving, memory span).
+    - **decision:** reference-only
+    - **why:** Shows procedural generation plus interleaving as a dial; stale and OpenAI-bound.
+    - **runnable:** Python 3.10, OPENAI_API_KEY.
+    - **reported scores and saturation:** Abstract: LLMs do well on single tasks but struggle when tasks are interleaved.
+    - **known flaws:** 2024 models, stale repo.
+  - BABILong
+    - **url:** https://github.com/booydar/babilong
+    - **measures:** Reasoning over facts hidden in very long filler text; 20 bAbI tasks inside PG19 background.
+    - **items and size:** HF sets of 100 or 1000 samples per task per length (0, 1k to 512k, 1M, 10M tokens); extendable to longer.
+    - **scoring:** Short exact answers (deterministic).
+    - **licence:** Apache-2.0.
+    - **fit to tracks:** T1 length-scaling precedent.
+    - **decision:** reference-only
+    - **why:** Proves an unbounded, exact-answer, procedurally generated length dial works, but the content is bAbI toy facts, not narrative memory.
+    - **runnable:** Python; HF data.
+    - **reported scores and saturation:** Abstract: popular LLMs use about 10-20% of context; RAG about 60% on single-fact QA (2024).
+    - **known flaws:** Simple fact types; filler is public-domain books.
+  - LongMemEval-V2
+    - **url:** https://github.com/xiaowu0162/LongMemEval-V2
+    - **measures:** Agent experience memory over multimodal web-agent trajectories: static state recall, dynamic state tracking, workflow knowledge, environment gotchas, premise awareness.
+    - **items and size:** 451 manually curated questions, up to 500 trajectories and 115M tokens per haystack, web and enterprise domains.
+    - **scoring:** LLM judge default gpt-5.2 (medium reasoning), reader Qwen3.5-9B.
+    - **licence:** Apache-2.0 (repo and HF dataset).
+    - **fit to tracks:** None directly; 'premise awareness' resembles false-premise traps.
+    - **decision:** reference-only
+    - **why:** Agentic web trajectories with screenshots and a paid GPT-5.2 judge are outside our conversation and writing domain.
+    - **runnable:** Python 3.11, conda, CUDA 12.4 torch, Codex binary for some modules.
+    - **reported scores and saturation:** Not read.
+    - **known flaws:** Heavy infrastructure.
+  - memory-bench-registry (Fengzdadi)
+    - **url:** https://github.com/Fengzdadi/memory-bench-registry
+    - **measures:** Structured registry of 207 agent-memory benchmarks, one YAML each, fields traced to sources (scale, judge, links, reproducibility level).
+    - **items and size:** 207 entries plus 213 pending files; 2026 entries 143.
+    - **scoring:** Not a benchmark.
+    - **licence:** MIT.
+    - **fit to tracks:** Discovery for all tracks.
+    - **decision:** reference-only
+    - **why:** Best index found and the source of most new candidates; metadata is secondary and nothing in it was smoke-tested or fully run.
+    - **runnable:** Static site and YAML.
+    - **reported scores and saturation:** Not applicable.
+    - **known flaws:** Reproducibility levels stop at official_script; some fields null.
+  - LoCoMo (snap-research)
+    - **url:** https://github.com/snap-research/locomo
+    - **measures:** Very long conversations (QA, event summarisation, multimodal dialogue generation).
+    - **items and size:** 10 conversations, about 300 turns and 9K tokens each, up to 35 sessions; about 1,540 scored questions per the audit.
+    - **scoring:** Original QA metric is token-overlap F1 (code read only partly); most 2025-2026 reports use LLM judges of varying strictness.
+    - **licence:** GitHub reports 'other'; README states none; derivative LoCoMo-Refined declares CC BY-NC 4.0, so treat as non-commercial until confirmed.
+    - **fit to tracks:** T1 (2-person chat recall, temporal, adversarial).
+    - **decision:** reference-only
+    - **why:** Near its corrupted ceiling (93.57% per audit) and licence unclear; use only the fixed or refined variants if at all.
+    - **runnable:** Python.
+    - **reported scores and saturation:** Issue titles claim 80.1% (generous judge) to 95.27%; EverMemOS 92.32% per the audit.
+    - **known flaws:** 6.4% wrong golds, dead image links, lenient judges, small per-category n.
+  - LoCoMo-Refined
+    - **url:** https://github.com/mem-eval-suite/LoCoMo_refined
+    - **measures:** LoCoMo with 337 revised questions and a stricter judge.
+    - **items and size:** 1,382 questions; judge Qwen/Qwen3-14B (open weights).
+    - **scoring:** LLM judge with strict temporal granularity and no unsupported additions; lexical metrics also provided.
+    - **licence:** CC BY-NC 4.0 (badge and LICENSE.txt).
+    - **fit to tracks:** T1 optional anchor with a local $0 judge.
+    - **decision:** reference-only
+    - **why:** Better LoCoMo than the original and its judge is an open 14B model, but LoCoMo adds little beyond LongMemEval for our tracks.
+    - **runnable:** Python 3.11+, scripts/run_eval.sh; judge size may need quantisation on a 12 GB GPU (not tested).
+    - **reported scores and saturation:** Best 82.65% (vendor, 2026-04-26); judge agreement 86.33% vs 43.67% for the original judge on 300 human labels (self-reported).
+    - **known flaws:** Self-reported validation; non-commercial licence.
+  - locomo-audit (dial481)
+    - **url:** https://github.com/dial481/locomo-audit
+    - **measures:** Independent audit of LoCoMo answer keys, judge leniency, per-category statistics and one vendor's token claims.
+    - **items and size:** 99 of 1,540 questions with wrong golds; 62.81% false accepts on deliberately wrong answers.
+    - **scoring:** Not a benchmark.
+    - **licence:** NOASSERTION.
+    - **fit to tracks:** Method for our judge calibration.
+    - **decision:** reference-only
+    - **why:** Its recipe (write intentionally wrong but topical answers and measure acceptance) is a cheap planted-control test for any judge we keep.
+    - **runnable:** Docs and scripts; not run.
+    - **reported scores and saturation:** Systems near the 93.57% ceiling.
+    - **known flaws:** Non-peer-reviewed; I read only the README.
+  - locomo-v2 (BrianV1981)
+    - **url:** https://github.com/BrianV1981/locomo-v2
+    - **measures:** Patched LoCoMo claimed '100% solvable'.
+    - **items and size:** 107 files; fixes for dead image links and ground-truth errors.
+    - **scoring:** Inherits LoCoMo.
+    - **licence:** NOASSERTION.
+    - **fit to tracks:** T1 (weak).
+    - **decision:** skip
+    - **why:** The 100% claim is a README self-description with no run behind it, and better-documented fixes exist (AMB locomo_fixed, LoCoMo-Refined).
+    - **known flaws:** Donation appeal and accusations about other projects in the README; unverified.
+  - The Cost of Remembering (RinDig)
+    - **url:** https://github.com/RinDig/cost-of-remembering
+    - **measures:** Filesystem-style markdown memory versus full long-context on LongMemEval-S, with token and dollar cost.
+    - **items and size:** 39 questions, 48 sessions per history, four arms.
+    - **scoring:** GPT-4o judge via LongMemEval's evaluator.
+    - **licence:** NOASSERTION (GitHub 'other').
+    - **fit to tracks:** T5 cost method; supports the thesis that LongMemEval cannot express the properties that matter.
+    - **decision:** reference-only
+    - **why:** Useful cost accounting, but the headline equality is underpowered (0.872 vs 0.744 not significant at n=39) and ordering flipped as n grew.
+    - **runnable:** Python, offline smoke tests; live runs cost money (about 330 USD for four arms at n=40).
+    - **reported scores and saturation:** Long-context 0.872, guided 0.744, autonomous 0.615.
+    - **known flaws:** Single user, single reader (Sonnet 5), synthetic English chat.
+  - agent-memory-benchmark (chenhz01)
+    - **url:** https://github.com/chenhz01/agent-memory-benchmark
+    - **measures:** Behaviour-layer conformance of memory systems: 11 machine-assertable clauses (write gates, quarantine, human sign-off, ratchet), L1-L5 rating, NMR forgetting metric.
+    - **items and size:** 12 files, 70 KB; zero-dependency checker and a mutation-test twin (27 frozen specs, 7 attack families).
+    - **scoring:** Deterministic checker over documents and a toy gate demo, not over memory content.
+    - **licence:** GitHub says Apache-2.0, README badge says MIT.
+    - **fit to tracks:** T4 idea source only.
+    - **decision:** reference-only
+    - **why:** A standard and checker rather than a benchmark; the mutation-twin idea (test the checker by breaking it) is worth copying for our hard gates.
+    - **reported scores and saturation:** None; 1 star; claims such as 'first public forgetting metric' are self-asserted.
+    - **known flaws:** Draft standard, no tasks, contact via a QQ mailbox.
+  - agent-memory-benchmark (datapace-ai)
+    - **url:** https://github.com/datapace-ai/agent-memory-benchmark
+    - **measures:** Memory products versus oracle, 32k window and file search with accuracy, tokens per answer, latency, ingestion cost, forgetting curve by distance and stale-value serving rate.
+    - **items and size:** Pilot of 10 questions, one seed, free models via OpenRouter; question set derived from LongMemEval.
+    - **scoring:** Three published judge rules.
+    - **licence:** None stated.
+    - **fit to tracks:** T1 and T5 metric ideas.
+    - **decision:** reference-only
+    - **why:** The stale-serve rate and forgetting curve are good metrics; n=10 makes the findings anecdotal.
+    - **reported scores and saturation:** Nobody beat file search (n=10).
+    - **known flaws:** Tiny pilot, no licence.
+  - agent-memory-benchmarks (RonsenbergVI)
+    - **url:** https://github.com/RonsenbergVI/agent-memory-benchmarks
+    - **measures:** Agentic runs of OSS memory systems on LoCoMo and LongMemEval scored by judge accuracy.
+    - **items and size:** Methodology settled, first results pending (README).
+    - **scoring:** LLM judge.
+    - **licence:** MIT (Python 3.13, uv).
+    - **fit to tracks:** None beyond duplicating AMB.
+    - **decision:** skip
+    - **why:** No results yet and no new items; its offline BM25 baseline without API key is a nice smoke test only.
+    - **known flaws:** 2 stars, no published numbers.
+  - wizeme-benchmarks (zrk222)
+    - **url:** https://github.com/zrk222/wizeme-benchmarks
+    - **measures:** Own harness on LoCoMo, LongMemEval, PersonaMem and a forgetting-aware accuracy metric (FAMA); retrieval Any@k and All@k.
+    - **items and size:** LoCoMo 1,982 retrieval questions; LongMemEval 470; E2E QA lanes of 300 questions.
+    - **scoring:** Retrieval hit metrics and LLM-judged QA.
+    - **licence:** GitHub NOASSERTION, README badge MIT.
+    - **fit to tracks:** None.
+    - **decision:** skip
+    - **why:** Repackages public sets with self-run results by one author; no new items.
+    - **reported scores and saturation:** LoCoMo Any@3 71.24%, LongMemEval Any@3 93.19%, LoCoMo E2E 83.67%.
+    - **known flaws:** Self-reported, 1 star.
+  - PersonaMem-v2 and v3
+    - **url:** https://github.com/bowen-upenn/PersonaMem-v2
+    - **measures:** v2: 1,000 personas, 20,000+ implicit preferences, 300+ scenarios in 128k-token chats; v3: omni-platform personal intelligence (no paper yet).
+    - **items and size:** v2 HF dataset reportedly 30,000 downloads (README claim); Dockerfile provided.
+    - **scoring:** Not read.
+    - **licence:** v2 none stated; v3 NOASSERTION.
+    - **fit to tracks:** T1 implicit preference inference.
+    - **decision:** reference-only
+    - **why:** Implicit inference is not our target and licences are unclear; v1 is the cleaner deterministic anchor.
+    - **reported scores and saturation:** v2 abstract: frontier 37-48%, a 4B model 53%, agentic memory 55% with 16x fewer tokens.
+    - **known flaws:** v3 unreleased paper.
+  - PersonaGym
+    - **url:** https://github.com/vsamuel2003/PersonaGym
+    - **measures:** Persona agents across free-form settings; PersonaScore.
+    - **items and size:** 200 personas, 10,000 questions, 10 LLMs.
+    - **scoring:** Automatic LLM-based metric (mechanism not stated in the abstract).
+    - **licence:** MIT.
+    - **fit to tracks:** T3 (persona consistency, persona in the prompt, no event memory).
+    - **decision:** reference-only
+    - **why:** Question-generation-per-persona idea only; judge-scored and static.
+    - **reported scores and saturation:** Abstract: model size does not necessarily improve persona capability.
+    - **known flaws:** Needs OpenAI/Anthropic/Together keys.
+  - CharacterEval
+    - **url:** https://github.com/morecry/CharacterEval
+    - **measures:** Chinese role-playing conversational agents, 13 metrics in 4 dimensions.
+    - **items and size:** 1,785 dialogues, 23,020 examples, 77 characters.
+    - **scoring:** Reward model CharacterRM plus human annotation.
+    - **licence:** MIT.
+    - **fit to tracks:** None.
+    - **decision:** skip
+    - **why:** Chinese, novel-derived characters, reward-model scoring, no event memory.
+    - **known flaws:** Language and domain mismatch.
+  - persona_drift
+    - **url:** https://github.com/likenneth/persona_drift
+    - **measures:** Instruction or persona stability in self-chats between two prompted chatbots.
+    - **items and size:** Plotting code only (8 files); benchmark described in arXiv 2402.10962.
+    - **scoring:** Not read.
+    - **licence:** None stated.
+    - **fit to tracks:** T3 stability measurement design.
+    - **decision:** reference-only
+    - **why:** The self-chat protocol is a cheap pressure test; the repo itself is not a runnable benchmark.
+    - **reported scores and saturation:** Drift within eight rounds (abstract).
+    - **known flaws:** Code is plotting only; 2024.
+  - ContextEcho
+    - **url:** https://github.com/Accenture/ContextEcho
+    - **measures:** Trained assistant persona drift in long agentic-coding sessions with a 25-probe identity suite.
+    - **items and size:** README: three donated sessions; abstract: 57 sessions and 23 targets; roughly 42K per-cell responses on HF.
+    - **scoring:** Judge-based and judge-free metrics.
+    - **licence:** Apache-2.0.
+    - **fit to tracks:** T3 (fork-and-probe design; anchor re-injection as a control).
+    - **decision:** reference-only
+    - **why:** Identity here is the assistant, not an invented biography; the fork-and-probe harness and anchor ablation are transferable ideas.
+    - **reported scores and saturation:** A single ~110-token anchor restores the register for 20+ turns (README).
+    - **known flaws:** Coding domain.
+  - LongLaMP and LaMP
+    - **url:** https://github.com/LongLaMP-benchmark/LongLaMP
+    - **measures:** Personalised long-form text generation (emails, abstracts, reviews, topic writing) conditioned on a user's profile documents; LaMP covers short personalised tasks.
+    - **items and size:** HF dataset LongLaMP/LongLaMP; Avocado email set not public; LaMP 210 stars.
+    - **scoring:** Reference-based text metrics (not confirmed from the sources I read); no callback labels.
+    - **licence:** None stated for either repo.
+    - **fit to tracks:** T2 baseline format (write the next piece from the author's own history).
+    - **decision:** reference-only
+    - **why:** Nearest published 'use your own earlier writing to write' task, but reference similarity does not measure grounded callbacks.
+    - **known flaws:** No licence, 2024-2025, no memory-use labels.
+  - LongBench v2
+    - **url:** https://github.com/THUDM/LongBench
+    - **measures:** Deep understanding over long documents.
+    - **items and size:** 503 multiple-choice questions, 8k to 2M words, six categories.
+    - **scoring:** Multiple-choice accuracy.
+    - **licence:** MIT.
+    - **fit to tracks:** None (single-document comprehension).
+    - **decision:** skip
+    - **why:** Not memory of a growing history; humans 53.7%, o1-preview 57.7% in 2024.
+    - **known flaws:** Not our domain.
+  - LoreGuard and story-tracker
+    - **url:** https://github.com/print636/LoreGuard
+    - **measures:** Tools: narrative consistency review workspace; SillyTavern extension tracking time and place.
+    - **items and size:** LoreGuard 773 files; story-tracker 5 files.
+    - **scoring:** None; LoreGuard states its screenshots are not model-quality benchmarks.
+    - **licence:** LoreGuard NOASSERTION; story-tracker MIT.
+    - **fit to tracks:** None.
+    - **decision:** skip
+    - **why:** Tools, not benchmarks.
+    - **known flaws:** No evaluation.
+  - ConStory-Bench
+    - **url:** https://arxiv.org/abs/2603.05890
+    - **measures:** Consistency errors inside long generated stories: 5 categories (timeline and plot logic, characterisation, world-building, factual detail, narrative and style), 19 subtypes.
+    - **items and size:** 2,000 prompts in four scenarios, 8-10k-word targets; project page picrew.github.io/constory-bench.github.io; code and data release not confirmed.
+    - **scoring:** ConStory-Checker (o4-mini) validated on 1,000 injected errors in 200 stories: precision 0.884, recall 0.550, F1 0.678.
+    - **licence:** Unknown.
+    - **fit to tracks:** T2 error taxonomy and injected-error validation protocol; internal consistency only.
+    - **decision:** reference-only
+    - **why:** Its taxonomy and 'inject known errors, measure judge recall' method are directly reusable; it does not check consistency against an external memory.
+    - **reported scores and saturation:** Consistency error density per 10K words from 0.113 (GPT-5-Reasoning) to 3.447 (MiniMax-M1).
+    - **known flaws:** English Western fiction, binary consistency flags intentional devices.
+  - NoCha, FlawedFictions, ContraDoc (narrative contradiction detection)
+    - **url:** https://github.com/marzenakrp/nocha
+    - **measures:** NoCha: true/false minimal claim pairs about 67 novels; FlawedFictions: plot-hole detection with synthetic holes; ContraDoc: human-annotated self-contradictions in long documents.
+    - **items and size:** NoCha 1,001 claim pairs; FlawedFictions and ContraDoc sizes not stated in abstracts.
+    - **scoring:** Binary or pairwise labels, human-written (NoCha, ContraDoc), algorithmic plus human filter (FlawedFictions).
+    - **licence:** NoCha MIT (54 stars), FlawedFictions MIT (17 stars); ContraDoc not checked.
+    - **fit to tracks:** T1 contradiction-detection format; minimal pairs for T3.
+    - **decision:** reference-only
+    - **why:** Good label designs (minimal pairs) but they test comprehension of other people's text, not memory of one's own archive.
+    - **reported scores and saturation:** NoCha 2024: GPT-4o 55.8%, open-weight models at chance.
+    - **known flaws:** Dataset availability for NoCha not checked; 2024 models.
+  - Writing-side tools: LongJudgeBench, ICL-diversity (Decan), Elias in the Lighthouse, Codified Foreshadowing-Payoff
+    - **url:** https://github.com/cjj826/LongJudgeBench
+    - **measures:** Reliability of LLM judges on long-form output; log-probability diversity metric; cross-story repetition statistics; setup-payoff triples mined from BookSum.
+    - **items and size:** Elias: 20,000 stories from four models; others not stated.
+    - **scoring:** Judge benchmark; statistical metrics; payoff accuracy.
+    - **licence:** Not checked (LongJudgeBench and icl-diversity code links come from abstracts).
+    - **fit to tracks:** T2 judge validation, repetition measure, callback-adjacent idea.
+    - **decision:** reference-only
+    - **why:** Cheap sources of judge-validation protocol and repetition statistics for the pairwise judge; none supplies gold callbacks.
+    - **reported scores and saturation:** 11 words occur in 88.3% of generated stories (Elias).
+    - **known flaws:** Foreshadowing release status unknown.
+  - Memory safety and poisoning set: MemTrapBench, MemSecBench, AgentPoison, MINJA
+    - **url:** https://github.com/zjunlp/MemTrapBench
+    - **measures:** MemTrapBench: cognitive traps in memory use (inertia, hallucination, unclear tasks, trauma, poison); MemSecBench: poisoning lifecycle from write to repair; AgentPoison and MINJA: memory or knowledge-base injection attacks.
+    - **items and size:** MemTrapBench 1,050 conversations (registry); MemSecBench 310 cases, paper only; AgentPoison 250 stars (MIT); MINJA 38 stars (MIT).
+    - **scoring:** MemTrapBench judged by GPT-5.2 (registry); MemSecBench deterministic write check plus judges; attacks report attack success rates.
+    - **licence:** MemTrapBench none stated; AgentPoison and MINJA MIT.
+    - **fit to tracks:** T4/T6 scenario ideas; attacks are not benchmarks of our gates.
+    - **decision:** reference-only
+    - **why:** Judge models and attack framing do not fit our flash-only, deterministic gates; use the scenario lists as test-case inspiration.
+    - **reported scores and saturation:** MemSecBench: poison persists in 84.2% of cases; MemTrapBench: best methods drop more than 10% versus no memory.
+    - **known flaws:** MemSecBench has no code or data public (registry, 2026-10-10).
+  - HaluMem
+    - **url:** https://github.com/MemTensor/HaluMem
+    - **measures:** Hallucinations at the operation level of memory systems: extraction, updating and QA.
+    - **items and size:** About 15k memory points, 3.5k questions, contexts above 1M tokens.
+    - **scoring:** Memory extraction F1, update and QA metrics with a GPT-4o judge (registry).
+    - **licence:** NOASSERTION.
+    - **fit to tracks:** T1 (grade the store, not only the answer).
+    - **decision:** reference-only
+    - **why:** Confirms the idea that a structured ground-truth state lets us score what the memory stored, which answer-only benchmarks cannot.
+    - **reported scores and saturation:** Systems accumulate hallucinations in extraction and updating (abstract).
+    - **known flaws:** Judge not in our list.
+  - MemoryBench (THUIR)
+    - **url:** https://github.com/THUIR/MemoryBench
+    - **measures:** Memory and continual learning from accumulated user feedback across domains, including writing subsets.
+    - **items and size:** About 4,063 queries (registry).
+    - **scoring:** Metric mix plus LLM judge (DeepSeek-V3 in later versions per registry).
+    - **licence:** MIT.
+    - **fit to tracks:** Later 'learning' stage of our plan; not T1-T4.
+    - **decision:** reference-only
+    - **why:** Only found benchmark that couples feedback learning with writing tasks; parked for the learning phase.
+    - **reported scores and saturation:** Baselines 'far from satisfying' (abstract).
+    - **known flaws:** Not read beyond registry and abstract.
+  - LoCoMo-Plus
+    - **url:** https://github.com/xjtuleeyf/Locomo-Plus
+    - **measures:** Latent constraints where the later trigger is worded very differently from the earlier cue (cue-trigger semantic disconnect).
+    - **items and size:** 401 items added as a sixth category to LoCoMo (registry).
+    - **scoring:** Constraint-consistency judge (Gemini-2.5-Flash per registry); abstract calls string matching misaligned.
+    - **licence:** None stated.
+    - **fit to tracks:** T1 paraphrase-without-overlap dial.
+    - **decision:** reference-only
+    - **why:** Evidence that semantic disconnect is a difficulty lever; items are judge-scored and unlicensed.
+    - **reported scores and saturation:** 'Cognitive memory remains challenging' (abstract).
+    - **known flaws:** No licence.
+  - Other registry and search finds read at metadata or abstract level: REALTALK, DialSim, PerLTQA, MemTrack, PM-Bench, StateMemBench, Tangle, EvolMem, Mem-Gallery, RUMBA; runners supermemoryai/memorybench, zjunlp/MemBase, roampal-labs
+    - **url:** https://github.com/danny911kr/REALTALK
+    - **measures:** REALTALK: 21-day real human chats (persona simulation and memory probes); DialSim: multi-party TV dialogue with unanswerable questions (>352k tokens); PerLTQA: personal long-term memory QA; PM-Bench: prospective memory, deterministic synthetic week; StateMemBench: evolving-state tracking with close...
+    - **items and size:** REALTALK Apache-2.0, 52 stars; DialSim >1,300 sessions; PM-Bench 81 questions; StateMemBench 234 scenarios; Tangle 541 instances and 40 personas.
+    - **scoring:** Mixed; StateMemBench and PM-Bench judge identity not confirmed; MemoryBench-style runners use LLM judges.
+    - **licence:** REALTALK Apache-2.0; DialSim none; PM-Bench none; supermemoryai/memorybench MIT; MemBase MIT.
+    - **fit to tracks:** REALTALK supports a real-data tier; StateMemBench's closed-pool grading and PM-Bench's deterministic week inform T1/T4.
+    - **decision:** reference-only
+    - **why:** Useful design notes (real chats show persona stability that synthetic data lacks per REALTALK's abstract), none is a drop-in for our tracks, and several have no released data.
+    - **reported scores and saturation:** StateMemBench current-state accuracy 0.149-0.363; PM-Bench best 65.1% F1.
+    - **known flaws:** Several are paper-only (registry, 2026-10-10).
+- **design verdict**
+  - Procedural world generator with a structured ground-truth ledger (persona card, dated events, entities, belief changes, storylines, note history)
+    - **verdict:** keep
+    - **why:** Ground Truth First, LifeBench, AMemGym, STALE, GoodAI and BABILong show the approach works and yields unsaturated tasks; none targets a published-writer archive, so our scope is still unique.
+    - **change:** Drop any novelty claim; copy validity intervals, volatility classes and source channels from Ground Truth First; add a renderer audit that checks both omitted and unsupported facts, fictionalised names and numbers, and a memory-dependence filter (no-memory and persona-card-only arms must sit near f...
+  - Exact answers with no model judge for T1
+    - **verdict:** change
+    - **why:** Judge noise is documented (kappa 0.60 cross-family, 62.81% false accepts on LoCoMo, lenient LongMemEval update prompt), so exact scoring is right, but free-text paraphrased answers will undercount unless the answer space is closed.
+    - **change:** Make answers structured (entity ids, ISO dates, integers) or closed-pool multiple choice with 4-7 plausible options drawn from the same state (AMemGym), or classify into current / superseded / other by pool matching (StateMemBench); keep a small judged slice only to measure the paraphrase-undercoun...
+  - Task list (recall, multi-hop, temporal, as-of, supersession, counting, contradiction, abstention, rare names, paraphrase, near-duplicates, long-range)
+    - **verdict:** change
+    - **why:** Public suites show which types are hard: contradiction resolution (BEAM 0.000-0.037), implicit invalidation and premise resistance (STALE 0-30), multi-hop updates (FC-MH 28% max).
+    - **change:** Add implicit invalidation without an explicit 'changed' cue, premise-bearing questions, event-order scoring (Kendall tau as in BEAM), expired-state and pattern/hidden-information items (LifeBench categories), and the same question set asked at several history lengths (tenure checkpoints).
+  - Abstention traps built from plausible never-happened events
+    - **verdict:** change
+    - **why:** Plain 'no information' abstention is easy (BEAM abstention 0.75 vanilla at 10M) whereas false-premise queries are hard (STALE premise resistance near zero for most models).
+    - **change:** Make the trap carry the premise inside the question (presupposes a never-happened event) and score abstention with a deterministic rule on the answer (Ground Truth First style), plus a spurious-reference count in generation tasks.
+  - Callback scoring from a structured sidecar against the gold set of relevant earlier items (grounded / spurious / missing)
+    - **verdict:** keep
+    - **why:** No public benchmark scores this; set assertions with must-not-return logic (PrecisionMemBench) and gold evidence labels (LongMemEval has_answer) are the closest precedents.
+    - **change:** Treat the sidecar as a self-report: verify each claimed reference against the text deterministically (entity or quote present) and scan the text for undeclared references to state entities; keep planted controls (declared-but-absent, present-but-undeclared).
+  - Pairwise judge with planted controls for writing quality (T2)
+    - **verdict:** keep
+    - **why:** Evidence supports planted controls: ConStory-Checker found only 55% of injected contradictions and professional writers 14%, locomo-audit shows 62.81% false accepts.
+    - **change:** Use the judge for quality only, never for callback correctness; require measured recall and false-accept rates on injected errors (ConStory protocol, locomo-audit style wrong-but-topical answers) before trusting it; validate with LongJudgeBench-style checks if budget allows.
+  - Difficulty dials and fresh seeds with a harder tier on demand
+    - **verdict:** keep
+    - **why:** Length, update chains, implicitness, multi-hop share and interleaving each have measured collapses in public suites; seeds remove instance-level contamination.
+    - **change:** State the contamination claim narrowly (instances, not templates); hold out template families; define the regeneration rule in oracle-normalised terms (AMemGym) and test that systems are not tuned on the dev seeds.
+  - Real-data tier replaying the 234 published notes
+    - **verdict:** change
+    - **why:** There is no ground truth for 'related earlier note' (our model-rated scale failed twice) and no public precedent with gold for a real publication archive; REALTALK is the only real-chat precedent and it is chat, not writing.
+    - **change:** Drop any relevance-gold on real notes. Keep only gold that exists in the text (explicit links, quotes, repeated named entities), deterministic gates (a claimed earlier piece must match an archive entry), repetition statistics against the archive, and planted-reference augmentation where gold is kno...
+  - T3 persona integrity (stability, bounded change after equated events with a valence-free control, pressure, leakage, nature probes with output filter)
+    - **verdict:** keep
+    - **why:** Nothing found covers biography integrity with events; adjacent tools (persona_drift, ContextEcho, PersonaGym, PersistBench, AI-disclosure studies) validate individual probes.
+    - **change:** Borrow the self-chat pressure protocol, fork-and-probe harness with an anchor-reinjection control, PersistBench-style leakage probes and human-written identity probes; keep our event-equating design as the new part.
+  - T4 hard gates (never claim to be human, never invent a reference to an earlier piece)
+    - **verdict:** change
+    - **why:** Disclosure studies show persona framing drives claims of being human (3.5-30.8% disclosure under professional personas), and MemRiskBench shows deterministic trace checks are feasible; no source tests an output filter itself.
+    - **change:** Score gates deterministically on traces, test the filter with a mutation twin (chenhz01 idea) and with human-written probe sets, and report gate failure per 1,000 outputs with confidence bounds rather than accuracy.
+  - External yardstick tier (new)
+    - **verdict:** add
+    - **why:** The owner's correction stands: public memory benchmarks measure memory and give comparability that a home-made set cannot.
+    - **change:** Run our reader and Hindsight on cleaned LongMemEval-S (harness check), STALE, MemoryAgentBench FactConsolidation, a BEAM 100K-1M slice and PersonaMem 32k; report them as calibration anchors, not as the headline.
+  - Control ladder (no memory, instruction-only, always-on memory, oracle context)
+    - **verdict:** keep
+    - **why:** MemTrapBench finds all memory strategies below no-memory; AMB's oracle mode and AMemGym's upper-bound normalisation are the same idea.
+    - **change:** Add a shuffled-memory control to detect priors and surface cues, and report every score as a fraction of the oracle arm.
+  - Cost track (T5)
+    - **verdict:** keep
+    - **why:** Public harnesses already report answer-visible tokens, indexing tokens and latency (OAMB, AMB, datapace).
+    - **change:** Add cost per correct answer and the stale-serve rate and forgetting-by-distance curve from the datapace pilot.
+- **difficulty dials**
+  - History length / tokens in context
+    - **range:** Tiers matching 6K, 32K, 64K, 262K tokens (MemoryAgentBench) up to 1M; 3, 6, 9 simulated weeks as in Ground Truth First; ask the same questions at each checkpoint
+    - **expected effect:** Large accuracy loss for long-context and RAG arms and possible reordering of memory architectures; short tiers tie systems and compress differences
+  - Updates per fact (supersession chain length)
+    - **range:** 1 to 8 values per attribute, with serial or dated markers present or absent
+    - **expected effect:** Stale-value answers rise with chain length; accuracy collapses when the newest value must be inferred rather than read from a marker
+  - Implicitness of invalidation
+    - **range:** Explicit 'now X instead of Y' versus later facts that only imply the old one is void (STALE types I and II)
+    - **expected effect:** Large drop for implicit cases; premise resistance near zero for most models
+  - Share of multi-hop items
+    - **range:** 0% to 60% of questions needing 2-4 relations
+    - **expected effect:** Sharp fall versus single-hop at equal length
+  - Premise-bearing abstention traps
+    - **range:** 0% to 30% of questions, each presupposing a plausible never-happened event
+    - **expected effect:** Models answer from the false premise; plain no-information abstention stays easy
+  - Interleaving of tasks and topics
+    - **range:** Single thread versus 3-10 interleaved storylines or competing test streams
+    - **expected effect:** Lower recall and more cross-thread leakage
+  - Paraphrase distance (cue-trigger semantic disconnect)
+    - **range:** From shared lexical anchors to none; generate paraphrases with a held-out template family and verify entailment
+    - **expected effect:** Lexical retrievers fail first; embedding or agentic memory degrades more slowly
+  - Near-duplicate entities and interference
+    - **range:** 1 to 10 confusable people, places or projects per type, each with unique gold
+    - **expected effect:** More wrong-entity answers; spurious callbacks to look-alike notes
+  - Temporal span and number of periods
+    - **range:** 11 versus 21 state periods (AMemGym base vs extra), months to years of simulated time
+    - **expected effect:** Later-period accuracy falls below 50% of the oracle bound for most readers
+  - Noise / filler volume and unrelated chatter
+    - **range:** 0% to 90% filler tokens
+    - **expected effect:** Needle retrieval degrades; models use only a small fraction of context
+  - Fictionalisation and rarity of names and numbers
+    - **range:** Common real-world entities versus fully fictional rare strings
+    - **expected effect:** Prior-answerable items disappear; the no-memory floor falls toward chance or zero
+  - Compounding across steps (dependent writing sessions)
+    - **range:** 1 to 10 consecutive notes where each note depends on the previous generated outputs
+    - **expected effect:** Errors and spurious callbacks accumulate; repetition against own history increases
+- **traps**
+  - Judge swap breaks comparability: published LongMemEval numbers use gpt-4o-2024-08-06 judging; BEAM, AMB and others use Gemini or GPT-4.1-mini; Ground Truth First saw a DeepSeek judge much stricter than a Claude judge. Our deepseek-flash numbers can only be compared qualitatively, so always run the...
+  - Self-reported leaderboard claims (91-100% on LongMemEval-S, 'world record', '100% solvable' LoCoMo) mix retrieval-only recall@k with end-to-end accuracy, different readers, judges and sometimes oracle metadata; do not use them to argue about headroom.
+  - Retrieval recall (R@5, Any@3) is not answer accuracy; several advertised numbers are retrieval-only.
+  - 'Statistically indistinguishable' at n=39, 60 or 10 questions means unresolved, not equal (RinDig 0.872 vs 0.744; OAMB; datapace).
+  - AMB is run by the authors of Hindsight (the system we host) and PrecisionMemBench by the vendor of the system that passes it; discount their leaderboards and read the code instead of the headline.
+  - Licences: AMB, PersonaMem-v2, MemRiskBench, MemTrapBench, PersistBench, LongLaMP, LaMP, DialSim, Locomo-Plus and persona_drift state none; LoCoMo is unclear and LoCoMo-Refined is CC BY-NC 4.0; BEAM data is CC BY-SA 4.0; two READMEs (chenhz01, wizeme) disagree with GitHub's licence field. Use locall...
+  - The registry's official_script label means a script exists; the registry itself ran nothing (smoke_tested 0, full_run 0), and I ran nothing either, so every 'runnable' entry here is unverified.
+  - Most harnesses default to paid non-DeepSeek models (GPT-4o, GPT-5.2, Gemini, Claude, Kimi); several fixed judges are not allowed under the flash-only rule, and AMB needs GEMINI_API_KEY unless OPENAI_BASE_URL redirect works (untested).
+  - A generator that renders text with an LLM can silently add facts, so gold labels become wrong in the same way LoCoMo's did; audit unsupported additions, not just presence of planted facts.
+  - Using the same model family as generator, reader and judge inflates agreement (Ground Truth First limitation); keep roles separate or report them per family.
+  - Template-level familiarity survives fresh seeds; if our generator's formats leak into public data or are learned by tuned systems, hold out template families and keep a real-data tier.
+  - Sidecar callbacks are self-reports: a writer can over-cite to game 'grounded' counts or reference items without declaring them; score spurious and undeclared references too.
+  - Per-category n is small even in large suites (LoCoMo open-domain n=96 needs a 15+ point gap); plan at least 150 items per reported cell, several independent worlds, and bootstrap by world (Ground Truth First's six clusters were too coarse).
+  - Cost scales with ingestion, not only questions: OAMB logged about 58M indexing tokens for 60 LongMemEval-S questions (about 8x the raw histories); full-context LongMemEval-S is roughly 57-92M input tokens per 500 questions (README 115k tokens per history; RinDig measured 184k tokens per query with...
+  - Many repos assume Linux and CUDA or llama.cpp builds (LongMemEval full env CUDA 12.1, PersonaMem-v2 GPU Dockerfile, MemRiskBench llama.cpp); our host is Windows with Docker and a 12 GB GPU.
+  - Search coverage is weak: GitHub multi-word queries often returned zero hits, and several T4 and T2 leads (RealityTest, IsThisABotBench, Foreshadowing-Payoff, LongJudgeBench) were found only through paper listings, so 'not found' is not 'does not exist'.
+- **calibration plan:** Step 1, harness sanity with deepseek-flash only: take a stratified 120-question slice of cleaned LongMemEval-S (20 per type including abstention), run (a) no memory, (b) oracle file, (c) full context, (d) our Hindsight, using the official judge prompts with the model_zoo entry patched to deepseek-f...
+- **gaps not covered by anything found**
+  - Use of memory while generating a piece of writing: grounded versus spurious versus missing callbacks scored against a gold set of relevant earlier notes (nothing found; ConStory checks only the story against itself, Foreshadowing-Payoff mines triples without a released benchmark I could verify, Lon...
+  - Repetition and self-plagiarism measured against the writer's own archive with ground truth for which earlier pieces overlap (diversity papers measure across generations, not against an archive).
+  - Integrity of an invented biography: stability, bounded change after equated life events with a valence-free control, leakage of fiction into unrelated outputs (PersonaGym, persona_drift, ContextEcho, PersistBench cover neighbours only).
+  - The two T4 gates tested on the persona with memory in context: 'never claim to be human' (adjacent human-written probe sets exist but I did not verify their availability) and 'never invent a reference to an earlier piece' (no benchmark found), including tests of the output filter itself.
+  - A real archive of a small publication with gold links between pieces; REALTALK is real chat, LongLaMP is reviews and abstracts, and no Substack-style corpus with gold relevance turned up.
+  - Counting and aggregation over a writer's own history (how many notes mention X) with exact answers; LifeBench has pattern-recognition items but not over published notes.
+  - Learning and decisions from outcomes of earlier pieces: MemoryBench covers feedback learning, MemoryArena (agentic tasks, ICML 2026) was only seen as a README mention; nothing found for editorial decisions.
+  - A live harm check (T6) for an autonomous publishing persona: only attack papers (AgentPoison, MINJA) and a lifecycle poisoning paper without public code (MemSecBench).
+  - Headroom statements for 2026-generation readers on most newer suites: BEAM, PersonaMem and AMemGym report old or small models, so how hard they are for current models is unmeasured.
+- **uncertainties**
+  - I ran no code and downloaded no datasets; every 'runnable' statement, including DeepSeek redirect via OPENAI_BASE_URL in AMB, is inference from READMEs and environment-variable usage.
+  - Scoring code was read only for LongMemEval (judge prompts), AMB (judge prompt snippets), PersonaMem (answer extraction) and part of LoCoMo evaluation.py; for RinDig, OAMB, wizeme, RonsenbergVI, PersonaGym, CharacterEval, ContextEcho, LongLaMP, LaMP, BABILong, LongBench, STALE judge prompts and Memo...
+  - Several full-text reads were truncated by the fetch tool (Ground Truth First 100k of 118k chars, MemoryAgentBench 100k of 176k, AMemGym 100k of 138k, BEAM 100k of 190k, ConStory 100k of 124k), so limitations or judge identities in the unread tails may differ; BEAM's judge model is not named in the...
+  - The registry is a secondary source whose fields were checked by its authors on 2026-10-10; judge models, sizes and licences taken from it (BEAM CC BY-SA 4.0, STALE CC BY 4.0, MemoryBench judge, MemTrapBench judge, LifeBench judge) were not re-checked against primary pages.
+  - Hindsight 91.4 and 94.6 percent, PwC Chronos 95.6 percent, Mastra 94.87 percent, and the AI-disclosure results come from web-search summaries; their primary pages were not opened and Chronos' reader and judge configuration is described only by a secondary summary.
+  - The Ground Truth First sentence about 'MemGym' diagnostics being answerable from priors names a benchmark I could not match with certainty to AMemGym, and I could not verify the 70-85 percent figure.
+  - LoCoMo's licence is unresolved (no LICENSE file found, GitHub says other, a derivative says CC BY-NC 4.0), and the original metric is described as token F1 from my recollection of the paper plus partial code, not a complete read.
+  - The locomo-audit figures (99 of 1,540 wrong, ceiling 93.57 percent, 62.81 percent false accepts) are from its README only; the audit is non-peer-reviewed and its full report and scripts were not opened.
+  - The two 55.2 percent figures (STALE best model; LifeBench top systems) are both in the respective abstracts as read through the arXiv API, so the coincidence is real, but they measure different things and different model sets.
+  - Whether the Hindsight container version we run matches OAMB's pinned 0.9.2 or AMB's provider interface is unknown.
+  - GitHub search returned zero hits for many multi-word queries, so the negative results for callbacks, serial-writing and persona-integrity benchmarks depend on arXiv API and web search coverage and could miss items.
+  - Star counts are as of 2026-11-01 and match the task list for the original candidates; star counts of newly found repos were read in the same session.
+
+Sources read (28):
+
+- https://github.com/xiaowu0162/LongMemEval (GitHub README + code + issues; gh api: README (first 9.5k chars), file tree, src/evaluation/evaluate_qa.py (grep of mode...)
+- https://huggingface.co/api/datasets?author=xiaowu0162&limit=10 (Hugging Face API JSON; WebFetch; licence tags and download counts only (no dataset card opened))
+- https://github.com/xiaowu0162/LongMemEval-V2 (GitHub README; gh api README first 7.5k chars + tree)
+- https://github.com/vectorize-io/agent-memory-benchmark (GitHub README + code; gh api: README in full, tree (252 files), grep of dataset/judge code for longmemeval, loc...)
+- https://github.com/Fengzdadi/memory-bench-registry (GitHub README + 29 YAML entries (secondary source); gh api: README header and headings, 29 benchmarks/*.yaml fetched and field-extracted (sca...)
+- https://github.com/chenhz01/agent-memory-benchmark (GitHub README; gh api README in full)
+- https://github.com/datapace-ai/agent-memory-benchmark (GitHub README; gh api README in full (results/ and METHODS.md not opened))
+- https://github.com/rocke2020/open-agent-memory-benchmark (GitHub README; gh api README first 2.3k chars plus grep of docker/judge/licence lines)
+- https://github.com/RonsenbergVI/agent-memory-benchmarks (GitHub README; gh api README first 2.3k chars plus grep)
+- https://github.com/zrk222/wizeme-benchmarks (GitHub README; gh api README first 2.3k chars)
+- https://github.com/RinDig/cost-of-remembering (GitHub README + generated paper table; gh api README to ~6k chars; paper/tables/main.tex (main accuracy and cost table); harness...)
+- https://github.com/BrianV1981/locomo-v2 (GitHub README; gh api README first 3.6k chars)
+- https://github.com/snap-research/locomo (GitHub README + code + issues; gh api: README first 2.6k chars, task_eval/evaluation.py (first 14 grep hits only), 25 is...)
+- https://github.com/mem-eval-suite/LoCoMo_refined (GitHub README; gh api README first 3.3k chars)
+- https://github.com/dial481/locomo-audit (GitHub README (third-party audit); gh api README first 2.3k chars; AUDIT_REPORT.md and results-audit/ not opened)
+- https://github.com/JordanMcCann/agentmemory (GitHub README (self-report); gh api README first 1.5k chars)
+- https://github.com/bowen-upenn/PersonaMem (plus -v2, -v3) (GitHub README + code; gh api README heads (3.3k / 1.9k / 1.9k chars); inference.py grep for answer extraction)
+- https://github.com/vsamuel2003/PersonaGym ; morecry/CharacterEval ; likenneth/persona_drift ; Accenture/ContextEcho (GitHub READMEs; gh api README heads (1.3k-3.3k chars each))
+- https://github.com/LongLaMP-benchmark/LongLaMP ; LaMP-Benchmark/LaMP ; booydar/babilong ; THUDM/LongBench ; print636/LoreGuard ; virgilianshailer/story-tracker (GitHub READMEs; gh api README heads or grep (LongLaMP 2.1k, BABILong 2.3k, LoreGuard 1.1k, LongBench and...)
+- https://github.com/mohammadtavakoli78/BEAM ; https://arxiv.org/html/2510.27246 (GitHub README + tree + paper HTML; gh api README grep and tree; WebFetch of paper HTML (first 100k of 190k chars: Table 1, j...)
+- https://github.com/AGI-Eval-Official/amemgym ; https://arxiv.org/html/2603.01966 (GitHub README + tree + paper HTML; gh api README and tree; WebFetch paper HTML (first 100k of 138k chars))
+- https://arxiv.org/html/2607.21962 ; https://github.com/veracium-ai/Veracium (Paper HTML + GitHub README + tree; WebFetch paper HTML (first 100k of 118k chars); gh api Veracium README grep and 1,145-fil...)
+- https://github.com/HUST-AI-HYZ/MemoryAgentBench ; https://arxiv.org/html/2507.05257 (GitHub README + paper HTML; gh api README head; WebFetch paper HTML (first 100k of 176k chars; appendix on judges not...)
+- https://github.com/icedreamc/STALE ; fuxue-mingzhu/MemRiskBench ; tenurehq/precisionmembench ; GoodAI/goodai-ltm-benchmark ; 1754955896/LifeBench (GitHub READMEs, trees, one docs page; gh api README heads (1.5k-2.6k chars), STALE results table, LifeBench docs/generation.md...)
+- https://export.arxiv.org/api/query (id_list batches 1-3 and one title search, ~45 papers) (arXiv API abstracts; WebFetch of Atom XML with a summarising prompt, four calls; abstract-level facts only)
+- https://arxiv.org/html/2603.05890 (ConStory-Bench) (Paper HTML; WebFetch, first 100k of 124k chars)
+- WebSearch: Chronos 95.6% LongMemEval; Hindsight LongMemEval; AI-disclosure benchmarks; serial-writing/callback benchmarks (Web search result summaries; four standard WebSearch calls; summaries only, primary pages for Chronos, Hindsight, Real...)
+- GitHub search API (gh search repos and search/repositories) plus https://github.com/Picrew/awesome-llm-story-generation (GitHub search results and a curated list; about 30 queries; several multi-word queries returned zero, so absence of hits is weak ev...)
+
