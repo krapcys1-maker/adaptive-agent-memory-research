@@ -147,3 +147,46 @@ def test_measures_analysis_and_the_command_line_write_aggregates(rows, tmp_path:
     capsys.readouterr()
     assert "provenance" in json.loads((tmp_path / "m.json").read_text(encoding="utf-8")) and "# AAM-E2-FU deterministic measures" in (tmp_path / "m.md").read_text(encoding="utf-8")
     assert afu.main(["measures", str(tmp_path / "missing.jsonl")], embedder=FakeEmbedder()) == 2
+
+
+def fake_pair_judge(system: str, user: str, seed: int, opts: dict) -> dict:
+    notes = re.search(r"NOTE 1:\n(.*?)\n\nNOTE 2:\n(.*?)\n\nWhich note", user, re.S).groups()
+    scores = [(2 if "BUILDS ON EARLIER" in n else 0) + (1 if "Follow-up" in n else 0) for n in notes]
+    winner = "TIE" if scores[0] == scores[1] else ("1" if scores[0] > scores[1] else "2")
+    return {"text": "WINNER: %s" % winner}
+
+
+def test_winners_are_parsed_and_scored_for_the_note_that_was_shown_first_or_second() -> None:
+    assert afu.parse_winner("WINNER: 2") == 2 and afu.parse_winner("winner = tie") == 0 and afu.parse_winner("no idea") is None
+    assert afu.x_score_of(1, 0) == 1.0 and afu.x_score_of(1, 1) == 0.0 and afu.x_score_of(2, 1) == 1.0 and afu.x_score_of(0, 1) == 0.5
+    assert afu.x_score_of(None, 0) is None
+
+
+def test_the_pairwise_run_compares_every_follow_up_pair_in_both_orders_and_finds_that_memory_wins(rows, tmp_path: Path) -> None:
+    out = tmp_path / "pairs.jsonl"
+    written = afu.pair_run(rows, out, fake_pair_judge, workers=4, log=lambda line: None, controls_each=4)
+    follow_days = sum(1 for r in rows if r["arm"] == "A0" and r["kind"] == "followup" and r["day"] >= afu.ANALYSIS_FROM)
+    assert written == follow_days * 5 * 2 + 4 * 2 and afu.pair_run(rows, out, fake_pair_judge, workers=4, log=lambda line: None, controls_each=4) == 0
+    result = afu.pair_analysis(afu.load_jsonl(out), draws=300)
+    assert result["judge_informative"] and result["control_win_rate"] == pytest.approx(1.0)
+    assert result["pairs"]["A2-A0"]["win_rate"] == pytest.approx(1.0) and result["pairs"]["A3-A2"]["win_rate"] == pytest.approx(0.5)
+    assert result["share_choosing_note_1"] == pytest.approx(0.5, abs=0.1)         # no position bias in the fake judge
+    reading = afu.pair_reading(result)
+    assert reading["memory_helps_where_relevant"] and reading["arms_that_gain"] == ["A2", "A3"]
+    per_judge = {"fake": afu.judge_analysis([], draws=10)} if False else {}
+    assert afu.final_readings(per_judge, result)["memory_helps_where_relevant"] is True
+
+
+def test_a_pairwise_judge_that_cannot_prefer_the_real_note_to_a_copy_is_not_used() -> None:
+    blind = [{"x": "A0", "y": "copy", "seed": 1, "day": 9 + i, "order": o, "control": "copy", "winner": 0, "x_score": 0.5, "raw": "WINNER: TIE"} for i in range(6) for o in (0, 1)]
+    real = [{"x": "A2", "y": "A0", "seed": 1, "day": 9 + i, "order": o, "control": None, "winner": 1 if o == 0 else 2, "x_score": 1.0, "raw": ""} for i in range(8) for o in (0, 1)]
+    result = afu.pair_analysis(real + blind, draws=100)
+    assert not result["judge_informative"] and not afu.pair_reading(result)["memory_helps_where_relevant"]
+
+
+def test_the_command_line_analyses_pairwise_results(rows, tmp_path: Path, capsys: pytest.CaptureFixture) -> None:
+    out = tmp_path / "pairs.jsonl"
+    afu.pair_run(rows, out, fake_pair_judge, workers=4, log=lambda line: None, controls_each=4)
+    assert afu.main(["pair-analyse", str(out), "--json", str(tmp_path / "p.json"), "--md", str(tmp_path / "p.md")]) == 0
+    capsys.readouterr()
+    assert "AAM-E2-FU pairwise judge" in (tmp_path / "p.md").read_text(encoding="utf-8") and "reading" in json.loads((tmp_path / "p.json").read_text(encoding="utf-8"))

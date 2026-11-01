@@ -26,6 +26,13 @@
    "informative_if_noticed_at_least": 0.75,
    "other_story": 12
   },
+  "pairwise": {
+   "control": "real A0 note against a copy of the earlier note, must win in at least 75%",
+   "interval_above": 0.5,
+   "model": "deepseek-v4-pro",
+   "scope": "follow-up notes, 8 arm pairs, both orders",
+   "win_rate_needed": 0.6
+  },
   "qwen": {
    "model": "qwen2.5:14b-instruct",
    "scope": "all follow-ups and a random quarter of the fresh notes"
@@ -80,7 +87,7 @@
   "threshold_rule": "highest step of 0.05 that keeps 90% of the true follow-up -> story pairs on the calibration streams"
  },
  "script_sha256": {
-  "scripts/analyze_followup_memory_sim.py": "85252260e16029b4e26da48ef34cf71acacc221ce9757f9afba9cf178d469da4",
+  "scripts/analyze_followup_memory_sim.py": "1e883aadd31f4ea6d7bed62de6ae0044f4a90b28e0a3ba4872fa00ba4b102f2e",
   "scripts/followup_memory_sim.py": "cc5483a1e7ba00b8ef11bbf42ebb21a0db9a81d738b8ab35ec2b438892e06f53",
   "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
   "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",

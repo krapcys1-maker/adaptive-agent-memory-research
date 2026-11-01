@@ -263,15 +263,142 @@ def reading_for_judge(result: dict) -> dict:
                                                    "notes better" if tn["mean"] <= -TRACE_VS_NOTES and tn["ci_high"] < 0 else "equivalent here")}
 
 
-def final_readings(per_judge: Dict[str, dict]) -> dict:
+def final_readings(per_judge: Dict[str, dict], pairwise: Optional[dict] = None) -> dict:
     out = {name: reading_for_judge(res) for name, res in per_judge.items()}
     helps = [r["memory_helps_where_relevant"] for r in out.values() if r["continuity_informative"]]
     harms = [r["always_on_harms"] for r in out.values()]
+    if pairwise is not None:                                   # the pairwise judge is one more judge: it counts only if it passes its control
+        reading = pair_reading(pairwise)
+        out["pairwise"] = reading
+        if reading["informative"]:
+            helps.append(reading["memory_helps_where_relevant"])
     return {"per_judge": out, "memory_helps_where_relevant": (all(helps) if helps else None),
             "judges_disagree_on_help": bool(helps) and any(helps) and not all(helps), "always_on_harms": (any(harms) if harms else None)}
 
 
 # ------------------------------------------------------------------------------------------------------------------------- output
+
+
+# ----------------------------------------------------------------------------------------------------------------- pairwise judge
+PAIRS = (("A1", "A0"), ("A2", "A0"), ("A3", "A0"), ("A2", "A1"), ("A3", "A2"), ("A0i", "A0"), ("A2", "A0i"), ("A3", "A0i"))
+PAIR_SYSTEM = "You are a careful, sceptical editor comparing two short notes. Reply with one line and nothing else."
+PAIR_OPTS = {"temperature": 0.0, "top_p": 1.0, "num_predict": 20}
+PAIR_WIN_RATE = 0.60
+PAIR_CONTROL_NEEDED = 0.75
+WINNER = re.compile(r"(?i)\bwinner\b\W{0,4}[:=]\s*(1|2|tie)\b")
+
+
+def pair_prompt(hook: str, base: str, note1: str, note2: str) -> str:
+    return ("Item the author is writing about (a development of an earlier story): %s\n\nThe author's earlier note on that story:\n%s\n\n"
+            "NOTE 1:\n%s\n\nNOTE 2:\n%s\n\nWhich note builds better on the earlier note: accurate about what that note said, specific about what changed, "
+            "no contradiction, not a mere repetition of it?\nReply with one line in the form WINNER: 1, WINNER: 2 or WINNER: TIE." % (hook, base, note1, note2))
+
+
+def parse_winner(raw: str) -> Optional[int]:
+    m = WINNER.search(raw)
+    return None if not m else (0 if m.group(1).lower() == "tie" else int(m.group(1)))
+
+
+def pair_tasks(rows: Sequence[dict], controls_each: int = CONTROLS_EACH) -> List[dict]:
+    """Every follow-up note of every arm pair on the same item, in both orders, plus planted controls (a real A0 note against a copy of the earlier note)."""
+    cell = {(r["arm"], r["seed"], r["day"]): r for r in rows if r["kind"] == "followup" and r["day"] >= ANALYSIS_FROM}
+    tasks = []
+    for (arm, seed, day), r in sorted(cell.items()):
+        for x, y in PAIRS:
+            if arm == x and (y, seed, day) in cell:
+                for order in (0, 1):
+                    tasks.append({"x": x, "y": y, "seed": seed, "day": day, "order": order, "control": None})
+    for c in build_controls(rows, controls_each):
+        if c["control"] == "copy":
+            for order in (0, 1):
+                tasks.append({"x": "A0", "y": "copy", "seed": c["seed"], "day": c["day"], "order": order, "control": "copy"})
+    return tasks
+
+
+def pair_key(t: dict) -> tuple:
+    return (t["x"], t["y"], t["seed"], t["day"], t["order"])
+
+
+def x_score_of(winner: Optional[int], order: int) -> Optional[float]:
+    """1 if x won, 0.5 for a tie, 0 if y won; x is Note 1 when order is 0."""
+    if winner is None:
+        return None
+    return 0.5 if winner == 0 else (1.0 if (winner == 1) == (order == 0) else 0.0)
+
+
+def pair_run(rows: Sequence[dict], out: Path, generate: backends.Generate, workers: int = 8, log=print, controls_each: int = CONTROLS_EACH) -> int:
+    by_key = {(r["arm"], r["seed"], r["day"]): r for r in rows}
+    done = set()
+    if out.exists():
+        done = {pair_key(json.loads(line)) for line in out.read_text(encoding="utf-8").splitlines() if line.strip()}
+    todo = [t for t in pair_tasks(rows, controls_each) if pair_key(t) not in done]
+    lock, written = threading.Lock(), 0
+
+    def one(t: dict) -> dict:
+        row = by_key[("A0" if t["y"] == "copy" else t["x"], t["seed"], t["day"])]
+        base = by_key[(row["arm"], t["seed"], row["base_day"])]["text"]
+        note_x = by_key[(t["x"], t["seed"], t["day"])]["text"]
+        note_y = base if t["y"] == "copy" else by_key[(t["y"], t["seed"], t["day"])]["text"]
+        first, second = (note_x, note_y) if t["order"] == 0 else (note_y, note_x)
+        raw = str(generate(PAIR_SYSTEM, pair_prompt(row["hook"], base, first, second), JUDGE_SEED, PAIR_OPTS)["text"])
+        winner = parse_winner(raw)
+        return dict(t, winner=winner, x_score=x_score_of(winner, t["order"]), raw=raw.strip()[:40])
+
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as pool, out.open("a", encoding="utf-8") as handle:
+        for future in as_completed([pool.submit(one, t) for t in todo]):
+            row = future.result()
+            with lock:
+                handle.write(json.dumps(row) + "\n")
+                handle.flush()
+                written += 1
+                if written % 100 == 0:
+                    log("compared %d/%d" % (written, len(todo)))
+    return written
+
+
+def pair_analysis(results: Sequence[dict], draws: int = ana.DRAWS) -> dict:
+    for r in results:
+        if r.get("x_score") is None and r.get("raw"):
+            r["winner"] = parse_winner(r["raw"])
+            r["x_score"] = x_score_of(r["winner"], r["order"])
+    real = [r for r in results if not r.get("control") and r.get("x_score") is not None]
+    controls = [r for r in results if r.get("control") and r.get("x_score") is not None]
+    cache: Dict[int, list] = {}
+    pairs = {}
+    for x, y in PAIRS:
+        by_task: Dict[tuple, List[float]] = {}
+        for r in real:
+            if r["x"] == x and r["y"] == y:
+                by_task.setdefault((r["seed"], r["day"]), []).append(r["x_score"])
+        scores = [sum(v) / len(v) for v in by_task.values()]
+        if scores:
+            low, high = ana.interval(scores, cache, draws)
+            pairs["%s-%s" % (x, y)] = {"win_rate": sum(scores) / len(scores), "ci_low": low, "ci_high": high, "n": len(scores)}
+    control_rate = (sum(1 for r in controls if r["x_score"] > 0.5) / len(controls)) if controls else None
+    choices = [r["winner"] for r in real if r.get("winner") in (1, 2)]
+    return {"pairs": pairs, "control_win_rate": control_rate, "control_pairs": len(controls),
+            "judge_informative": control_rate is not None and control_rate >= PAIR_CONTROL_NEEDED,
+            "unparsed": sum(1 for r in results if r.get("x_score") is None),
+            "share_choosing_note_1": (sum(1 for w in choices if w == 1) / len(choices)) if choices else None}
+
+
+def pair_reading(res: dict) -> dict:
+    p = res["pairs"]
+
+    def wins(name: str) -> bool:
+        e = p.get(name)
+        return bool(e and e["win_rate"] >= PAIR_WIN_RATE and e["ci_low"] > 0.5)
+    controls = ["A0"] + (["A0i"] if "A2-A0i" in p else [])
+    gains = [arm for arm in ("A2", "A3") if all(wins("%s-%s" % (arm, c)) for c in controls)]
+    return {"informative": res["judge_informative"], "memory_helps_where_relevant": bool(gains) and res["judge_informative"], "arms_that_gain": gains}
+
+
+def pair_report(res: dict) -> str:
+    rows = "\n".join("| %s | %.3f | [%.3f, %.3f] | %d |" % (k, v["win_rate"], v["ci_low"], v["ci_high"], v["n"]) for k, v in res["pairs"].items())
+    return ("# AAM-E2-FU pairwise judge\n\nControl: the real note beat a copy of the earlier note in %s of %d comparisons (informative: %s); "
+            "share of choices for Note 1: %s; unparsed replies: %d.\n\n| pair (first over second) | win rate | interval | follow-ups |\n|---|---|---|---|\n%s\n\n"
+            "Reading: %s\n" % (fmt(res["control_win_rate"]), res["control_pairs"], res["judge_informative"], fmt(res["share_choosing_note_1"]),
+                                res["unparsed"], rows, json.dumps(res["reading"])))
 def fmt(v: Optional[float]) -> str:
     return "-" if v is None else "%.3f" % v
 
@@ -329,19 +456,39 @@ def main(argv: Optional[List[str]] = None, embedder=None) -> int:
     r.add_argument("--model", required=True)
     r.add_argument("--workers", type=int, default=8)
     r.add_argument("--sample-fresh", type=float, default=1.0)
+    pr = sub.add_parser("pair-run")
+    pr.add_argument("records", type=Path)
+    pr.add_argument("--out", type=Path, required=True)
+    pr.add_argument("--backend", choices=("ollama", "openai"), default="openai")
+    pr.add_argument("--base-url", default="http://127.0.0.1:8798/v1")
+    pr.add_argument("--model", required=True)
+    pr.add_argument("--workers", type=int, default=8)
+    pa = sub.add_parser("pair-analyse")
+    pa.add_argument("results", type=Path)
+    pa.add_argument("--json", type=Path)
+    pa.add_argument("--md", type=Path)
     a = sub.add_parser("judge-analyse")
     a.add_argument("records", type=Path)
     a.add_argument("judgments", type=Path, nargs="+", help="NAME=PATH pairs, e.g. v4pro=judgments-v4pro.jsonl")
+    a.add_argument("--pairwise", type=Path, default=None, help="results of pair-run, counted as one more judge")
     a.add_argument("--json", type=Path)
     a.add_argument("--md", type=Path)
     args = parser.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
     try:
-        rows = fu.load_records(args.records)
+        rows = fu.load_records(args.records) if getattr(args, "records", None) else []
         if args.command == "measures":
             res = measures_analysis(rows, embedder or fu.Embedder())
             res["provenance"] = {"records_sha256": hashlib.sha256(args.records.read_bytes()).hexdigest(), "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
             text = measures_report(res)
+        elif args.command == "pair-run":
+            generate = backends.ollama_generate(args.model) if args.backend == "ollama" else backends.openai_generate(args.base_url, args.model)
+            print("done: %d new comparisons" % pair_run(rows, args.out, generate, args.workers, log=lambda line: print(line, flush=True)))
+            return 0
+        elif args.command == "pair-analyse":
+            res = pair_analysis(load_jsonl(args.results))
+            res["reading"] = pair_reading(res)
+            text = pair_report(res)
         elif args.command == "judge-run":
             generate = backends.ollama_generate(args.model) if args.backend == "ollama" else backends.openai_generate(args.base_url, args.model)
             print("done: %d new judgments" % judge_run(rows, args.out, generate, args.workers, args.sample_fresh, log=lambda line: print(line, flush=True)))
@@ -351,8 +498,9 @@ def main(argv: Optional[List[str]] = None, embedder=None) -> int:
             for spec in args.judgments:
                 name, _, path = spec.partition("=")
                 per[name] = judge_analysis(load_jsonl(Path(path)))
-            final = final_readings(per)
-            res = {"judges": per, "readings": final}
+            pairwise = pair_analysis(load_jsonl(args.pairwise)) if args.pairwise else None
+            final = final_readings(per, pairwise)
+            res = {"judges": per, "pairwise": pairwise, "readings": final}
             text = "# AAM-E2-FU judge results\n\n" + "\n".join(judge_report(n, r_) for n, r_ in per.items()) + "\n" + readings_report(final)
     except (OSError, ValueError, ImportError, backends.SpendCapRefused) as exc:
         print("error: %s" % exc, file=sys.stderr)
