@@ -1,0 +1,1093 @@
+# Human memory as a specification for an agent-memory benchmark, and episodic and incidental-detail benchmarks (research digest, 2026-11-01)
+
+Status: agent-read digest of primary sources by Claude Code workflow readers and an editor; most numbers reached the readers through small-model extraction of partial pages, so every figure is a lead to verify before it is relied on; the lab's own results are cited from their READMEs (after the 2026-11-01 erratum). Two readers: the cognitive taxonomy with measurement paradigms, and benchmarks and generators for episodic, incidental and detail-level memory.
+
+## Reader notes (shortened)
+
+### Benchmarks and generators that test episodic, incidental and detail-level memory in LLM agents, and what compression loses (cue-based episo...
+
+- **findings**
+  - Cue overload is the main failure of cue-based episodic recall in EpBench (200 chapters, about 103k tokens, 686 questions): in-context gpt-4o F1 falls from 0.81 (1 matching event) to 0.60 (2), 0.57 (3-5) and 0.53 (6+); RAG variants stay rou...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2501.13121
+  - Confabulation on absent events is plausible-looking, not random: GPT-4o answered 24 of 150 zero-match questions wrongly (16%); every wrong answer used book-relevant material (17 inner questions built from elements in the book, 14 of them e...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2501.13121
+  - EpBench simple recall is close to ceiling for the best reasoning models, chronology is not: maintainers' README lists simple recall 0.968 (gemini-2.5-pro), 0.960 (gemini-2.5-flash), 0.942 (gpt-5), 0.790 (claude-sonnet-4), 0.670 (gpt-4o); c...
+    - **evidence strength:** measured
+    - **source:** https://github.com/ahstat/episodic-memory-benchmark
+  - Generator-reader family effect: Claude models seem to do better on Claude-written EpBench books, and GPT models do better on Claude books except on hallucination questions.
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2501.13121
+  - EpBench's F1 is deliberately lenient: the predicted-item count is capped against the ground-truth size in some cases, so fabricated extras inside non-empty answers are under-penalised; only the zero-match bin scores hallucination directly.
+    - **evidence strength:** argued
+    - **source:** https://arxiv.org/abs/2501.13121
+  - LongMemEval: commercial memory assistants lose a large share of accuracy against simply reading the history. With GPT-4o: offline reading 0.9184, ChatGPT 0.5773 (37% drop), Coze 0.3299 (64% drop). The authors report ChatGPT overwrote cruci...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2410.10813
+  - LongMemEval-S (about 115k tokens) hurts long-context readers: GPT-4o 0.870 with oracle evidence vs 0.606 on S (30.3% drop); Llama 3.1 70B 0.744 vs 0.334 (55.1%); Llama 3.1 8B 0.710 vs 0.454 (36.1%).
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2410.10813
+  - Compressing memory values loses information: replacing raw sessions or rounds with extracted summaries or facts lowers QA accuracy (exception: multi-session reasoning, where fact decomposition helps), while using extracted user facts as ad...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2410.10813
+  - LongMemEval hides each evidence statement inside an unrelated task (for example the simulated user asks about car insurance and reveals a new car incidentally). The authors argue this raises difficulty by requiring systems to memorise deta...
+    - **evidence strength:** argued
+    - **source:** https://arxiv.org/abs/2410.10813
+  - LongMemEval-S is near ceiling for heavily engineered pipelines and sensitive to judging details: one audit scores 479 and 475 of 500 with a Claude Opus reader, re-judging identical answers changed 3 labels, a modified knowledge-update temp...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2609.38021
+  - Third-party posts in LongMemEval issues claim 82-92% end-to-end accuracy and recall@5 up to 98.6% on LongMemEval-S; one issue reports duplicate filler sessions in 13 histories (the maintainers released a cleaned file in Sept 2025).
+    - **evidence strength:** asserted
+    - **source:** https://github.com/xiaowu0162/LongMemEval
+  - Low-importance memory points are lost more than high-importance ones: for every extraction-capable system on HaluMem-Medium, importance-weighted recall exceeds plain recall (Mem0 65.03 vs 42.91, Mem0-Graph 65.52 vs 43.28, Memobase 25.88 vs...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2511.03506
+  - Adding irrelevant dialogue (ELI5 and math chatter between and within sessions, HaluMem-Long) collapses extraction for some systems: Mem0 recall 42.91% to 3.23%, QA correct 53.02% to 28.11% with omission 54.60%; MemOS stayed stable (recall...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2511.03506
+  - Memory updating is dominated by omission (above 50% for most systems) because pre-update memories were never extracted; hallucination rates below 2% are not reassuring because few items reach the update stage; all systems have extraction a...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2511.03506
+  - Write cost dominates: on HaluMem-Medium dialogue addition took 2,768 min for Mem0 and 2,840 min for Mem0-Graph against 273 min for Supermemory and 293 min for Memobase; memory retrieval took 21-140 min.
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2511.03506
+  - When memory systems fail on a fact, the evidence was retrievable about 10 times more often than it was missing, so the bottleneck is using reachable evidence, not storage or retrieval; similar pooled accuracy hides different failures; reco...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2606.17328
+  - MemoryAgentBench: RAG agents beat their backbone on accurate retrieval, long-context models win test-time learning and long-range understanding, and every method fails multi-hop selective forgetting (at most 28%; GPT-4o on FactConsolidatio...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2507.05257
+  - BEAM: even 1M-token context LLMs degrade as dialogues lengthen; all methods are strongest at abstention and weakest at contradiction resolution; the LIGHT scaffold (episodic retrieval, working memory, scratchpad of salient facts) improves...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2510.27246
+  - ConvoMem: full-context reading gets 70-82% on the hardest multi-message cases while Mem0 gets 30-45% below 150 interactions; long-context accuracy is 82% at the start and about 65% at 300 conversations; fewer than 5% of generated examples...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2511.10523
+  - Prospective memory is hard and fast-moving: PM-Bench best Set-F1 is 65.1% (cross-day tasks best hit rate 50.0%, hierarchical multi-agent 10.7%); a later typed-intention-store scaffold reports 82.9% on the same benchmark within two months.
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2607.12385
+  - On identical contexts retrospective memory (RM) near-saturates up to 100K tokens while prospective memory (PM) decays sharply; models can overfit an 'always-remind' heuristic; logical-adherence tasks stay near 90% at 100K because triggers...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2606.23459
+  - Instruction-compliance under concurrent load behaves like prospective-memory failure: compliance drops 2-21% across three model families (over 8,000 prompts), terminal constraints by up to 50%, and a salience-enhanced format restores 90-10...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2603.23530
+  - Classic human memory effects replicate in LLMs on short in-context lists (list length, list strength, fan effect, DRM-style lures) but position effects are absent and nonsense items are not harder. DRM numbers: proportion of 'old' response...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2509.17138
+  - Proactive interference: retrieval accuracy of the final value declines log-linearly toward zero as semantically related key-value updates accumulate; errors are previously overwritten values; telling the model to ignore earlier input helps...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2506.08184
+  - Retrieval without literal overlap is much harder: in NoLiMa, 11 of 13 long-context models fall below 50% of their short-context baseline at 32K tokens; GPT-4o drops from 99.3% to 69.7%.
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2502.05167
+  - Position bias in long contexts: accuracy is highest when relevant information is at the beginning or end and degrades in the middle, even for explicitly long-context models.
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2307.03172
+  - Abstention is unsolved and reasoning fine-tuning makes it worse: over 20 datasets and 20 frontier LLMs, reasoning fine-tuning degraded abstention by 24% on average; a careful system prompt helps in practice but does not fix uncertainty rea...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2506.09038
+  - Summarisation compression is measurably lossy with exact ground truth: in SummHay, systems given an oracle relevance signal lag the human estimate (56% joint score) by 10+ points, long-context GPT-4o and Claude 3 Opus without a retriever s...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2407.01370
+  - Human-annotated evidence that summaries drop detail: in FABLES (26 books, 3,158 claims) annotators flagged omissions in 52.0% (Claude-3-Opus) to 84.6% (GPT-3.5-Turbo) of summaries; key events were missing in 33.3-65.4% and significant deta...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2404.01261
+  - LoCoMo is weak as a discriminating benchmark today: the 2024 paper had gpt-4-turbo at 32.4 vs human 87.9; open GitHub issues report ground-truth errors, mislabeled adversarial items and invalid evidence ids (#35, #43-#45); vendors and comm...
+    - **evidence strength:** asserted
+    - **source:** https://github.com/snap-research/locomo
+  - Spontaneous (uncued) recall has a scale penalty: a similarity gate tuned to 5% false alarms at store size N=8 reaches 84-100% false alarms at N=2048 on streaming replays of LongMemEval; the authors prove the multiple-testing mechanism and...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2610.34507
+  - Leaderboards are not interpretable without the retrieval budget: on PAIM (81 papers, 66 questions) Graphiti led while retrieving 2.6M characters per query, and after controlling for budget the lead disappeared; ingestion granularity, raw-t...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2607.16848
+  - Generative Agents: importance is obtained by asking the LLM to rate how mundane or core a memory is (eating breakfast is low, a breakup is high); human-rated believability (TrueSkill) is full 29.89, no reflection 26.88, no reflection or pl...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2304.03442
+  - Exact-truth generators with selective answering exist: a benchmark of 34,560 instances (18 templates, 8 reasoning types, 480 personas, controlled source distortions, deterministic ground truth) gets 80.3% from the best trained fusion resol...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2605.30087
+  - LLMs can implant false memories in people: in a human-subject study (N=200, immediate and one-week tests) a generative-chatbot interviewer induced over 3 times more immediate false memories than the control condition (comparators cut off i...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2408.04681
+  - Text captions as compressed episodic memory can beat raw video: on long egocentric videos (over 20 min) caption-based QA with 30 s and 60 s windows beat direct VideoQA for 10 of 12 and 8 of 12 models (CapMem, 75 videos, 33.7 hours, 1,000 m...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2609.17688
+  - MemSim's hardest class is aggregation: on MemDaily accuracy for aggregative questions stays at most about 0.32 for FullMem and RetrMem at every noise level (FullMem 0.243/0.296/0.309), while simple questions stay at 0.87-0.96; adding irrel...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2409.20163
+  - DialSim: all baselines stay below 60% on the Friends set and bigger context windows alone do not fix long-term multi-party understanding, even with names anonymised or swapped to limit prior-knowledge use.
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2406.13144
+  - PerLTQA (2024): memory-augmented answers reach MAP up to 0.756 and gpt-3.5-judged correctness up to 0.573; a BERT classifier beat LLMs at routing a question to the right memory type.
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/abs/2402.16288
+  - No benchmark found crosses write-time salience with later relevance, so the lab's question (are details that look unimportant when stored kept, found and not confabulated, and at what cost) has no off-the-shelf test. Nearest proxies: HaluM...
+    - **evidence strength:** argued
+    - **source:** https://arxiv.org/abs/2511.03506
+  - A simulated-life generator can have exact truth if text is rendered from an attribute table (EpBench event table, MemSim causal hints, PI-LLM key-value streams, Selective QA templates) and graded by structured slots, multiple choice with a...
+    - **evidence strength:** argued
+    - **source:** https://arxiv.org/abs/2409.20163
+  - Cost is reported ad hoc and never per retained detail: HaluMem gives wall-clock minutes, MemoryAgentBench gives dollars per query, ConvoMem tracks input, output and cached tokens and notes a full run can cost hundreds of dollars, MemSim re...
+    - **evidence strength:** argued
+    - **source:** https://arxiv.org/abs/2507.05257
+  - Life-log query types are defined but video-bound: Ego4D episodic memory has natural-language queries (13 template questions, scored by recall@k at tIoU thresholds), visual queries and moment queries (110 activity classes, mAP); EgoLifeQA a...
+    - **evidence strength:** asserted
+    - **source:** https://ego4d-data.org/docs/benchmarks/episodic-memory/
+- **benchmarks and generators**
+  - EpBench (Tulving Episodic Memory Benchmark)
+    - **url:** https://arxiv.org/abs/2501.13121
+    - **covers:** Cue-based episodic recall of who, what, where, when in a synthetic book, with cue overload (0, 1, 2, 3-5, 6+ matching events), latest state, chronological order, secondary-entity and full-chapter traces, and zero-match questions that probe confabulation.
+    - **how items are built:** Templated plus LLM-written. A universe of 100 dates, places, entities and contents is sampled with truncated-geometric skew into N events (date, place, main entity, content, details inserted verbatim); Claude 3.5 Sonnet or GPT-4o writes one chapter per event, accepted after direct checks and an LLM...
+    - **scoring:** Ground truth exact by construction (event table; full chapter verbatim for full-detail questions). An LLM lists the items in the answer and gives each ground-truth item a 0-1 match; lenient 'optimistic' F1 per matching-event bin, Kendall tau for order. Judge model name not captured in my read.
+    - **decision:** adapt
+    - **why:** Best template for a cue-based episodic generator with exact truth and a deliberate hallucination bin. Gaps for the lab: absolute dates only, independent chapters, no persona, questions never ask for arbitrary peripheral attributes (traces are time, place, entity, content, secondary entities, full c...
+    - **scores and saturation:** Paper (long book, in-context F1 at 1/2/6+ matching events): gpt-4o 0.81/0.60/0.53, claude-3.5-sonnet 0.35/0.35/0.41, o1-mini 0.05/0.12/0.24; RAG about 0.55-0.62 flat. README (maintainers, Sept 2025): simple recall gemini-2.5-pro 0.968, gpt-5 0.942, claude-sonnet-4 0.790, gpt-4o 0.670; chronological...
+    - **licence and runnable:** Code MIT, paper CC BY 4.0. Quickstart needs OpenAI, Anthropic or OpenRouter keys in .env (answerer and judge are API LLMs); no local-model path or Docker seen in the README lines I read.
+  - LongMemEval
+    - **url:** https://arxiv.org/abs/2410.10813
+    - **covers:** Information extraction (facts the user mentioned in passing, or the assistant said), multi-session reasoning, temporal reasoning, knowledge updates and abstention (30 of 500 questions) in scalable chat histories.
+    - **how items are built:** Human-in-the-loop. A 164-attribute ontology (lifestyle, belongings, life events, situational context, demographics); Llama 3 70B writes background paragraphs and seed Q/A; human experts filter and rewrite every question and split the answer into timestamped evidence statements; an LLM self-chat emb...
+    - **scoring:** GPT-4o (2024-08-06) judge with a prompt per question type, over 97% agreement with human experts in the authors' check; abstention items carry an _abs suffix; Recall@k and NDCG@k from human-annotated evidence locations.
+    - **decision:** adopt
+    - **why:** The only widely used benchmark that deliberately buries facts as incidental mentions and also measures abstention and updates. Use S as an external anchor and copy the indirect-evidence plus filler-haystack recipe. Replace or double-judge with a local judge because judge noise is visible.
+    - **scores and saturation:** Paper (2024): GPT-4o 0.870 oracle vs 0.606 on S; ChatGPT 0.577 and Coze 0.330 vs 0.918 offline reading. A vendor audit reports 479/500 on S with a heavy pipeline and a Claude Opus reader (436/500 for another reader), community issues claim 82-92%: S is near saturated for engineered chains; there is...
+    - **licence and runnable:** Code MIT; HF dataset longmemeval-cleaned MIT (cleaned Sept 2025). evaluate_qa.py defaults to a GPT-4o judge (OpenAI key); open-weight readers via a vLLM OpenAI-compatible server.
+  - HaluMem (HaluMem-Medium and HaluMem-Long)
+    - **url:** https://arxiv.org/abs/2511.03506
+    - **covers:** Operation-level evaluation of memory systems: extraction (integrity, accuracy, false-memory resistance), updating, and QA with hallucination vs omission split; six question types incl. memory boundary and memory conflict.
+    - **how items are built:** Six-stage LLM pipeline: persona (Persona Hub seeds, rules, GPT-4o), life skeleton, event flow (init, career and daily preference-change events), session summaries with memory points labelled by content, type (persona, event, relationship) and importance, multi-turn dialogues with injected distracto...
+    - **scoring:** Gold memory points give exact references. Memory Recall, importance-Weighted Recall (1/0.5/0), Memory Accuracy, Target Precision, FMR (share of distractors not stored), Extraction F1; updating and QA as correct, hallucination, omission; LLM-judged.
+    - **decision:** reference-only
+    - **why:** Metric design matches 'kept, found, not confabulated' better than anything else (importance-weighted integrity, distractor resistance, omission vs hallucination), but CC BY-NC-ND forbids derivatives, so the data cannot be adapted. Re-implement the metrics and the six-stage idea on the lab's own gen...
+    - **scores and saturation:** Medium: recall 14.6-74.1%, weighted recall 25.9-84.8%, QA correct 35.3-67.2%; Long: Mem0 recall 3.2%. Far from saturated.
+    - **licence and runnable:** CC BY-NC-ND 4.0 (README badge and HF card). Needs API keys via .env; no Docker or local-model path seen.
+  - MemTrace
+    - **url:** https://arxiv.org/abs/2606.17328
+    - **covers:** Per-fact tracing in long-term memory systems: memory age (eight chronological checkpoints), question type (current, earlier, trajectory), evidence condition (present, missing, contradicted by a false premise), and a gist vs verbatim score split.
+    - **how items are built:** Derived from HaluMem-Medium (20 users): each typed knowledge point is probed repeatedly; distractor knowledge points are expanded into boundary (missing) and conflict probes; quality-control pipeline in the appendix.
+    - **scoring:** Score tuple per answer: binary gist accuracy, continuous verbatim completeness (canonical answer tokens present), response type (correct, abstain, hallucinate); judge reliability in Appendix D (not read).
+    - **decision:** adapt
+    - **why:** Closest protocol to the lab's question (does a specific detail persist as history grows, in gist and verbatim form, and does the system abstain or confabulate when it is absent). Re-implement the per-knowledge-point design on the lab's generator instead of reusing data derived from an NC-ND set.
+    - **scores and saturation:** 13 configurations across four paradigms; evidence reachable about 10x more often than missing when systems fail. Per-system numbers not captured.
+    - **licence and runnable:** Code or data location not found in the text I read; derivative status of the data unclear.
+  - MemSim / MemDaily
+    - **url:** https://arxiv.org/abs/2409.20163
+    - **covers:** Personal-assistant memory in daily life: 11 entities and 73 attributes; simple, conditional, comparative, aggregative, post-processing and noisy questions; retrieval recall and accuracy.
+    - **how items are built:** A Bayesian Relation Network samples hierarchical user profiles (entity and attribute levels, ancestral sampling); 'hints' (triples) derived from the profile causally generate both the user messages and the QA, so ground truth is exact by construction; humans checked ground truth on about 20% of tra...
+    - **scoring:** Single-choice accuracy, recall@5 of target messages, response time, adaptation (storing) time.
+    - **decision:** adapt
+    - **why:** The sampling-plus-causal-hints design is the clearest published recipe for a simulated-life generator with exact truth. Re-implement the idea (the repo has no licence), and extend it with incidental-detail attributes, relative time and salience flags.
+    - **scores and saturation:** MemDaily-10 accuracy: FullMem 0.962 simple, 0.243 aggregative; RetrMem 0.896 and 0.315; ReceMem about 0.5 on simple. Aggregative stays at most 0.32 at all noise levels.
+    - **licence and runnable:** No LICENSE file (API 404): all rights reserved by default. Needs an API key in data_generation/common.py for generation.
+  - BEAM
+    - **url:** https://arxiv.org/abs/2510.27246
+    - **covers:** Ten abilities over 100K to 10M-token conversations (names read: abstention, contradiction resolution, event ordering, information extraction, instruction following, preference following, summarization, temporal and multi-hop reasoning).
+    - **how items are built:** LLM-generated: conversation plan (domain, theme, subtopics, evolving narratives) to user utterances per sub-plan batch to assistant turns by role-play with rolling summaries, then probing questions from plan and chat with human validation. 100 conversations, 2,000 validated questions (2 per ability...
+    - **scoring:** Nugget-based: an LLM judge scores atomic rubric nuggets 0, 0.5 or 1; Kendall tau-b for event ordering.
+    - **decision:** adapt
+    - **why:** Plan-then-utterance generation and nugget scoring suit free-text recall, and the 100K-10M tiers give a cost curve. Ground truth is plan-grounded and human-validated, not exact; 10M-token runs are too costly for a local-7B lab, so use the 100K tier.
+    - **scores and saturation:** Not saturated: 1M-context LLMs degrade as dialogues lengthen; abstention is the strongest ability and contradiction resolution the weakest for all methods; LIGHT adds 3.5-12.69%.
+    - **licence and runnable:** Code MIT; HF datasets Mohammadta/BEAM and BEAM-10M; judge needs an API LLM.
+  - MemoryAgentBench
+    - **url:** https://arxiv.org/abs/2507.05257
+    - **covers:** Four competencies fed incrementally in chunks: accurate retrieval, test-time learning, long-range understanding, selective forgetting.
+    - **how items are built:** Mostly re-packaged datasets (RULER-style document QA, LongMemEval S*, infinity-Bench summarisation, MCC classification) plus new EventQA (101 events from five novels over 390K tokens, extracted with gpt-4o, 6-way multiple choice with five generated distractors) and FactConsolidation (MQuAKE counter...
+    - **scoring:** Accuracy, substring or multiple-choice where possible; GPT-4o judge only for LongMemEval and infinity-Bench-Sum (F1 times fluency).
+    - **decision:** adopt
+    - **why:** Cheap external anchor with rule-based scoring on several tasks and an explicit forgetting and update test; reports latency and cost. It is not about personal incidental detail, so it complements the lab's generator.
+    - **scores and saturation:** All methods fail multi-hop selective forgetting (at most 28%); RAG wins accurate retrieval, long context wins TTL and LRU; per-query cost table from under $0.001 to $0.043.
+    - **licence and runnable:** MIT code and HF dataset; conda environment; some tasks need a GPT-4o judge.
+  - ConvoMem
+    - **url:** https://arxiv.org/abs/2511.10523
+    - **covers:** 75,336 QA pairs: user facts, assistant facts, abstention, preferences, changing facts, implicit connections, with configurable multi-message evidence distribution; long-context vs RAG crossover by conversation count.
+    - **how items are built:** LLM generation with one pipeline for both filler and evidence conversations (the authors argue this avoids stylistic tells that external filler allows); evidence cores generated one use case at a time; fewer than 5% of generated examples pass all validation (small models must answer with the eviden...
+    - **scoring:** Accuracy against validated answers; the framework tracks cost, latency and cached tokens per run.
+    - **decision:** adopt
+    - **why:** Only set with an implicit-connections category plus necessary-evidence validation and cost tracking; useful for the cost-accuracy curve and for the positive/negative validation recipe, which the lab can copy for its own generator.
+    - **scores and saturation:** Full context 70-82% on the hardest multi-message cases; Mem0 30-45% below 150 interactions; long context 82% at start to about 65% at 300 conversations.
+    - **licence and runnable:** Code Apache-2.0; HF dataset CC BY-NC 4.0; API models; a full run can cost hundreds of dollars per the authors.
+  - LoCoMo
+    - **url:** https://arxiv.org/abs/2402.17753
+    - **covers:** Very long conversations (about 300 turns, 9K tokens, up to 35 sessions); QA in five categories including adversarial unanswerable ones; event summarisation; multimodal dialogue generation.
+    - **how items are built:** Persona plus LLM-generated temporal event graph; two LLM agents converse with memory and reflection modules and image sharing; human annotators fix long-range inconsistencies (about 15% of turns edited) and check alignment to the event graph. 50 conversations in the paper (a 10-conversation subset...
+    - **scoring:** Token-F1 style QA scoring (the authors acknowledge verbose answers hurt evaluation), FactScore-style event summarisation, multimodal metrics.
+    - **decision:** reference-only
+    - **why:** Near ceiling by third-party claims, open reports of ground-truth errors, and a retrieval-of-explicit-facts focus (Letta's argument). Keep only as a comparability sanity check; the persona plus event-graph pipeline is a useful pattern.
+    - **scores and saturation:** 2024 paper: best gpt-4-turbo 32.4 vs human 87.9. Today vendor and community claims of 84-95% (unverified); Letta filesystem agent 74.0% vs Mem0 published 68.5%.
+    - **licence and runnable:** CC BY-NC 4.0 (GitHub shows NOASSERTION); open issues #35, #43, #44, #45 list ground-truth defects; scripts call OpenAI-style APIs.
+  - LoCoMo-Plus
+    - **url:** https://arxiv.org/abs/2602.10715
+    - **covers:** Cognitive memory under cue-trigger semantic disconnect: latent constraints (user state, goals, values) that must be applied later without being asked.
+    - **how items are built:** Abstract only: a benchmark plus a constraint-consistency evaluation framework; the authors say string-matching metrics and task-type prompting are misaligned with this setting.
+    - **scoring:** Constraint consistency (judge-based, abstract-level).
+    - **decision:** reference-only
+    - **why:** Closest to the lab's 'detail that matters later' framing, but I read only the abstract; inspect its construction and licence before building on it.
+    - **licence and runnable:** Code and evaluation released per abstract; GitHub search found xjtuleeyf/Locomo-Plus with no licence listed.
+  - PerLTQA
+    - **url:** https://arxiv.org/abs/2402.16288
+    - **covers:** Semantic memory (profiles, relationships) and episodic memory (events, dialogues) for 30 benchmark characters; 8,593 questions; memory classification, retrieval and synthesis.
+    - **how items are built:** LLM-generated (ChatGPT / gpt-3.5-turbo) in six steps from seed professions, hobbies and event topics (ChatGPT, Wikipedia); questions generated from memory sentences with reference memory and memory anchor, then human revision (error types in Table 8). Statistics: 141 profiles, 1,339 relationship de...
+    - **scoring:** Classification P/R/F1/Acc; retrieval Recall@K; synthesis by gpt-3.5 correctness and coherence plus MAP of memory anchors.
+    - **decision:** reference-only
+    - **why:** Useful typology (semantic vs episodic sources, memory anchors) but LLM-written ground truth with known inconsistencies, NC licence and 2024-era models.
+    - **scores and saturation:** MAP up to 0.756, correctness up to 0.573 (2024); not saturated by that evidence.
+    - **licence and runnable:** CC BY-NC 4.0; data corrected 2025-12-22.
+  - REALTALK
+    - **url:** https://arxiv.org/abs/2502.13270
+    - **covers:** 21-day real human messaging between 10 participant pairs; persona simulation and memory probing (728 annotated questions: 302 multi-hop, 321 temporal, 111 commonsense; events annotated per speaker per session).
+    - **how items are built:** Human participants chatted at least 50 messages per day; a separate annotator group wrote probing QA and event lists following LoCoMo's procedure.
+    - **scoring:** Partial-match F1 and LLM accuracy for probing; emotional-intelligence metrics for persona simulation.
+    - **decision:** reference-only
+    - **why:** The only real-human long-term corpus found. Use it as a realism yardstick for the generator's dialogue (emotion diversity, persona stability) rather than as a test; it is small and chit-chat focused.
+    - **scores and saturation:** Per-model numbers not read; abstract says models struggle to recall and use long-term context.
+    - **licence and runnable:** Code Apache-2.0; dataset licence not checked; needs an OpenAI key for memory probing.
+  - MSC (Multi-Session Chat)
+    - **url:** https://arxiv.org/abs/2107.07567
+    - **covers:** Human-human multi-session chat where partners discuss what they learned in earlier sessions; retrieval-augmented and summarise-and-recall models beat standard encoders.
+    - **how items are built:** Crowdworker human-human dialogues (abstract only).
+    - **scoring:** Automatic and human evaluation (abstract only).
+    - **decision:** reference-only
+    - **why:** 2021 dataset superseded by LoCoMo, LongMemEval and later work; read only the abstract; ParlAI repo is MIT but archived and the dataset licence was not checked.
+  - DialSim / LongDialQA
+    - **url:** https://arxiv.org/abs/2406.13144
+    - **covers:** An agent plays a TV character and answers spontaneous questions from dialogue history, with unanswerable questions and an explicit 'I don't know' option.
+    - **how items are built:** Scripts of five seasons each of Friends, The Big Bang Theory and The Office (Kaggle scripts); fan-quiz questions (about 1k, filtered) and temporal-knowledge-graph questions (GPT-4 triples refined by the authors, 32 DialogRE relations, one- and two-hop templates with dates); five-way multiple choice...
+    - **scoring:** Multiple-choice accuracy (rule-based by construction); history types (entire session, summary, utterances) and retrieval options.
+    - **decision:** adapt
+    - **why:** Copy the answer format (multiple choice with IDK, fixed unanswerable share, time-anchored KG questions) which removes LLM judging; do not reuse the data.
+    - **scores and saturation:** All baselines below 60% on Friends; larger context alone insufficient.
+    - **licence and runnable:** No LICENSE file; scripts are third-party copyrighted text. README shows local HF models with 4-bit quantisation (llama3.1-8b, mistral-7b), so it can run offline on local models.
+  - PM-Bench
+    - **url:** https://arxiv.org/abs/2607.12385
+    - **covers:** Prospective memory in a simulated seven-day week (Virtual Week paradigm): hold intentions, execute at the cue, cancellations and reschedules, cross-day tasks, monitor hidden state channels while continuing an ongoing activity.
+    - **how items are built:** Seeded synthetic pipeline then manual review; one fixed deterministic week: 7 days, 10-13 steps per day, 80 steps; per day 4 routine, 2-4 narrative-event, 1-2 one-off irregular and 1-3 channel-triggered tasks plus 10-12 lure actions; solvability and consistency validation.
+    - **scoring:** Set-level F1 of chosen anonymous action handles against the due set at each step (replay evaluator, no LLM judge); hit rates for cross-day and proactive-required tasks.
+    - **decision:** adapt
+    - **why:** A simulated-life week with deterministic scoring and lures. Re-implement as a seeded generator rather than one fixed week, to avoid memorisation and scaffold over-fitting.
+    - **scores and saturation:** Best 65.1% F1; cross-day best hit rate 50.0%; a typed-intention-store follow-up reports 82.9% two months later.
+    - **licence and runnable:** No LICENSE file; model runs need an OpenAI-compatible API (OpenRouter); human-evaluation web UI included.
+  - TriggerBench
+    - **url:** https://arxiv.org/abs/2606.23459
+    - **covers:** Prospective memory in five dimensions (state tracking, temporal grounding, logical adherence, attention recovery, safe coding) with matched retrospective-memory controls and false-alarm measurement.
+    - **how items are built:** 82 hand-authored seed blueprints scaled by a frontier LLM to 488 blueprints; each yields Positive-Clean and Positive-Overloaded variants and, for three dimensions, Negative variants: 1,265 PM tasks and 440 RM probes; staged quality control.
+    - **scoring:** Rule-based slot match plus a GPT-4o judge (temperature 0) for PM accuracy; false-alarm rate on negative variants.
+    - **decision:** adopt
+    - **why:** Permissive licence and a contrast design (matched RM probe, negatives, overloaded triggers) that separates remembering from always-reminding. Use the data and copy the design for life-simulation cues.
+    - **scores and saturation:** RM near-saturates to 100K tokens while PM decays; always-remind heuristic risk; logical adherence about 90% at 100K because of lexical overlap.
+    - **licence and runnable:** Code MIT, data CC BY 4.0, EMNLP 2026 Main; OpenAI-compatible client; GPT-4o judge for PM accuracy.
+  - Prospective-memory instruction compliance study
+    - **url:** https://arxiv.org/abs/2603.23530
+    - **covers:** Formatting constraints as prospective intentions under concurrent benchmark load.
+    - **how items are built:** Abstract only: verifiable formatting constraints combined with benchmark tasks of increasing complexity; over 8,000 prompts, three model families.
+    - **scoring:** Constraint compliance (verifiable).
+    - **decision:** reference-only
+    - **why:** Shows a salience reminder restores 90-100% compliance, a cheap control for the lab's persona and write-back rules; abstract only.
+    - **scores and saturation:** Compliance drops 2-21% under load, terminal constraints up to 50%.
+  - Seven human memory effects in LLMs (Cao, Schooler, Zafarani)
+    - **url:** https://arxiv.org/abs/2509.17138
+    - **covers:** List length, list strength, fan effect, nonsense effect, serial position, DRM false memory, cross-domain generalisation.
+    - **how items are built:** Templated study and test lists: person-location pairs with controlled fan and target words with associate lists (8 lists of 15 words for DRM); recognition tests with targets and foils; GPT-4, Mistral, LLaMA2.
+    - **scoring:** Recognition hit and false-alarm rates (exact by design).
+    - **decision:** adapt
+    - **why:** Templated paradigms with exact truth can be re-run against an agent's store instead of the prompt, with current models. Short in-context lists differ from long-context behaviour (Lost in the Middle shows a U shape), so do not assume position invariance.
+    - **scores and saturation:** Studied hit rate 1.000; non-studied false alarm 0.053; critical lure 0.114; position effect absent.
+    - **licence and runnable:** Repo github.com/zycao29/LLM_CognitivePsychology; licence not checked; GPT-4-era models.
+  - PI-LLM (Unable to Forget)
+    - **url:** https://arxiv.org/abs/2506.08184
+    - **covers:** Proactive interference: streams semantically related key-value updates and asks for the final value of each key.
+    - **how items are built:** Templated: up to 46 updated keys and 400 distinct values; keys cued before and after the stream; exact answer is the last value.
+    - **scoring:** Exact match of final values (rule-based).
+    - **decision:** adopt
+    - **why:** Cheap exact-truth probe for update and interference; adapt the stream into an agent's long-term store (key-value updates across sessions) to test knowledge updating without a judge.
+    - **scores and saturation:** Accuracy declines log-linearly toward zero as interference accumulates.
+    - **licence and runnable:** Repo github.com/zhuangziGiantfish/Unable-to-Forget, MIT.
+  - Selective QA over conflicting multi-source personal memory
+    - **url:** https://arxiv.org/abs/2605.30087
+    - **covers:** Answering from conflicting or incomplete sources, or abstaining; selective accuracy at a given coverage.
+    - **how items are built:** Abstract only: 18 templates across 8 reasoning types, 480 personas, 4 seeds, 34,560 instances, controlled source distortions, deterministic ground truth.
+    - **scoring:** Accuracy and selective accuracy at coverage.
+    - **decision:** adapt
+    - **why:** A model for calibrated abstention with exact truth and a risk-coverage readout, which no memory benchmark reports; I read only the abstract and could not locate code or licence.
+    - **scores and saturation:** Best trained fusion 80.3%; strongest prompt-only LLM 70.0%; 85.3% selective accuracy at 78.3% coverage.
+  - SummHay (Summary of a Haystack)
+    - **url:** https://arxiv.org/abs/2407.01370
+    - **covers:** Summarising a synthetic haystack of documents with known repeated insights; Coverage and Citation scores; tests what a compressed answer keeps.
+    - **how items are built:** GPT-4o synthesises subtopics and insights, then documents that embed the insights (conversation and news domains) with verification steps to remove duplicate insights and check inclusion; insights are factoid-style (a number or entity). Haystack size and document counts not captured.
+    - **scoring:** For each reference insight an LLM judges fully, partially or not covered by the summary bullets and checks the cited documents; joint score; automatic evaluation validated against human annotation.
+    - **decision:** adapt
+    - **why:** An exact-truth way to ask what a gist store retains: plant factoid insights in the generator, compress, then score coverage. Its insights are salient factoids, not incidental details.
+    - **scores and saturation:** Oracle-retriever systems lag the human estimate of 56% by 10+ joint points; long-context GPT-4o and Claude 3 Opus below 20% without a retriever; coverage 36.2-81.4%.
+    - **licence and runnable:** Apache-2.0 repo (archived on GitHub); LLM judge.
+  - FABLES
+    - **url:** https://arxiv.org/abs/2404.01261
+    - **covers:** Human annotation of faithfulness and content selection in LLM summaries of 26 recently published novels (3,158 claims).
+    - **how items are built:** Annotators who had read each book labelled decomposed claims; summary-level comments were coded for omissions of characters, events, details, relationships and themes.
+    - **scoring:** Human labels; LLM auto-raters correlate poorly (best F1 58.2 on unfaithful claims).
+    - **decision:** reference-only
+    - **why:** Measured evidence that summaries drop events and detail and a usable omission rubric, but it is human-annotated, book-specific and costly (about $5.2K).
+    - **scores and saturation:** Omission flagged in 52.0-84.6% of summaries depending on model.
+    - **licence and runnable:** Repo mungg/FABLES; licence not checked.
+  - NoLiMa
+    - **url:** https://arxiv.org/abs/2502.05167
+    - **covers:** Needle-in-a-haystack where question and needle share minimal lexical overlap, so a latent association must be inferred.
+    - **how items are built:** Abstract only: hand-designed needle set with minimal lexical overlap; 13 LLMs claiming at least 128K context.
+    - **scoring:** Retrieval of the needle answer (details not read).
+    - **decision:** adapt
+    - **why:** A direct probe for 'the cue does not literally match the stored detail' (asking about the vehicle when the trace says a particular model and colour). Build the same cue-trace disconnect into the generator's questions.
+    - **scores and saturation:** At 32K, 11 of 13 models fall below 50% of their short-context baseline; GPT-4o 99.3% to 69.7%.
+    - **licence and runnable:** Adobe Research License (GitHub NOASSERTION); terms not read in full.
+  - Lost in the Middle
+    - **url:** https://arxiv.org/abs/2307.03172
+    - **covers:** Position of relevant information in long inputs (multi-document QA, key-value retrieval).
+    - **how items are built:** Abstract only: relevant document moved across positions in a fixed context.
+    - **scoring:** Accuracy by position.
+    - **decision:** reference-only
+    - **why:** Use as a control for position effects when measuring detail recall in long contexts; not a memory benchmark.
+    - **scores and saturation:** U-shaped: best at the start and end.
+    - **licence and runnable:** Repo nelson-liu/lost-in-the-middle, MIT.
+  - AbstentionBench
+    - **url:** https://arxiv.org/abs/2506.09038
+    - **covers:** Abstention on unanswerable, underspecified, false-premise, subjective and outdated questions across 20 datasets.
+    - **how items are built:** Abstract only: aggregation of 20 datasets.
+    - **scoring:** Abstention accuracy (details not read).
+    - **decision:** reference-only
+    - **why:** Generic, not memory-specific; borrow the idea of scoring abstention recall separately from answer accuracy.
+    - **scores and saturation:** Reasoning fine-tuning lowers abstention by 24% on average over 20 LLMs.
+    - **licence and runnable:** CC BY-NC 4.0.
+  - Ego4D Episodic Memory
+    - **url:** https://ego4d-data.org/docs/benchmarks/episodic-memory/
+    - **covers:** Egocentric episodic memory: natural-language queries (13 template questions such as what did I put in the drawer), visual queries, moment queries (110 activity classes).
+    - **how items are built:** Annotators write queries from templates with slot filling and mark response windows in egocentric video.
+    - **scoring:** Recall@k at tIoU thresholds for NLQ; mAP over tIoU 0.1-0.5 for moments.
+    - **decision:** reference-only
+    - **why:** Defines the query types the owner cares about (where did I put X, what did I eat), but needs video and a signed licence; mirror the 13 templates as text queries over the simulated life's event log.
+    - **scores and saturation:** Baseline numbers not read.
+    - **licence and runnable:** Repo MIT; data and visualiser require the Ego4D licence.
+  - EgoLife / EgoLifeQA
+    - **url:** https://arxiv.org/abs/2503.03803
+    - **covers:** Week-long egocentric life of six people; five question types including EntityLog (object details: last use, location, price) and EventRecall; fifth type name cut off in my read.
+    - **how items are built:** 300 hours of video with transcripts and captions; Q&A initially generated with GPT then refined by humans (dataset card).
+    - **scoring:** Not read.
+    - **decision:** reference-only
+    - **why:** EntityLog is the closest published question type to 'the colour of the car', but video and a non-commercial licence block reuse; copy the typology.
+    - **scores and saturation:** Not read.
+    - **licence and runnable:** S-Lab License 1.0 (non-commercial clause seen in README/LICENSE); video on Hugging Face.
+  - Generative Agents interview evaluation
+    - **url:** https://arxiv.org/abs/2304.03442
+    - **covers:** Simulated-life agents (25 in a sandbox town) with memory stream, retrieval by recency, importance and relevance, reflection and planning, interviewed on self-knowledge, memory, plans, reactions, reflections.
+    - **how items are built:** Authors' sandbox; agents are LLM-driven; importance is produced by asking the LLM to rate a memory's poignancy.
+    - **scoring:** Human raters rank interview answers (TrueSkill); manual check of information diffusion for hallucination.
+    - **decision:** adapt
+    - **why:** The reference simulated life with a write-time importance score, and its interviews exposed embellishment. It has no exact ground truth, so use it as world design, not as the benchmark.
+    - **scores and saturation:** Full 29.89 vs no-reflection 26.88, crowdworkers 22.95, ablated 21.21 (TrueSkill).
+    - **licence and runnable:** Repo Apache-2.0, last push 2024-08-05; needs LLM API access.
+  - Beyond Memory Leaderboards (PAIM and PTr)
+    - **url:** https://arxiv.org/abs/2607.16848
+    - **covers:** Full-text scientific-paper memory with budgeted context restoration (81 papers and 66 questions; 252 papers and 98 questions).
+    - **how items are built:** Abstract only: two full-text benchmarks, eight memory or retrieval systems plus a no-retrieval baseline.
+    - **scoring:** Rubric and multi-judge scoring at controlled retrieval budget.
+    - **decision:** reference-only
+    - **why:** Closest thing to document-detail recall from ingested reading, and a protocol lesson (report at equal retrieval budget); not about delay.
+    - **scores and saturation:** A leader disappears after budget control.
+  - The Price of Scale in Proactive Memory Recall
+    - **url:** https://arxiv.org/abs/2610.34507
+    - **covers:** Uncued remembering: false alarms of a similarity gate as the store grows (replays of LongMemEval and LoCoMo).
+    - **how items are built:** Streaming replays with cue types and embedding models; theory plus experiments.
+    - **scoring:** Hit rate at matched false-alarm rate.
+    - **decision:** reference-only
+    - **why:** Directly relevant to associative-trace direction: spontaneous reminding needs a false-alarm budget that scales with store size; use its cue-swap gate idea when testing reminders.
+    - **scores and saturation:** 5% false alarms at N=8 becomes 84-100% at N=2048.
+  - Other life-log and multimodal episodic QA (OpenLifelogQA, CapMem, MOSAIC)
+    - **url:** https://arxiv.org/abs/2508.03583
+    - **covers:** OpenLifelogQA: 14,187 open-ended QA from 18 months of multimodal lifelog data; CapMem: caption-based episodic memory over 75 egocentric videos with 1,000 multiple-choice questions; MOSAIC: 923 questions over 11-24 session histories across text, image, video, audio with matched diagnostic decomposit...
+    - **how items are built:** Abstracts only.
+    - **scoring:** Not read (CapMem is multiple choice).
+    - **decision:** reference-only
+    - **why:** Show where detail is lost (representation vs retrieval vs reading) in multimodal logs; MOSAIC reports reading dominates even with gold evidence. Not text-only, not read beyond abstracts.
+  - MemBench (LLM-agent memory)
+    - **url:** https://arxiv.org/abs/2506.21605
+    - **covers:** Factual vs reflective memory levels, participation vs observation scenarios; effectiveness, efficiency, capacity.
+    - **how items are built:** Abstract only.
+    - **scoring:** Abstract names effectiveness, efficiency and capacity.
+    - **decision:** reference-only
+    - **why:** Has the only explicit factual vs reflective split and an efficiency axis, but I read only the abstract and the repo has no LICENSE file.
+  - AMA-Bench
+    - **url:** https://arxiv.org/abs/2602.22769
+    - **covers:** Long-horizon memory for agent trajectories (states, actions, observations, tool outputs).
+    - **how items are built:** Abstract only: real trajectories with expert QA plus synthetic trajectories with rule-based QA.
+    - **scoring:** Rule-based on synthetic part (abstract).
+    - **decision:** skip
+    - **why:** About agentic tool trajectories, not personal-life episodic memory; revisit only if the lab later tests agent task memory.
+- **taxonomy**
+  - Episodic cue-based recall (what, where, when, who)
+    - **definition:** Recall of a specific past event bound to time, place, participants and content, triggered by a cue.
+    - **measurement paradigm:** Cued recall of all events matching a cue, latest state, chronological order, with 0..n matching events; recognition vs recall.
+    - **agent analogue and item generator:** Event table with skewed reuse of dates, places and entities; each event rendered as a note or session; templated questions over cue x trace x get-mode (EpBench); Bayesian profile sampling with causal hints (MemSim).
+    - **dials:** Number of events; universe size; geometric skew (cue overload); chapter length and style; ordered vs shuffled presentation; absolute vs relative time; filler tokens; number of sessions.
+    - **exact ground truth from:** The event table that rendered the text.
+    - **human phenomena a benchmark should reproduce:** Cue overload and fan effect (more matching events lowers accuracy), cue distinctiveness helping retrieval, errors in reconstructing order.
+  - Incidental and peripheral-detail memory
+    - **definition:** Memory for details encoded without a memory goal and not central to the event (colour of a car, what was eaten), judged unimportant when stored.
+    - **measurement paradigm:** Surprise question about a peripheral attribute after a delay and interference, compared with central attributes; cue with and without lexical overlap.
+    - **agent analogue and item generator:** Each event carries core attributes plus k peripheral attributes from an attribute ontology (LongMemEval 164 attributes, MemSim 73); peripheral facts are mentioned in passing; a hidden relevance flag is assigned later when a follow-up event makes the detail matter.
+    - **dials:** Write-time salience (position, emphasis); peripheral attributes per event; delay in sessions and wall-clock; distractor count; whether relevance is revealed later; cue-trace lexical overlap.
+    - **exact ground truth from:** The attribute-value table behind each event.
+    - **human phenomena a benchmark should reproduce:** Incidental vs intentional encoding gap, distinctiveness (von Restorff), faster loss of peripheral detail than gist.
+  - Gist vs verbatim (compression loss)
+    - **definition:** Meaning-level traces persist while verbatim detail decays or is dropped by summarisation.
+    - **measurement paradigm:** Paired gist-level and exact-slot questions on the same fact; summary coverage of planted insights; paraphrase vs verbatim recognition.
+    - **agent analogue and item generator:** Each event has a gist sentence and exact slots; ask at both levels; compress the store to summaries and re-score (SummHay-style planted insights; MemTrace gist accuracy vs verbatim completeness).
+    - **dials:** Compression ratio, summariser model, slots per fact, age of fact, number of facts per summary.
+    - **exact ground truth from:** Slot values and planted insight lists in the generator.
+    - **human phenomena a benchmark should reproduce:** Gist outlasts verbatim; gist-consistent lures are accepted.
+  - Source memory and false memory
+    - **definition:** Remembering where or from whom something was learned, and producing memories of events that did not occur or were suggested.
+    - **measurement paradigm:** DRM lists; post-event misinformation; source monitoring (user vs assistant vs third party); distractor memories voiced only by the AI; false-premise questions.
+    - **agent analogue and item generator:** Inject plausible false statements from a labelled source that the user never confirms (HaluMem), lure lists, questions about origin and about false premises (MemTrace conflict probes).
+    - **dials:** Lure semantic distance; source reliability; exposures; delay between event and misinformation; explicit vs implicit suggestion.
+    - **exact ground truth from:** Provenance tags on every injected statement.
+    - **human phenomena a benchmark should reproduce:** DRM lure endorsement, misinformation effect, source confusion, confidence inflation.
+  - Interference and updating
+    - **definition:** Competition among similar memories and revision of facts that changed.
+    - **measurement paradigm:** Key-value update streams, fan effect, knowledge updates, counterfactual edits, selective forgetting.
+    - **agent analogue and item generator:** Attribute drift in the event table (job, city, preference) with timestamps; update streams with controlled count.
+    - **dials:** Updates per key; similarity of values; interleaving; time since last update; single vs multi-hop dependence on the old value.
+    - **exact ground truth from:** Versioned attribute history.
+    - **human phenomena a benchmark should reproduce:** Proactive and retroactive interference, release from interference, fan effect.
+  - Prospective memory
+    - **definition:** Remembering to perform an intended action at a future cue (event or time based) while busy with another task.
+    - **measurement paradigm:** Virtual Week; event vs time cues; ongoing-task cost; false alarms with matched negatives.
+    - **agent analogue and item generator:** Intentions planted in a simulated week with cue types, cancellations, lures; matched retrospective probe (TriggerBench); due-set per step (PM-Bench).
+    - **dials:** Delay in steps and days; cue salience and lexical overlap; ongoing-task load; cancellations; concurrent intentions; lure count.
+    - **exact ground truth from:** The schedule that defines the due set at each step.
+    - **human phenomena a benchmark should reproduce:** Event-based easier than time-based, ongoing-task interference, false alarms.
+  - Metamemory (abstention and calibration)
+    - **definition:** Knowing whether one knows: declining when the event never happened, calibrated confidence, tip-of-the-tongue states.
+    - **measurement paradigm:** Unanswerable questions at fixed share; selective accuracy vs coverage; near-miss lures; false-premise questions.
+    - **agent analogue and item generator:** Zero-match questions from unused universe elements (outer) and recombined present elements (inner); IDK option in multiple choice.
+    - **dials:** Share of unanswerable questions; near-miss distance; prior-knowledge plausibility of the lure; confidence elicitation format.
+    - **exact ground truth from:** Absence of the queried combination in the event table.
+    - **human phenomena a benchmark should reproduce:** Feeling of knowing, overconfidence for schema-consistent lures, tip-of-the-tongue.
+  - Forgetting and consolidation over delay
+    - **definition:** Loss, decay and stabilisation of traces over time, including effects of rehearsal, testing and spacing.
+    - **measurement paradigm:** Retention curves across delays; re-test after reactivation.
+    - **agent analogue and item generator:** Wall-clock timestamps and session counts; ask the same fact at several delays; scheduled replay or rehearsal events.
+    - **dials:** Delay; rehearsal count; spacing; intervening load.
+    - **exact ground truth from:** When the fact was last stated or rehearsed in the event log.
+    - **human phenomena a benchmark should reproduce:** Ebbinghaus curve, spacing and testing effects, retrieval-induced forgetting.
+  - Life-log and autobiographical episodic memory
+    - **definition:** Memory for one's own day-to-day activity (what did I have for breakfast yesterday, where did I leave the keys).
+    - **measurement paradigm:** Template questions over a personal activity log (Ego4D 13 NLQ templates; EgoLifeQA EntityLog, EventRecall, HabitInsight).
+    - **agent analogue and item generator:** Daily activity log of a simulated persona with objects, places and meals; text-only analogue of the Ego4D templates.
+    - **dials:** Log length in days; routine regularity (habit vs one-off); object reuse; interleaved activities.
+    - **exact ground truth from:** The generated activity log.
+    - **human phenomena a benchmark should reproduce:** Routine memories blur (similar breakfasts interfere), one-off events stand out.
+  - Associative and latent-relevance retrieval
+    - **definition:** Retrieval through an indirect association rather than literal cue overlap, including spontaneous reminding.
+    - **measurement paradigm:** Needle with minimal lexical overlap; implicit-connection questions; cue-trigger disconnect; reminding thresholds.
+    - **agent analogue and item generator:** Hidden relation graph between items; questions that reference the relation only implicitly; false-alarm controls.
+    - **dials:** Lexical and semantic distance cue-trace; competing traces N; relation hops.
+    - **exact ground truth from:** The generator's relation graph.
+    - **human phenomena a benchmark should reproduce:** Spreading activation, priming, reminding.
+  - Reading retention (document detail after a delay)
+    - **definition:** Recall of details of a text read earlier for another purpose, after delay and interference.
+    - **measurement paradigm:** Read, wait, ask; detail vs gist questions; with and without a reading goal.
+    - **agent analogue and item generator:** Render a synthetic article from an attribute table (including a car colour), place it among unrelated ingestions, ask later at several delays.
+    - **dials:** Article length; detail position; delay; interleaved ingestion volume; reading goal (none, skim, memorise).
+    - **exact ground truth from:** The article's attribute table.
+    - **human phenomena a benchmark should reproduce:** Serial position within the document, levels of processing, testing effect.
+- **traps**
+  - LLM-judge sensitivity: re-judging identical LongMemEval-S answers changed 3 of 500 labels, a modified knowledge-update template moved 70/72 to 69/72, and in a recovered LoCoMo study token-F1 gains disappeared once answer-line extraction was fixed (vendor report 2609.38021). Fix the scored answer re...
+  - No held-out set in the strongest reported LongMemEval-S result: the pipeline was tuned on the same 500 questions, so 479/500 is not a test number.
+  - Ground-truth defects and version drift: LoCoMo issues list wrong answers, mislabeled adversarial items and invalid evidence ids; LongMemEval had duplicate filler sessions (issue 54) and a Sept 2025 cleanup; PerLTQA was corrected on 2025-12-22. Record dataset version or hash with every score.
+  - Retrieval-budget confound: a memory system's win vanished once retrieved context size was controlled (2.6M characters per query). Report accuracy at equal token budget and cost per query.
+  - Always-X heuristics: always-remind (TriggerBench), always-abstain, flag-everything (TWIST) can score well without memory; every metric needs matched negatives (zero-match bins, negative variants, do-not-over-detect controls).
+  - Lenient F1 hides confabulated extras in EpBench because the predicted-item count is capped against ground-truth size in some cases; add a strict false-positive count.
+  - Writer-reader family effect: Claude-written EpBench books favoured Claude readers; a simulated life written and read by the same model family will inflate recall and agreement, which resembles the lab's cross-context agreement problem.
+  - Salience selection bias: question writers (LLMs or annotators) ask about facts that seem askable; only HaluMem carries an importance label and it is LLM-assigned at construction, so truly incidental details are under-sampled in every set read.
+  - Stylistic leakage: external filler (ShareGPT, UltraChat) can make evidence sessions detectable (ConvoMem authors' argument, not measured by me); generate filler and evidence with one pipeline.
+  - Parametric knowledge and world-knowledge embellishment: DialSim needed anonymised names; Generative Agents embellished from LM world knowledge (Adam Smith). Use invented entities and run a no-memory baseline.
+  - Near-ceiling subsets: EpBench simple recall (0.94-0.97 for best 2025 models), LongMemEval-S (about 96% for engineered chains), LoCoMo (third-party 84-95%) no longer separate frontier systems; keep them as anchors and add discriminating tiers (chronology, aggregation, forgetting, prospective cues).
+  - Short-list cognitive replications may not transfer: the seven-effects study used GPT-4, Mistral and LLaMA2 on short lists and found position invariance, while Lost in the Middle shows a U shape in long contexts; re-run on current models in the agent setting before claiming human-like effects.
+  - Licences: HaluMem is CC BY-NC-ND (no derivatives); LoCoMo, PerLTQA, AbstentionBench and ConvoMem data are non-commercial; MemSim, DialSim, PM-Bench and MemBench repos have no licence file (all rights reserved by default); DialSim data are copyrighted scripts; EgoLife is S-Lab non-commercial; Ego4D...
+  - Vendor and community scores in issues and blogs are self-reported and contested (Letta 74.0% vs Mem0 68.5%, Mem0 later lists 92.5%); treat as ballpark.
+  - Cost is not comparable across papers: HaluMem reports minutes, MemoryAgentBench dollars per query, ConvoMem token and cached-token cost; no standard cost per retained detail exists.
+  - Single fixed scenario risk: PM-Bench is one deterministic week; after release it can be memorised or over-fitted by scaffold tuning (65.1% to 82.9% reported within two months).
+- **uncertainties**
+  - EpBench: judge model name, Tables 4-5 and appendix E.1-E.4 not read. I first inferred that the free-text details were never queried; B.2.1 shows traces include secondary entities and full chapter details, but I saw no question template for an arbitrary peripheral slot such as a colour.
+  - HaluMem importance weights are LLM-annotated at memory-point generation (Stage 4), but their distribution and validation were not read, so the weighted-vs-plain recall gap is only a proxy for losing low-importance points.
+  - Abstract-only items: LoCoMo-Plus, Selective QA, TWIST, MemBench, AMA-Bench, MOSAIC, OpenLifelogQA, CapMem, GSW, PRISM, NoLiMa, AbstentionBench, Lost in the Middle, MSC, prospective-memory instruction study. Their construction and scoring details may differ from my one-line summaries.
+  - MemTrace per-system numbers, judge reliability and code or data location were not read; its data derive from an NC-ND set so reuse is unclear.
+  - PM-Bench: the 65.1% F1 is attributed to a GPT-5.4 agent in the abstract and to the best scaffold's macro over eight models in section 4.2.
+  - Third-party numbers (GitHub issues, Letta, Mem0, community LongMemEval results) are unverified; the LongMemEval audit is a single-author vendor report, not peer reviewed.
+  - WebFetch of arXiv PDFs returned unreadable binary, so every deep read used arXiv HTML text extracted by script with per-section caps; unselected sections were not read (for example LongMemEval_M size, per-type scores, Ego4D baselines, BEAM Table 1, REALTALK Table 3, EgoLife results).
+  - Licences not fully read: NoLiMa (Adobe Research License), EgoLife (S-Lab clause seen only in README grep), Ego4D (only that a licence is required), REALTALK dataset, FABLES repo, the seven-effects repo.
+  - DialSim: I did not verify whether scoring uses a real-time limit or exactly how answers are matched; I assume multiple-choice letter matching.
+  - SummHay: haystack size, number of documents and Table 2 values not captured.
+  - Absence claims ('no benchmark found') rest on arXiv API abstract-field keyword queries, GitHub search, and one web search; benchmarks with unusual vocabulary or non-arXiv venues could have been missed.
+  - Dates: items dated 2026 (PM-Bench, TriggerBench, MemTrace, the audit, Price of Scale) are weeks to months old and may be revised; version numbers are given in sources_read.
+- **uncovered cells**
+  - Write-time salience crossed with later relevance: no benchmark marks a detail as incidental when stored and makes it matter later; closest are HaluMem importance weights (assigned at construction) and LongMemEval indirect mentions (no matched explicit-mention control).
+  - Reading retention with delay: no benchmark reads a text for another purpose, waits through interference and then asks a detail (the owner's article-car-colour case); nearest are MemoryAgentBench EventQA and document QA, PAIM/PTr and LongMemEval single-session-assistant.
+  - Wall-clock forgetting and consolidation: only session-count memory age (MemTrace); no real-time delay, no spacing, testing or rehearsal effects, no retrieval-induced forgetting, no sleep-like replay.
+  - Source memory and provenance: no direct measure of who-said-it or read-vs-told-vs-imagined with exact truth; HaluMem false-memory resistance (AI-voiced distractors) and the PRISM abstract come nearest.
+  - Misinformation effect and imagination inflation for LLM agents: none found (the only misinformation study found is human-subject); DRM exists only for short in-context lists.
+  - Gist vs verbatim dissociation under controlled compression: only MemTrace's gist-accuracy vs verbatim-completeness split (abstract-level) and qualitative omission studies (FABLES).
+  - Emotional or flashbulb enhancement, mood-congruent and context-dependent retrieval, encoding specificity beyond lexical overlap: none found.
+  - Calibrated confidence (metamemory): no memory benchmark reports calibration curves or feeling-of-knowing; only abstention rates and selective accuracy at coverage.
+  - Spontaneous associative reminding with exact truth (should this old detail surface now, without a question): only false-alarm theory (Price of Scale) and PM-Bench state channels.
+  - Self-memory and identity continuity (who you are) with exact truth under life events: only persona-consistency analyses (REALTALK, LoCoMo) and Generative Agents interviews.
+  - Cost per retained or recovered detail: no benchmark reports cost on a common axis tied to what was kept.
+  - Egocentric-style life-log queries in text only (what did I eat yesterday, where did I leave X): defined for video (Ego4D, EgoLife) but no text generator or benchmark found.
+
+Sources read (30):
+
+- https://arxiv.org/abs/2501.13121 (paper (EpBench, ICLR 2025); arxiv.org/html/2501.13121v1 text-extracted with curl and Python (the PDF fetch returned u...)
+- https://github.com/ahstat/episodic-memory-benchmark (repo README and licence; gh api: LICENSE, README leaderboard table and metric definitions, .env and quickstart lin...)
+- https://arxiv.org/abs/2410.10813 (paper (LongMemEval); arxiv.org/html/2410.10813v2 text-extracted. Read abstract, 3.2-3.4, 5.2-5.3 (Table 3 head...)
+- https://github.com/xiaowu0162/LongMemEval (repo README, licence, 14 latest issue titles, HF dataset metadata; gh api and curl on the HF API; read data, evaluate_qa and vLLM lines; issue titles only (...)
+- https://arxiv.org/abs/2511.03506 (paper (HaluMem); arxiv.org/html/2511.03506v3 text-extracted. Read abstract, 4 (stages 1-6), 5.1-5.3, 6.2.1...)
+- https://github.com/MemTensor/HaluMem (repo README, licence, HF dataset metadata; gh api and curl on HF API)
+- https://arxiv.org/abs/2409.20163 (paper (MemSim); arxiv.org/html/2409.20163 text-extracted. Read abstract, 3.2-3.4, openings of 4.1-4.3, 5....)
+- https://arxiv.org/abs/2510.27246 (paper (BEAM) and repo; arxiv.org/html/2510.27246 (v2) text-extracted. Read abstract, 2.2-2.4, 3, 4.2 main result...)
+- https://arxiv.org/abs/2507.05257 (paper (MemoryAgentBench) and repo; arxiv.org/html/2507.05257 (v4) text-extracted. Read abstract, 3.1, 4.2, 4.3.4, B.1-B.4 op...)
+- https://arxiv.org/abs/2511.10523 (paper (ConvoMem) and repo; arxiv.org/html/2511.10523 text-extracted. Read abstract, 2.2-2.4, 3.4.2, 4, A.1-A.3 openi...)
+- https://arxiv.org/abs/2402.17753 (paper (LoCoMo), repo, issues; arxiv.org/html/2402.17753 text-extracted (sections 3-6, 8, B.1-B.2). README, licence and...)
+- https://arxiv.org/abs/2406.13144 (paper (DialSim) and repo; arxiv.org/html/2406.13144 (v6) text-extracted: 3.1.x, 4, 5.3, G.1. README run commands vi...)
+- https://arxiv.org/abs/2402.16288 (paper (PerLTQA) and repo; arxiv.org/html/2402.16288 text-extracted: 3.1-3.5, 4.2-4.4, limitations. README and licen...)
+- https://arxiv.org/abs/2502.13270 (paper (REALTALK) and repo; arxiv.org/html/2502.13270 text-extracted: 3.1-3.2, 5.1, 6, A.3. README and licence via gh...)
+- https://arxiv.org/abs/2607.12385 (paper (PM-Bench) and repo; arxiv.org/html/2607.12385 text-extracted: abstract, 3.1-3.3, 4.1-4.4, A.1-A.4. README via...)
+- https://arxiv.org/abs/2606.23459 (paper (TriggerBench) and repo; arxiv.org/html/2606.23459 text-extracted: abstract, 3.x, 4.x openings, limitations, A.x....)
+- https://arxiv.org/abs/2606.17328 (paper (MemTrace); arxiv.org/html/2606.17328 text-extracted: abstract, 3.1-3.4, openings of 4.2-4.4, limitat...)
+- https://arxiv.org/abs/2609.38021 (vendor technical report (LongMemEval-S audit); arxiv.org/html/2609.38021 text-extracted: abstract, protocol, reader robustness, limitati...)
+- https://arxiv.org/abs/2509.17138 (paper (seven human memory effects in LLMs); arxiv.org/html/2509.17138 text-extracted: abstract, datasets, results text, Tables 1-2, e...)
+- https://arxiv.org/abs/2506.08184 (paper (PI-LLM) and repo licence; abstract (arXiv API) plus 2.1 experimental design from the HTML; licence via gh. Results...)
+- https://arxiv.org/abs/2407.01370 (paper (SummHay); arxiv.org/html/2407.01370: abstract, 3.2-3.4, 4.1, 5.2-5.3 openings, discussion. Table 2...)
+- https://arxiv.org/abs/2404.01261 (paper (FABLES); arxiv.org/html/2404.01261: abstract, 2-5 (omission analysis, Table 6), conclusion.)
+- https://arxiv.org/abs/2503.03803 (paper (EgoLife / EgoLifeQA) and repo; arxiv.org/html/2503.03803: 3.5 EgoLifeQA annotations, dataset card D.6. README and licenc...)
+- https://ego4d-data.org/docs/benchmarks/episodic-memory/ (benchmark documentation plus paper; docs page text-extracted; Ego4D paper arXiv 2110.07058 PDF streamed through pypdf (91 pag...)
+- https://arxiv.org/abs/2304.03442 (paper (Generative Agents); arxiv.org/html/2304.03442: 4.1 memory and retrieval, 6.5.1-6.5.2, 7.1.2, B.2. Importance...)
+- https://www.letta.com/blog/benchmarking-ai-agent-memory (vendor blog; WebFetch, summarised by the fetch tool; WebSearch result list used only to find it)
+- https://export.arxiv.org/api/query (arXiv API abstracts (abstract-only reads); Abstract text only, via the arXiv API, for: 2307.03172 (Lost in the Middle), 2107.07567 (...)
+- https://github.com (licence checks; gh api licence endpoint (first lines) for NoLiMa (Adobe Research License), AbstentionBenc...)
+- https://www.letta.com/blog/benchmarking-ai-agent-memory (WebSearch; One standard WebSearch about LoCoMo critiques; results were titles and a summary, not pri...)
+- C:/Users/user/AppData/Local/Temp/claude/D--Pamiec-LLM/aac816ad-40b5-4547-97f8-5b21b7afca0e/scratchpad/scripts/ex2.py (method note (failed reads and extraction script); WebFetch of four arXiv PDFs (EpBench, LongMemEval, HaluMem, MemSim) returned unreadable P...)
+
+### Human-memory science as a specification for a general (not writing-only) agent-memory benchmark: taxonomy, standard paradigms, robust effec...
+
+- **findings**
+  - LongMemEval (500 questions, 5 abilities, 7 question types) is built from a 164-attribute user ontology; evidence sessions are Llama 3 70B self-chats (<=10 rounds) about 70% human-edited with human-written evidence statements; the haystack...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2410.10813 ; https://github.com/xiaowu0162/LongMemEval
+  - LongMemEval reports no accuracy by evidence position, number of evidence sessions or time gap, and no retention-interval or interference manipulation; the only length dial is S vs M; evidence sits mostly near the start of chats. In the rel...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2410.10813 ; https://github.com/snap-research/locomo
+  - LongMemEval headline results: GPT-4o oracle 0.870 -> S 0.606 (30.3% drop), Llama 3.1 70B 0.744 -> 0.334; on 97 short-history questions offline GPT-4o 0.9184, ChatGPT 0.5773, Coze 0.3299; GPT-4o judge agrees with experts >97%. Best design f...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2410.10813
+  - The 2025-09 'cleaned' LongMemEval release removed history sessions that could interfere with answer correctness, i.e. natural interference is deliberately engineered out of the benchmark. The official scorer is a GPT-4o-2024-08-06 judge wi...
+    - **evidence strength:** measured
+    - **source:** https://github.com/xiaowu0162/LongMemEval
+  - LongMemEval-S is near ceiling for strong readers and LoCoMo reference labels are materially incomplete: a 2026 system report scores LongMemEval-S 475/500 (95.0%) source-aware vs 463/500 (92.6%) reference-only, LoCoMo categories 1-4 90.91%...
+    - **evidence strength:** measured
+    - **source:** arXiv 2610.05343 (abstract via arXiv API)
+  - LoCoMo (paper): 50 LLM-generated conversations (19.3 sessions, ~9.2k tokens, ~305 turns each), 7,512 QA (single-hop 2,705; multi-hop 1,104; temporal 1,547; open-domain 285; adversarial 1,871), ~15% of turns human-edited, human F1 87.9 vs G...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2402.17753 ; https://github.com/snap-research/locomo
+  - LoCoMo's adversarial category (446 of 1,986 released QA) has an 'adversarial_answer' field and names a speaker; the examples inspected look like speaker-swapped questions (the stated answer belongs to the other speaker), i.e. an implicit w...
+    - **evidence strength:** argued
+    - **source:** https://github.com/snap-research/locomo (data/locomo10.json) ; https://arxiv.org/html/2402.17753
+  - LoCoMo data and code are CC BY-NC 4.0 (LICENSE.txt) although GitHub reports NOASSERTION.
+    - **evidence strength:** measured
+    - **source:** https://github.com/snap-research/locomo
+  - LoCoMo-Plus targets 'cue-trigger semantic disconnect': a latent constraint (causal, state, goal, value) stored in an early turn must be applied to a later trigger that avoids the cue's nouns and verbs (gap >= 1 week, BM25+MPNet filtering,...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2602.10715
+  - MemoryAgentBench has 4 competencies (accurate retrieval, test-time learning, long-range understanding, selective forgetting/conflict resolution), 2,071 questions, programmatic scoring for most tasks (strict exact match), 'inject once, quer...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2507.05257 ; https://github.com/HUST-AI-HYZ/MemoryAgentBench
+  - PersonaMem: 20 PersonaHub personas, >180 histories of 10/20/60 sessions (32k/128k/1M tokens) generated by GPT-4o from event timelines with preference updates; 7 in-situ query types (recall facts only 5.8%); 4-option MCQ with outdated/irrel...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2504.14225 ; https://github.com/bowen-upenn/PersonaMem
+  - EpBench builds exact-ground-truth episodic items: events are (time, space, entities, content) tuples from a universe of 100 values per dimension, chapters written independently by an LLM, ground truth fixed by construction and verified (un...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2501.13121
+  - EpBench README ranking (in-context, book size not stated): gemini-2.5-pro simple recall 0.968 / chronological awareness 0.796, gemini-2.5-flash 0.960 / 0.817, gpt-5 0.942 / 0.804, gpt-4o 0.670 / 0.204, claude-3-5-sonnet 0.470 / 0.090: simp...
+    - **evidence strength:** measured
+    - **source:** https://github.com/ahstat/episodic-memory-benchmark
+  - PM-Bench (Virtual-Week-style): 7 days, 80 steps, 83 task definitions (57 event-based, 26 time-based), 11 hidden channels, 74 lures, 11 updates; seeded deterministic generator with a perfect-play audit; programmatic Set-F1; no delay length,...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2607.12385 ; https://github.com/genglinliu/PMBench
+  - Other prospective-memory evidence in LLMs (abstract only): TriggerBench has matched retrospective controls, contrastive positive/negative variants and overloaded triggers; PM trades precision for recall ('always-remind' heuristic), RM near...
+    - **evidence strength:** measured
+    - **source:** arXiv API abstracts 2606.23459, 2603.23530
+  - GoodAI LTM benchmark: one long simulated conversation with interleaved tests (colours/name list/shopping updates, jokes told 30-240 min apart [episodic], quotes appended to the nth future reply and trigger-response [prospective], locations...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2409.20222
+  - VitaBench encodes the 'unimportant now, needed later' problem as lifecycle decisions {Keep-Exact, Compress, Consolidate, Delete}; Diagnostic tier = 60 threads x 120 episodes with Exact 30% (queried 10-66 episodes later), Recurrent 25%, Tra...
+    - **evidence strength:** argued
+    - **source:** https://arxiv.org/html/2610.14731
+  - VitaBench results (simulation): lifecycle headroom 1.364 / 1.405 (Diagnostic / Naturalistic), horizon reversal 60.2% / 56.5% (short-horizon best action differs from long-horizon best action), optimal action Keep 42.9/38.8%, Compress 15.3/2...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2610.14731
+  - HaluMem separates 'kept' from 'not confabulated' at operation level: 14,948 memory points (each typed and given an importance value), 3,467 questions in 6 types, false-but-similar distractors injected by the AI to measure false-memory resi...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2511.03506 ; https://github.com/MemTensor/HaluMem
+  - BEAM: 100 LLM-generated conversations up to 10M tokens, 2,000 validated questions, 10 abilities (abstention, contradiction resolution, event ordering, information extraction, instruction following, knowledge update, multi-hop reasoning, pr...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2510.27246
+  - Memory Echo: letting an agent write back derivatives of a retrieved claim raises echo density from 0.390 (stored once or read six times) to 0.932 and leaves 19.5-23.2% old-answer adoption after a common correction, vs 0.000 for read-only r...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2610.17763
+  - Source attribution by LLMs depends on memory structure and delay: self-generated items are 100% correct under minimal memory demand, but under episodic delay perceived items beat imagined ones (66.42% vs 47.57%; without feedback 76.34% vs...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2607.23927 ; https://github.com/saurabhr/LLM-RM/
+  - Short in-context lists saturate LLMs: GPT-4 recalled 12-word lists at 1.000 in every serial position, DRM hit rate 1.000 with critical-lure endorsement 0.114 and false alarms 0.053, fan-effect accuracy 0.991 -> 0.915; only the fan effect,...
+    - **evidence strength:** measured
+    - **source:** https://arxiv.org/html/2509.17138
+  - Interference and position in LLMs: across 39 LLMs proactive interference hurts more than retroactive (d = 1.73), the opposite of the typical human finding, with model size predicting RI but not PI and hallucination <1%; PI-LLM accuracy fal...
+    - **evidence strength:** measured
+    - **source:** arXiv API abstracts 2603.00270, 2506.08184, 2307.03172
+  - Ebbinghaus-type forgetting replicated (one subject, 69 lists, 10 per interval): savings 0.472, 0.373, 0.276, 0.317, 0.230, 0.168, 0.041 at 20 min, 1 h, 9 h, 1 d, 2 d, 6 d, 31 d vs Ebbinghaus 0.582, 0.442, 0.358, 0.337, 0.278, 0.254, 0.211;...
+    - **evidence strength:** measured
+    - **source:** https://pmc.ncbi.nlm.nih.gov/articles/PMC4492928/
+  - Across 210 published retention data sets, the best 2-parameter fits were logarithmic, power, exponential in sqrt(time) and hyperbola in sqrt(time), hard to tell apart; autobiographical memory was the exception.
+    - **evidence strength:** measured
+    - **source:** https://doi.org/10.1037/0033-295X.103.4.734
+  - Peripheral details are lost faster than central/gist details over 7 days in human memory for 23-s film clips: Study 1 central 28.09% lost vs peripheral 65.21% lost; Study 2 (non-reminded) 26.20% vs 52.61%; with repeated retrieval 4.60% vs...
+    - **evidence strength:** measured
+    - **source:** https://pmc.ncbi.nlm.nih.gov/articles/PMC4749834/
+  - Some 'forgotten' peripheral detail is recoverable by a weak cue: a title plus a blurred screenshot strip given before the test improved peripheral recall at 7 days (t(17) = -2.279, p = 0.036) but not at 3 days; the authors read loss as par...
+    - **evidence strength:** measured
+    - **source:** https://pmc.ncbi.nlm.nih.gov/articles/PMC4749834/
+  - Fuzzy-trace theory: verbatim traces fade faster than gist; after more than a week recognition of true sentences is mainly gist-based; gist-consistent false memories (DRM lures 'almost as highly as presented targets') persist for days and w...
+    - **evidence strength:** argued
+    - **source:** https://pmc.ncbi.nlm.nih.gov/articles/PMC4815269/
+  - Behavioural pattern separation task (incidental indoor/outdoor encoding of 128 objects, immediate test of 64 repeats, 64 similar lures in 5 similarity bins, 64 foils; responses old/similar/new): recognition = P(old|repeat) - P(old|foil); p...
+    - **evidence strength:** measured
+    - **source:** https://pmc.ncbi.nlm.nih.gov/articles/PMC3675184/
+  - Confidence is not consistency: 54 students recorded memories of 9/11 and an everyday event and were retested at 1, 6 or 32 weeks; consistency declined equally for both, but vividness, recollection and belief in accuracy declined only for e...
+    - **evidence strength:** measured
+    - **source:** https://doi.org/10.1111/1467-9280.02453
+  - Bartlett's repeated-reproduction result replicated: after 15 min, 1 week and 6 months subjects forgot the story and introduced rationalisation and distortion.
+    - **evidence strength:** measured
+    - **source:** https://europepmc.org/search?query=TITLE%3A%22Can%20Bartlett%27s%20repeated%20reproduction%20experiments%20be%20replicated%22
+  - Spacing: ISI and retention interval jointly determine final retention (839 assessments, 317 experiments, 184 articles); optimal gap grows with test delay but shrinks as a proportion, from about 20-40% of a 1-week delay to about 5-10% of a...
+    - **evidence strength:** measured
+    - **source:** https://doi.org/10.1037/0033-2909.132.3.354 ; https://doi.org/10.1111/j.1467-9280.2008.02209.x
+  - Testing effect: restudy beats testing at 5 min but testing beats restudy at 2 days and 1 week (prose passages); after learning, repeated study adds nothing to delayed recall while repeated testing helps greatly, and learners' predictions a...
+    - **evidence strength:** measured
+    - **source:** https://doi.org/10.1111/j.1467-9280.2006.01693.x ; https://doi.org/10.1037/a0037559
+  - Retrieval-induced forgetting: retrieval practice on some category members impaired later recall of unpracticed related members, for at least 20 min and mainly for high-frequency members.
+    - **evidence strength:** measured
+    - **source:** https://europepmc.org/search?query=TITLE%3A%22Remembering%20can%20cause%20forgetting%3A%20retrieval%20dynamics%20in%20long-term%20memory%22
+  - Prospective memory in humans: meta-analytic age effects r = -.39 (time-based) and -.34 (event-based), -.40 vs -.14 for high vs low strategic demand, but -.52 for free recall; naturalistic PM favours older adults (r = .35 event, .52 time)....
+    - **evidence strength:** measured
+    - **source:** https://doi.org/10.1037/0882-7974.19.1.27 ; https://doi.org/10.1037/0278-7393.29.3.347
+  - Working-memory capacity is about 3-5 chunks when rehearsal and chunking are controlled.
+    - **evidence strength:** argued
+    - **source:** https://doi.org/10.1017/S0140525X01003922
+  - Free report vs forced report: letting people withhold answers raises accuracy at the cost of quantity, depending on accuracy incentive and monitoring effectiveness (experiments plus simulation).
+    - **evidence strength:** measured
+    - **source:** https://doi.org/10.1037/0033-295X.103.3.490
+  - Metacognition measures: phi and Goodman-Kruskal gamma are contaminated by confidence bias; type-2 d' assumes equal-variance Gaussians; type-2 ROC area is non-parametric and bias-free but depends on type-1 performance; meta-d' (and meta-d'/...
+    - **evidence strength:** argued
+    - **source:** https://pmc.ncbi.nlm.nih.gov/articles/PMC4097944/
+  - Encoding relevance changes retention: self-referent encoding beats semantic and other-referent encoding (meta-analysis); in four incidental-learning experiments rating words for survival relevance gave the best surprise-test memory; schema...
+    - **evidence strength:** measured
+    - **source:** https://europepmc.org/search?query=TITLE%3A%22The%20self-reference%20effect%20in%20memory%3A%20a%20meta-analysis%22
+  - Memory for meals matters functionally: in a meta-analysis of 24 studies, distraction increased immediate intake (SMD 0.39) and later intake more (SMD 0.76), linking recall of a recent meal to later eating.
+    - **evidence strength:** measured
+    - **source:** https://doi.org/10.3945/ajcn.112.045245
+  - Frameworks (abstract-level): Tulving - episodic memory is a neurocognitive system tied to self, subjective time and autonoetic consciousness; Conway & Pleydell-Pearce - autobiographical memories are transitory constructions in a self-memor...
+    - **evidence strength:** argued
+    - **source:** https://doi.org/10.1146/annurev.psych.53.100901.135114 ; https://doi.org/10.1037/0033-295X.107.2.261 ; https://doi.org/10.1037/0033-2909.114.1.3 ; https://doi.org/10.1101/lm.94705
+  - ASSERTED (not opened): Roediger & McDermott 1995 - studying associates of an unpresented critical lure led to recall of the lure around .40-.55 and recognition close to the hit rate for studied words with high confidence; Loftus & Palmer 1...
+    - **evidence strength:** asserted
+    - **source:** Background knowledge; https://doi.org/10.1037/0278-7393.21.4.803 not opened
+  - ASSERTED (not opened): levels of processing - semantic orienting tasks give far better retention than structural ones, and intending to learn adds little once the orienting task is equated (Craik & Tulving 1975; Hyde & Jenkins 1969); peopl...
+    - **evidence strength:** asserted
+    - **source:** Background knowledge; Craik & Tulving 1975 abstract not returned
+  - ASSERTED (not opened): Anderson & Pichert 1978 - after reading a story from a burglar or home-buyer perspective, a perspective shift at a second recall produced recall of previously unrecalled information relevant to the new perspective (m...
+    - **evidence strength:** asserted
+    - **source:** Background knowledge; https://www.ideals.illinois.edu/items/17874 and https://www.sciencedirect.com/science/article/pii/0010028586900137 returned 403
+  - Synthesis: a sleeper-detail protocol should measure four things per item - kept (gold slot present in the store), found (retrieved with a lexically matched cue and with a disconnected cue), not confabulated (zero-match and lure probes, com...
+    - **evidence strength:** argued
+    - **source:** This review; see HaluMem, LongMemEval, VitaBench, LoCoMo-Plus sources above
+  - Synthesis: widen the tracks as T1 recall/consistency gains episodic, semantic and autobiographical item families; add tracks for incidental/sleeper detail with delay curves, interference and pattern separation, source and false-memory prob...
+    - **evidence strength:** argued
+    - **source:** This review
+- **taxonomy**
+  - CROSS-CUTTING: seeded simulated-life item generator with planted-effect positive controls (applies to every row below)
+    - **definition:** Not a memory type but the construction rule that gives every item exact ground truth: sample a world and an event log first, render text from it, verify the rendering, then compile questions and foils from the log. Same principle as EpBench (events as (time, space, entities, content) tuples, ground...
+    - **measurement paradigm:** Study stream, then a delay of controlled length and content, then a test in the formats humans are given: free recall, cued recall, recognition with old/similar/new options (Stark 2013), source judgement, confidence rating, and an explicit abstain option (free vs forced report, Koriat & Goldsmith 1...
+    - **agent analogue and item generator:** (1) World: persona biography graph plus recurring entities (people, places, dishes, vehicles) whose attribute values come from sets of known size (e.g. 12 car colours including atypical ones) so chance and schema-prior guess rates are known. (2) Event log rows: (t, place, actors, object, slots, sou...
+    - **dials:** Retention interval in simulated days, intervening events and intervening tokens, varied independently (Murre & Dros could not separate time from list number); number and similarity of competitors; salience and syntactic centrality of the target slot; encoding mode (announced vs surprise, task relev...
+    - **exact ground truth from:** The sampled world and event log, re-verified after rendering.
+    - **human phenomena a benchmark should reproduce:** None by itself; it makes each phenomenon below testable and lets sanity checks run on reference memories before real systems.
+  - Episodic memory (Tulving): what-where-when(-who) bound in one instance
+    - **definition:** Memory for personally experienced events bound to a time and place and re-experienced with autonoetic awareness ('mental time travel', Tulving 2002 abstract), contrasted with semantic memory. Behavioural proxy: correct binding of what, where, when and who for one specific instance rather than a fac...
+    - **measurement paradigm:** Free recall of an episode; cued recall with what/where/who/when cues; recognition; remember/know judgements; sequence-order recall (SORT: segment-order recall adapted from cognitive psychology, human experiment with 155 participants, abstract only); diary studies with later cued testing (Linton, Wa...
+    - **agent analogue and item generator:** Event-log rows rendered as the agent's diary or dialogue turns. Question families with gold sets from the log: single-cue slot recall ('what did you eat for breakfast on the Tuesday before last?'), multi-cue conjunctions, retrieve-all matching events, latest/earliest state, chronological ordering (...
+    - **dials:** Retention interval (simulated days, intervening events, tokens); cue type (EpBench difficulty rises context < entity < space < time cues); number of matching events per cue (0, 1, 2, 3-5, 6+); event frequency/rarity; salience rating at encoding; query format (free, cued, recognition); store type (r...
+    - **exact ground truth from:** Event log; EpBench-style verification of every rendered chapter.
+    - **human phenomena a benchmark should reproduce:** Monotone forgetting with interval (see forgetting row); cue overload - more events matching a cue lowers accuracy (EpBench GPT-4o in-context F1 0.84 -> 0.53 from 0 to 6+ matches); recognition >= cued recall >= free recall; distinctive/salient events remembered better; 'when' the weakest cue (Wagena...
+  - Semantic memory, semanticisation and knowledge update
+    - **definition:** General facts without a retrievable source episode; for the agent: stable facts about itself, the user and the world, gist/habit knowledge distilled from repeated episodes ('I usually have porridge') and the latest valid value after updates.
+    - **measurement paradigm:** Fact verification and question answering; habit/frequency judgement; knowledge-update tasks where later facts supersede earlier ones; very-long-delay retention of well-learned facts (Bahrick permastore - asserted).
+    - **agent analogue and item generator:** From the event log derive (i) habit queries (mode/frequency of an attribute over the last N weeks, gold = counts), (ii) latest-value queries after u updates (MemoryAgentBench FactConsolidation pattern: serial-numbered edits, newest wins), (iii) 'when/how did you first learn X' probes that separate...
+    - **dials:** Number of supporting episodes; within-habit variability; number and spacing of updates; explicit vs implicit updates; single vs multi-hop; context length.
+    - **exact ground truth from:** Counts/mode over the log; last valid value per entity.
+    - **human phenomena a benchmark should reproduce:** Gist/habit knowledge outlasts episodic detail and loses its source (asserted); updates create proactive interference. LLM contrast: proactive interference > retroactive (d = 1.73, 39 LLMs), not the usual human asymmetry, so do not require a human-shaped asymmetry.
+  - Autobiographical memory and the self-memory system (Conway)
+    - **definition:** Autobiographical memories are transitory constructions made by control processes in a self-memory system that couples an autobiographical knowledge base (life story / lifetime periods -> general events -> event-specific knowledge) with the goals of the working self; the knowledge base grounds the g...
+    - **measurement paradigm:** Cue-word retrieval and specific-vs-general scoring; diary-based cued recall; test-retest of the same event (Talarico & Rubin: 54 students at 1, 6, 32 weeks); repeated retellings (Bergman & Roediger 1999: 15 min, 1 week, 6 months); self-reference vs semantic encoding (Symons & Johnson 1997).
+    - **agent analogue and item generator:** The writer persona's invented biography stored as a 4-level graph (self-images/life story, periods, general events, event-specific details), with questions at each level. A canon registry makes every improvised detail canonical at first utterance; later fresh-context answers are scored for correspo...
+    - **dials:** Hierarchy level asked; name rarity; number of fresh-context repeats; write-back on/off; time since canon formation; event vs period cue; self-relevance of the detail; strength of identity-challenging events.
+    - **exact ground truth from:** Biography graph plus canon registry of first-utterance details.
+    - **human phenomena a benchmark should reproduce:** Consistency of re-told details falls with delay while confidence does not (flashbulb and everyday memories equally inconsistent but flashbulb stays vivid and believed); retelling brings rationalisation and distortion; self-referent encoding is advantaged. The lab's own 0.40-0.57 improvised-detail a...
+  - Working memory
+    - **definition:** Capacity-limited maintenance and manipulation of currently relevant information (Baddeley model; Cowan: about 3-5 chunks). Agent analogue: what is live in the context or scratchpad rather than retrieved from a store.
+    - **measurement paradigm:** Span and complex-span tasks, n-back, change detection, proactive-interference key-value update tasks.
+    - **agent analogue and item generator:** Track k entities' current attributes through d interleaved updates with no external memory (PI-LLM streams semantically related key-value updates and queries only the final values; GoodAI interleaves unrelated tasks). Gold = final value per key from the log. Run with the store disabled to isolate t...
+    - **dials:** Set size k; updates per key; distractor tasks; chunkable vs unchunkable material; position of last update.
+    - **exact ground truth from:** Programmatic state of the keys.
+    - **human phenomena a benchmark should reproduce:** Performance falls with load; capacity limit of a few chunks; in LLMs retrieval accuracy falls log-linearly toward zero with accumulated interference. Calibrate load so the test is not at ceiling (GPT-4 scored 1.000 at all serial positions on 12-word lists).
+  - Prospective memory (remembering to do something later)
+    - **definition:** Carrying out an intended action at a future cue (event-based) or time (time-based) while other activity continues; unlike retrospective recall the intention must be self-initiated.
+    - **measurement paradigm:** Einstein & McDaniel (1990): a target-triggered action embedded in an ongoing task, compared with retrospective tests of the same material; ongoing-task cost (Smith 2003: longer lexical-decision times while holding an intention); Virtual-Week-style simulations (PM-Bench).
+    - **agent analogue and item generator:** Plant an intention in the stream ('when Dana mentions her sister, ask about the wedding'; 'remind me on Thursday to book the dentist'; 'append a quote to your 4th reply from now' as in GoodAI), then run n ongoing events. Gold = exact trigger step(s) from the schedule; classify on-time hit, late, mi...
+    - **dials:** Delay (events, tokens, simulated time); intervening tasks; simultaneous intentions; cue focality and distinctiveness; event vs time trigger; overloaded triggers; intention importance; presence of an intention store; updates/cancellations.
+    - **exact ground truth from:** Trigger schedule in the simulator (due-set per step).
+    - **human phenomena a benchmark should reproduce:** PM and retrospective memory dissociate (no age deficit in PM in Einstein & McDaniel 1990; meta-analytic age effects r = -.39 time-based, -.34 event-based, -.40 vs -.14 for high vs low strategic demand, -.52 for free recall); holding an intention costs ongoing performance; in LLMs PM decays with con...
+  - Incidental vs intentional encoding, levels of processing, importance at encoding (the 'sleeper detail' case)
+    - **definition:** Whether material is encoded with intent to remember and how deeply it is processed. Retention follows processing depth, elaboration and relevance more than intention (Craik & Tulving 1975, Hyde & Jenkins 1969 - asserted); peripheral details of familiar objects are weakly encoded (Nickerson & Adams...
+    - **measurement paradigm:** Orienting task plus surprise test (the mnemonic similarity task encodes objects incidentally through an indoor/outdoor judgement and tests immediately); survival vs pleasantness rating in incidental learning (Nairne 2007); self vs semantic vs other encoding (Symons & Johnson 1997); central vs perip...
+    - **agent analogue and item generator:** Car-colour case: an article read while the agent's active task concerns something else (summarise the politics paragraph) mentions the colour once in a subordinate clause; a surprise question arrives N days later. Breakfast case: breakfast mentioned in passing in a chat about a deadline. Sleeper pr...
+    - **dials:** Task relevance of the attribute at encoding (focal / peripheral / explicitly irrelevant); syntactic centrality and position in the text; number of mentions; distinctiveness vs schema typicality; announced vs surprise test; self-reference of the item; delay; competitor articles.
+    - **exact ground truth from:** Renderer records slot, rendering position and mention count.
+    - **human phenomena a benchmark should reproduce:** Peripheral details are lost faster than central ones (of what was recalled at day 0, 7 days later about 26-28% of central but 53-65% of peripheral details were gone), and some are recoverable with a cue; arbitrary details such as the colour of a car are where witnesses go wrong; self-referent and s...
+  - Gist vs verbatim traces (fuzzy-trace theory)
+    - **definition:** Verbatim (surface-exact) and gist (meaning) traces are encoded, stored and retrieved independently; verbatim fades faster; gist supports 'phantom recollection' of unpresented but meaning-consistent items; accessible verbatim traces are used to reject such items ('recollection rejection').
+    - **measurement paradigm:** Conjoint recognition and verbatim- vs gist-instruction recognition; DRM lists; Bransford & Franks sentences (true/false x premise/inference x old/new); narrative recognition at ~30 min and 12 days (N = 48).
+    - **agent analogue and item generator:** For each stored episode, two probe types at matched delay: verbatim-sensitive (exact colour, number, brand; one slot changed) and gist-sensitive (what the article was about, what was left open). Lure types: gist-consistent but verbatim-wrong, and unrelated. Compare stores (full text, summary, thres...
+    - **dials:** Delay; semantic relatedness of lures; number of related items; store granularity; instruction type (verbatim vs meaning); prior testing of presented items.
+    - **exact ground truth from:** Slots (verbatim) and a generator-written gist statement per episode.
+    - **human phenomena a benchmark should reproduce:** Verbatim memory fades faster than gist; after more than a week recognition is mainly gist-based; gist-consistent false memories persist for days and weeks; a prior test boosts both true and related-lure false recognition.
+  - Forgetting curves and retention intervals
+    - **definition:** Loss of retrievable information as a function of retention interval; the shape of the curve, not a single point, is the datum.
+    - **measurement paradigm:** Learn lists to criterion, test after fixed intervals by recall, recognition or savings (time saved on relearning); Ebbinghaus intervals 20 min, 1 h, 9 h, 1 d, 2 d, 6 d, 31 d.
+    - **agent analogue and item generator:** Test the same items at several delays (immediate, +1, +3, +7, +14, +31 simulated days) and report a curve. Agent 'savings' = extra cues, tokens or hints needed to recover an item compared with a never-seen control. Forgetting in an agent store is a policy (decay, thresholding, summarising): a lossl...
+    - **dials:** Delay in simulated time; intervening events; item class; repetitions; cue; an offline consolidation pass between sessions (sleep analogue).
+    - **exact ground truth from:** Item registry with exposure time and test schedule.
+    - **human phenomena a benchmark should reproduce:** Monotone, negatively accelerated decline; log/power/exp-in-sqrt(t)/hyperbola-in-sqrt(t) forms fit best and are hard to separate; Ebbinghaus savings 0.582 -> 0.211 and replication 0.472 -> 0.041 over 20 min to 31 d; possible 24-h upward bump (weak: AIC gain 1.6); middle list positions forgotten most...
+  - Interference and pattern separation (telling two similar breakfasts apart)
+    - **definition:** Competition among similar memories: proactive and retroactive interference, cue overload (fan effect), pattern separation (distinct storage of overlapping inputs) and pattern completion (reconstructing a whole from a partial cue).
+    - **measurement paradigm:** Mnemonic similarity / BPS-O task (128 objects studied incidentally; 192 test trials = 64 repeats, 64 similar lures in 5 bins, 64 foils; respond old/similar/new); fan-effect lists; A-B/A-C paired associates (asserted).
+    - **agent analogue and item generator:** Two similar breakfasts (porridge + blueberries on Tuesday, porridge + raspberries on Thursday) or two similar articles on a blue/green hatchback. Query one by date; classify the answer as target / lure / other / abstain. Calibrate lure-similarity bins with embedding distance and a model or human ra...
+    - **dials:** Lure similarity bin (1-5); competitors per cue (fan 1, 2, 3, 6+ - EpBench uses 0, 1, 2, 3-5, 6+ matching events); temporal separation of competitors; proactive vs retroactive order; whether the store merges near-duplicates (summaries) or keeps them separate.
+    - **exact ground truth from:** Attribute edits recorded per lure (which slot differs and by how much).
+    - **human phenomena a benchmark should reproduce:** Lure discrimination falls steadily with age while plain recognition is spared (pattern separation 22% / 7% / 4% for unimpaired / impaired / MCI; recognition 79% / 77% / 61%); accuracy falls as matching events multiply; LLMs show PI > RI (d = 1.73) and log-linear decline with accumulated interferenc...
+  - Spacing, testing and retrieval-induced forgetting
+    - **definition:** Distributed practice beats massed practice for long-term retention with an optimal gap that depends on the retention interval; retrieval practice beats restudy for delayed retention; retrieving some items can suppress related unpracticed ones.
+    - **measurement paradigm:** Study, review after a gap, final test after a delay (gaps to 3.5 months, tests to 1 year); study-test vs study-study with final tests at 5 min, 2 days, 1 week; category-cued retrieval practice then recall of unpracticed members.
+    - **agent analogue and item generator:** Items encountered k times with controlled gaps in simulated time; some items 'retrieved' (the agent is asked) between exposures, others merely re-presented; final test after a delay. Tests whether strengthen-on-access (importance rises with use) retains accessed items and whether it suppresses thei...
+    - **dials:** Exposures; gap/retention-interval ratio; retrieval vs re-presentation; recall vs recognition intermediate test; feedback; relatedness and strength of unpracticed neighbours.
+    - **exact ground truth from:** Exposure and retrieval schedule per item.
+    - **human phenomena a benchmark should reproduce:** Restudy wins at 5 min but testing wins at 2 days and 1 week; repeated study after learning adds nothing to delayed recall while repeated testing helps greatly; recall tests beat recognition tests; optimal gap about 20-40% of a 1-week delay and 5-10% of a 1-year delay; practised categories impair un...
+  - Source monitoring and source amnesia (who told you what)
+    - **definition:** Attributing a memory to its origin - external source (person, document, channel) and internal source (perceived vs imagined: reality monitoring). Source is inferred from qualities of the memory record by heuristic or systematic judgement; source amnesia = keeping the fact but losing the origin.
+    - **measurement paradigm:** Study items from two or more sources (speaker A/B, seen/heard/imagined), then old/new plus source judgement; source accuracy conditional on item recognition; vary source similarity and delay.
+    - **agent analogue and item generator:** Each fact in the log carries a source tag: lived, told by Anna, told by the user, read in article X, agent-improvised. Queries: 'who told you the car was blue?', 'did you read that or imagine it?', 'did the user say this or did you?'. Include conflicting facts from two sources, a fact repeated from...
+    - **dials:** Number of sources; similarity of sources; delay and intervening items; whether the agent's own outputs are stored in the same form as external input; repetition; feedback; confidence collected.
+    - **exact ground truth from:** Source channel tag per fact in the log.
+    - **human phenomena a benchmark should reproduce:** Source memory dissociates from item memory and degrades with delay. In LLMs: ceiling for self-generated items under minimal memory demand, reversing to an external-item advantage under episodic delay (66.42% vs 47.57%), confidence decoupled from correctness, feedback can invert judgements.
+  - False memory (DRM, misinformation, leading questions)
+    - **definition:** Remembering events or details that did not occur, through gist-based association (DRM), post-event misinformation, presupposing questions or imagination.
+    - **measurement paradigm:** DRM: study associates of an unpresented critical lure, then recall/recognition with remember/know. Misinformation: event, misleading post-event information, final test (Loftus & Palmer 1974; Loftus, Miller & Burns 1978 - asserted). Warnings and source tests as moderators.
+    - **agent analogue and item generator:** (a) DRM-style: an article or chat lists several car-related associates never naming 'engine'; later 'was engine mentioned?'. (b) Misinformation: a later message says 'that blue Honda' about a red one; ask the colour in the article. (c) Presupposition: 'what colour was the car in the second paragrap...
+    - **dials:** Associative strength and number of associates; delay; strength and plausibility of the misinformation; source of the misinformation (user vs document); warnings; repetition; confidence collected.
+    - **exact ground truth from:** The presented list/event log plus the injected lure and misinformation records.
+    - **human phenomena a benchmark should reproduce:** Critical lures falsely remembered almost as often as presented targets, persisting for days and weeks, more stable than true memories; warnings help only under limited circumstances. Asserted numbers: lure recall about .40-.55 and recognition near the hit rate (Roediger & McDermott 1995); 'smashed'...
+  - Reconstruction and schema effects
+    - **definition:** Remembering is reconstruction guided by schemas: gist and schema-consistent content are retained or inserted and details are rationalised (Bartlett 1932; Brewer & Treyens 1981 - asserted).
+    - **measurement paradigm:** Serial/repeated reproduction of a story; recall of schema-consistent vs inconsistent objects in a room; schema-congruent vs incongruent item memory.
+    - **agent analogue and item generator:** Repeated retelling: the agent retells the same stored episode, or its own biography, in k fresh contexts; compare each retelling with ground truth (omissions, additions, rationalisations). Schema intrusion: ask about an expected but absent object ('the fire engine's colour' in an article that gave...
+    - **dials:** Number of retellings; delay between retellings; schema typicality of the true value; ambiguity of the original; whether retellings are written back.
+    - **exact ground truth from:** Original rendered text and slot values.
+    - **human phenomena a benchmark should reproduce:** Forgetting plus rationalisation and distortion on retelling (replicated over 15 min, 1 week, 6 months); schema-congruent information usually remembered better, incongruent novelty sometimes better; schema-consistent intrusions (asserted).
+  - Serial position effects
+    - **definition:** Items at the start (primacy) and end (recency) of a sequence are remembered better than the middle.
+    - **measurement paradigm:** Immediate free recall of 10-40 item lists; filled delay removes recency but not primacy (Glanzer & Cunitz 1966 - asserted); long-term recency with continual distractors (asserted).
+    - **agent analogue and item generator:** Vary the position of the target event within the stored history (counted from the end in events, tokens and simulated days) holding everything else fixed; separate position in the store from position in the prompt; report accuracy per position bin.
+    - **dials:** Position bin; history length; filled vs unfilled delay; memory architecture (sliding window predicts recency only, ideal RAG predicts flat, trace store predicts something else).
+    - **exact ground truth from:** Position index recorded for every item.
+    - **human phenomena a benchmark should reproduce:** Human forgetting concentrates in middle positions (slopes about -0.011 for positions 3-10 vs about -0.0001 at the ends in the Ebbinghaus replication); LLM context shows highest accuracy at start/end and a drop in the middle, also reported in PersonaMem; but short in-context lists show no serial-pos...
+  - Metamemory (confidence vs accuracy; knowing what you do not know)
+    - **definition:** Monitoring (feeling of knowing, confidence, judgements of learning) and control (withholding, searching longer) of one's own memory.
+    - **measurement paradigm:** Trial-level confidence with every answer; free vs forced report (Koriat & Goldsmith 1996); bias-free sensitivity measures such as type-2 ROC area and meta-d' (Fleming & Lau 2014), gamma only with caution; selective-risk/coverage curves; judgement-of-learning vs later performance.
+    - **agent analogue and item generator:** Every query returns (answer or abstain, confidence 1-6); include unanswerable items (never-presented, zero-match, false-premise) and answerable items at several delays. Metrics: type-2 AUROC, selective accuracy at fixed coverage, commission rate on unanswerable items, accuracy-quantity profile, con...
+    - **dials:** Delay (more forgetting puts more items near the decision boundary); answerable/unanswerable mix; incentive for accuracy (penalty for wrong answers); confidence scale; feedback.
+    - **exact ground truth from:** Whether the information was ever presented and whether it survives in the store.
+    - **human phenomena a benchmark should reproduce:** Free report raises accuracy at the cost of quantity; confidence can dissociate from accuracy (flashbulb consistency equal to everyday memories but higher belief; learners' predicted benefit of retrieval practice uncorrelated with actual; self-rated memory fell while objective detail was stable in S...
+  - Cue-dependent retrieval and perspective-dependent importance (availability vs accessibility; associative traces)
+    - **definition:** A stored trace is retrieved only when the cue matches how it was encoded (encoding specificity, Tulving & Thomson 1973; Tulving & Pearlstone 1966 - asserted; EpBench cites both). Importance is not a property of the trace alone: a shift of retrieval perspective can make previously unrecalled stored...
+    - **measurement paradigm:** Free vs cued vs recognition tests on the same material; reminder cues at test (title plus blurred strip); perspective shift before a second recall.
+    - **agent analogue and item generator:** Hidden-relation design with a known association graph: item A (stored, looks unimportant) is linked to a later trigger B that shares no nouns or verbs with it (LoCoMo-Plus pattern: gap >= 1 week, BM25 and embedding filtering). Test matrix: matched cue, disconnected cue, associative chain of 1-3 hop...
+    - **dials:** Lexical and embedding overlap between cue and stored text (binned); hop count; gap; cue type (what/where/who/when); presence of a reminder; perspective.
+    - **exact ground truth from:** Association graph and slot values in the simulator.
+    - **human phenomena a benchmark should reproduce:** Cued recall beats free recall (asserted); a weak reminder recovers peripheral detail at 7 days (p = 0.036) - part retrieval deficit; lexically disconnected cues collapse LLM memory systems (LoCoMo -> LoCoMo-Plus: gpt-4.1 62.21 -> 18.63, gemini-2.5-pro 71.78 -> 26.06, Mem0 57.24 -> 15.80, A-Mem 59.6...
+  - Allocation: importance, consolidation and cost (rational analysis of forgetting)
+    - **definition:** Memory as an allocation problem: what to keep exact, compress, consolidate or delete before future use is known. Rational analysis (Anderson & Schooler 1991 - asserted) argues human forgetting tracks the probability that an item will be needed again.
+    - **measurement paradigm:** Estimate need probability from usage statistics and compare retention with it; for agents, counterfactual replay of each lifecycle decision over the full future stream (VitaBench).
+    - **agent analogue and item generator:** Generate futures in which a stored item is reused with known probability and delay: Exact (queried 10-66 episodes later), Recurrent, Transient (usually obsolete, 12% unexpected reuse), Conflict (superseded). Compare write-time importance policies, fixed policies and an oracle under a storage/retrie...
+    - **dials:** Reuse probability and delay distribution per class; storage budget; cost weights; horizon (short vs long); fraction of sleepers; operator fidelity.
+    - **exact ground truth from:** Reuse schedule in the simulator; exact expected utility.
+    - **human phenomena a benchmark should reproduce:** No fixed policy is best: horizon reversal 56-60%, headroom about 1.4, optimal action spread over keep (39-43%), delete (25-29%), compress and consolidate; always-compress 170.1 vs always-keep 52.4 on the Diagnostic tier. These are simulation outputs under assumed operator fidelities.
+- **benchmarks and generators**
+  - EpBench / Tulving Episodic Memory Benchmark (Huet et al., ICLR 2025)
+    - **url:** https://github.com/ahstat/episodic-memory-benchmark
+    - **covers:** Episodic what-where-when-who recall from synthetic books of events; cue overload via 0/1/2/3-5/6+ matching events; retrieve-all sets, latest state, chronological order; zero-event questions as a confabulation probe. Checked: paper full text (HTML) and GitHub README. Not covered: retention interval/...
+    - **how items are built:** Universe of 100 dates/locations/entities/contents; events sampled with a truncated geometric law; each chapter written independently by an LLM (Claude 3.5 Sonnet for the main books) from event metadata; ground truth fixed by construction and checked by uniqueness, metadata parsing, verbatim and LLM...
+    - **scoring:** LLM judge extracts items and matches them to ground truth; headline is an 'optimistic F1 bound'; Kendall tau only on fully matched lists; Wilcoxon with Holm for significance.
+    - **decision:** adopt
+    - **why:** Closest existing implementation of the generator pattern we need (structured events, exact gold, a cue-ambiguity dial, zero-match probes, MIT). Extend with a delay/intervening-event dial, a peripheral-slot renderer, source tags and confidence, and replace the LLM judge with slot/set matching.
+    - **scores and saturation:** Paper (long book, F1 by 0/1/2/3-5/6+ matches): GPT-4o in-context 0.84, 0.81, 0.60, 0.57, 0.53; Claude 3.5 Sonnet RAG 0.91 -> 0.62; zero-event o1-mini 0.97, fine-tuned GPT-4o-mini 0.00. README (book size not stated): gemini-2.5-pro simple recall 0.968 / chronological 0.796, gpt-5 0.942 / 0.804, gpt-...
+    - **licence and runnable:** MIT. Generation and LLM-judge scoring need paid API calls; no cost figure in the paper. Local 7B/14B models could act as readers but the judge would need replacing.
+  - LongMemEval (Wu et al., ICLR 2025), cleaned release; LongMemEval-V2 for web-agent trajectories
+    - **url:** https://github.com/xiaowu0162/LongMemEval
+    - **covers:** Information extraction (user facts, assistant facts, preferences), multi-session reasoning, knowledge update, temporal reasoning, abstention (30 false-premise items). Human-memory mapping: facts mentioned in passing, update interference, a small source test (assistant vs user), abstention as a weak...
+    - **how items are built:** 164-attribute ontology; Llama 3 70B background paragraphs and candidate questions; human experts filter, rewrite and write evidence statements; evidence sessions by LLM self-chat (<=10 rounds), ~70% human-edited; haystack 25% ShareGPT, 25% UltraChat, 50% simulated; random May-2023 timestamps with a...
+    - **scoring:** GPT-4o-2024-08-06 judge with per-type prompts (day-count off-by-one forgiven; knowledge update accepts old+new if new is the answer; preference rubric; abstention prompt), >97% agreement with experts; retrieval Recall@k from evidence labels.
+    - **decision:** adapt
+    - **why:** Good regression suite and the only one of the four named with turn-level evidence labels for stage attribution, but near ceiling in S for strong readers, no time/interference/salience dials, and an LLM judge. Use as a T1 smoke test and borrow the abstention and update item types.
+    - **scores and saturation:** Paper: GPT-4o oracle 0.870 -> S 0.606; offline GPT-4o 0.9184 vs ChatGPT 0.5773 and Coze 0.3299 on 97 short-history questions. 2026 system report: 95.0% source-aware / 92.6% reference-only on S, 427/500 on M (self-reported).
+    - **licence and runnable:** Code MIT; cleaned HF data MIT; V2 data Apache-2.0. The official scorer supports only gpt-4o, gpt-4o-mini or a local Llama-3.1-70B; if the lab's rule is a single cheap judge model, the scorer needs a code change and a fresh agreement check against human labels. S contexts (~115k tokens) are too long...
+  - LoCoMo (Maharana et al., ACL 2024)
+    - **url:** https://github.com/snap-research/locomo
+    - **covers:** Single-hop, multi-hop, temporal, open-domain and adversarial QA plus event summarisation over very long two-speaker dialogues: episodic and semantic facts and an implicit speaker-attribution test. Checked: paper full text, README, evaluation.py head, LICENSE.txt, counts from data/locomo10.json. Not...
+    - **how items are built:** Persona (MSC seed expanded by an LLM) + temporal event graph (up to 25 events per agent over 6-12 months) + reflect-and-respond generation with image sharing; annotators edited ~15% of turns and removed ~19% of images. Paper: 50 conversations, 7,512 QA; released: 10 conversations, 1,986 QA, evidenc...
+    - **scoring:** Stemmed token F1 with normalisation and partial match (BERTScore code present); ROUGE/FactScore for summaries; retrieval recall@k.
+    - **decision:** reference-only
+    - **why:** Reference labels are incomplete (78.25% reference-only vs 90.91% source-aware on the same answers), strong systems are near ceiling, the licence is non-commercial, and delay/salience cannot be varied. Keep only as a check that our pipeline scores roughly where published systems do.
+    - **scores and saturation:** Paper: human F1 87.9, GPT-4-turbo 32.1, best RAG 41.4 (GPT-3.5-16k, observations). 2026: 90.91% source-aware (local 27B reader); another system claims 94.4% (title/abstract only).
+    - **licence and runnable:** CC BY-NC 4.0 (LICENSE.txt); GitHub shows NOASSERTION. Research use only. Scripts target OpenAI/Claude/Gemini/HF models.
+  - LoCoMo-Plus (2026)
+    - **url:** https://github.com/xjtuleeyf/Locomo-Plus
+    - **covers:** Latent constraints (causal, state, goal, value) that must be applied when a later trigger shares no wording with the earlier cue: cue-dependent retrieval and a proxy for details that did not look important when stored. Checked: paper full text; repo metadata only. Not covered: peripheral factual de...
+    - **how items are built:** LLM-written two-turn cues (five models, temperature 0.7, 50 samples per relation type) with manual 'memory-worthy' filtering; five first-person triggers per cue, gap >= 1 week, avoiding the cue's nouns and verbs; BM25 and MPNet filtering; human check that recall of the cue is needed; cues inserted...
+    - **scoring:** LLM judge on constraint consistency (binary for cognitive items); human-LLM pairwise agreement 0.80-0.82 vs human-human 0.903; shows EM/F1 are length-biased.
+    - **decision:** adapt
+    - **why:** Best published item pattern for the cue-disconnect cell. Re-implement with our own slots so gold is a closed set and no LLM judge is needed; do not reuse the data (no licence stated, small, judge-dependent).
+    - **scores and saturation:** Far from saturated: best backbone 26.06 (gemini-2.5-pro) vs 71.78 on LoCoMo; gpt-4.1 18.63; Mem0 15.80; A-Mem 17.20.
+    - **licence and runnable:** No licence in GitHub metadata; paper CC BY 4.0.
+  - MemoryAgentBench (Hu, Wang & McAuley; ICLR 2026)
+    - **url:** https://github.com/HUST-AI-HYZ/MemoryAgentBench
+    - **covers:** Accurate retrieval (RULER QA, LongMemEval S*, EventQA), test-time learning (BANKING77, CLINC150, NLU, TREC, movie recommendation), long-range understanding (InfBench summarisation, DetectiveQA), selective forgetting/conflict resolution (FactConsolidation single- and multi-hop). Human-memory mapping...
+    - **how items are built:** Existing datasets re-chunked into simulated multi-turn injections (chunk 512 or 4096 tokens), questions asked after all chunks ('inject once, query many'); FactConsolidation pairs a true fact with a later counterfactual rewrite from MQuAKE, serial numbers define 'newest wins', contexts 6K/32K/64K/2...
+    - **scoring:** Mostly programmatic (substring exact match, exact match, Recall@5); LLM judge for LongMemEval and InfBench summarisation; exact_match parsing is strict ('label: 43' counts wrong).
+    - **decision:** adapt
+    - **why:** Cheap programmatic scoring and a rare unsaturated conflict-resolution cell; copy the serial-number update generator and the inject-once protocol for semantic-update items; it is not a source of episodic or incidental-detail items.
+    - **scores and saturation:** Multi-hop conflict resolution <=28% for every method (GPT-5-mini FC-MH 28.0, FC-SH 78.0); o4-mini FC-SH 100.0 at 6K -> 61.0 at 32K, FC-MH 80.0 -> 14.0; TTL average best 53.9 (Claude-3.7-Sonnet); AR best 74.4 (GPT-5-mini).
+    - **licence and runnable:** MIT code and HF data. Agent baselines (Mem0, Cognee, Letta, HippoRAG) need separate environments; cost/latency tables were in unread appendices.
+  - PersonaMem and PersonaMem-v2 (Jiang et al.; COLM 2025)
+    - **url:** https://github.com/bowen-upenn/PersonaMem
+    - **covers:** User-profile memory: static traits, evolving preferences and reasons for changes, 7 in-situ query types (recall facts 5.8%, suggest new ideas 22.9%, acknowledge latest preference 30.1%, track evolution 11.0%, revisit reasons 9.3%, aligned recommendations 11.6%, generalise to new scenarios 9.4%). It...
+    - **how items are built:** 20 PersonaHub-seeded personas, >180 histories of 10/20/60 sessions (32k/128k/1M tokens) generated by GPT-4o from structured event timelines with preference updates and reasons; short off-topic exchanges between sessions; 4-option multiple choice with outdated or irrelevant wrong options; context-fr...
+    - **scoring:** Accuracy of the chosen option (chance 25%) or option log-likelihood for open-weight models; no LLM judge. CSV records distance_to_ref in blocks and tokens, irrelevant tokens and position in context.
+    - **decision:** adapt
+    - **why:** Reuse the outdated-preference distractor and explicit distance metadata inside our generator; it is the only named benchmark that logs distance, though the paper analyses it only in figures. Human validation is small (90 entries, one persona; best-response AC1 0.560).
+    - **scores and saturation:** Frontier models about 50-52% (GPT-4.5, GPT-4.1, Gemini); recall/tracking ~60-70%; applying the latest preference 30-50%; reasoning models no better. PersonaMem-v2 (abstract): implicit preferences 37-48%, agentic memory 55% with a 2k-token memory.
+    - **licence and runnable:** MIT (code, HF data); PersonaMem-v2 data CC-BY-4.0. RAG 0.61 s/query vs Mem0 ~150 s/query (paper appendix E).
+  - PM-Bench (2026)
+    - **url:** https://github.com/genglinliu/PMBench
+    - **covers:** Prospective memory in a seven-day Virtual-Week-style simulation: 83 task definitions (57 event-based, 26 time-based), 80 steps, 11 hidden-state channels, updates and lures. Checked: paper full text and README. Not covered: delay length, cue focality, intention count as dials; ongoing-task cost; hum...
+    - **how items are built:** Seeded deterministic generator with rejection sampling and manual review; ground truth = due-set at each step, validated by a perfect-play audit; one fixed released week.
+    - **scoring:** Programmatic Set-F1 = 2TP/(2TP+FP+FN) with diagnostics for late, miss, false alarm, wrong content and update violations; no LLM judge.
+    - **decision:** adapt
+    - **why:** Best-engineered scoring (programmatic, perfect-play audit). Re-implement the pattern inside our simulated life with delay, focality and intention-count dials; the repo states no licence so copy ideas, not code.
+    - **scores and saturation:** Abstract says 65.1% F1 but Table 3 gives GPT-5.4 with optional heartbeat 79.1%; todo ledger 62.8, majority vote 37.2 (macro averages).
+    - **licence and runnable:** No licence in GitHub metadata. Runs against any OpenAI-compatible endpoint including sglang for local models; token cost not reported.
+  - TriggerBench (2026)
+    - **url:** https://arxiv.org/abs/2606.23459
+    - **covers:** Prospective memory across five dimensions with matched retrospective controls, contrastive positive/negative variants and overloaded triggers; proactive recall, false-alarm rate, attentional robustness. Checked: abstract only.
+    - **how items are built:** Not read (abstract only): scenarios from daily-assistant and professional workflows.
+    - **scoring:** Not read.
+    - **decision:** reference-only
+    - **why:** Borrow the design (matched RM control on identical context; false alarms). Reported findings: PM trades precision for recall (an 'always-remind' heuristic) and RM near-saturates to 100K tokens while PM decays sharply.
+    - **scores and saturation:** Not read beyond the abstract.
+    - **licence and runnable:** Unknown.
+  - GoodAI LTM Benchmark (Beyond Prompts: Dynamic Conversational Benchmarking)
+    - **url:** https://github.com/GoodAI/goodai-ltm-benchmark
+    - **covers:** A single long simulated conversation with interleaved tests: colours/name list/shopping list (updates with conflicts), jokes (episodic: which joke was told N minutes ago), quotes and trigger-response (prospective memory), locations, spy meeting, Sally-Anne, restaurant, ChapterBreak. Dials: memory s...
+    - **how items are built:** Seeded deterministic generators (some zero-temperature LLM-driven dynamic tests); a scheduler interleaves tests; TriviaQA filler; 11 scenarios x 3 repeats = 33 tests per run.
+    - **scoring:** Per test: regex, partial-credit formulas, ROUGE-L, GPT-4-turbo fallback; normalised to [0,1], run score out of 11.
+    - **decision:** adapt
+    - **why:** Shows how to make memory span, interleaving and prospective tests dials; but the paper's runs cost ~$7,200 and 142 h with only 3 repeats ('not reliable'), so adopt the scheduler idea and run small subsets.
+    - **scores and saturation:** Isolated best 9.2 (LTM GPT-4 turbo); at 500k tokens Gemini 1.5 Pro 6.1/11, Claude 3 Opus 3.4, GPT-4o 0.9; retrieval-based LTM agents 3.1-4.9.
+    - **licence and runnable:** GitHub NOASSERTION; paper says 'open source license' without naming it.
+  - HaluMem (Chen et al.; EMNLP 2026 Main)
+    - **url:** https://github.com/MemTensor/HaluMem
+    - **covers:** Operation-level evaluation of memory systems (extraction, updating, QA) with 14,948 memory points (persona 9,116, event 4,550, relationship 1,282), each typed with an importance value; 3,467 questions in six types (basic recall 746, multi-hop 198, dynamic update 180, memory boundary 828, conflict 7...
+    - **how items are built:** Six-stage pipeline: persona, life skeleton, event flow, session summaries and typed memory points, session generation with adversarial distractors, programmatic question allocation; 20 users; Medium ~160k tokens per user, Long ~1M tokens with irrelevant filler; eight annotators checked 700 sessions...
+    - **scoring:** GPT-4o judge; metrics: recall, importance-weighted recall (1/0.5/0), target precision, memory accuracy, FMR, update accuracy/hallucination/omission, QA correct/hallucination/omission.
+    - **decision:** adapt
+    - **why:** Its metric set maps onto 'kept, found, not confabulated' (omission vs hallucination vs false-memory resistance). The dataset is CC-BY-NC-ND so it cannot be adapted; re-implement the metrics. Importance is a static label, so it cannot test details that become important later.
+    - **scores and saturation:** Extraction is the bottleneck: recall MemOS 74.07 (Medium) / 81.90 (Long), Mem0 42.91 / 3.23; QA omission up to 54.60% (Mem0 Long); QA hallucination up to 29.97%; every QA accuracy <70%.
+    - **licence and runnable:** HF dataset cc-by-nc-nd-4.0; GitHub NOASSERTION; needs a GPT-4o-class judge.
+  - BEAM (Tavakoli et al., 2025)
+    - **url:** https://github.com/mohammadtavakoli78/BEAM
+    - **covers:** Ten abilities in 100 conversations up to 10M tokens (2,000 questions): abstention, contradiction resolution, event ordering, information extraction, instruction following, knowledge update, multi-hop reasoning, preference following, summarisation, temporal reasoning. Checked: paper (first 100k char...
+    - **how items are built:** LLM-generated plans (domain, subtopics, 15-20 narratives, profile with MBTI, relationship graph, timeline), simulated user and assistant turns, probing questions drafted by GPT-4.1-mini from plan bullets and human-validated; contradiction, update and instruction bullets added to plans.
+    - **scoring:** Nugget-based LLM judge (0/0.5/1 per nugget), Kendall tau-b for event ordering; judge model and human agreement not visible.
+    - **decision:** reference-only
+    - **why:** A breadth and long-range stress reference far from saturation, but LLM-generated and LLM-judged with no delay or salience dial; useful for the instruction-retention and contradiction cells.
+    - **scores and saturation:** About 0.10-0.36 across 4 models and tiers (best 0.359); contradiction resolution hardest; the LIGHT memory (episodic index + working memory + scratchpad) adds 3.5-12.7% over the strongest baselines.
+    - **licence and runnable:** Licence not stated in the visible text; paper CC BY 4.0.
+  - VitaBench (memory lifecycles, 2026)
+    - **url:** https://arxiv.org/abs/2610.14731
+    - **covers:** Whether to keep exact, compress, consolidate or delete a memory before future use is known; counterfactual replay of each decision over the full future; diagnostics lifecycle headroom, horizon reversal, optimal-action diversity. Checked: paper full text (first ~100k chars). Directly relevant to dyn...
+    - **how items are built:** Programmatic streams: Diagnostic tier (60 threads x 120 episodes; Exact 30%, Recurrent 25%, Transient 25%, Conflict 20%) and a Naturalistic customer-service-style tier (40 entities); exact expected utility under an abstract operator model, no sampling noise.
+    - **scoring:** Utility = reward - lambda-weighted costs (active 0.002, storage 0.00025, retrieval 0.01, interference 0.5; reward 8 for exact-detail, 2 for rule queries).
+    - **decision:** adapt
+    - **why:** Right question (value of a retention decision at unknown future use) and a way to price storage and interference. Replace the assumed operator fidelities with those measured on our trace store before trusting any number.
+    - **scores and saturation:** Diagnostic/Naturalistic utility: always keep 52.4/29.3, always compress 170.1/83.4, repeated learned policy 200.4/101.5, oracle 231.0/142.6.
+    - **licence and runnable:** Paper CC BY 4.0; code/data URL not given in the text read.
+  - MEchoBench (Memory Echo, 2026)
+    - **url:** https://github.com/OrcasSam/memory-echo-benchmark
+    - **covers:** Repetition and write-back: a claim re-retrieved and rewritten as same-family derivatives gains retrieval exposure and resists correction; echo density, correction resistance, persistence over 30 read-only probes, decision contamination. Checked: paper (first 100k chars). Seeds are borrowed real ans...
+    - **how items are built:** 190 questions from LoCoMo, LongMemEval, HotpotQA and BEAM; three histories per question (seed once / read x6 / write x6 derivatives); five stages; four memory frameworks (A-MEM, Mem0, CoM, LangMem); generators DeepSeek V4 Flash and Kimi K2.6.
+    - **scoring:** Embedding-based echo density plus a GPT-5.6 judge with no independent human audit.
+    - **decision:** adapt
+    - **why:** Exactly the risk of a write-back fix for improvised persona details: write-back raised echo density from 0.390 to 0.932 and left 19.5-23.2% old-answer adoption after correction, while read-only retrieval left it unchanged. Re-run the pattern with the agent's own improvisations as seeds.
+    - **scores and saturation:** Mitigation FPA: accuracy 0.825 -> 0.920 (DeepSeek), 0.782 -> 0.916 (Kimi).
+    - **licence and runnable:** Licence and judge cost not stated.
+  - Reality-monitoring paradigm for LLMs (LLM-RM / PsychScanner)
+    - **url:** https://github.com/saurabhr/LLM-RM/
+    - **covers:** Source attribution (self-generated vs user-supplied words from DRM lists) under single-turn, trial-chain and episodic-chain memory structures with delay measured in intervening trials, feedback, 1-6 confidence, d', gamma and type-2 AUC. Checked: paper (first 100k chars). Not covered: events, person...
+    - **how items are built:** Word pairs from a prior human reality-monitoring study; ground truth by construction; set sizes 20 and 40; six open models via Ollama at temperature 0; 72,000 test observations.
+    - **scoring:** Programmatic forced choice plus confidence; GLMM and cumulative-link models.
+    - **decision:** adapt
+    - **why:** A cheap, local-model-friendly template for source tests with a real delay and metacognitive scoring; extend from word pairs to events and persona details.
+    - **scores and saturation:** Perceived 66.42% vs imagined 47.57% in the episodic chain; reading hallucination 63.2% for Gemma3:12b in single-turn.
+    - **licence and runnable:** MIT for code, stimuli and anonymised data.
+  - Cognitive-psychology paradigms run on GPT-4 (arXiv 2509.17138)
+    - **url:** https://arxiv.org/abs/2509.17138
+    - **covers:** List length, list strength, fan effect, nonsense effect, serial position, DRM and generalisation on GPT-4 and two small offline models. Checked: paper full text (first ~100k chars). No forgetting curve, spacing, testing, misinformation, source memory or gist/verbatim manipulation.
+    - **how items are built:** Facts like 'The <person> is in the <location>' (32-40 per list), 12-word associate lists, DRM lists; yes/no or recall tests; arithmetic filler.
+    - **scoring:** Hit rate, false alarm, d'; no sample sizes, runs or significance tests reported.
+    - **decision:** reference-only
+    - **why:** Demonstrates the ceiling trap (recall 1.000 at all serial positions, hit rate 1.000) and gives DRM/fan numbers for in-context GPT-4; too weakly documented to reuse.
+    - **scores and saturation:** Fan-effect accuracy 0.991 -> 0.915; critical lure 0.114; false alarm 0.053.
+    - **licence and runnable:** No code link found in the text read.
+  - Scanned by abstract only: MemBench, PerLTQA, Memora (FAMA), MemConflict, LongMemEval-V2, SORT/Book-SORT, MemIR, PersonaMem-v2
+    - **url:** https://arxiv.org/abs/2506.21605
+    - **covers:** MemBench: factual vs reflective memory and participation vs observation scenarios (a possible lived vs read-about source contrast); PerLTQA: semantic vs episodic personal memories; Memora: weeks-to-months user conversations and a Forgetting-Aware Memory Accuracy metric penalising obsolete memories;...
+    - **how items are built:** Not read (abstracts only).
+    - **scoring:** Not read.
+    - **decision:** reference-only
+    - **why:** Candidates to read in full if a cell needs them: Memora for obsolete-memory use, SORT for human anchors, MemBench for source/participation contrasts.
+    - **scores and saturation:** Not read.
+    - **licence and runnable:** LongMemEval-V2 data Apache-2.0 and PersonaMem-v2 data CC-BY-4.0 (HF metadata); others unknown.
+- **traps**
+  - Ceiling effects hide human-like effects: GPT-4 recalled 12-word lists at 1.000 in every serial position with DRM hit rate 1.000; EpBench simple recall is 0.94-0.97 for the best reasoning models; LongMemEval-S is 92-95% for strong readers. Calibrate load (list length, competitor count, delay) until...
+  - Time and interference are confounded: Murre & Dros could not separate list number from time (R2 about 8% for intervening lists at 31 days) and cleaned LongMemEval removed interfering sessions. Vary simulated time, intervening events and intervening tokens independently, and make the clock visible t...
+  - Reference answers are incomplete or wrong: source-aware regrading moved LoCoMo categories 1-4 from 78.25% to 90.91%; LoCoMo-Plus shows an item with EM = 0, F1 about 0.40, an LLM judge saying correct and both humans saying wrong. Prefer closed-set slot gold generated with the item and hand-audit a s...
+  - Guessing and schema priors: a car colour or breakfast is guessable. Draw values from sets of known size, include atypical values, match foils on typicality, run a closed-book no-memory baseline (PersonaMem dropped queries answerable more than once in three context-free attempts), and use free vs fo...
+  - LLM judges are part of the instrument: LongMemEval validated GPT-4o at >97% agreement, HaluMem uses GPT-4o, Memory Echo uses GPT-5.6 with no human audit, LoCoMo-Plus human-LLM agreement is 0.80-0.82. Swapping the judge changes validity and needs a fresh agreement check; programmatic slot matching (...
+  - Human-likeness is not accuracy: false memories, forgetting and source errors are human features an agent may not want, and LLMs differ from humans (proactive > retroactive interference, d = 1.73). Report accuracy, error type and human-likeness separately; treat human effects as sanity checks on the...
+  - Small-N classics: the Ebbinghaus replication is one subject with 10 lists per interval; the Sekeres studies had roughly 6-19 participants and no effect sizes; the MCI group in Stark 2013 is 11 people; the fuzzy-trace experiment 48. Sanity checks should be directional or shape-based with tolerance;...
+  - Strengthen-on-access has side effects: retrieval practice can suppress related unpracticed items, prior testing raises false recognition of related lures, and write-back of derivatives inflated echo density from 0.390 to 0.932 and left 19.5-23.2% old-answer adoption after correction. Evaluate any i...
+  - Renderer-induced salience: if the generator puts the target slot in a headline or repeats it, difficulty changes silently. Record position and mention count per slot, balance templates, and verify exactly-once placement after rendering.
+  - Parametric knowledge and contamination: use invented names and places and verify that closed-book answers sit at the known chance rate; synthetic does not guarantee no typical-combination bias.
+  - A null without a planted-effect positive control is uninterpretable (the earlier delayed-relevance null had none). Build reference memories with known decay exponent, dropout probability, merge rate and mislabel rate, and require parameter recovery first.
+  - Stage confounds: a miss can be a write, retrieval, reading or reconstruction failure. HaluMem shows extraction recall is the main bottleneck (Mem0 Long recall 3.23%), so score at stage level or retrieval will be blamed for what the writer dropped.
+  - Prospective-memory items can measure instruction following rather than memory; use matched retrospective controls on identical context and count false alarms (the 'always-remind' strategy).
+  - Source tests can fail at reading, not at attribution: Gemma3:12b misreproduced user-supplied words in 63.2% of single-turn trials before any source judgement. Score encoding fidelity separately from source accuracy.
+  - Accuracy alone mis-ranks systems that abstain differently: use selective-risk/coverage curves, type-2 AUROC or meta-d'; gamma and phi are contaminated by confidence bias, and near-ceiling accuracy leaves few errors for metacognitive measures.
+  - Run-to-run noise and cost: GoodAI called 3 repeats 'not reliable' at ~$7,200 and 142 h; PM-Bench reports no variance across 64 runs. Prefer many cheap seeded items with bootstrap intervals over a few expensive runs.
+  - Numbers in new preprints are not always consistent: PM-Bench abstract 65.1% vs Table 3 79.1%; EpBench tables 2 and 3 disagree on question counts and the long book has 196 events vs 200 chapters; LoCoMo section and table values differ; Stark's sample sizes are given as 98, 93 and 96. Re-run or inspe...
+  - Simulated operators are not measurements: VitaBench's compress/consolidate success rates are assumed, so its conclusions about importance policies hold only after those rates are measured on a real trace store.
+  - Licence traps: HaluMem data is CC-BY-NC-ND (no derivatives), LoCoMo is CC BY-NC; PM-Bench, LoCoMo-Plus, GoodAI and Memory Echo state no licence. Re-implement ideas rather than copying data.
+  - This review's own reading limits: long HTML pages were summarised by a small model from the first 100k characters, so figures were transcribed by that model; spot-check any number you will build a threshold on against the source tables.
+- **uncertainties**
+  - Not opened: Wagenaar 1986 (HTTP 403), Loftus 2005 full text (403), Anderson & Pichert (403), the LongMemEval PDF (binary), and for Craik & Tulving 1975, Roediger & McDermott 1995, Brewer & Treyens 1981, Glanzer & Cunitz 1966, Anderson & Schooler 1991, Reyna & Brainerd 1995/2002, Schacter 1999 no ab...
+  - About 25 human-memory classics were read at abstract level only; effect sizes beyond the abstracts (e.g. Rowland's g, per-condition gains in Cepeda) were not verified.
+  - There is no empirical anchor for mapping human retention intervals to agent time, tokens or events; whether human power-law-like curves should apply to memory systems with explicit retention policies is unknown (Rubin & Wenzel note autobiographical memory is an exception).
+  - That LoCoMo adversarial questions are speaker swaps is inferred from released fields and four examples; the dialogue turns were not checked.
+  - Fetched summaries were produced by a small model on the first ~100k characters of each page; appendices (e.g. LongMemEval B-E, BEAM B-H, MemoryAgentBench cost tables) were not read, and the summariser flagged inconsistencies in several papers.
+  - Most 2026 sources (PM-Bench, VitaBench, LoCoMo-Plus, Memory Echo, Reality Monitoring, TriggerBench, MemStrata) are preprints without peer review; saturation figures for LongMemEval and LoCoMo come from self-reported system papers with different graders.
+  - Whether a 7B/14B local model on a 12 GB GPU can serve as reader for 100k-token contexts was not tested here; the reality-monitoring work ran 12B-70B models through Ollama at temperature 0.
+  - Licences for GoodAI, PM-Bench, LoCoMo-Plus and Memory Echo are unknown; the EpBench README ranking does not state which book size it uses.
+  - The statement that arbitrary details like car colour are where witnesses err is made in a review (Reyna 2016) without numbers; the 7-day peripheral-loss figures come from one small intentional-encoding study with film clips, so the size of the effect for incidental text details at two weeks is not...
+  - Whether the associative-traces / dynamic-importance question can be benchmarked validly with simulation-based operator models (VitaBench) rather than real LLM operations is open.
+- **uncovered cells**
+  - Incidental peripheral detail (the car colour in a passing sentence) with a controlled centrality dial and a surprise test after a stated delay: none of LongMemEval, LoCoMo, MemoryAgentBench, PersonaMem, BEAM, EpBench or HaluMem varies centrality at encoding; HaluMem's importance is a static label;...
+  - Multi-delay retention curves on the same items (immediate to ~31 days) with time and intervening events manipulated separately: not reported by LongMemEval, LoCoMo or PersonaMem (distance metadata is logged but not analysed in the text); EpBench varies matching events, not delay; GoodAI varies memo...
+  - Pattern separation with graded lure similarity and an old/similar/new response: none; EpBench's matching-event count is the nearest (cue overload) and cleaned LongMemEval removes interfering sessions.
+  - Source monitoring with three or more sources, read vs told vs improvised, delay and confidence at the memory-system level: only the Reality Monitoring paper (word pairs, in context) and LoCoMo's speaker-swapped adversarial items (implicit); MemIR addresses it architecturally.
+  - False memory at memory-system level (DRM-style associative lures, post-event misinformation, presupposing questions) with confidence: HaluMem's false-but-similar distractors and EpBench's zero-event probes are nearest; no post-event misinformation or presupposition manipulation.
+  - Metamemory: trial-level confidence with type-2 AUROC/meta-d' and free vs forced report is absent from the four named benchmarks; abstention exists (LongMemEval 30 items, LoCoMo adversarial, BEAM, EpBench zero-event) but confidence is not scored.
+  - Spacing, testing and retrieval-induced forgetting for memory systems (does access strengthen an item, does it suppress its neighbours): none; Memory Echo covers repeated retrieval and write-back of one claim only.
+  - Gist-vs-verbatim dissociation at matched delay (paired verbatim-sensitive and gist-sensitive probes, gist-consistent lures): none.
+  - The agent's own invented biography as a self-memory hierarchy (self-image -> period -> general event -> specific detail) with correspondence and coherence scoring and fresh-context repeats: none (PersonaMem is the user's profile; LoCoMo personas only drive dialogue).
+  - Schema-consistent intrusion and atypical-value controls (question about an expected but absent object; a pink fire engine): none.
+  - Perspective-dependent retrieval (Anderson & Pichert-style shift) and reminder cues: none.
+  - Serial position within the store as distinct from the prompt: PersonaMem shows a position effect only in figures; LongMemEval reports evidence location descriptively.
+  - Prospective memory tied to the same simulated life with delay, focality and intention-count dials and a matched retrospective control: PM-Bench lacks the dials, TriggerBench has the control (abstract only), GoodAI has quote/trigger tests.
+  - Cost per correct low-importance item: only GoodAI ($7,200, 142 h), PersonaMem latency, HaluMem minutes and VitaBench storage tokens report any cost; none gives tokens or USD per correct sleeper detail.
+  - Human anchors: no agent benchmark read reports human forgetting curves on its own items; humans appear only as transcript-in-view QA (LoCoMo F1 87.9), PersonaMem validation (90 entries) and a PM-Bench human-evaluation UI.
+
+Sources read (47):
+
+- https://arxiv.org/html/2410.10813 (benchmark paper: LongMemEval; WebFetch of arXiv HTML with an extraction prompt; first 100,000 of 133,126 characters (ap...)
+- https://arxiv.org/html/2501.13121 (benchmark paper: EpBench; WebFetch of arXiv HTML; first 100,000 of 253,368 characters (appendices B.3, E.1, E.3 unr...)
+- https://arxiv.org/html/2402.17753 (benchmark paper: LoCoMo; WebFetch of arXiv HTML; main body)
+- https://arxiv.org/html/2507.05257 (benchmark paper: MemoryAgentBench; WebFetch of arXiv HTML; first 100,000 of 176,102 characters (appendices with cost/latency...)
+- https://arxiv.org/html/2504.14225 (benchmark paper: PersonaMem; WebFetch of arXiv HTML; first 100,000 characters)
+- https://arxiv.org/html/2509.17138 (paper: human memory paradigms run on LLMs (Schacter sins framing); WebFetch of arXiv HTML; first 100,000 of 142,571 characters)
+- https://arxiv.org/html/2607.12385 (benchmark paper: PM-Bench (prospective memory); WebFetch of arXiv HTML; nearly all)
+- https://arxiv.org/html/2610.14731 (benchmark paper: VitaBench (memory lifecycle); WebFetch of arXiv HTML)
+- https://arxiv.org/html/2607.23927 (paper: reality monitoring in LLMs; WebFetch of arXiv HTML; first 100,000 of 148,365 characters)
+- https://arxiv.org/html/2602.10715 (benchmark paper: LoCoMo-Plus; WebFetch of arXiv HTML)
+- https://arxiv.org/html/2409.20222 (benchmark paper: GoodAI LTM benchmark (Beyond Prompts); WebFetch of arXiv HTML; first 100,000 of 145,479 characters)
+- https://arxiv.org/html/2510.27246 (benchmark paper: BEAM; WebFetch of arXiv HTML; first 100,000 of 190,356 characters (appendices B-H unread))
+- https://arxiv.org/html/2511.03506 (benchmark paper: HaluMem; WebFetch of arXiv HTML; first 100,000 of 151,060 characters)
+- https://arxiv.org/html/2610.17763 (benchmark paper: MEchoBench (Memory Echo); WebFetch of arXiv HTML; first 100,000 of 146,070 characters)
+- https://github.com/xiaowu0162/LongMemEval (repo; gh api: README (first 6,500 chars), src/evaluation/evaluate_qa.py (first 6,500 chars), li...)
+- https://github.com/snap-research/locomo (repo; gh api: README, task_eval/evaluation.py (head), LICENSE.txt header, and data/locomo10.jso...)
+- https://github.com/HUST-AI-HYZ/MemoryAgentBench (repo; gh api: README (first 6,500 chars) incl. metric-to-dataset table)
+- https://github.com/bowen-upenn/PersonaMem (repo; gh api: README (all of the first ~8,200 chars) incl. CSV column list and leaderboard text)
+- https://github.com/ahstat/episodic-memory-benchmark (repo; gh api: README (first 2,500 chars incl. in-context ranking table), licence metadata)
+- https://github.com/genglinliu/PMBench (repo; gh api: README (first 1,800 chars))
+- https://github.com/MemTensor/HaluMem (repo; gh api: README head and metric lines)
+- https://huggingface.co/api/datasets/xiaowu0162/longmemeval-cleaned (dataset licence metadata; Hugging Face API for longmemeval-cleaned (MIT), MemoryAgentBench (MIT), PersonaMem (MIT),...)
+- http://export.arxiv.org/api/query?id_list=2512.06688,2605.12493,2606.23459,2603.23530,2604.20006,2603.00270,2506.08184,2610.05343,2307.03172,2410.08133,2207.05221,2605.25869,2601.09726,2506.21605,2402.16288,2311.04742,2510.27246 (arXiv abstracts only (PersonaMem-v2, LongMemEval-V2, TriggerBench, PM-failure paper, Memora, RI/PI paper, PI-LLM, MemStrata, Lost in the Middle, SORT, Kadavath et al., MemIR, Forgetting as a Feature, MemBench, PerLTQA, narrative-memory study, BEAM); arXiv API, abstract text only (some truncated at 750-1,500 characters); also an arXiv API...)
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC4492928/ (human memory: Murre & Dros 2015, replication of Ebbinghaus forgetting curve; WebFetch of PMC full text (references truncated only))
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC4749834/ (human memory: Sekeres et al. 2016, detail types and forgetting; WebFetch of PMC full text; first 100,000 of 131,992 characters)
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC3675184/ (human memory: Stark et al. 2013, behavioural pattern separation task; WebFetch of PMC full text)
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC4815269/ (human memory: Reyna et al. 2016, fuzzy-trace theory review plus one experiment; WebFetch of PMC full text; first 100,000 of 119,249 characters)
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC4097944/ (human memory methods: Fleming & Lau 2014, how to measure metacognition; WebFetch of PMC full text)
+- https://doi.org/10.1146/annurev.psych.53.100901.135114 (abstract only: Tulving 2002, Episodic memory: from mind to brain; Europe PMC REST abstract (full text not opened))
+- https://doi.org/10.1037/0033-295X.107.2.261 (abstract only: Conway & Pleydell-Pearce 2000, self-memory system; Europe PMC REST abstract)
+- https://doi.org/10.1111/1467-9280.02453 (abstract only: Talarico & Rubin 2003, flashbulb memories; Europe PMC REST abstract)
+- https://doi.org/10.1017/S0140525X01003922 (abstract only: Cowan 2001, magical number 4; Europe PMC REST abstract)
+- https://doi.org/10.1037/0278-7393.29.3.347 (abstract only: Smith 2003, cost of remembering to remember; Europe PMC REST abstract)
+- https://doi.org/10.1037/0882-7974.19.1.27 (abstract only: Henry et al. 2004, prospective memory and aging meta-analysis; Europe PMC REST abstract)
+- https://doi.org/10.1037/0033-295X.103.4.734 (abstract only: Rubin & Wenzel 1996, one hundred years of forgetting; Semantic Scholar API abstract)
+- https://doi.org/10.1037/0033-2909.132.3.354 (abstract only: Cepeda et al. 2006, distributed practice meta-analysis; Europe PMC REST abstract)
+- https://doi.org/10.1111/j.1467-9280.2008.02209.x (abstract only: Cepeda et al. 2008, temporal ridgeline of optimal retention; Europe PMC REST abstract)
+- https://doi.org/10.1111/j.1467-9280.2006.01693.x (abstract only: Roediger & Karpicke 2006, test-enhanced learning; Europe PMC REST abstract)
+- https://doi.org/10.1037/a0037559 (abstract only: Rowland 2014, testing effect meta-analysis; Europe PMC REST abstract (effect sizes not visible in the returned text))
+- https://doi.org/10.1037/0033-2909.114.1.3 (abstract only: Johnson, Hashtroudi & Lindsay 1993, source monitoring; Europe PMC REST abstract)
+- https://doi.org/10.1101/lm.94705 (abstract only: Loftus 2005, 30 years of misinformation; Europe PMC REST abstract; full text at learnmem.cshlp.org returned HTTP 403)
+- https://doi.org/10.1037/0033-295X.103.3.490 (abstract only: Koriat & Goldsmith 1996, monitoring and control of memory accuracy; Europe PMC REST abstract)
+- https://doi.org/10.3945/ajcn.112.045245 (abstract only: Robinson et al. 2013, meal memory/attention and later intake meta-analysis; Europe PMC REST abstract (truncated))
+- https://europepmc.org/search?query=TITLE%3A%22Can%20Bartlett%27s%20repeated%20reproduction%20experiments%20be%20replicated%22 (abstract only via Europe PMC title lookup: Bergman & Roediger 1999 (Bartlett replication); Anderson, Bjork & Bjork 1994 (retrieval-induced forgetting); Karpicke & Roediger 2008 (retrieval for learning); Symons & Johnson 1997 (self-reference meta-analysis); Christianson 1992 (emotion and eyewitness detail); Einstein & McDaniel 1990 (prospective memory paradigm); Nairne et al. 2007 (survival processing); van Kesteren et al. 2012 and Ghosh & Gilboa 2014 (schema); Europe PMC REST search by title, abstract text only)
+- https://www.sciencedirect.com/science/article/pii/0010028586900137 (NOT READ: Wagenaar 1986 'My memory' (six-year autobiographical diary study); WebFetch returned HTTP 403; Semantic Scholar had no abstract. All Wagenaar content below...)
+- https://www.ideals.illinois.edu/items/17874 (NOT READ: Anderson & Pichert 1977/1978 perspective-shift recall; WebFetch returned HTTP 403; content below is asserted from background knowledge.)
+- https://doi.org/10.1037/0278-7393.21.4.803 (NOT READ: Roediger & McDermott 1995 (DRM); likewise Craik & Tulving 1975, Brewer & Treyens 1981, Glanzer & Cunitz 1966, Anderson & Schooler 1991, Reyna & Brainerd 1995/2002, Schacter 1999, Wixted & Carpenter 2007; Europe PMC and Semantic Scholar returned no abstract; publisher pages blocked. Numbers fo...)
+
