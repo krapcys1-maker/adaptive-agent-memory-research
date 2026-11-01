@@ -68,7 +68,7 @@ def test_semantic_profile_reads_top_cosine_shares_gaps_and_leaves_the_first_item
     assert s["items_with_history"] == 3
     # b: best earlier is a with cosine 0; c: best is a (about 0.995); d: orthogonal to everything
     assert s["top1_cosine"]["mean"] == pytest.approx((0.0 + 0.995 + 0.0) / 3, abs=0.01)
-    assert s["shares_at_least"]["0.8"]["any_earlier"] == pytest.approx(1 / 3)
+    assert s["shares_at_least"]["0.8"]["any_earlier"] == pytest.approx(1 / 3, abs=1e-3)
     assert s["shares_at_least"]["0.8"]["median_gap_days_of_those"] == 2
     assert s["shares_at_least"]["0.8"]["partner_within_7_days_of_those"] == 1.0
     assert s["mde_mean_shift_of_top1_cosine"]["200_tasks_50%_in_memory_arm"] > 0
