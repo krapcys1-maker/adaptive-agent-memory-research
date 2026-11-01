@@ -2,6 +2,8 @@
 
 Status: the repository owner's statement of the intended research direction, copied on 2026-11-01 with Markdown heading marks added and the wording unchanged. It is a direction, not a specification and not a registered protocol. Its hypothesis identifiers H1-H5 are provisional; the reviews below call them V-H1 to V-H5 because "H1" to "H5" already mean other things in this repository.
 
+*Update (2026-11-01, later the same day): the owner confirmed in the session that the constraint "Do not modify the production Substack agent" (section 19 and the Phase 5 text below) no longer holds for the NIE agent, whose account is to become a research account for memory. The confirmation fixes no scope or conditions (the scope of a first step, a shadow mode before live memory, memories drawn only from the account's real history, and coexistence with the live experiments are open), and a plan is to be reviewed before any change. The other constraints (no push, merge, publication or unresolved licensing decision without explicit authorisation) are unchanged. The text below is the original and is left as pasted.*
+
 Reviews and proposals written against it:
 
 - [Research direction review](research-direction-review-2026-11.md): fit with the repository, gaps, testability, conflicts with the research history, today's integration surface.

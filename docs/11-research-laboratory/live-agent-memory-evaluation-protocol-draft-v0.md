@@ -1,0 +1,42 @@
+# Injecting memory into a live publishing agent: evaluation protocol, draft v0
+
+**Status: draft for the owner's review.** Nothing is built, nothing is changed in any agent, no money is spent. It follows the owner's confirmation on 2026-11-01 that the account of the agent NIE may become a research account for memory (the ban on changing the production agent is lifted; scope and conditions are open). The engineering plan for the injection belongs to that agent's own session. This document covers only how to *evaluate* an injection, so that its effect can be told from noise, drift and the agent's other experiments. Facts about the agent below are reported by its own session and its audit, not verified by this project.
+
+## 1. What may be claimed
+
+Observable behaviour only: whether giving the agent retrieved records of its own past changes a small set of pre-declared measures, compared with the same agent without them, at the same budget. No claim about identity, character or consciousness. "Personality" is treated as a versioned style specification with measurable properties, never as an inner state. "Memories" are real, logged events of the account; an invented backstory presented to readers as experience is out of scope and needs the owner's explicit decision and disclosure.
+
+## 2. What our results say about what to try first
+
+From our own tests (`docs/research/MECHANISM_REGIME_EVIDENCE_LEDGER.md`, `data/lab/aam-e0-delayed-relevance/README.md`): the only positive signal is returning raw records instead of summaries, and it is weak (2 repairs in 17 units, p = 0.5, one of them a harness artefact). Dense retrieval over the whole raw archive was the strongest simple arm; a summary that cannot be expanded lost the information. Association layers, second-hop expansion and trace indexes built from surface words had no support. Nothing has been measured about model-written reflections, learning from outcomes, personality or any effect on a real account. So the first arm is raw retrieval of the account's own history under a hard token budget; every other mechanism is a later, separately gated arm.
+
+## 3. Gates before any live injection
+
+1. **Recorded inputs.** What is injected, for which task, and why must be logged for every item (an injection record with item ids, scores and tokens). Without it nothing can be evaluated. The agent records no prompts today; third-party text must be captured per field, as a hash plus a short fragment, not as a rendered prompt.
+2. **A baseline window** with the same logging and no injection, long enough to see the day-to-day variance of the measures (the agent publishes about 4 notes and 5 to 17 comments a day, reported).
+3. **Isolation from the live experiments** (E22 until 2026-12-03, E23 until 2027-02-10, E16 and E18 from 2026-11-09, reported): the injection must not share units with their arms, or the design must be factorial. This needs the agent's session to map task types to experiments.
+4. **A kill switch and automatic stop conditions** (section 6), tested before the first live item.
+5. **No learning from outcomes in the first step.** Memory grows only by logging events. Re-ranking or retention changes driven by engagement or reactions are a later step with its own protocol: our doctrine forbids adapting retention from feedback until its gates open, and a live feedback loop can reinforce familiar but wrong memories.
+
+## 4. Design
+
+1. **Shadow phase (no effect on output).** For every decision the strategy computes what it would inject and logs it. Offline checks: duplicates and stale items, own earlier statements that would be repeated, contradictions, token cost, and a sampled audit of false associations. In parallel a counterfactual replay on an isolated copy (no publishing): the writer is run with and without the injected block on a sample of past tasks, and the pairs are compared by pre-declared rules and a judge. This is the cheap way to find large effects and harms before a reader sees anything.
+2. **Live randomised phase.** Unit: one task (a comment, a reply, a note). Assignment by a logged, seeded, stratified pseudo-random function (by task type and time of day). Arms: A, no injected memory beyond what the agent already has; B, raw retrieval of own history. State plainly that A is not "no memory": the agent already carries about 14 ad hoc memory blocks (reported), so the contrast is the injected memory beyond them. Exposure ramps 10%, 25%, 50% only after the stop conditions of the previous step held for a pre-declared period.
+3. **Persona.** A style specification injected into one arm confounds the memory effect, and a 2 x 2 design needs more tasks than a month provides. Test one factor at a time: memory first; a persona only afterwards, as its own study.
+4. **Later arms**, each separately gated and pre-declared: summaries with expansion to the raw record, and model-written reflections (prompt, model and decoding fixed in advance, judged against the same measures).
+
+## 5. Measures and power
+
+Pick one primary measure that can show a large effect with the volume the agent has: roughly 120 notes and 300 comments in 30 days, so a binary measure per task needs a difference of about 15 to 20 percentage points to be resolved (INFERENCE; the NIE audit's own range was 14 to 29). Candidates, to be chosen by the owner: a callback rate (the item refers appropriately to a relevant earlier post of the account), a contradiction rate with the account's earlier public statements, a repetition rate (overlap with its own earlier items). Engagement and subscriber counts are too slow and noisy for a 30-day primary and are reported as secondary. Guardrails: guard blocks, tone-drift flags, complaints, unfollows, platform warnings, cost and latency per task. Report effect sizes with intervals; one primary measure; interim looks only at pre-declared dates and only for safety; "inconclusive" is a valid, recorded outcome.
+
+## 6. Stop conditions and safety
+
+Stop an arm at once on any platform warning, any harmful or deceptive item traced to an injection, a guard failure, a contradiction rate above a pre-declared ceiling, or a cost overrun. Every published item must be traceable to its injection record. Existing guards of the agent stay in force. Retrieval that personalises replies to named readers raises a privacy and platform-rule question the owner must decide: the agent already keeps a short per-correspondent memory, so the rule should be the existing one or stricter. Whether the account's automated nature is disclosed, and what the platform requires, is the owner's decision.
+
+## 7. Decisions needed from the owner
+
+The primary measure; the unit and the stratification; the exposure ramp and the stop thresholds; whether any persona is wanted and in what form; the rule for memories of named third parties; which task types stay outside E22, E23, E16 and E18; where the injection logs are stored and for how long; and who reviews the plan before the first live item.
+
+## 8. Sketch of the order (not binding)
+
+Logging in shadow with no behaviour change; a baseline and shadow-retrieval audit; the counterfactual replay; then, if the audit holds, the live phase at 10% with a pre-declared period before each ramp. The dates depend on the agent's own experiment calendar.
