@@ -26,6 +26,14 @@ A threshold is **usable** if its precision is at least 0.80 and its coverage at 
 
 **Amendment, written after v1 was read and before anything was run again.** Scale v2 adds the sentence that being about AI, or about the same broad field, is not a connection, and sharpens levels 0 and 1 (`SCALES` in `scripts/retrieval_calibration.py`; the v1 text is unchanged and was checked to be identical to the one used). The pairs, the judge and its settings, the thresholds, the rule for a usable threshold and the control rule are unchanged. v2 is run once, on the same pairs, and reported together with the failure of v1. If v2's controls also fail the rule, the finding is that an LLM rating of relevance cannot be calibrated this way on this account's notes.
 
+## Result of the second scale (v2)
+
+**v2 also failed the control rule**, though by less: 86.1% of the 230 random negative controls were rated 0 (the rule requires 90%). By the rule stated in the amendment, the finding is that an LLM rating of relevance **cannot be calibrated this way on this account's notes**, and no threshold is certified by this experiment (`report.md`, `results.json`).
+
+What the data show, as observations and not as conclusions: level 2 ("the same specific story, claim or result, or a direct follow-up") is clean, because among pairs below cosine 0.4 at most 0.5% were rated 2, and the share rated 2 rises with the cosine: 6.2% at 0.4 to 0.5, 19.1% at 0.5 to 0.6, 60.4% at 0.6 to 0.7, 87.0% at 0.7 to 0.8 and 100% from 0.8. Level 1 ("the same specific subject, but a different point") is where the judge is liberal, rating 15.3% of the lowest-cosine pairs. Taking level 2 as the bar for a note worth injecting, the share of injected notes rated 2 at tau of 0.5, 0.55, 0.6, 0.65 and 0.7 is 41.7%, 57.3%, 71.4%, 83.3% and 90.3%, for coverage of 42.1%, 28.8%, 20.6%, 15.4% and 9.9% of the notes, and none of the notes injected at 0.6 or above was rated unrelated.
+
+**Post-hoc starting value: tau = 0.6** for the shadow log and the first live arm (71% of the injected notes rated as the same story or a follow-up, 0% rated unrelated, about a fifth of the notes served). This is a reading chosen after the control rule failed twice, so it is not a result of this experiment; it is to be checked against the live shadow data, which will show what the agent actually wrote beside what retrieval offered. A second judge (a local model on 200 pairs) was planned to measure agreement and has not run yet.
+
 ## Limits
 
 The account's own texts stand in for its task inputs. A cosine from a small embedding model is a coarse proxy for relevance, and an LLM's rating of relevance is a proxy for the benefit to a writer; neither is a human judgement. The judge is a model, its prompt is one of many, and its ratings of 1 versus 2 are the least certain. Notes only: replies and articles have their own distributions. The rule above sets the bar for precision and coverage by judgement, not by a loss function.
@@ -41,3 +49,5 @@ Reproduce on any JSONL of `{id, date, text}`: `python scripts/retrieval_calibrat
 Preregistered before the first judgment.
 
 - 2026-11-01 16:19: v1 judgments analysed (control failure, see above); amendment and the digest of the script with scale v2 committed before the v2 run.
+
+- 2026-11-01 16:25: v2 judgments analysed; the control rule failed again (86.1% against 90%); the post-hoc starting value is recorded above as such.
