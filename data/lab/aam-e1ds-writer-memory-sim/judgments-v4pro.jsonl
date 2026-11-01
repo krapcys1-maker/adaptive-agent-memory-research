@@ -1,0 +1,924 @@
+{"control": null, "seed": 4, "arm": "M3a", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 9, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 7, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 7, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 8, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 7, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 10, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 9, "source_day": null, "raw": "FIT: 5  \nFRESH: 3  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 3, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M3b", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 10, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 11, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 10, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 12, "source_day": null, "raw": "FIT: 5, FRESH: 3, VOICE: 4, QUALITY: 4", "fit": 5, "fresh": 3, "voice": 4, "quality": 4}
+{"control": null, "seed": 4, "arm": "M1", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M2", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M1", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 13, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M3a", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 14, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 14, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 13, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M1", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 16, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 17, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 17, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 17, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 17, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 18, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M3a", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 20, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 18, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 19, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M0", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 21, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 21, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 22, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 22, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M3a", "day": 23, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 22, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M3b", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M0", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 24, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 24, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 25, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M0", "day": 24, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 26, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 26, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 28, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 29, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 29, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 30, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M3b", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 30, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 30, "source_day": null, "raw": "FIT: 4  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 4, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M1", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 30, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 32, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 33, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 32, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M2", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 35, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M0", "day": 35, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M3b", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 4, "arm": "M0", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M1", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M2", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3a", "day": 36, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M1", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 4, "arm": "M3b", "day": 36, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M1", "day": 9, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 10, "source_day": null, "raw": "FIT: 4  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 4, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M2", "day": 10, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 11, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 12, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M2", "day": 12, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 11, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 12, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 12, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M0", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 15, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 14, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M3b", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 16, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M2", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M1", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M1", "day": 17, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 16, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 16, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M2", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M1", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 19, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 19, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 20, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 22, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 23, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 24, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M3a", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 25, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 25, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M3b", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 26, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 28, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 27, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M3b", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M3b", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 29, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M0", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 31, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M2", "day": 31, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M3a", "day": 32, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 32, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M2", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M3a", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M2", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M0", "day": 34, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M1", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M1", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 35, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 36, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M2", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M0", "day": 35, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 5, "arm": "M0", "day": 36, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3b", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M2", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 7, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 7, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 5, "arm": "M3a", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 9, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M1", "day": 9, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 9, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 10, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 10, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 11, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 11, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 12, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 12, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 12, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 13, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 13, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 13, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M0", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 14, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 14, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M2", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M1", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 3\nVOICE: 4\nQUALITY: 4", "fit": 5, "fresh": 3, "voice": 4, "quality": 4}
+{"control": null, "seed": 6, "arm": "M2", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M2", "day": 16, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 14, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 16, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M0", "day": 17, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 17, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 17, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 18, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M3a", "day": 18, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 19, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 19, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 18, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 19, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 19, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 20, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M2", "day": 19, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M1", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M1", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M3b", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 23, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 24, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 24, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 24, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M2", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M3a", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M0", "day": 26, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 25, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 26, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 26, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 27, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 27, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 27, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M2", "day": 29, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M0", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M1", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 30, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M3a", "day": 29, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M1", "day": 30, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 30, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M3a", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 31, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M1", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M2", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M3b", "day": 30, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M3b", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M0", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 32, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 33, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 33, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 33, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 33, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 34, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M0", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M1", "day": 36, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M0", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M3a", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 6, "arm": "M2", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3a", "day": 36, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M2", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 6, "arm": "M3b", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3a", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3a", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3b", "day": 10, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 10, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 10, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 11, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 11, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M0", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3b", "day": 11, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3b", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 12, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 13, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3a", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 13, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 13, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 13, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M0", "day": 14, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M1", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 15, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M1", "day": 15, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 15, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M1", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 17, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M2", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 18, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 18, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 19, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M1", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 20, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M2", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M1", "day": 22, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 22, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 22, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3a", "day": 22, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 23, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M2", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 3\nVOICE: 4\nQUALITY: 4", "fit": 5, "fresh": 3, "voice": 4, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3a", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3b", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 25, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 26, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 25, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 25, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 26, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M0", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 27, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 28, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 27, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3a", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3b", "day": 28, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 28, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3a", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M0", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M1", "day": 30, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 30, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 30, "source_day": null, "raw": "FIT: 4\nFRESH: 3\nVOICE: 4\nQUALITY: 4", "fit": 4, "fresh": 3, "voice": 4, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3b", "day": 30, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 31, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 31, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 32, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 32, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M0", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 32, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 34, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M3b", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M0", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 34, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 7, "arm": "M0", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M2", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M1", "day": 36, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3b", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 7, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 7, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 8, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 8, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 9, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M0", "day": 10, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 7, "arm": "M3a", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 10, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 10, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 11, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M2", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 10, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 11, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 11, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3b", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 10, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 12, "source_day": null, "raw": "FIT: 5  \nFRESH: 3  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 3, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M1", "day": 11, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 13, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 13, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 15, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M1", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 14, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3a", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M2", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3a", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M0", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3b", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M2", "day": 16, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 18, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 18, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 18, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 19, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 19, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3b", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M1", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 20, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3a", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M2", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3b", "day": 22, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3b", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3a", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 23, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M1", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M2", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 24, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 24, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 25, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 25, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 24, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 26, "source_day": null, "raw": "FIT: 5, FRESH: 3, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 3, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3b", "day": 25, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3a", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M2", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 26, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 27, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 27, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M0", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 28, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 28, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M2", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M0", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M1", "day": 29, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3b", "day": 27, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 27, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 30, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M3b", "day": 29, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M0", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 30, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M2", "day": 31, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 29, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 33, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 32, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 32, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 33, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 34, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 35, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 8, "arm": "M1", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 35, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 35, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M0", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3a", "day": 36, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 34, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 35, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M1", "day": 36, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M3b", "day": 36, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 8, "arm": "M2", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 7, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 8, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 8, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 9, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 7, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M1", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 9, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 10, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 9, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 10, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 9, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 10, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 10, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 11, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 10, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 11, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 11, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 11, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 11, "source_day": null, "raw": "FIT: 4  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 4, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M0", "day": 12, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M0", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M1", "day": 13, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 12, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 13, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 14, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 13, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 3\nVOICE: 4\nQUALITY: 4", "fit": 5, "fresh": 3, "voice": 4, "quality": 4}
+{"control": null, "seed": 9, "arm": "M0", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 15, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 14, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 15, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 17, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 16, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 16, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 16, "source_day": null, "raw": "FIT: 5\nFRESH: 3\nVOICE: 4\nQUALITY: 4", "fit": 5, "fresh": 3, "voice": 4, "quality": 4}
+{"control": null, "seed": 9, "arm": "M1", "day": 18, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 17, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 17, "source_day": null, "raw": "FIT: 5  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 19, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 17, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M2", "day": 19, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M3a", "day": 18, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M1", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 20, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 21, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 19, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 19, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 21, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 20, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 21, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 19, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 22, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 22, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 22, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 22, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 23, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M2", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M3b", "day": 24, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M0", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 24, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 23, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M1", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 25, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 25, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 24, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 26, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 25, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 26, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 26, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M1", "day": 27, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 27, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M3b", "day": 27, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 27, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M1", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 28, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 28, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 28, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M3b", "day": 29, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 29, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 30, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 30, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 30, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 31, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M2", "day": 31, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 31, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 31, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 32, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 33, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 33, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 33, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M1", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 5\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 32, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 32, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M1", "day": 35, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 33, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M0", "day": 35, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 35, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 35, "source_day": null, "raw": "FIT: 5, FRESH: 5, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 5, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 34, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M0", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3a", "day": 35, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M1", "day": 36, "source_day": null, "raw": "FIT: 5  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M2", "day": 36, "source_day": null, "raw": "FIT: 5, FRESH: 4, VOICE: 5, QUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": "offtopic", "seed": 4, "arm": "M0", "day": 18, "source_day": 17, "raw": "FIT: 2  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 2, "fresh": 4, "voice": 5, "quality": 4}
+{"control": null, "seed": 9, "arm": "M3a", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 5", "fit": 5, "fresh": 4, "voice": 5, "quality": 5}
+{"control": null, "seed": 9, "arm": "M3b", "day": 36, "source_day": null, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": "copy", "seed": 4, "arm": "M0", "day": 22, "source_day": 16, "raw": "FIT: 1, FRESH: 1, VOICE: 5, QUALITY: 3", "fit": 1, "fresh": 1, "voice": 5, "quality": 3}
+{"control": "offtopic", "seed": 4, "arm": "M0", "day": 23, "source_day": 22, "raw": "FIT: 3  \nFRESH: 5  \nVOICE: 5  \nQUALITY: 4", "fit": 3, "fresh": 5, "voice": 5, "quality": 4}
+{"control": "copy", "seed": 4, "arm": "M0", "day": 24, "source_day": 14, "raw": "FIT: 1, FRESH: 1, VOICE: 5, QUALITY: 3", "fit": 1, "fresh": 1, "voice": 5, "quality": 3}
+{"control": "offtopic", "seed": 4, "arm": "M0", "day": 34, "source_day": 33, "raw": "FIT: 4\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 4, "fresh": 4, "voice": 5, "quality": 4}
+{"control": "offtopic", "seed": 5, "arm": "M0", "day": 12, "source_day": 11, "raw": "FIT: 2  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 2, "fresh": 4, "voice": 5, "quality": 4}
+{"control": "copy", "seed": 5, "arm": "M0", "day": 7, "source_day": 6, "raw": "FIT: 1, FRESH: 1, VOICE: 5, QUALITY: 3", "fit": 1, "fresh": 1, "voice": 5, "quality": 3}
+{"control": "copy", "seed": 5, "arm": "M0", "day": 21, "source_day": 16, "raw": "FIT: 1, FRESH: 1, VOICE: 5, QUALITY: 3", "fit": 1, "fresh": 1, "voice": 5, "quality": 3}
+{"control": "offtopic", "seed": 5, "arm": "M0", "day": 15, "source_day": 14, "raw": "FIT: 5\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 5, "fresh": 4, "voice": 5, "quality": 4}
+{"control": "offtopic", "seed": 6, "arm": "M0", "day": 9, "source_day": 8, "raw": "FIT: 1\nFRESH: 4\nVOICE: 5\nQUALITY: 4", "fit": 1, "fresh": 4, "voice": 5, "quality": 4}
+{"control": "copy", "seed": 6, "arm": "M0", "day": 13, "source_day": 7, "raw": "FIT: 2, FRESH: 1, VOICE: 5, QUALITY: 3", "fit": 2, "fresh": 1, "voice": 5, "quality": 3}
+{"control": "copy", "seed": 6, "arm": "M0", "day": 34, "source_day": 28, "raw": "FIT: 1, FRESH: 1, VOICE: 5, QUALITY: 3", "fit": 1, "fresh": 1, "voice": 5, "quality": 3}
+{"control": "offtopic", "seed": 6, "arm": "M0", "day": 32, "source_day": 31, "raw": "FIT: 3  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 3, "fresh": 4, "voice": 5, "quality": 4}
+{"control": "copy", "seed": 6, "arm": "M0", "day": 36, "source_day": 27, "raw": "FIT: 1, FRESH: 1, VOICE: 5, QUALITY: 3", "fit": 1, "fresh": 1, "voice": 5, "quality": 3}
+{"control": "copy", "seed": 7, "arm": "M0", "day": 11, "source_day": 3, "raw": "FIT: 1, FRESH: 1, VOICE: 5, QUALITY: 4", "fit": 1, "fresh": 1, "voice": 5, "quality": 4}
+{"control": "offtopic", "seed": 7, "arm": "M0", "day": 30, "source_day": 29, "raw": "FIT: 2\nFRESH: 3\nVOICE: 4\nQUALITY: 3", "fit": 2, "fresh": 3, "voice": 4, "quality": 3}
+{"control": "copy", "seed": 7, "arm": "M0", "day": 19, "source_day": 14, "raw": "FIT: 2, FRESH: 1, VOICE: 5, QUALITY: 3", "fit": 2, "fresh": 1, "voice": 5, "quality": 3}
+{"control": "offtopic", "seed": 8, "arm": "M0", "day": 13, "source_day": 12, "raw": "FIT: 2, FRESH: 4, VOICE: 5, QUALITY: 4", "fit": 2, "fresh": 4, "voice": 5, "quality": 4}
+{"control": "offtopic", "seed": 6, "arm": "M0", "day": 16, "source_day": 15, "raw": "FIT: 2\nFRESH: 4\nVOICE: 4\nQUALITY: 3", "fit": 2, "fresh": 4, "voice": 4, "quality": 3}
+{"control": "offtopic", "seed": 8, "arm": "M0", "day": 31, "source_day": 30, "raw": "FIT: 4  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 4, "fresh": 4, "voice": 5, "quality": 4}
+{"control": "offtopic", "seed": 7, "arm": "M0", "day": 17, "source_day": 16, "raw": "FIT: 2  \nFRESH: 4  \nVOICE: 5  \nQUALITY: 4", "fit": 2, "fresh": 4, "voice": 5, "quality": 4}
+{"control": "copy", "seed": 9, "arm": "M0", "day": 30, "source_day": 24, "raw": "FIT: 1  \nFRESH: 1  \nVOICE: 5  \nQUALITY: 2", "fit": 1, "fresh": 1, "voice": 5, "quality": 2}
+{"control": "copy", "seed": 9, "arm": "M0", "day": 8, "source_day": 1, "raw": "FIT: 1, FRESH: 1, VOICE: 5, QUALITY: 2", "fit": 1, "fresh": 1, "voice": 5, "quality": 2}
+{"control": "copy", "seed": 9, "arm": "M0", "day": 17, "source_day": 8, "raw": "FIT: 1  \nFRESH: 1  \nVOICE: 5  \nQUALITY: 3", "fit": 1, "fresh": 1, "voice": 5, "quality": 3}
