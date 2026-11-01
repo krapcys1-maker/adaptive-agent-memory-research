@@ -33,9 +33,9 @@
 
 **Goal**: `goal_id`, `text`, `status` (`active`, `paused`, `done`), `valid_from`, `parent_goal_id`, optional `concept_hints`.
 
-**Retrieved item**: `item_id`, `experience_ids`, `representation` (`episodic_raw`, `summary`, or `trace_resolved` for a trace that was followed back to its raw event), `text`, `tokens`, `score`, `reason` (codes such as `cue_match`, `goal_match`, `association:<concept>`, `recency`), `provenance` (`original` or `interpretation`, with the source ids). `reason` is what makes false associations auditable.
+**Retrieved item**: `item_id`, `experience_ids`, `representation` (`episodic_raw`, `summary`, or `trace_resolved` for a trace that was followed back to its raw event; `trace_resolved` and the `association:<concept>` reason code are provisional, see section 7), `text`, `tokens`, `score`, `reason` (codes such as `cue_match`, `goal_match`, `association:<concept>`, `recency`), `provenance` (`original` or `interpretation`, with the source ids). `reason` is what makes false associations auditable.
 
-**Cost** (integer micro-units, as in `scripts/arena/adapter.py`): LLM input and output tokens, embedding tokens, wall-clock, and an estimated price, with a flag for what was actually observed rather than estimated.
+**Cost** (integer micro-units, as in `scripts/arena/adapter.py`, which has model calls, input tokens, output tokens and wall-clock microseconds, each marked `native`, `instrumented` or `unobservable`). Embedding tokens and an estimated price would be additions to that type; it does not hold them today.
 
 ## 4. Replay and isolation
 
@@ -55,14 +55,14 @@
 | inspect | `memory_get`, `memory_search`, `memory_timeline` | keep |
 | `feedback` | none | usage telemetry schemas exist in `data/lab/pmlab-future-utility-v0/` but the server emits nothing |
 | `maintain`, `forget` | none | supersession is the only state change; no dormant, reactivate or erase |
-| `export`, `replay`, `describe` | none | `scripts/arena/adapter.py` and `scripts/corpus/arms.py` already contain the cost types, the budget-fair fill and the contract digest to build on |
+| `export`, `replay`, `describe` | none | `scripts/arena/adapter.py` and `scripts/corpus/arms.py` already contain the cost types and the budget-fair fill to build on, and `scripts/arena/adapter_v0_1.py` defines the contract digest |
 
 ## 6. Suggested path (not started)
 
 1. Define the strategy interface as a small Python protocol that extends the arena adapter contract with a goal argument, a token budget and `maintain`. Wrap `MemoryStore` as one strategy. Change nothing in `tools/project_memory` yet.
 2. Run the first experiment ([proposal v0](../11-research-laboratory/delayed-relevance-first-experiment-proposal-v0.md)) through that interface on synthetic streams.
 3. Only then decide which operations deserve an MCP tool, and fix the gaps above in the store itself (caller-supplied time, token budgets, argument validation, a default root that is the working directory).
-4. Write the exporter for a real agent in that agent's own repository, read-only, after the owner approves.
+4. Write the exporter for a real agent as a separate wrapper, or against an isolated copy of that agent, read-only, after the owner approves. Adding anything to the production agent's own repository is a change to that agent and needs its own explicit authorisation.
 
 ## 7. Open questions
 

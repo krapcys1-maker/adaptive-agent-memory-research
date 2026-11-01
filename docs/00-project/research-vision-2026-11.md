@@ -5,7 +5,7 @@ Status: the repository owner's statement of the intended research direction, cop
 Reviews and proposals written against it:
 
 - [Research direction review](research-direction-review-2026-11.md): fit with the repository, gaps, testability, conflicts with the research history, today's integration surface.
-- [Prior art and novelty](../07-literature/associative-memory-prior-art-2026-11.md): what is already published.
+- [Prior art and novelty](../07-literature/associative-memory-prior-art-2026-11.md): what the abstracts show is already published (an abstract-level pass, not a complete survey).
 - [First experiment, proposal v0](../11-research-laboratory/delayed-relevance-first-experiment-proposal-v0.md): the smallest useful study, with costs and risks.
 - [Agent integration contract, proposal v0](agent-integration-contract-v0.md): an interface for an external autonomous agent.
 
