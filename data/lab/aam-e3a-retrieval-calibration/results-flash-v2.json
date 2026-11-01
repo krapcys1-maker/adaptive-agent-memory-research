@@ -1,0 +1,146 @@
+{
+ "by_threshold": {
+  "0.5": {
+   "coverage": 0.4206,
+   "injected_pairs": 194,
+   "mean_injected_per_note": 0.833,
+   "noise_rated_0": 0.1237,
+   "notes_served": 98,
+   "precision_interval": [
+    0.8225,
+    0.9154
+   ],
+   "precision_rated_1_or_2": 0.8763,
+   "precision_rated_2": 0.4588
+  },
+  "0.55": {
+   "coverage": 0.2876,
+   "injected_pairs": 124,
+   "mean_injected_per_note": 0.532,
+   "noise_rated_0": 0.0565,
+   "notes_served": 67,
+   "precision_interval": [
+    0.8881,
+    0.9724
+   ],
+   "precision_rated_1_or_2": 0.9435,
+   "precision_rated_2": 0.6129
+  },
+  "0.6": {
+   "coverage": 0.206,
+   "injected_pairs": 84,
+   "mean_injected_per_note": 0.361,
+   "noise_rated_0": 0.0119,
+   "notes_served": 48,
+   "precision_interval": [
+    0.9356,
+    0.9979
+   ],
+   "precision_rated_1_or_2": 0.9881,
+   "precision_rated_2": 0.75
+  },
+  "0.65": {
+   "coverage": 0.1545,
+   "injected_pairs": 54,
+   "mean_injected_per_note": 0.232,
+   "noise_rated_0": 0.0,
+   "notes_served": 36,
+   "precision_interval": [
+    0.9336,
+    1.0
+   ],
+   "precision_rated_1_or_2": 1.0,
+   "precision_rated_2": 0.8519
+  },
+  "0.7": {
+   "coverage": 0.0987,
+   "injected_pairs": 31,
+   "mean_injected_per_note": 0.133,
+   "noise_rated_0": 0.0,
+   "notes_served": 23,
+   "precision_interval": [
+    0.8897,
+    1.0
+   ],
+   "precision_rated_1_or_2": 1.0,
+   "precision_rated_2": 0.9355
+  }
+ },
+ "calibration_by_cosine": [
+  {
+   "cos_from": 0.0,
+   "cos_to": 0.3,
+   "pairs": 314,
+   "rated_0": 0.7834,
+   "rated_1": 0.207,
+   "rated_2": 0.0096
+  },
+  {
+   "cos_from": 0.3,
+   "cos_to": 0.4,
+   "pairs": 201,
+   "rated_0": 0.607,
+   "rated_1": 0.3831,
+   "rated_2": 0.01
+  },
+  {
+   "cos_from": 0.4,
+   "cos_to": 0.5,
+   "pairs": 192,
+   "rated_0": 0.401,
+   "rated_1": 0.5208,
+   "rated_2": 0.0781
+  },
+  {
+   "cos_from": 0.5,
+   "cos_to": 0.6,
+   "pairs": 110,
+   "rated_0": 0.2091,
+   "rated_1": 0.5545,
+   "rated_2": 0.2364
+  },
+  {
+   "cos_from": 0.6,
+   "cos_to": 0.7,
+   "pairs": 53,
+   "rated_0": 0.0189,
+   "rated_1": 0.3396,
+   "rated_2": 0.6415
+  },
+  {
+   "cos_from": 0.7,
+   "cos_to": 0.8,
+   "pairs": 23,
+   "rated_0": 0.0,
+   "rated_1": 0.087,
+   "rated_2": 0.913
+  },
+  {
+   "cos_from": 0.8,
+   "cos_to": 1.0,
+   "pairs": 8,
+   "rated_0": 0.0,
+   "rated_1": 0.0,
+   "rated_2": 1.0
+  }
+ ],
+ "controls": {
+  "judge_reliable": false,
+  "mean_cosine": 0.1378,
+  "pairs": 230,
+  "rated_0": 0.8174
+ },
+ "judged_pairs": 926,
+ "lowest_usable_threshold": 0.5,
+ "notes": 234,
+ "provenance": {
+  "judgments_sha256": "4c9cc1630306c975be057b99a145c508989d4c511a9905cd151c1630b3b64d0c",
+  "script_sha256": "02d1c5ac0c622b646b0647cdd8479a536ac6a4079abc49b5a399aa3634ab4088"
+ },
+ "rule": {
+  "control_zero_needed": 0.9,
+  "coverage_needed": 0.1,
+  "precision_needed": 0.8
+ },
+ "unparsed": 0
+}
