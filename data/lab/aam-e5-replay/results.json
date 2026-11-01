@@ -1,0 +1,158 @@
+{
+ "candidates": 43,
+ "deterministic": {
+  "R0:candidate": {
+   "grounded": 0.0,
+   "n": 43,
+   "references": 0.0,
+   "words": 84.93023255813954
+  },
+  "R0:other": {
+   "grounded": null,
+   "n": 171,
+   "references": 0.0,
+   "words": 84.953216374269
+  },
+  "R0i:candidate": {
+   "grounded": 0.0,
+   "n": 43,
+   "references": 0.0,
+   "words": 87.0
+  },
+  "R0i:other": {
+   "grounded": null,
+   "n": 171,
+   "references": 0.0,
+   "words": 87.11111111111111
+  },
+  "R1:candidate": {
+   "grounded": 0.3953488372093023,
+   "n": 43,
+   "references": 0.46511627906976744,
+   "words": 84.90697674418605
+  },
+  "R1:other": {
+   "grounded": null,
+   "n": 171,
+   "references": 0.30409356725146197,
+   "words": 85.6140350877193
+  },
+  "R2:candidate": {
+   "grounded": 0.2558139534883721,
+   "n": 43,
+   "references": 0.2558139534883721,
+   "words": 85.0
+  },
+  "R2:other": {
+   "grounded": null,
+   "n": 171,
+   "references": 0.0,
+   "words": 84.83625730994152
+  },
+  "R3:candidate": {
+   "grounded": 0.37209302325581395,
+   "n": 43,
+   "references": 0.4418604651162791,
+   "words": 84.6046511627907
+  },
+  "R3:other": {
+   "grounded": null,
+   "n": 171,
+   "references": 0.0,
+   "words": 85.0
+  }
+ },
+ "judge": {
+  "always_on_harms_other_tasks": true,
+  "arms_that_gain": [
+   "R2",
+   "R3"
+  ],
+  "candidate_tasks": {
+   "R0i-R0": {
+    "ci_high": 0.8081395348837209,
+    "ci_low": 0.5930232558139535,
+    "n": 43,
+    "win_rate": 0.7034883720930233
+   },
+   "R1-R0": {
+    "ci_high": 0.9186046511627907,
+    "ci_low": 0.7209302325581395,
+    "n": 43,
+    "win_rate": 0.8255813953488372
+   },
+   "R2-R0": {
+    "ci_high": 0.9069767441860465,
+    "ci_low": 0.7093023255813954,
+    "n": 43,
+    "win_rate": 0.813953488372093
+   },
+   "R2-R0i": {
+    "ci_high": 0.8372093023255814,
+    "ci_low": 0.6162790697674418,
+    "n": 43,
+    "win_rate": 0.7325581395348837
+   },
+   "R2-R1": {
+    "ci_high": 0.5813953488372093,
+    "ci_low": 0.32558139534883723,
+    "n": 43,
+    "win_rate": 0.45348837209302323
+   },
+   "R3-R0": {
+    "ci_high": 0.8953488372093024,
+    "ci_low": 0.6976744186046512,
+    "n": 43,
+    "win_rate": 0.8023255813953488
+   },
+   "R3-R0i": {
+    "ci_high": 0.7441860465116279,
+    "ci_low": 0.5348837209302325,
+    "n": 43,
+    "win_rate": 0.6395348837209303
+   },
+   "R3-R2": {
+    "ci_high": 0.5930232558139535,
+    "ci_low": 0.36046511627906974,
+    "n": 43,
+    "win_rate": 0.47674418604651164
+   }
+  },
+  "control_win_rate": 0.9583333333333334,
+  "judge_informative": true,
+  "memory_helps_on_real_candidates": true,
+  "other_tasks": {
+   "R0i-R0": {
+    "ci_high": 0.740625,
+    "ci_low": 0.578125,
+    "n": 80,
+    "win_rate": 0.659375
+   },
+   "R1-R0": {
+    "ci_high": 0.25,
+    "ci_low": 0.11875,
+    "n": 80,
+    "win_rate": 0.18125
+   },
+   "R2-R0": {
+    "ci_high": 0.528125,
+    "ci_low": 0.35,
+    "n": 80,
+    "win_rate": 0.4375
+   },
+   "R3-R0": {
+    "ci_high": 0.634375,
+    "ci_low": 0.4625,
+    "n": 80,
+    "win_rate": 0.546875
+   }
+  },
+  "thresholded_arms_harm_other_tasks": [],
+  "traces_vs_notes": "equivalent here"
+ },
+ "provenance": {
+  "script_sha256": "644deb455acd9954b3e0cbee0d9f8c306ac19aeafbe338b32b94f8a1917ec16c"
+ },
+ "tasks": 214,
+ "tau": 0.5722
+}
