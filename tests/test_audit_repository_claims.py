@@ -323,3 +323,18 @@ def test_a_percent_encoded_link_to_a_path_with_a_space_resolves(tmp_path: Path, 
     audit.check_doc_links(findings, counters)
     assert [item.detail for item in findings] == ["link target 'Folder%20Name/nope.md' does not resolve"]
     assert counters["doc_links_checked"] == 2
+
+
+def test_an_invalid_percent_encoded_target_is_reported_and_does_not_abort_the_audit(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """%00 decodes to an embedded NUL, which makes the path operations raise; a literal % must still work."""
+    (tmp_path / "docs").mkdir()
+    (tmp_path / "docs" / "100%.md").write_text("target\n", encoding="utf-8")
+    (tmp_path / "docs" / "a.md").write_text("[nul](x%00y.md) and [percent](100%.md)\n", encoding="utf-8")
+    monkeypatch.setattr(audit, "ROOT", tmp_path)
+    findings: list = []
+    counters: Counter = Counter()
+    audit.check_doc_links(findings, counters)
+    assert [item.detail for item in findings] == ["link target 'x%00y.md' does not resolve"]
+    assert counters["doc_links_checked"] == 2

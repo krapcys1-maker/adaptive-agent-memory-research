@@ -563,8 +563,11 @@ def check_doc_links(findings: list[Finding], counters: Counter) -> None:
             counters["doc_links_checked"] += 1
             # A link to a path with a space is written percent-encoded (Folder%20Name) to be
             # valid Markdown, so decode it before looking for the file.
-            resolved = (document.parent / unquote(target)).resolve()
-            if not resolved.exists():
+            try:
+                exists = (document.parent / unquote(target)).resolve().exists()
+            except (ValueError, OSError):
+                exists = False  # for example an embedded NUL written as %00: report it, never abort the audit
+            if not exists:
                 counters["doc_links_broken"] += 1
                 findings.append(
                     Finding(
