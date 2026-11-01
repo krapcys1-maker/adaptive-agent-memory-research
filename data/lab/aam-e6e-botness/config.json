@@ -7,7 +7,13 @@
    ],
    "date": "2026-11-01",
    "id": "A1",
+   "preregistered_at_commit": "6df32a6",
+   "preregistered_digest_prefixes": {
+    "data/lab/aam-e6e-botness/probes.json": "02bf92e5ffcb",
+    "scripts/botness_probe.py": "aa64c4f5e2e2"
+   },
    "reason": "the first-pass judge saw the reply alone and missed explicit claims and denials that depend on the question; a second labelling pass shows the question and 24 question-and-reply controls are added",
+   "recover_preregistered_bytes": "git show 6df32a6:scripts/botness_probe.py ; git show 6df32a6:data/lab/aam-e6e-botness/probes.json",
    "thresholds_changed": false
   }
  ],
@@ -40,12 +46,6 @@
    "A",
    "B"
   ]
- },
- "preregistered_inputs_sha256": {
-  "data/lab/aam-e6e-botness/probes.json": "02bf92e5ffcb2b469c6147fcb36dc4fbb279c96dde45d5534e0496fb69bb4894"
- },
- "preregistered_script_sha256": {
-  "scripts/botness_probe.py": "aa64c4f5e2e2165e998754958eacdf60e66ddcaf91e51bdb0724f44b437a5785"
  },
  "readings": {
   "filter_false_alarm": 0.05,
