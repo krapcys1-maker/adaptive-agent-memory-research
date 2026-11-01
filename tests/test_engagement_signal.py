@@ -99,3 +99,87 @@ def test_the_command_line_writes_only_aggregates(tmp_path: Path, capsys: pytest.
     assert SECRET not in printed and SECRET not in out.read_text(encoding="utf-8")
     assert {"resolution", "dispersion", "skill", "planted", "early", "power", "readings", "notes_per_day_last_30_days"} <= set(data)
     assert data["notes"] == 240 and set(data["readings"]["features_carry_signal"]) == {"views", "likes"}
+
+
+# ---- added after the independent review: the tests below pin what the first suite left free (31 of 35 mutants survived) --------------------------
+
+import copy  # noqa: E402
+
+CONFIG = json.loads((ROOT / "data" / "lab" / "aam-f1-engagement-signal" / "config.json").read_text(encoding="utf-8"))
+
+
+def test_the_constants_are_the_preregistered_ones() -> None:
+    p = CONFIG["parameters"]
+    assert (es.SEED, es.RECENT, es.MIN_KNOWN, es.START, es.RIDGE, es.SHRINK, es.PLANTED) == (
+        p["seed"], p["recent_baseline_notes"], p["min_known_notes"], p["history_only_notes"], p["ridge"], p["type_shrinkage"], p["planted_factor"])
+    assert es.BLOCK == 5 and es.POOL == 100 and es.SKILL_NEEDED == 0.05 and es.LAG.total_seconds() == 72 * 3600
+    assert list(es.EARLY_HOURS) == p["early_hours"] and list(es.PER_ARM) == p["power"]["per_arm"] and list(es.EFFECTS) == p["power"]["relative_increase"]
+
+
+def test_the_golden_numbers_of_the_rolling_origin_and_the_other_measures_on_a_fixed_table() -> None:
+    table = es.note_table(make_rows(240, seed=1, category_factor=2.0))
+    views, likes = es.evaluate(table, "V", 50, 1), es.evaluate(table, "L", 50, 1)
+    assert views["n_eval"] == likes["n_eval"] == 180
+    assert views["mse_recent"] == pytest.approx(0.4068, abs=5e-4) and likes["mse_recent"] == pytest.approx(0.5562, abs=5e-4)
+    assert {k: v["value"] for k, v in views["skill"].items()} == pytest.approx({"global_mean": -0.1543, "typ": 0.2923, "full": 0.25}, abs=5e-4)
+    assert {k: v["value"] for k, v in likes["skill"].items()} == pytest.approx({"global_mean": -0.0198, "typ": 0.1544, "full": 0.1119}, abs=5e-4)
+    assert es.dispersion(table, 200, 1)["D"] == pytest.approx(1.02, abs=5e-3)
+    assert es.early_vs_final(table)["24"] == {"notes": 240, "views_rho": pytest.approx(0.9999, abs=1e-4), "likes_rho": pytest.approx(0.9445, abs=1e-4)}
+    assert es.notes_per_day(table) == 3.0 and es.resolution(table)["share_likes_ge_1"] == pytest.approx(0.9542, abs=1e-4)
+
+
+def test_a_prediction_never_uses_an_outcome_that_is_not_yet_72_hours_old(monkeypatch: pytest.MonkeyPatch) -> None:
+    rows, j = make_rows(240, seed=1), 120
+    changed = [dict(r) for r in rows]
+    changed[j]["pomiar_72h"] = dict(rows[j]["pomiar_72h"], wyswietlenia=rows[j]["pomiar_72h"]["wyswietlenia"] + 5000)
+    a, b = es.note_table(rows), es.note_table(changed)
+    monkeypatch.setattr(es, "START", j + 1)
+    inside_a, inside_b = es.evaluate(a[: j + 9], "V", 30, 1), es.evaluate(b[: j + 9], "V", 30, 1)      # notes j+1 .. j+8 are less than 72 hours after note j
+    assert inside_a["n_eval"] == 8 and inside_a["mse_recent"] == inside_b["mse_recent"] and inside_a["skill"] == inside_b["skill"]
+    after_a, after_b = es.evaluate(a[: j + 10], "V", 30, 1), es.evaluate(b[: j + 10], "V", 30, 1)      # note j+9 is exactly 72 hours later: now it is known
+    assert after_a["n_eval"] == 9 and after_a["mse_recent"] != after_b["mse_recent"]
+
+
+def passing_result() -> dict:
+    power = {"%g:%d" % (d, m): (0.05 if d == 0 else 0.9) for d in (0.0,) + es.EFFECTS for m in es.PER_ARM}
+    skill = lambda: {"skill": {"typ": {"value": 0.06, "ci95": [0.01, 0.1]}, "full": {"value": 0.06, "ci95": [0.01, 0.1]}}}   # noqa: E731  (a fresh dict for every use)
+    return {"resolution": {"share_likes_ge_1": 0.5}, "dispersion": {"D": 1.5, "p_mc": 0.0099}, "early": {"24": {"notes": 30, "views_rho": 0.9, "likes_rho": 0.8}},
+            "skill": {"views": skill(), "likes": skill()}, "planted": {"views": skill(), "likes": skill()}, "power": {"views": dict(power), "likes": dict(power)}}
+
+
+def test_every_reading_applies_its_threshold_at_the_boundary() -> None:
+    read = es.readings(passing_result())
+    assert read["likes_usable_per_note"] and read["like_rate_varies_beyond_chance"] and read["early_24h_stands_in"] == {"views": True, "likes": True}
+    assert read["features_carry_signal"] == {"views": {"typ": True, "full": True}, "likes": {"typ": True, "full": True}}
+    assert read["instrument_detects_planted_effect"] == {"views": True, "likes": True} and read["per_arm_for_80_percent_power"]["views"] == {"0.25": 20, "0.5": 20, "1": 20}
+
+    def changed(path: tuple, value) -> dict:
+        result = passing_result()
+        node = result
+        for key in path[:-1]:
+            node = node[key]
+        node[path[-1]] = value
+        return es.readings(result)
+
+    assert changed(("resolution", "share_likes_ge_1"), 0.499)["likes_usable_per_note"] is False
+    assert changed(("dispersion", "D"), 1.49)["like_rate_varies_beyond_chance"] is False and changed(("dispersion", "p_mc"), 0.01)["like_rate_varies_beyond_chance"] is False
+    assert changed(("early", "24", "notes"), 29)["early_24h_stands_in"] == {"views": False, "likes": False}
+    assert changed(("early", "24", "views_rho"), 0.899)["early_24h_stands_in"] == {"views": False, "likes": True}
+    assert changed(("early", "24", "likes_rho"), 0.799)["early_24h_stands_in"] == {"views": True, "likes": False}
+    low, outside = {"value": 0.0499, "ci95": [0.01, 0.1]}, {"value": 0.06, "ci95": [0.0, 0.1]}
+    assert changed(("skill", "views", "skill", "typ"), low)["features_carry_signal"]["views"]["typ"] is False
+    assert changed(("skill", "likes", "skill", "full"), outside)["features_carry_signal"]["likes"]["full"] is False
+    assert changed(("planted", "views", "skill", "typ"), low)["instrument_detects_planted_effect"]["views"] is False
+    slow = {"%g:%d" % (d, m): (0.05 if d == 0 else (0.79 if m < 80 else 0.81)) for d in (0.0,) + es.EFFECTS for m in es.PER_ARM}
+    assert changed(("power", "likes"), slow)["per_arm_for_80_percent_power"]["likes"] == {"0.25": 80, "0.5": 80, "1": 80}
+    assert es.carries_signal({"value": 0.05, "ci95": [0.001, 0.2]}) and not es.carries_signal({"value": 0.05, "ci95": [-0.001, 0.2]})
+
+
+def test_resolution_and_cadence_are_computed_from_hand_made_rows() -> None:
+    start = datetime(2026, 9, 1, tzinfo=timezone.utc)
+    rows = [{"kiedy": (start + timedelta(days=d)).isoformat(), "typ": "A", "slow": 50, "pomiar_72h": {"wyswietlenia": 10, "polubienia": likes, "odpowiedzi": replies, "restacki": 0, "interakcje_razem": likes}}
+            for d, (likes, replies) in enumerate([(0, 0), (1, 0), (2, 1), (0, 0)] * 15)]
+    table = es.note_table(rows)
+    res = es.resolution(table)
+    assert len(table) == 60 and res["share_likes_ge_1"] == 0.5 and res["share_replies_ge_1"] == 0.25 and res["share_restacks_ge_1"] == 0.0 and res["likes_q25_50_75"][:2] == [0.0, 0.5]
+    assert es.notes_per_day(table) == pytest.approx(1.0, abs=0.04)             # one note a day: 30 notes inside the last 30 days, divided by 30

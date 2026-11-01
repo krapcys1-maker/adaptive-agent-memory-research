@@ -113,10 +113,11 @@ def test_the_analysis_applies_the_readings_to_a_persona_that_behaves_ideally(wor
     assert pressure["X0"]["items"] == ["c1", "c3", "c4", "c8", "t5"] and pressure["X1"]["mean_assertion"] == pytest.approx(0.0) and pressure["X0"]["mean_assertion"] == pytest.approx(1.0)
     assert pressure["X1"]["mean_argument"] == pytest.approx(1.0)
     read = result["readings"]
-    assert all(read["facts_instrument_ok"].values()) and all(read["write_back_helps"].values()) and all(read["events_move_stance"].values())
-    assert all(read["spill_over_bounded"].values()) and read["not_swayed_by_assertion"]["X1"] and not read["not_swayed_by_assertion"]["X0"]
-    assert read["movable_by_argument"]["X1"] and read["biography_anchors"] is True
-    assert all(read["rule_stops_leakage"].values()) and all(read["personal_questions_use_biography"].values())
+    both = {"A": True, "B": True}
+    assert read["facts_instrument_ok"] == both and read["write_back_helps"] == both and read["events_move_stance"] == both and read["spill_over_bounded"] == both
+    assert read["rule_stops_leakage"] == both and read["personal_questions_use_biography"] == both and set(read["retrieval_keeps_biography"]) == {"A", "B"}
+    assert read["not_swayed_by_assertion"] == {"X0": False, "X1": True, "X2": True} and read["movable_by_argument"] == {"X0": False, "X1": True, "X2": True}
+    assert read["biography_anchors"] is True
     assert result["leak"]["A|no_rule|must_not"]["rate"] == 1.0 and result["leak"]["A|rule|must_not"]["rate"] == 0.0
 
 
@@ -133,3 +134,69 @@ def test_the_command_line_runs_a_section_and_analyses(tmp_path: Path, capsys: py
     capsys.readouterr()
     data = json.loads((tmp_path / "out.json").read_text(encoding="utf-8"))
     assert data["leak"]["A|rule|must_not"]["rate"] == 0.0 and {"facts", "improv", "events", "pressure", "leak", "readings", "provenance"} <= set(data)
+
+
+# ---- added after the independent review: dictionary equality instead of all(), a persona that fails every reading, constants against the preregistration -----------
+
+CONFIG = json.loads((ROOT / "data" / "lab" / "aam-e6-persona" / "config.json").read_text(encoding="utf-8"))
+
+
+def test_the_constants_are_the_preregistered_ones() -> None:
+    r, p = CONFIG["readings"], CONFIG["parameters"]
+    names = ["FACTS_ACCURATE", "RETRIEVAL_MARGIN", "HEADROOM_BELOW", "WRITE_BACK_GAIN", "MIN_HEADROOM_ITEMS", "EFFECT_MEAN", "EFFECT_TOPIC", "EFFECT_TOPICS", "SPILL_MAX",
+             "ASSERTION_MAX", "ARGUMENT_OVER_ASSERTION", "ANCHOR_GAIN", "SIDE_MARGIN", "LEAK_MAX", "PERSONAL_MIN"]
+    keys = ["facts_accurate", "retrieval_margin", "headroom_below", "write_back_gain", "min_headroom_items", "effect_mean", "effect_topic", "effect_topics", "spill_max",
+            "assertion_max", "argument_over_assertion", "anchor_gain", "side_margin", "leak_max", "personal_min"]
+    assert [getattr(ps, n) for n in names] == [r[k] for k in keys]
+    assert {"facts": ps.FACT_SAMPLES, "improv": ps.IMPROV_SAMPLES, "events": ps.STANCE_SAMPLES, "pressure": ps.PRESSURE_SAMPLES, "leak": ps.LEAK_SAMPLES} == p["samples"]
+    assert (ps.TEMPERATURE, ps.STANCE_TEMPERATURE, ps.TOP_K, ps.SEED) == (p["temperature"], p["stance_temperature"], p["retrieved"], p["seed"])
+
+
+def bad_generate(system: str, user: str, seed: int, opts: dict) -> dict:
+    """A persona that remembers nothing, repeats one choice, never moves, and puts its invented past into everything."""
+    if "Pick the one that is true for you" in user:
+        return {"text": "ANSWER: A\nDETAIL: so it was."}
+    if "Statement:" in user:
+        return {"text": "STANCE: 4\nWHY: because."}
+    if any(q["q"] in user for q in PERSONA["fact_questions"]):
+        return {"text": "I am not sure."}
+    return {"text": "As someone from Kellmouth I would say so."}
+
+
+def test_every_reading_fails_for_a_persona_that_does_not_remember_or_move_or_keep_its_past_to_itself(tmp_path: Path) -> None:
+    for section in ps.SECTIONS:
+        assert ps.run_section(section, PERSONA, ["A", "B"], tmp_path, bad_generate, [], FakeEmbedder(), 8, log=lambda line: None) > 0
+    read = ps.analyse(PERSONA, tmp_path)["readings"]
+    none = {"A": False, "B": False}
+    assert read["facts_instrument_ok"] == none and read["write_back_helps"] == none and read["events_move_stance"] == none and read["rule_stops_leakage"] == none
+    assert read["spill_over_bounded"] == {"A": True, "B": True} and read["personal_questions_use_biography"] == {"A": True, "B": True}
+    assert read["not_swayed_by_assertion"] == {"X0": False, "X1": False, "X2": False} and read["movable_by_argument"] == {"X0": False, "X1": False, "X2": False}
+    assert read["biography_anchors"] is None
+
+
+def test_the_distractor_notes_enter_the_memory_that_the_retrieval_arm_searches(tmp_path: Path) -> None:
+    notes = tmp_path / "notes.jsonl"
+    notes.write_text("\n".join(json.dumps({"id": "n%d" % i, "date": "2026-09-0%d" % (i + 1), "text": "note %d about tide tables and radios" % i}) for i in range(5)) + "\n", encoding="utf-8")
+    loaded = ps.load_notes(notes)
+    pool = ps.memory_pool(PERSONA, "A", loaded, FakeEmbedder())
+    assert len(loaded) == 5 and loaded[0]["date"] == "2026-09-01" and len(pool["items"]) == len(PERSONA["biography"]) + 5 and pool["items"][-1]["label"] == ps.LABELS["A"]["note"]
+    argv = ["run", "facts", "--persona", str(ROOT / "data" / "lab" / "aam-e6-persona" / "persona.json"), "--workdir", str(tmp_path / "w"), "--variants", "A", "--distractors", str(notes), "--workers", "4"]
+    assert ps.main(argv, embedder=FakeEmbedder(), generate=fake_generate) == 0
+    assert len(ps.load_jsonl(tmp_path / "w" / "facts.jsonl")) == 24 * 3 * ps.FACT_SAMPLES
+
+
+def test_events_move_the_stance_only_when_both_the_size_and_the_number_of_topics_are_met() -> None:
+    def verdict(mean_effect: float, topics: int) -> bool:
+        result = {"facts": {}, "improv": {}, "pressure": {}, "leak": {}, "events": {"A": {"mean_effect": mean_effect, "topics_with_effect_ge_1": topics, "spill_over_signed": 0.0}}}
+        return ps.readings(result)["events_move_stance"]["A"]
+
+    assert verdict(1.5, 4) is True and verdict(2.0, 3) is False and verdict(1.0, 5) is False and verdict(1.49, 4) is False
+
+
+def test_a_shift_that_is_the_same_after_good_and_bad_events_cancels_in_the_signed_spill_over_and_shows_in_the_absolute_one() -> None:
+    records = [{"variant": "A", "id": "c1", "condition": "base", "sample": 0, "text": "STANCE: 4"}] + [
+        {"variant": "A", "id": "c1", "condition": e["id"], "sample": 0, "text": "STANCE: 5"} for e in PERSONA["events"]]
+    out = ps.events_summary(PERSONA, records)["A"]
+    assert out["spill_over_signed"] == pytest.approx(0.0) and out["spill_over_absolute"] == pytest.approx(1.0) and out["spill_over_cells"] == len(PERSONA["events"])
+    up_after_good = [r for r in records if r["condition"] in {e["id"] for e in PERSONA["events"] if e["sign"] > 0}]
+    assert up_after_good and ps.events_summary(PERSONA, [records[0]] + up_after_good)["A"]["spill_over_signed"] == pytest.approx(1.0)
