@@ -8,7 +8,7 @@ A local-first, model-agnostic memory system that decides what to keep from<br>
 <p align="center">
 <a href="https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml"><img src="https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg" alt="License: CC BY 4.0"></a>
-<img src="https://img.shields.io/badge/dependencies-none-brightgreen" alt="No dependencies">
+<img src="https://img.shields.io/badge/engine%20dependencies-none-brightgreen" alt="The memory engine has no dependencies">
 <img src="https://img.shields.io/badge/API%20key-not%20required-blue" alt="No API key">
 <a href="https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue"><img src="https://img.shields.io/github/issues/krapcys1-maker/adaptive-agent-memory-research/good%20first%20issue?label=good%20first%20issues&color=7057ff" alt="Good first issues"></a>
 </p>
@@ -26,17 +26,17 @@ claude mcp add project-memory -- python ~/aamr/tools/project_memory/server.py --
 
 Your agent now has eight tools — `memory_status`, `memory_search`, `memory_context`, `memory_get`, `memory_timeline`, `memory_add`, `memory_supersede`, `memory_rebuild_index` — writing to a single append-only `memory/events.jsonl` in your repository. No API key, no vector database, no daemon, no cloud account, no `pip install`.
 
-Prefer no MCP client? Everything works from the CLI:
+Prefer no MCP client? Everything works from the CLI. Run it from your own project with `--root .`; without `--root` the CLI reads and writes this repository's own research log:
 
 ```bash
-python tools/project_memory/cli.py add --kind decision \
+python ~/aamr/tools/project_memory/cli.py --root . add --kind decision \
   --title "Use SQLite for the cache" \
   --summary "Chose SQLite over Redis because the deployment target has no daemon." \
   --source docs/adr/0003.md
-python tools/project_memory/cli.py search "why sqlite"
+python ~/aamr/tools/project_memory/cli.py --root . search "why sqlite"
 ```
 
-> **This is the research engine, not a finished product.** It is used daily by this project on itself, which is the strongest thing we can honestly say about it. Bugs, rough edges, and honest reports of both are welcome — see [#36](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/36) if setup fights you.
+> **This is the research engine, not a finished product.** It is used daily by this project on itself, which is the strongest thing we can honestly say about it. Bugs, rough edges, and honest reports of both are welcome — if setup fights you, [open an issue](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new/choose) and say so.
 
 ---
 
@@ -77,17 +77,17 @@ The append-only log, the controller and retrieval are built and running — that
 
 ## What we have measured
 
-Of 71 registered experiments, **37 have run** and 20 are blocked on a corpus that does not exist yet. All are exploratory and none is independently reviewed, so read these as measurements rather than settled science — but they are measurements, and the data is in the repository.
+Of 74 registered experiments, 39 are completed or retracted, 20 are blocked on corpora that have not been built yet (corpus H1, below, is the first), 7 were invalidated or only partly valid, and 8 are designs or review packets awaiting execution; `python scripts/registry_summary.py` prints the current counts. All are exploratory and none is independently reviewed, so read these as measurements rather than settled science — but they are measurements, and the data is in the repository.
 
-**A superseded fact is maximally similar to the fact that replaced it.** Mean cosine 0.816 between an old fact and its replacement, against a corpus baseline of 0.372 — one pair at 1.000. With the metadata filter removed, the stale version was the nearest neighbour in 6 of 9 cases and its median rank was 1. *Content cannot separate a retired fact from its successor. Only bookkeeping can.* → `PMLAB-STALE-E1`
+**A superseded fact is maximally similar to the fact that replaced it.** Mean cosine 0.816 between an old fact and its replacement, against a corpus baseline of 0.372 — two pairs at 1.000. With the metadata filter removed, the stale version was the nearest neighbour in 6 of 9 cases and its median rank was 1. *Content cannot separate a retired fact from its successor. Only bookkeeping can.* → `PMLAB-STALE-E1`
 
 **One timestamp cannot answer "what did we believe at time T".** It scored 0.00 on that question and leaked future information into 6 of 18 queries. Separating valid time from transaction time scored 0.944 with zero leaks. The caveat matters as much as the result: every design scored 1.00 on *what is true now*, so the second axis buys nothing unless historical questions get asked. → `PMLAB-REV-V0`
 
-**A 220 MB local multilingual embedder lifted Polish-query recall@10 from 0.156 to 0.978** — and pulled in four times as much superseded material doing it (0.200 forbidden intrusion against 0.050 for lexical search). Recall solved; safety unmeasured. → `PMLAB-XLANG-E2`
+**A 220 MB local multilingual embedder lifted Polish-query recall@10 from 0.156 to 0.978** — but a hand-built glossary already reached 0.867, and the queries are translated memory titles looked up against their own ids, not questions. Safety was not measured in this run; a separate, smaller one (`PMLAB-REUSE-CHAR-001`) found 0.200 forbidden intrusion for dense retrieval against 0.050 for lexical search. → `PMLAB-XLANG-E2`
 
-**An association graph over memory made retrieval worse.** The earlier, favourable version of this result was **retracted by us**: its leakage control removed one edge where it needed to remove 4.5, so the gold-generating group reassembled over two hops. → `PMLAB-ASSOC-E2` retracted, `PMLAB-ASSOC-E3`
+**An association graph over memory lowered Recall@5 by 0.114** (95% CI −0.179 to −0.054); at Recall@10 the difference is −0.039 and its interval includes zero. The earlier, favourable version of this result was **retracted by us**: its leakage control removed one edge where it needed to remove several, so the gold-generating group reassembled over two hops. → `PMLAB-ASSOC-E2` retracted, `PMLAB-ASSOC-E3`
 
-**A benchmark can score perfect recall and still hand the agent the wrong answer.** On the new corpus, the poisoned-instruction family scores **1.000 recall@10** — and retrieves the poisoned line *above* the genuine rule in **25%** of probes. A system retrieving both records looks flawless on recall and would act on the wrong one. This is one lexical arm on one synthetic corpus, so it is evidence about what recall hides rather than a claim about memory systems in general. → `PMLAB-H1-BASE-E1`
+**A benchmark can score perfect recall and still hand the agent the wrong answer — but this result does not currently reproduce.** The committed baseline reports **1.000 recall@10** for the poisoned-instruction family and the poisoned line ranked *above* the genuine rule in **25%** of probes. Re-running the committed script on the current tree gives 0 of 12 for that family (recall@10 still 1.000) and an overall recall@10 of 0.881 against the committed 0.810, so the committed result and the corpus have drifted apart. Until the baseline is re-run and recorded, treat the 25% as unreplicated: it was one lexical arm on one synthetic corpus, and at most it is evidence about what recall can hide, not a measurement of memory systems. → `PMLAB-H1-BASE-E1`
 
 **We cannot currently instantiate tier I3 of our own independence ladder.** Two roles of one model fabricated an evidence identifier zero times across 120 queries, so the error correlation is *undefined* rather than zero — and the harness reports undefined, because 0.0 would claim an independence nobody measured. → `PMLAB-DECORR-E1`
 
@@ -111,6 +111,8 @@ cd adaptive-agent-memory-research
 python -m pip install -r requirements-dev.txt
 ```
 
+The install pulls about 230 MB, mostly `transformers`, which is needed only to import one frozen audit script; the memory engine itself needs nothing.
+
 Inspect the memory this project keeps about its own research, and watch it assemble a context bundle under a hard character budget:
 
 ```bash
@@ -130,7 +132,7 @@ Audit the whole repository for claims that no longer hold:
 python scripts/audit_repository_claims.py
 ```
 
-That last one reports 34 findings. None is a broken freeze — 243 of the 246 resolvable declared hashes match their working copy, and the other three are derived digests declared under a name that reads like a file digest. What it does report is 17 registry rows pointing at artifacts for experiments that have not run, and 12 experiment identifiers described in documentation but absent from the registry. Tracked in the issue list, not hidden.
+That last one lists what no longer holds. It fails only on a critical finding: a declared hash that matches neither the working copy nor the Git blob, meaning a frozen artifact changed after it was frozen. It currently reports none. One declaration that did drift (`scripts/corpus/address_extract.py`, edited two minutes after the E2-A2 freeze) is shown as a low `explained-drift` finding, backed by a note next to the manifest that the audit re-derives from Git, because this project does not rewrite a freeze to make an audit pass. The medium findings — registry rows pointing at artifacts for experiments that have not run, experiment identifiers described in documentation but absent from the registry, memory sources that are not tracked — are printed, not hidden. Run it to see the current counts; they change as work lands.
 
 ## How to help
 
@@ -173,9 +175,9 @@ Two 2026 systems were verified in August 2026 and both occupy ground this page h
 
 [APEX-MEM](https://arxiv.org/abs/2604.14362) (ACL 2026, Amazon) implements entity-property-value triplets over an append-only store with query-time temporal resolution — the architecture this project converged on independently — at 88.88% LoCoMo and 86.2% LongMemEval. **Structured temporal memory is not a novel claim here and is not made as one.**
 
-[Verbatim Chunks Beat Extracted Artifacts](https://arxiv.org/html/2601.00821) finds extraction *losing* to raw chunks by 15.9 points on LoCoMo, with extraction gaps at 78.8% of failures. This project independently measured 85.7% abstention from a deterministic extractor — the same phenomenon, and a reason to take that paper's conclusion seriously rather than route around it.
+[Fidelity Before Structure: Verbatim Chunks Beat Lossy Artifact Extraction in Long-Conversation LLM Memory](https://arxiv.org/abs/2601.00821) (formerly "Verbatim Chunks Beat Extracted Artifacts"; v4, July 2026) finds extraction *losing* to raw chunks by 15.9 points on LoCoMo, and attributes 78.8% of the 3,121 missing keywords in failed questions to extraction gaps. This project measured 85.7% abstention from a deterministic extractor — a different quantity on a different corpus, but consistent with that finding and a reason to take the paper's conclusion seriously rather than route around it.
 
-A-MAC and NEMORI reportedly occupy *future utility as a retention criterion*, which question 3 below states as open. That is being verified in [#48](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/48); until it resolves, read question 3 as **possibly closed**.
+[A-MAC](https://arxiv.org/abs/2603.04549) (March 2026) is verified: it scores memory admission with five factors, one of them an LLM-estimated *future utility*, so future utility as a retention criterion is already occupied as a predicted score. Whether it can be *measured causally* (question 3 below) is not addressed in its abstract and stays open. NEMORI and the other systems listed in [#48](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/48) are still being verified; until that resolves, read question 3 as **open only in its causal form**.
 
 What still looks unoccupied is not a system but a diagnostic programme: *when and why similarity stops being the right access mechanism*, measured through failure attribution, an oracle router ceiling, near-clone density and context cost. Full assessment in [related work and novelty](docs/00-project/related-work-and-novelty.md), including the process failure that let this be found late.
 

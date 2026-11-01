@@ -13,20 +13,21 @@ python tasks.py check
 
 `python tasks.py check` runs every gate CI runs, in the order CI runs them, and
 exits non-zero if any of them fails. It is the answer to *"did I break
-anything?"* and the one command a pull request must pass. Takes about 25
-seconds.
+anything?"* and the one command a pull request must pass. It takes about half
+a minute once the one-time install (about 230 MB, mostly `transformers`, which
+is needed only to import one frozen audit script) is done.
 
-The test suite should pass. One test is marked `xfail` because of a known
-cross-platform defect that is tracked in an open issue, so you will see either
-`1 xfailed` on Linux or `1 xpassed` on Windows. Both are expected; neither
-means your checkout is broken.
+The test suite should pass with no failures. A green run still reports some
+skipped tests: they need optional local inputs that a fresh clone does not have
+(a Mem0 virtualenv, a CUPMem checkout, `ripgrep`), and skipping them is expected.
 
-The other targets, for when you do not want to wait for the whole thing:
+The other targets, for when you do not want to wait for the whole thing
+(timings measured on one laptop):
 
 ```bash
 python tasks.py fast      # ~0.3s -- memory integrity + source pipeline; fine in a pre-commit hook
-python tasks.py test      # ~12s  -- the test suite alone
-python tasks.py audit     # ~14s  -- both audits, without the test suite
+python tasks.py test      # ~25s  -- the test suite alone
+python tasks.py audit     # ~7s   -- both audits, without the test suite
 python tasks.py --list    # what each target runs, and roughly how long it takes
 ```
 
