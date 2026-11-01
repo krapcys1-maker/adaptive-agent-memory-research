@@ -5,7 +5,7 @@
 ## 1. Principles
 
 1. **Independence.** The engine knows nothing about any particular agent; an agent knows nothing about the engine's internals. Both sides see only this contract.
-2. **Research mode first.** The first integration is a replay: the agent (or a wrapper) writes an append-only export of its experiences, and the research harness consumes it offline. The production agent is never changed, and no retrieval result is injected into it.
+2. **Research mode first.** The first integration is a replay: the agent (or a wrapper) writes an append-only export of its experiences, and the research harness consumes it offline. The production agent is never changed, and no retrieval result is injected into it. *Note (2026-11-01): the agent's own session reports that its owner wants memory, personality and in-flight learning injected into that live agent. This project has not received that instruction directly and treats it as unconfirmed. If it is confirmed, this principle holds for the research harness only, and any injection is a separate decision with its own plan, a shadow mode before live use, and the owner's explicit authorisation per step.*
 3. **Budget is explicit and in tokens.** Every retrieval has a hard budget; the engine cannot exceed it.
 4. **Cost is reported by the engine**, per call, in the same shape for every strategy.
 5. **Provenance is never lost.** Any returned item says whether it is original evidence or a later interpretation, and which raw experiences it rests on.
