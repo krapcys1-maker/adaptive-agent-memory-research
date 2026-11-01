@@ -1,6 +1,6 @@
-# Agent integration contract, proposal v0
+# Agent integration contract, proposal v0.1
 
-**Status: proposal.** Nothing here is implemented, the names are provisional, and no existing agent has been touched. It answers item 8 of the [research vision](research-vision-2026-11.md): an interface through which an external autonomous agent can feed experiences to the memory engine and receive retrievals, without the engine knowing anything about that agent. The facts about today's engine it builds on are in section 7 of the [direction review](research-direction-review-2026-11.md).
+**Status: proposal, revised on 2026-11-01 (v0.1).** The file keeps its v0 name so that existing links hold. The revision follows an independent audit of a real publishing agent (NIE) by that agent's own session and an independent check of that audit; the changes are listed in section 8. The owner has not reviewed this draft, and it is not the canonical format: that is the owner's decision. Nothing here is implemented, the names are provisional, and no existing agent has been touched. It answers item 8 of the [research vision](research-vision-2026-11.md): an interface through which an external autonomous agent can feed experiences to the memory engine and receive retrievals, without the engine knowing anything about that agent. The facts about today's engine it builds on are in section 7 of the [direction review](research-direction-review-2026-11.md).
 
 ## 1. Principles
 
@@ -10,7 +10,7 @@
 4. **Cost is reported by the engine**, per call, in the same shape for every strategy.
 5. **Provenance is never lost.** Any returned item says whether it is original evidence or a later interpretation, and which raw experiences it rests on.
 6. **Forgetting is operational first.** A dormant experience is no longer supplied, but stays recoverable. Physical erasure exists for privacy and is a different, logged operation.
-7. **Determinism.** Given a stream, a strategy configuration, a pinned model and a seed, a replay is reproducible, and the configuration has a digest.
+7. **Determinism of the engine, reproducibility of the environment.** Given a stream, a strategy configuration and a seed, the engine's state and context digests are identical on two runs (checked by running twice), and the configuration has a digest. A hosted reader without seed or temperature control, or whose model alias can drift, is not reproducible: a replay with such a reader is a re-evaluation, not a reproduction. Report the number of draws, a drift canary and the list of unrecorded inputs. "A pinned model and a seed" is not a sufficient condition.
 
 ## 2. Operations
 
@@ -29,9 +29,20 @@
 
 ## 3. Records
 
-**Experience** (JSON, UTF-8): `experience_id` (stable, supplied by the agent), `occurred_at` (ISO-8601 UTC, supplied by the agent or the replayer; the engine adds its own `recorded_at`), `agent_id`, `task_id` (optional), `goal_ids` (optional), `kind` (`observation`, `action`, `decision`, `outcome`, `feedback`, `note` or `source_document`), `content` (the raw text), `payload` (optional structured data), `source` (uri or path, retrieved-at, reliability hint), `refs` (other experience ids), `tags`, and `privacy` (retention class; `pii` as `none`, `present` or `unknown`).
+**Experience** (JSON, UTF-8). Required: `experience_id`, `occurred_at`, `agent_id`, `kind`, `content`, `privacy`, `capture`. Optional: `task_id`, `goal_ids`, `payload`, and the rest.
+- `experience_id`: stable; `id_basis` says whether the agent supplied it (`native`) or the exporter derived it (`derived_content_hash_plus_occurrence`).
+- `occurred_at`: ISO-8601 UTC, supplied by the agent or the replayer; the engine adds its own `recorded_at`. `available_at`: the earliest moment the agent could have used the information (default `occurred_at`); `as_of` filters on it, because outcomes are recorded after they happen.
+- `run_id` (optional) with `run_id_basis`: `native`, `time_window` (the entry was matched to a run by time) or `absent`.
+- `kind`: `observation`, `action`, `decision`, `outcome`, `feedback`, `note` or `source_document`.
+- `content`: the raw text; for a `decision` or an `outcome` of an agent that does not record its inputs, the recorded result, never an invented input.
+- `capture`: `native` or `reconstructed`. For a `decision`, `inputs` says what is known about what the agent saw: `captured`, `derived`, `hashed_only`, `truncated` or `absent`. `refs` (other experience ids) may list only recorded experiences, and is `reconstructed` when matched by time window.
+- `payload` (optional structured data), `source` (uri or path, retrieved-at, reliability hint), `tags`.
+- Outcomes that arrive late also carry `age_at_measurement` and `censored` (a measurement taken before the outcome could have matured).
+- `privacy`: the class `public_own` (the agent's own published text), `third_party_pseudonymized` or `excluded`, plus a retention class. Hashes and keyed pseudonyms of third-party content count as personal data.
 
-**Goal**: `goal_id`, `text`, `status` (`active`, `paused`, `done`), `valid_from`, `parent_goal_id`, optional `concept_hints`.
+An export as a whole carries `fidelity`: `exact`, `re_evaluation`, `reconstructed` or `synthetic`.
+
+**Goal**: `goal_id`, `text`, `status` (`active`, `paused`, `done`), `valid_from`, `parent_goal_id`, optional `concept_hints`, and `basis`: `stated`, or `derived` when an exporter infers goals for an agent that has none (series, topics or experiment arms); a derived goal has provenance `interpretation`.
 
 **Retrieved item**: `item_id`, `experience_ids`, `representation` (`episodic_raw`, `summary`, or `trace_resolved` for a trace that was followed back to its raw event; `trace_resolved` and the `association:<concept>` reason code are provisional, see section 7), `text`, `tokens`, `score`, `reason` (codes such as `cue_match`, `goal_match`, `association:<concept>`, `recency`), `provenance` (`original` or `interpretation`, with the source ids). `reason` is what makes false associations auditable.
 
@@ -39,11 +50,11 @@
 
 ## 4. Replay and isolation
 
-- The agent side produces an `export`: one JSONL line per experience, in time order, plus its goal changes and, if available, the outcomes of its tasks. The Substack agent would need a read-only exporter in a separate wrapper; this repository does not contain and must not change that agent.
+- The agent side produces an `export`: one JSONL line per experience, in time order, plus its goal changes and, if available, the outcomes of its tasks. Two exporter classes exist. **E1, a passive importer outside the agent**: a read-only snapshot of the agent's logs; it yields actions and outcomes but never inputs, so its fidelity is at most `re_evaluation`. **E2, an in-agent capture hook**: it changes the production agent, lives outside this repository, needs the owner's separate explicit authorisation, and this project neither recommends nor builds it. For an agent that does not record its cues and tasks (the Substack agent NIE is the first case), the cues and tasks of an experiment are generated in the laboratory, not recorded, and every result must say so. This repository does not contain and must not change that agent.
 - `replay` advances a simulated clock; `as_of` makes every query time-correct and prevents future leakage.
 - A later `shadow` mode lets the engine receive live experiences and answer `retrieve` while the agent ignores the answers; results are compared offline. Only after that could any injection into a real agent be considered, and that is a separate decision.
 - Interventions from the vision map onto replay: remove or replace one experience, restore an earlier state, or add a goal that makes an old experience relevant are all operations on the stream plus a seed.
-- Secrets and personal data: the exporter must not include credentials or subscriber data; `ingest` rejects records flagged `pii: present` unless the strategy is configured to accept them; `erase` supports deletion on request.
+- Secrets and personal data: the exporter must not include credentials or subscriber data. Exporters are allowlist-only (copy named fields, fail closed on anything else), free text is scanned for handles and e-mail addresses, and `ingest` rejects records of class `excluded`. `erase` supports deletion on request. Nothing derived from third parties is committed to a public repository, including this one: only aggregate numbers, synthetic fixtures and manifest hashes may leave the laboratory. Key custody, rotation and destruction for pseudonyms must be written down before any real export.
 
 ## 5. How it maps onto what exists
 
@@ -56,6 +67,9 @@
 | `feedback` | none | usage telemetry schemas exist in `data/lab/pmlab-future-utility-v0/` but the server emits nothing |
 | `maintain`, `forget` | none | supersession is the only state change; no dormant, reactivate or erase |
 | `export`, `replay`, `describe` | none | `scripts/arena/adapter.py` and `scripts/corpus/arms.py` already contain the cost types and the budget-fair fill to build on, and `scripts/arena/adapter_v0_1.py` defines the contract digest |
+| goals from a real agent | none | an agent such as NIE has no goal events; derive them from series and experiment arms with `basis: derived` |
+| delayed outcomes | none | outcomes are recorded after they occur and may be censored: `available_at`, `age_at_measurement`, `censored` |
+| block budgets | `char_budget` (characters) | NIE's memory blocks are in characters, at most about 1,250 tokens, against the 4,000-token starting figure of the vision |
 
 ## 6. Suggested path (not started)
 
@@ -66,4 +80,14 @@
 
 ## 7. Open questions
 
-Who owns the exporter format when two agents differ; whether `feedback` labels from the agent itself (`self_report`) may be used for learning at all, given the vision's own warning about reinforcing familiar but wrong memories; whether the contract should carry a trace-and-association concept explicitly or leave it to strategies; and the retention and privacy policy for a real publishing agent, which the owner must set.
+Who owns the exporter format when two agents differ; whether `feedback` labels from the agent itself (`self_report`) may be used for learning at all, given the vision's own warning about reinforcing familiar but wrong memories; whether the contract should carry a trace-and-association concept explicitly or leave it to strategies; and the retention and privacy policy for a real publishing agent, which the owner must set. Added in v0.1: which data from a real agent may be published, and in what form; custody and rotation of pseudonym keys; and who may authorise an in-agent capture hook (the owner, outside this project).
+
+## 8. Changes from v0 (2026-11-01)
+
+Facts about the real agent below are reported by its own session and by an independent check of that report; this project has not verified them against the agent's server.
+
+- The agent records no prompts or model responses, only metadata, and its main journal has no run identifier (0 of about 5,400 entries). Hence `capture`, `inputs`, `run_id_basis` and `fidelity`, and the E1 and E2 exporter classes.
+- Outcomes arrive up to days after the event, and some fields (a status that is overwritten in place, a field that may be filled in afterwards) leak the future if read from a snapshot. Hence `available_at`, `age_at_measurement`, `censored`, and the rule that `as_of` filters on `available_at`.
+- The agent's environment is not deterministic (no seed or temperature control, model aliases that change, unseeded random draws). Hence the split in principle 7.
+- The agent's repository on GitHub is public, as is this one. Hence the privacy classes, the allowlist rule and the publication boundary in section 4.
+- The in-agent hook is a decision about the production agent, so it moved out of the suggested path (section 6, step 4).
