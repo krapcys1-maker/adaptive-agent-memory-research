@@ -51,3 +51,5 @@ One provider's model as the writer, one persona, sixty authored stories, six str
 ## Log
 
 Preregistered before the first record.
+
+- 2026-11-01 16:35: the analysis and judge script (measures, planted controls, readings applied mechanically) and its nine tests were committed, with its digest in config.json, while the three writer processes were running (seed 11 day 52/60  +4 notes  elapsed 156s) and before any record had been read.

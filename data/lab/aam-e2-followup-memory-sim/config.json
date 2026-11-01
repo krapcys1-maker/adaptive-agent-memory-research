@@ -75,6 +75,7 @@
   "threshold_rule": "highest step of 0.05 that keeps 90% of the true follow-up -> story pairs on the calibration streams"
  },
  "script_sha256": {
+  "scripts/analyze_followup_memory_sim.py": "f071049dc3a64c8063974c0d2d1eb4e355713d2e27704e3e1742db1cd6e3c37d",
   "scripts/followup_memory_sim.py": "6bc1650b67ace716deee6647a2e201da725036116b38c3fce4ce46f0c77d8c36",
   "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
   "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",
