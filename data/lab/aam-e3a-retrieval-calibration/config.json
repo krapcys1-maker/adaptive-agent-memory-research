@@ -1,0 +1,57 @@
+{
+ "data": {
+  "language": "English",
+  "location": "local export outside both repositories",
+  "notes": 234,
+  "period": "2026-08-16 to 2026-11-01"
+ },
+ "experiment": "AAM-E3A retrieval threshold calibration on the live account's published notes",
+ "judge": {
+  "endpoint": "local metering proxy, hard cap 12 USD for the phase",
+  "mode": "non-thinking, temperature 0",
+  "model": "deepseek-v4-pro",
+  "scale": {
+   "0": "unrelated or only a very loose connection",
+   "1": "the same general area, a different point",
+   "2": "the same specific story, claim or question, or a direct follow-up"
+  },
+  "second_judge": {
+   "judge_dependent_if_below": 0.4,
+   "model": "qwen2.5:14b-instruct",
+   "pairs": 200,
+   "statistic": "weighted Cohen's kappa"
+  }
+ },
+ "retrieval": {
+  "device": "cpu",
+  "earlier_includes_same_day": true,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "negative_controls": "one random earlier note per note from the fourth, never a candidate, seed 2026",
+  "tie": "more recent earlier note",
+  "top_k": 3
+ },
+ "rule": {
+  "judge_unreliable_if_controls_rated_0_below": 0.9,
+  "recommended": "lowest usable threshold",
+  "thresholds": [
+   0.5,
+   0.55,
+   0.6,
+   0.65,
+   0.7
+  ],
+  "usable_if": {
+   "coverage_at_least": 0.1,
+   "precision_rated_1_or_2_at_least": 0.8
+  }
+ },
+ "script_sha256": {
+  "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
+  "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",
+  "scripts/published_notes_baseline.py": "d8b5963a6e6074cc5c8c4ca293f0b301fc99d7c37a928ad39a038b058962e760",
+  "scripts/retrieval_calibration.py": "cea96a0b369662d47203efb4373be6d2c5fe5729f7d349d5977cf835581fe625",
+  "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
+  "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
+ },
+ "status": "calibration, tier E, not registered; the notes and the pair-level judgments stay outside the repository"
+}
