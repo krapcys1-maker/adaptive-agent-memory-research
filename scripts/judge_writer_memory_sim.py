@@ -39,7 +39,7 @@ CONTROLS_EACH = 12
 CONTROL_SEED = 2026
 ACCEPT_SHARE = 0.75          # a control is "noticed" when fresh <= 2 (copy) or fit <= 2 (off topic); the judge is informative if >= this share are
 QUALITY_GUARD = 0.30         # mean drop against M0 on a 1-5 scale that voids a repetition win (with an interval below zero)
-SCORE = re.compile(r"(?im)^\W*(fit|fresh|voice|quality)\W*[:=]\s*([1-5])\b")
+SCORE = re.compile(r"(?i)\b(fit|fresh|voice|quality)\b\W{0,4}[:=]\s*([1-5])\b")
 
 
 def parse_scores(raw: str) -> Dict[str, Optional[int]]:
@@ -123,6 +123,9 @@ def mean(values: Sequence[Optional[float]]) -> Optional[float]:
 
 
 def analyse(judgments: Sequence[dict], draws: int = ana.DRAWS) -> dict:
+    for j in judgments:                    # scores are re-derived from the stored reply, so a parser fix needs no new calls
+        if j.get("raw"):
+            j.update({d: v for d, v in parse_scores(j["raw"]).items() if j.get(d) is None})
     real = [j for j in judgments if not j.get("control")]
     controls = [j for j in judgments if j.get("control")]
     arms = [a for a in sim.ARMS if any(j["arm"] == a for j in real)]
