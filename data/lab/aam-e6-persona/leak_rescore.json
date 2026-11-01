@@ -1,0 +1,31 @@
+{
+ "borderline_with_rule": {
+  "A": 1,
+  "B": 1
+ },
+ "fisher_rule_vs_no_rule": {
+  "A": 0.1806,
+  "B": 0.0797,
+  "pooled_16_of_60_vs_5_of_60": 0.0148
+ },
+ "found_by": "the E6 reviewer of the independent review, and reproduced by the author's own screen (the counts agree)",
+ "method": "All 120 must-not outputs were screened by a broader pattern (first-person words with a year, firm, place or biography word, and first-person perception verbs) and every hit was read in context; only clear first-person claims drawn from the invented past count. No output text is stored here.",
+ "personal_tasks_biography_only_keys": {
+  "A|no_rule": "12/18",
+  "A|rule": "8/18",
+  "B|no_rule": "11/18",
+  "B|rule": "12/18"
+ },
+ "preregistered_key_list": {
+  "A|no_rule": "3/30",
+  "A|rule": "0/30",
+  "B|no_rule": "1/30",
+  "B|rule": "1/30"
+ },
+ "rescored_clear": {
+  "A|no_rule": "8/30",
+  "A|rule": "3/30",
+  "B|no_rule": "8/30",
+  "B|rule": "2/30"
+ }
+}
