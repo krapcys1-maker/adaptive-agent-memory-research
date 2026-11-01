@@ -308,3 +308,18 @@ def test_a_drift_note_with_no_manifest_beside_it_is_audited_like_any_manifest(dr
     findings, _ = run_audit()
     assert verdicts(findings).count(("declared-hash", "critical")) == 2
     assert ("invalid-drift-annotation", "high") in verdicts(findings)
+
+
+def test_a_percent_encoded_link_to_a_path_with_a_space_resolves(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """Markdown needs Folder%20Name for a folder called "Folder Name"; the audit must decode it."""
+    (tmp_path / "docs" / "Folder Name").mkdir(parents=True)
+    (tmp_path / "docs" / "Folder Name" / "b.md").write_text("target\n", encoding="utf-8")
+    (tmp_path / "docs" / "a.md").write_text(
+        "[encoded](Folder%20Name/b.md) and [missing](Folder%20Name/nope.md)\n", encoding="utf-8"
+    )
+    monkeypatch.setattr(audit, "ROOT", tmp_path)
+    findings: list = []
+    counters: Counter = Counter()
+    audit.check_doc_links(findings, counters)
+    assert [item.detail for item in findings] == ["link target 'Folder%20Name/nope.md' does not resolve"]
+    assert counters["doc_links_checked"] == 2

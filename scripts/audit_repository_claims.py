@@ -39,6 +39,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any, Iterable
+from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -560,7 +561,9 @@ def check_doc_links(findings: list[Finding], counters: Counter) -> None:
             if target.startswith(("http://", "https://", "mailto:", "#")):
                 continue
             counters["doc_links_checked"] += 1
-            resolved = (document.parent / target).resolve()
+            # A link to a path with a space is written percent-encoded (Folder%20Name) to be
+            # valid Markdown, so decode it before looking for the file.
+            resolved = (document.parent / unquote(target)).resolve()
             if not resolved.exists():
                 counters["doc_links_broken"] += 1
                 findings.append(
