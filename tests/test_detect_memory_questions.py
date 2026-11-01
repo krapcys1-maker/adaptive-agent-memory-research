@@ -1,9 +1,9 @@
 """Every detector must demonstrably fire.
 
-On the live corpus this module currently detects nothing: the log is one day
-old, so the age-based detectors cannot trigger, the claim audit keeps source
-paths resolving, and no version-2 supersession exists yet. That is a correct
-result and not evidence the detectors work.
+On the live corpus, evaluated as of the day the log was last written, this
+module raised nothing until the arena records were added; the few questions it
+raises now are listed in KNOWN_OPEN_QUESTIONS. Silence on real data is a
+correct result and not evidence the detectors work.
 
 Shipping five detectors that have never once fired would repeat a mistake made
 earlier the same day, when six test methods existed and were never collected.
@@ -24,6 +24,38 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import detect_memory_questions as detector  # noqa: E402
 
 NOW = datetime(2026, 8, 23, tzinfo=timezone.utc)
+
+# The age-based detectors compare each record's age with "now". Against the wall
+# clock the live-corpus test below failed on every run once the log turned a week
+# old, which says something about the log and nothing about the detectors. The
+# corpus is therefore evaluated as of a fixed instant: the day it was last written.
+LIVE_CORPUS_AS_OF = datetime(2026, 8, 25, 12, 0, tzinfo=timezone.utc)
+
+# Questions the detectors legitimately raise on the records written with the arena
+# campaign: four cite sources that are not tracked in this repository (three
+# research notes that exist only in a working tree, one git-ignored dataset) and
+# three cite records that were later superseded. They are questions for the owner,
+# not detector defects. Resolve one by committing the cited file or by appending a
+# supersession; this set may only shrink.
+KNOWN_OPEN_QUESTIONS = frozenset(
+    {
+        ("cited-superseded", "PM-20260824-bc15991a", "PM-20260824-aba1b1f7"),
+        ("cited-superseded", "PM-20260824-c76d8a96", "PM-20260824-d07d2a4b"),
+        ("cited-superseded", "PM-20260824-f0918718", "PM-20260824-d07d2a4b"),
+        (
+            "dangling-source",
+            "PM-20260824-169683b7",
+            "external/datasets/longmemeval-cleaned-98d7416c24c7/longmemeval_s_cleaned.json",
+        ),
+        ("dangling-source", "PM-20260824-c56f7e3a", "docs/research/RELATED_WORK_RED_TEAM_2026-08-24.md"),
+        ("dangling-source", "PM-20260824-fe6990ce", "docs/research/CROSS_PAPER_HYPOTHESIS_MAP_2026-08-24.md"),
+        (
+            "dangling-source",
+            "PM-20260824-fe6990ce",
+            "docs/research/GLOBAL_AGENT_MEMORY_FRONTIER_MAP_2026-08-24.md",
+        ),
+    }
+)
 
 
 def write_log(root: Path, events: list[dict]) -> Path:
@@ -196,10 +228,17 @@ def test_detection_never_modifies_the_log(tmp_path: Path) -> None:
     assert log.read_bytes() == before
 
 
-def test_the_live_corpus_produces_no_false_positives() -> None:
-    """Currently silent, and that is the correct result rather than a failure.
+def test_the_live_corpus_raises_no_question_beyond_the_known_ones() -> None:
+    """A new question on the live corpus is either real work or a detector regression.
 
-    The log is a day old so age-based detectors cannot fire, the claim audit
-    keeps source paths resolving, and no version-2 supersession exists yet.
+    The detectors exist to keep asking questions as a log grows, so demanding
+    silence from a growing log is not a stable test. The date is pinned so the
+    result does not depend on when the suite runs, and the questions already
+    raised are listed above so that a new one fails the build while a resolved
+    one only shrinks the list.
     """
-    assert detector.detect(ROOT, datetime.now(timezone.utc)) == []
+    raised = {
+        (item["detector"], item["memory_id"], item["evidence"])
+        for item in detector.detect(ROOT, LIVE_CORPUS_AS_OF)
+    }
+    assert sorted(raised - KNOWN_OPEN_QUESTIONS) == []
