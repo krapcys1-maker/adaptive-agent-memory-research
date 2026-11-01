@@ -58,3 +58,7 @@ The persona is generic and not the account's, so style is not the account's. The
 Preregistered before the first call.
 
 - 2026-11-01 17:30: results written. Nothing was changed in the scripts after the first call; the digests in config.json are those of the run.
+
+## Addendum (2026-11-01, night): what the judge of this run can and cannot see
+
+The judge of this run was tested on planted pairs afterwards (`data/lab/wmb-v0/slice0`). It sees identical pairs, copies of the earlier note, fabricated callbacks and non-answers, and it does not reward grounded callbacks: given the same notes with and without the callback sentences it preferred the version without in 11 of 24 tasks and the version with in 3 (10 ties), while with an equally long non-callback sentence removed it preferred the version with the callback 14 times to 1. Its order consistency on this run's real arm pairs is 0.71. The preference for thresholded memory reported above (0.64 to 0.73 against the instruction-only control) is therefore a descriptive fact about this judge and is not evidence that explicit callbacks help readers; the mechanism of the preference is not the callback. The deterministic measures of this run (references back, grounded and spurious references, length) are unaffected; the decision to hand over the thresholded design, with a control arm that carries the same instruction, stands as a design that does no harm on tasks without a related earlier note, not as proof of a benefit.
