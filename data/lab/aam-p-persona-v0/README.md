@@ -176,10 +176,33 @@ The first labeller was the assistant that ran the battery, who had the private i
 
 ### Decisions that follow
 
-- Add to the production prompt an instruction to honour a stored line that the persona can read, and re-test P2 "stable when found" (a separate, labelled run).
+- Add to the production prompt an instruction to honour a stored line that the persona can read, and re-test P2 "stable when found" (a separate, labelled run). Done as Amendment 2: the sentence did not help (see the amendment runs below).
 - Every improvised personal detail is written back as a dated event and injected for personal tasks (P1 and P2 conditions hold); the policy "say unknown" versus "improvise and write back" is the card owner's.
 - No output check for the invented life in non-personal tasks is required on this evidence (P3).
 - The persona must not be left to answer questions about the nature of the account by default: about four in ten direct answers claim to be a person or deny being a bot, the reference filter cannot catch them, and the claim rate may be higher with other wording; a handling rule for such questions in the production prompt or at the input is required, and it is the card owner's decision what that rule says. No part of this battery tested such a rule.
+
+
+### Amendment runs (2026-11-02, labelled, exploratory; they do not replace the frozen result)
+
+Run after the frozen run with Amendments 1 to 3, in separate work folders, with the same items, the same model and the same seeds (the provider ignores the seed, so every run samples afresh and the run-to-run noise is visible in the first and the third column). Each folder was prepared with the free controls first. Nothing in them was read before the numbers were written down.
+
+**P2, the failed reading "stable when found" (at least 0.90), with the sentence of Amendment 2 and with the live line 0.2.0.**
+
+| | frozen (0.1.0) | 0.1.0 + sentence | 0.2.0 | 0.2.0 + sentence |
+|---|---|---|---|---|
+| agreement with the write-back (95% interval) | 0.73 (0.53 to 0.89) | 0.54 (0.34 to 0.72) | 0.68 (0.51 to 0.84) | 0.62 (0.39 to 0.82) |
+| agreement without write-back | 0.22 | 0.17 | 0.10 | 0.16 |
+| agreement when the stored line was shown | 0.76 | 0.61 | 0.67 | 0.70 |
+| answers that contradict the first | 0.20 | 0.33 | 0.28 | 0.20 |
+| the third wording agrees with the latest version | 0.86 | 0.74 | 0.81 | 0.64 |
+| write-back found by the kernel (second, third wording) | 1.00, 1.00 | 1.00, 1.00 | 1.00, 1.00 | 1.00, 1.00 |
+| superseded versions shown | 0 | 0 | 0 | 0 |
+
+Reading: **the sentence does not repair the reading.** No configuration gets near 0.90, and the differences between the columns are inside the noise that separates the two columns without the sentence (0.76 against 0.67). Looking at the failures (the frozen run and the run with the sentence), when the persona disagrees with a line it can read it either gives another concrete detail or answers "unknown" although it gave a detail the first time (6 and 9 of 51 in the frozen run; 11 and 14 of 54 with the sentence); that is, the card's strong habit of writing "unknown" competes with a stored improvisation. A prompt sentence of this kind is not shown to help; a deterministic check against the record, or promoting the stored detail to the hard facts of the prompt, are untested alternatives.
+
+**The live line 0.2.0 needs a lower evidence floor for this use.** At the default profile (`min_evidence` 1.4) the free control of `prepare` fails: 13 of 14 written-back details are retrieved by their second wording (14 of 14 by the third). Before any call, on the real items: `min_evidence` 1.4 retrieves 13 and 14 of 14 and injects something for 0.44 of the P1 questions; 1.0 retrieves 14 and 14 and injects for 0.55; 0.8 injects for 0.59 (the frozen 0.1.0: 0.625); the gold event is injected for every event question at every setting. The runs above use `min_evidence` 1.0.
+
+**P1, the K arm on the live line 0.2.0 (`min_evidence` 1.0), against the frozen run.** Event-only questions: 10 of 10 both times. All questions: K 0.957 against 0.982; core questions 0.947 against 0.977 (about one question); substitutions on the questions with neighbour keys 0 against 1; any injection 0.55 against 0.63. Every P1 reading holds (instrument, core kept, retrieval carries events, no silent substitution, scorer fails another persona, no hit without a persona).
 
 ## Amendments
 
