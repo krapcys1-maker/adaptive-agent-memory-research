@@ -275,6 +275,12 @@
    "date": "2026-11-02",
    "summary": "after the freeze, before the first judge call: prepare on the real inputs, controls C1 to C3 and C4 passed, 51 decisive pairs labelled blind by the assistant, digests of prep, pairs, vectors, decisive files and labels recorded, proxies restarted with their own run ids",
    "commit": null
+  },
+  {
+   "n": 3,
+   "date": "2026-11-02",
+   "summary": "judge gate control 1 failed (54/60 SAME, required 55); no P1 verdict, decision table not applied; remaining stages run with --continue-on-gate-failure for labels, audit, U2 and U3; U1 numbers exploratory only",
+   "commit": null
   }
  ]
 }
