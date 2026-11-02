@@ -56,7 +56,7 @@ jobs:
         run: python -m pip install pytest
 
       - name: Run the memory kernel tests
-        run: python -m pytest -q tests/test_wmb_memory_kernel.py
+        run: python -m pytest -q tests/test_wmb_memory_kernel.py tests/test_wmb_kernel_v2.py
 
   memory-integrity:
     name: Project-memory integrity
