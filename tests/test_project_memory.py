@@ -184,6 +184,25 @@ class ProjectMemoryTests(unittest.TestCase):
         self.assertEqual(2, report["documents"])
         self.assertFalse(any(hit["id_or_path"].endswith("duplicate.txt") for hit in self.store.search("generated corpus copy")))
 
+    def test_top_level_tmp_is_not_indexed_but_nested_tmp_is(self) -> None:
+        scratch = self.root / "tmp"
+        scratch.mkdir()
+        (scratch / "summary.json").write_text(
+            '{"note": "Disposable scratch must not pollute durable project memory."}',
+            encoding="utf-8",
+        )
+        nested = self.root / "data" / "lab" / "tmp"
+        nested.mkdir(parents=True)
+        (nested / "kept.txt").write_text(
+            "Nested tmp research data must remain searchable.", encoding="utf-8"
+        )
+        report = self.store.rebuild_index()
+        self.assertEqual(3, report["documents"])
+        scratch_hits = self.store.search("Disposable scratch")
+        self.assertFalse(any(hit["id_or_path"].startswith("tmp/") for hit in scratch_hits))
+        nested_hits = self.store.search("Nested tmp research")
+        self.assertTrue(any(hit["id_or_path"] == "data/lab/tmp/kept.txt" for hit in nested_hits))
+
     def test_malformed_event_is_reported_without_losing_valid_events(self) -> None:
         self.store.initialize()
         self.store.events_path.write_text(
