@@ -1243,3 +1243,11 @@ def test_a_proxy_that_omits_its_run_cap_receives_nothing(tmp_path: Path) -> None
 def test_main_does_not_need_a_reconfigurable_standard_output(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(sys, "stdout", io.StringIO())
     assert Env(tmp_path).run("prepare") == 0 and "supersession" in sys.stdout.getvalue()
+
+
+def test_the_honour_the_record_sentence_is_off_by_default_and_passes_the_prompt_guard() -> None:
+    """Amendment 2: the sentence exists for a labelled amendment run only; it says nothing about the persona's nature and instructs no denial."""
+    assert pb.HONOUR_RECORD is False
+    assert pb.prompt_problems(pb.HONOUR_TEXT, "") == [] and pb.prompt_problems("", pb.HONOUR_TEXT) == []
+    assert "record" in pb.HONOUR_TEXT and "contradict" in pb.HONOUR_TEXT
+

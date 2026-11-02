@@ -67,6 +67,11 @@ def _load_kernel():
 
 
 mk = _load_kernel()
+
+# Amendment 2: an optional sentence at the end of the memory block (the stored entries), asking the persona to hold to the record. Off by default; on only for a labelled amendment run.
+HONOUR_RECORD = os.environ.get("PERSONA_BATTERY_HONOUR") == "1"
+HONOUR_TEXT = ("These entries are your record: what they state, like the hard facts above, holds, and you do not contradict it. "
+               "You may add a new small detail of your own only if it does not contradict the record.")
 STAGES = ("prepare", "run-p1", "run-p2", "run-p3", "run-p7", "analyse")
 
 # ---- constants: the parameters and the readings of the preregistration (a test compares them with config.json) -----------------------------------------------
@@ -579,7 +584,7 @@ class Context:
     def system(self, lines: Sequence[str] = (), rule: bool = False, card: str = "system") -> str:
         """The persona prompt: the card text (card='system_untagged' for the variant without the author's tags), the rule when asked, and the retrieved dated lines when there are some."""
         p = self.items["persona"]
-        parts = [p[card]] + ([p["rule"]] if rule else []) + ([p["memory_header"] + "\n" + "\n".join("- " + line for line in lines)] if lines else [])
+        parts = [p[card]] + ([p["rule"]] if rule else []) + ([p["memory_header"] + "\n" + "\n".join("- " + line for line in lines) + (("\n" + HONOUR_TEXT) if HONOUR_RECORD else "")] if lines else [])
         return "\n\n".join(parts)
 
     def retrieve(self, index: "mk.Index", query: str, task_type: str, now: str) -> dict:
@@ -811,7 +816,7 @@ def frozen_problems(ctx: Context, items_path: Path) -> List[str]:
 
 def prompt_fingerprint(ctx: Context) -> str:
     p = ctx.items["persona"]
-    text = "\x00".join([p["system"], p.get("system_untagged", ""), p["rule"], p["memory_header"], ctx.cfg["bare_system"], P1_USER, P2_USER, P3_USER, P7_USER])
+    text = "\x00".join([p["system"], p.get("system_untagged", ""), p["rule"], p["memory_header"], ctx.cfg["bare_system"], P1_USER, P2_USER, P3_USER, P7_USER] + ([HONOUR_TEXT] if HONOUR_RECORD else []))
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
@@ -1053,7 +1058,7 @@ def stage_prepare(ctx: Context, items_path: Path) -> dict:
     if failed:
         raise ValueError("a free control failed, no baseline was taken, no paid stage can start: " + "; ".join(failed))
     write_json(ctx.workdir / "baseline.json", {"items_sha256": contract.sha256_file(items_path), "notes_sha256": ctx.notes_sha256, "prompt_fingerprint": prompt_fingerprint(ctx), "code_problems": code_problems(cfg),
-                                              "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "kernel_sha256": contract.sha256_file(Path(mk.__file__)), "frozen_problems": frozen_problems(ctx, items_path)})
+                                              "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "honour_record": HONOUR_RECORD, "kernel_sha256": contract.sha256_file(Path(mk.__file__)), "frozen_problems": frozen_problems(ctx, items_path)})
     return controls
 
 
@@ -1502,7 +1507,7 @@ def analyse(ctx: Context) -> dict:
     return {"free_controls": free, "p1": s1, "p2": s2, "p3": s3, "p7": s7,
             "readings": {"p1": p1_readings(s1) if s1 else None, "p2": p2_readings(s2, free) if s2 else None, "p3": p3_readings(s3, free) if s3 else None, "p7": p7_readings(s7, free) if s7 else None},
             "records": {"p1": len(p1), "p2": len(p2), "p3": len(p3), "p7_answers": len(answers), "p7_labels": len(ps.load_jsonl(work / "p7" / "labels2.jsonl"))},
-            "provenance": {"script_sha256": contract.sha256_file(Path(__file__)), "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "profile": ctx.profile(), "items_sha256": ctx.items["meta"].get("sha256_of_items_file"),
+            "provenance": {"script_sha256": contract.sha256_file(Path(__file__)), "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "honour_record": HONOUR_RECORD, "profile": ctx.profile(), "items_sha256": ctx.items["meta"].get("sha256_of_items_file"),
                            "card_sha256": ctx.items["meta"].get("card_sha256")}}
 
 
