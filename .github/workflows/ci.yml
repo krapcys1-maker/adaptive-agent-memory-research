@@ -44,7 +44,7 @@ jobs:
     name: Memory kernel (Python 3.14)
     runs-on: ubuntu-latest
     steps:
-      # The writing agent's server runs Python 3.14 and imports scripts/wmb/memory_kernel.py
+      # The writing agent runs on Python 3.14 and imports scripts/wmb/memory_kernel.py
       # as a single standard-library file, so its tests run there with nothing but pytest.
       - uses: actions/checkout@v4
 
