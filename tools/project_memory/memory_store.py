@@ -71,6 +71,7 @@ EXCLUDED_PREFIXES = {
     "data/snapshots",
     "external/repos",
     "sources/papers",
+    "tmp",
 }
 MAX_INDEXED_FILE_BYTES = 5 * 1024 * 1024
 
