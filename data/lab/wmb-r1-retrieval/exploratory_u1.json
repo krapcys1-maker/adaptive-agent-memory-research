@@ -1,0 +1,255 @@
+{
+ "decisive_audit": {
+  "agreement_same_vs_not": 0.8823529411764706,
+  "assistant_vs_judge": {
+   "RELATED|RELATED": 16,
+   "SAME|RELATED": 6,
+   "SAME|SAME": 18,
+   "UNRELATED|RELATED": 11
+  },
+  "n": 51
+ },
+ "lenient_judge_labels": {
+  "d_emb": {
+   "d": 0,
+   "day_hi": 2.0,
+   "day_lo": 0.0,
+   "hi": 2.0,
+   "lo": 0.0,
+   "task_hi": 2.0,
+   "task_lo": 0.0
+  },
+  "d_hyb": {
+   "d": 0,
+   "day_hi": 2.0,
+   "day_lo": 0.0,
+   "hi": 2.0,
+   "lo": 0.0,
+   "task_hi": 2.0,
+   "task_lo": 0.0
+  },
+  "fusion_flag": null,
+  "hits": {
+   "EMB_MINILM": {
+    "0.1": {
+     "false_injections": 0,
+     "hits": 22
+    },
+    "0.2": {
+     "false_injections": 0,
+     "hits": 43
+    },
+    "0.3": {
+     "false_injections": 0,
+     "hits": 65
+    }
+   },
+   "HYB_KERNEL": {
+    "0.1": {
+     "false_injections": 0,
+     "hits": 22
+    },
+    "0.2": {
+     "false_injections": 0,
+     "hits": 43
+    },
+    "0.3": {
+     "false_injections": 0,
+     "hits": 65
+    }
+   },
+   "HYB_SHIPPED": {
+    "0.1": {
+     "false_injections": 0,
+     "hits": 22
+    },
+    "0.2": {
+     "false_injections": 0,
+     "hits": 43
+    },
+    "0.3": {
+     "false_injections": 0,
+     "hits": 65
+    }
+   },
+   "LEX_BM25": {
+    "0.1": {
+     "false_injections": 0,
+     "hits": 22
+    },
+    "0.2": {
+     "false_injections": 0,
+     "hits": 43
+    },
+    "0.3": {
+     "false_injections": 0,
+     "hits": 65
+    }
+   },
+   "LEX_KERNEL": {
+    "0.1": {
+     "false_injections": 0,
+     "hits": 22
+    },
+    "0.2": {
+     "false_injections": 0,
+     "hits": 43
+    },
+    "0.3": {
+     "false_injections": 2,
+     "hits": 63
+    }
+   },
+   "LEX_TFIDF": {
+    "0.1": {
+     "false_injections": 0,
+     "hits": 22
+    },
+    "0.2": {
+     "false_injections": 3,
+     "hits": 40
+    },
+    "0.3": {
+     "false_injections": 3,
+     "hits": 62
+    }
+   }
+  },
+  "prevalence_ok": true,
+  "tasks_with_same": 214,
+  "verdict": "UNRESOLVED (labels)",
+  "verdict_assistant": "UNRESOLVED",
+  "verdict_by_seed": {
+   "20261102": "LEXICAL_SUFFICIENT_FOR_GATE",
+   "20271102": "LEXICAL_SUFFICIENT_FOR_GATE",
+   "20271103": "LEXICAL_SUFFICIENT_FOR_GATE",
+   "20271104": "LEXICAL_SUFFICIENT_FOR_GATE"
+  },
+  "verdict_judge": "LEXICAL_SUFFICIENT_FOR_GATE"
+ },
+ "pairs_labelled": 2065,
+ "pooled_labels": {
+  "RELATED": 1759,
+  "SAME": 53,
+  "UNRELATED": 253
+ },
+ "status": "EXPLORATORY: the judge gate failed (Amendment 3); not a verdict, cannot enter the decision table",
+ "strict_judge_labels": {
+  "d_emb": {
+   "d": 1,
+   "day_hi": 6.0,
+   "day_lo": -5.0,
+   "hi": 6.0,
+   "lo": -5.0,
+   "task_hi": 6.0,
+   "task_lo": -5.0
+  },
+  "d_hyb": {
+   "d": 3,
+   "day_hi": 6.0,
+   "day_lo": -2.0,
+   "hi": 6.0,
+   "lo": -2.0,
+   "task_hi": 6.0,
+   "task_lo": -2.0
+  },
+  "fusion_flag": null,
+  "hits": {
+   "EMB_MINILM": {
+    "0.1": {
+     "false_injections": 11,
+     "hits": 11
+    },
+    "0.2": {
+     "false_injections": 27,
+     "hits": 16
+    },
+    "0.3": {
+     "false_injections": 45,
+     "hits": 20
+    }
+   },
+   "HYB_KERNEL": {
+    "0.1": {
+     "false_injections": 10,
+     "hits": 12
+    },
+    "0.2": {
+     "false_injections": 25,
+     "hits": 18
+    },
+    "0.3": {
+     "false_injections": 45,
+     "hits": 20
+    }
+   },
+   "HYB_SHIPPED": {
+    "0.1": {
+     "false_injections": 11,
+     "hits": 11
+    },
+    "0.2": {
+     "false_injections": 25,
+     "hits": 18
+    },
+    "0.3": {
+     "false_injections": 44,
+     "hits": 21
+    }
+   },
+   "LEX_BM25": {
+    "0.1": {
+     "false_injections": 11,
+     "hits": 11
+    },
+    "0.2": {
+     "false_injections": 26,
+     "hits": 17
+    },
+    "0.3": {
+     "false_injections": 45,
+     "hits": 20
+    }
+   },
+   "LEX_KERNEL": {
+    "0.1": {
+     "false_injections": 10,
+     "hits": 12
+    },
+    "0.2": {
+     "false_injections": 28,
+     "hits": 15
+    },
+    "0.3": {
+     "false_injections": 47,
+     "hits": 18
+    }
+   },
+   "LEX_TFIDF": {
+    "0.1": {
+     "false_injections": 12,
+     "hits": 10
+    },
+    "0.2": {
+     "false_injections": 26,
+     "hits": 17
+    },
+    "0.3": {
+     "false_injections": 47,
+     "hits": 18
+    }
+   }
+  },
+  "prevalence_ok": true,
+  "tasks_with_same": 33,
+  "verdict": "UNRESOLVED",
+  "verdict_assistant": "UNRESOLVED",
+  "verdict_by_seed": {
+   "20261102": "UNRESOLVED",
+   "20271102": "UNRESOLVED",
+   "20271103": "UNRESOLVED",
+   "20271104": "UNRESOLVED"
+  },
+  "verdict_judge": "UNRESOLVED"
+ }
+}

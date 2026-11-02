@@ -1,0 +1,15 @@
+{
+ "status": "superseded",
+ "superseded_by": "data/lab/wmb-r1-retrieval",
+ "recorded_at": "2026-11-02",
+ "reason": "The declarations of this packet's config.json for scripts/wmb/stats.py and scripts/wmb/contract.py are stale, not false. Both shared modules were extended after slice 0 by the WMB-R1 freeze (commit 3e15aac): stats.py gained bootstrap_indices (a vectorised splitmix64 stream pinned to scripts/analyze_writer_memory_sim.bootstrap_indices), day_block_indices and the interval rule; contract.py gained a load_jsonl that tolerates and reports a torn last line, an append that repairs a missing final newline, and LF-only writes. The additions do not change what slice 0 computes: the slice 0 tests (tests/test_wmb_t0_battery.py, tests/test_wmb_stats.py) pass on the current versions, and the exact bytes slice 0 declared are recoverable from Git at commit 23f786c. The third declaration (scripts/wmb/t0_battery.py) still matches. WMB-R1's config.json declares the current digests of both modules and carries its own freeze. A marker rather than a drift note is used because a drift note explains exactly one declaration per manifest and two declarations drifted at the same commit.",
+ "evidence": {
+  "declared_in": "data/lab/wmb-v0/slice0/config.json",
+  "frozen_at_commit": "23f786c",
+  "scripts/wmb/stats.py": {"declared_sha256": "99b851a5f9311ed5ede72dc7d76c733b37f45238dcf54e621128256c8b93a906", "changed_in": "3e15aac"},
+  "scripts/wmb/contract.py": {"declared_sha256": "77b100356ade33bc9ea2b19caac614acdfd8638c634060f0ea84e38eee481a6b", "changed_in": "3e15aac"},
+  "scripts/wmb/t0_battery.py": "still matches its declared digest"
+ },
+ "declarations_status": "Correct when frozen at 23f786c; stale for two of three files since 3e15aac.",
+ "consequence": "Slice 0's results (data/lab/wmb-v0/slice0/results.json) were computed with the declared bytes; nothing in them is re-derived or changed by this marker."
+}
