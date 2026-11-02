@@ -574,7 +574,7 @@ Sources read (30):
 - https://export.arxiv.org/api/query (arXiv API abstracts (abstract-only reads); Abstract text only, via the arXiv API, for: 2307.03172 (Lost in the Middle), 2107.07567 (...)
 - https://github.com (licence checks; gh api licence endpoint (first lines) for NoLiMa (Adobe Research License), AbstentionBenc...)
 - https://www.letta.com/blog/benchmarking-ai-agent-memory (WebSearch; One standard WebSearch about LoCoMo critiques; results were titles and a summary, not pri...)
-- C:/Users/user/AppData/Local/Temp/claude/D--Pamiec-LLM/aac816ad-40b5-4547-97f8-5b21b7afca0e/scratchpad/scripts/ex2.py (method note (failed reads and extraction script); WebFetch of four arXiv PDFs (EpBench, LongMemEval, HaluMem, MemSim) returned unreadable P...)
+- <local path removed> (a local scratch script, not published; method note (failed reads and extraction script); WebFetch of four arXiv PDFs (EpBench, LongMemEval, HaluMem, MemSim) returned unreadable P...)
 
 ### Human-memory science as a specification for a general (not writing-only) agent-memory benchmark: taxonomy, standard paradigms, robust effec...
 

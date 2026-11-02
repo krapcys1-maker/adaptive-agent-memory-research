@@ -2,7 +2,7 @@
 
 Status: the repository owner's statement of the intended research direction, copied on 2026-11-01 with Markdown heading marks added and the wording unchanged. It is a direction, not a specification and not a registered protocol. Its hypothesis identifiers H1-H5 are provisional; the reviews below call them V-H1 to V-H5 because "H1" to "H5" already mean other things in this repository.
 
-*Update (2026-11-01, later the same day): the owner confirmed in the session that the constraint "Do not modify the production Substack agent" (section 19 and the Phase 5 text below) no longer holds for the NIE agent, whose account is to become a research account for memory. The confirmation fixes no scope or conditions (the scope of a first step, a shadow mode before live memory, memories drawn only from the account's real history, and coexistence with the live experiments are open), and a plan is to be reviewed before any change. The other constraints (no push, merge, publication or unresolved licensing decision without explicit authorisation) are unchanged. The text below is the original and is left as pasted.*
+*Update (2026-11-01, later the same day): the owner confirmed in the session that the constraint "Do not modify the production writing agent" (section 19 and the Phase 5 text below) no longer holds for the live writing agent, whose account is to become a research account for memory. The confirmation fixes no scope or conditions (the scope of a first step, a shadow mode before live memory, memories drawn only from the account's real history, and coexistence with the live experiments are open), and a plan is to be reviewed before any change. The other constraints (no push, merge, publication or unresolved licensing decision without explicit authorisation) are unchanged. The text below is the original and is left as pasted.*
 
 Reviews and proposals written against it:
 
@@ -31,9 +31,9 @@ We are interested in scientific discovery, even if the eventual results challeng
 
 We want a sustainable, reproducible research program that can grow gradually from small experiments into long-term investigations.
 
-## 2. The Existing Opportunity: An Autonomous Substack Agent
+## 2. The Existing Opportunity: An Autonomous Writing Agent
 
-We already have a separate autonomous AI agent operating in a Substack environment.
+We already have a separate autonomous AI agent operating in a public-platform environment.
 
 It has an established workflow for researching subjects, producing content, and interacting with its publishing environment.
 
@@ -41,9 +41,9 @@ We want to investigate whether this existing agent can serve as a longitudinal r
 
 Rather than creating an artificial agent from scratch, we can potentially observe and test memory mechanisms in an agent that performs meaningful tasks over time.
 
-The Substack agent and the memory research repository should remain independent projects.
+The writing agent and the memory research repository should remain independent projects.
 
-The memory system should be reusable by other autonomous agents, not hardcoded to Substack.
+The memory system should be reusable by other autonomous agents, not hardcoded to one platform.
 
 We envision three components:
 
@@ -379,7 +379,7 @@ We should test whether the associative approach provides any measurable advantag
 
 Only after demonstrating a useful effect should we expand to more sophisticated consolidation, dynamic importance, and longitudinal behavioral experiments.
 
-The existing Substack agent can later provide realistic experience streams, but synthetic or curated tasks may be more appropriate for initial causal evaluation.
+The existing writing agent can later provide realistic experience streams, but synthetic or curated tasks may be more appropriate for initial causal evaluation.
 
 ## 18. Proposed Research Phases
 
@@ -405,7 +405,7 @@ Investigate re-evaluation of old experiences when goals or knowledge change.
 
 Phase 5 — Agent Integration
 
-Connect an isolated copy or replay environment of the existing Substack agent to the memory engine.
+Connect an isolated copy or replay environment of the existing writing agent to the memory engine.
 
 Phase 6 — Longitudinal Study
 
@@ -433,7 +433,7 @@ Afterward:
 
 Do not immediately implement the entire architecture.
 
-Do not modify the production Substack agent.
+Do not modify the production writing agent.
 
 Do not push, merge, publish, or make unresolved licensing decisions without explicit authorization.
 
