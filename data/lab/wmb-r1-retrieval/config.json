@@ -268,6 +268,12 @@
    "n": 1,
    "date": "2026-11-02",
    "summary": "primary contrast EMB_MINILM vs LEX_KERNEL, HYB_KERNEL fusion check; exact kernel profiles; C1/C3/C4 replaced; judge prompt, controls and blind decisive-pair audit; bootstrap stream and stability; strict only; corrected power, pool, cost; P2 descriptive; U2 exclusions; freeze hashes and environment",
+   "commit": "3e15aac (freeze)"
+  },
+  {
+   "n": 2,
+   "date": "2026-11-02",
+   "summary": "after the freeze, before the first judge call: prepare on the real inputs, controls C1 to C3 and C4 passed, 51 decisive pairs labelled blind by the assistant, digests of prep, pairs, vectors, decisive files and labels recorded, proxies restarted with their own run ids",
    "commit": null
   }
  ]
