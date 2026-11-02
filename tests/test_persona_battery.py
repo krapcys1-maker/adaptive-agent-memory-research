@@ -1251,3 +1251,13 @@ def test_the_honour_the_record_sentence_is_off_by_default_and_passes_the_prompt_
     assert pb.prompt_problems(pb.HONOUR_TEXT, "") == [] and pb.prompt_problems("", pb.HONOUR_TEXT) == []
     assert "record" in pb.HONOUR_TEXT and "contradict" in pb.HONOUR_TEXT
 
+
+def test_the_profile_is_the_named_one_unless_a_labelled_amendment_run_overrides_keys(monkeypatch, tmp_path: Path) -> None:
+    """Amendment 3: PERSONA_BATTERY_PROFILE changes keys of the named profile; unset, the profile is the preregistered name."""
+    ctx = ctx_for(Env(tmp_path))
+    monkeypatch.delenv("PERSONA_BATTERY_PROFILE", raising=False)
+    assert ctx.profile() == "lexical"
+    monkeypatch.setenv("PERSONA_BATTERY_PROFILE", '{"min_evidence": 1.0}')
+    prof = ctx.profile()
+    assert isinstance(prof, dict) and prof["min_evidence"] == 1.0 and prof["k"] == pb.mk.PROFILES["lexical"]["k"]
+

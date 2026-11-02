@@ -578,8 +578,11 @@ class Context:
         base = event_items(self.items["events"]) + note_items(self.notes) + list(extra)
         return mk.build_index(base, as_of or self.now(), embedder=self.embedder.encode if self.embedder is not None else None)
 
-    def profile(self) -> str:
-        return "kernel" if self.embedder is not None else self.cfg["kernel"]["profile"]
+    def profile(self):
+        """The kernel profile: its name, or (Amendment 3, a labelled amendment run only) the named profile with the keys of the JSON in PERSONA_BATTERY_PROFILE changed."""
+        name = "kernel" if self.embedder is not None else self.cfg["kernel"]["profile"]
+        override = os.environ.get("PERSONA_BATTERY_PROFILE")
+        return dict(mk.PROFILES[name], **json.loads(override)) if override else name
 
     def system(self, lines: Sequence[str] = (), rule: bool = False, card: str = "system") -> str:
         """The persona prompt: the card text (card='system_untagged' for the variant without the author's tags), the rule when asked, and the retrieved dated lines when there are some."""
@@ -1058,7 +1061,7 @@ def stage_prepare(ctx: Context, items_path: Path) -> dict:
     if failed:
         raise ValueError("a free control failed, no baseline was taken, no paid stage can start: " + "; ".join(failed))
     write_json(ctx.workdir / "baseline.json", {"items_sha256": contract.sha256_file(items_path), "notes_sha256": ctx.notes_sha256, "prompt_fingerprint": prompt_fingerprint(ctx), "code_problems": code_problems(cfg),
-                                              "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "honour_record": HONOUR_RECORD, "kernel_sha256": contract.sha256_file(Path(mk.__file__)), "frozen_problems": frozen_problems(ctx, items_path)})
+                                              "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "honour_record": HONOUR_RECORD, "profile_override": os.environ.get("PERSONA_BATTERY_PROFILE"), "kernel_sha256": contract.sha256_file(Path(mk.__file__)), "frozen_problems": frozen_problems(ctx, items_path)})
     return controls
 
 
@@ -1507,7 +1510,7 @@ def analyse(ctx: Context) -> dict:
     return {"free_controls": free, "p1": s1, "p2": s2, "p3": s3, "p7": s7,
             "readings": {"p1": p1_readings(s1) if s1 else None, "p2": p2_readings(s2, free) if s2 else None, "p3": p3_readings(s3, free) if s3 else None, "p7": p7_readings(s7, free) if s7 else None},
             "records": {"p1": len(p1), "p2": len(p2), "p3": len(p3), "p7_answers": len(answers), "p7_labels": len(ps.load_jsonl(work / "p7" / "labels2.jsonl"))},
-            "provenance": {"script_sha256": contract.sha256_file(Path(__file__)), "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "honour_record": HONOUR_RECORD, "profile": ctx.profile(), "items_sha256": ctx.items["meta"].get("sha256_of_items_file"),
+            "provenance": {"script_sha256": contract.sha256_file(Path(__file__)), "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "honour_record": HONOUR_RECORD, "profile_override": os.environ.get("PERSONA_BATTERY_PROFILE"), "profile": ctx.profile(), "items_sha256": ctx.items["meta"].get("sha256_of_items_file"),
                            "card_sha256": ctx.items["meta"].get("card_sha256")}}
 
 
