@@ -1,0 +1,38 @@
+{
+ "base_relevance": 0.25,
+ "draws": 300,
+ "gains": {
+  "0": {
+   "helps_share": 0.0,
+   "max_d": 0,
+   "mean_d": 0.0,
+   "min_d": 0,
+   "sets": 1000
+  },
+  "3": {
+   "helps_share": 0.0,
+   "max_d": 3,
+   "mean_d": 3.0,
+   "min_d": 3,
+   "sets": 1000
+  },
+  "6": {
+   "helps_share": 0.01,
+   "max_d": 6,
+   "mean_d": 6.0,
+   "min_d": 6,
+   "sets": 1000
+  },
+  "9": {
+   "helps_share": 0.518,
+   "max_d": 9,
+   "mean_d": 9.0,
+   "min_d": 9,
+   "sets": 1000
+  }
+ },
+ "helps_at_zero_ok": true,
+ "helps_rises_with_gain": true,
+ "implementations_identical": true,
+ "mismatches": 0
+}
