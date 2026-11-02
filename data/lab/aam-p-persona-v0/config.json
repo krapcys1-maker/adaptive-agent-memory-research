@@ -141,7 +141,7 @@
   "scripts/followup_memory_sim.py": "cc5483a1e7ba00b8ef11bbf42ebb21a0db9a81d738b8ab35ec2b438892e06f53",
   "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
   "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",
-  "scripts/persona_battery.py": "0b2bc565d54ec90603cf760f525c902e697ff1241fb799b617f9ca07d71fc9ca",
+  "scripts/persona_battery.py": "ae945144d74499dd4c5325f215093c7ea624c1855c2de923b09531a070c5e4db",
   "scripts/persona_sim.py": "616f557e8f335cbb879634f5b2d203d99e212ca7c76439879a0766b11f1f0512",
   "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
   "scripts/wmb/__init__.py": "64a85443814a023526cf12025a8e09ba4e336ff5f6695b7b65ebfb4306b415d3",

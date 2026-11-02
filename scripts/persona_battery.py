@@ -30,8 +30,10 @@ import argparse
 import dataclasses
 import functools
 import hashlib
+import importlib.util
 import json
 import math
+import os
 import random
 import re
 import sys
@@ -47,13 +49,24 @@ import botness_probe as bp  # noqa: E402
 import llm_backends as backends  # noqa: E402
 import persona_sim as ps  # noqa: E402
 from wmb import contract, retrieval_bench as rb  # noqa: E402
-try:
-    from wmb.kernel import memory_kernel as mk  # noqa: E402  (a later kernel, when the branch has one: the run then refuses to start, see kernel_problems)
-except ImportError:
-    from wmb import memory_kernel as mk  # noqa: E402
-
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "data" / "lab" / "aam-p-persona-v0" / "config.json"
+
+
+def _load_kernel():
+    """The memory kernel comes from an explicit file, never from import order: the file the preregistration names (config kernel.module, the frozen 0.1.0), or the file in
+    PERSONA_BATTERY_KERNEL for a labelled amendment run (the provenance then records kernel_override). Amendment 1 of the README."""
+    rel = os.environ.get("PERSONA_BATTERY_KERNEL") or json.loads(CONFIG.read_text(encoding="utf-8"))["kernel"]["module"]
+    path = (ROOT / rel).resolve()
+    name = "memory_kernel_" + hashlib.sha256(str(path).encode("utf-8")).hexdigest()[:8]
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module                                  # dataclasses look the module up here
+    spec.loader.exec_module(module)
+    return module
+
+
+mk = _load_kernel()
 STAGES = ("prepare", "run-p1", "run-p2", "run-p3", "run-p7", "analyse")
 
 # ---- constants: the parameters and the readings of the preregistration (a test compares them with config.json) -----------------------------------------------
@@ -757,10 +770,11 @@ def sha256_text(text: str) -> str:
 def kernel_problems(cfg: dict) -> List[str]:
     """The memory that is imported must be the one the preregistration names (its version and its file); a later kernel that the import would silently prefer is refused. Checked always."""
     spec, bad = cfg["kernel"], []
-    if mk.VERSION != spec["version"]:
+    override = os.environ.get("PERSONA_BATTERY_KERNEL")                       # a labelled amendment run: the file is the one named in the variable, its version is recorded, not compared
+    if not override and mk.VERSION != spec["version"]:
         bad.append("the memory kernel is version %s, the preregistration names %s" % (mk.VERSION, spec["version"]))
-    if Path(mk.__file__).resolve() != (ROOT / spec["module"]).resolve():
-        bad.append("the memory kernel is imported from %s, the preregistration names %s" % (Path(mk.__file__).resolve(), spec["module"]))
+    if Path(mk.__file__).resolve() != (ROOT / (override or spec["module"])).resolve():
+        bad.append("the memory kernel is loaded from %s, the preregistration names %s" % (Path(mk.__file__).resolve(), override or spec["module"]))
     return bad
 
 
@@ -1039,7 +1053,7 @@ def stage_prepare(ctx: Context, items_path: Path) -> dict:
     if failed:
         raise ValueError("a free control failed, no baseline was taken, no paid stage can start: " + "; ".join(failed))
     write_json(ctx.workdir / "baseline.json", {"items_sha256": contract.sha256_file(items_path), "notes_sha256": ctx.notes_sha256, "prompt_fingerprint": prompt_fingerprint(ctx), "code_problems": code_problems(cfg),
-                                              "kernel_version": mk.VERSION, "kernel_sha256": contract.sha256_file(Path(mk.__file__)), "frozen_problems": frozen_problems(ctx, items_path)})
+                                              "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "kernel_sha256": contract.sha256_file(Path(mk.__file__)), "frozen_problems": frozen_problems(ctx, items_path)})
     return controls
 
 
@@ -1488,7 +1502,7 @@ def analyse(ctx: Context) -> dict:
     return {"free_controls": free, "p1": s1, "p2": s2, "p3": s3, "p7": s7,
             "readings": {"p1": p1_readings(s1) if s1 else None, "p2": p2_readings(s2, free) if s2 else None, "p3": p3_readings(s3, free) if s3 else None, "p7": p7_readings(s7, free) if s7 else None},
             "records": {"p1": len(p1), "p2": len(p2), "p3": len(p3), "p7_answers": len(answers), "p7_labels": len(ps.load_jsonl(work / "p7" / "labels2.jsonl"))},
-            "provenance": {"script_sha256": contract.sha256_file(Path(__file__)), "kernel_version": mk.VERSION, "profile": ctx.profile(), "items_sha256": ctx.items["meta"].get("sha256_of_items_file"),
+            "provenance": {"script_sha256": contract.sha256_file(Path(__file__)), "kernel_version": mk.VERSION, "kernel_override": bool(os.environ.get("PERSONA_BATTERY_KERNEL")), "profile": ctx.profile(), "items_sha256": ctx.items["meta"].get("sha256_of_items_file"),
                            "card_sha256": ctx.items["meta"].get("card_sha256")}}
 
 

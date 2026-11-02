@@ -392,10 +392,11 @@ def test_the_freeze_digests_list_exactly_the_scripts_the_runner_needs_directly_o
         if current not in closure:
             closure.add(current)
             todo += sorted(local_imports(current))
+    closure.add(CFG["kernel"]["module"])                                      # loaded by path since Amendment 1, not found by the import scan
     assert {"scripts/botness_probe.py", "scripts/persona_sim.py", "scripts/llm_backends.py", "scripts/wmb/contract.py", "scripts/wmb/retrieval_bench.py", "scripts/wmb/memory_kernel.py",
             "scripts/followup_memory_sim.py"} <= closure
     assert closure | ENFORCERS == set(CFG["script_sha256"]), sorted((closure | ENFORCERS) ^ set(CFG["script_sha256"]))
-    assert all((ROOT / rel).is_file() for rel in ENFORCERS) and pb.mk.__name__.endswith("memory_kernel")
+    assert all((ROOT / rel).is_file() for rel in ENFORCERS) and Path(pb.mk.__file__).name == "memory_kernel.py"
 
 
 def test_frozen_digests_once_filled_match_the_files_and_the_private_digests_are_in_the_readme() -> None:
@@ -1209,7 +1210,7 @@ def test_the_run_refuses_another_kernel_a_card_file_a_decoy_file_or_a_classifier
     cfg = json.loads(env.config.read_text(encoding="utf-8"))
     assert pb.kernel_problems(cfg) == [] and pb.frozen_problems(ctx_for(env), env.items_path) == []            # the freeze is not enforced here: only the kernel is checked, and it is the pinned one
     assert any("version" in p for p in pb.kernel_problems(dict(cfg, kernel=dict(cfg["kernel"], version="9.9.9"))))
-    assert any("imported from" in p for p in pb.kernel_problems(dict(cfg, kernel=dict(cfg["kernel"], module="scripts/wmb/retrieval_bench.py"))))
+    assert any("loaded from" in p for p in pb.kernel_problems(dict(cfg, kernel=dict(cfg["kernel"], module="scripts/wmb/retrieval_bench.py"))))
     card = tmp_path / "card.md"
     card.write_bytes(SYSTEM.encode("utf-8"))
     cfg["freeze"], cfg["script_sha256"] = {"enforce": True}, {}
