@@ -119,6 +119,12 @@ class ProxyState:
                 {json.dumps(c["overridden"], sort_keys=True) for c in overrides}),
             "native_requested_decoding": sorted(
                 {json.dumps(c["requested"], sort_keys=True) for c in self.calls}),
+            # who this proxy is and what it meters, so that a client can check that the ledger it reads is the one this proxy writes
+            "run_id": self.ledger.run_id,
+            "ledger_path": str(self.ledger.path),
+            "run_cap_usd": self.run_cap_usd,
+            "total_cap_usd": self.ledger.total_cap_usd,
+            "cap_scope": self.ledger.cap_scope,
         }
 
 

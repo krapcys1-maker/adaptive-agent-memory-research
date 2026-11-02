@@ -7,7 +7,7 @@ outcome per task; samples, orders and repeats of the same task must be collapsed
 from __future__ import annotations
 
 import math
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Dict, Iterator, List, Optional, Sequence, Tuple
 
 import numpy as np
 from scipy import stats
@@ -117,3 +117,90 @@ def paired_bootstrap_ci(differences: Sequence[float], draws: int = 5000, seed: i
 def minimum_detectable_difference(sd: float, n: int, alpha: float = 0.05, power: float = 0.8) -> float:
     """Smallest mean paired difference detectable with a normal approximation, sd being the standard deviation of per-task differences."""
     return (float(stats.norm.ppf(1 - alpha / 2)) + float(stats.norm.ppf(power))) * sd / math.sqrt(n)
+
+
+# ------------------------------------------------------------------------------------------------------ resampling stream (WMB-R1)
+#
+# The splitmix64 stream of scripts/analyze_writer_memory_sim.bootstrap_indices, vectorised. Pick p of draw d of a resample of size n is output number d * n + p
+# (from 0) of the stream, and output k depends only on seed + (k + 1) * GAMMA modulo 2**64, so any block of the stream can be generated on its own: that is what lets
+# 100,000 draws of 214 (171 MB as one int64 array) be produced and consumed 2,048 draws at a time. Nothing here depends on the numpy or Python version.
+
+MASK64 = (1 << 64) - 1
+SPLITMIX_GAMMA, SPLITMIX_MIX1, SPLITMIX_MIX2 = 0x9E3779B97F4A7C15, 0xBF58476D1CE4E5B9, 0x94D049BB133111EB
+CHUNK_DRAWS = 2048
+
+
+def splitmix_block(seed: int, first: int, count: int, modulus: int) -> np.ndarray:
+    """Outputs `first` .. `first + count - 1` (counting from 0) of the splitmix64 stream of `seed`, each reduced modulo `modulus`, as int64."""
+    if modulus <= 0:
+        raise ValueError("modulus must be positive")
+    with np.errstate(over="ignore"):                                  # unsigned 64-bit arithmetic wraps by design
+        k = np.arange(first + 1, first + count + 1, dtype=np.uint64)
+        state = np.uint64(seed & MASK64) + k * np.uint64(SPLITMIX_GAMMA)
+        z = (state ^ (state >> np.uint64(30))) * np.uint64(SPLITMIX_MIX1)
+        z = (z ^ (z >> np.uint64(27))) * np.uint64(SPLITMIX_MIX2)
+        z = z ^ (z >> np.uint64(31))
+        return (z % np.uint64(modulus)).astype(np.int64)
+
+
+def bootstrap_chunks(n: int, draws: int, seed: int, chunk_draws: int = CHUNK_DRAWS) -> Iterator[np.ndarray]:
+    """The resamples (rows of `n` indices into range(n)) in blocks of at most `chunk_draws` rows; stacked they are bootstrap_indices(n, draws, seed)."""
+    done = 0
+    while done < draws:
+        rows = min(chunk_draws, draws - done)
+        yield splitmix_block(seed, done * n, rows * n, n).reshape(rows, n)
+        done += rows
+
+
+def bootstrap_indices(n: int, draws: int, seed: int) -> np.ndarray:
+    """(draws, n) int64, row d = resample d: the same values as scripts/analyze_writer_memory_sim.bootstrap_indices (a test pins them). Whole at once it is
+    draws * n * 8 bytes, so the analysis consumes bootstrap_chunks instead."""
+    out = np.empty((draws, n), dtype=np.int64)
+    row = 0
+    for block in bootstrap_chunks(n, draws, seed):
+        out[row: row + len(block)] = block
+        row += len(block)
+    return out
+
+
+def multiplicity(indices: np.ndarray, size: int) -> np.ndarray:
+    """(rows, size) counts: how often each of `size` units occurs in each row of `indices`."""
+    rows = indices.shape[0]
+    flat = (np.arange(rows, dtype=np.int64)[:, None] * size + indices).ravel()
+    return np.bincount(flat, minlength=rows * size).reshape(rows, size)
+
+
+def day_groups(days: Sequence[str]) -> Tuple[List[str], np.ndarray]:
+    """The distinct days in ascending order and, for every task position, the index of its day."""
+    names = sorted(set(days))
+    lookup = {d: k for k, d in enumerate(names)}
+    return names, np.array([lookup[d] for d in days], dtype=np.int64)
+
+
+def day_block_indices(days: Sequence[str], draws: int, seed: int) -> List[np.ndarray]:
+    """Day-block bootstrap, spelled out: the days are resampled with `bootstrap_indices(number of days, draws, seed)` and a resample is the tasks of the picked days,
+    a day's tasks kept together (ascending position), days in the order they were picked. Resample sizes differ. Materialised: for tests and small draws only."""
+    names, of_task = day_groups(days)
+    members = [np.flatnonzero(of_task == k) for k in range(len(names))]
+    out: List[np.ndarray] = []
+    for block in bootstrap_chunks(len(names), draws, seed):
+        for picks in block:
+            out.append(np.concatenate([members[k] for k in picks]) if len(picks) else np.zeros(0, dtype=np.int64))
+    return out
+
+
+def fire_size(q: float, n: int) -> int:
+    """ceil(q * n) tasks fire; the product is rounded to 9 places first so that 0.2 * 215 = 43.00000000000001 is 43, not 44."""
+    return int(math.ceil(round(q * n, 9)))
+
+
+def interval_positions(draws: int, alpha: float = 0.05) -> Tuple[int, int]:
+    """0-based positions in the sorted draws: floor(alpha/2 * draws) and ceil((1 - alpha/2) * draws) - 1 (exact arithmetic, products rounded to 9 places)."""
+    return int(math.floor(round(alpha / 2 * draws, 9))), int(math.ceil(round((1 - alpha / 2) * draws, 9))) - 1
+
+
+def interval_of(values: Sequence[float], alpha: float = 0.05) -> Tuple[float, float]:
+    """The README interval of bootstrap draws: [sorted(D*)[floor(0.025 * draws)], sorted(D*)[ceil(0.975 * draws) - 1]]."""
+    ordered = np.sort(np.asarray(values))
+    lo, hi = interval_positions(len(ordered), alpha)
+    return float(ordered[lo]), float(ordered[hi])

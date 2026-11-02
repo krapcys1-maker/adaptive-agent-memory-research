@@ -1,16 +1,49 @@
 {
  "experiment": "WMB-R1 lexical versus hybrid retrieval on the account's own notes",
- "status": "draft for review; script digests are filled at the freeze",
+ "status": "FROZEN 2026-11-02: reviewed 2026-11-02 (Amendment 1); digests filled; no model call made before this commit",
  "inputs_sha256": {
   "opublikowane.jsonl": "a775f381d08619a522b5699527a66e1ffd4b0747245bd71f8bd036dff75d71bb",
   "replay/prep.json": "f7cd207aacdc41b92ea64edd8a7c9ff78c292b54986be567ad3328cad706a565",
   "data/lab/aam-e6-persona/persona.json": "e30d8ef27d62e03e48cd201d9652947f4bf21eb585a761c2733390221d530a4a"
  },
  "script_sha256": {
-  "scripts/wmb/memory_kernel.py": null,
-  "scripts/wmb/retrieval_bench.py": null,
-  "scripts/wmb/stats.py": null,
-  "scripts/wmb/contract.py": null
+  "scripts/wmb/memory_kernel.py": "712fd83b20d1467e175c83ee74e4bcf4c32c56f4ce83d5f3aef853b19b31c529",
+  "scripts/wmb/retrieval_bench.py": "f15799eeda53c1770002d061df0bd4f08b3e057fb63514c89bfb4f504820fa0a",
+  "scripts/wmb/retrieval_bench_ref.py": "294d30620b182e48cf46e6511d3f203cfff6245f9727c30d8b7898d5428e5286",
+  "scripts/wmb/stats.py": "da3018ed8d0c80a0d0fa133ea7a8f23f060dd6bebfe83b711d1887634342724c",
+  "scripts/wmb/contract.py": "9aac0527b62fb8299760c850b482ec79a0e3570c5028800fe7d58901b5eb16ad",
+  "scripts/wmb/__init__.py": "64a85443814a023526cf12025a8e09ba4e336ff5f6695b7b65ebfb4306b415d3",
+  "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
+  "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
+  "scripts/analyze_writer_memory_sim.py": "5c45089ae21764902030b27c02af531d02ac0c8e347850eb2c353c76436159af",
+  "scripts/flash_only_proxy.py": "26554fad694a2688284d36abd3675a4fbf276c55154631b626a2f812e1c1ae6a",
+  "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",
+  "tests/test_wmb_retrieval_bench.py": "695cc9d7be745ec9e13412687a007f1fb6d270abba58db336de826c9f8c97de5",
+  "tests/test_wmb_retrieval_bench_ref.py": "456774d409846f97452c2b90d975b34064cd409d017a9b377cd4fe75617166ab",
+  "scripts/wmb/retrieval_c4.py": "ba8588888a783c51ca771c94661a9a4a16a0056592af5d243503c06754142216",
+  "tests/test_wmb_r1_crosscheck.py": "7c5d16f715c851861a90ffa391bff1f4b048f88e3721c0c171830eef73eb9537",
+  "scripts/arena/provider_proxy.py": "fec3e2136c467a4ea7598439ab4ee096f48013265adbb5871e4207c35a40a2f0",
+  "scripts/arena/spend_ledger.py": "03dca7d8490c4567de6142d86d3459a12dafce6857b04412fb524bcd3c7e2ec0",
+  "scripts/arena/decoding.py": "6477613d83d8d4f3eb87e1bf951853c838a7779ca19d82f900f1489bc226428c"
+ },
+ "environment": {
+  "python": "3.12.10",
+  "numpy": "2.4.2",
+  "scipy": "1.17.0",
+  "sentence_transformers": "5.2.2",
+  "torch": "2.10.0+cpu",
+  "minilm_weights_sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+  "hf_hub_offline": true,
+  "transformers_offline": true
+ },
+ "seeds": {
+  "controls": 20261102,
+  "c3": 20261105,
+  "repeat": 20261107,
+  "stratified_sample": 20261109,
+  "c4_shuffle": 20261113,
+  "u3_notes": 20261102,
+  "bootstrap": 20261102
  },
  "models": {
   "judge_and_writer": "deepseek-flash through the flash-only metering proxy",
@@ -22,53 +55,220 @@
   "warmup": 20,
   "order": "parse_items (date, id)",
   "synthetic_time": "day 08:00 plus the rank within the day in minutes",
-  "candidate_share_for_calibration": 0.2
+  "candidate_share_for_calibration": 0.2,
+  "tau_rule_position": "int(0.8 * T)"
  },
- "methods": ["LEX_BM25", "LEX_KERNEL", "LEX_TFIDF", "EMB_MINILM", "HYB_KERNEL", "REF_E5"],
- "bm25": {"k1": 1.2, "b": 0.75},
+ "methods": [
+  "LEX_BM25",
+  "LEX_KERNEL",
+  "LEX_TFIDF",
+  "EMB_MINILM",
+  "HYB_KERNEL",
+  "REF_E5",
+  "HYB_SHIPPED"
+ ],
+ "bm25": {
+  "k1": 1.2,
+  "b": 0.75
+ },
  "reference_threshold_e5": 0.5722,
- "pool": {"per_method_top": 5, "methods": ["LEX_BM25", "LEX_KERNEL", "LEX_TFIDF", "EMB_MINILM", "HYB_KERNEL"]},
+ "shipped_weights": {
+  "lex_tau": 0.3,
+  "tau": 0.57,
+  "min_evidence": 0.8
+ },
+ "kernel_profiles": {
+  "LEX_KERNEL": {
+   "embed": "off",
+   "lex_tau": 1e-06,
+   "min_evidence": 0.0,
+   "names": false,
+   "k": 1000000,
+   "timeout_ms": 10000000
+  },
+  "HYB_KERNEL": {
+   "embed": "required",
+   "lex_tau_factor": 0.05,
+   "tau_factor": 0.05,
+   "min_evidence": 0.0,
+   "names": false,
+   "k": 1000000,
+   "timeout_ms": 10000000,
+   "score": "20 * max(coverage / tau_lex, cosine / tau_emb)"
+  },
+  "index": "per task, notes j < i only",
+  "abort_on_status_not_ok": true
+ },
+ "pool": {
+  "per_method_top": 5,
+  "methods": [
+   "LEX_BM25",
+   "LEX_KERNEL",
+   "LEX_TFIDF",
+   "EMB_MINILM",
+   "HYB_KERNEL"
+  ]
+ },
  "judge": {
   "temperature": 0.0,
+  "seed_note": "request field only; the provider has no seed",
   "seed": 20261102,
-  "retry_seed_offset": 1,
-  "max_tokens": 8,
+  "max_tokens": 12,
   "system": "You compare a writing task with an earlier note by the same author and say how they relate. Answer with one word.",
-  "user_template": "Task (what the author was asked to write about):\n{brief}\n\nEarlier note by the same author:\n{note}\n\nHow does the earlier note relate to the task?\nSAME: it is about the same specific story, event, announcement or claim as the task, so the author could sensibly build on it or refer back to it.\nRELATED: it is about the same broad subject or theme, but a different specific story or claim.\nUNRELATED: otherwise.\nAnswer with exactly one word: SAME, RELATED or UNRELATED.",
+  "user_template": "Task (what the author was asked to write about):\n{brief}\n\nEarlier note by the same author:\n{note}\n\nThe task and the earlier note both come from an account that writes about AI, so being about AI, or about the same broad field, is not a connection.\n\nHow does the earlier note relate to the task?\nSAME: it is about the same specific story, event, announcement or claim as the task, so the author could sensibly build on it or refer back to it.\nRELATED: it is about the same specific subject, entity or question, but the task makes a different point.\nUNRELATED: otherwise.\nAnswer with exactly one word: SAME, RELATED or UNRELATED.",
+  "user_template_reversed": "Task (what the author was asked to write about):\n{brief}\n\nEarlier note by the same author:\n{note}\n\nThe task and the earlier note both come from an account that writes about AI, so being about AI, or about the same broad field, is not a connection.\n\nHow does the earlier note relate to the task?\nUNRELATED: neither of the two descriptions below.\nRELATED: it is about the same specific subject, entity or question, but the task makes a different point.\nSAME: it is about the same specific story, event, announcement or claim as the task, so the author could sensibly build on it or refer back to it.\nAnswer with exactly one word: SAME, RELATED or UNRELATED.",
+  "prompt_sha256": "6b2d5bb4fe261b85ed5854c531e793a07ae9ec67f423adaef42e80b596ee421a",
+  "prompt_reversed_sha256": "37d348468951597e60092a0225dc98c52f632c1a4f791d5cd807e3a16a3dc18f",
   "gate": {
-   "positive_control_n": 60, "positive_control_min_same": 57,
-   "negative_control_n": 60, "negative_control_min_unrelated": 57,
-   "negative_control_max_cosine": 0.15,
-   "repeat_share": 0.1, "repeat_min_agreement": 0.85,
-   "hand_sample_n": 40, "hand_sample_min_agreement": 0.85,
+   "positive_control_n": 60,
+   "positive_control_min_same": 55,
+   "negative_control_n": 60,
+   "negative_control_random": 30,
+   "negative_control_hard": 30,
+   "negative_control_hard_cosine": [
+    0.25,
+    0.4
+   ],
+   "negative_control_hard_max_shared_stems": 1,
+   "negative_control_max_same": 3,
+   "repeat_share": 0.1,
+   "repeat_includes_decisive_pairs": true,
+   "repeat_min_same_persistence": 0.8,
+   "decisive_audit_min_agreement": 0.75,
+   "stratified_sample_n": 30,
    "format_failure_max": 0.02
   },
-  "prevalence_rule_min_tasks_with_same": 25
+  "prevalence_rule_min_tasks_with_same": 25,
+  "prompt_sha256_of": "sha256 of system + two newlines + user_template (UTF-8); the reversed one likewise with user_template_reversed"
  },
  "readings": {
-  "sweep": [0.1, 0.2, 0.3],
+  "sweep": [
+   0.1,
+   0.2,
+   0.3
+  ],
+  "d_bar_grid": [
+   0.1,
+   0.15,
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4
+  ],
   "primary_q": 0.2,
   "margin_tasks": 6,
-  "bootstrap": {"draws": 10000, "seed": 20261102, "alpha": 0.05},
-  "p1": {"helps": "lower bound > 0 and D >= margin", "sufficient": "upper bound < margin"},
-  "p2": {"rescues": "lower bound > 0 and D3 >= 0.15", "no_rescue": "upper bound < 0.10"},
-  "self_retrieval_min": 0.9,
-  "shuffle_draws": 200,
-  "shuffle_max_helps_share": 0.05
+  "bootstrap": {
+   "generator": "scripts/wmb/stats.bootstrap_indices (splitmix64)",
+   "seed": 20261102,
+   "stability_seeds": [
+    20271102,
+    20271103,
+    20271104
+   ],
+   "draws_primary": 100000,
+   "draws_other": 10000,
+   "interval": "order statistics floor(0.025*draws), ceil(0.975*draws)-1",
+   "day_block": true,
+   "alpha": 0.05
+  },
+  "p1": {
+   "contrast": [
+    "EMB_MINILM",
+    "LEX_KERNEL"
+   ],
+   "helps": "lower bound of D_emb > 0 and D_emb >= margin",
+   "sufficient": "upper bounds of D_emb and D_hyb < margin"
+  },
+  "p1b": {
+   "contrast": [
+    "HYB_KERNEL",
+    "LEX_KERNEL"
+   ],
+   "role": "fusion check; qualifies the recommendation when D_hyb < D_emb / 2; never decides EMBEDDER_HELPS_GATE"
+  },
+  "verdict_must_be_stable_under_assistant_labels": true,
+  "self_retrieval_top3_min": 0.9,
+  "self_retrieval_shift_max": 0.1,
+  "c3_tolerance": {
+   "coverage": 1e-08,
+   "hybrid_strength": 5e-06
+  },
+  "c4": {
+   "synthetic_sets": 1000,
+   "planted_gains": [
+    0,
+    3,
+    6,
+    9
+   ],
+   "max_helps_share_at_zero": 0.05
+  },
+  "shuffle_draws": 200
  },
  "u3": {
   "questions": 120,
   "per_length_tercile": 40,
   "seed": 20261102,
-  "writer": {"temperature": 0.3, "seed": 20261102, "max_tokens": 60,
+  "writer": {
+   "temperature": 0.3,
+   "seed": 20261102,
+   "max_tokens": 60,
    "system": "You write one question about a note. Reply with the question only.",
-   "user_template": "Note:\n{note}\n\nWrite one question that can be answered from this note and asks for a specific detail stated in it: a name, a number, a claim, an example or a reason. Do not copy distinctive words or phrases from the note: say it in different words. Do not mention the note or its author. One sentence."},
-  "answerability": {"temperature": 0.0, "seed": 20261102, "max_tokens": 4, "min_yes": 0.95,
+   "user_template": "Note:\n{note}\n\nWrite one question that can be answered from this note and asks for a specific detail stated in it: a name, a number, a claim, an example or a reason. Do not copy distinctive words or phrases from the note: say it in different words. Do not mention the note or its author. One sentence."
+  },
+  "answerability": {
+   "temperature": 0.0,
+   "seed": 20261102,
+   "max_tokens": 4,
+   "min_yes": 0.95,
    "system": "You check whether a note answers a question. Answer with one word.",
-   "user_template": "Note:\n{note}\n\nQuestion: {question}\n\nDoes the note contain the answer to the question? Answer with exactly one word: YES or NO."},
-  "recall_at": [1, 3, 10]
+   "user_template": "Note:\n{note}\n\nQuestion: {question}\n\nDoes the note contain the answer to the question? Answer with exactly one word: YES or NO."
+  },
+  "recall_at": [
+   1,
+   3,
+   10
+  ],
+  "p2": {
+   "margin_rescue": 0.15,
+   "contrast": [
+    "EMB_MINILM",
+    "LEX_KERNEL"
+   ],
+   "co_reported": [
+    "HYB_KERNEL",
+    "LEX_KERNEL"
+   ],
+   "bootstrap_draws": 10000
+  },
+  "audit_retrieved_max_calls": 240
  },
- "u2": {"recall_at": [1, 3], "task_type": "personal"},
- "budget": {"scope": "e1", "stop_at_usd": 2.0, "planned_calls": 3400},
- "amendments": []
+ "u2": {
+  "recall_at": [
+   1,
+   3
+  ],
+  "task_type": "personal"
+ },
+ "budget": {
+  "scope": "e1",
+  "run_ids": [
+   "e1-wmbr1-judge",
+   "e1-wmbr1-writer"
+  ],
+  "run_cap_usd_each": 1.0,
+  "stop_at_usd": 2.0,
+  "baseline_scope_usd": "read from the ledger at the start of the judge stage and stored",
+  "planned_calls": 2900,
+  "model": "deepseek-flash"
+ },
+ "amendments": [
+  {
+   "n": 1,
+   "date": "2026-11-02",
+   "summary": "primary contrast EMB_MINILM vs LEX_KERNEL, HYB_KERNEL fusion check; exact kernel profiles; C1/C3/C4 replaced; judge prompt, controls and blind decisive-pair audit; bootstrap stream and stability; strict only; corrected power, pool, cost; P2 descriptive; U2 exclusions; freeze hashes and environment",
+   "commit": null
+  }
+ ]
 }
