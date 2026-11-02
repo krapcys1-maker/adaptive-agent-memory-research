@@ -13,6 +13,8 @@ A local-first, model-agnostic memory system that decides what to keep from<br>
 <a href="https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue"><img src="https://img.shields.io/github/issues/krapcys1-maker/adaptive-agent-memory-research/good%20first%20issue?label=good%20first%20issues&color=7057ff" alt="Good first issues"></a>
 </p>
 
+**New here?** Read [Status and where help is wanted](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/84): what is in progress, what just finished, and every task where outside help is welcome.
+
 ---
 
 ## Give Claude Code persistent project memory in two minutes
@@ -36,7 +38,7 @@ python ~/aamr/tools/project_memory/cli.py --root . add --kind decision \
 python ~/aamr/tools/project_memory/cli.py --root . search "why sqlite"
 ```
 
-> **This is the research engine, not a finished product.** It is used daily by this project on itself, which is the strongest thing we can honestly say about it. Bugs, rough edges, and honest reports of both are welcome — if setup fights you, [open an issue](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new/choose) and say so.
+> **This is the research engine, not a finished product.** The project used it on itself on each of its first four days (22 to 25 August 2026); the November work is documented in the READMEs under `data/lab/`. Bugs, rough edges, and honest reports of both are welcome — if setup fights you, [open an issue](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new/choose) and say so.
 
 ---
 
@@ -77,7 +79,7 @@ The append-only log, the controller and retrieval are built and running — that
 
 ## What we have measured
 
-Of 74 registered experiments, 39 are completed or retracted, 20 are blocked (waiting on a corpus, four of them also on independent review), 7 were invalidated or only partly valid, and 8 are designs or review packets awaiting execution; `python scripts/registry_summary.py` prints the current counts. All are exploratory and none is independently reviewed, so read these as measurements rather than settled science — but they are measurements, and the data is in the repository.
+Of 74 registered experiments, 39 are completed or retracted, 20 are blocked (waiting on a corpus, four of them also on independent review), 7 were invalidated or only partly valid, and 8 are designs or review packets awaiting execution; `python scripts/registry_summary.py` prints the current counts. All are exploratory and none is independently reviewed, so read these as measurements rather than settled science — but they are measurements, and the data is in the repository. The registry covers the August campaign. The experiments of November 2026 (series `AAM-` and `WMB-`, described under [Since August](#since-august-the-writer-memory-track)) are not entered in it; each has its own README with the preregistration, the results and the limits.
 
 **A superseded fact is maximally similar to the fact that replaced it.** Mean cosine 0.816 between an old fact and its replacement, against a corpus baseline of 0.372 — two pairs at 1.000. With the metadata filter removed, the stale version was the nearest neighbour in 6 of 9 cases and its median rank was 1. *Content cannot separate a retired fact from its successor. Only bookkeeping can.* → `PMLAB-STALE-E1`
 
@@ -93,15 +95,45 @@ Of 74 registered experiments, 39 are completed or retracted, 20 are blocked (wai
 
 Four of those six are negatives and one is a retraction of our own work. **That ratio is the honest one at this stage**, and it is the thing this project is most willing to defend.
 
+### Since August: the writer-memory track
+
+From 1 November 2026 the lab turned to one applied question — what a memory should do for an agent that *writes*, and how to tell whether it does — and to the instruments needed to ask it honestly. The experiments are small, each preregistered in its own README before the first model call, and reported with their limits. Three of them (F1, E6, E6E) were corrected after an adversarial review by separate reviewers ([PR #61](https://github.com/krapcys1-maker/adaptive-agent-memory-research/pull/61)); in the [independence ladder](docs/00-project/independence-ladder.md) that is tier I2, which claims no independence. The original wording stays in git history.
+
+**Showing a writer its own raw earlier entries made it repeat itself more, not less; a short trace did far less damage.** A 7B local writer on three streams and a strong hosted writer on six, synthetic throughout: raw entries raised overlap and length and lowered judged quality for the 7B writer, with the opposite lexical sign for the strong one; short traces produced the most explicit references back in both (15.6% and 8.9%, against 0% and 1.1% with no memory); dynamic importance and association added nothing measurable, in a test the review found too weak to say more. The preregistered readings could not fire for a reduction, because the practical threshold exceeded the baseline level of the measure. → [`AAM-E1-SIM`](data/lab/aam-e1-writer-memory-sim/README.md), [`AAM-E1-DS`](data/lab/aam-e1ds-writer-memory-sim/README.md)
+
+**In a simulated follow-up test, thresholded memory was used accurately where a related earlier note existed, and always-on raw retrieval hurt where none did; the preregistered headline reading is unresolved.** Follow-up notes cited the earlier note accurately in 73.6% of cases with thresholded traces, against 2.8% with no memory and 4.2% with the instruction alone. Always-on raw retrieval made the writer refer back to irrelevant earlier notes in 30.1% of fresh items and lowered judged quality; a relevance threshold removed the damage. The headline reading was preregistered as *unresolved* because the pointwise scale saturated, and retrieval in this design is close to ideal. → [`AAM-E2-FU`](data/lab/aam-e2-followup-memory-sim/README.md)
+
+**Replayed on a live account's real history, thresholded memory was preferred on the one task in five that has a related earlier note (win rates 0.64 to 0.73 against the instruction-only control), and always-on memory was judged worse on the rest (0.18) — but the judge then failed a check of its own.** WMB slice 0 planted pairs into the same judge: it sees identical pairs, copies, fabricated callbacks and non-answers, yet it prefers the note *without* a grounded callback (the callback note won 3 of 24). The pairwise lane is therefore descriptive only, and the E5 preference is not evidence that callbacks help. → [`AAM-E5-REPLAY`](data/lab/aam-e5-replay/README.md), [`WMB slice 0`](data/lab/wmb-v0/slice0/README.md)
+
+**An LLM rating of relevance could not be calibrated on that account's notes.** Both rating scales failed their own control (70.9% and 81.7% of random pairs rated unrelated with the judge of record, 90% required), so no threshold is certified; a note-to-note cosine of 0.6 is recorded as a post-hoc starting value and not as a result. → [`AAM-E3A`](data/lab/aam-e3a-retrieval-calibration/README.md)
+
+**No large per-note engagement signal was found beyond the recent level.** On 202 measured notes the note type adds nothing to the recent level for views or likes. The instrument could see a planted +50% effect in view counts but only about +100% in like counts, so smaller effects and other features were not testable. Feedback can be read at 24 hours instead of 72, and a live comparison cannot establish a small benefit quickly (about 74 days for a 50% effect in views). → [`AAM-F1`](data/lab/aam-f1-engagement-signal/README.md)
+
+**A persona's invented biography can live in retrievable memory with a guard; opinion change from events is not shown at the preregistered size.** The biography was recalled at 0.92 (0.83 on the questions that need memory, a subset chosen after the fact). Improvised details agreed across fresh contexts 0.40 to 0.57 without write-back and 0.92 to 1.00 with it, which is a copy test. A good and a bad experience moved a stance by 1.1 points (1.5 preregistered). The invented past leaked into tasks where it must not appear in about 0.27 of outputs without a rule and 0.07 to 0.10 with one. A phrase filter for explicit claims in the persona's answers about its own nature caught about half of them (0.54 by hand count), so it cannot be the main defence. → [`AAM-E6`](data/lab/aam-e6-persona/README.md), [`AAM-E6E`](data/lab/aam-e6e-botness/README.md)
+
+**A word-cluster "associative trace" index did not beat a summary comparator in a synthetic world — a narrow null, not evidence against associative traces.** The primary cell could not have returned a positive result, and there was no positive control. → [`AAM-E0`](data/lab/aam-e0-delayed-relevance/README.md)
+
+**Lexical or embedding retrieval for the memory module? No verdict, and a finding about our own scorer.** The preregistered judge gate failed on its positive control by one pair (54 of 60, 55 required), so the decision was not issued. Exploratory readings, labelled as such: at equal exposure the module's own coverage score found 15 hits against 17 for BM25 and for tf-idf and 16 for a small sentence-embedding model (43 tasks; the rule could not exclude a gain of up to 6 hits); embeddings helped clearly only on questions that avoid the note's words, which is true by construction; the shipped max-fusion hybrid kept little of that gain. → [`WMB-R1`](data/lab/wmb-r1-retrieval/README.md)
+
+**The instruments.** [`scripts/wmb/memory_kernel.py`](scripts/wmb/memory_kernel.py) is a one-file, standard-library memory module (version 0.1.0, 22 tests): thresholded injection of at most three items, nothing from the future, a log without text, and a deterministic reference guard that is a floor and not a proof. Version 0.1.0 is frozen as the instrument of WMB-R1; it is the module under test, not evidence that memory helps. Its live line is [`scripts/wmb/kernel/memory_kernel.py`](scripts/wmb/kernel/memory_kernel.py) (version 0.2.0, 94 further tests): a BM25 lexical gate in place of idf coverage, a rewritten guard and hardening; its defaults are not fitted to any real account. The [memory benchmark specification](docs/11-research-laboratory/memory-benchmark-spec-v0.md) joins the pieces, including the success ladder and what is not claimed. LifeSim, a deterministic generator of synthetic lives with exact answers, is the other instrument ([registration of its first two experiments](data/lab/aam-lifesim/README.md), [design](docs/11-research-laboratory/lifesim-design-panel-digest-2026-11-01.md)): X0 (does the generator measure memory and nothing else?) and X1 (value of a feeling-like signal at a retention gate) are registered and have not been run, and on 20 development worlds four of its sixteen validity gates fail.
+
+#### What works, and what is unproven
+
+*Works:* the append-only memory engine and its mechanical checks; the claim audit; the small-sample statistics and the record contract in `scripts/wmb/`; a memory module (the frozen 0.1.0 with 22 tests, the live line 0.2.0 with 94 more); deterministic synthetic corpora and a deterministic synthetic-life generator (859 tests) with exact answers. Each analysis script is deterministic given its record files. Model outputs cannot be regenerated exactly (the provider ignores the seed), and where a live account's texts were used only aggregates are published.
+
+*Unproven:* that any memory design improves what a real agent writes (nothing here shows it); that thresholded injection helps readers (its only supporter is a judge shown to penalise grounded callbacks); whether an embedder is needed (R1 issued no verdict); whether a feeling-like signal has any value for retention (no per-note engagement signal was found in the one live account we can measure, and LifeSim will report a response curve in a synthetic world, which is by construction not a claim about real agents). None of these results is independently reviewed in the sense of the [independence ladder](docs/00-project/independence-ladder.md); the adversarial reviews that were done are recorded in the READMEs and in PR #61.
+
 ### The number that is not here yet
 
 There is no headline benchmark table on this page, and there will not be one until it is earned. The comparison that matters — adaptive memory against native compaction and against vector retrieval, at a fixed context budget, on a long history — needs a corpus and a reader model.
 
 The corpus now exists: [corpus H1](data/lab/corpus-h1/README.md), 538 events over 30 simulated days, 84 delayed probes across seven failure families, generated deterministically with no model and no API key. Its first run found a defect *in the corpus* — document length predicted the answer in 12 of 12 instances of three families — which is exactly what the construction-test tier is for. Both the broken and the repaired measurement are published.
 
-What is still missing is the reader model that scores whether an arm could answer from what it retained, and the compaction arms themselves. That is [#41](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/41), still open, still the highest-leverage task.
+A reader now exists: [`PMLAB-H1-READ-E1`](data/lab/corpus-h1/reader-v0-report.md) ran one reader model over two arms and the 84 probes, and found that retrieval answered 84.5% of them and was confidently wrong on 11.9%, the only arm that gave wrong answers (on the obsolete-family probes it answered from the superseded record 0.833 of the time). What is still missing is the compaction arms themselves. That is [#41](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/41), still open, still the highest-leverage task.
 
 We have pre-committed to publishing that result whichever way it falls. Given that three separate runs here have already measured our own mechanisms *harming* retrieval, a negative headline is a live possibility — and it would be published in the same font as a positive one.
+
+Since November the benchmark effort has two further instruments, the [writer-memory benchmark](docs/11-research-laboratory/memory-benchmark-spec-v0.md) and LifeSim. Neither has produced a headline number. The first result of the first is a warning about the kind of mistake that hides in a benchmark: a pairwise judge can look reliable on planted copies and still be blind to the thing the benchmark exists to reward. The specification's first level (L0) is exactly this check: planted pairs and null adapters must pass before any higher level is read.
 
 ## Try the research, not just the tool
 
@@ -134,13 +166,31 @@ python scripts/audit_repository_claims.py
 
 That last one lists what no longer holds. It fails only on a critical finding: a declared hash that matches neither the working copy nor the Git blob, meaning a frozen artifact changed after it was frozen. It currently reports none. One declaration that did drift (`scripts/corpus/address_extract.py`, edited two minutes after the E2-A2 freeze) is shown as a low `explained-drift` finding, backed by a note next to the manifest that the audit re-derives from Git, because this project does not rewrite a freeze to make an audit pass. The medium findings — registry rows pointing at artifacts for experiments that have not run, experiment identifiers described in documentation but absent from the registry, memory sources that are not tracked — are printed, not hidden. Run it to see the current counts; they change as work lands.
 
+Run the three gates CI runs (the tests, the memory-log check and the claim audit) on your own Python. It takes about six minutes on one Windows machine, almost all of it the test suite:
+
+```bash
+python tasks.py check
+```
+
+CI also runs the memory module's tests on Python 3.14 and a diff guard on `memory/events.jsonl`, which `check` does not. Use a full clone (no `--depth`), because one audit test reads an old commit with `git show`; on Windows, if git prints "Filename too long", run `git config --global core.longpaths true` first.
+
+Run only the writer-memory and LifeSim pieces:
+
+```bash
+python -m pytest -q tests/test_wmb_memory_kernel.py tests/test_wmb_kernel_v2.py   # the memory module: 22 + 94 tests, about 25 s, needs only pytest
+python -m pytest -q tests/test_wmb_*.py               # the benchmark code and the memory module: 403 tests, about a minute
+python -m pytest -q tests/test_lifesim_*.py           # LifeSim: 859 tests, about 2 minutes
+```
+
 ## How to help
 
 Contributions run at three depths, and **you do not need a background in memory research for the first one.**
 
+**Start with [Status and where help is wanted](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/84).** It lists what is in progress, what just finished, and every task where outside help is welcome, with an effort estimate. To take a task, comment on its issue. By area: [`kernel`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/kernel) (the memory module), [`wmb`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/wmb) (the writer-memory benchmark), [`lifesim`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/lifesim) (the synthetic-life generator). By size: [`help-wanted`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/help-wanted) with [`effort:S`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/effort%3AS), [`effort:M`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/effort%3AM) or [`effort:L`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/effort%3AL).
+
 ### About an hour, no research background
 
-Issues labelled [`good first issue`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue) and [`no-expertise-needed`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/no-expertise-needed) are ordinary software work: a scoped bug, a missing exclusion rule, a CLI subcommand, reading one unfamiliar repository carefully. Each states what "done" means before you start.
+Issues labelled [`good first issue`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue) and [`no-expertise-needed`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/no-expertise-needed) are ordinary software work: a scoped bug, a missing exclusion rule, a CLI subcommand, reading one unfamiliar repository carefully, checking a citation against its source, running the tests on your platform and saying what happened. Each states what "done" means before you start.
 
 If the setup instructions above fail on your machine, saying so in an issue is itself a useful contribution — this is developed on Windows and tested on Linux, and that gap has already produced one real defect.
 
@@ -148,13 +198,13 @@ If the setup instructions above fail on your machine, saying so in an issue is i
 
 ### A few sessions, engineering
 
-Issues labelled [`track:engine`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/track%3Aengine) build the machinery the research needs: sealed held-out splits, error-decorrelation measurement, the bitemporal query layer, cost-normalised retrieval metrics. These need care but not domain expertise.
+Issues labelled [`track:engine`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/track%3Aengine) build the machinery the research needs: sealed held-out splits, error-decorrelation measurement, the bitemporal query layer, cost-normalised retrieval metrics, an evaluation of the BM25 gate and a mutation check for the memory module, and the failing validity gates of the LifeSim generator. These need care but not domain expertise.
 
 **Finding a hole in our method is worth more than completing a task.** The sealed-split tool carries three guards, each added after the corresponding attack was reproduced against it. A fourth would be the better contribution.
 
 ### Research review
 
-Issues labelled [`independent-review`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/independent-review) need someone who can judge evidence. Read [the independence ladder](docs/00-project/independence-ladder.md) first — it explains why a large share of what once required an expert reviewer is now a mechanical check, and what genuinely still needs human judgement.
+Issues labelled [`independent-review`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/independent-review) need someone who can judge evidence. Read [the independence ladder](docs/00-project/independence-ladder.md) first — it explains why a large share of what once required an expert reviewer is now a mechanical check, and what genuinely still needs human judgement. The design of a replication of WMB-R1 with a repaired judge protocol needs someone who can judge a statistical protocol.
 
 Everything goes through [CONTRIBUTING.md](CONTRIBUTING.md). Disagreement with a recorded conclusion is welcome; that is what the evidence ledger is for. Say hello in [Discussions](https://github.com/krapcys1-maker/adaptive-agent-memory-research/discussions).
 
@@ -195,7 +245,7 @@ What still looks unoccupied is not a system but a diagnostic programme: *when an
 
 Evidence collection alongside gated laboratory testing. Each falsifiable hypothesis may enter an exploratory test under the [research-to-experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md); confirmatory claims, added architecture, and any product implementation remain blocked behind stricter benchmark, reproduction, safety, and review gates.
 
-Work runs in three tracks — engine, experiment, community — with milestones **M1 Engine**, **M2 Execute**, **M3 Independence**. New preregistrations are paused until the existing unexecuted drafts are triaged, because the project was designing protocols faster than it could run them.
+Work runs in three tracks — engine, experiment, community — with milestones **M1 Engine**, **M2 Execute**, **M3 Independence**. The experiment registry (the `PMLAB-` series; 20 of its 74 rows are still blocked) paused new rows because the project was designing protocols faster than it could run them, and it has not changed since 23 August. Since 1 November 2026 the lab records each new experiment (series `AAM-` and `WMB-`) in its own README, with a `config.json` that holds the SHA-256 digests of its scripts and inputs, committed before the first model call; see [Since August](#since-august-the-writer-memory-track).
 
 Both defects this section used to list as open are now closed, and how they closed is more interesting than that they did. Frozen hashes were reproducible only on a Windows checkout because Git's end-of-line conversion made 843 of 1348 files under `data/` differ byte for byte across platforms; `.gitattributes` now disables conversion repository-wide. Six frozen artifacts had been modified after freezing, by two distinct causes rather than one. CI verifies freezes on Linux with full history, so the check cannot pass vacuously.
 
@@ -218,6 +268,7 @@ New contributors do not need all of this. Read the first three, then follow what
 8. [Human memory](docs/01-human-memory/README.md) · [LLM memory](docs/02-llm-memory/README.md) · [mapping between them](docs/03-human-ai-bridge/mapping.md)
 9. [Systems catalog](docs/04-systems/catalog.md) · [benchmark catalog](docs/05-benchmarks/catalog.md)
 10. [Research laboratory](docs/11-research-laboratory/README.md) and the [experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md)
+11. [Memory benchmark specification v0](docs/11-research-laboratory/memory-benchmark-spec-v0.md) — what success means for a writer's memory, and how the instruments fit together
 
 ### Repository layout
 

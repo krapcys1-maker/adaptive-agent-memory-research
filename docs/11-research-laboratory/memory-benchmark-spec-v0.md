@@ -62,7 +62,7 @@ Structure first, text second: a life is rows (entities, bitemporal facts, situat
 ## 7. Order of work
 
 Done: statistics and record contract; the T0 battery on real replay data; the shared memory module in the interface the writing agent asked for (merged, tested on Python 3.11, 3.12 and 3.14, mutation-checked).
-Now: R1, whether the server needs an embedder (preregistration being reviewed; result goes to the writing agent's session before it decides); LifeSim D1 (foundations, world and channel, text, queries and scorers, systems and gates), then X0 and X1.
+Now: R1, whether the server needs an embedder (preregistration being reviewed; result goes to the writing agent's maintainers before they decide); LifeSim D1 (foundations, world and channel, text, queries and scorers, systems and gates), then X0 and X1.
 Next: WMB T1 bank with the memory-dependence filter and sealed split; arms and adapters; T2 opportunity sets; the Docker runner with proxy-only egress; Hindsight and Mem0 as black boxes; T3 and T4; the T6 plan. The first paid LifeSim tranche only after X0 and X1 have recorded decisions.
 
 ## 8. What needs the owner

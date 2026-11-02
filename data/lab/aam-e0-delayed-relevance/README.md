@@ -11,7 +11,7 @@ pushed, merged, published or licensed, and no spend was made (Stage 2, the only 
 run).
 
 Built from `docs/11-research-laboratory/delayed-relevance-first-experiment-proposal-v0.md` and the build
-specification `E0_SPEC.md` (in `GH_REVIVAL/`, outside the repository). Informal id: AAM-E0. Generator
+specification `E0_SPEC.md` (a local file, outside the repository and not published). Informal id: AAM-E0. Generator
 version `goalshift-v0.2`.
 
 ## Result in one paragraph
@@ -354,3 +354,7 @@ model meant before authorising spend. The ledger `stage2-ledger.json` is JSON li
 `SpendLedger` writes; the V1/V2/V3 arena ledger is never touched. The API key is read only by
 `arena.run_pilot.load_key` inside `stage2-run`, never by this code. Given the Stage 1 null, Stage 2 would
 only qualify it at the answer level; start with `--pilot-calls 20` if it is ever run.
+
+## Amendments
+
+1. Amendment 1 (editorial). Local paths were replaced by generic wording on 2026-11-02; no number, threshold, reading, result or declared file changed.

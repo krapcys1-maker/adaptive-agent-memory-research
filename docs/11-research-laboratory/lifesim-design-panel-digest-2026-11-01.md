@@ -343,7 +343,7 @@ Status: Design panel output (three designers and a synthesiser); a design, not a
     - COMPRESSED TIME: a year is ingested in minutes, so wall-clock decay inside products does not operate; timestamps are in the text and in the record for everyone, delay and intervening load are logged separately.
   - **open questions**
     - GATING (ask as one button): release tranche A of paid runs (X2 + X3, at most 5.5 USD on the ledger, about 7 USD real) after X0 and X1 have recorded decisions? X0 and X1 are free and need no approval; the later tranches are X6 + X4 (at most 6.5 USD) and the optional X5 + X7 (at most 3 USD). Recommended total at most 12 USD ledger; check the provider balance (not the ledger) before each tranche.
-    - Which labels can serve as 'later needed' in the live account to estimate rho_live, given zero callbacks in 234 notes and no per-note engagement signal (F1)? Candidates: reader replies, the owner's edits, explicit reference tags in the shadow log; needs the NIE session. Until then LifeSim claims no coupling value.
+    - Which labels can serve as 'later needed' in the live account to estimate rho_live, given zero callbacks in the account's published notes and no per-note engagement signal (F1)? Candidates: reader replies, the owner's edits, explicit reference tags in the shadow log; needs the writing agent's maintainers. Until then LifeSim claims no coupling value.
     - Hindsight routing: confirm the variable name for the container's LLM base URL and start a metered second instance before X4; the current container (provider deepseek, model deepseek-v4-flash, no base URL) is outside the guard.
     - Persona archetypes for CH-A: author 3 plus 1 held out and the 8 invented practices with Guttman items, or adapt Ansel Rook; who approves? Must stay explicitly fictional (variant A transfers to the live account; variant B is research-only), consistent with the NIE conditions in the shared plan.
     - Policy parameters of bounded change (caps, half-lives): the benchmark treats them as ASSUMED and sweeps them; what pace of change does the owner want for the live persona? That is a product decision for NIE, not a benchmark result.
@@ -762,7 +762,7 @@ Status: Design panel output (three designers and a synthesiser); a design, not a
   - Rewriting by a language model could alter facts: slot verifier with template fallback, and the rewrite is off in every headline run.
   - The gate-confirmation seeds and test epochs are finite in practice (each look consumes an epoch): plan the number of looks before building more families.
 - **open questions**
-  - What can serve as 'later needed' labels in the live account to estimate rho_live, given zero callbacks in 234 notes and no per-note engagement signal (F1)? Candidates: reader replies, the owner's edits, explicit reference tags in the shadow log; needs a decision with the NIE session.
+  - What can serve as 'later needed' labels in the live account to estimate rho_live, given zero callbacks in the account's published notes and no per-note engagement signal (F1)? Candidates: reader replies, the owner's edits, explicit reference tags in the shadow log; needs a decision with the writing agent's maintainers.
   - Which persona archetypes: reuse Ansel Rook from E6 or author new ones, and who approves the three archetypes plus one held out and the Guttman item bank?
   - Spend authority: proposed hard caps of 3 USD (X1), 3 USD (X2) and 4 USD (X3) under the flash-only proxy; the owner's earlier campaign limit was 15 USD. Confirm that the reader id deepseek-v4-flash is the model meant (the E0 README asks the same).
   - Policy parameters of bounded change (cap 0.15 per ordinary event, 0.40 at a turning point, half-life 120 days): what pace of change does the owner want for the live persona?
@@ -1107,47 +1107,47 @@ Status: Design panel output (three designers and a synthesiser); a design, not a
     - **cost:** 1-2 USD
 - **build plan**
   - 0 FAST PATH (optional, first): minimal vertical slice so the first free result exists in about 3 working days
-    - **files:** Minimal versions of steps 2, 3, 6 and the retrieval-level part of 8 under D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/ and scripts/run_lifesim.py
+    - **files:** Minimal versions of steps 2, 3, 6 and the retrieval-level part of 8 under scripts/corpus/lifesim/ and scripts/run_lifesim.py
     - **done when:** Routines plus two arcs, appraisal and pulse arms, items EP1, EP4, IN1, AU1, PR1, ME1, B3/B4 stores and the ORACLE arm run end to end on 3 lives and X1 prints its first table; nothing from this slice is used for claims.
     - **effort:** 3 d
   - 1 Preregistration skeleton and config
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/data/lab/aam-lifesim/README.md, config.json, PREREG.md (readings X0-X6, SC1-SC19, thresholds as fractions of dev-seed headroom, seeds 0-9 dev, 100-129 test, 200-229 sealed)
+    - **files:** data/lab/aam-lifesim/README.md, config.json, PREREG.md (readings X0-X6, SC1-SC19, thresholds as fractions of dev-seed headroom, seeds 0-9 dev, 100-129 test, 200-229 sealed)
     - **done when:** Readings and decision rules are committed before any generation; every ASSUMED parameter is in config.json; every reading can be computed mechanically from a results file.
     - **effort:** 0.5 d
   - 2 World, events, arcs, twins and future-need tags (own LCG, standard library only, as in goalshift.py)
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/rng.py, pools.py, world.py, events.py, arcs.py; tests/test_lifesim_world.py
+    - **files:** scripts/corpus/lifesim/rng.py, pools.py, world.py, events.py, arcs.py; tests/test_lifesim_world.py
     - **done when:** Same seed gives byte-identical logs; records validate against the schema; SC14 structure checks pass on 20 seeds; Latin-square twin assignment audited; realised rho within 0.05 of the dial for all six values.
     - **effort:** 4 d
   - 3 Appraisal, mood, pulse and channel arms
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/appraisal.py, mood.py, pulse.py; tests/test_lifesim_appraisal.py
+    - **files:** scripts/corpus/lifesim/appraisal.py, mood.py, pulse.py; tests/test_lifesim_appraisal.py
     - **done when:** A is monotone in each appraisal variable and gated by relevance; corr(pulse, A) within 0.03 of the dial; SHUF and RANDOM arms keep marginals (KS p above 0.2) and break the intended dependence; ORACLE reproduces the tag; nuisance bursts are independent of A.
     - **effort:** 2 d
   - 4 Character module and stance items
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/character.py, stances.py; tests/test_lifesim_character.py
+    - **files:** scripts/corpus/lifesim/character.py, stances.py; tests/test_lifesim_character.py
     - **done when:** Caps hold over 10,000 random lives (property tests); SC16-SC19 within bands; a mood-only week leaves S_k unchanged; centrality computed from the three facets.
     - **effort:** 2 d
   - 5 Verbaliser, paraphrase pass and leakage classifiers
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/verbalise.py, paraphrase.py (flash, locked slots), leakage.py; tests/test_lifesim_verbalise.py
+    - **files:** scripts/corpus/lifesim/verbalise.py, paraphrase.py (flash, locked slots), leakage.py; tests/test_lifesim_verbalise.py
     - **done when:** Every script has at least 6 paraphrase templates; the slot-lock verifier passes 100% of accepted lines (rest fall back to the template); text-only AUC at most 0.55 and |corr(length, A)| at most 0.05 on 12 dev lives; twin lines string-identical in the queried sentence; paraphrase cost measured on 20...
     - **effort:** 3 d
   - 6 Query families, scorers, aliases and item filters
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/queries.py, scorers.py, aliases.py, filters.py; tests/test_lifesim_queries.py
+    - **files:** scripts/corpus/lifesim/queries.py, scorers.py, aliases.py, filters.py; tests/test_lifesim_queries.py
     - **done when:** All 39 families (first-release subset first) emit items with gold, aliases, options, chance, evidence ids and delay; scorer tests include hedges, two pool values, paraphrases and numeric formats; 100-item hand audit at least 0.98; memory-dependence and retirement filters run on dev seeds.
     - **effort:** 4 d
   - 7 Reference Rememberer and sanity suite
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/corpus/lifesim/reference_rememberer.py, sanity.py; tests/test_lifesim_sanity.py
+    - **files:** scripts/corpus/lifesim/reference_rememberer.py, sanity.py; tests/test_lifesim_sanity.py
     - **done when:** SC1-SC15 tabulated pass or fail; knob-on and knob-off recovery table produced; parameters frozen and digested before any system is run.
     - **effort:** 3 d
   - 8 Harness and adapters (fork or snapshot, virtual clock, probe schedule, flash-only guard, full logging, prompt-hash cache); model on persona_sim.py and replay_memory_sim.py
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/run_lifesim.py (generate, stage0, stage1, run, analyse); scripts/lifesim_adapters/ (prior, persona, recency, bm25, dense, hybrid, summary, gist, hindsight, rr, salience, oracle)
+    - **files:** scripts/run_lifesim.py (generate, stage0, stage1, run, analyse); scripts/lifesim_adapters/ (prior, persona, recency, bm25, dense, hybrid, summary, gist, hindsight, rr, salience, oracle)
     - **done when:** Fork or restore works for every adapter; a dry run on the pilot life with a stub reader costs 0 USD; prompts, retrieved ids and raw replies are stored; the gate refuses test seeds unless Stage 0 passed on the same digests.
     - **effort:** 4 d
   - 9 Analysis with preregistered readings applied mechanically
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/scripts/analyse_lifesim.py; tests/test_lifesim_analyse.py
+    - **files:** scripts/analyse_lifesim.py; tests/test_lifesim_analyse.py
     - **done when:** All metrics and readings computed from records.jsonl; paired bootstraps over items nested in lives; signed and absolute shifts reported separately; results.json byte-identical on re-run.
     - **effort:** 2 d
   - 10 Stage 0 on dev seeds, freeze digests, then X1 and X2 once on test seeds (free); queue X3-X6 under spend caps; independent adversarial review before decisions are recorded
-    - **files:** D:/Pamiec LLM/GH_REVIVAL/e5-worktree/data/lab/aam-lifesim/stage0/, stage1/, results.json, report.md
+    - **files:** data/lab/aam-lifesim/stage0/, stage1/, results.json, report.md
     - **done when:** X0 passes; digests frozen in config.json; X1 and X2 reports written; X3-X6 plans have spend caps; the review's findings are fixed or listed as errata.
     - **effort:** 2 d plus run time
 - **open questions**
@@ -1158,7 +1158,7 @@ Status: Design panel output (three designers and a synthesiser); a design, not a
   - The authored character-update parameters have no calibration data in hand; longitudinal data on value and stance change after life events could set the bands. Until then they are screening bands only.
   - Compressed time: do products behave differently on a year delivered in minutes? A slow-replay check on one life would show, at the cost of wall-clock time.
   - Polish variant in the first release or later? The lab must work in Polish and English.
-  - Link to the NIE fictional-biography requirement (personality plus fictional life-event memory, later drift under events): LifeSim's day-1 persona lines and the CH group could be the offline test first; confirm that the conditions in the shared plan are met by the persona template.
+  - Link to the owner's fictional-biography requirement for the writing agent (personality plus fictional life-event memory, later drift under events): LifeSim's day-1 persona lines and the CH group could be the offline test first; confirm that the conditions in the shared plan are met by the persona template.
   - The decision layer (blueprint part 8, 'decides development') is out of scope: the character update only reads events. Add decisions later as CH2-style scenarios, or as a separate study?
   - Which [B] citations to verify first? Suggested priority: Kensinger et al. 2007 (trade-offs), Bardi et al. 2009 (values at transitions), Hupbach et al. 2007 (reconsolidation), Koriat and Goldsmith 1996 (grain and report option), Einstein et al. 1998 (repetition errors), Levine 1997 (reconstructed em...
 - **risks**

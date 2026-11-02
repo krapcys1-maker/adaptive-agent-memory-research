@@ -13,9 +13,7 @@ python tasks.py check
 
 `python tasks.py check` runs every gate CI runs, in the order CI runs them, and
 exits non-zero if any of them fails. It is the answer to *"did I break
-anything?"* and the one command a pull request must pass. It takes about half
-a minute once the one-time install (about 230 MB, mostly `transformers`, which
-is needed only to import one frozen audit script) is done.
+anything?"* and the one command a pull request must pass. It takes about five to six minutes (321 s measured on one Windows machine: 2,661 tests passed, 21 skipped), almost all of it the test suite, once the one-time install (about 230 MB, mostly `transformers`, which is needed only to import one frozen audit script) is done. CI also runs the memory module's tests on Python 3.14 and a diff guard on `memory/events.jsonl`, which `check` does not. Use a full clone (no `--depth`), because one audit test reads an old commit with `git show`; on Windows, if git prints "Filename too long", run `git config --global core.longpaths true` first.
 
 The test suite should pass with no failures. A green run still reports some
 skipped tests. Most need optional local inputs that a fresh clone does not have
@@ -25,10 +23,18 @@ The other targets, for when you do not want to wait for the whole thing
 (timings measured on one laptop):
 
 ```bash
-python tasks.py fast      # ~0.3s -- memory integrity + source pipeline; fine in a pre-commit hook
-python tasks.py test      # ~25s  -- the test suite alone
-python tasks.py audit     # ~7s   -- both audits, without the test suite
+python tasks.py fast      # ~0.2s -- memory integrity + source pipeline; fine in a pre-commit hook
+python tasks.py test      # ~6min -- the test suite alone
+python tasks.py audit     # ~10s  -- both audits, without the test suite
 python tasks.py --list    # what each target runs, and roughly how long it takes
+```
+
+For the newer parts of the repository, run only what you touched:
+
+```bash
+python -m pytest -q tests/test_wmb_memory_kernel.py tests/test_wmb_kernel_v2.py   # the memory module: 22 + 94 tests, about 25 s, needs only pytest
+python -m pytest -q tests/test_wmb_*.py               # the writer-memory benchmark and the module: 309 tests, about a minute
+python -m pytest -q tests/test_lifesim_*.py           # LifeSim: 859 tests, about 2 minutes
 ```
 
 Each gate is still an ordinary script, so you can always run one directly —
@@ -64,6 +70,23 @@ Look for [`research`](../../labels/research) and [`independent-review`](../../la
 
 Read [the independence ladder](docs/00-project/independence-ladder.md) first. It explains why much of what once required an expert reviewer is now a mechanical check, and what genuinely still needs human judgement. It also explains why disclosing prior exposure to an artifact is treated as good practice rather than as a disqualification.
 
+### Taking an issue
+
+Comment on the issue before you start — "I'll take this", or the part you will do — so two people do not duplicate the work. Read the whole issue first: most say what "done" means and roughly how long the work takes (the `effort:S`, `effort:M` and `effort:L` labels mean an hour or two, half a day and several sessions). If the first step is a design question, post your answer as a comment before writing code. If you stop, say so in the issue; someone else can pick up from your notes. Ask questions in the issue itself, in any language, rather than privately, so the answer helps the next person. A negative or partial result is a valid result and is recorded as one.
+
+Areas have their own labels: [`kernel`](../../labels/kernel) (the memory module), [`wmb`](../../labels/wmb) (the writer-memory benchmark), [`lifesim`](../../labels/lifesim) (the synthetic-life generator). The pinned issue [Status and where help is wanted](../../issues/84) lists everything open by effort.
+
+## The writer-memory track
+
+Since November 2026 part of the work is a memory for an agent that writes, and the instruments to test it. Where things are and how to run them:
+
+| Area | Where | Run | Worth knowing |
+|---|---|---|---|
+| The memory module | live line: `scripts/wmb/kernel/memory_kernel.py` (0.2.0), `tests/test_wmb_kernel_v2.py`; frozen: `scripts/wmb/memory_kernel.py` (0.1.0), `tests/test_wmb_memory_kernel.py` | `python -m pytest -q tests/test_wmb_memory_kernel.py tests/test_wmb_kernel_v2.py` (22 + 94 tests, about 25 s, pytest only; CI runs them on Python 3.14 too) | One standard-library file with no effects on import. Version 0.1.0 is frozen as the instrument of WMB-R1: its digest is declared in that study's `config.json`, so the file is not edited (see "Frozen files" below). Changes go to the live line, with a new `VERSION` and a CHANGELOG paragraph in its docstring (see `scripts/wmb/kernel/README.md`) |
+| The writer-memory benchmark (WMB) | `scripts/wmb/`, `data/lab/wmb-v0/`, `data/lab/wmb-r1-retrieval/`, [specification](docs/11-research-laboratory/memory-benchmark-spec-v0.md) | `python -m pytest -q tests/test_wmb_*.py` (403 tests, about a minute; needs `requirements-dev.txt`) | The judge battery, the small-sample statistics, the record contract and R1. Experiments on a live account's texts publish aggregates only, so some pipelines cannot be re-run outside the maintainers' machine; their tests run on invented fixtures |
+| AAM experiments | `data/lab/aam-*/` (each README is the preregistration and the results) | see the README of the experiment (most have a "Files" section) | Not entered in `data/lab/experiment-registry.csv`. Anything that calls a hosted model needs an issue and a decision first (see below) |
+| LifeSim | `scripts/corpus/lifesim/`, `scripts/lifesim/`, `data/lab/aam-lifesim/` | `python -m pytest -q tests/test_lifesim_*.py` (859 tests, about 2 minutes; ten of the twelve files need only pytest) | A deterministic generator of synthetic lives. Use development seeds 0 to 999 only |
+
 ## Research principles
 
 These apply to every contribution that touches a claim.
@@ -85,11 +108,17 @@ Use the weakest label the evidence supports.
 
 ## Making a change
 
-Work on a branch and open a pull request. CI runs the suite on Python 3.11 and 3.12, verifies the memory log, and rejects any pull request that deletes or rewrites a line of `memory/events.jsonl`.
+Work on a branch and open a pull request. CI runs the suite on Python 3.11 and 3.12, runs the memory module's tests on Python 3.14 (pytest only), verifies the memory log, runs the repository claim audit (it fails on a critical finding, that is a declared hash that no longer matches a frozen file), and rejects any pull request that deletes or rewrites a line of `memory/events.jsonl`.
 
 That last rule is not a formality. The canonical log is append-only: a conclusion is revised by appending a supersession that records the reason, never by editing history so it looks consistent in hindsight.
 
 Keep a pull request to one topic. Describe what sources were added, what claims changed, and what disagreements remain open.
+
+## Frozen files, thresholds and seeds
+
+A preregistered experiment here has a README (the question, the arms, the readings and the thresholds, written before any result) and a `config.json` with its parameters and the SHA-256 digests of the scripts and inputs it ran. The commit that fills those digests is the *freeze*, and after it the frozen files are not edited. If you find a bug in a frozen script or a mistake in a README, open an issue and say what you found; the fix goes in a new version, or in an amendment appended to the README with its reason (see the "Amendments" sections of the existing experiments), never in a silent edit. CI will tell you when a change touches a frozen file: the claim audit (`python scripts/audit_repository_claims.py`) and, for WMB-R1, a test that compares the declared digests with the files. If one of them fails because of your change, do not edit the declaration or the test to make it pass; say so in the pull request, and the maintainers record the change (as `data/lab/wmb-v0/slice0/SUPERSEDED.json` does for slice 0).
+
+Thresholds, practical-significance margins and the rule that turns a number into a verdict are fixed before the first number and are not changed after seeing data, even when the data show they were badly chosen; the honest response is to report the reading as it came out, say the threshold was mistaken, and register a new version with new seeds. Seeds follow the same logic: development seeds are for debugging and may be reused, but confirmation seeds and sealed test epochs are looked at once, so do not run them (LifeSim's confirmation seeds are 5000 to 5099). A gate that fails on the real generator is reported as failed, never tuned away; a null, mixed or negative result is a complete answer. Anything that calls a hosted model API needs an issue and a decision first; no key appears in a script, a README or a log. Never commit texts from private sources (where an experiment used a live account's texts, only aggregates are published) and never paste absolute paths of your machine into a document; use paths relative to the repository.
 
 ## Adding a paper
 
@@ -100,8 +129,7 @@ Keep a pull request to one topic. Describe what sources were added, what claims 
 
 `status` records what kind of publication it is; `reading_state` records how far
 we engaged with it. They are different questions and were conflated until the
-audit measured the cost: of 174 catalogued sources, 57 had never been cited by
-any claim and only 18 had a full-read note. See
+audit measured the cost: of 174 catalogued sources, 57 had never been cited by any claim and only 18 had a full-read note (on 23 August; today: 220, 57 and 24; `python scripts/audit_source_pipeline.py` prints the current figures). See
 [`data/catalogs/README-reading-state.md`](data/catalogs/README-reading-state.md).
 
 Raise a reading state in the same change that adds its artifact — `full-read`
