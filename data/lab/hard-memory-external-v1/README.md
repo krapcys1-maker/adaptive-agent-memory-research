@@ -1,6 +1,6 @@
 # Hard external memory test: ordinary retrieval fails
 
-**The existing ordinary kernel path scores 0/100 exact answers on both readers.** The frozen readiness target was 80/100 on Flash K. It is not met. The previous eight-slot 48/48 delivered result does not establish a working general memory system, superiority to memory companies or recall over centuries.
+**The existing ordinary kernel path scores 0/100 exact answers on both readers.** The frozen self-set readiness target was 80/100 on Flash K. It is not met. That target was not calibrated as an industry standard; the [audit](../../../docs/00-project/project-delivery-audit-2026-11-04.md) records the authors' much lower published FC-MH results under different settings, which cannot be used as a direct comparison. The previous eight-slot 48/48 delivered result does not establish a working general memory system, superiority to memory companies or recall over centuries.
 
 This is the **entire 100-question `factconsolidation_mh_262k` variant** of official [MemoryAgentBench](https://github.com/HUST-AI-HYZ/MemoryAgentBench), not a self-authored easy fixture or a sample selected for success. It remains one shared public history, not 100 independent histories. This offline raw-line adapter differs from the official incremental-agent protocol; these are not comparable full-agent leaderboard scores.
 

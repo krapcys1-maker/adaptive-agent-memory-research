@@ -559,5 +559,17 @@
     "seconds": 378.6,
     "memory_events_at_that_run": 349,
     "final_memory_and_claim_checks": "rerun after documentation and memory additions"
+  },
+  "hardness_calibration": {
+    "source": "https://arxiv.org/html/2507.05257#S4.T3",
+    "version": "arXiv:2507.05257v4, 28 June 2026",
+    "authors_fc_mh_percent": {
+      "BM25": 3,
+      "Mem0": 2,
+      "GPT-5-mini": 28
+    },
+    "matched_to_our_protocol": false,
+    "our_self_set_target_percent": 80,
+    "target_is_established_industry_readiness_threshold": false
   }
 }

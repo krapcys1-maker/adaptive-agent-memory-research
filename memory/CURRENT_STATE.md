@@ -14,6 +14,8 @@ kernel adapter scores 0/100 exact on both Qwen 14B and Flash; unlocked BM25 scor
 1/100 and 4/100. A post-hoc local iterative follow-up reaches only 4/100 after
 402 primary rounds; two evidence-complete Flash audit controls score 1/2.
 These are scoped adapter/reader diagnostics, not the whole project's score.
+The authors' FC-MH baselines are also low under different settings; the 80%
+bar is our self-set aspiration, not a calibrated industry readiness standard.
 The existing AAMR-CANDIDATE-0 is domain-limited and resolves 0/100 addresses on
 that corpus; its earlier 0/4 external pilot was already a known negative result.
 Generic capture/addressing and integrated delivery remain open. NIE's local
