@@ -40,6 +40,8 @@ K supplies no context for 30/100 questions. Simply unlocking ranking is insuffic
 
 The separately frozen [local iterative follow-up](../hard-memory-iterative-v1/PLAN.md) tests bounded read/search rounds without adding gold routing, inferred current labels or answer correction. It uses these same spent public questions after diagnosis and must be reported as post-hoc development. An improvement cannot replace the original failed result or establish external transfer. Its own execution record reports the eventual outcome.
 
+**Audit addendum:** the completed iterative follow-up reached only [4/100](../hard-memory-iterative-v1/README.md), after 402 primary rounds. Two [post-hoc evidence-complete controls](AUDIT_CONTROLS.md), using the last two paid slots in the original task cap, scored [1/2](audit-controls-scores.json). Therefore an exclusively retrieval-based explanation was premature: representation, prompt and reader reasoning remain possible causes. The cumulative [same-task ledger](api-ledger.jsonl) now has **205 attempts, $0.820 permanent reservations and $0.025397 usage-priced upper estimate**, with zero unknown usage. The original 203-call run's recorded completion/budget remains unchanged as historical evidence. The [project audit](../../../docs/00-project/project-delivery-audit-2026-11-04.md) explains why this module/adapter result is not the whole project's score.
+
 ## Reproduction and remaining limits
 
 Run software checks without inference:
