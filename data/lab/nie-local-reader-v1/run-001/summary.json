@@ -1,0 +1,251 @@
+{
+  "complete": true,
+  "ledger_integrity": true,
+  "generation_calls": 24,
+  "writer_chains": 16,
+  "valid_writer_chains": 0,
+  "write_failures": 16,
+  "arms": {
+    "N": {
+      "n_turns": 0,
+      "raw_agreement": 0,
+      "delivered_agreement": 0,
+      "retrieved": 0,
+      "all_three_chain_agreement": 0,
+      "planned_chains": 16,
+      "per_turn": {
+        "0": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "1": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "2": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        }
+      },
+      "guard_resolutions": {},
+      "raw_unknown": 0,
+      "delivered_unknown": 0,
+      "malformed_raw": 0,
+      "per_seed": {
+        "17": {
+          "n_turns": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        },
+        "43": {
+          "n_turns": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        }
+      }
+    },
+    "K": {
+      "n_turns": 0,
+      "raw_agreement": 0,
+      "delivered_agreement": 0,
+      "retrieved": 0,
+      "all_three_chain_agreement": 0,
+      "planned_chains": 16,
+      "per_turn": {
+        "0": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "1": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "2": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        }
+      },
+      "guard_resolutions": {},
+      "raw_unknown": 0,
+      "delivered_unknown": 0,
+      "malformed_raw": 0,
+      "per_seed": {
+        "17": {
+          "n_turns": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        },
+        "43": {
+          "n_turns": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        }
+      }
+    },
+    "O": {
+      "n_turns": 0,
+      "raw_agreement": 0,
+      "delivered_agreement": 0,
+      "retrieved": 0,
+      "all_three_chain_agreement": 0,
+      "planned_chains": 16,
+      "per_turn": {
+        "0": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "1": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "2": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        }
+      },
+      "guard_resolutions": {},
+      "raw_unknown": 0,
+      "delivered_unknown": 0,
+      "malformed_raw": 0,
+      "per_seed": {
+        "17": {
+          "n_turns": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        },
+        "43": {
+          "n_turns": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        }
+      }
+    },
+    "V": {
+      "n_turns": 0,
+      "raw_agreement": 0,
+      "delivered_agreement": 0,
+      "retrieved": 0,
+      "all_three_chain_agreement": 0,
+      "planned_chains": 16,
+      "per_turn": {
+        "0": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "1": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "2": {
+          "n": 0,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        }
+      },
+      "guard_resolutions": {},
+      "raw_unknown": 0,
+      "delivered_unknown": 0,
+      "malformed_raw": 0,
+      "per_seed": {
+        "17": {
+          "n_turns": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        },
+        "43": {
+          "n_turns": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        }
+      }
+    }
+  },
+  "controls": [
+    {
+      "key": "positive-0",
+      "passed": true,
+      "raw": "{\"value\":\"cobalt-47\"}"
+    },
+    {
+      "key": "positive-1",
+      "passed": true,
+      "raw": "{\"value\":\"juniper-83\"}"
+    },
+    {
+      "key": "positive-2",
+      "passed": true,
+      "raw": "{\"value\":\"marble-29\"}"
+    },
+    {
+      "key": "no-record",
+      "passed": true,
+      "raw": "{\"value\":\"UNKNOWN\"}",
+      "guard": {
+        "value": "UNKNOWN",
+        "resolution": "no_evidence",
+        "source_ids": []
+      },
+      "retrieved_ids": []
+    },
+    {
+      "key": "future-only",
+      "passed": true,
+      "raw": "{\"value\":\"UNKNOWN\"}",
+      "guard": {
+        "value": "UNKNOWN",
+        "resolution": "no_evidence",
+        "source_ids": []
+      },
+      "retrieved_ids": []
+    },
+    {
+      "key": "conflict",
+      "passed": true,
+      "raw": "{\"value\":\"UNKNOWN\"}",
+      "guard": {
+        "value": "UNKNOWN",
+        "resolution": "no_evidence",
+        "source_ids": []
+      },
+      "retrieved_ids": []
+    },
+    {
+      "key": "canary-0",
+      "passed": true,
+      "byte_identical_to_first": true,
+      "raw": "{\"value\":\"cobalt-47\"}"
+    },
+    {
+      "key": "canary-1",
+      "passed": true,
+      "byte_identical_to_first": true,
+      "raw": "{\"value\":\"cobalt-47\"}"
+    }
+  ],
+  "larger_offline_test_only": false,
+  "additional_V_benefit_over_K": false,
+  "scope": "Local quantized reader, authored closed slots and supplied routing; no production/P2 replication claim."
+}

@@ -29,6 +29,12 @@ Descriptive readiness for a **larger offline test only**: at least 15/16 V chain
 
 The run manifest pins execution source/config/fixture digests, model digest, options and prompts. Save final response content and usage/timing metadata, never hidden thinking fields. Every attempt is reserved in a ledger before HTTP; incomplete/duplicate records cannot become a complete reading. All public inputs/outputs are authored synthetic data.
 
+## Amendment after run-001, before run-002
+
+Run-001 completed 24 calls: its six initial controls and two canaries passed, but all sixteen writer outputs used the slot ID as the JSON key (for example `{"kettle_colour":"silver"}`) instead of `value`. The values were in the pools, but the declared strict contract rejected the objects. All writer chains therefore failed, downstream reader calls were skipped as declared, and readiness was false. Preserve this result; do not reinterpret it as a successful write or merge it with a replacement run.
+
+Run-002 changes **only the writer transport format** to an explicit JSON schema requiring exactly `value`, with that case's pool as its enum. Reader transport stays ordinary JSON. Prompts, model/digest, seeds, cases, questions, session boundaries, routing, guard, thresholds and scoring are unchanged. `config-v2.json` is separate from the preserved original config. This is a disclosed, result-informed engineering repair to syntax, not a fresh preregistration. Another 216 calls are planned, cap 220 for this run; the two-run task ceiling is 244 attempts and $0 API spend. No automatic retries or model fallback. Neither run can be promoted to P2 replication or production evidence.
+
 ## API references
 
 Use the local native [chat endpoint](https://docs.ollama.com/api/chat), [installed-model listing](https://docs.ollama.com/api/tags) and explicit [runtime parameters](https://docs.ollama.com/modelfile#valid-parameters-and-values). The installed service's actual responses are captured; current online documentation alone does not establish the behavior of this installed version.
