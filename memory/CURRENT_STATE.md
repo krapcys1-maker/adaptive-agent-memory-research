@@ -6,6 +6,20 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
+**Active engineering delivery (2026-11-04, PR #105):** the separate
+[structured runtime](../data/lab/structured-memory-v1/README.md) now completes
+raw text capture, model-derived literal claims, state/provenance and executable
+question paths. On the same spent FC-MH262k100 development questions it scores
+local 55/100 and Flash 59/100 exact; the 80/100 aspiration is unmet. These are
+system-computed answers, not raw reader scores or a leaderboard comparison.
+Post-hoc Flash SubEM is 60; only 64 enumerated schemas contain gold, and a
+fixed-plan oldest-state intervention scores 1. Capture retains four quarantines.
+The [complete fact-only H1 comparison](../data/lab/h1-model-chains-v1/README.md)
+is negative: derived chains leave OBSOLETE leakage at 12/12 dev and 9/12 valid,
+with no answering gain. Evidence-kind addressing and literal case grounding
+are being executed as explicit amendments; their success is not assumed.
+All earlier negative artifacts, frozen kernels and NIE ownership remain intact.
+
 **Latest audit verdict (2026-11-04):** [the delivery audit](../docs/00-project/project-delivery-audit-2026-11-04.md)
 finds working continuity tooling, modules and substantial experiments, but no
 validated generic adaptive memory product. On the [complete hard 100-question
