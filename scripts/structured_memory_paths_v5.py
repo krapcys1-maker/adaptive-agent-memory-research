@@ -11,19 +11,31 @@ import time
 import structured_memory_pipeline_v1 as V1
 import structured_memory_pipeline_v3 as V3
 import nie_reader_pilot as P
-from tools.structured_memory_v1 import key
-from tools.structured_memory_v2 import Memory as MemoryV2
+from tools.structured_memory_v1 import key, Template
+from tools.structured_memory_v2 import Memory as MemoryV2, informative
 
 BASE_IDENTITY = V3.identity
 
 
 class Memory(MemoryV2):
     def __init__(self, *args, **kwargs):
+        if kwargs.get('writable'):
+            raise ValueError('The cached query view is read-only.')
         super().__init__(*args, **kwargs)
         self.resolved = {}
         self.outgoing = {}
         for scope, subject, predicate in self.by_key:
             self.outgoing.setdefault((scope,subject),set()).add(predicate)
+        self.templates_by_scope = {}
+        for row in P.read_rows(self.path):
+            event = row['event']
+            if event['kind'] != 'extract' or not event.get('learn'):
+                continue
+            claims = [c for c in self.claims if c.source == event['source']]
+            if len(claims) == 1:
+                t = Template.learn(self.sources[event['source']].text,claims[0])
+                if t and informative(t):
+                    self.templates_by_scope.setdefault(self.sources[event['source']].scope,set()).add(t)
 
     def resolve(self, scope, subject, predicate, *, valid_at, known_at):
         cache_key = (scope,key(subject),predicate,valid_at,known_at)
@@ -67,14 +79,14 @@ def options(memory, scope, question, *, valid_at, known_at):
     return found, {'expanded':expanded,'search_truncated':bool(queue),'literal_anchors':anchors}
 
 
-def messages(memory, question, plans):
+def messages(memory, question, plans, scope):
     predicates = sorted({s['predicate'] for plan in plans for s in plan['steps']})
     ids = {p:f'R{i}' for i,p in enumerate(predicates)}
     anchors = list(dict.fromkeys(p['anchor'] for p in plans))
     catalog = {}
     for predicate in predicates:
         shells = []
-        for t in memory.templates:
+        for t in sorted(memory.templates_by_scope.get(scope,[]),key=lambda t:(t.before,t.between,t.after,t.predicate)):
             if t.predicate != predicate:
                 continue
             left,right = ('SUBJECT','OBJECT') if t.subject_first else ('OBJECT','SUBJECT')
@@ -110,10 +122,10 @@ def answer(questions, store, output, backend, ledger, scope, valid_at, known_at)
                 start = time.monotonic()
                 plans,trace = options(memory,scope,row['question'],valid_at=valid_at,known_at=known_at)
                 original_count = len(plans)
-                packed = messages(memory,row['question'],plans)
+                packed = messages(memory,row['question'],plans,scope)
                 while plans and len(json.dumps(packed,ensure_ascii=False).encode())>5900:
                     plans.pop()
-                    packed = messages(memory,row['question'],plans)
+                    packed = messages(memory,row['question'],plans,scope)
                 trace.update(available_options=original_count,shown_options=len(plans),
                              input_budget_truncated=len(plans)<original_count)
                 if plans:
