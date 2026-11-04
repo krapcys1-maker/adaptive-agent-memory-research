@@ -30,7 +30,7 @@ def test_routes_synonymous_captured_properties_without_values_or_gold(tmp_path):
         plan={'entity':'Nera','properties':['workspace','work_location']}
         assert V4.selected_sources(view,'test',plan,5,choices)==['b','a']
         assert not V4.selected_sources(view,'test',{'entity':'Nera','properties':['invented']},5,choices)
-        assert not V4.selected_sources(view,'private',plan,5,choices)==['b','a']
+        assert V4.selected_sources(view,'private',plan,5,choices)==[]
 
 
 def test_retrieval_subject_match_is_not_an_unbounded_substring():
