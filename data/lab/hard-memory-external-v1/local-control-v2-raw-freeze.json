@@ -1,0 +1,42 @@
+{
+  "purpose": "Amended local raw freeze before joining benchmark gold",
+  "response_sha256": "91c77908b172964b9962ff52e356576c978e761a45630d885b01b76c2a746f2f",
+  "files": [
+    {
+      "name": "answers.jsonl",
+      "sha256": "54d9dcbc7cc0252a6b66e2ad018fd92207b24515cffed9b73b0d2d0605834798"
+    },
+    {
+      "name": "attempts.jsonl",
+      "sha256": "09b453f287994883c896ab78962a4331745596cd8e644ef80049636cb2a721b3"
+    },
+    {
+      "name": "completion.json",
+      "sha256": "97f0cac95adc1e19b51acf8f63d9a4033f8a24c577adc3e81705be88f07962a1"
+    },
+    {
+      "name": "control-amendment.json",
+      "sha256": "242831c9997a923ed71fa3cde4670783fedfde7b5e4f6896bd35494cf8c4b028"
+    },
+    {
+      "name": "environment.json",
+      "sha256": "176f09803796178a96a0e26d1027a3b190be9f75e424f502c40ed928459a6dec"
+    },
+    {
+      "name": "finished.json",
+      "sha256": "0d1862759a9fc51d3bf0b0c8640dcbedbe09730f7861abfa3821bbbbb39e5b6f"
+    },
+    {
+      "name": "manifest.json",
+      "sha256": "08de355eb890f407c0b6c12812162306ca61a8652143acd40539062aadbe9579"
+    },
+    {
+      "name": "release.json",
+      "sha256": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72"
+    },
+    {
+      "name": "responses.jsonl",
+      "sha256": "91c77908b172964b9962ff52e356576c978e761a45630d885b01b76c2a746f2f"
+    }
+  ]
+}

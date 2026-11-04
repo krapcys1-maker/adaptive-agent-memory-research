@@ -7,6 +7,7 @@ import pytest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 import hard_memory_external_v1 as H
+import hard_memory_local_control_v2 as V
 
 
 @pytest.fixture
@@ -110,3 +111,15 @@ def test_normalized_exact_match_never_becomes_substring_success():
 def test_old_results_cannot_be_overwritten(completed):
     prepared,out,_=completed
     with pytest.raises(FileExistsError):H.run(prepared,out,'flash',out/'ledger',require_clean=False)
+
+
+def test_local_control_amendment_never_changes_primary_messages_or_seeds(tmp_path,monkeypatch):
+    captured=[]
+    def capture(self,key,messages,seed,**kwargs):captured.append((key,messages,seed))
+    monkeypatch.setattr(H.P.LocalReader,'ask',capture)
+    reader=V.Reader(H.R.local_config(H.cfg()),tmp_path)
+    primary=[{'role':'system','content':'primary must stay identical'}]
+    reader.ask('positive-0',[],17)
+    reader.ask('Q003:B',primary,20)
+    assert captured[0]==('positive-0',V.control_messages(H.cfg(),0),7)
+    assert captured[1]==('Q003:B',primary,20) and captured[1][1] is primary
