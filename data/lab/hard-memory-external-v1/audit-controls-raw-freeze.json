@@ -1,0 +1,29 @@
+{
+  "purpose": "Post-hoc ability controls raw freeze before scoring",
+  "files": [
+    {
+      "name": "attempts.jsonl",
+      "sha256": "a99deb7daa1643948ea008dbf73dfdbef17cc6c4f106c5a7fec007ca4d88bfe3"
+    },
+    {
+      "name": "completion.json",
+      "sha256": "f092c0741164f50f237a42b3b4000ee35af92a7ea95889a1a96ce9a460f522aa"
+    },
+    {
+      "name": "environment.json",
+      "sha256": "329688947441931bdaf6a9c6e4c323ed4813825c56f0cb7b45237d1038a28c93"
+    },
+    {
+      "name": "manifest.json",
+      "sha256": "220cae6178f0d8297b2e255b3b4b58860f15d95d4163481e2e94f7d7b9d708d5"
+    },
+    {
+      "name": "packets.jsonl",
+      "sha256": "2732171cc8d34819676d5d4e30547699f3a3f17c2966513daa81e37bca7b6573"
+    },
+    {
+      "name": "responses.jsonl",
+      "sha256": "76d4bb38486428d06c3e8524cf9d2216664fff8bb7dc79e51e0585b8eb581cd3"
+    }
+  ]
+}
