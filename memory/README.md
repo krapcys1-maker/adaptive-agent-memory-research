@@ -22,11 +22,19 @@ Examples:
 
 ```sh
 python tools/project_memory/cli.py status
+python tools/project_memory/cli.py verify
+python tools/project_memory/cli.py verify --format json
+python tools/project_memory/cli.py --root ANOTHER_PROJECT verify --format text
 python tools/project_memory/cli.py search "emotional salience consolidation"
 python tools/project_memory/cli.py context "compare memory candidates" --char-budget 8000
 python tools/project_memory/cli.py add --kind finding --title "Short title" --summary "Durable claim" --source "paper DOI or repository path" --confidence medium
 python tools/project_memory/cli.py supersede PM-YYYYMMDD-xxxxxxxx --reason "New evidence" --summary "Revised conclusion"
 ```
+
+`verify` reuses the repository's integrity verifier on the selected root's
+`memory/events.jsonl`. It is read-only and does not create/rebuild the SQLite
+index or a missing log. Exit 0 means clean; exit 1 means a violation or missing
+log. JSON format writes one JSON object to stdout, suitable for a pipeline.
 
 ## Design boundaries
 

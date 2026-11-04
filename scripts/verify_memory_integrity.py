@@ -394,7 +394,8 @@ def main(argv: list[str] | None = None) -> int:
     if violations:
         print(f"\nFAILED: {len(violations)} integrity violation(s).", file=sys.stderr)
         return 1
-    print("\nOK: canonical memory log satisfies every mechanical invariant.")
+    if arguments.format == "text":
+        print("\nOK: canonical memory log satisfies every mechanical invariant.")
     return 0
 
 
