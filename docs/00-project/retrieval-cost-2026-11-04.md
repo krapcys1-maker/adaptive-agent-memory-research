@@ -22,3 +22,9 @@ The existing scripts are mutable experiment runners, not among the script declar
 The fresh E1 baseline unexpectedly matched its glossary arm. Inspection identified an integration defect: `MemoryStore.search` now defaults to `expand=True`, while the legacy E1 runner omitted the argument despite defining B1 as lexical-only. E2 and association E3 already pass `expand=False` explicitly. The initial fresh E1 JSON remains preserved with its actual inherited policy; it is not labelled a pure lexical baseline.
 
 E1 now explicitly disables automatic expansion in every arm, so only labelled B3 receives the authored glossary. A regression assertion pins that policy for all three project-memory runners. This changes E1's new execution to restore its documented arm definition; it does not change published historical results or embedding inputs. A separate corrected-E1 file and source receipt record the rerun on the same snapshot. This is a disclosed post-first-run integration amendment, not an undeclared favorable parameter choice.
+
+## Delivered measurements and verification
+
+The [result packet](../../../data/lab/retrieval-cost-v1/README.md) separates the reconstructible H1 costs, unavailable historical costs, and fresh measurements on the pinned 333-event snapshot. The initial E1 execution and its explicit-policy correction are both retained. The dense demonstration used existing local model files with downloads disabled; file digests were unchanged, and the installed FastEmbed pooling warning is recorded rather than treating this as a historical replication.
+
+`python tasks.py check` passed on 2026-11-04: 2,853 tests passed, 20 skipped, two existing warnings; memory integrity and claim audit also passed (331.6 seconds overall). Focused runner/helper tests passed. No frozen kernel, declared WMB-R1 script, or historical measurement JSON was changed. CI is recorded separately on the published PR head.
