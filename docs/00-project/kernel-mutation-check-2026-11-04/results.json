@@ -1,0 +1,1252 @@
+{
+  "0.1.0": {
+    "initial": {
+      "version": "0.1.0",
+      "source_sha256": "712fd83b20d1467e175c83ee74e4bcf4c32c56f4ce83d5f3aef853b19b31c529",
+      "test_sha256": {
+        "tests\\test_wmb_memory_kernel.py": "9c8e9f30a3643a2bad0eb34c2a662462dc87077576e290b4834676da49e1ada1"
+      },
+      "catalogue_sha256": "133225657d032277f517b760366c1e88ac2e74d9ac7dd4c433e05235d8e41bdd",
+      "counts": {
+        "killed": 37,
+        "survived": 12,
+        "error": 0
+      },
+      "files_unchanged": true,
+      "baseline_test_output": "22 passed in 9.15s",
+      "mutants": [
+        {
+          "name": "build-as-of-inclusive",
+          "outcome": "survived",
+          "seconds": 10.516,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "retrieve-strict-future",
+          "outcome": "killed",
+          "seconds": 0.953,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "replacement-effective-boundary",
+          "outcome": "survived",
+          "seconds": 18.36,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "replacement-ignores-date",
+          "outcome": "killed",
+          "seconds": 1.875,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "fiction-unrestricted",
+          "outcome": "killed",
+          "seconds": 1.032,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "persona-task-scope",
+          "outcome": "killed",
+          "seconds": 0.844,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "names-task-scope",
+          "outcome": "killed",
+          "seconds": 0.828,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "names-disabled",
+          "outcome": "killed",
+          "seconds": 0.812,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "embedding-gate",
+          "outcome": "killed",
+          "seconds": 0.828,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "embedding-reason",
+          "outcome": "killed",
+          "seconds": 0.843,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "lexical-reason",
+          "outcome": "killed",
+          "seconds": 0.86,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "name-reason",
+          "outcome": "killed",
+          "seconds": 0.844,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "top-k",
+          "outcome": "killed",
+          "seconds": 0.844,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "ranking",
+          "outcome": "killed",
+          "seconds": 0.812,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "normalize-vectors",
+          "outcome": "killed",
+          "seconds": 13.015,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "reject-vector-count",
+          "outcome": "killed",
+          "seconds": 12.547,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "reject-vector-dimensions",
+          "outcome": "survived",
+          "seconds": 19.234,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "duplicate-counter",
+          "outcome": "killed",
+          "seconds": 0.906,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "future-counter",
+          "outcome": "killed",
+          "seconds": 0.906,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "month-precision",
+          "outcome": "killed",
+          "seconds": 0.969,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "day-precision",
+          "outcome": "killed",
+          "seconds": 1.141,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "hour-precision",
+          "outcome": "killed",
+          "seconds": 1.141,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "zone-sign",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-order",
+          "outcome": "killed",
+          "seconds": 1.218,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-quantile",
+          "outcome": "killed",
+          "seconds": 1.218,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-rounding",
+          "outcome": "survived",
+          "seconds": 22.484,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-future-flag",
+          "outcome": "killed",
+          "seconds": 1.11,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-support-flag",
+          "outcome": "killed",
+          "seconds": 1.141,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-spurious-flag",
+          "outcome": "killed",
+          "seconds": 1.141,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-fiction-flag",
+          "outcome": "killed",
+          "seconds": 1.14,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-ok",
+          "outcome": "killed",
+          "seconds": 1.047,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-callback-count",
+          "outcome": "killed",
+          "seconds": 1.125,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-raw-ids-opt-in",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-raw-ids-content",
+          "outcome": "killed",
+          "seconds": 1.062,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "rare-df-boundary",
+          "outcome": "survived",
+          "seconds": 17.093,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "rare-name-length",
+          "outcome": "survived",
+          "seconds": 17.0,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-ies-boundary",
+          "outcome": "survived",
+          "seconds": 24.547,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-ss",
+          "outcome": "survived",
+          "seconds": 11.954,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-possessive",
+          "outcome": "killed",
+          "seconds": 11.984,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "analyse-stop-words",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "analyse-inside-name",
+          "outcome": "survived",
+          "seconds": 12.36,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "query-length-cap",
+          "outcome": "survived",
+          "seconds": 11.89,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-two-content-words",
+          "outcome": "survived",
+          "seconds": 11.625,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-no-queries",
+          "outcome": "killed",
+          "seconds": 0.953,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-no-future",
+          "outcome": "survived",
+          "seconds": 11.547,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-order",
+          "outcome": "killed",
+          "seconds": 1.031,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-trace-mode",
+          "outcome": "killed",
+          "seconds": 1.016,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-angle",
+          "outcome": "killed",
+          "seconds": 1.156,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-query-privacy",
+          "outcome": "killed",
+          "seconds": 1.14,
+          "equivalent_reason": ""
+        }
+      ]
+    },
+    "final": {
+      "version": "0.1.0",
+      "source_sha256": "712fd83b20d1467e175c83ee74e4bcf4c32c56f4ce83d5f3aef853b19b31c529",
+      "test_sha256": {
+        "tests\\test_wmb_memory_kernel_mutants.py": "b517af294a502da9c958b5884c574e8cc00c9a8340eb0b4101ca124244109e9f",
+        "tests\\test_wmb_memory_kernel.py": "9c8e9f30a3643a2bad0eb34c2a662462dc87077576e290b4834676da49e1ada1"
+      },
+      "catalogue_sha256": "133225657d032277f517b760366c1e88ac2e74d9ac7dd4c433e05235d8e41bdd",
+      "counts": {
+        "killed": 49,
+        "survived": 0,
+        "error": 0
+      },
+      "files_unchanged": true,
+      "baseline_test_output": "50 passed in 9.35s",
+      "mutants": [
+        {
+          "name": "build-as-of-inclusive",
+          "outcome": "killed",
+          "seconds": 0.812,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "retrieve-strict-future",
+          "outcome": "killed",
+          "seconds": 0.796,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "replacement-effective-boundary",
+          "outcome": "killed",
+          "seconds": 0.89,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "replacement-ignores-date",
+          "outcome": "killed",
+          "seconds": 0.875,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "fiction-unrestricted",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "persona-task-scope",
+          "outcome": "killed",
+          "seconds": 1.109,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "names-task-scope",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "names-disabled",
+          "outcome": "killed",
+          "seconds": 0.891,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "embedding-gate",
+          "outcome": "killed",
+          "seconds": 0.907,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "embedding-reason",
+          "outcome": "killed",
+          "seconds": 1.062,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "lexical-reason",
+          "outcome": "killed",
+          "seconds": 0.75,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "name-reason",
+          "outcome": "killed",
+          "seconds": 0.875,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "top-k",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "ranking",
+          "outcome": "killed",
+          "seconds": 1.063,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "normalize-vectors",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "reject-vector-count",
+          "outcome": "killed",
+          "seconds": 1.094,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "reject-vector-dimensions",
+          "outcome": "killed",
+          "seconds": 0.859,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "duplicate-counter",
+          "outcome": "killed",
+          "seconds": 1.079,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "future-counter",
+          "outcome": "killed",
+          "seconds": 1.062,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "month-precision",
+          "outcome": "killed",
+          "seconds": 1.032,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "day-precision",
+          "outcome": "killed",
+          "seconds": 1.063,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "hour-precision",
+          "outcome": "killed",
+          "seconds": 0.828,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "zone-sign",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-order",
+          "outcome": "killed",
+          "seconds": 1.047,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-quantile",
+          "outcome": "killed",
+          "seconds": 1.062,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-rounding",
+          "outcome": "killed",
+          "seconds": 0.891,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-future-flag",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-support-flag",
+          "outcome": "killed",
+          "seconds": 0.906,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-spurious-flag",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-fiction-flag",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-ok",
+          "outcome": "killed",
+          "seconds": 1.296,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-callback-count",
+          "outcome": "killed",
+          "seconds": 1.469,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-raw-ids-opt-in",
+          "outcome": "killed",
+          "seconds": 1.266,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-raw-ids-content",
+          "outcome": "killed",
+          "seconds": 1.109,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "rare-df-boundary",
+          "outcome": "killed",
+          "seconds": 0.922,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "rare-name-length",
+          "outcome": "killed",
+          "seconds": 0.891,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-ies-boundary",
+          "outcome": "killed",
+          "seconds": 0.859,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-ss",
+          "outcome": "killed",
+          "seconds": 0.875,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-possessive",
+          "outcome": "killed",
+          "seconds": 0.86,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "analyse-stop-words",
+          "outcome": "killed",
+          "seconds": 1.047,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "analyse-inside-name",
+          "outcome": "killed",
+          "seconds": 0.859,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "query-length-cap",
+          "outcome": "killed",
+          "seconds": 0.875,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-two-content-words",
+          "outcome": "killed",
+          "seconds": 0.922,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-no-queries",
+          "outcome": "killed",
+          "seconds": 1.062,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-no-future",
+          "outcome": "killed",
+          "seconds": 0.891,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-order",
+          "outcome": "killed",
+          "seconds": 1.062,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-trace-mode",
+          "outcome": "killed",
+          "seconds": 1.046,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-angle",
+          "outcome": "killed",
+          "seconds": 1.016,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-query-privacy",
+          "outcome": "killed",
+          "seconds": 1.016,
+          "equivalent_reason": ""
+        }
+      ]
+    }
+  },
+  "0.2.0": {
+    "initial": {
+      "version": "0.2.0",
+      "source_sha256": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "test_sha256": {
+        "tests\\test_wmb_kernel_v2.py": "9b6a7d0a8f5efb4b470fe256b9a5afa9d763e1872098497d6dadd6871fdb6cf9"
+      },
+      "catalogue_sha256": "060e84a798ac3a64e2dd90db952cf8b724e2e16344c05ef757f1f3987bd7e951",
+      "counts": {
+        "killed": 47,
+        "survived": 2,
+        "error": 0
+      },
+      "files_unchanged": true,
+      "baseline_test_output": "94 passed in 18.58s",
+      "mutants": [
+        {
+          "name": "build-as-of-inclusive",
+          "outcome": "killed",
+          "seconds": 1.657,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "retrieve-strict-future",
+          "outcome": "killed",
+          "seconds": 1.641,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "replacement-effective-boundary",
+          "outcome": "killed",
+          "seconds": 1.922,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "replacement-ignores-date",
+          "outcome": "killed",
+          "seconds": 1.875,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "fiction-unrestricted",
+          "outcome": "killed",
+          "seconds": 1.656,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "persona-task-scope",
+          "outcome": "killed",
+          "seconds": 1.688,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "names-task-scope",
+          "outcome": "killed",
+          "seconds": 1.844,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "names-disabled",
+          "outcome": "killed",
+          "seconds": 1.875,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "embedding-gate",
+          "outcome": "survived",
+          "seconds": 21.438,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "embedding-reason",
+          "outcome": "killed",
+          "seconds": 1.765,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "lexical-reason",
+          "outcome": "killed",
+          "seconds": 1.578,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "name-reason",
+          "outcome": "killed",
+          "seconds": 1.86,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "top-k",
+          "outcome": "killed",
+          "seconds": 1.719,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "ranking",
+          "outcome": "killed",
+          "seconds": 1.594,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "normalize-vectors",
+          "outcome": "killed",
+          "seconds": 1.781,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "reject-vector-count",
+          "outcome": "killed",
+          "seconds": 1.734,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "reject-vector-dimensions",
+          "outcome": "killed",
+          "seconds": 1.64,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "duplicate-counter",
+          "outcome": "killed",
+          "seconds": 1.641,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "future-counter",
+          "outcome": "killed",
+          "seconds": 16.063,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "month-precision",
+          "outcome": "killed",
+          "seconds": 15.797,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "day-precision",
+          "outcome": "killed",
+          "seconds": 15.281,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "hour-precision",
+          "outcome": "killed",
+          "seconds": 1.844,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "zone-sign",
+          "outcome": "killed",
+          "seconds": 1.828,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-order",
+          "outcome": "killed",
+          "seconds": 2.11,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-quantile",
+          "outcome": "killed",
+          "seconds": 2.015,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-rounding",
+          "outcome": "killed",
+          "seconds": 1.578,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-future-flag",
+          "outcome": "killed",
+          "seconds": 2.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-support-flag",
+          "outcome": "killed",
+          "seconds": 1.796,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-spurious-flag",
+          "outcome": "killed",
+          "seconds": 1.859,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-fiction-flag",
+          "outcome": "killed",
+          "seconds": 2.047,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-ok",
+          "outcome": "killed",
+          "seconds": 2.61,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-callback-count",
+          "outcome": "killed",
+          "seconds": 2.016,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-raw-ids-opt-in",
+          "outcome": "killed",
+          "seconds": 1.844,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-raw-ids-content",
+          "outcome": "killed",
+          "seconds": 1.641,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "rare-df-boundary",
+          "outcome": "killed",
+          "seconds": 1.921,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "rare-name-length",
+          "outcome": "killed",
+          "seconds": 2.203,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-irregular",
+          "outcome": "killed",
+          "seconds": 1.812,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-possessive",
+          "outcome": "killed",
+          "seconds": 1.906,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "analyse-inside-name",
+          "outcome": "killed",
+          "seconds": 1.704,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "analyse-invisible",
+          "outcome": "killed",
+          "seconds": 14.735,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "query-length-cap",
+          "outcome": "killed",
+          "seconds": 15.047,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-three-content-words",
+          "outcome": "killed",
+          "seconds": 1.953,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-distinctive-boundary",
+          "outcome": "survived",
+          "seconds": 14.843,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-no-queries",
+          "outcome": "killed",
+          "seconds": 1.812,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-invalid-share",
+          "outcome": "killed",
+          "seconds": 14.516,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-positive-floor",
+          "outcome": "killed",
+          "seconds": 1.563,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-order",
+          "outcome": "killed",
+          "seconds": 1.547,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-trace-mode",
+          "outcome": "killed",
+          "seconds": 1.5,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-query-privacy",
+          "outcome": "killed",
+          "seconds": 1.484,
+          "equivalent_reason": ""
+        }
+      ]
+    },
+    "final": {
+      "version": "0.2.0",
+      "source_sha256": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "test_sha256": {
+        "tests\\test_wmb_memory_kernel_mutants.py": "b517af294a502da9c958b5884c574e8cc00c9a8340eb0b4101ca124244109e9f",
+        "tests\\test_wmb_kernel_v2.py": "9b6a7d0a8f5efb4b470fe256b9a5afa9d763e1872098497d6dadd6871fdb6cf9"
+      },
+      "catalogue_sha256": "060e84a798ac3a64e2dd90db952cf8b724e2e16344c05ef757f1f3987bd7e951",
+      "counts": {
+        "killed": 49,
+        "survived": 0,
+        "error": 0
+      },
+      "files_unchanged": true,
+      "baseline_test_output": "122 passed in 12.98s",
+      "mutants": [
+        {
+          "name": "build-as-of-inclusive",
+          "outcome": "killed",
+          "seconds": 1.125,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "retrieve-strict-future",
+          "outcome": "killed",
+          "seconds": 1.11,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "replacement-effective-boundary",
+          "outcome": "killed",
+          "seconds": 1.141,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "replacement-ignores-date",
+          "outcome": "killed",
+          "seconds": 1.125,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "fiction-unrestricted",
+          "outcome": "killed",
+          "seconds": 1.421,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "persona-task-scope",
+          "outcome": "killed",
+          "seconds": 1.36,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "names-task-scope",
+          "outcome": "killed",
+          "seconds": 1.547,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "names-disabled",
+          "outcome": "killed",
+          "seconds": 1.125,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "embedding-gate",
+          "outcome": "killed",
+          "seconds": 1.172,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "embedding-reason",
+          "outcome": "killed",
+          "seconds": 1.563,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "lexical-reason",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "name-reason",
+          "outcome": "killed",
+          "seconds": 1.125,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "top-k",
+          "outcome": "killed",
+          "seconds": 1.469,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "ranking",
+          "outcome": "killed",
+          "seconds": 1.438,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "normalize-vectors",
+          "outcome": "killed",
+          "seconds": 1.64,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "reject-vector-count",
+          "outcome": "killed",
+          "seconds": 1.578,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "reject-vector-dimensions",
+          "outcome": "killed",
+          "seconds": 1.078,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "duplicate-counter",
+          "outcome": "killed",
+          "seconds": 1.593,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "future-counter",
+          "outcome": "killed",
+          "seconds": 1.407,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "month-precision",
+          "outcome": "killed",
+          "seconds": 1.594,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "day-precision",
+          "outcome": "killed",
+          "seconds": 1.547,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "hour-precision",
+          "outcome": "killed",
+          "seconds": 1.172,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "zone-sign",
+          "outcome": "killed",
+          "seconds": 1.437,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-order",
+          "outcome": "killed",
+          "seconds": 1.594,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-quantile",
+          "outcome": "killed",
+          "seconds": 1.578,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-rounding",
+          "outcome": "killed",
+          "seconds": 1.156,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-future-flag",
+          "outcome": "killed",
+          "seconds": 1.938,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-support-flag",
+          "outcome": "killed",
+          "seconds": 1.187,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-spurious-flag",
+          "outcome": "killed",
+          "seconds": 1.625,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-fiction-flag",
+          "outcome": "killed",
+          "seconds": 1.89,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-ok",
+          "outcome": "killed",
+          "seconds": 1.859,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-callback-count",
+          "outcome": "killed",
+          "seconds": 1.625,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-raw-ids-opt-in",
+          "outcome": "killed",
+          "seconds": 1.375,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-raw-ids-content",
+          "outcome": "killed",
+          "seconds": 1.562,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "rare-df-boundary",
+          "outcome": "killed",
+          "seconds": 1.172,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "rare-name-length",
+          "outcome": "killed",
+          "seconds": 1.157,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-irregular",
+          "outcome": "killed",
+          "seconds": 1.578,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "stem-possessive",
+          "outcome": "killed",
+          "seconds": 1.125,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "analyse-inside-name",
+          "outcome": "killed",
+          "seconds": 1.172,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "analyse-invisible",
+          "outcome": "killed",
+          "seconds": 13.359,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "query-length-cap",
+          "outcome": "killed",
+          "seconds": 1.187,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-three-content-words",
+          "outcome": "killed",
+          "seconds": 1.953,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "guard-distinctive-boundary",
+          "outcome": "killed",
+          "seconds": 1.187,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-no-queries",
+          "outcome": "killed",
+          "seconds": 1.563,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-invalid-share",
+          "outcome": "killed",
+          "seconds": 13.219,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "calibration-positive-floor",
+          "outcome": "killed",
+          "seconds": 1.109,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-order",
+          "outcome": "killed",
+          "seconds": 1.562,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "render-trace-mode",
+          "outcome": "killed",
+          "seconds": 1.578,
+          "equivalent_reason": ""
+        },
+        {
+          "name": "log-query-privacy",
+          "outcome": "killed",
+          "seconds": 1.515,
+          "equivalent_reason": ""
+        }
+      ]
+    }
+  }
+}
