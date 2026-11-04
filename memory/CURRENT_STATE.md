@@ -6,19 +6,27 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
-**Latest executed boundary (2026-11-04):** the [matched local/API reader comparison](../data/lab/reader-model-compare-v1/README.md)
-adds 400 real calls using the previous sixteen persisted journals. Local Qwen 14B
-reaches 48/48 raw and delivered V answers; authorized DeepSeek V4.1 Flash reaches
-46/48 raw, 48/48 delivered (two UNKNOWN corrections of one repeated semantic case).
-Ordinary retrieval still misses all sixteen paraphrases: K is 26/48 for 14B and
-32/48 for Flash, with no complete three-turn chains. All 400 new requests and
-384 primary turns were reconstructed without a model judge. API usage-priced
-upper estimate: $0.012777; permanent reservations $0.800, below the $1 task cap.
-Codex owns design and interpretation; local/API models test memory behavior.
-The next boundary is realistic text-to-slot routing and typed capture, not a
-larger-reader substitution. Eight authored fields, supplied routing and typed
-writers remain assumptions; actual NIE prompts, revisions and production benefit
-remain unvalidated. Prior P2, LifeSim and R1 limitations still stand.
+**Latest audit verdict (2026-11-04):** [the delivery audit](../docs/00-project/project-delivery-audit-2026-11-04.md)
+finds working continuity tooling, modules and substantial experiments, but no
+validated generic adaptive memory product. On the [complete hard 100-question
+262k variant](../data/lab/hard-memory-external-v1/README.md), the ordinary raw-line
+kernel adapter scores 0/100 exact on both Qwen 14B and Flash; unlocked BM25 scores
+1/100 and 4/100. A post-hoc local iterative follow-up reaches only 4/100 after
+402 primary rounds; two evidence-complete Flash audit controls score 1/2.
+These are scoped adapter/reader diagnostics, not the whole project's score.
+The authors' FC-MH baselines are also low under different settings; the 80%
+bar is our self-set aspiration, not a calibrated industry readiness standard.
+The existing AAMR-CANDIDATE-0 is domain-limited and resolves 0/100 addresses on
+that corpus; its earlier 0/4 external pilot was already a known negative result.
+Generic capture/addressing and integrated delivery remain open. NIE's local
+history path is limited to two entries from 60 days in E23 on; its separate
+shadow does not change prompts. Deployed server state is not verified.
+
+**Prior controlled boundary:** the [matched reader comparison](../data/lab/reader-model-compare-v1/README.md)
+retains its narrow result: eight authored slots with supplied routing/typed
+claims, local V 48/48 raw and Flash V 46/48 raw to 48/48 delivered. It does not
+solve free-text capture or general transfer. P2's failed stability reading,
+LifeSim's four development validity failures and R1's judge limitation remain.
 
 **November orientation (2026-11-04):** the [laboratory map](../docs/11-research-laboratory/lab-map.md)
 is the entry point for AAM writing-memory experiments, the persona battery, WMB,

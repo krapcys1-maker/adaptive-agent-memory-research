@@ -1,0 +1,8 @@
+{
+  "n": 100,
+  "baseline_correct": 1,
+  "iterative_correct": 4,
+  "repairs": 3,
+  "regressions": 0,
+  "authority": "Post-hoc same-question development; not independent transfer or validated readiness."
+}

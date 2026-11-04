@@ -1,0 +1,41 @@
+{
+  "purpose": "Completed iterative raw output freeze before score join",
+  "files": [
+    {
+      "name": "answers.jsonl",
+      "sha256": "25cb4f05acd316267740144075b910ad0eee62ebd097e224389255b76e14441b"
+    },
+    {
+      "name": "attempts.jsonl",
+      "sha256": "5643946686d1265822411d3ed70122bd49d48d05eb88f63491b1d5c7364d9782"
+    },
+    {
+      "name": "completion.json",
+      "sha256": "36e25adcf69d5603b5d281b8a35fd3eb70dd6a46c78e4866f0ab2521b55e1f06"
+    },
+    {
+      "name": "environment.json",
+      "sha256": "97f816e012b43a569d1ad3e979ec972ff33d9f3ae0d93a0d82ab109cdda54910"
+    },
+    {
+      "name": "finished.json",
+      "sha256": "81b1ecf5fb685be68cf40a32ef11d1f003f2940f7776157b6801bb1f41bf7602"
+    },
+    {
+      "name": "manifest.json",
+      "sha256": "2c37db2d9dd40a35d921f5f68622d262b9f89302552a452344615c00404bbfbb"
+    },
+    {
+      "name": "release.json",
+      "sha256": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72"
+    },
+    {
+      "name": "responses.jsonl",
+      "sha256": "1e53defee4cee592ab212e8651641331325bdbd0f7d7ca7bd6c1c031d748ef9d"
+    },
+    {
+      "name": "trace.jsonl",
+      "sha256": "0750d0ad0686f1bd89dd00e33caeaf73bb43a168a73da5df8e7bdbcb9e705f81"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Evidence-complete audit controls, selected after the primary failure
+
+The primary 0/100 must not be attributed solely to retrieval without checking reading ability. Test the first two source-order questions again with all manually identified chain assertions, including the old/new relation versions, copied exactly from the raw archive. This is an **oracle, post-hoc, n=2 diagnostic**, never a replacement for primary results or an independent test. It cannot establish the cause of all 100 failures.
+
+Freeze `scripts/reviews/hard_memory_ability_controls_v1.py` and its explicit source-ID selection before the calls. Keep the original primary system prompt, model, non-thinking setting, output budget and seeds. Do not send gold labels or a supplied final value. Raw results must be frozen before scoring this control.
+
+Use exactly two Flash calls from the **remaining two slots of the original 205-call hard-task maximum**, on the same append-only ledger. No new paid budget or ledger reset: 203+2=205 attempts, at most $0.820 permanent reservations under the original $1 cap. The local iterative run is already complete and no new local training or repair is performed for this audit. Failures remain failures. A correct oracle control shows only that this reader can solve this supplied chain under this prompt on that case; it does not validate automatic retrieval, a general memory product or superiority to another system.

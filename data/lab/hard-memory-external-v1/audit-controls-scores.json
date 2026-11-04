@@ -1,0 +1,27 @@
+{
+  "scope": "Post-hoc n=2 oracle diagnostic, not primary performance or an independent test",
+  "n": 2,
+  "exact": 1,
+  "per_question": [
+    {
+      "id": "Q000",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false
+    },
+    {
+      "id": "Q001",
+      "exact": true,
+      "f1": 1.0,
+      "substring": true
+    }
+  ],
+  "budget": {
+    "reserved_calls": 205,
+    "reserved_usd": 0.82,
+    "usage_priced_upper_usd": 0.025397,
+    "unknown_usage_attempts": 0,
+    "cap_usd": 1.0,
+    "cost_semantics": "Permanent reservations and peak/uncached usage upper estimate; not an account invoice."
+  }
+}

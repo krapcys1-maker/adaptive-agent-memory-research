@@ -1,0 +1,575 @@
+{
+  "snapshot_main": "6099cdb9f9ed0f055c2f405253a7eac3db01fe9e",
+  "git_history": {
+    "main_commits": 509,
+    "first_date": "2026-08-22T14:29:45+03:00",
+    "last_date": "2026-11-04T16:04:12+02:00",
+    "days": {
+      "2026-11-04": 64,
+      "2026-11-02": 32,
+      "2026-11-01": 90,
+      "2026-08-25": 4,
+      "2026-08-24": 41,
+      "2026-08-23": 194,
+      "2026-08-22": 84
+    },
+    "coauthor_claude_commits": 192,
+    "coauthor_codex_commits": 0
+  },
+  "attribution_caveat": "Coauthors are minimum explicit attribution only; shared account identity is not reliable per-agent attribution or hours worked.",
+  "merged_prs": [
+    {
+      "number": 103,
+      "title": "Check typed-memory reader transfer on local Qwen 14B and Flash",
+      "merged_at": "2026-11-04T14:04:12Z",
+      "merge_commit": "6099cdb9f9ed0f055c2f405253a7eac3db01fe9e"
+    },
+    {
+      "number": 102,
+      "title": "Test the journal-to-reader loop with a retrieved typed-fact contract",
+      "merged_at": "2026-11-04T12:45:16Z",
+      "merge_commit": "f6cce08f97f58b7fb78495889c81a1ee8580aff2"
+    },
+    {
+      "number": 101,
+      "title": "Bridge published persona details to a read-only offline kernel replay",
+      "merged_at": "2026-11-04T09:05:22Z",
+      "merge_commit": "aaab6db8ccfbc920cec5d76a79bf996b3d0623d3"
+    },
+    {
+      "number": 100,
+      "title": "Diagnose LifeSim development failures without changing the instrument",
+      "merged_at": "2026-11-04T08:51:35Z",
+      "merge_commit": "c38ad1558c40a7bd7eb7648c15ccad61a24b12bf"
+    },
+    {
+      "number": 99,
+      "title": "Measure coverage and BM25 ranking and gates on public suites",
+      "merged_at": "2026-11-04T08:27:01Z",
+      "merge_commit": "72f75226159e7a1191c769c7815d0c9c624c7b42"
+    },
+    {
+      "number": 98,
+      "title": "Report comparable retrieval costs and preserve snapshot provenance",
+      "merged_at": "2026-11-04T08:17:30Z",
+      "merge_commit": "2a22fe5c468805db6804b6b26b6c3b9ce9866332"
+    },
+    {
+      "number": 97,
+      "title": "Map the November laboratory and refresh entry-point navigation",
+      "merged_at": "2026-11-04T07:27:00Z",
+      "merge_commit": "ca52f14230c55c38cdf8c4bc433cb9edb81bcf1d"
+    },
+    {
+      "number": 96,
+      "title": "Check LifeSim determinism across Windows and macOS Python versions",
+      "merged_at": "2026-11-04T07:13:36Z",
+      "merge_commit": "7a04567cbb338f7ce07782488ba69f97aa63d4eb"
+    },
+    {
+      "number": 95,
+      "title": "Add read-only verify to the project-memory CLI",
+      "merged_at": "2026-11-04T07:12:17Z",
+      "merge_commit": "8adf77dfdd4c72db3d214b58d108adab4c149459"
+    },
+    {
+      "number": 94,
+      "title": "Make memory kernel mutation checks reproducible and close test gaps",
+      "merged_at": "2026-11-04T07:11:29Z",
+      "merge_commit": "697aa18315f973940697010d579c415e239dfd77"
+    },
+    {
+      "number": 93,
+      "title": "Fix persona battery run identity and completeness with a versioned successor",
+      "merged_at": "2026-11-04T06:42:32Z",
+      "merge_commit": "566d08509bc63b2002d497da07c0993c5893d894"
+    },
+    {
+      "number": 92,
+      "title": "Exclude the scratch tmp/ directory from the project-memory index (fixes #17)",
+      "merged_at": "2026-11-02T18:01:30Z",
+      "merge_commit": "e894de291580f50b28ecdb5968da8284f47c4338"
+    },
+    {
+      "number": 90,
+      "title": "AAM-P-PERSONA-V0: persona battery, frozen preregistration and results of the run",
+      "merged_at": "2026-11-04T06:52:54Z",
+      "merge_commit": "2e09a2a6412c406ef7a37032e74cf7115ca111e1"
+    },
+    {
+      "number": 89,
+      "title": "Docs: README and CONTRIBUTING up to date with the November work",
+      "merged_at": "2026-11-02T11:28:25Z",
+      "merge_commit": "c7d8b5ce22d790be6ab90d80dc4c973bfc28d8b3"
+    },
+    {
+      "number": 71,
+      "title": "Scrub local paths and identifying words from public documents",
+      "merged_at": "2026-11-02T10:55:39Z",
+      "merge_commit": "da1757608d172f9e055a392fda69b3f9068679b1"
+    },
+    {
+      "number": 70,
+      "title": "Memory module 0.2.0: BM25 lexical gate and hardening in a new live line (0.1.0 stays frozen)",
+      "merged_at": "2026-11-02T10:55:58Z",
+      "merge_commit": "413eeeb09bda04897e3912c6a073d920e377dbc2"
+    },
+    {
+      "number": 69,
+      "title": "Docs: human memory and what machines can take from it (synthesis and Polish explainer)",
+      "merged_at": "2026-11-02T10:08:07Z",
+      "merge_commit": "6bd11700d1934c1b0b76384af321db65793c330b"
+    },
+    {
+      "number": 68,
+      "title": "LifeSim D1: a deterministic synthetic-life generator and memory-benchmark instrument (first build; 11 of 16 instrument gates pass on development worlds)",
+      "merged_at": "2026-11-02T05:01:16Z",
+      "merge_commit": "1d7f12e1ab75da4c56557a955a9df2cd24445958"
+    },
+    {
+      "number": 67,
+      "title": "WMB-R1: lexical versus embedding retrieval on the account's own notes (preregistered; judge gate failed, no verdict; BM25 beats the kernel's coverage)",
+      "merged_at": "2026-11-02T04:03:51Z",
+      "merge_commit": "590d71369d0ca4060dcaeaf1af374e7e9b2398ea"
+    },
+    {
+      "number": 66,
+      "title": "docs: memory benchmark specification v0 and the LifeSim design-panel digest",
+      "merged_at": "2026-11-01T23:09:26Z",
+      "merge_commit": "255d6c7f99f2f966b13e66de120c20b887a2eb9a"
+    },
+    {
+      "number": 65,
+      "title": "CI: memory kernel tests on Python 3.14 (the writing agent's server version)",
+      "merged_at": "2026-11-01T22:48:23Z",
+      "merge_commit": "bce2fb4d2f7f961c60ee7ea27850c2ef0783c177"
+    },
+    {
+      "number": 64,
+      "title": "WMB: memory_kernel 0.1.0, the shared memory module in the interface agreed with the writing agent (N-028)",
+      "merged_at": "2026-11-01T19:38:51Z",
+      "merge_commit": "7af455636a7512f15917f5468455ea90d04e875e"
+    },
+    {
+      "number": 63,
+      "title": "WMB: benchmark research digests, shared statistics and record contract, and slice 0 (the E5 pairwise judge fails on grounded callbacks)",
+      "merged_at": "2026-11-01T19:10:50Z",
+      "merge_commit": "95cf4f712c80c0356e4514d09a611d532af05804"
+    },
+    {
+      "number": 62,
+      "title": "docs: persona-memory deep-read digest (unverified leads) and four proposed experiments NX1 to NX4",
+      "merged_at": "2026-11-01T18:37:59Z",
+      "merge_commit": "5a67798f19018a58e30a5df676a21c0ac1100017"
+    },
+    {
+      "number": 61,
+      "title": "Erratum after an independent adversarial review of F1, E6 and E6E (E6 part first)",
+      "merged_at": "2026-11-01T18:51:53Z",
+      "merge_commit": "c0431623ece2c4f02f4913f7d44c68fcf8d79296"
+    },
+    {
+      "number": 60,
+      "title": "AAM-E6 and E6E: a persona whose biography lives in memory, opinion change after events, and botness probes with a reference output filter",
+      "merged_at": "2026-11-01T16:30:53Z",
+      "merge_commit": "18aa8c14434f71d6f1114d8a728dcd296280b155"
+    },
+    {
+      "number": 59,
+      "title": "AAM-F1: is there learnable signal in the live account's engagement numbers (the note type adds nothing beyond the recent level)",
+      "merged_at": "2026-11-01T16:07:03Z",
+      "merge_commit": "b01089b08e1b40aa2d92cea768c5292704888d7b"
+    },
+    {
+      "number": 58,
+      "title": "Blueprint v0: a persona with memory, feeling-like signals and decisions, with the evidence for each part",
+      "merged_at": "2026-11-01T15:45:28Z",
+      "merge_commit": "bfaaadb95d936086a1edef1e92f2f11485470107"
+    },
+    {
+      "number": 57,
+      "title": "AAM-E5-REPLAY: the memory arms replayed on the live account's real history (thresholded memory helps on candidates, always-on harms the rest)",
+      "merged_at": "2026-11-01T15:33:45Z",
+      "merge_commit": "46eed0839871c7a55420e66dd6f44b493d5d1918"
+    },
+    {
+      "number": 56,
+      "title": "Erratum: re-run the E1 and E1-DS judges with the authorised flash model",
+      "merged_at": "2026-11-01T15:04:12Z",
+      "merge_commit": "12d8144cbbd81c11d73de1b6d441e26fe336eea1"
+    },
+    {
+      "number": 55,
+      "title": "AAM-E2-FU and AAM-E3A: memory where there is something to remember; a flash-only proxy",
+      "merged_at": "2026-11-01T15:04:39Z",
+      "merge_commit": "daab33adc76b8efb52c5d9b16aeaa376c9fa4713"
+    },
+    {
+      "number": 54,
+      "title": "Baseline profile of the live account's published notes; primary measure of the live comparison changed",
+      "merged_at": "2026-11-01T14:09:41Z",
+      "merge_commit": "914ff275d6f208af7ab39a1311c5a9bdfb11f6eb"
+    },
+    {
+      "number": 53,
+      "title": "AAM-E1-SIM and AAM-E1-DS: own-history memory for a writing agent, preregistered, run and reviewed",
+      "merged_at": "2026-11-01T14:47:36Z",
+      "merge_commit": "58ca232701525fa41fc83b849a88540e90c4fdbf"
+    },
+    {
+      "number": 52,
+      "title": "Revival phase 0: gates, claim audit, reproducible numbers, AAM-E0 (narrow null), research direction",
+      "merged_at": "2026-11-01T13:46:44Z",
+      "merge_commit": "e8d8044aa6cb8b48069b349dfa9c1295bdda263b"
+    },
+    {
+      "number": 45,
+      "title": "research: inspect ProsusAI/MemEval and correct its catalog row (closes #35)",
+      "merged_at": "2026-08-23T15:14:18Z",
+      "merge_commit": "9404d23b28b138612864d254ccc70fa33e769e8c"
+    },
+    {
+      "number": 44,
+      "title": "feat: add tasks.py, one entry point for every gate (closes #36)",
+      "merged_at": "2026-08-23T15:06:36Z",
+      "merge_commit": "819d44f1c84ceaa0f4a7f103b8fd8a622f8ff7a0"
+    },
+    {
+      "number": 32,
+      "title": "docs: added CODE_OF_CONDUCT.md and update CONTRIBUTING.md",
+      "merged_at": "2026-08-23T13:00:23Z",
+      "merge_commit": "85b5f98047193915b5491745bc38de4e60ecacee"
+    },
+    {
+      "number": 16,
+      "title": "Track A: CI, the I0 mechanical independence tier, and two memory-tool defects",
+      "merged_at": "2026-08-23T09:10:57Z",
+      "merge_commit": "b639e16ebe24d970db7655fae433f44542f3275a"
+    }
+  ],
+  "working_branch_test_collection": {
+    "total": 2999,
+    "lifesim": 867,
+    "per_file": {
+      "tests/test_analyze_backend_agreement.py": 3,
+      "tests/test_analyze_followup_memory_sim.py": 14,
+      "tests/test_analyze_obligation_mapping_stage_failures.py": 2,
+      "tests/test_analyze_pmlab_v01_lexical_result.py": 1,
+      "tests/test_analyze_writer_memory_sim.py": 10,
+      "tests/test_arena_adapter_contract.py": 18,
+      "tests/test_arena_context_persistence.py": 7,
+      "tests/test_arena_contract_v0_1.py": 15,
+      "tests/test_arena_decoding.py": 15,
+      "tests/test_arena_operational_fit.py": 19,
+      "tests/test_arena_pilot_runner.py": 14,
+      "tests/test_arena_provider_proxy.py": 9,
+      "tests/test_arena_reset_isolation.py": 9,
+      "tests/test_arena_retrieval_truth.py": 9,
+      "tests/test_arena_spend_ledger.py": 14,
+      "tests/test_audit_foundation_delayed_reveal.py": 4,
+      "tests/test_audit_natural_history_token_feasibility.py": 3,
+      "tests/test_audit_pack_reader_completion.py": 1,
+      "tests/test_audit_pack_reader_fixture.py": 1,
+      "tests/test_audit_pack_reader_prompts.py": 1,
+      "tests/test_audit_pack_reader_result.py": 1,
+      "tests/test_audit_pmlab_split_leakage.py": 2,
+      "tests/test_audit_repository_claims.py": 38,
+      "tests/test_audit_screening_sources.py": 2,
+      "tests/test_botness_probe.py": 9,
+      "tests/test_brain_ai_transfer_atlas.py": 2,
+      "tests/test_build_collection_closure_corpus.py": 8,
+      "tests/test_build_collection_closure_corpus_v1.py": 5,
+      "tests/test_build_evidence_sufficiency_corpus.py": 4,
+      "tests/test_build_mapper_independent_adjudication_v1.py": 4,
+      "tests/test_build_metamemory_dev_corpus.py": 2,
+      "tests/test_build_obligation_mapping_challenge.py": 4,
+      "tests/test_build_obligation_mapping_dev_corpus.py": 4,
+      "tests/test_build_pack_characterization_fixture.py": 3,
+      "tests/test_build_pack_reader_fixture.py": 6,
+      "tests/test_build_pmlab_map_stage_dev_v1.py": 13,
+      "tests/test_build_project_memory_lab_v0.py": 7,
+      "tests/test_build_project_memory_lab_v01.py": 8,
+      "tests/test_comparative_lab.py": 14,
+      "tests/test_corpus_h1_arms.py": 17,
+      "tests/test_corpus_h1_reader.py": 20,
+      "tests/test_corpus_regenerates_from_its_generator.py": 5,
+      "tests/test_cupmem_adapter.py": 41,
+      "tests/test_cupmem_double_tracks_the_real_system.py": 15,
+      "tests/test_detect_memory_questions.py": 13,
+      "tests/test_engagement_signal.py": 12,
+      "tests/test_flash_only_proxy.py": 2,
+      "tests/test_followup_memory_sim.py": 12,
+      "tests/test_future_utility_independent_audit_v0.py": 5,
+      "tests/test_goalshift_arms.py": 23,
+      "tests/test_goalshift_generator.py": 23,
+      "tests/test_goalshift_harness.py": 40,
+      "tests/test_grammar_audit_reads_questions_only.py": 5,
+      "tests/test_hard_memory_external_v1.py": 14,
+      "tests/test_hard_memory_iterative_v1.py": 9,
+      "tests/test_history_family_construction.py": 18,
+      "tests/test_hyde_query_reformulation.py": 6,
+      "tests/test_judge_writer_memory_sim.py": 11,
+      "tests/test_lifesim_appraisal.py": 23,
+      "tests/test_lifesim_channel.py": 43,
+      "tests/test_lifesim_development_diagnosis.py": 8,
+      "tests/test_lifesim_gates.py": 32,
+      "tests/test_lifesim_integration.py": 12,
+      "tests/test_lifesim_queries.py": 78,
+      "tests/test_lifesim_rng.py": 66,
+      "tests/test_lifesim_schema.py": 135,
+      "tests/test_lifesim_scorers.py": 201,
+      "tests/test_lifesim_systems.py": 99,
+      "tests/test_lifesim_verbalise.py": 58,
+      "tests/test_lifesim_vocab.py": 62,
+      "tests/test_lifesim_world.py": 50,
+      "tests/test_measure_algebra.py": 199,
+      "tests/test_mechanism_ablation.py": 5,
+      "tests/test_mem0_breadth_arms.py": 5,
+      "tests/test_natural_history_contracts.py": 9,
+      "tests/test_nie_memory_contract.py": 19,
+      "tests/test_nie_persona_replay.py": 14,
+      "tests/test_nie_reader_pilot.py": 12,
+      "tests/test_no_unreachable_tests.py": 168,
+      "tests/test_paid_api_plumbing.py": 8,
+      "tests/test_persona_battery.py": 96,
+      "tests/test_persona_battery_v1.py": 22,
+      "tests/test_persona_sim.py": 12,
+      "tests/test_pmlab_map_stage_design.py": 2,
+      "tests/test_pmlab_v0_lexical_preregistration.py": 4,
+      "tests/test_prepare_longmemeval_bridge.py": 2,
+      "tests/test_preregistration_addr_e2.py": 12,
+      "tests/test_project_memory.py": 23,
+      "tests/test_project_memory_cli_verify.py": 7,
+      "tests/test_published_notes_baseline.py": 9,
+      "tests/test_reader_model_compare_v1.py": 27,
+      "tests/test_registry_summary.py": 15,
+      "tests/test_replay_memory_sim.py": 7,
+      "tests/test_researchos_contract.py": 12,
+      "tests/test_retrieval_calibration.py": 9,
+      "tests/test_retrieval_confidence_signal.py": 8,
+      "tests/test_retrieval_metrics.py": 20,
+      "tests/test_retrieval_rank_annotation.py": 6,
+      "tests/test_reveal_mapper_adjudication_v1.py": 3,
+      "tests/test_review_forgetting_benchmark.py": 3,
+      "tests/test_review_foundation_contracts_deepseek.py": 4,
+      "tests/test_review_future_utility_t01_blind_deepseek.py": 2,
+      "tests/test_review_future_utility_t0_deepseek.py": 2,
+      "tests/test_review_natural_history_contract_deepseek.py": 2,
+      "tests/test_review_natural_history_contract_deepseek_v2.py": 1,
+      "tests/test_review_pmlab_map_remaining_deepseek.py": 2,
+      "tests/test_review_pmlab_map_stage_deepseek.py": 5,
+      "tests/test_run_collection_closure_dev.py": 7,
+      "tests/test_run_deepseek_memory_reviewer.py": 2,
+      "tests/test_run_diverse_cue_retrieval.py": 3,
+      "tests/test_run_evidence_sufficiency_dev.py": 4,
+      "tests/test_run_fault_probe_comparison.py": 5,
+      "tests/test_run_fault_probe_robustness.py": 6,
+      "tests/test_run_forgetting_benchmark.py": 7,
+      "tests/test_run_forgetting_challenge.py": 4,
+      "tests/test_run_longmemeval_bridge_v0.py": 4,
+      "tests/test_run_memory_benchmark.py": 4,
+      "tests/test_run_metamemory_control_dev.py": 3,
+      "tests/test_run_obligation_mapping_challenge.py": 2,
+      "tests/test_run_obligation_mapping_construction.py": 3,
+      "tests/test_run_obligation_mapping_deepseek.py": 2,
+      "tests/test_run_pack_characterization.py": 4,
+      "tests/test_run_pack_reader_benchmark.py": 6,
+      "tests/test_run_pmlab_v01_lexical_exploratory.py": 5,
+      "tests/test_run_pmlab_v01_model_adjudication.py": 3,
+      "tests/test_run_pmlab_v01_model_annotations.py": 3,
+      "tests/test_run_pmlab_v01_model_leakage_review.py": 4,
+      "tests/test_run_probe_success_audit_curve.py": 5,
+      "tests/test_run_query_parser_baseline.py": 6,
+      "tests/test_run_query_parser_challenge.py": 3,
+      "tests/test_run_query_scope_factorial.py": 3,
+      "tests/test_run_reader_interference.py": 4,
+      "tests/test_run_reader_stress.py": 8,
+      "tests/test_run_reuse_characterization.py": 6,
+      "tests/test_run_storage_fault_injection.py": 3,
+      "tests/test_salience_ontology_review_v0.py": 4,
+      "tests/test_screen_literature.py": 5,
+      "tests/test_sealed_split.py": 21,
+      "tests/test_second_hop_expansion.py": 6,
+      "tests/test_shadow_baseline_measures.py": 15,
+      "tests/test_sibling_entity_enumeration.py": 8,
+      "tests/test_stage2_contamination_audit.py": 4,
+      "tests/test_state_supersession.py": 11,
+      "tests/test_temporal_anchor_at_context.py": 9,
+      "tests/test_upcast.py": 21,
+      "tests/test_validate_foundation_contract_construction.py": 4,
+      "tests/test_validate_future_utility_telemetry_t0.py": 5,
+      "tests/test_validate_mapper_independent_review_v1.py": 4,
+      "tests/test_validate_natural_history_contract_review.py": 3,
+      "tests/test_validate_pmlab_v01_leakage_review.py": 3,
+      "tests/test_validate_pmlab_v0_annotation.py": 1,
+      "tests/test_verify_arena_numbers.py": 31,
+      "tests/test_verify_memory_integrity.py": 27,
+      "tests/test_wmb_kernel_v2.py": 94,
+      "tests/test_wmb_lexical_gate_eval.py": 8,
+      "tests/test_wmb_memory_kernel.py": 22,
+      "tests/test_wmb_memory_kernel_mutants.py": 28,
+      "tests/test_wmb_mutation_runner.py": 11,
+      "tests/test_wmb_r1_crosscheck.py": 17,
+      "tests/test_wmb_retrieval_bench.py": 133,
+      "tests/test_wmb_retrieval_bench_ref.py": 126,
+      "tests/test_wmb_stats.py": 7,
+      "tests/test_wmb_t0_battery.py": 4,
+      "tests/test_writer_memory_sim.py": 29
+    },
+    "snapshot_note": "Collected before final ability-control source additions; not the final full-suite count."
+  },
+  "main_last_full_gate": {
+    "passed": 2956,
+    "skipped": 20,
+    "meaning": "software checks, not independent memory task successes"
+  },
+  "primary_hard_results": {
+    "flash": {
+      "K": {
+        "n": 100,
+        "exact": 0,
+        "mean_f1": 0.0,
+        "substring": 0,
+        "unknown": 90,
+        "malformed_or_truncated": 0,
+        "nonempty_context": 70
+      },
+      "B": {
+        "n": 100,
+        "exact": 4,
+        "mean_f1": 0.04,
+        "substring": 4,
+        "unknown": 83,
+        "malformed_or_truncated": 0,
+        "nonempty_context": 100
+      }
+    },
+    "local14b": {
+      "N": {
+        "n": 100,
+        "exact": 0,
+        "mean_f1": 0.0,
+        "substring": 0,
+        "unknown": 100,
+        "malformed_or_truncated": 0,
+        "nonempty_context": 0
+      },
+      "K": {
+        "n": 100,
+        "exact": 0,
+        "mean_f1": 0.0,
+        "substring": 0,
+        "unknown": 99,
+        "malformed_or_truncated": 0,
+        "nonempty_context": 70
+      },
+      "B": {
+        "n": 100,
+        "exact": 1,
+        "mean_f1": 0.015,
+        "substring": 1,
+        "unknown": 92,
+        "malformed_or_truncated": 0,
+        "nonempty_context": 100
+      }
+    }
+  },
+  "iterative_development": {
+    "complete": true,
+    "n": 100,
+    "exact": 4,
+    "mean_f1": 0.045,
+    "unknown": 87,
+    "invalid": 0,
+    "total_primary_rounds": 402,
+    "requests_and_search_rounds_reconstructed": 402,
+    "scope": "Post-hoc repair on the same spent public 100 questions, local only; no generalisation claim."
+  },
+  "paired_development": {
+    "n": 100,
+    "baseline_correct": 1,
+    "iterative_correct": 4,
+    "repairs": 3,
+    "regressions": 0,
+    "authority": "Post-hoc same-question development; not independent transfer or validated readiness."
+  },
+  "ability_control": {
+    "scope": "Post-hoc n=2 oracle diagnostic, not primary performance or an independent test",
+    "n": 2,
+    "exact": 1,
+    "per_question": [
+      {
+        "id": "Q000",
+        "exact": false,
+        "f1": 0.0,
+        "substring": false
+      },
+      {
+        "id": "Q001",
+        "exact": true,
+        "f1": 1.0,
+        "substring": true
+      }
+    ],
+    "budget": {
+      "reserved_calls": 205,
+      "reserved_usd": 0.82,
+      "usage_priced_upper_usd": 0.025397,
+      "unknown_usage_attempts": 0,
+      "cap_usd": 1.0,
+      "cost_semantics": "Permanent reservations and peak/uncached usage upper estimate; not an account invoice."
+    }
+  },
+  "existing_candidate": {
+    "method": "Existing AAMR-CANDIDATE-0 domain-specific address adapter, unchanged; no reader or gold accessed.",
+    "questions": 100,
+    "address_resolved": 0,
+    "non_abstained": 0,
+    "drawers": 0,
+    "model_calls": 0,
+    "source_sha256": "95801d85410d5049dfb88ea3814c7e1149b6fc2c92bf1a6d364f796d3f333522"
+  },
+  "NIE_local_only": {
+    "head": "5cb731e65844cc6e9c3f8bcdc0a8220a1a6eb2dd",
+    "PAMIEC_CIEN": true,
+    "PERSONA": false,
+    "PERSONA_ZYCIE": false,
+    "shadow_changes_model_prompt": false,
+    "deployed_server_state": "not verified",
+    "existing_history_injection": "E23 on arm; off/outside returns no addition",
+    "history_window_days": 60,
+    "history_max_selected_entries": 2,
+    "history_context_max_characters": 2500,
+    "canonical_older_history_deleted": "not established; this is a retrieval window"
+  },
+  "new_calls": {
+    "local_failed_control": 1,
+    "local_primary_protocol": 303,
+    "flash_primary_protocol": 203,
+    "local_posthoc_iterative": 405,
+    "flash_ability_controls": 2,
+    "total": 914,
+    "paid": 205,
+    "model_judge_calls": 0
+  },
+  "local_code_gate": {
+    "passed": 2981,
+    "skipped": 20,
+    "existing_warnings": 2,
+    "seconds": 378.6,
+    "memory_events_at_that_run": 349,
+    "final_memory_and_claim_checks": "rerun after documentation and memory additions"
+  },
+  "hardness_calibration": {
+    "source": "https://arxiv.org/html/2507.05257#S4.T3",
+    "version": "arXiv:2507.05257v4, 28 June 2026",
+    "authors_fc_mh_percent": {
+      "BM25": 3,
+      "Mem0": 2,
+      "GPT-5-mini": 28
+    },
+    "matched_to_our_protocol": false,
+    "our_self_set_target_percent": 80,
+    "target_is_established_industry_readiness_threshold": false
+  }
+}

@@ -1,0 +1,913 @@
+{
+  "complete": true,
+  "n": 100,
+  "exact": 4,
+  "mean_f1": 0.045,
+  "unknown": 87,
+  "invalid": 0,
+  "total_primary_rounds": 402,
+  "requests_and_search_rounds_reconstructed": 402,
+  "per_question": [
+    {
+      "id": "Q000",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q001",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q002",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q003",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q004",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q005",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q006",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q007",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q008",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q009",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q010",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q011",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q012",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q013",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q014",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q015",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q016",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q017",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q018",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q019",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q020",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q021",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q022",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q023",
+      "exact": true,
+      "f1": 1.0,
+      "substring": true,
+      "rounds": 2,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q024",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q025",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q026",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q027",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q028",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q029",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q030",
+      "exact": true,
+      "f1": 1.0,
+      "substring": true,
+      "rounds": 2,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q031",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q032",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q033",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q034",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q035",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q036",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q037",
+      "exact": true,
+      "f1": 1.0,
+      "substring": true,
+      "rounds": 2,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q038",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q039",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q040",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q041",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q042",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q043",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q044",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q045",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q046",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q047",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q048",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q049",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q050",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q051",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q052",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q053",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q054",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q055",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q056",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q057",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q058",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q059",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q060",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q061",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q062",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q063",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q064",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q065",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q066",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q067",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q068",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q069",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q070",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q071",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q072",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q073",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q074",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q075",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q076",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q077",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q078",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q079",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q080",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q081",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q082",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q083",
+      "exact": false,
+      "f1": 0.5,
+      "substring": true,
+      "rounds": 2,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q084",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q085",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 2,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q086",
+      "exact": true,
+      "f1": 1.0,
+      "substring": true,
+      "rounds": 1,
+      "unknown": false,
+      "invalid": false
+    },
+    {
+      "id": "Q087",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q088",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q089",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q090",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q091",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q092",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q093",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q094",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 4,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q095",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q096",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 5,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q097",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q098",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 3,
+      "unknown": true,
+      "invalid": false
+    },
+    {
+      "id": "Q099",
+      "exact": false,
+      "f1": 0.0,
+      "substring": false,
+      "rounds": 6,
+      "unknown": true,
+      "invalid": false
+    }
+  ],
+  "scope": "Post-hoc repair on the same spent public 100 questions, local only; no generalisation claim."
+}

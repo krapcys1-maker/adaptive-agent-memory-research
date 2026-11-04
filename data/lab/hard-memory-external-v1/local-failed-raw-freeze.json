@@ -1,0 +1,34 @@
+{
+  "purpose": "Raw output freeze before joining benchmark gold",
+  "response_sha256": "a3452772b490db724b95ff10c1259bb69fd646a59ed34203e9e4d32075360998",
+  "files": [
+    {
+      "name": "attempts.jsonl",
+      "sha256": "15f86fd314a69737fd4dac9b148aaf8d58ffce224348a56280601b0560edffe6"
+    },
+    {
+      "name": "environment.json",
+      "sha256": "ecf7a1037e51305a4fc8bd2637e78ca3a5a46a4d4972aa655df119df32f520cb"
+    },
+    {
+      "name": "failure.json",
+      "sha256": "ccdfe09b37f0a03dd5e2bb4c94c3ab6031f62b7dfe587da7c3cf2358821fdf17"
+    },
+    {
+      "name": "finished.json",
+      "sha256": "e8be1d3e00bb7ed7bf612183b2a84c05de9f4440e7fefa9c58a890e58c44b99c"
+    },
+    {
+      "name": "manifest.json",
+      "sha256": "d70a610739d2183c760f63bb2f0ca34f9408b483ad0853bac54c72fe9011255f"
+    },
+    {
+      "name": "release.json",
+      "sha256": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72"
+    },
+    {
+      "name": "responses.jsonl",
+      "sha256": "a3452772b490db724b95ff10c1259bb69fd646a59ed34203e9e4d32075360998"
+    }
+  ]
+}
