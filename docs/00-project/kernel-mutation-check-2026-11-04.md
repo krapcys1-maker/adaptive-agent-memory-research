@@ -33,3 +33,5 @@ CI now checks both catalogues in separate Python 3.12 jobs with pytest only, and
 ## Coordination
 
 PR 93 merged into PR 90 at `566d08509bc63b2002d497da07c0993c5893d894`; PR 90 subsequently passed all six checks and merged into main at `2e09a2a6412c406ef7a37032e74cf7115ca111e1`. The mutation work uses its own branch and worktree, based on that integrated state. The prior 329 memory events and both original kernel suites are preserved. NIE persona prompts, configuration, filters and deployment are separate work.
+
+Final local gate: `python tasks.py check` passed all three gates in 333.7 seconds. Full pytest output: `2824 passed, 20 skipped, 2 warnings in 321.12s (0:05:21)`. Memory integrity: 331 events, zero violations. The claim audit exited 0, retaining 45 medium and 13 low existing findings and no critical findings.
