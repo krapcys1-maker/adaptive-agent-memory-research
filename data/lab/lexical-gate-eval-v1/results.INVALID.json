@@ -1,0 +1,8 @@
+{
+  "status": "invalid-first-adapter-attempt",
+  "artifact": "results.json",
+  "reason": "H2 null gold IDs were wrongly treated as positive single-event retrieval targets; the failing adapter test was followed by execution in the same shell sequence.",
+  "replacement": "final-results.json",
+  "intermediate": "corrected-results.json",
+  "thresholds_or_parameter_grid_changed": false
+}
