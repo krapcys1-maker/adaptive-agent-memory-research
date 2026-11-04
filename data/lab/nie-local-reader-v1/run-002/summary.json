@@ -1,0 +1,260 @@
+{
+  "complete": true,
+  "ledger_integrity": true,
+  "generation_calls": 216,
+  "writer_chains": 16,
+  "valid_writer_chains": 16,
+  "write_failures": 0,
+  "arms": {
+    "N": {
+      "n_turns": 48,
+      "raw_agreement": 0,
+      "delivered_agreement": 0,
+      "retrieved": 0,
+      "all_three_chain_agreement": 0,
+      "planned_chains": 16,
+      "per_turn": {
+        "0": {
+          "n": 16,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "1": {
+          "n": 16,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "2": {
+          "n": 16,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        }
+      },
+      "guard_resolutions": {
+        "unguarded": 48
+      },
+      "raw_unknown": 31,
+      "delivered_unknown": 31,
+      "malformed_raw": 0,
+      "per_seed": {
+        "17": {
+          "n_turns": 24,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        },
+        "43": {
+          "n_turns": 24,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0
+        }
+      }
+    },
+    "K": {
+      "n_turns": 48,
+      "raw_agreement": 16,
+      "delivered_agreement": 16,
+      "retrieved": 32,
+      "all_three_chain_agreement": 0,
+      "planned_chains": 16,
+      "per_turn": {
+        "0": {
+          "n": 16,
+          "retrieved": 16,
+          "raw_agreement": 16,
+          "delivered_agreement": 16
+        },
+        "1": {
+          "n": 16,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        },
+        "2": {
+          "n": 16,
+          "retrieved": 16,
+          "raw_agreement": 0,
+          "delivered_agreement": 0
+        }
+      },
+      "guard_resolutions": {
+        "unguarded": 48
+      },
+      "raw_unknown": 16,
+      "delivered_unknown": 16,
+      "malformed_raw": 0,
+      "per_seed": {
+        "17": {
+          "n_turns": 24,
+          "delivered_agreement": 8,
+          "all_three_chain_agreement": 0
+        },
+        "43": {
+          "n_turns": 24,
+          "delivered_agreement": 8,
+          "all_three_chain_agreement": 0
+        }
+      }
+    },
+    "O": {
+      "n_turns": 48,
+      "raw_agreement": 36,
+      "delivered_agreement": 36,
+      "retrieved": 48,
+      "all_three_chain_agreement": 4,
+      "planned_chains": 16,
+      "per_turn": {
+        "0": {
+          "n": 16,
+          "retrieved": 16,
+          "raw_agreement": 16,
+          "delivered_agreement": 16
+        },
+        "1": {
+          "n": 16,
+          "retrieved": 16,
+          "raw_agreement": 16,
+          "delivered_agreement": 16
+        },
+        "2": {
+          "n": 16,
+          "retrieved": 16,
+          "raw_agreement": 4,
+          "delivered_agreement": 4
+        }
+      },
+      "guard_resolutions": {
+        "unguarded": 48
+      },
+      "raw_unknown": 10,
+      "delivered_unknown": 10,
+      "malformed_raw": 0,
+      "per_seed": {
+        "17": {
+          "n_turns": 24,
+          "delivered_agreement": 18,
+          "all_three_chain_agreement": 2
+        },
+        "43": {
+          "n_turns": 24,
+          "delivered_agreement": 18,
+          "all_three_chain_agreement": 2
+        }
+      }
+    },
+    "V": {
+      "n_turns": 48,
+      "raw_agreement": 36,
+      "delivered_agreement": 48,
+      "retrieved": 48,
+      "all_three_chain_agreement": 16,
+      "planned_chains": 16,
+      "per_turn": {
+        "0": {
+          "n": 16,
+          "retrieved": 16,
+          "raw_agreement": 16,
+          "delivered_agreement": 16
+        },
+        "1": {
+          "n": 16,
+          "retrieved": 16,
+          "raw_agreement": 16,
+          "delivered_agreement": 16
+        },
+        "2": {
+          "n": 16,
+          "retrieved": 16,
+          "raw_agreement": 4,
+          "delivered_agreement": 16
+        }
+      },
+      "guard_resolutions": {
+        "accepted": 36,
+        "corrected": 12
+      },
+      "raw_unknown": 10,
+      "delivered_unknown": 0,
+      "malformed_raw": 0,
+      "per_seed": {
+        "17": {
+          "n_turns": 24,
+          "delivered_agreement": 24,
+          "all_three_chain_agreement": 8
+        },
+        "43": {
+          "n_turns": 24,
+          "delivered_agreement": 24,
+          "all_three_chain_agreement": 8
+        }
+      }
+    }
+  },
+  "controls": [
+    {
+      "key": "positive-0",
+      "passed": true,
+      "raw": "{\"value\":\"cobalt-47\"}"
+    },
+    {
+      "key": "positive-1",
+      "passed": true,
+      "raw": "{\"value\":\"juniper-83\"}"
+    },
+    {
+      "key": "positive-2",
+      "passed": true,
+      "raw": "{\"value\":\"marble-29\"}"
+    },
+    {
+      "key": "no-record",
+      "passed": true,
+      "raw": "{\"value\":\"UNKNOWN\"}",
+      "guard": {
+        "value": "UNKNOWN",
+        "resolution": "no_evidence",
+        "source_ids": []
+      },
+      "retrieved_ids": []
+    },
+    {
+      "key": "future-only",
+      "passed": true,
+      "raw": "{\"value\":\"UNKNOWN\"}",
+      "guard": {
+        "value": "UNKNOWN",
+        "resolution": "no_evidence",
+        "source_ids": []
+      },
+      "retrieved_ids": []
+    },
+    {
+      "key": "conflict",
+      "passed": true,
+      "raw": "{\"value\":\"UNKNOWN\"}",
+      "guard": {
+        "value": "UNKNOWN",
+        "resolution": "no_evidence",
+        "source_ids": []
+      },
+      "retrieved_ids": []
+    },
+    {
+      "key": "canary-0",
+      "passed": true,
+      "byte_identical_to_first": true,
+      "raw": "{\"value\":\"cobalt-47\"}"
+    },
+    {
+      "key": "canary-1",
+      "passed": true,
+      "byte_identical_to_first": true,
+      "raw": "{\"value\":\"cobalt-47\"}"
+    }
+  ],
+  "larger_offline_test_only": true,
+  "additional_V_benefit_over_K": true,
+  "scope": "Local quantized reader, authored closed slots and supplied routing; no production/P2 replication claim."
+}

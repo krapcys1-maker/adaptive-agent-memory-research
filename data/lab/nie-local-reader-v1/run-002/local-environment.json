@@ -1,0 +1,45 @@
+{
+  "service": {
+    "version": "0.40.13"
+  },
+  "model": {
+    "name": "qwen2.5:7b-instruct",
+    "model": "qwen2.5:7b-instruct",
+    "modified_at": "2026-02-05T14:25:39.6616244+02:00",
+    "size": 4683087332,
+    "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen2",
+      "families": [
+        "qwen2"
+      ],
+      "parameter_size": "7.6B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 32768,
+      "embedding_length": 3584,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "tools"
+    ]
+  },
+  "details": {
+    "parent_model": "",
+    "format": "gguf",
+    "family": "qwen2",
+    "families": [
+      "qwen2"
+    ],
+    "parameter_size": "7.6B",
+    "quantization_level": "Q4_K_M"
+  },
+  "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+  "model_system_sha256": "66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e",
+  "parameters": null,
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "gpu": "NVIDIA GeForce RTX 3060, 616.92, 12288 MiB, 2084 MiB"
+}

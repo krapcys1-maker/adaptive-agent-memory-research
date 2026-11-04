@@ -35,6 +35,12 @@ Run-001 completed 24 calls: its six initial controls and two canaries passed, bu
 
 Run-002 changes **only the writer transport format** to an explicit JSON schema requiring exactly `value`, with that case's pool as its enum. Reader transport stays ordinary JSON. Prompts, model/digest, seeds, cases, questions, session boundaries, routing, guard, thresholds and scoring are unchanged. `config-v2.json` is separate from the preserved original config. This is a disclosed, result-informed engineering repair to syntax, not a fresh preregistration. Another 216 calls are planned, cap 220 for this run; the two-run task ceiling is 244 attempts and $0 API spend. No automatic retries or model fallback. Neither run can be promoted to P2 replication or production evidence.
 
+## Control-coverage audit after run-002
+
+Run-002 completed all 216 calls. Its original conflicting-record control retrieved no items, so `UNKNOWN` exercised absence rather than conflict. Preserve the control and its reported result; do not claim that it established conflicting-evidence handling. The deterministic unit test does exercise that branch.
+
+One separately recorded follow-up control will use the same two contradictory kettle records **plus the same seven unrelated slot distractors used in the main design**. No thresholds/profile/questions/model/guard changes. Before the one model call, require both matching typed records to be actually shown and the guard's resolution to be `conflicting_evidence`; otherwise abort the control as uninformative. Cap one generation call, bringing the two runs plus this control to 241 planned attempts (within the 244 task ceiling). Keep its result separate; no primary-arm rerun or pooled success claim. This is an explicitly post-result control repair, not a preregistered confirmation.
+
 ## API references
 
 Use the local native [chat endpoint](https://docs.ollama.com/api/chat), [installed-model listing](https://docs.ollama.com/api/tags) and explicit [runtime parameters](https://docs.ollama.com/modelfile#valid-parameters-and-values). The installed service's actual responses are captured; current online documentation alone does not establish the behavior of this installed version.

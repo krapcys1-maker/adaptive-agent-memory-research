@@ -1,0 +1,16 @@
+{"slot": "kettle_colour", "seed": 17, "value": "silver", "valid": true, "call_key": "write:kettle_colour:17"}
+{"slot": "kettle_colour", "seed": 43, "value": "silver", "valid": true, "call_key": "write:kettle_colour:43"}
+{"slot": "bicycle_colour", "seed": 17, "value": "turquoise", "valid": true, "call_key": "write:bicycle_colour:17"}
+{"slot": "bicycle_colour", "seed": 43, "value": "turquoise", "valid": true, "call_key": "write:bicycle_colour:43"}
+{"slot": "sunday_tea", "seed": 17, "value": "assam", "valid": true, "call_key": "write:sunday_tea:17"}
+{"slot": "sunday_tea", "seed": 43, "value": "assam", "valid": true, "call_key": "write:sunday_tea:43"}
+{"slot": "notebook_name", "seed": 17, "value": "Aster", "valid": true, "call_key": "write:notebook_name:17"}
+{"slot": "notebook_name", "seed": 43, "value": "Aster", "valid": true, "call_key": "write:notebook_name:43"}
+{"slot": "scarf_pattern", "seed": 17, "value": "striped", "valid": true, "call_key": "write:scarf_pattern:17"}
+{"slot": "scarf_pattern", "seed": 43, "value": "striped", "valid": true, "call_key": "write:scarf_pattern:43"}
+{"slot": "breakfast_fruit", "seed": 17, "value": "fig", "valid": true, "call_key": "write:breakfast_fruit:17"}
+{"slot": "breakfast_fruit", "seed": 43, "value": "fig", "valid": true, "call_key": "write:breakfast_fruit:43"}
+{"slot": "bookshop_district", "seed": 17, "value": "Riverside", "valid": true, "call_key": "write:bookshop_district:17"}
+{"slot": "bookshop_district", "seed": 43, "value": "Riverside", "valid": true, "call_key": "write:bookshop_district:43"}
+{"slot": "cat_name", "seed": 17, "value": "Miro", "valid": true, "call_key": "write:cat_name:17"}
+{"slot": "cat_name", "seed": 43, "value": "Miro", "valid": true, "call_key": "write:cat_name:43"}
