@@ -39,7 +39,10 @@ def audit(archive, store, capture, answer_dirs, questions, scope, valid_at, know
         capture_rows = rows(capture/'captures.jsonl')
         check(len(capture_rows) == len(raw) and {r['id'] for r in capture_rows} == set(original),
               'incomplete capture attempts')
-        check(all(r['status'] == 'accepted' for r in capture_rows), 'quarantined capture')
+        quarantine = {r['id'] for r in capture_rows if r['status']=='quarantined'}
+        declared = {r['id'] for r in rows(capture/'rejections.jsonl')} if (capture/'rejections.jsonl').exists() else set()
+        check(quarantine == declared and all(r['status'] in ('accepted','quarantined') for r in capture_rows),
+              'unreported capture rejection')
         # Reconstruct the cache from earlier events. Every cached fact must be
         # reproducible from a previously learned literal shell, not a future event.
         sources, learned, cached = {}, [], 0
@@ -92,6 +95,7 @@ def audit(archive, store, capture, answer_dirs, questions, scope, valid_at, know
                           'missing source path')
         return {'failures': failures, 'sources': len(m.sources), 'claims': len(m.claims),
                 'templates': len(learned), 'cached_claims_reproduced': cached,
+                'quarantined_sources': len(quarantine),
                 'capture_methods': dict(Counter(r['method'] for r in capture_rows)),
                 'answer_runs_checked': len(answer_dirs), 'store_sha256': sha(store),
                 'semantic_extraction_accuracy': 'not established by span and replay checks'}
