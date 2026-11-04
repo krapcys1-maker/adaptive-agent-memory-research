@@ -52,7 +52,7 @@ At the pre-audit main snapshot, Git contains 509 commits dated on seven author-d
 
 ## Immediate corrections and next admissible work
 
-1. Put the current failure and scope at the top of `CURRENT_STATE`, the delivery overview and GitHub status. Preserve the earlier correct narrow results; do not rewrite them as false or erase negative runs.
+1. Put the current failure and scope at the top of `CURRENT_STATE`, the delivery overview and GitHub status. The README's introductory claim is changed from an existing system governed by measured future utility to the research question it actually represents, and links this audit. Preserve the earlier correct narrow results; do not rewrite them as false or erase negative runs.
 2. Make one runnable memory pipeline and its inputs the delivery unit. Identify which existing store/addressing/state/retrieval components it actually uses; require natural question text, provenance, explicit stale/unknown behavior and raw generated answers. Close the missing addressing/capture boundary from existing issues rather than add another unrelated architecture diagram.
 3. Keep three measurements separate: evidence preserved, supporting evidence actually shown, and final answer correct/current. Use a matched evidence-complete reader control to avoid blaming retrieval for an unsupported causal diagnosis. Retain same-budget baselines and failure traces.
 4. Develop changes on explicitly spent data, then freeze a transfer run on another corpus before any broad promotion. The current iterative 4/100 is a failed development result, not evidence that the problem is solved. BEAM-10M, LongMemEval-V2 and MemoryArena remain documented candidates; cached data is not a passed test.

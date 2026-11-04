@@ -1,8 +1,8 @@
 <h1 align="center">Can an agent learn what is worth remembering?</h1>
 
 <p align="center">
-A local-first, model-agnostic memory system that decides what to keep from<br>
-<b>the measured future usefulness of past experience</b> — not from what looks similar to your query.
+Research on local-first, model-agnostic memory for LLM agents.<br>
+<b>Can measured future usefulness improve what an agent retains?</b>
 </p>
 
 <p align="center">
@@ -14,6 +14,8 @@ A local-first, model-agnostic memory system that decides what to keep from<br>
 </p>
 
 **New here?** Read [Status and where help is wanted](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/84): what is in progress, what just finished, and every task where outside help is welcome.
+
+**Delivery audit (4 November 2026):** the project-memory tool and research components work; a generic adaptive memory product is not yet validated. The [audit of delivered work, tests and unresolved failures](docs/00-project/project-delivery-audit-2026-11-04.md) distinguishes those capabilities from supplied-evidence pilots and scoped hard-benchmark failures.
 
 ---
 
