@@ -16,6 +16,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 KERNEL = ROOT / 'scripts/wmb/kernel/memory_kernel.py'
+sys.path.insert(0, str(ROOT / 'scripts'))
+from nie_memory_contract import validate_claim
 
 
 def utc(value):
@@ -68,6 +70,8 @@ def entries(raw):
         payload = {'publication_id': str(publication), 'available_at': iso(stamp),
                    'text': text, 'source': 'improwizacja', 'task': 'notka_zycie',
                    'run_id': row.get('run_id'), 'seed_id': row.get('zasiew'), 'version': row.get('wersja')}
+        if 'typed_claim' in row:
+            payload['typed_claim'] = validate_claim(row['typed_claim'], text)
         key = str(publication)
         if key in publications and publications[key] != payload:
             raise ValueError('Conflicting rows for the same publication ID; reconcile explicitly.')
@@ -112,11 +116,13 @@ def replay(raw, query, as_of, *, task_type='personal', max_context_words=200, pr
             break
         shown, context = candidate, rendered
     safe_cfg = {k: ('infinity' if isinstance(v, float) and v == float('inf') else v) for k, v in cfg.items()}
-    return {'schema_version': 1, 'mode': 'read-only-offline-no-reader', 'as_of': iso(now),
+    return {'schema_version': 2, 'mode': 'read-only-offline-no-reader', 'as_of': iso(now),
             'query': query, 'task_type': task_type, 'profile': safe_cfg,
             'input_sha256': hashlib.sha256(raw).hexdigest(),
             'kernel_version': mk.VERSION, 'kernel_sha256': hashlib.sha256(KERNEL.read_bytes()).hexdigest(),
             'bridge_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+            'dependency_sha256': {'scripts/nie_memory_contract.py': hashlib.sha256(
+                (ROOT / 'scripts/nie_memory_contract.py').read_bytes()).hexdigest()},
             'validated_unique_publications': len(rows), 'available_publications': len(available),
             'future_publications_excluded_before_index': len(rows) - len(available),
             'kernel_status': result['status'], 'kernel_ranked_ids': [i.id for i in result['items']],

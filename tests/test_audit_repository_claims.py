@@ -228,6 +228,56 @@ def test_a_note_explains_one_declaration_and_leaves_its_neighbour_critical(drift
     assert critical.path == "scripts/other.py"
 
 
+def multi_note(scenario):
+    other=scenario.root/'scripts/other.py'
+    other.write_bytes(FROZEN)
+    (scenario.root/MANIFEST).write_text(json.dumps({'files':{TARGET:sha(FROZEN),'scripts/other.py':sha(FROZEN)}}))
+    matched=commit_all(scenario.root,'declare another file')
+    other.write_bytes(EDITED)
+    changed=commit_all(scenario.root,'edit the other file')
+    document=note_for(scenario)
+    document['additional_declarations']=[note_for(scenario,path='scripts/other.py',declared_matched_at=[matched],changed_in=changed)]
+    return document
+
+
+def test_multiple_declarations_each_require_their_own_git_proof(drifted):
+    write_note(drifted,multi_note(drifted))
+    findings,_=run_audit()
+    assert verdicts(findings)==[('explained-drift','low'),('explained-drift','low')]
+
+
+@pytest.mark.parametrize('damage',['wrong_current','wrong_history','foreign_manifest','duplicate','nested'])
+def test_bad_additional_note_never_exempts_its_declaration(drifted,damage):
+    doc=multi_note(drifted);extra=doc['additional_declarations'][0]
+    if damage=='wrong_current':extra['current_sha256']=sha(FROZEN)
+    elif damage=='wrong_history':extra['declared_matched_at']=[extra['changed_in']]
+    elif damage=='foreign_manifest':extra['manifest']='data/lab/different.json'
+    elif damage=='duplicate':doc['additional_declarations'].append(dict(extra))
+    else:extra['additional_declarations']=[]
+    write_note(drifted,doc)
+    findings,_=run_audit()
+    assert ('declared-hash','critical') in verdicts(findings)
+    assert ('invalid-drift-annotation','high') in verdicts(findings)
+
+
+def test_further_change_voids_only_its_proved_additional_note(drifted):
+    doc=multi_note(drifted);write_note(drifted,doc)
+    (drifted.root/'scripts/other.py').write_bytes(EDITED_AGAIN)
+    findings,_=run_audit()
+    assert ('declared-hash','critical') in verdicts(findings)
+    assert ('invalid-drift-annotation','high') in verdicts(findings)
+    assert ('explained-drift','low') in verdicts(findings)
+
+
+@pytest.mark.parametrize('field',['path','declared_sha256'])
+def test_non_string_note_identity_is_rejected_without_crashing(drifted,field):
+    doc=note_for(drifted);doc[field]=['invalid']
+    write_note(drifted,doc)
+    findings,_=run_audit()
+    assert ('declared-hash','critical') in verdicts(findings)
+    assert ('invalid-drift-annotation','high') in verdicts(findings)
+
+
 def test_a_successor_manifest_that_declares_the_current_bytes_of_that_file_is_accepted(drifted: Scenario) -> None:
     successor = drifted.root / "data" / "lab" / "next.json"
     successor.write_text(json.dumps({"files": {TARGET: sha(EDITED)}}), encoding="utf-8")

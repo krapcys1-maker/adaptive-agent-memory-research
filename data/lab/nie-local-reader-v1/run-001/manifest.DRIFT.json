@@ -1,0 +1,47 @@
+{
+  "status": "declaration-drift-explained",
+  "manifest": "data/lab/nie-local-reader-v1/run-001/manifest.json",
+  "path": "scripts/nie_reader_pilot.py",
+  "declared_sha256": "64532013e5b7aca3b12fdc5e23238ec1c5f108fe6fed37434d6810467403b232",
+  "declared_matched_at": [
+    "8d17c4f62dd1ef4b1fc1c2e836aa14d63555f92e"
+  ],
+  "changed_in": "783ce4bb00d0df34ae932fd4d447c517b7ba1ea8",
+  "current_sha256": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+  "reason": "Completed execution pins its original source commit. Later explicitly disclosed changes add the schema-only writer repair, a separate coverage control, invalid-record hardening and persisted-journal reload as applicable. Original measurements/manifests were not rewritten; source digests and both summaries are independently rechecked in reanalysis-audit.json.",
+  "consequence": "These are historical execution bytes, not a declaration that the evolving current tool generated the old outputs. Use git show at the recorded execution commit for the exact source. Further live-source changes invalidate this note and require another explicit Git-proved explanation.",
+  "recorded_at": "2026-11-04",
+  "recorded_by": "Codex under owner authorization; old manifests and results preserved",
+  "additional_declarations": [
+    {
+      "status": "declaration-drift-explained",
+      "manifest": "data/lab/nie-local-reader-v1/run-001/manifest.json",
+      "path": "scripts/nie_memory_contract.py",
+      "declared_sha256": "4065f13d1a52c204b1f3c466c9cc11d4302775982d82899e9e6a4b47e1fba6c5",
+      "declared_matched_at": [
+        "8d17c4f62dd1ef4b1fc1c2e836aa14d63555f92e"
+      ],
+      "changed_in": "027641bd659e6fbe6f5233c4c0a586702129a657",
+      "current_sha256": "8b169db54437dc097d0fe991dce557a2d1f494554f5a6b970e1d45cad2bdd37b",
+      "reason": "Completed execution pins its original source commit. Later explicitly disclosed changes add the schema-only writer repair, a separate coverage control, invalid-record hardening and persisted-journal reload as applicable. Original measurements/manifests were not rewritten; source digests and both summaries are independently rechecked in reanalysis-audit.json.",
+      "consequence": "These are historical execution bytes, not a declaration that the evolving current tool generated the old outputs. Use git show at the recorded execution commit for the exact source. Further live-source changes invalidate this note and require another explicit Git-proved explanation.",
+      "recorded_at": "2026-11-04",
+      "recorded_by": "Codex under owner authorization; old manifests and results preserved"
+    },
+    {
+      "status": "declaration-drift-explained",
+      "manifest": "data/lab/nie-local-reader-v1/run-001/manifest.json",
+      "path": "docs/00-project/nie-local-reader-pilot-2026-11-04.md",
+      "declared_sha256": "8c5af7b3c92b1fcb24110643cdf8071c70463b0af767ff9810ac32bd8a026ed9",
+      "declared_matched_at": [
+        "8d17c4f62dd1ef4b1fc1c2e836aa14d63555f92e"
+      ],
+      "changed_in": "2256a17c68e62eac84317e1e031077239579dfcb",
+      "current_sha256": "8890b65cd104e58017f9daba5cbc2e3d8d66190aa82c26555e3e657ae31c99e2",
+      "reason": "Completed execution pins its original source commit. Later explicitly disclosed changes add the schema-only writer repair, a separate coverage control, invalid-record hardening and persisted-journal reload as applicable. Original measurements/manifests were not rewritten; source digests and both summaries are independently rechecked in reanalysis-audit.json.",
+      "consequence": "These are historical execution bytes, not a declaration that the evolving current tool generated the old outputs. Use git show at the recorded execution commit for the exact source. Further live-source changes invalidate this note and require another explicit Git-proved explanation.",
+      "recorded_at": "2026-11-04",
+      "recorded_by": "Codex under owner authorization; old manifests and results preserved"
+    }
+  ]
+}

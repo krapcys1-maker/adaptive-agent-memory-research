@@ -23,6 +23,10 @@ it names (one manifest, one file, one declared digest) from critical to a low
 declaration was true at an earlier commit and names the commit that changed the
 file. See prove_drift.
 
+A companion may contain additional_declarations for the same manifest. Each is
+an independently scoped, fully populated note checked by the same Git proofs;
+no directory or neighbouring declaration is exempted.
+
 It reports. It never repairs: deciding what to do about a broken freeze is a
 provenance decision that belongs to a human and to project memory.
 """
@@ -255,7 +259,33 @@ def load_drift_annotation(annotation: Path) -> tuple[dict[str, Any] | None, str]
         return None, f"missing required field(s): {', '.join(missing)}"
     if document["status"] != DRIFT_STATUS:
         return None, f"status must be {DRIFT_STATUS!r}, got {document['status']!r}"
+    if not isinstance(document["path"], str) or not isinstance(document["declared_sha256"], str):
+        return None, "drift declaration path and digest must be strings"
+    additional = document.get("additional_declarations", [])
+    if not isinstance(additional, list):
+        return None, "additional_declarations must be a list"
+    seen = {(document["path"], document["declared_sha256"])}
+    for entry in additional:
+        if not isinstance(entry, dict) or any(not entry.get(field) for field in DRIFT_REQUIRED):
+            return None, "additional declaration is missing required fields"
+        if entry["status"] != DRIFT_STATUS or entry["manifest"] != document["manifest"]:
+            return None, "additional declaration must have the same status and manifest"
+        if "additional_declarations" in entry:
+            return None, "nested additional declarations are not permitted"
+        if not isinstance(entry["path"], str) or not isinstance(entry["declared_sha256"], str):
+            return None, "additional declaration path and digest must be strings"
+        key = (entry["path"], entry["declared_sha256"])
+        if key in seen:
+            return None, "duplicate drift declaration"
+        seen.add(key)
     return document, ""
+
+
+def matching_drift_declaration(document: dict, manifest: str, target: str, declared: str) -> dict | None:
+    for entry in [document, *document.get("additional_declarations", [])]:
+        if entry["manifest"] == manifest and entry["path"] == target and entry["declared_sha256"] == declared:
+            return entry
+    return None
 
 
 def prove_drift(document: dict[str, Any], target_relative: str, declared: str, working_digest: str) -> str:
@@ -445,11 +475,7 @@ def check_declared_hashes(findings: list[Finding], counters: Counter) -> None:
                                 f"{rejection}. Suppressing nothing; declarations are still checked.",
                             )
                         )
-                elif (
-                    document["manifest"] == relative_manifest
-                    and document["path"] == relative_target
-                    and document["declared_sha256"] == value
-                ):
+                elif (document := matching_drift_declaration(document, relative_manifest, relative_target, value)) is not None:
                     problem = prove_drift(document, relative_target, value, working)
                     if not problem:
                         counters["explained_drift"] += 1

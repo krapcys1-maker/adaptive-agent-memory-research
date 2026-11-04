@@ -1,0 +1,15 @@
+{
+  "status": "declaration-drift-explained",
+  "manifest": "data/lab/nie-local-reader-v1/conflict-followup/result.json",
+  "path": "scripts/nie_memory_contract.py",
+  "declared_sha256": "4065f13d1a52c204b1f3c466c9cc11d4302775982d82899e9e6a4b47e1fba6c5",
+  "declared_matched_at": [
+    "3ed012609227e9e3fc41bda9adffc12398a9a289"
+  ],
+  "changed_in": "027641bd659e6fbe6f5233c4c0a586702129a657",
+  "current_sha256": "8b169db54437dc097d0fe991dce557a2d1f494554f5a6b970e1d45cad2bdd37b",
+  "reason": "Completed execution pins its original source commit. Later explicitly disclosed changes add the schema-only writer repair, a separate coverage control, invalid-record hardening and persisted-journal reload as applicable. Original measurements/manifests were not rewritten; source digests and both summaries are independently rechecked in reanalysis-audit.json.",
+  "consequence": "These are historical execution bytes, not a declaration that the evolving current tool generated the old outputs. Use git show at the recorded execution commit for the exact source. Further live-source changes invalidate this note and require another explicit Git-proved explanation.",
+  "recorded_at": "2026-11-04",
+  "recorded_by": "Codex under owner authorization; old manifests and results preserved"
+}

@@ -1,0 +1,1 @@
+{"key": "supplemental-conflict", "text": "{\"value\":\"amber\"}", "wall_seconds": 2.547000000005937, "done_reason": "stop", "usage": {"prompt_eval_count": 188, "eval_count": 6, "total_duration": 2543140100, "load_duration": 2318123400, "prompt_eval_duration": 131708000, "eval_duration": 88818000}}

@@ -1,0 +1,115 @@
+{
+  "complete": true,
+  "generation_calls": 1,
+  "replay": {
+    "schema_version": 2,
+    "mode": "read-only-offline-no-reader",
+    "as_of": "2026-11-03T00:00:00Z",
+    "query": "Which colour is your kitchen kettle?\nkitchen kettle colour",
+    "task_type": "personal",
+    "profile": {
+      "k": 3,
+      "lex_tau": 0.2,
+      "min_evidence": 1.4,
+      "k1": 1.2,
+      "b": 0.75,
+      "len_cap": 3.0,
+      "top_terms": 10,
+      "max_terms": 20,
+      "tau": 0.57,
+      "names": true,
+      "name_task_types": [
+        "personal"
+      ],
+      "rare_df": 2,
+      "persona_task_types": [
+        "personal"
+      ],
+      "timeout_ms": "infinity",
+      "require_zone": true,
+      "embed": "off",
+      "name": "NIE-offline-lexical"
+    },
+    "input_sha256": "8ca3e05ce41be03a3f3110a4252aace4e771198d9ab38408b9b6c534d446543a",
+    "kernel_version": "0.2.0",
+    "kernel_sha256": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+    "bridge_sha256": "5e5a660f3bb72673309cf04a37b8e146ec59dce59e420f88f4ef9e68bc32ac36",
+    "dependency_sha256": {
+      "scripts/nie_memory_contract.py": "4065f13d1a52c204b1f3c466c9cc11d4302775982d82899e9e6a4b47e1fba6c5"
+    },
+    "validated_unique_publications": 9,
+    "available_publications": 9,
+    "future_publications_excluded_before_index": 0,
+    "kernel_status": "ok",
+    "kernel_ranked_ids": [
+      "nie-detail-99d44e9f159551e6f7248dadad52685a43cd6fde64995e9c476e07b93875645e",
+      "nie-detail-deeb2499dd78442679eb85e83fd6387b83dd8ba312f0ab22247828d25361a44f"
+    ],
+    "shown_items": [
+      {
+        "id": "nie-detail-99d44e9f159551e6f7248dadad52685a43cd6fde64995e9c476e07b93875645e",
+        "kind": "event",
+        "origin": "fiction_autobio",
+        "created_at": "2026-11-01T12:00:00Z",
+        "text": "My kitchen kettle colour is amber.",
+        "trace": null,
+        "meta": {
+          "publication_id": "conflict-right",
+          "available_at": "2026-11-01T12:00:00Z",
+          "source": "improwizacja",
+          "task": "notka_zycie",
+          "run_id": "conflict-right",
+          "seed_id": "local-pilot",
+          "version": "typed-pilot-v1",
+          "typed_claim": {
+            "slot": "kettle_colour",
+            "value": "amber"
+          }
+        }
+      },
+      {
+        "id": "nie-detail-deeb2499dd78442679eb85e83fd6387b83dd8ba312f0ab22247828d25361a44f",
+        "kind": "event",
+        "origin": "fiction_autobio",
+        "created_at": "2026-11-01T12:00:00Z",
+        "text": "My kitchen kettle colour is teal.",
+        "trace": null,
+        "meta": {
+          "publication_id": "conflict-left",
+          "available_at": "2026-11-01T12:00:00Z",
+          "source": "improwizacja",
+          "task": "notka_zycie",
+          "run_id": "conflict-left",
+          "seed_id": "local-pilot",
+          "version": "typed-pilot-v1",
+          "typed_claim": {
+            "slot": "kettle_colour",
+            "value": "teal"
+          }
+        }
+      }
+    ],
+    "context": "Fictional improvised autobiographical records; these are not canonical biography:\n[2026-11-01] My kitchen kettle colour is amber.\n[2026-11-01] My kitchen kettle colour is teal.",
+    "context_words": 23,
+    "max_context_words": 200,
+    "budget_definition": "Whitespace words of full context, including provenance heading/date labels.",
+    "kernel_tokens_est_before_bridge_budget": 24,
+    "kernel_token_definition": "Kernel characters/4 estimate; distinct from this bridge word budget.",
+    "limitations": [
+      "No generated answer or consistency score.",
+      "No supersession/write-back/live injection.",
+      "Profile is an engineering replay setting, not an adoption recommendation."
+    ]
+  },
+  "raw_value": "amber",
+  "guard": {
+    "value": "UNKNOWN",
+    "resolution": "conflicting_evidence",
+    "source_ids": [
+      "nie-detail-99d44e9f159551e6f7248dadad52685a43cd6fde64995e9c476e07b93875645e",
+      "nie-detail-deeb2499dd78442679eb85e83fd6387b83dd8ba312f0ab22247828d25361a44f"
+    ]
+  },
+  "conflict_exercised": true,
+  "delivered_unknown": true
+}

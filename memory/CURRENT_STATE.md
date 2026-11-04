@@ -6,6 +6,13 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
+**Latest executed boundary (2026-11-04):** a [local typed-fact reader pilot](../data/lab/nie-local-reader-v1/README.md)
+delivers 48/48 consistent values across sixteen closed-slot chains, including twelve
+code corrections of the raw reader (36/48). Routing is supplied for eight authored
+fields; typed capture from free prose, actual NIE prompts and the main hosted reader
+remain unvalidated. The first writer-format failure and a repaired conflict-control
+coverage check are preserved. Prior P2 and LifeSim limitations still stand.
+
 **November orientation (2026-11-04):** the [laboratory map](../docs/11-research-laboratory/lab-map.md)
 is the entry point for AAM writing-memory experiments, the persona battery, WMB,
 the shared kernel and LifeSim. Persona corrections are integrated; new runs use
