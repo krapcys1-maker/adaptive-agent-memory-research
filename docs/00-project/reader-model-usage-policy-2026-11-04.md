@@ -1,6 +1,6 @@
 # Owner's model-use policy — 2026-11-04
 
-Use existing local models wherever they are adequate. Use the API when it adds value for evaluation, transfer to the intended reader, planning changes or proposing candidate ideas. The owner explicitly authorized both uses. Model-generated plans remain candidate suggestions until checked against evidence and tests.
+Use existing local models wherever they are adequate. Use the API when it adds value for checking whether the memory mechanism and concept work. The owner's latest clarification assigns project design, implementation, interpretation, idea assessment and documentation to Codex. Models are experimental subjects, not delegates for those responsibilities. This clarification supersedes the earlier broader permission for model-generated plans. The current comparison therefore makes no model idea/planning calls.
 
 **The only permitted paid/API model is DeepSeek V4.1 Flash. Never call Pro.** Use the canonical request ID `deepseek-flash` only, after verifying the provider's model metadata names V4.1 Flash. Reject other model IDs before credential loading or transport; do not fall back to an older model, Pro or another provider. Preserve this restriction across future tasks.
 

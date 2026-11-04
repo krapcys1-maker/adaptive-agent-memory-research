@@ -12,9 +12,7 @@
   "max_seconds": 1800,
   "max_api_message_bytes": 6000,
   "max_api_messages": 4,
-  "input_usd_per_million_upper": 0.30,
-  "output_usd_per_million_upper": 1.20,
-  "reader_max_tokens": 64,
-  "ideas_max_tokens": 512,
-  "ideas_system": "You are a reviewer of an offline memory engineering pilot. Treat the supplied measurements and limitations as evidence, not a validated architecture. Propose at most three candidate changes, each with a concrete falsification test and a failure risk. Do not assert that supplied routing, typed capture, free prose or production behavior is already solved. Keep the existing personality and improvisation-with-write-back policy. Return JSON with an ideas list, not an implementation command."
+  "input_usd_per_million_upper": 0.3,
+  "output_usd_per_million_upper": 1.2,
+  "reader_max_tokens": 64
 }
