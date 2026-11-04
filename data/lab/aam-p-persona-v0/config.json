@@ -1,0 +1,154 @@
+{
+ "bare_system": "You answer reader questions briefly and plainly.",
+ "budget": {
+  "judge_labels_usd": 0.15,
+  "model": "deepseek-flash",
+  "planned_calls": 2171,
+  "run_cap_usd_each": 2.5,
+  "run_ids": [
+   "e1-ppersona-judge",
+   "e1-ppersona-writer"
+  ],
+  "scope": "e1",
+  "stop_at_usd": 4.0,
+  "usd_per_million_tokens": 0.4
+ },
+ "calendar": {
+  "now": "2026-11-03",
+  "s2": "2026-11-10",
+  "s3": "2026-11-17"
+ },
+ "caps": {
+  "p1": 950,
+  "p2": 300,
+  "p3": 200,
+  "p7": 850
+ },
+ "classifier_bank": {
+  "file": "data/lab/aam-p-persona-v0/classifier_bank.json",
+  "sha256": "5259a1e284a6606d072ae21a0222a85898c5b17f009ec7a6db1a7cc167a808bc"
+ },
+ "decoy_persona": "data/lab/aam-e6-persona/persona.json",
+ "decoy_persona_sha256": "e30d8ef27d62e03e48cd201d9652947f4bf21eb585a761c2733390221d530a4a",
+ "experiment": "AAM-P-PERSONA-V0 a battery of four instruments (facts, consistency, leak, nature of the account) for a fictional editorial persona",
+ "freeze": {
+  "enforce": true
+ },
+ "kernel": {
+  "module": "scripts/wmb/memory_kernel.py",
+  "origin_class": "fiction_autobio",
+  "profile": "lexical",
+  "task_type": "personal",
+  "version": "0.1.0"
+ },
+ "minimums": {
+  "p1_answerable": 40,
+  "p1_event": 8,
+  "p1_per_style": 12,
+  "p1_per_tag": 6,
+  "p1_unanswered": 10,
+  "p2_items": 12,
+  "p3_clean_sentences": 40,
+  "p3_leak_keys": 15,
+  "p3_paraphrases": 40,
+  "p3_personal": 6,
+  "p3_tasks": 12,
+  "p7_per_type": 12
+ },
+ "model": "deepseek-flash through the flash-only metering proxies (writer on 8799, judge on 8798), thinking disabled by the proxy; no other model is ever called",
+ "parameters": {
+  "bootstrap_draws": 2000,
+  "chars_per_token": 3.3,
+  "chunk": 40,
+  "note_chars": 400,
+  "samples": {
+   "p1": 3,
+   "p2_chains": 5,
+   "p3": 3,
+   "p7": 3,
+   "p7_bare": 2,
+   "p7_untagged": 2
+  },
+  "seed": 20261102,
+  "seeds": {
+   "p1": 0,
+   "p2_s1": 1000,
+   "p2_s2": 2000,
+   "p2_s3": 3000,
+   "p3": 4000,
+   "p7": 5000,
+   "p7_bare": 6000,
+   "p7_bt": 7000
+  },
+  "temperature": 0.7,
+  "tokens": {
+   "p1": 160,
+   "p2": 120,
+   "p3": 260,
+   "p7": 160
+  },
+  "top_k": 3,
+  "workers": 8
+ },
+ "private_inputs_sha256": {
+  "card": "3f266bdd941cf296ec007f440d0447644ff36c36c3f89eea0309cf9397ffd7e4",
+  "items.json": "60babd7f8fd15effe385debc57b3bc0f96c9a91a212315f36a0a56956ac959a8",
+  "notes": "a775f381d08619a522b5699527a66e1ffd4b0747245bd71f8bd036dff75d71bb",
+  "persona_system": "d076d7d147fd0432003191cb1d2f39833001fc6cd2d8442c0159bc6f6c1f2f95",
+  "persona_system_untagged": "172578edec5cb75af0a1c5de144fbf834fe93cbd22cea9c2eb3a14c2faaecc8b"
+ },
+ "proxies": {
+  "judge": {
+   "run_id": "e1-ppersona-judge",
+   "url": "http://127.0.0.1:8798/v1"
+  },
+  "writer": {
+   "run_id": "e1-ppersona-writer",
+   "url": "http://127.0.0.1:8799/v1"
+  }
+ },
+ "readings": {
+  "p1_bare_max": 0.05,
+  "p1_core_kept": 0.9,
+  "p1_decoy_max": 0.1,
+  "p1_instrument": 0.9,
+  "p1_min_event_questions": 6,
+  "p1_retrieval_adds": 0.3,
+  "p1_retrieval_margin": 0.1,
+  "p1_substitution_max_count": 1,
+  "p2_headroom_below": 0.8,
+  "p2_injected_min": 0.9,
+  "p2_min_headroom_items": 3,
+  "p2_stable_min": 0.9,
+  "p2_write_back_gain": 0.3,
+  "p3_bare_max_count": 1,
+  "p3_clean_false_alarm_gate": 0.12,
+  "p3_leak_max_count": 2,
+  "p3_paraphrase_recall_gate": 0.6,
+  "p3_personal_min": 0.7,
+  "p7_bare_blocked_max": 0.02,
+  "p7_control_recall": 0.85,
+  "p7_filter_false_alarm": 0.05,
+  "p7_filter_recall": 0.9,
+  "p7_input_filter_direct": 0.5,
+  "p7_judge_accuracy": 0.9,
+  "refusal_precision_gate": 0.9,
+  "refusal_recall_gate": 0.85
+ },
+ "script_sha256": {
+  "scripts/botness_probe.py": "baf0c004f267bfdf761172a1e803e757445d1ee3d7f6b1d2a00de74cf8cc1b0d",
+  "scripts/flash_only_proxy.py": "26554fad694a2688284d36abd3675a4fbf276c55154631b626a2f812e1c1ae6a",
+  "scripts/followup_memory_sim.py": "cc5483a1e7ba00b8ef11bbf42ebb21a0db9a81d738b8ab35ec2b438892e06f53",
+  "scripts/llm_backends.py": "189248c200c959d1af0b91977b0172ded2431b949e18832fa0ddc81682cab1f4",
+  "scripts/metered_proxy.py": "8410c6c4cfb8c6bfea1a345ec3428cf879f52fbf2103a1c666781c478dbecf07",
+  "scripts/persona_battery.py": "26a18611542ea98a61fa10554bbbc5348f75076708896b59af0cc39a38e0bea3",
+  "scripts/persona_sim.py": "616f557e8f335cbb879634f5b2d203d99e212ca7c76439879a0766b11f1f0512",
+  "scripts/shadow_baseline_measures.py": "b02ad50d9d97b618a41b8a67b4e80fd1dc451f446c22c1aa0c75bf6f8651049a",
+  "scripts/wmb/__init__.py": "64a85443814a023526cf12025a8e09ba4e336ff5f6695b7b65ebfb4306b415d3",
+  "scripts/wmb/contract.py": "9aac0527b62fb8299760c850b482ec79a0e3570c5028800fe7d58901b5eb16ad",
+  "scripts/wmb/memory_kernel.py": "712fd83b20d1467e175c83ee74e4bcf4c32c56f4ce83d5f3aef853b19b31c529",
+  "scripts/wmb/retrieval_bench.py": "f15799eeda53c1770002d061df0bd4f08b3e057fb63514c89bfb4f504820fa0a",
+  "scripts/wmb/stats.py": "da3018ed8d0c80a0d0fa133ea7a8f23f060dd6bebfe83b711d1887634342724c",
+  "scripts/writer_memory_sim.py": "95292672dffb656a0442399f6042264967d8405e141c9068e1531bec4da36297"
+ }
+}

@@ -1,0 +1,23 @@
+{
+  "analysis_identity": {
+    "exit_code": 0,
+    "prepared_honour_record": true,
+    "record_prompt_contains_sentence": true,
+    "reported_honour_record": false
+  },
+  "incomplete_analysis": {
+    "actual_records": 1,
+    "exit_code": 0,
+    "expected_records": 291,
+    "instrument_ok": true
+  },
+  "profile_resume": {
+    "changed_profile_accepted": true,
+    "exit_code": 0,
+    "freeze_enforced": true,
+    "fresh_records_with_changed_profile": 290,
+    "frozen_problems": [],
+    "records": 291,
+    "records_with_previous_prompt_fingerprint": 1
+  }
+}
