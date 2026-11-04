@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import sqlite3
 import sys
@@ -34,6 +35,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     commands.add_parser("status")
     commands.add_parser("rebuild")
+
+    verify = commands.add_parser("verify", help="check the canonical log without writing an index")
+    verify.add_argument("--format", choices=("text", "json"), default="text")
 
     search = commands.add_parser("search")
     search.add_argument("query")
@@ -103,9 +107,20 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     _configure_standard_streams()
-    args = build_parser().parse_args()
+    args = build_parser().parse_args(argv)
+    if args.command == "verify":
+        # Load our verifier explicitly: scripts/ is not a required package and
+        # another project's --root must not select its executable Python code.
+        path = Path(__file__).resolve().parents[2] / "scripts" / "verify_memory_integrity.py"
+        name = "project_memory_integrity_verifier"
+        spec = importlib.util.spec_from_file_location(name, path)
+        verifier = importlib.util.module_from_spec(spec)
+        sys.modules[name] = verifier
+        spec.loader.exec_module(verifier)
+        return verifier.main(["--events", str(Path(args.root).expanduser() / "memory" / "events.jsonl"),
+                              "--format", args.format])
     store = MemoryStore(args.root)
     try:
         if args.command == "status":
