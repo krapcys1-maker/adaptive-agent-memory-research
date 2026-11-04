@@ -1,0 +1,578 @@
+{"event": "reserve", "key": "flash-capture:control-0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:control-0", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}
+{"event": "reserve", "key": "flash-capture:control-1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:control-1", "prompt_tokens": 160, "completion_tokens": 9, "usd_peak_uncached_upper": 5.88e-05}
+{"event": "reserve", "key": "flash-capture:control-2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:control-2", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}
+{"event": "reserve", "key": "flash-capture:extract-F000000", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000000", "prompt_tokens": 202, "completion_tokens": 10, "usd_peak_uncached_upper": 7.26e-05}
+{"event": "reserve", "key": "flash-capture:extract-F000001", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000001", "prompt_tokens": 208, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001044}
+{"event": "reserve", "key": "flash-capture:extract-F000002", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000002", "prompt_tokens": 211, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001077}
+{"event": "reserve", "key": "flash-capture:extract-F000003", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000003", "prompt_tokens": 210, "completion_tokens": 40, "usd_peak_uncached_upper": 0.000111}
+{"event": "reserve", "key": "flash-capture:extract-F000004", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000004", "prompt_tokens": 216, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001104}
+{"event": "reserve", "key": "flash-capture:extract-F000005", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000005", "prompt_tokens": 223, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001089}
+{"event": "reserve", "key": "flash-capture:extract-F000006", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000006", "prompt_tokens": 227, "completion_tokens": 39, "usd_peak_uncached_upper": 0.0001149}
+{"event": "reserve", "key": "flash-capture:extract-F000007", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000007", "prompt_tokens": 224, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001092}
+{"event": "reserve", "key": "flash-capture:extract-F000008", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000008", "prompt_tokens": 228, "completion_tokens": 40, "usd_peak_uncached_upper": 0.0001164}
+{"event": "reserve", "key": "flash-capture:extract-F000009", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000009", "prompt_tokens": 225, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001131}
+{"event": "reserve", "key": "flash-capture:extract-F000010", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000010", "prompt_tokens": 224, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001128}
+{"event": "reserve", "key": "flash-capture:extract-F000011", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000011", "prompt_tokens": 228, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001092}
+{"event": "reserve", "key": "flash-capture:extract-F000012", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000012", "prompt_tokens": 231, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001137}
+{"event": "reserve", "key": "flash-capture:extract-F000013", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000013", "prompt_tokens": 227, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001077}
+{"event": "reserve", "key": "flash-capture:extract-F000014", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000014", "prompt_tokens": 231, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001125}
+{"event": "reserve", "key": "flash-capture:extract-F000015", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000015", "prompt_tokens": 230, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001122}
+{"event": "reserve", "key": "flash-capture:extract-F000016", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000016", "prompt_tokens": 229, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001131}
+{"event": "reserve", "key": "flash-capture:extract-F000017", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000017", "prompt_tokens": 231, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001137}
+{"event": "reserve", "key": "flash-capture:extract-F000018", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000018", "prompt_tokens": 229, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001095}
+{"event": "reserve", "key": "flash-capture:extract-F000019", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000019", "prompt_tokens": 233, "completion_tokens": 39, "usd_peak_uncached_upper": 0.0001167}
+{"event": "reserve", "key": "flash-capture:extract-F000020", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000020", "prompt_tokens": 235, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001161}
+{"event": "reserve", "key": "flash-capture:extract-F000021", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000021", "prompt_tokens": 238, "completion_tokens": 40, "usd_peak_uncached_upper": 0.0001194}
+{"event": "reserve", "key": "flash-capture:extract-F000022", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000022", "prompt_tokens": 235, "completion_tokens": 41, "usd_peak_uncached_upper": 0.0001197}
+{"event": "reserve", "key": "flash-capture:extract-F000023", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000023", "prompt_tokens": 227, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001089}
+{"event": "reserve", "key": "flash-capture:extract-F000024", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000024", "prompt_tokens": 227, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001077}
+{"event": "reserve", "key": "flash-capture:extract-F000025", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000025", "prompt_tokens": 227, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001113}
+{"event": "reserve", "key": "flash-capture:extract-F000026", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000026", "prompt_tokens": 236, "completion_tokens": 39, "usd_peak_uncached_upper": 0.0001176}
+{"event": "reserve", "key": "flash-capture:extract-F000027", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000027", "prompt_tokens": 232, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001152}
+{"event": "reserve", "key": "flash-capture:extract-F000028", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000028", "prompt_tokens": 230, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001122}
+{"event": "reserve", "key": "flash-capture:extract-F000029", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000029", "prompt_tokens": 233, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001155}
+{"event": "reserve", "key": "flash-capture:extract-F000030", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000030", "prompt_tokens": 228, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001092}
+{"event": "reserve", "key": "flash-capture:extract-F000031", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000031", "prompt_tokens": 237, "completion_tokens": 40, "usd_peak_uncached_upper": 0.0001191}
+{"event": "reserve", "key": "flash-capture:extract-F000032", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000032", "prompt_tokens": 233, "completion_tokens": 39, "usd_peak_uncached_upper": 0.0001167}
+{"event": "reserve", "key": "flash-capture:extract-F000033", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000033", "prompt_tokens": 228, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001104}
+{"event": "reserve", "key": "flash-capture:extract-F000034", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000034", "prompt_tokens": 236, "completion_tokens": 39, "usd_peak_uncached_upper": 0.0001176}
+{"event": "reserve", "key": "flash-capture:extract-F000035", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000035", "prompt_tokens": 227, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001101}
+{"event": "reserve", "key": "flash-capture:extract-F000036", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000036", "prompt_tokens": 237, "completion_tokens": 40, "usd_peak_uncached_upper": 0.0001191}
+{"event": "reserve", "key": "flash-capture:extract-F000038", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000038", "prompt_tokens": 233, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001107}
+{"event": "reserve", "key": "flash-capture:extract-F000039", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000039", "prompt_tokens": 234, "completion_tokens": 39, "usd_peak_uncached_upper": 0.000117}
+{"event": "reserve", "key": "flash-capture:extract-F000040", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000040", "prompt_tokens": 229, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001071}
+{"event": "reserve", "key": "flash-capture:extract-F000041", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000041", "prompt_tokens": 232, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001152}
+{"event": "reserve", "key": "flash-capture:extract-F000042", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000042", "prompt_tokens": 232, "completion_tokens": 37, "usd_peak_uncached_upper": 0.000114}
+{"event": "reserve", "key": "flash-capture:extract-F000043", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000043", "prompt_tokens": 231, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001125}
+{"event": "reserve", "key": "flash-capture:extract-F000044", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000044", "prompt_tokens": 231, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001125}
+{"event": "reserve", "key": "flash-capture:extract-F000045", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000045", "prompt_tokens": 232, "completion_tokens": 37, "usd_peak_uncached_upper": 0.000114}
+{"event": "reserve", "key": "flash-capture:extract-F000046", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000046", "prompt_tokens": 234, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001146}
+{"event": "reserve", "key": "flash-capture:extract-F000047", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000047", "prompt_tokens": 230, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001074}
+{"event": "reserve", "key": "flash-capture:extract-F000048", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000048", "prompt_tokens": 233, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001119}
+{"event": "reserve", "key": "flash-capture:extract-F000050", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000050", "prompt_tokens": 233, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001155}
+{"event": "reserve", "key": "flash-capture:extract-F000051", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000051", "prompt_tokens": 235, "completion_tokens": 40, "usd_peak_uncached_upper": 0.0001185}
+{"event": "reserve", "key": "flash-capture:extract-F000052", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000052", "prompt_tokens": 230, "completion_tokens": 35, "usd_peak_uncached_upper": 0.000111}
+{"event": "reserve", "key": "flash-capture:extract-F000055", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000055", "prompt_tokens": 233, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001131}
+{"event": "reserve", "key": "flash-capture:extract-F000056", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000056", "prompt_tokens": 230, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001074}
+{"event": "reserve", "key": "flash-capture:extract-F000058", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000058", "prompt_tokens": 232, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001092}
+{"event": "reserve", "key": "flash-capture:extract-F000060", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000060", "prompt_tokens": 234, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001146}
+{"event": "reserve", "key": "flash-capture:extract-F000061", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000061", "prompt_tokens": 234, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001122}
+{"event": "reserve", "key": "flash-capture:extract-F000062", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000062", "prompt_tokens": 235, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001089}
+{"event": "reserve", "key": "flash-capture:extract-F000064", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000064", "prompt_tokens": 239, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001161}
+{"event": "reserve", "key": "flash-capture:extract-F000065", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000065", "prompt_tokens": 232, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001116}
+{"event": "reserve", "key": "flash-capture:extract-F000068", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000068", "prompt_tokens": 235, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001149}
+{"event": "reserve", "key": "flash-capture:extract-F000069", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000069", "prompt_tokens": 239, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001161}
+{"event": "reserve", "key": "flash-capture:extract-F000070", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000070", "prompt_tokens": 237, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001167}
+{"event": "reserve", "key": "flash-capture:extract-F000071", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000071", "prompt_tokens": 236, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001152}
+{"event": "reserve", "key": "flash-capture:extract-F000072", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000072", "prompt_tokens": 237, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001167}
+{"event": "reserve", "key": "flash-capture:extract-F000073", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000073", "prompt_tokens": 239, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001173}
+{"event": "reserve", "key": "flash-capture:extract-F000075", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000075", "prompt_tokens": 233, "completion_tokens": 39, "usd_peak_uncached_upper": 0.0001167}
+{"event": "reserve", "key": "flash-capture:extract-F000076", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000076", "prompt_tokens": 234, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001134}
+{"event": "reserve", "key": "flash-capture:extract-F000077", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000077", "prompt_tokens": 231, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001125}
+{"event": "reserve", "key": "flash-capture:extract-F000078", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000078", "prompt_tokens": 236, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001152}
+{"event": "reserve", "key": "flash-capture:extract-F000079", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000079", "prompt_tokens": 235, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001089}
+{"event": "reserve", "key": "flash-capture:extract-F000080", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000080", "prompt_tokens": 234, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001134}
+{"event": "reserve", "key": "flash-capture:extract-F000081", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000081", "prompt_tokens": 233, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001131}
+{"event": "reserve", "key": "flash-capture:extract-F000082", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000082", "prompt_tokens": 233, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001119}
+{"event": "reserve", "key": "flash-capture:extract-F000084", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000084", "prompt_tokens": 233, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001095}
+{"event": "reserve", "key": "flash-capture:extract-F000090", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000090", "prompt_tokens": 235, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001161}
+{"event": "reserve", "key": "flash-capture:extract-F000093", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000093", "prompt_tokens": 238, "completion_tokens": 41, "usd_peak_uncached_upper": 0.0001206}
+{"event": "reserve", "key": "flash-capture:extract-F000095", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000095", "prompt_tokens": 232, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001116}
+{"event": "reserve", "key": "flash-capture:extract-F000096", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000096", "prompt_tokens": 233, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001143}
+{"event": "reserve", "key": "flash-capture:extract-F000097", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000097", "prompt_tokens": 235, "completion_tokens": 39, "usd_peak_uncached_upper": 0.0001173}
+{"event": "reserve", "key": "flash-capture:extract-F000098", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-capture:extract-F000098", "prompt_tokens": 233, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001095}
+{"event": "reserve", "key": "flash-answers:control-0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:control-0", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}
+{"event": "reserve", "key": "flash-answers:control-1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:control-1", "prompt_tokens": 160, "completion_tokens": 9, "usd_peak_uncached_upper": 5.88e-05}
+{"event": "reserve", "key": "flash-answers:control-2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:control-2", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}
+{"event": "reserve", "key": "flash-answers:plan-Q000", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q000", "prompt_tokens": 390, "completion_tokens": 23, "usd_peak_uncached_upper": 0.0001446}
+{"event": "reserve", "key": "flash-answers:plan-Q001", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q001", "prompt_tokens": 389, "completion_tokens": 24, "usd_peak_uncached_upper": 0.0001455}
+{"event": "reserve", "key": "flash-answers:plan-Q002", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q002", "prompt_tokens": 397, "completion_tokens": 55, "usd_peak_uncached_upper": 0.0001851}
+{"event": "reserve", "key": "flash-answers:plan-Q003", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q003", "prompt_tokens": 390, "completion_tokens": 35, "usd_peak_uncached_upper": 0.000159}
+{"event": "reserve", "key": "flash-answers:plan-Q004", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q004", "prompt_tokens": 389, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001551}
+{"event": "reserve", "key": "flash-answers:plan-Q005", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q005", "prompt_tokens": 399, "completion_tokens": 61, "usd_peak_uncached_upper": 0.0001929}
+{"event": "reserve", "key": "flash-answers:plan-Q006", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q006", "prompt_tokens": 387, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001545}
+{"event": "reserve", "key": "flash-answers:plan-Q007", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q007", "prompt_tokens": 398, "completion_tokens": 46, "usd_peak_uncached_upper": 0.0001746}
+{"event": "reserve", "key": "flash-answers:plan-Q008", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q008", "prompt_tokens": 388, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001548}
+{"event": "reserve", "key": "flash-answers:plan-Q009", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q009", "prompt_tokens": 398, "completion_tokens": 46, "usd_peak_uncached_upper": 0.0001746}
+{"event": "reserve", "key": "flash-answers:plan-Q010", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q010", "prompt_tokens": 397, "completion_tokens": 49, "usd_peak_uncached_upper": 0.0001779}
+{"event": "reserve", "key": "flash-answers:plan-Q011", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q011", "prompt_tokens": 392, "completion_tokens": 46, "usd_peak_uncached_upper": 0.0001728}
+{"event": "reserve", "key": "flash-answers:plan-Q012", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q012", "prompt_tokens": 396, "completion_tokens": 48, "usd_peak_uncached_upper": 0.0001764}
+{"event": "reserve", "key": "flash-answers:plan-Q013", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q013", "prompt_tokens": 386, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001578}
+{"event": "reserve", "key": "flash-answers:plan-Q014", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q014", "prompt_tokens": 386, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001578}
+{"event": "reserve", "key": "flash-answers:plan-Q015", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q015", "prompt_tokens": 392, "completion_tokens": 45, "usd_peak_uncached_upper": 0.0001716}
+{"event": "reserve", "key": "flash-answers:plan-Q016", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q016", "prompt_tokens": 396, "completion_tokens": 47, "usd_peak_uncached_upper": 0.0001752}
+{"event": "reserve", "key": "flash-answers:plan-Q017", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q017", "prompt_tokens": 387, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001581}
+{"event": "reserve", "key": "flash-answers:plan-Q018", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q018", "prompt_tokens": 390, "completion_tokens": 43, "usd_peak_uncached_upper": 0.0001686}
+{"event": "reserve", "key": "flash-answers:plan-Q019", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q019", "prompt_tokens": 394, "completion_tokens": 55, "usd_peak_uncached_upper": 0.0001842}
+{"event": "reserve", "key": "flash-answers:plan-Q020", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q020", "prompt_tokens": 403, "completion_tokens": 47, "usd_peak_uncached_upper": 0.0001773}
+{"event": "reserve", "key": "flash-answers:plan-Q021", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q021", "prompt_tokens": 388, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001596}
+{"event": "reserve", "key": "flash-answers:plan-Q022", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q022", "prompt_tokens": 391, "completion_tokens": 24, "usd_peak_uncached_upper": 0.0001461}
+{"event": "reserve", "key": "flash-answers:plan-Q023", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q023", "prompt_tokens": 387, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001569}
+{"event": "reserve", "key": "flash-answers:plan-Q024", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q024", "prompt_tokens": 391, "completion_tokens": 22, "usd_peak_uncached_upper": 0.0001437}
+{"event": "reserve", "key": "flash-answers:plan-Q025", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q025", "prompt_tokens": 393, "completion_tokens": 45, "usd_peak_uncached_upper": 0.0001719}
+{"event": "reserve", "key": "flash-answers:plan-Q026", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q026", "prompt_tokens": 387, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001581}
+{"event": "reserve", "key": "flash-answers:plan-Q027", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q027", "prompt_tokens": 413, "completion_tokens": 24, "usd_peak_uncached_upper": 0.0001527}
+{"event": "reserve", "key": "flash-answers:plan-Q028", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q028", "prompt_tokens": 396, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001584}
+{"event": "reserve", "key": "flash-answers:plan-Q029", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q029", "prompt_tokens": 385, "completion_tokens": 31, "usd_peak_uncached_upper": 0.0001527}
+{"event": "reserve", "key": "flash-answers:plan-Q030", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q030", "prompt_tokens": 385, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001575}
+{"event": "reserve", "key": "flash-answers:plan-Q031", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q031", "prompt_tokens": 389, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001563}
+{"event": "reserve", "key": "flash-answers:plan-Q032", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q032", "prompt_tokens": 400, "completion_tokens": 44, "usd_peak_uncached_upper": 0.0001728}
+{"event": "reserve", "key": "flash-answers:plan-Q033", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q033", "prompt_tokens": 402, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001626}
+{"event": "reserve", "key": "flash-answers:plan-Q034", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q034", "prompt_tokens": 386, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001566}
+{"event": "reserve", "key": "flash-answers:plan-Q035", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q035", "prompt_tokens": 393, "completion_tokens": 58, "usd_peak_uncached_upper": 0.0001875}
+{"event": "reserve", "key": "flash-answers:plan-Q036", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q036", "prompt_tokens": 410, "completion_tokens": 49, "usd_peak_uncached_upper": 0.0001818}
+{"event": "reserve", "key": "flash-answers:plan-Q037", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q037", "prompt_tokens": 393, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001623}
+{"event": "reserve", "key": "flash-answers:plan-Q038", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q038", "prompt_tokens": 399, "completion_tokens": 40, "usd_peak_uncached_upper": 0.0001677}
+{"event": "reserve", "key": "flash-answers:plan-Q039", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q039", "prompt_tokens": 392, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001572}
+{"event": "reserve", "key": "flash-answers:plan-Q040", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q040", "prompt_tokens": 391, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001617}
+{"event": "reserve", "key": "flash-answers:plan-Q041", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q041", "prompt_tokens": 396, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001596}
+{"event": "reserve", "key": "flash-answers:plan-Q042", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q042", "prompt_tokens": 390, "completion_tokens": 22, "usd_peak_uncached_upper": 0.0001434}
+{"event": "reserve", "key": "flash-answers:plan-Q043", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q043", "prompt_tokens": 405, "completion_tokens": 40, "usd_peak_uncached_upper": 0.0001695}
+{"event": "reserve", "key": "flash-answers:plan-Q044", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q044", "prompt_tokens": 392, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001596}
+{"event": "reserve", "key": "flash-answers:plan-Q045", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q045", "prompt_tokens": 390, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001554}
+{"event": "reserve", "key": "flash-answers:plan-Q046", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q046", "prompt_tokens": 386, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001554}
+{"event": "reserve", "key": "flash-answers:plan-Q047", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q047", "prompt_tokens": 390, "completion_tokens": 43, "usd_peak_uncached_upper": 0.0001686}
+{"event": "reserve", "key": "flash-answers:plan-Q048", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q048", "prompt_tokens": 397, "completion_tokens": 57, "usd_peak_uncached_upper": 0.0001875}
+{"event": "reserve", "key": "flash-answers:plan-Q049", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q049", "prompt_tokens": 384, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001548}
+{"event": "reserve", "key": "flash-answers:plan-Q050", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q050", "prompt_tokens": 392, "completion_tokens": 49, "usd_peak_uncached_upper": 0.0001764}
+{"event": "reserve", "key": "flash-answers:plan-Q051", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q051", "prompt_tokens": 388, "completion_tokens": 33, "usd_peak_uncached_upper": 0.000156}
+{"event": "reserve", "key": "flash-answers:plan-Q052", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q052", "prompt_tokens": 392, "completion_tokens": 59, "usd_peak_uncached_upper": 0.0001884}
+{"event": "reserve", "key": "flash-answers:plan-Q053", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q053", "prompt_tokens": 393, "completion_tokens": 46, "usd_peak_uncached_upper": 0.0001731}
+{"event": "reserve", "key": "flash-answers:plan-Q054", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q054", "prompt_tokens": 390, "completion_tokens": 44, "usd_peak_uncached_upper": 0.0001698}
+{"event": "reserve", "key": "flash-answers:plan-Q055", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q055", "prompt_tokens": 404, "completion_tokens": 58, "usd_peak_uncached_upper": 0.0001908}
+{"event": "reserve", "key": "flash-answers:plan-Q056", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q056", "prompt_tokens": 393, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001563}
+{"event": "reserve", "key": "flash-answers:plan-Q057", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q057", "prompt_tokens": 388, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001572}
+{"event": "reserve", "key": "flash-answers:plan-Q058", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q058", "prompt_tokens": 392, "completion_tokens": 22, "usd_peak_uncached_upper": 0.000144}
+{"event": "reserve", "key": "flash-answers:plan-Q059", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q059", "prompt_tokens": 393, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001623}
+{"event": "reserve", "key": "flash-answers:plan-Q060", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q060", "prompt_tokens": 387, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001581}
+{"event": "reserve", "key": "flash-answers:plan-Q061", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q061", "prompt_tokens": 383, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001533}
+{"event": "reserve", "key": "flash-answers:plan-Q062", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q062", "prompt_tokens": 386, "completion_tokens": 31, "usd_peak_uncached_upper": 0.000153}
+{"event": "reserve", "key": "flash-answers:plan-Q063", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q063", "prompt_tokens": 396, "completion_tokens": 58, "usd_peak_uncached_upper": 0.0001884}
+{"event": "reserve", "key": "flash-answers:plan-Q064", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q064", "prompt_tokens": 391, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001593}
+{"event": "reserve", "key": "flash-answers:plan-Q065", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q065", "prompt_tokens": 388, "completion_tokens": 30, "usd_peak_uncached_upper": 0.0001524}
+{"event": "reserve", "key": "flash-answers:plan-Q066", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q066", "prompt_tokens": 386, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001554}
+{"event": "reserve", "key": "flash-answers:plan-Q067", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q067", "prompt_tokens": 388, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001572}
+{"event": "reserve", "key": "flash-answers:plan-Q068", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q068", "prompt_tokens": 387, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001581}
+{"event": "reserve", "key": "flash-answers:plan-Q069", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q069", "prompt_tokens": 392, "completion_tokens": 58, "usd_peak_uncached_upper": 0.0001872}
+{"event": "reserve", "key": "flash-answers:plan-Q070", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q070", "prompt_tokens": 390, "completion_tokens": 44, "usd_peak_uncached_upper": 0.0001698}
+{"event": "reserve", "key": "flash-answers:plan-Q071", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q071", "prompt_tokens": 393, "completion_tokens": 33, "usd_peak_uncached_upper": 0.0001575}
+{"event": "reserve", "key": "flash-answers:plan-Q072", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q072", "prompt_tokens": 394, "completion_tokens": 44, "usd_peak_uncached_upper": 0.000171}
+{"event": "reserve", "key": "flash-answers:plan-Q073", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q073", "prompt_tokens": 395, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001629}
+{"event": "reserve", "key": "flash-answers:plan-Q074", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q074", "prompt_tokens": 397, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001635}
+{"event": "reserve", "key": "flash-answers:plan-Q075", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q075", "prompt_tokens": 390, "completion_tokens": 44, "usd_peak_uncached_upper": 0.0001698}
+{"event": "reserve", "key": "flash-answers:plan-Q076", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q076", "prompt_tokens": 386, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001566}
+{"event": "reserve", "key": "flash-answers:plan-Q077", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q077", "prompt_tokens": 401, "completion_tokens": 54, "usd_peak_uncached_upper": 0.0001851}
+{"event": "reserve", "key": "flash-answers:plan-Q078", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q078", "prompt_tokens": 388, "completion_tokens": 35, "usd_peak_uncached_upper": 0.0001584}
+{"event": "reserve", "key": "flash-answers:plan-Q079", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q079", "prompt_tokens": 392, "completion_tokens": 45, "usd_peak_uncached_upper": 0.0001716}
+{"event": "reserve", "key": "flash-answers:plan-Q080", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q080", "prompt_tokens": 389, "completion_tokens": 36, "usd_peak_uncached_upper": 0.0001599}
+{"event": "reserve", "key": "flash-answers:plan-Q081", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q081", "prompt_tokens": 389, "completion_tokens": 37, "usd_peak_uncached_upper": 0.0001611}
+{"event": "reserve", "key": "flash-answers:plan-Q082", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q082", "prompt_tokens": 390, "completion_tokens": 46, "usd_peak_uncached_upper": 0.0001722}
+{"event": "reserve", "key": "flash-answers:plan-Q083", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q083", "prompt_tokens": 387, "completion_tokens": 34, "usd_peak_uncached_upper": 0.0001569}
+{"event": "reserve", "key": "flash-answers:plan-Q084", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q084", "prompt_tokens": 400, "completion_tokens": 25, "usd_peak_uncached_upper": 0.00015}
+{"event": "reserve", "key": "flash-answers:plan-Q085", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q085", "prompt_tokens": 389, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001551}
+{"event": "reserve", "key": "flash-answers:plan-Q086", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q086", "prompt_tokens": 392, "completion_tokens": 38, "usd_peak_uncached_upper": 0.0001632}
+{"event": "reserve", "key": "flash-answers:plan-Q087", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q087", "prompt_tokens": 393, "completion_tokens": 46, "usd_peak_uncached_upper": 0.0001731}
+{"event": "reserve", "key": "flash-answers:plan-Q088", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q088", "prompt_tokens": 394, "completion_tokens": 32, "usd_peak_uncached_upper": 0.0001566}
+{"event": "reserve", "key": "flash-answers:plan-Q089", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q089", "prompt_tokens": 390, "completion_tokens": 35, "usd_peak_uncached_upper": 0.000159}
+{"event": "reserve", "key": "flash-answers:plan-Q090", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q090", "prompt_tokens": 396, "completion_tokens": 39, "usd_peak_uncached_upper": 0.0001656}
+{"event": "reserve", "key": "flash-answers:plan-Q091", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q091", "prompt_tokens": 393, "completion_tokens": 21, "usd_peak_uncached_upper": 0.0001431}
+{"event": "reserve", "key": "flash-answers:plan-Q092", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q092", "prompt_tokens": 399, "completion_tokens": 22, "usd_peak_uncached_upper": 0.0001461}
+{"event": "reserve", "key": "flash-answers:plan-Q093", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q093", "prompt_tokens": 393, "completion_tokens": 44, "usd_peak_uncached_upper": 0.0001707}
+{"event": "reserve", "key": "flash-answers:plan-Q094", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q094", "prompt_tokens": 389, "completion_tokens": 45, "usd_peak_uncached_upper": 0.0001707}
+{"event": "reserve", "key": "flash-answers:plan-Q095", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q095", "prompt_tokens": 383, "completion_tokens": 41, "usd_peak_uncached_upper": 0.0001641}
+{"event": "reserve", "key": "flash-answers:plan-Q096", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q096", "prompt_tokens": 393, "completion_tokens": 46, "usd_peak_uncached_upper": 0.0001731}
+{"event": "reserve", "key": "flash-answers:plan-Q097", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q097", "prompt_tokens": 386, "completion_tokens": 23, "usd_peak_uncached_upper": 0.0001434}
+{"event": "reserve", "key": "flash-answers:plan-Q098", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q098", "prompt_tokens": 395, "completion_tokens": 49, "usd_peak_uncached_upper": 0.0001773}
+{"event": "reserve", "key": "flash-answers:plan-Q099", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-answers:plan-Q099", "prompt_tokens": 401, "completion_tokens": 27, "usd_peak_uncached_upper": 0.0001527}
+{"event": "reserve", "key": "flash-path-answers:control-0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:control-0", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}
+{"event": "reserve", "key": "flash-path-answers:control-1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:control-1", "prompt_tokens": 160, "completion_tokens": 9, "usd_peak_uncached_upper": 5.88e-05}
+{"event": "reserve", "key": "flash-path-answers:control-2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:control-2", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q000", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q000", "prompt_tokens": 389, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001239}
+{"event": "reserve", "key": "flash-path-answers:plan-Q001", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q001", "prompt_tokens": 229, "completion_tokens": 6, "usd_peak_uncached_upper": 7.59e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q002", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q002", "prompt_tokens": 996, "completion_tokens": 6, "usd_peak_uncached_upper": 0.000306}
+{"event": "reserve", "key": "flash-path-answers:plan-Q003", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q003", "prompt_tokens": 239, "completion_tokens": 6, "usd_peak_uncached_upper": 7.89e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q004", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q004", "prompt_tokens": 195, "completion_tokens": 6, "usd_peak_uncached_upper": 6.57e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q005", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q005", "prompt_tokens": 589, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001839}
+{"event": "reserve", "key": "flash-path-answers:plan-Q006", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q006", "prompt_tokens": 235, "completion_tokens": 6, "usd_peak_uncached_upper": 7.77e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q007", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q007", "prompt_tokens": 875, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002697}
+{"event": "reserve", "key": "flash-path-answers:plan-Q008", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q008", "prompt_tokens": 483, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001521}
+{"event": "reserve", "key": "flash-path-answers:plan-Q009", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q009", "prompt_tokens": 626, "completion_tokens": 6, "usd_peak_uncached_upper": 0.000195}
+{"event": "reserve", "key": "flash-path-answers:plan-Q010", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q010", "prompt_tokens": 481, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001515}
+{"event": "reserve", "key": "flash-path-answers:plan-Q011", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q011", "prompt_tokens": 854, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002634}
+{"event": "reserve", "key": "flash-path-answers:plan-Q012", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q012", "prompt_tokens": 283, "completion_tokens": 6, "usd_peak_uncached_upper": 9.21e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q013", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q013", "prompt_tokens": 554, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001734}
+{"event": "reserve", "key": "flash-path-answers:plan-Q014", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q014", "prompt_tokens": 376, "completion_tokens": 6, "usd_peak_uncached_upper": 0.00012}
+{"event": "reserve", "key": "flash-path-answers:plan-Q015", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q015", "prompt_tokens": 237, "completion_tokens": 6, "usd_peak_uncached_upper": 7.83e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q016", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q016", "prompt_tokens": 834, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002574}
+{"event": "reserve", "key": "flash-path-answers:plan-Q017", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q017", "prompt_tokens": 849, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002619}
+{"event": "reserve", "key": "flash-path-answers:plan-Q018", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q018", "prompt_tokens": 881, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002715}
+{"event": "reserve", "key": "flash-path-answers:plan-Q019", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q019", "prompt_tokens": 768, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002376}
+{"event": "reserve", "key": "flash-path-answers:plan-Q020", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q020", "prompt_tokens": 476, "completion_tokens": 6, "usd_peak_uncached_upper": 0.00015}
+{"event": "reserve", "key": "flash-path-answers:plan-Q021", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q021", "prompt_tokens": 379, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001209}
+{"event": "reserve", "key": "flash-path-answers:plan-Q022", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q022", "prompt_tokens": 701, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002175}
+{"event": "reserve", "key": "flash-path-answers:plan-Q023", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q023", "prompt_tokens": 700, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002172}
+{"event": "reserve", "key": "flash-path-answers:plan-Q024", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q024", "prompt_tokens": 229, "completion_tokens": 6, "usd_peak_uncached_upper": 7.59e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q025", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q025", "prompt_tokens": 799, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002469}
+{"event": "reserve", "key": "flash-path-answers:plan-Q026", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q026", "prompt_tokens": 453, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001431}
+{"event": "reserve", "key": "flash-path-answers:plan-Q027", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q027", "prompt_tokens": 845, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002607}
+{"event": "reserve", "key": "flash-path-answers:plan-Q028", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q028", "prompt_tokens": 456, "completion_tokens": 6, "usd_peak_uncached_upper": 0.000144}
+{"event": "reserve", "key": "flash-path-answers:plan-Q029", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q029", "prompt_tokens": 491, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001545}
+{"event": "reserve", "key": "flash-path-answers:plan-Q030", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q030", "prompt_tokens": 330, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001062}
+{"event": "reserve", "key": "flash-path-answers:plan-Q031", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q031", "prompt_tokens": 225, "completion_tokens": 6, "usd_peak_uncached_upper": 7.47e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q032", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q032", "prompt_tokens": 806, "completion_tokens": 6, "usd_peak_uncached_upper": 0.000249}
+{"event": "reserve", "key": "flash-path-answers:plan-Q033", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q033", "prompt_tokens": 242, "completion_tokens": 6, "usd_peak_uncached_upper": 7.98e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q034", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q034", "prompt_tokens": 487, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001533}
+{"event": "reserve", "key": "flash-path-answers:plan-Q035", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q035", "prompt_tokens": 835, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002577}
+{"event": "reserve", "key": "flash-path-answers:plan-Q036", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q036", "prompt_tokens": 1296, "completion_tokens": 6, "usd_peak_uncached_upper": 0.000396}
+{"event": "reserve", "key": "flash-path-answers:plan-Q037", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q037", "prompt_tokens": 240, "completion_tokens": 6, "usd_peak_uncached_upper": 7.92e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q038", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q038", "prompt_tokens": 455, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001437}
+{"event": "reserve", "key": "flash-path-answers:plan-Q039", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q039", "prompt_tokens": 976, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0003}
+{"event": "reserve", "key": "flash-path-answers:plan-Q040", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q040", "prompt_tokens": 583, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001821}
+{"event": "reserve", "key": "flash-path-answers:plan-Q041", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q041", "prompt_tokens": 799, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002469}
+{"event": "reserve", "key": "flash-path-answers:plan-Q042", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q042", "prompt_tokens": 564, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001764}
+{"event": "reserve", "key": "flash-path-answers:plan-Q043", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q043", "prompt_tokens": 324, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001044}
+{"event": "reserve", "key": "flash-path-answers:plan-Q044", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q044", "prompt_tokens": 382, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001218}
+{"event": "reserve", "key": "flash-path-answers:plan-Q045", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q045", "prompt_tokens": 445, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001407}
+{"event": "reserve", "key": "flash-path-answers:plan-Q046", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q046", "prompt_tokens": 234, "completion_tokens": 6, "usd_peak_uncached_upper": 7.74e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q047", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q047", "prompt_tokens": 423, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001341}
+{"event": "reserve", "key": "flash-path-answers:plan-Q048", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q048", "prompt_tokens": 824, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002544}
+{"event": "reserve", "key": "flash-path-answers:plan-Q049", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q049", "prompt_tokens": 786, "completion_tokens": 6, "usd_peak_uncached_upper": 0.000243}
+{"event": "reserve", "key": "flash-path-answers:plan-Q050", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q050", "prompt_tokens": 234, "completion_tokens": 6, "usd_peak_uncached_upper": 7.74e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q051", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q051", "prompt_tokens": 226, "completion_tokens": 6, "usd_peak_uncached_upper": 7.5e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q052", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q052", "prompt_tokens": 518, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001626}
+{"event": "reserve", "key": "flash-path-answers:plan-Q053", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q053", "prompt_tokens": 434, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001374}
+{"event": "reserve", "key": "flash-path-answers:plan-Q054", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q054", "prompt_tokens": 852, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002628}
+{"event": "reserve", "key": "flash-path-answers:plan-Q055", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q055", "prompt_tokens": 815, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002517}
+{"event": "reserve", "key": "flash-path-answers:plan-Q056", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q056", "prompt_tokens": 228, "completion_tokens": 6, "usd_peak_uncached_upper": 7.56e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q057", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q057", "prompt_tokens": 850, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002622}
+{"event": "reserve", "key": "flash-path-answers:plan-Q058", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q058", "prompt_tokens": 494, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001554}
+{"event": "reserve", "key": "flash-path-answers:plan-Q059", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q059", "prompt_tokens": 347, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001113}
+{"event": "reserve", "key": "flash-path-answers:plan-Q060", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q060", "prompt_tokens": 849, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002619}
+{"event": "reserve", "key": "flash-path-answers:plan-Q061", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q061", "prompt_tokens": 220, "completion_tokens": 6, "usd_peak_uncached_upper": 7.32e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q062", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q062", "prompt_tokens": 578, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001806}
+{"event": "reserve", "key": "flash-path-answers:plan-Q063", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q063", "prompt_tokens": 810, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002502}
+{"event": "reserve", "key": "flash-path-answers:plan-Q064", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q064", "prompt_tokens": 381, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001215}
+{"event": "reserve", "key": "flash-path-answers:plan-Q065", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q065", "prompt_tokens": 1050, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0003222}
+{"event": "reserve", "key": "flash-path-answers:plan-Q066", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q066", "prompt_tokens": 585, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001827}
+{"event": "reserve", "key": "flash-path-answers:plan-Q067", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q067", "prompt_tokens": 512, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001608}
+{"event": "reserve", "key": "flash-path-answers:plan-Q068", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q068", "prompt_tokens": 655, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002037}
+{"event": "reserve", "key": "flash-path-answers:plan-Q069", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q069", "prompt_tokens": 476, "completion_tokens": 6, "usd_peak_uncached_upper": 0.00015}
+{"event": "reserve", "key": "flash-path-answers:plan-Q070", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q070", "prompt_tokens": 362, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001158}
+{"event": "reserve", "key": "flash-path-answers:plan-Q071", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q071", "prompt_tokens": 412, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001308}
+{"event": "reserve", "key": "flash-path-answers:plan-Q072", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q072", "prompt_tokens": 808, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002496}
+{"event": "reserve", "key": "flash-path-answers:plan-Q073", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q073", "prompt_tokens": 459, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001449}
+{"event": "reserve", "key": "flash-path-answers:plan-Q074", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q074", "prompt_tokens": 315, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001017}
+{"event": "reserve", "key": "flash-path-answers:plan-Q075", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q075", "prompt_tokens": 796, "completion_tokens": 6, "usd_peak_uncached_upper": 0.000246}
+{"event": "reserve", "key": "flash-path-answers:plan-Q076", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q076", "prompt_tokens": 880, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002712}
+{"event": "reserve", "key": "flash-path-answers:plan-Q077", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q077", "prompt_tokens": 783, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002421}
+{"event": "reserve", "key": "flash-path-answers:plan-Q078", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q078", "prompt_tokens": 378, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001206}
+{"event": "reserve", "key": "flash-path-answers:plan-Q079", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q079", "prompt_tokens": 290, "completion_tokens": 6, "usd_peak_uncached_upper": 9.42e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q080", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q080", "prompt_tokens": 449, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001419}
+{"event": "reserve", "key": "flash-path-answers:plan-Q081", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q081", "prompt_tokens": 413, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001311}
+{"event": "reserve", "key": "flash-path-answers:plan-Q082", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q082", "prompt_tokens": 526, "completion_tokens": 6, "usd_peak_uncached_upper": 0.000165}
+{"event": "reserve", "key": "flash-path-answers:plan-Q083", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q083", "prompt_tokens": 650, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002022}
+{"event": "reserve", "key": "flash-path-answers:plan-Q084", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q084", "prompt_tokens": 238, "completion_tokens": 6, "usd_peak_uncached_upper": 7.86e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q085", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q085", "prompt_tokens": 253, "completion_tokens": 6, "usd_peak_uncached_upper": 8.31e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q086", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q086", "prompt_tokens": 785, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002427}
+{"event": "reserve", "key": "flash-path-answers:plan-Q087", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q087", "prompt_tokens": 1059, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0003249}
+{"event": "reserve", "key": "flash-path-answers:plan-Q088", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q088", "prompt_tokens": 348, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001116}
+{"event": "reserve", "key": "flash-path-answers:plan-Q089", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q089", "prompt_tokens": 804, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002484}
+{"event": "reserve", "key": "flash-path-answers:plan-Q090", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q090", "prompt_tokens": 243, "completion_tokens": 6, "usd_peak_uncached_upper": 8.01e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q091", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q091", "prompt_tokens": 594, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001854}
+{"event": "reserve", "key": "flash-path-answers:plan-Q092", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q092", "prompt_tokens": 473, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001491}
+{"event": "reserve", "key": "flash-path-answers:plan-Q093", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q093", "prompt_tokens": 702, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002178}
+{"event": "reserve", "key": "flash-path-answers:plan-Q094", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q094", "prompt_tokens": 340, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001092}
+{"event": "reserve", "key": "flash-path-answers:plan-Q095", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q095", "prompt_tokens": 504, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001584}
+{"event": "reserve", "key": "flash-path-answers:plan-Q096", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q096", "prompt_tokens": 230, "completion_tokens": 6, "usd_peak_uncached_upper": 7.62e-05}
+{"event": "reserve", "key": "flash-path-answers:plan-Q097", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q097", "prompt_tokens": 426, "completion_tokens": 6, "usd_peak_uncached_upper": 0.000135}
+{"event": "reserve", "key": "flash-path-answers:plan-Q098", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q098", "prompt_tokens": 517, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0001623}
+{"event": "reserve", "key": "flash-path-answers:plan-Q099", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "flash-path-answers:plan-Q099", "prompt_tokens": 863, "completion_tokens": 6, "usd_peak_uncached_upper": 0.0002661}
