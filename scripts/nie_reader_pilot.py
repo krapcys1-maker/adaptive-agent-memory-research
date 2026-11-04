@@ -43,7 +43,7 @@ def append(path, value):
 
 def source_identity():
     files = [Path(__file__), Path(bridge.__file__), Path(contract.__file__), bridge.KERNEL,
-             DATA/'config.json', DATA/'cases.json', PROTOCOL]
+             *sorted(DATA.glob('config*.json')), DATA/'cases.json', PROTOCOL]
     return {'git_head': subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
             'clean_tree': not subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip(),
             'sha256': {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}
@@ -54,6 +54,8 @@ def validate(config, cases):
         raise ValueError('Only the fixed local Ollama endpoint is permitted.')
     if config['arms'] != ['N','K','O','V'] or config['writer_seeds'] != [17,43]:
         raise ValueError('Execution must use the committed arm/seed design.')
+    if config.get('writer_format') not in (None,'json_schema'):
+        raise ValueError('Unsupported writer format; do not silently substitute.')
     if not (0 < config['max_calls'] <= 220 and 0 < config['max_seconds'] <= 1200):
         raise ValueError('Resource cap exceeds the fixed pilot ceiling.')
     if len(cases) != 8 or len({c['slot'] for c in cases}) != 8:
@@ -109,12 +111,13 @@ class LocalReader:
                 'parameters':show.get('parameters'), 'python':platform.python_version(),
                 'platform':platform.platform(),'gpu':gpu.stdout.strip() if gpu.returncode==0 else None}
 
-    def ask(self, key, messages, seed):
+    def ask(self, key, messages, seed, *, output_schema=None):
         if key in self.keys:
             raise ValueError('Duplicate call key; no mixing or retry.')
         if len(self.keys) >= self.cfg['max_calls'] or time.monotonic()-self.started >= self.cfg['max_seconds']:
             raise RuntimeError('Local call/time cap reached.')
-        payload = {'model':self.cfg['model'], 'messages':messages, 'stream':False, 'format':'json',
+        payload = {'model':self.cfg['model'], 'messages':messages, 'stream':False,
+                   'format':output_schema if output_schema is not None else 'json',
                    'keep_alive':'5m', 'options':dict(self.cfg['options'],seed=seed)}
         self.keys.add(key)
         append(self.output/'attempts.jsonl', {'key':key,'request_sha256':sha(payload),'request':payload})
@@ -315,8 +318,12 @@ def execute(output, config, cases, *, client_factory=LocalReader, require_clean=
         for ci,case in enumerate(cases):
             for seed in config['writer_seeds']:
                 chain=f"{case['slot']}:{seed}"
+                writer_schema=({'type':'object','properties':{'value':{'type':'string','enum':case['values']}},
+                                'required':['value'],'additionalProperties':False}
+                               if config.get('writer_format')=='json_schema' else None)
                 response=client.ask('write:'+chain,[{'role':'system','content':config['writer_system']},
-                    {'role':'user','content':f"Field: {case['slot']}. Choose exactly one pool member: "+json.dumps(case['values'])}],seed)
+                    {'role':'user','content':f"Field: {case['slot']}. Choose exactly one pool member: "+json.dumps(case['values'])}],seed,
+                                    output_schema=writer_schema)
                 value=answer_value(response)
                 valid=value in case['values']
                 append(output/'writers.jsonl',{'slot':case['slot'],'seed':seed,'value':value,'valid':valid,'call_key':'write:'+chain})
@@ -378,8 +385,9 @@ def execute(output, config, cases, *, client_factory=LocalReader, require_clean=
 def main(argv=None):
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--output',type=Path,required=True)
+    ap.add_argument('--config',type=Path,default=DATA/'config-v2.json')
     args=ap.parse_args(argv)
-    config=json.loads((DATA/'config.json').read_text(encoding='utf-8'))
+    config=json.loads(args.config.read_text(encoding='utf-8'))
     cases=json.loads((DATA/'cases.json').read_text(encoding='utf-8'))
     result=execute(args.output,config,cases)
     print(json.dumps({'complete':result['complete'],'larger_offline_test_only':result['larger_offline_test_only']}))

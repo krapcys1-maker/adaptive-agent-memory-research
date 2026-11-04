@@ -115,6 +115,22 @@ def test_existing_execution_is_never_resumed_or_overwritten(tmp_path):
     assert marker.read_text()=='preserve'
 
 
+def test_schema_amendment_affects_only_writer_transport_and_is_recorded(tmp_path):
+    cfg,cases=design();cfg['writer_format']='json_schema'
+    out=tmp_path/'schema'
+    result=P.execute(out,cfg,cases,client_factory=FakeReader,require_clean=False)
+    assert result['complete']
+    calls=P.read_rows(out/'attempts.jsonl')
+    for call in calls:
+        fmt=call['request']['format']
+        if call['key'].startswith('write:'):
+            assert fmt['required']==['value'] and fmt['additionalProperties'] is False
+            slot=call['key'].split(':')[1]
+            assert fmt['properties']['value']['enum']==next(c['values'] for c in cases if c['slot']==slot)
+        else:
+            assert fmt=='json'
+
+
 def test_invalid_writer_is_a_failed_chain_not_a_selected_success(tmp_path):
     class RefusingWriter(FakeReader):
         def fake_request(self,path,body=None):
