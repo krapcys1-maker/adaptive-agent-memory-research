@@ -1,0 +1,73 @@
+{
+  "detail": "blind arms beat chance",
+  "n": 2923,
+  "name": "G-BLIND",
+  "passed": false,
+  "thresholds": {
+    "choice_bound": 0.1,
+    "coverage": 0.9,
+    "open_bound": 0.08,
+    "point_slack": 0.05
+  },
+  "values": {
+    "covered_share": 0.76052,
+    "families": {
+      "EP1": {
+        "B0a": 0.0,
+        "B0h": 0.071531,
+        "chance": 0.03295,
+        "n": 699,
+        "ok": true,
+        "underpowered": false
+      },
+      "EP3c": {
+        "B0a": 0.131148,
+        "B0h": 0.131148,
+        "chance": 0.125,
+        "n": 305,
+        "ok": true,
+        "underpowered": false
+      },
+      "EP4": {
+        "B0a": 0.010714,
+        "B0h": 0.067857,
+        "chance": 0.024695,
+        "n": 560,
+        "ok": true,
+        "underpowered": false
+      },
+      "IN1": {
+        "B0a": 0.018209,
+        "B0h": 0.063733,
+        "chance": 0.025,
+        "n": 659,
+        "ok": true,
+        "underpowered": false
+      },
+      "IN4": {
+        "B0a": 0.039823,
+        "B0h": 0.159292,
+        "chance": 0.041667,
+        "n": 226,
+        "ok": false,
+        "underpowered": false
+      },
+      "SE4": {
+        "B0a": 0.031414,
+        "B0h": 0.099476,
+        "chance": 0.028774,
+        "n": 382,
+        "ok": false,
+        "underpowered": false
+      },
+      "SE5": {
+        "B0a": 0.032609,
+        "B0h": 0.347826,
+        "chance": 0.025112,
+        "n": 92,
+        "ok": false,
+        "underpowered": true
+      }
+    }
+  }
+}

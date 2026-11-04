@@ -1,0 +1,740 @@
+[
+  {
+    "detail": "too few items",
+    "n": 163,
+    "name": "G-DEPTH",
+    "passed": false,
+    "seeds": [
+      5
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 35,
+        "EP3c": 16,
+        "EP4": 30,
+        "IN1": 31,
+        "IN4": 14,
+        "ME1": 13,
+        "SE4": 19,
+        "SE5": 5
+      },
+      "short": {
+        "EP1": 35,
+        "EP3c": 16,
+        "EP4": 30,
+        "IN1": 31,
+        "IN4": 14,
+        "ME1": 13,
+        "SE4": 19,
+        "SE5": 5
+      }
+    },
+    "worlds": 1
+  },
+  {
+    "detail": "too few items",
+    "n": 316,
+    "name": "G-DEPTH",
+    "passed": false,
+    "seeds": [
+      5,
+      6
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 69,
+        "EP3c": 31,
+        "EP4": 56,
+        "IN1": 65,
+        "IN4": 20,
+        "ME1": 26,
+        "SE4": 40,
+        "SE5": 9
+      },
+      "short": {
+        "EP3c": 31,
+        "IN4": 20,
+        "ME1": 26,
+        "SE5": 9
+      }
+    },
+    "worlds": 2
+  },
+  {
+    "detail": "too few items",
+    "n": 473,
+    "name": "G-DEPTH",
+    "passed": false,
+    "seeds": [
+      5,
+      6,
+      7
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 107,
+        "EP3c": 46,
+        "EP4": 82,
+        "IN1": 96,
+        "IN4": 30,
+        "ME1": 39,
+        "SE4": 60,
+        "SE5": 13
+      },
+      "short": {
+        "IN4": 30,
+        "ME1": 39,
+        "SE5": 13
+      }
+    },
+    "worlds": 3
+  },
+  {
+    "detail": "too few items",
+    "n": 633,
+    "name": "G-DEPTH",
+    "passed": false,
+    "seeds": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 138,
+        "EP3c": 61,
+        "EP4": 106,
+        "IN1": 132,
+        "IN4": 45,
+        "ME1": 52,
+        "SE4": 82,
+        "SE5": 17
+      },
+      "short": {
+        "SE5": 17
+      }
+    },
+    "worlds": 4
+  },
+  {
+    "detail": "too few items",
+    "n": 788,
+    "name": "G-DEPTH",
+    "passed": false,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 169,
+        "EP3c": 77,
+        "EP4": 132,
+        "IN1": 165,
+        "IN4": 53,
+        "ME1": 65,
+        "SE4": 104,
+        "SE5": 23
+      },
+      "short": {
+        "SE5": 23
+      }
+    },
+    "worlds": 5
+  },
+  {
+    "detail": "too few items",
+    "n": 951,
+    "name": "G-DEPTH",
+    "passed": false,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 204,
+        "EP3c": 92,
+        "EP4": 162,
+        "IN1": 194,
+        "IN4": 67,
+        "ME1": 78,
+        "SE4": 125,
+        "SE5": 29
+      },
+      "short": {
+        "SE5": 29
+      }
+    },
+    "worlds": 6
+  },
+  {
+    "detail": "too few items",
+    "n": 1107,
+    "name": "G-DEPTH",
+    "passed": false,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 235,
+        "EP3c": 107,
+        "EP4": 192,
+        "IN1": 232,
+        "IN4": 74,
+        "ME1": 91,
+        "SE4": 143,
+        "SE5": 33
+      },
+      "short": {
+        "SE5": 33
+      }
+    },
+    "worlds": 7
+  },
+  {
+    "detail": "too few items",
+    "n": 1266,
+    "name": "G-DEPTH",
+    "passed": false,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 271,
+        "EP3c": 123,
+        "EP4": 220,
+        "IN1": 267,
+        "IN4": 85,
+        "ME1": 104,
+        "SE4": 159,
+        "SE5": 37
+      },
+      "short": {
+        "SE5": 37
+      }
+    },
+    "worlds": 8
+  },
+  {
+    "detail": "",
+    "n": 1428,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 307,
+        "EP3c": 137,
+        "EP4": 246,
+        "IN1": 297,
+        "IN4": 100,
+        "ME1": 117,
+        "SE4": 181,
+        "SE5": 43
+      },
+      "short": {}
+    },
+    "worlds": 9
+  },
+  {
+    "detail": "",
+    "n": 1591,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 345,
+        "EP3c": 151,
+        "EP4": 276,
+        "IN1": 327,
+        "IN4": 115,
+        "ME1": 130,
+        "SE4": 199,
+        "SE5": 48
+      },
+      "short": {}
+    },
+    "worlds": 10
+  },
+  {
+    "detail": "",
+    "n": 1756,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 379,
+        "EP3c": 166,
+        "EP4": 308,
+        "IN1": 359,
+        "IN4": 130,
+        "ME1": 143,
+        "SE4": 218,
+        "SE5": 53
+      },
+      "short": {}
+    },
+    "worlds": 11
+  },
+  {
+    "detail": "",
+    "n": 1912,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 418,
+        "EP3c": 182,
+        "EP4": 334,
+        "IN1": 391,
+        "IN4": 139,
+        "ME1": 156,
+        "SE4": 235,
+        "SE5": 57
+      },
+      "short": {}
+    },
+    "worlds": 12
+  },
+  {
+    "detail": "",
+    "n": 2066,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 451,
+        "EP3c": 197,
+        "EP4": 360,
+        "IN1": 426,
+        "IN4": 147,
+        "ME1": 169,
+        "SE4": 254,
+        "SE5": 62
+      },
+      "short": {}
+    },
+    "worlds": 13
+  },
+  {
+    "detail": "",
+    "n": 2227,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 486,
+        "EP3c": 213,
+        "EP4": 386,
+        "IN1": 458,
+        "IN4": 161,
+        "ME1": 182,
+        "SE4": 275,
+        "SE5": 66
+      },
+      "short": {}
+    },
+    "worlds": 14
+  },
+  {
+    "detail": "",
+    "n": 2392,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 521,
+        "EP3c": 229,
+        "EP4": 418,
+        "IN1": 491,
+        "IN4": 176,
+        "ME1": 195,
+        "SE4": 292,
+        "SE5": 70
+      },
+      "short": {}
+    },
+    "worlds": 15
+  },
+  {
+    "detail": "",
+    "n": 2557,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 555,
+        "EP3c": 243,
+        "EP4": 450,
+        "IN1": 522,
+        "IN4": 191,
+        "ME1": 208,
+        "SE4": 314,
+        "SE5": 74
+      },
+      "short": {}
+    },
+    "worlds": 16
+  },
+  {
+    "detail": "",
+    "n": 2714,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 590,
+        "EP3c": 259,
+        "EP4": 474,
+        "IN1": 558,
+        "IN4": 202,
+        "ME1": 221,
+        "SE4": 331,
+        "SE5": 79
+      },
+      "short": {}
+    },
+    "worlds": 17
+  },
+  {
+    "detail": "",
+    "n": 2871,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 624,
+        "EP3c": 274,
+        "EP4": 506,
+        "IN1": 592,
+        "IN4": 209,
+        "ME1": 234,
+        "SE4": 348,
+        "SE5": 84
+      },
+      "short": {}
+    },
+    "worlds": 18
+  },
+  {
+    "detail": "",
+    "n": 3028,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 659,
+        "EP3c": 289,
+        "EP4": 534,
+        "IN1": 626,
+        "IN4": 218,
+        "ME1": 247,
+        "SE4": 367,
+        "SE5": 88
+      },
+      "short": {}
+    },
+    "worlds": 19
+  },
+  {
+    "detail": "",
+    "n": 3183,
+    "name": "G-DEPTH",
+    "passed": true,
+    "seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "thresholds": {
+      "min_items": 40
+    },
+    "values": {
+      "counts": {
+        "EP1": 699,
+        "EP3c": 305,
+        "EP4": 560,
+        "IN1": 659,
+        "IN4": 226,
+        "ME1": 260,
+        "SE4": 382,
+        "SE5": 92
+      },
+      "short": {}
+    },
+    "worlds": 20
+  }
+]

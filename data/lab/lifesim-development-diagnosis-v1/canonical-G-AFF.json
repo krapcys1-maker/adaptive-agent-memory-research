@@ -1,0 +1,14 @@
+{
+  "detail": "",
+  "n": 22331,
+  "name": "G-AFF",
+  "passed": true,
+  "thresholds": {
+    "affect_words": 0
+  },
+  "values": {
+    "affect_words": 0,
+    "mode": "A0",
+    "spearman_arousal_affect": 0.0
+  }
+}

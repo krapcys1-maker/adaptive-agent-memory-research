@@ -1,0 +1,41 @@
+{
+  "detail": "",
+  "n": 6529,
+  "name": "G-HOST",
+  "passed": true,
+  "thresholds": {
+    "p_min": 0.2
+  },
+  "values": {
+    "chi2": 3.276914,
+    "dof": 8,
+    "p": 0.915797,
+    "table": {
+      "breakfast": [
+        319,
+        327,
+        314
+      ],
+      "car_colour": [
+        324,
+        310,
+        326
+      ],
+      "companion": [
+        324,
+        310,
+        326
+      ],
+      "errand_visit": [
+        728,
+        705,
+        721
+      ],
+      "vehicle_colour": [
+        472,
+        507,
+        516
+      ]
+    }
+  }
+}

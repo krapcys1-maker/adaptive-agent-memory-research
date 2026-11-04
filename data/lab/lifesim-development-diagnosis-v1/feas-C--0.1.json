@@ -1,0 +1,23 @@
+{
+  "detail": "",
+  "n": 20,
+  "name": "G-FEAS",
+  "passed": true,
+  "thresholds": {
+    "H_cell_min": 0.2
+  },
+  "values": {
+    "GO": 0.636752,
+    "H_cell": 0.268459,
+    "R": 0.1,
+    "best_competitor": "GS",
+    "complete_at_C": {
+      "GM": 0.079476,
+      "GN": 0.310707,
+      "GO": 0.636752,
+      "GR": 0.208341,
+      "GS": 0.368293,
+      "GU": 0.073801
+    }
+  }
+}

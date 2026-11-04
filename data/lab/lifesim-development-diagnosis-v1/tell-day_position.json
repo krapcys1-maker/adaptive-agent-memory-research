@@ -1,0 +1,23 @@
+{
+  "detail": "",
+  "n": 22331,
+  "name": "G-TELL",
+  "passed": true,
+  "thresholds": {
+    "auc": 0.55,
+    "min_neg": 3000,
+    "min_pos": 300,
+    "upper95": 0.6
+  },
+  "values": {
+    "powered": true,
+    "targets": {
+      "evidence": {
+        "auc": 0.510389,
+        "negatives": 19108,
+        "positives": 3223,
+        "upper95": 0.517238
+      }
+    }
+  }
+}

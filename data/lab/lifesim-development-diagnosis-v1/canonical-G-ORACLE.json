@@ -1,0 +1,23 @@
+{
+  "detail": "",
+  "n": 3183,
+  "name": "G-ORACLE",
+  "passed": true,
+  "thresholds": {
+    "oracle_struct": 1.0,
+    "oracle_text_complete": 1.0
+  },
+  "values": {
+    "oracle_struct_accuracy": 1.0,
+    "oracle_text_complete": {
+      "EP1": 1.0,
+      "EP3c": 1.0,
+      "EP4": 1.0,
+      "IN1": 1.0,
+      "IN4": 1.0,
+      "SE4": 1.0,
+      "SE5": 1.0
+    },
+    "wrong": []
+  }
+}

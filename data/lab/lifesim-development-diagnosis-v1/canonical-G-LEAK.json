@@ -1,0 +1,24 @@
+{
+  "detail": "",
+  "n": 20,
+  "name": "G-LEAK",
+  "passed": true,
+  "thresholds": {
+    "channel_auc": [
+      0.45,
+      0.55
+    ]
+  },
+  "values": {
+    "channel_auc": 0.490335,
+    "problems": {},
+    "systems": [
+      "B1",
+      "B2",
+      "B2t",
+      "C2",
+      "GU",
+      "random"
+    ]
+  }
+}

@@ -2,6 +2,8 @@
 
 Snapshot: 2026-11-04. Read the linked README's latest results/amendments as well as its original preregistration header. This map describes the research instruments and recorded status; a passing software test is not a successful research result.
 
+The [delivery-state page](../00-project/delivery-state-2026-11-04.md) explains what is implemented and what a complete agent still needs. Later evidence: [public ranking/gate evaluation](../../data/lab/lexical-gate-eval-v1/README.md), [retrieval costs](../../data/lab/retrieval-cost-v1/README.md), and [LifeSim development diagnosis](../../data/lab/lifesim-development-diagnosis-v1/README.md). These additions do not change the clean-clone timing snapshot below.
+
 ## Tracks
 
 | Track and purpose | Code | Data and privacy | Tests / measured time | README of record and status |

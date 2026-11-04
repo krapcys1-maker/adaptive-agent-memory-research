@@ -1,0 +1,15 @@
+{
+  "detail": "",
+  "n": 2420,
+  "name": "G-SUPPORT",
+  "passed": true,
+  "thresholds": {
+    "max_share": 0.02
+  },
+  "values": {
+    "cell": "C0",
+    "demand": 2420,
+    "share": 0.00124,
+    "shortfall": 3
+  }
+}

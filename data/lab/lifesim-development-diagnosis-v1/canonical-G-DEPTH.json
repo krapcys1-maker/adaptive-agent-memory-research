@@ -1,0 +1,22 @@
+{
+  "detail": "",
+  "n": 3183,
+  "name": "G-DEPTH",
+  "passed": true,
+  "thresholds": {
+    "min_items": 40
+  },
+  "values": {
+    "counts": {
+      "EP1": 699,
+      "EP3c": 305,
+      "EP4": 560,
+      "IN1": 659,
+      "IN4": 226,
+      "ME1": 260,
+      "SE4": 382,
+      "SE5": 92
+    },
+    "short": {}
+  }
+}

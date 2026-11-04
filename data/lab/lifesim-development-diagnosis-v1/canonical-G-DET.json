@@ -1,0 +1,16 @@
+{
+  "detail": "",
+  "n": 2,
+  "name": "G-DET",
+  "passed": true,
+  "thresholds": {
+    "distinct_digests": 1
+  },
+  "values": {
+    "builds": 2,
+    "distinct": 1,
+    "queries": "fd578d64771c",
+    "text": "ecc2f82564dd",
+    "world": "17be6715f0bf"
+  }
+}

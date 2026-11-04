@@ -1,0 +1,41 @@
+{
+  "detail": "position tells",
+  "n": 22331,
+  "name": "G-POS",
+  "passed": false,
+  "thresholds": {
+    "p_min": 0.2
+  },
+  "values": {
+    "p_clause": 0.0,
+    "p_token": 0.213405,
+    "table_clause": [
+      [
+        1323,
+        911,
+        755,
+        234
+      ],
+      [
+        6935,
+        4957,
+        5390,
+        1826
+      ]
+    ],
+    "table_token": [
+      [
+        538,
+        894,
+        971,
+        820
+      ],
+      [
+        589,
+        924,
+        987,
+        766
+      ]
+    ]
+  }
+}

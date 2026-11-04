@@ -1,0 +1,13 @@
+{
+  "detail": "",
+  "n": 1,
+  "name": "G-INV",
+  "passed": true,
+  "thresholds": {
+    "all_invariances": true
+  },
+  "values": {
+    "deleted_situations": 3,
+    "problems": {}
+  }
+}
