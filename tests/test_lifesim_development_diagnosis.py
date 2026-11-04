@@ -1,6 +1,7 @@
 """Safety/provenance checks for the additive development-only runner."""
 from pathlib import Path
 import sys
+import subprocess
 from types import SimpleNamespace as NS
 from unittest.mock import patch
 
@@ -8,6 +9,17 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from reviews import lifesim_development_diagnosis as D
+
+
+def test_importing_operational_helper_preserves_caller_thread_settings():
+    script = """import os,sys
+sys.path.insert(0,'scripts')
+keys=('OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','OMP_NUM_THREADS')
+for key in keys: os.environ[key]='3'
+from reviews import lifesim_development_diagnosis
+assert all(os.environ[key]=='3' for key in keys)
+"""
+    subprocess.run([sys.executable, '-c', script], check=True, cwd=Path(__file__).resolve().parents[1])
 
 
 @pytest.mark.parametrize('seeds', ([5000], [5099], [1000], [-1], [5, 5]))
