@@ -22,7 +22,7 @@ def rows(path):
     return [json.loads(line) for line in Path(path).read_text(encoding='utf-8').splitlines() if line.strip()]
 
 
-def audit(archive, store, capture, answer_dirs, questions, scope, valid_at, known_at):
+def audit(archive, store, capture, answer_dirs, questions, scope, valid_at, known_at, cache_version=1):
     failures = []
     def check(condition, message):
         if not condition:
@@ -51,8 +51,13 @@ def audit(archive, store, capture, answer_dirs, questions, scope, valid_at, know
             source = sources[e['source']]
             claims = [Claim(source.id, **c) for c in e['proposal']['claims']]
             if e['method'] == 'template':
-                hits = {asdict(c)['subject']+'\0'+c.predicate+'\0'+c.object for t in learned
-                        if (c := t.match(source))}
+                candidates = [(t,c) for t in learned if (c := t.match(source))]
+                if cache_version == 2:
+                    from tools.structured_memory_v2 import informative, specificity
+                    candidates = [(t,c) for t,c in candidates if informative(t)]
+                    best = max((specificity(t) for t,c in candidates), default=0)
+                    candidates = [(t,c) for t,c in candidates if specificity(t) == best]
+                hits = {c.subject+'\0'+c.predicate+'\0'+c.object for t,c in candidates}
                 check(len(claims) == 1 and len(hits) == 1 and
                       claims[0].subject+'\0'+claims[0].predicate+'\0'+claims[0].object in hits,
                       'non-causal template provenance: '+source.id)
@@ -100,6 +105,7 @@ def main():
     p.add_argument('--scope', required=True)
     p.add_argument('--valid-at', type=int, required=True)
     p.add_argument('--known-at', type=int, required=True)
+    p.add_argument('--cache-version', type=int, choices=[1,2], default=1)
     args = vars(p.parse_args())
     output = args.pop('output')
     args['answer_dirs'] = args.pop('answers')
