@@ -259,6 +259,8 @@ def load_drift_annotation(annotation: Path) -> tuple[dict[str, Any] | None, str]
         return None, f"missing required field(s): {', '.join(missing)}"
     if document["status"] != DRIFT_STATUS:
         return None, f"status must be {DRIFT_STATUS!r}, got {document['status']!r}"
+    if not isinstance(document["path"], str) or not isinstance(document["declared_sha256"], str):
+        return None, "drift declaration path and digest must be strings"
     additional = document.get("additional_declarations", [])
     if not isinstance(additional, list):
         return None, "additional_declarations must be a list"

@@ -25,6 +25,6 @@ E1 now explicitly disables automatic expansion in every arm, so only labelled B3
 
 ## Delivered measurements and verification
 
-The [result packet](../../../data/lab/retrieval-cost-v1/README.md) separates the reconstructible H1 costs, unavailable historical costs, and fresh measurements on the pinned 333-event snapshot. The initial E1 execution and its explicit-policy correction are both retained. The dense demonstration used existing local model files with downloads disabled; file digests were unchanged, and the installed FastEmbed pooling warning is recorded rather than treating this as a historical replication.
+The [result packet](../../data/lab/retrieval-cost-v1/README.md) separates the reconstructible H1 costs, unavailable historical costs, and fresh measurements on the pinned 333-event snapshot. The initial E1 execution and its explicit-policy correction are both retained. The dense demonstration used existing local model files with downloads disabled; file digests were unchanged, and the installed FastEmbed pooling warning is recorded rather than treating this as a historical replication.
 
 `python tasks.py check` passed on 2026-11-04: 2,853 tests passed, 20 skipped, two existing warnings; memory integrity and claim audit also passed (331.6 seconds overall). Focused runner/helper tests passed. No frozen kernel, declared WMB-R1 script, or historical measurement JSON was changed. CI is recorded separately on the published PR head.

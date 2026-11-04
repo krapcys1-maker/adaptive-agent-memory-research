@@ -56,6 +56,10 @@ The original conflict result remains unchanged. The supplementary control adds t
 - Service-reported model: Qwen2.5 7B Instruct, Q4_K_M, digest `845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e`; Ollama 0.40.13; RTX 3060 / driver 616.92. Options and runtime timings are captured, not inferred from a model alias.
 - Forty-five focused tests pass: claims/legacy compatibility, malformed/conflicting evidence, full fake chains, history/session isolation, caps, refusal of remote URLs, incomplete/corrupt coverage, writer-schema isolation and record preservation. Full gates/CI are recorded on the delivery PR.
 
+## Historical source declarations remain explicit
+
+The mechanical audit flagged nine declarations because the evolving operational tool no longer had its old execution bytes. Four adjacent `.DRIFT.json` companions now explain those exact declarations using the recorded execution commit, the changed commit and the current hash. Original measurement manifests/results are unchanged. The auditor supports `additional_declarations` for several independently proved changes in one manifest; every entry retains the existing Git proof and exact path/digest scope. Thirty-eight auditor tests cover valid history, forged history/current hashes, unrelated/duplicate/nested notes, further edits and the original rule that a note never exempts its unannotated neighbour. A further source edit invalidates its note; no directory is exempted and no check is disabled. These proofs establish historical bytes, not answer quality or independent confirmation.
+
 ## Persisted-storage readback
 
 The original model calls used the in-memory copy of the rows already written to `journals.jsonl`. A separate readback audit reloads that file and reproduces **all 192 reader contexts, shown items and selected IDs exactly**. No model was called again and no primary score changed. The current runner now explicitly reloads the unique persisted chain before each reader turn; missing or duplicate chains fail instead of falling back to a live writer variable. The audit records its own analysis commit separately from execution provenance.

@@ -269,6 +269,15 @@ def test_further_change_voids_only_its_proved_additional_note(drifted):
     assert ('explained-drift','low') in verdicts(findings)
 
 
+@pytest.mark.parametrize('field',['path','declared_sha256'])
+def test_non_string_note_identity_is_rejected_without_crashing(drifted,field):
+    doc=note_for(drifted);doc[field]=['invalid']
+    write_note(drifted,doc)
+    findings,_=run_audit()
+    assert ('declared-hash','critical') in verdicts(findings)
+    assert ('invalid-drift-annotation','high') in verdicts(findings)
+
+
 def test_a_successor_manifest_that_declares_the_current_bytes_of_that_file_is_accepted(drifted: Scenario) -> None:
     successor = drifted.root / "data" / "lab" / "next.json"
     successor.write_text(json.dumps({"files": {TARGET: sha(EDITED)}}), encoding="utf-8")
