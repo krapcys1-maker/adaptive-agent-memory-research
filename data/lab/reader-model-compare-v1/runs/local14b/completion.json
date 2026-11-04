@@ -1,0 +1,8 @@
+{
+  "model_digest_unchanged": true,
+  "elapsed_seconds": 118.56200000000536,
+  "generation_calls": 200,
+  "service": {
+    "version": "0.40.13"
+  }
+}

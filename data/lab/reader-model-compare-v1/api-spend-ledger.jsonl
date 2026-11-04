@@ -1,0 +1,400 @@
+{"event": "reserve", "key": "benchmark:positive-0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:positive-0", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}
+{"event": "reserve", "key": "benchmark:positive-1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:positive-1", "prompt_tokens": 160, "completion_tokens": 9, "usd_peak_uncached_upper": 5.88e-05}
+{"event": "reserve", "key": "benchmark:positive-2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:positive-2", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}
+{"event": "reserve", "key": "benchmark:no-record", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:no-record", "prompt_tokens": 156, "completion_tokens": 6, "usd_peak_uncached_upper": 5.4e-05}
+{"event": "reserve", "key": "benchmark:future-only", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:future-only", "prompt_tokens": 156, "completion_tokens": 6, "usd_peak_uncached_upper": 5.4e-05}
+{"event": "reserve", "key": "benchmark:conflict", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:conflict", "prompt_tokens": 197, "completion_tokens": 6, "usd_peak_uncached_upper": 6.63e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:N:0", "prompt_tokens": 156, "completion_tokens": 6, "usd_peak_uncached_upper": 5.4e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:N:1", "prompt_tokens": 163, "completion_tokens": 6, "usd_peak_uncached_upper": 5.61e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:N:2", "prompt_tokens": 198, "completion_tokens": 6, "usd_peak_uncached_upper": 6.66e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:K:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:K:1", "prompt_tokens": 163, "completion_tokens": 6, "usd_peak_uncached_upper": 5.61e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:K:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:O:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:O:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:O:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:V:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:V:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:17:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:17:V:2", "prompt_tokens": 224, "completion_tokens": 7, "usd_peak_uncached_upper": 7.56e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:N:0", "prompt_tokens": 156, "completion_tokens": 6, "usd_peak_uncached_upper": 5.4e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:N:1", "prompt_tokens": 163, "completion_tokens": 6, "usd_peak_uncached_upper": 5.61e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:N:2", "prompt_tokens": 198, "completion_tokens": 6, "usd_peak_uncached_upper": 6.66e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:K:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:K:1", "prompt_tokens": 163, "completion_tokens": 6, "usd_peak_uncached_upper": 5.61e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:K:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:O:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:O:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:O:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:V:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:V:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:kettle_colour:43:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:kettle_colour:43:V:2", "prompt_tokens": 224, "completion_tokens": 7, "usd_peak_uncached_upper": 7.56e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:N:0", "prompt_tokens": 158, "completion_tokens": 6, "usd_peak_uncached_upper": 5.46e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:N:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:N:2", "prompt_tokens": 197, "completion_tokens": 6, "usd_peak_uncached_upper": 6.63e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:K:0", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:K:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:K:2", "prompt_tokens": 225, "completion_tokens": 6, "usd_peak_uncached_upper": 7.47e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:O:0", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:O:1", "prompt_tokens": 190, "completion_tokens": 6, "usd_peak_uncached_upper": 6.42e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:O:2", "prompt_tokens": 225, "completion_tokens": 6, "usd_peak_uncached_upper": 7.47e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:V:0", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:V:1", "prompt_tokens": 190, "completion_tokens": 6, "usd_peak_uncached_upper": 6.42e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:17:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:17:V:2", "prompt_tokens": 226, "completion_tokens": 7, "usd_peak_uncached_upper": 7.62e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:N:0", "prompt_tokens": 158, "completion_tokens": 6, "usd_peak_uncached_upper": 5.46e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:N:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:N:2", "prompt_tokens": 197, "completion_tokens": 6, "usd_peak_uncached_upper": 6.63e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:K:0", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:K:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:K:2", "prompt_tokens": 225, "completion_tokens": 6, "usd_peak_uncached_upper": 7.47e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:O:0", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:O:1", "prompt_tokens": 190, "completion_tokens": 6, "usd_peak_uncached_upper": 6.42e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:O:2", "prompt_tokens": 225, "completion_tokens": 6, "usd_peak_uncached_upper": 7.47e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:V:0", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:V:1", "prompt_tokens": 190, "completion_tokens": 6, "usd_peak_uncached_upper": 6.42e-05}
+{"event": "reserve", "key": "benchmark:read:bicycle_colour:43:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bicycle_colour:43:V:2", "prompt_tokens": 226, "completion_tokens": 7, "usd_peak_uncached_upper": 7.62e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:N:0", "prompt_tokens": 157, "completion_tokens": 6, "usd_peak_uncached_upper": 5.43e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:N:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:N:2", "prompt_tokens": 201, "completion_tokens": 6, "usd_peak_uncached_upper": 6.75e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:K:0", "prompt_tokens": 183, "completion_tokens": 6, "usd_peak_uncached_upper": 6.21e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:K:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:K:2", "prompt_tokens": 227, "completion_tokens": 6, "usd_peak_uncached_upper": 7.53e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:O:0", "prompt_tokens": 183, "completion_tokens": 6, "usd_peak_uncached_upper": 6.21e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:O:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:O:2", "prompt_tokens": 227, "completion_tokens": 6, "usd_peak_uncached_upper": 7.53e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:V:0", "prompt_tokens": 183, "completion_tokens": 6, "usd_peak_uncached_upper": 6.21e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:V:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:17:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:17:V:2", "prompt_tokens": 228, "completion_tokens": 7, "usd_peak_uncached_upper": 7.68e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:N:0", "prompt_tokens": 157, "completion_tokens": 6, "usd_peak_uncached_upper": 5.43e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:N:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:N:2", "prompt_tokens": 201, "completion_tokens": 6, "usd_peak_uncached_upper": 6.75e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:K:0", "prompt_tokens": 183, "completion_tokens": 6, "usd_peak_uncached_upper": 6.21e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:K:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:K:2", "prompt_tokens": 227, "completion_tokens": 6, "usd_peak_uncached_upper": 7.53e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:O:0", "prompt_tokens": 183, "completion_tokens": 6, "usd_peak_uncached_upper": 6.21e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:O:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:O:2", "prompt_tokens": 227, "completion_tokens": 6, "usd_peak_uncached_upper": 7.53e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:V:0", "prompt_tokens": 183, "completion_tokens": 6, "usd_peak_uncached_upper": 6.21e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:V:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:sunday_tea:43:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:sunday_tea:43:V:2", "prompt_tokens": 228, "completion_tokens": 7, "usd_peak_uncached_upper": 7.68e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:N:0", "prompt_tokens": 155, "completion_tokens": 6, "usd_peak_uncached_upper": 5.37e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:N:1", "prompt_tokens": 163, "completion_tokens": 6, "usd_peak_uncached_upper": 5.61e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:N:2", "prompt_tokens": 201, "completion_tokens": 6, "usd_peak_uncached_upper": 6.75e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:K:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:K:1", "prompt_tokens": 163, "completion_tokens": 6, "usd_peak_uncached_upper": 5.61e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:K:2", "prompt_tokens": 226, "completion_tokens": 6, "usd_peak_uncached_upper": 7.5e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:O:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:O:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:O:2", "prompt_tokens": 226, "completion_tokens": 6, "usd_peak_uncached_upper": 7.5e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:V:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:V:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:17:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:17:V:2", "prompt_tokens": 227, "completion_tokens": 7, "usd_peak_uncached_upper": 7.65e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:N:0", "prompt_tokens": 155, "completion_tokens": 6, "usd_peak_uncached_upper": 5.37e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:N:1", "prompt_tokens": 163, "completion_tokens": 6, "usd_peak_uncached_upper": 5.61e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:N:2", "prompt_tokens": 201, "completion_tokens": 6, "usd_peak_uncached_upper": 6.75e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:K:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:K:1", "prompt_tokens": 163, "completion_tokens": 6, "usd_peak_uncached_upper": 5.61e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:K:2", "prompt_tokens": 226, "completion_tokens": 6, "usd_peak_uncached_upper": 7.5e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:O:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:O:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:O:2", "prompt_tokens": 226, "completion_tokens": 6, "usd_peak_uncached_upper": 7.5e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:V:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:V:1", "prompt_tokens": 188, "completion_tokens": 6, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:notebook_name:43:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:notebook_name:43:V:2", "prompt_tokens": 227, "completion_tokens": 7, "usd_peak_uncached_upper": 7.65e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:N:0", "prompt_tokens": 155, "completion_tokens": 6, "usd_peak_uncached_upper": 5.37e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:N:1", "prompt_tokens": 161, "completion_tokens": 6, "usd_peak_uncached_upper": 5.55e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:N:2", "prompt_tokens": 196, "completion_tokens": 6, "usd_peak_uncached_upper": 6.6e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:K:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:K:1", "prompt_tokens": 161, "completion_tokens": 6, "usd_peak_uncached_upper": 5.55e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:K:2", "prompt_tokens": 221, "completion_tokens": 6, "usd_peak_uncached_upper": 7.35e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:O:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:O:1", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:O:2", "prompt_tokens": 221, "completion_tokens": 6, "usd_peak_uncached_upper": 7.35e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:V:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:V:1", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:17:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:17:V:2", "prompt_tokens": 222, "completion_tokens": 7, "usd_peak_uncached_upper": 7.5e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:N:0", "prompt_tokens": 155, "completion_tokens": 6, "usd_peak_uncached_upper": 5.37e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:N:1", "prompt_tokens": 161, "completion_tokens": 6, "usd_peak_uncached_upper": 5.55e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:N:2", "prompt_tokens": 196, "completion_tokens": 6, "usd_peak_uncached_upper": 6.6e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:K:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:K:1", "prompt_tokens": 161, "completion_tokens": 6, "usd_peak_uncached_upper": 5.55e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:K:2", "prompt_tokens": 221, "completion_tokens": 6, "usd_peak_uncached_upper": 7.35e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:O:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:O:1", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:O:2", "prompt_tokens": 221, "completion_tokens": 6, "usd_peak_uncached_upper": 7.35e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:V:0", "prompt_tokens": 180, "completion_tokens": 6, "usd_peak_uncached_upper": 6.12e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:V:1", "prompt_tokens": 186, "completion_tokens": 6, "usd_peak_uncached_upper": 6.3e-05}
+{"event": "reserve", "key": "benchmark:read:scarf_pattern:43:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:scarf_pattern:43:V:2", "prompt_tokens": 222, "completion_tokens": 7, "usd_peak_uncached_upper": 7.5e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:N:0", "prompt_tokens": 156, "completion_tokens": 6, "usd_peak_uncached_upper": 5.4e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:N:1", "prompt_tokens": 164, "completion_tokens": 6, "usd_peak_uncached_upper": 5.64e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:N:2", "prompt_tokens": 198, "completion_tokens": 6, "usd_peak_uncached_upper": 6.66e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:K:0", "prompt_tokens": 181, "completion_tokens": 5, "usd_peak_uncached_upper": 6.03e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:K:1", "prompt_tokens": 164, "completion_tokens": 6, "usd_peak_uncached_upper": 5.64e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:K:2", "prompt_tokens": 223, "completion_tokens": 5, "usd_peak_uncached_upper": 7.29e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:O:0", "prompt_tokens": 181, "completion_tokens": 5, "usd_peak_uncached_upper": 6.03e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:O:1", "prompt_tokens": 189, "completion_tokens": 5, "usd_peak_uncached_upper": 6.27e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:O:2", "prompt_tokens": 222, "completion_tokens": 5, "usd_peak_uncached_upper": 7.26e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:V:0", "prompt_tokens": 181, "completion_tokens": 5, "usd_peak_uncached_upper": 6.03e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:V:1", "prompt_tokens": 189, "completion_tokens": 5, "usd_peak_uncached_upper": 6.27e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:17:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:17:V:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:N:0", "prompt_tokens": 156, "completion_tokens": 6, "usd_peak_uncached_upper": 5.4e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:N:1", "prompt_tokens": 164, "completion_tokens": 6, "usd_peak_uncached_upper": 5.64e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:N:2", "prompt_tokens": 198, "completion_tokens": 6, "usd_peak_uncached_upper": 6.66e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:K:0", "prompt_tokens": 181, "completion_tokens": 5, "usd_peak_uncached_upper": 6.03e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:K:1", "prompt_tokens": 164, "completion_tokens": 6, "usd_peak_uncached_upper": 5.64e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:K:2", "prompt_tokens": 223, "completion_tokens": 5, "usd_peak_uncached_upper": 7.29e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:O:0", "prompt_tokens": 181, "completion_tokens": 5, "usd_peak_uncached_upper": 6.03e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:O:1", "prompt_tokens": 189, "completion_tokens": 5, "usd_peak_uncached_upper": 6.27e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:O:2", "prompt_tokens": 222, "completion_tokens": 5, "usd_peak_uncached_upper": 7.26e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:V:0", "prompt_tokens": 181, "completion_tokens": 5, "usd_peak_uncached_upper": 6.03e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:V:1", "prompt_tokens": 189, "completion_tokens": 5, "usd_peak_uncached_upper": 6.27e-05}
+{"event": "reserve", "key": "benchmark:read:breakfast_fruit:43:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:breakfast_fruit:43:V:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:N:0", "prompt_tokens": 158, "completion_tokens": 6, "usd_peak_uncached_upper": 5.46e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:N:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:N:2", "prompt_tokens": 199, "completion_tokens": 6, "usd_peak_uncached_upper": 6.69e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:K:0", "prompt_tokens": 184, "completion_tokens": 7, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:K:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:K:2", "prompt_tokens": 225, "completion_tokens": 7, "usd_peak_uncached_upper": 7.59e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:O:0", "prompt_tokens": 184, "completion_tokens": 7, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:O:1", "prompt_tokens": 188, "completion_tokens": 7, "usd_peak_uncached_upper": 6.48e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:O:2", "prompt_tokens": 226, "completion_tokens": 7, "usd_peak_uncached_upper": 7.62e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:V:0", "prompt_tokens": 184, "completion_tokens": 7, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:V:1", "prompt_tokens": 188, "completion_tokens": 7, "usd_peak_uncached_upper": 6.48e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:17:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:17:V:2", "prompt_tokens": 227, "completion_tokens": 8, "usd_peak_uncached_upper": 7.77e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:N:0", "prompt_tokens": 158, "completion_tokens": 6, "usd_peak_uncached_upper": 5.46e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:N:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:N:2", "prompt_tokens": 199, "completion_tokens": 6, "usd_peak_uncached_upper": 6.69e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:K:0", "prompt_tokens": 184, "completion_tokens": 7, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:K:1", "prompt_tokens": 162, "completion_tokens": 6, "usd_peak_uncached_upper": 5.58e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:K:2", "prompt_tokens": 225, "completion_tokens": 7, "usd_peak_uncached_upper": 7.59e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:O:0", "prompt_tokens": 184, "completion_tokens": 7, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:O:1", "prompt_tokens": 188, "completion_tokens": 7, "usd_peak_uncached_upper": 6.48e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:O:2", "prompt_tokens": 226, "completion_tokens": 7, "usd_peak_uncached_upper": 7.62e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:V:0", "prompt_tokens": 184, "completion_tokens": 7, "usd_peak_uncached_upper": 6.36e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:V:1", "prompt_tokens": 188, "completion_tokens": 7, "usd_peak_uncached_upper": 6.48e-05}
+{"event": "reserve", "key": "benchmark:read:bookshop_district:43:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:bookshop_district:43:V:2", "prompt_tokens": 227, "completion_tokens": 8, "usd_peak_uncached_upper": 7.77e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:N:0", "prompt_tokens": 155, "completion_tokens": 6, "usd_peak_uncached_upper": 5.37e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:N:1", "prompt_tokens": 159, "completion_tokens": 6, "usd_peak_uncached_upper": 5.49e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:N:2", "prompt_tokens": 197, "completion_tokens": 6, "usd_peak_uncached_upper": 6.63e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:K:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:K:1", "prompt_tokens": 159, "completion_tokens": 6, "usd_peak_uncached_upper": 5.49e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:K:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:O:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:O:1", "prompt_tokens": 185, "completion_tokens": 6, "usd_peak_uncached_upper": 6.27e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:O:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:V:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:V:1", "prompt_tokens": 185, "completion_tokens": 6, "usd_peak_uncached_upper": 6.27e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:17:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:17:V:2", "prompt_tokens": 224, "completion_tokens": 7, "usd_peak_uncached_upper": 7.56e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:N:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:N:0", "prompt_tokens": 155, "completion_tokens": 6, "usd_peak_uncached_upper": 5.37e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:N:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:N:1", "prompt_tokens": 159, "completion_tokens": 6, "usd_peak_uncached_upper": 5.49e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:N:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:N:2", "prompt_tokens": 197, "completion_tokens": 6, "usd_peak_uncached_upper": 6.63e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:K:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:K:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:K:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:K:1", "prompt_tokens": 159, "completion_tokens": 6, "usd_peak_uncached_upper": 5.49e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:K:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:K:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:O:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:O:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:O:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:O:1", "prompt_tokens": 185, "completion_tokens": 6, "usd_peak_uncached_upper": 6.27e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:O:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:O:2", "prompt_tokens": 223, "completion_tokens": 6, "usd_peak_uncached_upper": 7.41e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:V:0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:V:0", "prompt_tokens": 181, "completion_tokens": 6, "usd_peak_uncached_upper": 6.15e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:V:1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:V:1", "prompt_tokens": 185, "completion_tokens": 6, "usd_peak_uncached_upper": 6.27e-05}
+{"event": "reserve", "key": "benchmark:read:cat_name:43:V:2", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:read:cat_name:43:V:2", "prompt_tokens": 224, "completion_tokens": 7, "usd_peak_uncached_upper": 7.56e-05}
+{"event": "reserve", "key": "benchmark:canary-0", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:canary-0", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}
+{"event": "reserve", "key": "benchmark:canary-1", "model": "deepseek-flash", "usd": 0.004}
+{"event": "usage", "key": "benchmark:canary-1", "prompt_tokens": 159, "completion_tokens": 8, "usd_peak_uncached_upper": 5.73e-05}

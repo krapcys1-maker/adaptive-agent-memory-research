@@ -8,6 +8,7 @@ import pytest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 import reader_model_compare_v1 as R
 import audit_reader_model_compare_v1 as A
+import report_reader_model_compare_v1 as B
 
 F,P=R.F,R.P
 
@@ -148,3 +149,14 @@ def test_local_backend_runs_same_cohort_with_no_api_ledger(tmp_path):
     result=R.run(out,'local14b',ledger,factory=Local,require_clean=False)
     assert result['complete'] and A.audit(out)['passed']
     assert not ledger.exists()
+
+
+def test_saved_comparison_rebuilds_reference_metrics_context_matches_and_spend():
+    actual=B.report()
+    stored=json.loads((R.DATA/'comparison.json').read_text(encoding='utf-8'))
+    assert actual==stored
+    assert actual['new_generation_calls']==400 and actual['new_model_planning_calls']==0
+    assert actual['reference_7b_recomputed']['V']['raw_agreement']==36
+    assert actual['readers']['local14b']['reference_matched_contexts_and_questions']==192
+    assert actual['readers']['flash']['reference_matched_contexts_and_questions']==192
+    assert actual['api_budget_rechecked']['reserved_calls']==200

@@ -6,12 +6,19 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
-**Latest executed boundary (2026-11-04):** a [local typed-fact reader pilot](../data/lab/nie-local-reader-v1/README.md)
-delivers 48/48 consistent values across sixteen closed-slot chains, including twelve
-code corrections of the raw reader (36/48). Routing is supplied for eight authored
-fields; typed capture from free prose, actual NIE prompts and the main hosted reader
-remain unvalidated. The first writer-format failure and a repaired conflict-control
-coverage check are preserved. Prior P2 and LifeSim limitations still stand.
+**Latest executed boundary (2026-11-04):** the [matched local/API reader comparison](../data/lab/reader-model-compare-v1/README.md)
+adds 400 real calls using the previous sixteen persisted journals. Local Qwen 14B
+reaches 48/48 raw and delivered V answers; authorized DeepSeek V4.1 Flash reaches
+46/48 raw, 48/48 delivered (two UNKNOWN corrections of one repeated semantic case).
+Ordinary retrieval still misses all sixteen paraphrases: K is 26/48 for 14B and
+32/48 for Flash, with no complete three-turn chains. All 400 new requests and
+384 primary turns were reconstructed without a model judge. API usage-priced
+upper estimate: $0.012777; permanent reservations $0.800, below the $1 task cap.
+Codex owns design and interpretation; local/API models test memory behavior.
+The next boundary is realistic text-to-slot routing and typed capture, not a
+larger-reader substitution. Eight authored fields, supplied routing and typed
+writers remain assumptions; actual NIE prompts, revisions and production benefit
+remain unvalidated. Prior P2, LifeSim and R1 limitations still stand.
 
 **November orientation (2026-11-04):** the [laboratory map](../docs/11-research-laboratory/lab-map.md)
 is the entry point for AAM writing-memory experiments, the persona battery, WMB,

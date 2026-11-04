@@ -1,0 +1,42 @@
+{
+  "calls": 200,
+  "seconds": 207.14100000000326,
+  "advertised_model_unchanged": true,
+  "advertised_model_after": {
+    "id": "deepseek-flash",
+    "object": "model",
+    "owned_by": "deepseek",
+    "name": "DeepSeek-V4.1-Flash",
+    "context_window": 1048576,
+    "max_output_tokens": 393216,
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "effort": {
+      "supported_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "default_level": "high"
+    },
+    "api_capabilities": {
+      "anthropic_messages": {
+        "system_prompt_update": "in-history",
+        "tool_update": "addition-only"
+      }
+    }
+  },
+  "budget": {
+    "reserved_calls": 200,
+    "reserved_usd": 0.8,
+    "usage_priced_upper_usd": 0.012777,
+    "unknown_usage_attempts": 0,
+    "cap_usd": 1.0,
+    "cost_semantics": "Permanent reservations and peak/uncached usage upper estimate; not an account invoice."
+  }
+}

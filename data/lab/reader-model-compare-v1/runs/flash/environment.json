@@ -1,0 +1,35 @@
+{
+  "provider": "DeepSeek official API",
+  "requested_model": "deepseek-flash",
+  "advertised_model": {
+    "id": "deepseek-flash",
+    "object": "model",
+    "owned_by": "deepseek",
+    "name": "DeepSeek-V4.1-Flash",
+    "context_window": 1048576,
+    "max_output_tokens": 393216,
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "effort": {
+      "supported_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "default_level": "high"
+    },
+    "api_capabilities": {
+      "anthropic_messages": {
+        "system_prompt_update": "in-history",
+        "tool_update": "addition-only"
+      }
+    }
+  },
+  "thinking": "disabled",
+  "seed_semantics": "Controller seed is recorded but not sent as an unsupported API guarantee."
+}
