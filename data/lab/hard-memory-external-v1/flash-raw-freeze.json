@@ -1,0 +1,34 @@
+{
+  "purpose": "Raw output freeze before joining benchmark gold",
+  "response_sha256": "f5546171cf3c31e85556800f988015e24502ac7b8f1f7dba183ed3814ed4bb08",
+  "files": [
+    {
+      "name": "answers.jsonl",
+      "sha256": "56291ee4a324dfa109fcf961adffbfaa6ab9b851cdf9dc79f09fbf746219d1d1"
+    },
+    {
+      "name": "attempts.jsonl",
+      "sha256": "a7d06dfc9fd2d141d9838f6586ced0db6ffda412041217f35564808c31553062"
+    },
+    {
+      "name": "completion.json",
+      "sha256": "72a428628546502710b39cba03322fafae811e8864cf77442522f07cf8e47461"
+    },
+    {
+      "name": "environment.json",
+      "sha256": "329688947441931bdaf6a9c6e4c323ed4813825c56f0cb7b45237d1038a28c93"
+    },
+    {
+      "name": "finished.json",
+      "sha256": "9f0def0780055107ab6324bd4e89472640bda044d0d71d13abe36a3782cfaba5"
+    },
+    {
+      "name": "manifest.json",
+      "sha256": "52557e0d4a83550af11d02bb035048805303e63b387602ab8909a347584bbe7d"
+    },
+    {
+      "name": "responses.jsonl",
+      "sha256": "f5546171cf3c31e85556800f988015e24502ac7b8f1f7dba183ed3814ed4bb08"
+    }
+  ]
+}
