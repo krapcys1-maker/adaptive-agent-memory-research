@@ -1,0 +1,39 @@
+{
+  "files_sha256": {
+    "addresses.jsonl": "9c272f7b65f6fa93a615f87b96fefb225784c9b7feb3fe1da7bcaaf06b0eb01c",
+    "attempts.jsonl": "c734fa248f841c84fcc115410261aeb3af7e82b7de768623726c7b199d7adb28",
+    "capture-summary.json": "6db10bae0c40b58556e023cb8698bc8b8b4a54e0d5b7cac2c6a969c00ea10e89",
+    "captures.jsonl": "180be55b1996708d17fc814ef72a2d4872d67e2b627d4277c4d9b42c212b66c5",
+    "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+    "finished.json": "13011e10dbbd681357602471d6b83fd5ce1b6ec91e2b6c0e9a4c8334d3a36cb2",
+    "manifest.json": "ffbac17d1d870c4bdc608a21d8d9269a0375e8a81ba04747bbff29d5650c537a",
+    "preflight.json": "719081c52bce22f14f499800344ad3d259a33d1e64a0ec16f5a04e7dcf030539",
+    "rejections.jsonl": "60418866eea0569cee422267a9fa026910b3d6c1a648ec31f13541172dd6cbf8",
+    "responses.jsonl": "d2829ad666afb87f9937a29b3dc589a23d0550d3a1027191146aa77853936802",
+    "source-roles.jsonl": "3ce0d63f1cd176438ab852c3e4b9f37fa5f34d64d15fe12e1993f97240117623"
+  },
+  "source": {
+    "git_head": "03a99b2db7e15f2af8844a9ab823057cf34ca335",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/structured_memory_pipeline_v1.py": "2b9bb21bf32856852323cb7c75f89fda240f3f090620f7b4ca19c38d4e2402d2",
+      "tools/structured_memory_v1.py": "aa76304f1b7fa14f95ce2bf8000d1c2aae3a60bbc69d4db1817f5ee95a206726",
+      "data/lab/structured-memory-v1/PLAN.md": "195071ee9514cdadd6150a6d63c690e91caaf4c9677944cea0fd35cd05eb04c2",
+      "data/lab/structured-memory-v1/config.json": "39e632ab740949b7a0db3a89c07bf5892b4850ab4b979007ad6c75354c06bb68",
+      "scripts/flash_reader_client_v1.py": "be64dc03d4c67cbc9f9db2fc33f2ebfd79f46acee34c6f35cd83a4f3b991a3bc",
+      "scripts/nie_reader_pilot.py": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+      "scripts/reader_model_compare_v1.py": "058f19946aadc4c65dc962cb030568ad29007af4c86284de9efb9a843e550579",
+      "scripts/h1_model_chains_v1.py": "952d4f93a581ec8284b1d7688a654cecbd13cd8f9dc91e301bc3d0dfc34c82c8",
+      "data/lab/h1-model-chains-v1/PLAN.md": "b71c844823274aa85d10a226c7a83617bdc5d90208b227b4bcb362f23c7e8650",
+      "scripts/structured_memory_pipeline_v2.py": "349d4df142db802c0db7602b692bc45bcc942b3b4577f709d2a18313387f4214",
+      "tools/structured_memory_v2.py": "6e537511461bf1617c04fb65d2aa6da66c95040b3be7a2af3a4093786bcbea82",
+      "scripts/wmb/kernel/memory_kernel.py": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "scripts/run_corpus_h1_reader.py": "1a8d2bbd206233fe350b98b6350a3c231e335ed604e202abaaf14741b5b519d9",
+      "scripts/h1_model_chains_v2.py": "f8bfe3d9a1480d82903008f9358b2f934ef5931490f2df44b79f831233c1bca0",
+      "tools/retrieval_metadata_v1.py": "8e35e8897bb8a18856edef0ebdd3e3d5c73f3598f5d2320aea56cb3c27019959",
+      "data/lab/h1-model-chains-v2/PLAN.md": "a069c11ac37be67616992644c206cc472c481ba6fd667d7ea7df78d80c6fed78"
+    },
+    "candidate": "h1-v2-memory-kind-address-metadata"
+  },
+  "scoring_has_not_run": true
+}
