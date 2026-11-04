@@ -7,7 +7,7 @@ from unittest.mock import patch
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from lifesim import development_diagnosis as D
+from reviews import lifesim_development_diagnosis as D
 
 
 @pytest.mark.parametrize('seeds', ([5000], [5099], [1000], [-1], [5, 5]))

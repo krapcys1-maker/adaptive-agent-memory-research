@@ -108,10 +108,14 @@ The diagnosis deliverable is complete; the proposed repairs remain unexecuted an
 From the repository root, with the existing development dependencies installed (numpy/scipy are used by the instrument):
 
 ```powershell
-python scripts/lifesim/development_diagnosis.py --output NEW_DIRECTORY
+python scripts/reviews/lifesim_development_diagnosis.py --output NEW_DIRECTORY
 python scripts/reviews/lifesim_development_followup.py --output NEW_DIRECTORY/followup-layout-and-counts.json
 python -m pytest -q tests/test_lifesim_development_diagnosis.py
 python tasks.py check
 ```
 
 The first command rejects non-development seeds and an existing directory; the second refuses to overwrite its output. Seven focused epoch/output/concentration tests pass. The final integrated full-gate and CI receipts are recorded in the PR and delivery handoff.
+
+## Operational packaging correction after measurement
+
+CI rejected the initial runner inside the deterministic `lifesim` package: that package forbids clock imports and requires an explicit limitations docstring. The runner uses wall time only for execution receipts. It was moved to `scripts/reviews/lifesim_development_diagnosis.py`, with its guard tests updated and its own source included in future digest blocks. No gate, feature, calculation, grid or recorded measurement changes. The original executed source and location remain identified by the start commit and manifest hashes. The deterministic-library lint is unchanged. Full checks were repeated after the correction; interrupted or failed predecessors are retained in local evidence and are not passing checks.

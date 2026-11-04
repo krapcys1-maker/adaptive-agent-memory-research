@@ -1,9 +1,11 @@
 """Read-only, exploratory LifeSim gate diagnosis; never run sealed/confirmation seeds.
 
 Run from the repository root:
-    python scripts/lifesim/development_diagnosis.py --output NEW_DIRECTORY
+    python scripts/reviews/lifesim_development_diagnosis.py --output NEW_DIRECTORY
 Existing instrument code is imported unchanged. Feature ablations temporarily replace
 only an in-memory feature callback and are never reported as canonical gate passes.
+This operational runner does not change the deterministic instrument. Timing and
+execution metadata belong here, outside the clock-free lifesim library package.
 """
 from __future__ import annotations
 
@@ -47,7 +49,7 @@ def digest(value):
 def source_digests():
     files = list((ROOT / 'scripts/corpus/lifesim').glob('*.py'))
     files += list((ROOT / 'scripts/lifesim').glob('*.py'))
-    files += [ROOT / 'data/lab/aam-lifesim/config.json',
+    files += [Path(__file__), ROOT / 'data/lab/aam-lifesim/config.json',
               ROOT / 'docs/00-project/lifesim-development-diagnosis-protocol-2026-11-04.md']
     return {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in files if p.is_file()}
