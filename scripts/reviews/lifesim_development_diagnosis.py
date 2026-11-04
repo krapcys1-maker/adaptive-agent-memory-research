@@ -25,10 +25,6 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'scripts'))
 
-# Bound BLAS parallelism before numpy/scipy are imported; this does not alter the grid.
-for _key in ('OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS', 'OMP_NUM_THREADS'):
-    os.environ[_key] = '1'
-
 from corpus.lifesim import schema as S
 from corpus.lifesim.appraisal import spearman
 from corpus.lifesim.scorers import Scorer
@@ -165,6 +161,10 @@ def main(argv=None):
     args = ap.parse_args(argv)
     validate_seeds(args.seeds)
     args.output.mkdir(parents=True, exist_ok=False)
+    # Configure this execution before numpy/scipy are imported by the gates.
+    # Importing the helper for guards or reuse must not change the caller's environment.
+    for key in ('OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS', 'OMP_NUM_THREADS'):
+        os.environ[key] = '1'
     before = source_digests()
     start = time.monotonic()
 

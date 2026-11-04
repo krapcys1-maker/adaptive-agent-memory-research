@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "mode": "read-only-offline-no-reader",
+  "as_of": "2026-11-03T00:00:00Z",
+  "query": "blue bicycle harbour workshop",
+  "task_type": "personal",
+  "profile": {
+    "k": 3,
+    "lex_tau": 0.2,
+    "min_evidence": 1.4,
+    "k1": 1.2,
+    "b": 0.75,
+    "len_cap": 3.0,
+    "top_terms": 10,
+    "max_terms": 20,
+    "tau": 0.57,
+    "names": true,
+    "name_task_types": [
+      "personal"
+    ],
+    "rare_df": 2,
+    "persona_task_types": [
+      "personal"
+    ],
+    "timeout_ms": "infinity",
+    "require_zone": true,
+    "embed": "off",
+    "name": "NIE-offline-lexical"
+  },
+  "input_sha256": "8651ba714c51a8c2a0cf22eb6a62961f80be828afa462babd8a0677aa3f3cac0",
+  "kernel_version": "0.2.0",
+  "kernel_sha256": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+  "bridge_sha256": "4d33c50f063910b7a32a0946f83a433554eb4c80b6e22384065d4e532fb266f9",
+  "validated_unique_publications": 3,
+  "available_publications": 2,
+  "future_publications_excluded_before_index": 1,
+  "kernel_status": "ok",
+  "kernel_ranked_ids": [
+    "nie-detail-ef7156f610d0bb5ab773fe05f74691a4f77364989695522d052f23a666de10b4"
+  ],
+  "shown_items": [
+    {
+      "id": "nie-detail-ef7156f610d0bb5ab773fe05f74691a4f77364989695522d052f23a666de10b4",
+      "kind": "event",
+      "origin": "fiction_autobio",
+      "created_at": "2026-11-01T12:00:00Z",
+      "text": "I repaired my blue bicycle beside the harbour workshop.",
+      "trace": null,
+      "meta": {
+        "publication_id": "fixture-1",
+        "available_at": "2026-11-01T12:00:00Z",
+        "source": "improwizacja",
+        "task": "notka_zycie",
+        "run_id": 41,
+        "seed_id": "synthetic-bicycle",
+        "version": 1
+      }
+    }
+  ],
+  "context": "Fictional improvised autobiographical records; these are not canonical biography:\n[2026-11-01] I repaired my blue bicycle beside the harbour workshop.",
+  "context_words": 19,
+  "max_context_words": 200,
+  "budget_definition": "Whitespace words of full context, including provenance heading/date labels.",
+  "kernel_tokens_est_before_bridge_budget": 17,
+  "kernel_token_definition": "Kernel characters/4 estimate; distinct from this bridge word budget.",
+  "limitations": [
+    "No generated answer or consistency score.",
+    "No supersession/write-back/live injection.",
+    "Profile is an engineering replay setting, not an adoption recommendation."
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source_commit": "02ac9de6ecb523bab43c7a46edaeb0d8cc700dc5",
+  "input_sha256": "8651ba714c51a8c2a0cf22eb6a62961f80be828afa462babd8a0677aa3f3cac0",
+  "kernel_sha256": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+  "bridge_sha256": "4d33c50f063910b7a32a0946f83a433554eb4c80b6e22384065d4e532fb266f9",
+  "repeat_personal_output_byte_identical": true,
+  "cases": {
+    "personal": {
+      "available": 2,
+      "future_excluded": 1,
+      "ranked": 1,
+      "shown": 1,
+      "words": 19
+    },
+    "general-comment": {
+      "available": 2,
+      "future_excluded": 1,
+      "ranked": 0,
+      "shown": 0,
+      "words": 0
+    },
+    "before-publication": {
+      "available": 0,
+      "future_excluded": 3,
+      "ranked": 0,
+      "shown": 0,
+      "words": 0
+    },
+    "too-small-budget": {
+      "available": 2,
+      "future_excluded": 1,
+      "ranked": 1,
+      "shown": 0,
+      "words": 0
+    }
+  }
+}
