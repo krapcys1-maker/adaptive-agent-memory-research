@@ -27,3 +27,10 @@ capture/read phases plus a nine-call canary phase. Pinned installed Qwen 14B,
 one GPU, no downloads/retries, native schema and 512 output tokens. No additional
 API calls or paid-cap change. No model judge/project-planning calls or production
 NIE/personality changes. Freeze implementation, tests and this plan before calls.
+
+After both primary runs are frozen, an optional local reader-ability control may
+show only the actual raw gold note for each of all 84 questions per split. Gold
+selects the note; gold answer fragments/family labels never enter its prompt.
+This is explicitly oracle evidence, not derived-chain success. It can separate
+capture/retrieval failure from reader failure and remains inside the same 2000
+attempt local cap. Freeze control outputs before their separate scoring.
