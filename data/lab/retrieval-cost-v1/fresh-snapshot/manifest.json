@@ -1,0 +1,35 @@
+{
+  "measurement": "fresh-snapshot, not historical reconstruction",
+  "snapshot_git_head": "617e084d1dac62cbd82e30a2a26af1797053e6d6",
+  "runner_git_head": "52e0dad77062d713afdfc6cdcb430434bb97fccb",
+  "memory_sha256": "21eb9c0299e4335fdcaf4479913754a82950e9f5b160c8dad2e2de87d955dd41",
+  "model_api_calls": 0,
+  "model_downloads": 0,
+  "dense_status": "completed-existing-cache-offline",
+  "runs": {
+    "xlang-e1": {
+      "status": "completed",
+      "records": 90
+    },
+    "association-e3": {
+      "status": "completed",
+      "records": 838
+    },
+    "h1-baseline": {
+      "status": "completed",
+      "records": 84
+    },
+    "h1-address": {
+      "status": "completed",
+      "records": 84
+    },
+    "xlang-e2": {
+      "status": "completed",
+      "records": 90
+    }
+  },
+  "fastembed_version": "0.8.0",
+  "dense_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "dense_pooling_caveat": "Installed FastEmbed warns this model alias changed pooling after 0.5.1; these fresh numbers are not a replication of older dense results.",
+  "memory_unchanged": true
+}

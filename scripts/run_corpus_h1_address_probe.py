@@ -57,6 +57,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from corpus.arms import DEFAULT_TOKEN_BUDGET, _before, _fill, supersession_rank  # noqa: E402
 from run_corpus_h1_baseline import build_index, load, search  # noqa: E402
+from retrieval_metrics import definition, efficiency, token_count  # noqa: E402
 
 CORPUS = ROOT / "data" / "lab" / "corpus-h1"
 
@@ -114,7 +115,7 @@ def run(corpus: Path, budget: int) -> dict[str, Any]:
             record[f"{name}_gold"] = int(gold["gold_event_id"] in ids)
             record[f"{name}_stale"] = int(any(rank.get(i, 1) > 1 for i in ids))
             record[f"{name}_candidates"] = len(ids)
-            record[f"{name}_tokens"] = sum(len(by_id[i]["text"].split()) for i in ids)
+            record[f"{name}_tokens"] = sum(token_count(by_id[i]["text"]) for i in ids)
         records.append(record)
 
     return {"records": records, "summary": summarise(records, budget)}
@@ -133,6 +134,7 @@ def summarise(records: list[dict[str, Any]], budget: int) -> dict[str, Any]:
         "authority": "retrieval only, no model anywhere, no API cost",
         "probes": len(records),
         "token_budget": budget,
+        "retrieval_cost_definition": definition("H1 history-event text; only items within the context budget"),
         "oracle_router_ceiling_to_beat": 0.928571,
         "ceiling_note": (
             "the union of lexical and dense on this corpus at this budget, 78 of 84. "
@@ -145,8 +147,8 @@ def summarise(records: list[dict[str, Any]], budget: int) -> dict[str, Any]:
                 "mean_candidates": mean(records, f"{arm}_candidates"),
                 "mean_retrieved_tokens": mean(records, f"{arm}_tokens"),
                 "gold_per_1k_retrieved_tokens": (
-                    round(mean(records, f"{arm}_gold") / mean(records, f"{arm}_tokens") * 1000, 6)
-                    if mean(records, f"{arm}_tokens") else None
+                    efficiency([r[f"{arm}_gold"] for r in records],
+                               [r[f"{arm}_tokens"] for r in records])["recall_per_1k_tokens"]
                 ),
             }
             for arm in ("lexical", "addressed")

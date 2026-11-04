@@ -1,0 +1,348 @@
+{
+  "definition": {
+    "token_definition": "whitespace tokens of item text shown at the scored depth; excludes other candidates, metadata and query/prompt wrappers",
+    "text_fields": "original runner's recorded item-text whitespace counts",
+    "recall_definition": "gold-event ID recall; no separate usefulness or critical-evidence weighting unless the runner declares it",
+    "aggregation": "ratio of means: 1000 * sum(per-query recall) / sum(per-query retrieved tokens)",
+    "zero_tokens": "undefined (null), not infinity"
+  },
+  "historical_results_overwritten": false,
+  "records": [
+    {
+      "source": "data/lab/corpus-h1/baseline-v0.1-rerun-2026-11-01/results.json",
+      "source_sha256": "65e7e893e7fbe1abb82bfa0ceffbecd3ccfacc8fedd25b34638bcf478a48fb37",
+      "experiment_id": "PMLAB-H1-BASE-E1",
+      "interpretation_caveats": {
+        "authority": "development measurement only; retrieval only, no reader, no API cost",
+        "not_measured": "whether an arm could answer the question from what it retrieved; that is delayed supported task success and needs a reader model"
+      },
+      "status": "recomputed",
+      "grouping": "all",
+      "groups": {
+        "all": {
+          "recall@1": {
+            "status": "recomputed",
+            "queries": 84,
+            "recall": 0.785714,
+            "mean_retrieved_tokens": 22.809524,
+            "recall_per_1k_tokens": 34.446764
+          },
+          "recall@10": {
+            "status": "recomputed",
+            "queries": 84,
+            "recall": 0.880952,
+            "mean_retrieved_tokens": 245.928571,
+            "recall_per_1k_tokens": 3.582147
+          },
+          "recall@5": {
+            "status": "recomputed",
+            "queries": 84,
+            "recall": 0.857143,
+            "mean_retrieved_tokens": 117.321429,
+            "recall_per_1k_tokens": 7.305936
+          }
+        }
+      },
+      "limitation": null
+    },
+    {
+      "source": "data/lab/corpus-h1/address-probe-v0/results.json",
+      "source_sha256": "24c6b43958cc080558387b6067a872ed5ecfee10974690802be8a80474fa2f59",
+      "experiment_id": "PMLAB-H1-ADDR-E1",
+      "interpretation_caveats": {
+        "authority": "retrieval only, no model anywhere, no API cost",
+        "gold_recall_is_tautological": "the addressed arm reaches 1.000 by construction, not by measurement: the oracle address is the case identity and the gold event belongs to that case, so opening the slot always contains it. The figure shows only that nothing blocks addressing. The informative results are the context collapse and the stale rate, which the construction does not determine",
+        "what_is_oracle": "the address only. Temporal resolution over the opened chain uses the same rule a real system would and can be wrong. Deriving the address from text is issue #47"
+      },
+      "status": "recomputed",
+      "grouping": "all",
+      "groups": {
+        "all": {
+          "addressed": {
+            "status": "recomputed",
+            "queries": 84,
+            "recall": 1.0,
+            "mean_retrieved_tokens": 68.761905,
+            "recall_per_1k_tokens": 14.542936
+          },
+          "lexical": {
+            "status": "recomputed",
+            "queries": 84,
+            "recall": 0.880952,
+            "mean_retrieved_tokens": 245.488095,
+            "recall_per_1k_tokens": 3.588575
+          }
+        }
+      },
+      "limitation": null
+    },
+    {
+      "source": "data/lab/pmlab-xlang-e1/execution-v0/results.json",
+      "source_sha256": "f882d6c80b7bd921e5b1d8dd170bc9207e5754fb155ddc5ae22b1afd46e60dae",
+      "experiment_id": "PMLAB-XLANG-E1",
+      "interpretation_caveats": {
+        "authority": "development measurement only; not confirmatory, not independently reviewed"
+      },
+      "status": "unavailable-or-incomplete",
+      "grouping": "language",
+      "groups": {
+        "en": {
+          "b1@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b1@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b2@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b2@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b3@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b3@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          }
+        },
+        "pl": {
+          "b1@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b1@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b2@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b2@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b3@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b3@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          }
+        }
+      },
+      "limitation": "Historical costs/rankings were not fully recorded; no fresh-search reconstruction or complete-case-only estimate was substituted."
+    },
+    {
+      "source": "data/lab/pmlab-xlang-e2/execution-v0/results.json",
+      "source_sha256": "35eabeedaa77a28ce1a43c37eed14cfb40725f00d907bb8012cbbb56fdf5f8b7",
+      "experiment_id": "PMLAB-XLANG-E2",
+      "interpretation_caveats": {
+        "authority": "development measurement only; recall only, no safety metric",
+        "safety_caveat": "PMLAB-REUSE-CHAR-001 measured dense forbidden intrusion at 0.200 against FTS5's 0.050. A superseded fact is maximally similar to its replacement. This run measures recall only and is not a licence to adopt dense retrieval."
+      },
+      "status": "unavailable-or-incomplete",
+      "grouping": "language",
+      "groups": {
+        "en": {
+          "b1@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b1@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b3@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b3@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b4@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b4@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b5@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b5@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          }
+        },
+        "pl": {
+          "b1@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b1@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b3@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b3@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b4@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b4@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b5@10": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          },
+          "b5@5": {
+            "status": "unavailable",
+            "queries": 45,
+            "missing_cost_or_recall_rows": 45,
+            "recall_per_1k_tokens": null
+          }
+        }
+      },
+      "limitation": "Historical costs/rankings were not fully recorded; no fresh-search reconstruction or complete-case-only estimate was substituted."
+    },
+    {
+      "source": "data/lab/pmlab-assoc-e3/execution-v0/results.json",
+      "source_sha256": "1e1520c08ad123f045bbd24a68700061d3265dcd94ba8a6ac68e74234880b6a9",
+      "experiment_id": "PMLAB-ASSOC-E3",
+      "interpretation_caveats": {
+        "authority": "development measurement only; primary stratum is mechanical, no pooled headline"
+      },
+      "status": "unavailable-or-incomplete",
+      "grouping": "stratum",
+      "groups": {
+        "mechanical": {
+          "b1@10": {
+            "status": "unavailable",
+            "queries": 280,
+            "missing_cost_or_recall_rows": 280,
+            "recall_per_1k_tokens": null
+          },
+          "b1@5": {
+            "status": "unavailable",
+            "queries": 280,
+            "missing_cost_or_recall_rows": 280,
+            "recall_per_1k_tokens": null
+          },
+          "b2@10": {
+            "status": "unavailable",
+            "queries": 280,
+            "missing_cost_or_recall_rows": 280,
+            "recall_per_1k_tokens": null
+          },
+          "b2@5": {
+            "status": "unavailable",
+            "queries": 280,
+            "missing_cost_or_recall_rows": 280,
+            "recall_per_1k_tokens": null
+          }
+        },
+        "tag_only": {
+          "b1@10": {
+            "status": "unavailable",
+            "queries": 270,
+            "missing_cost_or_recall_rows": 270,
+            "recall_per_1k_tokens": null
+          },
+          "b1@5": {
+            "status": "unavailable",
+            "queries": 270,
+            "missing_cost_or_recall_rows": 270,
+            "recall_per_1k_tokens": null
+          },
+          "b2@10": {
+            "status": "unavailable",
+            "queries": 270,
+            "missing_cost_or_recall_rows": 270,
+            "recall_per_1k_tokens": null
+          },
+          "b2@5": {
+            "status": "unavailable",
+            "queries": 270,
+            "missing_cost_or_recall_rows": 270,
+            "recall_per_1k_tokens": null
+          }
+        }
+      },
+      "limitation": "Historical costs/rankings were not fully recorded; no fresh-search reconstruction or complete-case-only estimate was substituted."
+    }
+  ]
+}
