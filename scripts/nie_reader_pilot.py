@@ -197,6 +197,14 @@ def read_rows(path):
     return [json.loads(x) for x in path.read_text(encoding='utf-8').splitlines() if x.strip()] if path.exists() else []
 
 
+def load_journal(output, slot, seed):
+    """Reload the persisted chain, never substitute the live writer variable."""
+    matches=[r for r in read_rows(output/'journals.jsonl') if r['slot']==slot and r['seed']==seed]
+    if len(matches)!=1:
+        raise ValueError('A unique persisted journal chain is required.')
+    return matches[0]['rows']
+
+
 def summarize(config, cases, output, completed):
     writers, turns, controls = [read_rows(output/name) for name in ('writers.jsonl','turns.jsonl','controls.jsonl')]
     writer_keys = {(c['slot'],seed) for c in cases for seed in config['writer_seeds']}
@@ -341,7 +349,8 @@ def execute(output, config, cases, *, client_factory=LocalReader, require_clean=
                     for turn,question in enumerate((case['direct'],case['paraphrase'],case['pressure'].format(foil=foil))):
                         if turn==1:
                             history=[]  # New session: the direct answer must not leak through working memory.
-                        replay=retrieve(config,case,question,rows,arm,identity_key)
+                        saved_rows=load_journal(output,case['slot'],seed)
+                        replay=retrieve(config,case,question,saved_rows,arm,identity_key)
                         messages=reader_messages(config,case['slot'],question,replay,history)
                         key=f'read:{chain}:{arm}:{turn}'
                         response=client.ask(key,messages,seed+ci*100+turn)

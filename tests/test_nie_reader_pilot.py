@@ -72,6 +72,19 @@ def test_paraphrase_resets_context_and_pressure_sees_only_emitted_answer(fake_ru
     assert json.loads(calls['read:kettle_colour:17:K:2'][2]['content'])['value']=='wrong-reader-value'
 
 
+def test_journal_reload_is_from_disk_and_missing_or_duplicate_chains_fail(fake_run):
+    out,_,_,_=fake_run
+    assert P.load_journal(out,'kettle_colour',17)[0]['typed_claim']['value']=='teal'
+    journals=P.read_rows(out/'journals.jsonl')
+    selected=next(r for r in journals if r['slot']=='kettle_colour' and r['seed']==17)
+    selected['rows'][0]['typed_claim']['value']='amber'
+    (out/'journals.jsonl').write_text('\n'.join(json.dumps(r) for r in journals)+'\n')
+    assert P.load_journal(out,'kettle_colour',17)[0]['typed_claim']['value']=='amber'
+    P.append(out/'journals.jsonl',selected)
+    with pytest.raises(ValueError,match='unique'):P.load_journal(out,'kettle_colour',17)
+    with pytest.raises(ValueError,match='unique'):P.load_journal(out,'missing',17)
+
+
 @pytest.mark.parametrize('corruption',['missing_response','duplicate_response','unknown_turn','bad_request_hash'])
 def test_incomplete_or_corrupt_records_cannot_receive_a_complete_reading(fake_run,corruption):
     out,cfg,cases,_=fake_run
