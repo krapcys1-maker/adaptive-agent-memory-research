@@ -1,5 +1,17 @@
 # Repository Map and Cheat Sheet
 
+## November writer-memory laboratory
+
+Start with the [executed-command laboratory map](../11-research-laboratory/lab-map.md).
+
+| Track | Entry points |
+| --- | --- |
+| AAM writing-memory experiments and persona battery | [Experiment index and status](../11-research-laboratory/lab-map.md#experiment-index); [persona v1](../../data/lab/aam-p-persona-v1/README.md) |
+| WMB statistics, contracts, judge validity and retrieval | [WMB specification](../11-research-laboratory/memory-benchmark-spec-v0.md); [R1 record](../../data/lab/wmb-r1-retrieval/README.md) |
+| Shared memory kernel and repeatable mutation tests | [Kernel interface and version policy](../../scripts/wmb/kernel/README.md); [mutation check](kernel-mutation-check-2026-11-04.md) |
+| LifeSim generator, instrument and registered experiments | [LifeSim registration](../../data/lab/aam-lifesim/README.md); [portability checks](lifesim-portability-2026-11-04.md) |
+| Runtime plumbing and data boundaries | [Proxy/data boundaries in the lab map](../11-research-laboratory/lab-map.md) |
+
 ## Cross-agent project memory
 
 - `memory/` — append-only durable project memory, current-state orientation, and reviewed records.

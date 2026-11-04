@@ -1,0 +1,241 @@
+{
+  "clean_clone_head": "617e084d1dac62cbd82e30a2a26af1797053e6d6",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "results": [
+    {
+      "name": "full-gate",
+      "command": [
+        "python",
+        "tasks.py",
+        "check"
+      ],
+      "seconds": 323.921,
+      "exit_code": 0,
+      "output_tail": [
+        "  [medium] memory-sources: external cup_mem/run_cup_mem.py, cup_mem/embedding.py \ufffd cited by PM-20260823-8577befa but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/RELATED_WORK_RED_TEAM_2026-08-24.md \ufffd cited by PM-20260824-c56f7e3a but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/MECHANISM_DEPENDENCY_SYNTHESIS_2026-08-24.md \ufffd cited by PM-20260824-db472343 but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/MECHANISM_DEPENDENCY_SYNTHESIS_2026-08-24.md \ufffd cited by PM-20260824-9bdac2c6 but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/RESEARCH_ROADMAP_EVIDENCE_DRIVEN_V1.md \ufffd cited by PM-20260824-d4155074 but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/GLOBAL_AGENT_MEMORY_FRONTIER_MAP_2026-08-24.md \ufffd cited by PM-20260824-fe6990ce but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/CROSS_PAPER_HYPOTHESIS_MAP_2026-08-24.md \ufffd cited by PM-20260824-fe6990ce but does not exist in the working tree",
+        "  \ufffd 18 more; use --format json for the full list",
+        "      claim-audit: ok in 8.9s",
+        "",
+        "tasks.py check: all 3 gate(s) passed in 323.8s",
+        "sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute"
+      ]
+    },
+    {
+      "name": "aam-persona",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_persona_sim.py",
+        "tests/test_botness_probe.py",
+        "tests/test_persona_battery.py",
+        "tests/test_persona_battery_v1.py"
+      ],
+      "seconds": 29.5,
+      "exit_code": 0,
+      "output_tail": [
+        "........................................................................ [ 51%]",
+        "...................................................................      [100%]",
+        "139 passed in 27.90s"
+      ]
+    },
+    {
+      "name": "wmb-core",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_wmb_stats.py",
+        "tests/test_wmb_t0_battery.py",
+        "tests/test_wmb_retrieval_bench.py"
+      ],
+      "seconds": 24.234,
+      "exit_code": 0,
+      "output_tail": [
+        "........................................................................ [ 50%]",
+        "........................................................................ [100%]",
+        "144 passed in 22.58s"
+      ]
+    },
+    {
+      "name": "kernel",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_wmb_memory_kernel.py",
+        "tests/test_wmb_kernel_v2.py",
+        "tests/test_wmb_memory_kernel_mutants.py"
+      ],
+      "seconds": 23.062,
+      "exit_code": 0,
+      "output_tail": [
+        "........................................................................ [ 50%]",
+        "........................................................................ [100%]",
+        "144 passed in 21.50s"
+      ]
+    },
+    {
+      "name": "lifesim",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_lifesim_rng.py",
+        "tests/test_lifesim_world.py",
+        "tests/test_lifesim_schema.py",
+        "tests/test_lifesim_vocab.py",
+        "tests/test_lifesim_scorers.py",
+        "tests/test_lifesim_queries.py",
+        "tests/test_lifesim_verbalise.py",
+        "tests/test_lifesim_channel.py",
+        "tests/test_lifesim_appraisal.py",
+        "tests/test_lifesim_integration.py"
+      ],
+      "seconds": 67.016,
+      "exit_code": 0,
+      "output_tail": [
+        "........................................................................ [  9%]",
+        "........................................................................ [ 19%]",
+        "........................................................................ [ 29%]",
+        "........................................................................ [ 39%]",
+        "........................................................................ [ 49%]",
+        "........................................................................ [ 59%]",
+        "........................................................................ [ 69%]",
+        "........................................................................ [ 79%]",
+        "........................................................................ [ 89%]",
+        "........................................................................ [ 98%]",
+        "........                                                                 [100%]",
+        "728 passed in 64.70s (0:01:04)"
+      ]
+    },
+    {
+      "name": "mutations-frozen",
+      "command": [
+        "python",
+        "scripts/wmb/mutate_kernel.py",
+        "--workers",
+        "4"
+      ],
+      "seconds": 21.86,
+      "exit_code": 0,
+      "output_tail": [
+        "stem-possessive                       killed       0.80s ",
+        "analyse-stop-words                    killed       1.00s ",
+        "analyse-inside-name                   killed       0.89s ",
+        "query-length-cap                      killed       0.86s ",
+        "guard-two-content-words               killed       0.88s ",
+        "calibration-no-queries                killed       1.00s ",
+        "calibration-no-future                 killed       0.83s ",
+        "render-order                          killed       1.00s ",
+        "render-trace-mode                     killed       1.00s ",
+        "render-angle                          killed       0.97s ",
+        "log-query-privacy                     killed       0.95s ",
+        "{\"error\": 0, \"files_unchanged\": true, \"killed\": 49, \"survived\": 0}"
+      ]
+    },
+    {
+      "name": "mutations-live",
+      "command": [
+        "python",
+        "scripts/wmb/mutate_kernel.py",
+        "--module",
+        "scripts/wmb/kernel/memory_kernel.py",
+        "--workers",
+        "4"
+      ],
+      "seconds": 40.609,
+      "exit_code": 0,
+      "output_tail": [
+        "analyse-inside-name                   killed       1.08s ",
+        "analyse-invisible                     killed      12.98s ",
+        "query-length-cap                      killed       1.06s ",
+        "guard-three-content-words             killed       1.80s ",
+        "guard-distinctive-boundary            killed       1.08s ",
+        "calibration-no-queries                killed       1.49s ",
+        "calibration-invalid-share             killed      12.83s ",
+        "calibration-positive-floor            killed       1.08s ",
+        "render-order                          killed       1.53s ",
+        "render-trace-mode                     killed       1.55s ",
+        "log-query-privacy                     killed       1.58s ",
+        "{\"error\": 0, \"files_unchanged\": true, \"killed\": 49, \"survived\": 0}"
+      ]
+    },
+    {
+      "name": "claim-audit",
+      "command": [
+        "python",
+        "scripts/audit_repository_claims.py",
+        "--format",
+        "text"
+      ],
+      "seconds": 8.766,
+      "exit_code": 0,
+      "output_tail": [
+        "  [medium] memory-sources: external/repos/rohitg00__agentmemory/docs/benchmarks/2026-05-20-coding-agent-life-v1.md \ufffd cited by PM-20260822-00000003 but does not exist in the working tree",
+        "  [medium] memory-sources: external/repos/getzep__graphiti/README.md \ufffd cited by PM-20260822-00000004 but does not exist in the working tree",
+        "  [medium] memory-sources: external/repos/rohitg00__agentmemory/docs/benchmarks/2026-05-20-coding-agent-life-v1.md \ufffd cited by PM-20260822-00000006 but does not exist in the working tree",
+        "  [medium] memory-sources: scripts/arena/adapter.py; tests/test_arena_adapter_contract.py \ufffd cited by PM-20260823-e8bdba76 but does not exist in the working tree",
+        "  [medium] memory-sources: external cup_mem/run_cup_mem.py, cup_mem/embedding.py \ufffd cited by PM-20260823-8577befa but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/RELATED_WORK_RED_TEAM_2026-08-24.md \ufffd cited by PM-20260824-c56f7e3a but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/MECHANISM_DEPENDENCY_SYNTHESIS_2026-08-24.md \ufffd cited by PM-20260824-db472343 but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/MECHANISM_DEPENDENCY_SYNTHESIS_2026-08-24.md \ufffd cited by PM-20260824-9bdac2c6 but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/RESEARCH_ROADMAP_EVIDENCE_DRIVEN_V1.md \ufffd cited by PM-20260824-d4155074 but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/GLOBAL_AGENT_MEMORY_FRONTIER_MAP_2026-08-24.md \ufffd cited by PM-20260824-fe6990ce but does not exist in the working tree",
+        "  [medium] memory-sources: docs/research/CROSS_PAPER_HYPOTHESIS_MAP_2026-08-24.md \ufffd cited by PM-20260824-fe6990ce but does not exist in the working tree",
+        "  \ufffd 18 more; use --format json for the full list"
+      ]
+    },
+    {
+      "name": "memory-verify",
+      "command": [
+        "python",
+        "tools/project_memory/cli.py",
+        "verify",
+        "--format",
+        "json"
+      ],
+      "seconds": 0.125,
+      "exit_code": 0,
+      "output_tail": [
+        "{",
+        "  \"summary\": {",
+        "    \"active\": 311,",
+        "    \"events\": 333,",
+        "    \"superseded\": 22,",
+        "    \"unique_ids\": 333,",
+        "    \"violations\": 0",
+        "  },",
+        "  \"violations\": []",
+        "}"
+      ]
+    },
+    {
+      "name": "direct-integrity",
+      "command": [
+        "python",
+        "scripts/verify_memory_integrity.py",
+        "--format",
+        "text"
+      ],
+      "seconds": 0.093,
+      "exit_code": 0,
+      "output_tail": [
+        "events=333 active=311 superseded=22 violations=0",
+        "",
+        "OK: canonical memory log satisfies every mechanical invariant."
+      ]
+    }
+  ],
+  "final_git_status": ""
+}
