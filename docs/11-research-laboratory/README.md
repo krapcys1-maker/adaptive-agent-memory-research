@@ -2,6 +2,11 @@
 
 Status: reviewed
 
+For the November AAM, persona, WMB, memory-kernel and LifeSim work, use the
+[laboratory map](lab-map.md): every current experiment README, privacy boundary,
+executed test command and measured time. The historical campaign protocols below
+remain preserved; the map is the entry point for the newer tracks.
+
 ## Mission
 
 Produce conclusions that another person or model can audit, falsify, and reproduce before the project commits to a product architecture.

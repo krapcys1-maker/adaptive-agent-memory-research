@@ -6,6 +6,15 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
+**November orientation (2026-11-04):** the [laboratory map](../docs/11-research-laboratory/lab-map.md)
+is the entry point for AAM writing-memory experiments, the persona battery, WMB,
+the shared kernel and LifeSim. Persona corrections are integrated; new runs use
+the [v1 entry point](../data/lab/aam-p-persona-v1/README.md). Kernel mutations and
+CLI `verify` provide mechanical checks. LifeSim portability does not establish
+instrument validity: its unresolved development gates and unrun confirmation
+experiments remain explicit. Read each experiment's latest results/amendments;
+preserved preregistration headers can describe an earlier state.
+
 Evidence collection and gated laboratory testing, run in three parallel tracks — engine, experiment, community — under [`docs/00-project/operating-doctrine.md`](../docs/00-project/operating-doctrine.md). New preregistrations are paused until the existing unexecuted drafts are triaged. No validated final architecture is claimed.
 
 ## How to read this file
