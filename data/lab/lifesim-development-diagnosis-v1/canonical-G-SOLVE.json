@@ -1,0 +1,25 @@
+{
+  "detail": "",
+  "n": 3183,
+  "name": "G-SOLVE",
+  "passed": true,
+  "thresholds": {
+    "agreement": 1.0,
+    "max_ambiguous_share": 0.15
+  },
+  "values": {
+    "agree": 3183,
+    "ambiguous_share": {
+      "EP1": 0.0,
+      "EP3c": 0.0,
+      "EP4": 0.0,
+      "IN1": 0.0,
+      "IN4": 0.0,
+      "ME1": 0.0,
+      "SE4": 0.0,
+      "SE5": 0.0
+    },
+    "mismatched": [],
+    "n": 3183
+  }
+}

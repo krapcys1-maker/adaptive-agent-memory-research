@@ -1,0 +1,23 @@
+{
+  "detail": "cell void: no headroom",
+  "n": 20,
+  "name": "G-FEAS",
+  "passed": false,
+  "thresholds": {
+    "H_cell_min": 0.2
+  },
+  "values": {
+    "GO": 0.678523,
+    "H_cell": 0.164504,
+    "R": 0.25,
+    "best_competitor": "GS",
+    "complete_at_C": {
+      "GM": 0.170061,
+      "GN": 0.421751,
+      "GO": 0.678523,
+      "GR": 0.345532,
+      "GS": 0.514019,
+      "GU": 0.17266
+    }
+  }
+}

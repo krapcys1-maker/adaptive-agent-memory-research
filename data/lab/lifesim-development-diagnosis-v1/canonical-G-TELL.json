@@ -1,0 +1,29 @@
+{
+  "detail": "surface features predict",
+  "n": 22331,
+  "name": "G-TELL",
+  "passed": false,
+  "thresholds": {
+    "auc": 0.55,
+    "min_neg": 3000,
+    "min_pos": 300,
+    "upper95": 0.6
+  },
+  "values": {
+    "powered": true,
+    "targets": {
+      "evidence": {
+        "auc": 0.945458,
+        "negatives": 19108,
+        "positives": 3223,
+        "upper95": 0.947499
+      },
+      "top_arousal": {
+        "auc": 0.6192,
+        "negatives": 14878,
+        "positives": 7453,
+        "upper95": 0.624862
+      }
+    }
+  }
+}

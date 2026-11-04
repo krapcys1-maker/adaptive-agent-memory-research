@@ -1,0 +1,19 @@
+{
+  "detail": "",
+  "n": 22331,
+  "name": "G-LEN",
+  "passed": true,
+  "thresholds": {
+    "AUC": [
+      0.45,
+      0.55
+    ],
+    "abs_corr": 0.05
+  },
+  "values": {
+    "AUC_length": 0.493538,
+    "corr_length_arousal": 0.0012,
+    "mean_len_evidence": 44.789327,
+    "mean_len_other": 44.990109
+  }
+}

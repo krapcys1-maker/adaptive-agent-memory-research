@@ -6,6 +6,9 @@ For the November writing-agent experiments, WMB, the memory kernel and LifeSim,
 open the [laboratory map](docs/11-research-laboratory/lab-map.md). It links every
 current experiment README and records executed checks, status and privacy limits.
 
+For the practical distinction between implemented tools, passing software tests
+and missing evidence about a complete agent, read [what exists and what is missing](docs/00-project/delivery-state-2026-11-04.md).
+
 ## What we are building toward
 
 The desired future system has two boundaries:

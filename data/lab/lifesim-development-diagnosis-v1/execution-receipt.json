@@ -1,0 +1,9 @@
+{
+  "execution_start_commit": "1a6f521b4f0c9ac52e3dc46ec64890387ae19135",
+  "manifest_git_head_semantics": "HEAD at completion; tests, an independent follow-up and integration commits landed during execution. The measured source block was verified unchanged.",
+  "completion_commit": "9be3562dc00804306a2be765496c3834ae917bd0",
+  "measured_script_sha256": "833540fb763c36dbf78c5ac4fc7be9783b3ea61d972b5325cf28f8f8241f57d2",
+  "source_unchanged": true,
+  "followup_start_commit": "b1c3b3329fce3ca8f5c4f5250f5eefe88ce4a72b",
+  "partial_engineering_run": "The pre-integration engineering run was intentionally interrupted after PRs 98/99 changed the worktree. Its partial log is not a passing check. A final integrated check follows."
+}

@@ -1,0 +1,34 @@
+{
+  "detail": "",
+  "n": 3183,
+  "name": "G-SCORE",
+  "passed": true,
+  "thresholds": {
+    "scramble_slack": 0.02,
+    "structure_accuracy": 1.0
+  },
+  "values": {
+    "adversarial_agree": null,
+    "scramble_above_chance": [],
+    "scramble_accuracy": {
+      "EP1": 0.004292,
+      "EP3c": 0.147541,
+      "EP4": 0.003571,
+      "IN1": 0.0,
+      "IN4": 0.0,
+      "SE4": 0.002618,
+      "SE5": 0.01087
+    },
+    "scramble_chance": {
+      "EP1": 0.03295,
+      "EP3c": 0.131148,
+      "EP4": 0.024695,
+      "IN1": 0.036419,
+      "IN4": 0.061947,
+      "SE4": 0.039267,
+      "SE5": 0.054348
+    },
+    "structure_accuracy": 1.0,
+    "wrong": []
+  }
+}
