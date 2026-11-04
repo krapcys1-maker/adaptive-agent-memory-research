@@ -1,0 +1,41 @@
+{
+  "execution": {
+    "git_head": "6a3a61cb6f04f4e1b2bc623f0acf234afe67a7d0",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/hard_memory_external_v1.py": "c670d6b6aee3225b01680486d90f4489a8fdeeb83b5a916c9e857e14a9104768",
+      "scripts/flash_reader_client_v1.py": "be64dc03d4c67cbc9f9db2fc33f2ebfd79f46acee34c6f35cd83a4f3b991a3bc",
+      "scripts/nie_reader_pilot.py": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+      "scripts/reader_model_compare_v1.py": "058f19946aadc4c65dc962cb030568ad29007af4c86284de9efb9a843e550579",
+      "scripts/nie_persona_replay.py": "5e5a660f3bb72673309cf04a37b8e146ec59dce59e420f88f4ef9e68bc32ac36",
+      "scripts/wmb/kernel/memory_kernel.py": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "data/lab/nie-local-reader-v1/run-002/manifest.json": "37e448efbe375d5a93857b574a7f1f6d931ff6d3c05905b8ce0a6a31b4a26099",
+      "data/lab/hard-memory-external-v1/config.json": "4188c01b461a94f1d0cf5eac1428b806425f31640d1a30b5a64ceba158effe4d",
+      "data/lab/hard-memory-external-v1/PLAN.md": "4ad60b728f6bf40ae4e8ae4cea6434cdeb665f0de33b9207d3583983b3777884"
+    }
+  },
+  "source_sha256": "24d5c3f09ce0ce15625cb9f8a98f44f0d864ca6c94d7b4ad04eb697ca3a5ff45",
+  "variant": "factconsolidation_mh_262k",
+  "context_characters": 1118123,
+  "archive_records": 18333,
+  "questions": 100,
+  "packet_count": 300,
+  "inputs": [
+    {
+      "name": "archive",
+      "sha256": "aabe03d6565e15e56108212f325a5cc90f88245db71d84fd19d92bcf5f65f691"
+    },
+    {
+      "name": "questions",
+      "sha256": "94adb83841c7d1a762b0feb0dd5e0ed005e457925247a278d32d2d6a3590bd9c"
+    },
+    {
+      "name": "gold",
+      "sha256": "9c0af6975670f276e9cbb1e35d7397d545796242d49f4308ff923e67aa869322"
+    },
+    {
+      "name": "packets",
+      "sha256": "fa06d56705913034f3464e1d698e6de2b36da7ae047269e8bb71c6f284ba8123"
+    }
+  ]
+}
