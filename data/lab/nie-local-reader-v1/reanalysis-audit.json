@@ -1,0 +1,31 @@
+{
+  "analysis_git_head": "027641bd659e6fbe6f5233c4c0a586702129a657",
+  "runs": {
+    "run-001": {
+      "execution_commit": "8d17c4f62dd1ef4b1fc1c2e836aa14d63555f92e",
+      "all_execution_sources_match_committed_digests": true,
+      "aggregate_reanalysis_identical": true,
+      "generation_calls": 24,
+      "complete": true,
+      "writer_failures": 16
+    },
+    "run-002": {
+      "execution_commit": "783ce4bb00d0df34ae932fd4d447c517b7ba1ea8",
+      "all_execution_sources_match_committed_digests": true,
+      "aggregate_reanalysis_identical": true,
+      "generation_calls": 216,
+      "complete": true,
+      "writer_failures": 0
+    }
+  },
+  "original_conflict_control_had_evidence": false,
+  "supplemental_conflict_control_exercised": true,
+  "supplemental_raw_value": "amber",
+  "total_generation_calls": 241,
+  "task_cap": 244,
+  "api_spend_usd": 0,
+  "interpretation": "Authored closed slots and fixture-supplied routing only; no live/NIE/P2 replication claim.",
+  "persisted_journal_retrieval_contexts_reproduced": 192,
+  "persistence_scope": "Original model calls used the in-memory copy of the written rows. All 192 contexts/IDs now reproduce from the persisted journal; the runner explicitly reloads it before every reader turn. No extra model call or primary-score change.",
+  "persistence_analysis_git_head": "e48649236830f3278f59dd4a39e82c03a5a59da8"
+}

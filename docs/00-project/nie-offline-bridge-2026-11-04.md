@@ -16,3 +16,9 @@ Implement an additive research-side bridge, with no change to NIE, its prompts o
 - Require query and as-of time explicitly; refuse output overwrite. Record input and kernel/source hashes and deterministic selected IDs/context. Read-only replay does not write back, choose a universal profile or generate answers.
 
 The next behavioral measurement is an end-to-end replay with a reader and consistency scoring. This bridge supplies its data boundary; it is not that measurement. Real journals and replay text remain private local artifacts. The public demonstration contains only authored synthetic details.
+
+## Opt-in typed claims and local reader follow-up (2026-11-04)
+
+The [local reader pilot](../../data/lab/nie-local-reader-v1/README.md) now executes the pending boundary on authored closed fields. Replay schema v2 optionally preserves `typed_claim: {slot, value}` in fictional item metadata and records its contract dependency digest. Validate the slot syntax and a whole-phrase value occurrence in source text; this does not establish semantic entailment or extract facts from free prose. Legacy rows keep their item IDs and receive no invented typed claim.
+
+`scripts/nie_memory_contract.py` can check a supplied slot against **shown** typed evidence. It accepts/corrects from one unambiguous fictional claim and abstains on conflict, absence or unsupported task. Actual NIE producers/prompts remain unchanged. The local pilot's 48/48 delivered answers include 12 code corrections; the raw reader achieved 36/48. Fixture-supplied routing, structured writing and the local reader limit the result; the original P2 verdict still stands.
