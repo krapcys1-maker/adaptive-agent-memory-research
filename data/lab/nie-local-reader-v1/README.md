@@ -68,6 +68,8 @@ An opt-in journal field looks like `"typed_claim":{"slot":"kettle_colour","value
 
 The recorded decision is to retain typed routing/output validation as a **candidate for a larger offline test**, conditional on the typed producer and correct routing. Next: validate capture of typed details and routing against actual writing prompts, then transfer to the main hosted reader under its own fixed cap. Do not deploy automatically, change the global retrieval thresholds or replace the prior persona verdict.
 
+`UNKNOWN` is an **internal recall-path signal in this pilot**, not a proposal that the persona should refuse every new autobiographical detail. Preserve NIE's improvisation-with-write-back policy. A future controller must distinguish a genuinely unrecorded slot from a retrieval miss before invoking that writer flow; no evidence is not permission to overwrite an existing detail. Conflict/revision handling remains a separate boundary.
+
 ## Commands
 
 Run only into a new directory from a clean committed source tree; the installed model digest must match and no other Ollama model may be loaded. A separately budgeted reproduction uses:
