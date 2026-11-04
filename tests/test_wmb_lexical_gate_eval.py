@@ -39,6 +39,8 @@ def test_adapters_keep_gold_out_of_the_items_and_report_exclusions():
     persona = next(s for s in suites if s.name == "E6")
     assert len(persona.questions) + len(persona.exclusions) == 24
     assert persona.task_type == "personal"
+    for suite in (s for s in suites if s.name.startswith("H2-")):
+        assert len(suite.questions) == 56 and len(suite.exclusions) == 14
 
 
 def test_paired_difference_counts_discordance_and_is_deterministic():

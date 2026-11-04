@@ -80,9 +80,12 @@ def suites(root=ROOT):
         history, queries, gold = (rows(p) for p in files)
         answers = {r["query_id"]: r["gold_event_id"] for r in gold}
         items = [(r["event_id"], end_of_day(r["recorded_on"])[:10] + "T00:00:00Z", r["text"]) for r in history]
+        eligible = [q for q in queries if answers[q["query_id"]] is not None]
+        excluded = [{"id": q["query_id"], "reason": "no single-event retrieval gold (disagreement/unknown answer)"}
+                    for q in queries if answers[q["query_id"]] is None]
         result.append(Suite("H2-" + split, items,
-                            [(q["query_id"], q["question"], end_of_day(q["asked_on"]), {answers[q["query_id"]]}) for q in queries],
-                            "note", files, [], "Recorded-time availability only: no oracle valid-time or supersession filtering; not a temporal answer resolver or sealed confirmation."))
+                            [(q["query_id"], q["question"], end_of_day(q["asked_on"]), {answers[q["query_id"]]}) for q in eligible],
+                            "note", files, excluded, "Recorded-time availability only: no oracle valid-time or supersession filtering; not a temporal answer resolver or sealed confirmation. No-single-event-gold cases excluded explicitly."))
     return result
 
 
@@ -151,6 +154,9 @@ def evaluate(selected=None):
     for suite in all_suites:
         if selected and suite.name not in selected:
             continue
+        ids = {i[0] for i in suite.items}
+        if any(not gold or not gold <= ids for _, _, _, gold in suite.questions):
+            raise ValueError("suite contains a missing or non-retrieval gold target")
         origin = "fiction_autobio" if suite.name == "E6" else "account_history"
         indices = [mk.build_index([mk.Item(i, "event", origin, date, text) for i, date, text in suite.items], "2099-01-01") for mk in modules]
         if any(len(idx.items) != len(suite.items) for idx in indices):

@@ -25,3 +25,9 @@ Negatives: persona fact questions against H1/H2 operational histories, and H1 op
 Per suite and rank row: recall@1/@3/@10 (any gold event ID shown), the coverage-only and live-only hits, paired mean differences and percentile 95% bootstrap intervals over queries. Use 2,000 resamples, fixed seed 1729; no model. For gate rows report any-positive firing, gold shown and unrelated firing shares with counts. Keep dev/valid and suites separate; no pooled headline or globally optimal default is selected.
 
 Publish mixed/negative outcomes as complete evidence. A default recommendation would require choosing on one suite and evaluating elsewhere under a separate stated rule; this report deliberately makes none. It does not overturn R1's failed judge gate, establish downstream writing quality or validate LifeSim. Both kernel files and all 18 WMB-R1 script declarations must remain byte-identical.
+
+## Adapter correction after the first execution
+
+The first implementation's adapter test failed: H2 has 14 cases per split whose `gold_event_id` is null because the correct answer is disagreement/unknown, not retrieval of one event. A shell sequence nevertheless continued into the first grid execution. That output is retained as `data/lab/lexical-gate-eval-v1/results.json` and is invalid for interpretation of H2; it is not the final result.
+
+The corrected adapter excludes exactly these structurally incompatible cases, lists every excluded ID, and the evaluator refuses missing/non-retrieval gold targets before scoring. Each H2 split now has 56 scored questions and 14 exclusions; no exclusion depends on a scorer's outcome. No grid, gate threshold or recommendation rule changed. The corrected result uses a new output file. This is an explicit post-first-execution adapter amendment, not a claim that the original protocol anticipated the defect.
