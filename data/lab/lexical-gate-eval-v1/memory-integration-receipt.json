@@ -1,0 +1,31 @@
+{
+  "reason": "The earlier parallel-branch event predates the canonical main tail. Preserve its original record here and replay the finding through the memory CLI at integration time, leaving the main log prefix unchanged.",
+  "original_branch_commit": "c03b0b489909eeb102eb0871d86564609c263761",
+  "original_event": {
+    "body": "Fourteen H2 conflict cases per split have null single-event gold and are explicitly excluded; the invalid first adapter execution is retained and labelled. Full grids, discordance and paired bootstrap intervals are public. Cross-domain negatives all remained silent, so precision is not established. This is descriptive and does not authorize a default or architecture change.",
+    "claim_class": "unclassified",
+    "confidence": "high",
+    "created_at": "2026-11-04T07:55:52Z",
+    "id": "PM-20261104-b16dad3f",
+    "kind": "finding",
+    "operation": "create",
+    "related_ids": [],
+    "schema_version": 2,
+    "source_refs": [
+      "docs/00-project/lexical-gate-evaluation-protocol-2026-11-04.md",
+      "data/lab/lexical-gate-eval-v1/README.md"
+    ],
+    "status": "active",
+    "summary": "Fixed-grid comparison on H1, E6 and H2 dev/valid finds no universal default: live b=.75 lowers H1 rank recall, improves H2 depth-3 recall but loses H2-valid depth-10 recall, and its shipped evidence floor fires on zero compatible H2 positives. H1 b=0 matches frozen coverage. No profile or threshold was changed.",
+    "supersedes": null,
+    "supersession_kind": null,
+    "tags": [
+      "kernel",
+      "retrieval"
+    ],
+    "title": "Public lexical evaluation finds suite-dependent ranking and gate behavior",
+    "valid_from": "2026-11-04T07:55:52Z"
+  },
+  "canonical_prefix_sha256": "e0f520a3cbf1cd3dce63b1d157c0eb002c8800d4c028dd861589496b54f8af84",
+  "integrated_event_id": "PM-20261104-cba8a7da"
+}

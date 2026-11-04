@@ -43,10 +43,13 @@ import argparse
 import json
 import re
 import sqlite3
+import sys
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from retrieval_metrics import definition, efficiency, token_count  # noqa: E402
 CORPUS = ROOT / "data" / "lab" / "corpus-h1"
 DEFAULT_OUT = CORPUS / "baseline-v0"
 
@@ -62,7 +65,7 @@ def load(path: Path) -> list[dict[str, Any]]:
 
 
 def tokens(text: str) -> int:
-    return len(text.split())
+    return token_count(text)
 
 
 def build_index(events: list[dict[str, Any]]) -> sqlite3.Connection:
@@ -166,12 +169,9 @@ def summarise(records: list[dict[str, Any]], corpus_events: int) -> dict[str, An
         summary[f"mean_retrieved_tokens@{depth}"] = _mean(
             [r[f"retrieved_tokens@{depth}"] for r in records]
         )
-        recall = summary[f"recall@{depth}"]
-        spent = summary[f"mean_retrieved_tokens@{depth}"]
-        # Undefined rather than infinite when nothing was retrieved (#38).
-        summary[f"recall_per_1k_tokens@{depth}"] = (
-            round(recall / spent * 1000, 6) if recall is not None and spent else None
-        )
+        cost = efficiency([r[f"recall@{depth}"] for r in records],
+                          [r[f"retrieved_tokens@{depth}"] for r in records])
+        summary[f"recall_per_1k_tokens@{depth}"] = cost["recall_per_1k_tokens"]
 
     above = [r["forbidden_above_gold"] for r in records if r["forbidden_above_gold"] is not None]
     summary["probes_with_a_forbidden_event"] = len(above)
@@ -194,6 +194,7 @@ def summarise(records: list[dict[str, Any]], corpus_events: int) -> dict[str, An
         "whitespace tokens of the event texts that would enter a prompt at the depth being "
         "scored, not the full candidate set the backend considered"
     )
+    summary["retrieval_cost_definition"] = definition("H1 history-event text")
     summary["not_measured"] = (
         "whether an arm could answer the question from what it retrieved; that is delayed "
         "supported task success and needs a reader model"

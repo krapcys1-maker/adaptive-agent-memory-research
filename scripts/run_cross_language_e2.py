@@ -60,6 +60,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from retrieval_metrics import arm_summary, definition, snapshot_costs  # noqa: E402
+
 from tools.project_memory.memory_store import MemoryStore  # noqa: E402
 from run_association_graph_e2 import MEMORY_KINDS, load_events, rrf  # noqa: E402
 from run_cross_language_e1 import FIXTURE, bootstrap, expand  # noqa: E402
@@ -129,6 +131,10 @@ def run(root: Path) -> dict[str, Any]:
                     "b5_hit@5": int(target in hybrid5),
                     "b5_hit@10": int(target in hybrid10),
                     "b4_rank": dense.index(target) + 1 if target in dense else None,
+                    **snapshot_costs({"b1": {5: lexical[:5], 10: lexical[:10]},
+                                      "b3": {5: gloss[:5], 10: gloss[:10]},
+                                      "b4": {5: dense[:5], 10: dense[:10]},
+                                      "b5": {5: hybrid5, 10: hybrid10}}, active),
                 }
             )
 
@@ -140,6 +146,7 @@ def run(root: Path) -> dict[str, Any]:
         for arm in ("b1", "b3", "b4", "b5"):
             for depth in (5, 10):
                 out[f"{arm}_recall@{depth}"] = round(sum(r[f"{arm}_hit@{depth}"] for r in subset) / n, 6)
+                out.update(arm_summary(subset, arm, depth))
         ranks = [r["b4_rank"] for r in subset if r["b4_rank"]]
         out["dense_mean_rank_when_found"] = round(sum(ranks) / len(ranks), 3) if ranks else None
         return out
@@ -157,6 +164,7 @@ def run(root: Path) -> dict[str, Any]:
             "network_at_query_time": False,
             "api_cost_usd": 0.0,
             "active_events": len(active),
+            "retrieval_cost_definition": definition("project-memory title + summary + body; embedding/search inputs are unchanged"),
             "english": summarize(english),
             "polish": summarize(polish),
             "polish_dense_gain@10": bootstrap(

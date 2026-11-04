@@ -1,0 +1,9 @@
+{
+  "reason": "restore documented E1 arm after inherited automatic expansion was discovered",
+  "runner_git_head": "77bbae05feea3d6957ee337f0f93686d859742fc",
+  "source_memory_sha256": "21eb9c0299e4335fdcaf4479913754a82950e9f5b160c8dad2e2de87d955dd41",
+  "snapshot_git_head": "617e084d1dac62cbd82e30a2a26af1797053e6d6",
+  "records": 90,
+  "original_snapshot_file_preserved": true,
+  "lexical_query_policy": "expand=False; only the separately labelled B3 arm receives the authored glossary expansion"
+}
