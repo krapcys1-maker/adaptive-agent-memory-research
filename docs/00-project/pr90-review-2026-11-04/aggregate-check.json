@@ -1,0 +1,152 @@
+{
+  "run": {
+    "compared_sections": [
+      "free_controls",
+      "p1",
+      "p2",
+      "p3",
+      "p7",
+      "readings",
+      "records"
+    ],
+    "differences": [],
+    "duplicate_keys": {
+      "p1": 0,
+      "p2": 0,
+      "p3": 0,
+      "p7_answers": 0,
+      "p7_labels": 0
+    },
+    "exit_code": 0,
+    "input_files_checked": 26,
+    "input_files_unchanged": true,
+    "provenance_not_relabelled": true,
+    "records": {
+      "p1": 900,
+      "p2": 280,
+      "p3": 183,
+      "p7_answers": 372,
+      "p7_labels": 436
+    }
+  },
+  "run_h01": {
+    "compared_sections": [
+      "free_controls",
+      "p1",
+      "p2",
+      "p3",
+      "p7",
+      "readings",
+      "records"
+    ],
+    "differences": [],
+    "duplicate_keys": {
+      "p1": 0,
+      "p2": 0,
+      "p3": 0,
+      "p7_answers": 0,
+      "p7_labels": 0
+    },
+    "exit_code": 0,
+    "input_files_checked": 8,
+    "input_files_unchanged": true,
+    "provenance_not_relabelled": true,
+    "records": {
+      "p1": 0,
+      "p2": 280,
+      "p3": 0,
+      "p7_answers": 0,
+      "p7_labels": 0
+    }
+  },
+  "run_k02h2m": {
+    "compared_sections": [
+      "free_controls",
+      "p1",
+      "p2",
+      "p3",
+      "p7",
+      "readings",
+      "records"
+    ],
+    "differences": [],
+    "duplicate_keys": {
+      "p1": 0,
+      "p2": 0,
+      "p3": 0,
+      "p7_answers": 0,
+      "p7_labels": 0
+    },
+    "exit_code": 0,
+    "input_files_checked": 8,
+    "input_files_unchanged": true,
+    "provenance_not_relabelled": true,
+    "records": {
+      "p1": 0,
+      "p2": 280,
+      "p3": 0,
+      "p7_answers": 0,
+      "p7_labels": 0
+    }
+  },
+  "run_k02p1m": {
+    "compared_sections": [
+      "free_controls",
+      "p1",
+      "p2",
+      "p3",
+      "p7",
+      "readings",
+      "records"
+    ],
+    "differences": [],
+    "duplicate_keys": {
+      "p1": 0,
+      "p2": 0,
+      "p3": 0,
+      "p7_answers": 0,
+      "p7_labels": 0
+    },
+    "exit_code": 0,
+    "input_files_checked": 10,
+    "input_files_unchanged": true,
+    "provenance_not_relabelled": true,
+    "records": {
+      "p1": 900,
+      "p2": 0,
+      "p3": 0,
+      "p7_answers": 0,
+      "p7_labels": 0
+    }
+  },
+  "run_k02p2m": {
+    "compared_sections": [
+      "free_controls",
+      "p1",
+      "p2",
+      "p3",
+      "p7",
+      "readings",
+      "records"
+    ],
+    "differences": [],
+    "duplicate_keys": {
+      "p1": 0,
+      "p2": 0,
+      "p3": 0,
+      "p7_answers": 0,
+      "p7_labels": 0
+    },
+    "exit_code": 0,
+    "input_files_checked": 8,
+    "input_files_unchanged": true,
+    "provenance_not_relabelled": true,
+    "records": {
+      "p1": 0,
+      "p2": 280,
+      "p3": 0,
+      "p7_answers": 0,
+      "p7_labels": 0
+    }
+  }
+}
