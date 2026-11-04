@@ -79,6 +79,37 @@ jobs:
       - name: Check registered mutations in temporary copies
         run: python scripts/wmb/mutate_kernel.py --module "${{ matrix.module }}" --workers 2
 
+  lifesim-portability:
+    name: LifeSim (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+        python-version: ["3.13", "3.14"]
+    steps:
+      - name: Enable long paths on Windows before checkout
+        if: runner.os == 'Windows'
+        run: git config --global core.longpaths true
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Record platform and interpreter
+        run: |
+          python -VV
+          python -c "import platform; print(platform.platform(), platform.machine())"
+      - name: Install pytest only
+        run: python -m pip install pytest
+      - name: Check pinned golden vectors
+        run: python -m pytest -q tests/test_lifesim_rng.py tests/test_lifesim_world.py -k golden
+      - name: Check dependency-light LifeSim suites
+        run: >-
+          python -m pytest -q tests/test_lifesim_rng.py tests/test_lifesim_world.py
+          tests/test_lifesim_schema.py tests/test_lifesim_vocab.py tests/test_lifesim_scorers.py
+          tests/test_lifesim_queries.py tests/test_lifesim_verbalise.py tests/test_lifesim_channel.py
+          tests/test_lifesim_appraisal.py tests/test_lifesim_integration.py
+
   memory-integrity:
     name: Project-memory integrity
     runs-on: ubuntu-latest
