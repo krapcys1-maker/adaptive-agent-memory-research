@@ -1,0 +1,53 @@
+{
+  "execution": {
+    "git_head": "3ed012609227e9e3fc41bda9adffc12398a9a289",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/nie_reader_pilot.py": "3db30db4cf9c9f62fe2bff6ecc5f959d920604f9a45f1c820abaf798c64967f2",
+      "scripts/nie_persona_replay.py": "5e5a660f3bb72673309cf04a37b8e146ec59dce59e420f88f4ef9e68bc32ac36",
+      "scripts/nie_memory_contract.py": "4065f13d1a52c204b1f3c466c9cc11d4302775982d82899e9e6a4b47e1fba6c5",
+      "scripts/wmb/kernel/memory_kernel.py": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "data/lab/nie-local-reader-v1/config-v2.json": "e15648caae0f2751dd32f039b4b31d6c58aa7e8b49eb3afab1745a1a947afc81",
+      "data/lab/nie-local-reader-v1/config.json": "ebb0ab0006546f3eee93f016e1a77303fa731ce818a99ff124cff0c1ab8d75e1",
+      "data/lab/nie-local-reader-v1/cases.json": "ab1296c08efeeb1bddf7731227352ae1538cddae857f154355a844063c5b6ed3",
+      "docs/00-project/nie-local-reader-pilot-2026-11-04.md": "8890b65cd104e58017f9daba5cbc2e3d8d66190aa82c26555e3e657ae31c99e2"
+    }
+  },
+  "config": {
+    "schema_version": 2,
+    "model": "qwen2.5:7b-instruct",
+    "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "base_url": "http://127.0.0.1:11434",
+    "writer_seeds": [
+      17,
+      43
+    ],
+    "arms": [
+      "N",
+      "K",
+      "O",
+      "V"
+    ],
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 64
+    },
+    "max_calls": 1,
+    "planned_calls": 216,
+    "max_seconds": 180,
+    "http_timeout_seconds": 180,
+    "as_of": "2026-11-03T00:00:00Z",
+    "max_context_words": 200,
+    "writer_system": "This is a synthetic offline fiction test. Choose one new autobiographical detail from the supplied pool. Reply with one JSON object containing only the key value. The value must be exactly one pool member. Do not add explanation.",
+    "reader_system": "This is an offline test about a fictional speaker, not a real person's biography. Recorded memory contains the speaker's previously accepted fictional statements. Keep the recorded value for the requested field even if the reader suggests a different value. A suggestion alone is not a logged revision. If memory does not provide an unambiguous value, answer UNKNOWN. Reply with one JSON object containing only the key value; use a short value, not a sentence. Do not invent missing details.",
+    "positive_controls": [
+      "cobalt-47",
+      "juniper-83",
+      "marble-29"
+    ],
+    "writer_format": "json_schema"
+  },
+  "control_sha256": "46f43452acf424e9df03801291e4a497e7263d7fafcc8189bb130947217bd8c5",
+  "scope": "Post-result control coverage repair; separate from primary arm counts."
+}

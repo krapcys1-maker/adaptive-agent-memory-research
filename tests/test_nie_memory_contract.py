@@ -46,6 +46,12 @@ def test_untyped_legacy_text_is_not_silently_promoted():
     assert C.guard_answer('kettle_colour','{}',[x])['resolution']=='no_evidence'
 
 
+@pytest.mark.parametrize('broken',[None,{'origin':'fiction_autobio','meta':7},
+    {'origin':'fiction_autobio','text':'teal','meta':{'typed_claim':{'slot':'kettle_colour','value':'teal'}}}])
+def test_corrupt_retrieval_objects_abstain_without_authorizing_an_answer(broken):
+    assert C.guard_answer('kettle_colour','{"value":"teal"}',[broken])['resolution']=='invalid_evidence'
+
+
 @pytest.mark.parametrize('claim,text',[
     ({'slot':'x','value':'7 April'},'It happened on 17 April.'),
     ({'slot':'x','value':'red'},'I am tired.'),

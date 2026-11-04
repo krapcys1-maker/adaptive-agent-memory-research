@@ -54,9 +54,13 @@ def guard_answer(slot, candidate_text, shown_items, *, task_type='personal'):
     matches = {}
     source_ids = []
     for item in shown_items:
+        if not isinstance(item, dict):
+            return out('UNKNOWN', 'invalid_evidence')
         if item.get('origin') != 'fiction_autobio':
             continue
         meta = item.get('meta') or {}
+        if not isinstance(meta, dict):
+            return out('UNKNOWN', 'invalid_evidence')
         if 'typed_claim' not in meta:
             continue
         try:
@@ -65,6 +69,8 @@ def guard_answer(slot, candidate_text, shown_items, *, task_type='personal'):
             return out('UNKNOWN', 'invalid_evidence')
         if claim['slot'] != slot:
             continue
+        if not isinstance(item.get('id'), str) or not item['id']:
+            return out('UNKNOWN', 'invalid_evidence')
         key = folded(claim['value'])
         matches.setdefault(key, claim['value'])
         source_ids.append(item['id'])
