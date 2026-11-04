@@ -16,6 +16,7 @@ import json
 from pathlib import Path
 import random
 import re
+import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -184,20 +185,53 @@ def evaluate(selected=None):
                   "gate_rows": [gate_row(modules[1], indices[1], suite, p, negatives[suite.name]) for p in gate_grid()]}
         results.append(result)
         print(suite.name, "queries", len(suite.questions), "coverage", result["coverage"]["recall"], flush=True)
-    return {"protocol": "docs/00-project/lexical-gate-evaluation-protocol-2026-11-04.md",
+    protocol = Path("docs/00-project/lexical-gate-evaluation-protocol-2026-11-04.md")
+    return {"protocol": protocol.as_posix(),
+            "execution": {"git_head": subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip(),
+                          "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                          "protocol_sha256": hashlib.sha256((ROOT / protocol).read_bytes()).hexdigest(), "python": sys.version},
             "tier": "descriptive exploratory; no tuned default selected", "license": "repository Apache-2.0 authored fixtures",
             "bootstrap_resamples": RESAMPLES, "bootstrap_seed": SEED,
             "kernel_sha256": {p.as_posix(): hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in KERNEL_PATHS},
             "suites": results}
 
 
+def markdown(result):
+    out = ["# Public lexical-gate evaluation — issue 72", "",
+           "Descriptive public-data evaluation; no default was tuned or changed. See the [protocol](../../../docs/00-project/lexical-gate-evaluation-protocol-2026-11-04.md) for fixed grids, licences, negative controls and limitations.", "",
+           "The first H2 adapter execution was invalid and remains preserved in `results.json`. Fourteen no-single-event-gold cases per H2 split are explicitly excluded in the corrected/final results. Complete ranks, input/source digests, all differences and bootstrap settings are in `final-results.json`.", "",
+           "Differences and discordance are relative to frozen 0.1.0 coverage. `old/new only` counts queries hit only by coverage / only by the live scorer. Intervals are paired percentile bootstrap intervals, not multiplicity-adjusted confirmatory claims. Tokenizer/stop-list changes confound comparisons across versions.", ""]
+    for suite in result["suites"]:
+        out += ["## " + suite["suite"], "", "%d items; %d scored queries; %d excluded." % (suite["items"], suite["queries"], len(suite["exclusions"])), "", suite["limitation"], "",
+                "Coverage R@1 / R@3 / R@10: " + " / ".join(str(suite["coverage"]["recall"][str(k)]) for k in (1, 3, 10)) + ".", ""]
+        for k in (1, 3, 10):
+            out += ["### Rank curve at k=" + str(k), "", "| b | k1 | max_terms | recall | difference [95% interval] | old/new only |", "| --- | --- | --- | --- | --- | --- |"]
+            for row in suite["rank_rows"]:
+                p, m = row["profile"], row["metrics"][str(k)]
+                out.append("| %s | %s | %s | %.6f | %+.6f [%.6f, %.6f] | %d / %d |" %
+                           (p["b"], p["k1"], p["max_terms"], m["recall"], m["difference"], *m["ci95"], m["coverage_only"], m["tested_only"]))
+            out.append("")
+        out += ["### Gate sweep", "", "Negative bank: " + suite["negative_bank"] + ". Constructed disjoint-world no-answer queries, not human relevance labels.", "",
+                "| scorer | lex_tau | top_terms | fired positives | gold shown | unrelated fired |", "| --- | --- | --- | --- | --- | --- |"]
+        for label, row in [("coverage", suite["coverage_gate"])] + [("live", r) for r in suite["gate_rows"]]:
+            p = row["profile"]
+            out.append("| %s | %s | %s | %d/%d (%.3f) | %d/%d (%.3f) | %d/%d (%.3f) |" %
+                       (label, p["lex_tau"], p.get("top_terms", "n/a"), row["fired"], row["queries"], row["fired_share"],
+                        row["gold_shown"], row["queries"], row["gold_shown_share"], row["unrelated_fired"], row["unrelated_queries"], row["unrelated_fired_share"]))
+        out.append("")
+    return "\n".join(out) + "\n"
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--suite", action="append", choices=("H1", "E6", "H2-dev", "H2-valid"))
+    parser.add_argument("--markdown", type=Path, help="new Markdown report alongside the structured results")
     args = parser.parse_args(argv)
     if args.output.exists():
         parser.error("output must be new; historical results are never overwritten")
+    if args.markdown and (args.markdown.exists() or args.markdown.resolve() == args.output.resolve()):
+        parser.error("Markdown output must be a distinct new file")
     before = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in KERNEL_PATHS}
     result = evaluate(args.suite)
     if any(hashlib.sha256((ROOT / p).read_bytes()).hexdigest() != sha for p, sha in before.items()):
@@ -206,6 +240,9 @@ def main(argv=None):
     with args.output.open("x", encoding="utf-8", newline="\n") as handle:
         json.dump(result, handle, indent=2)
         handle.write("\n")
+    if args.markdown:
+        with args.markdown.open("x", encoding="utf-8", newline="\n") as handle:
+            handle.write(markdown(result))
     return 0
 
 
