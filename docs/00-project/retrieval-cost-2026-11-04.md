@@ -16,3 +16,9 @@ These are descriptive engineering measurements, not a confirmatory experiment or
 Both H1 runners replace duplicated arithmetic with the helper. Cross-language E1/E2 and association E3 append per-arm/depth cost fields and aggregate them next to recall. A separate read-only `scripts/backfill_retrieval_cost.py` emits new analysis files and refuses to overwrite old artifacts. Its output carries source digests and original interpretation caveats.
 
 The existing scripts are mutable experiment runners, not among the script declarations frozen by WMB-R1; that declared import closure and both kernel files are unchanged. Existing measurement JSON and their conclusions remain preserved. New results below will distinguish reproducible historical costs from fresh snapshot measurements and unavailable history.
+
+## Explicit E1 query-policy amendment after the first snapshot run
+
+The fresh E1 baseline unexpectedly matched its glossary arm. Inspection identified an integration defect: `MemoryStore.search` now defaults to `expand=True`, while the legacy E1 runner omitted the argument despite defining B1 as lexical-only. E2 and association E3 already pass `expand=False` explicitly. The initial fresh E1 JSON remains preserved with its actual inherited policy; it is not labelled a pure lexical baseline.
+
+E1 now explicitly disables automatic expansion in every arm, so only labelled B3 receives the authored glossary. A regression assertion pins that policy for all three project-memory runners. This changes E1's new execution to restore its documented arm definition; it does not change published historical results or embedding inputs. A separate corrected-E1 file and source receipt record the rerun on the same snapshot. This is a disclosed post-first-run integration amendment, not an undeclared favorable parameter choice.

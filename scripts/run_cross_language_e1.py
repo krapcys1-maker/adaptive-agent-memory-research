@@ -138,13 +138,13 @@ def run(root: Path) -> dict[str, Any]:
         for language, text in queries.items():
             if not text.strip():
                 continue
-            hits = [h["id_or_path"] for h in store.search(text, limit=50, kinds=MEMORY_KINDS)]
+            hits = [h["id_or_path"] for h in store.search(text, limit=50, kinds=MEMORY_KINDS, expand=False)]
             order = graph_ranking(graph, hits[:SEED_COUNT], set())
             fused5, fused10 = rrf([hits, order], 5), rrf([hits, order], 10)
 
             expanded = expand(text, glossary) if language == "pl" else text
             gloss_hits = [
-                h["id_or_path"] for h in store.search(expanded, limit=50, kinds=MEMORY_KINDS)
+                h["id_or_path"] for h in store.search(expanded, limit=50, kinds=MEMORY_KINDS, expand=False)
             ] if expanded != text else hits
 
             records.append(
@@ -192,7 +192,8 @@ def run(root: Path) -> dict[str, Any]:
         "model_free": True,
         "weights_downloaded": False,
         "active_events": len(active),
-        "retrieval_cost_definition": definition("project-memory title + summary + body; embedding/search inputs are unchanged"),
+        "retrieval_cost_definition": definition("project-memory title + summary + body; explicit unexpanded lexical baseline"),
+        "lexical_query_policy": "expand=False; only the separately labelled B3 arm receives the authored glossary expansion",
         "graph_edges": sum(len(v) for v in graph.values()) // 2,
         "english": summarize(english),
         "polish": summarize(polish),

@@ -4,6 +4,7 @@ import json
 import math
 from pathlib import Path
 import sys
+import types
 
 import pytest
 
@@ -92,3 +93,50 @@ def test_existing_outputs_cannot_be_overwritten(tmp_path):
     with pytest.raises(SystemExit):
         backfill.main(["--output", str(path)])
     assert path.read_text() == "keep"
+
+
+@pytest.mark.parametrize("name", ["run_cross_language_e1", "run_cross_language_e2", "run_association_graph_e3"])
+def test_project_memory_runners_record_actual_windows_and_costs(tmp_path, monkeypatch, name):
+    import importlib
+    module = importlib.import_module(name)
+    events = {"a": {"id": "a", "title": "alpha beta", "summary": "gamma", "body": "delta epsilon"},
+              "b": {"id": "b", "title": "zeta", "summary": "eta", "body": ""}}
+    class Store:
+        def __init__(self, root):
+            pass
+        def rebuild_index(self):
+            pass
+        def search(self, *args, **kwargs):
+            assert kwargs.get("expand") is False
+            return [{"id_or_path": i} for i in events]
+    monkeypatch.setattr(module, "MemoryStore", Store)
+    monkeypatch.setattr(module, "load_events", lambda _: (events, list(events.values())))
+    if name == "run_association_graph_e3":
+        kind = sorted(module.MECHANICAL_TYPES)[0]
+        group = (kind, "fixture")
+        monkeypatch.setattr(module, "build_groups", lambda *_: ({group: {"a", "b"}}, {("a", "b"): {group}}))
+    else:
+        (tmp_path / "queries.json").write_text(json.dumps({"pairs": [{"id": "a", "pl": "polski"}]}), encoding="utf-8")
+        (tmp_path / "glossary.json").write_text('{"terms": {}}', encoding="utf-8")
+        monkeypatch.setattr(module, "FIXTURE", tmp_path)
+        if name.endswith("e1"):
+            monkeypatch.setattr(module, "build_typed_edges", lambda *_: {})
+        else:
+            class Embedding:
+                def __init__(self, **kwargs):
+                    pass
+                def embed(self, texts):
+                    return [[1.0, 0.0], [0.0, 1.0]]
+                def query_embed(self, text):
+                    return iter([[1.0, 0.0]])
+            monkeypatch.setitem(sys.modules, "fastembed", types.SimpleNamespace(TextEmbedding=Embedding))
+    result = module.run(tmp_path)
+    assert result["records"]
+    assert "ratio of means" in result["summary"]["retrieval_cost_definition"]["aggregation"]
+    for row in result["records"]:
+        for key, shown in row.items():
+            if "_retrieved_ids@" in key:
+                arm, depth = key.split("_retrieved_ids@")
+                assert len(shown) <= int(depth)
+                expected = sum(5 if i == "a" else 2 for i in shown)
+                assert row[f"{arm}_retrieved_tokens@{depth}"] == expected
