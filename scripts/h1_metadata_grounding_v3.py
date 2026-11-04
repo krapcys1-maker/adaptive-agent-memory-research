@@ -65,9 +65,11 @@ def project(store,capture,output):
                     'from_source':prior,'raw_proposal_sha256':P.sha(proposal),'validation':'literal_case_v2'})
                 count['accepted']+=1; count['addresses']+=len(grounded['addresses'])
                 count['case_rescued_sources']+=sid not in accepted
+                count['retained_base_accepted']+=sid in accepted
                 count['changed_proposals']+=grounded!=proposal
             except ValueError as exc:
                 count['quarantined']+=1
+                count['lost_base_accepted']+=sid in accepted
                 P.append(output/'rejections.jsonl',{'id':sid,'reason':str(exc)})
     P.write(output/'summary.json',{'counts':dict(count),'new_generations':0,
         'raw_store_sha256':S.file_sha(store),'base_capture_freeze_sha256':S.file_sha(capture/'raw-freeze.json')})
