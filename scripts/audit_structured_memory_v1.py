@@ -87,12 +87,41 @@ def audit(archive, store, capture, answer_dirs, questions, scope, valid_at, know
                 continue
             answers = rows(directory/'answers.jsonl')
             check(len(answers) == len(qs) and {a['id'] for a in answers} == set(qs), 'incomplete question run')
+            requests = {a['key']:a['request'] for a in attempts}
+            completions = {a['key']:a['text'] for a in responses}
+            option_memory = None
+            if any('selection' in a for a in answers):
+                import structured_memory_paths_v5 as V5
+                option_memory = V5.Memory(store)
             for a in answers:
                 recalculated = m.execute(scope, qs[a['id']], a['plan'], valid_at=valid_at, known_at=known_at)
                 check(recalculated == a['result'], 'non-reproducible graph result: '+a['id'])
                 for path in a['result'].get('paths', []):
                     check(all(hop['sources'] and set(hop['sources']) <= set(m.sources) for hop in path),
                           'missing source path')
+                if option_memory is not None:
+                    plans,trace = V5.options(option_memory,scope,qs[a['id']],valid_at=valid_at,known_at=known_at)
+                    original_count = len(plans)
+                    packed = V5.messages(option_memory,qs[a['id']],plans,scope)
+                    while plans and len(json.dumps(packed,ensure_ascii=False).encode())>5900:
+                        plans.pop()
+                        packed = V5.messages(option_memory,qs[a['id']],plans,scope)
+                    trace.update(available_options=original_count,shown_options=len(plans),
+                                 input_budget_truncated=len(plans)<original_count)
+                    check(trace == a['options_trace'], 'path search trace differs: '+a['id'])
+                    labels = {f'P{i}':p for i,p in enumerate(plans)}
+                    if plans:
+                        call = 'plan-'+a['id']
+                        check(requests[call]['messages'] == packed, 'model input differs from schema-only options')
+                        try: selection = json.loads(completions[call])
+                        except (TypeError,json.JSONDecodeError): selection = {}
+                        check(selection == a['selection'], 'recorded model choice differs')
+                    else:
+                        selection = {}
+                    chosen = labels.get(selection.get('option'),{'anchor':'UNKNOWN','steps':[]})
+                    check(chosen == a['plan'], 'chosen option differs from executed plan')
+            if option_memory is not None:
+                option_memory.close()
         return {'failures': failures, 'sources': len(m.sources), 'claims': len(m.claims),
                 'templates': len(learned), 'cached_claims_reproduced': cached,
                 'quarantined_sources': len(quarantine),
