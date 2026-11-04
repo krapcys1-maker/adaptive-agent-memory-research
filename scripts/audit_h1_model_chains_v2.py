@@ -8,18 +8,20 @@ import h1_model_chains_v2 as V2
 import nie_reader_pilot as P
 from tools.structured_memory_v2 import Memory
 from tools.retrieval_metadata_v1 import AddressView, checked
+from tools.retrieval_metadata_v2 import canonical_proposal
 
 
-def audit(history,questions,store,capture,answers,scope):
+def audit(history,questions,store,capture,answers,scope,projection=None):
     failures=[]
     def check(condition,message):
         if not condition: failures.append(message)
     raw=P.read_rows(history); queries=P.read_rows(questions)
-    addresses=P.read_rows(capture/'addresses.jsonl')
+    metadata=projection if projection is not None else capture
+    addresses=P.read_rows(metadata/'addresses.jsonl')
     by_source={r['source']:r for r in addresses}
     capture_rows=P.read_rows(capture/'captures.jsonl')
     model={r['key']:r['text'] for r in P.read_rows(capture/'responses.jsonl')}
-    rejected={r['id'] for r in P.read_rows(capture/'rejections.jsonl')}
+    rejected={r['id'] for r in P.read_rows(metadata/'rejections.jsonl')}
     roles={r['source']:r['channel'] for r in P.read_rows(capture/'source-roles.jsonl')}
     with AddressView(Memory(store),addresses) as view:
         check(not view.raw.claims,'retrieval metadata became asserted truth')
@@ -35,6 +37,7 @@ def audit(history,questions,store,capture,answers,scope):
             if sid in rejected:
                 try:
                     proposal=json.loads(model['address-'+sid])
+                    if projection is not None: proposal=canonical_proposal(source,proposal)
                     checked(source,proposal)
                 except (ValueError,TypeError,KeyError):
                     pass
@@ -47,12 +50,15 @@ def audit(history,questions,store,capture,answers,scope):
                 check(prior in seen and seen[prior]['proposal']==row['proposal'] and
                       view.sources[prior].text==source.text,'invalid literal reuse: '+sid)
             else:
-                check(row['derivation']=='new_generation' and json.loads(model['address-'+sid])==row['proposal'],
+                proposal=json.loads(model['address-'+sid])
+                if projection is not None: proposal=canonical_proposal(source,proposal)
+                check(row['derivation']=='new_generation' and proposal==row['proposal'],
                       'model proposal differs: '+sid)
             seen[sid]=row
-        for directory in [capture,answers]:
+        for directory in [capture,answers,*([projection] if projection is not None else [])]:
             freeze=json.loads((directory/'raw-freeze.json').read_text(encoding='utf-8'))
             check(all(H.S.file_sha(directory/name)==sha for name,sha in freeze['files_sha256'].items()),'raw checksum drift')
+            if directory==projection: continue
             attempts=P.read_rows(directory/'attempts.jsonl'); responses=P.read_rows(directory/'responses.jsonl')
             check(len(attempts)==len(responses) and len({r['key'] for r in attempts})==len(attempts) and
                   {r['key'] for r in attempts}=={r['key'] for r in responses},'call coverage')
@@ -87,6 +93,7 @@ def audit(history,questions,store,capture,answers,scope):
             'quarantined_sources':len(rejected),'reader_outputs':len(outputs),'asserted_graph_claims':len(view.raw.claims),
             'exact_text_reuse_proofs':sum(r['derivation']=='exact_text_reuse' for r in addresses),
             'construction_labels_read':False,'source_roles_reconstructed':True,
+            'case_projection_reconstructed':projection is not None,
             'semantic_address_accuracy':'not established by this mechanical audit'}
 
 
@@ -95,6 +102,7 @@ def main():
     for field in ['history','questions','store','capture','answers','output']:
         p.add_argument('--'+field,type=Path,required=True)
     p.add_argument('--scope',required=True)
+    p.add_argument('--projection',type=Path)
     args=vars(p.parse_args()); output=args.pop('output')
     result=audit(**args); P.write(output,result)
     print(json.dumps(result,indent=2)); return bool(result['failures'])
