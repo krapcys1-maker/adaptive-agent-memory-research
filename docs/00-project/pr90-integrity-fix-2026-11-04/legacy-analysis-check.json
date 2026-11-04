@@ -1,0 +1,232 @@
+[
+  {
+    "case": "run",
+    "differences": [],
+    "files_unchanged": true,
+    "files_checked": 22,
+    "execution_identity": "legacy-declared",
+    "coverage": {
+      "p1": {
+        "status": "complete",
+        "expected": 900,
+        "actual": 900,
+        "missing": 0,
+        "readings_ready": true
+      },
+      "p2": {
+        "status": "complete",
+        "expected": 280,
+        "actual": 280,
+        "missing": 0,
+        "readings_ready": true
+      },
+      "p3": {
+        "status": "complete",
+        "expected": 183,
+        "actual": 183,
+        "missing": 0,
+        "readings_ready": true
+      },
+      "p7_answers": {
+        "status": "complete",
+        "expected": 372,
+        "actual": 372,
+        "missing": 0
+      },
+      "p7_labels": {
+        "status": "complete",
+        "expected": 436,
+        "actual": 436,
+        "missing": 0
+      },
+      "p7": {
+        "readings_ready": true
+      }
+    },
+    "exit_code": 0
+  },
+  {
+    "case": "run_h01",
+    "differences": [],
+    "files_unchanged": true,
+    "files_checked": 5,
+    "execution_identity": "legacy-declared",
+    "coverage": {
+      "p1": {
+        "status": "not_started",
+        "expected": 900,
+        "actual": 0,
+        "missing": 900,
+        "readings_ready": false
+      },
+      "p2": {
+        "status": "complete",
+        "expected": 280,
+        "actual": 280,
+        "missing": 0,
+        "readings_ready": true
+      },
+      "p3": {
+        "status": "not_started",
+        "expected": 183,
+        "actual": 0,
+        "missing": 183,
+        "readings_ready": false
+      },
+      "p7_answers": {
+        "status": "not_started",
+        "expected": 372,
+        "actual": 0,
+        "missing": 372
+      },
+      "p7_labels": {
+        "status": "not_started",
+        "expected": 64,
+        "actual": 0,
+        "missing": 64
+      },
+      "p7": {
+        "readings_ready": false
+      }
+    },
+    "exit_code": 0
+  },
+  {
+    "case": "run_k02p1m",
+    "differences": [],
+    "files_unchanged": true,
+    "files_checked": 7,
+    "execution_identity": "legacy-declared",
+    "coverage": {
+      "p1": {
+        "status": "complete",
+        "expected": 900,
+        "actual": 900,
+        "missing": 0,
+        "readings_ready": true
+      },
+      "p2": {
+        "status": "not_started",
+        "expected": 280,
+        "actual": 0,
+        "missing": 280,
+        "readings_ready": false
+      },
+      "p3": {
+        "status": "not_started",
+        "expected": 183,
+        "actual": 0,
+        "missing": 183,
+        "readings_ready": false
+      },
+      "p7_answers": {
+        "status": "not_started",
+        "expected": 372,
+        "actual": 0,
+        "missing": 372
+      },
+      "p7_labels": {
+        "status": "not_started",
+        "expected": 64,
+        "actual": 0,
+        "missing": 64
+      },
+      "p7": {
+        "readings_ready": false
+      }
+    },
+    "exit_code": 0
+  },
+  {
+    "case": "run_k02p2m",
+    "differences": [],
+    "files_unchanged": true,
+    "files_checked": 5,
+    "execution_identity": "legacy-declared",
+    "coverage": {
+      "p1": {
+        "status": "not_started",
+        "expected": 900,
+        "actual": 0,
+        "missing": 900,
+        "readings_ready": false
+      },
+      "p2": {
+        "status": "complete",
+        "expected": 280,
+        "actual": 280,
+        "missing": 0,
+        "readings_ready": true
+      },
+      "p3": {
+        "status": "not_started",
+        "expected": 183,
+        "actual": 0,
+        "missing": 183,
+        "readings_ready": false
+      },
+      "p7_answers": {
+        "status": "not_started",
+        "expected": 372,
+        "actual": 0,
+        "missing": 372
+      },
+      "p7_labels": {
+        "status": "not_started",
+        "expected": 64,
+        "actual": 0,
+        "missing": 64
+      },
+      "p7": {
+        "readings_ready": false
+      }
+    },
+    "exit_code": 0
+  },
+  {
+    "case": "run_k02h2m",
+    "differences": [],
+    "files_unchanged": true,
+    "files_checked": 5,
+    "execution_identity": "legacy-declared",
+    "coverage": {
+      "p1": {
+        "status": "not_started",
+        "expected": 900,
+        "actual": 0,
+        "missing": 900,
+        "readings_ready": false
+      },
+      "p2": {
+        "status": "complete",
+        "expected": 280,
+        "actual": 280,
+        "missing": 0,
+        "readings_ready": true
+      },
+      "p3": {
+        "status": "not_started",
+        "expected": 183,
+        "actual": 0,
+        "missing": 183,
+        "readings_ready": false
+      },
+      "p7_answers": {
+        "status": "not_started",
+        "expected": 372,
+        "actual": 0,
+        "missing": 372
+      },
+      "p7_labels": {
+        "status": "not_started",
+        "expected": 64,
+        "actual": 0,
+        "missing": 64
+      },
+      "p7": {
+        "readings_ready": false
+      }
+    },
+    "exit_code": 0
+  }
+]
