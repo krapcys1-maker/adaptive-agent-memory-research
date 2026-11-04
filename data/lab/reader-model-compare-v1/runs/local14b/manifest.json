@@ -1,0 +1,77 @@
+{
+  "execution": {
+    "git_head": "272bf1ba56eb167258112efb9887551805bdc92e",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/reader_model_compare_v1.py": "058f19946aadc4c65dc962cb030568ad29007af4c86284de9efb9a843e550579",
+      "scripts/audit_reader_model_compare_v1.py": "b66d584e87a4948573bb5c0edf8a0b4b459357f6ff411ce6f57fa5235c1c4cba",
+      "scripts/flash_reader_client_v1.py": "be64dc03d4c67cbc9f9db2fc33f2ebfd79f46acee34c6f35cd83a4f3b991a3bc",
+      "scripts/nie_reader_pilot.py": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+      "scripts/nie_persona_replay.py": "5e5a660f3bb72673309cf04a37b8e146ec59dce59e420f88f4ef9e68bc32ac36",
+      "scripts/nie_memory_contract.py": "8b169db54437dc097d0fe991dce557a2d1f494554f5a6b970e1d45cad2bdd37b",
+      "scripts/wmb/kernel/memory_kernel.py": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "data/lab/reader-model-compare-v1/PLAN.md": "e6b5859a2cd184b1dc3fbda57323ac2023d547705785064d175187c6daa950da",
+      "data/lab/reader-model-compare-v1/config.json": "07e79a385eb5c1aabd8a1dc3807d55db3592be75234132b5a0eaafd96a7d2723",
+      "docs/00-project/reader-model-usage-policy-2026-11-04.md": "58338195edaf25ce5fcae85e31bd40e8c3945f03bc141ea0ceac71f4391f179d",
+      "data/lab/nie-local-reader-v1/cases.json": "ab1296c08efeeb1bddf7731227352ae1538cddae857f154355a844063c5b6ed3",
+      "data/lab/nie-local-reader-v1/run-002/manifest.json": "37e448efbe375d5a93857b574a7f1f6d931ff6d3c05905b8ce0a6a31b4a26099",
+      "data/lab/nie-local-reader-v1/run-002/writers.jsonl": "365f0f94457352e056238c2cc3393fe3da4f25a6649de4cd2446d7465a8352b7",
+      "data/lab/nie-local-reader-v1/run-002/journals.jsonl": "934e8826c76a687ecfec6926ca9ee437136fc9e0191291b463626bcca78c36fb"
+    }
+  },
+  "backend": "local14b",
+  "config": {
+    "schema_version": 1,
+    "reference_commit": "f6cce08f97f58b7fb78495889c81a1ee8580aff2",
+    "local_model": "qwen2.5:14b-instruct",
+    "local_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+    "api_model": "deepseek-flash",
+    "api_advertised_name_prefix": "DeepSeek-V4.1-Flash",
+    "api_url": "https://api.deepseek.com",
+    "api_reserved_cap_usd": 1.0,
+    "api_reservation_usd": 0.004,
+    "max_calls": 205,
+    "max_seconds": 1800,
+    "max_api_message_bytes": 6000,
+    "max_api_messages": 4,
+    "input_usd_per_million_upper": 0.3,
+    "output_usd_per_million_upper": 1.2,
+    "reader_max_tokens": 64
+  },
+  "cohort_config": {
+    "schema_version": 2,
+    "model": "qwen2.5:7b-instruct",
+    "model_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "base_url": "http://127.0.0.1:11434",
+    "writer_seeds": [
+      17,
+      43
+    ],
+    "arms": [
+      "N",
+      "K",
+      "O",
+      "V"
+    ],
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 64
+    },
+    "max_calls": 220,
+    "planned_calls": 216,
+    "max_seconds": 1200,
+    "http_timeout_seconds": 180,
+    "as_of": "2026-11-03T00:00:00Z",
+    "max_context_words": 200,
+    "writer_system": "This is a synthetic offline fiction test. Choose one new autobiographical detail from the supplied pool. Reply with one JSON object containing only the key value. The value must be exactly one pool member. Do not add explanation.",
+    "reader_system": "This is an offline test about a fictional speaker, not a real person's biography. Recorded memory contains the speaker's previously accepted fictional statements. Keep the recorded value for the requested field even if the reader suggests a different value. A suggestion alone is not a logged revision. If memory does not provide an unambiguous value, answer UNKNOWN. Reply with one JSON object containing only the key value; use a short value, not a sentence. Do not invent missing details.",
+    "positive_controls": [
+      "cobalt-47",
+      "juniper-83",
+      "marble-29"
+    ],
+    "writer_format": "json_schema"
+  },
+  "started_at": "2026-11-04T13:47:15.581715+00:00"
+}

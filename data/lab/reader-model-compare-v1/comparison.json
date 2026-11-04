@@ -1,0 +1,391 @@
+{
+  "new_generation_calls": 400,
+  "new_model_planning_calls": 0,
+  "n_semantic_cases": 8,
+  "n_persisted_chains": 16,
+  "reference_7b_recomputed": {
+    "N": {
+      "raw_agreement": 0,
+      "delivered_agreement": 0,
+      "n_turns": 48
+    },
+    "K": {
+      "raw_agreement": 16,
+      "delivered_agreement": 16,
+      "n_turns": 48
+    },
+    "O": {
+      "raw_agreement": 36,
+      "delivered_agreement": 36,
+      "n_turns": 48
+    },
+    "V": {
+      "raw_agreement": 36,
+      "delivered_agreement": 48,
+      "n_turns": 48
+    }
+  },
+  "readers": {
+    "local14b": {
+      "audit": {
+        "passed": true,
+        "errors": [],
+        "requests_reconstructed": 200,
+        "primary_turns_reconstructed": 192,
+        "method": "No LLM judge: reconstruct persisted inputs, history, shown evidence, guard and all counts from final raw answers."
+      },
+      "reference_matched_contexts_and_questions": 192,
+      "arms": {
+        "N": {
+          "n_turns": 48,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0,
+          "raw_unknown": 42,
+          "malformed_raw": 0,
+          "raw_wrong_value": 6,
+          "guard_resolutions": {
+            "unguarded": 48
+          },
+          "per_turn": {
+            "0": {
+              "n": 16,
+              "retrieved": 0,
+              "raw_agreement": 0,
+              "delivered_agreement": 0
+            },
+            "1": {
+              "n": 16,
+              "retrieved": 0,
+              "raw_agreement": 0,
+              "delivered_agreement": 0
+            },
+            "2": {
+              "n": 16,
+              "retrieved": 0,
+              "raw_agreement": 0,
+              "delivered_agreement": 0
+            }
+          }
+        },
+        "K": {
+          "n_turns": 48,
+          "retrieved": 32,
+          "raw_agreement": 26,
+          "delivered_agreement": 26,
+          "all_three_chain_agreement": 0,
+          "raw_unknown": 22,
+          "malformed_raw": 0,
+          "raw_wrong_value": 0,
+          "guard_resolutions": {
+            "unguarded": 48
+          },
+          "per_turn": {
+            "0": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "1": {
+              "n": 16,
+              "retrieved": 0,
+              "raw_agreement": 0,
+              "delivered_agreement": 0
+            },
+            "2": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 10,
+              "delivered_agreement": 10
+            }
+          }
+        },
+        "O": {
+          "n_turns": 48,
+          "retrieved": 48,
+          "raw_agreement": 48,
+          "delivered_agreement": 48,
+          "all_three_chain_agreement": 16,
+          "raw_unknown": 0,
+          "malformed_raw": 0,
+          "raw_wrong_value": 0,
+          "guard_resolutions": {
+            "unguarded": 48
+          },
+          "per_turn": {
+            "0": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "1": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "2": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            }
+          }
+        },
+        "V": {
+          "n_turns": 48,
+          "retrieved": 48,
+          "raw_agreement": 48,
+          "delivered_agreement": 48,
+          "all_three_chain_agreement": 16,
+          "raw_unknown": 0,
+          "malformed_raw": 0,
+          "raw_wrong_value": 0,
+          "guard_resolutions": {
+            "accepted": 48
+          },
+          "per_turn": {
+            "0": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "1": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "2": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            }
+          }
+        }
+      },
+      "controls_passed": 8,
+      "elapsed_seconds": 118.56200000000536,
+      "call_wall_seconds": {
+        "sum": 117.35499999993772,
+        "median": 0.23500000000058208,
+        "max": 68.43700000000536
+      },
+      "token_usage": {
+        "prompt_eval_count": 35346,
+        "eval_count": 1348
+      }
+    },
+    "flash": {
+      "audit": {
+        "passed": true,
+        "errors": [],
+        "requests_reconstructed": 200,
+        "primary_turns_reconstructed": 192,
+        "method": "No LLM judge: reconstruct persisted inputs, history, shown evidence, guard and all counts from final raw answers."
+      },
+      "reference_matched_contexts_and_questions": 192,
+      "arms": {
+        "N": {
+          "n_turns": 48,
+          "retrieved": 0,
+          "raw_agreement": 0,
+          "delivered_agreement": 0,
+          "all_three_chain_agreement": 0,
+          "raw_unknown": 48,
+          "malformed_raw": 0,
+          "raw_wrong_value": 0,
+          "guard_resolutions": {
+            "unguarded": 48
+          },
+          "per_turn": {
+            "0": {
+              "n": 16,
+              "retrieved": 0,
+              "raw_agreement": 0,
+              "delivered_agreement": 0
+            },
+            "1": {
+              "n": 16,
+              "retrieved": 0,
+              "raw_agreement": 0,
+              "delivered_agreement": 0
+            },
+            "2": {
+              "n": 16,
+              "retrieved": 0,
+              "raw_agreement": 0,
+              "delivered_agreement": 0
+            }
+          }
+        },
+        "K": {
+          "n_turns": 48,
+          "retrieved": 32,
+          "raw_agreement": 32,
+          "delivered_agreement": 32,
+          "all_three_chain_agreement": 0,
+          "raw_unknown": 16,
+          "malformed_raw": 0,
+          "raw_wrong_value": 0,
+          "guard_resolutions": {
+            "unguarded": 48
+          },
+          "per_turn": {
+            "0": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "1": {
+              "n": 16,
+              "retrieved": 0,
+              "raw_agreement": 0,
+              "delivered_agreement": 0
+            },
+            "2": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            }
+          }
+        },
+        "O": {
+          "n_turns": 48,
+          "retrieved": 48,
+          "raw_agreement": 48,
+          "delivered_agreement": 48,
+          "all_three_chain_agreement": 16,
+          "raw_unknown": 0,
+          "malformed_raw": 0,
+          "raw_wrong_value": 0,
+          "guard_resolutions": {
+            "unguarded": 48
+          },
+          "per_turn": {
+            "0": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "1": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "2": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            }
+          }
+        },
+        "V": {
+          "n_turns": 48,
+          "retrieved": 48,
+          "raw_agreement": 46,
+          "delivered_agreement": 48,
+          "all_three_chain_agreement": 16,
+          "raw_unknown": 2,
+          "malformed_raw": 0,
+          "raw_wrong_value": 0,
+          "guard_resolutions": {
+            "accepted": 46,
+            "corrected": 2
+          },
+          "per_turn": {
+            "0": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "1": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 16,
+              "delivered_agreement": 16
+            },
+            "2": {
+              "n": 16,
+              "retrieved": 16,
+              "raw_agreement": 14,
+              "delivered_agreement": 16
+            }
+          }
+        }
+      },
+      "controls_passed": 8,
+      "elapsed_seconds": 207.14100000000326,
+      "call_wall_seconds": {
+        "sum": 200.47199999995064,
+        "median": 1.007499999999709,
+        "max": 6.625
+      },
+      "token_usage": {
+        "prompt_tokens": 37681,
+        "completion_tokens": 1227,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 37681
+      },
+      "budget": {
+        "reserved_calls": 200,
+        "reserved_usd": 0.8,
+        "usage_priced_upper_usd": 0.012777,
+        "unknown_usage_attempts": 0,
+        "cap_usd": 1.0,
+        "cost_semantics": "Permanent reservations and peak/uncached usage upper estimate; not an account invoice."
+      }
+    }
+  },
+  "api_budget_rechecked": {
+    "reserved_calls": 200,
+    "reserved_usd": 0.8,
+    "usage_priced_upper_usd": 0.012777,
+    "unknown_usage_attempts": 0,
+    "cap_usd": 1.0,
+    "cost_semantics": "Permanent reservations and peak/uncached usage upper estimate; not an account invoice."
+  },
+  "sha256": {
+    "scripts/report_reader_model_compare_v1.py": "941f0f4531fa87a05d5ff1092e0b8c0cfc5006a2160e3f12f59b216701c3079d",
+    "data/lab/reader-model-compare-v1/runs/local14b/attempts.jsonl": "c0c651e0631e85e50de91e9239d1e9e7495fcda00d1529176509cd7f591bf71a",
+    "data/lab/reader-model-compare-v1/runs/local14b/completion.json": "3ef03960b00c3b6540beafaa1d068badc5580aaa3d579dba7f235c16071b14a7",
+    "data/lab/reader-model-compare-v1/runs/local14b/controls.jsonl": "c3e6875210780cf921fc217d23ea70b942de15a38a75bf435f5423720e1514a0",
+    "data/lab/reader-model-compare-v1/runs/local14b/environment.json": "654e51002fefc36f2c817d773e2ae893acfd8f4504584fdebb64631c34ede65f",
+    "data/lab/reader-model-compare-v1/runs/local14b/manifest.json": "238fdc61bec21740116cd5c1b93cf75d7364c1a98a519d760c95b93990df0f57",
+    "data/lab/reader-model-compare-v1/runs/local14b/release.json": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72",
+    "data/lab/reader-model-compare-v1/runs/local14b/responses.jsonl": "5df2032fdc0183a3ef37663eaa416900ad52f68746ec7afd53fd3d1d07d5b6eb",
+    "data/lab/reader-model-compare-v1/runs/local14b/summary.json": "e9cefab620ac8a473e8394e68319c5a7152ccc57cfe7b3792d00c7f5513820f8",
+    "data/lab/reader-model-compare-v1/runs/local14b/turns.jsonl": "ecffa6c86b301cb6279789b9fb970576a63f861667b07df6d02cab513c212742",
+    "data/lab/reader-model-compare-v1/runs/flash/attempts.jsonl": "917d99bbaf7337e5a4070accfe7e317c8ea43e58c38d3bd04ab16e8c7158109f",
+    "data/lab/reader-model-compare-v1/runs/flash/completion.json": "fbbccb837303275ae63e20ec3746d11965b667d54b9945fa3a16697c50babc0b",
+    "data/lab/reader-model-compare-v1/runs/flash/controls.jsonl": "c3e6875210780cf921fc217d23ea70b942de15a38a75bf435f5423720e1514a0",
+    "data/lab/reader-model-compare-v1/runs/flash/environment.json": "329688947441931bdaf6a9c6e4c323ed4813825c56f0cb7b45237d1038a28c93",
+    "data/lab/reader-model-compare-v1/runs/flash/manifest.json": "613e4e7c68cf15345239834f1fc81af7ce8428b0d2abb50f9c1370c00ad4e086",
+    "data/lab/reader-model-compare-v1/runs/flash/responses.jsonl": "1e47133fc66fd497131bfa61ae424c895b37191f6e8af4faf879f7d28af2a00f",
+    "data/lab/reader-model-compare-v1/runs/flash/summary.json": "fc4f00f40680aa86323a8895716208ff71bb54c11c79b64973ea63d246869aca",
+    "data/lab/reader-model-compare-v1/runs/flash/turns.jsonl": "5a1f986ed81a037fac48111812aac5f5b52307232e9512ba1f5028d8c9c2fb4b",
+    "data/lab/nie-local-reader-v1/run-002/turns.jsonl": "4d7ba0f7e7a80a141896b143308f378b3950b323230ff4bbd54f608b07077872",
+    "data/lab/nie-local-reader-v1/run-002/responses.jsonl": "f6462f6dfcf6e9db3429f8539799573d8f9ed1e237662d7dfd6d25189770625c",
+    "data/lab/nie-local-reader-v1/run-002/journals.jsonl": "934e8826c76a687ecfec6926ca9ee437136fc9e0191291b463626bcca78c36fb",
+    "data/lab/nie-local-reader-v1/run-002/writers.jsonl": "365f0f94457352e056238c2cc3393fe3da4f25a6649de4cd2446d7465a8352b7",
+    "data/lab/reader-model-compare-v1/api-spend-ledger.jsonl": "7a65613a1f9e86b94289e360a6926fd3b99357b34785cb10cab1ad1b3faedea0"
+  },
+  "decision": "Prefer the adequate local reader for this bounded typed task. Keep Flash as a transfer check. Next address text-to-slot routing and typed capture, not a reader-size substitution or a universal retrieval threshold.",
+  "limits": [
+    "Eight authored fields; both writer seeds chose the same value per field.",
+    "Questions and evidence match; histories after model answers differ by design.",
+    "No actual NIE prompts, automatic slot inference, free-prose extraction, revision/card-conflict resolution or production benefit measured.",
+    "Repeated canaries are a small check, not a service determinism guarantee."
+  ]
+}

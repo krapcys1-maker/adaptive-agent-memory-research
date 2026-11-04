@@ -14,6 +14,7 @@ This repository contains working research tools and experiments for agent memory
 | Integration counterpart | A separate NIE repository already contains persona/integration work | Its local configuration and the research repository do not establish live server behavior; see the dated coordination handoff |
 | Offline journal bridge | [Read-only replay](nie-offline-bridge-2026-11-04.md) maps published improvised NIE details to the live kernel, with availability, provenance and a context word budget | Synthetic engineering demonstration only; no live prompt injection, generated-answer consistency or supersession support |
 | Local typed-fact reader pilot | [Journal → reader → guarded answer](../../data/lab/nie-local-reader-v1/README.md): supplied slot cues plus retrieved typed claims retain 48/48 values, including 12 corrections of raw answers | Eight authored fields, two repeated runs each, one local quantized reader; slot routing is supplied, free prose/canonical-card conflicts/revisions and actual NIE prompts remain unvalidated |
+| Matched reader transfer | [400 local/API calls](../../data/lab/reader-model-compare-v1/README.md): Qwen 14B V 48/48 raw, Flash V 46/48 raw and 48/48 delivered; raw records, contexts and scores reconstructed | Same eight authored fields and supplied routing; ordinary retrieval still misses all paraphrases; this does not validate actual writing-format capture or production benefit |
 
 Use the [laboratory map](../11-research-laboratory/lab-map.md) for runnable commands, locations and all fourteen November experiment entry points. The [coordination handoff](coordination-handoff-2026-11-04.md) records the division of work and original snapshots; later delivery reports supersede its historical PR status.
 
@@ -25,7 +26,7 @@ Research gates ask separate questions. The [public kernel evaluation](../../data
 
 ## The next milestone
 
-The typed-fact pilot supplies a narrow offline integration candidate and a controlled reader replay with known failure modes. The next milestone is validating typed capture and routing on actual writing prompts, then transferring the intervention to the main reader. Software tests and average retrieval recall alone do not establish that broader behavior.
+The typed-fact pilot and matched Qwen 14B/Flash comparison supply a narrow offline integration candidate with known retrieval failures. Reader transfer has now been measured on the fixed synthetic cohort. The next milestone is validating typed capture and routing on actual writing prompts. Software tests and average retrieval recall alone do not establish that broader behavior.
 
 1. Preserve the completed public ranking/cost results and the persona consistency failures. Do not repeat the already-executed P2 sentence experiment as if it were new.
 2. Diagnose and then repair LifeSim's guessing/text shortcuts in separately versioned changes, retaining all canonical gate thresholds and historical digests. Only development seeds are available for this iteration; confirmation epochs remain sealed.

@@ -1,0 +1,8 @@
+{"key": "positive-0", "passed": true, "raw": "{\"value\":\"cobalt-47\"}"}
+{"key": "positive-1", "passed": true, "raw": "{\"value\":\"juniper-83\"}"}
+{"key": "positive-2", "passed": true, "raw": "{\"value\":\"marble-29\"}"}
+{"key": "no-record", "passed": true, "raw": "{\"value\":\"UNKNOWN\"}", "guard": {"value": "UNKNOWN", "resolution": "no_evidence", "source_ids": []}}
+{"key": "future-only", "passed": true, "raw": "{\"value\":\"UNKNOWN\"}", "guard": {"value": "UNKNOWN", "resolution": "no_evidence", "source_ids": []}}
+{"key": "conflict", "passed": true, "raw": "{\"value\":\"UNKNOWN\"}", "guard": {"value": "UNKNOWN", "resolution": "conflicting_evidence", "source_ids": ["nie-detail-741238eaa17394dc91d17b027fcd8cfc3149c6263e132873ce9a97adf85e2c76", "nie-detail-7bec879d2f696b9c709ba5e395919e77bf0691f5d0c3529c011c1c2a978b09e6"]}}
+{"key": "canary-0", "passed": true, "byte_identical_to_first": true, "raw": "{\"value\":\"cobalt-47\"}"}
+{"key": "canary-1", "passed": true, "byte_identical_to_first": true, "raw": "{\"value\":\"cobalt-47\"}"}
