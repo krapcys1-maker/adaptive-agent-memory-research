@@ -55,6 +55,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from retrieval_metrics import arm_summary, definition, snapshot_costs  # noqa: E402
+
 from tools.project_memory.memory_store import MemoryStore  # noqa: E402
 from run_association_graph_e2 import (  # noqa: E402
     EXPERIMENT_ID,
@@ -187,6 +189,8 @@ def run(root: Path) -> dict[str, Any]:
                         "graph_reachable": int(target in order),
                         # Restored from E1: how many lexical positions the graph took.
                         "displaced@10": len([i for i in fused10 if i not in lexical[:10]]),
+                        **snapshot_costs({"b1": {5: lexical[:5], 10: lexical[:10]},
+                                          "b2": {5: rrf([lexical, order], 5), 10: fused10}}, active),
                     }
                 )
 
@@ -206,6 +210,8 @@ def run(root: Path) -> dict[str, Any]:
             "mean_displaced@10": round(sum(r["displaced@10"] for r in subset) / n, 4),
             "queries_harmed@10": sum(1 for r in subset if r["b2_hit@10"] < r["b1_hit@10"]),
             "queries_helped@10": sum(1 for r in subset if r["b2_hit@10"] > r["b1_hit@10"]),
+            **{key: value for arm in ("b1", "b2") for depth in (5, 10)
+               for key, value in arm_summary(subset, arm, depth).items()},
         }
 
     mechanical = [r for r in records if r["stratum"] == "mechanical"]
@@ -221,6 +227,7 @@ def run(root: Path) -> dict[str, Any]:
                 "survives"
             ),
             "active_events": len(active),
+            "retrieval_cost_definition": definition("project-memory title + summary + body; primary and authored-gold strata remain separate"),
             "groups": len(groups),
             "edges": len(all_pairs),
             "primary_mechanical": summarize(mechanical),

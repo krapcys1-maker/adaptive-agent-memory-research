@@ -57,6 +57,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from retrieval_metrics import arm_summary, definition, snapshot_costs  # noqa: E402
+
 from tools.project_memory.memory_store import MemoryStore  # noqa: E402
 from run_association_graph_e2 import (  # noqa: E402
     MEMORY_KINDS,
@@ -136,13 +138,13 @@ def run(root: Path) -> dict[str, Any]:
         for language, text in queries.items():
             if not text.strip():
                 continue
-            hits = [h["id_or_path"] for h in store.search(text, limit=50, kinds=MEMORY_KINDS)]
+            hits = [h["id_or_path"] for h in store.search(text, limit=50, kinds=MEMORY_KINDS, expand=False)]
             order = graph_ranking(graph, hits[:SEED_COUNT], set())
             fused5, fused10 = rrf([hits, order], 5), rrf([hits, order], 10)
 
             expanded = expand(text, glossary) if language == "pl" else text
             gloss_hits = [
-                h["id_or_path"] for h in store.search(expanded, limit=50, kinds=MEMORY_KINDS)
+                h["id_or_path"] for h in store.search(expanded, limit=50, kinds=MEMORY_KINDS, expand=False)
             ] if expanded != text else hits
 
             records.append(
@@ -159,6 +161,9 @@ def run(root: Path) -> dict[str, Any]:
                     "b3_hit@10": int(target in gloss_hits[:10]),
                     "b1_rank": hits.index(target) + 1 if target in hits else None,
                     "b1_candidates": len(hits),
+                    **snapshot_costs({"b1": {5: hits[:5], 10: hits[:10]},
+                                      "b2": {5: fused5, 10: fused10},
+                                      "b3": {5: gloss_hits[:5], 10: gloss_hits[:10]}}, active),
                 }
             )
 
@@ -172,6 +177,7 @@ def run(root: Path) -> dict[str, Any]:
                 out[f"{arm}_recall@{depth}"] = round(
                     sum(r[f"{arm}_hit@{depth}"] for r in subset) / n, 6
                 )
+                out.update(arm_summary(subset, arm, depth))
         out["mean_candidates"] = round(sum(r["b1_candidates"] for r in subset) / n, 3)
         out["zero_candidate_queries"] = sum(1 for r in subset if r["b1_candidates"] == 0)
         return out
@@ -186,6 +192,8 @@ def run(root: Path) -> dict[str, Any]:
         "model_free": True,
         "weights_downloaded": False,
         "active_events": len(active),
+        "retrieval_cost_definition": definition("project-memory title + summary + body; explicit unexpanded lexical baseline"),
+        "lexical_query_policy": "expand=False; only the separately labelled B3 arm receives the authored glossary expansion",
         "graph_edges": sum(len(v) for v in graph.values()) // 2,
         "english": summarize(english),
         "polish": summarize(polish),
