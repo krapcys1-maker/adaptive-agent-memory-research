@@ -1,5 +1,7 @@
 # November laboratory map
 
+Latest continuation2026-11-05: [BEAM source windows](../../data/lab/beam-source-windows-v1/README.md) and [full local reader comparison](../../data/lab/beam-reader-evidence-v1/README.md). All200questions/605local calls completed; authored N19/B39/Cdel32 of200with8uncertain references. New citation variant rejected, no adoption/official or independent claim. Literal provenance can lose hypothetical framing; next engineering boundary is modality/context and evidence completeness. Registry83historical entries includes the prior registration and completed result separately; it is not83independent discoveries. Read latest HANDOVER for unchanged prior ledgers and new605/650BEAM task accounting.
+
 Snapshot: 2026-11-04. Read the linked README's latest results/amendments as well as its original preregistration header. This map describes the research instruments and recorded status; a passing software test is not a successful research result.
 
 2026-11-05 continuity update: the registry now also appends the completed boundary repair (`PMLAB-BOUNDARY-E1-001`), whole-family reader controls (`PMLAB-H1-CTRL-E1-001`) and one unexecuted repetition design (`PMLAB-H1-DENS-E1-001`). Prior 74 rows are preserved. Cataloguing is retrospective, with earlier protocol freezes linked; this is not a complete backfill of November studies. Read [current handover](../../HANDOVER.md) for results, costs and remaining failures.
