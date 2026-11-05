@@ -71,6 +71,7 @@ def prepare(output,labels,audit,destination):
     A.write(destination/'manifest.json',{'raw_freeze_sha256':A.sha(output/'raw-freeze.json'),'labels_sha256':A.sha(labels),
         'integrity_audit_sha256':A.sha(audit),'packet_sha256':A.sha(destination/'packet.jsonl'),
         'mapping_sha256':A.sha(destination/'mapping.jsonl'),'cases':200,'distinct_within_question_answers':count,
+        'review_tool_sha256':A.sha(Path(__file__)),
         'reviewer':'Codex author; no model judge; not independent or fully blind',
         'source_head_at_reference_join':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()})
     print(json.dumps({'cases':200,'distinct_within_question_answers':count}))
@@ -117,6 +118,8 @@ def summarize(rows):
 
 def score(review,verdicts,audit,destination):
     manifest=load(review/'manifest.json');checked=load(audit)
+    committed=subprocess.check_output(['git','show',manifest['source_head_at_reference_join']+':'+Path(__file__).relative_to(ROOT).as_posix()],cwd=ROOT)
+    if hashlib.sha256(committed).hexdigest()!=manifest['review_tool_sha256'] or A.sha(Path(__file__))!=manifest['review_tool_sha256']:raise ValueError('Review/counting tool changed after reference join.')
     if A.sha(review/'packet.jsonl')!=manifest['packet_sha256'] or A.sha(review/'mapping.jsonl')!=manifest['mapping_sha256'] or A.sha(audit)!=manifest['integrity_audit_sha256']:raise ValueError('Review packet/mapping/audit changed.')
     packets=list(A.rows(review/'packet.jsonl'));vs=validate_verdicts(packets,list(A.rows(verdicts)))
     maps=list(A.rows(review/'mapping.jsonl'))
