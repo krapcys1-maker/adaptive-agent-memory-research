@@ -1,0 +1,71 @@
+{
+  "failures": [],
+  "source_head": "b8e3f8347ac0fa357f390442962144987e55db23",
+  "primary_cases": 200,
+  "native_requests_replayed": 605,
+  "native_responses_replayed": 605,
+  "controls_passed": 5,
+  "matched_B_C_evidence_pairs": 200,
+  "source_and_raw_hashes_verified": true,
+  "old_h1_and_paid_ledgers_unchanged": true,
+  "new_api_calls": 0,
+  "beam_task_local_calls": 605,
+  "pr105_local_calls": 4361,
+  "pr105_all_calls": 4824,
+  "max_native_request_bytes": 6647,
+  "max_message_bytes": 5999,
+  "arm_statistics": {
+    "N": {
+      "primary_calls": 200,
+      "valid_format": 200,
+      "guard_reasons": {
+        "unguarded": 200
+      },
+      "delivered_unknown": 199,
+      "native_done_reasons": {
+        "stop": 200
+      },
+      "median_wall_seconds": 0.3289999999979045,
+      "total_wall_seconds": 69.29299999997602,
+      "prompt_tokens": 31805,
+      "generated_tokens": 1260
+    },
+    "B": {
+      "primary_calls": 200,
+      "valid_format": 200,
+      "guard_reasons": {
+        "unguarded": 200
+      },
+      "delivered_unknown": 56,
+      "native_done_reasons": {
+        "stop": 200
+      },
+      "median_wall_seconds": 1.8044999999983702,
+      "total_wall_seconds": 475.22500000020955,
+      "prompt_tokens": 281845,
+      "generated_tokens": 7116
+    },
+    "C": {
+      "primary_calls": 200,
+      "valid_format": 200,
+      "guard_reasons": {
+        "model_unknown": 136,
+        "literal_evidence_valid": 47,
+        "invalid_quote": 17
+      },
+      "delivered_unknown": 153,
+      "native_done_reasons": {
+        "stop": 200
+      },
+      "median_wall_seconds": 2.070499999987078,
+      "total_wall_seconds": 588.3769999999786,
+      "prompt_tokens": 298445,
+      "generated_tokens": 9933
+    }
+  },
+  "elapsed_seconds": 1176.1559999999881,
+  "raw_freeze_sha256": "8d6dc32170742c0ed35fa47a207f440c3e1c4ecec42ed7b97dea91dee86f03e7",
+  "labels_read": false,
+  "semantic_score": null,
+  "claim": "Authored integrity replay only; semantic rubric review remains separate."
+}
