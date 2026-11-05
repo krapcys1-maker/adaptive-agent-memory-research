@@ -6,6 +6,29 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
+**Current integrity self-audit (2026-11-04):** read [AUDIT_REPORT](../AUDIT_REPORT.md)
+and [HANDOVER](../HANDOVER.md) before the older snapshots below. A private
+backup was actually restored and checked. Original worktree/NIE/frozen-path
+preservation checks pass. The new candidate has confirmed HIGH defects:
+conditional/compound cache assertions, future learned-schema prompt leakage,
+and a remaining stale reader answer. PR105 stays draft; no general readiness
+or deployment claim is supported. No feature repair, commit/push or new model
+call occurred during this audit.
+
+H1 v5 completed: dev base 62 -> 76/84 `answered`, OBSOLETE leaks 12 -> 0/12;
+valid base 66 -> 71/84, leaks 9 -> 1/12. Valid includes 11 gains and 6 losses;
+case Q000043 is stale despite a shown correction. Gold source retrieval 84/84
+does not imply correct answers. V5 adds Flash source reranking/context and
+inherits frozen v4 baselines; it is not a pure-chain or equal-cost effect.
+PR105 totals 3634 actual generation attempts (3171 local/463 Flash), permanent
+paid reservations $1.852 and recorded usage upper estimate $0.073913, not an
+invoice. Last full suite: 3041 pass/20 skip; current published CI: 10 successes
+and 2 macOS cancellations for runner capacity. Local environment has nine pip
+conflicts and pytest 9.1.1 versus pinned 8.4.2. See audit receipts for scope.
+
+The following engineering and delivery entries are historical snapshots;
+pending-H1 and earlier call-count statements are superseded by this block.
+
 **Active engineering delivery (2026-11-04, PR #105):** the separate
 [structured runtime](../data/lab/structured-memory-v1/README.md) now completes
 raw text capture, model-derived literal claims, state/provenance and executable

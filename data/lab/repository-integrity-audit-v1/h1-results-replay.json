@@ -1,0 +1,269 @@
+{
+  "dev": {
+    "saved_score_identical": true,
+    "artifact_failures": [],
+    "summary": {
+      "base": {
+        "n": 84,
+        "answered": 62,
+        "leaked": 12,
+        "gold_retrieved": 71,
+        "by_family": {
+          "BILINGUAL": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "DELAYED": {
+            "n": 12,
+            "answered": 3,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "FAILFIX": {
+            "n": 12,
+            "answered": 11,
+            "leaked": 0,
+            "gold_retrieved": 11
+          },
+          "OBSOLETE": {
+            "n": 12,
+            "answered": 0,
+            "leaked": 12,
+            "gold_retrieved": 0
+          },
+          "POISON": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "RARE-EXC": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "REDERIVE": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          }
+        }
+      },
+      "chains": {
+        "n": 84,
+        "answered": 76,
+        "leaked": 0,
+        "gold_retrieved": 84,
+        "by_family": {
+          "BILINGUAL": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "DELAYED": {
+            "n": 12,
+            "answered": 4,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "FAILFIX": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "OBSOLETE": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "POISON": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "RARE-EXC": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "REDERIVE": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          }
+        }
+      }
+    },
+    "paired_correctness": {
+      "gain": 15,
+      "loss": 1,
+      "both_correct": 61,
+      "both_wrong": 7
+    },
+    "base_v3_v4_identical_full_requests": 84,
+    "base_v3_v4_answer_differences": [
+      "Q000013",
+      "Q000014",
+      "Q000018",
+      "Q000019",
+      "Q000021",
+      "Q000023",
+      "Q000024",
+      "Q000026",
+      "Q000029",
+      "Q000037",
+      "Q000062",
+      "Q000063",
+      "Q000069"
+    ],
+    "leak_case_ids": []
+  },
+  "valid": {
+    "saved_score_identical": true,
+    "artifact_failures": [],
+    "summary": {
+      "base": {
+        "n": 84,
+        "answered": 66,
+        "leaked": 9,
+        "gold_retrieved": 75,
+        "by_family": {
+          "BILINGUAL": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "DELAYED": {
+            "n": 12,
+            "answered": 3,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "FAILFIX": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "OBSOLETE": {
+            "n": 12,
+            "answered": 3,
+            "leaked": 9,
+            "gold_retrieved": 3
+          },
+          "POISON": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "RARE-EXC": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "REDERIVE": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          }
+        }
+      },
+      "chains": {
+        "n": 84,
+        "answered": 71,
+        "leaked": 1,
+        "gold_retrieved": 84,
+        "by_family": {
+          "BILINGUAL": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "DELAYED": {
+            "n": 12,
+            "answered": 2,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "FAILFIX": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "OBSOLETE": {
+            "n": 12,
+            "answered": 11,
+            "leaked": 1,
+            "gold_retrieved": 12
+          },
+          "POISON": {
+            "n": 12,
+            "answered": 11,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "RARE-EXC": {
+            "n": 12,
+            "answered": 11,
+            "leaked": 0,
+            "gold_retrieved": 12
+          },
+          "REDERIVE": {
+            "n": 12,
+            "answered": 12,
+            "leaked": 0,
+            "gold_retrieved": 12
+          }
+        }
+      }
+    },
+    "paired_correctness": {
+      "gain": 11,
+      "loss": 6,
+      "both_correct": 60,
+      "both_wrong": 7
+    },
+    "base_v3_v4_identical_full_requests": 84,
+    "base_v3_v4_answer_differences": [
+      "Q000003",
+      "Q000014",
+      "Q000015",
+      "Q000016",
+      "Q000017",
+      "Q000018",
+      "Q000019",
+      "Q000022",
+      "Q000024",
+      "Q000028",
+      "Q000033",
+      "Q000035",
+      "Q000049",
+      "Q000057",
+      "Q000060",
+      "Q000061",
+      "Q000063",
+      "Q000066",
+      "Q000067",
+      "Q000069"
+    ],
+    "leak_case_ids": [
+      "Q000043"
+    ]
+  }
+}
