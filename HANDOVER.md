@@ -1,5 +1,13 @@
 # Safe handover — 2026-11-04
 
+## Current continuation: complete source windows; full reader comparison next (2026-11-05)
+
+[Source-window result](data/lab/beam-source-windows-v1/README.md): frozen code53fe7d5 processed187,734sources into405,070traceable windows and400packets. Full offline reconstruction has zero failures. Preparation74.812seconds/2,616,798,059outputbytes; indexes contain only the visible scope/cutoff.33window tests and13new reader-contract checks pass. This is engineering readiness, not answer quality. All200retrieval packets omit candidates;187show partial sources.
+
+[Reader protocol](data/lab/beam-reader-evidence-v1/PLAN.md) is registered before inference: all200probes, N no memory/B raw lexical/C identical evidence plus literal-citation contract. New read-time candidate, **not the earlier55/59graph mechanism**.605planned local calls including5controls; new BEAM cumulative ledger cap650, not a reset of H13262/3300 or prior463paid attempts. Existing local3756/total4219 remain the base. No new API/judge/planner or NIE/persona change. If complete, local4361/total4824. Freeze code/config and prepared packets before calls; freeze all raw outputs before joining references. Codex authored rubric assessment must remain separate from literal quote validity and official BEAM accuracy. Never silently retry a failed control or incomplete phase. Registry82rows, with original80rows preserved; reader result pending.
+
+Private access outputs: `D:\Pamiec LLM\GH_REVIVAL\beam-window-2026-11-05\access-v1`; planned reader outputs `reader-evidence-v1` and new task ledger `beam-local-ledger-v1.jsonl` under the same parent. Full source/labels remain in the earlier external-transfer private archive. Preserve all historical versions and failed attempts.
+
 ## Current continuation: external BEAM data boundary completed (2026-11-05)
 
 [BEAM format result](data/lab/beam-transfer-format-v2/README.md) is the latest stage under#51/#7. Prepared the complete pinned repository10M-tier source selection:10conversations,187,734messages,200probes across10abilities.20Git-blob/size-verified JSON files total471,872,306bytes. Upstream prefers `chat_trunecated.json`; no pickle/external code/default model client executed. Raw text/questions/annotations stay private. Reader question keys are only opaqueID/conversationID/question; construction metadata and all evaluator annotations are separate.
