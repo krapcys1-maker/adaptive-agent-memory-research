@@ -1,5 +1,13 @@
 # Safe handover — 2026-11-04
 
+## Delivery confirmation for the completed BEAM study (2026-11-05)
+
+Result/source commit50158ddb40e02e43ca9de8d929fe101ec6414052 passed all12CI jobs: **3447passed/21skipped on each Linux Python3.11/3.12**, run41996840238. The [delivery receipt](data/lab/beam-reader-evidence-v1/delivery.json) binds those exact results, GitHub readbacks and the verified private restoration. This later receipt/documentation commit has separate CI; never infer its status from an older head.
+
+GitHub#51/#7/#84 and draftPR105 contain the complete rejected result and limits. New [#110](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/110) has a synthetic hypothetical-frame counterexample and falsifiable acceptance criteria; #109engineering is completed. No independent reviewer or another agent's ACK is implied.
+
+Private recovery `D:\Pamiec LLM - audit backups\2026-11-05\beam-reader-delivery` actually restores50158dd,78refs,220copied files,fsck0 and a clean tree,0source writes. It chains to the verified beam-format delivery for original sources/labels. A small later `beam-reader-delivery-final` supplement may cover the later delivery head: use its own VERIFIED.json/head, not an assumption. Root CLAUDE.md and Polish handoff are updated; WSPOLPRACA_NIE has append-onlyC-015. Original shared plan/NIE/persona/frozen code remain unchanged. Memory371events/0violations; registry83historical rows. No remaining model call or semantic scoring task is pending for this phase; next research is#110/evidence completeness, with BEAM now development.
+
 ## Current continuation: full BEAM reader comparison completed and rejected (2026-11-05)
 
 [Complete result](data/lab/beam-reader-evidence-v1/README.md): all200probes/10histories/10abilities,605actual local calls,0API, five controls passed. Code439f9c7/matrixb8e3f83 before inference; complete raw64f7f0b before first reference join. Zero native replay failures across605requests/responses/200matched B/C evidence pairs; all600primary outputs valid JSON and normal stops. Model digest unchanged, owned worker unloaded. Do not rerun/overwrite this phase or spend the spare task allowance on retries.
