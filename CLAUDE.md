@@ -9,3 +9,5 @@ The canonical store is `memory/events.jsonl` plus reviewed Markdown. `memory/CUR
 Read `AGENTS.md`, `START_HERE.md`, and `memory/CURRENT_STATE.md` for the full workflow and current state.
 
 Before choosing what to work on, read `docs/00-project/operating-doctrine.md`. It carries the selection rule, the work-in-progress limit, and what counts as success.
+
+Latest continuation: read data/lab/local-model-upgrade-v2/README.md and the newest HANDOVER. No automatic model/judge migration.1564local0API; Gemma incomplete; other agents/persona preserved.

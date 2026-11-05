@@ -1,5 +1,7 @@
 # Current project state
 
+Latest completed local upgrade: [report](../data/lab/local-model-upgrade-v2/README.md). H1M14B73/84,9B82/84; BEAMM39/40of200,N19each. Four unsafe9BNanswers: no promotion/default/judge change. Gemma251/655aborted; no full score. Task1564local0paid; PR1056388total. Native replay0failures;434authored/reused verdicts;17dirty files preserved; registry88/memory377. Supported removal of unused Llama3/LLAVA reclaimed12672481170exclusive bytes. Latest HANDOVER controls continuation before dated history below.
+
 ## Objective
 
 Research a local-first, model-agnostic long-term memory layer for LLM agents. The model context window remains working memory; durable evidence, experiences, conclusions, and procedures live on the user's disk.

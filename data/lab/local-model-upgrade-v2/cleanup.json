@@ -1,0 +1,65 @@
+{
+  "utc": "2026-11-05T12:00:27.067568+00:00",
+  "removed": [
+    {
+      "model": "llama3:8b",
+      "exit_code": 0,
+      "stdout": "deleted 'llama3:8b'",
+      "stderr": "\u001b[?2026h\u001b[?25l\u001b[1G\u001b[K\u001b[?25h\u001b[?2026l\u001b[?25l\u001b[2K\u001b[1G\u001b[?25h"
+    },
+    {
+      "model": "llava:13b",
+      "exit_code": 0,
+      "stdout": "deleted 'llava:13b'",
+      "stderr": "\u001b[?2026h\u001b[?25l\u001b[1G\u001b[K\u001b[?25h\u001b[?2026l\u001b[?25l\u001b[2K\u001b[1G\u001b[?25h"
+    }
+  ],
+  "preserved": [
+    {
+      "name": "qwen2.5:14b-instruct",
+      "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+      "size": 8988124069
+    },
+    {
+      "name": "qwen2.5:7b-instruct",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "size": 4683087332
+    },
+    {
+      "name": "qwen7b_strict:latest",
+      "digest": "ec5d331d5c5e7a3373496a2d02275801e2814680c621a431249c4b5d312f219f",
+      "size": 4683087453
+    },
+    {
+      "name": "qwen2.5vl:7b",
+      "digest": "5ced39dfa4bac325dc183dd1e4febaa1c46b3ea28bce48896c8e69c1e79611cc",
+      "size": 5969245856
+    },
+    {
+      "name": "qwen3.5:9b-q4_K_M",
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "size": 6550825550
+    },
+    {
+      "name": "gemma4:12b-it-q4_K_M",
+      "digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+      "size": 8021618941
+    }
+  ],
+  "active_before": {
+    "models": []
+  },
+  "active_after": {
+    "models": []
+  },
+  "exclusive_blob_bytes_removed": 12672481170,
+  "exclusive_blob_files_removed": 11,
+  "D_free_delta_bytes": 12672724992,
+  "only_supported_rm_no_manual_store_write": true,
+  "global_config_or_daemon_restart": false,
+  "private_exports": "model-exports in private audit archive",
+  "expected_reinstall_digests": {
+    "llama3:8b": "365c0bd3c000a25d28ddbf732fe1c6add414de7275464c4e4d1c3b5fcb5d8ad1",
+    "llava:13b": "0d0eb4d7f485d7d0a21fd9b0c1d5b04da481d2150a097e81b64acb59758fdef6"
+  }
+}

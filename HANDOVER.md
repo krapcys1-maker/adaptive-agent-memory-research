@@ -1,5 +1,14 @@
 # Safe handover — 2026-11-04
 
+## Completed local-model audit and comparison (2026-11-05)
+
+[Full report](data/lab/local-model-upgrade-v2/README.md): full655-call matrices for14B and9B on84H1valid+200BEAM N/M,84H1 M repeats each. Retain failed V1(3calls) and incomplete Gemma(251/655) separately.1564local0API; cumulative PR1056388=5925local+463historicalFlash. H1 M73/82of84,repeat71/82; BEAM N19/19,M39/40of200,8uncertain references retained. All1564native attempts replay with0failures;301exact old verdicts reused and133new authored,434total. Not official, independent, fully blind or held-out evidence. Runtimea71765f and raw/review633306c each passed their own12CI jobs; result/delivery head needs its own CI.
+
+Reject automatic promotion:9Bhas four unsupported gate-disabling answers in N and misses the frozen gain screen. M-only speed/VRAM savings do not replace that screen. Four cases are English and M-before-N; language/order confounded, no proved cache cause. Gemma stopped on unidentified TCP client; no resume/backfill/full score. Next diagnostic needs exclusive worker and a new fixed fresh/warm/order protocol. No more model calls pending for this task.
+
+Only unused native llama3:8b andllava:13b removed through supported rm;11exclusive blobs/12672481170bytes reclaimed. Configurations/reinstall digests archived.14Bjudge/default,7B/customstrict,VL and both new models retained.63focused tests; old ledgers,17dirty files,frozen code and memory373event prefix preserved. Registry88historical rows; memory377events/0violations. No NIE/persona/deployment/shared-plan change. Root CODEX_MODELE_LOKALNE_2026-11-05.md and latest delivery/private VERIFIED identify current recovery, without another-agent ACK.
+
+
 ## Current local upgrade: raw frozen, authored scoring next (2026-11-05)
 
 All655calls each for Qwen14B and Qwen3.5 9B completed at sourcea71765f; complete native replay0failures. Gemma4 12B fixed Q4 package installed (digest6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b), but its V2phase stopped at251/655 on a foreign TCP client PID36812. Process had exited before identification; TCP alone does not establish inference. Preserve this safety abort, do not force ownership, resume, retry or score missing BEAM cases. [Raw receipt](data/lab/local-model-upgrade-v2/raw-freezes.json) replays every1564attempt including3failedV1controls and251partialGemma; [partial record](data/lab/local-model-upgrade-v2/gemma-incomplete.json) gives limits. Primary comparison is two complete models; no semantic labels joined yet. No model promotion/cleanup is complete.
