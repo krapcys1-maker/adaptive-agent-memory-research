@@ -184,3 +184,10 @@ It was not applied to the architecture, only to individual mechanisms, and this
 document exists because someone outside the project asked the question that the
 doctrine already required. That is a process failure worth recording, and it is
 recorded here rather than quietly fixed.
+
+
+## Current positioning clarification — 2026-11-05
+
+The older sharpened question is a research direction, not an established unique niche. Rechecked primary sources: [APEX-MEM](https://aclanthology.org/2026.acl-long.749/) overlaps the broad entity/property/append-only/query-time-resolution architecture; [Graphiti](https://github.com/getzep/graphiti) describes temporal graphs and source provenance; [CAR/post-retrieval assembly](https://arxiv.org/html/2606.01435v2) directly studies extraction separated from execution. No present claim that nobody isolates this boundary is supported. Current Mem0/Hindsight README descriptions also cover temporal/local/provider/learning capabilities and are labelled author-stated, not newly reproduced.
+
+Our active question is narrower: which explicit state/source operations let an adequate small model improve fresh downstream decisions over ordinary retrieval at a measured total cost, without sacrificing exceptions, time/scope or uncertainty? Existing55/59MAB and public H1 are development evidence with unresolved fitting risk. [Active laboratory](../11-research-laboratory/active-lab-2026-11-05.md) maps real instruments, failure decisions, one next common-protocol work item and a hypothesis backlog. Newer source descriptions are not code-level mechanism-sheet completion or an industry ranking.

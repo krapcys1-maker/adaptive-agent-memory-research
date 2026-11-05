@@ -1,10 +1,97 @@
 # Current project state
 
+Latest completed local upgrade: [report](../data/lab/local-model-upgrade-v2/README.md) and [delivery receipt](../data/lab/local-model-upgrade-v2/delivery.json). H1 memory-on 14B 73/84 versus 9B 82/84; BEAM memory-on 39/200 versus 40/200, memory-off 19/200 for both. Four unsupported 9B memory-off answers and the fixed gain screen prevent promotion. Gemma stopped at 251/655 with no full score. Task 1,564 local / zero paid; PR105 total 6,388. The existing result head 0688e9b has 12/12 successful CI jobs (3,587 passed / 21 skipped per Linux Python 3.11/3.12) and an actual verified private restore. Defaults, judge and personality remain unchanged; only unused Llama3/LLAVA were removed with reinstall identities saved.
+
+Continuity is finalized in [HANDOVER](../HANDOVER.md); three superseded local-upgrade sections are preserved verbatim in [stage history](../data/lab/local-model-upgrade-v2/stage-history.md). No scoring, Gemma resume or spare-budget run is pending. Registry remains 88 historical rows; canonical memory is 378 events with its prior 377-event prefix preserved. This documentation update adds zero model calls; later documentation heads have separate PR checks. Dated phase records below describe earlier states.
+
 ## Objective
 
 Research a local-first, model-agnostic long-term memory layer for LLM agents. The model context window remains working memory; durable evidence, experiences, conclusions, and procedures live on the user's disk.
 
 ## Current phase
+
+Latest engineering continuation2026-11-05: [evidence diagnosis](../data/lab/beam-evidence-boundary-v2/README.md),200cases/176annotated/24missing.1326slots (1unresolved),1216notretrieved; all targets shown16/176only. New literal context preserves known example heading but reduces705windows to390and all-target cases16to15: experimental interface only, no adoption/semantic completeness/new score. V1strict-marker failure retained; v2amend50e12e4 before full pass.117focused tests/full200packet1326slot replay zero;3forged copies rejected.0newinference; counters unchanged. Registry85historical rows. General prose modality remains unresolved; retrieve sufficient source/instruction evidence next. Latest HANDOVER controls continuation.
+
+Delivery verification: result/source50158dd has12/12successful CI jobs,3447pass/21skip on both Linux3.11/3.12. [Receipt](../data/lab/beam-reader-evidence-v1/delivery.json) binds verified GitHub writes (#51/#7/#84/PR105/new#110) and an actual clean private restoration (220files/78refs/fsck0). Later delivery/docs need their own CI. Memory371events/0violations; no new inference or integration. The completed study below remains rejected.
+
+**Latest completed reader study (2026-11-05):** [full BEAM result](../data/lab/beam-reader-evidence-v1/README.md),200probes/10histories,605local/0API. Authored conservative N19/B39/Craw31/Cdel32 of200;8reference cases uncertain. N's passes are abstention; non-abstention N0/B29/Cdel14 of180. B→Cdel8gains15losses; contradictions39→14 but one new case; two correct raw answers lost to guard. Reject adoption under the prior screen. Not official/independent/blind/general-memory or old-graph transfer evidence. Protocol439f9c7/matrixb8e3f83/raw64f7f0b precede references.57focused checks; executed-head CI12/12success,3434pass21skip per Linux3.11/3.12. New task ledger605/650; H13262/3300 and paid463 unchanged; cumulative4824=4361local+463Flash. Source frame can be lost despite valid literal spans: next inspect modality/context and evidence completeness, with no automatic new paid run or NIE change. Registry83historical entries; latest HANDOVER controls continuation.
+
+**Latest external-transfer stage (2026-11-05):** [BEAM format/evidence audit](../data/lab/beam-transfer-format-v2/README.md) completed for all10pinned conversations:187,734messages/200probes, exact reconstruction, reader/evaluator separation. V1partial success/full-data null-time failure retained; v2 preserves unknown time.6focused checks,0model calls, no memory accuracy/official score.30,177texts exceed old4500byte cap and187,054scoped role/text keys are distinct: next work is bounded provenance windows/capture cost, then a full frozen model comparison. Caps/ledgers unchanged (H13262/3300,API463/$1.852), prior4219inference attempts unchanged. Registry80historical rows; memory366events/0violations. HANDOVER has exact freezes; NIE/old code/data preserved.
+
+
+
+**Active laboratory (2026-11-05):** [operating view and positioning](../docs/11-research-laboratory/active-lab-2026-11-05.md). Source-grounded state-memory prototype plus existing research instruments; no unique architecture or validated product. APEX/Graphiti/CAR overlap the main ideas. One next common-protocol external comparison under#51/#7; concepts remain a ranked backlog. Freeze the whole pipeline before unused data, keep true N/ordinary retrieval/candidate/competitor separate, and report full cost/failures. No new inference or cap extension. Code/results58bdcfc CI12/12, full3377pass/21skip on each Linux3.11/3.12 ([receipt](../data/lab/h1-chronological-pack-v1/delivery.json)); later docs are separate. Memory365events/0violations. Read the latest HANDOVER before historical blocks below.
+
+
+
+**Owner clarification (2026-11-05):** [true baseline coverage, publication age and fitting risk](../docs/05-benchmarks/memory-baselines-and-benchmark-age-2026-11-05.md). Existing N/V and original hard local N/K controls are preserved; the later structured55/59 has no contemporaneous matched N, and H1 base is memory-on. Old-model competitor results are historical, not a current ranking. Public MAB/H1 reuse leaves unresolved overfitting risk; freezes/no direct gold do not establish generalization. Full pipeline must freeze before unused external data. Reanalysis matched400old requests/384contexts without new inference; memory364events/0violations. All call/cost caps and non-adoption decisions below remain unchanged.
+
+
+
+**Latest continuation — 2026-11-05:** [HANDOVER](../HANDOVER.md) has the exact freezes and costs. Completed [density](../data/lab/h1-evidence-density-v1/README.md):147local, one devQ000045 stale leak in repeat-old/correction-first, other five arms24/24. Completed [all-family order comparison](../data/lab/h1-chronological-pack-v1/README.md):339local, dev77→75/84, valid70→72/84 and2→0leaks; only17reordered pairs,151same-message controls. Same-seed native variability and a mechanical scorer wording miss are explicit. Fresh-transfer candidate only, no adoption. The historical v5 results76/71 remain unchanged.
+
+H1 ledger3262/3300 after prior explicit amendment; PR105 total4219attempts (3756local/463Flash). No new API, reservations$1.852/usage upper estimate$0.073913 unchanged; local worker unloaded. New packet audits480primary, zero failures; pinned focused tests10pass. Earlier full3372/20 and12-jobCI receipts apply to their recorded heads. Registry79rows with old prefix/history preserved. [Competitive calibration](../docs/05-benchmarks/mab-comparison-and-model-bottleneck-2026-11-05.md) includes CAR41% at262K alongside older reference points: our55/59exact (55/60secondary SubEM) is promising development evidence, not a matched company ranking. Next work is a common-protocol external comparison, not single-case tuning. NIE/old worktrees/frozen code/shared plan remain unchanged.
+
+The older blocks below are preserved historical snapshots; their pending experiments and caps/counts are superseded above.
+
+
+
+**Current continuation (2026-11-05):** [HANDOVER](../HANDOVER.md) supersedes older
+status snapshots. Audit committed/pushed at `5eeb8cc`; new boundary code at
+`b353695` passes focused checks and all 12 CI jobs. Exact-text replay prevents
+the reproduced shell generalizations, but has zero reuse opportunities for
+18,223 previously template-served MAB sources; safe efficient capture remains
+open. New scoped/time-bounded query packets preserve 100 old MAB packets and
+200 saved executions. Legacy claims are not retroactively revalidated.
+
+[Whole-family local controls](../data/lab/h1-obsolete-controls-v1/README.md):
+original packs 23/24 answered with one stale leak (valid Q000043), oracle-only
+and both two-note orders 24/24 each without leakage. This is an oracle-ID
+diagnostic, not automatic memory transfer or a fix for the original pack.
+99 new local generations, zero API; H1 ledger 2776/2800, API unchanged at
+463 calls/$1.852 reserved. PR105 total 3733 attempts (3270 local/463 Flash).
+Full gates in both global and isolated pinned environments: 3372 pass/20 skip,
+memory/claim checks pass; pinned pip check is clean. No global package/NIE change.
+Community issues #106–#108 and PR105 are updated. One next repetition/neutral
+volume study is designed but not run; its 147 calls exceed the 24 remaining
+local attempts and require a prior explicit amendment. No ledger reset.
+
+**Current integrity self-audit (2026-11-04):** read [AUDIT_REPORT](../AUDIT_REPORT.md)
+and [HANDOVER](../HANDOVER.md) before the older snapshots below. A private
+backup was actually restored and checked. Original worktree/NIE/frozen-path
+preservation checks pass. The new candidate has confirmed HIGH defects:
+conditional/compound cache assertions, future learned-schema prompt leakage,
+and a remaining stale reader answer. PR105 stays draft; no general readiness
+or deployment claim is supported. No feature repair, commit/push or new model
+call occurred during this audit.
+
+H1 v5 completed: dev base 62 -> 76/84 `answered`, OBSOLETE leaks 12 -> 0/12;
+valid base 66 -> 71/84, leaks 9 -> 1/12. Valid includes 11 gains and 6 losses;
+case Q000043 is stale despite a shown correction. Gold source retrieval 84/84
+does not imply correct answers. V5 adds Flash source reranking/context and
+inherits frozen v4 baselines; it is not a pure-chain or equal-cost effect.
+PR105 totals 3634 actual generation attempts (3171 local/463 Flash), permanent
+paid reservations $1.852 and recorded usage upper estimate $0.073913, not an
+invoice. Last full suite: 3041 pass/20 skip; current published CI: 10 successes
+and 2 macOS cancellations for runner capacity. Local environment has nine pip
+conflicts and pytest 9.1.1 versus pinned 8.4.2. See audit receipts for scope.
+
+The following engineering and delivery entries are historical snapshots;
+pending-H1 and earlier call-count statements are superseded by this block.
+
+**Active engineering delivery (2026-11-04, PR #105):** the separate
+[structured runtime](../data/lab/structured-memory-v1/README.md) now completes
+raw text capture, model-derived literal claims, state/provenance and executable
+question paths. On the same spent FC-MH262k100 development questions it scores
+local 55/100 and Flash 59/100 exact; the 80/100 aspiration is unmet. These are
+system-computed answers, not raw reader scores or a leaderboard comparison.
+Post-hoc Flash SubEM is 60; only 64 enumerated schemas contain gold, and a
+fixed-plan oldest-state intervention scores 1. Capture retains four quarantines.
+The [complete fact-only H1 comparison](../data/lab/h1-model-chains-v1/README.md)
+is negative: derived chains leave OBSOLETE leakage at 12/12 dev and 9/12 valid,
+with no answering gain. Evidence-kind addressing and literal case grounding
+are being executed as explicit amendments; their success is not assumed.
+All earlier negative artifacts, frozen kernels and NIE ownership remain intact.
 
 **Latest audit verdict (2026-11-04):** [the delivery audit](../docs/00-project/project-delivery-audit-2026-11-04.md)
 finds working continuity tooling, modules and substantial experiments, but no

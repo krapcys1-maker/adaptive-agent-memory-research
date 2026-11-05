@@ -1,0 +1,39 @@
+{
+  "primary_nonabstention_passes": {
+    "N": 0,
+    "B": 29,
+    "Craw": 16,
+    "Cdelivered": 14
+  },
+  "exact_answer_duplicates_same_case": {
+    "N=B": 56,
+    "B=Craw": 83,
+    "B=Cdelivered": 79,
+    "Craw=Cdelivered": 183
+  },
+  "native605_prompt_eval_count": 613469,
+  "native605_eval_count": 18390,
+  "reader_archive_bytes_at_complete_raw_freeze": 5918045,
+  "uncertain_case_ids": [
+    "BEAM10M-2-Q0000",
+    "BEAM10M-2-Q0019",
+    "BEAM10M-3-Q0019",
+    "BEAM10M-4-Q0002",
+    "BEAM10M-5-Q0008",
+    "BEAM10M-7-Q0002",
+    "BEAM10M-8-Q0002",
+    "BEAM10M-10-Q0003"
+  ],
+  "source_window_ingestion_model_calls": 0,
+  "new_api_calls": 0,
+  "old_h1_local": 3262,
+  "old_paid_attempts": 463,
+  "beam_task_local": 605,
+  "beam_task_cap": 650,
+  "pr105_local": 4361,
+  "pr105_total": 4824,
+  "paid_permanent_reservation_usd": 1.852,
+  "paid_usage_recorded_upper_usd": 0.073913,
+  "note": "Supplementary diagnostics only; primary rubric and200denominator unchanged. Ten history clusters, no significance claim.",
+  "primary_nonabstention_cases": 180
+}

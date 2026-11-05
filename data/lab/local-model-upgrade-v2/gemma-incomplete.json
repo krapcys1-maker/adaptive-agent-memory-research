@@ -1,0 +1,59 @@
+{
+  "status": "retained-incomplete-safety-abort-not-model-quality-failure",
+  "planned": 655,
+  "actual_attempts": 251,
+  "primary_counts": {
+    "h1:N": 84,
+    "h1:M": 84,
+    "beam:N": 40,
+    "beam:M": 40
+  },
+  "controls": 3,
+  "repeats": 0,
+  "failure": "ValueError: Another process is connected to Ollama: [36812]",
+  "client_identified": false,
+  "client_pid": 36812,
+  "client_already_exited_when_inspected": true,
+  "TCP_connection_does_not_prove_inference": true,
+  "no_restart_unload_override_or_backfill": true,
+  "full_primary_quality_score": null,
+  "promotion_eligible": false,
+  "native_errors": 0,
+  "invalid_json": 0,
+  "abnormal_stops": 0,
+  "raw_freeze": {
+    "complete": false,
+    "source": {
+      "head": "a71765fa9a31008e0535f75208b9f813950861b3",
+      "clean_tree": true,
+      "files": {
+        "scripts/local_model_upgrade_v2.py": "a7fddd50c3ecf5030953ab052f484ab9634818903b78e0bd1f4ab0f4ec0b40b4",
+        "data/lab/local-model-upgrade-v2/PLAN.md": "51320668c10cbf51db627162bc8b2c1c075970f49e3e4f6b6f266d3b71957bf7",
+        "data/lab/local-model-upgrade-v2/config.json": "98ae48fc0cbeba1a2fd066f25f78b778cfde76b0745c368834b2e63c4a23cbb2",
+        "data/lab/local-model-upgrade-v2/preparation.json": "1d2aeb1fc733c8eec7b1e4e8420c666ed51ba5723db634b402610f8bbf9e7c49"
+      }
+    },
+    "files_sha256": {
+      "manifest.json": "463493475820404f705b07b6a94a0eeb3eecce6e020a2e2cddee499e102b2851",
+      "preflight.json": "88393db8086b0786b0d2d7a2dc3486426f0be1cdf8b06ff363b1cd50ccb87040",
+      "attempts.jsonl": "fbcc4658a05f7f579dde66a338a94a61ed106193b467dada48d0b6b736443113",
+      "responses.jsonl": "163a62a637784e6fc4b3ceb12c2f1156f9ec4d7c9e788433e10b5839d4707698",
+      "answers.jsonl": "764352cdcbf6eabed23680c51262a2136069a92c839f5fdf3cf52cdc10686c6e",
+      "resources.jsonl": "ae2bafb7d92e44075e9defe277b589c47845d62e0e0adf5f20610f8223fa0305",
+      "residency.jsonl": "101aed4661254cb95ea89194c16dffd9f1b65f87a26835eca42901d855c32ca7",
+      "finished.json": "1ae78ed4b4a686951f90c5c90555b3683efaba563529f0bc56a8be241d5b35a9"
+    },
+    "packet_sha256": "d6fd978d6ac2cfe8a9c48054828698fbb34083e3958aaee91361cc56dd530faf",
+    "model_digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+    "scoring_has_not_run": true
+  },
+  "raw_freeze_sha256": "5a7c164173cfcae6a1b3354652c3ad37874d12fa657412a77c7937b28edc3b65",
+  "telemetry": {
+    "whole_gpu_peak_mib": 11046.0,
+    "native_ps_size_bytes": 1454553168,
+    "native_ps_size_vram_bytes": 1454553168,
+    "installed_package_bytes": 8021618941,
+    "caveat": "Native PS reports about1.45GB while measured whole-GPU use is about11GB and main GGUF weights exceed7GB. Do not infer tiny footprint/full residency from this API number. Cause unconfirmed; whole-host RAM/whole-GPU measurements retained. RSS sampler covers names containing ollama and excludes separately named llama-server.exe worker."
+  },
+  "decision": "Do not resume/retry under frozen v2 or score a partial BEAM denominator. Complete baseline14/Qwen9 matrix remains the primary comparison; user policy permits skipping affected unsafe operation."
+}

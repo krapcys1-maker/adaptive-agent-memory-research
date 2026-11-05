@@ -1,0 +1,38 @@
+{
+  "files_sha256": {
+    "answers.jsonl": "2719df42242d263c337bc4ba345fe628b97f213de823a353aec2c4e4bb5c5597",
+    "attempts.jsonl": "033dc84692006a8659ee5191ec0e9fa2fc251ed95f2300d4916c5a96d96642b2",
+    "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+    "finished.json": "6792bc8b3292eb246ca4b718c93832bd12bd4570fc09d6a2fef843559847b540",
+    "manifest.json": "da76c6ac8eeb113a75b735693c3d465b9b0e9a4be373d244c4ef9b94449aefaa",
+    "preflight.json": "94a1ce460204e3187aa89d3cc43a19d2e7094fd079f24833267edbc4211e3a57",
+    "responses.jsonl": "7f864e40c8edeb8544a6b4b2132434f14e5d5c250b5a761f759cd4d0a506de73"
+  },
+  "source": {
+    "git_head": "95fa29511cce0508b37871dc6218a72f91d409b4",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/structured_memory_pipeline_v1.py": "2b9bb21bf32856852323cb7c75f89fda240f3f090620f7b4ca19c38d4e2402d2",
+      "tools/structured_memory_v1.py": "aa76304f1b7fa14f95ce2bf8000d1c2aae3a60bbc69d4db1817f5ee95a206726",
+      "data/lab/structured-memory-v1/PLAN.md": "195071ee9514cdadd6150a6d63c690e91caaf4c9677944cea0fd35cd05eb04c2",
+      "data/lab/structured-memory-v1/config.json": "39e632ab740949b7a0db3a89c07bf5892b4850ab4b979007ad6c75354c06bb68",
+      "scripts/flash_reader_client_v1.py": "be64dc03d4c67cbc9f9db2fc33f2ebfd79f46acee34c6f35cd83a4f3b991a3bc",
+      "scripts/nie_reader_pilot.py": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+      "scripts/reader_model_compare_v1.py": "058f19946aadc4c65dc962cb030568ad29007af4c86284de9efb9a843e550579",
+      "scripts/h1_model_chains_v1.py": "952d4f93a581ec8284b1d7688a654cecbd13cd8f9dc91e301bc3d0dfc34c82c8",
+      "data/lab/h1-model-chains-v1/PLAN.md": "b71c844823274aa85d10a226c7a83617bdc5d90208b227b4bcb362f23c7e8650",
+      "scripts/structured_memory_pipeline_v2.py": "349d4df142db802c0db7602b692bc45bcc942b3b4577f709d2a18313387f4214",
+      "tools/structured_memory_v2.py": "6e537511461bf1617c04fb65d2aa6da66c95040b3be7a2af3a4093786bcbea82",
+      "scripts/wmb/kernel/memory_kernel.py": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "scripts/run_corpus_h1_reader.py": "1a8d2bbd206233fe350b98b6350a3c231e335ed604e202abaaf14741b5b519d9",
+      "scripts/h1_model_chains_v2.py": "f8bfe3d9a1480d82903008f9358b2f934ef5931490f2df44b79f831233c1bca0",
+      "tools/retrieval_metadata_v1.py": "8e35e8897bb8a18856edef0ebdd3e3d5c73f3598f5d2320aea56cb3c27019959",
+      "data/lab/h1-model-chains-v2/PLAN.md": "a069c11ac37be67616992644c206cc472c481ba6fd667d7ea7df78d80c6fed78",
+      "scripts/h1_metadata_grounding_v3.py": "861891f64f2c816f989135ab5b1cee1a44cb4231a0e017e38bcbde4d410bc4c7",
+      "tools/retrieval_metadata_v2.py": "64dc3399926f4075a21e5eeea188c64189b7c476c8c475560f397a45dd15232a",
+      "data/lab/h1-model-chains-v3/PLAN.md": "77326208046c013a027c4dc9187f0bd214f6a62d684aa173f498a52947a8f9d2"
+    },
+    "candidate": "h1-v3-deterministic-literal-case-grounding"
+  },
+  "scoring_has_not_run": true
+}

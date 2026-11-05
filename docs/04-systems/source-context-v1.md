@@ -1,0 +1,13 @@
+# Literal source context v1
+
+`tools/source_context_v1.py` is a versioned packaging interface over frozen source_windows_v1. It does not replace the snapshot or claim semantic event eligibility. A context_record includes the original source fingerprint, immutable window identity, literal dependency spans and a deterministic context ID. `verify_context` reconstructs these from the original source. No source frame supplied by another caller is trusted without replay.
+
+Dependencies are the complete first nonblank paragraph and ATXheading sections intersecting any part of the window. The declared grammar permits zero-to-three leading spaces, one-to-six hashes followed by whitespace/end, and backtick/tilde fenced blocks whose closing fence uses the same character with at least the opening length. This is a limited structural grammar, not a CommonMark implementation. Closing headings set section endpoints; source time is availability, not fact validity. Code and source text are always quoted data.
+
+`render_packet` takes only `(Source, Window)` pairs, question, scope/cutoff and system/budget. It validates every source/window and rejects foreign/future pairs before including counts/text. It never accepts labels or expected answers. It aliases selected windows and includes complete context dependencies. Both UTF8 and native ASCII-escaped complete-message serializations must fit. A large complete lead can make a unit unaffordable: omit explicitly rather than crop the qualifier. Multiple windows from one source can repeat dependency text; this cost is measured, not hidden as free memory.
+
+General semantic scope is unresolved. A hypothetical sentence in a later ordinary paragraph can still be omitted, and a heading named Observed Reports is only source text. No absent cue, source span or assistant quotation establishes an observed user fact. There is no query-triggered memory write, parser fallback, truth claim or production integration. Keep the known negative fixture. Changed behavior after the full-corpus freeze requires a successor version; do not edit source_context_v1 or reinterpret old reader results.
+
+Full development evidence, attrition and no-adoption decision: [diagnostic result](../../data/lab/beam-evidence-boundary-v2/README.md). The known example heading is now visible but no new reader test establishes semantic benefit. General issue#110remains open.
+
+The caller must obtain the full Source from its immutable, scope-checked store. This helper checks consistency with the supplied Source; it does not authenticate its author or prove that a caller-supplied source is the archival original. The full-corpus runner uses read-only frozen snapshots and verifies their hashes.

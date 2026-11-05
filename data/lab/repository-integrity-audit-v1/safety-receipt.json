@@ -1,0 +1,40 @@
+{
+  "verified_utc": "2026-11-04T18:23:37.461037+00:00",
+  "cas_objects": 37707,
+  "copied_file_instances": 129860,
+  "unique_bytes": 6256251597,
+  "tree_count": 53,
+  "active_restored_files": 2684,
+  "active_git_status_identical": true,
+  "untracked_active_scores_preserved": true,
+  "restored_groups": [
+    {
+      "group": "research",
+      "refs_restored": 78,
+      "git_fsck_exit": 0
+    },
+    {
+      "group": "nie",
+      "refs_restored": 44,
+      "git_fsck_exit": 0
+    }
+  ],
+  "exclusion_count": 552,
+  "source_write_operations": 0,
+  "private_not_shareable": true,
+  "snapshot_id": "20261104T181004Z",
+  "snapshot_manifest_sha256": "e6d5b83945f442da7e4bc0c07f0d1930c177dc4ce500f76e376e38b727612ac2",
+  "filesystem_exclusions_by_reason": {
+    "cache/environment/git administration": 458,
+    "credential/protected secret; original retained": 94
+  },
+  "scope_limitations": [
+    "Private local recovery snapshot, not a shareable archive. Never upload bundles or raw backup.",
+    "53 captured trees include 40 Git worktrees, auxiliary research artifacts and selected root files.",
+    "All CAS bytes verified; actual full filesystem/index/status restoration exercised on active worktree.",
+    "Both repositories restored and all 122 refs/OIDs verified; other working trees retained as file/index/blob inventories, not all fully rehydrated.",
+    "Credentials, environments, caches, directory links and listed large/model files omitted; originals retained.",
+    "NIE_DANE operational directory is outside this research snapshot; no deployment or production backup claim.",
+    "Earlier 20261104T180224Z attempt is incomplete and must never be used as a recovery point."
+  ]
+}

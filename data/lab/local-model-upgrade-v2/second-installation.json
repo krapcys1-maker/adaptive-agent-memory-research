@@ -1,0 +1,45 @@
+{
+  "installed": {
+    "name": "gemma4:12b-it-q4_K_M",
+    "model": "gemma4:12b-it-q4_K_M",
+    "modified_at": "2026-11-05T13:23:19.6573897+02:00",
+    "size": 8021618941,
+    "digest": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+    "details": {
+      "parent_model": "imatrix-20260927-12b/model-q4_K_M.gguf",
+      "format": "gguf",
+      "family": "gemma4",
+      "families": [
+        "gemma4"
+      ],
+      "parameter_size": "11.9B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 3840,
+      "runner": "llamacpp"
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "audio",
+      "tools",
+      "thinking"
+    ]
+  },
+  "elapsed_seconds": 750.6142356395721,
+  "original_models_unchanged": true,
+  "eligibility": {
+    "gate": "predeclared technical eligibility only",
+    "eligible": true,
+    "first_candidate_attempts": 655,
+    "primary_calls": 568,
+    "native_errors": 0,
+    "median_primary_wall_seconds": 0.4370000000053551,
+    "D_free_before": 733088923648,
+    "first_raw_freeze_sha256": "cfbdbafa85f0796843c3e70b9820ab642aadf4d9ae312c48dbbdc5be20715f79",
+    "semantic_scores_or_gold_used": false,
+    "utc": "2026-11-05T11:10:49.562343+00:00",
+    "comparative_reason": "Dense native-MTP 12B package versus dense hybrid Qwen9 and historical dense Qwen14 on the same full memory matrix."
+  },
+  "global_changes": false
+}

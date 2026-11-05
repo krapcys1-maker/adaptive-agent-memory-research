@@ -1,0 +1,114 @@
+{
+  "adapter": "beam-transfer-format-v2",
+  "source_revision": "b2da22eac88bb0874c64665f13457eb99835774a",
+  "source_files_sha256": {
+    "1/chat_trunecated.json": "73d869ac8bb1459b525bb1b72c5862aa46d814740e62fb8bc9a56064c3422dd8",
+    "1/probing_questions/probing_questions.json": "2e27f7a1bd725568bafe8d6bcaac6369aa074c7cf582440450cb95f669560642",
+    "2/chat_trunecated.json": "8e552cd27b1161d8c0e89629d2b3e307113f26689a3f8838fac068d4c2647650",
+    "2/probing_questions/probing_questions.json": "059fa3af3ac26ca4f8371bba7fca8ecedc7f8e08765693847d57f672cd042c12",
+    "3/chat_trunecated.json": "505342548760a368319bd8c6383becbaacf0b5ed1bf499830f1a6b0c48ea9da4",
+    "3/probing_questions/probing_questions.json": "e7698e50aceb4a544b056727ceddba8bf32870486e7d84b1869fdfbac533d79f",
+    "4/chat_trunecated.json": "eb0fc00cfe4b9911ff5f045b2ef31058c2a1273535bad02f23c2bf22921f5f03",
+    "4/probing_questions/probing_questions.json": "a43790fab80811d91a0fc101be929c8faf510eb59afbeb32ceae124a70953ab0",
+    "5/chat_trunecated.json": "cc8e6febacb09e4fb95c2505e110ebd2619bc0ea440d3857fd8e962dc89de88c",
+    "5/probing_questions/probing_questions.json": "d582e93e23248db017e797de0f2391b7145f315c87ae2ace2261120f1dd2d2b1",
+    "6/chat_trunecated.json": "8129dca23a091d857baf32a6230f47d8ecf84be446139002defbe9c51e5cdf99",
+    "6/probing_questions/probing_questions.json": "890a3eeea5b3cbc0163ab3f3b6f5bbfb1ee398f7619ad411554b0ee3b52309ff",
+    "7/chat_trunecated.json": "93c411466ad2603aa855a003dbf3160cdbb63184540f7104ba32cfb2acd31c5f",
+    "7/probing_questions/probing_questions.json": "146ba7bfdd7f561a1d90ac9c3eb69a2103b1cd09ddc87506bafe148aa7a4096e",
+    "8/chat_trunecated.json": "50db83e912c0a95ff08f8bc1350fd0e4b227407352a0a9388caefdb803894048",
+    "8/probing_questions/probing_questions.json": "17b70b2557663fbe3a476713ec15763e94102697be580c031720b0e21a88bf0e",
+    "9/chat_trunecated.json": "ef1952bd6960305ca0e91d36d439a3f447182581a94254179eb7208881540c8c",
+    "9/probing_questions/probing_questions.json": "921ac87d081ff27a8b92b071b5df079812f9284cfe96fca10b0aaa18777294f4",
+    "10/chat_trunecated.json": "d8eaa093a7ae01ba59f816ab49a7124871661fda632c44b6b46a4af836da2b41",
+    "10/probing_questions/probing_questions.json": "c7e7652adcab53f5f205d6f8df86d10789a51bb6e53fb2e3b56655a0d352b671"
+  },
+  "output_files_sha256": {
+    "audit/message-provenance.jsonl": "34670e21d443124095e47247bbd855772cf97f0f0d26123e2bf33763953b9ce7",
+    "evaluation/labels.jsonl": "69cd777cf5351ce27445a78bf96b9674177779b60912c4b7a503fc2bf5efab40",
+    "reader/history.jsonl": "fe1a9ff7227f40468d1b87e4b2abdfeafb3e37a0df11df25f249a1c1f27ec81b",
+    "reader/questions.jsonl": "53d632884796df0245ce56159d74a833701ee5a81341023edfa86d88c99ec505"
+  },
+  "conversations": 10,
+  "full_tier_conversations": 10,
+  "full_tier": true,
+  "coverage": {
+    "BEAM10M-1": {
+      "messages": 17623,
+      "questions": 20
+    },
+    "BEAM10M-2": {
+      "messages": 17841,
+      "questions": 20
+    },
+    "BEAM10M-3": {
+      "messages": 17576,
+      "questions": 20
+    },
+    "BEAM10M-4": {
+      "messages": 14328,
+      "questions": 20
+    },
+    "BEAM10M-5": {
+      "messages": 17362,
+      "questions": 20
+    },
+    "BEAM10M-6": {
+      "messages": 19818,
+      "questions": 20
+    },
+    "BEAM10M-7": {
+      "messages": 20490,
+      "questions": 20
+    },
+    "BEAM10M-8": {
+      "messages": 21422,
+      "questions": 20
+    },
+    "BEAM10M-9": {
+      "messages": 22134,
+      "questions": 20
+    },
+    "BEAM10M-10": {
+      "messages": 19140,
+      "questions": 20
+    }
+  },
+  "messages": 187734,
+  "questions": 200,
+  "source_roles": {
+    "user": 93868,
+    "assistant": 93866
+  },
+  "probe_abilities": {
+    "abstention": 20,
+    "contradiction_resolution": 20,
+    "event_ordering": 20,
+    "information_extraction": 20,
+    "instruction_following": 20,
+    "knowledge_update": 20,
+    "multi_session_reasoning": 20,
+    "preference_following": 20,
+    "summarization": 20,
+    "temporal_reasoning": 20
+  },
+  "reader_question_keys": [
+    "id",
+    "conversation_id",
+    "question"
+  ],
+  "stream_order_is_not_calendar_or_fact_validity": true,
+  "construction_metadata_excluded_from_reader": true,
+  "exact_message_and_probe_reconstruction": true,
+  "persisted_readback_exact": true,
+  "new_model_calls": 0,
+  "memory_candidate_evaluated": false,
+  "benchmark_score": null,
+  "execution_source": {
+    "head": "24432f23f1858170e55c699286114d93ce000112",
+    "script_sha256": "4fc706c23c0e0b321e7b6323996a9dbc74aaf9d2312f0a6f86bd54e48d535644",
+    "plan_sha256": "63d492fd6b0f704d961b6589558cbae7feb71b8a2104b4c099e6b7b3637dd97e",
+    "clean_tree": true
+  },
+  "private_manifest_sha256": "48d12fb1b42307515eb06ff48b4cf61c8bd8dc9afe3c4a27c7f0cca0fe46433e"
+}

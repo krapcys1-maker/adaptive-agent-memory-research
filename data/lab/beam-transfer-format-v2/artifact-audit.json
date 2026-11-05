@@ -1,0 +1,130 @@
+{
+  "failures": [],
+  "messages_reconstructed": 187734,
+  "probes_reconstructed": 200,
+  "conversations": 10,
+  "full_tier": true,
+  "source_roles": {
+    "user": 93868,
+    "assistant": 93866
+  },
+  "probe_abilities": {
+    "abstention": 20,
+    "contradiction_resolution": 20,
+    "event_ordering": 20,
+    "information_extraction": 20,
+    "instruction_following": 20,
+    "knowledge_update": 20,
+    "multi_session_reasoning": 20,
+    "preference_following": 20,
+    "summarization": 20,
+    "temporal_reasoning": 20
+  },
+  "raw_time_anchor_types": {
+    "str": 909,
+    "absent": 186824,
+    "NoneType": 1
+  },
+  "construction_metadata_excluded": {
+    "id": 187734,
+    "index": 70445,
+    "question_type": 93868
+  },
+  "per_conversation": [
+    {
+      "conversation_id": "BEAM10M-1",
+      "messages": 17623,
+      "questions": 20,
+      "unique_role_text_keys": 17533,
+      "duplicate_role_text_opportunities": 90,
+      "unique_text_bytes": 43669007
+    },
+    {
+      "conversation_id": "BEAM10M-2",
+      "messages": 17841,
+      "questions": 20,
+      "unique_role_text_keys": 17756,
+      "duplicate_role_text_opportunities": 85,
+      "unique_text_bytes": 43936445
+    },
+    {
+      "conversation_id": "BEAM10M-3",
+      "messages": 17576,
+      "questions": 20,
+      "unique_role_text_keys": 17507,
+      "duplicate_role_text_opportunities": 69,
+      "unique_text_bytes": 44012239
+    },
+    {
+      "conversation_id": "BEAM10M-4",
+      "messages": 14328,
+      "questions": 20,
+      "unique_role_text_keys": 14265,
+      "duplicate_role_text_opportunities": 63,
+      "unique_text_bytes": 28613535
+    },
+    {
+      "conversation_id": "BEAM10M-5",
+      "messages": 17362,
+      "questions": 20,
+      "unique_role_text_keys": 17307,
+      "duplicate_role_text_opportunities": 55,
+      "unique_text_bytes": 31021598
+    },
+    {
+      "conversation_id": "BEAM10M-6",
+      "messages": 19818,
+      "questions": 20,
+      "unique_role_text_keys": 19803,
+      "duplicate_role_text_opportunities": 15,
+      "unique_text_bytes": 44668353
+    },
+    {
+      "conversation_id": "BEAM10M-7",
+      "messages": 20490,
+      "questions": 20,
+      "unique_role_text_keys": 20424,
+      "duplicate_role_text_opportunities": 66,
+      "unique_text_bytes": 44139108
+    },
+    {
+      "conversation_id": "BEAM10M-8",
+      "messages": 21422,
+      "questions": 20,
+      "unique_role_text_keys": 21349,
+      "duplicate_role_text_opportunities": 73,
+      "unique_text_bytes": 43778604
+    },
+    {
+      "conversation_id": "BEAM10M-9",
+      "messages": 22134,
+      "questions": 20,
+      "unique_role_text_keys": 22023,
+      "duplicate_role_text_opportunities": 111,
+      "unique_text_bytes": 44141528
+    },
+    {
+      "conversation_id": "BEAM10M-10",
+      "messages": 19140,
+      "questions": 20,
+      "unique_role_text_keys": 19087,
+      "duplicate_role_text_opportunities": 53,
+      "unique_text_bytes": 44702131
+    }
+  ],
+  "input_text_bytes": 413216772,
+  "message_utf8_bytes": {
+    "p50": 1351,
+    "p95": 5546,
+    "p99": 7000,
+    "max": 329788
+  },
+  "messages_text_alone_over_existing_h1_4500byte_cap": 30177,
+  "scoped_role_text_unique_count": 187054,
+  "scoped_role_text_duplicate_opportunities": 680,
+  "count_semantics": "Descriptive raw scoped/role exact-text uniqueness. Per-message model capture would process this many distinct keys if all needed interpretation; not a universal call lower bound, semantic cache validation, token count or authorized model run.",
+  "manifest_sha256": "48d12fb1b42307515eb06ff48b4cf61c8bd8dc9afe3c4a27c7f0cca0fe46433e",
+  "new_model_calls": 0,
+  "benchmark_score": null,
+  "review": "Authored format/integrity replay only; no independent semantic or end-to-end memory claim."
+}

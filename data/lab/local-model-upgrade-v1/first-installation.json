@@ -1,0 +1,67 @@
+{
+  "installed": {
+    "name": "qwen3.5:9b-q4_K_M",
+    "model": "qwen3.5:9b-q4_K_M",
+    "modified_at": "2026-11-05T12:30:14.7447776+02:00",
+    "size": 6550825550,
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "details": {
+      "parent_model": "model.gguf",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "9.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 4096,
+      "runner": "llamacpp"
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ]
+  },
+  "elapsed_seconds": 604.539137840271,
+  "original_models_unchanged": true,
+  "active_after": {
+    "models": []
+  },
+  "official_research": {
+    "checked_utc": "2026-11-05T10:19:46.604106+00:00",
+    "ollama_version": "0.40.13",
+    "first_candidate": {
+      "tag": "qwen3.5:9b-q4_K_M",
+      "official_manifest_prefix": "56671c2ab938",
+      "package_bytes_approx": 6600000000,
+      "quantization": "Q4_K_M",
+      "license": "Apache-2.0",
+      "sources": [
+        "https://ollama.com/library/qwen3.5:9b-q4_K_M",
+        "https://huggingface.co/Qwen/Qwen3.5-9B",
+        "https://github.com/ollama/ollama/releases/tag/v0.17.5"
+      ]
+    },
+    "conditional_second": {
+      "tag": "gemma4:12b-it-q4_K_M",
+      "official_manifest_prefix": "6114515d63c1",
+      "package_bytes_approx": 8000000000,
+      "quantization": "Q4_K_M",
+      "license": "Apache-2.0",
+      "sources": [
+        "https://ollama.com/library/gemma4:12b-it-q4_K_M",
+        "https://huggingface.co/google/gemma-4-12B-it",
+        "https://developers.googleblog.com/gemma-4-12b-the-developer-guide/",
+        "https://ai.google.dev/gemma/apache_2"
+      ]
+    },
+    "no_27b_download": true,
+    "no_global_changes": true,
+    "installation_is_not_benchmark_inference": true
+  },
+  "global_config_changes": false,
+  "model_removals_so_far": 0
+}

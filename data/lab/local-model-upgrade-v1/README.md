@@ -1,0 +1,9 @@
+# Controlled local-model upgrade v1
+
+The [frozen prior protocol](PLAN.md), [prepared packet identities](preparation.json), [read-only inventory](audit.json) and [first installation](first-installation.json) precede inference. The owner authorized this local task, including conditional installation and conservative cleanup. Old model IDs, judge/defaults, custom settings, gold and historical ledgers are preserved.23focused tests pass; no new model answers or score are claimed at registration.
+
+The complete primary matrix is84H1valid+200BEAM questions x memory off/on per model at8192context.655attempts/model include84same-seed H1 M repetitions and3controls; new local task cap2000,0paid. Qwen2.5 14B baseline and Qwen3.5 9B first; conditional Gemma4 12B only under the technical gate. This is exploratory practical-package evidence on spent development data, not official BEAM accuracy, an independent evaluation or proof of a superior memory algorithm. Full results and cleanup decisions will follow with immutable raw hashes.
+
+## Retained failure
+
+V1 stopped after3controls and0primary calls: the strict transport predicate rejected `I do not know.` because it expected no terminal period. All3native outputs were valid JSON with normal stops. [Failure and complete raw hashes](failure.json) preserve the unsuccessful stage; it is not reclassified as a pass. No quality result or migration is supported. A separately frozen v2 amendment is required; all attempts remain charged to the same2000task cap.

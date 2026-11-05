@@ -1,0 +1,123 @@
+{
+  "schema": "local-model-upgrade-v2-delivery",
+  "recorded_utc": "2026-11-05T17:16:20.243517+00:00",
+  "result_head": "0688e9b668e097918ca86996bb61b6c5d32eea1a",
+  "result_ci": {
+    "run_id": 42024458860,
+    "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/runs/42024458860",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 127235053997,
+        "name": "Repository claim audit",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054341,
+        "name": "Project-memory integrity",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054352,
+        "name": "Tests (Python 3.11)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054382,
+        "name": "Memory kernel (Python 3.14)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054450,
+        "name": "Kernel mutations (0.2.0)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054463,
+        "name": "Kernel mutations (0.1.0)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054482,
+        "name": "LifeSim (macos-latest, Python 3.14)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054491,
+        "name": "Tests (Python 3.12)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054538,
+        "name": "LifeSim (macos-latest, Python 3.13)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054610,
+        "name": "LifeSim (windows-latest, Python 3.13)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054740,
+        "name": "Canonical store guard",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127235054780,
+        "name": "LifeSim (windows-latest, Python 3.14)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "test_summaries": [
+      {
+        "name": "Tests (Python 3.11)",
+        "job_id": 127235054352,
+        "summary": "3587 passed, 21 skipped in 353.50s (0:05:53)"
+      },
+      {
+        "name": "Tests (Python 3.12)",
+        "job_id": 127235054491,
+        "summary": "3587 passed, 21 skipped in 501.40s (0:08:21)"
+      }
+    ],
+    "checkout_merge_commit": "e854a538a8cd48c5cdd1b4cfe01aa49bfc2520bf",
+    "base_commit": "1b673d3e83538f720446bf144ba0befadc16119a"
+  },
+  "private_result_restore": {
+    "verified_utc": "2026-11-05T12:08:55.105671+00:00",
+    "head": "0688e9b668e097918ca86996bb61b6c5d32eea1a",
+    "restored_git_clean": true,
+    "refs": 78,
+    "fsck_exit": 0,
+    "copied_files": 153,
+    "copied_bytes": 121719581,
+    "source_writes": 0,
+    "bundle_sha256": "a478631dae5d7b53453483e53a7703e0023b3558c541a6a47f44401c32f93039"
+  },
+  "private_result_receipt_sha256": "368de2b31bed53cfcd6e5577c7a5adbb90fc8f3a8fd2b9de9da32d9c373ccdd2",
+  "previous_receipt_sha256": "a3b0ab6e024321273f3915cb6d477ad1328521b26474edce9f105ea416bed680",
+  "counters": {
+    "task_local_attempts": 1564,
+    "new_paid_attempts": 0,
+    "pr105_local_attempts": 5925,
+    "pr105_historical_paid_attempts": 463,
+    "pr105_total_attempts": 6388,
+    "historical_h1_attempts": 3262,
+    "historical_beam_attempts": 605
+  },
+  "scope": "Existing result CI and actual private restoration apply only to result commit 0688e9b. This later documentation commit receives its own PR checks. Documentation finalization performs zero model calls and does not amend frozen results, protocols, thresholds or ledgers."
+}

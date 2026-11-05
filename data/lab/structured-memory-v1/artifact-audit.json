@@ -1,0 +1,15 @@
+{
+  "failures": [],
+  "sources": 18333,
+  "claims": 18328,
+  "templates": 56,
+  "cached_claims_reproduced": 18223,
+  "quarantined_sources": 4,
+  "capture_methods": {
+    "model": 110,
+    "template": 18223
+  },
+  "answer_runs_checked": 4,
+  "store_sha256": "cfb267881063caff0e3e337b8b1a3f726a049caadf87f4f57768d94c0572f9f3",
+  "semantic_extraction_accuracy": "not established by span and replay checks"
+}

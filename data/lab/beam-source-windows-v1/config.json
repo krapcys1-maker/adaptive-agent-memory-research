@@ -1,0 +1,9 @@
+{
+  "max_text_bytes": 1600,
+  "overlap_bytes": 160,
+  "query_term_limit": 24,
+  "candidate_limit": 16,
+  "max_message_bytes": 6000,
+  "max_seconds": 1800,
+  "max_output_bytes": 8000000000
+}

@@ -1,5 +1,7 @@
 # What is implemented, and what is still missing
 
+**Later local audit and candidate work:** read [AUDIT_REPORT](../../AUDIT_REPORT.md) and [HANDOVER](../../HANDOVER.md) before the earlier delivery snapshot below. PR105 adds a separate runnable source/claim/metadata pipeline; spent MAB scores local 55/100 and Flash 59/100, H1 v5 scores dev 76/84 and valid 71/84 under its mechanical scorer with one stale leak. Conditional-cache and future-schema failures are reproduced. No generic readiness or NIE deployment claim follows. PR105 remains draft; this is a self-audit, not independent approval.
+
 This repository contains working research tools and experiments for agent memory. It does not yet demonstrate that a complete memory system improves a real agent's writing or reliably maintains its biography. Passing software tests is necessary evidence about implementation, not that broader result.
 
 The [delivery/evidence audit](project-delivery-audit-2026-11-04.md) separates Claude's documented work, Codex's changes, known failures and integration state. Its newest hard result is **0/100 exact answers for the ordinary raw-line kernel adapter on both readers**, not a whole-project score. The local iterative follow-up reaches 4/100; readiness is not established.

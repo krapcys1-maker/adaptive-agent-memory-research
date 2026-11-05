@@ -1,0 +1,98 @@
+{
+  "head": "a71765fa9a31008e0535f75208b9f813950861b3",
+  "run_id": 42013069495,
+  "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/runs/42013069495",
+  "jobs": [
+    {
+      "id": 127197139014,
+      "name": "Kernel mutations (0.2.0)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139303,
+      "name": "Tests (Python 3.11)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139335,
+      "name": "LifeSim (windows-latest, Python 3.14)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139366,
+      "name": "Tests (Python 3.12)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139471,
+      "name": "Memory kernel (Python 3.14)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139518,
+      "name": "Repository claim audit",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139519,
+      "name": "Canonical store guard",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139520,
+      "name": "Project-memory integrity",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139694,
+      "name": "LifeSim (windows-latest, Python 3.13)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139697,
+      "name": "LifeSim (macos-latest, Python 3.14)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139716,
+      "name": "Kernel mutations (0.1.0)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127197139787,
+      "name": "LifeSim (macos-latest, Python 3.13)",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "test_summaries": [
+    {
+      "name": "Tests (Python 3.11)",
+      "job_id": 127197139303,
+      "summaries": [
+        "3577 passed, 21 skipped in 290.63s (0:04:50)"
+      ],
+      "isError": false
+    },
+    {
+      "name": "Tests (Python 3.12)",
+      "job_id": 127197139366,
+      "summaries": [
+        "3577 passed, 21 skipped in 330.91s (0:05:30)"
+      ],
+      "isError": false
+    }
+  ],
+  "scope": "Executed V2 source head, not a later result or delivery head."
+}

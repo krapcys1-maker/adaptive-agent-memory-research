@@ -1,0 +1,34 @@
+{
+  "phase": "chronological",
+  "failures": [],
+  "reconstructed_primary_packets": 336,
+  "actual_local_calls": 339,
+  "api_ledger_unchanged": true,
+  "h1_ledger_before": 2923,
+  "h1_ledger_after_phase": 3262,
+  "local_cap": 3300,
+  "parse_failures": 0,
+  "unique_primary_messages": 185,
+  "identical_paired_messages": 151,
+  "native_usage_by_arm": {
+    "original": {
+      "n": 168,
+      "message_bytes": 141360,
+      "prompt_eval_count": 30582,
+      "eval_count": 6183,
+      "done_reasons": {
+        "stop": 168
+      }
+    },
+    "chronological": {
+      "n": 168,
+      "message_bytes": 141360,
+      "prompt_eval_count": 30582,
+      "eval_count": 6199,
+      "done_reasons": {
+        "stop": 168
+      }
+    }
+  },
+  "claim": "Authored deterministic integrity replay, not independent semantic evaluation."
+}

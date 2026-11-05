@@ -1,0 +1,10 @@
+{
+  "failures": [],
+  "sources": 539,
+  "claims": 100,
+  "reader_outputs": 168,
+  "exact_reuse_proofs": 277,
+  "canonical_store_sha256": "8357993e009f1b1a6b7fe4c1de097249117ecd2b9f815724d5b8b2969f7dcd93",
+  "construction_labels_read": false,
+  "semantic_extraction_accuracy": "not established by this mechanical audit"
+}

@@ -1,0 +1,12 @@
+{
+  "base_url": "http://127.0.0.1:11434",
+  "model": "qwen2.5:14b-instruct",
+  "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+  "options": {"temperature": 0, "num_ctx": 4096, "num_predict": 512},
+  "max_calls": 605,
+  "max_seconds": 3600,
+  "http_timeout_seconds": 180,
+  "task_local_cap": 650,
+  "max_request_bytes": 10000,
+  "max_message_bytes": 6000
+}
