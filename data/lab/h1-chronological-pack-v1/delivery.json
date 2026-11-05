@@ -1,0 +1,94 @@
+{
+  "tested_head": "58bdcfcb420c693f642fa8b612c5ff4904341248",
+  "workflow_run_id": 41979328405,
+  "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/runs/41979328405",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 127085672438,
+      "name": "Project-memory integrity",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085672655,
+      "name": "LifeSim (windows-latest, Python 3.14)",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085672822,
+      "name": "Repository claim audit",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085672830,
+      "name": "LifeSim (macos-latest, Python 3.14)",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085672844,
+      "name": "Tests (Python 3.11)",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085672848,
+      "name": "LifeSim (windows-latest, Python 3.13)",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085672856,
+      "name": "Kernel mutations (0.1.0)",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085672869,
+      "name": "Canonical store guard",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085672878,
+      "name": "LifeSim (macos-latest, Python 3.13)",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085672897,
+      "name": "Memory kernel (Python 3.14)",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085673050,
+      "name": "Kernel mutations (0.2.0)",
+      "conclusion": "success"
+    },
+    {
+      "id": 127085673099,
+      "name": "Tests (Python 3.12)",
+      "conclusion": "success"
+    }
+  ],
+  "full_ci_tests": {
+    "Python 3.11": {
+      "passed": 3377,
+      "skipped": 21
+    },
+    "Python 3.12": {
+      "passed": 3377,
+      "skipped": 21
+    }
+  },
+  "local_focused_pinned_tests": 10,
+  "new_density_local_calls": 147,
+  "new_order_local_calls": 339,
+  "new_api_calls": 0,
+  "h1_cumulative_local_attempts": 3262,
+  "local_cap": 3300,
+  "pr105_cumulative_attempts": 4219,
+  "pr105_local_attempts": 3756,
+  "pr105_api_attempts": 463,
+  "api_reserved_usd": 1.852,
+  "recorded_usage_upper_usd": 0.073913,
+  "raw_run_source_head": "959b6c337838f5dc5425976124378b39e7acf33a",
+  "raw_freeze_before_scoring": "5b195ce",
+  "private_restoration_verified_for_tested_head": true,
+  "independent_semantic_confirmation": false,
+  "later_documentation_status": "Baseline/age/overfitting and laboratory orientation are later documentation amendments; this CI receipt applies only to tested_head."
+}

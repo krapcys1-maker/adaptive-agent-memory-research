@@ -93,3 +93,10 @@ The first three checks are cheap. The full gate includes all repository suites, 
 ## Read status chronologically
 
 The persona-v0 header still says no call has occurred and its freeze hash is not yet committed; later Results/Amendments and Git record the completed run. R1 likewise keeps a preregistration header above its later results. These are preserved historical sections, not current execution status. The kernel README calls the original tests frozen, whereas issue 73 says new assertions may be added separately; the mutation correction preserves both original suites and adds a separate file. No ambiguity here is resolved by silently changing an experimental result.
+
+
+## Active laboratory view — 2026-11-05
+
+The owner's current operating entry is [active laboratory and positioning](active-lab-2026-11-05.md), using the existing doctrine, comparative contract and instruments. Density and whole-H1 ordering are now completed, with [results](../../data/lab/h1-chronological-pack-v1/README.md), registry79rows and explicit preservation of the old pending-design row/history. [Memory-on/off coverage, model-table age and overfitting](../05-benchmarks/memory-baselines-and-benchmark-age-2026-11-05.md) prevent misreading H1base as no memory or historical vendor scores as today's ranking. Runtime/results head58bdcfc has12successful CI jobs,3377passed/21skipped on each Linux Python3.11/3.12; [receipt](../../data/lab/h1-chronological-pack-v1/delivery.json). These later receipts do not change the earlier clean-clone timing snapshot.
+
+One next item is common-protocol external comparison under#51/#7, with no new inference/budget extension created by the operating note. Concept backlog is not a set of newly preregistered experiments. Existing source catalogs/adapters/negative results are reused; no parallel duplicate laboratory or NIE/persona change.

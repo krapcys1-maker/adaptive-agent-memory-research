@@ -1,5 +1,23 @@
 # Safe handover — 2026-11-04
 
+## Laboratory identity and next active work (2026-11-05)
+
+Owner explicitly requests a working concept-testing laboratory. [Active operating view](docs/11-research-laboratory/active-lab-2026-11-05.md) reuses the existing doctrine, instruments, registry, comparative contract and adapters. Current identity: source-grounded state-memory research prototype; model-assisted interpretation/selection, local persistence and inspectable code execution. No generic final-product or unique-architecture claim. APEX-MEM/Graphiti/CAR overlap the core ideas; Mem0/Hindsight current descriptions are author claims, not new reproductions.
+
+One next item under existing#51/#7: pin a common-protocol external adapter/baselines, then separately freeze a complete eligible run. No-memory, ordinary retrieval, our candidate and a compatible pinned competitor are distinct arms. All prior fitting, cost and scoring limits apply. Three mechanism ideas stay a ranked backlog, not new preregistrations. No new model call/cap extension/NIE change.
+
+Code/results head58bdcfc has12/12successful CI jobs, full3377pass/21skip on each Linux Python3.11/3.12, plus the recorded10pinned focused checks; [receipt](data/lab/h1-chronological-pack-v1/delivery.json). Later documentation hashes require their own CI status. A verified private restoration exists for58bdcfc,91copied files/78refs/fsck0 and clean actual checkout; original baseline/previous delivery remain preserved. Current canonical memory365events/0violations; older counts are dated snapshots.
+
+
+## Owner clarification: baselines, publication age and overfitting (2026-11-05)
+
+Read [the coverage/relevance note](docs/05-benchmarks/memory-baselines-and-benchmark-age-2026-11-05.md). We do have authored N/V controls (local0→48/48raw, Flash0→46/48raw/48delivered), and an original hard local N/K comparison (both0/100). These are not a contemporaneous no-memory arm for the later structured55/59 experiment. H1 base/original is another memory condition, not no memory. Reanalysis reconstructs the old400requests/384primary contexts and report identically, without new calls. The48turns repeat eight fields; absence-of-information abstention is appropriate despite zero target recall.
+
+The GPT-4-era competitor table is historical published configurations, not a present-day ranking. MAB remains a targeted regression task, not the sole modern evaluation. LongMemEval-V2/MemoryArena were source-inspected, not executed/passed. No new GPT/Pro/judge model was authorized or called; Flash/local policy and ledgers unchanged.
+
+Material unresolved fitting risk: public MAB100 and H1 were reused after error inspection and mechanism changes. Protocol/raw freezes and absent gold in planner packets do not establish held-out transfer. The55/59 result measures model+old graph+code, not standalone14B intelligence. Freeze the entire pipeline before unused external cases; report memory-off and ordinary retrieval; retain all outcomes. Any set used for repairs becomes development. No generalization gap is measured yet. Durable events PM-20261105-23572dcb and PM-20261105-92325fb8; memory now364events/0violations. No inference was added by this clarification.
+
+
 ## Latest continuation — density, whole-H1 ordering and competitive calibration (2026-11-05)
 
 Read this block before older snapshots. Density protocol/code `0cac1cd`, raw freeze `edeb178`: all24public OBSOLETE cases, six arms,147actual local calls. Stale-repeat with correction first loses developmentQ000045 (23/24, one leak); the other five arms24/24. ValidationQ000043 passes these controls but its original pack failure remains. [Result](data/lab/h1-evidence-density-v1/README.md).
