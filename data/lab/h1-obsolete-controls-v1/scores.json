@@ -1,0 +1,899 @@
+{
+  "summary": {
+    "original": {
+      "n": 24,
+      "answered": 23,
+      "leaked": 1,
+      "clean_answered": 23
+    },
+    "oracle_only": {
+      "n": 24,
+      "answered": 24,
+      "leaked": 0,
+      "clean_answered": 24
+    },
+    "old_then_new": {
+      "n": 24,
+      "answered": 24,
+      "leaked": 0,
+      "clean_answered": 24
+    },
+    "new_then_old": {
+      "n": 24,
+      "answered": 24,
+      "leaked": 0,
+      "clean_answered": 24
+    }
+  },
+  "records": [
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "original",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "clean_answered": 0
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "new_then_old",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "original",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "oracle_only",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "old_then_new",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    }
+  ],
+  "parse_failures": 0,
+  "actual_local_calls": 99,
+  "api_calls": 0,
+  "oracle_id_diagnostic": true,
+  "semantic_independence": "Same authored mechanical H1 scorer; no model judge or independent confirmation."
+}

@@ -6,6 +6,26 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
+**Current continuation (2026-11-05):** [HANDOVER](../HANDOVER.md) supersedes older
+status snapshots. Audit committed/pushed at `5eeb8cc`; new boundary code at
+`b353695` passes focused checks and all 12 CI jobs. Exact-text replay prevents
+the reproduced shell generalizations, but has zero reuse opportunities for
+18,223 previously template-served MAB sources; safe efficient capture remains
+open. New scoped/time-bounded query packets preserve 100 old MAB packets and
+200 saved executions. Legacy claims are not retroactively revalidated.
+
+[Whole-family local controls](../data/lab/h1-obsolete-controls-v1/README.md):
+original packs 23/24 answered with one stale leak (valid Q000043), oracle-only
+and both two-note orders 24/24 each without leakage. This is an oracle-ID
+diagnostic, not automatic memory transfer or a fix for the original pack.
+99 new local generations, zero API; H1 ledger 2776/2800, API unchanged at
+463 calls/$1.852 reserved. PR105 total 3733 attempts (3270 local/463 Flash).
+Full gates in both global and isolated pinned environments: 3372 pass/20 skip,
+memory/claim checks pass; pinned pip check is clean. No global package/NIE change.
+Community issues #106–#108 and PR105 are updated. One next repetition/neutral
+volume study is designed but not run; its 147 calls exceed the 24 remaining
+local attempts and require a prior explicit amendment. No ledger reset.
+
 **Current integrity self-audit (2026-11-04):** read [AUDIT_REPORT](../AUDIT_REPORT.md)
 and [HANDOVER](../HANDOVER.md) before the older snapshots below. A private
 backup was actually restored and checked. Original worktree/NIE/frozen-path

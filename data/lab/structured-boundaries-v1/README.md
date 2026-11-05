@@ -10,6 +10,8 @@ Follows [the preregistered plan](PLAN.md), frozen at `0c99959`, and issues [106]
 
 Tests: 347 focused checks including old-version regressions, exact positive replay/reopen, rejected conditional/compound/negated/quoted/Unicode variants, conflicting derivations, forged template writes, actual CLI round trip and 288 counterfactual scope/time/order fixtures. All passed before the final full-suite check. These are engineering cases, not 347 independent memory tasks.
 
+Full verification subsequently passed in global and separately isolated/pinned environments: **3372 passed, 20 skipped**, memory and claim gates passed. Pinned `pip check` is clean; no shared global package changed. Runtime commit `b353695` has 12/12 successful CI jobs, including macOS. [Delivery receipt](delivery.json) preserves exact heads, log digests and the limits of later data/documentation commits.
+
 ## Compatibility and cost
 
 Offline [MAB compatibility](mab-compatibility.json) compares all 100 model-visible path packets and re-executes 200 saved local/Flash plans. No differences/failures, no model calls or gold read, original source hash unchanged. Only this already-spent all-sources-available snapshot is covered. Legacy accepted claims are preserved, not revalidated or retroactively repaired.
@@ -21,5 +23,7 @@ An initial offline diagnostic was stopped before completion because repeated per
 ## Decision and next work
 
 Accept the demonstrated packet/time/scope boundary behavior and exact-replay guard as an engineering successor, with original semantic correctness and efficient generalization still open. Do not describe A01 as solving arbitrary extraction, nor A02/A03 as caller authentication or constant-time security. Whole-source supersession granularity and broad evidence attribution remain as audited.
+
+An external extractor must also use a scope/time-visible catalog when proposing claims. This library cannot remove private/future knowledge already embedded in an externally supplied interpretation, nor authenticate a caller's `method=model` label. The packet checks assume the stored public-source claims are fixed; automatic multi-scope capture is a separate acceptance boundary.
 
 Next execute the separately frozen [whole-family reader controls](../h1-obsolete-controls-v1/PLAN.md) for #108. They address evidence use/interference, not this cache policy. A changed reader mechanism must later face all H1 families and fresh data at disclosed inference/context cost. No general readiness, vendor superiority, deployment or independent confirmation follows here.

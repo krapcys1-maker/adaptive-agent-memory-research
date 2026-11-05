@@ -29,6 +29,8 @@ Read `docs/00-project/operating-doctrine.md` first. It answers what to test next
 
 ## Continuity and integrity audit (2026-11-04)
 
+Current continuation (2026-11-05): the owner explicitly requests ongoing GitHub updates and community-facing problem reports. Publish scoped, reproducible public/synthetic counterexamples with evidence, uncertainty and acceptance conditions; check for duplicates and verify actual writes. Keep PR/issue status aligned with completed work and remaining failures. Never upload private inputs, raw requests, backups, credentials or environments. Read HANDOVER's newer continuation block before historical audit status. The audit's no-inference phase is complete; subsequent experiments require their own prior protocol and cumulative caps.
+
 - Read `AUDIT_REPORT.md` and `HANDOVER.md` before continuing the structured runtime. They apply to Claude, Codex and other coding agents. The audit is a self-audit, not independent review. PR105 is draft and has confirmed HIGH findings.
 - Inspect branch, staged/unstaged/untracked files and unfinished Git operations before editing. Preserve other agents' dirty worktrees. Use an owned worktree; never reset/clean a shared checkout, discard untracked research files, rewrite history or force-push to resolve coordination.
 - Before risky repository-wide work, keep a private snapshot outside the repository, including untracked outputs and index state, and verify restoration. Do not upload private bundles, credentials, raw research or operational data. Document exclusions; do not call an incomplete copy verified.
