@@ -1,0 +1,23 @@
+{
+  "original_artifact_writes": 0,
+  "new_model_calls": 0,
+  "forged_copies_rejected": 3,
+  "cases": [
+    {
+      "case": "changed_dependency_text",
+      "rejected": true,
+      "reason": "Diagnostic output hash changed."
+    },
+    {
+      "case": "rehash_dependency_text",
+      "rejected": true,
+      "reason": "Reconstructed context-packets.jsonl differs."
+    },
+    {
+      "case": "rehash_target_denominator",
+      "rejected": true,
+      "reason": "Reconstructed cases.jsonl differs."
+    }
+  ],
+  "unmodified_full_replay_receipt_sha256": "47cd04acc45c1e32ce76420f8487d2752b3099c51edb39d78a80a52e89b14313"
+}

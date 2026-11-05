@@ -1,0 +1,15 @@
+{
+  "failures": [],
+  "source_head": "50e12e47167826cb1c39c3959d304a9a7bfcab65",
+  "cases_reconstructed": 200,
+  "context_packets_reconstructed": 200,
+  "annotation_slots_reconstructed": 1326,
+  "original_source_messages_checked": 187734,
+  "full_source_contexts_verified": true,
+  "complete_message_budgets_hold": true,
+  "source_inputs_and_old_ledgers_unchanged": true,
+  "new_model_calls": 0,
+  "manifest_sha256": "325aee689a603929d9e729190a836628e5a300542543f79a6ac3d64c4892d01e",
+  "audit_seconds": 8.28200000000652,
+  "claim": "Authored deterministic replay, not independent semantic sufficiency or observed-event validation."
+}

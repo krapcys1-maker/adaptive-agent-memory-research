@@ -1,5 +1,18 @@
 # Safe handover — 2026-11-04
 
+## Current continuation: source-context repair and full evidence diagnosis (2026-11-05)
+
+[Complete model-free result](data/lab/beam-evidence-boundary-v2/README.md): all200cases,176with reference annotations/24without.1326declared slots include1325numeric IDs and1unresolved `--` marker; all numeric IDs map to the original archive.1216outside16candidates,34retrieved-but-budget-omitted,5shown-partial,70shown-full. All target sources shown in16/176cases,28/176at candidate stage. This is a source-ID coverage proxy, **not semantic sufficiency or a model/answer ceiling**. Old Bhas11authored passes even with no annotated source shown; annotations are not exhaustive evidence truth.
+
+New frozen `tools/source_context_v1.py` retains complete first paragraph/active ATXheading ancestry as literal source-span dependencies under the same complete-message budget. Known example heading7-Q0000is structurally preserved; no new reader verifies semantic benefit.705old windows become390; all-target coverage16to15,197packets lose windows. Semantic status remains unresolved. Ordinary distant prose/intent/negation scope still fails in a retained negative fixture. Accept this inspectable engineering interface only; **keep packet experimental, no adoption or general#110closure**.
+
+V1code5b70e0e failed on the explicit `--` marker in6-Q0004; started/failure receipt and code retained. V2amend50e12e4 frozen before full pass preserves that unresolved slot/valid siblings without guessed ID or denominator deletion. Runtime8.266seconds/1548160bytes; authored replay8.282seconds,200packets/1326slots/187734message mapping,zero failures. Three forged private copies rejected even after rebound hashes.117focused checks pass (71new/46existing). New head needs own CI; previous deliverye8c2523 has12successful jobs/3447passed21skipped per Linux3.11/3.12.
+
+0newmodel/APIcalls; all H1/API/BEAMledgers/input/snapshot hashes unchanged. PR105cumulative4824=4361local+463Flash;H13262/3300,BEAM605/650,paid reservations$1.852/recorded upper$0.073913unchanged. Registry85historical rows preserves original84byte prefix; executed successor fulfils original pending registration. No NIE/persona/deployment/shared-plan/original-worktree/frozen predecessor edit.
+
+Private new evidence: `D:\Pamiec LLM\GH_REVIVAL\beam-evidence-boundary-2026-11-05`, failed diagnostic-v1 and completed diagnostic-v2 kept. Full sources stay in prior immutable archives. Before this stage, final deliverye8c2523actually restored clean (121files/78refs/fsck0), chained to result50158dd. Later delivery receipts must identify their own heads. Next admissible work is label-free source/instruction/preference retrieval and sufficient-evidence measurement before a separately frozen reader protocol; do not spend spare ledger allowance on hidden retries. Latest result does not change old N19/B39/Cdel32or faulty reference annotations.
+
+
 ## Delivery confirmation for the completed BEAM study (2026-11-05)
 
 Result/source commit50158ddb40e02e43ca9de8d929fe101ec6414052 passed all12CI jobs: **3447passed/21skipped on each Linux Python3.11/3.12**, run41996840238. The [delivery receipt](data/lab/beam-reader-evidence-v1/delivery.json) binds those exact results, GitHub readbacks and the verified private restoration. This later receipt/documentation commit has separate CI; never infer its status from an older head.
