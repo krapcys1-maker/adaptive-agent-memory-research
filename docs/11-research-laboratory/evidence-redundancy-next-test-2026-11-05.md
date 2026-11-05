@@ -21,3 +21,8 @@ The decisive downstream test is automatic extraction/routing and every H1 family
 ## Execution boundary
 
 **Not run.** The existing H1 cap has only 24 attempts left (2776/2800); this design needs 147 and therefore does not fit. A separate explicit phase/resource amendment and code/input freeze are required before execution; do not reset the old ledger or silently extend its cap. No paid API call, sealed data, NIE change or deployment is part of this proposed test. There is no reason to spend calls until its contrasts and neutral-control confounds are reviewed. This is one pending design, within the operating doctrine's two-design limit.
+
+
+## Execution update — 2026-11-05
+
+The proposal and its previous "not run/resource amendment required" state above are historical. Cap amendment `6a24f95`, code/preparation `0cac1cd`, and raw freeze `edeb178` preceded the separate score. [Density results](../../data/lab/h1-evidence-density-v1/README.md):147local calls, one stale leak on developmentQ000045 only in stale-repeat/correction-first, all other conditions24/24. This is different from the original validationQ000043 failure, which remains in the original records. The separately frozen [whole-H1 order study](../../data/lab/h1-chronological-pack-v1/README.md) also completed:339local calls, dev77to75/84, valid70to72/84 and2to0leaks. No adoption; preserve scorer caveats and native variability. No new paid calls. The execution registry records are retrospective links to prior protocol freezes, not retroactive preregistration.

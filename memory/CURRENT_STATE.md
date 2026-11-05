@@ -6,6 +6,14 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
+**Latest continuation — 2026-11-05:** [HANDOVER](../HANDOVER.md) has the exact freezes and costs. Completed [density](../data/lab/h1-evidence-density-v1/README.md):147local, one devQ000045 stale leak in repeat-old/correction-first, other five arms24/24. Completed [all-family order comparison](../data/lab/h1-chronological-pack-v1/README.md):339local, dev77→75/84, valid70→72/84 and2→0leaks; only17reordered pairs,151same-message controls. Same-seed native variability and a mechanical scorer wording miss are explicit. Fresh-transfer candidate only, no adoption. The historical v5 results76/71 remain unchanged.
+
+H1 ledger3262/3300 after prior explicit amendment; PR105 total4219attempts (3756local/463Flash). No new API, reservations$1.852/usage upper estimate$0.073913 unchanged; local worker unloaded. New packet audits480primary, zero failures; pinned focused tests10pass. Earlier full3372/20 and12-jobCI receipts apply to their recorded heads. Registry79rows with old prefix/history preserved. [Competitive calibration](../docs/05-benchmarks/mab-comparison-and-model-bottleneck-2026-11-05.md) includes CAR41% at262K alongside older reference points: our55/59exact (55/60secondary SubEM) is promising development evidence, not a matched company ranking. Next work is a common-protocol external comparison, not single-case tuning. NIE/old worktrees/frozen code/shared plan remain unchanged.
+
+The older blocks below are preserved historical snapshots; their pending experiments and caps/counts are superseded above.
+
+
+
 **Current continuation (2026-11-05):** [HANDOVER](../HANDOVER.md) supersedes older
 status snapshots. Audit committed/pushed at `5eeb8cc`; new boundary code at
 `b353695` passes focused checks and all 12 CI jobs. Exact-text replay prevents

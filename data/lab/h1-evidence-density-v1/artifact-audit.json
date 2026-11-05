@@ -1,0 +1,70 @@
+{
+  "phase": "density",
+  "failures": [],
+  "reconstructed_primary_packets": 144,
+  "actual_local_calls": 147,
+  "api_ledger_unchanged": true,
+  "h1_ledger_before": 2776,
+  "h1_ledger_after_phase": 2923,
+  "local_cap": 3300,
+  "parse_failures": 0,
+  "unique_primary_messages": 144,
+  "identical_paired_messages": null,
+  "native_usage_by_arm": {
+    "neutral_first": {
+      "n": 24,
+      "message_bytes": 25698,
+      "prompt_eval_count": 5922,
+      "eval_count": 408,
+      "done_reasons": {
+        "stop": 24
+      }
+    },
+    "neutral_last": {
+      "n": 24,
+      "message_bytes": 25698,
+      "prompt_eval_count": 5922,
+      "eval_count": 408,
+      "done_reasons": {
+        "stop": 24
+      }
+    },
+    "stale_repeat_first": {
+      "n": 24,
+      "message_bytes": 26723,
+      "prompt_eval_count": 6543,
+      "eval_count": 517,
+      "done_reasons": {
+        "stop": 24
+      }
+    },
+    "stale_repeat_last": {
+      "n": 24,
+      "message_bytes": 26723,
+      "prompt_eval_count": 6543,
+      "eval_count": 414,
+      "done_reasons": {
+        "stop": 24
+      }
+    },
+    "correction_repeat_first": {
+      "n": 24,
+      "message_bytes": 26298,
+      "prompt_eval_count": 6295,
+      "eval_count": 408,
+      "done_reasons": {
+        "stop": 24
+      }
+    },
+    "correction_repeat_last": {
+      "n": 24,
+      "message_bytes": 26298,
+      "prompt_eval_count": 6295,
+      "eval_count": 414,
+      "done_reasons": {
+        "stop": 24
+      }
+    }
+  },
+  "claim": "Authored deterministic integrity replay, not independent semantic evaluation."
+}

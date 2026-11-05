@@ -1,5 +1,22 @@
 # Safe handover — 2026-11-04
 
+## Latest continuation — density, whole-H1 ordering and competitive calibration (2026-11-05)
+
+Read this block before older snapshots. Density protocol/code `0cac1cd`, raw freeze `edeb178`: all24public OBSOLETE cases, six arms,147actual local calls. Stale-repeat with correction first loses developmentQ000045 (23/24, one leak); the other five arms24/24. ValidationQ000043 passes these controls but its original pack failure remains. [Result](data/lab/h1-evidence-density-v1/README.md).
+
+Whole-H1 paired order protocol/code `959b6c3`, raw freeze `5b195ce`: all168questions/seven families,339new local calls. New original→chronological: dev77→75/84; valid70→72/84 with2→0leaks. Only17pairs reorder;151identical-message controls contain28text differences and one mechanical score difference. Prior v5 counts76/71 remain unchanged. A POISON mechanical loss retains the safe policy in both answers: authored qualitative inspection is separate from unchanged scorer/gold. Validation screen passes for fresh transfer candidacy **only**; no adoption. [All evidence/limits](data/lab/h1-chronological-pack-v1/README.md).
+
+Both offline audits reconstruct480primary native packets with zero failures/parse errors; six transport controls passed. This is authored integrity replay, not independent semantic review. The pinned focused suite passes10tests; prior complete gates3372pass/20skip are from the earlier boundary delivery, not this new head. Check latest-head CI separately. Current claim audit retains45medium/22low findings.
+
+Cumulative H1 local cap explicitly amended before calls at `6a24f95`:3262/3300 attempts now; old prefix retained. This continuation adds486local,0API. PR105 total4219 =3756local+463Flash; paid reservations$1.852, recorded usage upper estimate$0.073913 unchanged. No Pro/fallback/judge/project-planning calls. Owned local model unloaded. The earlier "147 not run/2776 of2800" notes remain dated history.
+
+[External comparison](docs/05-benchmarks/mab-comparison-and-model-bottleneck-2026-11-05.md): published FC-MH reference points include Mem0 2, Zep3, HippoRAG-v2 5, GPT-5-mini28, and CAR/GPT-4o41 at262K. Ours: local55/100 and Flash59/100 exact; secondary SubEM55/60. Different models/ingestion/policy/budgets and spent development prohibit a vendor ranking. The old graph predates safer exact-only capture; do not ascribe its capture efficiency to the repair. Separation of extraction from execution is prior art, not our novelty claim. Paired old outputs:55both correct,41both wrong,4Flash-only,0local-only; posthoc p=.125 is not equality/superiority proof.
+
+Next admissible work: source-pinned common-protocol external adapter/baseline and measurement-validity accounting, without changing old scores or opening confirmation seeds. The pending density registry row is preserved and explicitly superseded by executed DENS-E1-002; ORDER-E1-001 is also completed. Cataloguing is retrospective with prior freeze evidence,79rows total.
+
+No frozen predecessor, original dirty worktree, NIE personality/integration or deployment changed. Rechecked14original worktrees/32,035files,20frozen paths, NIE status/head/diff and shared plan: unchanged. PR105 remains draft; no community/Claude independent review is implied.
+
+
 ## Current continuation — 2026-11-05
 
 The owner authorized implementation and ongoing GitHub updates/community problem reports. The audit below is a preserved historical snapshot, now committed at `5eeb8cc` and pushed; its old "local/uncommitted/no subsequent inference" statements describe the audit itself. PR105 remains draft. No frozen implementation, kernel, original worktree, NIE personality/prompt or deployment was changed.

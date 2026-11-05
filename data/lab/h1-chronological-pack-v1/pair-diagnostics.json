@@ -1,0 +1,109 @@
+{
+  "groups": [
+    {
+      "split": "dev",
+      "group": "identical_messages",
+      "n": 77,
+      "text_differences": 13,
+      "original": {
+        "answered": 70,
+        "leaked": 0,
+        "clean_answered": 70
+      },
+      "chronological": {
+        "answered": 69,
+        "leaked": 0,
+        "clean_answered": 69
+      }
+    },
+    {
+      "split": "dev",
+      "group": "changed_order",
+      "n": 7,
+      "text_differences": 1,
+      "original": {
+        "answered": 7,
+        "leaked": 0,
+        "clean_answered": 7
+      },
+      "chronological": {
+        "answered": 6,
+        "leaked": 0,
+        "clean_answered": 6
+      }
+    },
+    {
+      "split": "valid",
+      "group": "identical_messages",
+      "n": 74,
+      "text_differences": 15,
+      "original": {
+        "answered": 62,
+        "leaked": 0,
+        "clean_answered": 62
+      },
+      "chronological": {
+        "answered": 62,
+        "leaked": 0,
+        "clean_answered": 62
+      }
+    },
+    {
+      "split": "valid",
+      "group": "changed_order",
+      "n": 10,
+      "text_differences": 4,
+      "original": {
+        "answered": 8,
+        "leaked": 2,
+        "clean_answered": 8
+      },
+      "chronological": {
+        "answered": 10,
+        "leaked": 0,
+        "clean_answered": 10
+      }
+    }
+  ],
+  "metric_changed_pairs": [
+    {
+      "split": "dev",
+      "id": "Q000023",
+      "group": "identical_messages",
+      "family": "DELAYED",
+      "clean_delta": -1,
+      "leak_delta": 0
+    },
+    {
+      "split": "dev",
+      "id": "Q000049",
+      "group": "changed_order",
+      "family": "POISON",
+      "clean_delta": -1,
+      "leak_delta": 0
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "group": "changed_order",
+      "family": "OBSOLETE",
+      "clean_delta": 1,
+      "leak_delta": -1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "group": "changed_order",
+      "family": "OBSOLETE",
+      "clean_delta": 1,
+      "leak_delta": -1
+    }
+  ],
+  "parent_original_text_drift_count": 24,
+  "input_sha256": {
+    "raw_freeze": "55ca1b4993987a7cf51545b2da2572e3a1e5edfad5e6c064ea4193ff0a66242f",
+    "scored_records": "929461e80d4b2815f3d780dabd69387c26766aa0adb227931d22da0061df8d60"
+  },
+  "new_inference_calls": 0,
+  "interpretation": "Post-hoc stability control. Same seed/temperature does not guarantee byte-identical live outputs. Attribute no same-message differences to sorting; do not upgrade a screen to confirmation."
+}
