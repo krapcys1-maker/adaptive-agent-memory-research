@@ -69,3 +69,10 @@ python -X utf8 tasks.py fast
 The registry command counts **historical rows**, not deduplicated live tasks. `-X utf8` avoids the observed Windows help-output encoding failure without modifying a frozen module or shared environment. Model runners are separate explicit commands under their own frozen protocols; these entry commands never launch them.
 
 Every finished item leaves: result+decision in the registry, immutable raw/source identities, complete costs/failures, current handover and a sourced canonical-memory event, a verified GitHub update and private recovery receipt. EngineeringCI at `58bdcfc` passed12/12jobs, including full3377pass/21skip on each Linux Python3.11/3.12; see [receipt](../../data/lab/h1-chronological-pack-v1/delivery.json). This supports the recorded software head, **not** semantic generalization, competitive superiority or later documentation hashes.
+
+
+## Execution update: first external-comparison stage completed (2026-11-05)
+
+The data/interface stage under#51/#7 now has [full BEAM10M format evidence](../../data/lab/beam-transfer-format-v2/README.md): all10pinned conversations,187,734messages and200probes, with reader/evaluator separation and exact reconstruction. Initial v1 partial success and full-data null-time rejection are retained; v2 preserves explicit unknown time. No memory/reader run or benchmark score.6focused tests,0model calls; prior caps/ledgers unchanged.
+
+New scale evidence changes implementation priority:30,177messages exceed the old4500byte limit even before headers;187,054scoped role/text keys are distinct. Before inference, implement auditable bounded source windows and decide affordable capture versus query-time interpretation, without discarding history or silently swapping the current graph candidate for raw retrieval. The active comparison item remains open for the full mechanism/baseline/evaluation freeze; no additional unexecuted model experiment was registered.

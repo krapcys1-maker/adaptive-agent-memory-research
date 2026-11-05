@@ -6,6 +6,10 @@ Research a local-first, model-agnostic long-term memory layer for LLM agents. Th
 
 ## Current phase
 
+**Latest external-transfer stage (2026-11-05):** [BEAM format/evidence audit](../data/lab/beam-transfer-format-v2/README.md) completed for all10pinned conversations:187,734messages/200probes, exact reconstruction, reader/evaluator separation. V1partial success/full-data null-time failure retained; v2 preserves unknown time.6focused checks,0model calls, no memory accuracy/official score.30,177texts exceed old4500byte cap and187,054scoped role/text keys are distinct: next work is bounded provenance windows/capture cost, then a full frozen model comparison. Caps/ledgers unchanged (H13262/3300,API463/$1.852), prior4219inference attempts unchanged. Registry80historical rows; memory366events/0violations. HANDOVER has exact freezes; NIE/old code/data preserved.
+
+
+
 **Active laboratory (2026-11-05):** [operating view and positioning](../docs/11-research-laboratory/active-lab-2026-11-05.md). Source-grounded state-memory prototype plus existing research instruments; no unique architecture or validated product. APEX/Graphiti/CAR overlap the main ideas. One next common-protocol external comparison under#51/#7; concepts remain a ranked backlog. Freeze the whole pipeline before unused data, keep true N/ordinary retrieval/candidate/competitor separate, and report full cost/failures. No new inference or cap extension. Code/results58bdcfc CI12/12, full3377pass/21skip on each Linux3.11/3.12 ([receipt](../data/lab/h1-chronological-pack-v1/delivery.json)); later docs are separate. Memory365events/0violations. Read the latest HANDOVER before historical blocks below.
 
 

@@ -1,5 +1,16 @@
 # Safe handover — 2026-11-04
 
+## Current continuation: external BEAM data boundary completed (2026-11-05)
+
+[BEAM format result](data/lab/beam-transfer-format-v2/README.md) is the latest stage under#51/#7. Prepared the complete pinned repository10M-tier source selection:10conversations,187,734messages,200probes across10abilities.20Git-blob/size-verified JSON files total471,872,306bytes. Upstream prefers `chat_trunecated.json`; no pickle/external code/default model client executed. Raw text/questions/annotations stay private. Reader question keys are only opaqueID/conversationID/question; construction metadata and all evaluator annotations are separate.
+
+Frozen v1codefc5429b succeeded on the original one-conversation cache, then rejected full data on an explicit null time anchor in conversation7. Failure/output directory retained. Frozen v2code24432f2 preserves null as unknown, separately from absence, without inferred calendar/fact validity. All187,734messages and200question/annotation pairs reconstruct exactly.6focused tests include forged hash plus reader-label-leak rejection. This is authored engineering evidence, **not memory accuracy or an official BEAM reproduction**.
+
+Scale diagnostics:30,177message texts exceed the prior H14500byte cap even without headers;187,054distinct scoped role/text keys and680duplicate opportunities. These are not token counts, guaranteed cache reuse or a universal model-call lower bound. Next: bounded source windows with provenance and affordable capture policy, then freeze the complete candidate/baseline/evaluation/resource protocol. Do not hide capture cost or call ordinary retrieval the same graph candidate. Official scoring has model dependencies; no model judge is authorized.
+
+0newlocal/0paid calls in this stage. H1ledger3262/3300 and API463/$1.852reserved unchanged, retained prefixes verified. Prior totalPR105inference4219unchanged. Registry80rows with old79byte prefix preserved, retrospective format-entry linked to prior code freezes. Memory366events/0violations. Prior documentation head51d4e27 CI completed successfully; new format code requires its own checks. No NIE/persona/frozen predecessor/original dirty worktree changes.
+
+
 ## Laboratory identity and next active work (2026-11-05)
 
 Owner explicitly requests a working concept-testing laboratory. [Active operating view](docs/11-research-laboratory/active-lab-2026-11-05.md) reuses the existing doctrine, instruments, registry, comparative contract and adapters. Current identity: source-grounded state-memory research prototype; model-assisted interpretation/selection, local persistence and inspectable code execution. No generic final-product or unique-architecture claim. APEX-MEM/Graphiti/CAR overlap the core ideas; Mem0/Hindsight current descriptions are author claims, not new reproductions.
