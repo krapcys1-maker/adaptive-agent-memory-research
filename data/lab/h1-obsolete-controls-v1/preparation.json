@@ -1,0 +1,32 @@
+{
+  "cases": 24,
+  "primary_calls": 96,
+  "controls": 3,
+  "planned_calls": 99,
+  "packet_sha256": "3abe939ef66ea7719ae1fd531b7fdc434c92ee120d076d337b0fdc8774f22af2",
+  "input_sha256": {
+    "dev/history": "665dc5f293f6505560adf60f9f40e49d67bd15d75fc1a5091dfa79be8dce6071",
+    "dev/questions": "8ebc0defba5cab8b39667251adfeffba511643ffcbed30b74ce394d578e7d2d6",
+    "dev/gold": "964be5aba722e85bd82c29d3b3cebe1da58c036333cf72ab76d212571f4cac62",
+    "dev/roles": "eeb8204010c1c2e0f87c8aa406f3e0dcf62f99a17bed50019821f74f6436e496",
+    "dev/store": "dd6bf36376bbdcb556c9f33786cfce21a81295bc8376d230e9dc97a9e41164e7",
+    "dev/reader-freeze": "ce9689784d199c5eef69e4b3d1ccdfe01e9d63e0cae92e246ebe29750c4196e7",
+    "valid/history": "0ccebc27903aecdbd445a546d1e730aba167d7c340d804d1dafb0cfa9172498c",
+    "valid/questions": "35ab0c38ab2536af783e02e2cff72197655e6492d726466200411fd0c1de0969",
+    "valid/gold": "4aff5a319953ae01511e8af4e0c35ae3bd61abb2ac0901d07d0e05197b157ebc",
+    "valid/roles": "3ce0d63f1cd176438ab852c3e4b9f37fa5f34d64d15fe12e1993f97240117623",
+    "valid/store": "80a0d367a0b9d7887de87c02c595b54a4973faa0eafdc1c5eb2e6ba02e4ddc8c",
+    "valid/reader-freeze": "82eb3649eb83615d53246aef209258bba0f3fe92fdb297625060de883cca7a75"
+  },
+  "local_ledger_before": 2677,
+  "local_ledger_sha256_before": "38a82ec31eaaa9f03d25e733f13e91ab796dd86e76898af0c16069432bd1eab4",
+  "api_ledger_sha256_before": "a3492c363f54f5aacae52a11f051f654194190ea988c037b6d0c2e9203940943",
+  "oracle_source_ids": true,
+  "answer_labels_in_packets": false,
+  "arms": [
+    "original",
+    "oracle_only",
+    "old_then_new",
+    "new_then_old"
+  ]
+}
