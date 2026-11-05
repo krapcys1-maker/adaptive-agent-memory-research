@@ -1,6 +1,8 @@
 # Current project state
 
-Latest completed local upgrade: [report](../data/lab/local-model-upgrade-v2/README.md). H1M14B73/84,9B82/84; BEAMM39/40of200,N19each. Four unsafe9BNanswers: no promotion/default/judge change. Gemma251/655aborted; no full score. Task1564local0paid; PR1056388total. Native replay0failures;434authored/reused verdicts;17dirty files preserved; registry88/memory377. Supported removal of unused Llama3/LLAVA reclaimed12672481170exclusive bytes. Latest HANDOVER controls continuation before dated history below.
+Latest completed local upgrade: [report](../data/lab/local-model-upgrade-v2/README.md) and [delivery receipt](../data/lab/local-model-upgrade-v2/delivery.json). H1 memory-on 14B 73/84 versus 9B 82/84; BEAM memory-on 39/200 versus 40/200, memory-off 19/200 for both. Four unsupported 9B memory-off answers and the fixed gain screen prevent promotion. Gemma stopped at 251/655 with no full score. Task 1,564 local / zero paid; PR105 total 6,388. The existing result head 0688e9b has 12/12 successful CI jobs (3,587 passed / 21 skipped per Linux Python 3.11/3.12) and an actual verified private restore. Defaults, judge and personality remain unchanged; only unused Llama3/LLAVA were removed with reinstall identities saved.
+
+Continuity is finalized in [HANDOVER](../HANDOVER.md); three superseded local-upgrade sections are preserved verbatim in [stage history](../data/lab/local-model-upgrade-v2/stage-history.md). No scoring, Gemma resume or spare-budget run is pending. Registry remains 88 historical rows; canonical memory is 378 events with its prior 377-event prefix preserved. This documentation update adds zero model calls; later documentation heads have separate PR checks. Dated phase records below describe earlier states.
 
 ## Objective
 

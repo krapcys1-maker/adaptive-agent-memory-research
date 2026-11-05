@@ -58,7 +58,7 @@ V1 stopped at3controls because an otherwise correct refusal had one terminal per
 
 No candidate is promoted.9B improves H1 M and memory-on latency, but four N answers fabricate disabling deployment gates/checks. They are real affirmative outputs, not negated-phrase scoring errors. All four follow M and are English; language/order are confounded, so cache carry-over is an unproven hypothesis. The primary all-arm median is effectively unchanged and BEAM gain is only0.5pp, below the predefined5pp alternative. The original screen therefore rejects promotion; M-only speed and VRAM savings do not retroactively replace that screen.
 
-New isolated versioned runners, native auditor and authored-review tool preserve old code/defaults.63focused boundary/forgery checks pass. Runtime sourcea71765f passed12CI jobs (3577passed/21skipped per Linux3.11/3.12). Raw/review-tool633306c has its own successful12-job CI42020602267. Local earlier preflight3544passed/20skipped. Later result/delivery heads have separate CI; see delivery receipt.301prior verdicts were reused only for identical question/reference/answer;133new verdicts were authored,434total within-question distinct answers. Reasons/raw data stay private.
+New isolated versioned runners, native auditor and authored-review tool preserve old code/defaults.63focused boundary/forgery checks pass. Runtime sourcea71765f passed12CI jobs (3577passed/21skipped per Linux3.11/3.12). Raw/review-tool633306c has its own successful12-job CI42020602267. Local earlier preflight3544passed/20skipped. Result commit 0688e9b passed its own 12/12 CI jobs (3,587 passed / 21 skipped on each Linux Python 3.11/3.12); the [delivery receipt](delivery.json) binds that run and the actual private restore. Later documentation heads have their own PR checks.301prior verdicts were reused only for identical question/reference/answer;133new verdicts were authored,434total within-question distinct answers. Reasons/raw data stay private.
 
 ## E. Cleanup and rollback
 
@@ -84,7 +84,7 @@ Common decoding: temperature0, seed7, context8192, output512, top_p1, top_k0, re
 
 Task1564/2000 =3failed V1 controls+655baseline+655Qwen9+251Gemma.0new paid/API calls. PR105now6388attempts =5925local+463historical Flash; old H13262/3300,BEAM605/650 and API ledger bytes remain unchanged. Paid historical reservations1.852USD/recorded usage upper0.073913USD unchanged. No spare-budget filling is authorized.
 
-Private artifacts: `D:\Pamiec LLM\GH_REVIVAL\local-llm-upgrade-2026-11-05`; audit/export/copies in the dated Codex visualization directory. Actual restoration evidence is recorded in the private VERIFIED.json and delivery receipt. Shared C-017/root Claude handoff point here; no other-agent ACK is implied. No NIE personality, shared plan, original dirty worktree, frozen predecessor or historical answer was edited.
+Private artifacts: `D:\Pamiec LLM\GH_REVIVAL\local-llm-upgrade-2026-11-05`; audit/export/copies in the dated Codex visualization directory. Actual result restoration evidence is summarized in [delivery.json](delivery.json) and retained in the private VERIFIED.json. Intermediate registration/amendment/raw-freeze handovers are preserved verbatim in [stage-history.md](stage-history.md); their pending statements are superseded by this completed report. Shared C-017/root Claude handoff point here; no other-agent ACK is implied. No NIE personality, shared plan, original dirty worktree, frozen predecessor or historical answer was edited.
 
 ## G. RTX3060 recommendation
 

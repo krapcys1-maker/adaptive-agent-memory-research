@@ -10,4 +10,4 @@ Read `AGENTS.md`, `START_HERE.md`, and `memory/CURRENT_STATE.md` for the full wo
 
 Before choosing what to work on, read `docs/00-project/operating-doctrine.md`. It carries the selection rule, the work-in-progress limit, and what counts as success.
 
-Latest continuation: read data/lab/local-model-upgrade-v2/README.md and the newest HANDOVER. No automatic model/judge migration.1564local0API; Gemma incomplete; other agents/persona preserved.
+Latest continuation (2026-11-05): the local-model audit is complete. Start with [HANDOVER](HANDOVER.md) and the [report](data/lab/local-model-upgrade-v2/README.md); the [delivery receipt](data/lab/local-model-upgrade-v2/delivery.json) binds result CI and restoration. [Intermediate stages](data/lab/local-model-upgrade-v2/stage-history.md) have no pending instructions. Keep the historical default/judge; 9B failed promotion and Gemma is incomplete. Documentation finalization adds zero model calls.
