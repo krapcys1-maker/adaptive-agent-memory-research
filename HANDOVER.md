@@ -1,5 +1,14 @@
 # Safe handover — 2026-11-04
 
+## Delivery confirmation: evidence-boundary diagnosis (2026-11-05)
+
+Result/source281b7c2 passed all12CI jobs; full Linux Python3.11/3.12 each **3521passed/21skipped**, run42004606394. The later delivery/documentation head has separate CI.
+
+The [delivery receipt](data/lab/beam-evidence-boundary-v2/delivery.json) records the exact tested result head281b7c2 and actual clean private restore (164files/78refs/fsck0), chained to beam-reader-delivery-final. GitHub#110/#51/#7/#84 and draftPR105 readbacks verified; general#110remains open. This later receipt/doc commit has separate CI. New engineering interface remains experimental; old N19/B39/Cdel32and all counters remain unchanged. Root Claude/Polish handoffs plus append-onlyC-016 identify this continuation. Private backup path: `D:\Pamiec LLM - audit backups\2026-11-05\beam-context-delivery`; a later beam-context-delivery-final supplement uses its own VERIFIED.json/head.
+
+Post-hoc role composition:2403/3200candidate windows are assistant-origin, whereas1244/1325numeric target references are user-origin. These count different populations, not a causal effect or a user-only policy endorsement; both window and distinct-case/source counts are in the result supplement. Next evaluate source/instruction selection under a separate frozen protocol, preserving scope/role/uncertainty and the current negative controls. No reader rerun, API spend or integration remains pending for this completed phase. Memory373/0violations; registry85historical entries.
+
+
 ## Current continuation: source-context repair and full evidence diagnosis (2026-11-05)
 
 [Complete model-free result](data/lab/beam-evidence-boundary-v2/README.md): all200cases,176with reference annotations/24without.1326declared slots include1325numeric IDs and1unresolved `--` marker; all numeric IDs map to the original archive.1216outside16candidates,34retrieved-but-budget-omitted,5shown-partial,70shown-full. All target sources shown in16/176cases,28/176at candidate stage. This is a source-ID coverage proxy, **not semantic sufficiency or a model/answer ceiling**. Old Bhas11authored passes even with no annotated source shown; annotations are not exhaustive evidence truth.
