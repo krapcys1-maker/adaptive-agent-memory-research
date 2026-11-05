@@ -99,5 +99,12 @@
     "Full suite runtime sources match b353695; later work adds data/docs and a separately exercised replay auditor.",
     "Fixed requirements pins verified in isolated environment; global conflicts were not modified.",
     "No independent semantic confirmation, general capture-efficiency or production-readiness claim."
-  ]
+  ],
+  "post_results_ci": {
+    "head": "db6951bb2d1814aff5b7e9b823b1372cc2a7ec78",
+    "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/runs/41969418365",
+    "conclusion": "success",
+    "successful_jobs": 12,
+    "scope": "Code plus control results/replay/docs at db6951b; later registry-only catalog append has separate validation."
+  }
 }

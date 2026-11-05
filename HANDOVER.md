@@ -13,6 +13,8 @@ The owner authorized implementation and ongoing GitHub updates/community problem
 
 New local raw evidence/logs/environment are outside Git at `GH_REVIVAL/boundary-repair-2026-11-05`; do not upload the environment or raw requests/answers. Project memory records the boundary cost tradeoff (`PM-20261105-7f46e820`) and reader diagnostic (`PM-20261105-62cf25c0`). Follow the newer status block before the historical audit handover below.
 
+Registry continuity: appended `PMLAB-BOUNDARY-E1-001` and `PMLAB-H1-CTRL-E1-001` with completed results/decisions, plus one pending `PMLAB-H1-DENS-E1-001`. The previous 74 CSV rows are byte-preserved. These entries were catalogued **after execution**, with the earlier plan/code/raw freeze commits separately documented; the catalog append is not a claim of prospective registry entry. This does not backfill every older November study or execute the original unchanged H1-ADDR-E2 protocol.
+
 ## Historical audit handover
 
 Read [AUDIT_REPORT.md](AUDIT_REPORT.md) first. **The repository and prior work are preserved; the new memory candidate is not ready for general use.** This is a local uncommitted audit delivery on top of `cb6d72dc1610d8c9308f2cb5a73f2e452803fa1f`, not an independent Claude approval or a merged feature release.
