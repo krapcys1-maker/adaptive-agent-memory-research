@@ -1,0 +1,7 @@
+# Evidence boundary v2: retain an explicit unresolved source marker
+
+Amendment2026-11-05, before the v2corpus pass. Frozen v1code5b70e0e stopped on BEAM10M-6-Q0004's explicit source_chat_ids marker "--" nested alongside18numeric IDs. Its exclusive private output diagnostic-v1 contains started.json/failure.json and is retained. No model calls or published answer score; no sources/labels were edited.
+
+V2 retains the full original [protocol](../beam-evidence-boundary-v1/PLAN.md), frozen source_context_v1, candidate order, contexts/budgets, all200cases and resource caps. The sole parsing/denominator amendment recognizes exactly "--" as one unresolved annotation slot with a retained structural path. It is not a source ID, archive absence, retrieval miss or evidence hit. Numeric IDs still require the original strict parser; other malformed values still fail. Valid siblings are deduplicated per case; each unresolved slot remains in that case's target denominator, preventing an all-target success when a declaration is incomplete. Missing annotation fields remain separate.
+
+Freeze v2 before its exclusive new diagnostic-v2output. Report the failed original attempt and amendment. No answer values or result-dependent retrieval are introduced; the context builder still receives no annotations. Coverage remains an annotation-ID proxy, not semantic sufficiency. No retries of model calls, new inference/cap, changed old result, or NIE integration.
