@@ -1,0 +1,76 @@
+{
+  "schema": "local-model-upgrade-v2",
+  "cases": {
+    "h1": 84,
+    "beam": 200
+  },
+  "primary_per_model": 568,
+  "repeat_per_model": 84,
+  "controls_per_model": 3,
+  "calls_per_model": 655,
+  "task_cap": 2000,
+  "maximum_models": 3,
+  "packet_sha256": "d6fd978d6ac2cfe8a9c48054828698fbb34083e3958aaee91361cc56dd530faf",
+  "config_sha256": "98ae48fc0cbeba1a2fd066f25f78b778cfde76b0745c368834b2e63c4a23cbb2",
+  "protected_inputs": [
+    {
+      "name": "h1-ledger",
+      "sha256": "c491b6f3bf406f8b3b495ee5878ff292049be911ddcbb0d3d5b6d66ccc8e7055"
+    },
+    {
+      "name": "api-ledger",
+      "sha256": "a3492c363f54f5aacae52a11f051f654194190ea988c037b6d0c2e9203940943"
+    },
+    {
+      "name": "beam-ledger",
+      "sha256": "dd4479cf564acbfda3422e28a094ab2606b6a23fc7d8df3bb8bbb9b087e07417"
+    },
+    {
+      "name": "h1-parent-freeze",
+      "sha256": "82eb3649eb83615d53246aef209258bba0f3fe92fdb297625060de883cca7a75"
+    },
+    {
+      "name": "beam-parent-freeze",
+      "sha256": "8d6dc32170742c0ed35fa47a207f440c3e1c4ecec42ed7b97dea91dee86f03e7"
+    },
+    {
+      "name": "beam-packets",
+      "sha256": "a023bcce76cb33f4e0fa57e1faa65213bedf94afb344fcf6ebdd7ca37eeb86b3"
+    },
+    {
+      "name": "h1-history",
+      "sha256": "0ccebc27903aecdbd445a546d1e730aba167d7c340d804d1dafb0cfa9172498c"
+    },
+    {
+      "name": "h1-gold",
+      "sha256": "4aff5a319953ae01511e8af4e0c35ae3bd61abb2ac0901d07d0e05197b157ebc"
+    },
+    {
+      "name": "h1-questions",
+      "sha256": "35ab0c38ab2536af783e02e2cff72197655e6492d726466200411fd0c1de0969"
+    },
+    {
+      "name": "h1-scorer",
+      "sha256": "1a8d2bbd206233fe350b98b6350a3c231e335ed604e202abaaf14741b5b519d9"
+    },
+    {
+      "name": "v1-failed-raw-freeze",
+      "sha256": "c33cdbcde12984118d788a1b8a4b2852f0ab09119df40cc079e3a8f452ae1990"
+    },
+    {
+      "name": "v1-failure-receipt",
+      "sha256": "09e812cb90b299161cef1198562638bf35e7cf5c5a7445746b443f1ccf830d0b"
+    }
+  ],
+  "gold_values_read_during_preparation": false,
+  "past_counts": {
+    "pr105_local": 4361,
+    "pr105_paid_attempts": 463,
+    "h1": 3262,
+    "beam": 605
+  },
+  "messages_max_utf8_bytes": 5589,
+  "retained_v1_attempts": 3,
+  "task_ledger_before": 3,
+  "task_ledger_sha256_before": "5173e67deee103d6a16138259ffe9bce3e8038e73e2597f16eb5d5b9b39770f6"
+}

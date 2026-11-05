@@ -1,0 +1,26 @@
+{
+  "schema": "local-model-upgrade-v2",
+  "task_call_cap": 2000,
+  "calls_per_model": 655,
+  "model_deadline_seconds": 10800,
+  "request_timeout_seconds": 300,
+  "models": {
+    "baseline14": {
+      "model": "qwen2.5:14b-instruct",
+      "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+      "presence_penalty": 0
+    },
+    "qwen35_9": {
+      "model": "qwen3.5:9b-q4_K_M",
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "presence_penalty": 1.5
+    },
+    "gemma4_12": {
+      "model": "gemma4:12b-it-q4_K_M",
+      "expected_manifest_prefix": "6114515d63c1",
+      "presence_penalty": 0,
+      "draft_num_predict": 3
+    }
+  },
+  "retained_v1_attempts": 3
+}

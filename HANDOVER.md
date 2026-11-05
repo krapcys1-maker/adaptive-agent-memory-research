@@ -1,5 +1,10 @@
 # Safe handover — 2026-11-04
 
+## Active local upgrade amendment v2 (2026-11-05)
+
+V1source9ad192d stopped after3controls and0primary calls because its exact control predicate rejected the valid refusal `I do not know.` with a terminal period. Failure/raw hashes committed atbbe7481; V1 stays failed and is not rewritten. [V2protocol](data/lab/local-model-upgrade-v2/PLAN.md) accepts exactly expected control text or that text plus one period, only for unrelated transport controls. Primary packet SHA d6fd978d6ac2cfe8a9c48054828698fbb34083e3958aaee91361cc56dd530faf is identical; no benchmark/gold/quality/decoding change.54focused checks pass. New private outputs are under the existing task root's `v2` subdirectory; shared root ledger/worker lock retain all3failed attempts, namespaced new keys, ceiling2000 (1968if3models complete). Do not start competing Ollama work. All other ownership/history safeguards from the dated registration below continue. Full raw commit must precede scoring; results/cleanup remain pending.
+
+
 ## Active continuation: controlled local-model upgrade (2026-11-05)
 
 Owner's new attached task explicitly authorizes a read-only audit, official fixed-quant local candidate installation, paired memory-off/on benchmarks and conservative cleanup. [Protocol](data/lab/local-model-upgrade-v1/PLAN.md) and [audit](data/lab/local-model-upgrade-v1/audit.json): old worktrees and seventeen dirty files preserved; historical Qwen14B judge/default unchanged; protected strict alias verified identical 7B weights. Qwen3.5 9B Q4_K_M installed with full digest56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90. No existing model removed or global configuration changed.
