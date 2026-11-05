@@ -1,5 +1,12 @@
 # Safe handover — 2026-11-04
 
+## Active continuation: controlled local-model upgrade (2026-11-05)
+
+Owner's new attached task explicitly authorizes a read-only audit, official fixed-quant local candidate installation, paired memory-off/on benchmarks and conservative cleanup. [Protocol](data/lab/local-model-upgrade-v1/PLAN.md) and [audit](data/lab/local-model-upgrade-v1/audit.json): old worktrees and seventeen dirty files preserved; historical Qwen14B judge/default unchanged; protected strict alias verified identical 7B weights. Qwen3.5 9B Q4_K_M installed with full digest56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90. No existing model removed or global configuration changed.
+
+New isolated task prepares all84H1valid and200BEAM N/M pairs at8192context, plus all84H1 M repeats and3controls per model (655/model; new cap2000; zero paid). Existing H13262/3300, BEAM605/650, paid463 and PR1054824 are historical prefixes, not reset. Do not run a competing Ollama task, alter prepared inputs or old evaluators/ledgers, switch defaults, touch NIE/persona, or infer semantic improvement from engineering tests. The raw task directory is private at `D:\Pamiec LLM\GH_REVIVAL\local-llm-upgrade-2026-11-05`; its worker lock/reservation ledger identifies ownership. Full raw freeze must be committed before any new label join. Results, optional promotion, cleanup and verified delivery remain pending at this dated source registration; later continuation supersedes this pending status without erasing it. New models are subjects only, never judges/planners.23focused boundary/forgery checks pass; whole-suite preflight is still running and is reported separately when complete.
+
+
 ## Delivery confirmation: evidence-boundary diagnosis (2026-11-05)
 
 Result/source281b7c2 passed all12CI jobs; full Linux Python3.11/3.12 each **3521passed/21skipped**, run42004606394. The later delivery/documentation head has separate CI.

@@ -1,0 +1,210 @@
+{
+  "audit_type": "authored read-only bounded local audit",
+  "initial_head": "6a2025ed5d3b8f647daa1c0b4cc20e5edb9ed58c",
+  "owned_worktree_initially_clean": true,
+  "ollama_version": {
+    "version": "0.40.13"
+  },
+  "initial_active": {
+    "models": []
+  },
+  "models": [
+    {
+      "name": "qwen2.5:14b-instruct",
+      "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+      "size": 8988124069,
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen2",
+        "families": [
+          "qwen2"
+        ],
+        "parameter_size": "14.8B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 32768,
+        "embedding_length": 5120,
+        "runner": "ggml"
+      },
+      "parent_model": "",
+      "parameters": null,
+      "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+      "system_sha256": "66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e",
+      "license_sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "classification_before_tests": "KEEP",
+      "role_and_reason": "Historical reader/capture/agent baseline; historical judge default in scripts/judge_writer_memory_sim.py. Do not replace evaluator."
+    },
+    {
+      "name": "llama3:8b",
+      "digest": "365c0bd3c000a25d28ddbf732fe1c6add414de7275464c4e4d1c3b5fcb5d8ad1",
+      "size": 4661224676,
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "llama",
+        "families": [
+          "llama"
+        ],
+        "parameter_size": "8.0B",
+        "quantization_level": "Q4_0",
+        "context_length": 8192,
+        "embedding_length": 4096,
+        "runner": "ggml"
+      },
+      "parent_model": "",
+      "parameters": "num_keep                       24\nstop                           \"<|start_header_id|>\"\nstop                           \"<|end_header_id|>\"\nstop                           \"<|eot_id|>\"",
+      "template_sha256": "8ab4849b038cf0abc5b1c9b8ee1443dca6b93a045c2272180d985126eb40bf6f",
+      "system_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "license_sha256": "4fa551d4f938f68b8c1e6afa9d28befb70e3f33f75d0753248d530364aeea40f",
+      "classification_before_tests": "REMOVE candidate",
+      "role_and_reason": "No actual code/config/experiment or active dependency found; removal only after final checks."
+    },
+    {
+      "name": "llava:13b",
+      "digest": "0d0eb4d7f485d7d0a21fd9b0c1d5b04da481d2150a097e81b64acb59758fdef6",
+      "size": 8011256494,
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "llama",
+        "families": [
+          "llama",
+          "clip"
+        ],
+        "parameter_size": "13B",
+        "quantization_level": "Q4_0",
+        "context_length": 4096,
+        "embedding_length": 5120,
+        "runner": "ggml"
+      },
+      "parent_model": "",
+      "parameters": "stop                           \"USER:\"\nstop                           \"ASSSISTANT:\"",
+      "template_sha256": "9fb057c3f08a7a6d4cce5b18cfe081b27efcff3a0cc4a3868269f261ac5ef59a",
+      "system_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "license_sha256": "41774062cd349c744e8ee986c1aaf5784b7e42fbe306619536fa7386d421da78",
+      "classification_before_tests": "REMOVE candidate",
+      "role_and_reason": "Only old inventory reference found; no actual workflow/experiment dependency. Final checks required."
+    },
+    {
+      "name": "qwen7b_strict:latest",
+      "digest": "ec5d331d5c5e7a3373496a2d02275801e2814680c621a431249c4b5d312f219f",
+      "size": 4683087453,
+      "details": {
+        "parent_model": "qwen2.5:7b-instruct",
+        "format": "gguf",
+        "family": "qwen2",
+        "families": [
+          "qwen2"
+        ],
+        "parameter_size": "7.6B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 32768,
+        "embedding_length": 3584,
+        "runner": "ggml"
+      },
+      "parent_model": "qwen2.5:7b-instruct",
+      "parameters": "top_p                          0.9\nnum_ctx                        8192\ntemperature                    0.1",
+      "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+      "system_sha256": "66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e",
+      "license_sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "classification_before_tests": "KEEP",
+      "role_and_reason": "Protected custom profile; identical 7B weight blob, not evidence of a fine-tune."
+    },
+    {
+      "name": "qwen2.5vl:7b",
+      "digest": "5ced39dfa4bac325dc183dd1e4febaa1c46b3ea28bce48896c8e69c1e79611cc",
+      "size": 5969245856,
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen25vl",
+        "families": [
+          "qwen25vl"
+        ],
+        "parameter_size": "8.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 128000,
+        "embedding_length": 3584,
+        "runner": "ggml"
+      },
+      "parent_model": "",
+      "parameters": "temperature                    0.0001",
+      "template_sha256": "a242d8dfdc8f8c2b0586ee85fba70adb408fb633aba2836fe1b05f2c46631474",
+      "system_sha256": "75357d685f238b6afd7738be9786fdafde641eb6ca9a3be7471939715a68a4de",
+      "license_sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "classification_before_tests": "REVIEW",
+      "role_and_reason": "Distinct vision capability and uncertain external need; retain."
+    },
+    {
+      "name": "qwen2.5:7b-instruct",
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "size": 4683087332,
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen2",
+        "families": [
+          "qwen2"
+        ],
+        "parameter_size": "7.6B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 32768,
+        "embedding_length": 3584,
+        "runner": "ggml"
+      },
+      "parent_model": "",
+      "parameters": null,
+      "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+      "system_sha256": "66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e",
+      "license_sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "classification_before_tests": "KEEP",
+      "role_and_reason": "Historical reader/writer; underlying weights of protected custom strict profile."
+    }
+  ],
+  "custom_weight_equality": {
+    "tags": [
+      "qwen2.5:7b-instruct",
+      "qwen7b_strict:latest"
+    ],
+    "shared_model_blob": "sha256:2bada8a7450677000f678be90653b85d364de7db25eb5ea54136ada5f3933730",
+    "shared_model_blob_bytes": 4683073952,
+    "strict_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.9,
+      "num_ctx": 8192
+    }
+  },
+  "preservation": {
+    "research_worktrees": 29,
+    "dirty_worktrees": 2,
+    "copied_files": 17,
+    "copied_bytes": 6232781,
+    "source_writes_during_audit": 0
+  },
+  "scan": {
+    "text_files": 72449,
+    "oversize_unreadable_listed_privately": 26,
+    "excluded": [
+      ".git",
+      ".venv",
+      "venv",
+      "node_modules",
+      "__pycache__",
+      ".index",
+      "binary weights/databases"
+    ],
+    "supporting_workflows_checked": [
+      "NIE separate checkout",
+      "Nia bot",
+      "Codex automations",
+      "Windows scheduled tasks",
+      "selected model environment variables"
+    ]
+  },
+  "limitations": [
+    "bounded textual reference scan cannot prove absence of unknown external consumers",
+    "repeated worktrees inflate raw reference counts",
+    "no model quality result follows from inventory",
+    "initial source snapshots contain all originals; private raw/configuration exports are not published"
+  ]
+}
