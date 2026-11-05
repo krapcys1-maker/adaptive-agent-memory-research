@@ -1,0 +1,42 @@
+{
+  "status": "v1-failed-transport-control-no-primary-inference",
+  "source_head": "9ad192dc3939e23c84cbaecc4442f5abfa46bfba",
+  "attempts": 3,
+  "primary_attempts": 0,
+  "model": "qwen2.5:14b-instruct",
+  "failure": "ValueError: Transport control failed; no retry and no primary continuation.",
+  "strict_expected": "I do not know",
+  "actual_control_final": "I do not know.",
+  "all_three_json_valid_and_normal_stop": true,
+  "raw_freeze": {
+    "complete": false,
+    "source": {
+      "head": "9ad192dc3939e23c84cbaecc4442f5abfa46bfba",
+      "clean_tree": true,
+      "files": {
+        "scripts/local_model_upgrade_v1.py": "5a99a2c0e5061901acbc6d46b3017535bd9a88d1171f4c9a5c282eea74db4a73",
+        "data/lab/local-model-upgrade-v1/PLAN.md": "158f8e1933af3be1d85d69838e34183f543cc363fcc3e28b1a36e7244cc56e65",
+        "data/lab/local-model-upgrade-v1/config.json": "54b4c569c7ea24b81a69a77580238cda355e8ade27fbedec18f6c0b11a840488",
+        "data/lab/local-model-upgrade-v1/preparation.json": "9aa09018cdf15d9e51738d4182177fbf7bf9b19e1a47b74e982cf5bf69938794"
+      }
+    },
+    "files_sha256": {
+      "manifest.json": "4f653c4bd6d9c9381180f051ccee82c50324ab43d4c6cb02097e88812c499bf2",
+      "preflight.json": "d389f9db100002b23797ce99265125b60752091518d36ee8f32cc4edc94cd6c2",
+      "attempts.jsonl": "2663791df05ca1f6fbb1ab6f05d3ab76903b1977f27982a482bf7ef3d4cd1bca",
+      "responses.jsonl": "58d446e8752147a1cfa3ff2febd948c722a3369c61779872f1000e9824c94a44",
+      "answers.jsonl": "89b9d91473589812d56bb23b0216bdead0f9cb9d96562719d1dcc51c2ce837f4",
+      "resources.jsonl": "7e57e8bcff7003303269bc7bfd03301ee6dd6045c6bd90b0c45f4f8227e92ce2",
+      "residency.jsonl": "10873470ce3c08417db3669391e0e2285ca78ae464d082687b209b34fb8cb794",
+      "finished.json": "28f3b21f5c1a40a224888025781e3ef1191e2a46653114f31a42da5b0e4db39e"
+    },
+    "packet_sha256": "d6fd978d6ac2cfe8a9c48054828698fbb34083e3958aaee91361cc56dd530faf",
+    "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+    "scoring_has_not_run": true
+  },
+  "raw_freeze_sha256": "c33cdbcde12984118d788a1b8a4b2852f0ab09119df40cc079e3a8f452ae1990",
+  "task_ledger_prefix_sha256": "5173e67deee103d6a16138259ffe9bce3e8038e73e2597f16eb5d5b9b39770f6",
+  "task_ledger_prefix_bytes": 761,
+  "old_protocol_remains_failed": true,
+  "amendment_required_before_further_generation": "New v2 transport control accepts exactly the expected string or that string plus one period. Primary benchmark gold/scorers/settings/packets unchanged. Explicit new version; all3failed-v1 attempts retained within same cap2000; no V1 retry or score rewrite."
+}
