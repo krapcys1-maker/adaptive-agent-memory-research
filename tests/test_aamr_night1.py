@@ -181,6 +181,8 @@ def test_note_checks_flag_unknown_tools_and_test_only_tokens():
     fnames = {d["name"] for d in bfcl.docs["VehicleControlAPI"]}
     ok = n1.check_note("fillFuelTank: call displayCarStatus(option='fuel') first.", allowed, fnames, (set(), set()))
     assert ok["ok"]
+    prose = n1.check_note("fillFuelTank: the tank is full (50 gallons); capacity (max 50) matters.", allowed, fnames, (set(), set()))
+    assert prose["ok"], prose
     bad = n1.check_note("fillFuelTank: call checkFuelGauge() first.", allowed, fnames, (set(), set()))
     assert not bad["ok"] and "checkFuelGauge" in bad["unknown_calls"]
     leak = n1.check_note("fillFuelTank: fill 37.5 gallons.", allowed, fnames, ({"37.5"}, set()))

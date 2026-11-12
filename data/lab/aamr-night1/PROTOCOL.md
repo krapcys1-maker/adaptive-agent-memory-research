@@ -138,3 +138,11 @@ wysłania zapisanych wywołań, Flash zwraca `deepseek-flash`. Jedna odpowiedź 
 Druga poprawka przed startem: budżet D podniesiony z 4800 do 5300 (suma budżetów etapów 11 950 ≤ 12 000), bo
 szacunek z testu technicznego (ok. 12 wywołań na epizod w zadaniach 3–4-turowych) odciąłby z góry ostatnie ramię
 sD (R+). Budżety A (2300) i B (1000) bez zmian.
+
+Trzecia poprawka (2026-11-12, po etapach b0 i w trakcie b1, przed sesją sA, przed jakimkolwiek wynikiem agenta na
+zadaniach testowych): kontrola „nazwa wywołania istnieje” traktowała nawiasy w prozie jako wywołania
+(`full (50 gallons)`, `capacity (max 50`, `cities (as in`, `pedalPosition (e.g.`) i odrzuciła przez to cztery
+poprawne notatki, w tym obie notatki o błędzie baku (Q i F), co wycięłoby ramię TrW z EXP-FIX-0. Za wywołanie uznaje
+się teraz tylko zapis w stylu kodu, bez spacji przed nawiasem (`nazwa(`). Kontrole przeliczono na zapisanych
+odpowiedziach pisarzy (`aamr_night1.py recheck`, bez nowych wywołań); wiersze b1 policzone wcześniej dotyczą tych samych
+tekstów notatek i zostają. Hipotezy, ramiona, progi i dane bez zmian.

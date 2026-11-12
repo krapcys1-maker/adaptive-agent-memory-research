@@ -590,7 +590,7 @@ def parse_note(text, done_reason, function):
 
 
 IDENT = re.compile(r"\b[a-z][a-z0-9]*(?:[A-Z][A-Za-z0-9]*)+\b|\b[a-z][a-z0-9]*(?:_[a-z0-9]+)+\b")
-CALLNAME = re.compile(r"\b([A-Za-z_][A-Za-z0-9_]*)\s*\(")
+CALLNAME = re.compile(r"\b([A-Za-z_][A-Za-z0-9_]*)\(")       # code-style call only: prose like "full (50 gallons)" is not a call
 
 
 def allowed_identifiers(bfcl, cls, extra_text=""):
@@ -1428,6 +1428,39 @@ def supervise() -> int:
             pass
 
 
+def recheck_artifacts(note: str) -> dict:
+    """Amendment 3: re-run the deterministic note checks on the stored writer outputs (no model call) after a check bug fix."""
+    cfg = load_config()
+    bfcl = bfcl_from(cfg)
+    pool = vc_pool()
+    sigs = signatures(pool)
+    art = RUN / "artifacts"
+    out = {}
+    fuel = next(s for s in sigs if (s["function"], s["error_key"]) == FUEL_SIG)
+    row = p0.read_json(art / "trw_lesson.json")
+    before = row["check"].get("ok")
+    row = checked(bfcl, "VC", [row], writer_inputs=writer_messages(bfcl, fuel, occurrences(pool, fuel))[0]["content"])[0]
+    atomic_json(art / "trw_lesson.json", row)
+    out["trw"] = {"before": before, "after": row["check"]["ok"]}
+    inputs = "\n".join(writer_messages(bfcl, s, occurrences(pool, s))[0]["content"] for s in sigs)
+    for s in ("Q", "F"):
+        d = p0.read_json(art / f"lessons_VC_{s}.json")
+        b = sum(1 for r in d["rows"] if r.get("check", {}).get("ok"))
+        d["rows"] = checked(bfcl, "VC", d["rows"], inputs)
+        atomic_json(art / f"lessons_VC_{s}.json", d)
+        out[s] = {"valid_before": b, "valid_after": sum(1 for r in d["rows"] if r["check"]["ok"]), "of": len(d["rows"])}
+    state = p0.read_json(RUN / "state.json")
+    state["stages"]["a0_writer"]["trw_valid"] = row["check"]["ok"]
+    state["stages"]["a0_writer"]["check"] = row["check"]
+    for s in ("Q", "F"):
+        state["stages"]["b0_writers"][s]["valid"] = out[s]["valid_after"]
+    state.setdefault("amendments", []).append({"at": now_iso(), "note": note, "recheck": out, "old_config_id": state.get("config_id"),
+                                               "new_config_id": config_id(cfg)})
+    state["config_id"] = config_id(cfg)
+    atomic_json(RUN / "state.json", state)
+    return out
+
+
 def status() -> dict:
     out = {"run": str(RUN)}
     for name in ("state.json", "heartbeat.json", "DONE.json", "STOPPED.json", "restarts.json"):
@@ -1439,7 +1472,7 @@ def status() -> dict:
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("cmd", choices=["work", "supervise", "status", "analyze", "report", "freeze"])
+    ap.add_argument("cmd", choices=["work", "supervise", "status", "analyze", "report", "freeze", "recheck"])
     ap.add_argument("--stages", nargs="*")
     ap.add_argument("--smoke", action="store_true", help="technical test in a separate run folder (counted in the program's budget)")
     a = ap.parse_args(argv)
@@ -1455,6 +1488,9 @@ def main(argv=None):
         return 0
     if a.cmd == "freeze":
         print(freeze_raw())
+        return 0
+    if a.cmd == "recheck":
+        print(json.dumps(recheck_artifacts("amendment 3: call-name check no longer treats prose parentheses as calls"), indent=2))
         return 0
     import aamr_night1_analysis as an
     OUT.mkdir(parents=True, exist_ok=True)
