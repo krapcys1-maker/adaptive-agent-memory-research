@@ -67,6 +67,36 @@ def layer_table(episodes, tasks, x, y, strata, exposure):
     return table
 
 
+def exploratory_errors(episodes, tasks, arms):
+    """POST HOC, not in the plan: where the environment errors are, and a paired sign test of per-task error counts vs N."""
+    out = {"note": "Exploratory analysis added after E2 results were seen; not a pre-registered measure or decision input."}
+    for a in arms:
+        by_fn, precondition = Counter(), 0
+        per_task = []
+        for t in tasks:
+            r = episodes[(t, a)][0]
+            n = 0
+            for tt in r["turns"]:
+                for s in tt["steps"]:
+                    for c in s.get("calls", []):
+                        if c["valid"] and c.get("error"):
+                            fn = c["call"].split("(")[0]
+                            by_fn[fn] += 1
+                            n += 1
+                            precondition += fn == "startEngine" and ("doors must be locked" in c["result"] or "Brake pedal" in c["result"] or "brake fully" in c["result"])
+            per_task.append(n)
+        out[a] = {"errors_by_function": dict(by_fn.most_common()), "startEngine_precondition_errors": precondition, "per_task": per_task}
+    base = out["N"]["per_task"]
+    for a in arms:
+        if a == "N":
+            continue
+        fewer = sum(1 for x, y in zip(out[a]["per_task"], base) if x < y)
+        more = sum(1 for x, y in zip(out[a]["per_task"], base) if x > y)
+        out[a]["vs_N_tasks_fewer_errors"], out[a]["vs_N_tasks_more_errors"] = fewer, more
+        out[a]["vs_N_sign_test_two_sided_p"] = min(1.0, 2 * min(xp.binom_tail_ge(fewer, fewer + more), xp.binom_tail_ge(more, fewer + more))) if fewer + more else 1.0
+    return out
+
+
 def main(cfg):
     split = xp.read_json(xp.DATA / "split.json")
     build = xp.read_json(xp.DATA / "build.json")
@@ -177,7 +207,8 @@ def main(cfg):
               "per_arm": per_arm, "solved_minus_N": d, "pairs": pairs, "perturbation_discordance_P_vs_N":
                   sum(1 for a, b in zip(solved.get("P", []), solved["N"]) if a != b) if "P" in solved else None,
               "harm": harm, "s_turns_without_injection": s_no_injection, "h4_decomposition": h4, "layers_vs_N": layers, "h3": h3,
-              "o_condition_met": o_condition, "decision_rows": rows}
+              "o_condition_met": o_condition, "decision_rows": rows,
+              "exploratory_not_preregistered": exploratory_errors(episodes, complete, [a for a in main_arms if a in solved])}
     xp.write_json(xp.DATA / "results.json", result)
     print(json.dumps({k: result[k] for k in ("complete_tasks", "solved_minus_N", "decision_rows", "determinism")}, indent=2))
     print(json.dumps({a: {k: v[k] for k in ("solved", "state_all", "mean_progress", "model_calls", "error_results", "invalid_calls")} for a, v in per_arm.items()}, indent=2))
