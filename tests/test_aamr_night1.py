@@ -193,6 +193,7 @@ def test_parse_note():
     assert n1.parse_note('{"note": "read the level"}', "stop", "fillFuelTank")[0] == "fillFuelTank: read the level"
     assert n1.parse_note('{"note": "fillFuelTank needs x"}', "stop", "fillFuelTank")[0] == "fillFuelTank needs x"
     assert n1.parse_note("nope", "stop", "f")[1] == "not json"
+    assert n1.parse_note('{"note":<|endoftext|> "ok"}', "stop", "f")[0] == "f: ok"
     assert n1.parse_note('{"note": "x"}', "length", "f")[1] == "length"
     assert len(n1.parse_note(json.dumps({"note": "a" * 2000}), "stop", "f")[0]) == n1.NOTE_CAP
 

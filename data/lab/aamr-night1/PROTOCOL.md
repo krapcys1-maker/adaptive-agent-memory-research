@@ -126,3 +126,11 @@ VC i ich porażki znamy z pilota i S1.
   Żadne dane nie są kasowane; wznowienie od ostatniego zapisanego epizodu, odpowiedzi odtwarzane z pamięci podręcznej.
 - Brak dostępu do Flash albo naruszenie limitu: ramiona F pomijane, reszta biegnie.
 - Nie dodaje się etapów po starcie. Po zakończeniu: sha256 wszystkich plików surowych, potem analiza.
+
+## 6. Poprawka techniczna przed startem (2026-11-12, przed pierwszym wywołaniem eksperymentalnym)
+
+Test techniczny (`smoke-run`, budżet T: 66 prób lokalnych, 2 wywołania Flash, 0,0009 USD) przeszedł: obie wersje
+modelu w całości na GPU, sondy JSON poprawne, przerwanie procesu w trakcie epizodu i wznowienie bez ponownego
+wysłania zapisanych wywołań, Flash zwraca `deepseek-flash`. Jedna odpowiedź Flash zawierała token
+`<|endoftext|>` w środku JSON. Przed parsowaniem notatki usuwane są ciągi postaci `<|...|>` (jednakowo dla wszystkich
+źródeł). Hipotezy, ramiona, progi i dane bez zmian.

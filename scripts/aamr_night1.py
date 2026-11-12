@@ -576,6 +576,7 @@ def writer_key(source, domain, sig):
 def parse_note(text, done_reason, function):
     if done_reason == "length":
         return None, "length"
+    text = re.sub(r"<\|[a-z_]{2,30}\|>", "", text or "")        # provider special tokens (seen once from Flash in the smoke test)
     try:
         note = json.loads(text)["note"]
     except (ValueError, TypeError, KeyError):
