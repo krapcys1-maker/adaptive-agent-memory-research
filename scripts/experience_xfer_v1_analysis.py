@@ -297,6 +297,17 @@ def main(cfg=None):
 
     probe = probe_tables(p0.read_json(xf.XDATA / "probe-plan.json")) if stage_exists("s1d") else None
 
+    # N and R+ were run again when S1a found a difference from the pilot: how far do the two runs of the same arm agree?
+    # (descriptive; added before S1c started, after S1a showed one differing episode in ten)
+    rerun = {}
+    pilot_recs, pilot_evs = xf.pilot_episodes()
+    for a in ("N", "R+"):
+        if a in arms and str(sources.get(a, "")).startswith("s1c"):
+            same_text = sum(xf.texts(base[(t, a)][0]) == xf.texts(pilot_recs[(t, a)]) for t in tasks)
+            flips = [t for t in tasks if base[(t, a)][1]["solved"] != pilot_evs[(t, a)]["solved"]]
+            rerun[a] = {"episodes_identical_to_pilot": same_text, "episodes": len(tasks), "solved_now": per_arm[a]["solved"],
+                        "solved_pilot": sum(pilot_evs[(t, a)]["solved"] for t in tasks), "tasks_with_different_outcome": flips}
+
     # gates (SPEC 8.2)
     n_rate, tp_rate = per_arm["N"]["first_attempt_error_rate"], per_arm.get("Tp", {}).get("first_attempt_error_rate")
     gates = {"A_channel_works": {"N_rate": n_rate, "Tp_rate": tp_rate,
@@ -337,7 +348,7 @@ def main(cfg=None):
            "arms": arms, "incomplete_arms": incomplete, "sources": sources, "lessons_sha256": lessons_sha,
            "lesson_tools": sorted(tools), "ledger": xf.ledger(), "s1a": p0.read_json(xf.XDATA / "s1a.json"),
            "per_arm": per_arm, "pairs": pairs, "harm": harm, "over_application": over, "lesson_usage": usage_summary,
-           "probe": probe, "gates": gates, "secondary_rules_development": rules}
+           "probe": probe, "gates": gates, "secondary_rules_development": rules, "rerun_vs_pilot": rerun}
     p0.write_json(xf.XDATA / "results-s1.json", out)
     brief = {"per_arm": {a: {k: per_arm[a][k] for k in ("solved", "error_events", "error_results", "repeat_errors", "first_attempt_errors",
                                                         "first_attempt_turns")} for a in arms},

@@ -1,0 +1,18 @@
+[
+  {
+    "function": "estimate_distance",
+    "error_key": "distance not found in database",
+    "tasks_seen": 3,
+    "tasks_resolved": 1,
+    "observations": 3,
+    "reason": "support"
+  },
+  {
+    "function": "fillFuelTank",
+    "error_key": "cannot fill gas above the tank capacity",
+    "tasks_seen": 6,
+    "tasks_resolved": 2,
+    "observations": 6,
+    "reason": "no consistent fix"
+  }
+]

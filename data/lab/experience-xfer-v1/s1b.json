@@ -1,0 +1,36 @@
+{
+  "lessons": 3,
+  "lesson_tools": [
+    "startEngine"
+  ],
+  "open_problems": 2,
+  "lessons_sha256": "af563e629e7594988776204d9fdb9633c3d0903a531d838feac55f842deef960",
+  "arm_G_valid": true,
+  "base_arms": [
+    "N",
+    "R+",
+    "Tp",
+    "Tr",
+    "G"
+  ],
+  "probe_arms": [
+    "N",
+    "R+",
+    "Tp",
+    "G"
+  ],
+  "probe_counts": {
+    "entries": 50,
+    "near": 20,
+    "far": 30,
+    "near_exact": 10,
+    "turns_to_run": 112
+  },
+  "projection_s1c": {
+    "calls_per_episode": 10.433333333333334,
+    "projected_calls": 1799.7500000000002,
+    "remaining_calls": 3485,
+    "ok": true
+  },
+  "gate_lessons_exist": true
+}
