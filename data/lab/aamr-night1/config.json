@@ -13,7 +13,7 @@
   },
   "flash": {"model": "deepseek-flash", "url": "https://api.deepseek.com", "max_calls": 200, "cap_usd": 3.0, "reservation_usd": 0.01,
             "input_usd_per_million_upper": 0.30, "output_usd_per_million_upper": 1.20, "max_tokens": 400, "max_input_bytes": 30000},
-  "budgets": {"total_local": 12000, "T": 150, "A": 2300, "B": 1000, "H": 400, "C": 800, "D": 4800, "E": 2000},
+  "budgets": {"total_local": 12000, "T": 150, "A": 2300, "B": 1000, "H": 400, "C": 800, "D": 5300, "E": 2000},
   "extra_ledger_dirs": ["smoke-run"],
   "retry": {"max_attempts_per_call": 4, "backoff_seconds": [15, 45, 90]},
   "supervisor": {"max_restarts": 8, "restart_wait_seconds": 120, "stall_seconds": 2400}

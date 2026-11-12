@@ -35,7 +35,7 @@ wyroczni i placebo są przepisane bez zmian do `scripts/aamr_night1.py` (stałe 
 | sA | VC test, 30 | **A:** N, N′, Tr, TrO, TrP, TrW; **B:** TrQ, TrF (jeśli przeszły bramkę); **H:** TrS | A 2300, B 1000, H 400 |
 | census | GFS + TRAVEL trening, 40 | N | D |
 | d0_build | z census | lekcje deterministyczne, pisarze Q i F, pula sukcesów R+ | D, Flash |
-| sD | GFS + TRAVEL test, 58 | N, TrD, N′, TrF, TrQ, R+ (kolejność priorytetu przy cięciu budżetu) | D 4800 |
+| sD | GFS + TRAVEL test, 58 | N, TrD, N′, TrF, TrQ, R+ (kolejność priorytetu przy cięciu budżetu) | D 5300 |
 | sC | VC trening, 20 | N, TrP, TrO | C 800 |
 | preflight_q9, sE | VC test, 30 | N, TrO, TrP, Tr, N′ na `qwen3.5:9b` | E 2000 |
 | final | — | zamrożenie sha256, analiza, raport, lokalny commit | 0 |
@@ -134,3 +134,7 @@ modelu w całości na GPU, sondy JSON poprawne, przerwanie procesu w trakcie epi
 wysłania zapisanych wywołań, Flash zwraca `deepseek-flash`. Jedna odpowiedź Flash zawierała token
 `<|endoftext|>` w środku JSON. Przed parsowaniem notatki usuwane są ciągi postaci `<|...|>` (jednakowo dla wszystkich
 źródeł). Hipotezy, ramiona, progi i dane bez zmian.
+
+Druga poprawka przed startem: budżet D podniesiony z 4800 do 5300 (suma budżetów etapów 11 950 ≤ 12 000), bo
+szacunek z testu technicznego (ok. 12 wywołań na epizod w zadaniach 3–4-turowych) odciąłby z góry ostatnie ramię
+sD (R+). Budżety A (2300) i B (1000) bez zmian.
