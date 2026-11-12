@@ -1083,11 +1083,20 @@ def stage_e3(cfg, client_factory=None):
     return {"run_id": st.run_id, "episodes": len(evals)}
 
 
+def stage_freeze(cfg):
+    """sha256 of every raw run file, written before any measure is computed (SPEC 13, commit 3)."""
+    base = WORK / "raw"
+    files = {p.relative_to(base).as_posix(): file_sha(p) for p in sorted(base.rglob("*")) if p.is_file()}
+    out = {"frozen_at": now_iso(), "raw_root": "experience-pilot-2026-11-12/raw (outside Git)", "files": files, "ledger": ledger()}
+    write_json(DATA / "raw-freeze.json", out)
+    return {"files": len(files), "calls": out["ledger"]["calls"]}
+
+
 # ----------------------------------------------------------------------------- CLI
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("stage", choices=["e0", "g1", "g2", "e1a", "e1b", "build", "e2", "e2n", "e3", "analyze", "ledger"])
+    p.add_argument("stage", choices=["e0", "g1", "g2", "e1a", "e1b", "build", "e2", "e2n", "e3", "freeze", "analyze", "ledger"])
     a = p.parse_args(argv)
     cfg = load_config()
     if a.stage == "ledger":
@@ -1098,7 +1107,7 @@ def main(argv=None):
         an.main(cfg)
         return
     fn = {"e0": stage_e0, "g1": stage_g1, "g2": stage_g2, "e1a": stage_e1a, "e1b": stage_e1b, "build": stage_build,
-          "e2": stage_e2, "e2n": stage_nprime_rest, "e3": stage_e3}[a.stage]
+          "e2": stage_e2, "e2n": stage_nprime_rest, "e3": stage_e3, "freeze": stage_freeze}[a.stage]
     out = fn(cfg)
     print(json.dumps(out, indent=2, default=str)[:4000])
 
