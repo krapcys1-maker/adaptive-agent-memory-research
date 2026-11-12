@@ -1,0 +1,21 @@
+{
+  "experiment": "EXP-PILOT-0",
+  "plan": "data/lab/experience-pilot-v0/PLAN.md (SPEC v1, approved by the owner 2026-11-12)",
+  "bfcl_repository": "https://github.com/ShishirPatil/gorilla",
+  "bfcl_commit": "6ea57973c7a6097fd7c5915698c54c17c5b1b6c8",
+  "bfcl_root": "../experience-pilot-2026-11-12/bfcl/src/berkeley-function-call-leaderboard",
+  "base_url": "http://127.0.0.1:11434",
+  "http_timeout_seconds": 600,
+  "model": "qwen2.5:14b-instruct",
+  "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+  "options": {
+    "temperature": 0,
+    "num_predict": 512,
+    "num_ctx": 8192
+  },
+  "seed": 7,
+  "limits": {
+    "max_calls_total": 2000,
+    "max_seconds_total": 21600
+  }
+}

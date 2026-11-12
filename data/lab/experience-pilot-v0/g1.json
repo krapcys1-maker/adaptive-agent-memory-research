@@ -1,0 +1,358 @@
+{
+  "excluded": [],
+  "n_valid": 50,
+  "valid": [
+    "multi_turn_base_50",
+    "multi_turn_base_51",
+    "multi_turn_base_52",
+    "multi_turn_base_53",
+    "multi_turn_base_54",
+    "multi_turn_base_55",
+    "multi_turn_base_56",
+    "multi_turn_base_57",
+    "multi_turn_base_58",
+    "multi_turn_base_59",
+    "multi_turn_base_60",
+    "multi_turn_base_61",
+    "multi_turn_base_62",
+    "multi_turn_base_63",
+    "multi_turn_base_64",
+    "multi_turn_base_65",
+    "multi_turn_base_66",
+    "multi_turn_base_67",
+    "multi_turn_base_68",
+    "multi_turn_base_69",
+    "multi_turn_base_70",
+    "multi_turn_base_71",
+    "multi_turn_base_72",
+    "multi_turn_base_73",
+    "multi_turn_base_74",
+    "multi_turn_base_75",
+    "multi_turn_base_76",
+    "multi_turn_base_77",
+    "multi_turn_base_78",
+    "multi_turn_base_79",
+    "multi_turn_base_80",
+    "multi_turn_base_81",
+    "multi_turn_base_82",
+    "multi_turn_base_83",
+    "multi_turn_base_84",
+    "multi_turn_base_85",
+    "multi_turn_base_86",
+    "multi_turn_base_87",
+    "multi_turn_base_88",
+    "multi_turn_base_89",
+    "multi_turn_base_90",
+    "multi_turn_base_91",
+    "multi_turn_base_92",
+    "multi_turn_base_93",
+    "multi_turn_base_94",
+    "multi_turn_base_95",
+    "multi_turn_base_96",
+    "multi_turn_base_97",
+    "multi_turn_base_98",
+    "multi_turn_base_99"
+  ],
+  "per_task": {
+    "multi_turn_base_50": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_51": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_52": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_53": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_54": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_55": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_56": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_57": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_58": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_59": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_60": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_61": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_62": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_63": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_64": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_65": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_66": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_67": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_68": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_69": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_70": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_71": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_72": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_73": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_74": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_75": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_76": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_77": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_78": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_79": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_80": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_81": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_82": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_83": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_84": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_85": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_86": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_87": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_88": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_89": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_90": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_91": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_92": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_93": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_94": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_95": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_96": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_97": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_98": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    },
+    "multi_turn_base_99": {
+      "checker_valid": true,
+      "error_calls": [],
+      "replays_identical": true,
+      "ok": true
+    }
+  }
+}

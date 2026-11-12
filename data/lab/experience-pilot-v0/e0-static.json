@@ -1,0 +1,117 @@
+{
+  "bfcl_commit": "6ea57973c7a6097fd7c5915698c54c17c5b1b6c8",
+  "system_prompt_chars": {
+    "max": 6433,
+    "min": 3850,
+    "by_task": {
+      "multi_turn_base_50": 3850,
+      "multi_turn_base_51": 4895,
+      "multi_turn_base_52": 6042,
+      "multi_turn_base_53": 6042,
+      "multi_turn_base_54": 6042,
+      "multi_turn_base_55": 5228,
+      "multi_turn_base_56": 3850,
+      "multi_turn_base_57": 6433,
+      "multi_turn_base_58": 6042,
+      "multi_turn_base_59": 6433,
+      "multi_turn_base_60": 5228,
+      "multi_turn_base_61": 4895,
+      "multi_turn_base_62": 4895,
+      "multi_turn_base_63": 4895,
+      "multi_turn_base_64": 3850,
+      "multi_turn_base_65": 6042,
+      "multi_turn_base_66": 3850,
+      "multi_turn_base_67": 4895,
+      "multi_turn_base_68": 6042,
+      "multi_turn_base_69": 6042,
+      "multi_turn_base_70": 3850,
+      "multi_turn_base_71": 3850,
+      "multi_turn_base_72": 4895,
+      "multi_turn_base_73": 3850,
+      "multi_turn_base_74": 6433,
+      "multi_turn_base_75": 6042,
+      "multi_turn_base_76": 6042,
+      "multi_turn_base_77": 6042,
+      "multi_turn_base_78": 6042,
+      "multi_turn_base_79": 3850,
+      "multi_turn_base_80": 6433,
+      "multi_turn_base_81": 6433,
+      "multi_turn_base_82": 3850,
+      "multi_turn_base_83": 3850,
+      "multi_turn_base_84": 3850,
+      "multi_turn_base_85": 3850,
+      "multi_turn_base_86": 6042,
+      "multi_turn_base_87": 3850,
+      "multi_turn_base_88": 6042,
+      "multi_turn_base_89": 3850,
+      "multi_turn_base_90": 6042,
+      "multi_turn_base_91": 4895,
+      "multi_turn_base_92": 3850,
+      "multi_turn_base_93": 3850,
+      "multi_turn_base_94": 3850,
+      "multi_turn_base_95": 4895,
+      "multi_turn_base_96": 3850,
+      "multi_turn_base_97": 4895,
+      "multi_turn_base_98": 6433,
+      "multi_turn_base_99": 3850
+    }
+  },
+  "num_ctx_rule": {
+    "L": 6433,
+    "L_div_3_plus_3000": 5144.333333333334,
+    "num_ctx": 8192
+  },
+  "start_engine_error_messages": [
+    "All doors must be locked before starting the engine. Here are the unlocked doors: ",
+    "Brake pedal needs to be pressed when starting the engine.",
+    "Must press the brake fully before starting the engine.",
+    "Fuel tank is empty.",
+    "Invalid ignition mode."
+  ],
+  "start_engine_rule_discoverable_from_error": true,
+  "executor_instance_key": "globals()[f'{model_name}_{test_entry_id}_{class_name}_instance'] (checker adds _eval and _ground_truth)",
+  "checker_error_types": [
+    "multi_turn:empty_turn_model_response",
+    "multi_turn:execution_response_mismatch",
+    "multi_turn:instance_state_mismatch",
+    "multi_turn:irrelevance_error:decoder_success",
+    "multi_turn:method_invoke_order_mismatch"
+  ],
+  "empty_ground_truth_turns_50_99": 0,
+  "random_methods": {
+    "VehicleControlAPI": [
+      "get_outside_temperature_from_google",
+      "get_current_speed"
+    ],
+    "MessageAPI": [
+      "send_message"
+    ]
+  },
+  "random_dependent_turns": 6,
+  "tasks_with_shared_initial_config": {
+    "multi_turn_base_63": [
+      "multi_turn_base_83"
+    ],
+    "multi_turn_base_66": [
+      "multi_turn_base_70",
+      "multi_turn_base_74"
+    ],
+    "multi_turn_base_70": [
+      "multi_turn_base_66",
+      "multi_turn_base_74"
+    ],
+    "multi_turn_base_74": [
+      "multi_turn_base_66",
+      "multi_turn_base_70"
+    ],
+    "multi_turn_base_83": [
+      "multi_turn_base_63"
+    ]
+  },
+  "placebo_pool_turns": 127,
+  "turns_50_99": 171,
+  "exact_duplicate_turns": 86,
+  "skeleton_duplicate_turns": 139,
+  "tasks_with_startEngine": 44,
+  "known_risk_recorded_before_e1a": "startEngine errors name the missing precondition, so the rule is discoverable inside an episode; memory may mostly save errors and steps rather than flip task success (power risk, thresholds unchanged)."
+}

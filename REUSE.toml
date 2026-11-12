@@ -99,3 +99,12 @@ precedence = "closest"
 SPDX-FileCopyrightText = "Contributor Covenant authors (adapted by the project contributors)"
 SPDX-License-Identifier = "CC-BY-4.0"
 SPDX-FileComment = "Adapted from the Contributor Covenant (contributor-covenant.org), which is itself CC BY 4.0. Keep the attribution line."
+
+# EXP-PILOT-0 pools and plans quote BFCL multi-turn requests and gold calls
+# (Apache-2.0, (c) the Gorilla / BFCL authors, ShishirPatil/gorilla @ 6ea5797).
+# Our trajectories and analysis stay CC BY 4.0; the BFCL excerpts stay Apache-2.0.
+[[annotations]]
+path = ["data/lab/experience-pilot-v0/pools/**", "data/lab/experience-pilot-v0/exposure.json", "data/lab/experience-pilot-v0/placebo-plan.json"]
+precedence = "closest"
+SPDX-FileCopyrightText = ["2026 Adaptive Agent Memory Research contributors", "Gorilla / Berkeley Function-Calling Leaderboard authors"]
+SPDX-License-Identifier = "CC-BY-4.0 AND Apache-2.0"
