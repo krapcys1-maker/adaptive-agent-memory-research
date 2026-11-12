@@ -1,0 +1,1062 @@
+{
+  "multi_turn_base_50:0": {
+    "items": [
+      "multi_turn_base_22:t2",
+      "multi_turn_base_39:t1"
+    ],
+    "target_chars": 1243,
+    "chars": 1116,
+    "draws": 5,
+    "within_15pct": true
+  },
+  "multi_turn_base_67:0": {
+    "items": [
+      "multi_turn_base_10:t3",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1509,
+    "chars": 1509,
+    "draws": 38,
+    "within_15pct": true
+  },
+  "multi_turn_base_67:1": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_12:t0"
+    ],
+    "target_chars": 1806,
+    "chars": 1403,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_67:2": {
+    "items": [
+      "multi_turn_base_37:t2",
+      "multi_turn_base_20:t1"
+    ],
+    "target_chars": 995,
+    "chars": 921,
+    "draws": 4,
+    "within_15pct": true
+  },
+  "multi_turn_base_67:3": {
+    "items": [
+      "multi_turn_base_35:t1",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 2051,
+    "chars": 1321,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_60:0": {
+    "items": [
+      "multi_turn_base_8:t0",
+      "multi_turn_base_2:t3"
+    ],
+    "target_chars": 1439,
+    "chars": 1259,
+    "draws": 18,
+    "within_15pct": true
+  },
+  "multi_turn_base_60:1": {
+    "items": [
+      "multi_turn_base_18:t0",
+      "multi_turn_base_3:t1"
+    ],
+    "target_chars": 2231,
+    "chars": 1524,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_60:2": {
+    "items": [
+      "multi_turn_base_6:t1",
+      "multi_turn_base_3:t1"
+    ],
+    "target_chars": 1001,
+    "chars": 1087,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_60:3": {
+    "items": [
+      "multi_turn_base_2:t1",
+      "multi_turn_base_24:t1"
+    ],
+    "target_chars": 957,
+    "chars": 863,
+    "draws": 5,
+    "within_15pct": true
+  },
+  "multi_turn_base_60:4": {
+    "items": [
+      "multi_turn_base_28:t1",
+      "multi_turn_base_13:t0"
+    ],
+    "target_chars": 957,
+    "chars": 855,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_53:0": {
+    "items": [
+      "multi_turn_base_17:t0",
+      "multi_turn_base_0:t3"
+    ],
+    "target_chars": 1075,
+    "chars": 1024,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_53:1": {
+    "items": [
+      "multi_turn_base_18:t0",
+      "multi_turn_base_3:t0"
+    ],
+    "target_chars": 2129,
+    "chars": 1253,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_53:2": {
+    "items": [
+      "multi_turn_base_44:t0",
+      "multi_turn_base_39:t1"
+    ],
+    "target_chars": 1140,
+    "chars": 1160,
+    "draws": 4,
+    "within_15pct": true
+  },
+  "multi_turn_base_53:3": {
+    "items": [
+      "multi_turn_base_2:t0",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1641,
+    "chars": 1404,
+    "draws": 41,
+    "within_15pct": true
+  },
+  "multi_turn_base_71:0": {
+    "items": [
+      "multi_turn_base_19:t2",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1910,
+    "chars": 1325,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_71:1": {
+    "items": [
+      "multi_turn_base_9:t2",
+      "multi_turn_base_12:t2"
+    ],
+    "target_chars": 735,
+    "chars": 704,
+    "draws": 7,
+    "within_15pct": true
+  },
+  "multi_turn_base_71:2": {
+    "items": [
+      "multi_turn_base_49:t0",
+      "multi_turn_base_35:t2"
+    ],
+    "target_chars": 995,
+    "chars": 994,
+    "draws": 9,
+    "within_15pct": true
+  },
+  "multi_turn_base_71:3": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_25:t1"
+    ],
+    "target_chars": 1714,
+    "chars": 1305,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_71:4": {
+    "items": [
+      "multi_turn_base_3:t1",
+      "multi_turn_base_19:t0"
+    ],
+    "target_chars": 839,
+    "chars": 964,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_93:0": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_39:t0"
+    ],
+    "target_chars": 2173,
+    "chars": 1291,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_93:1": {
+    "items": [
+      "multi_turn_base_10:t3",
+      "multi_turn_base_3:t1"
+    ],
+    "target_chars": 2321,
+    "chars": 1149,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_93:2": {
+    "items": [
+      "multi_turn_base_4:t0",
+      "multi_turn_base_18:t0"
+    ],
+    "target_chars": 1181,
+    "chars": 1079,
+    "draws": 15,
+    "within_15pct": true
+  },
+  "multi_turn_base_90:0": {
+    "items": [
+      "multi_turn_base_40:t2",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 2258,
+    "chars": 1359,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_90:1": {
+    "items": [
+      "multi_turn_base_22:t1",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1574,
+    "chars": 1486,
+    "draws": 10,
+    "within_15pct": true
+  },
+  "multi_turn_base_90:2": {
+    "items": [
+      "multi_turn_base_27:t0",
+      "multi_turn_base_14:t1"
+    ],
+    "target_chars": 1053,
+    "chars": 930,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_90:3": {
+    "items": [
+      "multi_turn_base_15:t0",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1642,
+    "chars": 1393,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_94:0": {
+    "items": [
+      "multi_turn_base_22:t2",
+      "multi_turn_base_16:t0"
+    ],
+    "target_chars": 1699,
+    "chars": 1183,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_94:1": {
+    "items": [
+      "multi_turn_base_0:t2",
+      "multi_turn_base_3:t1"
+    ],
+    "target_chars": 990,
+    "chars": 1068,
+    "draws": 9,
+    "within_15pct": true
+  },
+  "multi_turn_base_94:2": {
+    "items": [
+      "multi_turn_base_7:t0",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 2636,
+    "chars": 1510,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_52:0": {
+    "items": [
+      "multi_turn_base_16:t0",
+      "multi_turn_base_22:t2"
+    ],
+    "target_chars": 2342,
+    "chars": 1183,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_52:1": {
+    "items": [
+      "multi_turn_base_39:t1",
+      "multi_turn_base_2:t0"
+    ],
+    "target_chars": 993,
+    "chars": 1023,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_52:2": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_29:t1"
+    ],
+    "target_chars": 1810,
+    "chars": 1280,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_52:3": {
+    "items": [
+      "multi_turn_base_6:t4",
+      "multi_turn_base_36:t1"
+    ],
+    "target_chars": 854,
+    "chars": 948,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_59:0": {
+    "items": [
+      "multi_turn_base_49:t1",
+      "multi_turn_base_48:t0"
+    ],
+    "target_chars": 1053,
+    "chars": 1163,
+    "draws": 3,
+    "within_15pct": true
+  },
+  "multi_turn_base_59:1": {
+    "items": [
+      "multi_turn_base_19:t1",
+      "multi_turn_base_22:t0"
+    ],
+    "target_chars": 963,
+    "chars": 1009,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_59:2": {
+    "items": [
+      "multi_turn_base_15:t2",
+      "multi_turn_base_18:t0"
+    ],
+    "target_chars": 1201,
+    "chars": 1114,
+    "draws": 4,
+    "within_15pct": true
+  },
+  "multi_turn_base_59:3": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_6:t2"
+    ],
+    "target_chars": 1485,
+    "chars": 1351,
+    "draws": 6,
+    "within_15pct": true
+  },
+  "multi_turn_base_59:4": {
+    "items": [
+      "multi_turn_base_39:t1",
+      "multi_turn_base_49:t0"
+    ],
+    "target_chars": 1279,
+    "chars": 1106,
+    "draws": 8,
+    "within_15pct": true
+  },
+  "multi_turn_base_66:0": {
+    "items": [
+      "multi_turn_base_1:t1",
+      "multi_turn_base_5:t1"
+    ],
+    "target_chars": 913,
+    "chars": 844,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_66:1": {
+    "items": [
+      "multi_turn_base_39:t1",
+      "multi_turn_base_15:t3"
+    ],
+    "target_chars": 1075,
+    "chars": 1175,
+    "draws": 4,
+    "within_15pct": true
+  },
+  "multi_turn_base_66:2": {
+    "items": [
+      "multi_turn_base_49:t1",
+      "multi_turn_base_18:t0"
+    ],
+    "target_chars": 2263,
+    "chars": 1402,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_66:3": {
+    "items": [
+      "multi_turn_base_22:t0",
+      "multi_turn_base_14:t2"
+    ],
+    "target_chars": 927,
+    "chars": 913,
+    "draws": 4,
+    "within_15pct": true
+  },
+  "multi_turn_base_51:0": {
+    "items": [
+      "multi_turn_base_14:t0",
+      "multi_turn_base_9:t1"
+    ],
+    "target_chars": 951,
+    "chars": 946,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_51:1": {
+    "items": [
+      "multi_turn_base_32:t0",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1995,
+    "chars": 1504,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_51:2": {
+    "items": [
+      "multi_turn_base_15:t1",
+      "multi_turn_base_30:t0"
+    ],
+    "target_chars": 1020,
+    "chars": 1000,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_51:3": {
+    "items": [
+      "multi_turn_base_18:t0",
+      "multi_turn_base_38:t0"
+    ],
+    "target_chars": 1766,
+    "chars": 1363,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_83:0": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_14:t0"
+    ],
+    "target_chars": 2258,
+    "chars": 1395,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_83:1": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_18:t0"
+    ],
+    "target_chars": 2085,
+    "chars": 1884,
+    "draws": 20,
+    "within_15pct": true
+  },
+  "multi_turn_base_83:2": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_25:t3"
+    ],
+    "target_chars": 2217,
+    "chars": 1346,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_91:0": {
+    "items": [
+      "multi_turn_base_10:t1",
+      "multi_turn_base_16:t0"
+    ],
+    "target_chars": 1760,
+    "chars": 1299,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_91:1": {
+    "items": [
+      "multi_turn_base_19:t1",
+      "multi_turn_base_33:t0"
+    ],
+    "target_chars": 792,
+    "chars": 802,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_81:0": {
+    "items": [
+      "multi_turn_base_18:t0",
+      "multi_turn_base_7:t0"
+    ],
+    "target_chars": 1456,
+    "chars": 1269,
+    "draws": 8,
+    "within_15pct": true
+  },
+  "multi_turn_base_81:1": {
+    "items": [
+      "multi_turn_base_18:t0",
+      "multi_turn_base_37:t1"
+    ],
+    "target_chars": 1876,
+    "chars": 1245,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_81:2": {
+    "items": [
+      "multi_turn_base_18:t0",
+      "multi_turn_base_32:t0"
+    ],
+    "target_chars": 1343,
+    "chars": 1263,
+    "draws": 11,
+    "within_15pct": true
+  },
+  "multi_turn_base_81:3": {
+    "items": [
+      "multi_turn_base_35:t0",
+      "multi_turn_base_19:t1"
+    ],
+    "target_chars": 1140,
+    "chars": 1089,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_64:0": {
+    "items": [
+      "multi_turn_base_39:t1",
+      "multi_turn_base_10:t1"
+    ],
+    "target_chars": 1424,
+    "chars": 1232,
+    "draws": 10,
+    "within_15pct": true
+  },
+  "multi_turn_base_64:1": {
+    "items": [
+      "multi_turn_base_6:t0",
+      "multi_turn_base_36:t1"
+    ],
+    "target_chars": 961,
+    "chars": 915,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_97:0": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_18:t0"
+    ],
+    "target_chars": 2292,
+    "chars": 1884,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_97:1": {
+    "items": [
+      "multi_turn_base_5:t0",
+      "multi_turn_base_16:t0"
+    ],
+    "target_chars": 1236,
+    "chars": 1197,
+    "draws": 23,
+    "within_15pct": true
+  },
+  "multi_turn_base_97:2": {
+    "items": [
+      "multi_turn_base_2:t4",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1590,
+    "chars": 1428,
+    "draws": 5,
+    "within_15pct": true
+  },
+  "multi_turn_base_97:3": {
+    "items": [
+      "multi_turn_base_42:t1",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1590,
+    "chars": 1391,
+    "draws": 10,
+    "within_15pct": true
+  },
+  "multi_turn_base_97:4": {
+    "items": [
+      "multi_turn_base_43:t1",
+      "multi_turn_base_5:t0"
+    ],
+    "target_chars": 827,
+    "chars": 745,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_97:5": {
+    "items": [
+      "multi_turn_base_12:t0",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1403,
+    "chars": 1403,
+    "draws": 35,
+    "within_15pct": true
+  },
+  "multi_turn_base_84:0": {
+    "items": [
+      "multi_turn_base_14:t2",
+      "multi_turn_base_18:t0"
+    ],
+    "target_chars": 2366,
+    "chars": 1267,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_84:1": {
+    "items": [
+      "multi_turn_base_34:t0",
+      "multi_turn_base_9:t1"
+    ],
+    "target_chars": 1119,
+    "chars": 1011,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_80:0": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_8:t1"
+    ],
+    "target_chars": 1514,
+    "chars": 1598,
+    "draws": 10,
+    "within_15pct": true
+  },
+  "multi_turn_base_80:1": {
+    "items": [
+      "multi_turn_base_4:t0",
+      "multi_turn_base_18:t0"
+    ],
+    "target_chars": 1132,
+    "chars": 1079,
+    "draws": 5,
+    "within_15pct": true
+  },
+  "multi_turn_base_80:2": {
+    "items": [
+      "multi_turn_base_39:t1",
+      "multi_turn_base_10:t1"
+    ],
+    "target_chars": 1413,
+    "chars": 1232,
+    "draws": 46,
+    "within_15pct": true
+  },
+  "multi_turn_base_80:3": {
+    "items": [
+      "multi_turn_base_15:t3",
+      "multi_turn_base_18:t0"
+    ],
+    "target_chars": 2272,
+    "chars": 1315,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_80:4": {
+    "items": [
+      "multi_turn_base_28:t2",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1718,
+    "chars": 1551,
+    "draws": 16,
+    "within_15pct": true
+  },
+  "multi_turn_base_61:0": {
+    "items": [
+      "multi_turn_base_0:t3",
+      "multi_turn_base_18:t1"
+    ],
+    "target_chars": 1053,
+    "chars": 1189,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_61:1": {
+    "items": [
+      "multi_turn_base_28:t2",
+      "multi_turn_base_16:t0"
+    ],
+    "target_chars": 1252,
+    "chars": 1237,
+    "draws": 3,
+    "within_15pct": true
+  },
+  "multi_turn_base_61:2": {
+    "items": [
+      "multi_turn_base_16:t0",
+      "multi_turn_base_9:t0"
+    ],
+    "target_chars": 1165,
+    "chars": 1012,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_61:3": {
+    "items": [
+      "multi_turn_base_16:t0",
+      "multi_turn_base_0:t1"
+    ],
+    "target_chars": 1854,
+    "chars": 1186,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_72:0": {
+    "items": [
+      "multi_turn_base_10:t3",
+      "multi_turn_base_9:t1"
+    ],
+    "target_chars": 1443,
+    "chars": 1060,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_72:1": {
+    "items": [
+      "multi_turn_base_0:t3",
+      "multi_turn_base_2:t3"
+    ],
+    "target_chars": 1566,
+    "chars": 1416,
+    "draws": 44,
+    "within_15pct": true
+  },
+  "multi_turn_base_72:2": {
+    "items": [
+      "multi_turn_base_18:t1",
+      "multi_turn_base_8:t1"
+    ],
+    "target_chars": 1140,
+    "chars": 984,
+    "draws": 12,
+    "within_15pct": true
+  },
+  "multi_turn_base_72:3": {
+    "items": [
+      "multi_turn_base_33:t2",
+      "multi_turn_base_35:t0"
+    ],
+    "target_chars": 957,
+    "chars": 915,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_72:4": {
+    "items": [
+      "multi_turn_base_8:t0",
+      "multi_turn_base_3:t1"
+    ],
+    "target_chars": 1403,
+    "chars": 1286,
+    "draws": 10,
+    "within_15pct": true
+  },
+  "multi_turn_base_77:0": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_19:t1"
+    ],
+    "target_chars": 1514,
+    "chars": 1604,
+    "draws": 3,
+    "within_15pct": true
+  },
+  "multi_turn_base_77:1": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_34:t0"
+    ],
+    "target_chars": 1464,
+    "chars": 1460,
+    "draws": 16,
+    "within_15pct": true
+  },
+  "multi_turn_base_77:2": {
+    "items": [
+      "multi_turn_base_13:t0",
+      "multi_turn_base_22:t1"
+    ],
+    "target_chars": 854,
+    "chars": 860,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_95:0": {
+    "items": [
+      "multi_turn_base_35:t0",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 2636,
+    "chars": 1610,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_95:1": {
+    "items": [
+      "multi_turn_base_48:t1",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1910,
+    "chars": 1397,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_95:2": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_16:t1"
+    ],
+    "target_chars": 1514,
+    "chars": 1401,
+    "draws": 48,
+    "within_15pct": true
+  },
+  "multi_turn_base_95:3": {
+    "items": [
+      "multi_turn_base_10:t4",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 2357,
+    "chars": 1292,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_95:4": {
+    "items": [
+      "multi_turn_base_6:t0",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1511,
+    "chars": 1444,
+    "draws": 45,
+    "within_15pct": true
+  },
+  "multi_turn_base_57:0": {
+    "items": [
+      "multi_turn_base_16:t0",
+      "multi_turn_base_13:t1"
+    ],
+    "target_chars": 1464,
+    "chars": 1114,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_57:1": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_12:t2"
+    ],
+    "target_chars": 1718,
+    "chars": 1354,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_88:0": {
+    "items": [
+      "multi_turn_base_18:t1",
+      "multi_turn_base_9:t0"
+    ],
+    "target_chars": 758,
+    "chars": 712,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_88:1": {
+    "items": [
+      "multi_turn_base_28:t2",
+      "multi_turn_base_16:t0"
+    ],
+    "target_chars": 1407,
+    "chars": 1237,
+    "draws": 22,
+    "within_15pct": true
+  },
+  "multi_turn_base_88:2": {
+    "items": [
+      "multi_turn_base_0:t3",
+      "multi_turn_base_9:t1"
+    ],
+    "target_chars": 1464,
+    "chars": 1354,
+    "draws": 18,
+    "within_15pct": true
+  },
+  "multi_turn_base_65:0": {
+    "items": [
+      "multi_turn_base_24:t1",
+      "multi_turn_base_10:t1"
+    ],
+    "target_chars": 1178,
+    "chars": 1050,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_65:1": {
+    "items": [
+      "multi_turn_base_16:t0",
+      "multi_turn_base_14:t2"
+    ],
+    "target_chars": 1106,
+    "chars": 1194,
+    "draws": 3,
+    "within_15pct": true
+  },
+  "multi_turn_base_74:0": {
+    "items": [
+      "multi_turn_base_10:t3",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1742,
+    "chars": 1509,
+    "draws": 39,
+    "within_15pct": true
+  },
+  "multi_turn_base_74:1": {
+    "items": [
+      "multi_turn_base_31:t0",
+      "multi_turn_base_28:t1"
+    ],
+    "target_chars": 2362,
+    "chars": 1481,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_99:0": {
+    "items": [
+      "multi_turn_base_39:t3",
+      "multi_turn_base_26:t0"
+    ],
+    "target_chars": 713,
+    "chars": 652,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_99:1": {
+    "items": [
+      "multi_turn_base_35:t0",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1616,
+    "chars": 1610,
+    "draws": 6,
+    "within_15pct": true
+  },
+  "multi_turn_base_99:2": {
+    "items": [
+      "multi_turn_base_18:t0",
+      "multi_turn_base_47:t0"
+    ],
+    "target_chars": 1089,
+    "chars": 1093,
+    "draws": 3,
+    "within_15pct": true
+  },
+  "multi_turn_base_99:3": {
+    "items": [
+      "multi_turn_base_10:t3",
+      "multi_turn_base_15:t1"
+    ],
+    "target_chars": 990,
+    "chars": 934,
+    "draws": 10,
+    "within_15pct": true
+  },
+  "multi_turn_base_82:0": {
+    "items": [
+      "multi_turn_base_32:t0",
+      "multi_turn_base_8:t0"
+    ],
+    "target_chars": 1160,
+    "chars": 1025,
+    "draws": 2,
+    "within_15pct": true
+  },
+  "multi_turn_base_82:1": {
+    "items": [
+      "multi_turn_base_5:t1",
+      "multi_turn_base_47:t0"
+    ],
+    "target_chars": 667,
+    "chars": 756,
+    "draws": 4,
+    "within_15pct": true
+  },
+  "multi_turn_base_82:2": {
+    "items": [
+      "multi_turn_base_0:t3",
+      "multi_turn_base_8:t1"
+    ],
+    "target_chars": 1919,
+    "chars": 1276,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_63:0": {
+    "items": [
+      "multi_turn_base_14:t0",
+      "multi_turn_base_31:t0"
+    ],
+    "target_chars": 1549,
+    "chars": 1395,
+    "draws": 1,
+    "within_15pct": true
+  },
+  "multi_turn_base_63:1": {
+    "items": [
+      "multi_turn_base_39:t1",
+      "multi_turn_base_18:t0"
+    ],
+    "target_chars": 2292,
+    "chars": 1503,
+    "draws": 50,
+    "within_15pct": false
+  },
+  "multi_turn_base_63:2": {
+    "items": [
+      "multi_turn_base_46:t0",
+      "multi_turn_base_22:t1"
+    ],
+    "target_chars": 875,
+    "chars": 828,
+    "draws": 1,
+    "within_15pct": true
+  }
+}

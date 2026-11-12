@@ -1,0 +1,143 @@
+{
+  "checks": [
+    {
+      "key": "short-1",
+      "text": "{\n  \"calls\": [\n    {\n      \"name\": \"setHeadlights\",\n      \"arguments\": {\n        \"mode\": \"on\"\n      }\n    }\n  ]\n}",
+      "expected": [
+        {
+          "name": "setHeadlights",
+          "arguments": {
+            "mode": "on"
+          }
+        }
+      ],
+      "ok": true,
+      "usage": {
+        "prompt_eval_count": 36,
+        "eval_count": 38,
+        "total_duration": 90547111600,
+        "load_duration": 62568721200,
+        "prompt_eval_duration": 19460453000,
+        "eval_duration": 8486242000
+      },
+      "wall_seconds": 90.54699999999866,
+      "chars_tokens_estimate": 36.0
+    },
+    {
+      "key": "long-1",
+      "text": "{\"calls\":[{\"name\":\"setHeadlights\",\"arguments\":{\"mode\":\"off\"}}]}",
+      "expected": [
+        {
+          "name": "setHeadlights",
+          "arguments": {
+            "mode": "off"
+          }
+        }
+      ],
+      "ok": true,
+      "usage": {
+        "prompt_eval_count": 1565,
+        "eval_count": 17,
+        "total_duration": 2033464000,
+        "load_duration": 4500700,
+        "prompt_eval_duration": 1480226000,
+        "eval_duration": 531105000
+      },
+      "wall_seconds": 2.0310000000026776,
+      "chars_tokens_estimate": 2174.3333333333335,
+      "api_ps": {
+        "models": [
+          {
+            "name": "qwen2.5:14b-instruct",
+            "model": "qwen2.5:14b-instruct",
+            "size": 10290085231,
+            "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen2",
+              "families": [
+                "qwen2"
+              ],
+              "parameter_size": "14.8B",
+              "quantization_level": "Q4_K_M"
+            },
+            "expires_at": "2026-11-12T13:08:48.7743344+02:00",
+            "size_vram": 10290085231,
+            "context_length": 8192,
+            "runner": "llamacpp"
+          }
+        ]
+      }
+    },
+    {
+      "key": "long-2",
+      "text": "{\"calls\":[{\"name\":\"setHeadlights\",\"arguments\":{\"mode\":\"off\"}}]}",
+      "expected": [
+        {
+          "name": "setHeadlights",
+          "arguments": {
+            "mode": "off"
+          }
+        }
+      ],
+      "ok": true,
+      "usage": {
+        "prompt_eval_count": 1565,
+        "eval_count": 17,
+        "total_duration": 571242800,
+        "load_duration": 5004100,
+        "prompt_eval_duration": 31533000,
+        "eval_duration": 526971000
+      },
+      "wall_seconds": 0.5940000000045984,
+      "chars_tokens_estimate": 2174.3333333333335
+    },
+    {
+      "key": "short-2",
+      "text": "{\n  \"calls\": []\n}",
+      "expected": [],
+      "ok": true,
+      "usage": {
+        "prompt_eval_count": 27,
+        "eval_count": 8,
+        "total_duration": 356741100,
+        "load_duration": 2998900,
+        "prompt_eval_duration": 69163000,
+        "eval_duration": 213358000
+      },
+      "wall_seconds": 0.375,
+      "chars_tokens_estimate": 22.0
+    }
+  ],
+  "all_ok": true,
+  "gpu_full": true,
+  "api_ps_model": {
+    "name": "qwen2.5:14b-instruct",
+    "model": "qwen2.5:14b-instruct",
+    "size": 10290085231,
+    "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen2",
+      "families": [
+        "qwen2"
+      ],
+      "parameter_size": "14.8B",
+      "quantization_level": "Q4_K_M"
+    },
+    "expires_at": "2026-11-12T13:08:48.7743344+02:00",
+    "size_vram": 10290085231,
+    "context_length": 8192,
+    "runner": "llamacpp"
+  },
+  "prompt_eval_count_repeat": [
+    1565,
+    1565
+  ],
+  "prompt_cache_lowers_count": false,
+  "use_chars_estimate_only": false,
+  "chars_per_token_long": 4.17444089456869,
+  "num_ctx": 8192
+}

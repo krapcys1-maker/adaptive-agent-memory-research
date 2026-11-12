@@ -1,0 +1,67 @@
+{
+  "pools": {
+    "A": {
+      "rows": 61,
+      "sha256": "c086dffa7016b4e1c4521f36bcd31e36d1e4b25b59799d94aafb50904a3b95dd",
+      "chars": 40416
+    },
+    "A_plus": {
+      "rows": 31,
+      "sha256": "037c76f2cb6f1efac302329f655dfa1a1d4b160833e60c71bff93dcfc1093113",
+      "chars": 20213
+    },
+    "G": {
+      "rows": 65,
+      "sha256": "35a6587100e533fa4a8ac822babcd5626c2e4d9f60ed942e1f391b021ba67d1f",
+      "chars": 31643
+    },
+    "F": {
+      "rows": 127,
+      "sha256": "fd9fcb3328c0a4038d680c71637311cc197afab41b2dbf5b0346527ac7ead666",
+      "chars": 44119
+    }
+  },
+  "gate": {
+    "lex_tau": 0.1,
+    "min_evidence": 1.4
+  },
+  "gates": {
+    "train_solved": 7,
+    "mean_progress": 0.5025000000000001,
+    "a_passed_turns": 31,
+    "context_share_near_limit": 0.0,
+    "context_ok": true,
+    "solved_range_ok": true,
+    "progress_fallback": false,
+    "a_passed_ok": true,
+    "projection_ok": true,
+    "primary_metric": "solved",
+    "proceed": true
+  },
+  "projection": {
+    "calls_used": 202,
+    "seconds_used": 291.9059999999954,
+    "calls_per_episode": 9.9,
+    "seconds_per_call": 0.9983484848484607,
+    "e2_projected_calls": 1764.675,
+    "e2_projected_seconds": 1761.7606124999575,
+    "ok": true
+  },
+  "strata_counts": {
+    "gt_layer": {
+      "A": 49,
+      "B": 22,
+      "C": 35
+    },
+    "mem_layer": {
+      "A": 17,
+      "B": 26,
+      "C": 63
+    },
+    "c_rule": 13,
+    "random_dependent": 5,
+    "same_world_turns": 6
+  },
+  "placebo_within_15pct": 72,
+  "placebo_turns": 106
+}
