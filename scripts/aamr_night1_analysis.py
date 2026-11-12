@@ -270,6 +270,81 @@ def _wc(rows):
             "of": len(rows), "prompt_tokens": pt, "output_tokens": ct, "usd_upper": round(sum(r.get("usd_upper") or 0 for r in rows), 6)}
 
 
+def open_problems(d, arm, tasks):
+    """Unresolved error signatures in the first failed turn of the no-memory arm, counted by task (the C6 work queue)."""
+    c = Counter()
+    for t in tasks:
+        rec, ev = d[arm][t]["episode"], d[arm][t]["evaluation"]
+        if ev["solved"] or ev["first_fail"] is None or ev["first_fail"] >= len(rec["turns"]):
+            continue
+        valid = valid_calls(rec["turns"][ev["first_fail"]])
+        sigs = set()
+        for i, call in enumerate(valid):
+            if call.get("error") and not any(xv.fn(c2["call"]) == xv.fn(call["call"]) and not c2.get("error") for c2 in valid[i + 1:]):
+                s = sig_of(call)
+                if s:
+                    sigs.add(f"{s[0]}|{s[1]}")
+        c.update(sigs)
+    return dict(c.most_common(12))
+
+
+def writer_verdict(block, local_ref, noise):
+    """Frozen rule (PROTOCOL 4): Flash helps more than local if TrF - max(TrQ, deterministic) >= 3 and one-sided p <= 0.05."""
+    if not block or "TrF" not in block.get("table", {}):
+        return {"verdict": "not_run"}
+    t = block["table"]
+    locals_ = {a: t[a]["solved"] for a in ("TrQ", local_ref) if a in t}
+    if not locals_:
+        return {"verdict": "not_computable"}
+    best = max(locals_, key=lambda a: (locals_[a], a == local_ref))
+    pair = (block.get("comparisons") or {}).get(f"TrF_vs_{best}")
+    diff = t["TrF"]["solved"] - locals_[best]
+    p = pair["p_one_sided"] if pair else None
+    band = (noise or 0) + 1
+    v = ("flash_better" if diff >= 3 and p is not None and p <= 0.05 else
+         "no_detected_difference" if abs(diff) <= band else "inconclusive")
+    return {"verdict": v, "TrF": t["TrF"]["solved"], "best_local": best, "best_local_solved": locals_[best], "diff": diff, "p_one_sided": p,
+            "noise_band": band}
+
+
+def next_steps(res):
+    """Rule-based reading (STRATEGIA_AAMR.md 5.3, written before the run). The final choice stays a recorded decision."""
+    out = []
+    r = (res.get("fix0") or {}).get("rules") or {}
+    v = r.get("verdict")
+    if v == "supported":
+        out.append("H5 utrzymana na danych rozwojowych: C6 (treść dla otwartych problemów podawana przy błędzie) staje się głównym polem pracy.")
+        if r.get("TrW_close_to_TrO"):
+            out.append("TrW blisko TrO: C6 z lokalnym pisarzem; v1 = lekcje deterministyczne + lokalny pisarz idzie do porównania z konkurentami.")
+        elif r.get("TrW_close_to_N"):
+            out.append("TrW blisko N: treść ma wartość, ale lokalny pisarz jej nie zdobywa; sprawdzić mocniejsze źródło treści (wynik TrF) i eksplorację.")
+    elif v == "refuted":
+        out.append("H5 obalona dla tego modelu: do porównania z konkurentami idzie tylko v0 (sukcesy + lekcje deterministyczne); drugi model wcześniej.")
+    elif v == "intermediate":
+        out.append("H5 pośrednia: decyzja właściciela; nie rozbudowywać C6 bez replikacji (sC, sE).")
+    sd = res.get("sD") or {}
+    pr = sd.get("primary") or {}
+    if pr:
+        out.append("Transfer TrD > N na nietkniętych zadaniach: " + ("potwierdzony." if pr.get("confirmed") else "niepotwierdzony."))
+    fv = (res.get("flash_verdict") or {}).get("sD_confirmatory_family") or {}
+    if fv.get("verdict") == "flash_better":
+        out.append("Flash jako pisarz daje istotnie więcej niż lokalne źródła: rozważyć Flash tylko dla listy otwartych problemów (kilkadziesiąt wywołań).")
+    elif fv.get("verdict") in ("no_detected_difference", "inconclusive"):
+        out.append("Brak wykazanej przewagi Flash nad lokalnymi źródłami: domyślnie pamięć budowana lokalnie (0 USD).")
+    sc = (res.get("sC") or {}).get("rule")
+    if sc:
+        out.append(f"Replikacja H5 na 20 innych zadaniach VC: {sc}.")
+    se = ((res.get("sE") or {}).get("rules") or {}).get("verdict")
+    if se:
+        out.append(f"H5 na qwen3.5:9b: {se}.")
+    op = res.get("open_problems", {}).get("sD") or {}
+    if op:
+        top = next(iter(op.items()))
+        out.append(f"Największy otwarty problem na nowych domenach (bez pamięci): {top[0]} w {top[1]} zadaniach; kandydat na następną treść C6.")
+    out.append("Etap 1 strategii (konkurenci w naszym harnessie) pozostaje warunkiem twierdzenia „lepszy niż konkurencja”.")
+    return out
+
+
 def analyze(run: Path, ndata: Path):
     split_vc = json.loads((p0.DATA / "split.json").read_text(encoding="utf-8"))
     state = jread(run / "state.json", {"stages": {}})
@@ -352,6 +427,17 @@ def analyze(run: Path, ndata: Path):
         res["sE"] = {"arms": arms, "tasks": len(tasks), "table": table, "paired_vs_N": pairs, "rules": fix0(d, tasks, table, pairs),
                      "fuel": fuel_table(d, tasks, arms), "census_N": failure_census(d, "N", tasks) if "N" in arms else None}
     res["errors_log_lines"] = (run / "errors.log").read_text(encoding="utf-8").count("\n") if (run / "errors.log").exists() else 0
+    res["open_problems"] = {}
+    for name, order in (("sA", split_vc["test"]), ("census", None), ("sD", None), ("sE", split_vc["test"])):
+        rows = rows_of(run, name)
+        if rows:
+            d = by_arm(rows)
+            ts = [t for t in (order or sorted(d.get("N", {}), key=xv.task_number)) if t in d.get("N", {})]
+            res["open_problems"][name] = open_problems(d, "N", ts)
+    res["flash_verdict"] = {"sA_dev": writer_verdict(res.get("sA_all"), "Tr", res.get("fix0", {}).get("rules", {}).get("noise_abs_N_prime_minus_N")),
+                            "sD_confirmatory_family": writer_verdict(res.get("sD"), "TrD",
+                                                                     (res.get("sD") or {}).get("primary", {}) and res["sD"]["primary"].get("noise"))}
+    res["next_steps"] = next_steps(res)
     (ndata / "results.json").write_text(json.dumps(res, indent=2, ensure_ascii=False, default=str) + "\n", encoding="utf-8")
     return res
 
@@ -417,5 +503,16 @@ def write_report(res, ndata: Path, run: Path):
         s = res["sE"]
         L += ["## Drugi model: qwen3.5:9b na 30 zadaniach testowych Vehicle Control", "", _tbl(s["table"]), _pairs(s["paired_vs_N"]), "",
               f"**Reguły (jak EXP-FIX-0):** `{json.dumps(s['rules'], ensure_ascii=False)}`", ""]
-    L += ["## Błędy techniczne", "", f"Linie w `errors.log`: {res.get('errors_log_lines')}. Restarty: `{json.dumps(res.get('restarts'))}`.", ""]
+    L += ["## Czy DeepSeek pomaga bardziej niż lokalne rozwiązania (reguła z protokołu)", "",
+          f"- Dane rozwojowe (sA): `{json.dumps((res.get('flash_verdict') or {}).get('sA_dev'), ensure_ascii=False)}`",
+          f"- Nietknięte zadania (sD): `{json.dumps((res.get('flash_verdict') or {}).get('sD_confirmatory_family'), ensure_ascii=False)}`", "",
+          "## Otwarte problemy (nierozwiązane błędy w pierwszej nieudanej turze ramienia N, liczone po zadaniach)", "",
+          f"`{json.dumps(res.get('open_problems'), ensure_ascii=False)}`", "",
+          "## Status dowodów", "",
+          "- Potwierdzające: test główny sD (TrD > N) i rodzina Holma w sD, na 58 zadaniach nigdy wcześniej nieużywanych.",
+          "- Zarejestrowane z góry, ale na danych rozwojowych (zadania VC znane z pilota i S1): reguły EXP-FIX-0 (sA), replikacja (sC), drugi model (sE), porównanie pisarzy w sA.",
+          "- Eksploracyjne: tury z błędem baku, zgodność z nieaktualną lekcją (TrS), spis porażek, otwarte problemy, koszty, wszystkie porównania niewymienione wyżej.", "",
+          "## Odczyt regułowy następnego kroku (STRATEGIA_AAMR.md 5.3; decyzja należy do właściciela)", ""]
+    L += [f"- {x}" for x in res.get("next_steps", [])]
+    L += ["", "## Błędy techniczne", "", f"Linie w `errors.log`: {res.get('errors_log_lines')}. Restarty: `{json.dumps(res.get('restarts'))}`.", ""]
     (ndata / "REPORT.md").write_text("\n".join(L) + "\n", encoding="utf-8")
