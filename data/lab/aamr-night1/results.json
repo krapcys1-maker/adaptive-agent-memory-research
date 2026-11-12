@@ -1,0 +1,2188 @@
+{
+  "program": "AAMR-NIGHT-1",
+  "state": {
+    "stages": {
+      "preflight_q14": {
+        "started_at": "2026-11-12T19:42:27.392015+00:00",
+        "status": "done",
+        "probes": [
+          {
+            "probe": "short-1",
+            "ok": true,
+            "text": "{\n  \"calls\": [\n    {\n      \"name\": \"setHeadlights\",\n      \"arguments\": {\n        \"mode\": \"on\"\n      }\n    }\n  ]\n}",
+            "thinking_present": false
+          },
+          {
+            "probe": "long-1",
+            "ok": true,
+            "text": "{\"calls\":[{\"name\":\"setHeadlights\",\"arguments\":{\"mode\":\"off\"}}]}",
+            "thinking_present": false
+          },
+          {
+            "probe": "short-2",
+            "ok": true,
+            "text": "{\n  \"calls\": []\n}",
+            "thinking_present": false
+          }
+        ],
+        "gpu_full": true,
+        "digest_ok": true,
+        "ollama": {
+          "version": "0.40.16"
+        },
+        "api_ps": [
+          {
+            "name": "qwen2.5:14b-instruct",
+            "model": "qwen2.5:14b-instruct",
+            "size": 10290085231,
+            "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen2",
+              "families": [
+                "qwen2"
+              ],
+              "parameter_size": "14.8B",
+              "quantization_level": "Q4_K_M"
+            },
+            "expires_at": "2026-11-12T21:53:23.0817451+02:00",
+            "size_vram": 10290085231,
+            "context_length": 8192,
+            "runner": "llamacpp"
+          }
+        ],
+        "reason": null,
+        "finished_at": "2026-11-12T19:43:23.255496+00:00"
+      },
+      "a0_writer": {
+        "started_at": "2026-11-12T19:43:27.673381+00:00",
+        "status": "done",
+        "trw_valid": true,
+        "chars": 208,
+        "check": {
+          "chars": 208,
+          "unknown_identifiers": [],
+          "unknown_calls": [],
+          "leaked_tokens": [],
+          "ok": true
+        },
+        "finished_at": "2026-11-12T19:43:31.922536+00:00"
+      },
+      "b0_writers": {
+        "started_at": "2026-11-12T19:43:57.421034+00:00",
+        "status": "done",
+        "signatures": [
+          "estimate_distance|distance not found in database",
+          "fillFuelTank|cannot fill gas above the tank capacity",
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine",
+          "startEngine|must press the brake fully before starting the engine"
+        ],
+        "Q": {
+          "available": true,
+          "valid": 5,
+          "of": 5
+        },
+        "F": {
+          "available": true,
+          "valid": 5,
+          "of": 5
+        },
+        "finished_at": "2026-11-12T19:44:17.025209+00:00"
+      },
+      "b1_quality": {
+        "started_at": "2026-11-12T19:44:27.430593+00:00",
+        "status": "done",
+        "summary": {
+          "none": {
+            "forks": 19,
+            "resolved": 13,
+            "turn_passed": 7
+          },
+          "D": {
+            "forks": 10,
+            "resolved": 10,
+            "turn_passed": 4
+          },
+          "O": {
+            "forks": 6,
+            "resolved": 5,
+            "turn_passed": 3
+          },
+          "Q": {
+            "forks": 19,
+            "resolved": 15,
+            "turn_passed": 8
+          },
+          "F": {
+            "forks": 19,
+            "resolved": 18,
+            "turn_passed": 9
+          }
+        },
+        "gate": {
+          "Q": {
+            "available": true,
+            "valid": 5,
+            "of": 5,
+            "leaks": 0,
+            "coverage_ok": true,
+            "leak_ok": true,
+            "replay_resolved": 15,
+            "replay_resolved_none": 13,
+            "replay_ok": true,
+            "admitted": true
+          },
+          "F": {
+            "available": true,
+            "valid": 5,
+            "of": 5,
+            "leaks": 0,
+            "coverage_ok": true,
+            "leak_ok": true,
+            "replay_resolved": 18,
+            "replay_resolved_none": 13,
+            "replay_ok": true,
+            "admitted": true
+          }
+        },
+        "finished_at": "2026-11-12T19:48:45.243609+00:00"
+      },
+      "sA": {
+        "started_at": "2026-11-12T19:49:09.328257+00:00",
+        "episodes": 270,
+        "new": 270,
+        "missing": 0,
+        "exhausted_buckets": [],
+        "status": "done",
+        "arms": [
+          "N",
+          "N'",
+          "Tr",
+          "TrF",
+          "TrO",
+          "TrP",
+          "TrQ",
+          "TrS",
+          "TrW"
+        ],
+        "finished_at": "2026-11-12T20:35:21.105171+00:00"
+      },
+      "census": {
+        "started_at": "2026-11-12T20:35:40.051506+00:00",
+        "episodes": 40,
+        "new": 40,
+        "missing": 0,
+        "exhausted_buckets": [],
+        "status": "done",
+        "finished_at": "2026-11-12T20:43:51.930754+00:00"
+      },
+      "d0_build": {
+        "started_at": "2026-11-12T20:44:09.817938+00:00",
+        "status": "done",
+        "GFS": {
+          "pool_rows": 57,
+          "lessons": 2,
+          "signatures": 10,
+          "a_plus": 26,
+          "Q_valid": 9,
+          "F_valid": 9
+        },
+        "TRAVEL": {
+          "pool_rows": 78,
+          "lessons": 2,
+          "signatures": 5,
+          "a_plus": 57,
+          "Q_valid": 5,
+          "F_valid": 5
+        },
+        "finished_at": "2026-11-12T20:45:12.449544+00:00"
+      },
+      "sD": {
+        "started_at": "2026-11-12T20:45:40.166301+00:00",
+        "episodes": 348,
+        "new": 348,
+        "missing": 0,
+        "exhausted_buckets": [],
+        "status": "done",
+        "arms": [
+          "N",
+          "TrD",
+          "N'",
+          "TrF",
+          "TrQ",
+          "R+"
+        ],
+        "dropped_for_budget": [],
+        "finished_at": "2026-11-12T22:02:00.195044+00:00"
+      },
+      "sC": {
+        "started_at": "2026-11-12T22:02:11.237074+00:00",
+        "episodes": 60,
+        "new": 60,
+        "missing": 0,
+        "exhausted_buckets": [],
+        "status": "done",
+        "arms": [
+          "N",
+          "TrO",
+          "TrP"
+        ],
+        "finished_at": "2026-11-12T22:11:29.582452+00:00"
+      },
+      "preflight_q9": {
+        "started_at": "2026-11-12T22:11:41.350751+00:00",
+        "status": "done",
+        "probes": [
+          {
+            "probe": "short-1",
+            "ok": true,
+            "text": "{\n  \"calls\": [\n    {\n      \"name\": \"setHeadlights\",\n      \"arguments\": {\n        \"mode\": \"on\"\n      }\n    }\n  ]\n}",
+            "thinking_present": false
+          },
+          {
+            "probe": "long-1",
+            "ok": true,
+            "text": "{\"calls\":[{\"name\":\"setHeadlights\",\"arguments\":{\"mode\":\"off\"}}]}",
+            "thinking_present": false
+          },
+          {
+            "probe": "short-2",
+            "ok": true,
+            "text": "{\"calls\": []}",
+            "thinking_present": false
+          }
+        ],
+        "gpu_full": true,
+        "digest_ok": true,
+        "ollama": {
+          "version": "0.40.16"
+        },
+        "api_ps": [
+          {
+            "name": "qwen3.5:9b-q4_K_M",
+            "model": "qwen3.5:9b-q4_K_M",
+            "size": 5862210928,
+            "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen35",
+              "families": [
+                "qwen35"
+              ],
+              "parameter_size": "9.0B",
+              "quantization_level": "Q4_K_M"
+            },
+            "expires_at": "2026-11-13T00:22:11.4550878+02:00",
+            "size_vram": 5862210928,
+            "context_length": 8192,
+            "runner": "llamacpp"
+          }
+        ],
+        "reason": null,
+        "finished_at": "2026-11-12T22:12:11.507247+00:00"
+      },
+      "sE": {
+        "started_at": "2026-11-12T22:12:40.558772+00:00",
+        "episodes": 150,
+        "new": 150,
+        "missing": 0,
+        "exhausted_buckets": [],
+        "status": "done",
+        "arms": [
+          "N",
+          "N'",
+          "Tr",
+          "TrO",
+          "TrP"
+        ],
+        "finished_at": "2026-11-12T22:32:11.214774+00:00"
+      },
+      "final": {
+        "started_at": "2026-11-12T22:32:41.611494+00:00"
+      }
+    },
+    "config_id": "2f2c3ec4d1d7ab04",
+    "amendments": [
+      {
+        "at": "2026-11-12T19:45:57.212744+00:00",
+        "note": "amendment 3: call-name check no longer treats prose parentheses as calls",
+        "recheck": {
+          "trw": {
+            "before": false,
+            "after": true
+          },
+          "Q": {
+            "valid_before": 4,
+            "valid_after": 5,
+            "of": 5
+          },
+          "F": {
+            "valid_before": 2,
+            "valid_after": 5,
+            "of": 5
+          }
+        },
+        "old_config_id": "52c4efc45285a757",
+        "new_config_id": "2f2c3ec4d1d7ab04"
+      }
+    ]
+  },
+  "done": null,
+  "stopped": null,
+  "restarts": null,
+  "costs": {
+    "local_attempts": 9153,
+    "local_by_bucket": {
+      "A": 1822,
+      "B": 820,
+      "H": 307,
+      "D": 3697,
+      "C": 598,
+      "E": 1909
+    },
+    "local_by_model": {
+      "qwen2.5:14b-instruct": 7244,
+      "qwen3.5:9b-q4_K_M": 1909
+    },
+    "local_retries": 0,
+    "local_model_seconds": {
+      "qwen2.5:14b-instruct": 8641.6,
+      "qwen3.5:9b-q4_K_M": 1182.2
+    },
+    "local_tokens_prompt_eval": {
+      "qwen2.5:14b-instruct": [
+        14922267,
+        250313
+      ],
+      "qwen3.5:9b-q4_K_M": [
+        3970656,
+        48727
+      ]
+    },
+    "first_attempt_at": "2026-11-12T19:42:27.395514+00:00",
+    "last_attempt_at": "2026-11-12T22:32:10.755165+00:00",
+    "flash_reserved_calls": 20,
+    "flash_reserved_usd": 0.2,
+    "flash_usage_upper_usd": 0.015235,
+    "flash_prompt_tokens": 45589,
+    "flash_completion_tokens": 1299
+  },
+  "writer_costs": {
+    "lessons_VC_F": {
+      "calls": 5,
+      "valid": 5,
+      "of": 5,
+      "prompt_tokens": 11178,
+      "output_tokens": 317,
+      "usd_upper": 0.003734
+    },
+    "lessons_VC_Q": {
+      "calls": 5,
+      "valid": 5,
+      "of": 5,
+      "prompt_tokens": 11033,
+      "output_tokens": 221,
+      "usd_upper": 0
+    },
+    "lessons_GFS_Q": {
+      "calls": 10,
+      "valid": 9,
+      "of": 10,
+      "prompt_tokens": 18814,
+      "output_tokens": 438,
+      "usd_upper": 0
+    },
+    "lessons_GFS_F": {
+      "calls": 10,
+      "valid": 9,
+      "of": 10,
+      "prompt_tokens": 19017,
+      "output_tokens": 630,
+      "usd_upper": 0.006461
+    },
+    "lessons_GFS_D": {
+      "lessons": 2,
+      "calls": 0,
+      "open_problems": 8
+    },
+    "lessons_TRAVEL_Q": {
+      "calls": 5,
+      "valid": 5,
+      "of": 5,
+      "prompt_tokens": 15729,
+      "output_tokens": 203,
+      "usd_upper": 0
+    },
+    "lessons_TRAVEL_F": {
+      "calls": 5,
+      "valid": 5,
+      "of": 5,
+      "prompt_tokens": 15394,
+      "output_tokens": 352,
+      "usd_upper": 0.005041
+    },
+    "lessons_TRAVEL_D": {
+      "lessons": 2,
+      "calls": 0,
+      "open_problems": 3
+    }
+  },
+  "fix0": {
+    "arms": [
+      "N",
+      "N'",
+      "Tr",
+      "TrO",
+      "TrP",
+      "TrW"
+    ],
+    "tasks": 30,
+    "table": {
+      "N": {
+        "tasks": 30,
+        "solved": 9,
+        "error_events": 46,
+        "error_results": 87,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 302,
+        "prompt_tokens": 549673,
+        "eval_tokens": 8991,
+        "notes_shown": 0,
+        "statuses": {
+          "completed": 27,
+          "forced_termination": 3
+        }
+      },
+      "N'": {
+        "tasks": 30,
+        "solved": 9,
+        "error_events": 46,
+        "error_results": 87,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 302,
+        "prompt_tokens": 550295,
+        "eval_tokens": 9018,
+        "notes_shown": 0,
+        "statuses": {
+          "completed": 27,
+          "forced_termination": 3
+        }
+      },
+      "Tr": {
+        "tasks": 30,
+        "solved": 12,
+        "error_events": 45,
+        "error_results": 86,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 292,
+        "prompt_tokens": 539392,
+        "eval_tokens": 8774,
+        "notes_shown": 35,
+        "statuses": {
+          "completed": 27,
+          "forced_termination": 3
+        }
+      },
+      "TrO": {
+        "tasks": 30,
+        "solved": 15,
+        "error_events": 48,
+        "error_results": 80,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 310,
+        "prompt_tokens": 592662,
+        "eval_tokens": 9314,
+        "notes_shown": 47,
+        "statuses": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      },
+      "TrP": {
+        "tasks": 30,
+        "solved": 12,
+        "error_events": 48,
+        "error_results": 77,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 304,
+        "prompt_tokens": 575715,
+        "eval_tokens": 9195,
+        "notes_shown": 47,
+        "statuses": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      },
+      "TrW": {
+        "tasks": 30,
+        "solved": 13,
+        "error_events": 48,
+        "error_results": 77,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 308,
+        "prompt_tokens": 583048,
+        "eval_tokens": 9232,
+        "notes_shown": 47,
+        "statuses": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      }
+    },
+    "paired_vs_N": {
+      "N'": {
+        "x": "N'",
+        "y": "N",
+        "gained": 0,
+        "lost": 0,
+        "gained_tasks": [],
+        "lost_tasks": [],
+        "p_one_sided": 1.0,
+        "p_two_sided": 1.0,
+        "diff": 0,
+        "error_events_x": 46,
+        "error_events_y": 46
+      },
+      "Tr": {
+        "x": "Tr",
+        "y": "N",
+        "gained": 4,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_81",
+          "multi_turn_base_84",
+          "multi_turn_base_74",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.1875,
+        "p_two_sided": 0.375,
+        "diff": 3,
+        "error_events_x": 45,
+        "error_events_y": 46
+      },
+      "TrO": {
+        "x": "TrO",
+        "y": "N",
+        "gained": 7,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_67",
+          "multi_turn_base_71",
+          "multi_turn_base_81",
+          "multi_turn_base_97",
+          "multi_turn_base_84",
+          "multi_turn_base_74",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.03515625,
+        "p_two_sided": 0.0703125,
+        "diff": 6,
+        "error_events_x": 48,
+        "error_events_y": 46
+      },
+      "TrP": {
+        "x": "TrP",
+        "y": "N",
+        "gained": 4,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_81",
+          "multi_turn_base_84",
+          "multi_turn_base_74",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.1875,
+        "p_two_sided": 0.375,
+        "diff": 3,
+        "error_events_x": 48,
+        "error_events_y": 46
+      },
+      "TrW": {
+        "x": "TrW",
+        "y": "N",
+        "gained": 5,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_81",
+          "multi_turn_base_84",
+          "multi_turn_base_74",
+          "multi_turn_base_99",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.109375,
+        "p_two_sided": 0.21875,
+        "diff": 4,
+        "error_events_x": 48,
+        "error_events_y": 46
+      }
+    },
+    "rules": {
+      "N": 9,
+      "N_prime": 9,
+      "noise_abs_N_prime_minus_N": 0,
+      "TrO_minus_N": 6,
+      "TrO_minus_TrP": 3,
+      "mcnemar_TrO_vs_N_one_sided": 0.03515625,
+      "capacity_turns_in_TrO": 8,
+      "capacity_turns_passed_fraction": 0.5,
+      "verdict": "supported",
+      "Tr_minus_N": 3,
+      "Tr_replicated": true,
+      "TrW": 13,
+      "TrW_close_to_TrO": false,
+      "TrW_close_to_N": false
+    },
+    "fuel": {
+      "N": {
+        "turns": 9,
+        "passed": 1,
+        "read_fuel_after": 0,
+        "refill_ok": 0,
+        "note_shown": 0,
+        "compliance": {}
+      },
+      "N'": {
+        "turns": 9,
+        "passed": 1,
+        "read_fuel_after": 0,
+        "refill_ok": 0,
+        "note_shown": 0,
+        "compliance": {}
+      },
+      "Tr": {
+        "turns": 8,
+        "passed": 0,
+        "read_fuel_after": 0,
+        "refill_ok": 0,
+        "note_shown": 0,
+        "compliance": {}
+      },
+      "TrO": {
+        "turns": 8,
+        "passed": 4,
+        "read_fuel_after": 8,
+        "refill_ok": 8,
+        "note_shown": 8,
+        "compliance": {
+          "capacity_50": 8
+        }
+      },
+      "TrP": {
+        "turns": 8,
+        "passed": 0,
+        "read_fuel_after": 1,
+        "refill_ok": 3,
+        "note_shown": 8,
+        "compliance": {
+          "no_level_read": 2,
+          "capacity_50": 1
+        }
+      },
+      "TrW": {
+        "turns": 8,
+        "passed": 1,
+        "read_fuel_after": 5,
+        "refill_ok": 3,
+        "note_shown": 8,
+        "compliance": {
+          "other_amount": 1,
+          "capacity_50": 2
+        }
+      }
+    },
+    "census_N": {
+      "failed": 21,
+      "classes": {
+        "error_unresolved": 8,
+        "no_error_wrong_or_extra_action": 7,
+        "error_resolved_turn_still_wrong": 3,
+        "limit_steps": 3
+      },
+      "error_adjacent": 11,
+      "error_adjacent_share": 0.5238095238095238
+    }
+  },
+  "sA_all": {
+    "arms": [
+      "N",
+      "N'",
+      "Tr",
+      "TrO",
+      "TrP",
+      "TrW",
+      "TrQ",
+      "TrF",
+      "TrS"
+    ],
+    "tasks": 30,
+    "table": {
+      "N": {
+        "tasks": 30,
+        "solved": 9,
+        "error_events": 46,
+        "error_results": 87,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 302,
+        "prompt_tokens": 549673,
+        "eval_tokens": 8991,
+        "notes_shown": 0,
+        "statuses": {
+          "completed": 27,
+          "forced_termination": 3
+        }
+      },
+      "N'": {
+        "tasks": 30,
+        "solved": 9,
+        "error_events": 46,
+        "error_results": 87,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 302,
+        "prompt_tokens": 550295,
+        "eval_tokens": 9018,
+        "notes_shown": 0,
+        "statuses": {
+          "completed": 27,
+          "forced_termination": 3
+        }
+      },
+      "Tr": {
+        "tasks": 30,
+        "solved": 12,
+        "error_events": 45,
+        "error_results": 86,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 292,
+        "prompt_tokens": 539392,
+        "eval_tokens": 8774,
+        "notes_shown": 35,
+        "statuses": {
+          "completed": 27,
+          "forced_termination": 3
+        }
+      },
+      "TrO": {
+        "tasks": 30,
+        "solved": 15,
+        "error_events": 48,
+        "error_results": 80,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 310,
+        "prompt_tokens": 592662,
+        "eval_tokens": 9314,
+        "notes_shown": 47,
+        "statuses": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      },
+      "TrP": {
+        "tasks": 30,
+        "solved": 12,
+        "error_events": 48,
+        "error_results": 77,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 304,
+        "prompt_tokens": 575715,
+        "eval_tokens": 9195,
+        "notes_shown": 47,
+        "statuses": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      },
+      "TrW": {
+        "tasks": 30,
+        "solved": 13,
+        "error_events": 48,
+        "error_results": 77,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 308,
+        "prompt_tokens": 583048,
+        "eval_tokens": 9232,
+        "notes_shown": 47,
+        "statuses": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      },
+      "TrQ": {
+        "tasks": 30,
+        "solved": 12,
+        "error_events": 49,
+        "error_results": 72,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 316,
+        "prompt_tokens": 605902,
+        "eval_tokens": 9180,
+        "notes_shown": 57,
+        "statuses": {
+          "completed": 30
+        }
+      },
+      "TrF": {
+        "tasks": 30,
+        "solved": 17,
+        "error_events": 46,
+        "error_results": 47,
+        "invalid_calls": 6,
+        "invalid_outputs": 0,
+        "model_calls": 302,
+        "prompt_tokens": 565212,
+        "eval_tokens": 8677,
+        "notes_shown": 39,
+        "statuses": {
+          "completed": 30
+        }
+      },
+      "TrS": {
+        "tasks": 30,
+        "solved": 12,
+        "error_events": 48,
+        "error_results": 75,
+        "invalid_calls": 5,
+        "invalid_outputs": 0,
+        "model_calls": 307,
+        "prompt_tokens": 580747,
+        "eval_tokens": 9155,
+        "notes_shown": 47,
+        "statuses": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      }
+    },
+    "paired_vs_N": {
+      "N'": {
+        "x": "N'",
+        "y": "N",
+        "gained": 0,
+        "lost": 0,
+        "gained_tasks": [],
+        "lost_tasks": [],
+        "p_one_sided": 1.0,
+        "p_two_sided": 1.0,
+        "diff": 0,
+        "error_events_x": 46,
+        "error_events_y": 46
+      },
+      "Tr": {
+        "x": "Tr",
+        "y": "N",
+        "gained": 4,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_81",
+          "multi_turn_base_84",
+          "multi_turn_base_74",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.1875,
+        "p_two_sided": 0.375,
+        "diff": 3,
+        "error_events_x": 45,
+        "error_events_y": 46
+      },
+      "TrO": {
+        "x": "TrO",
+        "y": "N",
+        "gained": 7,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_67",
+          "multi_turn_base_71",
+          "multi_turn_base_81",
+          "multi_turn_base_97",
+          "multi_turn_base_84",
+          "multi_turn_base_74",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.03515625,
+        "p_two_sided": 0.0703125,
+        "diff": 6,
+        "error_events_x": 48,
+        "error_events_y": 46
+      },
+      "TrP": {
+        "x": "TrP",
+        "y": "N",
+        "gained": 4,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_81",
+          "multi_turn_base_84",
+          "multi_turn_base_74",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.1875,
+        "p_two_sided": 0.375,
+        "diff": 3,
+        "error_events_x": 48,
+        "error_events_y": 46
+      },
+      "TrW": {
+        "x": "TrW",
+        "y": "N",
+        "gained": 5,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_81",
+          "multi_turn_base_84",
+          "multi_turn_base_74",
+          "multi_turn_base_99",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.109375,
+        "p_two_sided": 0.21875,
+        "diff": 4,
+        "error_events_x": 48,
+        "error_events_y": 46
+      },
+      "TrQ": {
+        "x": "TrQ",
+        "y": "N",
+        "gained": 4,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_81",
+          "multi_turn_base_84",
+          "multi_turn_base_77",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.1875,
+        "p_two_sided": 0.375,
+        "diff": 3,
+        "error_events_x": 49,
+        "error_events_y": 46
+      },
+      "TrF": {
+        "x": "TrF",
+        "y": "N",
+        "gained": 9,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_67",
+          "multi_turn_base_81",
+          "multi_turn_base_97",
+          "multi_turn_base_84",
+          "multi_turn_base_80",
+          "multi_turn_base_77",
+          "multi_turn_base_74",
+          "multi_turn_base_82",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.0107421875,
+        "p_two_sided": 0.021484375,
+        "diff": 8,
+        "error_events_x": 46,
+        "error_events_y": 46
+      },
+      "TrS": {
+        "x": "TrS",
+        "y": "N",
+        "gained": 4,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_81",
+          "multi_turn_base_84",
+          "multi_turn_base_74",
+          "multi_turn_base_63"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_60"
+        ],
+        "p_one_sided": 0.1875,
+        "p_two_sided": 0.375,
+        "diff": 3,
+        "error_events_x": 48,
+        "error_events_y": 46
+      }
+    },
+    "comparisons": {
+      "TrQ_vs_Tr": {
+        "x": "TrQ",
+        "y": "Tr",
+        "gained": 1,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_77"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_74"
+        ],
+        "p_one_sided": 0.75,
+        "p_two_sided": 1.0,
+        "diff": 0,
+        "error_events_x": 49,
+        "error_events_y": 45
+      },
+      "TrF_vs_Tr": {
+        "x": "TrF",
+        "y": "Tr",
+        "gained": 5,
+        "lost": 0,
+        "gained_tasks": [
+          "multi_turn_base_67",
+          "multi_turn_base_97",
+          "multi_turn_base_80",
+          "multi_turn_base_77",
+          "multi_turn_base_82"
+        ],
+        "lost_tasks": [],
+        "p_one_sided": 0.03125,
+        "p_two_sided": 0.0625,
+        "diff": 5,
+        "error_events_x": 46,
+        "error_events_y": 45
+      },
+      "TrF_vs_TrQ": {
+        "x": "TrF",
+        "y": "TrQ",
+        "gained": 5,
+        "lost": 0,
+        "gained_tasks": [
+          "multi_turn_base_67",
+          "multi_turn_base_97",
+          "multi_turn_base_80",
+          "multi_turn_base_74",
+          "multi_turn_base_82"
+        ],
+        "lost_tasks": [],
+        "p_one_sided": 0.03125,
+        "p_two_sided": 0.0625,
+        "diff": 5,
+        "error_events_x": 46,
+        "error_events_y": 49
+      },
+      "TrS_vs_TrO": {
+        "x": "TrS",
+        "y": "TrO",
+        "gained": 0,
+        "lost": 3,
+        "gained_tasks": [],
+        "lost_tasks": [
+          "multi_turn_base_67",
+          "multi_turn_base_71",
+          "multi_turn_base_97"
+        ],
+        "p_one_sided": 1.0,
+        "p_two_sided": 0.25,
+        "diff": -3,
+        "error_events_x": 48,
+        "error_events_y": 48
+      },
+      "TrS_vs_Tr": {
+        "x": "TrS",
+        "y": "Tr",
+        "gained": 0,
+        "lost": 0,
+        "gained_tasks": [],
+        "lost_tasks": [],
+        "p_one_sided": 1.0,
+        "p_two_sided": 1.0,
+        "diff": 0,
+        "error_events_x": 48,
+        "error_events_y": 45
+      },
+      "TrF_vs_TrW": {
+        "x": "TrF",
+        "y": "TrW",
+        "gained": 5,
+        "lost": 1,
+        "gained_tasks": [
+          "multi_turn_base_67",
+          "multi_turn_base_97",
+          "multi_turn_base_80",
+          "multi_turn_base_77",
+          "multi_turn_base_82"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_99"
+        ],
+        "p_one_sided": 0.109375,
+        "p_two_sided": 0.21875,
+        "diff": 4,
+        "error_events_x": 46,
+        "error_events_y": 48
+      },
+      "TrQ_vs_TrW": {
+        "x": "TrQ",
+        "y": "TrW",
+        "gained": 1,
+        "lost": 2,
+        "gained_tasks": [
+          "multi_turn_base_77"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_74",
+          "multi_turn_base_99"
+        ],
+        "p_one_sided": 0.875,
+        "p_two_sided": 1.0,
+        "diff": -1,
+        "error_events_x": 49,
+        "error_events_y": 48
+      }
+    },
+    "fuel": {
+      "N": {
+        "turns": 9,
+        "passed": 1,
+        "read_fuel_after": 0,
+        "refill_ok": 0,
+        "note_shown": 0,
+        "compliance": {}
+      },
+      "N'": {
+        "turns": 9,
+        "passed": 1,
+        "read_fuel_after": 0,
+        "refill_ok": 0,
+        "note_shown": 0,
+        "compliance": {}
+      },
+      "Tr": {
+        "turns": 8,
+        "passed": 0,
+        "read_fuel_after": 0,
+        "refill_ok": 0,
+        "note_shown": 0,
+        "compliance": {}
+      },
+      "TrO": {
+        "turns": 8,
+        "passed": 4,
+        "read_fuel_after": 8,
+        "refill_ok": 8,
+        "note_shown": 8,
+        "compliance": {
+          "capacity_50": 8
+        }
+      },
+      "TrP": {
+        "turns": 8,
+        "passed": 0,
+        "read_fuel_after": 1,
+        "refill_ok": 3,
+        "note_shown": 8,
+        "compliance": {
+          "no_level_read": 2,
+          "capacity_50": 1
+        }
+      },
+      "TrW": {
+        "turns": 8,
+        "passed": 1,
+        "read_fuel_after": 5,
+        "refill_ok": 3,
+        "note_shown": 8,
+        "compliance": {
+          "other_amount": 1,
+          "capacity_50": 2
+        }
+      },
+      "TrQ": {
+        "turns": 9,
+        "passed": 1,
+        "read_fuel_after": 7,
+        "refill_ok": 4,
+        "note_shown": 9,
+        "compliance": {
+          "other_amount": 1,
+          "capacity_50": 3
+        }
+      },
+      "TrF": {
+        "turns": 9,
+        "passed": 6,
+        "read_fuel_after": 9,
+        "refill_ok": 9,
+        "note_shown": 9,
+        "compliance": {
+          "capacity_50": 9
+        }
+      },
+      "TrS": {
+        "turns": 8,
+        "passed": 0,
+        "read_fuel_after": 8,
+        "refill_ok": 8,
+        "note_shown": 8,
+        "compliance": {
+          "stale_40": 6,
+          "other_amount": 2
+        }
+      }
+    }
+  },
+  "b1": {
+    "summary": {
+      "none": {
+        "forks": 19,
+        "resolved": 13,
+        "turn_passed": 7
+      },
+      "D": {
+        "forks": 10,
+        "resolved": 10,
+        "turn_passed": 4
+      },
+      "O": {
+        "forks": 6,
+        "resolved": 5,
+        "turn_passed": 3
+      },
+      "Q": {
+        "forks": 19,
+        "resolved": 15,
+        "turn_passed": 8
+      },
+      "F": {
+        "forks": 19,
+        "resolved": 18,
+        "turn_passed": 9
+      }
+    },
+    "gate": {
+      "Q": {
+        "available": true,
+        "valid": 5,
+        "of": 5,
+        "leaks": 0,
+        "coverage_ok": true,
+        "leak_ok": true,
+        "replay_resolved": 15,
+        "replay_resolved_none": 13,
+        "replay_ok": true,
+        "admitted": true
+      },
+      "F": {
+        "available": true,
+        "valid": 5,
+        "of": 5,
+        "leaks": 0,
+        "coverage_ok": true,
+        "leak_ok": true,
+        "replay_resolved": 18,
+        "replay_resolved_none": 13,
+        "replay_ok": true,
+        "admitted": true
+      }
+    }
+  },
+  "sC": {
+    "arms": [
+      "N",
+      "TrP",
+      "TrO"
+    ],
+    "tasks": 20,
+    "table": {
+      "N": {
+        "tasks": 20,
+        "solved": 6,
+        "error_events": 31,
+        "error_results": 60,
+        "invalid_calls": 2,
+        "invalid_outputs": 0,
+        "model_calls": 204,
+        "prompt_tokens": 353328,
+        "eval_tokens": 5313,
+        "notes_shown": 0,
+        "statuses": {
+          "completed": 19,
+          "forced_termination": 1
+        }
+      },
+      "TrP": {
+        "tasks": 20,
+        "solved": 6,
+        "error_events": 30,
+        "error_results": 57,
+        "invalid_calls": 2,
+        "invalid_outputs": 0,
+        "model_calls": 193,
+        "prompt_tokens": 348417,
+        "eval_tokens": 5553,
+        "notes_shown": 39,
+        "statuses": {
+          "completed": 19,
+          "forced_termination": 1
+        }
+      },
+      "TrO": {
+        "tasks": 20,
+        "solved": 8,
+        "error_events": 31,
+        "error_results": 47,
+        "invalid_calls": 2,
+        "invalid_outputs": 0,
+        "model_calls": 201,
+        "prompt_tokens": 365019,
+        "eval_tokens": 5313,
+        "notes_shown": 41,
+        "statuses": {
+          "completed": 20
+        }
+      }
+    },
+    "paired_vs_N": {
+      "TrP": {
+        "x": "TrP",
+        "y": "N",
+        "gained": 0,
+        "lost": 0,
+        "gained_tasks": [],
+        "lost_tasks": [],
+        "p_one_sided": 1.0,
+        "p_two_sided": 1.0,
+        "diff": 0,
+        "error_events_x": 30,
+        "error_events_y": 31
+      },
+      "TrO": {
+        "x": "TrO",
+        "y": "N",
+        "gained": 2,
+        "lost": 0,
+        "gained_tasks": [
+          "multi_turn_base_85",
+          "multi_turn_base_56"
+        ],
+        "lost_tasks": [],
+        "p_one_sided": 0.25,
+        "p_two_sided": 0.5,
+        "diff": 2,
+        "error_events_x": 31,
+        "error_events_y": 31
+      }
+    },
+    "rule": "inconclusive",
+    "fuel": {
+      "N": {
+        "turns": 7,
+        "passed": 2,
+        "read_fuel_after": 0,
+        "refill_ok": 2,
+        "note_shown": 0,
+        "compliance": {
+          "no_level_read": 2
+        }
+      },
+      "TrP": {
+        "turns": 7,
+        "passed": 2,
+        "read_fuel_after": 0,
+        "refill_ok": 2,
+        "note_shown": 7,
+        "compliance": {
+          "no_level_read": 2
+        }
+      },
+      "TrO": {
+        "turns": 7,
+        "passed": 4,
+        "read_fuel_after": 7,
+        "refill_ok": 5,
+        "note_shown": 7,
+        "compliance": {
+          "capacity_50": 4,
+          "other_amount": 1
+        }
+      }
+    }
+  },
+  "census": {
+    "GFS": {
+      "tasks": 20,
+      "solved": 5,
+      "model_calls": 174,
+      "failed": 15,
+      "classes": {
+        "error_unresolved": 1,
+        "no_error_wrong_or_extra_action": 7,
+        "limit_steps": 3,
+        "error_resolved_turn_still_wrong": 4
+      },
+      "error_adjacent": 5,
+      "error_adjacent_share": 0.3333333333333333,
+      "deterministic_lessons": 2,
+      "signatures": 10,
+      "open_problems": 8,
+      "a_plus_rows": 26
+    },
+    "TRAVEL": {
+      "tasks": 20,
+      "solved": 9,
+      "model_calls": 205,
+      "failed": 11,
+      "classes": {
+        "error_resolved_turn_still_wrong": 3,
+        "no_error_wrong_or_extra_action": 4,
+        "error_unresolved": 3,
+        "limit_steps": 1
+      },
+      "error_adjacent": 6,
+      "error_adjacent_share": 0.5454545454545454,
+      "deterministic_lessons": 2,
+      "signatures": 5,
+      "open_problems": 3,
+      "a_plus_rows": 57
+    }
+  },
+  "sD": {
+    "arms": [
+      "N",
+      "N'",
+      "TrD",
+      "TrQ",
+      "TrF",
+      "R+"
+    ],
+    "tasks": 58,
+    "table": {
+      "N": {
+        "tasks": 58,
+        "solved": 17,
+        "error_events": 96,
+        "error_results": 219,
+        "invalid_calls": 20,
+        "invalid_outputs": 0,
+        "model_calls": 555,
+        "prompt_tokens": 1206652,
+        "eval_tokens": 21196,
+        "notes_shown": 0,
+        "statuses": {
+          "completed": 50,
+          "forced_termination": 8
+        }
+      },
+      "N'": {
+        "tasks": 58,
+        "solved": 18,
+        "error_events": 89,
+        "error_results": 219,
+        "invalid_calls": 40,
+        "invalid_outputs": 0,
+        "model_calls": 556,
+        "prompt_tokens": 1209994,
+        "eval_tokens": 22034,
+        "notes_shown": 0,
+        "statuses": {
+          "forced_termination": 10,
+          "completed": 48
+        }
+      },
+      "TrD": {
+        "tasks": 58,
+        "solved": 19,
+        "error_events": 89,
+        "error_results": 211,
+        "invalid_calls": 23,
+        "invalid_outputs": 0,
+        "model_calls": 555,
+        "prompt_tokens": 1220635,
+        "eval_tokens": 22452,
+        "notes_shown": 12,
+        "statuses": {
+          "forced_termination": 11,
+          "completed": 47
+        }
+      },
+      "TrQ": {
+        "tasks": 58,
+        "solved": 22,
+        "error_events": 87,
+        "error_results": 178,
+        "invalid_calls": 21,
+        "invalid_outputs": 0,
+        "model_calls": 566,
+        "prompt_tokens": 1278175,
+        "eval_tokens": 22079,
+        "notes_shown": 56,
+        "statuses": {
+          "completed": 52,
+          "forced_termination": 6
+        }
+      },
+      "TrF": {
+        "tasks": 58,
+        "solved": 21,
+        "error_events": 97,
+        "error_results": 215,
+        "invalid_calls": 13,
+        "invalid_outputs": 0,
+        "model_calls": 556,
+        "prompt_tokens": 1282556,
+        "eval_tokens": 23630,
+        "notes_shown": 66,
+        "statuses": {
+          "forced_termination": 10,
+          "completed": 48
+        }
+      },
+      "R+": {
+        "tasks": 58,
+        "solved": 22,
+        "error_events": 69,
+        "error_results": 152,
+        "invalid_calls": 31,
+        "invalid_outputs": 0,
+        "model_calls": 515,
+        "prompt_tokens": 1267132,
+        "eval_tokens": 21217,
+        "notes_shown": 0,
+        "statuses": {
+          "completed": 49,
+          "forced_termination": 9
+        }
+      }
+    },
+    "paired_vs_N": {
+      "N'": {
+        "x": "N'",
+        "y": "N",
+        "gained": 1,
+        "lost": 0,
+        "gained_tasks": [
+          "multi_turn_base_43"
+        ],
+        "lost_tasks": [],
+        "p_one_sided": 0.5,
+        "p_two_sided": 1.0,
+        "diff": 1,
+        "error_events_x": 89,
+        "error_events_y": 96
+      },
+      "TrD": {
+        "x": "TrD",
+        "y": "N",
+        "gained": 2,
+        "lost": 0,
+        "gained_tasks": [
+          "multi_turn_base_43",
+          "multi_turn_base_195"
+        ],
+        "lost_tasks": [],
+        "p_one_sided": 0.25,
+        "p_two_sided": 0.5,
+        "diff": 2,
+        "error_events_x": 89,
+        "error_events_y": 96
+      },
+      "TrQ": {
+        "x": "TrQ",
+        "y": "N",
+        "gained": 7,
+        "lost": 2,
+        "gained_tasks": [
+          "multi_turn_base_43",
+          "multi_turn_base_16",
+          "multi_turn_base_1",
+          "multi_turn_base_13",
+          "multi_turn_base_153",
+          "multi_turn_base_166",
+          "multi_turn_base_195"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_22",
+          "multi_turn_base_49"
+        ],
+        "p_one_sided": 0.08984375,
+        "p_two_sided": 0.1796875,
+        "diff": 5,
+        "error_events_x": 87,
+        "error_events_y": 96
+      },
+      "TrF": {
+        "x": "TrF",
+        "y": "N",
+        "gained": 6,
+        "lost": 2,
+        "gained_tasks": [
+          "multi_turn_base_43",
+          "multi_turn_base_1",
+          "multi_turn_base_13",
+          "multi_turn_base_153",
+          "multi_turn_base_166",
+          "multi_turn_base_195"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_22",
+          "multi_turn_base_49"
+        ],
+        "p_one_sided": 0.14453125,
+        "p_two_sided": 0.2890625,
+        "diff": 4,
+        "error_events_x": 97,
+        "error_events_y": 96
+      },
+      "R+": {
+        "x": "R+",
+        "y": "N",
+        "gained": 14,
+        "lost": 9,
+        "gained_tasks": [
+          "multi_turn_base_21",
+          "multi_turn_base_33",
+          "multi_turn_base_47",
+          "multi_turn_base_34",
+          "multi_turn_base_11",
+          "multi_turn_base_7",
+          "multi_turn_base_15",
+          "multi_turn_base_160",
+          "multi_turn_base_153",
+          "multi_turn_base_193",
+          "multi_turn_base_190",
+          "multi_turn_base_194",
+          "multi_turn_base_159",
+          "multi_turn_base_195"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_49",
+          "multi_turn_base_152",
+          "multi_turn_base_151",
+          "multi_turn_base_183",
+          "multi_turn_base_191",
+          "multi_turn_base_181",
+          "multi_turn_base_165",
+          "multi_turn_base_182",
+          "multi_turn_base_163"
+        ],
+        "p_one_sided": 0.2024364471435547,
+        "p_two_sided": 0.4048728942871094,
+        "diff": 5,
+        "error_events_x": 69,
+        "error_events_y": 96
+      }
+    },
+    "primary": {
+      "TrD_minus_N": 2,
+      "p_one_sided": 0.25,
+      "noise": 1,
+      "confirmed": false
+    },
+    "holm_family": {
+      "TrQ": {
+        "p": 0.08984375,
+        "threshold": 0.0125,
+        "reject": false
+      },
+      "TrF": {
+        "p": 0.14453125,
+        "threshold": 0.016666666666666666,
+        "reject": false
+      },
+      "R+": {
+        "p": 0.2024364471435547,
+        "threshold": 0.025,
+        "reject": false
+      },
+      "TrD": {
+        "p": 0.25,
+        "threshold": 0.05,
+        "reject": false
+      }
+    },
+    "comparisons": {
+      "TrF_vs_TrD": {
+        "x": "TrF",
+        "y": "TrD",
+        "gained": 4,
+        "lost": 2,
+        "gained_tasks": [
+          "multi_turn_base_1",
+          "multi_turn_base_13",
+          "multi_turn_base_153",
+          "multi_turn_base_166"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_22",
+          "multi_turn_base_49"
+        ],
+        "p_one_sided": 0.34375,
+        "p_two_sided": 0.6875,
+        "diff": 2,
+        "error_events_x": 97,
+        "error_events_y": 89
+      },
+      "TrQ_vs_TrD": {
+        "x": "TrQ",
+        "y": "TrD",
+        "gained": 5,
+        "lost": 2,
+        "gained_tasks": [
+          "multi_turn_base_16",
+          "multi_turn_base_1",
+          "multi_turn_base_13",
+          "multi_turn_base_153",
+          "multi_turn_base_166"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_22",
+          "multi_turn_base_49"
+        ],
+        "p_one_sided": 0.2265625,
+        "p_two_sided": 0.453125,
+        "diff": 3,
+        "error_events_x": 87,
+        "error_events_y": 89
+      },
+      "TrF_vs_TrQ": {
+        "x": "TrF",
+        "y": "TrQ",
+        "gained": 0,
+        "lost": 1,
+        "gained_tasks": [],
+        "lost_tasks": [
+          "multi_turn_base_16"
+        ],
+        "p_one_sided": 1.0,
+        "p_two_sided": 1.0,
+        "diff": -1,
+        "error_events_x": 97,
+        "error_events_y": 87
+      },
+      "R+_vs_TrD": {
+        "x": "R+",
+        "y": "TrD",
+        "gained": 13,
+        "lost": 10,
+        "gained_tasks": [
+          "multi_turn_base_21",
+          "multi_turn_base_33",
+          "multi_turn_base_47",
+          "multi_turn_base_34",
+          "multi_turn_base_11",
+          "multi_turn_base_7",
+          "multi_turn_base_15",
+          "multi_turn_base_160",
+          "multi_turn_base_153",
+          "multi_turn_base_193",
+          "multi_turn_base_190",
+          "multi_turn_base_194",
+          "multi_turn_base_159"
+        ],
+        "lost_tasks": [
+          "multi_turn_base_43",
+          "multi_turn_base_49",
+          "multi_turn_base_152",
+          "multi_turn_base_151",
+          "multi_turn_base_183",
+          "multi_turn_base_191",
+          "multi_turn_base_181",
+          "multi_turn_base_165",
+          "multi_turn_base_182",
+          "multi_turn_base_163"
+        ],
+        "p_one_sided": 0.3388197422027588,
+        "p_two_sided": 0.6776394844055176,
+        "diff": 3,
+        "error_events_x": 69,
+        "error_events_y": 89
+      }
+    },
+    "per_domain": {
+      "GFS": {
+        "N": 4,
+        "N'": 5,
+        "TrD": 5,
+        "TrQ": 6,
+        "TrF": 5,
+        "R+": 10,
+        "tasks": 30
+      },
+      "TRAVEL": {
+        "N": 13,
+        "N'": 13,
+        "TrD": 14,
+        "TrQ": 16,
+        "TrF": 16,
+        "R+": 12,
+        "tasks": 28
+      }
+    },
+    "plan": {
+      "arms": [
+        "N",
+        "TrD",
+        "N'",
+        "TrF",
+        "TrQ",
+        "R+"
+      ],
+      "dropped_for_budget": [],
+      "per_episode": 9.448275862068966
+    },
+    "census_N": {
+      "failed": 41,
+      "classes": {
+        "error_resolved_turn_still_wrong": 11,
+        "no_error_wrong_or_extra_action": 12,
+        "error_unresolved": 12,
+        "limit_steps": 6
+      },
+      "error_adjacent": 23,
+      "error_adjacent_share": 0.5609756097560976
+    }
+  },
+  "sE": {
+    "arms": [
+      "N",
+      "N'",
+      "Tr",
+      "TrO",
+      "TrP"
+    ],
+    "tasks": 30,
+    "table": {
+      "N": {
+        "tasks": 30,
+        "solved": 10,
+        "error_events": 52,
+        "error_results": 79,
+        "invalid_calls": 4,
+        "invalid_outputs": 0,
+        "model_calls": 386,
+        "prompt_tokens": 794973,
+        "eval_tokens": 9961,
+        "notes_shown": 0,
+        "statuses": {
+          "completed": 28,
+          "forced_termination": 2
+        }
+      },
+      "N'": {
+        "tasks": 30,
+        "solved": 10,
+        "error_events": 52,
+        "error_results": 79,
+        "invalid_calls": 4,
+        "invalid_outputs": 0,
+        "model_calls": 386,
+        "prompt_tokens": 794973,
+        "eval_tokens": 9961,
+        "notes_shown": 0,
+        "statuses": {
+          "completed": 28,
+          "forced_termination": 2
+        }
+      },
+      "Tr": {
+        "tasks": 30,
+        "solved": 13,
+        "error_events": 52,
+        "error_results": 80,
+        "invalid_calls": 2,
+        "invalid_outputs": 0,
+        "model_calls": 379,
+        "prompt_tokens": 791618,
+        "eval_tokens": 9587,
+        "notes_shown": 43,
+        "statuses": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      },
+      "TrO": {
+        "tasks": 30,
+        "solved": 19,
+        "error_events": 52,
+        "error_results": 71,
+        "invalid_calls": 2,
+        "invalid_outputs": 0,
+        "model_calls": 383,
+        "prompt_tokens": 807984,
+        "eval_tokens": 9593,
+        "notes_shown": 53,
+        "statuses": {
+          "completed": 30
+        }
+      },
+      "TrP": {
+        "tasks": 30,
+        "solved": 13,
+        "error_events": 50,
+        "error_results": 86,
+        "invalid_calls": 2,
+        "invalid_outputs": 0,
+        "model_calls": 372,
+        "prompt_tokens": 780001,
+        "eval_tokens": 9555,
+        "notes_shown": 50,
+        "statuses": {
+          "completed": 27,
+          "forced_termination": 3
+        }
+      }
+    },
+    "paired_vs_N": {
+      "N'": {
+        "x": "N'",
+        "y": "N",
+        "gained": 0,
+        "lost": 0,
+        "gained_tasks": [],
+        "lost_tasks": [],
+        "p_one_sided": 1.0,
+        "p_two_sided": 1.0,
+        "diff": 0,
+        "error_events_x": 52,
+        "error_events_y": 52
+      },
+      "Tr": {
+        "x": "Tr",
+        "y": "N",
+        "gained": 3,
+        "lost": 0,
+        "gained_tasks": [
+          "multi_turn_base_90",
+          "multi_turn_base_52",
+          "multi_turn_base_88"
+        ],
+        "lost_tasks": [],
+        "p_one_sided": 0.125,
+        "p_two_sided": 0.25,
+        "diff": 3,
+        "error_events_x": 52,
+        "error_events_y": 52
+      },
+      "TrO": {
+        "x": "TrO",
+        "y": "N",
+        "gained": 9,
+        "lost": 0,
+        "gained_tasks": [
+          "multi_turn_base_67",
+          "multi_turn_base_71",
+          "multi_turn_base_90",
+          "multi_turn_base_52",
+          "multi_turn_base_59",
+          "multi_turn_base_97",
+          "multi_turn_base_80",
+          "multi_turn_base_88",
+          "multi_turn_base_82"
+        ],
+        "lost_tasks": [],
+        "p_one_sided": 0.001953125,
+        "p_two_sided": 0.00390625,
+        "diff": 9,
+        "error_events_x": 52,
+        "error_events_y": 52
+      },
+      "TrP": {
+        "x": "TrP",
+        "y": "N",
+        "gained": 3,
+        "lost": 0,
+        "gained_tasks": [
+          "multi_turn_base_90",
+          "multi_turn_base_52",
+          "multi_turn_base_88"
+        ],
+        "lost_tasks": [],
+        "p_one_sided": 0.125,
+        "p_two_sided": 0.25,
+        "diff": 3,
+        "error_events_x": 50,
+        "error_events_y": 52
+      }
+    },
+    "rules": {
+      "N": 10,
+      "N_prime": 10,
+      "noise_abs_N_prime_minus_N": 0,
+      "TrO_minus_N": 9,
+      "TrO_minus_TrP": 6,
+      "mcnemar_TrO_vs_N_one_sided": 0.001953125,
+      "capacity_turns_in_TrO": 10,
+      "capacity_turns_passed_fraction": 0.7,
+      "verdict": "supported",
+      "Tr_minus_N": 3,
+      "Tr_replicated": true
+    },
+    "fuel": {
+      "N": {
+        "turns": 10,
+        "passed": 1,
+        "read_fuel_after": 3,
+        "refill_ok": 4,
+        "note_shown": 0,
+        "compliance": {
+          "capacity_50": 3,
+          "no_level_read": 1
+        }
+      },
+      "N'": {
+        "turns": 10,
+        "passed": 1,
+        "read_fuel_after": 3,
+        "refill_ok": 4,
+        "note_shown": 0,
+        "compliance": {
+          "capacity_50": 3,
+          "no_level_read": 1
+        }
+      },
+      "Tr": {
+        "turns": 10,
+        "passed": 2,
+        "read_fuel_after": 2,
+        "refill_ok": 4,
+        "note_shown": 0,
+        "compliance": {
+          "capacity_50": 2,
+          "no_level_read": 2
+        }
+      },
+      "TrO": {
+        "turns": 10,
+        "passed": 7,
+        "read_fuel_after": 9,
+        "refill_ok": 10,
+        "note_shown": 10,
+        "compliance": {
+          "capacity_50": 9,
+          "no_level_read": 1
+        }
+      },
+      "TrP": {
+        "turns": 10,
+        "passed": 1,
+        "read_fuel_after": 3,
+        "refill_ok": 2,
+        "note_shown": 10,
+        "compliance": {
+          "capacity_50": 2
+        }
+      }
+    },
+    "census_N": {
+      "failed": 20,
+      "classes": {
+        "error_unresolved": 7,
+        "no_error_wrong_or_extra_action": 5,
+        "error_resolved_turn_still_wrong": 8
+      },
+      "error_adjacent": 15,
+      "error_adjacent_share": 0.75
+    }
+  },
+  "errors_log_lines": 0,
+  "open_problems": {
+    "sA": {
+      "fillFuelTank|cannot fill gas above the tank capacity": 7,
+      "estimate_distance|distance not found in database": 3,
+      "get_user_id|user <v> not found in the workspace": 1,
+      "get_message_stats|no user is currently logged in": 1,
+      "startEngine|all doors must be locked before starting the engine": 1
+    },
+    "census": {
+      "mv|mv: cannot move <v>: no such file or directory": 2,
+      "cat|cat: <v>: invalid character": 2,
+      "mv|mv: path not allowed in destination": 1,
+      "cp|file <v> already exists in directory <v>": 1,
+      "cp|cp: path not allowed in destination": 1,
+      "sort|sort: <arg>: no such file or directory": 1,
+      "grep|grep: <arg>: no such file or directory": 1,
+      "tail|tail: <arg>: no such file or directory": 1,
+      "resolve_ticket|<v>": 1,
+      "edit_ticket|<v>": 1,
+      "compute_exchange_rate|no available exchange rate for the given currencies": 1,
+      "cancel_booking|booking not found": 1
+    },
+    "sD": {
+      "get_flight_cost|no available route for the given airports": 5,
+      "grep|grep: <arg>: no such file or directory": 4,
+      "cat|cat: <v>: invalid character": 3,
+      "mv|mv: cannot move <v>: no such file or directory": 2,
+      "cp|cp: cannot copy <v>: no such file or directory": 2,
+      "cat|cat: <v>: no such file or directory": 2,
+      "compute_exchange_rate|no available exchange rate for the given currencies": 2,
+      "cp|cp: path not allowed in destination": 1,
+      "mkdir|mkdir: cannot create directory <v>: file exists": 1,
+      "cd|current directory is already the root": 1,
+      "cd|cd: <arg>: unsupported path": 1,
+      "cd|cd: <v>: no such file or directory": 1
+    },
+    "sE": {
+      "fillFuelTank|cannot fill gas above the tank capacity": 6,
+      "estimate_distance|distance not found in database": 1
+    }
+  },
+  "flash_verdict": {
+    "sA_dev": {
+      "verdict": "flash_better",
+      "TrF": 17,
+      "best_local": "Tr",
+      "best_local_solved": 12,
+      "diff": 5,
+      "p_one_sided": 0.03125,
+      "noise_band": 1
+    },
+    "sD_confirmatory_family": {
+      "verdict": "no_detected_difference",
+      "TrF": 21,
+      "best_local": "TrQ",
+      "best_local_solved": 22,
+      "diff": -1,
+      "p_one_sided": 1.0,
+      "noise_band": 2
+    }
+  },
+  "next_steps": [
+    "H5 utrzymana na danych rozwojowych: C6 (treść dla otwartych problemów podawana przy błędzie) staje się głównym polem pracy.",
+    "Transfer TrD > N na nietkniętych zadaniach: niepotwierdzony.",
+    "Brak wykazanej przewagi Flash nad lokalnymi źródłami: domyślnie pamięć budowana lokalnie (0 USD).",
+    "Replikacja H5 na 20 innych zadaniach VC: inconclusive.",
+    "H5 na qwen3.5:9b: supported.",
+    "Największy otwarty problem na nowych domenach (bez pamięci): get_flight_cost|no available route for the given airports w 5 zadaniach; kandydat na następną treść C6.",
+    "Etap 1 strategii (konkurenci w naszym harnessie) pozostaje warunkiem twierdzenia „lepszy niż konkurencja”."
+  ]
+}
