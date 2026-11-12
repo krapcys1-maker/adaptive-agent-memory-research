@@ -595,7 +595,20 @@ Sprawdzać w tej kolejności; obowiązuje pierwszy spełniony.
 
 ## 15. Dziennik odstępstw
 
-(pusty)
+Etap S1 (2026-11-12, implementacja Claude Fable 5.2). Żaden wpis nie zmienia hipotez, miar ani progów.
+
+1. Zakres zgody: właściciel zatwierdził tylko etap S1. Etap S2 nie został uruchomiony.
+2. S1a (przed S1c): 9 z 10 epizodów kontroli zgodności było identycznych z pilotem, jeden (N, zadanie 60) różnił się jednym
+   napisem w niepoprawnym argumencie. Zgodnie z 8.1 ramiona N i R+ zostały uruchomione od nowa na 30 zadaniach.
+3. Przed S1c do analizy dodano pozycję opisową `rerun_vs_pilot` (zgodność ponownego przebiegu N i R+ z pilotem).
+4. Doprecyzowanie 9.2: „tury rozpoczęte w obu ramionach" to tury o indeksie mniejszym niż liczba tur w krótszym z dwóch epizodów.
+5. Doprecyzowanie 10: w Vehicle Control warstwa „blisko dokładnie" ma 10 wpisów. Wpis 76 różni się stanem początkowym od
+   zadania bazowego (w 2.1 był błędnie przypisany do systemu plików).
+6. Doprecyzowanie 5.5: ramię G obejmuje jedno narzędzie (`startEngine`), więc pisarz wykonał jedno wywołanie.
+7. Po obejrzeniu wyników: dodano `scripts/experience_xfer_v1_exploratory.py` i `results-s1-exploratory.json` (analizy
+   eksploracyjne, bez wpływu na bramki) oraz poprawiono jedną asercję testu przebiegu próbnego, która zakładała brak pliku
+   wyników w repozytorium.
+8. Budżet S1: 3 232 z 3 600 wywołań, 66 minut czasu modelu.
 
 ## 16. Decyzje właściciela potrzebne przed implementacją
 

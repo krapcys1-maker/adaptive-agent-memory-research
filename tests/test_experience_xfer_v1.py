@@ -389,6 +389,8 @@ def test_s1_pipeline_end_to_end_on_a_fake_model(tmp_path, monkeypatch):
             if row["key"].rsplit(":", 2)[0] in wanted:
                 pilot_requests[row["key"]] = row["request"]
     pilot_texts = {s["key"]: s["text"] for r in p0.read_jsonl(xf.PILOT_E2 / "episodes.jsonl") for t in r["turns"] for s in t["steps"] if "key" in s}
+    real = xf.XDATA
+    before = {q.name: p0.file_sha(q) for q in real.glob("*") if q.is_file()}
     xdata, xwork = tmp_path / "data", tmp_path / "work"
     xdata.mkdir()
     shutil.copy(xf.XDATA / "config.json", xdata / "config.json")
@@ -435,4 +437,4 @@ def test_s1_pipeline_end_to_end_on_a_fake_model(tmp_path, monkeypatch):
     assert out["probe"]["paired_vs_N"]["R+-N"]["all"]["pairs"] == 50
     assert set(out["gates"]) >= {"A_channel_works", "B_no_gross_harm", "D_llm_writer_not_clearly_better", "s2_may_start", "tstar_triggered"}
     assert (xdata / "lesson-usage.jsonl").exists() and (xdata / "results-s1.json").exists()
-    assert not list((xf.PDATA.parent / "experience-xfer-v1").glob("results-s1.json")), "the dry run must not write into the repository"
+    assert {q.name: p0.file_sha(q) for q in real.glob("*") if q.is_file()} == before, "the dry run must not write into the repository"
