@@ -1,0 +1,20 @@
+{
+  "program": "AAMR-NIGHT-1",
+  "protocol": "data/lab/aamr-night1/PROTOCOL.md",
+  "bfcl_root": "../experience-pilot-2026-11-12/bfcl/src/berkeley-function-call-leaderboard",
+  "bfcl_commit": "6ea57973c7a6097fd7c5915698c54c17c5b1b6c8",
+  "base_url": "http://127.0.0.1:11434",
+  "http_timeout_seconds": 600,
+  "models": {
+    "q14": {"name": "qwen2.5:14b-instruct", "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+            "options": {"temperature": 0, "num_predict": 512, "num_ctx": 8192}, "extra": {}},
+    "q9": {"name": "qwen3.5:9b-q4_K_M", "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+           "options": {"temperature": 0, "num_predict": 512, "num_ctx": 8192, "presence_penalty": 0}, "extra": {"think": false}}
+  },
+  "flash": {"model": "deepseek-flash", "url": "https://api.deepseek.com", "max_calls": 200, "cap_usd": 3.0, "reservation_usd": 0.01,
+            "input_usd_per_million_upper": 0.30, "output_usd_per_million_upper": 1.20, "max_tokens": 400, "max_input_bytes": 30000},
+  "budgets": {"total_local": 12000, "T": 150, "A": 2300, "B": 1000, "H": 400, "C": 800, "D": 4800, "E": 2000},
+  "extra_ledger_dirs": ["smoke-run"],
+  "retry": {"max_attempts_per_call": 4, "backoff_seconds": [15, 45, 90]},
+  "supervisor": {"max_restarts": 8, "restart_wait_seconds": 120, "stall_seconds": 2400}
+}
