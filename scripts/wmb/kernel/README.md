@@ -8,7 +8,7 @@ A small, deterministic, standard-library-only memory for a writing agent: thresh
 |---|---|---|
 | `scripts/wmb/memory_kernel.py` | version 0.1.0 | **frozen**: the instrument of the preregistered study WMB-R1 (its digest is declared in `data/lab/wmb-r1-retrieval/config.json`; the claim audit fails the build if it changes). Never edited. |
 | `tests/test_wmb_memory_kernel.py` | the tests of 0.1.0 | frozen with it |
-| `scripts/wmb/kernel/memory_kernel.py` | version 0.2.0 (`VERSION` in the file) | **live line, but its bytes are now pinned**: experiments that ran on 0.2.0 declare its digest (nine manifests on 2026-11-13, among them `data/lab/reader-model-compare-v1/` and `data/lab/nie-local-reader-v1/`), so a committed edit fails the claim audit unless each pinning manifest gets a `.DRIFT.json` note. Run `python scripts/pinned_files.py scripts/wmb/kernel/memory_kernel.py` before editing. The maintainers decide whether the next change is such an edit, with a new `VERSION` and a CHANGELOG paragraph, or a new file for the next version |
+| `scripts/wmb/kernel/memory_kernel.py` | version 0.2.0 (`VERSION` in the file) | **frozen since 2026-11-13**: experiments that ran on 0.2.0 declare its digest (nine manifests on that date, among them `data/lab/reader-model-compare-v1/` and `data/lab/nie-local-reader-v1/`), so a committed edit fails the claim audit. The owner decided on 2026-11-13 that the next kernel version is a **new versioned module** next to this one, with its own `VERSION`, CHANGELOG and tests, rather than an edit of 0.2.0 with drift notes for nine historical manifests. `python scripts/pinned_files.py PATH` shows whether a file is pinned before you edit it |
 | `tests/test_wmb_kernel_v2.py` | the tests of the live line | runs in the job "Memory kernel (Python 3.14)" and in the full suite |
 
 ## Interface
@@ -35,7 +35,7 @@ The score of an item is BM25 (k1 1.2, b 0.75) over the stems of the query, with 
 The module is **one file** with no dependency outside the standard library (Python 3.11 to 3.14) and no effect on import.
 
 1. Copy `scripts/wmb/kernel/memory_kernel.py` byte for byte (the repository stores files without line-ending conversion).
-2. Record next to the copy the `VERSION` string (`python -c "import memory_kernel; print(memory_kernel.VERSION)"`) and the SHA-256 of the file: `python -c "import hashlib,sys; print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest())" memory_kernel.py`. Compare both after every update; do not edit the copy, change the live line here and vendor again.
+2. Record next to the copy the `VERSION` string (`python -c "import memory_kernel; print(memory_kernel.VERSION)"`) and the SHA-256 of the file: `python -c "import hashlib,sys; print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest())" memory_kernel.py`. Compare both after every update; do not edit the copy. A change belongs in a new versioned module in this directory (0.2.0 is frozen; see the layout table), which you then vendor again.
 3. Read `kernel_version` in every log record: it is the `VERSION` of the file that produced it.
 4. To run this suite against the vendored copy: `WMB_KERNEL_V2_FILE=/path/to/memory_kernel.py python -m pytest tests/test_wmb_kernel_v2.py -q` from a checkout of this repository (the suite loads the copy under a private name; the frozen 0.1.0 and this README are still read from the checkout).
 5. Pass aware datetimes (`datetime.now(timezone.utc)`), or set `require_zone` in the profile so that a `now` without a zone is refused.
