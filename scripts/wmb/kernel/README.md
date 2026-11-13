@@ -8,7 +8,7 @@ A small, deterministic, standard-library-only memory for a writing agent: thresh
 |---|---|---|
 | `scripts/wmb/memory_kernel.py` | version 0.1.0 | **frozen**: the instrument of the preregistered study WMB-R1 (its digest is declared in `data/lab/wmb-r1-retrieval/config.json`; the claim audit fails the build if it changes). Never edited. |
 | `tests/test_wmb_memory_kernel.py` | the tests of 0.1.0 | frozen with it |
-| `scripts/wmb/kernel/memory_kernel.py` | version 0.2.0 (`VERSION` in the file) | **live**: every later change goes here, with a new `VERSION` and a paragraph in the CHANGELOG of its docstring |
+| `scripts/wmb/kernel/memory_kernel.py` | version 0.2.0 (`VERSION` in the file) | **live line, but its bytes are now pinned**: experiments that ran on 0.2.0 declare its digest (nine manifests on 2026-11-13, among them `data/lab/reader-model-compare-v1/` and `data/lab/nie-local-reader-v1/`), so a committed edit fails the claim audit unless each pinning manifest gets a `.DRIFT.json` note. Run `python scripts/pinned_files.py scripts/wmb/kernel/memory_kernel.py` before editing. The maintainers decide whether the next change is such an edit, with a new `VERSION` and a CHANGELOG paragraph, or a new file for the next version |
 | `tests/test_wmb_kernel_v2.py` | the tests of the live line | runs in the job "Memory kernel (Python 3.14)" and in the full suite |
 
 ## Interface
