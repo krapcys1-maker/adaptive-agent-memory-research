@@ -161,6 +161,8 @@ Effort: S under a day, M a few days. "Safe now" means it touches no frozen file 
 
 ### 8.1 On `claude/arch-fixes-2026-11-13` (from `main` at `20b3c2c`, local only)
 
+Commit `639294b`. `python tasks.py check` on it: 3,022 passed, 21 skipped; memory integrity and claim audit passed (no critical finding).
+
 - `scripts/pinned_files.py`: for named files or a directory, lists the live manifests that pin each file, using the claim audit's own functions (`walk_json`, `resolve_declared_target`, `superseded_by_marker`, `digest_bytes`, `git_blob`), so the two cannot disagree; `--check` exits 1 when a named file is frozen, for a pre-commit hook; `--format json`. It confirms the probe: 9 manifests for kernel 0.2.0. It cannot see a freeze by policy (for example `experience_pilot_v0.py`, which no manifest pins but later experiments import), and says so. Tests: `tests/test_pinned_files.py` (11, synthetic trees plus the kernel).
 - `tests/test_no_local_absolute_paths.py`: no drive-absolute or home-directory path in `scripts/`, `tools/` or `tasks.py`; the three frozen lines of `retrieval_bench.py` are allowed by the SHA-256 of the line, so the test does not repeat the paths, and the allowance fails if they disappear (3 tests).
 - `scripts/wmb/kernel/README.md`: the layout row states that 0.2.0 is pinned and that the choice between drift notes and a new file is the maintainers'. `tasks.py`: `check` is described as the local part of CI (the kernel-mutation, other-interpreter and canonical-store-guard jobs run only in CI), and the test-suite estimate is the measured one.
