@@ -42,7 +42,17 @@ git switch -c docs/fix-a-typo
 ```
 
 For a first practice change, correct a typo or clarify one sentence in a
-Markdown document. Save the file, then inspect what you changed:
+Markdown document such as `docs/00-project/join-the-research.md`. Do not edit
+anything under `data/lab/`: those are frozen experiment records, and manifests
+declare the hashes of many files. Before editing any other file, check that no
+manifest pins it. This command should print nothing:
+
+```text
+git grep -n "docs/00-project/join-the-research.md" -- data/lab
+```
+
+If it prints a line, choose another file. Save the file, then inspect what you
+changed:
 
 ```text
 git status --short
@@ -54,6 +64,10 @@ acceptance criteria first and comment there before starting so another
 contributor does not duplicate the work.
 
 ## 3. Run the local checks
+
+These checks need Python 3.11 or newer; the project is tested on 3.11 and 3.12.
+Check your version first with `python --version` (`python3 --version` on macOS
+and Linux).
 
 Create a virtual environment, install the development requirements into it,
 then run the quick integrity check and the full local check. In PowerShell on
