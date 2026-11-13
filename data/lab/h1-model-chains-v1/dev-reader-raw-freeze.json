@@ -1,0 +1,31 @@
+{
+  "files_sha256": {
+    "manifest.json": "36e4829c0ba59b7d1b1d0cacc98d041d139dc61f6ab1f1aecb8dfea167e38c86",
+    "finished.json": "39d81968c358df2b5fd7802b16c002b1f3b1d0e3124f9d19b486d76f97c0d7cb",
+    "attempts.jsonl": "b097a779e68b3ccada81908e634f992d4dae21374e35f16830b98d793cedb16d",
+    "responses.jsonl": "a5b2bc5e9c54a25069252577db45752c72640475929042c82532c24aa65e81dc",
+    "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+    "answers.jsonl": "ba53bfa1cbe6e31978411ed06de36031e4853cce765e602c4c5447eaa4ef0862"
+  },
+  "source": {
+    "git_head": "6051a761a0dc7a687fa7b99b96c599c3c510802e",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/structured_memory_pipeline_v1.py": "2b9bb21bf32856852323cb7c75f89fda240f3f090620f7b4ca19c38d4e2402d2",
+      "tools/structured_memory_v1.py": "aa76304f1b7fa14f95ce2bf8000d1c2aae3a60bbc69d4db1817f5ee95a206726",
+      "data/lab/structured-memory-v1/PLAN.md": "195071ee9514cdadd6150a6d63c690e91caaf4c9677944cea0fd35cd05eb04c2",
+      "data/lab/structured-memory-v1/config.json": "39e632ab740949b7a0db3a89c07bf5892b4850ab4b979007ad6c75354c06bb68",
+      "scripts/flash_reader_client_v1.py": "be64dc03d4c67cbc9f9db2fc33f2ebfd79f46acee34c6f35cd83a4f3b991a3bc",
+      "scripts/nie_reader_pilot.py": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+      "scripts/reader_model_compare_v1.py": "058f19946aadc4c65dc962cb030568ad29007af4c86284de9efb9a843e550579",
+      "scripts/h1_model_chains_v1.py": "952d4f93a581ec8284b1d7688a654cecbd13cd8f9dc91e301bc3d0dfc34c82c8",
+      "data/lab/h1-model-chains-v1/PLAN.md": "b71c844823274aa85d10a226c7a83617bdc5d90208b227b4bcb362f23c7e8650",
+      "scripts/structured_memory_pipeline_v2.py": "349d4df142db802c0db7602b692bc45bcc942b3b4577f709d2a18313387f4214",
+      "tools/structured_memory_v2.py": "6e537511461bf1617c04fb65d2aa6da66c95040b3be7a2af3a4093786bcbea82",
+      "scripts/wmb/kernel/memory_kernel.py": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "scripts/run_corpus_h1_reader.py": "1a8d2bbd206233fe350b98b6350a3c231e335ed604e202abaaf14741b5b519d9"
+    },
+    "candidate": "h1-raw-text-derived-chains-v1"
+  },
+  "scoring_has_not_run": true
+}

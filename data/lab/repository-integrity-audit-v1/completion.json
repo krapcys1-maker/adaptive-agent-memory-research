@@ -1,0 +1,27 @@
+{
+  "audited_head": "cb6d72dc1610d8c9308f2cb5a73f2e452803fa1f",
+  "audit_complete": true,
+  "runtime_sources_unchanged_since_snapshot": true,
+  "only_tracked_changes": [
+    "AGENTS.md",
+    "docs/00-project/delivery-state-2026-11-04.md",
+    "docs/11-research-laboratory/lab-map.md",
+    "memory/CURRENT_STATE.md",
+    "memory/events.jsonl"
+  ],
+  "initial_event_prefix_preserved": true,
+  "audit_memory_event": "PM-20261104-c386ee5b",
+  "final_events": 357,
+  "memory_violations": 0,
+  "v5_score_files_unchanged": true,
+  "new_document_links_checked": 23,
+  "broken_new_document_links": [],
+  "counterexamples_reproduced": 5,
+  "coordination_board_append_only": true,
+  "root_pointer_old_bodies_preserved": true,
+  "crlf_aware_diff_whitespace_exit": 0,
+  "uncommitted": true,
+  "commits_pushes_merges_during_audit": 0,
+  "model_calls_during_audit": 0,
+  "next_work": "Versioned semantic cache, historical schema and scope repairs; retained reader failure; independent review before promotion."
+}

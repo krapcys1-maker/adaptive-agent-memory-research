@@ -1,0 +1,18 @@
+{
+  "sources": 539,
+  "counts": {
+    "claims": 100,
+    "empty_sources": 504,
+    "new_generation": 262,
+    "accepted": 539,
+    "exact_text_reuse": 277
+  },
+  "catalog": [
+    "deploys_to",
+    "exports",
+    "pinned_client"
+  ],
+  "templates": 7,
+  "store_sha256": "8357993e009f1b1a6b7fe4c1de097249117ecd2b9f815724d5b8b2969f7dcd93",
+  "source_policy": "conservative; chain order below is retrieval priority, not a truth predicate"
+}
