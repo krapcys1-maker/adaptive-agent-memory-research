@@ -339,3 +339,11 @@ def test_selection_rules_e_star_and_k():
     assert an.select_k(rows)["K"] == "V0"
     rows = [mk("multi_turn_base_51", "N", False), mk("multi_turn_base_51", "V0", True), mk("multi_turn_base_51", "V0q", True)]
     assert an.select_k(rows)["K"] == "V0q"
+
+
+def test_artifact_names_are_unique_ignoring_case():
+    src = (Path(n2.HERE) / "aamr_night2.py").read_text(encoding="utf-8")
+    names = set(re.findall(r'"artifacts" / "([^"]+)"', src)) | {n2.E1_RETRIEVAL}
+    names |= {f"{s}_arms.json" for s in ("E1", "E3", "E4", "E5")}
+    assert "e1_plan.json" not in {n.lower() for n in names}
+    assert len({n.lower() for n in names}) == len(names), sorted(names)

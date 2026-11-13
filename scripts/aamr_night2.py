@@ -73,6 +73,7 @@ G0_TEMPLATE = ("{function}: this error was also returned in earlier tasks, and r
                "resolve it. Before calling {function} again, use a tool that reads the current state this call depends on, and base the "
                "new arguments on what it returns.")
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+E1_RETRIEVAL = "e1_retrieval_plan.json"          # amendment 4: the old name e1_plan.json collided with E1_plan.json on Windows
 SESSION_SEEDS = {"E1": 20261121, "E3": 20261123, "E4": 20261124, "E5": 20261125}
 STAGES = ["preflight_q14", "E1", "E2", "build_c", "E3", "E4", "preflight_q9", "E5", "final"]
 DEPENDS = {"E1": ["preflight_q14"], "E2": ["preflight_q14"], "build_c": ["preflight_q14"], "E3": ["E1", "E2"],
@@ -756,7 +757,7 @@ def cut_arms(ctx, name, model_id, tasks, candidates, bucket):
         else:
             dropped.append(a)
     plan = {"arms": list(arms), "dropped_for_budget": dropped, "per_episode": per_ep, "budget_left": budget_left, "projected": projected}
-    atomic_json(RUN / "artifacts" / f"{name}_plan.json", plan)
+    atomic_json(RUN / "artifacts" / f"{name}_arms.json", plan)          # not *_plan.json: Windows names ignore case
     return arms, plan
 
 
@@ -778,13 +779,13 @@ def stage_preflight_q9(ctx):
 
 
 def e1_arms():
-    plans = {d: p0.read_json(RUN / "artifacts" / "e1_plan.json")[d] for d in DOMAINS}
+    plans = {d: p0.read_json(RUN / "artifacts" / E1_RETRIEVAL)[d] for d in DOMAINS}
     return [("N", {}), ("R+", {"block_by_domain": providers(plans, "R+")}), ("M2", {"block_by_domain": providers(plans, "M2")}),
             ("M1", {"block_by_domain": providers(plans, "M1")}), ("N'", {})]
 
 
 def stage_e1(ctx):
-    path = RUN / "artifacts" / "e1_plan.json"
+    path = RUN / "artifacts" / E1_RETRIEVAL
     if not path.exists():
         atomic_json(path, {d: leave_one_out_plan(d, ctx.bfcl) for d in DOMAINS})
     tasks = all_train()

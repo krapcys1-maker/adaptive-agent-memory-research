@@ -201,4 +201,16 @@ harmonogramu `AAMR-NIGHT2`. Egzaminu na TradingBot program nie uruchamia.
    dwa epizody 20, jedno rozwidlenie G0 3 (błąd rozwiązany, tura zaliczona), jedno wywołanie ReasoningBank (3 pozycje),
    preflight 9B 3, jeden epizod 9B 2. Test przerwania w trakcie epizodu nie zdążył zadziałać (epizod 9B był za krótki),
    więc zrobię go na początku E1 i opiszę w raporcie.
+4. W trakcie programu, po teście przerwania w E1. Na Windowsie nazwy plików nie rozróżniają wielkości liter, więc plan cięcia
+   ramion (`E1_plan.json`) nadpisał plan wyszukiwania E1 (`e1_plan.json`). Pierwszy proces roboczy miał plan wyszukiwania
+   w pamięci. Po wznowieniu stage E1 dwa razy padł z `KeyError('VC')` i dostał status `failed`, a program przeszedł do E2;
+   E3–E5 zostałyby pominięte. Poprawka:
+   - plan wyszukiwania nazywa się teraz `e1_retrieval_plan.json`, a plan cięcia `{etap}_arms.json`;
+   - regresję łapie test unikalności nazw bez rozróżniania wielkości liter.
+   Plan wyszukiwania jest deterministyczny; odtworzony daje bajt w bajt te same bloki M2, które poszły do modelu przed
+   przerwaniem. Stan E1 przywracam do „rozpoczęty”, a zmianę zapisuję w `state.json` (stary i nowy identyfikator
+   konfiguracji).
+   Nic się nie zmienia w hipotezach, ramionach, zbiorach zadań ani progach. Zakończone epizody i zapisane odpowiedzi
+   zostają: przed awarią był 1 epizod E1, nic nie wysłano podwójnie (1 099 prób, 1 099 unikalnych kluczy). E2 i build_c
+   nie zależą od E1, więc wykonały się już według protokołu.
 
