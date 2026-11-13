@@ -1,0 +1,24 @@
+{
+  "calls": 6,
+  "checks": [
+    {
+      "key": "native-0",
+      "correct": false
+    },
+    {
+      "key": "flattened-0",
+      "correct": false
+    },
+    {
+      "key": "native-1",
+      "correct": false
+    },
+    {
+      "key": "flattened-1",
+      "correct": false
+    }
+  ],
+  "extraction_native_flattened": "both extracted literal spans, both learn_template=false",
+  "decision": "No evidence that flattening repairs this task. Preserve local failure; execute separately captured Flash arm as planned.",
+  "raw_freeze_sha256": "fd525ac644cad0f69968c4363c47ba029ad41164b5071c4ce9d637483ebb8b6b"
+}
