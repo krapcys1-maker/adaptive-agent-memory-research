@@ -2,7 +2,9 @@
 
 **Status:** technical audit of the code, written for contributors and maintainers. It is not a research result and changes no experiment, threshold, strategy or decision. No model, GPU, Ollama or paid API was used. Base: `main` at `20b3c2c`. The frozen BFCL experience-line code that is not on `main` was read from Git objects with `git show` and never checked out or edited: `experience_xfer_v1.py` (`claude/experience-xfer-v1`, `b7823a7`), `aamr_night1.py` (`claude/aamr-night1-2026-11-12`, `2ed2556`), `aamr_night2.py` and `reasoningbank_prompts.py` (`claude/aamr-night2-2026-11-13`, `9bfacbe`, while that run was executing). `experience_xfer_v1.py` and `aamr_night1.py` are byte-identical on all branches that carry them.
 
-Small fixes that this audit allowed are on a separate branch, `claude/arch-fixes-2026-11-13` (section 8). Neither branch is pushed or merged.
+Small fixes that this audit allowed, and the versioned replacement of the spend ledger (finding 7), are on a separate branch and pull request, `claude/arch-fixes-2026-11-13` (section 8).
+
+**Update after merging `main` at `3a0c5e9`** (pieces S1 to S3 of PR #105 integrated): 79 files under `scripts/` and 7 under `tools/` are now frozen (`python scripts/pinned_files.py --under scripts`, `--under tools`); the other counts in this report are of `20b3c2c`. The owner has since decided two of the questions this audit raised: the next kernel version is a new versioned module, not an edit of 0.2.0 (section 7, item 13), and the loops and model clients are not refactored yet; the contract and the order of migration are recorded in section 6.5.
 
 ## 1. Findings in brief
 
@@ -12,7 +14,7 @@ Small fixes that this audit allowed are on a separate branch, `claude/arch-fixes
 4. **Cross-module mutation of module globals** wires the newest experiments to the older ones: `aamr_night1` replaces `experience_xfer_v1.note_text` at import time, `aamr_night2.redirect_n1()` rewrites six module globals of `aamr_night1`, and `metered_proxy.load_key()` rewrites `arena.provider_proxy.ROOT` without restoring it.
 5. **Experiment code reaches outside the checkout by directory position** (`ROOT.parent / "<experiment>-2026-11-12"`, `bfcl_root: "../experience-pilot-2026-11-12/..."`). For anyone else the BFCL tests are skipped: 8 of 19 in the pilot's test file on `main`; on the branches 12 of 23 (S1), 5 of 15 (NIGHT-1) and all 26 (NIGHT-2).
 6. **The same field name means two digests.** `request_sha256` in `attempts.jsonl` is `nie_reader_pilot.sha` (compact JSON separators) for the pilot and S1, and `experience_pilot_v0.sha` (default separators) for NIGHT-1 and NIGHT-2. Digests are comparable within an experiment, not across these two groups.
-7. **Budget is kept by six ledgers with different semantics.** One defect was reproduced: under a cap scope, `arena.spend_ledger.SpendLedger` drops a torn line instead of counting it conservatively (section 4, D8). No ledger in the repository has a torn line today, so no recorded total is affected.
+7. **Budget is kept by six ledgers with different semantics.** One defect was reproduced: under a cap scope, `arena.spend_ledger.SpendLedger` drops a torn line instead of counting it conservatively (section 4, D8). No ledger in the repository has a torn line today, so no recorded total is affected. Fixed for new runs by a versioned successor (`scripts/arena/spend_ledger_v2.py` with `scripts/flash_only_proxy_v2.py`); the frozen version 1 is unchanged.
 8. **The well-designed contributor interfaces already exist, for question answering**: `arena.adapter.MemoryAdapter` with `validate_adapter`, and LifeSim's `LifeMemory` with bridges both ways. The BFCL line, where current work happens, has no equivalent; there a mechanism is a closure passed through a dict.
 
 ## 2. What was read and run
@@ -136,6 +138,21 @@ An `ArmSpec` record (name, bucket, context hook, after-results hook, per-domain 
 
 The arena and LifeSim contracts (memory answers) and the context hooks (memory is shown to the agent) stay separate until an experiment needs one through the other; then a thin adapter is enough. The block formats stay per arm. The kernel stays one vendorable file. Pools, lesson compilers and maskers stay inside their experiments: they are the mechanisms under test, and their current form is evidence-bound.
 
+### 6.5 Order of migration
+
+The owner decided on 2026-11-13 that the loops and clients are not refactored yet. When they are, the order is fixed by what each step needs, and every step adds files; none edits a frozen one or migrates an existing experiment.
+
+| Step | What | Needs before it starts | Accepted when |
+|---|---|---|---|
+| 0 | NIGHT-2 has finished; its raw data, report and code are frozen and committed | nothing; it is running | its own freeze manifest exists |
+| 1 | Fail-closed spend ledger and the proxy entry point that uses it | nothing | done: `spend_ledger_v2.py`, `flash_only_proxy_v2.py`, tests of the reproduced defect, the cap, damaged ledgers and settlement |
+| 2 | Client contract (6.1) as a module with `FakeClient` and `ReplayClient` and a conformance test; `OllamaClient` and `FlashClient` ported with every guard and test of `LocalReader`, `FlashReader`, `n1.Gateway` and `n1.Flash` | step 1 for the paid client | each old test, ported, passes against the new class; no experiment uses it yet |
+| 3 | One BFCL loop with hooks (6.2) | steps 0 and 2 | replay of NIGHT-1's and NIGHT-2's stored responses through the new loop gives byte-identical requests except the normalised instance names, and a second reviewer who did not write the loop has checked that replay independently |
+| 4 | `ArmSpec`, registry, `validate_provider` (6.3) | step 3 | the NIGHT-2 arms are expressible as specs and pass the validator |
+| 5 | The first new experiment uses steps 2–4 and pins their digests | steps 2–4 and its own preregistration | its README and freeze, as for any experiment |
+
+Kernel changes follow the same rule: the next version is a new module next to 0.2.0, with its own `VERSION`, CHANGELOG and tests.
+
 ## 7. Improvements ordered by benefit, risk and effort
 
 Effort: S under a day, M a few days. "Safe now" means it touches no frozen file and needs no model call.
@@ -148,13 +165,13 @@ Effort: S under a day, M a few days. "Safe now" means it touches no frozen file 
 | 4 | Link item 1 from the "Frozen files" section of `CONTRIBUTING.md` and correct the kernel row there | `CONTRIBUTING.md` | High for newcomers | None | XS | yes; left to the community-documentation session |
 | 5 | Fetch and verify a BFCL checkout against `bfcl-pinned.json`, location from an argument or environment variable | new script | High: unlocks the skipped BFCL tests for contributors | Low | S | yes (verification needs one download, by the user) |
 | 6 | Register `needs_bfcl` and `needs_raw_run` markers; `-rs` in CI so skips are visible; later `pythonpath = scripts` in `pytest.ini` | `pytest.ini`, CI | Medium | Low; the path change needs a full run on both interpreters | S | markers yes; path change after open branches land |
-| 7 | One reservation ledger (Decimal, lock, scope, torn lines conservative in scope) for new runs | new module | High: money safety; removes D8 defect for new runs | Medium (paid-call guard) | S–M | yes, as new code with tests; old ledgers unchanged |
+| 7 | One reservation ledger (Decimal, lock, scope, fail-closed reading) for new runs | new `scripts/arena/spend_ledger_v2.py`, `scripts/flash_only_proxy_v2.py` | High: money safety; removes the D8 defect for new runs | Medium (paid-call guard) | S–M | **done**, infrastructure pull request; old ledgers and proxies unchanged |
 | 8 | Client contract and implementations (6.1), one digest function, one key loader | new package | High | Medium: every guard of `FlashReader` and `n1.Flash` must be ported with its tests | M | yes, as new code; adoption only by new experiments |
 | 9 | One BFCL loop with hooks (6.2), accepted only by replay byte-identity | new module | High: removes D2 and D4 for future work | Medium: any byte drift changes prompts; the replay test bounds it | M | after NIGHT-2 has finished and its raw data are frozen |
 | 10 | `ArmSpec`, registry and `validate_provider` (6.3) | new module | High for independent contributors | Low | S–M | after 9 |
 | 11 | Run roots from config, argument or environment, never `ROOT.parent` | new code only | Medium | Low | S | with 8–9 |
 | 12 | Shared IO helpers (digest with named form, jsonl append with fsync and tail repair, atomic json) | new module | Medium | Low | S | with 8 |
-| 13 | Kernel 0.2.0 policy: drift notes for nine manifests, or a new file for the next version | kernel | Medium | Provenance decision | XS | owner's or maintainers' decision |
+| 13 | Kernel 0.2.0 policy: drift notes for nine manifests, or a new file for the next version | kernel | Medium | Provenance decision | XS | **decided** by the owner on 2026-11-13: a new versioned module; recorded in the kernel README and `CONTRIBUTING.md` |
 | 14 | Successor fixes for the pinned defects (section 8.2) | successors of the pinned files | Medium | Low | S each | as part of 7 and 8 |
 
 ## 8. Fixes made, and defects left in frozen code
@@ -167,11 +184,20 @@ Commit `639294b`. `python tasks.py check` on it: 3,022 passed, 21 skipped; memor
 - `tests/test_no_local_absolute_paths.py`: no drive-absolute or home-directory path in `scripts/`, `tools/` or `tasks.py`; the three frozen lines of `retrieval_bench.py` are allowed by the SHA-256 of the line, so the test does not repeat the paths, and the allowance fails if they disappear (3 tests).
 - `scripts/wmb/kernel/README.md`: the layout row states that 0.2.0 is pinned and that the choice between drift notes and a new file is the maintainers'. `tasks.py`: `check` is described as the local part of CI (the kernel-mutation, other-interpreter and canonical-store-guard jobs run only in CI), and the test-suite estimate is the measured one.
 
+Added after the owner's follow-up of 2026-11-13, on the same branch, after merging `main` at `3a0c5e9`:
+
+- `scripts/arena/spend_ledger_v2.py`, `SpendLedgerV2`: reads version-1 lines, refuses (with `LedgerUnreadable`, a `TotalCapReached`, so the frozen handler answers HTTP 402 and forwards nothing) on a torn last line, invalid JSON, a non-object, a missing or empty `run_id`, an amount that is not a finite non-negative number, an unknown format or event, a settlement that matches no open reservation, a reused id, a missing file without `create=True`, non-UTF-8 bytes, or a lock it cannot take in time; `check` appends a reservation under a file lock and counts open reservations as spent; `record` settles the cheapest open reservation of the instance and charges at least the reservation when usage is not reported as known. Decimal sums. It reads the two committed version-1 ledgers to the same totals and refuses the three ledgers of other formats rather than misreading them.
+- `scripts/flash_only_proxy_v2.py`: the frozen `flash_only_proxy.guarded_handler` and `provider_proxy.ProxyState` composed with the new ledger; the run cap is checked first, so its refusal leaves no reservation; `--new-ledger` is needed to start a ledger; the key is loaded only after every check passed.
+- Tests: `tests/test_spend_ledger_v2.py` (43: the defect reproduced on the frozen version 1, version 2 refusing the same file, the cap and its inclusive edge, a second process and 40 concurrent checks, 18 kinds of damaged ledger each left byte-identical, settlement, unknown usage, a crash in flight, the committed ledgers) and `tests/test_flash_only_proxy_v2.py` (8, end to end against a local stub provider: settle after a 200, 402 past the cap, 402 on a torn ledger where version 1 would forward, 403 for another model without a reservation, a run-cap refusal without a reservation, an answer without usage charged its reservation, and command-line refusals before the key is loaded).
+- The kernel decision in `scripts/wmb/kernel/README.md` and `CONTRIBUTING.md`, which also points to `pinned_files.py` in its "Frozen files" section; the laboratory map points new paid runs to the version-2 proxy.
+
 ### 8.2 Defects found in frozen files (report only; fix in successors)
 
 | File, function | Defect | Effect today |
 |---|---|---|
-| `arena/spend_ledger.py` `SpendLedger.scoped_usd` | torn line ignored under a cap scope (D8) | none recorded; affects a crash during a scoped paid run |
+| `arena/spend_ledger.py` `SpendLedger.scoped_usd` | torn line ignored under a cap scope (D8) | none recorded; affects a crash during a scoped paid run. **Successor:** `spend_ledger_v2.py` |
+| `arena/spend_ledger.py` `SpendLedger.by_run` | rounds the running total to 6 decimals at every addition | per-run totals drift: on one run of `data/lab/arena/spend-ledger.jsonl` it reports 2.334746 USD against an exact sum of 2.33472728; `total_usd` rounds once and is exact to 1e-6 |
+| `arena/provider_proxy.py` `ProxyState.check` | checks the shared cap before the run cap | harmless with version 1; with a reserving ledger a run-cap refusal would leave a reservation, so `flash_only_proxy_v2.ProxyStateV2` checks the run cap first |
 | `metered_proxy.py` `load_key` | rewrites `arena.provider_proxy.ROOT` permanently | later key lookups in the process search the main checkout |
 | `flash_reader_client_v1.py` `FlashReader.ask` | no outbound privacy check, unlike `aamr_night1.Flash.ask` | used on synthetic inputs so far |
 | `nie_reader_pilot.sha` vs `experience_pilot_v0.sha` | two digest definitions stored as `request_sha256` | cross-experiment comparison of request digests is invalid |
