@@ -1,0 +1,20 @@
+{
+  "checked_utc": "2026-11-05T10:36:57.698250+00:00",
+  "environment": "Windows local Python3.12.10; existing packages; no dependency upgrade",
+  "focused": {
+    "passed": 23,
+    "skipped": 0,
+    "seconds": 0.28
+  },
+  "full_suite": {
+    "passed": 3544,
+    "skipped": 20,
+    "seconds": 403.94,
+    "warnings": [
+      "SWIG module metadata deprecations"
+    ]
+  },
+  "kind": "engineering preflight; not semantic model accuracy",
+  "git_state": "owned uncommitted new experiment source prior to this registration commit",
+  "model_generation_calls_so_far": 0
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "Codex-authored integrity replay, not independent review",
+  "all_calls_replayed": 1564,
+  "complete_native_calls": 1310,
+  "retained_partial_gemma": 251,
+  "retained_failed_v1": 3,
+  "semantic_cases": 200,
+  "within_question_verdicts": 434,
+  "new_authored": 133,
+  "exact_prior_reused": 301,
+  "aggregate_replay_matches": true,
+  "failures": 0,
+  "old_ledgers_protected": true,
+  "original_dirty_files_unchanged": 17,
+  "memory373event_prefix_preserved": true,
+  "score_sha256": "479dc06d41cba4898826e3f9f4035327d6941689285f5b81bd645f5391b693f7"
+}

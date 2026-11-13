@@ -1,0 +1,30 @@
+{
+  "primary_comparison_profiles": [
+    "baseline14",
+    "qwen35_9"
+  ],
+  "actual_task_attempts": 1564,
+  "full_matrices": 2,
+  "retained_v1_failed_controls": 3,
+  "retained_gemma_attempts": 251,
+  "paid_calls": 0,
+  "prior_pr105_local": 4361,
+  "current_pr105_local": 5925,
+  "current_pr105_total": 6388,
+  "historical_h1_ledger": 3262,
+  "historical_beam_ledger": 605,
+  "historical_paid_attempts": 463,
+  "raw_freeze_before_new_semantic_reference_join": true,
+  "new_gold_or_quality_scores_read": false,
+  "engineering_focused_passed": 63,
+  "timing_limit": "Nonexclusive desktop. Additional read-only config/code scan of23396files overlapped a portion of Qwen9 run. All samples retained; no latency exclusions or reruns. Timing is descriptive, not a clean microbenchmark.",
+  "additional_support_scan": {
+    "files": 23396,
+    "exact_llama3_llava_refs": 0
+  },
+  "ownership_idle_refusal_before_gemma_attempts": {
+    "attempts": 0,
+    "waited_for_automatic_eviction": true
+  },
+  "cleanup_not_yet_executed": true
+}

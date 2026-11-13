@@ -1,0 +1,34 @@
+{
+  "targets": [
+    {
+      "name": "llama3:8b",
+      "digest": "365c0bd3c000a25d28ddbf732fe1c6add414de7275464c4e4d1c3b5fcb5d8ad1",
+      "size": 4661224676
+    },
+    {
+      "name": "llava:13b",
+      "digest": "0d0eb4d7f485d7d0a21fd9b0c1d5b04da481d2150a097e81b64acb59758fdef6",
+      "size": 8011256494
+    }
+  ],
+  "reference_findings": "No functional current code/config references; current matches inventory JSON only. No matching model-tag history in scripts/tools/configs/.github. Direct model/projector-blob reference search clear. Supporting23396file scan clear.",
+  "configuration": "Complete native show, exact manifests and per-field exports retained privately; missing system field exported empty, original JSON preserves absence.",
+  "commands": [
+    "ollama rm llama3:8b",
+    "ollama rm llava:13b"
+  ],
+  "reinstall": [
+    "ollama pull llama3:8b",
+    "ollama pull llava:13b"
+  ],
+  "preserve": [
+    "qwen2.5:14b-instruct",
+    "qwen2.5:7b-instruct",
+    "qwen7b_strict:latest",
+    "qwen2.5vl:7b",
+    "qwen3.5:9b-q4_K_M",
+    "gemma4:12b-it-q4_K_M"
+  ],
+  "no_custom_removal": true,
+  "native_commands_only": true
+}
