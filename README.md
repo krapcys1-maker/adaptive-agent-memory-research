@@ -25,6 +25,8 @@ AAMR is an open, international research project, and it needs more people than i
 
 **A simple path in (about an hour):**
 
+New to pull requests? Follow the [first contribution walkthrough](docs/00-project/first-contribution-walkthrough.md) for a step-by-step guide from forking the repository to checking CI.
+
 1. **Run it.** Clone the repository and run `python tasks.py check` ([instructions](CONTRIBUTING.md#quick-start)). If anything fails on your machine, that is already a useful report: use the [reproduction report template](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new?template=05-reproduction-report.md).
 2. **Read the orientation.** [Status and where help is wanted](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/84) lists what is in progress, and the [laboratory map](docs/11-research-laboratory/lab-map.md) links every experiment with the command that runs it.
 3. **Pick a task** from the table below, or say hello in [Discussions](https://github.com/krapcys1-maker/adaptive-agent-memory-research/discussions/85) and ask for one.
