@@ -13,7 +13,7 @@ python tasks.py check
 
 `python tasks.py check` runs every gate CI runs, in the order CI runs them, and
 exits non-zero if any of them fails. It is the answer to *"did I break
-anything?"* and the one command a pull request must pass. It takes about five to six minutes (321 s measured on one Windows machine: 2,661 tests passed, 21 skipped), almost all of it the test suite, once the one-time install (about 230 MB, mostly `transformers`, which is needed only to import one frozen audit script) is done. CI also runs the memory module's tests on Python 3.14 and a diff guard on `memory/events.jsonl`, which `check` does not. Use a full clone (no `--depth`), because one audit test reads an old commit with `git show`; on Windows, if git prints "Filename too long", run `git config --global core.longpaths true` first.
+anything?"* and the one command a pull request must pass. It takes about five to six minutes (321 s measured once on one Windows machine, when the suite had 2,661 tests with 21 skipped; the suite has grown since, and the CI run shows the current count), almost all of it the test suite, once the one-time install (about 230 MB, mostly `transformers`, which is needed only to import one frozen audit script) is done. CI also runs the memory module's tests on Python 3.14 and a diff guard on `memory/events.jsonl`, which `check` does not. Use a full clone (no `--depth`), because one audit test reads an old commit with `git show`; on Windows, if git prints "Filename too long", run `git config --global core.longpaths true` first.
 
 The test suite should pass with no failures. A green run still reports some
 skipped tests. Most need optional local inputs that a fresh clone does not have
@@ -49,6 +49,12 @@ covers declared hashes, registry paths and cross-references.
 If any of this fails on your machine, open an issue saying so. Setup that only
 works for the maintainer is a real defect and reporting it is a real
 contribution.
+
+## Fork and pull request
+
+Nobody, including regular contributors, needs or gets direct write access to `main`. Fork the repository, create a branch, push it to your fork and open a pull request against `main`. CI runs on the pull request; a maintainer reviews and merges. The step-by-step version, with tasks by interest (programming, testing, reading publications, reproducing experiments, proposing mechanisms, independent review), is [Join the research](docs/00-project/join-the-research.md).
+
+Two issue templates exist for contributions that are not code: a [reproduction report](.github/ISSUE_TEMPLATE/05-reproduction-report.md) (you ran something and want to say what matched) and a [mechanism proposal](.github/ISSUE_TEMPLATE/06-mechanism-proposal.md) (you have an idea: state the failure it addresses and the cheapest test that could show it does not work).
 
 ## Three ways in
 

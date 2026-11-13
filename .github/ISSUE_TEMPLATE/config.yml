@@ -3,6 +3,12 @@ contact_links:
   - name: Start here if you are new
     url: https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/no-expertise-needed
     about: Scoped tasks with explicit acceptance criteria. No background in memory research needed.
+  - name: Join the research (guide for new contributors)
+    url: https://github.com/krapcys1-maker/adaptive-agent-memory-research/blob/main/docs/00-project/join-the-research.md
+    about: Programming, testing, reading publications, reproducing experiments, proposing mechanisms and independent review, with tasks for each.
+  - name: Report a security problem
+    url: https://github.com/krapcys1-maker/adaptive-agent-memory-research/blob/main/SECURITY.md
+    about: Do not post exploit details or secrets in a public issue; read this first.
   - name: How the project decides what to work on
     url: https://github.com/krapcys1-maker/adaptive-agent-memory-research/blob/main/docs/00-project/operating-doctrine.md
     about: The selection rule, the work-in-progress limit, and what counts as success.

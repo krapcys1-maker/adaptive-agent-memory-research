@@ -19,6 +19,35 @@ Research on local-first, model-agnostic memory for LLM agents.<br>
 
 ---
 
+## Join the Research / Become a Contributor
+
+AAMR is an open, international research project, and it needs more people than it has. If you work on LLM memory, retrieval, agents, evaluation, statistics, cognitive science or just good software, there is a task here that fits, and **you do not need permission or a background in memory research to start.** Nobody gets direct write access to `main`: everyone, maintainers included, works through forks and pull requests that CI and a review gate.
+
+**A simple path in (about an hour):**
+
+1. **Run it.** Clone the repository and run `python tasks.py check` ([instructions](CONTRIBUTING.md#quick-start)). If anything fails on your machine, that is already a useful report: use the [reproduction report template](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new?template=05-reproduction-report.md).
+2. **Read the orientation.** [Status and where help is wanted](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/84) lists what is in progress, and the [laboratory map](docs/11-research-laboratory/lab-map.md) links every experiment with the command that runs it.
+3. **Pick a task** from the table below, or say hello in [Discussions](https://github.com/krapcys1-maker/adaptive-agent-memory-research/discussions/85) and ask for one.
+4. **Claim it** by commenting on the issue ("I'll take this"). Say so if you stop; someone else can continue from your notes.
+5. **Open a pull request from your fork.** One topic per PR. A negative or partial result is a complete contribution and is recorded as one.
+
+**Pick what you like doing:**
+
+| I want to… | Start with | Needs |
+|---|---|---|
+| **Write code** | [#114](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/114) Markdown link check in CI and [#115](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/115) `reuse lint` in CI (small, good first issue) · [#46](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/46) inspect a benchmark harness (good first issue) · [#74](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/74) labelled set for the reference guard · [#39](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/39) temporal query layer · [#80](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/80) / [#81](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/81) LifeSim validity gates | Python; the memory engine itself has no dependencies |
+| **Test and break things** | [#113](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/113) follow this README from zero and log every friction point (small, no expertise needed) · [#42](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/42) try to break the sealed split · [#106](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/106) / [#107](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/107) / [#108](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/108) adversarial counterexamples for the open structured-memory candidate | An adversarial mind; no private data or paid models |
+| **Analyse publications** | [#76](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/76) settle two numbers that disagree between sources (small) · [#48](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/48) verify prior-art claims · [#37](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/37) triage uncited sources · [#7](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/7) audit the public memory benchmarks | Careful reading; the [paper-adding rules](CONTRIBUTING.md#adding-a-paper) |
+| **Reproduce an experiment** | [#116](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/116) recompute the statistics of an open pilot (#111) from its results file, no model calls · the [laboratory map](docs/11-research-laboratory/lab-map.md), then the [reproduction report template](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new?template=05-reproduction-report.md) | A clean clone; report what matched and what did not |
+| **Propose a mechanism** | The [mechanism proposal template](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new?template=06-mechanism-proposal.md); ideas first in [Discussions](https://github.com/krapcys1-maker/adaptive-agent-memory-research/discussions/87); open problems in [#110](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/110) and [#51](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/51) | A falsifiable claim: what would show it does not work |
+| **Review independently** | [`independent-review`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/independent-review) issues ([#11](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/11)–[#15](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/15)); read the [independence ladder](docs/00-project/independence-ladder.md) first | Judgement of evidence; disclose prior exposure |
+
+All tasks: [`good first issue`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue) · [`help-wanted`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/help-wanted) · [`no-expertise-needed`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/no-expertise-needed) · [`track:engine`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/track%3Aengine) · [`research`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/research). The full guide, with what each kind of contribution must contain, is [Join the research](docs/00-project/join-the-research.md). New mechanisms and disagreement with a recorded conclusion are both welcome; they enter the research as an issue or discussion and then through the [experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md), never as a silent edit to a frozen result.
+
+The numbers further down describe `main`. Work that is still open as a pull request (a draft structured-memory candidate and an experience-memory pilot) is listed, with its status, under [open pull requests](docs/00-project/join-the-research.md#open-pull-requests-and-what-they-mean-for-you).
+
+---
+
 ## Give Claude Code persistent project memory in two minutes
 
 The memory engine this research is built on is dependency-free, offline, and works today on **your** project. Point any MCP client at it:
