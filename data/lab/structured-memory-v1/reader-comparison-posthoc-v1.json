@@ -1,0 +1,737 @@
+{
+  "n": 100,
+  "primary_exact": {
+    "local": 55,
+    "flash": 59
+  },
+  "secondary_upstream_subem": {
+    "local": 55,
+    "flash": 60
+  },
+  "paired_primary_cells": {
+    "both_correct": 55,
+    "local_only": 0,
+    "flash_only": 4,
+    "both_wrong": 41
+  },
+  "posthoc_exact_mcnemar_p": 0.125,
+  "posthoc_subem_any_enumerated_path_coverage": 64,
+  "input_sha256": {
+    "local_freeze": "ecaddf1bccd13fb394a54227ea704af71c60e054952feb8dae9fa575bcedfef6",
+    "local_primary_score": "60b5aa5e3c5237ad79b1f3e0827531c5a5b2652fd79d599adf74c33a30a26032",
+    "flash_freeze": "dab94a68386a61f5bca8d55e6bf1a51a5383272c41a71ef783ee9401b292f210",
+    "flash_primary_score": "136ba0d2c45a9aeace841f3fe1ea952c2d968ce3db8bb9fe9cc3499f2f4bb965",
+    "gold": "9c0af6975670f276e9cbb1e35d7397d545796242d49f4308ff923e67aa869322",
+    "prior_path_coverage_details": "8f518dda9ce7fbc8e931b38223326750591240246afc4cf17d25c28a0d1e02a3"
+  },
+  "records": [
+    {
+      "id": "Q000",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q001",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q002",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q003",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q004",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q005",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q006",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q007",
+      "local_primary_exact": false,
+      "flash_primary_exact": true,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q008",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q009",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q010",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q011",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q012",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q013",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q014",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q015",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q016",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q017",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q018",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q019",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q020",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q021",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q022",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q023",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q024",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q025",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q026",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q027",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q028",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q029",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q030",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q031",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q032",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q033",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q034",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q035",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q036",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q037",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q038",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q039",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q040",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q041",
+      "local_primary_exact": false,
+      "flash_primary_exact": true,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q042",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q043",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q044",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q045",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q046",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q047",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q048",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q049",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q050",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q051",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q052",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q053",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q054",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q055",
+      "local_primary_exact": false,
+      "flash_primary_exact": true,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q056",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q057",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q058",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q059",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q060",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q061",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q062",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q063",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q064",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q065",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q066",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q067",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q068",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q069",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q070",
+      "local_primary_exact": false,
+      "flash_primary_exact": true,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q071",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q072",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q073",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q074",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q075",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q076",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q077",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q078",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q079",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q080",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q081",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q082",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q083",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q084",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q085",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q086",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q087",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q088",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q089",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q090",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q091",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q092",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q093",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q094",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q095",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q096",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q097",
+      "local_primary_exact": true,
+      "flash_primary_exact": true,
+      "local_secondary_subem": true,
+      "flash_secondary_subem": true
+    },
+    {
+      "id": "Q098",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    },
+    {
+      "id": "Q099",
+      "local_primary_exact": false,
+      "flash_primary_exact": false,
+      "local_secondary_subem": false,
+      "flash_secondary_subem": false
+    }
+  ],
+  "new_model_calls": 0,
+  "limits": [
+    "Already-spent public development set; same one history and one locally derived graph.",
+    "Post-hoc p value assumes exchangeable question outcomes; shared history/development weakens inference. No equality or superiority proof.",
+    "Path-coverage diagnostic uses SubEM and bounded enumeration; it is not an exact-score or universal oracle upper bound.",
+    "Upstream published competitors use different models, ingestion, prompts, budgets and versions; this is not a matched leaderboard comparison.",
+    "The preserved graph predates exact-only capture repair; it is not a fresh end-to-end run of the repaired extractor."
+  ]
+}

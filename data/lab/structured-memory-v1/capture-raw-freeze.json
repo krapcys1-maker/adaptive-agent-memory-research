@@ -1,0 +1,32 @@
+{
+  "files_sha256": {
+    "manifest.json": "2f1ce4f59055858785d7d7fa8683fa85263a1f2f8f2ee63d1234e741cbe37b73",
+    "finished.json": "c76a4c1eb15b415dee6604ae72251ba0dce02517ed0e170d149aa21f502d2dac",
+    "attempts.jsonl": "ce24dec535f0125b52ccd9843632f3979062263c0df6c400fd8746c56052f3d8",
+    "responses.jsonl": "f9f924d6efe1572ab5f38e10aa90073107ff94ffba1ae919a2ad0be80d04eb3f",
+    "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+    "captures.jsonl": "838b5a5d1f64765bf578003a27eee89c24c1e8373cddb5fbf339b62ab03bb480"
+  },
+  "source": {
+    "git_head": "49bee4b2e5c83a8adaef7ed00afabcd65dfb75ca",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/structured_memory_pipeline_v1.py": "2b9bb21bf32856852323cb7c75f89fda240f3f090620f7b4ca19c38d4e2402d2",
+      "tools/structured_memory_v1.py": "aa76304f1b7fa14f95ce2bf8000d1c2aae3a60bbc69d4db1817f5ee95a206726",
+      "data/lab/structured-memory-v1/PLAN.md": "195071ee9514cdadd6150a6d63c690e91caaf4c9677944cea0fd35cd05eb04c2",
+      "data/lab/structured-memory-v1/config.json": "39e632ab740949b7a0db3a89c07bf5892b4850ab4b979007ad6c75354c06bb68",
+      "scripts/flash_reader_client_v1.py": "be64dc03d4c67cbc9f9db2fc33f2ebfd79f46acee34c6f35cd83a4f3b991a3bc",
+      "scripts/nie_reader_pilot.py": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+      "scripts/reader_model_compare_v1.py": "058f19946aadc4c65dc962cb030568ad29007af4c86284de9efb9a843e550579",
+      "scripts/structured_memory_pipeline_v2.py": "349d4df142db802c0db7602b692bc45bcc942b3b4577f709d2a18313387f4214",
+      "data/lab/structured-memory-v1/V2-AMENDMENT.md": "3c27227a9bf85e2db859f4fae302f41c11fe6fb2e35e7eadb36f210f88d78799",
+      "scripts/structured_memory_pipeline_v3.py": "ca298521eccdc931bf0fb101bb9a0a6e953c1115193dc2d01ce3e58ebb4c8bdb",
+      "tools/structured_memory_v2.py": "6e537511461bf1617c04fb65d2aa6da66c95040b3be7a2af3a4093786bcbea82",
+      "data/lab/structured-memory-v1/V3-CACHE-AMENDMENT.md": "cbf59fd0d5273c8ccf95e73c170b43e9644e0526a6deffd234baa238a78a8ee5",
+      "scripts/structured_memory_complete_v4.py": "ac221140f9137236093a874b3bbfbcf3e433d59f3ab7b8cb28058f03ac6e4457",
+      "data/lab/structured-memory-v1/V4-COMPLETION.md": "ea9ac4f30f4f807622d1e18231dc85dae17992d55c0ea79dede3bba126d7fba7"
+    },
+    "amendment": "v4-no-regeneration-continuation-of-frozen-v3-prefix"
+  },
+  "scoring_has_not_run": true
+}

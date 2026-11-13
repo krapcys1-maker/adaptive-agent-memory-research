@@ -1,0 +1,19 @@
+{
+  "outcome": "incomplete-capture-halted-at-80-model-limit",
+  "calls": 83,
+  "model_extractions": 80,
+  "empty_proposals": 16,
+  "template_true": 0,
+  "primary_questions": 0,
+  "files_sha256": {
+    "attempts.jsonl": "c7b13e0948424ad00fc1b97e3cad3df9a6314b8e8b6862a1d4e8649ca8785422",
+    "captures.jsonl": "591820f096ddab9367086febca280ca143426e771cc5206ecbb1bbb20d7ec2a6",
+    "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+    "manifest.json": "950c919719c227e2f5f7eac30ab4f0b25886e1ead21b00ab0fe8ea3cd14d4bbd",
+    "preflight.json": "2dd28c57cb7b4c0334f62d4a1c017cc397720082bcdb245832774991164f57fb",
+    "rejections.jsonl": "45fe381f282466e53ec88676a41ac791070ce05d655b3a0fe781be0c5c3a4020",
+    "release.json": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72",
+    "responses.jsonl": "3c11082b8f8bca3c198f40b34307ee92ee935f02e0c3845c0df21632914902ad"
+  },
+  "store_sha256": "56f51b94937c8b1c1c933e7ba2699da33dcbb01ddd93653e22f9c3dc7522a08d"
+}
