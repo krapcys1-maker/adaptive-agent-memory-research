@@ -120,3 +120,13 @@ python scripts/experience_pilot_v0.py analyze
 ```
 
 Raw requests, responses and trajectories stay outside Git; their sha256 hashes are in [raw-freeze.json](raw-freeze.json). Pools, plans and exposure files quote BFCL requests and gold calls under Apache-2.0 (see `REUSE.toml`).
+
+## Amendments
+
+The text above is unchanged. This section was added on 13 November 2026 after an independent audit of the pull request before it was merged ([audit comment](https://github.com/krapcys1-maker/adaptive-agent-memory-research/pull/111#issuecomment-6845165936)). The audit recomputed every paired test and sign test from `results.json` with separate code and found all numbers consistent; no data or result changed. It found three wording problems:
+
+1. **Where the error drop comes from.** The exploratory section says most of the drop in environment errors is the `startEngine` precondition (38 to 18). The drop is shared between two functions. For S (85 to 45 errors): `startEngine` 38 to 18 and `fillFuelTank` 35 to 15, 20 fewer each. For R+ (85 to 51): `startEngine` 38 to 21 (17 fewer) and `fillFuelTank` 35 to 13 (22 fewer). `startEngine` accounts for about half of the drop, and the two together for nearly all of it. The follow-up test should treat both functions, not only `startEngine`.
+2. **Injection share.** S injected memory in 91 of 101 test turns, which is 90.1%, not 91%.
+3. **Strength of the filter claim.** "Explained by the success filter, not by the gate" is stronger than the data. R+ against R is 6 versus 3 discordant tasks (two-sided p = 0.51); the observations are consistent with the filter mattering and do not establish it. The determinism of N was checked on 5 of 30 tasks, so "N is deterministic" holds for those 5.
+
+The headline is unchanged: the pre-registered "memory works" row is not met. The error-count result remains exploratory: four arms were compared on per-task error counts and errors were broken down by function after the results were seen, with no correction for multiple comparisons.
