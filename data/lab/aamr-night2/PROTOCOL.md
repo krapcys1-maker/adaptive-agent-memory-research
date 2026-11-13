@@ -191,3 +191,14 @@ harmonogramu `AAMR-NIGHT2`. Egzaminu na TradingBot program nie uruchamia.
    nie przechodziły). Przekierowanie robi teraz jawna funkcja `activate()`, wywoływana przez każdy punkt wejścia programu;
    kontekst bez niej się nie utworzy. Działanie programu się nie zmienia. 90 testów (pilot, S1, NIGHT-1, NIGHT-2) przechodzi
    razem.
+2. Po teście technicznym, przed pierwszym wywołaniem eksperymentalnym. W teście 14B opisał trzecią pozycję ReasoningBank
+   drugim nagłówkiem `## Description` zamiast `## Content`. Parser bierze teraz w takim przypadku drugi `Description` jako
+   treść. To wyłącznie korzyść dla ramienia konkurenta C-RB.
+3. Po teście technicznym. Nadzorca uruchomiony przez `python.exe` z widocznym oknem konsoli zginął z kodem 0xC000013A
+   (zamknięcie konsoli albo Ctrl+C), zaraz po preflighcie 9B. Danych nic nie straciło: nowy nadzorca przejął
+   nieaktualną blokadę i dokończył test. Zadanie harmonogramu uruchamia teraz `pythonw.exe` (bez okna) i co 20 minut
+   wznawia nadzorcę, jeśli zginie. Wynik testu technicznego: wszystkie 6 etapów `done`. Prób było 32: preflight 14B 3,
+   dwa epizody 20, jedno rozwidlenie G0 3 (błąd rozwiązany, tura zaliczona), jedno wywołanie ReasoningBank (3 pozycje),
+   preflight 9B 3, jeden epizod 9B 2. Test przerwania w trakcie epizodu nie zdążył zadziałać (epizod 9B był za krótki),
+   więc zrobię go na początku E1 i opiszę w raporcie.
+

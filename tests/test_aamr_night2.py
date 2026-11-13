@@ -290,6 +290,8 @@ def test_reasoningbank_prompts_verbatim_and_parse():
     assert msgs[0]["content"] in (n2.rbp.SUCCESSFUL_SI.strip(), n2.rbp.FAILED_SI.strip())
     assert msgs[1]["content"].startswith("## Query and Trajectory Generated Using Previous Memory")
     assert ("The result is CORRECT." in msgs[1]["content"]) == bool(ev["solved"])
+    second = n2.parse_rb("# Memory Item 1\n## Title T\n## Description D one\n## Description the actual content")
+    assert second == [{"title": "T", "description": "D one", "content": "the actual content"}]
     blk = n2.rb_block_text({"items": items})
     assert blk.startswith(p0.MEMORY_HEADER) and len(blk) <= n2.BLOCK_CAP
 

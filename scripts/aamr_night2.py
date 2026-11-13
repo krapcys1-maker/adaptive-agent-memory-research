@@ -611,10 +611,15 @@ RB_ITEM = re.compile(r"#\s*Memory Item[^\n]*\n(.*?)(?=\n\s*#\s*Memory Item|\Z)",
 def parse_rb(text):
     items = []
     for body in RB_ITEM.findall(text.replace("```", "")):
-        def field(name):
-            m = re.search(r"##\s*" + name + r"\s*:?\s*(.*?)(?=\n\s*##\s|\Z)", body, re.S)
-            return re.sub(r"\s+", " ", m.group(1)).strip() if m else ""
-        it = {"title": field("Title"), "description": field("Description"), "content": field("Content")}
+        fields = [(k.lower(), re.sub(r"\s+", " ", v).strip())
+                  for k, v in re.findall(r"##\s*(Title|Description|Content)\s*:?\s*(.*?)(?=\n\s*##\s|\Z)", body, re.S)]
+
+        def first(name):
+            return next((v for k, v in fields if k == name and v), "")
+        descs = [v for k, v in fields if k == "description" and v]
+        it = {"title": first("title"), "description": first("description"), "content": first("content")}
+        if not it["content"] and len(descs) >= 2:          # the model sometimes labels the content as a second Description
+            it["content"] = descs[1]
         if it["title"] or it["content"]:
             items.append(it)
     return items[:3]
