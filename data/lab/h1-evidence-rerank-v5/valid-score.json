@@ -1,0 +1,1798 @@
+{
+  "summary": {
+    "base": {
+      "n": 84,
+      "answered": 66,
+      "leaked": 9,
+      "gold_retrieved": 75,
+      "by_family": {
+        "BILINGUAL": {
+          "n": 12,
+          "answered": 12,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "DELAYED": {
+          "n": 12,
+          "answered": 3,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "FAILFIX": {
+          "n": 12,
+          "answered": 12,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "OBSOLETE": {
+          "n": 12,
+          "answered": 3,
+          "leaked": 9,
+          "gold_retrieved": 3
+        },
+        "POISON": {
+          "n": 12,
+          "answered": 12,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "RARE-EXC": {
+          "n": 12,
+          "answered": 12,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "REDERIVE": {
+          "n": 12,
+          "answered": 12,
+          "leaked": 0,
+          "gold_retrieved": 12
+        }
+      }
+    },
+    "chains": {
+      "n": 84,
+      "answered": 71,
+      "leaked": 1,
+      "gold_retrieved": 84,
+      "by_family": {
+        "BILINGUAL": {
+          "n": 12,
+          "answered": 12,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "DELAYED": {
+          "n": 12,
+          "answered": 2,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "FAILFIX": {
+          "n": 12,
+          "answered": 12,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "OBSOLETE": {
+          "n": 12,
+          "answered": 11,
+          "leaked": 1,
+          "gold_retrieved": 12
+        },
+        "POISON": {
+          "n": 12,
+          "answered": 11,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "RARE-EXC": {
+          "n": 12,
+          "answered": 11,
+          "leaked": 0,
+          "gold_retrieved": 12
+        },
+        "REDERIVE": {
+          "n": 12,
+          "answered": 12,
+          "leaked": 0,
+          "gold_retrieved": 12
+        }
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "Q000000",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000000",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000001",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000001",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000002",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000002",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000003",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000003",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000004",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000004",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000005",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000005",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000006",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000006",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000007",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000007",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000008",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000008",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000009",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000009",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000010",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000010",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000011",
+      "arm": "base",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000011",
+      "arm": "chains",
+      "family": "BILINGUAL",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000012",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000012",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000013",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000013",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000014",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000014",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000015",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000015",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000016",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000016",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000017",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000017",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000018",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000018",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000019",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000019",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000020",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000020",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000021",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000021",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000022",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000022",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000023",
+      "arm": "base",
+      "family": "DELAYED",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000023",
+      "arm": "chains",
+      "family": "DELAYED",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000024",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000024",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000025",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000025",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000026",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000026",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000027",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000027",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000028",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000028",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000029",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000029",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000030",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000030",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000031",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000031",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000032",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000032",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000033",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000033",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000034",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000034",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000035",
+      "arm": "base",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000035",
+      "arm": "chains",
+      "family": "FAILFIX",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000036",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": false,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000036",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000037",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000037",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000038",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": false,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000038",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000039",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": false,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000039",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000040",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": false,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000040",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000041",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": false,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000041",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000042",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": false,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000042",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000043",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000043",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000044",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": false,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000044",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000045",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": false,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000045",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000046",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000046",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000047",
+      "arm": "base",
+      "family": "OBSOLETE",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "gold_retrieved": false,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000047",
+      "arm": "chains",
+      "family": "OBSOLETE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000048",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000048",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000049",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000049",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000050",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000050",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000051",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000051",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000052",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000052",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000053",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000053",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000054",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000054",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000055",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000055",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000056",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000056",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000057",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": true
+    },
+    {
+      "id": "Q000057",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000058",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000058",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000059",
+      "arm": "base",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000059",
+      "arm": "chains",
+      "family": "POISON",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000060",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000060",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000061",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000061",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000062",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000062",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 0,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000063",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000063",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000064",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000064",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000065",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000065",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000066",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000066",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000067",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000067",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000068",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000068",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000069",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000069",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000070",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000070",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000071",
+      "arm": "base",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000071",
+      "arm": "chains",
+      "family": "RARE-EXC",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": false
+    },
+    {
+      "id": "Q000072",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000072",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000073",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000073",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000074",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000074",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000075",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000075",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000076",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000076",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000077",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000077",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000078",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000078",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000079",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000079",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000080",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000080",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000081",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000081",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000082",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000082",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000083",
+      "arm": "base",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    },
+    {
+      "id": "Q000083",
+      "arm": "chains",
+      "family": "REDERIVE",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "gold_retrieved": true,
+      "forbidden_retrieved": null
+    }
+  ],
+  "historical_obsolete_bounds": {
+    "no_chain_reader_leak": 0.833,
+    "oracle_chain_reader_leak": 0.0,
+    "matched_to_this_local_reader": false
+  },
+  "claim": "Source-first entity pools + paid Flash reranking + local reader; inherited v4 base. Not a canonical-chain-only gain or equal total inference/context cost.",
+  "generation_accounting": {
+    "new_local_primary": 84,
+    "inherited_base_outputs": 84,
+    "additional_flash_rerank_primary": 84,
+    "controls_reported_separately": true
+  }
+}

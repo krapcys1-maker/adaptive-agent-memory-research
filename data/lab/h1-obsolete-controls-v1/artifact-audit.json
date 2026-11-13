@@ -1,0 +1,38 @@
+{
+  "failures": [],
+  "reconstructed_primary_packets": 96,
+  "local_generations": 99,
+  "cumulative_h1_local": 2776,
+  "api_ledger_unchanged": true,
+  "input_gold_hashes_unchanged": true,
+  "oracle_source_ids_intentionally_used": true,
+  "parse_failures": 0,
+  "unique_primary_message_packets": 82,
+  "context_and_reported_native_tokens": {
+    "original": {
+      "n": 24,
+      "message_bytes": 21423,
+      "reported_prompt_eval_count": 4836,
+      "reported_eval_count": 415
+    },
+    "oracle_only": {
+      "n": 24,
+      "message_bytes": 17953,
+      "reported_prompt_eval_count": 3765,
+      "reported_eval_count": 428
+    },
+    "old_then_new": {
+      "n": 24,
+      "message_bytes": 22338,
+      "reported_prompt_eval_count": 5154,
+      "reported_eval_count": 414
+    },
+    "new_then_old": {
+      "n": 24,
+      "message_bytes": 22338,
+      "reported_prompt_eval_count": 5154,
+      "reported_eval_count": 408
+    }
+  },
+  "semantic_independence": "Authored deterministic replay, not independent semantic evaluation."
+}
