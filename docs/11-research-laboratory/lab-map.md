@@ -35,7 +35,7 @@ Every current `aam-*/README.md` and `wmb-*/README.md` is linked here; the histor
 | WMB slice 0 | [Judge-validity result](../../data/lab/wmb-v0/slice0/README.md) |
 | WMB R1 | [Retrieval result and amendments](../../data/lab/wmb-r1-retrieval/README.md) |
 
-The local [metering proxy](../../scripts/metered_proxy.py) and [flash-only proxy](../../scripts/flash_only_proxy.py) enforce a run's declared limits. Their availability is not permission to run a new experiment. No command on this page calls a model, starts a proxy or opens a confirmation epoch.
+The local [metering proxy](../../scripts/metered_proxy.py) and [flash-only proxy](../../scripts/flash_only_proxy.py) enforce a run's declared limits. New paid runs use the [version-2 flash-only proxy](../../scripts/flash_only_proxy_v2.py) with the [fail-closed spend ledger](../../scripts/arena/spend_ledger_v2.py): under a cap scope the version-1 ledger counts a torn line as zero, so it can authorise a call past the cap; version 2 refuses any ledger it cannot read completely and reserves each call before forwarding it. The version-1 files stay as the instruments of the runs that used them. Their availability is not permission to run a new experiment. No command on this page calls a model, starts a proxy or opens a confirmation epoch.
 
 ## How an experiment moves
 

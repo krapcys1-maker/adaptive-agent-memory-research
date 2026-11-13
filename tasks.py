@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """One entry point for every gate this project enforces.
 
-    python tasks.py check     everything a pull request must pass
+    python tasks.py check     the local part of what a pull request must pass
     python tasks.py fast      the sub-second subset, for a git hook
     python tasks.py test      the test suite alone
     python tasks.py audit     the two audits alone
@@ -58,7 +58,7 @@ TESTS = Gate(
     "tests",
     ["-m", "pytest", "-q"],
     "the test suite (CI job: Tests)",
-    12.0,
+    310.0,
 )
 MEMORY_INTEGRITY = Gate(
     "memory-integrity",
@@ -84,7 +84,8 @@ SOURCE_PIPELINE = Gate(
 
 TARGETS: dict[str, tuple[str, list[Gate]]] = {
     "check": (
-        "every gate CI runs, in CI's order",
+        "the Tests, Project-memory integrity and Repository claim audit jobs of CI, in CI's order "
+        "(the kernel-mutation, other-interpreter and canonical-store-guard jobs run only in CI)",
         [TESTS, MEMORY_INTEGRITY, CLAIM_AUDIT],
     ),
     "test": ("the test suite alone", [TESTS]),
