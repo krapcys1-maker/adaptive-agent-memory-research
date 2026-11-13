@@ -1,0 +1,62 @@
+{
+  "frozen_at": "2026-11-12T11:43:51.590992+00:00",
+  "raw_root": "experience-pilot-2026-11-12/raw (outside Git)",
+  "files": {
+    "e1a/20261112T110405Z/attempts.jsonl": "408c3592f188bda4915221cad917b2d3915ea40fae5eff961f0aac48da3bc5ce",
+    "e1a/20261112T110405Z/episodes.jsonl": "03b0e694b9c8ffab318286a9c5848f09892994ce6979a83ab0313cebf8fb947a",
+    "e1a/20261112T110405Z/evaluations.jsonl": "77fcd0dd1a362b6843b771973b88238ef1a6868218aabe71001be4eeb6a6c627",
+    "e1a/20261112T110405Z/manifest.json": "a7402e2843e1a8896b52e15ffa5efb0390a260c46828cdd27ca9e989625343f4",
+    "e1a/20261112T110405Z/release.json": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72",
+    "e1a/20261112T110405Z/responses.jsonl": "5ded7bfed75ec581e6f0bede9e7844fb0f890817c7bdfd75085244cccc675edb",
+    "e1b/20261112T110609Z/attempts.jsonl": "774b0a8fdf85b482baa36a0f9524329204e2c66cf6cf54eb7c6a6a2d69178c3a",
+    "e1b/20261112T110609Z/episodes.jsonl": "d7404ad1dd6a69a0e33558356e193e3b087fafc3f1fb1bd66ddaaab611739f20",
+    "e1b/20261112T110609Z/evaluations.jsonl": "c57c8ae7ab1d514592074b41beb14c7a8b8a1af38f2375552783c8fff5460e44",
+    "e1b/20261112T110609Z/manifest.json": "b33a164ab0e8ead440954c78b6e6496d9365fb407c74e3c4c40c1395b83ff825",
+    "e1b/20261112T110609Z/release.json": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72",
+    "e1b/20261112T110609Z/responses.jsonl": "a86e329e71e55a3f6e3ff5f450e0ae4e2468c2a7c42ebec94a1db1d55d5e4950",
+    "e2/20261112T110823Z/attempts.jsonl": "83beecf4ccc3496b4d7dff37a8d47673ae68d77bd6b5eb34c24f559ff5885311",
+    "e2/20261112T110823Z/episodes.jsonl": "461af491722fe5212fdd1ebc04d16a3eebc49769a169410917f21c45b01ba8d0",
+    "e2/20261112T110823Z/evaluations.jsonl": "4eb64dd4fe152bec16dee353d80343f9e47aa1e3f9f84e2ba100ba9ff3a6c07b",
+    "e2/20261112T110823Z/manifest.json": "42f8b0bf602f075132687e3290e1f50e48d77d7e0b678e4c3b836ebc7524d04b",
+    "e2/20261112T110823Z/release.json": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72",
+    "e2/20261112T110823Z/responses.jsonl": "15c8a70ef1a9b6bd333df4c9009472cf69ef8d9f97af8947bc5083ff4a0b5461",
+    "g2/20261112T110215Z/attempts.jsonl": "90ecc08afe77bcb34fd85b83cc9a4c4b9b5e37c53b0fd6815eb3e453eb1957b6",
+    "g2/20261112T110215Z/manifest.json": "5aafb66e0ba32fbca455bf5b0b4e0e284233e5daaf77a877ba0d319b3058c2ec",
+    "g2/20261112T110215Z/release.json": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72",
+    "g2/20261112T110215Z/responses.jsonl": "ddfb3abeb9510cbe373ab0c70d891a887d3b29dc47a01cf14e0a2b5feb307a4d"
+  },
+  "ledger": {
+    "calls": 1795,
+    "seconds": 2406.0939999999973,
+    "runs": [
+      {
+        "stage": "e1a",
+        "run_id": "20261112T110405Z",
+        "calls": 110,
+        "elapsed_seconds": 97.82800000000134,
+        "status": "completed"
+      },
+      {
+        "stage": "e1b",
+        "run_id": "20261112T110609Z",
+        "calls": 88,
+        "elapsed_seconds": 100.2809999999954,
+        "status": "completed"
+      },
+      {
+        "stage": "e2",
+        "run_id": "20261112T110823Z",
+        "calls": 1593,
+        "elapsed_seconds": 2114.188000000002,
+        "status": "completed"
+      },
+      {
+        "stage": "g2",
+        "run_id": "20261112T110215Z",
+        "calls": 4,
+        "elapsed_seconds": 93.79699999999866,
+        "status": "completed"
+      }
+    ]
+  }
+}

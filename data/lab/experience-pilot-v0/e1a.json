@@ -1,0 +1,9 @@
+{
+  "run_id": "20261112T110405Z",
+  "episodes": 10,
+  "solved": 4,
+  "invalid_rate": 0.0,
+  "context_overflow": 0,
+  "gate_ok": true,
+  "calls": 110
+}

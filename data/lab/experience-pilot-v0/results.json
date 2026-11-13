@@ -1,0 +1,1200 @@
+{
+  "experiment": "EXP-PILOT-0",
+  "primary_metric": "solved",
+  "test_tasks": 30,
+  "complete_tasks": 30,
+  "incomplete_tasks": [],
+  "runs": [
+    {
+      "stage": "e2",
+      "run_id": "20261112T110823Z",
+      "status": "completed",
+      "episodes": 155,
+      "error": null
+    }
+  ],
+  "ledger": {
+    "calls": 1795,
+    "seconds": 2406.0939999999973,
+    "runs": [
+      {
+        "stage": "e1a",
+        "run_id": "20261112T110405Z",
+        "calls": 110,
+        "elapsed_seconds": 97.82800000000134,
+        "status": "completed"
+      },
+      {
+        "stage": "e1b",
+        "run_id": "20261112T110609Z",
+        "calls": 88,
+        "elapsed_seconds": 100.2809999999954,
+        "status": "completed"
+      },
+      {
+        "stage": "e2",
+        "run_id": "20261112T110823Z",
+        "calls": 1593,
+        "elapsed_seconds": 2114.188000000002,
+        "status": "completed"
+      },
+      {
+        "stage": "g2",
+        "run_id": "20261112T110215Z",
+        "calls": 4,
+        "elapsed_seconds": 93.79699999999866,
+        "status": "completed"
+      }
+    ]
+  },
+  "determinism": {
+    "checked_tasks": [
+      "multi_turn_base_50",
+      "multi_turn_base_67",
+      "multi_turn_base_60",
+      "multi_turn_base_53",
+      "multi_turn_base_71"
+    ],
+    "tasks_with_different_text": [],
+    "deterministic": true,
+    "full_nprime": false,
+    "noise_threshold": 0
+  },
+  "per_arm": {
+    "N": {
+      "episodes": 30,
+      "solved": 10,
+      "state_all": 11,
+      "mean_progress": 0.5161111111111111,
+      "error_results": 85,
+      "invalid_calls": 5,
+      "invalid_outputs": 0,
+      "steps": 313,
+      "model_calls": 313,
+      "prompt_eval_sum": 572314,
+      "eval_sum": 9166,
+      "wall_seconds": 316.1979999999894,
+      "status": {
+        "completed": 27,
+        "forced_termination": 3
+      },
+      "checker_errors": {
+        "multi_turn:instance_state_mismatch": 18,
+        "multi_turn:execution_response_mismatch": 2
+      },
+      "replay_mismatch": 0,
+      "turns_started": 98,
+      "turns_injected": 0,
+      "mean_block_chars": 0.0
+    },
+    "P": {
+      "episodes": 30,
+      "solved": 10,
+      "state_all": 11,
+      "mean_progress": 0.47333333333333333,
+      "error_results": 80,
+      "invalid_calls": 9,
+      "invalid_outputs": 0,
+      "steps": 313,
+      "model_calls": 313,
+      "prompt_eval_sum": 665695,
+      "eval_sum": 8999,
+      "wall_seconds": 375.823999999986,
+      "status": {
+        "completed": 28,
+        "forced_termination": 2
+      },
+      "checker_errors": {
+        "multi_turn:instance_state_mismatch": 17,
+        "multi_turn:execution_response_mismatch": 3
+      },
+      "replay_mismatch": 0,
+      "turns_started": 101,
+      "turns_injected": 101,
+      "mean_block_chars": 1211.5247524752476
+    },
+    "R": {
+      "episodes": 30,
+      "solved": 11,
+      "state_all": 11,
+      "mean_progress": 0.4855555555555556,
+      "error_results": 77,
+      "invalid_calls": 4,
+      "invalid_outputs": 0,
+      "steps": 329,
+      "model_calls": 329,
+      "prompt_eval_sum": 786154,
+      "eval_sum": 12808,
+      "wall_seconds": 520.5330000000031,
+      "status": {
+        "completed": 29,
+        "forced_termination": 1
+      },
+      "checker_errors": {
+        "multi_turn:instance_state_mismatch": 18,
+        "multi_turn:execution_response_mismatch": 1
+      },
+      "replay_mismatch": 0,
+      "turns_started": 105,
+      "turns_injected": 105,
+      "mean_block_chars": 1480.3619047619047
+    },
+    "R+": {
+      "episodes": 30,
+      "solved": 14,
+      "state_all": 14,
+      "mean_progress": 0.5766666666666667,
+      "error_results": 51,
+      "invalid_calls": 4,
+      "invalid_outputs": 0,
+      "steps": 292,
+      "model_calls": 292,
+      "prompt_eval_sum": 662503,
+      "eval_sum": 10550,
+      "wall_seconds": 430.59599999996135,
+      "status": {
+        "completed": 28,
+        "forced_termination": 2
+      },
+      "checker_errors": {
+        "multi_turn:instance_state_mismatch": 15,
+        "multi_turn:empty_turn_model_response": 1
+      },
+      "replay_mismatch": 0,
+      "turns_started": 101,
+      "turns_injected": 101,
+      "mean_block_chars": 1438.0891089108911
+    },
+    "S": {
+      "episodes": 30,
+      "solved": 14,
+      "state_all": 14,
+      "mean_progress": 0.5733333333333334,
+      "error_results": 45,
+      "invalid_calls": 2,
+      "invalid_outputs": 0,
+      "steps": 286,
+      "model_calls": 286,
+      "prompt_eval_sum": 634255,
+      "eval_sum": 10253,
+      "wall_seconds": 415.86000000000786,
+      "status": {
+        "completed": 28,
+        "forced_termination": 2
+      },
+      "checker_errors": {
+        "multi_turn:empty_turn_model_response": 1,
+        "multi_turn:instance_state_mismatch": 15
+      },
+      "replay_mismatch": 0,
+      "turns_started": 101,
+      "turns_injected": 91,
+      "mean_block_chars": 1286.09900990099
+    },
+    "N'": {
+      "episodes": 5,
+      "solved": 3,
+      "state_all": 3,
+      "mean_progress": 0.82,
+      "error_results": 16,
+      "invalid_calls": 2,
+      "invalid_outputs": 0,
+      "steps": 60,
+      "model_calls": 60,
+      "prompt_eval_sum": 106451,
+      "eval_sum": 1533,
+      "wall_seconds": 52.88999999999942,
+      "status": {
+        "completed": 5
+      },
+      "checker_errors": {
+        "multi_turn:instance_state_mismatch": 2
+      },
+      "replay_mismatch": 0,
+      "turns_started": 19,
+      "turns_injected": 0,
+      "mean_block_chars": 0.0
+    }
+  },
+  "solved_minus_N": {
+    "N": 0,
+    "P": 0,
+    "R": 1,
+    "R+": 4,
+    "S": 4
+  },
+  "pairs": {
+    "R-N": {
+      "x_only": 5,
+      "y_only": 4,
+      "p_one_sided_x_gt_y": 0.5,
+      "p_two_sided": 1.0,
+      "test": "exact McNemar, one-sided x>y",
+      "diff": 1
+    },
+    "S-N": {
+      "x_only": 6,
+      "y_only": 2,
+      "p_one_sided_x_gt_y": 0.14453125,
+      "p_two_sided": 0.2890625,
+      "test": "exact McNemar, one-sided x>y",
+      "diff": 4
+    },
+    "P-N": {
+      "x_only": 2,
+      "y_only": 2,
+      "p_one_sided_x_gt_y": 0.6875,
+      "p_two_sided": 1.0,
+      "test": "exact McNemar, two-sided",
+      "diff": 0
+    },
+    "S-R": {
+      "x_only": 6,
+      "y_only": 3,
+      "p_one_sided_x_gt_y": 0.25390625,
+      "p_two_sided": 0.5078125,
+      "test": "exact McNemar, two-sided",
+      "diff": 3
+    },
+    "R+-R": {
+      "x_only": 6,
+      "y_only": 3,
+      "p_one_sided_x_gt_y": 0.25390625,
+      "p_two_sided": 0.5078125,
+      "test": "exact McNemar, two-sided",
+      "diff": 3
+    },
+    "S-R+": {
+      "x_only": 1,
+      "y_only": 1,
+      "p_one_sided_x_gt_y": 0.75,
+      "p_two_sided": 1.0,
+      "test": "exact McNemar, two-sided",
+      "diff": 0
+    },
+    "R+-N": {
+      "x_only": 6,
+      "y_only": 2,
+      "p_one_sided_x_gt_y": 0.14453125,
+      "p_two_sided": 0.2890625,
+      "test": "exact McNemar, two-sided",
+      "diff": 4
+    }
+  },
+  "perturbation_discordance_P_vs_N": 4,
+  "harm": {
+    "P": {
+      "harm": 2,
+      "help": 2,
+      "harm_per_100_injected_turns": 1.9801980198019802,
+      "cases": [
+        {
+          "task": "multi_turn_base_52",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "activateParkingBrake",
+            "displayCarStatus",
+            "lockDoors"
+          ],
+          "memory_shown": [
+            "multi_turn_base_16:t0",
+            "multi_turn_base_22:t2"
+          ]
+        },
+        {
+          "task": "multi_turn_base_57",
+          "turn": 0,
+          "checker_error": "multi_turn:execution_response_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "find_nearest_tire_shop",
+            "get_outside_temperature_from_google",
+            "get_outside_temperature_from_weather_com"
+          ],
+          "memory_shown": [
+            "multi_turn_base_16:t0",
+            "multi_turn_base_13:t1"
+          ]
+        }
+      ]
+    },
+    "R": {
+      "harm": 4,
+      "help": 5,
+      "harm_per_100_injected_turns": 3.8095238095238093,
+      "cases": [
+        {
+          "task": "multi_turn_base_60",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "displayCarStatus",
+            "fillFuelTank"
+          ],
+          "memory_shown": [
+            "multi_turn_base_56:t1",
+            "multi_turn_base_58:t2"
+          ]
+        },
+        {
+          "task": "multi_turn_base_53",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "fillFuelTank"
+          ],
+          "memory_shown": [
+            "multi_turn_base_89:t2",
+            "multi_turn_base_58:t1"
+          ]
+        },
+        {
+          "task": "multi_turn_base_52",
+          "turn": 1,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "set_navigation"
+          ],
+          "memory_shown": [
+            "multi_turn_base_70:t1",
+            "multi_turn_base_86:t1"
+          ]
+        },
+        {
+          "task": "multi_turn_base_91",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "forced_termination",
+          "agent_functions_not_in_gold": [
+            "get_outside_temperature_from_weather_com",
+            "get_user_id",
+            "list_users",
+            "message_login"
+          ],
+          "memory_shown": [
+            "multi_turn_base_75:t1",
+            "multi_turn_base_98:t1"
+          ]
+        }
+      ]
+    },
+    "R+": {
+      "harm": 2,
+      "help": 6,
+      "harm_per_100_injected_turns": 1.9801980198019802,
+      "cases": [
+        {
+          "task": "multi_turn_base_53",
+          "turn": 0,
+          "checker_error": "multi_turn:empty_turn_model_response",
+          "status": "forced_termination",
+          "agent_functions_not_in_gold": [
+            "fillFuelTank"
+          ],
+          "memory_shown": [
+            "multi_turn_base_58:t1",
+            "multi_turn_base_54:t0"
+          ]
+        },
+        {
+          "task": "multi_turn_base_83",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "forced_termination",
+          "agent_functions_not_in_gold": [],
+          "memory_shown": [
+            "multi_turn_base_70:t0",
+            "multi_turn_base_87:t1"
+          ]
+        }
+      ]
+    },
+    "S": {
+      "harm": 2,
+      "help": 6,
+      "harm_per_100_injected_turns": 2.197802197802198,
+      "cases": [
+        {
+          "task": "multi_turn_base_53",
+          "turn": 0,
+          "checker_error": "multi_turn:empty_turn_model_response",
+          "status": "forced_termination",
+          "agent_functions_not_in_gold": [
+            "fillFuelTank"
+          ],
+          "memory_shown": [
+            "multi_turn_base_58:t1",
+            "multi_turn_base_54:t0"
+          ]
+        },
+        {
+          "task": "multi_turn_base_83",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "forced_termination",
+          "agent_functions_not_in_gold": [],
+          "memory_shown": [
+            "multi_turn_base_70:t0",
+            "multi_turn_base_87:t1"
+          ]
+        }
+      ]
+    }
+  },
+  "s_turns_without_injection": 0.09900990099009899,
+  "h4_decomposition": {
+    "filter_R+_minus_R_harm": -2,
+    "gate_S_minus_R+_harm": 0
+  },
+  "layers_vs_N": {
+    "R": {
+      "mem_layer=A": {
+        "n": 7,
+        "x_pass": 5,
+        "y_pass": 6,
+        "x_rate": 0.7142857142857143,
+        "y_rate": 0.8571428571428571,
+        "diff_pp": -14.285714285714286
+      },
+      "mem_layer=B": {
+        "n": 16,
+        "x_pass": 13,
+        "y_pass": 12,
+        "x_rate": 0.8125,
+        "y_rate": 0.75,
+        "diff_pp": 6.25
+      },
+      "mem_layer=C": {
+        "n": 33,
+        "x_pass": 22,
+        "y_pass": 23,
+        "x_rate": 0.6666666666666666,
+        "y_rate": 0.696969696969697,
+        "diff_pp": -3.0303030303030303
+      },
+      "gt_layer=A": {
+        "n": 22,
+        "x_pass": 19,
+        "y_pass": 19,
+        "x_rate": 0.8636363636363636,
+        "y_rate": 0.8636363636363636,
+        "diff_pp": 0.0
+      },
+      "gt_layer=B": {
+        "n": 12,
+        "x_pass": 7,
+        "y_pass": 9,
+        "x_rate": 0.5833333333333334,
+        "y_rate": 0.75,
+        "diff_pp": -16.666666666666668
+      },
+      "gt_layer=C": {
+        "n": 22,
+        "x_pass": 14,
+        "y_pass": 13,
+        "x_rate": 0.6363636363636364,
+        "y_rate": 0.5909090909090909,
+        "diff_pp": 4.545454545454546
+      },
+      "c_rule=True": {
+        "n": 8,
+        "x_pass": 5,
+        "y_pass": 4,
+        "x_rate": 0.625,
+        "y_rate": 0.5,
+        "diff_pp": 12.5
+      },
+      "exposure_x=exact": {
+        "n": 5,
+        "x_pass": 3,
+        "y_pass": 5,
+        "x_rate": 0.6,
+        "y_rate": 1.0,
+        "diff_pp": -40.0
+      },
+      "exposure_x=skeleton": {
+        "n": 5,
+        "x_pass": 5,
+        "y_pass": 5,
+        "x_rate": 1.0,
+        "y_rate": 1.0,
+        "diff_pp": 0.0
+      },
+      "exposure_x=none": {
+        "n": 46,
+        "x_pass": 32,
+        "y_pass": 31,
+        "x_rate": 0.6956521739130435,
+        "y_rate": 0.6739130434782609,
+        "diff_pp": 2.1739130434782608
+      },
+      "exposure_x=empty": {
+        "n": 0,
+        "x_pass": 0,
+        "y_pass": 0,
+        "x_rate": null,
+        "y_rate": null,
+        "diff_pp": null
+      },
+      "same_world=True": {
+        "n": 3,
+        "x_pass": 2,
+        "y_pass": 2,
+        "x_rate": 0.6666666666666666,
+        "y_rate": 0.6666666666666666,
+        "diff_pp": 0.0
+      },
+      "same_world=False": {
+        "n": 53,
+        "x_pass": 38,
+        "y_pass": 39,
+        "x_rate": 0.7169811320754716,
+        "y_rate": 0.7358490566037735,
+        "diff_pp": -1.8867924528301887
+      },
+      "random_dependent=True": {
+        "n": 3,
+        "x_pass": 2,
+        "y_pass": 2,
+        "x_rate": 0.6666666666666666,
+        "y_rate": 0.6666666666666666,
+        "diff_pp": 0.0
+      }
+    },
+    "R+": {
+      "mem_layer=A": {
+        "n": 7,
+        "x_pass": 6,
+        "y_pass": 5,
+        "x_rate": 0.8571428571428571,
+        "y_rate": 0.7142857142857143,
+        "diff_pp": 14.285714285714286
+      },
+      "mem_layer=B": {
+        "n": 18,
+        "x_pass": 14,
+        "y_pass": 13,
+        "x_rate": 0.7777777777777778,
+        "y_rate": 0.7222222222222222,
+        "diff_pp": 5.555555555555555
+      },
+      "mem_layer=C": {
+        "n": 38,
+        "x_pass": 28,
+        "y_pass": 28,
+        "x_rate": 0.7368421052631579,
+        "y_rate": 0.7368421052631579,
+        "diff_pp": 0.0
+      },
+      "gt_layer=A": {
+        "n": 25,
+        "x_pass": 22,
+        "y_pass": 20,
+        "x_rate": 0.88,
+        "y_rate": 0.8,
+        "diff_pp": 8.0
+      },
+      "gt_layer=B": {
+        "n": 15,
+        "x_pass": 12,
+        "y_pass": 12,
+        "x_rate": 0.8,
+        "y_rate": 0.8,
+        "diff_pp": 0.0
+      },
+      "gt_layer=C": {
+        "n": 23,
+        "x_pass": 14,
+        "y_pass": 14,
+        "x_rate": 0.6086956521739131,
+        "y_rate": 0.6086956521739131,
+        "diff_pp": 0.0
+      },
+      "c_rule=True": {
+        "n": 8,
+        "x_pass": 6,
+        "y_pass": 4,
+        "x_rate": 0.75,
+        "y_rate": 0.5,
+        "diff_pp": 25.0
+      },
+      "exposure_x=exact": {
+        "n": 6,
+        "x_pass": 5,
+        "y_pass": 4,
+        "x_rate": 0.8333333333333334,
+        "y_rate": 0.6666666666666666,
+        "diff_pp": 16.666666666666668
+      },
+      "exposure_x=skeleton": {
+        "n": 7,
+        "x_pass": 7,
+        "y_pass": 6,
+        "x_rate": 1.0,
+        "y_rate": 0.8571428571428571,
+        "diff_pp": 14.285714285714286
+      },
+      "exposure_x=none": {
+        "n": 50,
+        "x_pass": 36,
+        "y_pass": 36,
+        "x_rate": 0.72,
+        "y_rate": 0.72,
+        "diff_pp": 0.0
+      },
+      "exposure_x=empty": {
+        "n": 0,
+        "x_pass": 0,
+        "y_pass": 0,
+        "x_rate": null,
+        "y_rate": null,
+        "diff_pp": null
+      },
+      "same_world=True": {
+        "n": 4,
+        "x_pass": 3,
+        "y_pass": 2,
+        "x_rate": 0.75,
+        "y_rate": 0.5,
+        "diff_pp": 25.0
+      },
+      "same_world=False": {
+        "n": 59,
+        "x_pass": 45,
+        "y_pass": 44,
+        "x_rate": 0.7627118644067796,
+        "y_rate": 0.7457627118644068,
+        "diff_pp": 1.694915254237288
+      },
+      "random_dependent=True": {
+        "n": 3,
+        "x_pass": 2,
+        "y_pass": 2,
+        "x_rate": 0.6666666666666666,
+        "y_rate": 0.6666666666666666,
+        "diff_pp": 0.0
+      }
+    },
+    "S": {
+      "mem_layer=A": {
+        "n": 7,
+        "x_pass": 7,
+        "y_pass": 5,
+        "x_rate": 1.0,
+        "y_rate": 0.7142857142857143,
+        "diff_pp": 28.571428571428573
+      },
+      "mem_layer=B": {
+        "n": 18,
+        "x_pass": 14,
+        "y_pass": 13,
+        "x_rate": 0.7777777777777778,
+        "y_rate": 0.7222222222222222,
+        "diff_pp": 5.555555555555555
+      },
+      "mem_layer=C": {
+        "n": 38,
+        "x_pass": 28,
+        "y_pass": 28,
+        "x_rate": 0.7368421052631579,
+        "y_rate": 0.7368421052631579,
+        "diff_pp": 0.0
+      },
+      "gt_layer=A": {
+        "n": 25,
+        "x_pass": 23,
+        "y_pass": 20,
+        "x_rate": 0.92,
+        "y_rate": 0.8,
+        "diff_pp": 12.0
+      },
+      "gt_layer=B": {
+        "n": 15,
+        "x_pass": 12,
+        "y_pass": 12,
+        "x_rate": 0.8,
+        "y_rate": 0.8,
+        "diff_pp": 0.0
+      },
+      "gt_layer=C": {
+        "n": 23,
+        "x_pass": 14,
+        "y_pass": 14,
+        "x_rate": 0.6086956521739131,
+        "y_rate": 0.6086956521739131,
+        "diff_pp": 0.0
+      },
+      "c_rule=True": {
+        "n": 8,
+        "x_pass": 6,
+        "y_pass": 4,
+        "x_rate": 0.75,
+        "y_rate": 0.5,
+        "diff_pp": 25.0
+      },
+      "exposure_x=exact": {
+        "n": 5,
+        "x_pass": 5,
+        "y_pass": 4,
+        "x_rate": 1.0,
+        "y_rate": 0.8,
+        "diff_pp": 20.0
+      },
+      "exposure_x=skeleton": {
+        "n": 7,
+        "x_pass": 7,
+        "y_pass": 6,
+        "x_rate": 1.0,
+        "y_rate": 0.8571428571428571,
+        "diff_pp": 14.285714285714286
+      },
+      "exposure_x=none": {
+        "n": 44,
+        "x_pass": 30,
+        "y_pass": 29,
+        "x_rate": 0.6818181818181818,
+        "y_rate": 0.6590909090909091,
+        "diff_pp": 2.272727272727273
+      },
+      "exposure_x=empty": {
+        "n": 7,
+        "x_pass": 7,
+        "y_pass": 7,
+        "x_rate": 1.0,
+        "y_rate": 1.0,
+        "diff_pp": 0.0
+      },
+      "same_world=True": {
+        "n": 4,
+        "x_pass": 3,
+        "y_pass": 2,
+        "x_rate": 0.75,
+        "y_rate": 0.5,
+        "diff_pp": 25.0
+      },
+      "same_world=False": {
+        "n": 59,
+        "x_pass": 46,
+        "y_pass": 44,
+        "x_rate": 0.7796610169491526,
+        "y_rate": 0.7457627118644068,
+        "diff_pp": 3.389830508474576
+      },
+      "random_dependent=True": {
+        "n": 3,
+        "x_pass": 2,
+        "y_pass": 2,
+        "x_rate": 0.6666666666666666,
+        "y_rate": 0.6666666666666666,
+        "diff_pp": 0.0
+      }
+    },
+    "P": {
+      "mem_layer=A": {
+        "n": 7,
+        "x_pass": 6,
+        "y_pass": 6,
+        "x_rate": 0.8571428571428571,
+        "y_rate": 0.8571428571428571,
+        "diff_pp": 0.0
+      },
+      "mem_layer=B": {
+        "n": 17,
+        "x_pass": 11,
+        "y_pass": 12,
+        "x_rate": 0.6470588235294118,
+        "y_rate": 0.7058823529411765,
+        "diff_pp": -5.882352941176471
+      },
+      "mem_layer=C": {
+        "n": 36,
+        "x_pass": 26,
+        "y_pass": 27,
+        "x_rate": 0.7222222222222222,
+        "y_rate": 0.75,
+        "diff_pp": -2.7777777777777777
+      },
+      "gt_layer=A": {
+        "n": 25,
+        "x_pass": 18,
+        "y_pass": 21,
+        "x_rate": 0.72,
+        "y_rate": 0.84,
+        "diff_pp": -12.0
+      },
+      "gt_layer=B": {
+        "n": 14,
+        "x_pass": 11,
+        "y_pass": 11,
+        "x_rate": 0.7857142857142857,
+        "y_rate": 0.7857142857142857,
+        "diff_pp": 0.0
+      },
+      "gt_layer=C": {
+        "n": 21,
+        "x_pass": 14,
+        "y_pass": 13,
+        "x_rate": 0.6666666666666666,
+        "y_rate": 0.6190476190476191,
+        "diff_pp": 4.761904761904762
+      },
+      "c_rule=True": {
+        "n": 9,
+        "x_pass": 4,
+        "y_pass": 4,
+        "x_rate": 0.4444444444444444,
+        "y_rate": 0.4444444444444444,
+        "diff_pp": 0.0
+      },
+      "exposure_x=exact": {
+        "n": 0,
+        "x_pass": 0,
+        "y_pass": 0,
+        "x_rate": null,
+        "y_rate": null,
+        "diff_pp": null
+      },
+      "exposure_x=skeleton": {
+        "n": 0,
+        "x_pass": 0,
+        "y_pass": 0,
+        "x_rate": null,
+        "y_rate": null,
+        "diff_pp": null
+      },
+      "exposure_x=none": {
+        "n": 60,
+        "x_pass": 43,
+        "y_pass": 45,
+        "x_rate": 0.7166666666666667,
+        "y_rate": 0.75,
+        "diff_pp": -3.3333333333333335
+      },
+      "exposure_x=empty": {
+        "n": 0,
+        "x_pass": 0,
+        "y_pass": 0,
+        "x_rate": null,
+        "y_rate": null,
+        "diff_pp": null
+      },
+      "same_world=True": {
+        "n": 4,
+        "x_pass": 3,
+        "y_pass": 2,
+        "x_rate": 0.75,
+        "y_rate": 0.5,
+        "diff_pp": 25.0
+      },
+      "same_world=False": {
+        "n": 56,
+        "x_pass": 40,
+        "y_pass": 43,
+        "x_rate": 0.7142857142857143,
+        "y_rate": 0.7678571428571429,
+        "diff_pp": -5.357142857142857
+      },
+      "random_dependent=True": {
+        "n": 2,
+        "x_pass": 2,
+        "y_pass": 2,
+        "x_rate": 1.0,
+        "y_rate": 1.0,
+        "diff_pp": 0.0
+      }
+    }
+  },
+  "h3": {
+    "R": {
+      "B": {
+        "n": 16,
+        "x_pass": 13,
+        "y_pass": 12,
+        "x_rate": 0.8125,
+        "y_rate": 0.75,
+        "diff_pp": 6.25
+      },
+      "C": {
+        "n": 33,
+        "x_pass": 22,
+        "y_pass": 23,
+        "x_rate": 0.6666666666666666,
+        "y_rate": 0.696969696969697,
+        "diff_pp": -3.0303030303030303
+      },
+      "decidable": true,
+      "beats_N_by_10pp_in_B_and_C": false
+    },
+    "S": {
+      "B": {
+        "n": 18,
+        "x_pass": 14,
+        "y_pass": 13,
+        "x_rate": 0.7777777777777778,
+        "y_rate": 0.7222222222222222,
+        "diff_pp": 5.555555555555555
+      },
+      "C": {
+        "n": 38,
+        "x_pass": 28,
+        "y_pass": 28,
+        "x_rate": 0.7368421052631579,
+        "y_rate": 0.7368421052631579,
+        "diff_pp": 0.0
+      },
+      "decidable": true,
+      "beats_N_by_10pp_in_B_and_C": false
+    }
+  },
+  "o_condition_met": false,
+  "decision_rows": [
+    "Selection helps"
+  ],
+  "exploratory_not_preregistered": {
+    "note": "Exploratory analysis added after E2 results were seen; not a pre-registered measure or decision input.",
+    "N": {
+      "errors_by_function": {
+        "startEngine": 38,
+        "fillFuelTank": 35,
+        "estimate_distance": 6,
+        "send_message": 3,
+        "displayCarStatus": 2,
+        "get_user_tickets": 1
+      },
+      "startEngine_precondition_errors": 38,
+      "per_task": [
+        0,
+        3,
+        4,
+        2,
+        7,
+        2,
+        5,
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        5,
+        3,
+        3,
+        7,
+        8,
+        1,
+        2,
+        1,
+        0,
+        2,
+        3,
+        3,
+        8,
+        2
+      ]
+    },
+    "P": {
+      "errors_by_function": {
+        "startEngine": 42,
+        "fillFuelTank": 17,
+        "estimate_distance": 7,
+        "displayCarStatus": 6,
+        "send_message": 3,
+        "get_user_tickets": 2,
+        "setCruiseControl": 2,
+        "get_outside_temperature_from_weather_com": 1
+      },
+      "startEngine_precondition_errors": 42,
+      "per_task": [
+        0,
+        3,
+        5,
+        2,
+        4,
+        2,
+        3,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        5,
+        2,
+        3,
+        4,
+        4,
+        0,
+        2,
+        3,
+        1,
+        0,
+        8,
+        7,
+        3,
+        3
+      ],
+      "vs_N_tasks_fewer_errors": 8,
+      "vs_N_tasks_more_errors": 8,
+      "vs_N_sign_test_two_sided_p": 1.0
+    },
+    "R": {
+      "errors_by_function": {
+        "startEngine": 24,
+        "fillFuelTank": 22,
+        "send_message": 13,
+        "estimate_distance": 5,
+        "get_message_stats": 3,
+        "view_messages_sent": 3,
+        "displayCarStatus": 2,
+        "search_messages": 2,
+        "get_outside_temperature_from_weather_com": 1,
+        "get_user_id": 1,
+        "add_contact": 1
+      },
+      "startEngine_precondition_errors": 24,
+      "per_task": [
+        0,
+        4,
+        0,
+        3,
+        3,
+        2,
+        2,
+        0,
+        0,
+        1,
+        7,
+        1,
+        0,
+        10,
+        2,
+        1,
+        6,
+        1,
+        1,
+        6,
+        2,
+        1,
+        1,
+        1,
+        2,
+        3,
+        4,
+        1,
+        3,
+        9
+      ],
+      "vs_N_tasks_fewer_errors": 16,
+      "vs_N_tasks_more_errors": 9,
+      "vs_N_sign_test_two_sided_p": 0.2295229434967041
+    },
+    "R+": {
+      "errors_by_function": {
+        "startEngine": 21,
+        "fillFuelTank": 13,
+        "send_message": 7,
+        "estimate_distance": 2,
+        "get_message_stats": 2,
+        "view_messages_sent": 2,
+        "search_messages": 2,
+        "lockDoors": 1,
+        "get_user_tickets": 1
+      },
+      "startEngine_precondition_errors": 21,
+      "per_task": [
+        0,
+        2,
+        2,
+        7,
+        0,
+        3,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        0,
+        2,
+        2,
+        1,
+        1,
+        2,
+        1,
+        0,
+        3,
+        1,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        9
+      ],
+      "vs_N_tasks_fewer_errors": 18,
+      "vs_N_tasks_more_errors": 5,
+      "vs_N_sign_test_two_sided_p": 0.010622024536132812
+    },
+    "S": {
+      "errors_by_function": {
+        "startEngine": 18,
+        "fillFuelTank": 15,
+        "send_message": 6,
+        "estimate_distance": 2,
+        "get_message_stats": 1,
+        "view_messages_sent": 1,
+        "search_messages": 1,
+        "add_contact": 1
+      },
+      "startEngine_precondition_errors": 18,
+      "per_task": [
+        0,
+        2,
+        0,
+        7,
+        0,
+        2,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        1,
+        0,
+        3,
+        1,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        7
+      ],
+      "vs_N_tasks_fewer_errors": 18,
+      "vs_N_tasks_more_errors": 3,
+      "vs_N_sign_test_two_sided_p": 0.0014896392822265625
+    }
+  }
+}
