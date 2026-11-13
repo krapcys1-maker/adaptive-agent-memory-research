@@ -1,5 +1,7 @@
 # Plan: integrating PR #105 in independent pieces
 
+**Status update (13 November 2026): completed.** All five pieces are merged with merge commits: S1 #121 (`9b63439`), S3 #122 (`ca3da5e`), S2 #123 (`3a0c5e9`), S4 #124 (`528f7a7`) and S5 #125 (`b2600ea`); PR #105 is closed with a comment that keeps its limitations. A check against the branch head `16c6d60` and its merge base `1b673d3` found each of the 277 paths changed by exactly one piece; 271 files are byte-identical to the source, and the other 6 are the documented adaptations of S5. The memory-event decision below was taken as option 1 (each of the 26 events appended with its original id, content and `valid_from`; original `created_at`, source commit and log line in its body; 380 events, 0 violations). Correction: the descriptions of #121 and #124 report the path scrub of `AUDIT_REPORT.md` and of the two files under `data/lab/local-model-upgrade-v2/`, but the merged commits did not contain it; the three lines were scrubbed in the follow-up documentation pull request. The text below is the plan as proposed.
+
 Status: proposal, written 13 November 2026 after a review of the branch `codex/structured-memory-runtime-2026-11-04` (head `16c6d60`, 88 commits). Nothing in PR #105 has been merged. This plan changes no result, no frozen file and no strategy; it only proposes how to bring the work onto `main` so that each step can be reviewed.
 
 ## What PR #105 is
