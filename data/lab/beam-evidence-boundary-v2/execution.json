@@ -1,0 +1,56 @@
+{
+  "source": {
+    "head": "50e12e47167826cb1c39c3959d304a9a7bfcab65",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/beam_evidence_boundary_v2.py": "387e702d05943ad7d580b8eb175b33348c67cc9d612ec92634b94d45e269a6ff",
+      "tools/source_context_v1.py": "ed389f7e866e6235d16b2c1485eadd93d3ac7fc59e2b7e2eef2bc654460b5f87",
+      "tools/source_windows_v1.py": "62bc626f8ff79d4e2573741dcb4242438008589cbc15e215fec0fdb13e079181",
+      "scripts/beam_reader_evidence_v1.py": "10a06fc0b54383886cb63247469881c1c12aa095e8fb739788fa4f408118af4e",
+      "data/lab/beam-evidence-boundary-v2/PLAN.md": "b7ea3c65e2b327a498e88cef94fb84ecbc9fdf069ae77f6323f9c9f3b0430dff"
+    }
+  },
+  "private_manifest_sha256": "325aee689a603929d9e729190a836628e5a300542543f79a6ac3d64c4892d01e",
+  "elapsed_seconds": 8.265999999974156,
+  "output_bytes_before_manifest": 1523723,
+  "complete_output_bytes": 1548160,
+  "output_sha256": {
+    "cases.jsonl": "749c2e647be54b92fd5f64f019c843d65b10ee03a39f894f5a3d265fc3671030",
+    "context-packets.jsonl": "baeab2daa26e69a4d697f41e58a055aaa1d1b69a7a7e59123bf23e073c9efc61",
+    "started.json": "f8b7a0548e1919dd4a4a29b7739f309f68d40f79b73e219932d8bd7fbef0d474",
+    "target-details.jsonl": "62756251cc3587f92d37d78b13f9864161cad53c8b95f2e2d9277ed618bb560d"
+  },
+  "input_hashes_unchanged": true,
+  "model_calls": 0,
+  "input_identities": {
+    "manifest.json@0": "48d12fb1b42307515eb06ff48b4cf61c8bd8dc9afe3c4a27c7f0cca0fe46433e",
+    "history.jsonl@1": "fe1a9ff7227f40468d1b87e4b2abdfeafb3e37a0df11df25f249a1c1f27ec81b",
+    "questions.jsonl@2": "53d632884796df0245ce56159d74a833701ee5a81341023edfa86d88c99ec505",
+    "message-provenance.jsonl@3": "34670e21d443124095e47247bbd855772cf97f0f0d26123e2bf33763953b9ce7",
+    "labels.jsonl@4": "69cd777cf5351ce27445a78bf96b9674177779b60912c4b7a503fc2bf5efab40",
+    "manifest.json@5": "b498315ad8eda1f593b555a0aa1530a3d7d79fee97377de6608619d9aeaa90e6",
+    "query-packets.jsonl@6": "f2af7475c771d920dce9025fce6b14ac3d95ad746ea697788f46b658ba6935c7",
+    "raw-freeze.json@7": "8d6dc32170742c0ed35fa47a207f440c3e1c4ecec42ed7b97dea91dee86f03e7",
+    "packets.jsonl@8": "a023bcce76cb33f4e0fa57e1faa65213bedf94afb344fcf6ebdd7ca37eeb86b3",
+    "answers.jsonl@9": "d04b36feea9accd661dc9db649643cc7e5d50b4acae1d4942216a670f4b26292",
+    "preparation.json@10": "f03e4572595ec0f4b1ac55bebbe347e94b715be19a88715007e85cc41a7dcd44",
+    "manifest.json@11": "a0bbb81cda7424dab39aa69b171da5caf3e61b74b23143b7fe7dc1f2f9169012",
+    "verdicts.jsonl@12": "71ae7e0c37b19ef80a3c5c540a1903b781fd9c63e504d4496561b9e9c80b8720",
+    "mapping.jsonl@13": "e0d94a20c05b55ef5a527eca391bf28ccdf9a93e4c60f26b10888b027a5a6b6e",
+    "h1-local-ledger.jsonl@14": "c491b6f3bf406f8b3b495ee5878ff292049be911ddcbb0d3d5b6d66ccc8e7055",
+    "api-ledger.jsonl@15": "a3492c363f54f5aacae52a11f051f654194190ea988c037b6d0c2e9203940943",
+    "beam-local-ledger-v1.jsonl@16": "dd4479cf564acbfda3422e28a094ab2606b6a23fc7d8df3bb8bbb9b087e07417",
+    "score.json@17": "a8064014d3f8617c295baee222832a29a73b4da4702c3c988c1d31d1f99c858c",
+    "BEAM10M-1.sqlite@18": "4cfe552971feed04eb003f9232c69a3ae2dd03dff354b3b306724f275b31aa0e",
+    "BEAM10M-2.sqlite@19": "67951de1a89432d9111b087363b3fe5128d0133fa2f07a4aa8cc93b955a27df7",
+    "BEAM10M-3.sqlite@20": "5d5715f4eb9969789e3b1a35fe1a8400b23c758b12363c7cebfec2daa4852eb2",
+    "BEAM10M-4.sqlite@21": "c5bf4b2b0ccab725cfe96edbdf7daa5e9cbcaa944fe99a562b9f02195a2d68b6",
+    "BEAM10M-5.sqlite@22": "442bf85da23c7f04662727ecd842b0553daa91b2506d46367769eac5fde9530d",
+    "BEAM10M-6.sqlite@23": "0ca8e81df38476d155a0dcd8ffcedc26d7188eb89832dbd2704a7528027853f9",
+    "BEAM10M-7.sqlite@24": "d7670e8f83240a360c0bca83207e98e45786d597a2b7f67ee41a3aa82e2baef8",
+    "BEAM10M-8.sqlite@25": "4069a7282c6c09987f790c43e4483311eefa027fe769f075074eedf51680457c",
+    "BEAM10M-9.sqlite@26": "eb2b132b5f44f81535cbd12e0d12acf267317804daf88e77b3c466937c81f48d",
+    "BEAM10M-10.sqlite@27": "cf23ce38a918ec475b50bffdb2a55c97ce24391c982f76721c33bf98cb5516b3"
+  },
+  "input_identity_note": "Names have numbered disambiguators only to avoid private absolute paths; full private manifest retains exact paths."
+}

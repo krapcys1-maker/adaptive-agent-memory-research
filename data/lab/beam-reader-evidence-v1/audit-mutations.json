@@ -1,0 +1,29 @@
+{
+  "copies_only": true,
+  "original_raw_writes": 0,
+  "new_model_calls": 0,
+  "control_passed": true,
+  "forgeries_rejected": 3,
+  "cases": [
+    {
+      "case": "unmodified_control",
+      "accepted": true,
+      "replayed": 605
+    },
+    {
+      "case": "response_text_changed",
+      "accepted": false,
+      "reason": "Raw freeze changed."
+    },
+    {
+      "case": "rehashed_native_request",
+      "accepted": false,
+      "reason": "Native request mismatch."
+    },
+    {
+      "case": "rehashed_saved_answer",
+      "accepted": false,
+      "reason": "Saved answer/provenance is not a replay of native text."
+    }
+  ]
+}
