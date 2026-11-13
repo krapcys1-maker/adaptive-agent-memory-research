@@ -84,7 +84,7 @@ Common decoding: temperature0, seed7, context8192, output512, top_p1, top_k0, re
 
 Task1564/2000 =3failed V1 controls+655baseline+655Qwen9+251Gemma.0new paid/API calls. PR105now6388attempts =5925local+463historical Flash; old H13262/3300,BEAM605/650 and API ledger bytes remain unchanged. Paid historical reservations1.852USD/recorded usage upper0.073913USD unchanged. No spare-budget filling is authorized.
 
-Private artifacts: `D:\Pamiec LLM\GH_REVIVAL\local-llm-upgrade-2026-11-05`; audit/export/copies in the dated Codex visualization directory. Actual result restoration evidence is summarized in [delivery.json](delivery.json) and retained in the private VERIFIED.json. Intermediate registration/amendment/raw-freeze handovers are preserved verbatim in [stage-history.md](stage-history.md); their pending statements are superseded by this completed report. Shared C-017/root Claude handoff point here; no other-agent ACK is implied. No NIE personality, shared plan, original dirty worktree, frozen predecessor or historical answer was edited.
+Private artifacts: `[machine-local path omitted]`; audit/export/copies in the dated Codex visualization directory. Actual result restoration evidence is summarized in [delivery.json](delivery.json) and retained in the private VERIFIED.json. Intermediate registration/amendment/raw-freeze handovers are preserved verbatim in [stage-history.md](stage-history.md); their pending statements are superseded by this completed report. Shared C-017/root Claude handoff point here; no other-agent ACK is implied. No NIE personality, shared plan, original dirty worktree, frozen predecessor or historical answer was edited.
 
 ## G. RTX3060 recommendation
 

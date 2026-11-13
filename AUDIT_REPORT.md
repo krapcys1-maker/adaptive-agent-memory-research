@@ -6,7 +6,7 @@ Audited code head: `cb6d72dc1610d8c9308f2cb5a73f2e452803fa1f`, branch `codex/str
 
 ## Preservation and restoration
 
-Before changing repository files, a private snapshot was completed and its restoration verified at **18:23:37 UTC**. See the content-free [safety receipt](data/lab/repository-integrity-audit-v1/safety-receipt.json). The local recovery point is `D:\Pamiec LLM - audit backups\2026-11-04\20261104T181004Z`.
+Before changing repository files, a private snapshot was completed and its restoration verified at **18:23:37 UTC**. See the content-free [safety receipt](data/lab/repository-integrity-audit-v1/safety-receipt.json). The local recovery point is `[machine-local path omitted]`.
 
 - 129,860 copied file instances, 37,707 unique hash-verified objects, 6,256,251,597 unique bytes, 53 captured trees, including 29 research and 11 NIE Git worktrees.
 - Both repositories' bundles were restored locally: all 78 research and 44 NIE refs/OIDs matched; restored object graphs passed `git fsck --full`.

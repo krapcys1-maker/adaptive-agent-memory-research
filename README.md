@@ -44,7 +44,7 @@ AAMR is an open, international research project, and it needs more people than i
 
 All tasks: [`good first issue`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue) · [`help-wanted`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/help-wanted) · [`no-expertise-needed`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/no-expertise-needed) · [`track:engine`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/track%3Aengine) · [`research`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/research). The full guide, with what each kind of contribution must contain, is [Join the research](docs/00-project/join-the-research.md). New mechanisms and disagreement with a recorded conclusion are both welcome; they enter the research as an issue or discussion and then through the [experiment gate](docs/11-research-laboratory/research-to-experiment-gate.md), never as a silent edit to a frozen result.
 
-The numbers further down describe `main`. Work that is still open as a pull request (a draft structured-memory candidate and an experience-memory pilot) is listed, with its status, under [open pull requests](docs/00-project/join-the-research.md#open-pull-requests-and-what-they-mean-for-you).
+The numbers further down describe `main`. The two larger pieces of work that were open as pull requests until 13 November 2026, a structured-memory candidate (#105, integrated in five pieces) and an experience-memory pilot (#111), are now on `main` and remain experimental; what that means for you is under [larger pull requests](docs/00-project/join-the-research.md#larger-pull-requests-and-what-they-mean-for-you).
 
 ---
 
