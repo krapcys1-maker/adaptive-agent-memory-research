@@ -64,6 +64,8 @@ Five documents written on 2026-08-24 were cited by reports, by the ledger and by
 
 The ledger's measured results never depended on these files. Its external-support citations (in Entries D, F and H, and in the backlog) did, and can now be followed. One cited source is still absent on purpose: the git-ignored LongMemEval dataset file under `external/datasets/`.
 
+A [status note](PUBLISHED_LATE_STATUS_NOTE_2026-11-13.md) records what happened to these documents and to the inbox, and what was and was not checked at publication.
+
 ## The two Polish-named folders
 
 Two folders next to the reports have Polish names and a one-way protocol between this project and an external research agent, a separate automated system that searches papers and code and returns candidate mechanisms. It does not run experiments and has no access to the lab host.
