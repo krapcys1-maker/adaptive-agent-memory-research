@@ -65,14 +65,14 @@ The scarcest resource. Read the [independence ladder](independence-ladder.md), t
 
 ## Open pull requests and what they mean for you
 
-As of 13 November 2026 two pull requests are open. They are documented here so a newcomer does not mistake them for part of `main`.
+As of 13 November 2026 one of two larger pull requests is still open (#105); #111 has been merged. They are documented here so a newcomer can tell what is and is not part of `main`.
 
 | PR | State | What it is | How you can help |
 |---|---|---|---|
-| [#105](https://github.com/krapcys1-maker/adaptive-agent-memory-research/pull/105) | Draft; large (277 files); CI green; mergeable | A source-grounded structured-memory candidate with boundary repairs and local reader comparisons. Its own description records that semantic capture, evidence sufficiency and fresh external confirmation are unresolved | Review; produce counterexamples for #106–#108 and #110. It is not a claim of general memory readiness |
-| [#111](https://github.com/krapcys1-maker/adaptive-agent-memory-research/pull/111) | Open, ready for review; small (27 files); CI green; mergeable | EXP-PILOT-0: whether a local tool-using agent does better on a function-calling benchmark when shown its own earlier episodes. Its description reports an intermediate result: the preregistered "memory works" row was not met | Statistical re-analysis of its published `results.json`; replication on another local model |
+| [#105](https://github.com/krapcys1-maker/adaptive-agent-memory-research/pull/105) | Draft; large (277 files); CI green; being split, see the plan below | A source-grounded structured-memory candidate with boundary repairs and local reader comparisons. Its own description records that semantic capture, evidence sufficiency and fresh external confirmation are unresolved | Review; produce counterexamples for #106–#108 and #110. It is not a claim of general memory readiness |
+| [#111](https://github.com/krapcys1-maker/adaptive-agent-memory-research/pull/111) | **Merged** (13 November 2026) after an independent audit; its results are on `main` | EXP-PILOT-0: whether a local tool-using agent does better on a function-calling benchmark when shown its own earlier episodes. Intermediate result: the preregistered "memory works" row was not met; the error-count finding is exploratory | Replicate on another local model; recompute the statistics ([#116](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/116)); see the README's Amendments section |
 
-Both append to `memory/events.jsonl` and to `data/lab/experiment-registry.csv` (a trial merge of the two branches conflicts on exactly those two files). The canonical-store guard in CI treats the log as append-only, so whichever merges second needs a rebase that keeps both sets of appended lines. Maintainers decide merge order. Reviews are welcome on either; please review the code and the evidence, and say what you inspected.
+#105 is too large to review or merge as one change (277 files, about 52,000 added lines) and is being integrated in smaller independent pieces; the plan, with its dependencies and the problems a trial merge found, is [pr105-integration-plan-2026-11-13.md](pr105-integration-plan-2026-11-13.md). Reviews are welcome on #105 and on any piece of it; please review the code and the evidence, and say what you inspected.
 
 ## Credit and conduct
 
