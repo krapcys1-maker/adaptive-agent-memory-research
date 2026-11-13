@@ -1,6 +1,14 @@
 # November laboratory map
 
+Latest evidence diagnostic: [full source/context result](../../data/lab/beam-evidence-boundary-v2/README.md).200cases, only16/176annotated packets contain all declared target sources;1216targets outside the16candidates. New literal prefix/heading context exposes the known example frame but retains390/705windows. Engineering-only experimental interface, no adoption or new answer score; general prose modality remains open.0newmodelcalls; old totals4824and all frozen outputs unchanged. Registry85historical rows; follow current HANDOVER for source freezes, retained v1failure and exact delivery checks.
+
+Latest continuation2026-11-05: [BEAM source windows](../../data/lab/beam-source-windows-v1/README.md) and [full local reader comparison](../../data/lab/beam-reader-evidence-v1/README.md). All200questions/605local calls completed; authored N19/B39/Cdel32 of200with8uncertain references. New citation variant rejected, no adoption/official or independent claim. Literal provenance can lose hypothetical framing; next engineering boundary is modality/context and evidence completeness. Registry83historical entries includes the prior registration and completed result separately; it is not83independent discoveries. Read latest HANDOVER for unchanged prior ledgers and new605/650BEAM task accounting.
+
 Snapshot: 2026-11-04. Read the linked README's latest results/amendments as well as its original preregistration header. This map describes the research instruments and recorded status; a passing software test is not a successful research result.
+
+2026-11-05 continuity update: the registry now also appends the completed boundary repair (`PMLAB-BOUNDARY-E1-001`), whole-family reader controls (`PMLAB-H1-CTRL-E1-001`) and one unexecuted repetition design (`PMLAB-H1-DENS-E1-001`). Prior 74 rows are preserved. Cataloguing is retrospective, with earlier protocol freezes linked; this is not a complete backfill of November studies. Read [current handover](../../HANDOVER.md) for results, costs and remaining failures.
+
+Later candidate/audit entry points: [structured runtime](../../data/lab/structured-memory-v1/README.md), [completed H1 v5](../../data/lab/h1-evidence-rerank-v5/README.md), [integrity self-audit](../../AUDIT_REPORT.md), [safe handover](../../HANDOVER.md). These preserve the earlier clean-clone timing snapshot and its limits. The candidate has confirmed boundary failures and no generic-readiness claim.
 
 The [delivery-state page](../00-project/delivery-state-2026-11-04.md) explains what is implemented and what a complete agent still needs. Later evidence: [public ranking/gate evaluation](../../data/lab/lexical-gate-eval-v1/README.md), [retrieval costs](../../data/lab/retrieval-cost-v1/README.md), [LifeSim development diagnosis](../../data/lab/lifesim-development-diagnosis-v1/README.md), the [local typed-fact reader pilot](../../data/lab/nie-local-reader-v1/README.md), and [matched Qwen 14B/Flash comparison](../../data/lab/reader-model-compare-v1/README.md). Further evidence: [hard external diagnostic](../../data/lab/hard-memory-external-v1/README.md) and [project delivery audit](../00-project/project-delivery-audit-2026-11-04.md). These additions do not change the clean-clone timing snapshot below.
 
@@ -89,3 +97,15 @@ The first three checks are cheap. The full gate includes all repository suites, 
 ## Read status chronologically
 
 The persona-v0 header still says no call has occurred and its freeze hash is not yet committed; later Results/Amendments and Git record the completed run. R1 likewise keeps a preregistration header above its later results. These are preserved historical sections, not current execution status. The kernel README calls the original tests frozen, whereas issue 73 says new assertions may be added separately; the mutation correction preserves both original suites and adds a separate file. No ambiguity here is resolved by silently changing an experimental result.
+
+
+## Active laboratory view — 2026-11-05
+
+The owner's current operating entry is [active laboratory and positioning](active-lab-2026-11-05.md), using the existing doctrine, comparative contract and instruments. Density and whole-H1 ordering are now completed, with [results](../../data/lab/h1-chronological-pack-v1/README.md), registry79rows and explicit preservation of the old pending-design row/history. [Memory-on/off coverage, model-table age and overfitting](../05-benchmarks/memory-baselines-and-benchmark-age-2026-11-05.md) prevent misreading H1base as no memory or historical vendor scores as today's ranking. Runtime/results head58bdcfc has12successful CI jobs,3377passed/21skipped on each Linux Python3.11/3.12; [receipt](../../data/lab/h1-chronological-pack-v1/delivery.json). These later receipts do not change the earlier clean-clone timing snapshot.
+
+One next item is common-protocol external comparison under#51/#7, with no new inference/budget extension created by the operating note. Concept backlog is not a set of newly preregistered experiments. Existing source catalogs/adapters/negative results are reused; no parallel duplicate laboratory or NIE/persona change.
+
+
+## BEAM transfer format stage — 2026-11-05
+
+[Completed full-tier format boundary and scale audit](../../data/lab/beam-transfer-format-v2/README.md):187,734source messages/200probes across10pinned conversations, annotation separation, exact reconstruction, retained v1 failure and v2 unknown-time handling. No end-to-end memory test/score or model call. Registry80historical rows; old79preserved. Next work remains the common-protocol external comparison with bounded evidence windows, capture-cost accounting and a frozen valid evaluation method.
