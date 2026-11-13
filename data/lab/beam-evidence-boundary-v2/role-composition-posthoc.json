@@ -1,0 +1,39 @@
+{
+  "posthoc_descriptive": true,
+  "new_model_calls": 0,
+  "cases": 200,
+  "window_roles": {
+    "candidates": {
+      "assistant": 2403,
+      "user": 797
+    },
+    "old_shown": {
+      "assistant": 389,
+      "user": 316
+    },
+    "context_shown": {
+      "assistant": 185,
+      "user": 205
+    }
+  },
+  "distinct_source_per_case_roles": {
+    "candidates": {
+      "assistant": 2007,
+      "user": 791
+    },
+    "old_shown": {
+      "assistant": 367,
+      "user": 316
+    },
+    "context_shown": {
+      "assistant": 185,
+      "user": 205
+    }
+  },
+  "input_sha256": {
+    "query-packets.jsonl-0": "f2af7475c771d920dce9025fce6b14ac3d95ad746ea697788f46b658ba6935c7",
+    "packets.jsonl-1": "a023bcce76cb33f4e0fa57e1faa65213bedf94afb344fcf6ebdd7ca37eeb86b3",
+    "context-packets.jsonl-2": "baeab2daa26e69a4d697f41e58a055aaa1d1b69a7a7e59123bf23e073c9efc61"
+  },
+  "scope": "Supplement after primary diagnostic; counts origin roles only, not source truth, causal attribution or semantic benefit of a user-only retriever."
+}

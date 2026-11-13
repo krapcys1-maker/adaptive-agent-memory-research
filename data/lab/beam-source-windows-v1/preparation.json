@@ -1,0 +1,3008 @@
+{
+  "source": {
+    "head": "53fe7d56f19677bdefcd5ddca80cf446f8fa2419",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/prepare_beam_windows_v1.py": "202ac324d197c33a31d8f2cdb88d2d5b52a62c033ae6b3ce1afe861262c83ccf",
+      "tools/source_windows_v1.py": "62bc626f8ff79d4e2573741dcb4242438008589cbc15e215fec0fdb13e079181",
+      "scripts/run_memory_benchmark.py": "0727a359821f6daf36409b50b52df3d6e01b70f3dd819ca7f5b0e031f0ec4241",
+      "data/lab/beam-source-windows-v1/PLAN.md": "a49f1bf1e2ae0e7296b2e13eafa559c6e8c4b074241ce11385ba88d9ecf53868",
+      "data/lab/beam-source-windows-v1/config.json": "ea4804b1e8a49ee1f58048c6cdd2da694771c2452e0fccb9cd2bba44496a6f93"
+    }
+  },
+  "config": {
+    "max_text_bytes": 1600,
+    "overlap_bytes": 160,
+    "query_term_limit": 24,
+    "candidate_limit": 16,
+    "max_message_bytes": 6000,
+    "max_seconds": 1800,
+    "max_output_bytes": 8000000000
+  },
+  "sources": 187734,
+  "windows": 405070,
+  "indexes": [
+    {
+      "version": 1,
+      "scope": "BEAM10M-1",
+      "known_at": 17622,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 17623,
+      "windows": 40006,
+      "source_text_bytes": 43734869,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-1.sqlite",
+      "bytes": 223961088,
+      "wall_seconds": 5.125,
+      "sha256": "4cfe552971feed04eb003f9232c69a3ae2dd03dff354b3b306724f275b31aa0e"
+    },
+    {
+      "version": 1,
+      "scope": "BEAM10M-2",
+      "known_at": 17840,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 17841,
+      "windows": 40219,
+      "source_text_bytes": 44013534,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-2.sqlite",
+      "bytes": 225595392,
+      "wall_seconds": 5.717999999993481,
+      "sha256": "67951de1a89432d9111b087363b3fe5128d0133fa2f07a4aa8cc93b955a27df7"
+    },
+    {
+      "version": 1,
+      "scope": "BEAM10M-3",
+      "known_at": 17575,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 17576,
+      "windows": 40180,
+      "source_text_bytes": 44063893,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-3.sqlite",
+      "bytes": 225447936,
+      "wall_seconds": 5.109000000025844,
+      "sha256": "5d5715f4eb9969789e3b1a35fe1a8400b23c758b12363c7cebfec2daa4852eb2"
+    },
+    {
+      "version": 1,
+      "scope": "BEAM10M-4",
+      "known_at": 14327,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 14328,
+      "windows": 28849,
+      "source_text_bytes": 28665210,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-4.sqlite",
+      "bytes": 152846336,
+      "wall_seconds": 3.7030000000086147,
+      "sha256": "c5bf4b2b0ccab725cfe96edbdf7daa5e9cbcaa944fe99a562b9f02195a2d68b6"
+    },
+    {
+      "version": 1,
+      "scope": "BEAM10M-5",
+      "known_at": 17361,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 17362,
+      "windows": 32378,
+      "source_text_bytes": 31068311,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-5.sqlite",
+      "bytes": 169095168,
+      "wall_seconds": 4.702999999979511,
+      "sha256": "442bf85da23c7f04662727ecd842b0553daa91b2506d46367769eac5fde9530d"
+    },
+    {
+      "version": 1,
+      "scope": "BEAM10M-6",
+      "known_at": 19817,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 19818,
+      "windows": 44531,
+      "source_text_bytes": 44680025,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-6.sqlite",
+      "bytes": 232173568,
+      "wall_seconds": 5.375,
+      "sha256": "0ca8e81df38476d155a0dcd8ffcedc26d7188eb89832dbd2704a7528027853f9"
+    },
+    {
+      "version": 1,
+      "scope": "BEAM10M-7",
+      "known_at": 20489,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 20490,
+      "windows": 44456,
+      "source_text_bytes": 44195999,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-7.sqlite",
+      "bytes": 231964672,
+      "wall_seconds": 5.85999999998603,
+      "sha256": "d7670e8f83240a360c0bca83207e98e45786d597a2b7f67ee41a3aa82e2baef8"
+    },
+    {
+      "version": 1,
+      "scope": "BEAM10M-8",
+      "known_at": 21421,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 21422,
+      "windows": 44884,
+      "source_text_bytes": 43842638,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-8.sqlite",
+      "bytes": 231899136,
+      "wall_seconds": 4.921999999991385,
+      "sha256": "4069a7282c6c09987f790c43e4483311eefa027fe769f075074eedf51680457c"
+    },
+    {
+      "version": 1,
+      "scope": "BEAM10M-9",
+      "known_at": 22133,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 22134,
+      "windows": 45563,
+      "source_text_bytes": 44204692,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-9.sqlite",
+      "bytes": 234725376,
+      "wall_seconds": 5.328000000008615,
+      "sha256": "eb2b132b5f44f81535cbd12e0d12acf267317804daf88e77b3c466937c81f48d"
+    },
+    {
+      "version": 1,
+      "scope": "BEAM10M-10",
+      "known_at": 19139,
+      "max_text_bytes": 1600,
+      "overlap_bytes": 160,
+      "sources": 19140,
+      "windows": 44004,
+      "source_text_bytes": 44747601,
+      "complete": true,
+      "semantics": "raw source access only; stream availability, not asserted truth/calendar",
+      "file": "indexes/BEAM10M-10.sqlite",
+      "bytes": 231837696,
+      "wall_seconds": 6.296999999991385,
+      "sha256": "cf23ce38a918ec475b50bffdb2a55c97ce24391c982f76721c33bf98cb5516b3"
+    }
+  ],
+  "questions": 200,
+  "query_stats": [
+    {
+      "id": "BEAM10M-1-Q0000",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5670,
+        "ascii_escaped": 5670
+      },
+      "wall_seconds": 0.07899999999790452
+    },
+    {
+      "id": "BEAM10M-1-Q0001",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5860,
+        "ascii_escaped": 5860
+      },
+      "wall_seconds": 0.030999999988125637
+    },
+    {
+      "id": "BEAM10M-1-Q0002",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5503,
+        "ascii_escaped": 5503
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-1-Q0003",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 7,
+      "omitted_candidates": 9,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5858,
+        "ascii_escaped": 5858
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-1-Q0004",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5641,
+        "ascii_escaped": 5641
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-1-Q0005",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5810,
+        "ascii_escaped": 5810
+      },
+      "wall_seconds": 0.11000000001513399
+    },
+    {
+      "id": "BEAM10M-1-Q0006",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5255,
+        "ascii_escaped": 5255
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-1-Q0007",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5610,
+        "ascii_escaped": 5610
+      },
+      "wall_seconds": 0.0470000000204891
+    },
+    {
+      "id": "BEAM10M-1-Q0008",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5523,
+        "ascii_escaped": 5523
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-1-Q0009",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5741,
+        "ascii_escaped": 5741
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-1-Q0010",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5839,
+        "ascii_escaped": 5839
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-1-Q0011",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5479,
+        "ascii_escaped": 5479
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-1-Q0012",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 2,
+      "omitted_candidates": 14,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 4858,
+        "ascii_escaped": 4858
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-1-Q0013",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5840,
+        "ascii_escaped": 5840
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-1-Q0014",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 2,
+      "omitted_candidates": 14,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 4972,
+        "ascii_escaped": 4972
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-1-Q0015",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5807,
+        "ascii_escaped": 5807
+      },
+      "wall_seconds": 0.28099999998812564
+    },
+    {
+      "id": "BEAM10M-1-Q0016",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5545,
+        "ascii_escaped": 5545
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-1-Q0017",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5452,
+        "ascii_escaped": 5452
+      },
+      "wall_seconds": 0.10899999999674037
+    },
+    {
+      "id": "BEAM10M-1-Q0018",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5614,
+        "ascii_escaped": 5614
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-1-Q0019",
+      "conversation_id": "BEAM10M-1",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5567,
+        "ascii_escaped": 5567
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-2-Q0000",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5491,
+        "ascii_escaped": 5491
+      },
+      "wall_seconds": 0.09299999999348074
+    },
+    {
+      "id": "BEAM10M-2-Q0001",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5538,
+        "ascii_escaped": 5538
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-2-Q0002",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 2,
+      "omitted_candidates": 14,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 4824,
+        "ascii_escaped": 4824
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-2-Q0003",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5885,
+        "ascii_escaped": 5885
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-2-Q0004",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5829,
+        "ascii_escaped": 5829
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-2-Q0005",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5588,
+        "ascii_escaped": 5588
+      },
+      "wall_seconds": 0.09299999999348074
+    },
+    {
+      "id": "BEAM10M-2-Q0006",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5470,
+        "ascii_escaped": 5470
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-2-Q0007",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5945,
+        "ascii_escaped": 5945
+      },
+      "wall_seconds": 0.03200000000651926
+    },
+    {
+      "id": "BEAM10M-2-Q0008",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5766,
+        "ascii_escaped": 5766
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-2-Q0009",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5938,
+        "ascii_escaped": 5938
+      },
+      "wall_seconds": 0.014999999984866008
+    },
+    {
+      "id": "BEAM10M-2-Q0010",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5961,
+        "ascii_escaped": 5961
+      },
+      "wall_seconds": 0.0470000000204891
+    },
+    {
+      "id": "BEAM10M-2-Q0011",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5826,
+        "ascii_escaped": 5826
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-2-Q0012",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5995,
+        "ascii_escaped": 5995
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-2-Q0013",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5816,
+        "ascii_escaped": 5816
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-2-Q0014",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5602,
+        "ascii_escaped": 5602
+      },
+      "wall_seconds": 0.11000000001513399
+    },
+    {
+      "id": "BEAM10M-2-Q0015",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5877,
+        "ascii_escaped": 5877
+      },
+      "wall_seconds": 0.09299999999348074
+    },
+    {
+      "id": "BEAM10M-2-Q0016",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5828,
+        "ascii_escaped": 5828
+      },
+      "wall_seconds": 0.14100000000325963
+    },
+    {
+      "id": "BEAM10M-2-Q0017",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 6,
+      "omitted_candidates": 10,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5346,
+        "ascii_escaped": 5346
+      },
+      "wall_seconds": 0.10899999999674037
+    },
+    {
+      "id": "BEAM10M-2-Q0018",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5581,
+        "ascii_escaped": 5581
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-2-Q0019",
+      "conversation_id": "BEAM10M-2",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5523,
+        "ascii_escaped": 5523
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-3-Q0000",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5928,
+        "ascii_escaped": 5928
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-3-Q0001",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5851,
+        "ascii_escaped": 5851
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-3-Q0002",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 7,
+      "omitted_candidates": 9,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5953,
+        "ascii_escaped": 5953
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-3-Q0003",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5985,
+        "ascii_escaped": 5985
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-3-Q0004",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5456,
+        "ascii_escaped": 5456
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-3-Q0005",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5930,
+        "ascii_escaped": 5930
+      },
+      "wall_seconds": 0.09399999998277053
+    },
+    {
+      "id": "BEAM10M-3-Q0006",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5565,
+        "ascii_escaped": 5565
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-3-Q0007",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5822,
+        "ascii_escaped": 5822
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-3-Q0008",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5577,
+        "ascii_escaped": 5577
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-3-Q0009",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5981,
+        "ascii_escaped": 5981
+      },
+      "wall_seconds": 0.09399999998277053
+    },
+    {
+      "id": "BEAM10M-3-Q0010",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5328,
+        "ascii_escaped": 5328
+      },
+      "wall_seconds": 0.0470000000204891
+    },
+    {
+      "id": "BEAM10M-3-Q0011",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5728,
+        "ascii_escaped": 5728
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-3-Q0012",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 4733,
+        "ascii_escaped": 4733
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-3-Q0013",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5627,
+        "ascii_escaped": 5627
+      },
+      "wall_seconds": 0.0470000000204891
+    },
+    {
+      "id": "BEAM10M-3-Q0014",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5818,
+        "ascii_escaped": 5818
+      },
+      "wall_seconds": 0.10999999998603016
+    },
+    {
+      "id": "BEAM10M-3-Q0015",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5979,
+        "ascii_escaped": 5979
+      },
+      "wall_seconds": 0.10899999999674037
+    },
+    {
+      "id": "BEAM10M-3-Q0016",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5451,
+        "ascii_escaped": 5451
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-3-Q0017",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5430,
+        "ascii_escaped": 5430
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-3-Q0018",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5542,
+        "ascii_escaped": 5542
+      },
+      "wall_seconds": 0.0470000000204891
+    },
+    {
+      "id": "BEAM10M-3-Q0019",
+      "conversation_id": "BEAM10M-3",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5678,
+        "ascii_escaped": 5678
+      },
+      "wall_seconds": 0.030999999988125637
+    },
+    {
+      "id": "BEAM10M-4-Q0000",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5264,
+        "ascii_escaped": 5264
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-4-Q0001",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5845,
+        "ascii_escaped": 5845
+      },
+      "wall_seconds": 0.015000000013969839
+    },
+    {
+      "id": "BEAM10M-4-Q0002",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 6,
+      "omitted_candidates": 10,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5712,
+        "ascii_escaped": 5732
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-4-Q0003",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5503,
+        "ascii_escaped": 5617
+      },
+      "wall_seconds": 0.0470000000204891
+    },
+    {
+      "id": "BEAM10M-4-Q0004",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5773,
+        "ascii_escaped": 5773
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-4-Q0005",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5645,
+        "ascii_escaped": 5645
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-4-Q0006",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5883,
+        "ascii_escaped": 5895
+      },
+      "wall_seconds": 0.031000000017229468
+    },
+    {
+      "id": "BEAM10M-4-Q0007",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 8,
+      "omitted_candidates": 8,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5832,
+        "ascii_escaped": 5948
+      },
+      "wall_seconds": 0.01600000000325963
+    },
+    {
+      "id": "BEAM10M-4-Q0008",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5891,
+        "ascii_escaped": 5966
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-4-Q0009",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 2,
+      "omitted_candidates": 14,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5054,
+        "ascii_escaped": 5054
+      },
+      "wall_seconds": 0.046000000002095476
+    },
+    {
+      "id": "BEAM10M-4-Q0010",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5711,
+        "ascii_escaped": 5725
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-4-Q0011",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5779,
+        "ascii_escaped": 5779
+      },
+      "wall_seconds": 0.01600000000325963
+    },
+    {
+      "id": "BEAM10M-4-Q0012",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 2,
+      "omitted_candidates": 14,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 4775,
+        "ascii_escaped": 4775
+      },
+      "wall_seconds": 0.031000000017229468
+    },
+    {
+      "id": "BEAM10M-4-Q0013",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5642,
+        "ascii_escaped": 5642
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-4-Q0014",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5057,
+        "ascii_escaped": 5057
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-4-Q0015",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5594,
+        "ascii_escaped": 5594
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-4-Q0016",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5413,
+        "ascii_escaped": 5413
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-4-Q0017",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": true,
+      "message_bytes": {
+        "utf8": 5960,
+        "ascii_escaped": 5960
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-4-Q0018",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5642,
+        "ascii_escaped": 5642
+      },
+      "wall_seconds": 0.03200000000651926
+    },
+    {
+      "id": "BEAM10M-4-Q0019",
+      "conversation_id": "BEAM10M-4",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5407,
+        "ascii_escaped": 5407
+      },
+      "wall_seconds": 0.046000000002095476
+    },
+    {
+      "id": "BEAM10M-5-Q0000",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5880,
+        "ascii_escaped": 5880
+      },
+      "wall_seconds": 0.03200000000651926
+    },
+    {
+      "id": "BEAM10M-5-Q0001",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5444,
+        "ascii_escaped": 5444
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-5-Q0002",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 6,
+      "omitted_candidates": 10,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5689,
+        "ascii_escaped": 5697
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-5-Q0003",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5871,
+        "ascii_escaped": 5879
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-5-Q0004",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5890,
+        "ascii_escaped": 5890
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-5-Q0005",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5489,
+        "ascii_escaped": 5492
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-5-Q0006",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5667,
+        "ascii_escaped": 5667
+      },
+      "wall_seconds": 0.0159999999741558
+    },
+    {
+      "id": "BEAM10M-5-Q0007",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5975,
+        "ascii_escaped": 5975
+      },
+      "wall_seconds": 0.0470000000204891
+    },
+    {
+      "id": "BEAM10M-5-Q0008",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5465,
+        "ascii_escaped": 5465
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-5-Q0009",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5556,
+        "ascii_escaped": 5556
+      },
+      "wall_seconds": 0.030999999988125637
+    },
+    {
+      "id": "BEAM10M-5-Q0010",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5640,
+        "ascii_escaped": 5648
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-5-Q0011",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5760,
+        "ascii_escaped": 5779
+      },
+      "wall_seconds": 0.031000000017229468
+    },
+    {
+      "id": "BEAM10M-5-Q0012",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5785,
+        "ascii_escaped": 5785
+      },
+      "wall_seconds": 0.030999999988125637
+    },
+    {
+      "id": "BEAM10M-5-Q0013",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 2,
+      "omitted_candidates": 14,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5129,
+        "ascii_escaped": 5129
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-5-Q0014",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5348,
+        "ascii_escaped": 5351
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-5-Q0015",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5782,
+        "ascii_escaped": 5782
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-5-Q0016",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5487,
+        "ascii_escaped": 5487
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-5-Q0017",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5636,
+        "ascii_escaped": 5636
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-5-Q0018",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5645,
+        "ascii_escaped": 5645
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-5-Q0019",
+      "conversation_id": "BEAM10M-5",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5458,
+        "ascii_escaped": 5458
+      },
+      "wall_seconds": 0.030999999988125637
+    },
+    {
+      "id": "BEAM10M-6-Q0000",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 9,
+      "omitted_candidates": 7,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5580,
+        "ascii_escaped": 5580
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-6-Q0001",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 6,
+      "omitted_candidates": 10,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5620,
+        "ascii_escaped": 5620
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-6-Q0002",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5738,
+        "ascii_escaped": 5738
+      },
+      "wall_seconds": 0.1090000000258442
+    },
+    {
+      "id": "BEAM10M-6-Q0003",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5773,
+        "ascii_escaped": 5773
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-6-Q0004",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5910,
+        "ascii_escaped": 5910
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-6-Q0005",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5873,
+        "ascii_escaped": 5873
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-6-Q0006",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5657,
+        "ascii_escaped": 5657
+      },
+      "wall_seconds": 0.01600000000325963
+    },
+    {
+      "id": "BEAM10M-6-Q0007",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5593,
+        "ascii_escaped": 5593
+      },
+      "wall_seconds": 0.014999999984866008
+    },
+    {
+      "id": "BEAM10M-6-Q0008",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5985,
+        "ascii_escaped": 5985
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-6-Q0009",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5987,
+        "ascii_escaped": 5987
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-6-Q0010",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 4767,
+        "ascii_escaped": 4767
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-6-Q0011",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 7,
+      "omitted_candidates": 9,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5831,
+        "ascii_escaped": 5831
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-6-Q0012",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5956,
+        "ascii_escaped": 5956
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-6-Q0013",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 2,
+      "omitted_candidates": 14,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 4915,
+        "ascii_escaped": 4915
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-6-Q0014",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5625,
+        "ascii_escaped": 5625
+      },
+      "wall_seconds": 0.07899999999790452
+    },
+    {
+      "id": "BEAM10M-6-Q0015",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5994,
+        "ascii_escaped": 5994
+      },
+      "wall_seconds": 0.09299999999348074
+    },
+    {
+      "id": "BEAM10M-6-Q0016",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5763,
+        "ascii_escaped": 5763
+      },
+      "wall_seconds": 0.11000000001513399
+    },
+    {
+      "id": "BEAM10M-6-Q0017",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5855,
+        "ascii_escaped": 5855
+      },
+      "wall_seconds": 0.139999999984866
+    },
+    {
+      "id": "BEAM10M-6-Q0018",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5839,
+        "ascii_escaped": 5839
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-6-Q0019",
+      "conversation_id": "BEAM10M-6",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 4,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5624,
+        "ascii_escaped": 5624
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-7-Q0000",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5518,
+        "ascii_escaped": 5518
+      },
+      "wall_seconds": 0.10999999998603016
+    },
+    {
+      "id": "BEAM10M-7-Q0001",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5635,
+        "ascii_escaped": 5635
+      },
+      "wall_seconds": 0.10899999999674037
+    },
+    {
+      "id": "BEAM10M-7-Q0002",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5643,
+        "ascii_escaped": 5643
+      },
+      "wall_seconds": 0.031000000017229468
+    },
+    {
+      "id": "BEAM10M-7-Q0003",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5761,
+        "ascii_escaped": 5761
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-7-Q0004",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5405,
+        "ascii_escaped": 5405
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-7-Q0005",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5694,
+        "ascii_escaped": 5694
+      },
+      "wall_seconds": 0.11000000001513399
+    },
+    {
+      "id": "BEAM10M-7-Q0006",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5669,
+        "ascii_escaped": 5669
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-7-Q0007",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5624,
+        "ascii_escaped": 5624
+      },
+      "wall_seconds": 0.046000000002095476
+    },
+    {
+      "id": "BEAM10M-7-Q0008",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5337,
+        "ascii_escaped": 5337
+      },
+      "wall_seconds": 0.10999999998603016
+    },
+    {
+      "id": "BEAM10M-7-Q0009",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 6,
+      "omitted_candidates": 10,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5644,
+        "ascii_escaped": 5644
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-7-Q0010",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5792,
+        "ascii_escaped": 5792
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-7-Q0011",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5710,
+        "ascii_escaped": 5710
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-7-Q0012",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5875,
+        "ascii_escaped": 5875
+      },
+      "wall_seconds": 0.046000000002095476
+    },
+    {
+      "id": "BEAM10M-7-Q0013",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 4962,
+        "ascii_escaped": 4962
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-7-Q0014",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5665,
+        "ascii_escaped": 5665
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-7-Q0015",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5785,
+        "ascii_escaped": 5785
+      },
+      "wall_seconds": 0.10899999999674037
+    },
+    {
+      "id": "BEAM10M-7-Q0016",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5952,
+        "ascii_escaped": 5952
+      },
+      "wall_seconds": 0.10999999998603016
+    },
+    {
+      "id": "BEAM10M-7-Q0017",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5199,
+        "ascii_escaped": 5199
+      },
+      "wall_seconds": 0.1090000000258442
+    },
+    {
+      "id": "BEAM10M-7-Q0018",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5707,
+        "ascii_escaped": 5707
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-7-Q0019",
+      "conversation_id": "BEAM10M-7",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5898,
+        "ascii_escaped": 5898
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-8-Q0000",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5482,
+        "ascii_escaped": 5482
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-8-Q0001",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5820,
+        "ascii_escaped": 5820
+      },
+      "wall_seconds": 0.11000000001513399
+    },
+    {
+      "id": "BEAM10M-8-Q0002",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5553,
+        "ascii_escaped": 5553
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-8-Q0003",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5756,
+        "ascii_escaped": 5756
+      },
+      "wall_seconds": 0.09299999999348074
+    },
+    {
+      "id": "BEAM10M-8-Q0004",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5983,
+        "ascii_escaped": 5983
+      },
+      "wall_seconds": 0.11000000001513399
+    },
+    {
+      "id": "BEAM10M-8-Q0005",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5687,
+        "ascii_escaped": 5687
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-8-Q0006",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5904,
+        "ascii_escaped": 5904
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-8-Q0007",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5617,
+        "ascii_escaped": 5617
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-8-Q0008",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5043,
+        "ascii_escaped": 5043
+      },
+      "wall_seconds": 0.09299999999348074
+    },
+    {
+      "id": "BEAM10M-8-Q0009",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5617,
+        "ascii_escaped": 5617
+      },
+      "wall_seconds": 0.10999999998603016
+    },
+    {
+      "id": "BEAM10M-8-Q0010",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5811,
+        "ascii_escaped": 5811
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-8-Q0011",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 6,
+      "omitted_candidates": 10,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5920,
+        "ascii_escaped": 5920
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-8-Q0012",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 4936,
+        "ascii_escaped": 4936
+      },
+      "wall_seconds": 0.09399999998277053
+    },
+    {
+      "id": "BEAM10M-8-Q0013",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5857,
+        "ascii_escaped": 5857
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-8-Q0014",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5741,
+        "ascii_escaped": 5741
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-8-Q0015",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 9,
+      "omitted_candidates": 7,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5788,
+        "ascii_escaped": 5788
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-8-Q0016",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5915,
+        "ascii_escaped": 5915
+      },
+      "wall_seconds": 0.1090000000258442
+    },
+    {
+      "id": "BEAM10M-8-Q0017",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5310,
+        "ascii_escaped": 5310
+      },
+      "wall_seconds": 0.10999999998603016
+    },
+    {
+      "id": "BEAM10M-8-Q0018",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 7,
+      "omitted_candidates": 9,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5836,
+        "ascii_escaped": 5836
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-8-Q0019",
+      "conversation_id": "BEAM10M-8",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 1,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5790,
+        "ascii_escaped": 5790
+      },
+      "wall_seconds": 0.09399999998277053
+    },
+    {
+      "id": "BEAM10M-9-Q0000",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5931,
+        "ascii_escaped": 5931
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-9-Q0001",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5694,
+        "ascii_escaped": 5694
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-9-Q0002",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5543,
+        "ascii_escaped": 5543
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-9-Q0003",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5344,
+        "ascii_escaped": 5344
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-9-Q0004",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5322,
+        "ascii_escaped": 5322
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-9-Q0005",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5756,
+        "ascii_escaped": 5756
+      },
+      "wall_seconds": 0.10899999999674037
+    },
+    {
+      "id": "BEAM10M-9-Q0006",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5116,
+        "ascii_escaped": 5116
+      },
+      "wall_seconds": 0.03200000000651926
+    },
+    {
+      "id": "BEAM10M-9-Q0007",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 4,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5957,
+        "ascii_escaped": 5957
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-9-Q0008",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 10,
+      "omitted_candidates": 6,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5991,
+        "ascii_escaped": 5991
+      },
+      "wall_seconds": 0.0470000000204891
+    },
+    {
+      "id": "BEAM10M-9-Q0009",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 6,
+      "omitted_candidates": 10,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5605,
+        "ascii_escaped": 5605
+      },
+      "wall_seconds": 0.030999999988125637
+    },
+    {
+      "id": "BEAM10M-9-Q0010",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5656,
+        "ascii_escaped": 5656
+      },
+      "wall_seconds": 0.030999999988125637
+    },
+    {
+      "id": "BEAM10M-9-Q0011",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5816,
+        "ascii_escaped": 5816
+      },
+      "wall_seconds": 0.0470000000204891
+    },
+    {
+      "id": "BEAM10M-9-Q0012",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5631,
+        "ascii_escaped": 5631
+      },
+      "wall_seconds": 0.09299999999348074
+    },
+    {
+      "id": "BEAM10M-9-Q0013",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5265,
+        "ascii_escaped": 5265
+      },
+      "wall_seconds": 0.07899999999790452
+    },
+    {
+      "id": "BEAM10M-9-Q0014",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5983,
+        "ascii_escaped": 5983
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-9-Q0015",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 9,
+      "omitted_candidates": 7,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5629,
+        "ascii_escaped": 5629
+      },
+      "wall_seconds": 0.10899999999674037
+    },
+    {
+      "id": "BEAM10M-9-Q0016",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5867,
+        "ascii_escaped": 5867
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-9-Q0017",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5876,
+        "ascii_escaped": 5876
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-9-Q0018",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5323,
+        "ascii_escaped": 5323
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-9-Q0019",
+      "conversation_id": "BEAM10M-9",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5924,
+        "ascii_escaped": 5924
+      },
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "id": "BEAM10M-10-Q0000",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5375,
+        "ascii_escaped": 5375
+      },
+      "wall_seconds": 0.10899999999674037
+    },
+    {
+      "id": "BEAM10M-10-Q0001",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5760,
+        "ascii_escaped": 5760
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-10-Q0002",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5972,
+        "ascii_escaped": 5972
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-10-Q0003",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5284,
+        "ascii_escaped": 5284
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-10-Q0004",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": true,
+      "message_bytes": {
+        "utf8": 5079,
+        "ascii_escaped": 5079
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-10-Q0005",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5906,
+        "ascii_escaped": 5906
+      },
+      "wall_seconds": 0.125
+    },
+    {
+      "id": "BEAM10M-10-Q0006",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5543,
+        "ascii_escaped": 5543
+      },
+      "wall_seconds": 0.01600000000325963
+    },
+    {
+      "id": "BEAM10M-10-Q0007",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 8,
+      "omitted_candidates": 8,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5992,
+        "ascii_escaped": 5992
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-10-Q0008",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5850,
+        "ascii_escaped": 5850
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-10-Q0009",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5625,
+        "ascii_escaped": 5625
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-10-Q0010",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 0,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5848,
+        "ascii_escaped": 5848
+      },
+      "wall_seconds": 0.03200000000651926
+    },
+    {
+      "id": "BEAM10M-10-Q0011",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5299,
+        "ascii_escaped": 5299
+      },
+      "wall_seconds": 0.0779999999795109
+    },
+    {
+      "id": "BEAM10M-10-Q0012",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5797,
+        "ascii_escaped": 5797
+      },
+      "wall_seconds": 0.062000000005355105
+    },
+    {
+      "id": "BEAM10M-10-Q0013",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5329,
+        "ascii_escaped": 5329
+      },
+      "wall_seconds": 0.09400000001187436
+    },
+    {
+      "id": "BEAM10M-10-Q0014",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5791,
+        "ascii_escaped": 5791
+      },
+      "wall_seconds": 0.07800000000861473
+    },
+    {
+      "id": "BEAM10M-10-Q0015",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 5,
+      "omitted_candidates": 11,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5767,
+        "ascii_escaped": 5767
+      },
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "id": "BEAM10M-10-Q0016",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5918,
+        "ascii_escaped": 5922
+      },
+      "wall_seconds": 0.10899999999674037
+    },
+    {
+      "id": "BEAM10M-10-Q0017",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5747,
+        "ascii_escaped": 5747
+      },
+      "wall_seconds": 0.14100000000325963
+    },
+    {
+      "id": "BEAM10M-10-Q0018",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 3,
+      "omitted_candidates": 13,
+      "partial_sources": 3,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5995,
+        "ascii_escaped": 5995
+      },
+      "wall_seconds": 0.09399999998277053
+    },
+    {
+      "id": "BEAM10M-10-Q0019",
+      "conversation_id": "BEAM10M-10",
+      "candidate_windows": 16,
+      "shown_windows": 4,
+      "omitted_candidates": 12,
+      "partial_sources": 2,
+      "terms_truncated": false,
+      "message_bytes": {
+        "utf8": 5820,
+        "ascii_escaped": 5820
+      },
+      "wall_seconds": 0.062000000005355105
+    }
+  ],
+  "source_partitions_sha256": {
+    "BEAM10M-1": "e1695a7df60acfc347d7907b8704d94eccf2075fb74f11f31ac278acd02d180b",
+    "BEAM10M-2": "d9087c96c7272da5929e7f8d8f26ff49e405ac54477fc8b0caa7843aa7c9f22b",
+    "BEAM10M-3": "6a3a05f47250d36fea7637f91ccd325f7520a7afc4e20fd00e264f00a195b0e0",
+    "BEAM10M-4": "f1a7b52d9956000ec453a3834ee2e6ebb9247419d1ae416029a7d1ce5e764a52",
+    "BEAM10M-5": "b516fef62f132c75bd32b5a8894a3fcfdd7067c53d278d78534ba4216e8c32ed",
+    "BEAM10M-6": "c94d26211529de82ccfdb12df5474fa853f20793239aa98f8b1e78ba29ad6e58",
+    "BEAM10M-7": "8b4fbad17d630f9cea6de7a15198e69808565a712dcc190d785dce89ac9aed65",
+    "BEAM10M-8": "b4a1a4cfdd03e89ffee1396260fdec1ed451e2212abc9dea87149e0d27a039ee",
+    "BEAM10M-9": "a02cefd9cab030711f2c1ed61c2668587d1c77f2fae08616426607b91758ce31",
+    "BEAM10M-10": "cb21b20b6ebd983ba7a90cdb750a4c081046d9bae75cc89a9699aec5ecc046ce"
+  },
+  "query_packets_sha256": "f2af7475c771d920dce9025fce6b14ac3d95ad746ea697788f46b658ba6935c7",
+  "elapsed_seconds": 74.81200000000536,
+  "total_output_bytes": 2616798059,
+  "new_model_calls": 0,
+  "benchmark_score": null,
+  "claim": "All-source access and ordinary lexical retrieval preparation, not graph capture or memory accuracy.",
+  "private_manifest_sha256": "b498315ad8eda1f593b555a0aa1530a3d7d79fee97377de6608619d9aeaa90e6"
+}

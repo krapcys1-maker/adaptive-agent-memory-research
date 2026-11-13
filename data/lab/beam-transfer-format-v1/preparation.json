@@ -1,0 +1,60 @@
+{
+  "adapter": "beam-transfer-format-v1",
+  "source_revision": "b2da22eac88bb0874c64665f13457eb99835774a",
+  "source_files_sha256": {
+    "1/chat_trunecated.json": "73d869ac8bb1459b525bb1b72c5862aa46d814740e62fb8bc9a56064c3422dd8",
+    "1/probing_questions/probing_questions.json": "2e27f7a1bd725568bafe8d6bcaac6369aa074c7cf582440450cb95f669560642"
+  },
+  "output_files_sha256": {
+    "audit/message-provenance.jsonl": "de2df4c18e7c85bb79f2ab80e17fe1b14c4a9639f4e400eae8e693ab1ab4467f",
+    "evaluation/labels.jsonl": "c1f8b109bd0ddf10a8318cc7c02abe8a118a491441151e014fcda43f2b6cb350",
+    "reader/history.jsonl": "e1695a7df60acfc347d7907b8704d94eccf2075fb74f11f31ac278acd02d180b",
+    "reader/questions.jsonl": "fd87ff56e7f2ae3c43ff8af12df57ebc7acbd4c1ca81dbab3eeca23c5e7e23e1"
+  },
+  "conversations": 1,
+  "full_tier_conversations": 10,
+  "full_tier": false,
+  "coverage": {
+    "BEAM10M-1": {
+      "messages": 17623,
+      "questions": 20
+    }
+  },
+  "messages": 17623,
+  "questions": 20,
+  "source_roles": {
+    "user": 8812,
+    "assistant": 8811
+  },
+  "probe_abilities": {
+    "abstention": 2,
+    "contradiction_resolution": 2,
+    "event_ordering": 2,
+    "information_extraction": 2,
+    "instruction_following": 2,
+    "knowledge_update": 2,
+    "multi_session_reasoning": 2,
+    "preference_following": 2,
+    "summarization": 2,
+    "temporal_reasoning": 2
+  },
+  "reader_question_keys": [
+    "id",
+    "conversation_id",
+    "question"
+  ],
+  "stream_order_is_not_calendar_or_fact_validity": true,
+  "construction_metadata_excluded_from_reader": true,
+  "exact_message_and_probe_reconstruction": true,
+  "persisted_readback_exact": true,
+  "new_model_calls": 0,
+  "memory_candidate_evaluated": false,
+  "benchmark_score": null,
+  "execution_source": {
+    "head": "fc5429b48ae74d851935250d1bb116a9d07f6018",
+    "script_sha256": "ff54234935db2aa1ffaebe97267152ca5373dd7bee2dd771453a7eca49c002fe",
+    "plan_sha256": "ef4f728825ebcdb3b31a8c3c950982d33d9bfcb106a20e24241325b2fdcf5323",
+    "clean_tree": true
+  },
+  "private_manifest_sha256": "aac6f4eda51850b7eae2b7648f9707783b023fdb5ef4624097a56e70db0d3060"
+}

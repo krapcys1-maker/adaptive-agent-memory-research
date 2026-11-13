@@ -1,0 +1,82 @@
+{
+  "utc": "2026-11-04T18:26:19.254411+00:00",
+  "head": "cb6d72dc1610d8c9308f2cb5a73f2e452803fa1f",
+  "checks": [
+    {
+      "name": "research-fsck",
+      "exit": 0,
+      "log_sha256": "e469fb6032b896ec0d39c56c6414bc5a186c4d378e401f69e832502fc83218cb"
+    },
+    {
+      "name": "nie-fsck",
+      "exit": 0,
+      "log_sha256": "d651808cf124cf089f149396af2d800ddd83fbde5f706c943d46ff846f98a0fd"
+    },
+    {
+      "name": "pip-check",
+      "exit": 1,
+      "log_sha256": "aad971d9f7552522c4e3721213d4f09421552c586615dc3d837d9476392eedda"
+    },
+    {
+      "name": "memory-verify",
+      "exit": 0,
+      "log_sha256": "996f0b247f133b1d3205ab3ec83f267da4a993e646af4ac48142e3d91a12dd6b"
+    },
+    {
+      "name": "claims",
+      "exit": 0,
+      "log_sha256": "ffed0fe2461f3d506769a441c062deab35cd7e22e5e4dab4efa05fe7a06293a6"
+    },
+    {
+      "name": "counterexamples",
+      "exit": 0,
+      "log_sha256": "6b74f07e2711deaebfecae326720fdf0274decb0c126df46b5c758b1bd4a5ee4"
+    }
+  ],
+  "syntax_files": 474,
+  "syntax_errors": 0,
+  "credential_pattern_hits": 8,
+  "git_worktrees": 40,
+  "credential_scan": {
+    "scope": "All local research refs and reflog reachable blobs; heuristic only. No values stored.",
+    "blobs": 3718,
+    "blob_bytes": 201601374,
+    "reviewed_hits": 8,
+    "classification": "Six proxy sentinel occurrences and two test sentinel occurrences; no live provider secret identified. Heuristic scan is not proof of absence."
+  },
+  "dependency_versions": {
+    "pytest": {
+      "declared": "8.4.2",
+      "installed": "9.1.1"
+    },
+    "jsonschema": {
+      "declared": "4.26.0",
+      "installed": "4.26.0"
+    },
+    "markdown-it-py": {
+      "declared": "4.0.0",
+      "installed": "4.0.0"
+    },
+    "transformers": {
+      "declared": "5.1.0",
+      "installed": "5.1.0"
+    },
+    "numpy": {
+      "declared": "2.4.2",
+      "installed": "2.4.2"
+    },
+    "scipy": {
+      "declared": "1.17.0",
+      "installed": "1.17.0"
+    }
+  },
+  "existing_full_suite": {
+    "passed": 3041,
+    "skipped": 20,
+    "warnings": 2,
+    "seconds": 377.99,
+    "log_sha256": "97daa623375e297f09a2aa992dcab81be470d80c133d2309ddb283d8fee6bce6",
+    "repeated_during_audit": false,
+    "reason": "Source under test unchanged; separate new audit counterexamples executed."
+  }
+}

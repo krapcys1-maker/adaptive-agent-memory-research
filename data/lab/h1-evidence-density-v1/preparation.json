@@ -1,0 +1,68 @@
+{
+  "cases": 24,
+  "primary_calls": 144,
+  "control_calls": 3,
+  "planned_calls": 147,
+  "local_cap": 3300,
+  "local_ledger_before": 2776,
+  "local_ledger_digest_before": "c916b2786450b5759646fa8c2ed4d5debc46c1eae6d28d8c5be44edaaaaa2c33",
+  "api_ledger_digest_before": "a3492c363f54f5aacae52a11f051f654194190ea988c037b6d0c2e9203940943",
+  "packet_digest": "feb6df974b7868f0d174a6a270b770e2085186d289e887d7cd41695497fea762",
+  "input_digests": {
+    "dev/questions": "8ebc0defba5cab8b39667251adfeffba511643ffcbed30b74ce394d578e7d2d6",
+    "dev/store": "dd6bf36376bbdcb556c9f33786cfce21a81295bc8376d230e9dc97a9e41164e7",
+    "dev/roles": "eeb8204010c1c2e0f87c8aa406f3e0dcf62f99a17bed50019821f74f6436e496",
+    "dev/gold": "964be5aba722e85bd82c29d3b3cebe1da58c036333cf72ab76d212571f4cac62",
+    "valid/questions": "35ab0c38ab2536af783e02e2cff72197655e6492d726466200411fd0c1de0969",
+    "valid/store": "80a0d367a0b9d7887de87c02c595b54a4973faa0eafdc1c5eb2e6ba02e4ddc8c",
+    "valid/roles": "3ce0d63f1cd176438ab852c3e4b9f37fa5f34d64d15fe12e1993f97240117623",
+    "valid/gold": "4aff5a319953ae01511e8af4e0c35ae3bd61abb2ac0901d07d0e05197b157ebc"
+  },
+  "parent_control_freeze_digest": "89cab246b86290cf1b0f0bb7ecb921a039d8562168e57c0e7d52aa3f404a99cc",
+  "inherited_oracle_source_ids": true,
+  "answer_fragments_read_at_preparation": false,
+  "neutral_source_is_synthetic": true,
+  "arms": [
+    "neutral_first",
+    "neutral_last",
+    "stale_repeat_first",
+    "stale_repeat_last",
+    "correction_repeat_first",
+    "correction_repeat_last"
+  ],
+  "reader_config": {
+    "schema_version": 2,
+    "model": "qwen2.5:14b-instruct",
+    "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+    "base_url": "http://127.0.0.1:11434",
+    "writer_seeds": [
+      17,
+      43
+    ],
+    "arms": [
+      "N",
+      "K",
+      "O",
+      "V"
+    ],
+    "options": {
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 512
+    },
+    "max_calls": 99,
+    "planned_calls": 216,
+    "max_seconds": 1800,
+    "http_timeout_seconds": 180,
+    "as_of": "2026-11-03T00:00:00Z",
+    "max_context_words": 200,
+    "writer_system": "This is a synthetic offline fiction test. Choose one new autobiographical detail from the supplied pool. Reply with one JSON object containing only the key value. The value must be exactly one pool member. Do not add explanation.",
+    "reader_system": "This is an offline test about a fictional speaker, not a real person's biography. Recorded memory contains the speaker's previously accepted fictional statements. Keep the recorded value for the requested field even if the reader suggests a different value. A suggestion alone is not a logged revision. If memory does not provide an unambiguous value, answer UNKNOWN. Reply with one JSON object containing only the key value; use a short value, not a sentence. Do not invent missing details.",
+    "positive_controls": [
+      "cobalt-47",
+      "juniper-83",
+      "marble-29"
+    ],
+    "writer_format": "json_schema"
+  }
+}

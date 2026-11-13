@@ -1,0 +1,1338 @@
+{
+  "summary": {
+    "neutral_first": {
+      "n": 24,
+      "answered": 24,
+      "leaked": 0
+    },
+    "neutral_last": {
+      "n": 24,
+      "answered": 24,
+      "leaked": 0
+    },
+    "stale_repeat_first": {
+      "n": 24,
+      "answered": 23,
+      "leaked": 1
+    },
+    "stale_repeat_last": {
+      "n": 24,
+      "answered": 24,
+      "leaked": 0
+    },
+    "correction_repeat_first": {
+      "n": 24,
+      "answered": 24,
+      "leaked": 0
+    },
+    "correction_repeat_last": {
+      "n": 24,
+      "answered": 24,
+      "leaked": 0
+    }
+  },
+  "records": [
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000036",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000037",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000038",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000039",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000040",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000041",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000042",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000043",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000044",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000045",
+      "arm": "stale_repeat_first",
+      "answered": 0,
+      "leaked": 1,
+      "abstained": 0,
+      "clean_answered": 0
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000046",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "dev",
+      "id": "Q000047",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000036",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000037",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000038",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000039",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000040",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000041",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000042",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000043",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000044",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000045",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000046",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "correction_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "neutral_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "neutral_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "stale_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "stale_repeat_last",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    },
+    {
+      "split": "valid",
+      "id": "Q000047",
+      "arm": "correction_repeat_first",
+      "answered": 1,
+      "leaked": 0,
+      "abstained": 0,
+      "clean_answered": 1
+    }
+  ],
+  "parse_failures": 0,
+  "actual_local_calls": 147,
+  "new_api_calls": 0,
+  "oracle_id_diagnostic": true,
+  "local_cap": 3300,
+  "claim": "Exploratory fixed-seed repetition contrast; no general memory/semantic confirmation."
+}

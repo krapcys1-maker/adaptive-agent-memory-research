@@ -1,0 +1,110 @@
+{
+  "runtime_code_commit": "b353695bc3fabdb84e635dff0e0e2479e11e53fa",
+  "raw_freeze_commit": "1097e23",
+  "model_phase": {
+    "new_local": 99,
+    "new_api": 0,
+    "h1_cumulative_local": 2776,
+    "h1_cap": 2800,
+    "paid_cumulative": 463,
+    "paid_reserved_usd": 1.852,
+    "pr105_total_generations": 3733
+  },
+  "full_gates": {
+    "global": {
+      "passed": 3372,
+      "skipped": 20,
+      "summary": "3372 passed, 20 skipped, 2 warnings in 431.82s (0:07:11)",
+      "all_three_gates_passed": true,
+      "log_digest": "d6381ce723064ba501958ea4fd22cff6fec1daa2f5918ceac82ea3b4e17389ff"
+    },
+    "pinned": {
+      "passed": 3372,
+      "skipped": 20,
+      "summary": "3372 passed, 20 skipped in 359.01s (0:05:59)",
+      "all_three_gates_passed": true,
+      "log_digest": "ca1c777800a0593f058b0107286bf9e060369fa8c47da0366de92defb3c0c6ec"
+    }
+  },
+  "isolated_environment": {
+    "isolated": true,
+    "pip_check_exit": 0,
+    "versions": {
+      "pytest": "8.4.2",
+      "jsonschema": "4.26.0",
+      "markdown-it-py": "4.0.0",
+      "transformers": "5.1.0",
+      "numpy": "2.4.2",
+      "scipy": "1.17.0"
+    },
+    "shared_global_environment_modified": false
+  },
+  "ci": {
+    "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/runs/41967742251",
+    "head": "b353695bc3fabdb84e635dff0e0e2479e11e53fa",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "Tests (Python 3.11)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Kernel mutations (0.1.0)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Tests (Python 3.12)",
+        "conclusion": "success"
+      },
+      {
+        "name": "LifeSim (windows-latest, Python 3.13)",
+        "conclusion": "success"
+      },
+      {
+        "name": "LifeSim (windows-latest, Python 3.14)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Kernel mutations (0.2.0)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Memory kernel (Python 3.14)",
+        "conclusion": "success"
+      },
+      {
+        "name": "LifeSim (macos-latest, Python 3.14)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Project-memory integrity",
+        "conclusion": "success"
+      },
+      {
+        "name": "LifeSim (macos-latest, Python 3.13)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Canonical store guard",
+        "conclusion": "success"
+      },
+      {
+        "name": "Repository claim audit",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "limitations": [
+    "Full suite runtime sources match b353695; later work adds data/docs and a separately exercised replay auditor.",
+    "Fixed requirements pins verified in isolated environment; global conflicts were not modified.",
+    "No independent semantic confirmation, general capture-efficiency or production-readiness claim."
+  ],
+  "post_results_ci": {
+    "head": "db6951bb2d1814aff5b7e9b823b1372cc2a7ec78",
+    "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/runs/41969418365",
+    "conclusion": "success",
+    "successful_jobs": 12,
+    "scope": "Code plus control results/replay/docs at db6951b; later registry-only catalog append has separate validation."
+  }
+}

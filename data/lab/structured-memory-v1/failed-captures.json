@@ -1,0 +1,48 @@
+[
+  {
+    "phase": "local-capture",
+    "outcome": "incomplete-capture-at-model-cap",
+    "calls": 83,
+    "primary_questions": 0,
+    "files_sha256": {
+      "attempts.jsonl": "c7b13e0948424ad00fc1b97e3cad3df9a6314b8e8b6862a1d4e8649ca8785422",
+      "captures.jsonl": "591820f096ddab9367086febca280ca143426e771cc5206ecbb1bbb20d7ec2a6",
+      "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+      "manifest.json": "950c919719c227e2f5f7eac30ab4f0b25886e1ead21b00ab0fe8ea3cd14d4bbd",
+      "preflight.json": "2dd28c57cb7b4c0334f62d4a1c017cc397720082bcdb245832774991164f57fb",
+      "rejections.jsonl": "45fe381f282466e53ec88676a41ac791070ce05d655b3a0fe781be0c5c3a4020",
+      "release.json": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72",
+      "responses.jsonl": "3c11082b8f8bca3c198f40b34307ee92ee935f02e0c3845c0df21632914902ad"
+    }
+  },
+  {
+    "phase": "flash-capture",
+    "outcome": "incomplete-capture-at-model-cap",
+    "calls": 83,
+    "primary_questions": 0,
+    "files_sha256": {
+      "attempts.jsonl": "7cd06d4fb9476361dd9572d5d7c13ddc2b0d6ffb0af82155e66fda4d2d218cc4",
+      "captures.jsonl": "b0dd75f706d969c0a685fcb54781624489f3191a59681077a764a3a08086bcdc",
+      "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+      "manifest.json": "75a55dcffe2b38d9e905323c68c992e9e63bc9eee170b8713af73f2e3a163469",
+      "preflight.json": "329688947441931bdaf6a9c6e4c323ed4813825c56f0cb7b45237d1038a28c93",
+      "responses.jsonl": "491b5b0c621bc12b0e8744a8e1d7204735d72de7c29b9ec5944c71c57f6a568a"
+    }
+  },
+  {
+    "phase": "local-v2-capture",
+    "outcome": "incomplete-capture-at-model-cap",
+    "calls": 83,
+    "primary_questions": 0,
+    "files_sha256": {
+      "attempts.jsonl": "f27a1b394eab62c952b1aee826d11e04f48ba86310cd41d70c1beb41940f5d5c",
+      "captures.jsonl": "93e1389e3e2c18c6f55e9f41b6a01d7eae7fa53d487587ba171f1174f759e0c4",
+      "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+      "manifest.json": "b8882cca7c08ee734bf9826c15553c6e74196cbe5e1a1aa297df20a30de09a7d",
+      "preflight.json": "0fc5fea6ae3f827000c862e06c725cbdc48d18e49fae54c70c7055c1e9dd011c",
+      "rejections.jsonl": "a1afdb8b1978d25ad22cd33cf9a5de5f4fb9bed9b46cec2b5a3bd4a9500be800",
+      "release.json": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72",
+      "responses.jsonl": "35c9cf6a4a957300354b8a28c9cbc8281335944536d741abd2d71e8e867fc1fd"
+    }
+  }
+]

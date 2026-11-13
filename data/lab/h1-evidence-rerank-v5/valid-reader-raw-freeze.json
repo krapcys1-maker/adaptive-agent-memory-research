@@ -1,0 +1,43 @@
+{
+  "files_sha256": {
+    "answers.jsonl": "010f704151a1c062d5671f50c6023f6129bf7800bf6312779cb8519733dd9604",
+    "attempts.jsonl": "d18065c642c0982bb1e78699a936d8eae42b98755be48563589df254de7bf554",
+    "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+    "finished.json": "770e0a85c9dd3c86a6c4ed7a6d1cfb84ca51801719527adb9204a67b1f0ac7d5",
+    "manifest.json": "d9e5a8fab0c3de46773a79fb073f8f57a00c548c594476ef8a609042eeca2da7",
+    "preflight.json": "ecb6701cb56787b4993fdf8cf7576edd74a019c6058ee0ed0b864b792837bc48",
+    "responses.jsonl": "21e7db553063c4a320348f28e76f83cb9a64af3c257fe40474b8a70244a47c22"
+  },
+  "source": {
+    "git_head": "a58cd878cb936ef8c8a98cb1a34b4c03763e4e38",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/structured_memory_pipeline_v1.py": "2b9bb21bf32856852323cb7c75f89fda240f3f090620f7b4ca19c38d4e2402d2",
+      "tools/structured_memory_v1.py": "aa76304f1b7fa14f95ce2bf8000d1c2aae3a60bbc69d4db1817f5ee95a206726",
+      "data/lab/structured-memory-v1/PLAN.md": "195071ee9514cdadd6150a6d63c690e91caaf4c9677944cea0fd35cd05eb04c2",
+      "data/lab/structured-memory-v1/config.json": "39e632ab740949b7a0db3a89c07bf5892b4850ab4b979007ad6c75354c06bb68",
+      "scripts/flash_reader_client_v1.py": "be64dc03d4c67cbc9f9db2fc33f2ebfd79f46acee34c6f35cd83a4f3b991a3bc",
+      "scripts/nie_reader_pilot.py": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+      "scripts/reader_model_compare_v1.py": "058f19946aadc4c65dc962cb030568ad29007af4c86284de9efb9a843e550579",
+      "scripts/h1_model_chains_v1.py": "952d4f93a581ec8284b1d7688a654cecbd13cd8f9dc91e301bc3d0dfc34c82c8",
+      "data/lab/h1-model-chains-v1/PLAN.md": "b71c844823274aa85d10a226c7a83617bdc5d90208b227b4bcb362f23c7e8650",
+      "scripts/structured_memory_pipeline_v2.py": "349d4df142db802c0db7602b692bc45bcc942b3b4577f709d2a18313387f4214",
+      "tools/structured_memory_v2.py": "6e537511461bf1617c04fb65d2aa6da66c95040b3be7a2af3a4093786bcbea82",
+      "scripts/wmb/kernel/memory_kernel.py": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "scripts/run_corpus_h1_reader.py": "1a8d2bbd206233fe350b98b6350a3c231e335ed604e202abaaf14741b5b519d9",
+      "scripts/h1_model_chains_v2.py": "f8bfe3d9a1480d82903008f9358b2f934ef5931490f2df44b79f831233c1bca0",
+      "tools/retrieval_metadata_v1.py": "8e35e8897bb8a18856edef0ebdd3e3d5c73f3598f5d2320aea56cb3c27019959",
+      "data/lab/h1-model-chains-v2/PLAN.md": "a069c11ac37be67616992644c206cc472c481ba6fd667d7ea7df78d80c6fed78",
+      "scripts/h1_metadata_grounding_v3.py": "861891f64f2c816f989135ab5b1cee1a44cb4231a0e017e38bcbde4d410bc4c7",
+      "tools/retrieval_metadata_v2.py": "64dc3399926f4075a21e5eeea188c64189b7c476c8c475560f397a45dd15232a",
+      "data/lab/h1-model-chains-v3/PLAN.md": "77326208046c013a027c4dc9187f0bd214f6a62d684aa173f498a52947a8f9d2",
+      "scripts/h1_query_routing_v4.py": "3130e15cb1d34814907abd60a4ef566a6c8a339b1356fe6a0cf75ca7cbe06593",
+      "data/lab/h1-model-chains-v4/PLAN.md": "b69a0e45877236eee28e1e2bdf5400600ec134f5220537c8256968dfcb46c0cf",
+      "scripts/h1_evidence_rerank_v5.py": "d1c55ef8308368ca91dff709712f13e6adaedcd67b3989374f1624e38a5d8d3e",
+      "tools/evidence_candidates_v1.py": "ab5aeb92f27891d1270ae25baf917eddf92fffe4dfb183e0edfe2d3ce5975e75",
+      "data/lab/h1-evidence-rerank-v5/PLAN.md": "e64a8dbad3ae42db27e24f934dee8797bb7b16bf6a67e0a8783e9e811b350be3"
+    },
+    "candidate": "h1-v5-entity-pools-flash-source-rerank-local-reader"
+  },
+  "scoring_has_not_run": true
+}

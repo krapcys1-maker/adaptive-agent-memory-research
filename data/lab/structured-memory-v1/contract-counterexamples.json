@@ -1,0 +1,117 @@
+{
+  "scope": "Three inspected development counterexamples, not a blanket dataset-quality verdict. Keep all original misses. No changes to inference or primary scores.",
+  "policy_source": "https://arxiv.org/html/2507.05257#A2.S4.SS2",
+  "archive_sha256": "aabe03d6565e15e56108212f325a5cc90f88245db71d84fd19d92bcf5f65f691",
+  "cases": [
+    {
+      "id": "Q002",
+      "question": "The continent where the country of citizenship of the spouse of the author of \"American Pastoral\" is related to is what?",
+      "gold": [
+        "Oceania"
+      ],
+      "raw_sources": [
+        {
+          "id": "F009136",
+          "ordinal": 9136,
+          "text": "9135. The author of American Pastoral is Philip Roth."
+        },
+        {
+          "id": "F010794",
+          "ordinal": 10794,
+          "text": "10793. The author of American Pastoral is F. Scott Fitzgerald."
+        },
+        {
+          "id": "F008454",
+          "ordinal": 8454,
+          "text": "8453. F. Scott Fitzgerald is married to Zelda Fitzgerald."
+        },
+        {
+          "id": "F016801",
+          "ordinal": 16801,
+          "text": "16800. F. Scott Fitzgerald is married to Carl Lumbly."
+        },
+        {
+          "id": "F000140",
+          "ordinal": 140,
+          "text": "139. Carl Lumbly is a citizen of United States of America."
+        },
+        {
+          "id": "F009098",
+          "ordinal": 9098,
+          "text": "9097. Carl Lumbly is a citizen of Colombia."
+        },
+        {
+          "id": "F003412",
+          "ordinal": 3412,
+          "text": "3411. Colombia is located in the continent of South America."
+        },
+        {
+          "id": "F007239",
+          "ordinal": 7239,
+          "text": "7238. Colombia is located in the continent of Antarctica."
+        }
+      ],
+      "inference": "Selected semantic path follows the latest author, spouse, citizenship and continent facts to Antarctica; supplied gold is Oceania."
+    },
+    {
+      "id": "Q004",
+      "question": "What is the name of the language in which Valmiki wrote his notable works?",
+      "gold": [
+        "English"
+      ],
+      "raw_sources": [
+        {
+          "id": "F011281",
+          "ordinal": 11281,
+          "text": "11280. Valmiki is famous for Ramayana."
+        },
+        {
+          "id": "F011461",
+          "ordinal": 11461,
+          "text": "11460. Valmiki is famous for Life and Fate."
+        },
+        {
+          "id": "F006087",
+          "ordinal": 6087,
+          "text": "6086. Ramayana was written in the language of Sanskrit."
+        },
+        {
+          "id": "F012455",
+          "ordinal": 12455,
+          "text": "12454. Ramayana was written in the language of English."
+        }
+      ],
+      "inference": "Latest notable work is Life and Fate, whereas the supplied English answer is the updated language of the older notable work Ramayana. No raw source mentions a writing language for Life and Fate."
+    },
+    {
+      "id": "Q009",
+      "question": "What is the name of the person who created the language used as the official language of the headquarters of FC Viikingit?",
+      "gold": [
+        "L. L. Zamenhof"
+      ],
+      "raw_sources": [
+        {
+          "id": "F001154",
+          "ordinal": 1154,
+          "text": "1153. The headquarters of FC Viikingit is located in the city of Helsinki."
+        },
+        {
+          "id": "F009547",
+          "ordinal": 9547,
+          "text": "9546. The official language of Helsinki is Esperanto."
+        },
+        {
+          "id": "F001515",
+          "ordinal": 1515,
+          "text": "1514. Esperanto was created by L. L. Zamenhof."
+        },
+        {
+          "id": "F008024",
+          "ordinal": 8024,
+          "text": "8023. Esperanto was created by Frank Miller."
+        }
+      ],
+      "inference": "The final creator slot has a later Frank Miller assertion, but supplied gold is its earlier L. L. Zamenhof value."
+    }
+  ]
+}

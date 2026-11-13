@@ -1,0 +1,126 @@
+{
+  "audit_completed": true,
+  "model_calls": 0,
+  "source_logs_modified": false,
+  "findings": [
+    {
+      "id": "A01",
+      "observed": true,
+      "issue": "Positive cache accepts coordinated/conditional value spans",
+      "inputs": [
+        "Mira lives in Koral and works in Atrium.",
+        "Mira lives in Koral if the move goes ahead."
+      ],
+      "claims": [
+        {
+          "source": "0",
+          "subject": "Mira",
+          "predicate": "lives_in",
+          "object": "Koral and works in Atrium",
+          "polarity": "affirm"
+        },
+        {
+          "source": "1",
+          "subject": "Mira",
+          "predicate": "lives_in",
+          "object": "Koral if the move goes ahead",
+          "polarity": "affirm"
+        }
+      ],
+      "negative_control_rejected": true
+    },
+    {
+      "id": "A02",
+      "observed": true,
+      "issue": "Historical routing prompt contains a future sentence shell",
+      "known_at": 1,
+      "future_recorded": 10,
+      "early_state": {
+        "status": "ok",
+        "values": [
+          "Koral"
+        ],
+        "sources": [
+          "early"
+        ]
+      },
+      "routing_user_message": {
+        "question": "Where does Mira live?",
+        "anchors": [
+          "Mira"
+        ],
+        "relations": {
+          "R0": [
+            "lives_in",
+            "SUBJECT lives in OBJECT.",
+            "Future codeword NOVA: SUBJECT lives in OBJECT."
+          ]
+        },
+        "options": [
+          [
+            "P0",
+            0,
+            [
+              "R0"
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A03",
+      "observed": true,
+      "issue": "Global predicate validation exposes cross-scope existence",
+      "private_predicate_result": {
+        "status": "no_evidence",
+        "value": null,
+        "paths": []
+      },
+      "absent_predicate_result": {
+        "status": "invalid_plan",
+        "value": null,
+        "paths": []
+      },
+      "visible_catalog": [
+        "lives_in"
+      ]
+    },
+    {
+      "id": "A04",
+      "observed": true,
+      "issue": "Whole-source supersession also removes unchanged properties",
+      "classification": "Documented source granularity; integration hazard",
+      "before": {
+        "status": "ok",
+        "values": [
+          "Atlas"
+        ],
+        "sources": [
+          "original"
+        ]
+      },
+      "after": {
+        "status": "no_evidence",
+        "values": [],
+        "sources": []
+      }
+    },
+    {
+      "id": "A05",
+      "observed": true,
+      "issue": "Returned source set also includes a different-value denial",
+      "classification": "Evidence set is broader than minimal positive support",
+      "state": {
+        "status": "ok",
+        "values": [
+          "Zefir"
+        ],
+        "sources": [
+          "denial",
+          "update"
+        ]
+      }
+    }
+  ],
+  "interpretation": "Observed=True reproduces a limitation, not a successful memory task."
+}
