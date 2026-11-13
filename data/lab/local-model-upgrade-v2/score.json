@@ -1,0 +1,940 @@
+{
+  "schema": "local-model-upgrade-v2-result",
+  "actual_attempts": 1564,
+  "paid_attempts": 0,
+  "h1": {
+    "baseline14": {
+      "primary:N": {
+        "cases": 84,
+        "answered": 0,
+        "leaked": 0,
+        "clean": 0,
+        "target_source_shown": 0,
+        "forbidden_source_shown": 0,
+        "by_family": {
+          "BILINGUAL": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "DELAYED": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "FAILFIX": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "OBSOLETE": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "POISON": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "RARE-EXC": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "REDERIVE": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          }
+        }
+      },
+      "primary:M": {
+        "cases": 84,
+        "answered": 73,
+        "leaked": 1,
+        "clean": 73,
+        "target_source_shown": 84,
+        "forbidden_source_shown": 5,
+        "by_family": {
+          "BILINGUAL": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "DELAYED": {
+            "cases": 12,
+            "answered": 4,
+            "leaked": 0,
+            "clean": 4
+          },
+          "FAILFIX": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "OBSOLETE": {
+            "cases": 12,
+            "answered": 11,
+            "leaked": 1,
+            "clean": 11
+          },
+          "POISON": {
+            "cases": 12,
+            "answered": 11,
+            "leaked": 0,
+            "clean": 11
+          },
+          "RARE-EXC": {
+            "cases": 12,
+            "answered": 11,
+            "leaked": 0,
+            "clean": 11
+          },
+          "REDERIVE": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          }
+        }
+      },
+      "repeat:M": {
+        "cases": 84,
+        "answered": 71,
+        "leaked": 2,
+        "clean": 71,
+        "target_source_shown": 84,
+        "forbidden_source_shown": 5,
+        "by_family": {
+          "BILINGUAL": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "DELAYED": {
+            "cases": 12,
+            "answered": 3,
+            "leaked": 0,
+            "clean": 3
+          },
+          "FAILFIX": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "OBSOLETE": {
+            "cases": 12,
+            "answered": 10,
+            "leaked": 2,
+            "clean": 10
+          },
+          "POISON": {
+            "cases": 12,
+            "answered": 11,
+            "leaked": 0,
+            "clean": 11
+          },
+          "RARE-EXC": {
+            "cases": 12,
+            "answered": 11,
+            "leaked": 0,
+            "clean": 11
+          },
+          "REDERIVE": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          }
+        }
+      },
+      "memory_benefit_pp": 86.9047619047619,
+      "leaked_case_ids": [
+        "Q000043",
+        "Q000046"
+      ],
+      "repeat_clean_metric_matches": 80
+    },
+    "qwen35_9": {
+      "primary:N": {
+        "cases": 84,
+        "answered": 0,
+        "leaked": 4,
+        "clean": 0,
+        "target_source_shown": 0,
+        "forbidden_source_shown": 0,
+        "by_family": {
+          "BILINGUAL": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "DELAYED": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "FAILFIX": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "OBSOLETE": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "POISON": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 4,
+            "clean": 0
+          },
+          "RARE-EXC": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          },
+          "REDERIVE": {
+            "cases": 12,
+            "answered": 0,
+            "leaked": 0,
+            "clean": 0
+          }
+        }
+      },
+      "primary:M": {
+        "cases": 84,
+        "answered": 82,
+        "leaked": 0,
+        "clean": 82,
+        "target_source_shown": 84,
+        "forbidden_source_shown": 5,
+        "by_family": {
+          "BILINGUAL": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "DELAYED": {
+            "cases": 12,
+            "answered": 10,
+            "leaked": 0,
+            "clean": 10
+          },
+          "FAILFIX": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "OBSOLETE": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "POISON": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "RARE-EXC": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "REDERIVE": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          }
+        }
+      },
+      "repeat:M": {
+        "cases": 84,
+        "answered": 82,
+        "leaked": 0,
+        "clean": 82,
+        "target_source_shown": 84,
+        "forbidden_source_shown": 5,
+        "by_family": {
+          "BILINGUAL": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "DELAYED": {
+            "cases": 12,
+            "answered": 10,
+            "leaked": 0,
+            "clean": 10
+          },
+          "FAILFIX": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "OBSOLETE": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "POISON": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "RARE-EXC": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          },
+          "REDERIVE": {
+            "cases": 12,
+            "answered": 12,
+            "leaked": 0,
+            "clean": 12
+          }
+        }
+      },
+      "memory_benefit_pp": 97.61904761904762,
+      "leaked_case_ids": [
+        "Q000051",
+        "Q000053",
+        "Q000055",
+        "Q000057"
+      ],
+      "repeat_clean_metric_matches": 84
+    }
+  },
+  "beam": {
+    "baseline14": {
+      "N": {
+        "cases": 200,
+        "passes": 19,
+        "uncertain": 8,
+        "upper_pass_bound": 27,
+        "material_contradictions": 1,
+        "format_failures": 0,
+        "unresolved_contradiction": 0,
+        "by_ability": {
+          "abstention": {
+            "cases": 20,
+            "passes": 19
+          },
+          "contradiction_resolution": {
+            "cases": 20,
+            "passes": 0
+          },
+          "event_ordering": {
+            "cases": 20,
+            "passes": 0
+          },
+          "information_extraction": {
+            "cases": 20,
+            "passes": 0
+          },
+          "instruction_following": {
+            "cases": 20,
+            "passes": 0
+          },
+          "knowledge_update": {
+            "cases": 20,
+            "passes": 0
+          },
+          "multi_session_reasoning": {
+            "cases": 20,
+            "passes": 0
+          },
+          "preference_following": {
+            "cases": 20,
+            "passes": 0
+          },
+          "summarization": {
+            "cases": 20,
+            "passes": 0
+          },
+          "temporal_reasoning": {
+            "cases": 20,
+            "passes": 0
+          }
+        },
+        "by_history": {
+          "BEAM10M-1": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-10": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-2": {
+            "cases": 20,
+            "passes": 1
+          },
+          "BEAM10M-3": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-4": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-5": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-6": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-7": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-8": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-9": {
+            "cases": 20,
+            "passes": 2
+          }
+        }
+      },
+      "M": {
+        "cases": 200,
+        "passes": 39,
+        "uncertain": 8,
+        "upper_pass_bound": 47,
+        "material_contradictions": 43,
+        "format_failures": 0,
+        "unresolved_contradiction": 2,
+        "by_ability": {
+          "abstention": {
+            "cases": 20,
+            "passes": 10
+          },
+          "contradiction_resolution": {
+            "cases": 20,
+            "passes": 0
+          },
+          "event_ordering": {
+            "cases": 20,
+            "passes": 0
+          },
+          "information_extraction": {
+            "cases": 20,
+            "passes": 12
+          },
+          "instruction_following": {
+            "cases": 20,
+            "passes": 5
+          },
+          "knowledge_update": {
+            "cases": 20,
+            "passes": 7
+          },
+          "multi_session_reasoning": {
+            "cases": 20,
+            "passes": 0
+          },
+          "preference_following": {
+            "cases": 20,
+            "passes": 5
+          },
+          "summarization": {
+            "cases": 20,
+            "passes": 0
+          },
+          "temporal_reasoning": {
+            "cases": 20,
+            "passes": 0
+          }
+        },
+        "by_history": {
+          "BEAM10M-1": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-10": {
+            "cases": 20,
+            "passes": 7
+          },
+          "BEAM10M-2": {
+            "cases": 20,
+            "passes": 0
+          },
+          "BEAM10M-3": {
+            "cases": 20,
+            "passes": 5
+          },
+          "BEAM10M-4": {
+            "cases": 20,
+            "passes": 6
+          },
+          "BEAM10M-5": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-6": {
+            "cases": 20,
+            "passes": 8
+          },
+          "BEAM10M-7": {
+            "cases": 20,
+            "passes": 3
+          },
+          "BEAM10M-8": {
+            "cases": 20,
+            "passes": 4
+          },
+          "BEAM10M-9": {
+            "cases": 20,
+            "passes": 2
+          }
+        }
+      },
+      "memory_benefit_pp": 10.0,
+      "paired": {
+        "gains": 29,
+        "losses": 9
+      }
+    },
+    "qwen35_9": {
+      "N": {
+        "cases": 200,
+        "passes": 19,
+        "uncertain": 8,
+        "upper_pass_bound": 27,
+        "material_contradictions": 0,
+        "format_failures": 0,
+        "unresolved_contradiction": 0,
+        "by_ability": {
+          "abstention": {
+            "cases": 20,
+            "passes": 19
+          },
+          "contradiction_resolution": {
+            "cases": 20,
+            "passes": 0
+          },
+          "event_ordering": {
+            "cases": 20,
+            "passes": 0
+          },
+          "information_extraction": {
+            "cases": 20,
+            "passes": 0
+          },
+          "instruction_following": {
+            "cases": 20,
+            "passes": 0
+          },
+          "knowledge_update": {
+            "cases": 20,
+            "passes": 0
+          },
+          "multi_session_reasoning": {
+            "cases": 20,
+            "passes": 0
+          },
+          "preference_following": {
+            "cases": 20,
+            "passes": 0
+          },
+          "summarization": {
+            "cases": 20,
+            "passes": 0
+          },
+          "temporal_reasoning": {
+            "cases": 20,
+            "passes": 0
+          }
+        },
+        "by_history": {
+          "BEAM10M-1": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-10": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-2": {
+            "cases": 20,
+            "passes": 1
+          },
+          "BEAM10M-3": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-4": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-5": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-6": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-7": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-8": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-9": {
+            "cases": 20,
+            "passes": 2
+          }
+        }
+      },
+      "M": {
+        "cases": 200,
+        "passes": 40,
+        "uncertain": 8,
+        "upper_pass_bound": 48,
+        "material_contradictions": 36,
+        "format_failures": 0,
+        "unresolved_contradiction": 2,
+        "by_ability": {
+          "abstention": {
+            "cases": 20,
+            "passes": 15
+          },
+          "contradiction_resolution": {
+            "cases": 20,
+            "passes": 0
+          },
+          "event_ordering": {
+            "cases": 20,
+            "passes": 0
+          },
+          "information_extraction": {
+            "cases": 20,
+            "passes": 11
+          },
+          "instruction_following": {
+            "cases": 20,
+            "passes": 5
+          },
+          "knowledge_update": {
+            "cases": 20,
+            "passes": 5
+          },
+          "multi_session_reasoning": {
+            "cases": 20,
+            "passes": 0
+          },
+          "preference_following": {
+            "cases": 20,
+            "passes": 4
+          },
+          "summarization": {
+            "cases": 20,
+            "passes": 0
+          },
+          "temporal_reasoning": {
+            "cases": 20,
+            "passes": 0
+          }
+        },
+        "by_history": {
+          "BEAM10M-1": {
+            "cases": 20,
+            "passes": 3
+          },
+          "BEAM10M-10": {
+            "cases": 20,
+            "passes": 6
+          },
+          "BEAM10M-2": {
+            "cases": 20,
+            "passes": 1
+          },
+          "BEAM10M-3": {
+            "cases": 20,
+            "passes": 5
+          },
+          "BEAM10M-4": {
+            "cases": 20,
+            "passes": 6
+          },
+          "BEAM10M-5": {
+            "cases": 20,
+            "passes": 2
+          },
+          "BEAM10M-6": {
+            "cases": 20,
+            "passes": 6
+          },
+          "BEAM10M-7": {
+            "cases": 20,
+            "passes": 4
+          },
+          "BEAM10M-8": {
+            "cases": 20,
+            "passes": 4
+          },
+          "BEAM10M-9": {
+            "cases": 20,
+            "passes": 3
+          }
+        }
+      },
+      "memory_benefit_pp": 10.5,
+      "paired": {
+        "gains": 25,
+        "losses": 4
+      }
+    }
+  },
+  "technical": {
+    "baseline14": {
+      "all_calls": {
+        "calls": 655,
+        "median_wall_seconds": 0.6559999999881256,
+        "total_wall_seconds": 791.3889999996463,
+        "median_generation_tps": 37.64855492296687,
+        "prompt_tokens": 354343,
+        "generated_tokens": 15917,
+        "prompt_tokens_max": 1856,
+        "native_errors": 0,
+        "invalid_json": 0,
+        "abnormal_stops": 0
+      },
+      "primary": {
+        "calls": 568,
+        "median_wall_seconds": 0.4375000000145519,
+        "total_wall_seconds": 681.5599999996775,
+        "median_generation_tps": 37.84589574601161,
+        "prompt_tokens": 338590,
+        "generated_tokens": 12736,
+        "prompt_tokens_max": 1856,
+        "native_errors": 0,
+        "invalid_json": 0,
+        "abnormal_stops": 0
+      },
+      "by_group": {
+        "h1:N": {
+          "calls": 84,
+          "median_wall_seconds": 0.3279999999795109,
+          "total_wall_seconds": 38.85699999993085,
+          "median_generation_tps": 37.66423217275931,
+          "prompt_tokens": 9314,
+          "generated_tokens": 1125,
+          "prompt_tokens_max": 118,
+          "native_errors": 0,
+          "invalid_json": 0,
+          "abnormal_stops": 0
+        },
+        "h1:M": {
+          "calls": 84,
+          "median_wall_seconds": 1.1169999999983702,
+          "total_wall_seconds": 103.24600000007194,
+          "median_generation_tps": 34.73449664633255,
+          "prompt_tokens": 15626,
+          "generated_tokens": 3104,
+          "prompt_tokens_max": 276,
+          "native_errors": 0,
+          "invalid_json": 0,
+          "abnormal_stops": 0
+        },
+        "beam:N": {
+          "calls": 200,
+          "median_wall_seconds": 0.2960000000020955,
+          "total_wall_seconds": 61.31799999973737,
+          "median_generation_tps": 39.832967093085955,
+          "prompt_tokens": 31805,
+          "generated_tokens": 1386,
+          "prompt_tokens_max": 201,
+          "native_errors": 0,
+          "invalid_json": 0,
+          "abnormal_stops": 0
+        },
+        "beam:M": {
+          "calls": 200,
+          "median_wall_seconds": 1.7969999999913853,
+          "total_wall_seconds": 478.13899999993737,
+          "median_generation_tps": 35.52587456133515,
+          "prompt_tokens": 281845,
+          "generated_tokens": 7121,
+          "prompt_tokens_max": 1856,
+          "native_errors": 0,
+          "invalid_json": 0,
+          "abnormal_stops": 0
+        }
+      },
+      "cold_control_load_seconds": 3.6303823,
+      "same_seed_repeat": {
+        "cases": 84,
+        "exact_answer_matches": 55
+      },
+      "resources": {
+        "samples": 233,
+        "gpu_used_mib_peak": 11836.0,
+        "gpu_used_mib_median": 11787.0,
+        "ram_used_bytes_peak": 29789057024,
+        "ram_available_bytes_min": 4328271872,
+        "ollama_process_rss_bytes_peak": 186015744,
+        "native_allocated_bytes_peak": 10290085231,
+        "native_vram_bytes_peak": 10290085231,
+        "native_full_gpu_samples": 655,
+        "native_partial_gpu_samples": 0,
+        "resource_scope": "whole GPU/host and summed Ollama RSS; native allocation separate; GUI background load retained"
+      }
+    },
+    "qwen35_9": {
+      "all_calls": {
+        "calls": 655,
+        "median_wall_seconds": 0.46799999999348074,
+        "total_wall_seconds": 533.8739999995742,
+        "median_generation_tps": 58.27166249053085,
+        "prompt_tokens": 356721,
+        "generated_tokens": 11956,
+        "prompt_tokens_max": 1864,
+        "native_errors": 0,
+        "invalid_json": 0,
+        "abnormal_stops": 0
+      },
+      "primary": {
+        "calls": 568,
+        "median_wall_seconds": 0.4370000000053551,
+        "total_wall_seconds": 432.7029999997758,
+        "median_generation_tps": 58.694536140034536,
+        "prompt_tokens": 340621,
+        "generated_tokens": 9905,
+        "prompt_tokens_max": 1864,
+        "native_errors": 0,
+        "invalid_json": 0,
+        "abnormal_stops": 0
+      },
+      "by_group": {
+        "h1:N": {
+          "calls": 84,
+          "median_wall_seconds": 0.29699999999138527,
+          "total_wall_seconds": 27.1579999999376,
+          "median_generation_tps": 57.62895279119605,
+          "prompt_tokens": 9638,
+          "generated_tokens": 846,
+          "prompt_tokens_max": 122,
+          "native_errors": 0,
+          "invalid_json": 0,
+          "abnormal_stops": 0
+        },
+        "h1:M": {
+          "calls": 84,
+          "median_wall_seconds": 0.5160000000032596,
+          "total_wall_seconds": 54.32900000002701,
+          "median_generation_tps": 54.87407761993386,
+          "prompt_tokens": 15961,
+          "generated_tokens": 2026,
+          "prompt_tokens_max": 282,
+          "native_errors": 0,
+          "invalid_json": 0,
+          "abnormal_stops": 0
+        },
+        "beam:N": {
+          "calls": 200,
+          "median_wall_seconds": 0.32800000000861473,
+          "total_wall_seconds": 65.20699999976205,
+          "median_generation_tps": 60.63055782589642,
+          "prompt_tokens": 32597,
+          "generated_tokens": 1215,
+          "prompt_tokens_max": 205,
+          "native_errors": 0,
+          "invalid_json": 0,
+          "abnormal_stops": 0
+        },
+        "beam:M": {
+          "calls": 200,
+          "median_wall_seconds": 1.1090000000112923,
+          "total_wall_seconds": 286.0090000000491,
+          "median_generation_tps": 57.977106564966405,
+          "prompt_tokens": 282425,
+          "generated_tokens": 5818,
+          "prompt_tokens_max": 1864,
+          "native_errors": 0,
+          "invalid_json": 0,
+          "abnormal_stops": 0
+        }
+      },
+      "cold_control_load_seconds": 34.3614406,
+      "same_seed_repeat": {
+        "cases": 84,
+        "exact_answer_matches": 84
+      },
+      "resources": {
+        "samples": 167,
+        "gpu_used_mib_peak": 8458.0,
+        "gpu_used_mib_median": 8394.0,
+        "ram_used_bytes_peak": 30381441024,
+        "ram_available_bytes_min": 3735887872,
+        "ollama_process_rss_bytes_peak": 211451904,
+        "native_allocated_bytes_peak": 5862210928,
+        "native_vram_bytes_peak": 5862210928,
+        "native_full_gpu_samples": 655,
+        "native_partial_gpu_samples": 0,
+        "resource_scope": "whole GPU/host and summed Ollama RSS; native allocation separate; GUI background load retained"
+      }
+    }
+  },
+  "screens": {
+    "qwen35_9": {
+      "conditions": {
+        "h1_primary_clean_not_lower": true,
+        "h1_repeat_clean_not_lower": true,
+        "no_additional_h1_leaked_case": false,
+        "beam_memory_passes_not_lower": true,
+        "beam_memory_contradiction_count_not_higher": true,
+        "no_more_invalid_json": true,
+        "no_more_native_errors": true,
+        "faster20percent_or_beam_gain5pp": false
+      },
+      "median_primary_wall_ratio_to_baseline": 0.9988571428361596,
+      "decision": "reject-promotion"
+    }
+  },
+  "reference_status": {
+    "usable": 192,
+    "defective": 3,
+    "ambiguous": 5
+  },
+  "review_manifest_sha256": "0c13a4fb005a7a067805cee92382d526d7a706ab1b08bbfadc3c94dcc0959bd9",
+  "new_authored_verdicts_sha256": "0be749162bf5347e4cdd4919cb1ec3cf04084504f447cb170ff1f4ef8e2a1081",
+  "evaluation": "Unchanged mechanical H1; unchanged BEAM outcome/validation with Codex authored rubric review. Not official, independent or fully blind.",
+  "limits": "Spent public development; fixed imperfect retrieval; shared history clusters; package-specific penalty/draft; one seed and fixed sequence. No general memory improvement/vendor ranking."
+}
