@@ -35,8 +35,6 @@ CONFIG_PATH = NDATA2 / "config.json"
 PROTOCOL_PATH = NDATA2 / "PROTOCOL.md"
 N1RUN = ROOT2.parent / "aamr-night1-2026-11-12" / "run"            # read-only input
 
-os.environ["AAMR_NIGHT1_RUN"] = str(RUN)                             # NIGHT-1 module must never write into its own run folder
-os.environ["AAMR_NIGHT1_OUT"] = str(OUT)
 sys.path.insert(0, str(HERE))
 import experience_pilot_v0 as p0  # noqa: E402
 import experience_xfer_v1 as xv  # noqa: E402
@@ -45,11 +43,19 @@ import reasoningbank_prompts as rbp  # noqa: E402
 
 
 def redirect_n1():
+    """NIGHT-1's gateway, session runner and logs must write only into NIGHT-2's folders (called by activate)."""
     n1.RUN, n1.NWORK, n1.NDATA, n1.OUT = RUN, NWORK2, NDATA2, OUT
     n1.CONFIG_PATH, n1.PROTOCOL_PATH = CONFIG_PATH, PROTOCOL_PATH
 
 
-redirect_n1()
+ACTIVE = False
+
+
+def activate():
+    """Called by every entry point before anything can write; importing this module changes nothing in NIGHT-1's module."""
+    global ACTIVE
+    redirect_n1()
+    ACTIVE = True
 
 fsync_append, atomic_json, repair_tail, read_rows, now_iso = n1.fsync_append, n1.atomic_json, n1.repair_tail, n1.read_rows, n1.now_iso
 BudgetExhausted, TransientFailure, ProtocolError = n1.BudgetExhausted, n1.TransientFailure, n1.ProtocolError
@@ -128,6 +134,8 @@ class NoFlash:
 
 class Ctx:
     def __init__(self, cfg, gw=None, bfcl=None):
+        if not ACTIVE:
+            raise ProtocolError("aamr_night2.activate() must run before a context is created")
         self.cfg = cfg
         self.gw = gw or Gateway2(cfg, run=RUN, transport=FakeOllama2(cfg) if FAKE else None, sleep=(lambda s: None) if FAKE else time.sleep)
         self.flash = NoFlash()
@@ -1201,7 +1209,7 @@ def status() -> dict:
 def set_run(path: Path):
     global RUN
     RUN = path
-    redirect_n1()
+    activate()
 
 
 def main(argv=None):
@@ -1212,6 +1220,7 @@ def main(argv=None):
     ap.add_argument("--smoke", action="store_true", help="technical test in a separate run folder (counted as budget T)")
     ap.add_argument("--limit", type=int)
     a = ap.parse_args(argv)
+    activate()
     if a.smoke:
         SMOKE = True
         set_run(NWORK2 / "smoke-run")

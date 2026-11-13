@@ -186,4 +186,8 @@ harmonogramu `AAMR-NIGHT2`. Egzaminu na TradingBot program nie uruchamia.
 
 ## 6. Poprawki techniczne po zamrożeniu
 
-(brak)
+1. Przed pierwszym wywołaniem modelu, także testowym. Moduł `aamr_night2` przekierowywał ścieżki modułu NIGHT-1 już przy
+   imporcie. Kiedy testy NIGHT-1 i NIGHT-2 biegły w jednym procesie, testy NIGHT-1 dostawały konfigurację NIGHT-2 (4 testy
+   nie przechodziły). Przekierowanie robi teraz jawna funkcja `activate()`, wywoływana przez każdy punkt wejścia programu;
+   kontekst bez niej się nie utworzy. Działanie programu się nie zmienia. 90 testów (pilot, S1, NIGHT-1, NIGHT-2) przechodzi
+   razem.

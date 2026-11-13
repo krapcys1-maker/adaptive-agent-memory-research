@@ -36,10 +36,21 @@ def values_text(masked_row):
     return re.sub(r"<[^<>]*>", "<>", "\n".join(parts))          # markers like <file_name1> are not values
 
 
-def test_paths_are_redirected_away_from_night1():
-    assert n2.n1.RUN == n2.RUN and "aamr-night2" in str(n2.RUN)
-    assert n2.n1.CONFIG_PATH == n2.CONFIG_PATH and n2.n1.PROTOCOL_PATH == n2.PROTOCOL_PATH
-    assert "aamr-night1-2026-11-12" in str(n2.N1RUN)
+def test_import_leaves_night1_untouched_and_activate_redirects():
+    names = ("RUN", "NWORK", "NDATA", "OUT", "CONFIG_PATH", "PROTOCOL_PATH")
+    saved = {k: getattr(n2.n1, k) for k in names}
+    active = n2.ACTIVE
+    try:
+        if not active:
+            assert "aamr-night2" not in str(n2.n1.RUN)
+        n2.activate()
+        assert n2.n1.RUN == n2.RUN and "aamr-night2" in str(n2.RUN)
+        assert n2.n1.CONFIG_PATH == n2.CONFIG_PATH and n2.n1.PROTOCOL_PATH == n2.PROTOCOL_PATH
+        assert "aamr-night1-2026-11-12" in str(n2.N1RUN)
+    finally:
+        for k, v in saved.items():
+            setattr(n2.n1, k, v)
+        n2.ACTIVE = active
 
 
 def test_budgets_and_guards():
