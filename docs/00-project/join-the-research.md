@@ -28,7 +28,7 @@ Nobody has direct write access to `main` by default; maintainers merge reviewed 
 
 Ordinary engineering with explicit acceptance criteria. The standard-library-only memory engine (`tools/project_memory/`) takes no new dependencies without a prior proposal in an issue.
 
-- Small: [#46](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/46) inspect a harness catalogued as a benchmark.
+- Small: [#46](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/46) inspect a harness catalogued as a benchmark; [#114](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/114) an advisory Markdown link check in CI; [#115](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/115) `reuse lint` in CI, or a documented reason it cannot run.
 - Medium: [#74](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/74) a public labelled set for the reference guard.
 - Large: [#39](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/39) temporal query layer, [#41](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/41) the first history family, [#80](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/80) and [#81](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/81) LifeSim instrument gates (development seeds only).
 
@@ -36,6 +36,7 @@ A change contains the code, its tests, and the output of `python tasks.py check`
 
 ### Testing
 
+- [#113](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/113): follow the README from zero as a newcomer and log every friction point. [#117](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/117): write the "first contribution" walkthrough this page lacks.
 - Run the gates on your platform and Python version and report what happened. Success is a result too. Use the [reproduction report template](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new?template=05-reproduction-report.md).
 - Try to break an instrument: [#42](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/42) (the sealed split carries three guards, each added after its attack was reproduced; a fourth attack is worth more than a finished task).
 - Write a minimal synthetic counterexample for an open boundary failure: [#106](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/106), [#107](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/107), [#108](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/108), [#110](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/110). These describe a candidate that lives in an open pull request (see below), so read the issue for the commit it refers to.
@@ -46,7 +47,7 @@ Reading that changes what the project claims: [#76](https://github.com/krapcys1-
 
 ### Reproducing experiments
 
-Every experiment under `data/lab/` has a README with its question, readings and thresholds, and most list the command that reproduces its analysis. Reproduce the analysis from the stored records, compare with the reported numbers, and file a [reproduction report](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new?template=05-reproduction-report.md). Model outputs cannot be regenerated exactly, and some experiments used a live account's texts and publish only aggregates; the report should say which part you could and could not repeat. A mismatch is a finding, not an accusation.
+Every experiment under `data/lab/` has a README with its question, readings and thresholds, and most list the command that reproduces its analysis. Reproduce the analysis from the stored records, compare with the reported numbers, and file a [reproduction report](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new?template=05-reproduction-report.md). Model outputs cannot be regenerated exactly, and some experiments used a live account's texts and publish only aggregates; the report should say which part you could and could not repeat. A mismatch is a finding, not an accusation. A ready first task that needs no model, GPU or key: [#116](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/116), recompute the statistics of the EXP-PILOT-0 results from its results file.
 
 ### Proposing your own mechanism
 
