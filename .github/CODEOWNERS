@@ -1,0 +1,3 @@
+# Requests a review from the maintainer on every pull request. This file grants
+# no write access and enforces nothing by itself; it only names who is asked.
+* @krapcys1-maker
