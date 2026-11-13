@@ -1,0 +1,39 @@
+{
+  "files_sha256": {
+    "addresses.jsonl": "365f318023e1395668db30b474c634ed6d0713ad1bce8d5f762b25b4f8d59637",
+    "attempts.jsonl": "cdb30856447bce80299e61399e33bca85bb5f90d9992935da52da5dafa7c1b9b",
+    "capture-summary.json": "3b13d1bdbe2a9a3310230ed6d55739c6bdae5d7a38c73513c5f82244350efa06",
+    "captures.jsonl": "e73111900760e3abb463d03722bc1686b72b6f2c55a2425aaae00d10858ff28b",
+    "controls.jsonl": "d69c1a5140b387540768fe4989bf78980e721186c8d42e321b5faec1eef356b7",
+    "finished.json": "dc6cf8a2b95082bbed03bccc6c8ad4095d354be7eafaee6e79dcea440ec795f5",
+    "manifest.json": "e78019708625a778e707ca438cf70262595815e7c83706714beb331a763fd2d4",
+    "preflight.json": "4f5a3f7a2f2a23b66eb478784b625210c80dd16d7d12389babe387c1cf611ab5",
+    "rejections.jsonl": "b431e58067ea1837ee96ebde007e417f50671a199897b9c99fed62410d4cccf9",
+    "responses.jsonl": "037fca4ce3e95fbf6aa214d1767f7a2f245c8aae57edb01e90415fb895cd52e2",
+    "source-roles.jsonl": "eeb8204010c1c2e0f87c8aa406f3e0dcf62f99a17bed50019821f74f6436e496"
+  },
+  "source": {
+    "git_head": "4fa378bcfc5bbe1dcf3ccba09b9d70df64fe78c8",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/structured_memory_pipeline_v1.py": "2b9bb21bf32856852323cb7c75f89fda240f3f090620f7b4ca19c38d4e2402d2",
+      "tools/structured_memory_v1.py": "aa76304f1b7fa14f95ce2bf8000d1c2aae3a60bbc69d4db1817f5ee95a206726",
+      "data/lab/structured-memory-v1/PLAN.md": "195071ee9514cdadd6150a6d63c690e91caaf4c9677944cea0fd35cd05eb04c2",
+      "data/lab/structured-memory-v1/config.json": "39e632ab740949b7a0db3a89c07bf5892b4850ab4b979007ad6c75354c06bb68",
+      "scripts/flash_reader_client_v1.py": "be64dc03d4c67cbc9f9db2fc33f2ebfd79f46acee34c6f35cd83a4f3b991a3bc",
+      "scripts/nie_reader_pilot.py": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+      "scripts/reader_model_compare_v1.py": "058f19946aadc4c65dc962cb030568ad29007af4c86284de9efb9a843e550579",
+      "scripts/h1_model_chains_v1.py": "952d4f93a581ec8284b1d7688a654cecbd13cd8f9dc91e301bc3d0dfc34c82c8",
+      "data/lab/h1-model-chains-v1/PLAN.md": "b71c844823274aa85d10a226c7a83617bdc5d90208b227b4bcb362f23c7e8650",
+      "scripts/structured_memory_pipeline_v2.py": "349d4df142db802c0db7602b692bc45bcc942b3b4577f709d2a18313387f4214",
+      "tools/structured_memory_v2.py": "6e537511461bf1617c04fb65d2aa6da66c95040b3be7a2af3a4093786bcbea82",
+      "scripts/wmb/kernel/memory_kernel.py": "2206a0d975cf780ed3b0892afc72b9d6b66dfbf7d151082768801c8ed5b4905f",
+      "scripts/run_corpus_h1_reader.py": "1a8d2bbd206233fe350b98b6350a3c231e335ed604e202abaaf14741b5b519d9",
+      "scripts/h1_model_chains_v2.py": "f8bfe3d9a1480d82903008f9358b2f934ef5931490f2df44b79f831233c1bca0",
+      "tools/retrieval_metadata_v1.py": "8e35e8897bb8a18856edef0ebdd3e3d5c73f3598f5d2320aea56cb3c27019959",
+      "data/lab/h1-model-chains-v2/PLAN.md": "a069c11ac37be67616992644c206cc472c481ba6fd667d7ea7df78d80c6fed78"
+    },
+    "candidate": "h1-v2-memory-kind-address-metadata"
+  },
+  "scoring_has_not_run": true
+}

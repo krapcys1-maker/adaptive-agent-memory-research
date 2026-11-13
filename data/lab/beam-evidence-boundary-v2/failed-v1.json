@@ -1,0 +1,14 @@
+{
+  "source_head": "5b70e0e",
+  "failure": {
+    "error_type": "ValueError",
+    "error": "Explicit nonnegative integer source ID required; no guessed references.",
+    "model_calls": 0
+  },
+  "private_failure_sha256": "a14795e4a14b4782b331fb2b8e1ec56025097cd5df6199f77df61c3ced8853da",
+  "case_id": "BEAM10M-6-Q0004",
+  "invalid_marker": "--",
+  "numeric_sibling_references": 18,
+  "retained_original": true,
+  "model_calls": 0
+}

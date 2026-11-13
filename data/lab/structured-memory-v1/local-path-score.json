@@ -1,0 +1,613 @@
+{
+  "n": 100,
+  "exact": 55,
+  "statuses": {
+    "ok": 94,
+    "unknown_subject": 6
+  },
+  "records": [
+    {
+      "id": "Q000",
+      "correct": true,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q001",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q002",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q003",
+      "correct": false,
+      "status": "unknown_subject",
+      "hops": 0
+    },
+    {
+      "id": "Q004",
+      "correct": false,
+      "status": "unknown_subject",
+      "hops": 0
+    },
+    {
+      "id": "Q005",
+      "correct": true,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q006",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q007",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q008",
+      "correct": false,
+      "status": "unknown_subject",
+      "hops": 0
+    },
+    {
+      "id": "Q009",
+      "correct": false,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q010",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q011",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q012",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q013",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q014",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q015",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q016",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q017",
+      "correct": false,
+      "status": "ok",
+      "hops": 5
+    },
+    {
+      "id": "Q018",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q019",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q020",
+      "correct": false,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q021",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q022",
+      "correct": true,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q023",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q024",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q025",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q026",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q027",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q028",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q029",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q030",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q031",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q032",
+      "correct": true,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q033",
+      "correct": false,
+      "status": "unknown_subject",
+      "hops": 0
+    },
+    {
+      "id": "Q034",
+      "correct": true,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q035",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q036",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q037",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q038",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q039",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q040",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q041",
+      "correct": false,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q042",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q043",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q044",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q045",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q046",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q047",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q048",
+      "correct": true,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q049",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q050",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q051",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q052",
+      "correct": true,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q053",
+      "correct": false,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q054",
+      "correct": true,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q055",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q056",
+      "correct": false,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q057",
+      "correct": false,
+      "status": "ok",
+      "hops": 5
+    },
+    {
+      "id": "Q058",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q059",
+      "correct": false,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q060",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q061",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q062",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q063",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q064",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q065",
+      "correct": false,
+      "status": "unknown_subject",
+      "hops": 0
+    },
+    {
+      "id": "Q066",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q067",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q068",
+      "correct": false,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q069",
+      "correct": true,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q070",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q071",
+      "correct": false,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q072",
+      "correct": false,
+      "status": "ok",
+      "hops": 6
+    },
+    {
+      "id": "Q073",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q074",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q075",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q076",
+      "correct": false,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q077",
+      "correct": false,
+      "status": "ok",
+      "hops": 5
+    },
+    {
+      "id": "Q078",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q079",
+      "correct": false,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q080",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q081",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q082",
+      "correct": false,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q083",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q084",
+      "correct": false,
+      "status": "unknown_subject",
+      "hops": 0
+    },
+    {
+      "id": "Q085",
+      "correct": false,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q086",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q087",
+      "correct": true,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q088",
+      "correct": false,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q089",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q090",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q091",
+      "correct": false,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q092",
+      "correct": true,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q093",
+      "correct": true,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q094",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q095",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q096",
+      "correct": false,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q097",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q098",
+      "correct": false,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q099",
+      "correct": false,
+      "status": "ok",
+      "hops": 5
+    }
+  ],
+  "raw_freeze_sha256": "ecaddf1bccd13fb394a54227ea704af71c60e054952feb8dae9fa575bcedfef6",
+  "gold_sha256": "9c0af6975670f276e9cbb1e35d7397d545796242d49f4308ff923e67aa869322",
+  "claim": "Development only. System-computed graph values, not raw reader answers or a leaderboard replication."
+}

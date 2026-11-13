@@ -1,0 +1,852 @@
+{
+  "cases": 200,
+  "evaluation": "Codex authored complete-rubric assessment; not official BEAM accuracy; no model judge",
+  "independent": false,
+  "fully_blind": false,
+  "reference_status": {
+    "usable": 192,
+    "defective": 3,
+    "ambiguous": 5
+  },
+  "totals": {
+    "N": {
+      "cases": 200,
+      "passes": 19,
+      "uncertain": 8,
+      "upper_pass_bound": 27,
+      "format_failures": 0,
+      "material_contradictions": 0,
+      "unresolved_contradiction": 0
+    },
+    "B": {
+      "cases": 200,
+      "passes": 39,
+      "uncertain": 8,
+      "upper_pass_bound": 47,
+      "format_failures": 0,
+      "material_contradictions": 39,
+      "unresolved_contradiction": 2
+    },
+    "Craw": {
+      "cases": 200,
+      "passes": 31,
+      "uncertain": 8,
+      "upper_pass_bound": 39,
+      "format_failures": 0,
+      "material_contradictions": 20,
+      "unresolved_contradiction": 0
+    },
+    "Cdelivered": {
+      "cases": 200,
+      "passes": 32,
+      "uncertain": 8,
+      "upper_pass_bound": 40,
+      "format_failures": 0,
+      "material_contradictions": 14,
+      "unresolved_contradiction": 0
+    }
+  },
+  "paired": {
+    "N->B": {
+      "both_pass": 10,
+      "gains": 29,
+      "losses": 9,
+      "both_fail": 152
+    },
+    "B->Craw": {
+      "both_pass": 26,
+      "gains": 5,
+      "losses": 13,
+      "both_fail": 156
+    },
+    "B->Cdelivered": {
+      "both_pass": 24,
+      "gains": 8,
+      "losses": 15,
+      "both_fail": 153
+    }
+  },
+  "new_C_delivered_material_contradiction_cases": [
+    "BEAM10M-3-Q0011"
+  ],
+  "guard_false_refusal_cases": [
+    "BEAM10M-5-Q0011",
+    "BEAM10M-7-Q0015"
+  ],
+  "by_ability": {
+    "abstention": {
+      "N": {
+        "cases": 20,
+        "passes": 19,
+        "uncertain": 1,
+        "upper_pass_bound": 20,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 10,
+        "uncertain": 1,
+        "upper_pass_bound": 11,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 15,
+        "uncertain": 1,
+        "upper_pass_bound": 16,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 18,
+        "uncertain": 1,
+        "upper_pass_bound": 19,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      }
+    },
+    "contradiction_resolution": {
+      "N": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 4,
+        "upper_pass_bound": 4,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 4,
+        "upper_pass_bound": 4,
+        "format_failures": 0,
+        "material_contradictions": 10,
+        "unresolved_contradiction": 2
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 4,
+        "upper_pass_bound": 4,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 4,
+        "upper_pass_bound": 4,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      }
+    },
+    "event_ordering": {
+      "N": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      }
+    },
+    "information_extraction": {
+      "N": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 12,
+        "uncertain": 0,
+        "upper_pass_bound": 12,
+        "format_failures": 0,
+        "material_contradictions": 4,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 9,
+        "uncertain": 0,
+        "upper_pass_bound": 9,
+        "format_failures": 0,
+        "material_contradictions": 4,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 9,
+        "uncertain": 0,
+        "upper_pass_bound": 9,
+        "format_failures": 0,
+        "material_contradictions": 2,
+        "unresolved_contradiction": 0
+      }
+    },
+    "instruction_following": {
+      "N": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 1,
+        "upper_pass_bound": 1,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 5,
+        "uncertain": 1,
+        "upper_pass_bound": 6,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 1,
+        "uncertain": 1,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 1,
+        "uncertain": 1,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      }
+    },
+    "knowledge_update": {
+      "N": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 7,
+        "uncertain": 0,
+        "upper_pass_bound": 7,
+        "format_failures": 0,
+        "material_contradictions": 8,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 5,
+        "uncertain": 0,
+        "upper_pass_bound": 5,
+        "format_failures": 0,
+        "material_contradictions": 8,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 4,
+        "uncertain": 0,
+        "upper_pass_bound": 4,
+        "format_failures": 0,
+        "material_contradictions": 7,
+        "unresolved_contradiction": 0
+      }
+    },
+    "multi_session_reasoning": {
+      "N": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 8,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 5,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 3,
+        "unresolved_contradiction": 0
+      }
+    },
+    "preference_following": {
+      "N": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 5,
+        "uncertain": 0,
+        "upper_pass_bound": 5,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 1,
+        "uncertain": 0,
+        "upper_pass_bound": 1,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      }
+    },
+    "summarization": {
+      "N": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      }
+    },
+    "temporal_reasoning": {
+      "N": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 2,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 2,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 8,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 2,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 3,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 2,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 2,
+        "unresolved_contradiction": 0
+      }
+    }
+  },
+  "by_history": {
+    "BEAM10M-1": {
+      "N": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 0,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 0,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 5,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 3,
+        "uncertain": 0,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 3,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 3,
+        "uncertain": 0,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      }
+    },
+    "BEAM10M-10": {
+      "N": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 7,
+        "uncertain": 1,
+        "upper_pass_bound": 8,
+        "format_failures": 0,
+        "material_contradictions": 3,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 4,
+        "uncertain": 1,
+        "upper_pass_bound": 5,
+        "format_failures": 0,
+        "material_contradictions": 2,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 5,
+        "uncertain": 1,
+        "upper_pass_bound": 6,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      }
+    },
+    "BEAM10M-2": {
+      "N": {
+        "cases": 20,
+        "passes": 1,
+        "uncertain": 2,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 2,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 9,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 1,
+        "uncertain": 2,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 5,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 1,
+        "uncertain": 2,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 4,
+        "unresolved_contradiction": 0
+      }
+    },
+    "BEAM10M-3": {
+      "N": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 5,
+        "uncertain": 1,
+        "upper_pass_bound": 6,
+        "format_failures": 0,
+        "material_contradictions": 4,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 4,
+        "uncertain": 1,
+        "upper_pass_bound": 5,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 4,
+        "uncertain": 1,
+        "upper_pass_bound": 5,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      }
+    },
+    "BEAM10M-4": {
+      "N": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 6,
+        "uncertain": 1,
+        "upper_pass_bound": 7,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 1
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 5,
+        "uncertain": 1,
+        "upper_pass_bound": 6,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 5,
+        "uncertain": 1,
+        "upper_pass_bound": 6,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      }
+    },
+    "BEAM10M-5": {
+      "N": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 3,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 1,
+        "uncertain": 1,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      }
+    },
+    "BEAM10M-6": {
+      "N": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 0,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 8,
+        "uncertain": 0,
+        "upper_pass_bound": 8,
+        "format_failures": 0,
+        "material_contradictions": 3,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 6,
+        "uncertain": 0,
+        "upper_pass_bound": 6,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 6,
+        "uncertain": 0,
+        "upper_pass_bound": 6,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      }
+    },
+    "BEAM10M-7": {
+      "N": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 3,
+        "uncertain": 1,
+        "upper_pass_bound": 4,
+        "format_failures": 0,
+        "material_contradictions": 2,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 4,
+        "uncertain": 1,
+        "upper_pass_bound": 5,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 3,
+        "uncertain": 1,
+        "upper_pass_bound": 4,
+        "format_failures": 0,
+        "material_contradictions": 1,
+        "unresolved_contradiction": 0
+      }
+    },
+    "BEAM10M-8": {
+      "N": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 4,
+        "uncertain": 1,
+        "upper_pass_bound": 5,
+        "format_failures": 0,
+        "material_contradictions": 5,
+        "unresolved_contradiction": 1
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 3,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 1,
+        "upper_pass_bound": 3,
+        "format_failures": 0,
+        "material_contradictions": 2,
+        "unresolved_contradiction": 0
+      }
+    },
+    "BEAM10M-9": {
+      "N": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 0,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 0,
+        "unresolved_contradiction": 0
+      },
+      "B": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 0,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 4,
+        "unresolved_contradiction": 0
+      },
+      "Craw": {
+        "cases": 20,
+        "passes": 0,
+        "uncertain": 0,
+        "upper_pass_bound": 0,
+        "format_failures": 0,
+        "material_contradictions": 2,
+        "unresolved_contradiction": 0
+      },
+      "Cdelivered": {
+        "cases": 20,
+        "passes": 2,
+        "uncertain": 0,
+        "upper_pass_bound": 2,
+        "format_failures": 0,
+        "material_contradictions": 2,
+        "unresolved_contradiction": 0
+      }
+    }
+  },
+  "screen_conditions": {
+    "more_C_delivered_passes_than_B": false,
+    "no_new_material_contradiction": false,
+    "C_to_B_median_wall_at_most_2": true
+  },
+  "C_to_B_median_wall_ratio": 1.14740925463505,
+  "decision": "reject-adoption",
+  "review_packet_manifest_sha256": "a0bbb81cda7424dab39aa69b171da5caf3e61b74b23143b7fe7dc1f2f9169012",
+  "verdicts_sha256": "71ae7e0c37b19ef80a3c5c540a1903b781fd9c63e504d4496561b9e9c80b8720",
+  "raw_freeze_sha256": "8d6dc32170742c0ed35fa47a207f440c3e1c4ecec42ed7b97dea91dee86f03e7",
+  "all_200_cases_retained": true,
+  "limits": "Ten shared history clusters; public single-seed exploratory run; self-authored scoring; no vendor or general-memory claim."
+}

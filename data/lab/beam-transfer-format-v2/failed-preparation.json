@@ -1,0 +1,10 @@
+{
+  "script_head": "fc5429b48ae74d851935250d1bb116a9d07f6018",
+  "phase": "full-tier v1 format preparation",
+  "reason": "conversation7 has one explicit time_anchor:null; v1 required string when present",
+  "completed_manifest": false,
+  "failed_output_directory_retained": true,
+  "new_model_calls": 0,
+  "superseding_format_version": "v2",
+  "old_script_and_partial_result_preserved": true
+}

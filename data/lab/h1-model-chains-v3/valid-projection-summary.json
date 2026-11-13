@@ -1,0 +1,14 @@
+{
+  "counts": {
+    "accepted": 449,
+    "addresses": 611,
+    "case_rescued_sources": 4,
+    "retained_base_accepted": 445,
+    "changed_proposals": 7,
+    "quarantined": 90,
+    "lost_base_accepted": 0
+  },
+  "new_generations": 0,
+  "raw_store_sha256": "80a0d367a0b9d7887de87c02c595b54a4973faa0eafdc1c5eb2e6ba02e4ddc8c",
+  "base_capture_freeze_sha256": "d934bed05068f78fab7f634bd17df486fc2f045db3d81bfb217b98f8680e1266"
+}

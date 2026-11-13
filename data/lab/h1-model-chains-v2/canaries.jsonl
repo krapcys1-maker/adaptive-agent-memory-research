@@ -1,0 +1,6 @@
+{"id": 0, "passed": true, "proposal": {"addresses": [{"entity": "Nera", "property": "workspace", "kind": "fact"}]}}
+{"id": 1, "passed": true, "proposal": {"addresses": [{"entity": "Zora", "property": "connection_pool", "kind": "rationale"}]}}
+{"id": 2, "passed": true, "proposal": {"addresses": [{"entity": "Luma", "property": "test_command", "kind": "procedure"}]}}
+{"id": 3, "passed": true, "proposal": {"addresses": [{"entity": "Zora", "property": "working_address", "kind": "fact"}]}}
+{"id": 4, "passed": true, "proposal": {"addresses": [{"entity": "Nera", "property": "validation_enabled", "kind": "fact"}]}}
+{"id": 5, "passed": true, "proposal": {"addresses": [{"entity": "Nera", "property": "validation", "kind": "fact"}]}}

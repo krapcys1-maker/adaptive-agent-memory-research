@@ -1,0 +1,12 @@
+{
+  "previous_rows": 74,
+  "rows_after": 77,
+  "previous_prefix_preserved": true,
+  "previous_digest": "34d5fa6dc417135daa3d3257d385d74248c6f93761ff374e0ad6056773e28a1a",
+  "new_ids": [
+    "PMLAB-BOUNDARY-E1-001",
+    "PMLAB-H1-CTRL-E1-001",
+    "PMLAB-H1-DENS-E1-001"
+  ],
+  "registration_timing": "Catalogued after execution; prior plan/raw freezes remain separately evidenced; proposed density test not preregistered as executable."
+}

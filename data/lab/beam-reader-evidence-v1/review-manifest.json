@@ -1,0 +1,12 @@
+{
+  "raw_freeze_sha256": "8d6dc32170742c0ed35fa47a207f440c3e1c4ecec42ed7b97dea91dee86f03e7",
+  "labels_sha256": "69cd777cf5351ce27445a78bf96b9674177779b60912c4b7a503fc2bf5efab40",
+  "integrity_audit_sha256": "7e142bf83f965dca59a2524738cdfc87a9df6e5a41c6d0ddd05763278b503204",
+  "packet_sha256": "ca95aa70012b86ad58a67a6f723b3ec937aff491dab1473b04d9ff2fb7b4a23d",
+  "mapping_sha256": "e0d94a20c05b55ef5a527eca391bf28ccdf9a93e4c60f26b10888b027a5a6b6e",
+  "cases": 200,
+  "distinct_within_question_answers": 382,
+  "review_tool_sha256": "bb2ee916b806f069bf022d7070032db42b8798b8955c6328d40e20c6e96863e3",
+  "reviewer": "Codex author; no model judge; not independent or fully blind",
+  "source_head_at_reference_join": "64f7f0be2ae37cdf0edad6f6be381db7f8c36bf6"
+}

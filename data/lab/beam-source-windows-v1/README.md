@@ -1,0 +1,13 @@
+# Full-source windows and lexical access — engineering result
+
+Frozen code/config `53fe7d5` built all10conversation snapshots from the existing BEAM format-v2 history, with no label access or model calls. Every187,734message remains available in full. They produce405,070byte-bounded windows with exact character/UTF-8 offsets, origin roles, source hashes and available sequence. Unknown/raw time was not converted into a calendar or fact validity.
+
+[Complete preparation](preparation.json) and [all-source replay](artifact-audit.json) are content-free; full archives, databases and question packets remain private. Replay reconstructs187,734source messages,405,070windows and400native-message packets (memory-off/ordinary retrieval for each200questions), with zero failures. These are engineering checks, not semantic relevance, answer accuracy or a reproduction of the old graph result.
+
+33new tests cover exact Unicode/tail/overlap reconstruction, offset/metadata corruption, header/ASCII-escaping budget, strict clocks, immutable snapshots and complete model-packet invariance after foreign/future source additions, with positive controls. Together with six existing format tests,39focused checks pass. FTS statistics contain only the snapshot's visible scope/cutoff; a historical view needs another snapshot.
+
+Measured preparation:74.812seconds total,52.140seconds building indexes and14.718seconds processing all200queries. Snapshot databases total2,159,546,368bytes; all preparation output at completion2,616,798,059bytes. Window text including overlap totals447,990,532bytes versus413,216,772original text bytes. This is measured on this machine, not a portable latency/cost ranking; full data preparation and future inference must be charged separately.
+
+All200queries have nonempty lexical packets. They show2–10windows, omit some of the16retrieved candidates in every case, and187show a partial source. Two questions exceed the fixed24term limit. Max serialized messages5995bytes under both UTF-8 and the native ASCII-escaped convention, within6000. None of these counts establishes that supporting evidence was retrieved. Originals are not dropped merely because their complete text exceeds the old4500byte cap.
+
+Decision: accept the access boundary for a separately frozen exploratory reader comparison. The next read-time evidence-contract candidate is a **new variant**, not transfer of the55/59graph method and not completed general semantic capture. Preserve raw retrieval as a strong comparator and evaluate all200questions. No model judge, canonical-memory write on query miss, NIE/persona/kernel change, model call or budget extension occurred in this engineering phase.

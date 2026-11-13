@@ -1,0 +1,417 @@
+{
+  "failures": [],
+  "model_calls": 0,
+  "gold_read": false,
+  "store_sha256": "cfb267881063caff0e3e337b8b1a3f726a049caadf87f4f57768d94c0572f9f3",
+  "all_available_query_tick": 20000,
+  "packet_comparisons": [
+    {
+      "id": "Q000",
+      "identical": true
+    },
+    {
+      "id": "Q001",
+      "identical": true
+    },
+    {
+      "id": "Q002",
+      "identical": true
+    },
+    {
+      "id": "Q003",
+      "identical": true
+    },
+    {
+      "id": "Q004",
+      "identical": true
+    },
+    {
+      "id": "Q005",
+      "identical": true
+    },
+    {
+      "id": "Q006",
+      "identical": true
+    },
+    {
+      "id": "Q007",
+      "identical": true
+    },
+    {
+      "id": "Q008",
+      "identical": true
+    },
+    {
+      "id": "Q009",
+      "identical": true
+    },
+    {
+      "id": "Q010",
+      "identical": true
+    },
+    {
+      "id": "Q011",
+      "identical": true
+    },
+    {
+      "id": "Q012",
+      "identical": true
+    },
+    {
+      "id": "Q013",
+      "identical": true
+    },
+    {
+      "id": "Q014",
+      "identical": true
+    },
+    {
+      "id": "Q015",
+      "identical": true
+    },
+    {
+      "id": "Q016",
+      "identical": true
+    },
+    {
+      "id": "Q017",
+      "identical": true
+    },
+    {
+      "id": "Q018",
+      "identical": true
+    },
+    {
+      "id": "Q019",
+      "identical": true
+    },
+    {
+      "id": "Q020",
+      "identical": true
+    },
+    {
+      "id": "Q021",
+      "identical": true
+    },
+    {
+      "id": "Q022",
+      "identical": true
+    },
+    {
+      "id": "Q023",
+      "identical": true
+    },
+    {
+      "id": "Q024",
+      "identical": true
+    },
+    {
+      "id": "Q025",
+      "identical": true
+    },
+    {
+      "id": "Q026",
+      "identical": true
+    },
+    {
+      "id": "Q027",
+      "identical": true
+    },
+    {
+      "id": "Q028",
+      "identical": true
+    },
+    {
+      "id": "Q029",
+      "identical": true
+    },
+    {
+      "id": "Q030",
+      "identical": true
+    },
+    {
+      "id": "Q031",
+      "identical": true
+    },
+    {
+      "id": "Q032",
+      "identical": true
+    },
+    {
+      "id": "Q033",
+      "identical": true
+    },
+    {
+      "id": "Q034",
+      "identical": true
+    },
+    {
+      "id": "Q035",
+      "identical": true
+    },
+    {
+      "id": "Q036",
+      "identical": true
+    },
+    {
+      "id": "Q037",
+      "identical": true
+    },
+    {
+      "id": "Q038",
+      "identical": true
+    },
+    {
+      "id": "Q039",
+      "identical": true
+    },
+    {
+      "id": "Q040",
+      "identical": true
+    },
+    {
+      "id": "Q041",
+      "identical": true
+    },
+    {
+      "id": "Q042",
+      "identical": true
+    },
+    {
+      "id": "Q043",
+      "identical": true
+    },
+    {
+      "id": "Q044",
+      "identical": true
+    },
+    {
+      "id": "Q045",
+      "identical": true
+    },
+    {
+      "id": "Q046",
+      "identical": true
+    },
+    {
+      "id": "Q047",
+      "identical": true
+    },
+    {
+      "id": "Q048",
+      "identical": true
+    },
+    {
+      "id": "Q049",
+      "identical": true
+    },
+    {
+      "id": "Q050",
+      "identical": true
+    },
+    {
+      "id": "Q051",
+      "identical": true
+    },
+    {
+      "id": "Q052",
+      "identical": true
+    },
+    {
+      "id": "Q053",
+      "identical": true
+    },
+    {
+      "id": "Q054",
+      "identical": true
+    },
+    {
+      "id": "Q055",
+      "identical": true
+    },
+    {
+      "id": "Q056",
+      "identical": true
+    },
+    {
+      "id": "Q057",
+      "identical": true
+    },
+    {
+      "id": "Q058",
+      "identical": true
+    },
+    {
+      "id": "Q059",
+      "identical": true
+    },
+    {
+      "id": "Q060",
+      "identical": true
+    },
+    {
+      "id": "Q061",
+      "identical": true
+    },
+    {
+      "id": "Q062",
+      "identical": true
+    },
+    {
+      "id": "Q063",
+      "identical": true
+    },
+    {
+      "id": "Q064",
+      "identical": true
+    },
+    {
+      "id": "Q065",
+      "identical": true
+    },
+    {
+      "id": "Q066",
+      "identical": true
+    },
+    {
+      "id": "Q067",
+      "identical": true
+    },
+    {
+      "id": "Q068",
+      "identical": true
+    },
+    {
+      "id": "Q069",
+      "identical": true
+    },
+    {
+      "id": "Q070",
+      "identical": true
+    },
+    {
+      "id": "Q071",
+      "identical": true
+    },
+    {
+      "id": "Q072",
+      "identical": true
+    },
+    {
+      "id": "Q073",
+      "identical": true
+    },
+    {
+      "id": "Q074",
+      "identical": true
+    },
+    {
+      "id": "Q075",
+      "identical": true
+    },
+    {
+      "id": "Q076",
+      "identical": true
+    },
+    {
+      "id": "Q077",
+      "identical": true
+    },
+    {
+      "id": "Q078",
+      "identical": true
+    },
+    {
+      "id": "Q079",
+      "identical": true
+    },
+    {
+      "id": "Q080",
+      "identical": true
+    },
+    {
+      "id": "Q081",
+      "identical": true
+    },
+    {
+      "id": "Q082",
+      "identical": true
+    },
+    {
+      "id": "Q083",
+      "identical": true
+    },
+    {
+      "id": "Q084",
+      "identical": true
+    },
+    {
+      "id": "Q085",
+      "identical": true
+    },
+    {
+      "id": "Q086",
+      "identical": true
+    },
+    {
+      "id": "Q087",
+      "identical": true
+    },
+    {
+      "id": "Q088",
+      "identical": true
+    },
+    {
+      "id": "Q089",
+      "identical": true
+    },
+    {
+      "id": "Q090",
+      "identical": true
+    },
+    {
+      "id": "Q091",
+      "identical": true
+    },
+    {
+      "id": "Q092",
+      "identical": true
+    },
+    {
+      "id": "Q093",
+      "identical": true
+    },
+    {
+      "id": "Q094",
+      "identical": true
+    },
+    {
+      "id": "Q095",
+      "identical": true
+    },
+    {
+      "id": "Q096",
+      "identical": true
+    },
+    {
+      "id": "Q097",
+      "identical": true
+    },
+    {
+      "id": "Q098",
+      "identical": true
+    },
+    {
+      "id": "Q099",
+      "identical": true
+    }
+  ],
+  "saved_path_executions": 200,
+  "legacy_template_sources": 18223,
+  "exact_replay_opportunities_using_existing_model_interpretations": 0,
+  "exact_replay_reasons": {
+    "no_available_exact_model_interpretation": 18223
+  },
+  "cost_interpretation": "Misses require a fresh caller/model decision on recapture. This is opportunity loss, not a measured new extraction run or semantic accuracy.",
+  "compatibility_limit": "Only this already-spent all-sources-available snapshot. Legacy claims are preserved, not retroactively revalidated."
+}

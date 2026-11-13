@@ -1,0 +1,15 @@
+{
+  "n": 100,
+  "counts": {
+    "exact": 59,
+    "upstream_subem": 60,
+    "gold_in_any_enumerated_path_posthoc": 64,
+    "correct_path_available_but_not_selected": 4,
+    "gold_not_in_enumerated_paths": 36,
+    "oldest_intervention_subem": 1,
+    "state_intervention_changes_output": 93
+  },
+  "semantics": "Post-hoc diagnostic and fixed-plan state intervention. No change to primary exact scores, no new inference calls, no claimed universal/oracle upper bound.",
+  "upstream_metric_source": "https://github.com/HUST-AI-HYZ/MemoryAgentBench/blob/538026089d1a8a8eff05121d0db89b388f360eba/utils/eval_other_utils.py#L27",
+  "details_sha256": "8f518dda9ce7fbc8e931b38223326750591240246afc4cf17d25c28a0d1e02a3"
+}

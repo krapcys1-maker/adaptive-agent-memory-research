@@ -1,0 +1,15 @@
+{
+  "paid_calls": 463,
+  "reservations_usd": 1.852,
+  "usage_upper_usd": 0.073913,
+  "unknown_usage": 0,
+  "paid_model_labels": [
+    "deepseek-flash"
+  ],
+  "h1_local_attempts": 2677,
+  "h1_unique_keys": 2677,
+  "mab_local_attempts_recorded": 494,
+  "pr105_total_generations": 3634,
+  "api_ledger_sha256": "a3492c363f54f5aacae52a11f051f654194190ea988c037b6d0c2e9203940943",
+  "local_ledger_sha256": "38a82ec31eaaa9f03d25e733f13e91ab796dd86e76898af0c16069432bd1eab4"
+}

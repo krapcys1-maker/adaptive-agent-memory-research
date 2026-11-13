@@ -1,0 +1,25 @@
+{
+  "verified": true,
+  "source_writes": 0,
+  "includes_unreachable_objects": true,
+  "groups": [
+    {
+      "group": "research",
+      "object_files": 1550,
+      "bytes": 19593559,
+      "restored_object_fsck_exit": 0
+    },
+    {
+      "group": "nie",
+      "object_files": 5152,
+      "bytes": 186822429,
+      "restored_object_fsck_exit": 0
+    },
+    {
+      "group": "validation-clone",
+      "object_files": 1,
+      "bytes": 58,
+      "restored_object_fsck_exit": 0
+    }
+  ]
+}

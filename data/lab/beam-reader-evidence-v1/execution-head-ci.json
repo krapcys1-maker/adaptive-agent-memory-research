@@ -1,0 +1,92 @@
+{
+  "source_head": "b8e3f8347ac0fa357f390442962144987e55db23",
+  "run_id": 41991819806,
+  "run_url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/runs/41991819806",
+  "jobs": [
+    {
+      "id": 127125581935,
+      "name": "Tests (Python 3.11)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125581941,
+      "name": "LifeSim (macos-latest, Python 3.14)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125581961,
+      "name": "Kernel mutations (0.1.0)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125581966,
+      "name": "Repository claim audit",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125581994,
+      "name": "Memory kernel (Python 3.14)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125582026,
+      "name": "Project-memory integrity",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125582055,
+      "name": "LifeSim (windows-latest, Python 3.13)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125582120,
+      "name": "Tests (Python 3.12)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125582163,
+      "name": "Canonical store guard",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125582188,
+      "name": "LifeSim (windows-latest, Python 3.14)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125582226,
+      "name": "LifeSim (macos-latest, Python 3.13)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127125582227,
+      "name": "Kernel mutations (0.2.0)",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "full_linux_suites": {
+    "3.11": {
+      "passed": 3434,
+      "skipped": 21,
+      "seconds": 353.19
+    },
+    "3.12": {
+      "passed": 3434,
+      "skipped": 21,
+      "seconds": 495.66
+    }
+  },
+  "scope": "Executed reader protocol head only; later evaluation/docs commits need their own CI."
+}

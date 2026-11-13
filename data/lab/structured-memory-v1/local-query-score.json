@@ -1,0 +1,615 @@
+{
+  "n": 100,
+  "exact": 25,
+  "statuses": {
+    "no_evidence": 59,
+    "ok": 32,
+    "invalid_plan": 8,
+    "unknown_subject": 1
+  },
+  "records": [
+    {
+      "id": "Q000",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q001",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q002",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q003",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q004",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q005",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q006",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q007",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q008",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q009",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q010",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q011",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q012",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q013",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q014",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q015",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q016",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q017",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q018",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q019",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 5
+    },
+    {
+      "id": "Q020",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 5
+    },
+    {
+      "id": "Q021",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q022",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q023",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q024",
+      "correct": false,
+      "status": "invalid_plan",
+      "hops": 2
+    },
+    {
+      "id": "Q025",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q026",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q027",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q028",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q029",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q030",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q031",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q032",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q033",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q034",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q035",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q036",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q037",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q038",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q039",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q040",
+      "correct": false,
+      "status": "invalid_plan",
+      "hops": 2
+    },
+    {
+      "id": "Q041",
+      "correct": false,
+      "status": "invalid_plan",
+      "hops": 3
+    },
+    {
+      "id": "Q042",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q043",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q044",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q045",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q046",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q047",
+      "correct": false,
+      "status": "invalid_plan",
+      "hops": 3
+    },
+    {
+      "id": "Q048",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q049",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q050",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q051",
+      "correct": false,
+      "status": "invalid_plan",
+      "hops": 2
+    },
+    {
+      "id": "Q052",
+      "correct": true,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q053",
+      "correct": false,
+      "status": "invalid_plan",
+      "hops": 3
+    },
+    {
+      "id": "Q054",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q055",
+      "correct": true,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q056",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q057",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q058",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q059",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q060",
+      "correct": false,
+      "status": "ok",
+      "hops": 1
+    },
+    {
+      "id": "Q061",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q062",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q063",
+      "correct": false,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q064",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q065",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q066",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q067",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q068",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q069",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q070",
+      "correct": true,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q071",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q072",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q073",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q074",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q075",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q076",
+      "correct": false,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q077",
+      "correct": false,
+      "status": "ok",
+      "hops": 4
+    },
+    {
+      "id": "Q078",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q079",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q080",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q081",
+      "correct": false,
+      "status": "unknown_subject",
+      "hops": 0
+    },
+    {
+      "id": "Q082",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q083",
+      "correct": false,
+      "status": "ok",
+      "hops": 1
+    },
+    {
+      "id": "Q084",
+      "correct": false,
+      "status": "invalid_plan",
+      "hops": 4
+    },
+    {
+      "id": "Q085",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q086",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q087",
+      "correct": true,
+      "status": "ok",
+      "hops": 3
+    },
+    {
+      "id": "Q088",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q089",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q090",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q091",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 5
+    },
+    {
+      "id": "Q092",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 4
+    },
+    {
+      "id": "Q093",
+      "correct": false,
+      "status": "invalid_plan",
+      "hops": 3
+    },
+    {
+      "id": "Q094",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q095",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q096",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 3
+    },
+    {
+      "id": "Q097",
+      "correct": true,
+      "status": "ok",
+      "hops": 2
+    },
+    {
+      "id": "Q098",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    },
+    {
+      "id": "Q099",
+      "correct": false,
+      "status": "no_evidence",
+      "hops": 2
+    }
+  ],
+  "raw_freeze_sha256": "d4ff0157162353702121bd90249bcd2072f315be0b7d02382c26c808e9beda4f",
+  "gold_sha256": "9c0af6975670f276e9cbb1e35d7397d545796242d49f4308ff923e67aa869322",
+  "claim": "Development only. System-computed graph values, not raw reader answers or a leaderboard replication."
+}

@@ -1,0 +1,70 @@
+{
+  "source": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/runs/41881224236",
+  "head": "a58cd878cb936ef8c8a98cb1a34b4c03763e4e38",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "id": 126753900190,
+      "name": "Tests (Python 3.11)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126753900328,
+      "name": "Canonical store guard",
+      "conclusion": "success"
+    },
+    {
+      "id": 126753900436,
+      "name": "Memory kernel (Python 3.14)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126753900490,
+      "name": "LifeSim (windows-latest, Python 3.13)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126753900562,
+      "name": "Kernel mutations (0.2.0)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126753900600,
+      "name": "LifeSim (macos-latest, Python 3.13)",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 126753900621,
+      "name": "Kernel mutations (0.1.0)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126753900638,
+      "name": "Tests (Python 3.12)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126753900649,
+      "name": "LifeSim (windows-latest, Python 3.14)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126753900696,
+      "name": "LifeSim (macos-latest, Python 3.14)",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 126753900698,
+      "name": "Repository claim audit",
+      "conclusion": "success"
+    },
+    {
+      "id": 126753900740,
+      "name": "Project-memory integrity",
+      "conclusion": "success"
+    }
+  ],
+  "cancelled_job_reason": "Hosted macOS runner was not acquired after multiple attempts; capacity constraint annotations. Not a code failure receipt.",
+  "local_unpublished_head": "cb6d72dc1610d8c9308f2cb5a73f2e452803fa1f",
+  "local_head_remote_ci_verified": false
+}
