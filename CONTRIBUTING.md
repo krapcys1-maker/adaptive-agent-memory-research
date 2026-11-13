@@ -52,7 +52,7 @@ contribution.
 
 ## Fork and pull request
 
-Nobody, including regular contributors, needs or gets direct write access to `main`. Fork the repository, create a branch, push it to your fork and open a pull request against `main`. CI runs on the pull request; a maintainer reviews and merges. The step-by-step version, with tasks by interest (programming, testing, reading publications, reproducing experiments, proposing mechanisms, independent review), is [Join the research](docs/00-project/join-the-research.md).
+Nobody, including regular contributors, needs or gets direct write access to `main`. Fork the repository, create a branch, push it to your fork and open a pull request against `main`. CI runs on the pull request; a maintainer reviews and merges. Follow the [first contribution walkthrough](docs/00-project/first-contribution-walkthrough.md) for the steps from a fresh fork through reading CI. The broader guide, with tasks by interest (programming, testing, reading publications, reproducing experiments, proposing mechanisms, independent review), is [Join the research](docs/00-project/join-the-research.md).
 
 Two issue templates exist for contributions that are not code: a [reproduction report](.github/ISSUE_TEMPLATE/05-reproduction-report.md) (you ran something and want to say what matched) and a [mechanism proposal](.github/ISSUE_TEMPLATE/06-mechanism-proposal.md) (you have an idea: state the failure it addresses and the cheapest test that could show it does not work).
 
