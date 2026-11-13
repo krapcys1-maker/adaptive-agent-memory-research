@@ -1,0 +1,8 @@
+{
+  "registry_rows": 85,
+  "findings_by_severity": {
+    "low": 22,
+    "medium": 45
+  },
+  "scope": "Existing authored repository claim audit;45medium/22low historical findings remain. No certification or zero-defect claim."
+}

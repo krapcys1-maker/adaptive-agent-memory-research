@@ -1,0 +1,3699 @@
+{
+  "cases": 200,
+  "candidate_verdicts": 382,
+  "private_texts_and_reasons_uploaded": false,
+  "verdicts": [
+    {
+      "id": "BEAM10M-1-Q0000",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0ec9f247537e9979e0d8",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "cf73279fcd2caaffe28cb64d841ef4ce018eebb6959fd4e50d22f494576f6aca"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-192d945a24861fc884dc",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9867d1be702615fa01bca4a885c142b5a760d2e4bd179e050de62128c27cc1e3"
+        },
+        {
+          "candidate_id": "a-d080a2508533a4cc26e6",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "8788bc264e01c17ec0a335ae46a7acb1c27e7134653dbe7ccdd390716047944a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0002",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-ab940097cb8a3135790c",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "5326baeb1a732b282e3dc943ff7a34b3a0b2ee486170d48ee6ec2bf7eb46a2fc"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0003",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-f67639c26084bd58325e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "515ca3ac23a5874a8a9ba3baa1cdb468fccb1397dc4c0da42f9087d75b4ca67b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-4520e3450d6c5b298d84",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "fbb76036c850b12d3e3697b05cd1bda63207f6eacdb434d83c024b1b5a966151"
+        },
+        {
+          "candidate_id": "a-d7206800fbdc2864afaf",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "c6da24fc05a83dbb132891960784892b328b823bece56fc2b6c278a7f6c9b8e8"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "48d43574932f7ddc1845b154ab7432608b66665b3f34a0f0c32a1994154ed448",
+      "candidates": [
+        {
+          "candidate_id": "a-1d677e6c161f70156605",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ae6b434e266fa963c88a482c6c67ba3c85eb9c1ff4b19e2c759398193fa9341d"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "39464377b2a1ec85b6f1489db89b57a39105e42155eea0869ad746de3bc72b06",
+      "candidates": [
+        {
+          "candidate_id": "a-21b13f3c56906a432199",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "0c190db2e873d6288c861cdf33394b240fe1ec40586d6c51787a941c5932a2f5"
+        },
+        {
+          "candidate_id": "a-2ee5d73ca3f09de2e1c4",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "0c7f9f60ee7a97672659719748015205cb50a3aff0656c422db84d87d05f621c"
+        },
+        {
+          "candidate_id": "a-a78629b1c3c73fcc91fe",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "15d4f7cd560317b1be3a03663cd888d4932c86d438aaff98328199071808c319"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-040716baa153e17b8ef1",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "2d9827f9fe0d5daee9b481dffcee0932256d47ebdb778a80cb575233a45bc709"
+        },
+        {
+          "candidate_id": "a-61d6593b5f296f85d327",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "1f9ed556e8548f5e2f881e028d1b3860a1402fe07a6a4e733a4f1570c7b1ab08"
+        },
+        {
+          "candidate_id": "a-db152ee5a1044d0f2178",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "62f610cb70d2a060047d76976cfd39210d447dbc05682066a599000ba7463a56"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0008",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2a2f4d623d7af76adbe9",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "445d2817c650e928f207b3a4039584511bc38dd31d92aab03636374ed0d7b012"
+        },
+        {
+          "candidate_id": "a-8192b1ffb0444200e3d4",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "cc8b592c5d55196b9a102ed123a4a319f4cb2adc84083e2bc8996059b3be785c"
+        },
+        {
+          "candidate_id": "a-867bb76ced03474c034b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a9cd3967fad6e4c3b915662eea9278cf5a5b838e17ec48094c1e2bf9306bb1c5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-9178a9333864c5b964dd",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9ebbef640a7df5abcac664f05d202e8957a8c2f0024b20d79a8a364bb3606a20"
+        },
+        {
+          "candidate_id": "a-b4be54d8e8fb663f2a13",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "2338a005e1aa58b8c9c30dd43a2be72cfc02efbce09620f960c1cf7589d66e3a"
+        },
+        {
+          "candidate_id": "a-c382390a52f274e87f72",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "8566e0a639d4c0f18f30eb8f461b22cd15a9de233db240f8ef17fa6fed3d19c0"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-739bbb3f850611d62afa",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "16973778b0bc6ad939dc289fa1950f49a3d5c9f70b7a9a7b42f6f6aeae3cd521"
+        },
+        {
+          "candidate_id": "a-77607e7a3a6e5abcb03a",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "e630bf3130cbe224a5de92d1e61978016c7a8c57feb11b4d284e211db4c01d22"
+        },
+        {
+          "candidate_id": "a-b88b66f669aece2859da",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "2a39e264250d2c8505981745516f17a3216666b995a9094a7f8a9b225391e2dc"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-cb2858a45478ee6a35b5",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "97cc6f611fd9771ef88af842d5eb98d64a0da4600336494ab6cb2f332d76d452"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "c601a4507536932dae6d3fb1d7977be62e4c2d0a1327547e4af44883475221ec",
+      "candidates": [
+        {
+          "candidate_id": "a-ecf1c81ef25de5a42d07",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "0896e43bd6c474666285d75555a22b878470314089c38fa01090998b6af96cc5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-79af5fb17b82acf86505",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "08a0055d660296d52320be649d0d030fe24bb9a873f60c83eff5f8446169e14e"
+        },
+        {
+          "candidate_id": "a-8671833974510b19d086",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "f602677f96a3fed39b29dfd76f4741982079f41df7285fa74a48dc484a0dd847"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-4c02a59604638dcada28",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9dcfaf8bd3022ce932cdcd32da714021eb610c59c54ff5ef14e69429d1b5b00e"
+        },
+        {
+          "candidate_id": "a-8a4358ea3f6e08413a24",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "cac44f61214332ba9348e016b6e0050cf4deddde575a14e57150b3f2e4f8d99d"
+        },
+        {
+          "candidate_id": "a-c509c9042de272f1ac79",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f4f1c6324d0bcd99c2b19b76cd6a571bdd216ba9ea18d322292b721747e81a54"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0005c8c38059eddb27ba",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "1368e57e075ff95ad80ac0bad6b84c61dc54fce45108452e9c1e8170fd976435"
+        },
+        {
+          "candidate_id": "a-cc6ada5d53e3ff4aa93b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7736de1a9c9b11caf601167799a5e42c0a4f714e46d2574d555d291a904eea42"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-848b6f501042bddd0a69",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a48041d7820249d5b3af79aa36ed04f8c4ea41ff9827a4b6b21dde5437ef2747"
+        },
+        {
+          "candidate_id": "a-91ce07980f2b4c066ab6",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "26c2c017c9f26688901b598a756c6b57f730c3491d326c58b36addcaceb77729"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-80dcc675081da48409a1",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "6a533f9f954858d5a0eda8453c4f1d72f552b7d50c4a813bf60c679b13a202cd"
+        },
+        {
+          "candidate_id": "a-c2970ffcf8073ac3cdac",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "c1afa4efef5370c967371113f7d78fb5af84790bb317948347efc23b81359f39"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-8e331835d0d29355074c",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "122be2f9ac96147979364e08c0aba1ad3e9966d74792df7aaea2e337e0fed31b"
+        },
+        {
+          "candidate_id": "a-b81b1037ef2639b1ea48",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "02692f3d13f04945bd5c6e5dc9e639bbc44cdbf62ef3f8d80e132beb4336f4c3"
+        },
+        {
+          "candidate_id": "a-d9ebdd7e31d1358cc266",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "571a5c924ddfb0fe0f8a1db8d9c696b1e83ca527ec4658d1333a464d530cb676"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-1-Q0019",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-f5a6c9bfa1cbcf37ea3f",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "36c093d074de342d95b7ff610b45cc02093d242e08a3f9eaf80b079bc8943feb"
+        },
+        {
+          "candidate_id": "a-f7f3de18c7b7bcfe420d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ed8c8a6d112de067b2777d758f1d29738b4d95bf60dbca86af19d3aa50ce074e"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0000",
+      "reference_status": "defective",
+      "reference_note_sha256": "aa6dcc4e53172763b6ec051bb5f718f39b07f217debde8d8c83b3524fabaa77a",
+      "candidates": [
+        {
+          "candidate_id": "a-0897690bbe6890b2243d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9a3022446d528a5d575dcf11ca7b9611775aa5c54c5039953a81cc1fd255ca25"
+        },
+        {
+          "candidate_id": "a-1466de8b26b838ba0d2e",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "a54215d02c445a6c639d615560eb684560094dbe91942e7d70f9c60664b090cb"
+        },
+        {
+          "candidate_id": "a-bd2a29b417a7e0723070",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "4ac0523327c8d3de191ca70c867ef18cb7a7853720e6431e6fdfc01ff2931cdf"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-190e6e37e8f423ccd625",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "03220b43c0ebe8fc5f24140b825b46fe786f0af0b09f8c66265d4449d0158377"
+        },
+        {
+          "candidate_id": "a-857d0472cbc598195113",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "00621a57ebd4ea104559b61abd7c34031439bc255c68361fbcfd832a8533139a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0002",
+      "reference_status": "usable",
+      "reference_note_sha256": "b050d426c743d1da201adc07431bfe26446d264b98293da5d4a4d549b734bceb",
+      "candidates": [
+        {
+          "candidate_id": "a-0d4c6bcc08bcd318385e",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "dbbbe2f7d19d9ca17427f88089dda8962a9d175dffe0dfae26ea16d69ffb3122"
+        },
+        {
+          "candidate_id": "a-dc387ec23163c4a2feca",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f03542ec5d6e98614d766bfe8a12237fbe9863cc569f9a355d3c5b6705d1c8e4"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0003",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3caf6fa6a346ad20a61a",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "05378b3676c4627e59e8866b148a8e108a91b327dc98e4bb7e5b6615941956af"
+        },
+        {
+          "candidate_id": "a-7ca98983d8aa66672052",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "72a69e3803ccb0004d7c78e92549a30882316e0061b16ef9d54ca20448aa09ce"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-6950ea5e7d56a003f4c0",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "43664406625fca6c153a6d1d8eb317851794c2b1b687109d05e534d16bb89027"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-04e1c67366705825ea1d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e62047173630c95b9fbfcb3d51c68f140e9c7c97c89c6058f9c30cc169da5ec9"
+        },
+        {
+          "candidate_id": "a-44584391df8e422ba8f2",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d421f6eda42078aee6e48f6c6c5a95bf442ad63da829880f0c23feb3125adfe3"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-26f958044e53ccf25a50",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "d4ef9e07acf1edbb66874c5e8fd72fded4ecc3919102724343c55111e88c2d94"
+        },
+        {
+          "candidate_id": "a-fe75ddaff21602ccd066",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "dade6119f9ccd8c11c1b8af7a7d06b941678847d5203053da11619a7b30e11f1"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-4eb39aa7136d7910b56d",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "b183ea7dc08176f9427a6c891a18b672534c7a74b7bb2946f5359347de976bf0"
+        },
+        {
+          "candidate_id": "a-64e02e8b81e153977b7b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "2aa024c4c3f649eb71c06058c50b06ce6ec814cef6ca4851d93f96d5346235bc"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0008",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-719d43ce0238061a7e2e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "bbc3b1a95dfae036acf542c65d530a2667f6f318e0c5fa318b40e158d1006583"
+        },
+        {
+          "candidate_id": "a-8085796fdb3d5e5e4217",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a4b1c1f44b94d202cc0aa9161f7dbe01b40b302c47910ddce4309117b0697cb2"
+        },
+        {
+          "candidate_id": "a-88fb4e298b2d98880c99",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "c6f47f0cf85924a59f9ca0f25b52e237c207dac5efa1ee5ccdb13585c2b8988c"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-8a0c43fb123ec51ebee9",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ac876fd79ab9a14f8ab3b3b1f2640d8b2548ac4fa7fb5872a4b43d7b8ad3e524"
+        },
+        {
+          "candidate_id": "a-d18d9bc7b211c65ad344",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "0d806a222d2b895256bb21be3bf48ceee702cfb8eff252617c540d3c9395497d"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3f37d805955506681fef",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "66a99ec5ae79019af58d4da595ad6efcdd469d98057b6139c0511237d86b3d9b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "fc4ac8333a120480810353ac68abfab6597e4417b100ac2e9b6c8682f9aa13bc",
+      "candidates": [
+        {
+          "candidate_id": "a-0c6f891abb0339d773d8",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "0ae6f71e50182d4b6fc8f138e2cfdafe975d5e4ec46e9622b5ecd9351f309c61"
+        },
+        {
+          "candidate_id": "a-63d3360f5c129040eca6",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d339a7c647925570ef07bde8cbdb2827f4edd70ca96ee25dc63fab3cb26ca965"
+        },
+        {
+          "candidate_id": "a-6c799c2bba890dbbd691",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "a2251292c3aad1abeaf11f80ab2584b64af9c4423e12e6c4b52d0f24e8675cb1"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-85cd504740bad3212be5",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "0e33b02b1e142ae8ffcbed98963364b90a520c019811d867fd70b82f04d7ec1b"
+        },
+        {
+          "candidate_id": "a-db74f259b221a0ed8654",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a1b95d1976581a5c549467e624948a3c569702541ed3a0c7c28b88006431a557"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-1d7d1cf4ac1f48e3fdae",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "ad5a058476820c065d71b2c92468d4fdbb3a970899a3d27f63ee743bdf978e38"
+        },
+        {
+          "candidate_id": "a-5268d68bee6e3ce6399b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e8b1b700f190f29f09e4768a18677a54003828ae32667567d5eaa0e5cc70d96e"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0e1d967fca87368339a9",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f4bb5f56e1209ab94aeef7ce90b6ce74c3ab24fcf07299cb5f4737a43c3408d9"
+        },
+        {
+          "candidate_id": "a-8a057f92ab31f72d48f9",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "1227c57aaad05d9181dc5b9d06b147ba1241a650bf3cae59244f4c6eeaaf278f"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-5d28c913c8b7c5d81ba4",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "8fe2167954053e50d79421e614fd0541be4a3e5d5a0e4b87feebb347657a42f0"
+        },
+        {
+          "candidate_id": "a-655b1f79fac4a3235049",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d3701e53cdbbed5aaa64b865acbba662047eef0db21ce2dd99c7b089bbc52721"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-7fe14a1d50b901e473d9",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f3c8f4560ad105cf907f08a02fc9eaeebc125bc47b9fbe927d57648563cf3b84"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-92b7daf4771a644f68be",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9d39da8957f32621c58030af45d1e3db54c2a76053abc1c56d006aacb7415857"
+        },
+        {
+          "candidate_id": "a-b12b44293f103f3467fc",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "67a0304f95b7f86a8fa72f07119de20e9e3211b41a8703274ad5e73e83b415b8"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-06fdee34af6b58beb404",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "7fe916863395c4897276071b6d970e79520bb96b552026fbf73aa8a7631fe684"
+        },
+        {
+          "candidate_id": "a-af4df9d689397256ecdf",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7d0bafd6c0dd98f6ab2890861fdc1de9d1381c861c34010a19cce59848e13e72"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-2-Q0019",
+      "reference_status": "defective",
+      "reference_note_sha256": "5148b7ff60fe1d880862382d2aa16fc4ffb3ed0d7341b822ace01d93dbc2888a",
+      "candidates": [
+        {
+          "candidate_id": "a-47b93b9a6cb7a5e2c22f",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "963dd1dfe8026d695925bf3566fabdcdb9c0793677778fcec077b23e153b709e"
+        },
+        {
+          "candidate_id": "a-7775ad371a7058458b37",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "90910d524c17b1c03670ac32baa32b0db0522615c0aabf50bd04106278892bfd"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0000",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-c8f9b7ed185eed266561",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "5beb48dee661930b1fada46ee484e059478d5668994dfce867cf8f8f02e93594"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3d632026c21a47dc7d24",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "606d55ab06b704040a3cb993ff6d1c8308c74b6fbfb8dd29e4f769335f4e9d13"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0002",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-52db20b8dfe8ffe12499",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "6d2291e23a5e0dff9e272ef2dc6eea340be4a355aaa21a105f7a66ca88d97f7c"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0003",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-66d3171ccb6915f7fa21",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d52573214339391a785653e9add47bcde1afaee1438ee6817153b351be6cb5c8"
+        },
+        {
+          "candidate_id": "a-ee0c7deb04e2d8939eaa",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "8e3084afe2614a49cb4d7d824478aeeaf5cafdd9d700be9847e1695c6b9c86a0"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-44beee7eeba62882ff04",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9a025bcea0a4bb4df7d9e50af6f9adf861baba4f86db3a9256ef35c91fe9414f"
+        },
+        {
+          "candidate_id": "a-c6fb83c8f5a8243eef18",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "34aebfea5aa820c9e77101aaed092375d92868bc2d1c829706ffe09f58815255"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-05e1a11cc8e9e73d5b71",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9d9a6bc54e3f67a248c17e321155db38e7f101d347da6209515effcdb1e8ad2a"
+        },
+        {
+          "candidate_id": "a-3431ca663bbf7ded6aa1",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ae3dd33eeefcba98264bd8038a6558d57fe12d1fddccabdd7db4020f793eaa3a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-7b976b3d1b2b6a88043d",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "a58ad9586ed2d861acfbcddc42f4862a102d2cd26276fc3bceb1738e8d2b574a"
+        },
+        {
+          "candidate_id": "a-ff9526fa215994fedc98",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "11c0e82f54acf27280a8f4d3c2e1a9a5663370831b1edbf6dd7516cdc8398c21"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2b91f3413581af9697c9",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "33d02d7a8402fc7cc32fb1598a679978ed8ca683923cafaa0a587b1a686fafd5"
+        },
+        {
+          "candidate_id": "a-b22c1ff5d1dcf62587df",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "23a7ab900011b6e3b169a34193df5cd62e7ed5aefeb8ce4fed6fb2b9d8186bf0"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0008",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3dd87f9d752c4fc7848d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "21269355082695042f8ccfb23190895e7d1ce72ef73880ab67dfb5551e835ff0"
+        },
+        {
+          "candidate_id": "a-99b5e35aaaaf25c85183",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "389dc8b2df0780f405d8bf2afbdde4f8fecc3f520b1cbcb5522c59a43cc023a8"
+        },
+        {
+          "candidate_id": "a-bef8371d08f7aafd2b7a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "3cf8367904dfd09868708692c378fe8bf48a5457c700458d2346be1eb829d4a0"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "36a6a3a726f6e262cb5ca038d651abf2db6c1118929b00879651f0815bf0f9b5",
+      "candidates": [
+        {
+          "candidate_id": "a-17e24bd3e5a7a94e1050",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "6813bd4e5d5b0f7a1a4d4c8f6d673e6f322d0737be036da51f1e741436699119"
+        },
+        {
+          "candidate_id": "a-f56a0d3ff87d3fa0a63e",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "65a5199e267f09898a257f86881a18734168f563a2e0604b4ac447521a0dcb89"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-545961bbeb768f5f5ee0",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "18bcfe11cc6c02b904942d6584c423a19049f7f1339df4b65cd405ed268f271e"
+        },
+        {
+          "candidate_id": "a-be973a66cfc2ffbd47f4",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "06480511cb6a9e4369efe1d54f131d57eae6658ef551da0c91256af0af6f5f9b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-5b724651c2d42c06925e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f514439086918ce98ee23062d077711dbecb1aa9b58766c52753a40fb385258f"
+        },
+        {
+          "candidate_id": "a-76b70f5666bbbd8d0efc",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "7dbbf6590a67bef2b4a09e691dada898aa22ba32112c3fdb4a9392359629afa5"
+        },
+        {
+          "candidate_id": "a-7bc9d8e97a40300797b2",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "189005ee7ba460868826f9c9de745e1799851967b71729bd6bd97ef581475b8e"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-07ada1007ced35965934",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e8f57d3a46cfbe63120bd8f3664fea07bfcb084327c9dd40ef65eee53f996d47"
+        },
+        {
+          "candidate_id": "a-6eb4eb25e69905d92c0b",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "f04f55207bf7139e63904c22a0921b76109578f54f0bef15d33a94b0d04836fc"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-81cf3e582d8eafedf61a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "fd6a11241bb5d143a89c4b9d7457e8e3922ea1fabafd47989551ab783ad757e8"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-47c03c3653433f92765a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "215eed45dc48b3a96fb06848d69c44acfb5871f78ee04b31ad3ebe33675d3a66"
+        },
+        {
+          "candidate_id": "a-66d43ed41d5e6a867ff6",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "3fe32142c1c24c724b93e906f1f5c872a1e23fd34a23f4556497ec1cc9570821"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-1f134d71e6f916f18cc4",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "b13bc16a4de81229098035c442ec3dc42718a3318a1a9b81b38b67ebc0b16551"
+        },
+        {
+          "candidate_id": "a-eef74ac23a221e8d7bd5",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "51c507a46aec84a92fc7b61d6bd1781181d822ba049962d05702e6f7ff514a80"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-b0826cc228c8d9f9c889",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "25b3f2688895f65b6daf2e5ccbfe2fe0001815e26b9217d7cd3a8dceaad5dabd"
+        },
+        {
+          "candidate_id": "a-e7417bcd1af4fd1b2825",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "488b39755b35b0934d0b0fc0657bc4a61932a737810170cdbd39559c6cf24281"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-132ff88a2a0abe78001c",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ab8e0e8c6deff8101aa68dd46bbee15e6888848bef760a2127749dcc569f4f49"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-7f748893288e003bfedd",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e49754e1b8a72d82dabbb9057d733bfb9d2583655eee25e8857a8e5d125be6f5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-3-Q0019",
+      "reference_status": "defective",
+      "reference_note_sha256": "2358a8fed9a1fffdc11dcf30c4f9f8d1558cf1ee740a83dcf8af057b4ddcc4a0",
+      "candidates": [
+        {
+          "candidate_id": "a-4f24e1cf2eb4ee4e160e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "64f2434afee55ccc7430779261963154be0ff9e8e2a6ef21d01d30c4cba5c0fe"
+        },
+        {
+          "candidate_id": "a-f167d25e8a19d30b58ee",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "5a487d9ff8bcb64cfedc7ebdff42e9b354c4dc0a8048e932ec61738a743e46c5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0000",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-6b871b602d56f78a56b2",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "4ea9debd8f5c4f17f931ea2ebe065b3f41dc5b688d25f5a4e64673765d9c94bd"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-8c6f90ff4d37843c01e7",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "feec8422fac7766275c3df96e79b37817916da6251c7d786ea447a400baf25ff"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0002",
+      "reference_status": "ambiguous",
+      "reference_note_sha256": "a506a9ef22d1f70621d0dba1f874c7776e269c07d7c819888554251a102d5e50",
+      "candidates": [
+        {
+          "candidate_id": "a-c1f2ad2f339364fd5897",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ee27ff754be72c06bca6a4e1f2b3a8fc2a9375a694bc9ba23e09f6d0c27ceed9"
+        },
+        {
+          "candidate_id": "a-f5fc3777ea3016756803",
+          "pass": false,
+          "material_contradiction": null,
+          "reason_sha256": "3848ec62e909926a7ce52982539dc55c06af56cbc7bdd843b1c301ca7e18f867"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0003",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-fc971c5b8c3b8e3da1f5",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ea448ecbd48364c18ceceb8d5830c528bf9b5bb88567d6b4d697f63389634582"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-bead9f824ddfc4097574",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "1253777cf11a4d62f6b8ade67afbdd984f2fec957b3c26663a64fd308cc38f21"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-5618df13ab63fe8c98e5",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "fcadfa8776d34c1bdaba4907f08456cd35495aa2a58f7cb065e6c9a69b780090"
+        },
+        {
+          "candidate_id": "a-69baab1354a3c52c3974",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ef480962e96e57756dc65d93a0134c74371cc0e6bf78e1cbab78a548507cebdf"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-17932de942e595627e71",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "d2c8c510b2bccb85cd37e670f5364ba4a27ca52c0af855fd7e2290df902c524e"
+        },
+        {
+          "candidate_id": "a-f061fc78467365126b66",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "2bf7ec471a84a6bee91e9a0ca917a95cb774887acea9240f90fcf61556be235c"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-9d1dfd3569219a1beb28",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9d291de39c8d06a64c7d708235af8c1bea79d814b6fa031752d7f5546285f790"
+        },
+        {
+          "candidate_id": "a-e435c8c900d72a7d5b90",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "117807af26558a02e1b087a058adf9e9ef42039545063e4ebc87804642230bcd"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0008",
+      "reference_status": "usable",
+      "reference_note_sha256": "b6e713937bb9932da5fd1b1be8a76b0820cea385ea99f4a0196a1b2bfad2aff6",
+      "candidates": [
+        {
+          "candidate_id": "a-15c5a4a016d173ea740f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "761fadc466e37abbb0aa5bd959fea88be91d08ca5148b533be6e15084d4b5397"
+        },
+        {
+          "candidate_id": "a-8bc8c4f1a3ec7c0b8d85",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "290b6fd1fe1d348081dbcb985c3aaef09f1ed83bcc592156be6ff93b98d75578"
+        },
+        {
+          "candidate_id": "a-b06310f5a9e99f21fac7",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "634f50948d904e97309cb3391f0bf12c40d509f88c75f00f71ce1947a69dce4d"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "da94fbb1e40ec332fe586932497375a71aa9760e30cd3d459836758eba02c4fa",
+      "candidates": [
+        {
+          "candidate_id": "a-1da6ecef3051e7dc7cca",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "b5b2ff1309a780c372199a0df153d3716cbcd4b148618b50e6d784a04ff46e51"
+        },
+        {
+          "candidate_id": "a-a2133df2b8483ad0f742",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "526d58c4d576b1be0dc6c32e76205a3024a3407117d2f40e2039df9a920e2ae1"
+        },
+        {
+          "candidate_id": "a-d5e002985d85a80be98f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "42372c7b8de64d2c84ce9fa120cd8c3e563df62fbba9c5cef3bc5e001b4fc451"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-4eacd5dfa1985d2263dc",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "62226f6668fb3e44f2ba903d6caf24152e245743c1110131eee6229ebdc61e9f"
+        },
+        {
+          "candidate_id": "a-aef75d0698c7f44ddf4a",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "64eda561f3d77880fef14c9c48a08d85fd2038a50594e2b95b946f2a9fb4a047"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-04bcf1bfe45542e582ec",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "4033ba1ab5cc12bbd6385d17ca8c22d9b6f4e83d8099faca88d5be224d96575e"
+        },
+        {
+          "candidate_id": "a-eee6523515507102c872",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "5bf809a8f339858a0140ca42be33d121589e09406dc8d8fb088a1abf74b69f43"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-a2e9471ab4f815764e39",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "fbad0193f7fbd61448acbd01b1659985ddc2093b3a678cf08a91602410b1983a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-94ae2ec2cf98105dc831",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "4bf181f965f3299bc55fda8659f57567d2227919e306198057b2157011e57075"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2bd640bbcb9b309a7b8e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "555aac0bcdd956b147d237275979b699b84cbd3fea69f0c29ed31378eafff219"
+        },
+        {
+          "candidate_id": "a-6431f5dea6457c2170f0",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9e60f312058f89dc0f5886b63863be3003fe2aaefb3e718efc862ec6e7bc5958"
+        },
+        {
+          "candidate_id": "a-a7a4f7badf0e24e1bfcc",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "813c2759a4c17d3c1c9c45fdbc8f80554b6c471170fafe1ee6c3caef3b684a7c"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-4e9d2a72be30360014e7",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "cff64fc2d11b30e8c404945a57c523cfc380af3b4b7cac58bb6999de40ef716a"
+        },
+        {
+          "candidate_id": "a-799f4110b6a2d821274d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a42468dc7769111ac6d5cf8df49ccc066db3073ef2b89f958bbf293942e8f8a4"
+        },
+        {
+          "candidate_id": "a-91fb93e8f13c545596c3",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "678d316073fd0fb99ef529130c22c3aeb1b23989750980d79f301368cd76684b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-41224cb3a8c328d8c638",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "84681b305decc1d702c9dfe4d2f765359331b1fa0b728d130072f56ff93677ca"
+        },
+        {
+          "candidate_id": "a-e6ff6ca13c1552630d22",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "722527ef4c7b3e33ec16acee2e928e44e8b3e7267a179dbbb1dd42d6a4add4a5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3be2d623c665d534c87f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "fc090f098b4af47911c418a6d434e2ab05a9fec9d274baae27697845083b9973"
+        },
+        {
+          "candidate_id": "a-74d30845b574ef7d899c",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f5d6fed94dda3b4ad37fd63751eee5f7a460723d6ad097257e2016e31a1ff0a3"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-9eb84d05e42cd6400d9f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a1ff57db03a5bd88c4751c366fdc8e8206ad2206c62250bb49ae61d40a083b35"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-4-Q0019",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-236ac9590c8d1d575d3c",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "37f1dd361d0224e7eb33187242ec6b1d75bc40f2c3cfd4c219f5fbd942d84b79"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0000",
+      "reference_status": "usable",
+      "reference_note_sha256": "fd74b1c37dbd9eba3c07ffbe319cca99456be85c79738dd44f99cd09e42bf99b",
+      "candidates": [
+        {
+          "candidate_id": "a-776fd77949282db4a86f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "853a28abee90607f559891d3a1de9f1f1feac421cce9f9426d263250fc4f735b"
+        },
+        {
+          "candidate_id": "a-8eef696e62170f9bd545",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "4425c74a8dd71fc01c35857e3e5caf6a381fd695d3fc7cb66eb06c3b5bbcdfeb"
+        },
+        {
+          "candidate_id": "a-a3d245349a33236a224d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7edcce7545c33ddb09269707961a08b4ee378cfbfe94b9e6ec0c92130f9a0f9e"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-502e32063b291fed317b",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "ec82468af1b15630768fae8e3335bc018adb2e945be6624c73267d0eda80dcd9"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0002",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-34e61c78a0da4553b69b",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "8ab4db1349c57e56a55c828e4c6099f9a2824e3f34df10e779b1f24c25da3002"
+        },
+        {
+          "candidate_id": "a-744364c6a5baecdd8ad8",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "0071b2923543fe611d76f62cbec5fa4e39c9875bc7dc18961aaa59ff2098de47"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0003",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-b0dfd15299165d666c2f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "1d92623065c6c988df3f8a1a4cb1ee5dbd40eff55577537589b3bbe0f1287b3e"
+        },
+        {
+          "candidate_id": "a-ccb7e14a5545a12c0a60",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "0ddfd0380003901694e7385492428ab9229b4bb63315dcd7f75c714d402a9720"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-5f6dc5b1e2da2d7f9ade",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "638afd97294627ee7460cd8e618d1f019cd7ad26d44c319f45dc7f04a26279a7"
+        },
+        {
+          "candidate_id": "a-d9d445566b95581b7390",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "825d7ed9cb35052de1b059614512f961138088aea70ae03dc6291f2969f4b528"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-121600ab624d9db80232",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "dc9af99c3f52bd8bf03723720c23102b7bc104a86f5544b603e0beb59bf54302"
+        },
+        {
+          "candidate_id": "a-543f212ffd6d6b9d7a0b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "b654dc87e9b08dabc706709d5a3bd0c45cf6979915c23778a35a8538f51d64ed"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-4f2ff62cefdaed406d23",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ccbad543b5850752ba00af6a7b861a8973bbcde3565252bc1df1145d74d27900"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-ae1b5eaeae7694b50775",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "23cf4e8a7ec71d6b76d4c9c6c76bfe828e79f52bd2c7e91419e178248c2dfb19"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0008",
+      "reference_status": "ambiguous",
+      "reference_note_sha256": "18c37ba51e82a6cfe250cc4b9179b96267fe7d97196c9e828a091dbdd57f8104",
+      "candidates": [
+        {
+          "candidate_id": "a-8b311fa3103d474b0fe3",
+          "pass": null,
+          "material_contradiction": false,
+          "reason_sha256": "f2372a2356861e1b8475d3afa04d6a0e1a8a26438df8be3559e075025315cdab"
+        },
+        {
+          "candidate_id": "a-e9175c8d7af5a4736150",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e43cff583a7d052c26a2e3138ce0ed113f1fe02b42de02969a20e52a741a930b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "e591b719f58343a70b8801d770efbd5d966e749bb34fd117ff664c40572413f3",
+      "candidates": [
+        {
+          "candidate_id": "a-053f3ad2459f4eb06500",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "78c8316b6efe5f7ac239e2e84cbf3b28dc57c8c51f667e9ec366cd2f2f7f63e2"
+        },
+        {
+          "candidate_id": "a-644309b3e088a002c6e1",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "fa41973a6eb9507812c3a767f94946f7d234a96d4bd636dfd429c4b5895d5e92"
+        },
+        {
+          "candidate_id": "a-95e2d7bbb36a2cb706eb",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "04a62cf2c376e9ea2f93dd81d354bf053ff0f0de62a52af1844c7413de0999dc"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-52e3f4bd2fc6663d7e85",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7cff0d29280e60e29f17c50544f87a02a857b7dd846cddf340b519bf94af33ef"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-1a91790872613b739c99",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "3701cfb463980af3af880b323bb23d7de141eecf89eb918b7c3616ee4a600892"
+        },
+        {
+          "candidate_id": "a-9e9b33098e61586e5445",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "8f6cfa19b0861d8575f6a14c12b42ca4e53c5446b3aab3c3ac0f98b435a1eef5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-1043738e809017281fc6",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "329ccdb51fbce380ed4e6fce4bef4c7e60eb6e3ac52c849b58fb1fae91254729"
+        },
+        {
+          "candidate_id": "a-75cc8a3e29ecdaf837c1",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "61a69a8a9271a854465e99d4a1c26c1fdf977cdd5639826d3c95deb0addc4929"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2f38639ea350d7ab04a8",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f28d47043366e8e2855847ce11a12bc39167494e33a4ce5f9bde27d50eeb0624"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "1a97de8f83e84daec48531a3db6fa08e8f283fc996e2375f8e86ff9e6e167f9c",
+      "candidates": [
+        {
+          "candidate_id": "a-5bc9a450e17f207e5c0b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "254192e6567ea3b035474d95181c2662c411889565568765b30a9cdd4a607cd5"
+        },
+        {
+          "candidate_id": "a-85dc3710df3fc8248dff",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "46941bbab0365565fde971c329500b2596f6992c355a7469a764c45c1df41e15"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-67131cb22833671a394d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "254192e6567ea3b035474d95181c2662c411889565568765b30a9cdd4a607cd5"
+        },
+        {
+          "candidate_id": "a-e8de7fb76e9870760ce8",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "aef71e2c22510041ae4ec3971911bae46260a5aaac188aacffa06b84100adfe3"
+        },
+        {
+          "candidate_id": "a-fe5ad27eff8e2b90d40b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "407f7acf609969f02893fb6c6ef6a53e651b644456d5f91e50d926e4aa449937"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-260bfa14a7a5cde2c19f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "6a20bb23c92b6df58ee58c362048a829caccc129c536da100c7f11e85ef77826"
+        },
+        {
+          "candidate_id": "a-ba160c19c6cd80e1470e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "b7e3ad8f400123e3a4bf6453028e9b88b260d1060a9b1c987843cc6d7de58508"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0ba906e992eb8dcef648",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "534c3373c2fc298bf30231bacb728ec8310a1ebcd7575ac09e1be58754963bb3"
+        },
+        {
+          "candidate_id": "a-e4b003b7bfbb84b46952",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "dd902fb4d2bda67512ec9c4da3512678c1c43bf938a8dbb05b6cb850dae58f92"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-8f85e7c46b9e124748fb",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "0e17cbb1785b51049a35a1b1ed6c24b55a9765e396b63547ed2b9d415a86987a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-5-Q0019",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-480e0ef5e096cb311570",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "49f30a52006d5a30e3e83daf383b627be9f53c1a04dbe5475beb2d0eb70512f8"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0000",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-e425553e157306b91877",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "9b219f78cbee6b35605a6e9817a6ed16103a39927e2f8bb176a3d37ea47154ba"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-e03b0f71576d387f493e",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "ab93dca8516d7b206cbc4b15677bf195ef902e3ef3fbba1aa2de40c879023539"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0002",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-9a5a5b3e34d6e338dcd3",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "37f27cb519d48e415693ebd181e2a60d263fbaa8db1b32a023430283958a4b26"
+        },
+        {
+          "candidate_id": "a-c12cc7a2bc2f814d1e39",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "d68b8ce19ccdcc8c7dfbf21c880be4c3f326d988cae08b984a09768b86399a7e"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0003",
+      "reference_status": "usable",
+      "reference_note_sha256": "f7097f1414c246e589bcd9b6d2dfd1464f463c63a4284297548d246df7c2cfdb",
+      "candidates": [
+        {
+          "candidate_id": "a-293071b40d9e639d20fa",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "460dc7f944c8029053b0ec5a77ca4660270b5a9309a689673617db32037b3fc0"
+        },
+        {
+          "candidate_id": "a-e82de5623f5e8d50600f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "58889a39b4763db267268bee21dfd8c61610a362522cb5a8f60e5a3912dbc1c6"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-e7de087b66c8347481c4",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d84c2263321af8ec403e948f0b98d325a1c59aaa4d70f6b5e71d5ccba209bafd"
+        },
+        {
+          "candidate_id": "a-fa18bcdd8de51cda263c",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "6a901501e4b309d87e9a12c896a14256ed7aac1e78ea192ccfc2dbb59a57cc7c"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-77f257dd7265b2a62d72",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "88c821d144e3c0524306c9ae55c5e8a6d1bd09916b233724decf912bca8ea308"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-678616f7ee85d1090101",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "515b3ede07b7637296fbcd68360df8a5407539b8cfd3340f6a37300202ea1c7b"
+        },
+        {
+          "candidate_id": "a-8833b2afeb24dc576233",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "51288764f7cef6fa76c890c9972bc4a36da959d25d85b742b309ad80c0f1fb82"
+        },
+        {
+          "candidate_id": "a-a67f4c2ed1f08851cd8d",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "9cd2341484f97063a85c4977e40435dffc7eebbb12a5ca2cd0d6b4bd26e2c169"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2a644f56b0a2acb67d21",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "10259809cfa1400a92cbf12835c6973d151836ba4628c0d450514b8c17e46ded"
+        },
+        {
+          "candidate_id": "a-309a0fefbcba47d2564d",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "9717eaa39df7f82718a936acd67360fb4e20de7f9b53367c73cbe2f6438524b6"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0008",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-8ae7514c9901eb8c6151",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "5acf78ee44791806ea5613f879bce5003b16986882c2ea60b91e50b33379b664"
+        },
+        {
+          "candidate_id": "a-bfae2ced0277898ac781",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "d38d2c3d8d88130f123f679693e9ffa5fb5e26997bdcde537b8dee5b51f9368c"
+        },
+        {
+          "candidate_id": "a-e4b11ba848affb0b0a7a",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "1d46c8096f61d4d909e7d0c87c89e8646ec1fa17434e83a65fa36d9c2842d961"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-36a554e57e7f55bb115f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "af22bbf45b1653f4cb7a5f213a8e466da4d137b608e9e24a08d831e530b9255f"
+        },
+        {
+          "candidate_id": "a-751d42a858104088bfaf",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a01afca2e3c9e575efad18ddf1b07ac1dd620ded797d5908d7a2b2a9149e1662"
+        },
+        {
+          "candidate_id": "a-e4fe8181a1f9e4011232",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "dadc286b8101741d5760da2fba2c8bdb444904e1eb1643fe4540beca53b52127"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-898d6eb883f47bcf4421",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "77d96466e6632e26e8a3586dde09ea8c14cf722f69deb8c86fd3d99daea85929"
+        },
+        {
+          "candidate_id": "a-c3fe55a734672813b48d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "3c66dfb1e1f2ee5686b061bb0e6c4fd9f9f3f954cc1517fbd73254f166b443ca"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-65c526d6d775c13d1811",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d3653454e3cc12133b131f6d1cdd4a48c93c36a21019fadf15a525c4da0c15ab"
+        },
+        {
+          "candidate_id": "a-71cae9963b08ccca0f3e",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "a04c189534e1d7ba78856e006202b1c505e98ff7906a1e3e7309bd7e2575c7bd"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-5e8827fe860d1d1230c4",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "8b75f7a9a3a3ca513d22df297f68ec790510727d094586919a259f844838f94d"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-08e606031ccb19f68361",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "66b2225272a0c9169f68af3dc565511cba8c2b6c2adbaa4d3e445103c9277660"
+        },
+        {
+          "candidate_id": "a-2130f116c9ce598c1086",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f291f59b01c1899f022e6c2fcccd299944a3822cd37010ed4ecb8059601a36df"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-91c85aa2fc6ac41bb83e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7c8e1cd38664239be045f0e7c5c054deff517c57e8223266607cbc8c17693df7"
+        },
+        {
+          "candidate_id": "a-a944ea30377104aa6123",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ae627f047e7758c936a8a70d11e3d6f372362fef4b87e927d932460b68241b79"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "2873b304861ecaa7782354b5c6d33c4505dc7bee2386c8839e19fbefde55961b",
+      "candidates": [
+        {
+          "candidate_id": "a-65a90fd0fb3e302eacd2",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "71496e8dee94f710913580b0f2e93d53261e75bfea6f33c04a41c865dfd251f1"
+        },
+        {
+          "candidate_id": "a-c6efd3984c0749127efe",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "fe12eb4b82568747d62b6ea1826e5f263808dc4573405018ae2156731a84c03a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-45d0958816fc76d844e7",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "efefdb60373aeb50e44619afca9e2677fb696875abd0450e119e02c0a6b68768"
+        },
+        {
+          "candidate_id": "a-fd94e928430fd19fb274",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9369353a8f061a81c5992e801a51ffe386ab14c61d138e5d56e806b22fa4d535"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-a38964b0eacbe04e9fb2",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "53b713e0100472cd84a0f70105111757389651dfab721543137557aaf8644399"
+        },
+        {
+          "candidate_id": "a-fce56355b8fa0833e8c0",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a99aaa46d4744c4cb9f4c336c7d0cc794f335f09dc8118d33f2bc693546e671d"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0934f2609fb463cbf405",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "5bdc4620ef6a95e1e6a65078bad56262ffea9faebc962e8aacecfd38bacf09a2"
+        },
+        {
+          "candidate_id": "a-88e06a36752d9bf5b16b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "42dcf999b2f1ed1faf981bea010cda5c966d17c582c9e8d838d7b0fd2029f9fc"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-6-Q0019",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-369c5f1f241e769f644c",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ad8ef0bc7bdde8580ec09d5d82c6d24a6bbefee3547f81ac12481bc1cdfeb7b4"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0000",
+      "reference_status": "usable",
+      "reference_note_sha256": "dc65e76980815b2d2b0224c1d3529ac139708689f109f47d2ba6aabb65528d84",
+      "candidates": [
+        {
+          "candidate_id": "a-43f5b9ce8f227bafb83a",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "de7a2d88297a83584115a6e98c123504f001686c98eec578c4aa7ad5c2e2c222"
+        },
+        {
+          "candidate_id": "a-7de70c30181aebe09a62",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "c82a8afb320d757933c6cdf7f2900d012584e8e2d9e47a86964d671c5427e523"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3329907cdb5487a1e78a",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "c25d293f05c16c33091e9fe2d5cae7645eb1a0085bd2335e36cb89706658dc46"
+        },
+        {
+          "candidate_id": "a-fa0424db9796203388ed",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "2a7b02022a4e407f1657f89e81425080fc2da56c31c60e5e32138d802b217ae2"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0002",
+      "reference_status": "ambiguous",
+      "reference_note_sha256": "b70ad739e11a8b08547fea3b470e3189bb417f9b859e98b808eb4ea7dc8521b2",
+      "candidates": [
+        {
+          "candidate_id": "a-68392314524ceb1119ac",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "aaa90345f3d8c15fa73dde9e4638e4feb376b6f6031758ce8102a08cbeb8d19b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0003",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-94aa302fcbcd298b77cb",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9ee999b6304a458d8016426ecb95a145a384f2efe2a81ead27bd715cde04e1d2"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-865b372e5fc2f16430f3",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7afdaebac85cfacaee1290dc3ba0f27f810d6d1ba565fe22ab8880b67b54dd79"
+        },
+        {
+          "candidate_id": "a-a27ef7657db9d4e0e205",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "384d5819f1184cfe987b8e4d003f3a1d989bd95f33fb35205267461d934e686a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-d70a62657216c43e2a25",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "0db271cf7121ca867f07099858db370d89baa49f5e636a852a808f0e32382179"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-1cb3838e6bb1f3010221",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "99b5a06a914100f5a225c9975140379c5a8b9e2538192c9a0c012df67f685b01"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-56a31c0320024de53257",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a53225e3b50f3717dbf7e6cd81b29aa532dacc4c75212ce703a2ea1a0b83e1fc"
+        },
+        {
+          "candidate_id": "a-6f7bb066b49c89a07839",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "8340524dd0ca248ced81412983e095e45935357c50666ed1696a60b5645b17cc"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0008",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2c155979e319f216ba44",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "1bfd611eea7a3bec5100032b4a93a59409fb38d5ddcfce1258fe0379ca929428"
+        },
+        {
+          "candidate_id": "a-8c99024d3f8e0e9ce751",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "1b6df5015d227b40b4bf93ea6f3c6154dbc0577b4afeb7e2d71b29bf745035db"
+        },
+        {
+          "candidate_id": "a-ef7fb4a2d5042bab2f26",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "c532229fe10762c7850c0880bbedd938f2fa15d90da3988db587c95a6e20ad40"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3021e8fb4308f649e03a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "71727c15e428abde3a7b87d1ba7801dd822218f20548c060a4bce0ec2db63c6e"
+        },
+        {
+          "candidate_id": "a-58e144234ee7aba546cf",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "025be5b9644a32d81a71e11d835ba161fa56ee6cd0025e9723a640a0d58d204f"
+        },
+        {
+          "candidate_id": "a-f00efbe810af77addfa1",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9e7ac80b3db3333b6423a3263f72a3707493eba484fd1ab63b863d961065b360"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-aa45e8d7841a9bcae966",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "c7ef0dc34d38649049da92578963c5ab951e3f2a6020bad2e9cef32f3b2fa223"
+        },
+        {
+          "candidate_id": "a-f9966ab45ba5db62e034",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "9e0c4f0d0e79ad73093ab3860f43bfd0702d29297c9f128373e7e8fe1800f0ff"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2a2c64f7cde4d76eed24",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "2b4a0b6680ec0e96b56ce6a269c38c33693134ffac6829195c36dff65112b3b1"
+        },
+        {
+          "candidate_id": "a-e6d36889b621c62c71c9",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "3cb6d32dc266653cf805000fcb2ebaa5e69f5fa684bc28d0ded6ec19da3f0da6"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-6da746d4a84676e00897",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e3245b04f89241a2af8955e038d58c34aeba3f7661c1c338f2ed49306e59be32"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-db41d115495071beb0fb",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "19b50285beccd500e56ff17b3a3527648f3f5cdeee01cf5b2ef9bed8b4ecc6f1"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-47e34b11f03055319952",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a4b6b86293e83c8208438b0352f64bf4010095dc93f9e9c5081cc5a209ae7e69"
+        },
+        {
+          "candidate_id": "a-62262be254b6d9329de7",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "b9a3e629aca72ccb5e4104c3379226ba4bc6621ed605b114e3e2cc7451c61657"
+        },
+        {
+          "candidate_id": "a-d2e52094a33921f4f9da",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "1f89ef7b88ca1f752fef1090b6ab255cca755a54b1b733363e197fb7a1edda34"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-677e90e5c69ec48fdf55",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "aac2956d8095f539e9d5c82891fe3d3deef948425638df238fe1c78929bcb369"
+        },
+        {
+          "candidate_id": "a-9f3543b7c2fcbded109a",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "c209fe8efd0cfc053c38c03ed9a8455ec2d195f34dc968136595e8010c6733d2"
+        },
+        {
+          "candidate_id": "a-d458be733b26499eb65a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "8e7f2d2d6bb90d9bd802c871295b139f90346c5dc1972d28b90db77f01238029"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-1a16570516a0f678cc8a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "11d1206046af6937a8630e7c13ea308ee0afe2ed23a1f5ce0eb36ea257ef96a8"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-da81c39414c8fe7005de",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "3101700f58320ad4aea9561a2c671dfe33bb160c0796ee7e8125acfeadd4e7b6"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-359fe35061b453f11eee",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "6b323435212aed7085c488eae9298150e4c5ba56edeb9d7330fb45cbeb476688"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-7-Q0019",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-ec779085939c6efbe697",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "b7ed51224b48f8a727cf236a5c1fd59311c4dfbfaa888fd7b4b6dd3ff677b385"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0000",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-43e69aa80708dddd5503",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "71b04e8283696eccef223de6170920694075cf544a85d7923b7607deb9e5867c"
+        },
+        {
+          "candidate_id": "a-70ad6c00a523711a8486",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "06660169b5b77b9014a3a4160c882ffe93a4f3df12e5e2b5942db0dee1ecb106"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-403825f17da579f4bb8b",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "ab11698f1ded2fac99a45d4623268dbbb7c9eb76263d29d8c43cb7cbb40d4c62"
+        },
+        {
+          "candidate_id": "a-7740c8c2d26e6b28fb44",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "9385c13df78536b81625b4acf9615bee3969cd4476dcabf54b1dba6bdea19d8e"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0002",
+      "reference_status": "ambiguous",
+      "reference_note_sha256": "635b84341960b41410e8c929b96def7830e6f02a8a0768cec79c1d52272f501e",
+      "candidates": [
+        {
+          "candidate_id": "a-6d8a493c189837ec1b71",
+          "pass": false,
+          "material_contradiction": null,
+          "reason_sha256": "a70a62b47513ce9c2ba4c5729a26cf78649cda222468d1f96f8f0f3b7bde6bcd"
+        },
+        {
+          "candidate_id": "a-aac415953f442f8c5816",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "1c601ea9bcbe8c73beb0d3998621c5848432dcbe20badc7bd2e5eabe8239121c"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0003",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-48c7e7348ebbd5846908",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "0bb3d0ecff8c3e9af36483a4c367749b375ff9299b4643580c6c19e8195caa11"
+        },
+        {
+          "candidate_id": "a-5be2511100eca55fb96d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "c75dd3d527f5e1f048d7a2a0ececbf6e60d8dbae26f95018ae94bff9fe2de5ce"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0ec25645ed742856bf89",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "27a29f76ca806d82e9ea467b6480ae8e9e264623c4ded92db48531d00c3c2fed"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-cdbcd99a1633491e4bd8",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "86decf470801ef41f5a66d2641fffc38cf0093d184ac36491d6afc4c3b638269"
+        },
+        {
+          "candidate_id": "a-fd20c7e41191680c25a5",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d695206d2f285fd174a9485025d2a54fc6e1315d4072d75b624064830ea72ccd"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-08b48f6df432210f0f89",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "e509652693f8c0aefb4554e009b6981cf975236bf41d26c597a0e78abfdae840"
+        },
+        {
+          "candidate_id": "a-9908214fb00bef0d214e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "286ff7f4218836677c464ebf8232cdc767ebf707a1eee734236e296b8093f90a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3d62dc84778f6118f04e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7ba686006e98cb1c1e29f6a0fbab44eeb31f314f5fdcf49380734d0d100dbdda"
+        },
+        {
+          "candidate_id": "a-7b53719927c49184e4d9",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "fa5f3358adc5d16e2ab992df7d290e75b5dabb00e94a88de031b17927277ec8b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0008",
+      "reference_status": "usable",
+      "reference_note_sha256": "204eca62af50a028ce0bafc428e7e68ae4a5fd6f6970153a218e29e4e06f27d9",
+      "candidates": [
+        {
+          "candidate_id": "a-2848a2a07e22b104c05b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "5d6f4169dce64f40cc56a5341183c5601153bc7eef1b2837f1b94988d205812a"
+        },
+        {
+          "candidate_id": "a-2da513b6ab7235243c2e",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "5f3a4d0810d087584ebd56a5264bcb542fa9da606a98e9da41d86662b117efde"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-900d79a8eaf9bc3688ab",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d8eee9165f5a58fcbbe0393e3c38c39a91fab76343bb45f2d49156cf2b36ac7a"
+        },
+        {
+          "candidate_id": "a-94d006faf2a3ac5675bc",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "cb7eb01c29d03a6033e5a15a639213df0dcd188a64c686fd40ef1c74b7c35178"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-33f474272d39d3093edf",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "e79f4e58b62296b63567f139a5e9467d1f91d49fd8f10942d23b3bcc864238d2"
+        },
+        {
+          "candidate_id": "a-71c4ab83642c47b90e71",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "201f2b9410622be7db258d54776c9975bce9e6c3710b63cff02b161070f07981"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-6cf6301196e56069358f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "5f38e425ca950c4f2a03d4c225d1d5176b7957719a09cd2cc303c94a9f61b14e"
+        },
+        {
+          "candidate_id": "a-bc75398f62238b07d459",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "edc34d3a1444a379f4e5b4c1bd8a4c2d5fe341541c8bb5d961c3e3d913d52bff"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-070fc6572b1f461f7dec",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f3d1c3ad45ffbb1f9f5624c9f1273aafbc52aae275c9cbd5211f4025364218ac"
+        },
+        {
+          "candidate_id": "a-d0f6e8755c3f7eb764da",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "335854e28de2887ae5f8eec5ed92c41374b751d2bb7ba07ea0b08b34c032fac1"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0f41069cdf8f716d44fa",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "da9fe36932fd30994a390a6e862eb107d776370b67968ca24bc99d607f4ee170"
+        },
+        {
+          "candidate_id": "a-9ce5502ba227fde72e23",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "736043079cadf83e9072e76ef2976e3b978031532f8de2e3347eae91deee9d97"
+        },
+        {
+          "candidate_id": "a-cf4f7f111193671bf4c2",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "01c820d5530df63df5195dafe9b2deb35da5aac0f288e99c868b0444bc78dbc0"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-789d485229d0363da500",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "4d3585c610d4f5e55f8e54694012c1d998bd48ebeeb769e97e1aed9083645040"
+        },
+        {
+          "candidate_id": "a-b9491db1edc0c89fb226",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f0afb7905b5a93d0ae711f7ba912dd2f6cb2dab2c1386dd5bc9e45c09f2e1f89"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "3826f4cbf0fdd6055a2cd08b1b8bd3a776ebb31f9e41c06e18ee2366099e3ce1",
+      "candidates": [
+        {
+          "candidate_id": "a-1228d11b5a85670df846",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "94e1d04304a9c7c6167a0a485ed8056801b4e312d2bcdca2ce4104f31ed74e6b"
+        },
+        {
+          "candidate_id": "a-3bbef948df85813f0ba7",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "fbc1104b52deb847f3b646c3b44a2f603bfac7cdf01eb229594eada85b02972a"
+        },
+        {
+          "candidate_id": "a-9a83a01080c297b620b0",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "661b3dfbb05d7c90631d3ea9a118ff0d193292ebf9db74ee13e6e14945444f31"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-7d4d712512342804e2b2",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "588812bdf472ba3028994590e1c5124b7e546733debc5a8dcd331f4367315341"
+        },
+        {
+          "candidate_id": "a-e9ec41a14ccc45ccc741",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d7b3e1c20272e8712eb42cf5aa867bb7b7d85ed7d918cd5b1e9dc02488eeb6e0"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-aec3e5bd83c6ebf16927",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "bfefc0ff160aef082fd2c41a06a7a9fc3abcb545f11dc1b004e34d463e8fddc2"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-9bd666204b6287f83333",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e14affd7793359aaae85b8acae19fe75d35d5200b277529c00c34f4d736afb38"
+        },
+        {
+          "candidate_id": "a-aaf91c1b91bfbd4e4d7b",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "f0264656f702b1029dc48e52b91df586ad32298c03ac15200b6e943f1901efc4"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-8-Q0019",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-bff30913b72590f85e78",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "960c522a415a0c133b0e72b61920217e46b73862f4931037e14b82d4eb4b8c6d"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0000",
+      "reference_status": "usable",
+      "reference_note_sha256": "514fec34b4cb8c10eecd181b6a3559d849eba01673e67e1b6e099910a56845fb",
+      "candidates": [
+        {
+          "candidate_id": "a-39628e40a9a54d300ce0",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "051f5b8c5f56e532e3d6283a080a14a9a2ea133928947350563df8f99a8dbf75"
+        },
+        {
+          "candidate_id": "a-957bfa27d643682e5175",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "9ba458366219676ac92348c5d44269d16b053239e85a8c4d061800a14b10760e"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-887239efd93528aa9225",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a69571b014069a1908a5b650a07b88caead08cabfe16b1aaf33dd24776a913bb"
+        },
+        {
+          "candidate_id": "a-e08b48b5766721041b1d",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "0ac504ac30b42bdb2fa1c3a043206fc7cae27e7f70a4f428476ed14c4f8d5e7c"
+        },
+        {
+          "candidate_id": "a-e7b7cf84e62718536547",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "b5124abf23d1751017aa38c18c5b51a1d801eb9de43b041a52f6592c330706aa"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0002",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-19f7ffeaa92a7f0ebc3e",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "aa551e9f96b3498f87c64ecdefd38368a5f12254645bcc3d9beacaf30ad26d74"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0003",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-413d1fc3e313c8d65b9b",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "b349eaa94639b3fa98cf4778a439216bd75d7b3fc8ae374df09246728eb599cc"
+        },
+        {
+          "candidate_id": "a-e6f60c7634864510c261",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7ffa35966fc8089ae85923f0d78f07c07744ce2d10458293c94f9e256277cf31"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3eee65066b0c6f6ee6f3",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d5fff9b46374a660a66cc675eb60fc481a83aeb74e7a116e5374030e2b623613"
+        },
+        {
+          "candidate_id": "a-8f4cd3dedf998f9b5510",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "c32f9a7c87f86f224f4841442e20181fdc4b202cb3bb63635c6f2032b32706de"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2d3f7557043ac9fbe9af",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "960ba9424fc68889d2bbe346a4ec5f5f8d7effa46ad16bb96b57a89a15b60c97"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0828bf8a6bf2989430e9",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "0dc52ef99ef8d3679049d57433f4c5f5153e35cfbdf640be543142845384876e"
+        },
+        {
+          "candidate_id": "a-10688a0d94183e1cd944",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "faf192960dc439ef482c9478a1ffe04209aacbf9a983d495b8183c271f38cb46"
+        },
+        {
+          "candidate_id": "a-84c8bcd45ede75b383b9",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f049ad0f9895ff5b85129f66a432c52f87c7fd7ae5d32e5561d33da2aca2655b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0e43e20f262e2d0c070b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f23a0ba0d444830a0567768c911d59b689c29378ec7756a7752ba16c552bdc54"
+        },
+        {
+          "candidate_id": "a-85607c07ddc9ebe22c57",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7b309af673a780603fd8894a934c9f99ff92d42b3358b807828230a5cf27cd65"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0008",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-8979f5fc69caf13c9294",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "dc5f9990d38c95d3ccbacdb3d7001a2f128847b7e91d3f26dcdb8c127eae62fd"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-25e09d76401a6de3342a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7efde2d749cb72eb1f2dd8386a86bc711adf93f14afb39d61e2d32718e629663"
+        },
+        {
+          "candidate_id": "a-2d8a2265011ee51af4b1",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "0873eb325dd9cb18d3be643cfbd643ec3bfa8495f93bd0fa49e3b263a24a87f5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-284dff1d14ea63ad5f75",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ed94070ca9dad3ee44371f6ebe62b6510654dbaa0c0323e93937488fa82a7c39"
+        },
+        {
+          "candidate_id": "a-780d94e6c62529a16c92",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "576199875d22f0a257901b465126d861991dbffadc4badb73918607d67c76289"
+        },
+        {
+          "candidate_id": "a-c4e849887fe139b02429",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a8cb6bbc2066b9db2b8b37ce956de4202b65101951f222c3b9a8eaf7a95434d5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2b478884a584147f1e9b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7d7646c4580094584addeee96e07387f5e936f9f7fd18f3d52ad89bab4dca844"
+        },
+        {
+          "candidate_id": "a-60f2f47745d342c4f262",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "9bf0a92dd84810f702ceedaaf5557d07ea47798c63e416c44f599e0b40eeafba"
+        },
+        {
+          "candidate_id": "a-6e27fc92a7efcc0f8197",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "e7763922f2237a02539f2752d7e4822388387675f9ffc9f55a698f0b6266a980"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-029ddc9b20e6c428364b",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "b7b5099a5ada45a2daf3cff4ce2194d2b8926aa5b3534d0905cbed13b5c5e3e9"
+        },
+        {
+          "candidate_id": "a-6d8de4828d63a2729b8d",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "3f2a29e75e6952497419a1979b0baa57015a6d67bd653598bbc8751f45dfc4a1"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-908d9bdd934d82beaac2",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a6cfb830d2bc7546b019eec85df082abb8a358c05db8e4001350e27c90fe17d5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2e035c974a99430007d0",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "24c3b4d065bec7abc2ba078ff5937b7bf62ce84fa83ec83c7aa9b970293a9e87"
+        },
+        {
+          "candidate_id": "a-d89d1480a89fd45cbebe",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7d51c2ccecc832cfb63a12391b7217c2f286e830b1402265240a6c912f4d7e7e"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-457d98506afccbf0d28d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "c4ffe359b7e7479c5ac1a10f88cefdcf46d78492a5590cde4f4a11b94aa9d59e"
+        },
+        {
+          "candidate_id": "a-ebf6bf02fecd80dd42d4",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ea3c0ab59164c400f22b663b6d1c926891d3c27bcbcb69b566fba8c4d374e44c"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-391ce99cff5d59acd9ab",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "70c82da7bb542effdc6f7cbebdc3947460b8f1b745dc50aaf0988728d9351a9a"
+        },
+        {
+          "candidate_id": "a-68ae5ecef6a8a8c442c1",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "7ebb5271b9f306b32540271a66a62180ebcb95a88af68ef1bbfc3f9498ba260d"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-3f9814774e0cad6252eb",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a304f07e46d94fdb502a9d375dd2d154960b2298d1db860cabef5530cc767fc0"
+        },
+        {
+          "candidate_id": "a-d293b8d12d1249a63ca3",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "33ca4819bb54886b2a5a55fadf554aa5fc8d251658ac25a0a4a94f556d3dfb0f"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-963b02938c806fb35343",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "44fae3fe22ff20524f5159dc0efa4df8e87445241c7450c5560b38c74fd57d12"
+        },
+        {
+          "candidate_id": "a-e19470cdeebe73b1214b",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "7106f5e3544bbdee2c7eccdfc13eefe2514cc64a4d99e8e15f57589f98545535"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-9-Q0019",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-0f3cccd9653a760a3dc0",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "67a4c1dc8fd3949b030c78196fa9515cbdc208ad0c8697a2c62a3c107df6e2f9"
+        },
+        {
+          "candidate_id": "a-ee3009de24d4ee9bf255",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "10568cd498bccff72ab512da3b4a98b1b123440d608bba2abe8ae63b718031ed"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0000",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-c7d078bc98305b21120c",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "8ecb252e96d2d1e382178fb03227b00715c2cf6bbd16676c0c631831142271b1"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0001",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-5231843c26dc4bcfac9c",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "e2188acc9ff526a805ed6fbd97a8d33d14dc4a870f3f8966633ac92aa8d0c9a7"
+        },
+        {
+          "candidate_id": "a-b5ab025c0169e306e03f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e4b989ce8eb6961a0feee067a44b426439f87ae034a32737114f3e5474f00f49"
+        },
+        {
+          "candidate_id": "a-c297d98dc24c48630caa",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "a72797a8e2f1377ee95d2e685f404f27aa8100fca8289f9e911fd0b10f901f57"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0002",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2b0cb04cf5e8ce0ea78e",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "225cba85b67fe8c65b36e7e5c23147e9d4c1753f027c384307c39c0012003b4a"
+        },
+        {
+          "candidate_id": "a-be8eefffbf09e1c78e6f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "10e38ecc6789ddef59b0f8d598b65ce4efbf1cb9d2574e07a0e909d20dac8dcc"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0003",
+      "reference_status": "ambiguous",
+      "reference_note_sha256": "334d21d2c42d5bd354d6c7e757503aebcd3cd962015ef7e511f4046ba63c5426",
+      "candidates": [
+        {
+          "candidate_id": "a-99e867ba319beb1f1255",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "0f1db3a2fe20aea5a7055f2b0a4dda1f43ad2c91226fc146ca7737ee26644df5"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0004",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-5cd44773b0aa45dcc5fa",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "cff9b2f0086f52c7d88b88f7cc42f24082c95fa869837a0b933cfe88c3796ac1"
+        },
+        {
+          "candidate_id": "a-e386fe0e3dc7d0a5e07d",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "d73411cacdd1349afad995c15b709de4c12be1bac8452ea542d4a9ceadecda7b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0005",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-25b8359cf6d69c0caa6a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "2b7636225b7d488a0811f2af19f795a7e0cf50a2d8eecacea4df3521b6223716"
+        },
+        {
+          "candidate_id": "a-b8424859f2b3cb8fdbd2",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "3f45e17e25f1a15f1a40baf7114f4768c6818f48e336c2e60bc360892196bd8a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0006",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-4a9723492e85043592e5",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "aceed8ad195f4b89fc1683e4eb3848b846e4e6215d8b4de772cb5fb6b0d6d771"
+        },
+        {
+          "candidate_id": "a-b851999ff660cc82f7c2",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "28b55b992e6a4b25971c9104a30999eb3a87d97434fa9fee63904cfb2465236c"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0007",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-5f76d766c0b844b1a64d",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "8259beaba724c0ed9a5ae7b6f7325cb2996a29e0a1ed33bfb6f0dd0a0117a595"
+        },
+        {
+          "candidate_id": "a-71ad60faa3d3d8eb6130",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "5eb3a15ccfbe7543ca1e65c50b7f10256ea7b7cb9a31f957056cd4df6b4b197e"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0008",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-61262dc75dfec2ca11b6",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "9ad48cbb5bd9773681c69a3407031046a67275dd5cb6e11ecaec68ab3ed4cfba"
+        },
+        {
+          "candidate_id": "a-61f0008f9147788e711f",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "924f677ac8b0b450475966b9cb331af945cf348ddc3511e7903f52d27d9c0cee"
+        },
+        {
+          "candidate_id": "a-fac73be9cf353881de3a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "673db0f2c044f9c7f9baf6c176ddd897bc21838212a25c9d5fbfd96a21c56b84"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0009",
+      "reference_status": "usable",
+      "reference_note_sha256": "c098fe8af7ff44beec5dd2fbb7f09cba37b68d7b008ff1ebad1ead1cc81730bb",
+      "candidates": [
+        {
+          "candidate_id": "a-e57fef3d51989eebcd19",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e74d24f880a5d37c3a47752a3db41ce2d9f30ee1c61c331326f140923dbed248"
+        },
+        {
+          "candidate_id": "a-f1a5be3e4296e1d6e3a5",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "a075947ab4158240a4ec63f28009001b592469f16d6c06ffe62d4fc47ca3e0b3"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0010",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-873132d2a10ccfc761ff",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "552bb3ac659781ad5c0e8364e3f0335e5d75b4b7975656aa32933ed4f9b9fc01"
+        },
+        {
+          "candidate_id": "a-c68d40ec2dbbc4260a23",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "c68bc7b247e65e306bbf1dc8facb35e32e8824745ba21ed03c45f66f4d715fb8"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0011",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-4f0228f3ae2c16c2d765",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "6da8114a895a60d297ad1e70ac2ff8abe6b8db96efaa651ae23673fcd893c5f1"
+        },
+        {
+          "candidate_id": "a-60b316eff3cc604083a7",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "215c92ea28f3974350fae5e6620651a57111c1ff1f5a2b978b38f165ab93dd4c"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0012",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-8df0382989d2b7f8fc69",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "2bc777ce35d6323f77d5a19a9b36bc5c44096e423a797ecccef97812bbb4cc5a"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0013",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-6f57829ba4ca68643581",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "4271f73deed740af45c30269955c1b52a2a5fdb90d3a5c105b501d8b4e198182"
+        },
+        {
+          "candidate_id": "a-a732e2f8d639557fd238",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "5fdd49b0b06001938aa32bac8d57ab3637f4954d1be7156fc880ec3f86be5815"
+        },
+        {
+          "candidate_id": "a-d406159ca89944bd5a48",
+          "pass": false,
+          "material_contradiction": true,
+          "reason_sha256": "52e65641c92a66e15bc3ccc0d14e8de9760b76b57f227f1d2de242ae7832eb53"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0014",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-87e4f23b9d4a58f6f5b8",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "e566e7c1405592f207aea40f2daecd52bff6f50a1bc2098c991935109615dda6"
+        },
+        {
+          "candidate_id": "a-a0e1bcbbcc463778e5a3",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "af692346a2fbb33f6c130db26248b224535b3acf8d634919ff2320746a64f5b1"
+        },
+        {
+          "candidate_id": "a-ff2e8be3fa6e1fad5f61",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "35b60d971194e4455eba39d0676a58df090fcf7dac46a81a2014f80b5c84e4e6"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0015",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-631cf0e3c61f33068a1a",
+          "pass": true,
+          "material_contradiction": false,
+          "reason_sha256": "e1b54f4d93fca201be6540a6dad7c156d46eb2a936ea371aafaec1a99a9a6fed"
+        },
+        {
+          "candidate_id": "a-afdb781668dca1b8800c",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "72fa9e1bb8bf7ba9936d4616dcfbe0485057b2a7f26990ebee57cd3f431c2ad5"
+        },
+        {
+          "candidate_id": "a-dfc2823f690cf0969b13",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "60699f14bc90552424a9d08ba5901a1a3c580353ad8c76b38748affade2d654b"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0016",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-9af8a7df645b2e4ab733",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "bbfd90f4ed16ac95db7df17e9405b045c05fe3ee3c5ae61a69b48adabab3fd41"
+        },
+        {
+          "candidate_id": "a-e02748b51b598c036c61",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "2b82f29a86d72ced8c0bca7dd151fa0a6e2f5a2cce40db8d5c1bb49d7db5e304"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0017",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-486cb1438438dbb70b5a",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "0f7c242a511ada5ce990bbb70045c94fc1f85a378b5559958b1e1a7986cce42c"
+        },
+        {
+          "candidate_id": "a-d07e1dfe0f0345c211af",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f9fc105927c7f01e59aa9ba1960412d6fab51dec4457d014e57d988bcdd890bc"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0018",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-2ba85f3d86ba864202fe",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "f7090423bfc74d69505a5e89cd14e2bf86f30ebe5de3f6bbfc7d496d69eb0e01"
+        },
+        {
+          "candidate_id": "a-4dfaba014b3acda51cc4",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "01f767c7648981fd6ebece067484477c7db344f10989730c63724c1b9a7138cc"
+        },
+        {
+          "candidate_id": "a-52d4ac52e4e4f3c40e22",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "89fa219b6a389f868d54710e7991c153fa93f249524897768e81f56a8080fbb7"
+        }
+      ]
+    },
+    {
+      "id": "BEAM10M-10-Q0019",
+      "reference_status": "usable",
+      "reference_note_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidates": [
+        {
+          "candidate_id": "a-6d3e15aadd81456430b1",
+          "pass": false,
+          "material_contradiction": false,
+          "reason_sha256": "ea4fef9f5a28e0739fde76f368a44c411fd6f3f1dde3334749a5c738f526aab4"
+        }
+      ]
+    }
+  ]
+}

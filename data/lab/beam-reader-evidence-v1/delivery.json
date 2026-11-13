@@ -1,0 +1,161 @@
+{
+  "recorded_utc": "2026-11-05T08:53:35.173013+00:00",
+  "result_head": "50158ddb40e02e43ca9de8d929fe101ec6414052",
+  "ci": {
+    "head": "50158ddb40e02e43ca9de8d929fe101ec6414052",
+    "run_id": 41996840238,
+    "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/runs/41996840238",
+    "jobs": [
+      {
+        "id": 127141988418,
+        "name": "Tests (Python 3.12)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988551,
+        "name": "LifeSim (macos-latest, Python 3.13)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988623,
+        "name": "Tests (Python 3.11)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988742,
+        "name": "Canonical store guard",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988761,
+        "name": "Project-memory integrity",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988811,
+        "name": "LifeSim (macos-latest, Python 3.14)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988814,
+        "name": "Kernel mutations (0.1.0)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988825,
+        "name": "Repository claim audit",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988846,
+        "name": "Memory kernel (Python 3.14)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988942,
+        "name": "LifeSim (windows-latest, Python 3.13)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141988945,
+        "name": "Kernel mutations (0.2.0)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 127141989033,
+        "name": "LifeSim (windows-latest, Python 3.14)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "full_linux_suites": {
+      "3.11": {
+        "passed": 3447,
+        "skipped": 21,
+        "seconds": 414.1
+      },
+      "3.12": {
+        "passed": 3447,
+        "skipped": 21,
+        "seconds": 399.81
+      }
+    }
+  },
+  "github": {
+    "result_head": "50158ddb40e02e43ca9de8d929fe101ec6414052",
+    "problem_issue": {
+      "number": 110,
+      "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/110",
+      "readback_verified": true
+    },
+    "comments": [
+      {
+        "issue": 51,
+        "id": 6653723405,
+        "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/51#issuecomment-6653723405",
+        "readback_verified": true
+      },
+      {
+        "issue": 7,
+        "id": 6653724008,
+        "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/7#issuecomment-6653724008",
+        "readback_verified": true
+      },
+      {
+        "issue": 84,
+        "id": 6653724609,
+        "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/84#issuecomment-6653724609",
+        "readback_verified": true
+      }
+    ],
+    "pr": {
+      "url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/pull/105",
+      "head": "50158ddb40e02e43ca9de8d929fe101ec6414052",
+      "draft": true,
+      "body_readback_verified": true
+    }
+  },
+  "source_window_github": {
+    "comment_url": "https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/109#issuecomment-6652977302",
+    "comment_id": 6652977302,
+    "issue_state": "closed",
+    "readback_verified": true
+  },
+  "verified_private_restore": {
+    "verified_utc": "2026-11-05T08:46:05.566586+00:00",
+    "head": "50158ddb40e02e43ca9de8d929fe101ec6414052",
+    "restored_refs": 78,
+    "git_fsck_exit": 0,
+    "restored_worktree_clean": true,
+    "copied_files": 220,
+    "source_writes": 0,
+    "previous_verified_delivery": "2026-11-05/beam-format-delivery"
+  },
+  "private_restore_receipt_sha256": "ed495b190ae358d532ebf1e624d689daa32ae7c757f2032cbe71283b0bdf9b46",
+  "canonical_memory": {
+    "events": 371,
+    "violations": 0
+  },
+  "historical_registry_rows": 83,
+  "new_local_calls": 605,
+  "new_api_calls": 0,
+  "pr105_local": 4361,
+  "pr105_paid": 463,
+  "pr105_total": 4824,
+  "old_h1_ledger": 3262,
+  "new_beam_ledger": 605,
+  "new_beam_cap": 650,
+  "draft_pr": true,
+  "scope": "CI and verified restore apply to the recorded result head. This later content-free delivery commit has separate CI. No independent review, merge, deployment or NIE change."
+}

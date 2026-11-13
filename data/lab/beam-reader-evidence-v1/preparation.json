@@ -1,0 +1,1024 @@
+{
+  "cases": 200,
+  "primary_calls": 600,
+  "controls": 5,
+  "planned_calls": 605,
+  "task_local_cap": 650,
+  "previous_h1_local": 3262,
+  "historical_mab_local": 494,
+  "previous_pr105_local": 3756,
+  "previous_paid_attempts": 463,
+  "beam_ledger_before": 0,
+  "beam_ledger_sha256_before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "h1_ledger_sha256_before": "c491b6f3bf406f8b3b495ee5878ff292049be911ddcbb0d3d5b6d66ccc8e7055",
+  "api_ledger_sha256_before": "a3492c363f54f5aacae52a11f051f654194190ea988c037b6d0c2e9203940943",
+  "access_manifest_sha256": "b498315ad8eda1f593b555a0aa1530a3d7d79fee97377de6608619d9aeaa90e6",
+  "access_packet_sha256": "f2af7475c771d920dce9025fce6b14ac3d95ad746ea697788f46b658ba6935c7",
+  "labels_sha256": "69cd777cf5351ce27445a78bf96b9674177779b60912c4b7a503fc2bf5efab40",
+  "packets_sha256": "a023bcce76cb33f4e0fa57e1faa65213bedf94afb344fcf6ebdd7ca37eeb86b3",
+  "config_sha256": "10863e3c9b18098564b32269ebeb2acdda7300f4a0c90720c9de979e8bd784f7",
+  "per_case_preparation": [
+    {
+      "id": "BEAM10M-1-Q0000",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0001",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-1-Q0002",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0003",
+      "shown": 7,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0004",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0005",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-1-Q0006",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0007",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0008",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0009",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0010",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-1-Q0011",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0012",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0013",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-1-Q0014",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0015",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-1-Q0016",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0017",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0018",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-1-Q0019",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-2-Q0000",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-2-Q0001",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-2-Q0002",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-2-Q0003",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0004",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0005",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-2-Q0006",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-2-Q0007",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0008",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0009",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0010",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0011",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0012",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0013",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0014",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-2-Q0015",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0016",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-2-Q0017",
+      "shown": 6,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-2-Q0018",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-2-Q0019",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0000",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-3-Q0001",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-3-Q0002",
+      "shown": 7,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0003",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-3-Q0004",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0005",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-3-Q0006",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0007",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-3-Q0008",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0009",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-3-Q0010",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0011",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-3-Q0012",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0013",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0014",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-3-Q0015",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-3-Q0016",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0017",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0018",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-3-Q0019",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0000",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0001",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-4-Q0002",
+      "shown": 6,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0003",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0004",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-4-Q0005",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0006",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-4-Q0007",
+      "shown": 8,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0008",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-4-Q0009",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0010",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0011",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0012",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0013",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0014",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0015",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0016",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0017",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-4-Q0018",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-4-Q0019",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0000",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-5-Q0001",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0002",
+      "shown": 6,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0003",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-5-Q0004",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-5-Q0005",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0006",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0007",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-5-Q0008",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0009",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0010",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0011",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0012",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0013",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0014",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0015",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0016",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0017",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0018",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-5-Q0019",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0000",
+      "shown": 9,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0001",
+      "shown": 6,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0002",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0003",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0004",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-6-Q0005",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-6-Q0006",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0007",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0008",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-6-Q0009",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-6-Q0010",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0011",
+      "shown": 7,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0012",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-6-Q0013",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0014",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0015",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-6-Q0016",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-6-Q0017",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-6-Q0018",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-6-Q0019",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0000",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0001",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0002",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0003",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0004",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0005",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0006",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0007",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0008",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0009",
+      "shown": 6,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0010",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-7-Q0011",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0012",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-7-Q0013",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0014",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0015",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0016",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-7-Q0017",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0018",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-7-Q0019",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-8-Q0000",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0001",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-8-Q0002",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0003",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0004",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-8-Q0005",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0006",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-8-Q0007",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0008",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0009",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0010",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-8-Q0011",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-8-Q0012",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0013",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-8-Q0014",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0015",
+      "shown": 9,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0016",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-8-Q0017",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0018",
+      "shown": 7,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-8-Q0019",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-9-Q0000",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-9-Q0001",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0002",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0003",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0004",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0005",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-9-Q0006",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0007",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-9-Q0008",
+      "shown": 10,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0009",
+      "shown": 6,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0010",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0011",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-9-Q0012",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0013",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0014",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-9-Q0015",
+      "shown": 9,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0016",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-9-Q0017",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-9-Q0018",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-9-Q0019",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0000",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0001",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0002",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0003",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0004",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0005",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0006",
+      "shown": 4,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0007",
+      "shown": 8,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0008",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0009",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0010",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0011",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0012",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0013",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0014",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0015",
+      "shown": 5,
+      "windows_removed_for_common_system_budget": 0
+    },
+    {
+      "id": "BEAM10M-10-Q0016",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0017",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0018",
+      "shown": 2,
+      "windows_removed_for_common_system_budget": 1
+    },
+    {
+      "id": "BEAM10M-10-Q0019",
+      "shown": 3,
+      "windows_removed_for_common_system_budget": 1
+    }
+  ],
+  "expected_answer_values_read": false,
+  "new_candidate_not_old_graph": true
+}

@@ -1,0 +1,37 @@
+{
+  "failures": [],
+  "source_messages_reconstructed": 187734,
+  "windows_reconstructed": 405070,
+  "query_pairs_reconstructed": 200,
+  "native_message_packets_reconstructed": 400,
+  "source_roles": {
+    "user": 93868,
+    "assistant": 93866
+  },
+  "window_text_bytes_with_overlap": 447990532,
+  "all_message_budgets_hold": true,
+  "empty_retrieval_packets": 0,
+  "shown_window_distribution": {
+    "4": 68,
+    "3": 86,
+    "7": 4,
+    "5": 22,
+    "2": 7,
+    "6": 7,
+    "8": 2,
+    "9": 3,
+    "10": 1
+  },
+  "queries_with_omitted_candidates": 200,
+  "queries_with_term_truncation": 2,
+  "queries_showing_partial_sources": 187,
+  "maximum_message_bytes": {
+    "utf8": 5995,
+    "ascii_escaped": 5995
+  },
+  "source_manifest_sha256": "b498315ad8eda1f593b555a0aa1530a3d7d79fee97377de6608619d9aeaa90e6",
+  "audit_seconds": 31.60999999998603,
+  "new_model_calls": 0,
+  "benchmark_score": null,
+  "claim": "Authored structural reconstruction, not semantic relevance or official memory accuracy."
+}

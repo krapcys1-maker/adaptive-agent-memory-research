@@ -1,0 +1,26 @@
+{
+  "source": {
+    "head": "b8e3f8347ac0fa357f390442962144987e55db23",
+    "clean_tree": true,
+    "sha256": {
+      "scripts/beam_reader_evidence_v1.py": "10a06fc0b54383886cb63247469881c1c12aa095e8fb739788fa4f408118af4e",
+      "tools/source_windows_v1.py": "62bc626f8ff79d4e2573741dcb4242438008589cbc15e215fec0fdb13e079181",
+      "scripts/nie_reader_pilot.py": "18d08798123849d444c0ac7e8e1ebf0f2c32f73c672b2d9b939f009a4c83c93b",
+      "data/lab/beam-reader-evidence-v1/PLAN.md": "462a5856bef1a8be9e1370de46877b29a053722e79d36be77fa2f280551d925c",
+      "data/lab/beam-reader-evidence-v1/config.json": "10863e3c9b18098564b32269ebeb2acdda7300f4a0c90720c9de979e8bd784f7",
+      "data/lab/beam-reader-evidence-v1/preparation.json": "f03e4572595ec0f4b1ac55bebbe347e94b715be19a88715007e85cc41a7dcd44"
+    }
+  },
+  "files_sha256": {
+    "answers.jsonl": "d04b36feea9accd661dc9db649643cc7e5d50b4acae1d4942216a670f4b26292",
+    "attempts.jsonl": "5f53db605502e79558216e43aab48e9fd6a3dae29747dde8e7ccb296cee45e7c",
+    "controls.jsonl": "7a35f9421cc29bbd55973d97516f36f94ac639dcdaada25e25e0095c7db8c52b",
+    "finished.json": "e6e78ab4e338dfb633e8a59f02c04a67c444662f23ef2e328fa1d2e74fde435e",
+    "manifest.json": "f456b331188dd069ddf9723b8a99d8c61c12ffd99b1b24ec1cc0fdf5645fd939",
+    "packets.jsonl": "a023bcce76cb33f4e0fa57e1faa65213bedf94afb344fcf6ebdd7ca37eeb86b3",
+    "preflight.json": "95849f46d83ae1ab2d3d860726cc0fb48a4ac4ee88507b7a34f7dc60bf1f2877",
+    "preparation.json": "f03e4572595ec0f4b1ac55bebbe347e94b715be19a88715007e85cc41a7dcd44",
+    "release.json": "3ccfd1c5a3b1b2bc0d3f9f7dab916b2cb2d4a0808a397f5da0a85230a9a3de72",
+    "responses.jsonl": "05bd6d8c28ee0924c78d2a0cc774501c490f57ec2759e93e2a551c2ebf3f9da7"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "source_revision": "b2da22eac88bb0874c64665f13457eb99835774a",
+  "files": [
+    {
+      "path": "chats/10M/1/chat_trunecated.json",
+      "bytes": 49351947,
+      "git_blob_sha1": "3a0084cfc58ddee32a30149e1db2b79437c40a71",
+      "sha256": "73d869ac8bb1459b525bb1b72c5862aa46d814740e62fb8bc9a56064c3422dd8",
+      "cached_copy": true
+    },
+    {
+      "path": "chats/10M/1/probing_questions/probing_questions.json",
+      "bytes": 39492,
+      "git_blob_sha1": "3b970fcc9d8615e9a291f0e66a1829bd6227c281",
+      "sha256": "2e27f7a1bd725568bafe8d6bcaac6369aa074c7cf582440450cb95f669560642",
+      "cached_copy": true
+    },
+    {
+      "path": "chats/10M/10/chat_trunecated.json",
+      "bytes": 50403644,
+      "git_blob_sha1": "17ea429216a26d294b72355bbc06534ed57a2bcd",
+      "sha256": "d8eaa093a7ae01ba59f816ab49a7124871661fda632c44b6b46a4af836da2b41",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/10/probing_questions/probing_questions.json",
+      "bytes": 34694,
+      "git_blob_sha1": "4fa56c5a1981662a80e5fca9adf1e25d368c95ae",
+      "sha256": "c7e7652adcab53f5f205d6f8df86d10789a51bb6e53fb2e3b56655a0d352b671",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/2/chat_trunecated.json",
+      "bytes": 49621333,
+      "git_blob_sha1": "e9cc1aced3c3d74bee86a2b729c7490025bfbb7e",
+      "sha256": "8e552cd27b1161d8c0e89629d2b3e307113f26689a3f8838fac068d4c2647650",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/2/probing_questions/probing_questions.json",
+      "bytes": 38119,
+      "git_blob_sha1": "fba10193df501880fe7fc79e8ee6490498156305",
+      "sha256": "059fa3af3ac26ca4f8371bba7fca8ecedc7f8e08765693847d57f672cd042c12",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/3/chat_trunecated.json",
+      "bytes": 49669838,
+      "git_blob_sha1": "910079630072b6df14c1f0853a7ea1612e9b2751",
+      "sha256": "505342548760a368319bd8c6383becbaacf0b5ed1bf499830f1a6b0c48ea9da4",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/3/probing_questions/probing_questions.json",
+      "bytes": 37152,
+      "git_blob_sha1": "df551bca955218379fccd607eea872fc2a48e824",
+      "sha256": "e7698e50aceb4a544b056727ceddba8bf32870486e7d84b1869fdfbac533d79f",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/4/chat_trunecated.json",
+      "bytes": 34207293,
+      "git_blob_sha1": "ffb8c24e62776ec15ceeefd39ff1ecd101c03896",
+      "sha256": "eb0fc00cfe4b9911ff5f045b2ef31058c2a1273535bad02f23c2bf22921f5f03",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/4/probing_questions/probing_questions.json",
+      "bytes": 34136,
+      "git_blob_sha1": "160098afa33ddb229f9ab559f47ca80c3fa6b532",
+      "sha256": "a43790fab80811d91a0fc101be929c8faf510eb59afbeb32ceae124a70953ab0",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/5/chat_trunecated.json",
+      "bytes": 37226838,
+      "git_blob_sha1": "78a0b7d3eb94c9d11a6e8d0539442c014ed9648d",
+      "sha256": "cc8e6febacb09e4fb95c2505e110ebd2619bc0ea440d3857fd8e962dc89de88c",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/5/probing_questions/probing_questions.json",
+      "bytes": 42405,
+      "git_blob_sha1": "a54a9a4c298675e34e7924b5b8c5f48d0689820f",
+      "sha256": "d582e93e23248db017e797de0f2391b7145f315c87ae2ace2261120f1dd2d2b1",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/6/chat_trunecated.json",
+      "bytes": 50475274,
+      "git_blob_sha1": "369ea6321566fec13e40fd0cc3e88a7bf7612506",
+      "sha256": "8129dca23a091d857baf32a6230f47d8ecf84be446139002defbe9c51e5cdf99",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/6/probing_questions/probing_questions.json",
+      "bytes": 37455,
+      "git_blob_sha1": "daa797fa98136bf5e575de486545ae18ec0b306b",
+      "sha256": "890a3eeea5b3cbc0163ab3f3b6f5bbfb1ee398f7619ad411554b0ee3b52309ff",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/7/chat_trunecated.json",
+      "bytes": 50082203,
+      "git_blob_sha1": "6ab3e69da0feac43a9740441329c0231772cb3c5",
+      "sha256": "93c411466ad2603aa855a003dbf3160cdbb63184540f7104ba32cfb2acd31c5f",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/7/probing_questions/probing_questions.json",
+      "bytes": 34805,
+      "git_blob_sha1": "4067dc67a642c03043e907abf6763a65d4de8282",
+      "sha256": "146ba7bfdd7f561a1d90ac9c3eb69a2103b1cd09ddc87506bafe148aa7a4096e",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/8/chat_trunecated.json",
+      "bytes": 49968696,
+      "git_blob_sha1": "d33e5d697949d4683fe68016009e18e78bc33c4f",
+      "sha256": "50db83e912c0a95ff08f8bc1350fd0e4b227407352a0a9388caefdb803894048",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/8/probing_questions/probing_questions.json",
+      "bytes": 35844,
+      "git_blob_sha1": "cc5e4c645d7ee6bad6307ff294fd58ca6f934f4c",
+      "sha256": "17b70b2557663fbe3a476713ec15763e94102697be580c031720b0e21a88bf0e",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/9/chat_trunecated.json",
+      "bytes": 50495854,
+      "git_blob_sha1": "187e6fa8da0003c15bf345f3e1cf44139666f272",
+      "sha256": "ef1952bd6960305ca0e91d36d439a3f447182581a94254179eb7208881540c8c",
+      "cached_copy": false
+    },
+    {
+      "path": "chats/10M/9/probing_questions/probing_questions.json",
+      "bytes": 35284,
+      "git_blob_sha1": "8296b2b9a08434eda3100031da661ab27f164870",
+      "sha256": "921ac87d081ff27a8b92b071b5df079812f9284cfe96fca10b0aaa18777294f4",
+      "cached_copy": false
+    }
+  ],
+  "failures": [],
+  "complete": true,
+  "bytes": 471872306,
+  "new_model_calls": 0,
+  "elapsed_seconds": 46.28100000001723
+}
