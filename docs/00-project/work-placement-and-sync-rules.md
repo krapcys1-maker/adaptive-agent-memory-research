@@ -50,7 +50,9 @@ is held and why. A task that ends with results that are neither is reported by t
 ## 3. When to open a pull request
 
 After every stage that produced code, data or a document that later work uses. Open it as a draft within a day of the
-first useful commit; mark it ready only after the required checks pass. Merging is the maintainer's action.
+first useful commit; mark it ready only after the required checks pass. Merging needs the maintainer's authorisation,
+given for the pull request or for a named task (for example a consolidation the maintainer delegates in writing); the
+agent then checks the content, the exact head and the required checks before it merges.
 
 ## 4. Issues
 
