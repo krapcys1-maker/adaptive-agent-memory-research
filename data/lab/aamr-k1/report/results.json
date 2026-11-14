@@ -1,0 +1,1001 @@
+{
+ "L9": {
+  "M": {
+   "by_task_pct": 18.461920500863023,
+   "by_turn_block_pct": 16.965656479275157
+  },
+  "S": {
+   "by_task_pct": 12.584778159095222,
+   "by_turn_block_pct": 10.874991847754494
+  },
+  "X": {
+   "by_task_pct": 0.09652509652509651,
+   "by_turn_block_pct": 0.09727626459143969
+  }
+ },
+ "block_A": {
+  "M-P": {
+   "estimate_pp": 4.72972972972973,
+   "interval95": [
+    -4.4232512561733355,
+    13.882710715632795
+   ],
+   "state": "V4",
+   "tasks": 148
+  },
+  "excluded": 0
+ },
+ "blocks": {
+  "A": "done",
+  "S1": "done",
+  "S2": "done",
+  "S3": "done"
+ },
+ "calls_per_episode": {
+  "M": 9.281531531531531,
+  "N": 9.662162162162161,
+  "P": 9.97972972972973,
+  "S": 9.457207207207206,
+  "X": 9.774774774774775
+ },
+ "caveats": [
+  "PRZENOSZALNOŚĆ (nie zmienia stanu głównego): M - S: wykryto zależność przez wspólne ślady (ρ̃ = +0.030, p = 0.016); stan przy przedziale poszerzonym x1.23: V5.",
+  "M - S: zależny od domeny (warstwa E3-VC: 16,7 pp, 95% wyklucza 0 ze znakiem przeciwnym).",
+  "Kontrola dryfu bloku A niespełniona (zgodność N lub M z NIGHT-2 poniżej progu); stany z bloków próbkowanych pozostają ważne."
+ ],
+ "completed_sampled_blocks": [
+  "S1",
+  "S2",
+  "S3"
+ ],
+ "contrasts": {
+  "MP": {
+   "WR1_bootstrap": [
+    -5.63063063063063,
+    11.036036036036034
+   ],
+   "WR2_first_trace_groups": {
+    "groups": 68,
+    "interval": [
+     -8.816479762265145,
+     12.810410667960754
+    ]
+   },
+   "WR3_sign_flip_p": 0.484,
+   "WR4_test_only": {
+    "estimate_pp": 6.06060606060606,
+    "interval": [
+     -5.742812513884002,
+     17.864024635096122
+    ],
+    "state": "V4",
+    "tasks": 88
+   },
+   "WR5": {
+    "LEN": false,
+    "LEN_reasons": [],
+    "adj": [
+     -7.918569607072268,
+     13.208679691385537
+    ],
+    "alpha": 2.6450550421566352,
+    "balanced": [
+     -6.009639335117869,
+     11.451816205866171
+    ],
+    "beta": 2.8185333824470997,
+    "beta_ci": [
+     -301.3936138868997,
+     307.03068065179383
+    ],
+    "est": 2.702702702702704,
+    "mean_x": 0.020453069992030833,
+    "n_bal": 147,
+    "per_task_imbalance_q05_50_95_pct": [
+     -0.4669253582658017,
+     2.0447151978142397,
+     5.079726854440647
+    ],
+    "share_big": 0.0
+   },
+   "answers": {
+    "at_least_10pp": "nierozstrzygnięte",
+    "positive": "nierozstrzygnięte"
+   },
+   "dependence": {
+    "L2n": 17.027027027027028,
+    "null_mean": -0.040960470679863914,
+    "null_sd": 0.013702239701708023,
+    "p": 0.1195,
+    "pairs": 1260,
+    "rho_hat": -0.024360058187134548,
+    "rho_star": null,
+    "rho_tilde": 0.016600412492729366,
+    "widening": 1.1325438941486992
+   },
+   "estimate_pp": 2.702702702702704,
+   "interval": [
+    -5.968260350560554,
+    11.37366575596596
+   ],
+   "level": 0.983333333333,
+   "state": "V4",
+   "tasks": 148
+  },
+  "MS": {
+   "WR1_bootstrap": [
+    -7.657657657657657,
+    7.4324324324324325
+   ],
+   "WR2_first_trace_groups": {
+    "groups": 68,
+    "interval": [
+     -11.86544771383862,
+     7.883188143343755
+    ]
+   },
+   "WR3_sign_flip_p": 1.0,
+   "WR4_test_only": {
+    "estimate_pp": 3.409090909090909,
+    "interval": [
+     -7.439384707329899,
+     14.257566525511717
+    ],
+    "state": "V4",
+    "tasks": 88
+   },
+   "WR5": {
+    "LEN": true,
+    "LEN_reasons": [
+     "po korekcie długości stan V4 zamiast V5"
+    ],
+    "adj": [
+     -8.296927234312033,
+     13.076313253926052
+    ],
+    "alpha": 2.3896930098070097,
+    "balanced": [
+     -8.275198053640437,
+     9.386309164751548
+    ],
+    "beta": -65.10195351121527,
+    "beta_ci": [
+     -224.06084286047536,
+     93.85693583804482
+    ],
+    "est": -0.2252252252252251,
+    "mean_x": 0.0401665095131401,
+    "n_bal": 120,
+    "per_task_imbalance_q05_50_95_pct": [
+     -4.920074555549014,
+     4.490694354750335,
+     14.522304300988464
+    ],
+    "share_big": 0.0
+   },
+   "answers": {
+    "at_least_10pp": "nie",
+    "positive": "nierozstrzygnięte"
+   },
+   "dependence": {
+    "L2n": 17.027027027027028,
+    "null_mean": -0.041312258795826715,
+    "null_sd": 0.01342113927131594,
+    "p": 0.016,
+    "pairs": 1260,
+    "rho_hat": -0.011205319744754126,
+    "rho_star": 0.039367920910893806,
+    "rho_tilde": 0.03010693905107259,
+    "widening": 1.2298909158635445
+   },
+   "estimate_pp": -0.2252252252252251,
+   "interval": [
+    -8.136987275209668,
+    7.686536824759218
+   ],
+   "level": 0.983333333333,
+   "state": "V5",
+   "tasks": 148
+  },
+  "MX": {
+   "WR1_bootstrap": [
+    -3.8288288288288306,
+    12.612612612612612
+   ],
+   "WR2_first_trace_groups": {
+    "groups": 68,
+    "interval": [
+     -9.255334039531915,
+     12.485959623098674
+    ]
+   },
+   "WR3_sign_flip_p": 0.2575,
+   "WR4_test_only": {
+    "estimate_pp": 7.575757575757577,
+    "interval": [
+     -3.793362575823113,
+     18.944877727338266
+    ],
+    "state": "V4",
+    "tasks": 88
+   },
+   "WR5": {
+    "LEN": false,
+    "LEN_reasons": [],
+    "adj": [
+     -3.6998256041763264,
+     13.744635052684703
+    ],
+    "alpha": 5.022404724254188,
+    "balanced": [
+     -2.937297270128566,
+     15.609473578668512
+    ],
+    "beta": -34.61883190724012,
+    "beta_ci": [
+     -136.6789073491488,
+     67.44124353466854
+    ],
+    "est": 4.054054054054054,
+    "mean_x": 0.027971789250278375,
+    "n_bal": 121,
+    "per_task_imbalance_q05_50_95_pct": [
+     -6.927399225460185,
+     2.4251326757835256,
+     17.514909460897066
+    ],
+    "share_big": 0.013513513513513514
+   },
+   "answers": {
+    "at_least_10pp": "nierozstrzygnięte",
+    "positive": "nierozstrzygnięte"
+   },
+   "dependence": {
+    "L2n": 17.027027027027028,
+    "null_mean": -0.04129832542099905,
+    "null_sd": 0.013406867153022835,
+    "p": 0.581,
+    "pairs": 1260,
+    "rho_hat": -0.044284807426579594,
+    "rho_star": null,
+    "rho_tilde": -0.0029864820055805416,
+    "widening": 1.0
+   },
+   "estimate_pp": 4.054054054054054,
+   "interval": [
+    -4.350002188182245,
+    12.458110296290354
+   ],
+   "level": 0.983333333333,
+   "state": "V4",
+   "tasks": 148
+  }
+ },
+ "drift_block_A": {
+  "E1/M": {
+   "agree": 55,
+   "min": 57,
+   "of": 60,
+   "ok": false
+  },
+  "E1/M-vs-N discordant": 18,
+  "E1/N": {
+   "agree": 57,
+   "min": 57,
+   "of": 60,
+   "ok": true
+  },
+  "E1/P-vs-N discordant": 12,
+  "E3/M": {
+   "agree": 83,
+   "min": 84,
+   "of": 88,
+   "ok": false
+  },
+  "E3/M-vs-N discordant": 33,
+  "E3/N": {
+   "agree": 86,
+   "min": 84,
+   "of": 88,
+   "ok": true
+  },
+  "E3/P-vs-N discordant": 22,
+  "NIGHT-2 M-vs-N discordant (E3 34/88, E1 20/60)": "reference"
+ },
+ "excluded_tasks": [],
+ "forbidden_hits": [],
+ "gains_losses_vs_N": {
+  "M": {
+   "gains": 42,
+   "losses": 36
+  },
+  "P": {
+   "gains": 29,
+   "losses": 29
+  },
+  "S": {
+   "gains": 37,
+   "losses": 30
+  },
+  "X": {
+   "gains": 24,
+   "losses": 31
+  }
+ },
+ "gates": {
+  "P_check.json": {
+   "L4b_max": 0.019417475728155338,
+   "blocks": 2056,
+   "header_failures": 0,
+   "max_len_dev": 6,
+   "p_blocks_sha256": "785d073b1133b89cf4d71a134d08446a2b2de6fc8d0a4b07d119d612ec1a5032",
+   "pass": true
+  },
+  "T.json": {
+   "api_ps": [
+    {
+     "context_length": 8192,
+     "details": {
+      "families": [
+       "qwen2"
+      ],
+      "family": "qwen2",
+      "format": "gguf",
+      "parameter_size": "14.8B",
+      "parent_model": "",
+      "quantization_level": "Q4_K_M"
+     },
+     "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+     "expires_at": "2026-11-13T22:55:57.9344914+02:00",
+     "model": "qwen2.5:14b-instruct",
+     "name": "qwen2.5:14b-instruct",
+     "runner": "llamacpp",
+     "size": 10290085231,
+     "size_vram": 10290085231
+    }
+   ],
+   "digest_ok": true,
+   "gpu_full": true,
+   "ollama": {
+    "version": "0.40.16"
+   },
+   "reason": null,
+   "status": "done"
+  },
+  "T_m.json": {
+   "at": "2026-11-13T20:49:02.943152+00:00",
+   "calls": [
+    10,
+    8,
+    10,
+    7,
+    8,
+    8,
+    16,
+    11,
+    10,
+    11,
+    5,
+    4
+   ],
+   "mean": 9.0,
+   "tasks": [
+    "multi_turn_base_54",
+    "multi_turn_base_69",
+    "multi_turn_base_75",
+    "multi_turn_base_96",
+    "multi_turn_base_19",
+    "multi_turn_base_5",
+    "multi_turn_base_36",
+    "multi_turn_base_25",
+    "multi_turn_base_179",
+    "multi_turn_base_196",
+    "multi_turn_base_198",
+    "multi_turn_base_155"
+   ]
+  },
+  "c_d.json": {
+   "at": "2026-11-13T20:46:52.831046+00:00",
+   "c_d": {
+    "GFS": 1.114161374299119,
+    "TRAVEL": 1.3325808477237049,
+    "VC": 1.28691627736434
+   },
+   "ref_check": [
+    {
+     "prompt_eval_count": 1209,
+     "reference": 1209,
+     "rep": 1,
+     "task": "multi_turn_base_63"
+    },
+    {
+     "prompt_eval_count": 1209,
+     "reference": 1209,
+     "rep": 2,
+     "task": "multi_turn_base_63"
+    },
+    {
+     "prompt_eval_count": 1686,
+     "reference": 1686,
+     "rep": 1,
+     "task": "multi_turn_base_31"
+    },
+    {
+     "prompt_eval_count": 1686,
+     "reference": 1686,
+     "rep": 2,
+     "task": "multi_turn_base_31"
+    },
+    {
+     "prompt_eval_count": 1744,
+     "reference": 1744,
+     "rep": 1,
+     "task": "multi_turn_base_171"
+    },
+    {
+     "prompt_eval_count": 1744,
+     "reference": 1744,
+     "rep": 2,
+     "task": "multi_turn_base_171"
+    }
+   ],
+   "rho_M": {
+    "GFS": 0.25240302094061107,
+    "TRAVEL": 0.2980022341724469,
+    "VC": 0.28990261669206724
+   },
+   "status": "done"
+  },
+  "gate_A.json": {
+   "P_A": 4396,
+   "P_S": 7326,
+   "go": true,
+   "m": 9.0,
+   "need": 19048,
+   "used": 177
+  },
+  "gate_S1": {
+   "P_S": 7326,
+   "go": true,
+   "m": 9.0,
+   "need": 7326,
+   "used": 4415
+  },
+  "gate_S2": {
+   "P_S": 7791,
+   "go": true,
+   "m": 9.570478723404255,
+   "need": 7791,
+   "used": 11504
+  },
+  "gate_S3": {
+   "P_S": 7825,
+   "go": true,
+   "m": 9.61260053619303,
+   "need": 7825,
+   "used": 18649
+  }
+ },
+ "interpretation_rule_D1": "ZASADA INTERPRETACJI (D1): próg 10 pp służy wyłącznie pytaniu, czy efekt sięga 10 pp. Efekty mniejsze niż 10 pp mogą być rzeczywiste i użyteczne. Brak wykazania efektu 10 pp ani brak wykrycia efektu nie są dowodem braku korzyści z pamięci.",
+ "invalid": null,
+ "invalid_and_unknown_calls": {
+  "M": {
+   "invalid_calls": 165,
+   "invalid_outputs": 1,
+   "nonexistent_functions": 0
+  },
+  "N": {
+   "invalid_calls": 204,
+   "invalid_outputs": 0,
+   "nonexistent_functions": 0
+  },
+  "P": {
+   "invalid_calls": 149,
+   "invalid_outputs": 9,
+   "nonexistent_functions": 0
+  },
+  "S": {
+   "invalid_calls": 120,
+   "invalid_outputs": 1,
+   "nonexistent_functions": 0
+  },
+  "X": {
+   "invalid_calls": 122,
+   "invalid_outputs": 0,
+   "nonexistent_functions": 0
+  }
+ },
+ "ladder": {
+  "M-N": {
+   "ci95": [
+    -5.530853249723093,
+    9.134456853326697
+   ],
+   "estimate": 1.8018018018018018,
+   "tasks": 148
+  },
+  "M-S": {
+   "ci95": [
+    -6.681671743896465,
+    6.231221293446015
+   ],
+   "estimate": -0.2252252252252251,
+   "tasks": 148
+  },
+  "P-N": {
+   "ci95": [
+    -6.183208737441349,
+    4.381406935639546
+   ],
+   "estimate": -0.9009009009009014,
+   "tasks": 148
+  },
+  "S-X": {
+   "ci95": [
+    -1.7550806818355413,
+    10.3136392403941
+   ],
+   "estimate": 4.279279279279279,
+   "tasks": 148
+  },
+  "X-P": {
+   "ci95": [
+    -6.279388474980319,
+    3.5766857722776173
+   ],
+   "estimate": -1.3513513513513509,
+   "tasks": 148
+  }
+ },
+ "ladder_by_stratum": {
+  "E1-GFS": {
+   "M-N": {
+    "ci95": [
+     -20.86895127474879,
+     20.86895127474879
+    ],
+    "estimate": -1.4210854715202005e-15,
+    "tasks": 20
+   },
+   "P-N": {
+    "ci95": [
+     -19.543740817270667,
+     16.21040748393733
+    ],
+    "estimate": -1.6666666666666672,
+    "tasks": 20
+   },
+   "S-X": {
+    "ci95": [
+     -10.892892873988067,
+     17.559559540654732
+    ],
+    "estimate": 3.333333333333332,
+    "tasks": 20
+   },
+   "X-P": {
+    "ci95": [
+     -13.391375387682034,
+     13.391375387682034
+    ],
+    "estimate": -7.105427357601002e-16,
+    "tasks": 20
+   }
+  },
+  "E1-TRAVEL": {
+   "M-N": {
+    "ci95": [
+     -25.912229301531287,
+     19.245562634864623
+    ],
+    "estimate": -3.333333333333333,
+    "tasks": 20
+   },
+   "P-N": {
+    "ci95": [
+     -18.65188631905869,
+     8.65188631905869
+    ],
+    "estimate": -4.999999999999999,
+    "tasks": 20
+   },
+   "S-X": {
+    "ci95": [
+     -1.3361834183725456,
+     28.00285008503921
+    ],
+    "estimate": 13.333333333333332,
+    "tasks": 20
+   },
+   "X-P": {
+    "ci95": [
+     -3.6434135146943634,
+     10.31008018136103
+    ],
+    "estimate": 3.333333333333333,
+    "tasks": 20
+   }
+  },
+  "E1-VC": {
+   "M-N": {
+    "ci95": [
+     -24.140814809535563,
+     17.4741481428689
+    ],
+    "estimate": -3.3333333333333313,
+    "tasks": 20
+   },
+   "P-N": {
+    "ci95": [
+     -9.015706394597444,
+     22.349039727930773
+    ],
+    "estimate": 6.666666666666664,
+    "tasks": 20
+   },
+   "S-X": {
+    "ci95": [
+     -21.512376442608627,
+     14.84570977594196
+    ],
+    "estimate": -3.3333333333333335,
+    "tasks": 20
+   },
+   "X-P": {
+    "ci95": [
+     -20.620160362722057,
+     7.2868270293887285
+    ],
+    "estimate": -6.666666666666664,
+    "tasks": 20
+   }
+  },
+  "E3-GFS": {
+   "M-N": {
+    "ci95": [
+     0.015602308934674625,
+     26.65106435773199
+    ],
+    "estimate": 13.333333333333332,
+    "tasks": 30
+   },
+   "P-N": {
+    "ci95": [
+     -9.70318661136615,
+     18.59207550025504
+    ],
+    "estimate": 4.444444444444444,
+    "tasks": 30
+   },
+   "S-X": {
+    "ci95": [
+     1.4996433443246957,
+     27.389245544564197
+    ],
+    "estimate": 14.444444444444446,
+    "tasks": 30
+   },
+   "X-P": {
+    "ci95": [
+     -19.45557600451194,
+     8.344464893400833
+    ],
+    "estimate": -5.5555555555555545,
+    "tasks": 30
+   }
+  },
+  "E3-TRAVEL": {
+   "M-N": {
+    "ci95": [
+     -32.55338527061437,
+     13.505766222995323
+    ],
+    "estimate": -9.523809523809522,
+    "tasks": 28
+   },
+   "P-N": {
+    "ci95": [
+     -16.802064152375387,
+     7.278254628565863
+    ],
+    "estimate": -4.761904761904761,
+    "tasks": 28
+   },
+   "S-X": {
+    "ci95": [
+     -14.136653017347841,
+     21.279510160204985
+    ],
+    "estimate": 3.5714285714285716,
+    "tasks": 28
+   },
+   "X-P": {
+    "ci95": [
+     -10.812963079997166,
+     8.432010699044787
+    ],
+    "estimate": -1.19047619047619,
+    "tasks": 28
+   }
+  },
+  "E3-VC": {
+   "M-N": {
+    "ci95": [
+     -4.561889704617444,
+     22.33966748239522
+    ],
+    "estimate": 8.88888888888889,
+    "tasks": 30
+   },
+   "P-N": {
+    "ci95": [
+     -14.104201713258316,
+     5.215312824369427
+    ],
+    "estimate": -4.444444444444445,
+    "tasks": 30
+   },
+   "S-X": {
+    "ci95": [
+     -19.065778095599534,
+     7.954666984488424
+    ],
+    "estimate": -5.5555555555555545,
+    "tasks": 30
+   },
+   "X-P": {
+    "ci95": [
+     -11.620028323531589,
+     16.06447276797603
+    ],
+    "estimate": 2.2222222222222214,
+    "tasks": 30
+   }
+  }
+ },
+ "length_ratios": {
+  "P/M per block, turn 0 (exact tokens), q05/50/95": [
+   0.9003831417624522,
+   0.9821428571428571,
+   1.0666666666666667
+  ],
+  "S/M per turn (predicted tokens), q05/50/95": [
+   0.8082099801136402,
+   0.9624885313646805,
+   1.1712538455290642
+  ],
+  "X/M per turn (predicted tokens), q05/50/95": [
+   0.7907510844450085,
+   0.985928863963282,
+   1.202868317244078
+  ],
+  "c_d": {
+   "GFS": 1.114161374299119,
+   "TRAVEL": 1.3325808477237049,
+   "VC": 1.28691627736434
+  }
+ },
+ "noise": {
+  "b": {
+   "M,N": 0.3153153153153153,
+   "M,P": 0.32882882882882886,
+   "M,S": 0.3130630630630631,
+   "M,X": 0.2972972972972973
+  },
+  "variance": {
+   "MP": {
+    "tasks_needed": {
+     "half 2.5 pp, R=1": 3021,
+     "half 2.5 pp, R=3": 1740,
+     "half 2.5 pp, R=5": 1484,
+     "half 5.0 pp, R=1": 756,
+     "half 5.0 pp, R=3": 435,
+     "half 5.0 pp, R=5": 371
+    },
+    "var_rep": 0.20945945945945948,
+    "var_task": 0.11992094134951273
+   },
+   "MS": {
+    "tasks_needed": {
+     "half 2.5 pp, R=1": 2881,
+     "half 2.5 pp, R=3": 1449,
+     "half 2.5 pp, R=5": 1163,
+     "half 5.0 pp, R=1": 721,
+     "half 5.0 pp, R=3": 363,
+     "half 5.0 pp, R=5": 291
+    },
+    "var_rep": 0.23423423423423426,
+    "var_task": 0.07989111560540134
+   },
+   "MX": {
+    "tasks_needed": {
+     "half 2.5 pp, R=1": 2723,
+     "half 2.5 pp, R=3": 1635,
+     "half 2.5 pp, R=5": 1417,
+     "half 5.0 pp, R=1": 681,
+     "half 5.0 pp, R=3": 409,
+     "half 5.0 pp, R=5": 355
+    },
+    "var_rep": 0.17792792792792794,
+    "var_task": 0.11893015464444037
+   }
+  },
+  "vs_simulation": {
+   "b0_columns": [
+    0.2,
+    0.3,
+    0.38
+   ],
+   "b_measured": 0.31362612612612617,
+   "column": 0.3,
+   "note": "3 bloki",
+   "pilot_measured_spec_9_0": {
+    "b": 0.307,
+    "detect_10pp": 0.643,
+    "exclude_10pp_at_0": 0.615,
+    "w": 0.159
+   },
+   "w_assumed": [
+    0.02,
+    0.28
+   ],
+   "w_measured": 0.19639639639639642
+  },
+  "w": {
+   "M": 0.1801801801801802,
+   "N": 0.15315315315315317,
+   "P": 0.21171171171171174,
+   "S": 0.2522522522522523,
+   "X": 0.18468468468468469
+  }
+ },
+ "postrun_leak": {
+  "checked_sources": 9686,
+  "examples": [],
+  "violations": 0
+ },
+ "preparation_checks": {
+  "G1_rows": 114,
+  "G2_keys": 520,
+  "L1": {
+   "M": {
+    "checked": 1022,
+    "violations": 0
+   },
+   "S1": {
+    "checked": 1022,
+    "violations": 0
+   },
+   "S2": {
+    "checked": 1022,
+    "violations": 0
+   },
+   "S3": {
+    "checked": 1022,
+    "violations": 0
+   },
+   "X1": {
+    "checked": 1022,
+    "violations": 0
+   },
+   "X2": {
+    "checked": 1022,
+    "violations": 0
+   },
+   "X3": {
+    "checked": 1022,
+    "violations": 0
+   }
+  },
+  "L2": {
+   "own_task_detected": true,
+   "test_source_detected": true
+  },
+  "L3_violations": {
+   "1": 0,
+   "2": 0,
+   "3": 0
+  },
+  "L4a_domain_stems": 408,
+  "L4a_domain_words": 451,
+  "L4a_failures": 0,
+  "L4b_max": 0.0196078431372549,
+  "P_blocks_checked": 2056,
+  "P_len_dev_max": 6,
+  "T_tasks": {
+   "cal": {
+    "GFS": 10,
+    "TRAVEL": 10,
+    "VC": 10
+   },
+   "len": {
+    "GFS": 10,
+    "TRAVEL": 10,
+    "VC": 10
+   },
+   "len2": {
+    "GFS": 10,
+    "TRAVEL": 10,
+    "VC": 10
+   },
+   "m_tasks": 12,
+   "recal": {
+    "GFS": 20,
+    "TRAVEL": 20,
+    "VC": 20
+   }
+  },
+  "corpus_sentences": 199,
+  "draw_rule": "D12 log rule of the frozen prototype t_d9_length.py: |ln(predicted/target)| <= ln 1.2, i.e. -16.67%..+20%; 200 attempts, else closest by |ln| (owner choice C2, 2026-11-13; formal status: ANEKS_C2_D12.md)",
+  "failures": [],
+  "header_failures": 0,
+  "predicted_length_imbalance_pct": {
+   "S": 2.31,
+   "X": 1.83
+  },
+  "shared_graph": {
+   "definition": "traces of the turns recorded in NIGHT-2 M episodes (v0.3)",
+   "first_trace_groups": 68,
+   "pairs": 1260,
+   "pairs_full_plan_variant": 1314
+  },
+  "tasks": 148
+ },
+ "prompt_tokens_per_call": {
+  "M": 2399.8932297985925,
+  "N": 2037.6766899766899,
+  "P": 2398.1879936808846,
+  "S": 2395.8092402953084,
+  "X": 2373.430184331797
+ },
+ "prompt_tokens_vs_M_flag_over_10pct": {
+  "N": [
+   -0.15093027278230253,
+   true
+  ],
+  "P": [
+   -0.0007105466595491716,
+   false
+  ],
+  "S": [
+   -0.0017017379992471104,
+   false
+  ],
+  "X": [
+   -0.011026759498386607,
+   false
+  ]
+ },
+ "rates": {
+  "M": 34.68468468468468,
+  "N": 32.88288288288288,
+  "P": 31.981981981981978,
+  "S": 34.909909909909906,
+  "X": 30.630630630630627
+ },
+ "reading": [
+  "M - P: nic nie rozstrzygnięto; przedział [-6,0; 11,4] pp obejmuje zarówno zero, jak i 10 pp (format, domena i dobór łącznie).",
+  "M - X: nic nie rozstrzygnięto; przedział [-4,4; 12,5] pp obejmuje zarówno zero, jak i 10 pp (domena i dobór przy stałym formacie śladu).",
+  "M - S: efektu nie wykryto; przedział [-8,1; 7,7] pp dopuszcza efekty najwyżej do 7,7 pp (dobór śladów do zadania). Wynik wyklucza, że ten składnik w reżimie próbkowanym daje tyle, ile cały historyczny zysk M - N przy temperaturze 0 (8,1 pp). DŁUGOŚĆ (WR5): po korekcie długości stan V4 zamiast V5. Różnica długości bloków może wyjaśniać ten wynik; efektu nie przypisuje się treści pamięci.",
+  "ZŁOŻONE-C: żaden kontrast nie wykrył efektu. To nie jest dowód braku efektu treści.",
+  "OPISOWO (bez stanu): M - N = 1,8 pp (95%: -5,5; 9,1); P - N = -0,9 pp (95%: -6,2; 4,4). Efekty kontrastów liczone są względem ramion kontrolnych, nie względem braku bloku.",
+  "PRZENOSZALNOŚĆ (nie zmienia stanu głównego): M - S: wykryto zależność przez wspólne ślady (ρ̃ = +0.030, p = 0.016); stan przy przedziale poszerzonym x1.23: V5.",
+  "M - S: zależny od domeny (warstwa E3-VC: 16,7 pp, 95% wyklucza 0 ze znakiem przeciwnym).",
+  "Kontrola dryfu bloku A niespełniona (zgodność N lub M z NIGHT-2 poniżej progu); stany z bloków próbkowanych pozostają ważne."
+ ],
+ "tasks": 148,
+ "tokens_per_char_turn0": {
+  "M/GFS": 0.27813504823151125,
+  "M/TRAVEL": 0.31530194332206374,
+  "M/VC": 0.3073699778161203,
+  "P/GFS": 0.2456527583230754,
+  "P/TRAVEL": 0.2320790717662226,
+  "P/VC": 0.2324662379079032,
+  "S/GFS": 0.2756520068522758,
+  "S/TRAVEL": 0.30594563271943886,
+  "S/VC": 0.30422058427221277,
+  "X/GFS": 0.3136860867437878,
+  "X/TRAVEL": 0.30297397769516726,
+  "X/VC": 0.27702751793660885
+ }
+}

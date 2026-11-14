@@ -1,0 +1,259 @@
+{
+  "program": "AAMR-K1 (EXP-PLACEBO-0) executor: arms N, P, X, S, M",
+  "spec": "D:/aamr-k1-executor/spec/SPEC_K1_PLACEBO_v1.0.1.md",
+  "spec_frozen_sha256": "8b854b35657088bd5409750d8bfffb16fe635b817ac49554ebf35428f11f2744",
+  "base_url": "http://127.0.0.1:11434",
+  "http_timeout_seconds": 600,
+  "paid_calls": 0,
+  "retry": {
+    "max_attempts_per_call": 4,
+    "backoff_seconds": [
+      15,
+      45,
+      90
+    ]
+  },
+  "supervisor": {
+    "max_restarts": 8,
+    "restart_wait_seconds": 120,
+    "stall_seconds": 2400,
+    "max_errors_per_block": 2
+  },
+  "hard_limit": 30000,
+  "budgets": {
+    "total_local": 30000,
+    "T": 300,
+    "A": 30000,
+    "S1": 30000,
+    "S2": 30000,
+    "S3": 30000
+  },
+  "margin": 1.1,
+  "models": {
+    "q14": {
+      "name": "qwen2.5:14b-instruct",
+      "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+      "options": {
+        "temperature": 0,
+        "num_predict": 512,
+        "num_ctx": 8192
+      },
+      "extra": {}
+    },
+    "q14s": {
+      "name": "qwen2.5:14b-instruct",
+      "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+      "options": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "num_predict": 512,
+        "num_ctx": 8192
+      },
+      "extra": {}
+    },
+    "q14cal": {
+      "name": "qwen2.5:14b-instruct",
+      "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+      "options": {
+        "temperature": 0,
+        "num_predict": 1,
+        "num_ctx": 8192
+      },
+      "extra": {}
+    }
+  },
+  "blocks": {
+    "A": {
+      "model": "q14",
+      "seed": 7,
+      "arms": [
+        "N",
+        "M",
+        "P"
+      ],
+      "instance": 0
+    },
+    "S1": {
+      "model": "q14s",
+      "seed": 7001,
+      "arms": [
+        "N",
+        "P",
+        "X",
+        "S",
+        "M"
+      ],
+      "instance": 1
+    },
+    "S2": {
+      "model": "q14s",
+      "seed": 7002,
+      "arms": [
+        "N",
+        "P",
+        "X",
+        "S",
+        "M"
+      ],
+      "instance": 2
+    },
+    "S3": {
+      "model": "q14s",
+      "seed": 7003,
+      "arms": [
+        "N",
+        "P",
+        "X",
+        "S",
+        "M"
+      ],
+      "instance": 3
+    }
+  },
+  "T": {
+    "m_tasks_per_domain": 4,
+    "m_model": "q14s",
+    "m_seed": 7000,
+    "cal_blocks_per_domain": 10,
+    "len_blocks_per_domain": 10,
+    "recal_blocks_per_domain": 20,
+    "len_tolerance": 0.05,
+    "plausible_tokens_per_char": [
+      0.15,
+      0.6
+    ],
+    "ref_check_tasks_per_domain": 1
+  },
+  "d12": {
+    "enabled": true,
+    "attempts": 200,
+    "tolerance": 0.2,
+    "rule": "log: |ln(predicted/target)| <= ln(1 + tolerance) -> [0.8333, 1.2]",
+    "status": "spec v1.0.1 errata E1 (owner choice C2, 2026-11-13): logarithmic rule of the frozen prototype t_d9_length.py"
+  },
+  "x_domain_map": {
+    "VC": "GFS",
+    "GFS": "TRAVEL",
+    "TRAVEL": "VC"
+  },
+  "corpus": {
+    "min_sentences": 150,
+    "weather_words": [
+      "weather",
+      "rain",
+      "rainfall",
+      "snow",
+      "snowfall",
+      "storm",
+      "wind",
+      "breeze",
+      "cloud",
+      "fog",
+      "hail",
+      "drought",
+      "humid",
+      "humidity",
+      "forecast",
+      "thunder",
+      "lightning",
+      "sunny",
+      "climate"
+    ]
+  },
+  "l4b_max_jaccard": 0.05,
+  "analysis": {
+    "level": 0.983333333333,
+    "threshold_pp": 10.0,
+    "max_excluded": 7,
+    "boot": 10000,
+    "boot_seed": 20261115,
+    "perm": 2000,
+    "perm_seed": 20261114,
+    "block_a_level": 0.95
+  },
+  "drift": {
+    "test_min_agree": 84,
+    "train_min_agree": 57
+  },
+  "decisions": {
+    "D1": {
+      "value": "threshold 10 pp",
+      "status": "approved 2026-11-13 (owner; spec v1.0.1 sec. 13)"
+    },
+    "D2": {
+      "value": "temperature 0.7, top_p 0.8, top_k 20",
+      "status": "approved (pilot N/M, 2026-11-13)"
+    },
+    "D3": {
+      "value": "three confirmatory contrasts M-P, M-X, M-S",
+      "status": "approved 2026-11-13 (owner; spec v1.0.1 sec. 13)"
+    },
+    "D4": {
+      "value": "3 sampled blocks with budget gates",
+      "status": "approved 2026-11-13 (owner, after the pilot report; spec v1.0.1 sec. 13)"
+    },
+    "D5": {
+      "value": "local Ollama only, own dir outside repos, no push; K1 launched by the coordinator runner via night_wrapper (pilot: manual launch); no git in the work dir (manifest L8 instead)",
+      "status": "approved 2026-11-13 (owner, for full K1: runner launch via night_wrapper, manual stage T, no git - L8 manifest; RAPORT_GO_NOGO_K1.md sec. 4)"
+    },
+    "D6": {
+      "value": "148 tasks (88 test + 60 train), WR4 on 88",
+      "status": "approved (pilot N/M, 2026-11-13); K1 stimuli identical to the pilot's"
+    },
+    "D7": {
+      "value": "98.33% per interval",
+      "status": "approved 2026-11-13 (owner; spec v1.0.1 sec. 13)"
+    },
+    "D8": {
+      "value": "run K1 after the N/M pilot report",
+      "status": "approved 2026-11-13 (owner: run full K1, after the pilot report)"
+    },
+    "D9": {
+      "value": "P length c_d per domain, +-5% on domain token sums, WR5 + LEN",
+      "status": "approved conditionally; conditions written"
+    },
+    "D10": {
+      "value": "budget gates sec. 10, hard limit 30000",
+      "status": "approved"
+    },
+    "D11": {
+      "value": "hook L6a, BfclK1, extracted plans/pools with L10, L4a lists, technical error from checker; K1 extras: hooked draw process reads NIGHT-2 responses.jsonl (token counts), preparation reads NIGHT-2 M memory.items (graph 7.4)",
+      "status": "approved 2026-11-13 (owner, for full K1 incl. (a) hooked draw process reads NIGHT-2 responses.jsonl token counts, (b) preparation reads NIGHT-2 M memory.items for the 7.4 graph, (c) T12)"
+    },
+    "D12": {
+      "value": "length-matched X and S draws (200 attempts, +-20%)",
+      "status": "approved 2026-11-13 (owner; spec v1.0.1 sec. 13); tolerance per errata E1 (C2): |ln r| <= ln 1.2"
+    }
+  },
+  "technical_choices_approved": true,
+  "technical_choices_status": {
+    "_note": "owner accepted T1-T12 on 2026-11-13 on condition of full conformity with the frozen protocol; C1-C4 decided by the owner and written into spec v1.0.1 as errata E1-E4; conformity re-checked against v1.0.1 (tests/WYNIKI_ZGODNOSC_v1.0.1.out)",
+    "T1": "approved 2026-11-13",
+    "T2": "approved 2026-11-13 (without T2b)",
+    "T3": "approved 2026-11-13",
+    "T4": "approved 2026-11-13",
+    "T5": "approved 2026-11-13; spec v1.0.1 errata E2 (C1): rho = block tokens / block characters incl. header, without separator",
+    "T6": "approved 2026-11-13",
+    "T7": "approved 2026-11-13; block A per spec v1.0.1 errata E4 (C4): NIEUKOŃCZONY, program stops, no further attempts",
+    "T8": "approved 2026-11-13; block A per spec v1.0.1 errata E4 (C4): NIEUKOŃCZONY, program stops, no further attempts",
+    "T9": "approved 2026-11-13",
+    "T10": "approved 2026-11-13",
+    "T11": "approved 2026-11-13",
+    "T12": "approved 2026-11-13",
+    "D12_tolerance": "approved; spec v1.0.1 errata E1 (C2): |ln r| <= ln 1.2, r in [0.8333; 1.2], closest by |ln r|",
+    "WR5_later_turns": "approved 2026-11-13; spec v1.0.1 errata E3 (C3): exact turn-0 tokens / content characters of the turn-0 block",
+    "_closed": "2026-11-13: technical blockers T1-T12 closed after v1.0.1 conformity PASS (tests/WYNIKI_ZGODNOSC_v1.0.1.out)"
+  },
+  "technical_choices_unapproved": {
+    "T12_token_reference_check": "proposed: before calibration, arm-N turn-0 prompt of the first calibration task of each domain sent twice (num_predict 1); both prompt_eval_count must equal NIGHT-2; else stop (exit 3). 6 calls in T",
+    "T_m_seed": "7000 (spec sec. 10 gives no seed for the m measurement; disjoint from 7001-7003, 9001-9002, 7)",
+    "T_m_tasks": "4 training tasks per domain, first by sha256 of the id",
+    "T_cal_tasks": "tasks with an exact NIGHT-2 turn-0 M token count, ordered by sha256('K1-T|'+id): first 10 calibration, next 10 T-length, next 20 recalibration",
+    "T_recal": "on T-length failure in a domain: c_d recomputed on 20 new blocks (c=1) of that domain, then one new T-length check on 10 further blocks; second failure stops (exit 4)",
+    "rho_basis": "tokens per character over the whole block plus the two-character separator, for M and P alike (as in the v0.4 prototypes)",
+    "hard_limit_inside_sampled_block": "block becomes incomplete, program goes on to freeze, checker and analysis (spec sec. 10, 7.2)",
+    "second_error_in_sampled_block": "block marked incomplete, next block gated as usual (spec sec. 7.2); in T or A the program stops"
+  },
+  "spec_freeze_json_sha256": "9429ab20d0526ba29cebff4d87a3a737c5f240075c4720a868208092b83da0f7"
+}
