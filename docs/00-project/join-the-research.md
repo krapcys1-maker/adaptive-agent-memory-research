@@ -36,14 +36,14 @@ A change contains the code, its tests, and the output of `python tasks.py check`
 
 ### Testing
 
-- [#113](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/113): follow the README from zero as a newcomer and log every friction point. [#117](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/117): write the "first contribution" walkthrough this page lacks.
+- [#113](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/113): follow the README from zero as a newcomer and log every friction point. The "first contribution" walkthrough that this page used to lack is now [here](first-contribution-walkthrough.md) (done).
 - Run the gates on your platform and Python version and report what happened. Success is a result too. Use the [reproduction report template](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/new?template=05-reproduction-report.md).
 - Try to break an instrument: [#42](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/42) (the sealed split carries three guards, each added after its attack was reproduced; a fourth attack is worth more than a finished task).
 - Write a minimal synthetic counterexample for an open boundary failure: [#106](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/106), [#107](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/107), [#108](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/108), [#110](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/110). These describe a candidate that lives in an open pull request (see below), so read the issue for the commit it refers to.
 
 ### Analysing publications
 
-Reading that changes what the project claims: [#76](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/76) and [#75](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/75) (check citations against their sources), [#48](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/48) (verify six reported prior-art systems), [#37](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/37) (assign a reading state to uncited sources), [#7](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/7) (audit the public benchmarks). Follow [Adding a paper](../../CONTRIBUTING.md#adding-a-paper): a primary source, what it demonstrates, its limits, and a reading note only after reading beyond the abstract.
+Reading that changes what the project claims: [#75](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/75) (check seven citations against their sources; the neighbouring #76 and #77 are done), [#48](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/48) (verify six reported prior-art systems), [#37](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/37) (assign a reading state to uncited sources), [#7](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/7) (audit the public benchmarks). Follow [Adding a paper](../../CONTRIBUTING.md#adding-a-paper): a primary source, what it demonstrates, its limits, and a reading note only after reading beyond the abstract.
 
 ### Reproducing experiments
 
