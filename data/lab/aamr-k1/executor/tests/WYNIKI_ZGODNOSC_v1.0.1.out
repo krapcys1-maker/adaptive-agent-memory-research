@@ -1,0 +1,10 @@
+C1 token reference uses block characters for 147 blocks: True; stage T uses block characters: True
+C3 WR5 uses content characters for every turn (turn-0 tokens exact, rho per content character): True
+E4 analysis gives block A NIEUKOŃCZONY and the secondary answer the state NIEWAŻNY: True
+F stimuli identical to the hashes pinned in v1.0.1 FREEZE.json: {'k1_draws_SX.json': True, 'k1_tokref.json': True}
+C2 bounds: log rule accepts predicted/target in [0.8333; 1.2000] (-16.67% .. +20.00%); linear +-20% accepts [0.8000; 1.2000]. Difference: ratios in [0.8000; 0.8333) accepted only by the linear rule
+C2 frozen stimuli (base/stim/k1_draws_SX.json, rule 'D12 log rule of the frozen prototype t_d9_length.py: |ln(predicted/target)| <= ln 1.2, i.e. -16.67%..+20%; 200 attempts, else closest by |ln| (owner choice C2, 2026-11-13; formal status: ANEKS_C2_D12.md)') equal the draws regenerated with the chosen log rule: True
+C2 [log, literal rho (chosen; C1 + C2)]: turn draws different from the chosen stimuli X 0/1542, S 0/1542; fallback to the closest X 157, S 21; accepted ratio below 0.8333 X 5.9%, S 1.2%; mean per-task imbalance M vs X +1.83% (5-95% [-11.2, 21.1]), M vs S +2.31% (5-95% [-5.7, 11.4]); B1 met True; LEN withholds true +15 pp effects X 3%, S 8%
+C2 [linear +-20%, literal rho (literal v1.0 text)]: turn draws different from the chosen stimuli X 160/1542, S 286/1542; fallback to the closest X 133, S 9; accepted ratio below 0.8333 X 16.2%, S 10.7%; mean per-task imbalance M vs X +3.86% (5-95% [-11.2, 24.7]), M vs S +4.11% (5-95% [-3.5, 14.0]); B1 met True; LEN withholds true +15 pp effects X 14%, S 20%
+C2 [log, prototype rho chars+2 (t_d9_length.py, source of the v1.0 numbers)]: turn draws different from the chosen stimuli X 2/1542, S 19/1542; fallback to the closest X 158, S 21; accepted ratio below 0.8333 X 5.9%, S 1.2%; mean per-task imbalance M vs X +1.84% (5-95% [-11.2, 21.2]), M vs S +2.24% (5-95% [-5.7, 11.0]); B1 met True; LEN withholds true +15 pp effects X 3%, S 8%
+RESULT v1.0.1 CONFORMITY: PASS {'C1': True, 'C3': True, 'E4': True, 'F': True, 'C2_stimuli': True} (E1-E4 of spec v1.0.1)

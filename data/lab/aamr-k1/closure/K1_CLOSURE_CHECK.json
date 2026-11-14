@@ -1,0 +1,141 @@
+{
+ "calls": {
+  "attempts_lines": 25796,
+  "by_bucket": {
+   "T": 177,
+   "A": 4238,
+   "S1": 7089,
+   "S2": 7145,
+   "S3": 7147
+  },
+  "responses_lines": 25796,
+  "hard_limit": 30000,
+  "within_limit": true
+ },
+ "completeness": {
+  "A": {
+   "rows": 444,
+   "expected": 444,
+   "unique_task_arm": 444,
+   "duplicates": 0,
+   "tasks": 148,
+   "arms": [
+    "M",
+    "N",
+    "P"
+   ],
+   "complete": true
+  },
+  "S1": {
+   "rows": 740,
+   "expected": 740,
+   "unique_task_arm": 740,
+   "duplicates": 0,
+   "tasks": 148,
+   "arms": [
+    "M",
+    "N",
+    "P",
+    "S",
+    "X"
+   ],
+   "complete": true
+  },
+  "S2": {
+   "rows": 740,
+   "expected": 740,
+   "unique_task_arm": 740,
+   "duplicates": 0,
+   "tasks": 148,
+   "arms": [
+    "M",
+    "N",
+    "P",
+    "S",
+    "X"
+   ],
+   "complete": true
+  },
+  "S3": {
+   "rows": 740,
+   "expected": 740,
+   "unique_task_arm": 740,
+   "duplicates": 0,
+   "tasks": 148,
+   "arms": [
+    "M",
+    "N",
+    "P",
+    "S",
+    "X"
+   ],
+   "complete": true
+  }
+ },
+ "raw_freeze": {
+  "files": 21,
+  "mismatch_or_missing": [],
+  "frozen_at": "2026-11-14T07:04:24.508153+00:00",
+  "sha256": "502875a95fc2af9e02145141454ec953e70223a9355b585718845beb97777faf"
+ },
+ "L8_manifest_diff": [],
+ "L8_manifest_sha256": "5d7b68c238f60483c00722384c9a784a4ab0d145d87ff1ab7e22023e2df96619",
+ "protocol": {
+  "spec_audit_sha": "8b854b35657088bd5409750d8bfffb16fe635b817ac49554ebf35428f11f2744",
+  "spec_executor_copy_sha": "8b854b35657088bd5409750d8bfffb16fe635b817ac49554ebf35428f11f2744",
+  "freeze_audit_sha": "9429ab20d0526ba29cebff4d87a3a737c5f240075c4720a868208092b83da0f7",
+  "freeze_executor_copy_sha": "9429ab20d0526ba29cebff4d87a3a737c5f240075c4720a868208092b83da0f7",
+  "expected_spec": "8b854b35657088bd5409750d8bfffb16fe635b817ac49554ebf35428f11f2744",
+  "expected_freeze": "9429ab20d0526ba29cebff4d87a3a737c5f240075c4720a868208092b83da0f7",
+  "freeze_files_changed": [],
+  "freeze_external_refs_changed": [],
+  "config_sha": "271e18ce606bb4d40c094b822e17dbcc1a1585b54f76fa56d77d92d7cf1c7cde"
+ },
+ "vs_start_audit": {
+  "config_same": true,
+  "manifest_same": true,
+  "c_d_same": true
+ },
+ "markers": {
+  "DONE.json": true,
+  "STOPPED.json": false,
+  "A_INCOMPLETE.json": false,
+  "S1_ABORTED.json": false,
+  "S2_ABORTED.json": false,
+  "S3_ABORTED.json": false
+ },
+ "state": {
+  "restarts": 0,
+  "errors": {}
+ },
+ "results_keys": [
+  "L9",
+  "block_A",
+  "blocks",
+  "calls_per_episode",
+  "caveats",
+  "completed_sampled_blocks",
+  "contrasts",
+  "drift_block_A",
+  "excluded_tasks",
+  "forbidden_hits",
+  "gains_losses_vs_N",
+  "gates",
+  "interpretation_rule_D1",
+  "invalid",
+  "invalid_and_unknown_calls",
+  "ladder",
+  "ladder_by_stratum",
+  "length_ratios",
+  "noise",
+  "postrun_leak",
+  "preparation_checks",
+  "prompt_tokens_per_call",
+  "prompt_tokens_vs_M_flag_over_10pct",
+  "rates",
+  "reading",
+  "tasks",
+  "tokens_per_char_turn0"
+ ],
+ "RESULT": "PASS"
+}
