@@ -41,3 +41,12 @@ Current continuation (2026-11-05): the owner explicitly requests ongoing GitHub 
 - A query/retrieval miss does not authorize a memory write. Enforce scope/time on the complete model-visible packet, including learned schemas, and preserve source roles/uncertainty. Source-level supersession is not a partial field update. Do not treat literal spans as semantic validation.
 - NIE personality, canonical cards, prompts, filters, integration and deployment are a separate ownership boundary. Preserve the shared plan; append coordination notes without implying an ACK. Do not deploy a research candidate by merging its PR.
 - Finish substantial work with a sourced memory event and current handover/status, including failures, incomplete tasks, exact tested head, actual calls/cost and next admissible action. Preserve earlier dated receipts. No automatic commit/push of potentially broken audit work; follow the owner's latest authorization and explicit scope.
+
+## Where new work lives (2026-11-14)
+
+Read [work placement and synchronisation rules](docs/00-project/work-placement-and-sync-rules.md) and the [consolidation map](docs/00-project/consolidation-map.md).
+
+- Every new research task names its target directory and its branch in this repository before work starts. Do not create a new independent repository, and do not keep a second clone: use a worktree of the canonical clone. Either needs the owner's explicit consent.
+- Work that exists only locally is unfinished. Push the branch and open a draft pull request within a day of the first useful commit; end every stage with the HANDOFF block described in those rules. Never merge.
+- Large raw data, secrets, sealed data and blinding keys stay out of every public pull request; commit only their SHA-256.
+- Check the daily report with `python scripts/aamr_sync_report.py local --config <your sync.local.json>` before declaring a task finished.
