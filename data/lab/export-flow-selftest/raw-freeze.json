@@ -1,0 +1,9 @@
+{
+ "fictional": true,
+ "paths_are_relative_to": "the run folder",
+ "files": {
+  "DONE.json": "e5b2bc39ee2ed1e4c81523b9a111b30b462c1cb3c63bdc146eebc24cb968feb5",
+  "meta/state.json": "d6699a4d66fc2ddfeb85500f7ec018059480a1e1c602c565c3078170902a8bc0",
+  "sessions/s1.jsonl": "2d16bd53cb9365f6ac3ee0f1945f5d2ddead79550ec321de62b4135f184ff235"
+ }
+}
