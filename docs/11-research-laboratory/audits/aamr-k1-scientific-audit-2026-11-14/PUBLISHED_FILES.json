@@ -1,0 +1,82 @@
+{
+ "imported": "2026-11-14",
+ "from": "the auditor's folder (read only)",
+ "withheld": [
+  "blind_cases.txt",
+  "blind_key.json",
+  "blind_make.py",
+  "the raw K1 sessions the scripts read (326 MB run folder, private)"
+ ],
+ "files": [
+  {
+   "published_path": "RAPORT_AUDYT_NAUKOWY_K1.md",
+   "source": "RAPORT_AUDYT_NAUKOWY_K1.md",
+   "kind": "audit report (Polish)",
+   "sha256_original": "4b5050c905030220b9ea31daf708a55c5640e605fd9e3f23189cb520ea525851",
+   "sha256": "a90b7f089f8705d60d89adabcedb09be8c69676ab03f4ced6938b857b74d4c71",
+   "edits": [
+    "replaced 5 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  },
+  {
+   "published_path": "scripts/common.py",
+   "source": "scripts/common.py",
+   "kind": "analysis script of the audit",
+   "sha256_original": "b29957c31f7b2284730ec125889d6db2ad83f6fa94bbc215160cfe964dd0049c",
+   "sha256": "a026375b39a762693b62d71e0829b5efd168c3186e9caf2992058476b336da58",
+   "edits": [
+    "replaced 2 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  },
+  {
+   "published_path": "scripts/final_checks.py",
+   "source": "scripts/final_checks.py",
+   "kind": "analysis script of the audit",
+   "sha256_original": "7b2b6cf28d289b77357ffca8bb2ff006be5cf26eff47a8c9b8d329801fcb7315",
+   "sha256": "7b2b6cf28d289b77357ffca8bb2ff006be5cf26eff47a8c9b8d329801fcb7315",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "scripts/len_exact.py",
+   "source": "scripts/len_exact.py",
+   "kind": "analysis script of the audit",
+   "sha256_original": "428eb690393ac2b9e686795afca7eeb0ef827aad4e271735244e7d4ae6cfa05c",
+   "sha256": "428eb690393ac2b9e686795afca7eeb0ef827aad4e271735244e7d4ae6cfa05c",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "scripts/mech1.py",
+   "source": "scripts/mech1.py",
+   "kind": "analysis script of the audit",
+   "sha256_original": "eca6ef2d3e6b61d0407bb2cfee6591656670a994d601d7b45cf8c24777638c1a",
+   "sha256": "eca6ef2d3e6b61d0407bb2cfee6591656670a994d601d7b45cf8c24777638c1a",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "scripts/mech2.py",
+   "source": "scripts/mech2.py",
+   "kind": "analysis script of the audit",
+   "sha256_original": "fdaf44f2f4746185bea7e63f165febe986ee6b4786a7e5e9cdead2ae363ef41b",
+   "sha256": "7bb8ff020fdf7b4451ccfa91f46df092c2c51a1a56402ddb074a66616692d99e",
+   "edits": [
+    "replaced 1 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  },
+  {
+   "published_path": "scripts/mech_build.py",
+   "source": "scripts/mech_build.py",
+   "kind": "analysis script of the audit",
+   "sha256_original": "0add04e86a8576c910fc1e624d385c96cd64e94e85f1d394e9d5180721987c66",
+   "sha256": "6d91c042e4ef18cd8a4fcda073134e2ca80f413bcd7e1203803f5285fd8092b6",
+   "edits": [
+    "replaced 1 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  }
+ ]
+}
