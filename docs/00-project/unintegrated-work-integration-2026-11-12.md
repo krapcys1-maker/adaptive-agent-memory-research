@@ -1,5 +1,23 @@
 # Integration of unpublished local work, 2026-11-12
 
+> **Update of 2026-11-14: this is a historical record; the branch it describes was not merged as one piece.** The state below is what the
+> branch looked like on 2026-11-12. What actually reached `main`, and where:
+>
+> | Material (items of the list below) | Where it is on `main` now |
+> |---|---|
+> | 1. Planning documents of 2026-08-24, the inbox folder (**9 files**, not the 14 the table says; corrected below), the red-team update | pull request #132, with a status note for the late publication |
+> | 2. Complete DeepSeek spend ledger | pull request #133 (the ledger grew by a byte-prefix-checked append) |
+> | 3. Ordering note of 2026-11-01, review of the overlooked hypotheses | pull request #132 |
+> | 4. FactConsolidation label screen | pull request #143, **as a preliminary screening by one AI reader** (see its README), now with a registry row |
+> | 5. EXP-PILOT-0 | pull request #111 (merged 2026-11-13), its audit amendments #120 |
+>
+> Statements below that no longer hold: "cut from `main` at `1b673d3`" (it was rebuilt onto later `main` in the pieces above); "draft pull request #105" (it was integrated
+> in pieces #121 to #125 and closed on 2026-11-13, see #128); the "Compatibility with other open work" table (both branches it simulates have since landed, and the registry and event
+> conflicts it predicted were handled by migrating the rows and events onto the current end of the files); "this branch adds no registry row" (the label screen has one now);
+> the figures of the validation run (2,986 tests, 352 events: those were the figures of that branch on that day; `main` has more of both). The
+> remark about the original checkout being 198 commits behind is superseded by the consolidation described in
+> [consolidation-map.md](consolidation-map.md). Nothing else in this record was changed, apart from the one corrected count and its marker.
+
 Status: record of one integration pass on the branch `claude/integrate-unmerged-research-2026-11-12`, cut from `main`
 at `1b673d3`. Local commits only; nothing was pushed or merged. No model was called and no paid API was used.
 
@@ -22,7 +40,7 @@ Items 1 to 4 are integrated here. Item 5 belongs to its author's branch and is n
 | Material | Where it is now | How it was brought in |
 |---|---|---|
 | Roadmap, dependency synthesis, cross-paper map, frontier map, red-team search (2026-08-24) | [`../research/`](../research/README.md) | Unedited text under a publication note that carries the SHA-256 of the original file |
-| Inbox of the external research agent (14 files with templates) | `docs/research/Dokumenty z Resherchera/` | Byte for byte; the folder's own rule forbids later edits |
+| Inbox of the external research agent (9 files with templates; the original text said 14, corrected 2026-11-14) | `docs/research/Dokumenty z Resherchera/` | Byte for byte; the folder's own rule forbids later edits |
 | "Red-team update" section of the positioning document | end of [`../research/RELATED_WORK_AND_POSITIONING_2026-08-24.md`](../research/RELATED_WORK_AND_POSITIONING_2026-08-24.md) | The uncommitted 13-line addition, applied to the current file; the banner added on 2026-11-01 is untouched |
 | Full DeepSeek spend ledger | [`../../data/lab/aam-deepseek-2026-11/`](../../data/lab/aam-deepseek-2026-11/README.md) | Append-only replacement, with a README that records the checks and the open points |
 | Ordering note of 2026-11-01 | [`task-memory-ordering-note-2026-11-01.md`](task-memory-ordering-note-2026-11-01.md) | English translation with the original's SHA-256 and a section on what happened afterwards |
