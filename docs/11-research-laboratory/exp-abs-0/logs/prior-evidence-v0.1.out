@@ -1,0 +1,15 @@
+(1) NIGHT-2 E1 solved of 60: {'N': 20, "N'": 20, 'R+': 22, 'M2': 14, 'M1': 18}
+    R+ solved, N not (gain)    n=11 | NIGHT-2 temp 0: M2 solved 4, M1 solved 5 | K1 sampled %: {'N': 18.2, 'P': 30.3, 'X': 24.2, 'S': 48.5, 'M': 78.8}
+    N solved, R+ not (loss)    n= 9 | NIGHT-2 temp 0: M2 solved 2, M1 solved 2 | K1 sampled %: {'N': 81.5, 'P': 48.1, 'X': 55.6, 'S': 37.0, 'M': 7.4}
+    both solved                n=11 | NIGHT-2 temp 0: M2 solved 7, M1 solved 8 | K1 sampled %: {'N': 81.8, 'P': 84.8, 'X': 87.9, 'S': 78.8, 'M': 75.8}
+    neither solved             n=29 | NIGHT-2 temp 0: M2 solved 1, M1 solved 3 | K1 sampled %: {'N': 3.4, 'P': 8.0, 'X': 4.6, 'S': 13.8, 'M': 1.1}
+    episodes in which the model emitted a '<...>' marker in its output: {'N': 2, 'R+': 0, 'M2': 9, 'M1': 3} of 60
+(2) group G: n=33; domains {'GFS': 13, 'TRAVEL': 9, 'VC': 11}; split {'E3': 22, 'E1': 11}; K1 sampled %: {'N': 17.2, 'P': 24.2, 'X': 29.3, 'S': 38.4, 'M': 75.8}
+    tasks: 11 15 153 159 160 162 17 178 190 193 194 195 21 23 28 33 34 35 39 47 48 62 68 7 71 74 77 80 84 86 88 90 96
+(2) group L: n=21; domains {'TRAVEL': 11, 'GFS': 5, 'VC': 5}; split {'E3': 12, 'E1': 9}; K1 sampled %: {'N': 77.8, 'P': 60.3, 'X': 60.3, 'S': 41.3, 'M': 11.1}
+    tasks: 151 152 154 158 163 165 181 182 183 186 191 20 26 29 43 46 53 81 83 87 98
+(3) characters in the 114 pool traces: {'request': 22032, 'calls': 18095, 'results': 19068}
+    GFS: 95 argument values: {'kept: boolean': '11%', 'kept: literal of the parameter description': '5%', 'removed': '59%', 'removed, provenance note (earlier result in the trace)': '25%'}
+    VC: 164 argument values: {'kept: boolean': '8%', 'kept: literal of the parameter description': '59%', 'removed': '25%', 'removed, provenance note (earlier result in the trace)': '9%'}
+    TRAVEL: 325 argument values: {'kept: literal of the parameter description': '14%', 'removed': '79%', 'removed, provenance note (earlier result in the trace)': '7%'}
+    kept literals (top): [('startEngine.ignitionMode=START', 30), ('lockDoors.door=driver', 11), ('lockDoors.door=passenger', 11), ('lockDoors.door=rear_left', 11), ('lockDoors.door=rear_right', 11), ('pressBrakePedal.pedalPosition=1', 9), ('get_flight_cost.travel_class=business', 8), ('get_nearest_airport_by_city.location=Rivermist', 6), ('get_flight_cost.travel_class=first', 6), ('compute_exchange_rate.base_currency=USD', 5), ('compute_exchange_rate.target_currency=USD', 5), ('get_flight_cost.travel_class=economy', 5), ('activateParkingBrake.mode=engage', 4), ('displayCarStatus.option=fuel', 3), ('find.path=.', 2), ('wc.mode=c', 2)]

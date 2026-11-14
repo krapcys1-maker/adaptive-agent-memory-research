@@ -1,0 +1,50 @@
+groups {'G': 33, 'L': 21} | K1 rates {'G': {'N': 0.172, 'P': 0.242, 'S': 0.384, 'M': 0.758}, 'L': {'N': 0.778, 'P': 0.603, 'S': 0.413, 'M': 0.111}}
+
+=== BAZA (k = 1, rho = 0); G 4 / L 9; B = 2000; % stanów; 'any' = dowolne POPARCIE
+  scenariusz                                         OBA   SWO   TRE  OBAL PRZEC  SPRZ  NIER  NIEW   any  Dspec+ Dcont+
+  H_D swoiste: lam (1,0), ku (1,1)                  98.0   0.1   1.6   0.0   0.0   0.0   0.3   0.0  99.7   98.1   99.5
+  H_D pełne: lam (1,0), ku (1,0)                    99.0   0.0   1.0   0.0   0.0   0.0   0.0   0.0 100.0   99.0  100.0
+  tylko nieswoista szkoda: lam (1,1), ku (1,0)       4.6   0.0  86.2   0.0   0.2   0.1   8.9   0.0  90.8    4.6   90.9
+  częściowa asymetria 0,75/0,25 oba poziomy         52.2   0.1  43.6   0.0   0.0   0.0   4.1   0.0  95.9   52.3   95.8
+  pomoc zostaje, pół szkody: (1,.5),(1,.5)          49.1   0.0  48.4   0.0   0.0   0.0   2.5   0.0  97.5   49.1   97.5
+  zgodny z M2: lam (0,.5), ku (.5,.5)                0.0   0.0   0.0  55.0  23.2   0.0  21.8   0.0   0.0    0.0    0.0
+  jednakowe 0,5 (błąd I rodzaju)                     0.7   0.6   0.9   0.3   1.1   0.0  96.4   0.0   2.1    1.2    1.6
+  jednakowe 0,25 (błąd I rodzaju)                    0.5   0.6   0.8   0.4   1.4   0.0  96.4   0.0   1.8    1.1    1.2
+  niszczy wszystko 0 (błąd I rodzaju)                0.3   0.6   0.7   0.3   1.4   0.0  96.7   0.0   1.6    0.9    1.0
+  nic nie zmienia 1 (błąd I rodzaju)                 0.2   0.3   0.5   0.3   1.7   0.0  97.0   0.0   1.1    0.6    0.7
+  H_Z: lam (0,1), ku (0,1)                           0.0   0.0   0.0  99.3   0.7   0.0   0.0   0.0   0.0    0.0    0.0
+
+=== OSŁABIENIE k = 0,75; G 4 / L 9; B = 2000; % stanów; 'any' = dowolne POPARCIE
+  scenariusz                                         OBA   SWO   TRE  OBAL PRZEC  SPRZ  NIER  NIEW   any  Dspec+ Dcont+
+  H_D swoiste: lam (1,0), ku (1,1)                  76.8   1.8  11.6   0.0   0.0   0.0   9.8   0.0  90.2   78.7   88.4
+  H_D pełne: lam (1,0), ku (1,0)                    85.2   0.0  14.8   0.0   0.0   0.0   0.0   0.0 100.0   85.2  100.0
+  tylko nieswoista szkoda: lam (1,1), ku (1,0)       1.3   0.0  51.5   0.0   0.1   0.0  47.1   0.0  52.9    1.3   52.9
+  częściowa asymetria 0,75/0,25 oba poziomy         25.7   0.4  46.2   0.0   0.0   0.0  27.7   0.0  72.3   26.1   71.9
+  pomoc zostaje, pół szkody: (1,.5),(1,.5)          19.0   0.1  50.6   0.0   0.0   0.0  30.2   0.0  69.8   19.1   69.7
+  zgodny z M2: lam (0,.5), ku (.5,.5)                0.0   0.0   0.0  25.4  22.9   0.0  51.6   0.0   0.0    0.0    0.0
+  jednakowe 0,5 (błąd I rodzaju)                     0.2   0.3   0.8   0.8   1.1   0.0  96.8   0.0   1.4    0.6    1.1
+  jednakowe 0,25 (błąd I rodzaju)                    0.3   0.5   0.8   0.3   0.9   0.0  97.2   0.0   1.6    0.8    1.1
+  niszczy wszystko 0 (błąd I rodzaju)                0.3   0.4   0.7   0.1   1.1   0.0  97.3   0.0   1.4    0.8    1.1
+  nic nie zmienia 1 (błąd I rodzaju)                 0.2   0.2   0.3   0.1   1.2   0.0  98.0   0.0   0.8    0.4    0.6
+  H_Z: lam (0,1), ku (0,1)                           0.0   0.0   0.0  85.2  14.8   0.0   0.1   0.0   0.0    0.0    0.0
+
+=== KORELACJA rho = 0,3; G 4 / L 9; B = 2000; % stanów; 'any' = dowolne POPARCIE
+  scenariusz                                         OBA   SWO   TRE  OBAL PRZEC  SPRZ  NIER  NIEW   any  Dspec+ Dcont+
+  H_D swoiste: lam (1,0), ku (1,1)                  99.5   0.1   0.3   0.0   0.0   0.0   0.1   0.0  99.9   99.6   99.8
+  H_D pełne: lam (1,0), ku (1,0)                    99.5   0.0   0.5   0.0   0.0   0.0   0.0   0.0 100.0   99.5  100.0
+  tylko nieswoista szkoda: lam (1,1), ku (1,0)       3.9   0.0  90.3   0.0   0.1   0.1   5.6   0.0  94.2    3.9   94.3
+  częściowa asymetria 0,75/0,25 oba poziomy         61.4   0.1  36.9   0.0   0.0   0.0   1.7   0.0  98.3   61.4   98.2
+  pomoc zostaje, pół szkody: (1,.5),(1,.5)          56.8   0.0  42.2   0.0   0.0   0.0   0.9   0.0  99.0   56.8   99.0
+  zgodny z M2: lam (0,.5), ku (.5,.5)                0.0   0.0   0.0  64.8  21.2   0.0  14.0   0.0   0.0    0.0    0.0
+  jednakowe 0,5 (błąd I rodzaju)                     0.6   0.6   1.0   0.7   2.1   0.0  95.1   0.0   2.1    1.1    1.6
+  jednakowe 0,25 (błąd I rodzaju)                    0.6   0.7   0.9   0.3   1.3   0.0  96.2   0.0   2.1    1.2    1.5
+  niszczy wszystko 0 (błąd I rodzaju)                0.3   0.8   0.8   0.1   2.2   0.0  95.8   0.0   1.9    1.1    1.1
+  nic nie zmienia 1 (błąd I rodzaju)                 0.1   0.8   0.6   0.4   1.1   0.0  97.0   0.0   1.4    0.9    0.7
+  H_Z: lam (0,1), ku (0,1)                           0.0   0.0   0.0  99.7   0.3   0.0   0.0   0.0   0.0    0.0    0.0
+
+=== wrażliwość (dopiski jackknife / standaryzacja domen), B = 500
+  H_D swoiste: lam (1,0), ku (1,1)                 any  99.4 | dopisek 'nie przenosi się'   2.4 | 'zależy od składu domen'   1.8
+  H_D pełne: lam (1,0), ku (1,0)                   any 100.0 | dopisek 'nie przenosi się'   0.6 | 'zależy od składu domen'   1.0
+  częściowa asymetria 0,75/0,25 oba poziomy        any  96.8 | dopisek 'nie przenosi się'   6.0 | 'zależy od składu domen'   9.2
+
+czas 194 s

@@ -1,0 +1,42 @@
+values: 584
+decision by domain: {'GFS': {'keep:api_literal': 4, 'remove': 56, 'remove+provenance': 25, 'keep:bool': 10}, 'VC': {'remove': 50, 'remove+provenance': 16, 'keep:api_literal': 85, 'keep:bool': 13}, 'TRAVEL': {'remove': 290, 'remove+provenance': 23, 'keep:api_literal': 12}}
+flags: {'A1_case': 17, 'A2_numeric_literal_matched_in_doc_text': 11, 'A3_doc_mention_not_enum_or_quoted': 2, 'A4_provenance_by_substring_only': 4, 'A5_removed_short_value_not_leak_checked': 2, 'A6_api_literal_removed_because_in_request': 46, 'A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)': 181, 'A8_numeric_in_request_in_other_form': 2, 'A9_list_element': 54}
+rows with at least one A1-A8 flag: 259
+kept api literals: [("startEngine.ignitionMode='START'", 27), ("lockDoors.door='driver'", 11), ("lockDoors.door='passenger'", 11), ("lockDoors.door='rear_left'", 11), ("lockDoors.door='rear_right'", 11), ('pressBrakePedal.pedalPosition=1', 9), ("compute_exchange_rate.target_currency='USD'", 5), ("compute_exchange_rate.base_currency='USD'", 4), ("wc.mode='c'", 2), ("activateParkingBrake.mode='engage'", 2), ("get_flight_cost.travel_class='economy'", 2), ("find.path='.'", 1), ("wc.mode='w'", 1), ("displayCarStatus.option='climate'", 1), ('pressBrakePedal.pedalPosition=1.0', 1), ("displayCarStatus.option='parkingBrake'", 1), ('create_ticket.priority=1', 1)]
+A6 api literal removed because in request: [("get_flight_cost.travel_class='business'", 8), ("get_nearest_airport_by_city.location='Rivermist'", 6), ("get_flight_cost.travel_class='first'", 6), ("displayCarStatus.option='fuel'", 3), ("startEngine.ignitionMode='START'", 3), ("get_flight_cost.travel_class='economy'", 3), ("activateParkingBrake.mode='engage'", 2), ("displayCarStatus.option='doors'", 2), ("get_nearest_airport_by_city.location='New York'", 2), ("find.path='.'", 1), ("displayCarStatus.option='engine'", 1), ("get_nearest_airport_by_city.location='Crescent Hollow'", 1), ("get_nearest_airport_by_city.location='Stonebrook'", 1), ("compute_exchange_rate.base_currency='USD'", 1), ("compute_exchange_rate.target_currency='EUR'", 1), ("get_nearest_airport_by_city.location='San Francisco'", 1), ("get_nearest_airport_by_city.location='Boston'", 1), ("compute_exchange_rate.base_currency='RMB'", 1), ("get_nearest_airport_by_city.location='Chicago'", 1), ("get_nearest_airport_by_city.location='Los Angeles'", 1)]
+A3 examples: ["get_flight_cost.travel_class='economy'"]
+A1 examples: ["startEngine.ignitionMode='START'"]
+A2 examples: ['create_ticket.priority=1', 'pressBrakePedal.pedalPosition=1', 'pressBrakePedal.pedalPosition=1.0']
+A8 examples: ['compute_exchange_rate.value=50000', 'purchase_insurance.insurance_cost=1500']
+lists with mixed keep/remove elements: 0 of 19
+values (>=3 chars) kept somewhere AND removed elsewhere in pool: ["'START'", "'USD'", "'economy'", "'engage'"]
+raw rendering reproduces K1 block_text: 2933/2933
+LA2 leak-check violations (blocks with a removed value >=3 chars still visible): {'M': 'substring 116/534, whole-word 104/534', 'S': 'substring 90/534, whole-word 67/534'}
+group G: 327 block-turns | abs/raw M 0.88 S 0.85 | mean ln(M/S) -0.002  mean ln(Mabs/Sabs) +0.029 | share |ln(Mabs/Sabs)|>ln1.2: 0.43
+    per-task mean ln(Mabs/Sabs): min -0.21 median +0.05 max +0.33; tasks with |.|>0.05: 25/33
+    GFS: n 115 abs/raw M 0.88 S 0.82 mean ln(Mabs/Sabs) +0.076
+    VC: n 106 abs/raw M 0.92 S 0.91 mean ln(Mabs/Sabs) -0.020
+    TRAVEL: n 106 abs/raw M 0.83 S 0.82 mean ln(Mabs/Sabs) +0.028
+group L: 207 block-turns | abs/raw M 0.84 S 0.83 | mean ln(M/S) +0.033  mean ln(Mabs/Sabs) +0.046 | share |ln(Mabs/Sabs)|>ln1.2: 0.41
+    per-task mean ln(Mabs/Sabs): min -0.13 median +0.04 max +0.30; tasks with |.|>0.05: 14/21
+    GFS: n 31 abs/raw M 0.82 S 0.83 mean ln(Mabs/Sabs) +0.017
+    VC: n 47 abs/raw M 0.93 S 0.90 mean ln(Mabs/Sabs) +0.063
+    TRAVEL: n 129 abs/raw M 0.82 S 0.80 mean ln(Mabs/Sabs) +0.047
+
+--- example multi_turn_base_169:t0
+[1] Request: I just relocated to [location] and I'm looking to book a flight to Los Angeles for a crucial [travel_class] meeting. Could you arrange the flight for me, using my credit card with id '[card_id]'? I need it booked for next Tuesday [travel_date], in [travel_class] class, with a cost under $1200. Additionally, I have received my new access token: [access_token]. Once the flight is confirmed, please ensure you acquire the invoice for this transaction as it's necessary for my reimbursement.
+    Steps:
+      get_nearest_airport_by_city(location) -> returns nearest_airport
+      get_flight_cost(travel_from, travel_to, travel_date, travel_class) -> Error during execution: No available route for the given airports.
+      book_flight(access_token, card_id, travel_date, travel_from, travel_to, travel_class) -> {"booking_status": false, "error": "Invalid departure airport code: [...]"}
+      retrieve_invoice(access_token, booking_id) -> {"error": "Booking not found"}
+      get_nearest_airport_by_city(location) -> returns nearest_airport
+      get_flight_cost(travel_from, travel_to, travel_date, travel_class) -> returns travel_cost_list [travel_from: from the result of an earlier step above]
+      book_flight(access_token, card_id, travel_date, travel_from, travel_to, travel_class) -> returns booking_id, transaction_id, booking_status, booking_history [travel_from: from the re…
+
+--- example multi_turn_base_58:t1
+[1] Request: Given that the trip spans almost a thousand kilometers, could you help me make sure the fuel tank is full? Btw, I have a [gallon]-gallon drum handy. How much is that in liters?
+    Steps:
+      gallon_to_liter(gallon) -> returns liter
+      fillFuelTank(fuelAmount) -> returns fuelLevel
+    Outcome: PASSED

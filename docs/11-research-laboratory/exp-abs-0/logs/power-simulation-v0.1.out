@@ -1,0 +1,57 @@
+groups: G 33 L 21 | K1 rates G: {'N': 0.172, 'P': 0.242, 'S': 0.384, 'M': 0.758} | L: {'N': 0.778, 'P': 0.603, 'S': 0.413, 'M': 0.111}
+
+=== blocks: G 5, L 5; 6 arms; about 15,390 calls; W = 0.6
+  H_D (lam_G=1, lam_L=0)                       T_G +18.7 T_L +15.1 | fp: support  58%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  61%  G decided  95%  precond 100% | t over tasks: support  48% ref-harm   0% ref-help   0% | half-width fp G 10.0 L 13.3; t G 11.1 L 14.8
+  H_D weaker (0.75, 0.25)                      T_G  +9.3 T_L  +7.5 | fp: support   8%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  21%  G decided  41%  precond 100% | t over tasks: support   7% ref-harm   0% ref-help   0% | half-width fp G 10.5 L 13.2; t G 11.1 L 14.1
+  destroy both (0, 0)                          T_G -18.7 T_L +15.1 | fp: support   0%  refuted-harm-kept   0%  refuted-help-lost  94%  L decided  61%  G decided  94%  precond 100% | t over tasks: support   0% ref-harm   0% ref-help  90% | half-width fp G 10.4 L 13.2; t G 11.5 L 14.8
+  structure carries both (1, 1)                T_G +18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  72%  refuted-help-lost   0%  L decided  72%  G decided  95%  precond 100% | t over tasks: support   0% ref-harm  63% ref-help   0% | half-width fp G 10.0 L 11.5; t G 11.1 L 13.0
+  symmetric shrinkage (0.5, 0.5), true T = 0   T_G  -0.0 T_L  +0.0 | fp: support   0%  refuted-harm-kept   3%  refuted-help-lost   2%  L decided   6%  G decided   5%  precond 100% | t over tasks: support   0% ref-harm   3% ref-help   2% | half-width fp G 10.8 L 12.8; t G 11.1 L 13.6
+  worst of both (0, 1)                         T_G -18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  72%  refuted-help-lost  93%  L decided  72%  G decided  93%  precond 100% | t over tasks: support   0% ref-harm  62% ref-help  90% | half-width fp G 10.4 L 11.5; t G 11.5 L 13.1
+
+=== blocks: G 4, L 8; 6 arms; about 17,100 calls; W = 0.6
+  H_D (lam_G=1, lam_L=0)                       T_G +18.7 T_L +15.1 | fp: support  72%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  80%  G decided  90%  precond 100% | t over tasks: support  59% ref-harm   0% ref-help   0% | half-width fp G 11.2 L 10.5; t G 12.3 L 12.1
+  H_D weaker (0.75, 0.25)                      T_G  +9.3 T_L  +7.5 | fp: support  11%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  29%  G decided  35%  precond 100% | t over tasks: support   9% ref-harm   0% ref-help   0% | half-width fp G 11.8 L 10.5; t G 12.4 L 11.2
+  destroy both (0, 0)                          T_G -18.7 T_L +15.1 | fp: support   0%  refuted-harm-kept   0%  refuted-help-lost  88%  L decided  80%  G decided  88%  precond 100% | t over tasks: support   0% ref-harm   0% ref-help  83% | half-width fp G 11.6 L 10.5; t G 12.7 L 12.1
+  structure carries both (1, 1)                T_G +18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  90%  refuted-help-lost   0%  L decided  90%  G decided  89%  precond 100% | t over tasks: support   0% ref-harm  80% ref-help   0% | half-width fp G 11.2 L 9.1; t G 12.3 L 10.8
+  symmetric shrinkage (0.5, 0.5), true T = 0   T_G  -0.0 T_L  +0.0 | fp: support   0%  refuted-harm-kept   2%  refuted-help-lost   3%  L decided   5%  G decided   6%  precond 100% | t over tasks: support   0% ref-harm   2% ref-help   3% | half-width fp G 12.0 L 10.2; t G 12.4 L 10.7
+  worst of both (0, 1)                         T_G -18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  90%  refuted-help-lost  88%  L decided  90%  G decided  88%  precond 100% | t over tasks: support   0% ref-harm  80% ref-help  82% | half-width fp G 11.6 L 9.1; t G 12.7 L 10.8
+
+=== blocks: G 4, L 9; 6 arms; about 18,297 calls; W = 0.6
+  H_D (lam_G=1, lam_L=0)                       T_G +18.7 T_L +15.1 | fp: support  77%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  85%  G decided  91%  precond 100% | t over tasks: support  64% ref-harm   0% ref-help   0% | half-width fp G 11.2 L 9.9; t G 12.3 L 11.5
+  H_D weaker (0.75, 0.25)                      T_G  +9.3 T_L  +7.5 | fp: support  12%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  33%  G decided  35%  precond 100% | t over tasks: support   9% ref-harm   0% ref-help   0% | half-width fp G 11.8 L 9.8; t G 12.3 L 10.6
+  destroy both (0, 0)                          T_G -18.7 T_L +15.1 | fp: support   0%  refuted-harm-kept   0%  refuted-help-lost  88%  L decided  84%  G decided  88%  precond 100% | t over tasks: support   0% ref-harm   0% ref-help  83% | half-width fp G 11.6 L 9.9; t G 12.7 L 11.5
+  structure carries both (1, 1)                T_G +18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  93%  refuted-help-lost   0%  L decided  93%  G decided  89%  precond 100% | t over tasks: support   0% ref-harm  85% ref-help   0% | half-width fp G 11.2 L 8.6; t G 12.3 L 10.3
+  symmetric shrinkage (0.5, 0.5), true T = 0   T_G  -0.0 T_L  +0.0 | fp: support   0%  refuted-harm-kept   3%  refuted-help-lost   3%  L decided   5%  G decided   5%  precond 100% | t over tasks: support   0% ref-harm   3% ref-help   3% | half-width fp G 12.0 L 9.6; t G 12.4 L 10.1
+  worst of both (0, 1)                         T_G -18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  93%  refuted-help-lost  87%  L decided  93%  G decided  87%  precond 100% | t over tasks: support   0% ref-harm  85% ref-help  82% | half-width fp G 11.6 L 8.6; t G 12.7 L 10.3
+
+=== blocks: G 5, L 10; 5 arms; about 17,812 calls; W = 0.6
+  H_D (lam_G=1, lam_L=0)                       T_G +18.7 T_L +15.1 | fp: support  83%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  88%  G decided  95%  precond 100% | t over tasks: support  72% ref-harm   0% ref-help   0% | half-width fp G 10.0 L 9.4; t G 11.1 L 11.0
+  H_D weaker (0.75, 0.25)                      T_G  +9.3 T_L  +7.5 | fp: support  15%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  36%  G decided  41%  precond 100% | t over tasks: support  12% ref-harm   0% ref-help   0% | half-width fp G 10.5 L 9.3; t G 11.1 L 10.1
+  destroy both (0, 0)                          T_G -18.7 T_L +15.1 | fp: support   0%  refuted-harm-kept   0%  refuted-help-lost  95%  L decided  89%  G decided  95%  precond 100% | t over tasks: support   0% ref-harm   0% ref-help  90% | half-width fp G 10.4 L 9.4; t G 11.5 L 11.0
+  structure carries both (1, 1)                T_G +18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  95%  refuted-help-lost   0%  L decided  95%  G decided  95%  precond 100% | t over tasks: support   0% ref-harm  89% ref-help   0% | half-width fp G 10.0 L 8.1; t G 11.1 L 9.9
+  symmetric shrinkage (0.5, 0.5), true T = 0   T_G  -0.0 T_L  +0.0 | fp: support   0%  refuted-harm-kept   2%  refuted-help-lost   3%  L decided   5%  G decided   5%  precond 100% | t over tasks: support   0% ref-harm   2% ref-help   3% | half-width fp G 10.8 L 9.1; t G 11.1 L 9.6
+  worst of both (0, 1)                         T_G -18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  95%  refuted-help-lost  93%  L decided  95%  G decided  93%  precond 100% | t over tasks: support   0% ref-harm  87% ref-help  89% | half-width fp G 10.4 L 8.1; t G 11.5 L 9.9
+
+=== blocks: G 6, L 6; 6 arms; about 18,468 calls; W = 0.6
+  H_D (lam_G=1, lam_L=0)                       T_G +18.7 T_L +15.1 | fp: support  67%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  69%  G decided  97%  precond 100% | t over tasks: support  56% ref-harm   0% ref-help   0% | half-width fp G 9.2 L 12.1; t G 10.2 L 13.7
+  H_D weaker (0.75, 0.25)                      T_G  +9.3 T_L  +7.5 | fp: support  12%  refuted-harm-kept   0%  refuted-help-lost   0%  L decided  25%  G decided  49%  precond 100% | t over tasks: support   9% ref-harm   0% ref-help   0% | half-width fp G 9.6 L 12.1; t G 10.2 L 13.0
+  destroy both (0, 0)                          T_G -18.7 T_L +15.1 | fp: support   0%  refuted-harm-kept   0%  refuted-help-lost  97%  L decided  68%  G decided  97%  precond 100% | t over tasks: support   0% ref-harm   0% ref-help  95% | half-width fp G 9.5 L 12.1; t G 10.6 L 13.7
+  structure carries both (1, 1)                T_G +18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  80%  refuted-help-lost   0%  L decided  80%  G decided  98%  precond 100% | t over tasks: support   0% ref-harm  69% ref-help   0% | half-width fp G 9.1 L 10.5; t G 10.3 L 12.1
+  symmetric shrinkage (0.5, 0.5), true T = 0   T_G  -0.0 T_L  +0.0 | fp: support   0%  refuted-harm-kept   2%  refuted-help-lost   3%  L decided   4%  G decided   6%  precond 100% | t over tasks: support   0% ref-harm   2% ref-help   3% | half-width fp G 9.8 L 11.8; t G 10.1 L 12.4
+  worst of both (0, 1)                         T_G -18.7 T_L -15.1 | fp: support   0%  refuted-harm-kept  80%  refuted-help-lost  97%  L decided  80%  G decided  97%  precond 100% | t over tasks: support   0% ref-harm  69% ref-help  94% | half-width fp G 9.5 L 10.5; t G 10.6 L 12.1
+
+=== sensitivity of the plan G 4, L 9, 6 arms
+  W = 0.3: H_D (lam_G=1, lam_L=0)             T_G +18.7 T_L +15.1 | fp support 68% ref-harm 0% ref-help 0% | half-width fp G 12.0 L 10.5
+  W = 0.3: H_D weaker (0.75, 0.25)            T_G  +9.3 T_L  +7.5 | fp support 10% ref-harm 0% ref-help 0% | half-width fp G 12.6 L 10.4
+  W = 0.3: destroy both (0, 0)                T_G -18.7 T_L +15.1 | fp support 0% ref-harm 0% ref-help 81% | half-width fp G 12.6 L 10.6
+  W = 0.3: structure carries both (1, 1)      T_G +18.7 T_L -15.1 | fp support 0% ref-harm 89% ref-help 0% | half-width fp G 12.0 L 9.1
+  W = 1.0: H_D (lam_G=1, lam_L=0)             T_G +17.6 T_L +14.2 | fp support 85% ref-harm 0% ref-help 0% | half-width fp G 9.4 L 8.5
+  W = 1.0: H_D weaker (0.75, 0.25)            T_G  +8.8 T_L  +7.1 | fp support 15% ref-harm 0% ref-help 0% | half-width fp G 10.1 L 8.7
+  W = 1.0: destroy both (0, 0)                T_G -17.6 T_L +14.2 | fp support 0% ref-harm 0% ref-help 96% | half-width fp G 9.4 L 8.5
+  W = 1.0: structure carries both (1, 1)      T_G +17.6 T_L -14.2 | fp support 0% ref-harm 95% ref-help 0% | half-width fp G 9.4 L 7.7
+  S-abs = S -0.10: H_D (lam_G=1, lam_L=0)             T_G +18.7 T_L +15.1 | fp support 80% ref-harm 0% ref-help 0%
+  S-abs = S -0.10: destroy both (0, 0)                T_G -18.7 T_L +15.1 | fp support 0% ref-harm 0% ref-help 92%
+  S-abs = S -0.10: structure carries both (1, 1)      T_G +18.7 T_L  -9.7 | fp support 0% ref-harm 68% ref-help 0%
+  S-abs = S +0.10: H_D (lam_G=1, lam_L=0)             T_G +17.5 T_L +15.1 | fp support 74% ref-harm 0% ref-help 0%
+  S-abs = S +0.10: destroy both (0, 0)                T_G -18.7 T_L +15.1 | fp support 0% ref-harm 0% ref-help 85%
+  S-abs = S +0.10: structure carries both (1, 1)      T_G +17.5 T_L -15.1 | fp support 0% ref-harm 88% ref-help 0%

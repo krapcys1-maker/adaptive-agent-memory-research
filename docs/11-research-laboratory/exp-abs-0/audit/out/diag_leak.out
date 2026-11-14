@@ -1,0 +1,9 @@
+blocks checked 1068
+C1 value removed in another trace, visible in this trace (request/args/kept literal) 134 [('multi_turn_base_28:t0', 'file_name'), ('multi_turn_base_156:t0', 'booking_id'), ('multi_turn_base_155:t0', 'booking_id'), ('multi_turn_base_155:t1', 'travel'), ('multi_turn_base_12:t2', 'file_name'), ('multi_turn_base_79:t1', 'doors')]
+C2 same value kept as API literal in another trace 31 [('multi_turn_base_154:t1', 'economy'), ('multi_turn_base_196:t0', 'USD'), ('multi_turn_base_73:t1', 'START'), ('multi_turn_base_70:t0', 'engage'), ('multi_turn_base_70:t0', 'engage'), ('multi_turn_base_92:t3', 'START')]
+C4 own steps (error text/other) 77 [('multi_turn_base_46:t0', 'file_name'), ('multi_turn_base_169:t0', 'booking_id'), ('multi_turn_base_169:t0', 'booking_id'), ('multi_turn_base_46:t0', 'file_name'), ('multi_turn_base_73:t1', 'doors'), ('multi_turn_base_73:t1', 'doors')]
+G share |ln(M/S)|>ln1.2 raw: 0.06
+L share |ln(M/S)|>ln1.2 raw: 0.1
+distinct (function,param): 96 | with [Enum] in doc: 7
+params with both keep and remove decisions: {'find.path': {'keep': 1, 'remove': 1}, 'startEngine.ignitionMode': {'keep': 27, 'remove': 3}, 'pressBrakePedal.pedalPosition': {'keep': 10, 'remove': 2}, 'activateParkingBrake.mode': {'remove': 2, 'keep': 2}, 'displayCarStatus.option': {'remove': 7, 'keep': 2}, 'get_flight_cost.travel_class': {'remove': 17, 'keep': 2}, 'compute_exchange_rate.base_currency': {'keep': 4, 'remove': 2}, 'compute_exchange_rate.target_currency': {'keep': 5, 'remove': 1}, 'create_ticket.priority': {'keep': 1, 'remove': 1}}
+enum params: ['activateParkingBrake.mode', 'compute_exchange_rate.base_currency', 'compute_exchange_rate.target_currency', 'displayCarStatus.option', 'get_nearest_airport_by_city.location', 'lockDoors.door', 'startEngine.ignitionMode']
