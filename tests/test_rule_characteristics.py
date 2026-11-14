@@ -1,16 +1,21 @@
-"""P1: charakterystyka reguł decyzyjnych przed zamrożeniem protokołu (audyt 2026-11-13, ustalenia 1–3).
+"""Imported from the AAMR coordinator (commit 74980a3). The three tests that exercise the coordinator's experiment admission
+and its CLI stay in the coordinator; everything below tests the pure simulation module only.
+
+P1: charakterystyka reguł decyzyjnych przed zamrożeniem protokołu (audyt 2026-11-13, ustalenia 1–3).
 
 Testy odtwarzają liczby audytu na regułach historycznych (bez zmiany ich werdyktów) i sprawdzają, że bramka zamrożenia
 odmawia: błędu I rodzaju, braku mocy, fałszywego zamykania kierunku, braku stanu nierozstrzygniętego, braku rozdziału
 efektu dodatniego od praktycznego, niezadeklarowanej zależności, szumu z ponownego przebiegu i pseudoreplikacji.
 """
 import json
+import sys
+from pathlib import Path
 
 import pytest
 
-from aamr_coord.lab.registry import AdmissionError, Registry
-from aamr_coord.lab.rulecheck import (Design, Rule, RuleSpecError, characteristics, exact_threshold_rate,
-                                      freeze_check, mcnemar_one_sided, render)
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from rule_characteristics import (Design, Rule, RuleSpecError, characteristics, exact_threshold_rate,  # noqa: E402
+                                  freeze_check, mcnemar_one_sided, render)
 
 N_SIM = 1500
 INDEP = {"independent_units": True, "independence_justification": "test: jednostki z osobnych źródeł"}
@@ -148,55 +153,3 @@ def test_deterministic_and_rendered():
     b = freeze_check(ci_spec(n=400), n_sim=300)
     assert a["table"] == b["table"] and a["spec_sha256"] == b["spec_sha256"]
     assert "ODMOWA ZAMROŻENIA" in render(a) and "| +0.000 |" in render(a)
-
-
-# ------------------------------------------------------------------------- dopuszczenie eksperymentu
-def _propose(c, tmp_path, eid, spec):
-    proto = tmp_path / f"{eid}.md"
-    proto.write_text("protokół", encoding="utf-8")
-    params = {}
-    if spec is not None:
-        sp = tmp_path / f"{eid}.rule.json"
-        sp.write_text(json.dumps(spec), encoding="utf-8")
-        params["rule_spec_path"] = str(sp)
-    reg = Registry(c)
-    reg.propose(eid, {"title": "t", "protocol_path": str(proto), "models": {"subject": "q9"},
-                      "hypotheses": [{"id": "H1", "statement": "s", "falsification": "f"}],
-                      "datasets": [{"name": "d", "split": "dev"}], "params": params})
-    return reg
-
-
-def test_admission_unchanged_when_not_required(env, tmp_path):
-    c = env(level=1)
-    reg = _propose(c, tmp_path, "E0", None)
-    assert reg.admission_problems("E0") == []                                    # domyślnie: bez zmian zachowania
-
-
-def test_admission_requires_passing_rule_check(env, tmp_path):
-    c = env(level=1)
-    c.cfg.raw.setdefault("lab", {})["rule_check"] = {"required": True, "n_sim": 600}
-    reg = _propose(c, tmp_path, "E1", None)
-    assert any("brak specyfikacji reguły" in p for p in reg.admission_problems("E1"))
-    reg = _propose(c, tmp_path, "E2", {"design": {"n_units": 88, "discordance": 0.35, "noise_source": "placebo",
-                                                  "sesoi": 10 / 88, "cluster_sizes": [30, 30, 28]},
-                                       "rule": NIGHT2_MAIN})
-    probs = reg.admission_problems("E2")
-    assert any("fałszywe zamknięcie" in p for p in probs)
-    with pytest.raises(AdmissionError):
-        reg.admit("E2", by="owner")
-    reg = _propose(c, tmp_path, "E3", ci_spec(n=1000))
-    assert reg.admission_problems("E3") == []
-    reg.admit("E3", by="owner")
-    (tmp_path / "E3.rule.json").write_text(json.dumps(ci_spec(n=88)), encoding="utf-8")   # zmiana po propozycji
-    reg = _propose(c, tmp_path, "E4", ci_spec(n=1000))
-    (tmp_path / "E4.rule.json").write_text(json.dumps(ci_spec(n=88)), encoding="utf-8")
-    assert any("zmieniła się od propozycji" in p for p in reg.admission_problems("E4"))
-
-
-def test_cli_rulecheck_does_not_open_database(tmp_path, monkeypatch):
-    from aamr_coord import cli
-    sp = tmp_path / "r.json"
-    sp.write_text(json.dumps(ci_spec(n=88)), encoding="utf-8")
-    monkeypatch.setattr(cli, "_coord", lambda *a, **k: (_ for _ in ()).throw(AssertionError("baza otwarta")))
-    rc = cli.main(["lab", "rulecheck", "--file", str(sp), "--n-sim", "200", "--out", str(tmp_path / "o.json")])
-    assert rc == 2 and json.loads((tmp_path / "o.json").read_text(encoding="utf-8"))["ok"] is False
