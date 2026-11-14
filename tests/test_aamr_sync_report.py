@@ -608,3 +608,26 @@ def test_export_records_and_the_report_never_open_the_coordinator_database(world
     text = sync.render(findings, rows, "R", time.time())
     assert not [p for p in opened if p.endswith((".db", ".env"))]
     assert "SUPERSECRET" not in text
+
+
+def test_all_uses_the_repository_named_in_the_configuration_for_the_github_section(world, tmp_path, monkeypatch, capsys):
+    """`all` read the repository from the configuration for the local section but demanded --repo for the GitHub section."""
+    seen = []
+
+    def fake_fetch(repo):
+        seen.append(repo)
+        return {"prs": [], "issues": [], "merged_prs": []}
+
+    monkeypatch.setattr(sync, "fetch_github", fake_fetch)
+    monkeypatch.setattr(sync, "open_pr_heads_from_github", lambda repo: {})
+    cfg = tmp_path / "cfg.json"
+    cfg.write_text(json.dumps({"canonical_repo": str(world["work"]), "remote_main": "origin/main", "roots": [],
+                               "repo": "owner/name", "manifest_dir": str(tmp_path / "m")}), encoding="utf-8")
+    code = sync.main(["all", "--config", str(cfg)])
+    assert seen == ["owner/name"]
+    assert code in (0, 1)
+    capsys.readouterr()
+    cfg.write_text(json.dumps({"canonical_repo": str(world["work"]), "remote_main": "origin/main", "roots": [],
+                               "manifest_dir": str(tmp_path / "m")}), encoding="utf-8")
+    with pytest.raises(SystemExit):
+        sync.main(["all", "--config", str(cfg)])      # without a repository anywhere it still stops with a usage error
