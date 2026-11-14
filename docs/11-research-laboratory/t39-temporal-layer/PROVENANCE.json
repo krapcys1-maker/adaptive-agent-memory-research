@@ -1,0 +1,224 @@
+{
+ "imported": "2026-11-14",
+ "from": "AAMR coordinator (local, no remote); sources were read only",
+ "rule": "only the listed files; no transcripts, prompts, context manifests, mission definitions, task database or protected data",
+ "unlisted_identical_files": "reproduction.json of tasks 7 and 11 is byte-identical to the response.md of the same task and is not copied twice",
+ "files": [
+  {
+   "published_path": "reproductions/task-07-c3-reproduction/response.md",
+   "source": "coordinator:workspace/tasks/00007/runs/01-8b53b7a6/response.md",
+   "task": 7,
+   "role": "reproduction of the C3 trap on REV-V0 (6 of 6 checks)",
+   "status": "VERIFIED-REPRODUCTION",
+   "sha256_original": "280a9d689d610c534cd598aee261826fb9949ee4c4d17830368a4ffc651fdc29",
+   "sha256_published": "2276c14fa6391dc2f5e0e7f924338024c95fc14c13bfbc3e16e06e561a8d818a",
+   "edits": [
+    "replaced 2 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  },
+  {
+   "published_path": "reproductions/task-07-c3-reproduction/cmd-0.txt",
+   "source": "coordinator:workspace/tasks/00007/runs/01-8b53b7a6/cmd-0.txt",
+   "task": 7,
+   "role": "raw stdout of executed command 0",
+   "status": "RAW-OUTPUT",
+   "sha256_original": "32fcc846317cbbbcc7e658631ea4283bc88d40dea4ca0ae7b1447225b501a613",
+   "sha256_published": "32fcc846317cbbbcc7e658631ea4283bc88d40dea4ca0ae7b1447225b501a613",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "reproductions/task-07-c3-reproduction/cmd-1.txt",
+   "source": "coordinator:workspace/tasks/00007/runs/01-8b53b7a6/cmd-1.txt",
+   "task": 7,
+   "role": "raw stdout of executed command 1",
+   "status": "RAW-OUTPUT",
+   "sha256_original": "43f7110b26bf6d108432ed6406aaf6b233602974ffb930e2265119b57f9281cf",
+   "sha256_published": "43f7110b26bf6d108432ed6406aaf6b233602974ffb930e2265119b57f9281cf",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "reproductions/task-11-mutation-check/response.md",
+   "source": "coordinator:workspace/tasks/00011/runs/01-382a5cde/response.md",
+   "task": 11,
+   "role": "mutation check of the M1/C7 question (4 variants)",
+   "status": "VERIFIED-REPRODUCTION",
+   "sha256_original": "b7f3062407e27d32ff237aa672ae95eec6a1efe7f602cf862ea5f56db9593c51",
+   "sha256_published": "df1f91262daec3333c32d02542e650963ea5f8e8999b57acf1ca2ecd234beccb",
+   "edits": [
+    "replaced 4 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  },
+  {
+   "published_path": "reproductions/task-11-mutation-check/cmd-0.txt",
+   "source": "coordinator:workspace/tasks/00011/runs/01-382a5cde/cmd-0.txt",
+   "task": 11,
+   "role": "raw stdout of an executed variant",
+   "status": "RAW-OUTPUT",
+   "sha256_original": "32fcc846317cbbbcc7e658631ea4283bc88d40dea4ca0ae7b1447225b501a613",
+   "sha256_published": "32fcc846317cbbbcc7e658631ea4283bc88d40dea4ca0ae7b1447225b501a613",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "reproductions/task-11-mutation-check/variant-M1-cmd-0.txt",
+   "source": "coordinator:workspace/tasks/00011/runs/01-382a5cde/variant-M1-cmd-0.txt",
+   "task": 11,
+   "role": "raw stdout of an executed variant",
+   "status": "RAW-OUTPUT",
+   "sha256_original": "7df76556b3b3b4dbf7bc34ac9c88fa763bf2edb230a6c6ce79ea07b20c975773",
+   "sha256_published": "7df76556b3b3b4dbf7bc34ac9c88fa763bf2edb230a6c6ce79ea07b20c975773",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "reproductions/task-11-mutation-check/variant-NOFALLBACK-cmd-0.txt",
+   "source": "coordinator:workspace/tasks/00011/runs/01-382a5cde/variant-NOFALLBACK-cmd-0.txt",
+   "task": 11,
+   "role": "raw stdout of an executed variant",
+   "status": "RAW-OUTPUT",
+   "sha256_original": "52a62e28124d4b2ca65b13f54d70d1174fad94bf0f211219ed25c6f748af55c9",
+   "sha256_published": "52a62e28124d4b2ca65b13f54d70d1174fad94bf0f211219ed25c6f748af55c9",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "reproductions/task-11-mutation-check/variant-M1_NOFALLBACK-cmd-0.txt",
+   "source": "coordinator:workspace/tasks/00011/runs/01-382a5cde/variant-M1_NOFALLBACK-cmd-0.txt",
+   "task": 11,
+   "role": "raw stdout of an executed variant",
+   "status": "RAW-OUTPUT",
+   "sha256_original": "ada283f08b93340e2653994a3fe2a76b523f3313b4d407264651b0406afc4b53",
+   "sha256_published": "ada283f08b93340e2653994a3fe2a76b523f3313b4d407264651b0406afc4b53",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "iteration-1-superseded/task-08-first-plan.md",
+   "source": "coordinator:workspace/tasks/00008/runs/01-cd565f4a/response.md",
+   "task": 8,
+   "role": "first temporal-layer plan (T39-TEMPORAL)",
+   "status": "SUPERSEDED",
+   "sha256_original": "feb79ba942fea0a73bc3726747e8278f1e5dbb7870076c41827972f7fbfe1770",
+   "sha256_published": "70d877f8a76390c137b3c5db3b80e9ba9e16db695d007c238e40ec03e46bb1a9",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "iteration-1-superseded/task-09-methodological-review.md",
+   "source": "coordinator:workspace/tasks/00009/runs/01-3e6a3426/response.md",
+   "task": 9,
+   "role": "AI review of the first plan: verdict revise, falsifiability_ok=false",
+   "status": "REVIEW (AI)",
+   "sha256_original": "3e46001344f1e5a0dc7aa9907e9dcac5ba3c6deab7ef9a762ecdf0a77561840b",
+   "sha256_published": "d1ea02456211442f39809199036cb9d96082c662457a47fcf65e460a4691c03e",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "iteration-1-superseded/task-10-owner-brief.md",
+   "source": "coordinator:workspace/tasks/00010/runs/01-1d9c1e01/response.md",
+   "task": 10,
+   "role": "owner brief with a draft comment for Issue #39 (never posted)",
+   "status": "SUPERSEDED",
+   "sha256_original": "33028689f6e90d07a3c7c569b54c37d08a12142847887b0fd0ae90dd0e6ed0d6",
+   "sha256_published": "a8b04d0f35e3d3216179467997d320bb88e5b069725a88d5c3a57f0546600f8e",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "iteration-2-proposal/task-12-revised-plan.md",
+   "source": "coordinator:workspace/tasks/00012/runs/01-c22f0597/response.md",
+   "task": 12,
+   "role": "revised plan (T39-REVISION)",
+   "status": "PROPOSAL-NOT-APPROVED",
+   "sha256_original": "4cba25a9fdb27ec2878b9f7d94d6e2084e0c3ac6d8455bfa4a2eb9f819ebbeef",
+   "sha256_published": "c692e1ebf4a263faa272a43d2a2da76c75d9e9190db0036923c2a58e72b04f74",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "iteration-2-proposal/task-13-second-review.md",
+   "source": "coordinator:workspace/tasks/00013/runs/01-a4444494/response.md",
+   "task": 13,
+   "role": "AI re-review: conditional accept, falsifiability_ok=true, 13 new remarks N1-N13",
+   "status": "REVIEW (AI)",
+   "sha256_original": "4daee7c71b19c89942acac243f344801a19577b09ffff5ff1c428786d0639143",
+   "sha256_published": "98af892d0f3fea3a4a86ca92cff69e1e406c07e1713b855c7313805f35c1dc48",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "iteration-2-proposal/task-14-decision-table.md",
+   "source": "coordinator:workspace/tasks/00014/runs/01-939088cb/response.md",
+   "task": 14,
+   "role": "table of the 18 owner decisions A-R",
+   "status": "PROPOSAL-NOT-APPROVED",
+   "sha256_original": "f924874fa81ff9fa5df07ed48510163673c96cb0f74ab106e81e170a31071998",
+   "sha256_published": "6016ad72d9309efe82c41edbd52530907a521cd6315f913898d9469d84cb15e5",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "iteration-2-proposal/final-report.md",
+   "source": "coordinator:reports/T39-REVISION-RAPORT.md",
+   "task": null,
+   "role": "mission report: verdict, remarks N1-N13, decisions A-R, recommended next step",
+   "status": "PROPOSAL-NOT-APPROVED",
+   "sha256_original": "a96e9150d7a8a6581474c3db7a23b8a19ac52968329e8385faa8e28d62af3083",
+   "sha256_published": "c03783a76fbaf4a88cf17725ef44f0f10c096ef8350cb4cfb059a9d70f68896c",
+   "edits": [
+    "removed the trailing section '## Uwagi o procesie' (internal process notes)"
+   ]
+  },
+  {
+   "published_path": "iteration-2-proposal/evidence-check-task-12.json",
+   "source": "coordinator:workspace/tasks/00012/runs/01-c22f0597/evidence_check.json",
+   "task": 12,
+   "role": "the coordinator's mechanical citation check of that task's output",
+   "status": "MECHANICAL-CHECK",
+   "sha256_original": "39f0532e4e131b561e54e9eb8bff07efbb7e59ed04430a56d0bd8142def7cdf0",
+   "sha256_published": "39f0532e4e131b561e54e9eb8bff07efbb7e59ed04430a56d0bd8142def7cdf0",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "iteration-2-proposal/evidence-check-task-13.json",
+   "source": "coordinator:workspace/tasks/00013/runs/01-a4444494/evidence_check.json",
+   "task": 13,
+   "role": "the coordinator's mechanical citation check of that task's output",
+   "status": "MECHANICAL-CHECK",
+   "sha256_original": "19d93d491fe7349a45db397f35e3d6d2e9d89ad83ea632463ad74289ef1102bc",
+   "sha256_published": "19d93d491fe7349a45db397f35e3d6d2e9d89ad83ea632463ad74289ef1102bc",
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "published_path": "iteration-2-proposal/evidence-check-task-14.json",
+   "source": "coordinator:workspace/tasks/00014/runs/01-939088cb/evidence_check.json",
+   "task": 14,
+   "role": "the coordinator's mechanical citation check of that task's output",
+   "status": "MECHANICAL-CHECK",
+   "sha256_original": "c14b70a932716ef478f48066abc0bdc30340f652d2444882ff87d896b662aac4",
+   "sha256_published": "c14b70a932716ef478f48066abc0bdc30340f652d2444882ff87d896b662aac4",
+   "edits": [
+    "none"
+   ]
+  }
+ ]
+}
