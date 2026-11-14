@@ -122,8 +122,13 @@ an append to the registry and event log. Then:
 
 **Exceptions that remain, with the reason:** the coordinator's home folder (the running laboratory); the old root folder as a thin compatibility shell (the two secret files whose location the held-out isolation
 design names, the data of the separate NIE persona project, a project settings folder, and two junctions); the four junctions named above; the maintainer's notes folder on the pattern-research ("pajęczyna") topic
-(another process had it open, so it was not moved); and the folders of work other sessions were still using on 2026-11-14 (the EXP-A audit and specification folders, the laboratory review folder, and the K1 audit
-folder, whose audit is published and which can move once those sessions end). A third-party research tool and an unrelated project that live on the same disk are not part of this project.
+(an unidentified process holds the folder itself, although no file in it is locked, so it was not moved); and the unfinished EXP-A (EXP-ABS-0) draft folders (specification v0.1 and v0.2, the methodological audit, code and
+tests: unfrozen drafts awaiting the owner's approval; the code still reads the K1 executor and audit folders through the junctions, and the daily report lists them as held, with a warning until a protected-data check and
+a publication decision exist). No session was running on 2026-11-14 at the end of the day. The K1 audit folder (its audit is published; it holds the blinded cases and their key) and the laboratory review report
+were moved to `private/legacy`; the review is held in the daily report until the owner decides whether to publish it. A third-party research tool and an unrelated project that live on the same disk are not part of this project.
+
+The 63 remote branches that were already contained in `main` were deleted on GitHub after each was re-checked against the live remote (same SHA as listed, still an ancestor of `main`, no open pull request); the list with
+their last SHAs is kept in `private/backups/remote-branches-2026-11-14`. Only `main` and `codex/structured-memory-runtime-2026-11-04` (88 patches of unique history, the former large pull request) remain on the remote; there are no tags.
 
 ## 7. The laboratory and the repository
 
@@ -152,5 +157,10 @@ folder, whose audit is published and which can move once those sessions end). A 
 5. A fork for the cloned third-party tool.
 6. Whether to create the `status:` labels proposed in the work rules.
 7. Whether, and where, the laboratory's infrastructure code is ever published.
-8. Deleting the merged remote branches (about 40 stay on GitHub; the daily report lists them).
+8. The `raw_root` field of the two published `raw-freeze.json` files (NIGHT-1, NIGHT-2) records a Windows drive path of the old layout (a drive letter, the old root folder, the old `GH_REVIVAL` folder and the run folder). It was published
+   byte for byte with an erratum, on the owner's ruling for NIGHT-1. A later commit or revert does not remove it from Git history, nor from the pull-request refs and any clone or fork; only a history rewrite with a force push would, and that
+   would break the recorded commit hashes and links. The folder names were already in earlier public commits; the user name and any secret are not in these files. Decision: leave as is, or replace the value in the current tree with an erratum
+   (the frozen bytes then change; no manifest pins these two files), or rewrite history.
+9. Whether to publish the EXP-A draft and the laboratory review report (held in the daily report).
+10. The EXP-A (EXP-ABS-0) specification itself: approval to freeze, to build its executor and to run.
 

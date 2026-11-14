@@ -443,6 +443,7 @@ def test_branch_and_experiment_review(world):
     g(work, "checkout", "-q", "main")
     branch_findings = {f.code: f for f in sync.review_branches(work, "origin/main", time.time())}
     assert "BRANCH_MERGED_UNDELETED" in branch_findings
+    assert branch_findings["BRANCH_MERGED_UNDELETED"].detail.startswith("1 remote branch")  # claude/merged-one only: origin/HEAD and main are not counted
     assert branch_findings["BRANCH_UNMERGED_OLD"].where.endswith("claude/ancient")
     experiments = {f.code: f.detail for f in sync.review_experiments(work)}
     assert "exp-b" in experiments["EXPERIMENT_NO_README"] and "exp-a" not in experiments["EXPERIMENT_NO_README"]
