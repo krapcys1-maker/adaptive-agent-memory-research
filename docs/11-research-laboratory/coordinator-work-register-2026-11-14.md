@@ -20,18 +20,19 @@
 
 The registry rows are in [data/lab/experiment-registry.csv](../../data/lab/experiment-registry.csv) (`AAMR-NIGHT-1`, `AAMR-NIGHT-2`, `AAMR-K1`). The raw runs stay private (K1's is 326 MB); the published manifests list them by SHA-256 with relative paths.
 
-## 2. Missions and tasks of the coordinator (18 tasks, 4 cycles)
+## 2. Missions and tasks of the coordinator (19 tasks, 4 cycles)
 
 | Task | What | Outcome | Where |
 |---|---|---|---|
 | 1, 2, 3, 4, 5 | link tests of the three agents (tasks 1 and 2 failed and were repeated as 4 and 5) | operational; no research content | not exported |
 | 6 | one synthetic connection test of deepseek-flash | succeeded; USD 0.00020625 settled, the only paid call the coordinator ever made | [spend/coordinator-deepseek-ledger.jsonl](coordinator-outputs-2026-11/spend/coordinator-deepseek-ledger.jsonl), #154 |
-| 7, 11 | reproduction of the C3 trap; mutation check of the resolver | verified reproductions | [t39-temporal-layer/reproductions](t39-temporal-layer/reproductions/), #139 |
+| 7, 11 | reproduction of the C3 trap; mutation check of the resolver | verified reproductions | [t39-temporal-layer/reproductions](t39-temporal-layer/reproductions/), #139; the code of the three resolver variants of task 11 (it existed only in the coordinator's sandbox): [variant-diffs](t39-temporal-layer/reproductions/task-11-mutation-check/variant-diffs/README.md), #159 (applied to `scripts/run_revision_v0.py` and run, each reproduces the published output byte for byte) |
 | 8, 9, 10 | first plan, first AI review, owner brief of mission T39-TEMPORAL | superseded by iteration 2 | [t39-temporal-layer/iteration-1-superseded](t39-temporal-layer/iteration-1-superseded/), #139 |
 | 12, 13, 14 | revised plan, second AI review, decision table A to R of mission T39-REVISION | proposal, **not approved**; 18 decisions open | [t39-temporal-layer/iteration-2-proposal](t39-temporal-layer/iteration-2-proposal/), #139 |
 | 15 | AI review of NIGHT-2 | completed | [coordinator-outputs-2026-11/reviews](coordinator-outputs-2026-11/reviews/), #154 |
 | 16, 17 | drafted replies to pull requests #129 and #130 | never posted (dry-run mode); the maintainers handled both pull requests and merged them on 2026-11-14 | drafts stay private |
 | 18 | AI review of K1 | completed, **invalid as a review of K1** (see above) | [coordinator-outputs-2026-11/reviews](coordinator-outputs-2026-11/reviews/), #154 |
+| 19 | the first call (scout role, Sonnet) of the Autolab program K1-REPLAY-A | succeeded; the program was stopped right after (section 6) | not exported; no research content |
 
 Missions T39-TEMPORAL and T39-REVISION are closed; their run reports are in [coordinator-outputs-2026-11/missions](coordinator-outputs-2026-11/missions/) (#154), their plan, reviews and reproductions in the T39 directory above (#139).
 
@@ -53,13 +54,17 @@ in its database (about pull requests #129 and #130) are stale: both pull request
 
 ## 5. The laboratory's own code
 
-The session that builds the laboratory's code ("Autolab": a knowledge registry, a domain adapter, a program loop, an export module, a repository steward, a demo) merged its work in the private repository `kordynator` (pull requests 1, 2 and 4 to 8). That is laboratory code: it stays there, by the maintainer's rule. Its two demonstration runs (`SYN-DEMO-20261114-1523`, `-1535`) used fake roles, no model and no real data: **tests of the laboratory, not research results**; they were not published and will not be.
+The session that builds the laboratory's code ("Autolab": a knowledge registry, a domain adapter, a program loop, an export module, a repository steward, a demo) merged its work in the private repository `kordynator` (pull requests 1 to 10; the third is the configuration switch of this consolidation). That is laboratory code: it stays there, by the maintainer's rule. Its two demonstration runs (`SYN-DEMO-20261114-1523`, `-1535`) used fake roles, no model and no real data: **tests of the laboratory, not research results**; they were not published and will not be.
 
-## 6. Work in progress at the time of writing
+The automatic hand-off of finished laboratory tasks to the export tool exists: Autolab is enabled in the live laboratory with no active program, and a scheduled task `AAMR-AUTOLAB-EXPORT` (every 10 minutes, a separate process) passes queued export requests to `aamr_export.py`. **It has so far been exercised only on synthetic data; no real laboratory task has gone through it.** Every real result in this register was exported by hand with the same tool.
+
+## 6. Work in progress, and one aborted test
+
+Nothing of research value is in progress in the laboratory at the time of writing.
 
 | Id | What | State |
 |---|---|---|
-| autolab K1-REPLAY-A | a mechanical replay of K1 block A from the frozen data (no model call), proposed as the first real task for the laboratory's automatic hand-off to the export tool | in progress; when finished it goes through `aamr_export.py` into `data/lab/autolab-k1-replay-a/` or is held with a reason. Not on `main` at the time of writing |
+| autolab K1-REPLAY-A | a launch test of the laboratory: a program (a mechanical replay of K1 block A) was added to the live laboratory and stopped at once, because the maintainer had not ordered that study | **aborted; not a study, no run, no result, no export; one model call (coordinator task 19); never to be published** |
 
 ## 7. Held, with the reason
 
