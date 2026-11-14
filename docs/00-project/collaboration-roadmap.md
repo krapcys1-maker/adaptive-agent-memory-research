@@ -2,6 +2,8 @@
 
 Status: reviewed
 
+**Status note, 14 November 2026.** This roadmap is the August plan and is kept as written. Since then the work has moved from the evidence workstreams to experiments: the writer-memory benchmark and LifeSim (workstream EV-4's line), and, since 12 November, an experience-memory track on a public tool-use benchmark (pilot, lessons, a composed system, a placebo control; see the [laboratory map](../11-research-laboratory/lab-map.md) and the [register of the laboratory's work](../11-research-laboratory/coordinator-work-register-2026-11-14.md)). The milestones below have not been renumbered; no milestone was reached by those experiments, and the decision on the next step after NIGHT-2 and K1 is the maintainer's.
+
 The research can proceed in parallel without prematurely coupling implementation decisions.
 
 ## Workstream HM-1 — Working memory and attention

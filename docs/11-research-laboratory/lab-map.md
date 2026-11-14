@@ -47,6 +47,10 @@ Every current `aam-*/README.md` and `wmb-*/README.md` is linked here; the histor
 | AAMR-NIGHT-1 | [Right content at the error moment and lesson writers: development result, transfer not confirmed](../../data/lab/aamr-night1/README.md) |
 | AAMR-NIGHT-2 | [Composed system against no memory and competitor-style arms: negative on the frozen main test](../../data/lab/aamr-night2/README.md) |
 | AAMR-K1 (EXP-PLACEBO-0) | [Mechanical record: nothing decided at 10 pp; interpretation is a separate audit](../../data/lab/aamr-k1/README.md) |
+| Coordinator outputs, November 2026 | [AI reviews of NIGHT-1, NIGHT-2 and K1, mechanical verification, run and mission records, the D7 isolation test, the coordinator's ledger, an audit of the laboratory](coordinator-outputs-2026-11/README.md) |
+| T39 temporal query layer | [Plan, reviews and reproductions: proposal, nothing approved, nothing implemented](t39-temporal-layer/README.md) |
+| EXP-A (EXP-ABS-0) | [Draft specification, audit of v0.1 and design-stage logs: proposal, not frozen, not run](exp-abs-0/README.md) |
+| Register of the laboratory's work | [Every piece of the coordinator's work, its state and where it is on `main`, 2026-11-14](coordinator-work-register-2026-11-14.md) |
 | MAB FactConsolidation label screen | [Preliminary screening by one AI reader, not confirmed errors](../../data/lab/mab-fc-label-screen-v1/README.md) |
 | DeepSeek spend ledger, November phase | [Complete ledger and its open points](../../data/lab/aam-deepseek-2026-11/README.md) |
 
