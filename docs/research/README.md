@@ -52,7 +52,19 @@ Result files (selections, judged labels, token counts) live under [`../../data/l
 * [`RELATED_WORK_AND_POSITIONING_2026-08-24.md`](RELATED_WORK_AND_POSITIONING_2026-08-24.md): related work and where this project sits.
 * Budget ledgers, as JSON: [`../../data/lab/arena/autonomous-research-budget-v1/ledger.json`](../../data/lab/arena/autonomous-research-budget-v1/ledger.json), [`v2`](../../data/lab/arena/autonomous-research-budget-v2/ledger.json), [`v3`](../../data/lab/arena/autonomous-research-budget-v3/ledger.json).
 
-Some documents cite files that are not in this repository (for example a "frontier map" of the literature written in a parallel session). Where a link in an older report does not resolve, the file was not published. The ledger's measured results do not depend on those files, but its external-support citations (in Entries D, F and H, and in the backlog) do, and they cannot be checked from this repository.
+### Planning documents published late (2026-11-12)
+
+Five documents written on 2026-08-24 were cited by reports, by the ledger and by project-memory records, but stayed in one local working tree until 2026-11-12. They are now in this folder. Each opens with a publication note that gives the SHA-256 of the unedited original and says what happened to its recommendations; the text below the note is unchanged. They are planning records, and their readings of external papers were not re-checked when they were published.
+
+* [`RESEARCH_ROADMAP_EVIDENCE_DRIVEN_V1.md`](RESEARCH_ROADMAP_EVIDENCE_DRIVEN_V1.md): the findings ledger as of 2026-08-24, the list of invalidated conclusions, the candidate board and the three experiments that became ledger Entries A, B, E, H and N.
+* [`MECHANISM_DEPENDENCY_SYNTHESIS_2026-08-24.md`](MECHANISM_DEPENDENCY_SYNTHESIS_2026-08-24.md): mechanism-by-regime table from the literature; superseded the same day by the roadmap, and its project-side numbers are invalid.
+* [`CROSS_PAPER_HYPOTHESIS_MAP_2026-08-24.md`](CROSS_PAPER_HYPOTHESIS_MAP_2026-08-24.md): five connection hypotheses (H1 to H5) between external papers and the arena's failures.
+* [`GLOBAL_AGENT_MEMORY_FRONTIER_MAP_2026-08-24.md`](GLOBAL_AGENT_MEMORY_FRONTIER_MAP_2026-08-24.md): ten mechanism families and a catalogue of negative results from roughly 150 papers. The families it lists that the project never followed up are reviewed in [`../11-research-laboratory/overlooked-hypotheses-review-2026-11-12.md`](../11-research-laboratory/overlooked-hypotheses-review-2026-11-12.md).
+* [`RELATED_WORK_RED_TEAM_2026-08-24.md`](RELATED_WORK_RED_TEAM_2026-08-24.md): an adversarial prior-art search against the positioning document; its summary is the "Red-team update" section appended to [`RELATED_WORK_AND_POSITIONING_2026-08-24.md`](RELATED_WORK_AND_POSITIONING_2026-08-24.md) on the same date.
+
+The ledger's measured results never depended on these files. Its external-support citations (in Entries D, F and H, and in the backlog) did, and can now be followed. One cited source is still absent on purpose: the git-ignored LongMemEval dataset file under `external/datasets/`.
+
+A [status note](PUBLISHED_LATE_STATUS_NOTE_2026-11-13.md) records what happened to these documents and to the inbox, and what was and was not checked at publication.
 
 ## The two Polish-named folders
 
@@ -61,7 +73,7 @@ Two folders next to the reports have Polish names and a one-way protocol between
 * [`Dokumenty dla Resherchera/`](Dokumenty%20dla%20Resherchera/) ("documents for the researcher"): the **outbox**, written by this project, in Polish. It states what the project can and cannot test now ([`TESTABILITY_ENVELOPE.md`](Dokumenty%20dla%20Resherchera/TESTABILITY_ENVELOPE.md)), the open gaps ([`OPEN_TESTABLE_GAPS.md`](Dokumenty%20dla%20Resherchera/OPEN_TESTABLE_GAPS.md)),
   the mechanisms already tried that should not be proposed again ([`DO_NOT_REDISCOVER.md`](Dokumenty%20dla%20Resherchera/DO_NOT_REDISCOVER.md)), and the requests themselves under [`RESEARCH_REQUESTS/`](Dokumenty%20dla%20Resherchera/RESEARCH_REQUESTS/).
   Its own [`README.md`](Dokumenty%20dla%20Resherchera/README.md) explains the protocol. It is a snapshot, not a source of truth: the ledger wins any disagreement. The standing request, `2026-08-25_research_request_three-precise-failure-modes.md`, is the frozen Polish request; [`OPEN_QUESTION_THREE_FAILURE_MODES.md`](OPEN_QUESTION_THREE_FAILURE_MODES.md) is an adapted English version (its header lists what it adds), and that is the one to read.
-* `Dokumenty z Resherchera/` ("documents from the researcher"): the **inbox**, written by the external agent, in the opposite direction. It is **not tracked** in this repository, so links to it from some documents and from project-memory records do not resolve here.
+* [`Dokumenty z Resherchera/`](Dokumenty%20z%20Resherchera/) ("documents from the researcher"): the **inbox**, written by the external agent, in the opposite direction. It was untracked until 2026-11-12 and is now published byte for byte as it stood in the working tree: its [`README.md`](Dokumenty%20z%20Resherchera/README.md) (Polish), one mechanism candidate (the semantic-entropy gate, tested and dropped as ledger Entry Q), three notes answering the standing request with no qualifying candidate, and the templates. By its own rule the files are never edited after creation, so they carry no publication note.
 
 ## Status words you will meet
 
