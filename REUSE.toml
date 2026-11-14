@@ -116,3 +116,12 @@ path = ["data/lab/experience-xfer-v1/lessons.jsonl", "data/lab/experience-xfer-v
 precedence = "closest"
 SPDX-FileCopyrightText = ["2026 Adaptive Agent Memory Research contributors", "Gorilla / Berkeley Function-Calling Leaderboard authors"]
 SPDX-License-Identifier = "CC-BY-4.0 AND Apache-2.0"
+
+# AAMR-K1 stimuli and pools quote BFCL multi-turn requests, call strings and results
+# (Apache-2.0, (c) the Gorilla / Berkeley Function-Calling Leaderboard authors, ShishirPatil/gorilla @ 6ea5797).
+# Our report, analysis and decision records stay CC BY 4.0.
+[[annotations]]
+path = ["data/lab/aamr-k1/stim/**", "data/lab/aamr-k1/eval/**"]
+precedence = "closest"
+SPDX-FileCopyrightText = ["2026 Adaptive Agent Memory Research contributors", "Gorilla / Berkeley Function-Calling Leaderboard authors"]
+SPDX-License-Identifier = "CC-BY-4.0 AND Apache-2.0"

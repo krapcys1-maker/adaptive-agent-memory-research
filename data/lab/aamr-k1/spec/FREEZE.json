@@ -1,0 +1,82 @@
+{
+ "frozen_at": "2026-11-13T20:25:45.463232+00:00",
+ "version": "1.0.1 (errata to 1.0)",
+ "spec_sha256": "8b854b35657088bd5409750d8bfffb16fe635b817ac49554ebf35428f11f2744",
+ "supersedes": {
+  "spec": "k1/v1.0/SPEC_K1_PLACEBO_v1.0.md",
+  "spec_sha256": "e585ed8dac5670f906e7deceaf89b306a89bece30acd2da06b8d5be781dd38df",
+  "freeze_json_sha256": "db4508fc11bdce3b11fa4ffd3389a9c7a5466b34f8c48205d11e837b3be9f2b9"
+ },
+ "errata": [
+  "E1 (C2) D12 tolerance |ln r| <= ln 1.2 (r in [0.8333; 1.2000]), closest by |ln r|",
+  "E2 (C1) rho = tokens / block characters incl. header line, without the separator",
+  "E3 (C3) WR5 later turns: exact turn-0 tokens / content characters of the turn-0 block",
+  "E4 (C4) block A after a second exception or the hard limit: NIEUKOŃCZONY, program stops; 7.6 NIEWAŻNY"
+ ],
+ "unchanged": "hypotheses, estimands, arms, tasks, states, threshold 10 pp, 98.33% intervals, 3 contrasts, at most 3 sampled blocks, reading rules, sampling parameters (kontrola_spojnosci.out)",
+ "files": {
+  "k1/v1.0.1/SPEC_K1_PLACEBO_v1.0.1.md": "8b854b35657088bd5409750d8bfffb16fe635b817ac49554ebf35428f11f2744",
+  "k1/v1.0.1-rc/SPEC_K1_PLACEBO_v1.0.1-rc.md": "30491b802a875401107db80ff2f54f57f6b5ffdcf83b2be2721e2a154f989b32",
+  "k1/v1.0.1-rc/zastosuj_errate.py": "cc39877ee5bbeaa22fb93c1c16c3c85550b36cbecf6b37159c9dc3edcfd52217",
+  "k1/v1.0.1-rc/kontrola_erraty.py": "28944d115d8d986926169865c278a08b04ed47f0d736528d411ac926c9733594",
+  "k1/v1.0.1-rc/kontrola_erraty.out": "adaf6b01178b9a670bcaa681e1b8d1dcb111084d0c2ccfc484b85d6e44d70c15",
+  "k1/v1.0.1-rc/kontrola_erraty_refs.json": "52c72152ff131157333b7f7cf618a5dc7281c5522e01d224bc8662b8a4e0712f",
+  "k1/v1.0.1-rc/kontrola_spojnosci.py": "ba46029d99d5a39cfaaa8f2ef8ecd6c5854ced6355acd5b88d13f6079cf4aa9b",
+  "k1/v1.0.1-rc/kontrola_spojnosci.out": "58de84720f44bcd81007c07cd52085ec647d51f27698f764cea4dc7ebdee002b",
+  "k1/v1.0.1-rc/zamroz_v101.py": "b0fa97ed1838ec8687d1317addd0e91996125121d35a86aaad0568c324232b92",
+  "k1/v1.0-rc/k1_power_measured.py": "636656eab270c2db6b725093cc7d232a28b257f18805ee68bb8476c73ec2f204",
+  "k1/v1.0-rc/k1_power_measured.out": "b70b69c4ca2a02aeb297edbe1c17e30dd808bfaccb499d9c2b0a49fbb279f78f",
+  "pilot-nm/report/public.json": "45c57d27e045bfb8565f7890918c266776115cfa3f78556455e3e176e34bcd18",
+  "k1/v0.4/testy/k1_audit_hook.py": "831013701cb308e0dfb18aa240914b73f4ee83fa4c8d7390f56451953455681a",
+  "k1/v0.4/testy/k1_common.py": "d0a2bbbed2e568a426e8431f3bf9cbca915dec7dbbceb730e0ada4bbeeb62270",
+  "k1/v0.4/testy/k1_l4.py": "1c23b0f41e5b98cb59dddb066bd36287e347ad1876b4ce7e040ca360dfcf9021",
+  "k1/v0.4/testy/k1_length.py": "5430e901acbfea4c52c39da9a5ece405f9c1a4c7e816058c4fe217cc9e92bdad",
+  "k1/v0.4/testy/k1_v04_reading.py": "a9a7ff019b9f2e501ab1c11bbebec514654d16f9bd09229dec4a15e8189ccabf",
+  "k1/v0.4/testy/run_all.py": "5e25ccb3da6685424116ab27e27e0600ded2d798e39d4312403bbb5e8010ccd8",
+  "k1/v0.4/testy/t_d9_length.py": "e9016bc0765c0b11d668b8e100718f397c6a832dffdf93d681a0499a23b2af02",
+  "k1/v0.4/testy/t_n10_provenance.py": "5d94d95569f84c2b8f150afef596882d4d28145542434d87c850eb080ded74cb",
+  "k1/v0.4/testy/t_n10_worker.py": "774cf9f042525247dd7d9b703e16c1f52a2f3c6f51ea95bcc76c7ac4ebfad5a9",
+  "k1/v0.4/testy/t_w1_history_replay.py": "9fb27f64a318014b969b46e95aec5dc1153872fabea14d0a3ceffa736ddb5fdf",
+  "k1/v0.4/testy/t_w2_audit_hook.py": "59f2fd49402539cc2ef70feb1375c3cf766345019c1d3fdd5fbb72aa4ef7f3de",
+  "k1/v0.4/testy/t_w2_worker.py": "949ea4e2506c82d47b47e36ace5bbecb9f5403b1a1b0c7ffeb51a8f8c3f70e8e",
+  "k1/v0.4/testy/t_w3_l4.py": "a8b7fd293ed5837a1dc2e47c88d4704d6ee661df8418805b371c38ad1214421c",
+  "k1/v0.4/testy/t_w5_dependence.py": "85431dbf2f342628f87f41389ea6764d84dddb98460cc9a51acb0f38e58de946",
+  "k1/v0.4/testy/t_w6_cells.py": "1abf1f083041d1a0c6b53fa6b6b5f8a59c8a483cf41ca1975db555fe4bc84003",
+  "k1/v0.4/testy/t_w7_budget.py": "4e5eab09be8e1e9ea9a18ed459a9b62a94d32489c1d69ddd0c86e5d818c37136",
+  "k1/v0.4/testy/t_w8_p_length.py": "42078b4baf67f4cabe85aedd8b448e932d73f6aa978dda82a19d21d8732653c4",
+  "k1/v0.4/testy/t_w9_l9_s_reserve.py": "ba96bdf966809a65ae45e365d4f4a373995c89c1cd8fffc2ac7b6cad1b891951"
+ },
+ "test_results": {
+  "kontrola_erraty.py": "RESULT ERRATA CHECK: PASS {'C1_rho': True, 'C2_adopted_equals_stimuli': True, 'C1_21_of_3084': True, 'fallback_counts_match_executor': True, 'semantics': True, 'P_values': True, 'adopted_values': np.True_, 'linear_values': True, 'v1.0_unchanged': True}",
+  "kontrola_spojnosci.py": "RESULT CONSISTENCY: PASS {'v1.0 unchanged': True, 'protected': True, 'changes only where named': True, 'decision table': True, '±20 only in errata': True, 'errata referenced': True, 'reproducible': True}",
+  "v0.4 tests": [
+   "W1     t_w1_history_replay.py       exit 0  RESULT W1: PASS (1:True 2a:True 2b:True 3:True); 2 s",
+   "W2     t_w2_audit_hook.py           exit 0  RESULT W2: PASS (log:True replay:True l6b:True cases:32/32); 5 s",
+   "W3     t_w3_l4.py                   exit 0  RESULT W3: PASS (stop 25, pass 19, failures 0)",
+   "W4+W6  k1_v04_reading.py            exit 0  RESULT W4/W6-reading: PASS",
+   "W5     t_w5_dependence.py           exit 0  RESULT W5: PASS {'a': True, 'b': True, 'c': True, 'd_V1': True, 'd_V2': True, 'd_V3': True, 'd_V4': True, 'd_V5': Tr",
+   "W6     t_w6_cells.py                exit 0  RESULT W6: PASS",
+   "W7     t_w7_budget.py               exit 0  RESULT W7: PASS (v0.4 never plans or spends above 30 000; never less often valid than v0.3: True)",
+   "W8     t_w8_p_length.py             exit 0  RESULT W8: PASS {'construction': True, 'feasibility_measured': True}",
+   "W9     t_w9_l9_s_reserve.py         exit 0  RESULT W9: PASS (M per-task share reproduces v0.3's 18.6%: True; X below 0.5%; S below M; S feasible per turn on ful",
+   "N10    t_n10_provenance.py          exit 0  RESULT N10: PASS {'G1': True, 'G2': True, 'negatives': True}",
+   "D9     t_d9_length.py               exit 0  RESULT D9: PASS {'A': True, 'C': True, 'B': True}",
+   "integrity v0.1-v0.3 and review files: 48 files, changed or missing 0 []",
+   "integrity of the author's (Fable) v0.3 files against the review's record: 7 files, changed 0"
+  ]
+ },
+ "v1.0_manifest_note": {
+  "files_listed_in_v1.0_FREEZE_json_whose_hash_differs_now": [
+   "k1/v0.4/testy/WYNIKI_TESTOW.out",
+   "k1/v0.4/testy/t_w2_audit_hook.out"
+  ],
+  "explanation": "test logs regenerated by the v0.4 test run during the errata preparation (2026-11-13); their content varies between runs (timings, random port). The v1.0 specification, its FREEZE.json, code and stimuli are unchanged. v1.0.1 therefore hashes no test logs and records RESULT lines instead."
+ },
+ "external_references": {
+  "D:/aamr-k1-executor/ANEKS_C2_D12.md": "b27641922bf9e7a1c81421933e89a3f7f9f3e01f27b1a32a00b7be2669aa0063",
+  "D:/aamr-k1-executor/DZIENNIK_DECYZJI_K1.md": "e312505a3054fd2a92af051fb9f0b7e9a7422f7497a90aa1e6c751b1ec940fc2",
+  "D:/aamr-k1-executor/base/stim/k1_draws_SX.json": "ffba18b68ad4123563ed19e36a2e4c4aad91a3d0d28abe5247894ed15d69b821",
+  "D:/aamr-k1-executor/base/stim/k1_tokref.json": "fc8750e94a73551e31dfa2a7f2d8fd373ab945f308a88574379a570e5f246e69"
+ },
+ "pilot_sealed_sha256_not_opened": "94f834374e884f60ffe8673605d65e315b8ea902a572158caf379e588bb7ccde"
+}

@@ -1,0 +1,4 @@
+RUN_REPORT head: # Przebieg K1 |  | Wynik wykonawcy: **done** — DONE.json |  | | Pole | Wartość | | |---|---| | | uruchomienia nadzorcy | 1 | | | zawieszenia (zabite) | 0 | | | pierwszy start | 2026-11-13T20:36:54+00:00 | | | ostatni start | 2026-11-13T20:36:54+00:00 | | | zakończenie | 2026-11-13T20:36:54+00:00 | | | restarty wewnętrzne nadzorcy | - | | | linie errors.log | 0 | | | przypięte pliki niezmienione | True | |  | Weryfikacja mechan
+leakage: {'status': 'pass', 'memory_sources': 43, 'test_tasks': 88, 'overlap': []}
+.STOPPED: 3 ["2026-11-13T20:37:47.385279+00:00 STOP: L8 manifest differs: ['stim/k1_tasks.json'] "]
+2 passed in 55.85s

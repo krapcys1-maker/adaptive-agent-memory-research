@@ -1,0 +1,202 @@
+# K1 neutral corpus P (spec K1 v0.4 sec. 2, P): declarative English sentences on geology and botany, ASCII,
+# one per line; every sentence passes L4a (k1_l4.py) on the frozen domain list; weather excluded.
+# Lines starting with # are comments. Authored 2026-11-13 by Claude (Opus 5.5); filtered from corpus_P_candidates.txt.
+Granite forms slowly deep below the surface of the crust.
+Basalt is a dark volcanic rock with very fine grains.
+Sandstone is made of grains of sand cemented together.
+Limestone often contains the shells of ancient sea creatures.
+Marble forms when limestone is heated and squeezed underground.
+Slate splits easily into thin flat sheets.
+Shale is a soft rock built from layers of compacted mud.
+Quartz is harder than most common minerals.
+Feldspar is among the most abundant minerals in the crust.
+Mica peels apart into thin shiny flakes.
+Obsidian is a natural glass that forms when lava cools quickly.
+Gneiss shows bands of light and dark minerals.
+Schist sparkles because of the mica inside it.
+Chalk is a soft white rock made of tiny marine shells.
+Flint breaks with sharp curved edges.
+Coal formed from plants buried in ancient swamps.
+Rock salt forms when shallow seas dry out.
+Gypsum is soft enough to scratch with a fingernail.
+Garnet crystals often grow inside metamorphic rocks.
+Olivine gives some beach sands a green color.
+Talc is the softest mineral on the common hardness scale.
+Diamond is the hardest natural mineral.
+Magnetite attracts small pieces of iron.
+Pyrite is often called fool's gold because of its brassy shine.
+Crystals grow larger when molten rock cools slowly.
+Igneous rocks form from cooled magma or lava.
+Sedimentary rocks form from layers of deposited material.
+Metamorphic rocks form when older rocks are changed by heat.
+The rock cycle links igneous, sedimentary and metamorphic rocks.
+Rivers carry sand and silt toward the sea.
+Rivers deposit silt where they slow down.
+A delta forms where a river drops its sediment into calmer water.
+Glaciers carve broad valleys in hard rock.
+Glaciers leave behind piles of mixed rock called moraines.
+Waves wear away cliffs along the coast.
+Caves form where groundwater dissolves limestone.
+Stalactites hang from the ceilings of limestone caves.
+Stalagmites rise from the floors of limestone caves.
+Sinkholes open when the ground above a cave collapses.
+Volcanoes grow as layers of lava and ash pile up.
+Shield volcanoes have broad gentle sides.
+Volcanic ash can bury land over a wide area.
+Hot springs appear where groundwater meets heated rock.
+Geysers shoot hot water into the air at intervals.
+Earthquakes happen when rocks along a fault slip suddenly.
+Mountains rise where crustal plates push against each other.
+New crust forms along ridges on the ocean floor.
+The continents drift very slowly across the globe.
+Faults are fractures where blocks of rock have moved.
+Folds form when layers of rock bend under stress.
+Fossils are traces of ancient life preserved in rock.
+Ammonites are common fossils in many marine rocks.
+Trilobites lived in ancient seas long before the dinosaurs.
+Petrified wood forms when minerals replace the tissue of buried trees.
+Amber can hold small insects trapped in ancient resin.
+Footprints of ancient animals are sometimes preserved in mudstone.
+Younger layers usually lie on top of older layers.
+Soil forms as rock breaks down and mixes with organic matter.
+Clay particles are much smaller than grains of sand.
+Loam is a soil that mixes sand, silt and clay.
+Earthworms mix and aerate the soil.
+Humus is dark organic matter in the upper soil.
+Sand dunes move as grains are blown across them.
+Desert pavement is a surface of tightly packed pebbles.
+Rocks crack when water in their pores freezes and expands.
+Lichens slowly break down the surface of bare stone.
+Plant growth can widen cracks in rock.
+Gold is often found in veins of quartz.
+Copper ores can stain nearby rocks green or blue.
+Iron gives many rocks a rusty red tint.
+Jade is prized for its toughness and its green color.
+Opal shows flashes of many colors.
+Minerals are identified by hardness, luster and streak.
+Oak trees drop acorns in autumn.
+Maple trees produce winged seeds that spin as they fall.
+Ferns spread by spores rather than seeds.
+Lichens are partnerships between fungi and algae.
+Tulips grow from bulbs planted in autumn.
+Bamboo is a grass that can grow very quickly.
+Cacti store water in their thick stems.
+The leaves of cacti are reduced to spines.
+Water lilies float on still ponds.
+Mangroves grow along tropical shores in salty water.
+Seaweed is a kind of alga, not a true plant.
+Leaves make sugar from light, water and carbon dioxide.
+Chlorophyll gives leaves their green color.
+Leaves change color in autumn as chlorophyll breaks down.
+Stomata are tiny pores on the underside of leaves.
+Xylem carries water up from the soil.
+Bark protects the living tissue of a tree.
+Tree rings show how much a tree grew each season.
+Seeds contain a tiny plant and a store of food.
+Some seeds can wait for many seasons before they sprout.
+Germination begins when a seed absorbs water.
+Bees carry pollen from flower to flower.
+Flowers attract insects with color and scent.
+Some flowers open only at night.
+Fruit develops from the ovary of a flower.
+Berries hold many small seeds inside soft flesh.
+Nuts are hard dry fruits with a single seed.
+Birds spread the seeds of many berries.
+Burrs cling to the fur of passing animals.
+Dandelion seeds drift on fine white tufts.
+Coconuts can float across the sea to new shores.
+Tendrils coil around stems and fences.
+Ivy clings to walls with small aerial rootlets.
+Carnivorous plants trap insects to gain nitrogen.
+Pitcher plants catch insects in slippery cups.
+Mushrooms are the fruiting bodies of fungi.
+Fungi break down fallen leaves and dead wood.
+Many fungi live in partnership with the fine rootlets of trees.
+Orchids often have very small seeds.
+Evergreen trees keep their needles through the winter.
+Deciduous trees drop their leaves each autumn.
+Conifers carry their seeds in woody cones.
+Redwoods are among the tallest trees on Earth.
+Baobab trees store water in their massive trunks.
+Willows often grow beside streams and ponds.
+Birch bark is thin and peels in papery strips.
+Heather covers wide areas of open moorland.
+Wildflowers bloom in alpine meadows during the brief summer.
+Meadow grasses bloom in early summer.
+Legumes host bacteria that fix nitrogen.
+Peas and beans grow in pods.
+Wheat, rice and maize are cereal grasses.
+Potatoes are swollen underground stems.
+Carrots store food in a thick taproot.
+Onions are layered bulbs.
+Garlic grows as a cluster of cloves.
+Herbs such as mint spread through creeping stems.
+Lavender has fragrant purple flowers.
+Basil is a fragrant herb with soft leaves.
+Apples grow on trees that bloom in spring.
+Cherry blossoms appear before the leaves unfold.
+Citrus trees grow best in warm regions.
+Olive trees can live for centuries.
+Grapes grow in heavy clusters on woody vines.
+Cotton fibers grow from the seeds of the cotton plant.
+Maple sap can be boiled down into syrup.
+Peat forms in bogs from layers of dead moss.
+Sphagnum moss helps keep bogs wet and acidic.
+Algae can color ponds a bright green.
+Kelp forests grow in cold coastal seas.
+Plants in deserts often have small or waxy leaves.
+Alpine plants grow low to the ground.
+Tundra plants grow during a very short summer.
+Rainforest trees often have broad buttresses.
+Epiphytes grow on the branches of other plants.
+Bromeliads collect water in a cup of leaves.
+Leaves arranged in a spiral catch light from many sides.
+Shoots grow toward light, and young rootlets grow downward.
+Gardeners often take cuttings to grow new plants.
+Seed banks store seeds of many species for the future.
+Weeds are simply plants growing where people do not want them.
+Shrubs have many woody stems near the ground.
+Thorns protect some plants from grazing animals.
+Nettles have stinging hairs on their leaves and stems.
+Poison ivy can cause an itchy rash.
+Holly has glossy leaves and red berries.
+Mistletoe grows on the branches of trees.
+Acorns sprout into young oak seedlings.
+Fire clears the forest floor and lets new seedlings grow.
+Forests shelter many kinds of animals.
+Wetlands filter water and slow floods.
+Marshes are wetlands dominated by grasses and reeds.
+Swamps are wetlands dominated by trees.
+Bogs are wetlands with acidic water and thick peat.
+Reeds grow in shallow water at the edges of lakes.
+Duckweed is among the smallest flowering plants.
+Sundews catch insects with sticky droplets.
+Palms grow from a single bud at the top of the trunk.
+Bananas grow on giant herbs rather than on trees.
+Pineapples grow from the center of a rosette of leaves.
+Coffee beans are the seeds of a red fruit.
+Cocoa beans grow inside large pods on the trunk.
+Pepper grows as small berries on a climbing vine.
+Sugar cane is a tall grass with sweet sap.
+Hops are the flowers of a climbing plant.
+Tea is made from the young leaves of a shrub.
+Gravel beds lie along the bottoms of many streams.
+Beaches are made of sand, shells and worn pebbles.
+Black sand beaches form from eroded volcanic rock.
+Coral reefs are built by tiny animals in warm seas.
+Atolls are rings of coral around a sunken volcano.
+Salt flats form where shallow lakes evaporate.
+Canyons are cut by rivers over long periods.
+Mesas are flat topped hills with steep sides.
+Arches form where softer rock wears away beneath harder rock.
+Hoodoos are tall thin spires of eroded rock.
+Boulders can be carried far by moving ice.
+Springs bring groundwater to the surface.
+Aquifers are layers of rock that hold groundwater.
+Lakes can form in craters of extinct volcanoes.
+Oxbow lakes form when a river bend is cut off.
+Waterfalls form where a river flows over hard rock.
+Ripples in sand can be preserved as marks in sandstone.
+Mud cracks form when wet mud dries and shrinks.
+Concretions are hard lumps that grow inside sediment.
+Mountains wear down slowly over long ages.
