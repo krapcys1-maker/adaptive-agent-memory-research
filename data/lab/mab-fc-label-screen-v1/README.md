@@ -1,9 +1,9 @@
-# FactConsolidation label screen (MemoryAgentBench), 2026-11-12
+# FactConsolidation label screen (MemoryAgentBench): preliminary screening by one AI reader, 2026-11-12
 
 A model-free screen of the released answers of MemoryAgentBench FactConsolidation against the benchmark's own update
 rule. No model was called.
 
-**Status: a screen with one reader, not confirmed benchmark errors.** The screen flags 68 of 800 released answers.
+**Status: preliminary screening; a screen with one AI reader; not confirmed benchmark errors, and nothing here proves that a label is wrong.** The screen flags 68 of 800 released answers.
 Every flagged item was then read against its question by one AI auditor. No human and no second reviewer has checked
 the flags, the benchmark's maintainers have not been asked, and the project owner decided on 2026-11-12 to keep this as
 a separate result and not to treat the flagged labels as established defects. Nothing was reported upstream.
@@ -29,7 +29,8 @@ applies this rule at every hop.
 | SH 262K | 100 | 97 | 3 | 3 | |
 
 Multi-hop over the four lengths: 339 of 400. Single-hop: 393 of 400. Of the 68 flagged items the reader marked 63
-`CONFIRMED` and 5 `PROBABLE` (the question wording does not name every relation of the only path to the released answer).
+`CONFIRMED` and 5 `PROBABLE` (the question wording does not name every relation of the only path to the released answer). `CONFIRMED` is the label the single AI reader gave
+its own check; it is **not** an independent confirmation, and it does not mean the benchmark's label is established as an error.
 
 "Obtainable" is an upper bound for a rule-following reasoner: some path that uses the current value at every hop
 reaches the released answer. It does not require that the path matches the wording of the question.
@@ -76,6 +77,9 @@ France". The examples are in [`results.json`](results.json).
 All 800 questions had an anchor and at least one path.
 
 ## Relation to published reports
+
+The figures of other papers in this section are as the screen's author read them on 2026-11-12; they were not re-checked when the screen was imported into this
+repository on 2026-11-14.
 
 The Contract Memory Compiler paper (arXiv:2609.32658, App. B.3) reports an automated screen that flags 7 single-hop and
 26 multi-hop references as possibly superseded and leaves them for manual adjudication. This screen finds the same
