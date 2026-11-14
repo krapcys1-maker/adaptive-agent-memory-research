@@ -1,0 +1,11 @@
+--- a/scripts/run_revision_v0.py
++++ b/scripts/run_revision_v0.py
+@@ -104,7 +104,7 @@
+     if kind == "as_known_at":
+         # Only records written by T may be consulted. Anything later is future
+         # information and must not influence the answer.
+-        visible = [e for e in chain if e["created_at"] <= at]
++        visible = list(chain)  # MUTANT M1: bez filtra created_at <= T
+         if not visible:
+             return None
+         successor = _superseded_by(visible)
