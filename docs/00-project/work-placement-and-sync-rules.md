@@ -23,6 +23,11 @@ Branch: claude/<topic>-<date>   (or codex/…, docs/…, data/…, fix/…)
 - Frozen experiments (a manifest pins their bytes, or their README declares them frozen) are read-only. Corrections go in
   new files or new versions; check first with `python scripts/pinned_files.py --check PATH`.
 - Large raw data, secrets, sealed data and blinding keys never enter a public pull request (section 5 of the map).
+- **The autonomous laboratory keeps running.** Research may be started and carried out in the maintainer's local
+  coordinator. Agents must not stop it, move it, switch its scheduler or touch its database or configuration as part of
+  this work. When a task there ends, its finished code, protocol, results (negative ones too) and report are exported to
+  the target directory and branch named above, through a pull request. Its operational state, database, local
+  configuration, secrets and blinded material stay out of the public repository.
 
 ## 2. Reporting finished work
 
@@ -92,13 +97,31 @@ python scripts/aamr_sync_report.py all    --config … --repo …
 
 Exit code 0: nothing to report; 1: warnings; 2: alerts. The configuration (see
 [the example](aamr-sync-config.example.json)) lists the roots to search, folders outside Git, private repositories,
-branches held on purpose, and the tasks to watch: a task is a marker file that shows it finished and the repository path
-where its result must appear.
+branches held on purpose, the coordinator's configuration files, and the tasks to watch.
+
+**Tasks are discovered, not typed in.** Give the report the coordinator's configuration files (and, if you want closed
+missions, its missions report folder) and it lists every declared experiment by itself. An experiment is *finished* when
+`DONE.json` exists in its run folder (the coordinator's own rule). Its result is expected at the repository path that
+mirrors its output folder (from `data/` onwards), for the files its configuration requires. Entries in the configuration
+are needed only for exceptions: a hold, a target path for a mission, a task the coordinator does not know. The adapter
+parses only the paths and the experiments from those files and drops the rest at once; it does not open the
+coordinator's database, state folder, `.env`, or any sealed or blinded material, and it changes nothing.
+
+Every finished task is shown in one of these states:
+
+| State | Meaning | Severity |
+|---|---|---|
+| `on main` | the result files are on the main line | none |
+| `in PR #N` | the files are on a branch with an open pull request | note |
+| `pushed, no open PR` | the files are on a remote branch that no open pull request carries | warning |
+| `held by owner (reason)` | finished only locally, and publication is held by a decision of the owner | note (stays visible) |
+| `finished only locally` | finished, and the files are on no remote | **alert** |
+| `finished, no export target declared` | finished, but the report cannot say where its result belongs | warning |
 
 | Code | Meaning |
 |---|---|
 | `LOCAL_ONLY_BRANCH` | commits on a local branch that no remote has (alert after a day) |
-| `FINISHED_NOT_PUBLISHED` | a task is done but its result is not on the main line; held tasks stay visible |
+| `FINISHED_NOT_PUBLISHED`, `FINISHED_IN_PR`, `FINISHED_NO_EXPORT_TARGET` | a finished task whose result is not on the main line, waits in a pull request, or has no declared target (see the states above) |
 | `DETACHED_UNREACHABLE` | detached HEAD carrying commits no branch has |
 | `NO_REMOTE` | a repository with no remote needs a verified backup |
 | `DIRTY`, `UNTRACKED` | uncommitted work; untracked files are compared with the main line |
@@ -108,8 +131,31 @@ where its result must appear.
 | `PR_*`, `ISSUE_*`, `BRANCH_*`, `EXPERIMENT_*` | pull-request state and checks, issue freshness and resolution, merged or stale branches, missing experiment READMEs and index entries |
 
 It never opens a file whose name looks like a secret, a blinding key or sealed data (`.env`, `*.key`, `*secret*`,
-`KEY_*`, `blind_*`, a `sealed/` folder): they are listed by name only. It does not fetch, so run `git fetch` in the
-canonical clone first; remote-tracking refs older than a week are flagged and the result then errs on the side of caution.
+`KEY_*`, `blind_*`, a `sealed/` folder): they are listed by name only. It does not fetch unless asked: pass
+`--fetch-canonical` (it refreshes only the remote-tracking refs of the canonical clone) or run `git fetch` there first;
+remote-tracking refs older than a week are flagged and the result then errs on the side of caution. With `--repo`
+(or `repo` in the configuration) it reads the open pull requests through `gh` to tell *in PR* from *pushed, no open PR*.
 Reports name local paths: keep them in an ignored folder and do not publish them.
 
 Scheduling it (for example with the Windows Task Scheduler, once a day) is a separate step that the owner approves.
+
+## 8. Coverage and its limits
+
+What the report covers, checked on the maintainer's machine on 2026-11-14 without listing any task by hand:
+the experiments declared in the coordinator's configuration (NIGHT-1, NIGHT-2 and K1) and its two closed missions.
+
+What it does **not** cover, so that nobody reads it as complete:
+
+- **K1 has no export target.** Its output folder is not under a `data/` folder, so the report can see that K1 finished
+  but not where its result belongs; it is listed as `finished, no export target declared` until a target path is set.
+- **Closed missions** (plans, reviews, reproductions) carry no target path in their definition. They are listed the same
+  way until each gets a path in the configuration (`mission_targets`) or, if the owner changes the laboratory, in its task
+  definition.
+- **Work that never ran as a declared experiment**, for example a local branch of a stage run by hand, is visible only
+  through the Git findings (`LOCAL_ONLY_BRANCH`, `DIRTY`, ...), not as a task.
+- **A finished state is read from a marker**, not from the results: a run that wrote `DONE.json` but produced no
+  required output is reported with the first required file as its expected path.
+- **Tasks stored only in the coordinator's database** (its task queue) are not read, by design.
+
+The limited export step that closes the first two gaps is a target path per task, set once; nothing in the laboratory has
+to change for the report to use it.

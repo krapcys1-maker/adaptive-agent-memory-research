@@ -5,7 +5,8 @@ The project has one source of truth, the GitHub repository. Agents and people al
 local clones, worktrees, and folders outside Git. This report lists every place where work
 exists only locally, so that nothing valuable stays on one disk without being visible.
 
-It is read-only. It never writes into a scanned repository or folder, never fetches, never
+It is read-only. It never writes into a scanned repository or folder (the one opt-in exception is
+``--fetch-canonical``, which refreshes the remote-tracking refs of the canonical clone), never
 opens a file whose name looks like a secret, a blinding key, or sealed data (such files are
 listed by name only), and needs no network, paid API, or model. The GitHub section reads
 through ``gh`` with list/GET commands only, or from a JSON file, so it can be tested offline.
@@ -22,6 +23,8 @@ Local findings
     BEHIND_MAIN              a main checkout far behind the remote main line
     NON_GIT_CHANGED          files in a folder outside Git that are new or changed
     FINISHED_NOT_PUBLISHED   a task that is done locally whose result is not on the main line
+    FINISHED_IN_PR           a finished result that waits in an open pull request
+    FINISHED_NO_EXPORT_TARGET  a finished task with no declared place for its result in the repository
 
 GitHub findings
     PR_CI_FAILING / PR_CI_PENDING / PR_NOT_CLEAN / PR_STALE / PR_NO_ISSUE_LINK
@@ -377,40 +380,153 @@ def review_non_git(entry: dict[str, Any], manifest_dir: Path, update: bool) -> l
 # Finished tasks whose results are not on GitHub
 # ---------------------------------------------------------------------------------------------
 
-def review_tasks(tasks: list[dict[str, Any]], canonical: Path | None, main_ref: str) -> tuple[list[Finding], list[dict[str, str]]]:
+STATE_MAIN = "on main"
+STATE_IN_PR = "in PR"
+STATE_PUSHED = "pushed, no open PR"
+STATE_REMOTE = "on a remote branch (PR status unknown)"
+STATE_HELD = "held by owner"
+STATE_LOCAL = "finished only locally"
+STATE_NO_TARGET = "finished, no export target declared"
+STATE_RUNNING = "not finished"
+
+
+def classify_publication(canonical: Path, main_ref: str, paths: list[str],
+                         open_pr_heads: dict[str, int] | None) -> tuple[str, str]:
+    """Where the result files are: on the main line, on a remote branch (with or without an open PR), or nowhere."""
+    if all(path_in_ref(canonical, main_ref, p) for p in paths):
+        return STATE_MAIN, main_ref
+    _, refs = git(canonical, "for-each-ref", "--format=%(refname:short)", "refs/remotes")
+    holders = [r for r in refs.splitlines()
+               if r and not r.endswith("/HEAD") and r != main_ref and all(path_in_ref(canonical, r, p) for p in paths)]
+    if not holders:
+        return STATE_LOCAL, ""
+    if open_pr_heads is None:
+        return STATE_REMOTE, holders[0]
+    for ref in holders:
+        branch = ref.split("/", 1)[-1]
+        if branch in open_pr_heads:
+            return f"{STATE_IN_PR} #{open_pr_heads[branch]}", ref
+    return STATE_PUSHED, holders[0]
+
+
+def review_tasks(tasks: list[dict[str, Any]], canonical: Path | None, main_ref: str,
+                 open_pr_heads: dict[str, int] | None = None) -> tuple[list[Finding], list[dict[str, str]]]:
+    """One row per task. A task is finished when its marker exists; its result is published when every path in
+    ``published_paths`` (or the single ``published_path``) is on the main line."""
     findings: list[Finding] = []
     rows: list[dict[str, str]] = []
     for task in tasks:
+        name = task["id"]
+        source = task.get("source", "configuration")
         marker = Path(task["finished_marker"])
         if not marker.exists():
-            rows.append({"id": task["id"], "state": "not finished"})
+            rows.append({"id": name, "source": source, "state": STATE_RUNNING})
             continue
-        published = task["published_path"]
-        if canonical is None:
-            findings.append(Finding(WARN, "FINISHED_NOT_PUBLISHED", task["id"], "no canonical repository configured to check against"))
-            continue
-        if path_in_ref(canonical, main_ref, published):
-            rows.append({"id": task["id"], "state": f"published on {main_ref}"})
-            continue
-        on_branch = ""
-        _, refs = git(canonical, "for-each-ref", "--format=%(refname)", "refs/remotes")
-        for ref in refs.splitlines():
-            if path_in_ref(canonical, ref, published):
-                on_branch = ref
-                break
+        paths = task.get("published_paths") or ([task["published_path"]] if task.get("published_path") else [])
         hold = task.get("owner_hold")
-        if on_branch:
-            findings.append(Finding(WARN, "FINISHED_NOT_PUBLISHED", task["id"],
-                                    f"finished; result is on {on_branch} but not on {main_ref}"))
-            rows.append({"id": task["id"], "state": f"on {on_branch}, not merged"})
+        if not paths:
+            findings.append(Finding(WARN, "FINISHED_NO_EXPORT_TARGET", name,
+                                    "finished locally, but no path in the repository is declared for its result"
+                                    + (f"; held: {hold}" if hold else "")))
+            rows.append({"id": name, "source": source, "state": STATE_NO_TARGET})
+            continue
+        if canonical is None:
+            findings.append(Finding(WARN, "FINISHED_NOT_PUBLISHED", name, "no canonical repository configured to check against"))
+            rows.append({"id": name, "source": source, "state": "unknown"})
+            continue
+        state, ref = classify_publication(canonical, main_ref, paths, open_pr_heads)
+        label = state
+        if state == STATE_MAIN:
+            pass
+        elif state.startswith(STATE_IN_PR):
+            findings.append(Finding(INFO, "FINISHED_IN_PR", name, f"result is on {ref} ({state}), not yet on {main_ref}"))
+        elif state in (STATE_PUSHED, STATE_REMOTE):
+            why = "no open pull request carries it" if state == STATE_PUSHED else "its pull request is unknown"
+            findings.append(Finding(WARN, "FINISHED_NOT_PUBLISHED", name,
+                                    f"result is on {ref} but {why}" + (f"; held: {hold}" if hold else "")))
+        elif hold:
+            label = f"{STATE_HELD} ({hold})"
+            findings.append(Finding(INFO, "FINISHED_NOT_PUBLISHED", name,
+                                    f"finished; {', '.join(paths[:3])} is on no remote branch; publication is held: {hold}"))
         else:
-            severity = INFO if hold else ALERT
-            detail = f"finished (marker present); {published} is not on any remote branch"
-            if hold:
-                detail += f"; publication on hold: {hold}"
-            findings.append(Finding(severity, "FINISHED_NOT_PUBLISHED", task["id"], detail))
-            rows.append({"id": task["id"], "state": "finished, not on GitHub" + (" (on hold)" if hold else "")})
+            findings.append(Finding(ALERT, "FINISHED_NOT_PUBLISHED", name,
+                                    f"finished (marker present); {', '.join(paths[:3])} is on no remote branch"))
+        rows.append({"id": name, "source": source, "state": label})
     return findings, rows
+
+
+# ---------------------------------------------------------------------------------------------
+# Read-only adapter for the coordinator's declared experiments and closed missions
+# ---------------------------------------------------------------------------------------------
+
+REQUIRED_OUTPUT_FALLBACK = ("REPORT.md", "results.json", "raw-freeze.json", "PROTOCOL.md")
+
+
+def _read_toml(path: Path) -> dict[str, Any]:
+    """Parse one coordinator configuration file and keep only [paths] and [[experiments]].
+
+    Everything else in the file (agents, tokens, limits) is dropped at once and never reaches a report.
+    """
+    import tomllib
+
+    with open(path, "rb") as handle:
+        raw = tomllib.load(handle)
+    return {"paths": {k: v for k, v in raw.get("paths", {}).items() if k == "local_root"},
+            "experiments": [{k: e.get(k) for k in ("name", "run_dir", "out_dir", "required_outputs")}
+                            for e in raw.get("experiments", []) if isinstance(e, dict) and e.get("name")]}
+
+
+def _repository_relative(out_dir: Path) -> str | None:
+    """The part of an experiment folder that lives inside the repository: from ``data/`` onwards."""
+    parts = out_dir.as_posix().split("/")
+    for index in range(len(parts) - 1, -1, -1):
+        if parts[index] == "data":
+            return "/".join(parts[index:])
+    return None
+
+
+def discover_coordinator_tasks(spec: dict[str, Any], overrides: dict[str, Any]) -> list[dict[str, Any]]:
+    """Experiments declared in the coordinator's configuration files, plus closed missions.
+
+    Only files named in ``spec`` are read: the configuration files (reduced to paths and experiments) and the
+    names in the missions report folder. The coordinator's database, state folder, ``.env`` and sealed or blinded
+    material are never opened. An experiment is finished when ``DONE.json`` exists in its run folder (the
+    coordinator's own rule); its result is expected at the repository path that mirrors ``out_dir``.
+    """
+    experiments: dict[str, dict[str, Any]] = {}
+    local_root: Path | None = None
+    for config_path in spec.get("configs", []):
+        parsed = _read_toml(Path(config_path))
+        if parsed["paths"].get("local_root"):
+            local_root = Path(parsed["paths"]["local_root"])
+        for entry in parsed["experiments"]:
+            experiments[entry["name"]] = {**experiments.get(entry["name"], {}), **{k: v for k, v in entry.items() if v}}
+    tasks: list[dict[str, Any]] = []
+    for name, entry in sorted(experiments.items()):
+        run_dir, out_dir = entry.get("run_dir"), entry.get("out_dir")
+        if not run_dir or not out_dir:
+            continue
+        base = local_root or Path(".")
+        run_path, out_path = base / run_dir, base / out_dir
+        relative = _repository_relative(out_path)
+        outputs = entry.get("required_outputs") or list(REQUIRED_OUTPUT_FALLBACK)
+        task: dict[str, Any] = {"id": name, "source": "coordinator experiment", "finished_marker": str(run_path / "DONE.json")}
+        if relative:
+            existing = [f"{relative}/{o}" for o in outputs if (out_path / o).exists()]
+            task["published_paths"] = existing or [f"{relative}/{outputs[0]}"]
+        task.update(overrides.get(name, {}))
+        tasks.append(task)
+    missions_dir = spec.get("missions_dir")
+    if missions_dir and Path(missions_dir).is_dir():
+        targets = spec.get("mission_targets", {})
+        for report in sorted(Path(missions_dir).glob("*.md")):
+            name = report.stem
+            task = {"id": f"mission {name}", "source": "coordinator mission", "finished_marker": str(report)}
+            if name in targets:
+                task["published_paths"] = list(targets[name]) if isinstance(targets[name], list) else [targets[name]]
+            task.update(overrides.get(f"mission {name}", {}))
+            tasks.append(task)
+    return tasks
 
 
 # ---------------------------------------------------------------------------------------------
@@ -537,8 +653,8 @@ def render(findings: list[Finding], task_rows: list[dict[str, str]], title: str,
     counts = {s: sum(1 for f in findings if f.severity == s) for s in (ALERT, WARN, INFO)}
     lines = [f"# {title}", "", f"Generated {stamp}. Alerts: {counts[ALERT]}, warnings: {counts[WARN]}, notes: {counts[INFO]}.", ""]
     if task_rows:
-        lines += ["## Tasks and their results on GitHub", "", "| Task | State |", "|---|---|"]
-        lines += [f"| {r['id']} | {r['state']} |" for r in task_rows]
+        lines += ["## Tasks and their results on GitHub", "", "| Task | Source | State |", "|---|---|---|"]
+        lines += [f"| {r['id']} | {r.get('source', '')} | {r['state']} |" for r in task_rows]
         lines.append("")
     for severity in (ALERT, WARN, INFO):
         group = [f for f in ordered if f.severity == severity]
@@ -558,7 +674,21 @@ def exit_code(findings: list[Finding]) -> int:
     return 1 if any(f.severity == WARN for f in findings) else 0
 
 
-def run_local(cfg: dict[str, Any], now: float, update_manifests: bool) -> tuple[list[Finding], list[dict[str, str]]]:
+def open_pr_heads_from_github(repo: str) -> dict[str, int] | None:
+    """Head branch -> number of the open pull requests (``gh`` list only); None when it cannot be read."""
+    exe = shutil.which("gh")
+    if not exe:
+        return None
+    proc = subprocess.run([exe, "pr", "list", "-R", repo, "--state", "open", "--limit", "200", "--json", "number,headRefName"],
+                          capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
+    if proc.returncode != 0:
+        return None
+    return {row["headRefName"]: int(row["number"]) for row in json.loads(proc.stdout or "[]")}
+
+
+def run_local(cfg: dict[str, Any], now: float, update_manifests: bool,
+              open_pr_heads: dict[str, int] | None = None,
+              fetch_canonical: bool = False) -> tuple[list[Finding], list[dict[str, str]]]:
     findings: list[Finding] = []
     for repo in find_repositories(cfg.get("roots", []), int(cfg.get("repos_depth", 3))):
         findings += review_repository(repo, cfg, now)
@@ -566,7 +696,14 @@ def run_local(cfg: dict[str, Any], now: float, update_manifests: bool) -> tuple[
     for entry in cfg.get("non_git_folders", []):
         findings += review_non_git(entry, manifest_dir, update_manifests)
     canonical = Path(cfg["canonical_repo"]) if cfg.get("canonical_repo") else None
-    task_findings, rows = review_tasks(cfg.get("tasks", []), canonical, cfg.get("remote_main", "origin/main"))
+    if fetch_canonical and canonical is not None:
+        git(canonical, "fetch", "-q", "--prune", "origin")  # the only write: remote-tracking refs of the canonical clone
+    tasks = list(cfg.get("tasks", []))
+    if cfg.get("coordinator"):
+        known = {task["id"] for task in tasks}
+        tasks += [task for task in discover_coordinator_tasks(cfg["coordinator"], cfg.get("task_overrides", {}))
+                  if task["id"] not in known]
+    task_findings, rows = review_tasks(tasks, canonical, cfg.get("remote_main", "origin/main"), open_pr_heads)
     return findings + task_findings, rows
 
 
@@ -590,6 +727,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", help="directory for the dated report files")
     parser.add_argument("--format", choices=("markdown", "json"), default="markdown")
     parser.add_argument("--update-manifests", action="store_true", help="record the folder manifests after reporting")
+    parser.add_argument("--fetch-canonical", action="store_true",
+                        help="run git fetch --prune in the canonical clone first (refreshes its remote-tracking refs only)")
     args = parser.parse_args(argv)
 
     now = time.time()
@@ -602,7 +741,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.command in ("local", "all"):
         if not args.config:
             parser.error("the local section needs --config")
-        local_findings, rows = run_local(cfg, now, args.update_manifests)
+        repo_name = args.repo or cfg.get("repo")
+        heads = open_pr_heads_from_github(repo_name) if repo_name else None
+        local_findings, rows = run_local(cfg, now, args.update_manifests, heads, args.fetch_canonical)
         findings += local_findings
     if args.command in ("github", "all"):
         if args.input_json:

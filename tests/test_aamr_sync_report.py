@@ -173,6 +173,7 @@ def test_finished_tasks_not_on_github(world):
         {"id": "T-held", "finished_marker": str(done), "published_path": "data/lab/t-held/README.md", "owner_hold": "owner decision"},
         {"id": "T-live", "finished_marker": str(done), "published_path": "docs/x.md"},
         {"id": "T-running", "finished_marker": str(root / "no-such-file"), "published_path": "docs/none.md"},
+        {"id": "T-notarget", "finished_marker": str(done)},
     ]
     g(work, "checkout", "-q", "-b", "claude/t-branch")
     commit_file(work, "data/lab/t-branch/README.md", "b")
@@ -182,11 +183,134 @@ def test_finished_tasks_not_on_github(world):
     findings, rows = sync.review_tasks(tasks, work, "origin/main")
     by_id = {f.where: f for f in findings}
     assert by_id["T-missing"].severity == sync.ALERT
-    assert by_id["T-held"].severity == sync.INFO and "on hold" in by_id["T-held"].detail
+    assert by_id["T-held"].severity == sync.INFO and "held" in by_id["T-held"].detail
     assert by_id["T-branch"].severity == sync.WARN
+    assert by_id["T-notarget"].code == "FINISHED_NO_EXPORT_TARGET"
     assert "T-live" not in by_id and "T-running" not in by_id
     states = {r["id"]: r["state"] for r in rows}
-    assert states["T-live"].startswith("published") and states["T-running"] == "not finished"
+    assert states["T-live"] == "on main" and states["T-running"] == "not finished"
+    assert states["T-missing"] == "finished only locally"
+    assert states["T-held"].startswith("held by owner")
+    assert states["T-branch"] == "on a remote branch (PR status unknown)"
+    assert states["T-notarget"] == "finished, no export target declared"
+
+
+def test_four_states_are_told_apart(world):
+    work, root = world["work"], world["root"]
+    done = root / "DONE.json"
+    done.write_text("{}", encoding="utf-8")
+    g(work, "checkout", "-q", "-b", "claude/in-pr")
+    commit_file(work, "data/lab/in-pr/README.md", "a")
+    g(work, "push", "-q", "-u", "origin", "claude/in-pr")
+    g(work, "checkout", "-q", "-b", "claude/no-pr", "main")
+    commit_file(work, "data/lab/no-pr/README.md", "b")
+    g(work, "push", "-q", "-u", "origin", "claude/no-pr")
+    g(work, "checkout", "-q", "main")
+    tasks = [{"id": name, "finished_marker": str(done), "published_path": f"data/lab/{name}/README.md"}
+             for name in ("in-pr", "no-pr", "local", "docs")]
+    tasks[-1]["published_path"] = "docs/x.md"
+    tasks.append({"id": "held", "finished_marker": str(done), "published_path": "data/lab/held/README.md", "owner_hold": "owner"})
+    findings, rows = sync.review_tasks(tasks, work, "origin/main", {"claude/in-pr": 77})
+    states = {r["id"]: r["state"] for r in rows}
+    assert states == {"in-pr": "in PR #77", "no-pr": "pushed, no open PR", "local": "finished only locally",
+                      "docs": "on main", "held": "held by owner (owner)"}
+    severity = {f.where: f.severity for f in findings}
+    assert severity == {"in-pr": sync.INFO, "no-pr": sync.WARN, "local": sync.ALERT, "held": sync.INFO}
+
+
+def write_fake_coordinator(root: Path) -> dict:
+    """A fictional coordinator home: configuration with secrets, a database, an environment file, finished and running runs."""
+    local_root = root / "lroot"
+    (local_root / "GH" / "run1").mkdir(parents=True)
+    (local_root / "GH" / "run1" / "DONE.json").write_text("{}", encoding="utf-8")
+    out = local_root / "GH" / "wt" / "data" / "lab" / "fake-1"
+    out.mkdir(parents=True)
+    (out / "REPORT.md").write_text("report", encoding="utf-8")
+    (out / "results.json").write_text("{}", encoding="utf-8")
+    (local_root / "GH" / "run2").mkdir(parents=True)  # a running experiment: no DONE.json
+    home = root / "coord"
+    (home / "state").mkdir(parents=True)
+    (home / "state" / "coordinator.db").write_bytes(b"SQLite format 3 SUPERSECRET-DB")
+    (home / ".env").write_text("TOKEN=SUPERSECRET-ENV\n", encoding="utf-8")
+    (home / "coordinator.toml").write_text(
+        f'[paths]\nhome = "{home.as_posix()}"\nlocal_root = "{local_root.as_posix()}"\n'
+        '[[experiments]]\nname = "FAKE-1"\nrun_dir = "GH/run1"\nout_dir = "GH/wt/data/lab/fake-1"\n'
+        'required_outputs = ["REPORT.md", "results.json", "raw-freeze.json"]\n'
+        '[agents.x]\napi_key = "SUPERSECRET-123"\n', encoding="utf-8")
+    (home / "coordinator.local.toml").write_text(
+        '[[experiments]]\nname = "FAKE-2"\nrun_dir = "GH/run2"\nout_dir = "GH/wt/data/lab/fake-2"\n'
+        '[agents.y]\ntoken = "SUPERSECRET-456"\n', encoding="utf-8")
+    missions = home / "reports" / "missions"
+    missions.mkdir(parents=True)
+    (missions / "M-PLAN.md").write_text("closed mission", encoding="utf-8")
+    (missions / "M-MAPPED.md").write_text("closed mission", encoding="utf-8")
+    return {"configs": [str(home / "coordinator.toml"), str(home / "coordinator.local.toml")],
+            "missions_dir": str(missions), "mission_targets": {"M-MAPPED": "docs/mapped/README.md"}}
+
+
+def test_coordinator_adapter_discovers_finished_work_without_listing_it_by_hand(world, monkeypatch):
+    spec = write_fake_coordinator(world["root"])
+    opened: list[str] = []
+    real_open = open
+    monkeypatch.setattr("builtins.open", lambda f, *a, **k: (opened.append(Path(str(f)).name), real_open(f, *a, **k))[1])
+    tasks = {t["id"]: t for t in sync.discover_coordinator_tasks(spec, {})}
+    assert set(tasks) == {"FAKE-1", "FAKE-2", "mission M-PLAN", "mission M-MAPPED"}
+    assert tasks["FAKE-1"]["published_paths"] == ["data/lab/fake-1/REPORT.md", "data/lab/fake-1/results.json"]
+    assert Path(tasks["FAKE-1"]["finished_marker"]).exists() and not Path(tasks["FAKE-2"]["finished_marker"]).exists()
+    assert tasks["mission M-MAPPED"]["published_paths"] == ["docs/mapped/README.md"]
+    assert "published_paths" not in tasks["mission M-PLAN"]
+    assert sorted(set(opened)) == ["coordinator.local.toml", "coordinator.toml"]  # nothing else was opened
+
+
+def test_coordinator_secrets_never_reach_the_report(world):
+    spec = write_fake_coordinator(world["root"])
+    cfg = {"canonical_repo": str(world["work"]), "remote_main": "origin/main", "coordinator": spec, "roots": [],
+           "manifest_dir": str(world["root"] / "m")}
+    findings, rows = sync.run_local(cfg, time.time(), update_manifests=False)
+    text = sync.render(findings, rows, "Report", time.time()) + json.dumps([vars(f) for f in findings])
+    assert "SUPERSECRET" not in text and "api_key" not in text
+    states = {r["id"]: (r["source"], r["state"]) for r in rows}
+    assert states["FAKE-1"] == ("coordinator experiment", "finished only locally")
+    assert states["FAKE-2"] == ("coordinator experiment", "not finished")
+    assert states["mission M-PLAN"] == ("coordinator mission", "finished, no export target declared")
+    assert states["mission M-MAPPED"][1] == "finished only locally"
+    assert any(f.code == "FINISHED_NO_EXPORT_TARGET" and f.where == "mission M-PLAN" for f in findings)
+
+
+def test_coordinator_task_moves_from_local_to_pr_to_main(world):
+    work, root = world["work"], world["root"]
+    spec = write_fake_coordinator(root)
+    cfg = {"canonical_repo": str(work), "remote_main": "origin/main", "coordinator": spec, "roots": [], "manifest_dir": str(root / "m")}
+
+    def state(heads=None, fetch=False):
+        _, rows = sync.run_local(cfg, time.time(), False, heads, fetch)
+        return {r["id"]: r["state"] for r in rows}["FAKE-1"]
+
+    assert state() == "finished only locally"
+    other = root / "other"
+    subprocess.run(["git", "clone", "-q", str(world["origin"]), str(other)], check=True, capture_output=True)
+    g(other, "checkout", "-q", "-b", "claude/fake-1")
+    commit_file(other, "data/lab/fake-1/REPORT.md", "report")
+    commit_file(other, "data/lab/fake-1/results.json", "{}")
+    g(other, "push", "-q", "-u", "origin", "claude/fake-1")
+    assert state() == "finished only locally"  # the canonical clone has not fetched: stale on purpose
+    assert state(fetch=True) == "on a remote branch (PR status unknown)"
+    assert state({"claude/fake-1": 9}) == "in PR #9"
+    assert state({"claude/other": 3}) == "pushed, no open PR"
+    g(other, "checkout", "-q", "main")
+    g(other, "merge", "-q", "--no-ff", "-m", "merge", "claude/fake-1")
+    g(other, "push", "-q", "origin", "main")
+    assert state(fetch=True) == "on main"
+
+
+def test_override_marks_a_discovered_task_as_held(world):
+    work, root = world["work"], world["root"]
+    spec = write_fake_coordinator(root)
+    cfg = {"canonical_repo": str(work), "remote_main": "origin/main", "coordinator": spec, "roots": [],
+           "manifest_dir": str(root / "m"), "task_overrides": {"FAKE-1": {"owner_hold": "owner decision"}}}
+    findings, rows = sync.run_local(cfg, time.time(), False)
+    assert {r["id"]: r["state"] for r in rows}["FAKE-1"] == "held by owner (owner decision)"
+    assert not [f for f in findings if f.where == "FAKE-1" and f.severity == sync.ALERT]
 
 
 def test_non_git_folder_tracks_changes_and_never_hashes_secrets(tmp_path, monkeypatch):
@@ -309,8 +433,9 @@ def test_exit_codes_and_rendering():
     assert sync.exit_code([sync.Finding(sync.WARN, "X", "w", "d")]) == 1
     assert sync.exit_code([sync.Finding(sync.WARN, "X", "w", "d"), sync.Finding(sync.ALERT, "Y", "w", "d")]) == 2
     text = sync.render([sync.Finding(sync.ALERT, "FINISHED_NOT_PUBLISHED", "T-1", "detail")],
-                       [{"id": "T-1", "state": "finished, not on GitHub"}], "Report", NOW)
-    assert "## Tasks and their results on GitHub" in text and "| T-1 | finished, not on GitHub |" in text
+                       [{"id": "T-1", "source": "coordinator experiment", "state": "finished only locally"}], "Report", NOW)
+    assert "## Tasks and their results on GitHub" in text
+    assert "| T-1 | coordinator experiment | finished only locally |" in text
     assert "## ALERT (1)" in text
 
 

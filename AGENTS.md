@@ -48,5 +48,6 @@ Read [work placement and synchronisation rules](docs/00-project/work-placement-a
 
 - Every new research task names its target directory and its branch in this repository before work starts. Do not create a new independent repository, and do not keep a second clone: use a worktree of the canonical clone. Either needs the owner's explicit consent.
 - Work that exists only locally is unfinished. Push the branch and open a draft pull request within a day of the first useful commit; end every stage with the HANDOFF block described in those rules. Never merge.
+- The maintainer's local coordinator remains a running autonomous laboratory: research may be started and carried out there. Do not stop, move or reconfigure it, its scheduler or its database. Whatever it finishes (code, protocols, results including negative ones, reports) is exported to a named target directory and branch of this repository through a pull request; its state, database, local configuration, secrets and blinded material never leave it.
 - Large raw data, secrets, sealed data and blinding keys stay out of every public pull request; commit only their SHA-256.
 - Check the daily report with `python scripts/aamr_sync_report.py local --config <your sync.local.json>` before declaring a task finished.
