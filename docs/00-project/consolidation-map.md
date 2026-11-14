@@ -1,8 +1,6 @@
 # Consolidation map: one public repository, one working root, a laboratory that keeps running
 
-**Status:** proposal, revised 2026-11-14 after the owner's decision on the coordinator. Written by an AI agent for the
-maintainer. Only the items marked "done" have happened; everything else waits for the maintainer's confirmation and,
-where noted, separate consent. Nothing in this document changes a frozen experiment or the running laboratory.
+**Status:** carried out on 2026-11-14 under the maintainer's written delegation; this document now describes the state reached, where the earlier text proposed it. Written by an AI agent for the maintainer. The running laboratory was not changed by the consolidation, and nothing in this document changes a frozen experiment.
 
 ## 1. Principle
 
@@ -38,16 +36,19 @@ disk is unfinished and must be visible in the daily synchronisation report ([rul
 The laboratory has its own home and is **not** part of this tree. No other directory may hold a clone: use a worktree of
 `repo/` instead. Creating a repository with a different history needs the owner's consent.
 
-**State on the maintainer's machine, checked 2026-11-14:**
+**State on the maintainer's machine, 2026-11-14 (after the consolidation):**
 
 | Item | State |
 |---|---|
-| `repo/` (fresh clone at `main`) | exists |
-| `work/consolidation-foundation` (worktree of the pull request that introduced this map) | exists |
-| `sync/` | exists, **empty** except for the first dated reports; no configuration is kept there yet |
-| `private/` | exists, **empty**; nothing has been moved into it |
+| `repo/` | the canonical clone at `main`; the git-ignored data that experiments expect (`external/`, `sources/papers`, `data/lab/arena/raw`) was moved into it from the old clone; every commit of the three legacy clones is kept as `refs/legacy/*` |
+| `work/` | worktrees of the branches in progress only; those of merged branches were removed |
+| `private/` | `raw` and `gh-revival` (raw runs and private reports of earlier experiments), `k1-executor` (the K1 executor folder with its 326 MB raw run), `legacy` (older audit and preparation folders, venv package lists, the old clone's scratch data), `backups` (the restored audit deliveries and a copy of the coordinator's configuration before the switch), `docs-local` (the local coordination documents) |
+| `sync/` | `sync.local.json`, the folder manifests and the dated reports; the scheduled task `AAMR-SYNC-REPORT` runs the report every day at 07:30 |
 
-Legacy folders are listed in section 6; none was moved or deleted.
+**Compatibility stubs.** The coordinator's database stores some absolute paths of the old layout, and a migration of a running database needs its own safeguard (a copy and a restore test), so the
+old names are kept as directory junctions that point into the working root (delete a junction and move the folder back to undo): the old clone's name -> `repo/`, the old
+`GH_REVIVAL` folder -> `private/gh-revival`, the K1 executor folder -> `private/k1-executor`, the 2026-11-13 audit folder -> `private/legacy/aamr-audit-2026-11-13`. The coordinator's
+read-only commands (`lab list`, `runner check`, `status`) gave identical output before and after the switch, and its next scheduled ticks ran without error.
 
 ## 3. Target layout inside the repository
 
@@ -67,30 +68,29 @@ The existing layout stays. New destinations are marked **new**.
 The laboratory's own infrastructure (scheduler, database layer, adapters, isolation) is not part of this layout. Whether
 and when any of it is published is the owner's decision, separate from the export of research results.
 
-## 4. Where each existing component goes
+## 4. Where each existing component went
 
 | Component | Canonical location | State and route |
 |---|---|---|
-| Structured-memory runtime, source windows, retrieval metadata | `tools/structured_memory_*`, `data/lab/structured-memory-v1` and related | **done**: merged as slices of the former large pull request; its branch stays as history |
-| EXP-PILOT-0 | `data/lab/experience-pilot-v0` | **done** |
-| EXP-XFER-1 (stage S1) | `data/lab/experience-xfer-v1`, `tests/test_experience_xfer_v1.py` | 5 local commits; one test repaired (the frozen pilot README gained an amendment) and 3 memory events migrated; own pull request |
-| AAMR-NIGHT-1 | `data/lab/aamr-night1` | 7 local commits stacked on EXP-XFER-1; a test that reads a document outside the repository needs an in-repository fixture; 2 memory events to migrate |
-| AAMR-NIGHT-2 | `data/lab/aamr-night2` | 5 local commits stacked on NIGHT-1; **publication of the results is the owner's decision**, and the raw-freeze manifest names a local drive that needs a ruling |
-| K1: specification, decision log, results summary | `data/lab/aamr-k1/` | not in any repository today; **results are not published without the owner's decision**. The executor writes outside any `data/` folder, so the report cannot name a target path yet (see the gap in the [rules](work-placement-and-sync-rules.md#8-coverage-and-its-limits)) |
-| K1: executor code and its tests | `scripts/aamr_k1/`, `tests/` | not in any repository today; import unchanged, add a pytest entry point for the existing offline checks |
-| K1: raw runs | outside Git (`private/`), manifest in `data/lab/aamr-k1/raw-freeze.json` | see section 5 |
-| Independent audits of AAMR and K1 (Fable) | `docs/11-research-laboratory/audits/` | the repository audit and the K1 specifications v0.1 to v0.3 after review; the K1 scientific audit waits until its author finishes; blinding keys never |
-| Decision-rule characteristics (`rulecheck`) | `scripts/rule_characteristics.py` | open pull request, history and authorship preserved |
-| Hypothesis-ledger methodology and statistics (Holm, discordant pairs) | `docs/11-research-laboratory/hypothesis-ledger-methodology.md`, `scripts/hypothesis_statistics.py` | next package; pure functions extracted from the ledger class (a new commit that names the original author) |
-| T39 temporal-layer plan, reviews, reproductions | `docs/11-research-laboratory/t39-temporal-layer/` | package designed, not published: needs the owner's ruling on isolating the author of the held-out set |
-| Verification-level specification | `docs/11-research-laboratory/` | document only |
-| Coordinator (the running laboratory) | **stays in place** | unchanged by this proposal; it exports research products to this repository; see section 7 |
-| Synchronisation tools | `scripts/aamr_sync_report.py` | **done** in the pull request that introduced this map; reads the laboratory's declared experiments and closed missions without modifying anything |
+| Structured-memory runtime, source windows, retrieval metadata | `tools/structured_memory_*`, `data/lab/structured-memory-v1` and related | merged as slices of the former large pull request (#121 to #125); its branch stays as history |
+| EXP-PILOT-0 | `data/lab/experience-pilot-v0` | merged (#111, #120) |
+| EXP-XFER-1 (stage S1) | `data/lab/experience-xfer-v1` | merged (#136); one test repaired for the pilot README amendments; events migrated |
+| AAMR-NIGHT-1 | `data/lab/aamr-night1` | merged (#137), with a README, a registry row and the raw freeze published byte for byte with an erratum (the maintainer's ruling) |
+| AAMR-NIGHT-2 | `data/lab/aamr-night2` | merged (#141); results published, negative on the frozen main test |
+| K1: mechanical record (specification, executor code and tests, stimuli, outcomes, generated report) | `data/lab/aamr-k1/` | merged (#142); the raw run stays private with its SHA-256; machine-local paths in frozen files are explained in an erratum |
+| K1: scientific audit by an AI auditor | `docs/11-research-laboratory/audits/aamr-k1-scientific-audit-2026-11-14/` | merged (#146) as a separate, labelled interpretation; the blinded material is withheld |
+| Decision-rule characteristics | `scripts/rule_characteristics.py` | merged (#134), history and authorship preserved |
+| Hypothesis-ledger methodology and statistics | `docs/11-research-laboratory/hypothesis-ledger-methodology.md`, `scripts/hypothesis_*.py` | merged (#138) as a proposal with tests; the ledger class and its database stay in the coordinator |
+| T39 temporal-layer plan, reviews, reproductions | `docs/11-research-laboratory/t39-temporal-layer/` | merged (#139) as a proposal, nothing approved; the blinding risk for the held-out set is stated in its README |
+| Mechanical verification levels | `docs/11-research-laboratory/mechanical-verification-levels.md` | merged (#140), document only |
+| FactConsolidation label screen | `data/lab/mab-fc-label-screen-v1/` | merged (#143) as a preliminary screening by one AI reader |
+| August planning documents, spend ledger, integration record | `docs/research/`, `data/lab/aam-deepseek-2026-11/`, `docs/00-project/` | merged (#132, #133, #145) |
+| Coordinator (the running laboratory) | **stays in place** (its own home folder, outside this tree) | unchanged; it exports research products here through the export flow ([coordinator-export-flow.md](coordinator-export-flow.md)); its migration-bearing branch `lab/hypothesis-ledger` must not be merged as a whole |
+| Synchronisation tools | `scripts/aamr_sync_report.py` | merged (#135, #144, #147): the report, the coordinator adapter, the export records |
 | Anything under `private/` | stays private | hashes only in this repository |
 
-Not part of this project, and not to be consolidated: a cloned third-party research tool the maintainer used earlier (its
-remote belongs to someone else; its local commits need a fork, which is the maintainer's decision), and a separate unrelated
-project.
+Not part of this project, and not consolidated: a cloned third-party research tool the maintainer used earlier (its remote belongs to someone else; its local commits need a fork, which is the
+maintainer's decision), and a separate unrelated project.
 
 ## 5. Large data, secrets and blinding keys
 
@@ -103,20 +103,27 @@ project.
 GitHub offers no private area inside a public repository. A private repository would be a new repository and needs the
 owner's consent; a verified encrypted copy on a second physical location is the recommended minimum.
 
-## 6. Legacy folders (nothing removed)
+## 6. Legacy folders: what was verified, moved and removed (2026-11-14)
 
-Removal happens only after the content is verified complete in its target and the maintainer agrees. **The laboratory's
-home is not a legacy folder and is not on this list.**
+Before anything was removed, every ref of the three legacy clones was imported into the canonical clone (`refs/legacy/*`) and every commit not reachable from GitHub (23) was compared with `main`
+by Git blob; the uncommitted files of the legacy worktrees were compared byte for byte (or as contained in a published file). All content was on `main`, or was an intended repair of a test, or
+an append to the registry and event log. Then:
 
-| Legacy location | Content | Removable when |
-|---|---|---|
-| the old main clone and its 36 worktrees | merged branches and 5 branches with unmerged work | the unmerged work is in pull requests and `repo/` holds every branch |
-| the folder of earlier integration worktrees | trial branches, review worktrees | their pull requests are merged |
-| the K1 executor folder | code, tests, specification, raw runs | code and specification are imported; raw runs are archived with a verified manifest |
-| the 2026-11-13 audit and the K1 specifications folder | audits and drafts | imported to `docs/` or declared superseded |
-| a preparation package for a next experiment | superseded plan | at once, after the maintainer agrees |
-| a runner scheduling test folder | test evidence | stored where the maintainer wants the laboratory's test evidence kept |
-| the audit backups | restored checkouts of earlier deliveries | a newer verified backup exists |
+| Legacy location | Result |
+|---|---|
+| the old main clone and its 36 worktrees, the standalone lab-map clone | **removed**; their git-ignored data moved into `repo/` and `private/legacy`, their venvs removed after recording the package lists (`private/legacy/venv-freeze`); the old clone's name is a junction to `repo/` |
+| the folder of earlier integration worktrees (`... - community-cleanup`, a second clone and 6 worktrees) | **removed** |
+| `GH_REVIVAL` | its 36 worktrees were **removed**; its 27 data folders and loose notes moved to `private/gh-revival` (junction at the old name) |
+| the K1 executor folder | moved to `private/k1-executor` (junction at the old name, because the coordinator's database names it); its code and results are in `data/lab/aamr-k1/` |
+| the 2026-11-13 audit and the K1 specifications folder | moved to `private/legacy/aamr-audit-2026-11-13` (junction at the old name: the registry pins the K1 specification there); the specification itself is in `data/lab/aamr-k1/spec/` |
+| the preparation package for a next experiment, the runner scheduling test folder | moved to `private/legacy` |
+| the audit backups | moved to `private/backups/audit-backups` (they are the only backups of earlier deliveries; no newer verified backup exists) |
+| local coordination documents of the old root | copied to `private/docs-local` and verified by hash, originals removed; the old root's `CLAUDE.md` is a pointer to the new one at the working root |
+
+**Exceptions that remain, with the reason:** the coordinator's home folder (the running laboratory); the old root folder as a thin compatibility shell (the two secret files whose location the held-out isolation
+design names, the data of the separate NIE persona project, a project settings folder, and two junctions); the four junctions named above; the maintainer's notes folder on the pattern-research ("pajęczyna") topic
+(another process had it open, so it was not moved); and the folders of work other sessions were still using on 2026-11-14 (the EXP-A audit and specification folders, the laboratory review folder, and the K1 audit
+folder, whose audit is published and which can move once those sessions end). A third-party research tool and an unrelated project that live on the same disk are not part of this project.
 
 ## 7. The laboratory and the repository
 
@@ -137,12 +144,13 @@ home is not a legacy folder and is not on this list.**
 
 ## 8. Open decisions for the maintainer
 
-1. A second physical location for private backups.
-2. Replace the old main clone by `repo/` and point the laboratory's repository setting at it (a change of the running
-   installation, so only when the maintainer wants it).
-3. K1: publish code and specification (recommended), results later; raw runs private, LFS, or release asset; and a target
-   path for its results.
-4. The EXP-XFER-1 and NIGHT-1 pull requests may be opened as drafts once their tests are repaired; NIGHT-2 results wait.
+1. A second physical location for private backups (the audit backups and the raw runs are on the same disk as everything else).
+2. The coordinator's absolute paths: migrate its database and configuration to the new layout and then remove the four junctions. It needs a copy of the database and a restore test first; the coordinator's own
+   fix for the K1 registry entry (branch `fix/lab-sync-keep-protocol`) is not merged there.
+3. K1: the large raw run (326 MB) stays private; if it should be public, Git LFS or a release asset is the choice. K1b (about 1 000 tasks) is not designed or approved.
+4. The held-out set of the T39 plan: who writes it, given that the plan is now public (decision G of that plan).
 5. A fork for the cloned third-party tool.
 6. Whether to create the `status:` labels proposed in the work rules.
 7. Whether, and where, the laboratory's infrastructure code is ever published.
+8. Deleting the merged remote branches (about 40 stay on GitHub; the daily report lists them).
+
