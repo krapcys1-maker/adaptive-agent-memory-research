@@ -1,0 +1,23 @@
+{
+  "frozen_at": "2026-11-12T22:32:41.854017+00:00",
+  "raw_root": "D:\\Pamiec LLM\\GH_REVIVAL\\aamr-night1-2026-11-12\\run",
+  "files": {
+    "artifacts/b1_gate.json": "d48752a475428cf085d87e4347640770d8a5dc7f1d347b7c4e7304a909a321d3",
+    "artifacts/lessons_VC_F.json": "07c71147a26df804bddad3f906c963b0efb0c782051097ce1c540a62728f91fd",
+    "artifacts/lessons_VC_Q.json": "cf3a8ce429930dd59688cfb33336f401b782ebb3d23dd1e8c6c8eb60476c8699",
+    "artifacts/memory_GFS.json": "271516faf548ba8e360b12f7369ea5f47b1d38c5734214e40907b44a90640925",
+    "artifacts/memory_TRAVEL.json": "75c4eb49cefbf0d66f44d76357c0fd06ecbef5596179e28d387e1cbe09bfaed3",
+    "artifacts/sD_plan.json": "e161b06470e52c37205676d74c41c8a694bed65c62aafe549a916ce1a31d1a5d",
+    "artifacts/trw_lesson.json": "850b0b5e91070021912c9b080d04ef24d9404192ae41a90d7aca7235bd26fab6",
+    "attempts.jsonl": "e3808bc1f03ef701a8843dcf1f032bf61ff2ecaaaacfe5b7d88027f84df19a67",
+    "flash_ledger.jsonl": "4d83a77869837ea87ec22a849e4ce8016efb606c55ddef811863175f9e5b9738",
+    "flash_responses.jsonl": "71aade09ab2a8191ca5cb1da47b4e40c0cca3d3e0f354c7d2fdeae65eb5409fc",
+    "responses.jsonl": "8a3f7fab5b5c080fbcc92f1c562f68eb5d798fe523e63c4b81109e0e1e472e7c",
+    "sessions/b1.jsonl": "03af9195fee7bf586dd565529d685539f766028d6345ac7d2b330ad7b700297a",
+    "sessions/census.jsonl": "68e2cb90e197559afa4d041d41736b4e65251a25b6c5f3145b0a1f197d6da418",
+    "sessions/sA.jsonl": "40c524e28cd9bf30544396723b8dfd125795982d49a2bb0f57d9a4edc6791c98",
+    "sessions/sC.jsonl": "a1897851fb871f2c318deb4dacd158f0c0a55d55c996af9c167e11271710c1b1",
+    "sessions/sD.jsonl": "c0f4ae98d9b4bf3b68d7d36a94d7ea8ebc3cb6de9f3a0b5fa6c029e92b1abd53",
+    "sessions/sE.jsonl": "7e43b773aae5af80a831b7e1387bdc2860801dd38d82d1a9947f342fd2a2b801"
+  }
+}

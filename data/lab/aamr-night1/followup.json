@@ -1,0 +1,2092 @@
+{
+ "status": "exploratory, written after results were read",
+ "raw_files_verified": 17,
+ "sessions": {
+  "sA": {
+   "changed_outcomes": {
+    "N'": {
+     "gains": 0,
+     "losses": 0,
+     "gains_by_cause": {},
+     "losses_by_cause": {},
+     "detail": {
+      "gains": [],
+      "losses": []
+     }
+    },
+    "Tr": {
+     "gains": 4,
+     "losses": 1,
+     "gains_by_cause": {
+      "memory": 4
+     },
+     "losses_by_cause": {
+      "noise_before_memory": 1
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_81",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_84",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_74",
+        "divergence": {
+         "turn": 1,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_63",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_60",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       }
+      ]
+     }
+    },
+    "TrF": {
+     "gains": 9,
+     "losses": 1,
+     "gains_by_cause": {
+      "memory": 8,
+      "noise_before_memory": 1
+     },
+     "losses_by_cause": {
+      "memory": 1
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_67",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_81",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_97",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "estimate_distance|distance not found in database",
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_84",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_80",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "estimate_distance|distance not found in database"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_77",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "estimate_distance|distance not found in database"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_74",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_82",
+        "divergence": {
+         "turn": 1,
+         "step": 0,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_63",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_60",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       }
+      ]
+     }
+    },
+    "TrO": {
+     "gains": 7,
+     "losses": 1,
+     "gains_by_cause": {
+      "memory": 6,
+      "noise_before_memory": 1
+     },
+     "losses_by_cause": {
+      "memory": 1
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_67",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_71",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_81",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_97",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_84",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_74",
+        "divergence": {
+         "turn": 1,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_63",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_60",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       }
+      ]
+     }
+    },
+    "TrP": {
+     "gains": 4,
+     "losses": 1,
+     "gains_by_cause": {
+      "memory": 4
+     },
+     "losses_by_cause": {
+      "memory": 1
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_81",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_84",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_74",
+        "divergence": {
+         "turn": 1,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_63",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_60",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       }
+      ]
+     }
+    },
+    "TrQ": {
+     "gains": 4,
+     "losses": 1,
+     "gains_by_cause": {
+      "memory": 4
+     },
+     "losses_by_cause": {
+      "memory": 1
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_81",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_84",
+        "divergence": {
+         "turn": 0,
+         "step": 3,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_77",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "estimate_distance|distance not found in database"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_63",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_60",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       }
+      ]
+     }
+    },
+    "TrS": {
+     "gains": 4,
+     "losses": 1,
+     "gains_by_cause": {
+      "memory": 4
+     },
+     "losses_by_cause": {
+      "memory": 1
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_81",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_84",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_74",
+        "divergence": {
+         "turn": 1,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_63",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_60",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       }
+      ]
+     }
+    },
+    "TrW": {
+     "gains": 5,
+     "losses": 1,
+     "gains_by_cause": {
+      "memory": 5
+     },
+     "losses_by_cause": {
+      "memory": 1
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_81",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_84",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_74",
+        "divergence": {
+         "turn": 1,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_99",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_63",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_60",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       }
+      ]
+     }
+    }
+   },
+   "divergence": {
+    "N'": {
+     "episodes": 30,
+     "diverged": 1,
+     "diverged_before_any_memory": 1
+    },
+    "Tr": {
+     "episodes": 30,
+     "diverged": 22,
+     "diverged_before_any_memory": 3
+    },
+    "TrF": {
+     "episodes": 30,
+     "diverged": 23,
+     "diverged_before_any_memory": 2
+    },
+    "TrO": {
+     "episodes": 30,
+     "diverged": 22,
+     "diverged_before_any_memory": 2
+    },
+    "TrP": {
+     "episodes": 30,
+     "diverged": 23,
+     "diverged_before_any_memory": 3
+    },
+    "TrQ": {
+     "episodes": 30,
+     "diverged": 21,
+     "diverged_before_any_memory": 2
+    },
+    "TrS": {
+     "episodes": 30,
+     "diverged": 22,
+     "diverged_before_any_memory": 1
+    },
+    "TrW": {
+     "episodes": 30,
+     "diverged": 22,
+     "diverged_before_any_memory": 2
+    }
+   },
+   "overhead": {
+    "TrP": {
+     "prompt_tokens": 575715,
+     "vs_N_pct": 4.7,
+     "model_calls": 304,
+     "error_results": 77
+    },
+    "TrO": {
+     "prompt_tokens": 592662,
+     "vs_N_pct": 7.8,
+     "model_calls": 310,
+     "error_results": 80
+    },
+    "TrS": {
+     "prompt_tokens": 580747,
+     "vs_N_pct": 5.7,
+     "model_calls": 307,
+     "error_results": 75
+    },
+    "TrQ": {
+     "prompt_tokens": 605902,
+     "vs_N_pct": 10.2,
+     "model_calls": 316,
+     "error_results": 72
+    },
+    "TrF": {
+     "prompt_tokens": 565212,
+     "vs_N_pct": 2.8,
+     "model_calls": 302,
+     "error_results": 47
+    },
+    "N'": {
+     "prompt_tokens": 550295,
+     "vs_N_pct": 0.1,
+     "model_calls": 302,
+     "error_results": 87
+    },
+    "TrW": {
+     "prompt_tokens": 583048,
+     "vs_N_pct": 6.1,
+     "model_calls": 308,
+     "error_results": 77
+    },
+    "N": {
+     "prompt_tokens": 549673,
+     "vs_N_pct": 0.0,
+     "model_calls": 302,
+     "error_results": 87
+    },
+    "Tr": {
+     "prompt_tokens": 539392,
+     "vs_N_pct": -1.9,
+     "model_calls": 292,
+     "error_results": 86
+    }
+   },
+   "fuel_compliance": {
+    "TrO": {
+     "capacity_turns": 8,
+     "passed": 4,
+     "compliance": {
+      "capacity_50": 8
+     }
+    },
+    "TrS": {
+     "capacity_turns": 8,
+     "passed": 0,
+     "compliance": {
+      "stale_40": 6,
+      "other_amount": 2
+     }
+    },
+    "TrP": {
+     "capacity_turns": 8,
+     "passed": 0,
+     "compliance": {
+      "no_refill": 5,
+      "no_level_read": 2,
+      "capacity_50": 1
+     }
+    },
+    "TrW": {
+     "capacity_turns": 8,
+     "passed": 1,
+     "compliance": {
+      "no_refill": 5,
+      "other_amount": 1,
+      "capacity_50": 2
+     }
+    },
+    "TrQ": {
+     "capacity_turns": 9,
+     "passed": 1,
+     "compliance": {
+      "no_refill": 5,
+      "other_amount": 1,
+      "capacity_50": 3
+     }
+    },
+    "TrF": {
+     "capacity_turns": 9,
+     "passed": 6,
+     "compliance": {
+      "capacity_50": 9
+     }
+    }
+   }
+  },
+  "sC": {
+   "changed_outcomes": {
+    "TrO": {
+     "gains": 2,
+     "losses": 0,
+     "gains_by_cause": {
+      "memory": 1,
+      "noise_before_memory": 1
+     },
+     "losses_by_cause": {},
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_85",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_56",
+        "divergence": {
+         "turn": 0,
+         "step": 3,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       }
+      ],
+      "losses": []
+     }
+    },
+    "TrP": {
+     "gains": 0,
+     "losses": 0,
+     "gains_by_cause": {},
+     "losses_by_cause": {},
+     "detail": {
+      "gains": [],
+      "losses": []
+     }
+    }
+   },
+   "divergence": {
+    "TrO": {
+     "episodes": 20,
+     "diverged": 19,
+     "diverged_before_any_memory": 1
+    },
+    "TrP": {
+     "episodes": 20,
+     "diverged": 18,
+     "diverged_before_any_memory": 2
+    }
+   },
+   "overhead": {
+    "TrO": {
+     "prompt_tokens": 365019,
+     "vs_N_pct": 3.3,
+     "model_calls": 201,
+     "error_results": 47
+    },
+    "TrP": {
+     "prompt_tokens": 348417,
+     "vs_N_pct": -1.4,
+     "model_calls": 193,
+     "error_results": 57
+    },
+    "N": {
+     "prompt_tokens": 353328,
+     "vs_N_pct": 0.0,
+     "model_calls": 204,
+     "error_results": 60
+    }
+   },
+   "fuel_compliance": {
+    "TrO": {
+     "capacity_turns": 7,
+     "passed": 4,
+     "compliance": {
+      "no_refill": 2,
+      "capacity_50": 4,
+      "other_amount": 1
+     }
+    },
+    "TrP": {
+     "capacity_turns": 7,
+     "passed": 2,
+     "compliance": {
+      "no_refill": 5,
+      "no_level_read": 2
+     }
+    }
+   }
+  },
+  "sD": {
+   "changed_outcomes": {
+    "N'": {
+     "gains": 1,
+     "losses": 0,
+     "gains_by_cause": {
+      "noise_before_memory": 1
+     },
+     "losses_by_cause": {},
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_43",
+        "divergence": {
+         "turn": 2,
+         "step": 2,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       }
+      ],
+      "losses": []
+     }
+    },
+    "R+": {
+     "gains": 14,
+     "losses": 9,
+     "gains_by_cause": {
+      "memory": 14
+     },
+     "losses_by_cause": {
+      "memory": 9
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_21",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_33",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 3
+       },
+       {
+        "task": "multi_turn_base_47",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_34",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_11",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_7",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_15",
+        "divergence": {
+         "turn": 2,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block",
+          "block",
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 3
+       },
+       {
+        "task": "multi_turn_base_160",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_153",
+        "divergence": {
+         "turn": 1,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block",
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_193",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_190",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_194",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_159",
+        "divergence": {
+         "turn": 1,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block",
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_195",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_49",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_152",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 2,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_151",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_183",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 1,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_191",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 4,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_181",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 4,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_165",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 2,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_182",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_163",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": true,
+         "labels": [
+          "block"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 1,
+        "first_fail_N": null
+       }
+      ]
+     }
+    },
+    "TrD": {
+     "gains": 2,
+     "losses": 0,
+     "gains_by_cause": {
+      "noise_before_memory": 1,
+      "memory": 1
+     },
+     "losses_by_cause": {},
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_43",
+        "divergence": {
+         "turn": 2,
+         "step": 2,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_195",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "book_flight|invalid departure airport code: <arg>"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       }
+      ],
+      "losses": []
+     }
+    },
+    "TrF": {
+     "gains": 6,
+     "losses": 2,
+     "gains_by_cause": {
+      "memory": 4,
+      "noise_before_memory": 2
+     },
+     "losses_by_cause": {
+      "noise_before_memory": 1,
+      "memory": 1
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_43",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "cat|cat: <v>: invalid character"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_1",
+        "divergence": {
+         "turn": 0,
+         "step": 0,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_13",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "cat|cat: <v>: invalid character"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_153",
+        "divergence": {
+         "turn": 1,
+         "step": 0,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_166",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "get_flight_cost|no available route for the given airports"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_195",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "book_flight|invalid departure airport code: <arg>",
+          "get_flight_cost|no available route for the given airports"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_22",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": 1,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_49",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "cd|cd: <v>: no such file or directory"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       }
+      ]
+     }
+    },
+    "TrQ": {
+     "gains": 7,
+     "losses": 2,
+     "gains_by_cause": {
+      "memory": 6,
+      "noise_before_memory": 1
+     },
+     "losses_by_cause": {
+      "memory": 2
+     },
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_43",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "cat|cat: <v>: invalid character"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_16",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "cp|cp: cannot copy <v>: no such file or directory"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_1",
+        "divergence": {
+         "turn": 2,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "grep|grep: <arg>: no such file or directory"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_13",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "cat|cat: <v>: invalid character"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_153",
+        "divergence": {
+         "turn": 1,
+         "step": 0,
+         "memory_before": false,
+         "labels": []
+        },
+        "cause": "noise_before_memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_166",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "get_flight_cost|no available route for the given airports"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_195",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "book_flight|invalid departure airport code: <arg>",
+          "get_flight_cost|no available route for the given airports"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       }
+      ],
+      "losses": [
+       {
+        "task": "multi_turn_base_22",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "cp|cp: path not allowed in destination"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 1,
+        "first_fail_N": null
+       },
+       {
+        "task": "multi_turn_base_49",
+        "divergence": {
+         "turn": 0,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "cd|cd: <v>: no such file or directory"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": 0,
+        "first_fail_N": null
+       }
+      ]
+     }
+    }
+   },
+   "divergence": {
+    "N'": {
+     "episodes": 58,
+     "diverged": 13,
+     "diverged_before_any_memory": 13
+    },
+    "R+": {
+     "episodes": 58,
+     "diverged": 58,
+     "diverged_before_any_memory": 0
+    },
+    "TrD": {
+     "episodes": 58,
+     "diverged": 23,
+     "diverged_before_any_memory": 15
+    },
+    "TrF": {
+     "episodes": 58,
+     "diverged": 38,
+     "diverged_before_any_memory": 11
+    },
+    "TrQ": {
+     "episodes": 58,
+     "diverged": 36,
+     "diverged_before_any_memory": 6
+    }
+   },
+   "overhead": {
+    "N": {
+     "prompt_tokens": 1206652,
+     "vs_N_pct": 0.0,
+     "model_calls": 555,
+     "error_results": 219
+    },
+    "N'": {
+     "prompt_tokens": 1209994,
+     "vs_N_pct": 0.3,
+     "model_calls": 556,
+     "error_results": 219
+    },
+    "TrQ": {
+     "prompt_tokens": 1278175,
+     "vs_N_pct": 5.9,
+     "model_calls": 566,
+     "error_results": 178
+    },
+    "TrF": {
+     "prompt_tokens": 1282556,
+     "vs_N_pct": 6.3,
+     "model_calls": 556,
+     "error_results": 215
+    },
+    "R+": {
+     "prompt_tokens": 1267132,
+     "vs_N_pct": 5.0,
+     "model_calls": 515,
+     "error_results": 152
+    },
+    "TrD": {
+     "prompt_tokens": 1220635,
+     "vs_N_pct": 1.2,
+     "model_calls": 555,
+     "error_results": 211
+    }
+   }
+  },
+  "sE": {
+   "changed_outcomes": {
+    "N'": {
+     "gains": 0,
+     "losses": 0,
+     "gains_by_cause": {},
+     "losses_by_cause": {},
+     "detail": {
+      "gains": [],
+      "losses": []
+     }
+    },
+    "Tr": {
+     "gains": 3,
+     "losses": 0,
+     "gains_by_cause": {
+      "memory": 3
+     },
+     "losses_by_cause": {},
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_90",
+        "divergence": {
+         "turn": 1,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_52",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_88",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       }
+      ],
+      "losses": []
+     }
+    },
+    "TrO": {
+     "gains": 9,
+     "losses": 0,
+     "gains_by_cause": {
+      "memory": 9
+     },
+     "losses_by_cause": {},
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_67",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_71",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_90",
+        "divergence": {
+         "turn": 1,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_52",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_59",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_97",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_80",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_88",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       },
+       {
+        "task": "multi_turn_base_82",
+        "divergence": {
+         "turn": 1,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "fillFuelTank|cannot fill gas above the tank capacity"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       }
+      ],
+      "losses": []
+     }
+    },
+    "TrP": {
+     "gains": 3,
+     "losses": 0,
+     "gains_by_cause": {
+      "memory": 3
+     },
+     "losses_by_cause": {},
+     "detail": {
+      "gains": [
+       {
+        "task": "multi_turn_base_90",
+        "divergence": {
+         "turn": 1,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|all doors must be locked before starting the engine",
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 1
+       },
+       {
+        "task": "multi_turn_base_52",
+        "divergence": {
+         "turn": 0,
+         "step": 2,
+         "memory_before": true,
+         "labels": [
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 0
+       },
+       {
+        "task": "multi_turn_base_88",
+        "divergence": {
+         "turn": 2,
+         "step": 1,
+         "memory_before": true,
+         "labels": [
+          "startEngine|brake pedal needs to be pressed when starting the engine"
+         ]
+        },
+        "cause": "memory",
+        "first_fail_arm": null,
+        "first_fail_N": 2
+       }
+      ],
+      "losses": []
+     }
+    }
+   },
+   "divergence": {
+    "N'": {
+     "episodes": 30,
+     "diverged": 0,
+     "diverged_before_any_memory": 0
+    },
+    "Tr": {
+     "episodes": 30,
+     "diverged": 17,
+     "diverged_before_any_memory": 0
+    },
+    "TrO": {
+     "episodes": 30,
+     "diverged": 19,
+     "diverged_before_any_memory": 0
+    },
+    "TrP": {
+     "episodes": 30,
+     "diverged": 18,
+     "diverged_before_any_memory": 0
+    }
+   },
+   "overhead": {
+    "N'": {
+     "prompt_tokens": 794973,
+     "vs_N_pct": 0.0,
+     "model_calls": 386,
+     "error_results": 79
+    },
+    "TrP": {
+     "prompt_tokens": 780001,
+     "vs_N_pct": -1.9,
+     "model_calls": 372,
+     "error_results": 86
+    },
+    "Tr": {
+     "prompt_tokens": 791618,
+     "vs_N_pct": -0.4,
+     "model_calls": 379,
+     "error_results": 80
+    },
+    "N": {
+     "prompt_tokens": 794973,
+     "vs_N_pct": 0.0,
+     "model_calls": 386,
+     "error_results": 79
+    },
+    "TrO": {
+     "prompt_tokens": 807984,
+     "vs_N_pct": 1.6,
+     "model_calls": 383,
+     "error_results": 71
+    }
+   },
+   "fuel_compliance": {
+    "TrO": {
+     "capacity_turns": 10,
+     "passed": 7,
+     "compliance": {
+      "capacity_50": 9,
+      "no_level_read": 1
+     }
+    },
+    "TrP": {
+     "capacity_turns": 10,
+     "passed": 1,
+     "compliance": {
+      "no_refill": 8,
+      "capacity_50": 2
+     }
+    }
+   }
+  }
+ }
+}
