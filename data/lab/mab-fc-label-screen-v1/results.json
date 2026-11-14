@@ -1,0 +1,514 @@
+{
+ "per_variant": {
+  "factconsolidation_mh_262k": {
+   "questions": 100,
+   "consistent_upper_bound": 66,
+   "flagged": 34,
+   "confirmed": 33,
+   "probable": 1,
+   "superseded_final_hop": 16,
+   "superseded_intermediate_hop": 18,
+   "rule_consistent_answer_differs": 23,
+   "rule_consistent_answer_missing": 11
+  },
+  "factconsolidation_mh_32k": {
+   "questions": 100,
+   "consistent_upper_bound": 87,
+   "flagged": 13,
+   "confirmed": 12,
+   "probable": 1,
+   "superseded_final_hop": 3,
+   "superseded_intermediate_hop": 10,
+   "rule_consistent_answer_differs": 7,
+   "rule_consistent_answer_missing": 6
+  },
+  "factconsolidation_mh_64k": {
+   "questions": 100,
+   "consistent_upper_bound": 90,
+   "flagged": 10,
+   "confirmed": 7,
+   "probable": 3,
+   "superseded_final_hop": 6,
+   "superseded_intermediate_hop": 4,
+   "rule_consistent_answer_differs": 9,
+   "rule_consistent_answer_missing": 1
+  },
+  "factconsolidation_mh_6k": {
+   "questions": 100,
+   "consistent_upper_bound": 96,
+   "flagged": 4,
+   "confirmed": 4,
+   "probable": 0,
+   "superseded_final_hop": 2,
+   "superseded_intermediate_hop": 2,
+   "rule_consistent_answer_differs": 4,
+   "rule_consistent_answer_missing": 0
+  },
+  "factconsolidation_sh_262k": {
+   "questions": 100,
+   "consistent_upper_bound": 97,
+   "flagged": 3,
+   "confirmed": 3,
+   "probable": 0,
+   "superseded_final_hop": 3,
+   "superseded_intermediate_hop": 0,
+   "rule_consistent_answer_differs": 3,
+   "rule_consistent_answer_missing": 0
+  },
+  "factconsolidation_sh_32k": {
+   "questions": 100,
+   "consistent_upper_bound": 98,
+   "flagged": 2,
+   "confirmed": 2,
+   "probable": 0,
+   "superseded_final_hop": 2,
+   "superseded_intermediate_hop": 0,
+   "rule_consistent_answer_differs": 2,
+   "rule_consistent_answer_missing": 0
+  },
+  "factconsolidation_sh_64k": {
+   "questions": 100,
+   "consistent_upper_bound": 98,
+   "flagged": 2,
+   "confirmed": 2,
+   "probable": 0,
+   "superseded_final_hop": 2,
+   "superseded_intermediate_hop": 0,
+   "rule_consistent_answer_differs": 2,
+   "rule_consistent_answer_missing": 0
+  },
+  "factconsolidation_sh_6k": {
+   "questions": 100,
+   "consistent_upper_bound": 100,
+   "flagged": 0,
+   "confirmed": 0,
+   "probable": 0,
+   "superseded_final_hop": 0,
+   "superseded_intermediate_hop": 0,
+   "rule_consistent_answer_differs": 0,
+   "rule_consistent_answer_missing": 0
+  }
+ },
+ "contradictions": {
+  "6k": {
+   "keys_used_with_two_values": 4,
+   "questions_involved": 10,
+   "examples": [
+    {
+     "key": [
+      "france",
+      "capital"
+     ],
+     "uses": [
+      [
+       "Harare",
+       "latest",
+       "Q24"
+      ],
+      [
+       "Harare",
+       "latest",
+       "Q93"
+      ],
+      [
+       "Paris",
+       "superseded",
+       "Q98"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "cricket",
+      "created_in_country"
+     ],
+     "uses": [
+      [
+       "Australia",
+       "latest",
+       "Q33"
+      ],
+      [
+       "Australia",
+       "latest",
+       "Q57"
+      ],
+      [
+       "Australia",
+       "latest",
+       "Q89"
+      ],
+      [
+       "England",
+       "superseded",
+       "Q44"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "india",
+      "capital"
+     ],
+     "uses": [
+      [
+       "Grosseto",
+       "latest",
+       "Q48"
+      ],
+      [
+       "New Delhi",
+       "superseded",
+       "Q67"
+      ],
+      [
+       "New Delhi",
+       "superseded",
+       "Q86"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "henri grégoire",
+      "citizen_of"
+     ],
+     "uses": [
+      [
+       "France",
+       "superseded",
+       "Q98"
+      ],
+      [
+       "India",
+       "latest",
+       "Q86"
+      ]
+     ]
+    }
+   ]
+  },
+  "32k": {
+   "keys_used_with_two_values": 6,
+   "questions_involved": 13,
+   "examples": [
+    {
+     "key": [
+      "italy",
+      "head_of_state"
+     ],
+     "uses": [
+      [
+       "Alassane Dramane Ouattara",
+       "latest",
+       "Q67"
+      ],
+      [
+       "Sergio Mattarella",
+       "superseded",
+       "Q3"
+      ],
+      [
+       "Sergio Mattarella",
+       "superseded",
+       "Q63"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "church of scotland",
+      "founded_by"
+     ],
+     "uses": [
+      [
+       "Bachir Gemayel",
+       "latest",
+       "Q31"
+      ],
+      [
+       "John Knox",
+       "superseded",
+       "Q79"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "shooting guard",
+      "sport"
+     ],
+     "uses": [
+      [
+       "basketball",
+       "superseded",
+       "Q33"
+      ],
+      [
+       "rugby",
+       "latest",
+       "Q99"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "henri grégoire",
+      "citizen_of"
+     ],
+     "uses": [
+      [
+       "France",
+       "superseded",
+       "Q37"
+      ],
+      [
+       "India",
+       "latest",
+       "Q73"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "ernst heinkel",
+      "citizen_of"
+     ],
+     "uses": [
+      [
+       "Germany",
+       "superseded",
+       "Q90"
+      ],
+      [
+       "Tang Empire",
+       "latest",
+       "Q52"
+      ]
+     ]
+    }
+   ]
+  },
+  "64k": {
+   "keys_used_with_two_values": 3,
+   "questions_involved": 7,
+   "examples": [
+    {
+     "key": [
+      "argentina",
+      "continent"
+     ],
+     "uses": [
+      [
+       "Asia",
+       "latest",
+       "Q90"
+      ],
+      [
+       "South America",
+       "superseded",
+       "Q6"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "italy",
+      "capital"
+     ],
+     "uses": [
+      [
+       "Duluth",
+       "latest",
+       "Q10"
+      ],
+      [
+       "Duluth",
+       "latest",
+       "Q16"
+      ],
+      [
+       "Rome",
+       "superseded",
+       "Q49"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "methodism",
+      "founded_by"
+     ],
+     "uses": [
+      [
+       "John Wesley",
+       "superseded",
+       "Q84"
+      ],
+      [
+       "Joseph Goebbels",
+       "latest",
+       "Q50"
+      ]
+     ]
+    }
+   ]
+  },
+  "262k": {
+   "keys_used_with_two_values": 5,
+   "questions_involved": 17,
+   "examples": [
+    {
+     "key": [
+      "narendra modi",
+      "citizen_of"
+     ],
+     "uses": [
+      [
+       "Australia",
+       "latest",
+       "Q25"
+      ],
+      [
+       "Australia",
+       "latest",
+       "Q32"
+      ],
+      [
+       "Australia",
+       "latest",
+       "Q55"
+      ],
+      [
+       "Australia",
+       "latest",
+       "Q7"
+      ],
+      [
+       "India",
+       "superseded",
+       "Q63"
+      ],
+      [
+       "India",
+       "superseded",
+       "Q75"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "new zealand",
+      "continent"
+     ],
+     "uses": [
+      [
+       "Africa",
+       "latest",
+       "Q52"
+      ],
+      [
+       "Oceania",
+       "superseded",
+       "Q10"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "methodism",
+      "founded_by"
+     ],
+     "uses": [
+      [
+       "John Wesley",
+       "superseded",
+       "Q11"
+      ],
+      [
+       "John Wesley",
+       "superseded",
+       "Q17"
+      ],
+      [
+       "John Wesley",
+       "superseded",
+       "Q57"
+      ],
+      [
+       "John Wesley",
+       "superseded",
+       "Q99"
+      ],
+      [
+       "Joseph Goebbels",
+       "latest",
+       "Q54"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "judo",
+      "founded_by"
+     ],
+     "uses": [
+      [
+       "Charles de Gaulle",
+       "latest",
+       "Q27"
+      ],
+      [
+       "Charles de Gaulle",
+       "latest",
+       "Q35"
+      ],
+      [
+       "Jigoro Kano",
+       "superseded",
+       "Q16"
+      ]
+     ]
+    },
+    {
+     "key": [
+      "australia",
+      "capital"
+     ],
+     "uses": [
+      [
+       "Canberra",
+       "superseded",
+       "Q36"
+      ],
+      [
+       "Oderzo",
+       "latest",
+       "Q55"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "project_262k": {
+  "local-path-answers": {
+   "released_correct": 55,
+   "unflagged": 66,
+   "unflagged_correct": 55,
+   "flagged": 34,
+   "flagged_released_correct": 0,
+   "flagged_answer_equals_rule_consistent": 17,
+   "flagged_no_answer": 4
+  },
+  "flash-path-answers": {
+   "released_correct": 59,
+   "unflagged": 66,
+   "unflagged_correct": 59,
+   "flagged": 34,
+   "flagged_released_correct": 0,
+   "flagged_answer_equals_rule_consistent": 21,
+   "flagged_no_answer": 5
+  }
+ }
+}

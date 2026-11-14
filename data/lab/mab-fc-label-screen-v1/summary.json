@@ -1,0 +1,101 @@
+{
+ "factconsolidation_mh_6k": {
+  "questions": 100,
+  "classes": {
+   "CONSISTENT": 96,
+   "SUPERSEDED_INTERMEDIATE_HOP": 2,
+   "SUPERSEDED_FINAL_HOP": 2
+  },
+  "facts": 455,
+  "unparsed": 0,
+  "keys": 294,
+  "keys_with_conflicting_history": 161,
+  "max_versions_per_key": 2
+ },
+ "factconsolidation_mh_32k": {
+  "questions": 100,
+  "classes": {
+   "CONSISTENT": 87,
+   "SUPERSEDED_FINAL_HOP": 3,
+   "SUPERSEDED_INTERMEDIATE_HOP": 10
+  },
+  "facts": 2310,
+  "unparsed": 0,
+  "keys": 1473,
+  "keys_with_conflicting_history": 837,
+  "max_versions_per_key": 2
+ },
+ "factconsolidation_mh_64k": {
+  "questions": 100,
+  "classes": {
+   "CONSISTENT": 90,
+   "SUPERSEDED_FINAL_HOP": 6,
+   "SUPERSEDED_INTERMEDIATE_HOP": 4
+  },
+  "facts": 4580,
+  "unparsed": 0,
+  "keys": 2889,
+  "keys_with_conflicting_history": 1691,
+  "max_versions_per_key": 2
+ },
+ "factconsolidation_mh_262k": {
+  "questions": 100,
+  "classes": {
+   "CONSISTENT": 66,
+   "SUPERSEDED_INTERMEDIATE_HOP": 18,
+   "SUPERSEDED_FINAL_HOP": 16
+  },
+  "facts": 18332,
+  "unparsed": 0,
+  "keys": 11095,
+  "keys_with_conflicting_history": 7236,
+  "max_versions_per_key": 3
+ },
+ "factconsolidation_sh_6k": {
+  "questions": 100,
+  "classes": {
+   "CONSISTENT": 100
+  },
+  "facts": 455,
+  "unparsed": 0,
+  "keys": 294,
+  "keys_with_conflicting_history": 161,
+  "max_versions_per_key": 2
+ },
+ "factconsolidation_sh_32k": {
+  "questions": 100,
+  "classes": {
+   "CONSISTENT": 98,
+   "SUPERSEDED_VALUE": 2
+  },
+  "facts": 2310,
+  "unparsed": 0,
+  "keys": 1473,
+  "keys_with_conflicting_history": 837,
+  "max_versions_per_key": 2
+ },
+ "factconsolidation_sh_64k": {
+  "questions": 100,
+  "classes": {
+   "CONSISTENT": 98,
+   "SUPERSEDED_VALUE": 2
+  },
+  "facts": 4580,
+  "unparsed": 0,
+  "keys": 2889,
+  "keys_with_conflicting_history": 1691,
+  "max_versions_per_key": 2
+ },
+ "factconsolidation_sh_262k": {
+  "questions": 100,
+  "classes": {
+   "CONSISTENT": 97,
+   "SUPERSEDED_VALUE": 3
+  },
+  "facts": 18332,
+  "unparsed": 0,
+  "keys": 11095,
+  "keys_with_conflicting_history": 7236,
+  "max_versions_per_key": 3
+ }
+}
