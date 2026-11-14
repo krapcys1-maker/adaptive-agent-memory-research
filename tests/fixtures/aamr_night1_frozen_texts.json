@@ -1,0 +1,9 @@
+{
+  "purpose": "The two frozen lesson texts of AAMR-NIGHT-1 (oracle and placebo) exactly as written in the direction review that froze them. The review itself is not in this repository.",
+  "source_document": "direction-review-2026-11-12/OCENA_KIERUNKU.md, section 7 (the first two ```text blocks)",
+  "source_document_sha256": "24f472b17360405b58eb6725fe9f1d1c4a54419da154017df3e920eb59afba97",
+  "oracle": "fillFuelTank: error \"Cannot fill gas above the tank capacity.\" means that the current fuel level plus fuelAmount would exceed 50 gallons. fuelAmount is the amount to add, not the target level. It was resolved by first calling displayCarStatus(option='fuel') and then calling fillFuelTank with at most 50 minus the reported fuelLevel.",
+  "oracle_sha256": "0a864a64b20debcd07f095c009d5e74292c1c65fc8d00cf2a91d6cb20143d1a5",
+  "placebo": "fillFuelTank: error \"Cannot fill gas above the tank capacity.\" was also returned in earlier tasks. Nothing else was recorded about this error at the time, so this note carries no further information about the tool. Continue with the user's current request and use the functions listed above as you normally would, one step after another.",
+  "placebo_sha256": "a2fc500fcff049c60a58b6911bc284dc0afda0a4a62109bfebb69c46cf35c415"
+}

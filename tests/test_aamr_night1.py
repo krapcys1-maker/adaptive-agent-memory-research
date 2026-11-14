@@ -51,14 +51,44 @@ def cfg(**budget):
 
 # ----------------------------------------------------------------------------- frozen texts and splits
 
+FROZEN_TEXTS = json.loads((Path(__file__).resolve().parent / "fixtures" / "aamr_night1_frozen_texts.json").read_text(encoding="utf-8"))
+SPEC_ENV = "AAMR_NIGHT1_SPEC_DOCUMENT"  # path of the direction review that froze the texts; it is not in this repository
+
+
 def test_oracle_and_placebo_match_the_frozen_spec():
-    spec = (p0.ROOT.parent / "direction-review-2026-11-12" / "OCENA_KIERUNKU.md").read_text(encoding="utf-8")
-    blocks = [b.strip() for b in spec.split("```text")[1:]]
-    blocks = [b.split("```")[0].strip() for b in blocks]
-    assert n1.ORACLE == blocks[0]
-    assert n1.PLACEBO == blocks[1]
+    """The two lesson texts equal the ones recorded from the direction review, which lives outside this repository.
+
+    The recorded copy (tests/fixtures/aamr_night1_frozen_texts.json) carries the SHA-256 of each text and of the
+    source document; the optional test below checks it against the source document itself when that is available.
+    """
+    import hashlib
+
+    assert n1.ORACLE == FROZEN_TEXTS["oracle"]
+    assert n1.PLACEBO == FROZEN_TEXTS["placebo"]
+    assert hashlib.sha256(n1.ORACLE.encode("utf-8")).hexdigest() == FROZEN_TEXTS["oracle_sha256"]
+    assert hashlib.sha256(n1.PLACEBO.encode("utf-8")).hexdigest() == FROZEN_TEXTS["placebo_sha256"]
     assert abs(len(n1.PLACEBO) - len(n1.ORACLE)) <= 0.1 * len(n1.ORACLE)
     assert n1.STALE.count("40") == 2 and "50" not in n1.STALE
+
+
+def _spec_document() -> Path | None:
+    import os
+
+    for candidate in (os.environ.get(SPEC_ENV), p0.ROOT.parent / "direction-review-2026-11-12" / "OCENA_KIERUNKU.md"):
+        if candidate and Path(candidate).is_file():
+            return Path(candidate)
+    return None
+
+
+@pytest.mark.skipif(_spec_document() is None, reason=f"optional integration test: the direction review is outside the repository (set {SPEC_ENV})")
+def test_recorded_texts_match_the_direction_review_document():
+    """Integration check against the source document: its hash and its first two text blocks equal the recorded copy."""
+    import hashlib
+
+    raw = _spec_document().read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == FROZEN_TEXTS["source_document_sha256"]
+    blocks = [b.split("```")[0].strip() for b in (b.strip() for b in raw.decode("utf-8").split("```text")[1:])]
+    assert blocks[0] == FROZEN_TEXTS["oracle"] and blocks[1] == FROZEN_TEXTS["placebo"]
 
 
 @pytest.mark.skipif(not BFCL_OK, reason="BFCL checkout missing")
