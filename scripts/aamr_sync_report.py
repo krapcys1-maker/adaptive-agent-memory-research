@@ -697,7 +697,9 @@ def review_issues(issues: list[dict[str, Any]], merged_prs: list[dict[str, Any]]
 def review_branches(tree: Path, main_ref: str, now: float, stale_days: float = 14) -> list[Finding]:
     findings: list[Finding] = []
     _, merged = git(tree, "branch", "-r", "--merged", main_ref, "--format=%(refname:short)")
-    merged_names = [b for b in merged.splitlines() if b and not b.endswith(("/HEAD", main_ref.split("/", 1)[-1]))]
+    # `origin/HEAD` is printed as plain `origin` by the short format; a name without a slash is never a branch
+    merged_names = [b for b in merged.splitlines()
+                    if b and "/" in b and not b.endswith(("/HEAD", main_ref.split("/", 1)[-1]))]
     if merged_names:
         findings.append(Finding(INFO, "BRANCH_MERGED_UNDELETED", str(tree),
                                 f"{len(merged_names)} remote branch(es) already in {main_ref}; deleting them needs the owner's consent"))
