@@ -28,3 +28,10 @@ number of replaced paths: `decisions/DZIENNIK_DECYZJI_K1_v1.0.1.md`, `decisions/
 
 The executor's manifest `MANIFEST.json` was kept private because, besides the 29 file hashes, it lists the Python start-up files installed on the
 machine (they name unrelated projects). `meta/manifest-L8-files.json` keeps its `files` mapping with the hashes unchanged and the paths made relative.
+
+## Where the named folders and the raw run are now, and the check (added 2026-11-14)
+
+The folders that the absolute paths in the frozen files name were moved on 2026-11-14 into the private area of the working root (outside Git, not published):
+the K1 executor folder is now `private/k1-executor` and the 2026-11-13 audit folder `private/legacy/aamr-audit-2026-11-13`. The coordinator's own folder was not moved.
+The raw run (`private/k1-executor/base/run`) was checked on 2026-11-14 against `out/raw-freeze.json`, whose paths are relative to the run folder:
+**21 of 21 SHA-256 sums equal, 0 missing, 0 different.** The frozen files were not edited; the old absolute paths remain in them (and in Git history) as explained above.

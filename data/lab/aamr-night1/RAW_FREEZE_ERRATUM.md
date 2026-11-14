@@ -28,3 +28,13 @@ writes the run folder as the program saw it.
 
 The experiment's protocol, configuration, results and report were imported unchanged in substance. The only edits made on
 import, in the test file, are described in the commit messages of this branch.
+
+## Where the raw run is now, and the check (added 2026-11-14)
+
+The old root folder, the old `GH_REVIVAL` folder and the run folder named by `raw_root` no longer exist under those names: the project's working root was reorganised on 2026-11-14.
+The raw run of NIGHT-1 now lives **outside Git, in the private area of the working root**, at `private/gh-revival/aamr-night1-2026-11-12/run` (a path relative to the working root; the folder is not part of
+this repository and is not published). **All 17 SHA-256 sums of `files` were recomputed on 2026-11-14 at that place and equal the sums in `raw-freeze.json`: 17 of 17 match, 0 missing, 0 different.**
+`raw-freeze.json` itself was not changed (its bytes still carry the old `raw_root`). It is also still present in the Git history, in the pull-request refs and in any clone or fork; a later commit
+cannot remove it, and the project does not rewrite history or force-push. What the old path reveals is the names of directories of the old layout; it contains no user name and no secret.
+
+New manifests of this project use paths relative to the run folder and do not record an absolute `raw_root`; the export flow rejects a manifest that does (`docs/00-project/coordinator-export-flow.md`).
