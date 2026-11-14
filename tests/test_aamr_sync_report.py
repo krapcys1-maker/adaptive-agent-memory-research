@@ -115,6 +115,30 @@ def test_squash_merged_branch_is_patch_equivalent_not_reported(world):
     assert not codes(review(work), "PUSHED_NOT_MERGED")
 
 
+def test_cherry_picked_commits_are_recognised_by_patch_id(world):
+    work, root = world["work"], world["root"]
+    g(work, "checkout", "-q", "-b", "claude/local-copy")
+    commit_file(work, "docs/same1.md", "one\n")
+    commit_file(work, "docs/same2.md", "two\n")
+    g(work, "checkout", "-q", "main")
+    other = root / "other"
+    subprocess.run(["git", "clone", "-q", str(world["origin"]), str(other)], check=True, capture_output=True)
+    g(other, "checkout", "-q", "-b", "claude/remote-copy")
+    commit_file(other, "docs/same1.md", "one\n", when=time.time() - 5000)  # the same change under another commit id
+    g(other, "push", "-q", "-u", "origin", "claude/remote-copy")
+    g(work, "fetch", "-q", "origin")
+    only = [f for f in codes(review(work), "LOCAL_ONLY_BRANCH") if "claude/local-copy" in f.where]
+    assert len(only) == 1 and "2 commit(s) not on any remote, 1 patch(es) with no copy" in only[0].detail
+    commit_file(other, "docs/same2.md", "two\n", when=time.time() - 4000)
+    g(other, "push", "-q", "origin", "claude/remote-copy")
+    # the work clone has not fetched the second copy; the canonical clone's patch ids are passed in instead
+    canonical_ids = set(sync.patch_ids(other, ["--remotes"], 800))
+    found = sync.review_repository(work, {"remote_main": "origin/main"}, time.time(), canonical_ids)
+    assert not [f for f in found if f.code == "LOCAL_ONLY_BRANCH" and "claude/local-copy" in f.where]
+    copy = [f for f in found if f.code == "LOCAL_COPY_ON_GITHUB"]
+    assert len(copy) == 1 and "every patch is there" in copy[0].detail
+
+
 def test_dirty_and_untracked_files_are_compared_with_the_main_line(world):
     work = world["work"]
     (work / "README.md").write_text("changed\n", encoding="utf-8")

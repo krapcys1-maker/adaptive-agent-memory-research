@@ -12,7 +12,9 @@ listed by name only), and needs no network, paid API, or model. The GitHub secti
 through ``gh`` with list/GET commands only, or from a JSON file, so it can be tested offline.
 
 Local findings
-    LOCAL_ONLY_BRANCH        commits on a local branch that no remote-tracking ref contains
+    LOCAL_ONLY_BRANCH        commits on a local branch that no remote-tracking ref contains and whose
+                             patches have no copy on GitHub (compared by stable patch id)
+    LOCAL_COPY_ON_GITHUB     commits with other ids on GitHub (cherry-picked or rebased): nothing is missing
     PUSHED_NOT_MERGED        branch is on the remote but not in the main line
     DETACHED_UNREACHABLE     detached HEAD with commits no branch or remote contains
     NO_REMOTE                repository without any remote (needs a backup instead)
@@ -150,6 +152,28 @@ def list_worktrees(repo: Path) -> list[dict[str, str]]:
     return items
 
 
+def patch_ids(repo: Path | str, revs: list[str], limit: int | None = None) -> dict[str, str]:
+    """Stable patch id -> commit id for the non-merge commits selected by ``revs``.
+
+    Two commits with the same patch id carry the same change, so a commit that was cherry-picked or rebased
+    onto another line is recognised even though its commit id differs.
+    """
+    log = ["git", "--no-optional-locks", "-C", str(repo), "log", "-p", "--no-merges", "--format=commit %H"]
+    if limit:
+        log += ["-n", str(limit)]
+    try:
+        first = subprocess.run(log + revs, capture_output=True, timeout=300)
+        second = subprocess.run(["git", "patch-id", "--stable"], input=first.stdout, capture_output=True, timeout=300)
+    except (OSError, subprocess.TimeoutExpired):
+        return {}
+    ids: dict[str, str] = {}
+    for line in second.stdout.decode("utf-8", "replace").splitlines():
+        parts = line.split()
+        if len(parts) == 2:
+            ids[parts[0]] = parts[1]
+    return ids
+
+
 def ref_exists(repo: Path, ref: str) -> bool:
     return git(repo, "rev-parse", "--verify", "-q", ref)[0] == 0
 
@@ -166,7 +190,8 @@ def path_in_ref(repo: Path, ref: str, relpath: str) -> bool:
 # Local repositories
 # ---------------------------------------------------------------------------------------------
 
-def review_repository(repo: Path, cfg: dict[str, Any], now: float) -> list[Finding]:
+def review_repository(repo: Path, cfg: dict[str, Any], now: float,
+                      known_patch_ids: set[str] | None = None) -> list[Finding]:
     findings: list[Finding] = []
     label = str(repo)
     main_ref = cfg.get("remote_main", "origin/main")
@@ -202,19 +227,31 @@ def review_repository(repo: Path, cfg: dict[str, Any], now: float) -> list[Findi
         branch_tips[name] = float(stamp or 0)
 
     if has_remote:
+        known: set[str] | None = None
         for name, stamp in sorted(branch_tips.items()):
             _, count = git(repo, "rev-list", "--count", name, "--not", "--remotes")
             unpublished = int(count or 0)
             if unpublished:
                 age_hours = (now - stamp) / 3600
+                if known is None:  # patches that exist on a remote: this repository's remotes and the canonical clone's
+                    known = set(patch_ids(repo, ["--remotes"], 800)) | (known_patch_ids or set())
+                mine = patch_ids(repo, [name, "--not", "--remotes"])
+                missing = [c for pid, c in mine.items() if pid not in known] if mine else [None] * unpublished
+                where = f"{label} [{name}]"
                 if name in allowed_local:
                     findings.append(Finding(
-                        INFO, "LOCAL_ONLY_BRANCH", f"{label} [{name}]",
-                        f"{unpublished} commit(s) not on any remote; held on purpose: {allowed_local[name]}"))
+                        INFO, "LOCAL_ONLY_BRANCH", where,
+                        f"{unpublished} commit(s) not on any remote under their own ids, {len(missing)} patch(es) "
+                        f"with no copy on GitHub; held on purpose: {allowed_local[name]}"))
+                elif not missing:
+                    findings.append(Finding(
+                        INFO, "LOCAL_COPY_ON_GITHUB", where,
+                        f"{unpublished} commit(s) have other ids on GitHub (cherry-picked or rebased): every patch is there"))
                 else:
                     findings.append(Finding(
-                        ALERT if age_hours > local_only_hours else WARN, "LOCAL_ONLY_BRANCH", f"{label} [{name}]",
-                        f"{unpublished} commit(s) not on any remote; tip is {age_hours / 24:.1f} days old"))
+                        ALERT if age_hours > local_only_hours else WARN, "LOCAL_ONLY_BRANCH", where,
+                        f"{unpublished} commit(s) not on any remote, {len(missing)} patch(es) with no copy on GitHub; "
+                        f"tip is {age_hours / 24:.1f} days old"))
             elif has_main and not is_ancestor(repo, name, main_ref):
                 _, cherry = git(repo, "cherry", main_ref, name)
                 unique = sum(1 for row in cherry.splitlines() if row.startswith("+"))
@@ -690,14 +727,16 @@ def run_local(cfg: dict[str, Any], now: float, update_manifests: bool,
               open_pr_heads: dict[str, int] | None = None,
               fetch_canonical: bool = False) -> tuple[list[Finding], list[dict[str, str]]]:
     findings: list[Finding] = []
+    canonical_path = Path(cfg["canonical_repo"]) if cfg.get("canonical_repo") else None
+    if fetch_canonical and canonical_path is not None:
+        git(canonical_path, "fetch", "-q", "--prune", "origin")  # the only write: remote-tracking refs of the canonical clone
+    canonical_ids = set(patch_ids(canonical_path, ["--remotes"], 800)) if canonical_path is not None else set()
     for repo in find_repositories(cfg.get("roots", []), int(cfg.get("repos_depth", 3))):
-        findings += review_repository(repo, cfg, now)
+        findings += review_repository(repo, cfg, now, canonical_ids)
     manifest_dir = Path(cfg.get("manifest_dir", "sync-manifests"))
     for entry in cfg.get("non_git_folders", []):
         findings += review_non_git(entry, manifest_dir, update_manifests)
-    canonical = Path(cfg["canonical_repo"]) if cfg.get("canonical_repo") else None
-    if fetch_canonical and canonical is not None:
-        git(canonical, "fetch", "-q", "--prune", "origin")  # the only write: remote-tracking refs of the canonical clone
+    canonical = canonical_path
     tasks = list(cfg.get("tasks", []))
     if cfg.get("coordinator"):
         known = {task["id"] for task in tasks}

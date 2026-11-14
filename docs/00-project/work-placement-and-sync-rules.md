@@ -120,7 +120,8 @@ Every finished task is shown in one of these states:
 
 | Code | Meaning |
 |---|---|
-| `LOCAL_ONLY_BRANCH` | commits on a local branch that no remote has (alert after a day) |
+| `LOCAL_ONLY_BRANCH` | commits on a local branch whose patches have no copy on GitHub (alert after a day). Patches are compared by stable patch id against this repository's remotes and the canonical clone's, so a commit cherry-picked or rebased onto another line under a different id is not counted as missing |
+| `LOCAL_COPY_ON_GITHUB` | local commits under other ids whose every patch is already on GitHub (a note; nothing is lost) |
 | `FINISHED_NOT_PUBLISHED`, `FINISHED_IN_PR`, `FINISHED_NO_EXPORT_TARGET` | a finished task whose result is not on the main line, waits in a pull request, or has no declared target (see the states above) |
 | `DETACHED_UNREACHABLE` | detached HEAD carrying commits no branch has |
 | `NO_REMOTE` | a repository with no remote needs a verified backup |
