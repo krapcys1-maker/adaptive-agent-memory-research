@@ -1,0 +1,40 @@
+{
+  "_comment": "Copy to sync.local.json outside the repository. Replace every <...> with a path on your machine.",
+  "roots": ["<AAMR_ROOT>", "<folder that holds other clones>"],
+  "repos_depth": 3,
+  "remote_main": "origin/main",
+  "repo": "<owner>/<repository>",
+  "canonical_repo": "<AAMR_ROOT>/repo",
+  "private_repos": ["<a repository that has no remote on purpose>"],
+  "local_only_hours": 24,
+  "stale_worktree_days": 14,
+  "behind_threshold": 20,
+  "local_only_allowed": [
+    {"branch": "<branch held on purpose>", "reason": "<who decides, and what is pending>"}
+  ],
+  "manifest_dir": "<AAMR_ROOT>/sync/manifests",
+  "non_git_folders": [
+    {"path": "<a folder outside Git>", "label": "<short-name>"}
+  ],
+  "coordinator": {
+    "_comment": "Read-only discovery: only paths and experiments are taken from these files. List the local override file only if it declares experiments.",
+    "configs": ["<coordinator home>/coordinator.toml"],
+    "missions_dir": "<coordinator home>/reports/missions",
+    "mission_targets": {
+      "<mission id>": "docs/11-research-laboratory/<topic>/README.md"
+    }
+  },
+  "task_overrides": {
+    "<experiment id or 'mission <id>'>": {
+      "owner_hold": "<why publication waits>",
+      "published_paths": ["data/lab/<experiment-id>/REPORT.md"]
+    }
+  },
+  "tasks": [
+    {
+      "id": "<a task the coordinator does not know>",
+      "finished_marker": "<a file or folder that exists once the task is finished>",
+      "published_path": "data/lab/<experiment-id>/README.md"
+    }
+  ]
+}

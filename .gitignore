@@ -44,3 +44,8 @@ Thumbs.db
 *.key
 .aamr-sealed-*
 .claude/settings.local.json
+
+# Local synchronisation configuration, manifests and reports (they name local paths)
+/sync.local.json
+/sync-manifests/
+/sync-reports/
