@@ -22,9 +22,9 @@ Search string: `Buhler, Orth, Bleidorn et al. meta-analysis` in `docs/11-researc
 
 ## What the source says about the claim, with a locator (page, section, table or figure)
 
-- Abstract, p. 544: "In this preregistered meta-analysis, we summarize the available evidence on personality change in response to life events using data from 44 studies, including 89 samples with a total of 121,187 participants. Results supported reliable and specific albeit relatively small effects of life events on personality change. Effects were larger and more consistent in the work than in the love domain..."
-- Results, p. 551: "The meta-analytic data set included 44 studies, which provided information on 89 samples and 519 effect sizes"; the average lag between pre- and post-event assessments was M = 2.45 years (SD = 2.44, range = 0.08-15.00); 121,187 participants were included.
-- Results, p. 555: "analytically aggregated effect sizes were relatively small, with absolute values ranging between d = 0.000 and d = 0.337." Entering a new relationship, marriage and divorce showed significant effects for the largest number of personality constructs; there were no significant construct-specific effects for widowhood.
+- Abstract, p. 544 (paraphrased): the authors report a preregistered meta-analysis of 44 studies, 89 samples and 121,187 participants. They describe the effects of life events on personality change as reliable and specific but relatively small, and as larger and more consistent in the work domain than in the love domain.
+- Results, p. 551 (paraphrased): the data set held 519 effect sizes from 89 samples in 44 studies; the average lag between pre- and post-event assessments was M = 2.45 years (SD = 2.44, range = 0.08-15.00); 121,187 participants were included.
+- Results, p. 555 (paraphrased): the aggregated effect sizes were small, with absolute values between d = 0.000 and d = 0.337. Entering a new relationship, marriage and divorce showed significant effects for the largest number of personality constructs; there were no significant construct-specific effects for widowhood.
 - The digest's "larger for work than for love" is directly supported (abstract p. 544). The authors describe the effects as reliable and specific but relatively small; "preliminary" is not their summary term.
 
 ## Verdict: supported
@@ -37,7 +37,7 @@ The published abstract contains both "44 studies" and "121,187 participants"; th
 - Almost all samples came from Western countries (96%), 94% were predominantly White/European, and there were no South American or African samples. Mean age was 38.15 years; 60% of samples were nationally representative; all measures were self-report; no sample was an intervention or prevention study.
 - The meta-analysis combines pre-post standardised mean change (dE) with a comparison-group version (dEC). The average lag between pre- and post-event assessments was 2.45 years (range 0.08-15.00).
 - Effects were small (absolute d from 0.000 to 0.337) and heterogeneous. Time lag significantly moderated love-domain effects but not work-domain effects. The design is observational, not causal.
-- The data overlap with the Haehner et al. coordinated analysis (about 12% of participants across events), so the two digest citations are not fully independent confirmations.
+- The data overlap with the Haehner et al. coordinated analysis (about 12% of participants across events; this figure is the contributor's own estimate, no page or table is cited for it, and the maintainers could not locate one), so the two digest citations are not fully independent confirmations.
 
 ## Suggested corrected wording for the digest
 
