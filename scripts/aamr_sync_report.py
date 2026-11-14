@@ -877,10 +877,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.command in ("github", "all"):
         if args.input_json:
             snapshot = json.loads(Path(args.input_json).read_text(encoding="utf-8"))
-        elif args.repo:
-            snapshot = fetch_github(args.repo)
+        elif args.repo or cfg.get("repo"):  # the configuration names the repository for the local section; use it here too
+            snapshot = fetch_github(args.repo or cfg["repo"])
         else:
-            parser.error("the github section needs --repo or --input-json")
+            parser.error("the github section needs --repo, a `repo` in the configuration, or --input-json")
         tree = Path(args.tree or cfg.get("canonical_repo") or "") if (args.tree or cfg.get("canonical_repo")) else None
         findings += run_github(snapshot, tree, cfg["remote_main"], now)
 
