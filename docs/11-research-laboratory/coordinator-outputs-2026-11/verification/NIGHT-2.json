@@ -1,0 +1,360 @@
+{
+ "experiment": "NIGHT-2",
+ "at": "2026-11-14T14:53:15+00:00",
+ "levels": {
+  "execution": {
+   "status": "warn",
+   "stages": {
+    "preflight_q14": "done",
+    "E1": "done",
+    "E2": "done",
+    "build_c": "done",
+    "E3": "done",
+    "E4": "done",
+    "preflight_q9": "done",
+    "E5": "done",
+    "final": "done"
+   },
+   "not_done": {},
+   "error_log_lines": 29,
+   "restarts": {
+    "count": 3,
+    "at": "2026-11-13T06:11:38.397850+00:00",
+    "last_rc": 4294967295
+   }
+  },
+  "integrity": {
+   "status": "pass",
+   "frozen": 19,
+   "mismatched": [],
+   "missing": [],
+   "not_in_manifest": [],
+   "modified_after_freeze": []
+  },
+  "provenance": {
+   "status": "pass",
+   "protocol": {
+    "sha": "5cef45e7b1b48c4a",
+    "unchanged_since_registration": true
+   },
+   "spec": {
+    "sha": "b44e6c17142b62f2",
+    "unchanged_since_registration": true
+   },
+   "config": {
+    "sha": "a79db29aa947b90a",
+    "unchanged_since_registration": true
+   },
+   "config_id": [
+    "9887b4d12e497fcb"
+   ],
+   "models": {
+    "subject": "qwen2.5:14b-instruct@7cdf5a0187d5"
+   },
+   "model_digest_ok": true,
+   "changed": []
+  },
+  "statistics": {
+   "status": "pass",
+   "recomputed": {
+    "E1": {
+     "N": {
+      "tasks": 60,
+      "solved": 20
+     },
+     "M2": {
+      "tasks": 60,
+      "solved": 14
+     },
+     "M1": {
+      "tasks": 60,
+      "solved": 18
+     },
+     "R+": {
+      "tasks": 60,
+      "solved": 22
+     },
+     "N'": {
+      "tasks": 60,
+      "solved": 20
+     }
+    },
+    "E3": {
+     "V0q": {
+      "tasks": 88,
+      "solved": 34
+     },
+     "N'": {
+      "tasks": 88,
+      "solved": 27
+     },
+     "N": {
+      "tasks": 88,
+      "solved": 28
+     },
+     "V0": {
+      "tasks": 88,
+      "solved": 35
+     },
+     "E*": {
+      "tasks": 88,
+      "solved": 38
+     },
+     "TrT": {
+      "tasks": 88,
+      "solved": 36
+     },
+     "TrQ": {
+      "tasks": 88,
+      "solved": 34
+     }
+    },
+    "E4": {
+     "C-G": {
+      "tasks": 88,
+      "solved": 31
+     },
+     "N": {
+      "tasks": 88,
+      "solved": 27
+     },
+     "C-RB": {
+      "tasks": 88,
+      "solved": 30
+     },
+     "K": {
+      "tasks": 88,
+      "solved": 32
+     }
+    },
+    "E5": {
+     "N'": {
+      "tasks": 88,
+      "solved": 34
+     },
+     "K": {
+      "tasks": 88,
+      "solved": 40
+     },
+     "N": {
+      "tasks": 88,
+      "solved": 35
+     }
+    }
+   },
+   "differences": [],
+   "compared_with": "results.json"
+  },
+  "comparability": {
+   "status": "pass",
+   "sessions": {
+    "E1": {
+     "same_tasks_all_arms": true,
+     "models": [
+      "q14"
+     ]
+    },
+    "E3": {
+     "same_tasks_all_arms": true,
+     "models": [
+      "q14"
+     ]
+    },
+    "E4": {
+     "same_tasks_all_arms": true,
+     "models": [
+      "q14"
+     ]
+    },
+    "E5": {
+     "same_tasks_all_arms": true,
+     "models": [
+      "q9"
+     ]
+    }
+   },
+   "problems": []
+  },
+  "leakage": {
+   "status": "pass",
+   "memory_sources": 57,
+   "test_tasks": 88,
+   "overlap": [],
+   "same_task_episodes": [],
+   "memory_arms": {
+    "E3": {
+     "E*": {
+      "episodes": 88,
+      "with_block": 88,
+      "with_notes": 0,
+      "sources": 43
+     },
+     "TrQ": {
+      "episodes": 88,
+      "with_block": 0,
+      "with_notes": 63,
+      "sources": 39
+     },
+     "TrT": {
+      "episodes": 88,
+      "with_block": 0,
+      "with_notes": 60,
+      "sources": 39
+     },
+     "V0": {
+      "episodes": 88,
+      "with_block": 88,
+      "with_notes": 40,
+      "sources": 57
+     },
+     "V0q": {
+      "episodes": 88,
+      "with_block": 88,
+      "with_notes": 44,
+      "sources": 57
+     }
+    }
+   },
+   "note_sources": 39,
+   "pool_sources": 0,
+   "artifact_sources": 0,
+   "problems": []
+  },
+  "mechanism": {
+   "status": "computed",
+   "baseline": "N",
+   "effects": {
+    "E1:M2-vs-N": {
+     "pairs": 60,
+     "gains": 5,
+     "losses": 11,
+     "delta": -6,
+     "p_mcnemar_exact": 0.2101
+    },
+    "E1:M1-vs-N": {
+     "pairs": 60,
+     "gains": 8,
+     "losses": 10,
+     "delta": -2,
+     "p_mcnemar_exact": 0.8145
+    },
+    "E1:R+-vs-N": {
+     "pairs": 60,
+     "gains": 11,
+     "losses": 9,
+     "delta": 2,
+     "p_mcnemar_exact": 0.8238
+    },
+    "E1:N'-vs-N": {
+     "pairs": 60,
+     "gains": 0,
+     "losses": 0,
+     "delta": 0,
+     "p_mcnemar_exact": 1.0
+    },
+    "E3:V0q-vs-N": {
+     "pairs": 88,
+     "gains": 18,
+     "losses": 12,
+     "delta": 6,
+     "p_mcnemar_exact": 0.3616
+    },
+    "E3:N'-vs-N": {
+     "pairs": 88,
+     "gains": 0,
+     "losses": 1,
+     "delta": -1,
+     "p_mcnemar_exact": 1.0
+    },
+    "E3:V0-vs-N": {
+     "pairs": 88,
+     "gains": 20,
+     "losses": 13,
+     "delta": 7,
+     "p_mcnemar_exact": 0.2962
+    },
+    "E3:E*-vs-N": {
+     "pairs": 88,
+     "gains": 22,
+     "losses": 12,
+     "delta": 10,
+     "p_mcnemar_exact": 0.1214
+    },
+    "E3:TrT-vs-N": {
+     "pairs": 88,
+     "gains": 10,
+     "losses": 2,
+     "delta": 8,
+     "p_mcnemar_exact": 0.0386
+    },
+    "E3:TrQ-vs-N": {
+     "pairs": 88,
+     "gains": 9,
+     "losses": 3,
+     "delta": 6,
+     "p_mcnemar_exact": 0.146
+    },
+    "E4:C-G-vs-N": {
+     "pairs": 88,
+     "gains": 12,
+     "losses": 8,
+     "delta": 4,
+     "p_mcnemar_exact": 0.5034
+    },
+    "E4:C-RB-vs-N": {
+     "pairs": 88,
+     "gains": 11,
+     "losses": 8,
+     "delta": 3,
+     "p_mcnemar_exact": 0.6476
+    },
+    "E4:K-vs-N": {
+     "pairs": 88,
+     "gains": 16,
+     "losses": 11,
+     "delta": 5,
+     "p_mcnemar_exact": 0.4421
+    },
+    "E5:N'-vs-N": {
+     "pairs": 88,
+     "gains": 0,
+     "losses": 1,
+     "delta": -1,
+     "p_mcnemar_exact": 1.0
+    },
+    "E5:K-vs-N": {
+     "pairs": 88,
+     "gains": 17,
+     "losses": 12,
+     "delta": 5,
+     "p_mcnemar_exact": 0.4583
+    }
+   },
+   "significant_at_0_05": [
+    "E3:TrT-vs-N"
+   ],
+   "note": "efekt mechaniczny w danych rozwojowych; nie jest potwierdzeniem hipotezy"
+  },
+  "replication": {
+   "status": "none",
+   "of": null,
+   "note": "niezależna replikacja wymaga osobnego eksperymentu (inny wykonawca/model/dane)"
+  },
+  "hypothesis": {
+   "status": "undecided",
+   "note": "decyzja właściciela po niezależnej recenzji (Fable); weryfikacja mechaniczna jej nie zastępuje"
+  }
+ },
+ "blocking": [],
+ "summary": {
+  "execution": "warn",
+  "integrity": "pass",
+  "provenance": "pass",
+  "statistics": "pass",
+  "comparability": "pass",
+  "leakage": "pass",
+  "mechanism": "computed",
+  "replication": "none",
+  "hypothesis": "undecided"
+ }
+}

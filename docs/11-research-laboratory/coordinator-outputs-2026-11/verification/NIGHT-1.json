@@ -1,0 +1,410 @@
+{
+ "experiment": "NIGHT-1",
+ "at": "2026-11-14T14:53:14+00:00",
+ "levels": {
+  "execution": {
+   "status": "pass",
+   "stages": {
+    "preflight_q14": "done",
+    "a0_writer": "done",
+    "b0_writers": "done",
+    "b1_quality": "done",
+    "sA": "done",
+    "census": "done",
+    "d0_build": "done",
+    "sD": "done",
+    "sC": "done",
+    "preflight_q9": "done",
+    "sE": "done",
+    "final": "done"
+   },
+   "not_done": {},
+   "error_log_lines": 0,
+   "restarts": null
+  },
+  "integrity": {
+   "status": "pass",
+   "frozen": 17,
+   "mismatched": [],
+   "missing": [],
+   "not_in_manifest": [],
+   "modified_after_freeze": []
+  },
+  "provenance": {
+   "status": "pass",
+   "protocol": {
+    "sha": "383001684adf7798",
+    "unchanged_since_registration": true
+   },
+   "spec": {
+    "sha": "383001684adf7798",
+    "unchanged_since_registration": true
+   },
+   "config": {
+    "sha": "dd374475e2d07c8d",
+    "unchanged_since_registration": true
+   },
+   "config_id": [
+    "2f2c3ec4d1d7ab04"
+   ],
+   "models": {
+    "subject": "qwen2.5:14b-instruct@7cdf5a0187d5"
+   },
+   "model_digest_ok": true,
+   "changed": []
+  },
+  "statistics": {
+   "status": "pass",
+   "recomputed": {
+    "census": {
+     "N": {
+      "tasks": 40,
+      "solved": 14
+     }
+    },
+    "sA": {
+     "TrP": {
+      "tasks": 30,
+      "solved": 12
+     },
+     "TrO": {
+      "tasks": 30,
+      "solved": 15
+     },
+     "TrS": {
+      "tasks": 30,
+      "solved": 12
+     },
+     "TrQ": {
+      "tasks": 30,
+      "solved": 12
+     },
+     "TrF": {
+      "tasks": 30,
+      "solved": 17
+     },
+     "N'": {
+      "tasks": 30,
+      "solved": 9
+     },
+     "TrW": {
+      "tasks": 30,
+      "solved": 13
+     },
+     "N": {
+      "tasks": 30,
+      "solved": 9
+     },
+     "Tr": {
+      "tasks": 30,
+      "solved": 12
+     }
+    },
+    "sC": {
+     "TrO": {
+      "tasks": 20,
+      "solved": 8
+     },
+     "TrP": {
+      "tasks": 20,
+      "solved": 6
+     },
+     "N": {
+      "tasks": 20,
+      "solved": 6
+     }
+    },
+    "sD": {
+     "N": {
+      "tasks": 58,
+      "solved": 17
+     },
+     "N'": {
+      "tasks": 58,
+      "solved": 18
+     },
+     "TrQ": {
+      "tasks": 58,
+      "solved": 22
+     },
+     "TrF": {
+      "tasks": 58,
+      "solved": 21
+     },
+     "R+": {
+      "tasks": 58,
+      "solved": 22
+     },
+     "TrD": {
+      "tasks": 58,
+      "solved": 19
+     }
+    },
+    "sE": {
+     "N'": {
+      "tasks": 30,
+      "solved": 10
+     },
+     "TrP": {
+      "tasks": 30,
+      "solved": 13
+     },
+     "Tr": {
+      "tasks": 30,
+      "solved": 13
+     },
+     "N": {
+      "tasks": 30,
+      "solved": 10
+     },
+     "TrO": {
+      "tasks": 30,
+      "solved": 19
+     }
+    }
+   },
+   "differences": [],
+   "compared_with": "results.json"
+  },
+  "comparability": {
+   "status": "pass",
+   "sessions": {
+    "census": {
+     "same_tasks_all_arms": true,
+     "models": [
+      "q14"
+     ]
+    },
+    "sA": {
+     "same_tasks_all_arms": true,
+     "models": [
+      "q14"
+     ]
+    },
+    "sC": {
+     "same_tasks_all_arms": true,
+     "models": [
+      "q14"
+     ]
+    },
+    "sD": {
+     "same_tasks_all_arms": true,
+     "models": [
+      "q14"
+     ]
+    },
+    "sE": {
+     "same_tasks_all_arms": true,
+     "models": [
+      "q9"
+     ]
+    }
+   },
+   "problems": []
+  },
+  "leakage": {
+   "status": "pass",
+   "memory_sources": 49,
+   "test_tasks": 58,
+   "overlap": [],
+   "same_task_episodes": [],
+   "memory_arms": {
+    "sD": {
+     "R+": {
+      "episodes": 58,
+      "with_block": 58,
+      "with_notes": 0,
+      "sources": 29
+     },
+     "TrD": {
+      "episodes": 58,
+      "with_block": 0,
+      "with_notes": 12,
+      "sources": 14
+     },
+     "TrF": {
+      "episodes": 58,
+      "with_block": 0,
+      "with_notes": 34,
+      "sources": 14
+     },
+     "TrQ": {
+      "episodes": 58,
+      "with_block": 0,
+      "with_notes": 35,
+      "sources": 14
+     }
+    }
+   },
+   "note_sources": 14,
+   "pool_sources": 0,
+   "artifact_sources": 35,
+   "problems": []
+  },
+  "mechanism": {
+   "status": "computed",
+   "baseline": "N",
+   "effects": {
+    "sA:TrP-vs-N": {
+     "pairs": 30,
+     "gains": 4,
+     "losses": 1,
+     "delta": 3,
+     "p_mcnemar_exact": 0.375
+    },
+    "sA:TrO-vs-N": {
+     "pairs": 30,
+     "gains": 7,
+     "losses": 1,
+     "delta": 6,
+     "p_mcnemar_exact": 0.0703
+    },
+    "sA:TrS-vs-N": {
+     "pairs": 30,
+     "gains": 4,
+     "losses": 1,
+     "delta": 3,
+     "p_mcnemar_exact": 0.375
+    },
+    "sA:TrQ-vs-N": {
+     "pairs": 30,
+     "gains": 4,
+     "losses": 1,
+     "delta": 3,
+     "p_mcnemar_exact": 0.375
+    },
+    "sA:TrF-vs-N": {
+     "pairs": 30,
+     "gains": 9,
+     "losses": 1,
+     "delta": 8,
+     "p_mcnemar_exact": 0.0215
+    },
+    "sA:N'-vs-N": {
+     "pairs": 30,
+     "gains": 0,
+     "losses": 0,
+     "delta": 0,
+     "p_mcnemar_exact": 1.0
+    },
+    "sA:TrW-vs-N": {
+     "pairs": 30,
+     "gains": 5,
+     "losses": 1,
+     "delta": 4,
+     "p_mcnemar_exact": 0.2188
+    },
+    "sA:Tr-vs-N": {
+     "pairs": 30,
+     "gains": 4,
+     "losses": 1,
+     "delta": 3,
+     "p_mcnemar_exact": 0.375
+    },
+    "sC:TrO-vs-N": {
+     "pairs": 20,
+     "gains": 2,
+     "losses": 0,
+     "delta": 2,
+     "p_mcnemar_exact": 0.5
+    },
+    "sC:TrP-vs-N": {
+     "pairs": 20,
+     "gains": 0,
+     "losses": 0,
+     "delta": 0,
+     "p_mcnemar_exact": 1.0
+    },
+    "sD:N'-vs-N": {
+     "pairs": 58,
+     "gains": 1,
+     "losses": 0,
+     "delta": 1,
+     "p_mcnemar_exact": 1.0
+    },
+    "sD:TrQ-vs-N": {
+     "pairs": 58,
+     "gains": 7,
+     "losses": 2,
+     "delta": 5,
+     "p_mcnemar_exact": 0.1797
+    },
+    "sD:TrF-vs-N": {
+     "pairs": 58,
+     "gains": 6,
+     "losses": 2,
+     "delta": 4,
+     "p_mcnemar_exact": 0.2891
+    },
+    "sD:R+-vs-N": {
+     "pairs": 58,
+     "gains": 14,
+     "losses": 9,
+     "delta": 5,
+     "p_mcnemar_exact": 0.4049
+    },
+    "sD:TrD-vs-N": {
+     "pairs": 58,
+     "gains": 2,
+     "losses": 0,
+     "delta": 2,
+     "p_mcnemar_exact": 0.5
+    },
+    "sE:N'-vs-N": {
+     "pairs": 30,
+     "gains": 0,
+     "losses": 0,
+     "delta": 0,
+     "p_mcnemar_exact": 1.0
+    },
+    "sE:TrP-vs-N": {
+     "pairs": 30,
+     "gains": 3,
+     "losses": 0,
+     "delta": 3,
+     "p_mcnemar_exact": 0.25
+    },
+    "sE:Tr-vs-N": {
+     "pairs": 30,
+     "gains": 3,
+     "losses": 0,
+     "delta": 3,
+     "p_mcnemar_exact": 0.25
+    },
+    "sE:TrO-vs-N": {
+     "pairs": 30,
+     "gains": 9,
+     "losses": 0,
+     "delta": 9,
+     "p_mcnemar_exact": 0.0039
+    }
+   },
+   "significant_at_0_05": [
+    "sA:TrF-vs-N",
+    "sE:TrO-vs-N"
+   ],
+   "note": "efekt mechaniczny w danych rozwojowych; nie jest potwierdzeniem hipotezy"
+  },
+  "replication": {
+   "status": "none",
+   "of": null,
+   "note": "niezależna replikacja wymaga osobnego eksperymentu (inny wykonawca/model/dane)"
+  },
+  "hypothesis": {
+   "status": "undecided",
+   "note": "decyzja właściciela po niezależnej recenzji (Fable); weryfikacja mechaniczna jej nie zastępuje"
+  }
+ },
+ "blocking": [],
+ "summary": {
+  "execution": "pass",
+  "integrity": "pass",
+  "provenance": "pass",
+  "statistics": "pass",
+  "comparability": "pass",
+  "leakage": "pass",
+  "mechanism": "computed",
+  "replication": "none",
+  "hypothesis": "undecided"
+ }
+}
