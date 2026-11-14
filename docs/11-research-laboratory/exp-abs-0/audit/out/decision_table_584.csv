@@ -1,0 +1,585 @@
+id,trace,domain,step,function,param,value,decision,flags
+0,multi_turn_base_19:t0,GFS,0,find,path,'.',keep:api_literal,
+1,multi_turn_base_19:t0,GFS,0,find,name,'test_document.txt',remove,
+2,multi_turn_base_8:t0,GFS,0,grep,file_name,'experiment_log.txt',remove,
+3,multi_turn_base_8:t0,GFS,0,grep,pattern,'Anomaly',remove,
+4,multi_turn_base_8:t1,GFS,0,diff,file_name1,'experiment_log.txt',remove,
+5,multi_turn_base_8:t1,GFS,0,diff,file_name2,'previous_study_log.txt',remove,
+6,multi_turn_base_25:t0,GFS,0,find,name,'summary.txt',remove,
+7,multi_turn_base_25:t0,GFS,1,cat,file_name,'summary.txt',remove+provenance,
+8,multi_turn_base_25:t1,GFS,0,mkdir,dir_name,'Research2023',remove,
+9,multi_turn_base_25:t1,GFS,1,cp,source,'summary.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+10,multi_turn_base_25:t1,GFS,1,cp,destination,'Research2023',remove+provenance,
+11,multi_turn_base_29:t0,GFS,0,cd,folder,'VisionX',remove,
+12,multi_turn_base_29:t0,GFS,1,du,human_readable,True,keep:bool,
+13,multi_turn_base_29:t1,GFS,0,touch,file_name,'79.pdf',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+14,multi_turn_base_29:t2,GFS,0,echo,content,"""Create a file name based on the number of byte used. It should be in 'number.pdf' format.""",remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+15,multi_turn_base_29:t2,GFS,0,echo,file_name,'79.pdf',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+16,multi_turn_base_39:t0,GFS,0,mkdir,dir_name,'WebDevProjects',remove,
+17,multi_turn_base_28:t0,GFS,0,find,name,'analysis',remove,
+18,multi_turn_base_28:t0,GFS,1,cat,file_name,'./data/analysis_report.txt',remove+provenance,
+19,multi_turn_base_28:t0,GFS,2,cat,file_name,'data/analysis_report.txt',remove+provenance,
+20,multi_turn_base_28:t0,GFS,3,cat,file_name,'analysis_report.txt',remove+provenance,
+21,multi_turn_base_28:t0,GFS,4,ls,a,True,keep:bool,
+22,multi_turn_base_28:t0,GFS,5,cd,folder,'data',remove+provenance,
+23,multi_turn_base_28:t0,GFS,6,cat,file_name,'analysis_report.txt',remove+provenance,
+24,multi_turn_base_28:t1,GFS,0,grep,file_name,'analysis_report.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+25,multi_turn_base_28:t1,GFS,0,grep,pattern,'error',remove,
+26,multi_turn_base_18:t0,GFS,0,cd,folder,'Quarter1_Reports',remove,
+27,multi_turn_base_18:t0,GFS,1,ls,a,False,keep:bool,
+28,multi_turn_base_18:t0,GFS,2,grep,file_name,'.',remove+provenance,A4_provenance_by_substring_only
+29,multi_turn_base_18:t0,GFS,2,grep,pattern,'\\.txt$',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+30,multi_turn_base_18:t0,GFS,3,mkdir,dir_name,'Archived_Quarter1',remove,
+31,multi_turn_base_18:t0,GFS,4,cp,source,'<result of grep>',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+32,multi_turn_base_18:t0,GFS,4,cp,destination,'Archived_Quarter1',remove,
+33,multi_turn_base_18:t0,GFS,5,grep,file_name,'.',remove+provenance,
+34,multi_turn_base_18:t0,GFS,5,grep,pattern,'\\.txt$',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+35,multi_turn_base_18:t0,GFS,6,cp,source,'report1.txt report2.txt History101.txt History202.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+36,multi_turn_base_18:t0,GFS,6,cp,destination,'Archived_Quarter1',remove,
+37,multi_turn_base_18:t0,GFS,7,grep,file_name,'.',remove+provenance,
+38,multi_turn_base_18:t0,GFS,7,grep,pattern,'\\.txt$',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+39,multi_turn_base_18:t0,GFS,8,cp,source,'report1.txt',remove+provenance,
+40,multi_turn_base_18:t0,GFS,8,cp,destination,'Archived_Quarter1',remove,
+41,multi_turn_base_18:t0,GFS,9,cp,source,'report2.txt',remove+provenance,
+42,multi_turn_base_18:t0,GFS,9,cp,destination,'Archived_Quarter1',remove+provenance,
+43,multi_turn_base_18:t0,GFS,10,cp,source,'History101.txt',remove+provenance,
+44,multi_turn_base_18:t0,GFS,10,cp,destination,'Archived_Quarter1',remove+provenance,
+45,multi_turn_base_18:t0,GFS,11,cp,source,'History202.txt',remove+provenance,
+46,multi_turn_base_18:t0,GFS,11,cp,destination,'Archived_Quarter1',remove+provenance,
+47,multi_turn_base_18:t1,GFS,0,cat,file_name,'MonthlySummary.docx',remove,
+48,multi_turn_base_18:t1,GFS,1,sort,file_name,'MonthlySummary.docx',remove,
+49,multi_turn_base_46:t0,GFS,0,cd,folder,'Drafts',remove,
+50,multi_turn_base_46:t0,GFS,1,ls,a,True,keep:bool,
+51,multi_turn_base_46:t0,GFS,2,rm,file_name,'file_name',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+52,multi_turn_base_46:t0,GFS,3,rm,file_name,'DylanProject.txt',remove+provenance,
+53,multi_turn_base_46:t0,GFS,4,rmdir,dir_name,'Drafts',remove+provenance,
+54,multi_turn_base_46:t0,GFS,6,cd,folder,'..',remove,A5_removed_short_value_not_leak_checked;A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+55,multi_turn_base_46:t0,GFS,7,rmdir,dir_name,'Drafts',remove+provenance,
+56,multi_turn_base_48:t0,GFS,0,ls,a,True,keep:bool,
+57,multi_turn_base_48:t0,GFS,1,cd,folder,'test',remove+provenance,
+58,multi_turn_base_48:t0,GFS,2,find,path,'.',remove+provenance,A4_provenance_by_substring_only;A6_api_literal_removed_because_in_request
+59,multi_turn_base_48:t0,GFS,2,find,name,'test',remove+provenance,
+60,multi_turn_base_48:t1,GFS,0,wc,file_name,'test_file1.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+61,multi_turn_base_48:t1,GFS,0,wc,mode,'c',keep:api_literal,
+62,multi_turn_base_48:t1,GFS,1,wc,file_name,'test_file2.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+63,multi_turn_base_48:t1,GFS,1,wc,mode,'c',keep:api_literal,
+64,multi_turn_base_20:t0,GFS,0,cd,folder,'documents',remove,
+65,multi_turn_base_20:t0,GFS,1,tail,file_name,'doc1.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+66,multi_turn_base_20:t0,GFS,1,tail,lines,1,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+67,multi_turn_base_20:t0,GFS,2,ls,a,False,keep:bool,
+68,multi_turn_base_20:t0,GFS,3,tail,file_name,'file1.txt',remove+provenance,
+69,multi_turn_base_20:t0,GFS,3,tail,lines,1,remove+provenance,A4_provenance_by_substring_only
+70,multi_turn_base_20:t1,GFS,0,diff,file_name1,'file1.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+71,multi_turn_base_20:t1,GFS,0,diff,file_name2,'file2.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+72,multi_turn_base_20:t1,GFS,1,touch,file_name,'file5.txt',remove,
+73,multi_turn_base_20:t1,GFS,2,cp,source,'diff_file1_file2',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+74,multi_turn_base_20:t1,GFS,2,cp,destination,'file5.txt',remove,
+75,multi_turn_base_20:t1,GFS,3,echo,content,"'- The quick brown fox jumps over the lazy dog.\n+ Lorem ipsum dolor sit amet, consectetur adipiscing elit.'",remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+76,multi_turn_base_20:t1,GFS,3,echo,file_name,'file5.txt',remove,
+77,multi_turn_base_4:t0,GFS,0,cd,folder,'tmp',remove,
+78,multi_turn_base_4:t0,GFS,1,ls,a,True,keep:bool,
+79,multi_turn_base_4:t0,GFS,2,cd,folder,'..',remove,A5_removed_short_value_not_leak_checked;A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+80,multi_turn_base_4:t0,GFS,3,ls,a,True,keep:bool,
+81,multi_turn_base_4:t0,GFS,4,ls,a,True,keep:bool,
+82,multi_turn_base_4:t1,GFS,0,sort,file_name,'report.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+83,multi_turn_base_12:t0,GFS,0,cd,folder,'Documents',remove,
+84,multi_turn_base_12:t0,GFS,1,touch,file_name,'summary.txt',remove,
+85,multi_turn_base_12:t1,GFS,0,echo,content,'quantum computing',remove,
+86,multi_turn_base_12:t1,GFS,0,echo,file_name,'summary.txt',remove,
+87,multi_turn_base_12:t2,GFS,0,wc,file_name,'summary.txt',remove,
+88,multi_turn_base_12:t2,GFS,0,wc,mode,'w',keep:api_literal,
+89,multi_turn_base_26:t0,GFS,0,cd,folder,'tmp',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+90,multi_turn_base_26:t0,GFS,1,ls,a,True,keep:bool,
+91,multi_turn_base_26:t1,GFS,0,cat,file_name,'file3.txt',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+92,multi_turn_base_26:t2,GFS,0,touch,file_name,'file3.docx',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+93,multi_turn_base_26:t2,GFS,1,echo,content,'Nothing important here. Yet another line.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+94,multi_turn_base_26:t2,GFS,1,echo,file_name,'file3.docx',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+95,multi_turn_base_58:t0,VC,0,get_zipcode_based_on_city,city,'Rivermist',remove,
+96,multi_turn_base_58:t0,VC,1,get_zipcode_based_on_city,city,'San Francisco',remove,
+97,multi_turn_base_58:t0,VC,2,estimate_distance,cityA,'83214',remove+provenance,
+98,multi_turn_base_58:t0,VC,2,estimate_distance,cityB,'94016',remove+provenance,
+99,multi_turn_base_58:t1,VC,0,gallon_to_liter,gallon,30,remove,
+100,multi_turn_base_58:t1,VC,1,fillFuelTank,fuelAmount,50,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+101,multi_turn_base_58:t2,VC,0,startEngine,ignitionMode,'START',keep:api_literal,
+102,multi_turn_base_58:t2,VC,1,lockDoors,unlock,False,keep:bool,
+103,multi_turn_base_58:t2,VC,1,lockDoors,door,'driver',keep:api_literal,A9_list_element
+104,multi_turn_base_58:t2,VC,1,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+105,multi_turn_base_58:t2,VC,1,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+106,multi_turn_base_58:t2,VC,1,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+107,multi_turn_base_58:t2,VC,2,startEngine,ignitionMode,'START',keep:api_literal,
+108,multi_turn_base_58:t2,VC,3,pressBrakePedal,pedalPosition,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+109,multi_turn_base_58:t2,VC,4,startEngine,ignitionMode,'START',keep:api_literal,
+110,multi_turn_base_58:t3,VC,0,post_tweet,content,'Excited for the trip!',remove,
+111,multi_turn_base_79:t0,VC,0,lockDoors,unlock,True,keep:bool,
+112,multi_turn_base_79:t0,VC,0,lockDoors,door,'driver',keep:api_literal,A9_list_element
+113,multi_turn_base_79:t0,VC,0,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+114,multi_turn_base_79:t0,VC,0,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+115,multi_turn_base_79:t0,VC,0,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+116,multi_turn_base_79:t1,VC,0,startEngine,ignitionMode,'START',keep:api_literal,
+117,multi_turn_base_79:t1,VC,1,lockDoors,unlock,False,keep:bool,
+118,multi_turn_base_79:t1,VC,1,lockDoors,door,'driver',keep:api_literal,A9_list_element
+119,multi_turn_base_79:t1,VC,1,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+120,multi_turn_base_79:t1,VC,1,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+121,multi_turn_base_79:t1,VC,1,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+122,multi_turn_base_79:t1,VC,2,startEngine,ignitionMode,'START',keep:api_literal,
+123,multi_turn_base_79:t1,VC,3,pressBrakePedal,pedalPosition,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+124,multi_turn_base_79:t1,VC,4,startEngine,ignitionMode,'START',keep:api_literal,
+125,multi_turn_base_79:t2,VC,0,setCruiseControl,speed,65,remove,
+126,multi_turn_base_79:t2,VC,0,setCruiseControl,activate,True,keep:bool,
+127,multi_turn_base_79:t2,VC,0,setCruiseControl,distanceToNextVehicle,100,remove,
+128,multi_turn_base_87:t0,VC,0,gallon_to_liter,gallon,60,remove,
+129,multi_turn_base_87:t1,VC,0,fillFuelTank,fuelAmount,20,remove,
+130,multi_turn_base_87:t2,VC,0,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+131,multi_turn_base_87:t2,VC,1,lockDoors,unlock,False,keep:bool,
+132,multi_turn_base_87:t2,VC,1,lockDoors,door,'driver',keep:api_literal,A9_list_element
+133,multi_turn_base_87:t2,VC,1,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+134,multi_turn_base_87:t2,VC,1,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+135,multi_turn_base_87:t2,VC,1,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+136,multi_turn_base_87:t2,VC,2,activateParkingBrake,mode,'engage',remove,A6_api_literal_removed_because_in_request
+137,multi_turn_base_87:t2,VC,3,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+138,multi_turn_base_87:t2,VC,4,pressBrakePedal,pedalPosition,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+139,multi_turn_base_87:t2,VC,5,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+140,multi_turn_base_92:t0,VC,0,estimate_distance,cityA,'83214',remove,
+141,multi_turn_base_92:t0,VC,0,estimate_distance,cityB,'74532',remove,
+142,multi_turn_base_92:t1,VC,0,displayCarStatus,option,'fuel',remove,A6_api_literal_removed_because_in_request
+143,multi_turn_base_92:t1,VC,1,displayCarStatus,option,'mileage',remove,
+144,multi_turn_base_92:t1,VC,2,estimate_drive_feasibility_by_mileage,distance,750.0,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+145,multi_turn_base_92:t1,VC,3,displayCarStatus,option,'fuel',remove+provenance,A4_provenance_by_substring_only;A6_api_literal_removed_because_in_request
+146,multi_turn_base_92:t1,VC,4,displayCarStatus,option,'climate',keep:api_literal,
+147,multi_turn_base_92:t2,VC,0,fillFuelTank,fuelAmount,50.0,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+148,multi_turn_base_92:t2,VC,1,fillFuelTank,fuelAmount,39.5,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+149,multi_turn_base_92:t3,VC,0,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+150,multi_turn_base_92:t3,VC,1,lockDoors,unlock,False,keep:bool,
+151,multi_turn_base_92:t3,VC,1,lockDoors,door,'driver',keep:api_literal,A9_list_element
+152,multi_turn_base_92:t3,VC,1,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+153,multi_turn_base_92:t3,VC,1,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+154,multi_turn_base_92:t3,VC,1,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+155,multi_turn_base_92:t3,VC,2,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+156,multi_turn_base_92:t3,VC,3,pressBrakePedal,pedalPosition,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+157,multi_turn_base_92:t3,VC,4,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+158,multi_turn_base_89:t0,VC,0,get_zipcode_based_on_city,city,'Rivermist',remove,
+159,multi_turn_base_89:t0,VC,1,get_zipcode_based_on_city,city,'Stonebrook',remove,
+160,multi_turn_base_89:t0,VC,2,estimate_distance,cityA,'83214',remove+provenance,
+161,multi_turn_base_89:t0,VC,2,estimate_distance,cityB,'74532',remove+provenance,
+162,multi_turn_base_89:t0,VC,3,estimate_drive_feasibility_by_mileage,distance,750.0,remove+provenance,
+163,multi_turn_base_78:t1,VC,0,post_tweet,content,'Ensuring my wheels are well-maintained. Maintenance is key to success!',remove,
+164,multi_turn_base_78:t1,VC,0,post_tweet,tags,'#BusinessOnTheMove',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env);A9_list_element
+165,multi_turn_base_85:t0,VC,0,get_zipcode_based_on_city,city,'Rivermist',remove,
+166,multi_turn_base_85:t0,VC,1,get_zipcode_based_on_city,city,'San Francisco',remove,
+167,multi_turn_base_85:t0,VC,2,estimate_distance,cityA,'83214',remove+provenance,
+168,multi_turn_base_85:t0,VC,2,estimate_distance,cityB,'94016',remove+provenance,
+169,multi_turn_base_85:t0,VC,3,estimate_drive_feasibility_by_mileage,distance,980.0,remove+provenance,
+170,multi_turn_base_98:t0,VC,0,displayCarStatus,option,'doors',remove,A6_api_literal_removed_because_in_request
+171,multi_turn_base_98:t0,VC,1,lockDoors,unlock,False,keep:bool,
+172,multi_turn_base_98:t0,VC,1,lockDoors,door,'driver',keep:api_literal,A9_list_element
+173,multi_turn_base_98:t0,VC,1,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+174,multi_turn_base_98:t0,VC,1,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+175,multi_turn_base_98:t0,VC,1,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+176,multi_turn_base_98:t1,VC,0,displayCarStatus,option,'engine',remove,A6_api_literal_removed_because_in_request
+177,multi_turn_base_98:t1,VC,1,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+178,multi_turn_base_98:t1,VC,2,pressBrakePedal,pedalPosition,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+179,multi_turn_base_98:t1,VC,3,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+180,multi_turn_base_98:t2,VC,0,get_zipcode_based_on_city,city,'Silverpine',remove,
+181,multi_turn_base_98:t2,VC,1,get_zipcode_based_on_city,city,'Oakendale',remove,
+182,multi_turn_base_98:t2,VC,2,estimate_distance,cityA,'65673',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+183,multi_turn_base_98:t2,VC,2,estimate_distance,cityB,'65674',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+184,multi_turn_base_98:t2,VC,3,get_zipcode_based_on_city,city,'Silverpine',remove,
+185,multi_turn_base_98:t2,VC,4,get_zipcode_based_on_city,city,'Oakendale',remove,
+186,multi_turn_base_98:t2,VC,5,estimate_distance,cityA,'62947',remove+provenance,
+187,multi_turn_base_98:t2,VC,5,estimate_distance,cityB,'47329',remove+provenance,
+188,multi_turn_base_70:t0,VC,0,liter_to_gallon,liter,38,remove,
+189,multi_turn_base_70:t0,VC,1,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+190,multi_turn_base_70:t0,VC,2,lockDoors,unlock,False,keep:bool,
+191,multi_turn_base_70:t0,VC,2,lockDoors,door,'driver',keep:api_literal,A9_list_element
+192,multi_turn_base_70:t0,VC,2,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+193,multi_turn_base_70:t0,VC,2,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+194,multi_turn_base_70:t0,VC,2,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+195,multi_turn_base_70:t0,VC,3,activateParkingBrake,mode,'engage',keep:api_literal,
+196,multi_turn_base_70:t0,VC,4,fillFuelTank,fuelAmount,10,remove+provenance,
+197,multi_turn_base_70:t0,VC,5,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+198,multi_turn_base_70:t0,VC,6,pressBrakePedal,pedalPosition,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+199,multi_turn_base_70:t0,VC,7,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+200,multi_turn_base_54:t0,VC,0,liter_to_gallon,liter,20,remove,
+201,multi_turn_base_54:t0,VC,1,startEngine,ignitionMode,'START',keep:api_literal,
+202,multi_turn_base_54:t0,VC,2,lockDoors,unlock,False,keep:bool,
+203,multi_turn_base_54:t0,VC,2,lockDoors,door,'driver',keep:api_literal,A9_list_element
+204,multi_turn_base_54:t0,VC,2,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+205,multi_turn_base_54:t0,VC,2,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+206,multi_turn_base_54:t0,VC,2,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+207,multi_turn_base_54:t0,VC,3,startEngine,ignitionMode,'START',keep:api_literal,
+208,multi_turn_base_54:t0,VC,4,pressBrakePedal,pedalPosition,0.5,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+209,multi_turn_base_54:t0,VC,5,startEngine,ignitionMode,'START',keep:api_literal,
+210,multi_turn_base_54:t0,VC,6,pressBrakePedal,pedalPosition,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+211,multi_turn_base_54:t0,VC,7,startEngine,ignitionMode,'START',keep:api_literal,
+212,multi_turn_base_86:t0,VC,0,lockDoors,unlock,False,keep:bool,
+213,multi_turn_base_86:t0,VC,0,lockDoors,door,'driver',keep:api_literal,A9_list_element
+214,multi_turn_base_86:t0,VC,0,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+215,multi_turn_base_86:t0,VC,0,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+216,multi_turn_base_86:t0,VC,0,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+217,multi_turn_base_86:t0,VC,1,activateParkingBrake,mode,'engage',remove,A6_api_literal_removed_because_in_request
+218,multi_turn_base_86:t0,VC,2,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+219,multi_turn_base_86:t0,VC,4,pressBrakePedal,pedalPosition,0.5,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+220,multi_turn_base_86:t0,VC,5,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+221,multi_turn_base_86:t0,VC,6,pressBrakePedal,pedalPosition,1.0,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+222,multi_turn_base_86:t0,VC,7,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+223,multi_turn_base_56:t0,VC,0,get_zipcode_based_on_city,city,'San Francisco',remove,
+224,multi_turn_base_56:t0,VC,1,get_zipcode_based_on_city,city,'Rivermist',remove,
+225,multi_turn_base_56:t0,VC,2,estimate_distance,cityA,'94016',remove+provenance,
+226,multi_turn_base_56:t0,VC,2,estimate_distance,cityB,'83214',remove+provenance,
+227,multi_turn_base_56:t0,VC,3,estimate_drive_feasibility_by_mileage,distance,980.0,remove+provenance,
+228,multi_turn_base_56:t0,VC,4,display_log,messages,"""The distance to Rivermist is 980 miles. Based on your vehicle's current mileage, it is not feasible to drive directly to Rivermist without refueling. Please plan for multiple fuel stops along the way.""",remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env);A9_list_element
+229,multi_turn_base_76:t0,VC,0,lockDoors,unlock,False,keep:bool,
+230,multi_turn_base_76:t0,VC,0,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+231,multi_turn_base_76:t0,VC,0,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+232,multi_turn_base_76:t0,VC,1,startEngine,ignitionMode,'START',remove,A6_api_literal_removed_because_in_request
+233,multi_turn_base_76:t0,VC,2,lockDoors,unlock,False,keep:bool,
+234,multi_turn_base_76:t0,VC,2,lockDoors,door,'driver',keep:api_literal,A9_list_element
+235,multi_turn_base_76:t0,VC,2,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+236,multi_turn_base_76:t0,VC,3,startEngine,ignitionMode,'START',remove,A6_api_literal_removed_because_in_request
+237,multi_turn_base_76:t0,VC,4,pressBrakePedal,pedalPosition,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+238,multi_turn_base_76:t0,VC,5,startEngine,ignitionMode,'START',remove,A6_api_literal_removed_because_in_request
+239,multi_turn_base_76:t1,VC,0,post_tweet,content,'Tire pressure is perfect!',remove,
+240,multi_turn_base_76:t1,VC,0,post_tweet,tags,'#CarCare',remove,A9_list_element
+241,multi_turn_base_76:t1,VC,0,post_tweet,tags,'#TireHealth',remove,A9_list_element
+242,multi_turn_base_76:t1,VC,0,post_tweet,mentions,'@mike53',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env);A9_list_element
+243,multi_turn_base_73:t0,VC,1,displayCarStatus,option,'fuel',remove,A6_api_literal_removed_because_in_request
+244,multi_turn_base_73:t0,VC,2,fillFuelTank,fuelAmount,50,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+245,multi_turn_base_73:t0,VC,3,fillFuelTank,fuelAmount,45,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+246,multi_turn_base_73:t1,VC,0,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+247,multi_turn_base_73:t1,VC,1,displayCarStatus,option,'doors',remove+provenance,A6_api_literal_removed_because_in_request
+248,multi_turn_base_73:t1,VC,2,displayCarStatus,option,'parkingBrake',keep:api_literal,
+249,multi_turn_base_73:t1,VC,3,lockDoors,unlock,False,keep:bool,
+250,multi_turn_base_73:t1,VC,3,lockDoors,door,'driver',keep:api_literal,A9_list_element
+251,multi_turn_base_73:t1,VC,3,lockDoors,door,'passenger',keep:api_literal,A9_list_element
+252,multi_turn_base_73:t1,VC,3,lockDoors,door,'rear_left',keep:api_literal,A9_list_element
+253,multi_turn_base_73:t1,VC,3,lockDoors,door,'rear_right',keep:api_literal,A9_list_element
+254,multi_turn_base_73:t1,VC,4,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+255,multi_turn_base_73:t1,VC,5,activateParkingBrake,mode,'engage',keep:api_literal,
+256,multi_turn_base_73:t1,VC,6,pressBrakePedal,pedalPosition,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+257,multi_turn_base_73:t1,VC,7,startEngine,ignitionMode,'START',keep:api_literal,A1_case:in_request_only_case_insensitive_-> kept
+258,multi_turn_base_73:t2,VC,0,set_navigation,destination,"'123 Pine St, San Francisco, CA 94016'",remove,
+259,multi_turn_base_169:t0,TRAVEL,0,get_nearest_airport_by_city,location,'Rivermist',remove,A6_api_literal_removed_because_in_request
+260,multi_turn_base_169:t0,TRAVEL,1,get_flight_cost,travel_from,'RMT',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+261,multi_turn_base_169:t0,TRAVEL,1,get_flight_cost,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+262,multi_turn_base_169:t0,TRAVEL,1,get_flight_cost,travel_date,'2026-11-10',remove,
+263,multi_turn_base_169:t0,TRAVEL,1,get_flight_cost,travel_class,'business',remove,A6_api_literal_removed_because_in_request
+264,multi_turn_base_169:t0,TRAVEL,2,book_flight,access_token,'2278-9812-3456-4567',remove,
+265,multi_turn_base_169:t0,TRAVEL,2,book_flight,card_id,'card_6789',remove,
+266,multi_turn_base_169:t0,TRAVEL,2,book_flight,travel_date,'2026-11-10',remove,
+267,multi_turn_base_169:t0,TRAVEL,2,book_flight,travel_from,'RMT',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+268,multi_turn_base_169:t0,TRAVEL,2,book_flight,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+269,multi_turn_base_169:t0,TRAVEL,2,book_flight,travel_class,'business',remove,
+270,multi_turn_base_169:t0,TRAVEL,3,retrieve_invoice,access_token,'2278-9812-3456-4567',remove,
+271,multi_turn_base_169:t0,TRAVEL,3,retrieve_invoice,booking_id,'booking_id',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+272,multi_turn_base_169:t0,TRAVEL,4,get_nearest_airport_by_city,location,'Rivermist',remove,A6_api_literal_removed_because_in_request
+273,multi_turn_base_169:t0,TRAVEL,5,get_flight_cost,travel_from,'RMS',remove+provenance,
+274,multi_turn_base_169:t0,TRAVEL,5,get_flight_cost,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+275,multi_turn_base_169:t0,TRAVEL,5,get_flight_cost,travel_date,'2026-11-10',remove,
+276,multi_turn_base_169:t0,TRAVEL,5,get_flight_cost,travel_class,'business',remove,A6_api_literal_removed_because_in_request
+277,multi_turn_base_169:t0,TRAVEL,6,book_flight,access_token,'2278-9812-3456-4567',remove,
+278,multi_turn_base_169:t0,TRAVEL,6,book_flight,card_id,'card_6789',remove,
+279,multi_turn_base_169:t0,TRAVEL,6,book_flight,travel_date,'2026-11-10',remove,
+280,multi_turn_base_169:t0,TRAVEL,6,book_flight,travel_from,'RMS',remove+provenance,
+281,multi_turn_base_169:t0,TRAVEL,6,book_flight,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+282,multi_turn_base_169:t0,TRAVEL,6,book_flight,travel_class,'business',remove,
+283,multi_turn_base_169:t0,TRAVEL,7,retrieve_invoice,access_token,'2278-9812-3456-4567',remove,
+284,multi_turn_base_169:t0,TRAVEL,7,retrieve_invoice,booking_id,'booking_id',remove+provenance,
+285,multi_turn_base_169:t0,TRAVEL,8,retrieve_invoice,access_token,'2278-9812-3456-4567',remove,
+286,multi_turn_base_169:t0,TRAVEL,8,retrieve_invoice,booking_id,'3426812',remove+provenance,
+287,multi_turn_base_169:t1,TRAVEL,0,contact_customer_support,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+288,multi_turn_base_169:t1,TRAVEL,0,contact_customer_support,message,'I have concerns regarding my luggage restrictions for my upcoming flight on 2026-11-10 from RMS to LAX in business class.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+289,multi_turn_base_158:t0,TRAVEL,0,verify_traveler_information,first_name,'Theodore',remove,
+290,multi_turn_base_158:t0,TRAVEL,0,verify_traveler_information,last_name,'Collins',remove,
+291,multi_turn_base_158:t0,TRAVEL,0,verify_traveler_information,date_of_birth,'1985-09-14',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+292,multi_turn_base_158:t0,TRAVEL,0,verify_traveler_information,passport_number,'US876543',remove,
+293,multi_turn_base_158:t1,TRAVEL,0,get_flight_cost,travel_from,'NYC',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+294,multi_turn_base_158:t1,TRAVEL,0,get_flight_cost,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+295,multi_turn_base_158:t1,TRAVEL,0,get_flight_cost,travel_date,'2026-10-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+296,multi_turn_base_158:t1,TRAVEL,0,get_flight_cost,travel_class,'first',remove,A6_api_literal_removed_because_in_request
+297,multi_turn_base_158:t1,TRAVEL,1,compute_exchange_rate,base_currency,'USD',keep:api_literal,
+298,multi_turn_base_158:t1,TRAVEL,1,compute_exchange_rate,target_currency,'USD',keep:api_literal,
+299,multi_turn_base_158:t1,TRAVEL,1,compute_exchange_rate,value,7000,remove,
+300,multi_turn_base_158:t1,TRAVEL,2,get_credit_card_balance,access_token,'abc123xyz',remove,
+301,multi_turn_base_158:t1,TRAVEL,2,get_credit_card_balance,card_id,'primary',remove,
+302,multi_turn_base_158:t1,TRAVEL,3,get_flight_cost,travel_from,'JFK',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+303,multi_turn_base_158:t1,TRAVEL,3,get_flight_cost,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+304,multi_turn_base_158:t1,TRAVEL,3,get_flight_cost,travel_date,'2026-10-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+305,multi_turn_base_158:t1,TRAVEL,3,get_flight_cost,travel_class,'first',remove,A6_api_literal_removed_because_in_request
+306,multi_turn_base_158:t1,TRAVEL,4,compute_exchange_rate,base_currency,'USD',keep:api_literal,
+307,multi_turn_base_158:t1,TRAVEL,4,compute_exchange_rate,target_currency,'USD',keep:api_literal,
+308,multi_turn_base_158:t1,TRAVEL,4,compute_exchange_rate,value,7000,remove,
+309,multi_turn_base_158:t1,TRAVEL,5,book_flight,access_token,'abc123xyz',remove,
+310,multi_turn_base_158:t1,TRAVEL,5,book_flight,card_id,'primary',remove,
+311,multi_turn_base_158:t1,TRAVEL,5,book_flight,travel_date,'2026-10-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+312,multi_turn_base_158:t1,TRAVEL,5,book_flight,travel_from,'JFK',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+313,multi_turn_base_158:t1,TRAVEL,5,book_flight,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+314,multi_turn_base_158:t1,TRAVEL,5,book_flight,travel_class,'first',remove,
+315,multi_turn_base_158:t1,TRAVEL,6,compute_exchange_rate,base_currency,'USD',keep:api_literal,
+316,multi_turn_base_158:t1,TRAVEL,6,compute_exchange_rate,target_currency,'USD',keep:api_literal,
+317,multi_turn_base_158:t1,TRAVEL,6,compute_exchange_rate,value,2850,remove+provenance,
+318,multi_turn_base_158:t2,TRAVEL,0,cancel_booking,access_token,'abc123xyz',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+319,multi_turn_base_158:t2,TRAVEL,0,cancel_booking,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+320,multi_turn_base_155:t0,TRAVEL,0,get_flight_cost,travel_from,'LAX',remove,
+321,multi_turn_base_155:t0,TRAVEL,0,get_flight_cost,travel_to,'JFK',remove,
+322,multi_turn_base_155:t0,TRAVEL,0,get_flight_cost,travel_date,'2026-11-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+323,multi_turn_base_155:t0,TRAVEL,0,get_flight_cost,travel_class,'business',remove,A6_api_literal_removed_because_in_request
+324,multi_turn_base_155:t0,TRAVEL,1,book_flight,access_token,'abc123xyz',remove,
+325,multi_turn_base_155:t0,TRAVEL,1,book_flight,card_id,'id15583',remove,
+326,multi_turn_base_155:t0,TRAVEL,1,book_flight,travel_date,'2026-11-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+327,multi_turn_base_155:t0,TRAVEL,1,book_flight,travel_from,'LAX',remove,
+328,multi_turn_base_155:t0,TRAVEL,1,book_flight,travel_to,'JFK',remove,
+329,multi_turn_base_155:t0,TRAVEL,1,book_flight,travel_class,'business',remove,
+330,multi_turn_base_155:t1,TRAVEL,0,purchase_insurance,access_token,'abc123xyz',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+331,multi_turn_base_155:t1,TRAVEL,0,purchase_insurance,insurance_type,'comprehensive',remove,
+332,multi_turn_base_155:t1,TRAVEL,0,purchase_insurance,insurance_cost,120.0,remove,
+333,multi_turn_base_155:t1,TRAVEL,0,purchase_insurance,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+334,multi_turn_base_155:t1,TRAVEL,0,purchase_insurance,card_id,'id15583',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+335,multi_turn_base_179:t0,TRAVEL,0,get_nearest_airport_by_city,location,'Crescent Hollow',remove,A6_api_literal_removed_because_in_request
+336,multi_turn_base_179:t0,TRAVEL,1,get_nearest_airport_by_city,location,'New York',remove,A6_api_literal_removed_because_in_request
+337,multi_turn_base_179:t0,TRAVEL,2,get_flight_cost,travel_from,'CHW',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+338,multi_turn_base_179:t0,TRAVEL,2,get_flight_cost,travel_to,'JFK',remove+provenance,
+339,multi_turn_base_179:t0,TRAVEL,2,get_flight_cost,travel_date,'2026-11-12',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+340,multi_turn_base_179:t0,TRAVEL,2,get_flight_cost,travel_class,'economy',remove,A6_api_literal_removed_because_in_request
+341,multi_turn_base_179:t0,TRAVEL,3,get_flight_cost,travel_from,'CRH',remove+provenance,
+342,multi_turn_base_179:t0,TRAVEL,3,get_flight_cost,travel_to,'JFK',remove+provenance,
+343,multi_turn_base_179:t0,TRAVEL,3,get_flight_cost,travel_date,'2026-11-12',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+344,multi_turn_base_179:t0,TRAVEL,3,get_flight_cost,travel_class,'economy',remove,A6_api_literal_removed_because_in_request
+345,multi_turn_base_179:t0,TRAVEL,4,book_flight,access_token,'abc123xyz',remove,
+346,multi_turn_base_179:t0,TRAVEL,4,book_flight,card_id,'card_6789',remove,
+347,multi_turn_base_179:t0,TRAVEL,4,book_flight,travel_date,'2026-11-12',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+348,multi_turn_base_179:t0,TRAVEL,4,book_flight,travel_from,'CRH',remove+provenance,
+349,multi_turn_base_179:t0,TRAVEL,4,book_flight,travel_to,'JFK',remove+provenance,
+350,multi_turn_base_179:t0,TRAVEL,4,book_flight,travel_class,'economy',remove,
+351,multi_turn_base_179:t1,TRAVEL,0,purchase_insurance,access_token,'abc123xyz',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+352,multi_turn_base_179:t1,TRAVEL,0,purchase_insurance,insurance_type,'travel',remove,
+353,multi_turn_base_179:t1,TRAVEL,0,purchase_insurance,insurance_cost,100.0,remove,
+354,multi_turn_base_179:t1,TRAVEL,0,purchase_insurance,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+355,multi_turn_base_179:t1,TRAVEL,0,purchase_insurance,card_id,'card_6789',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+356,multi_turn_base_179:t2,TRAVEL,0,retrieve_invoice,access_token,'abc123xyz',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+357,multi_turn_base_179:t2,TRAVEL,0,retrieve_invoice,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+358,multi_turn_base_179:t2,TRAVEL,0,retrieve_invoice,insurance_id,'498276044',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+359,multi_turn_base_179:t3,TRAVEL,0,contact_customer_support,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+360,multi_turn_base_179:t3,TRAVEL,0,contact_customer_support,message,"'Due to a family emergency, I need to adjust my travel plans or seek a full refund.'",remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+361,multi_turn_base_187:t0,TRAVEL,0,get_booking_history,access_token,'token_abc123',remove,
+362,multi_turn_base_187:t0,TRAVEL,1,purchase_insurance,access_token,'token_abc123',remove,
+363,multi_turn_base_187:t0,TRAVEL,1,purchase_insurance,insurance_type,'comprehensive',remove,
+364,multi_turn_base_187:t0,TRAVEL,1,purchase_insurance,insurance_cost,1500,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env);A8_numeric_in_request_in_other_form
+365,multi_turn_base_187:t0,TRAVEL,1,purchase_insurance,booking_id,'insurance_12345',remove+provenance,
+366,multi_turn_base_187:t0,TRAVEL,1,purchase_insurance,card_id,'card_4893',remove,
+367,multi_turn_base_187:t1,TRAVEL,0,retrieve_invoice,access_token,'token_abc123',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+368,multi_turn_base_187:t1,TRAVEL,0,retrieve_invoice,booking_id,'insurance_12345',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+369,multi_turn_base_187:t1,TRAVEL,0,retrieve_invoice,insurance_id,'255316027',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+370,multi_turn_base_187:t2,TRAVEL,0,contact_customer_support,booking_id,'insurance_12345',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+371,multi_turn_base_187:t2,TRAVEL,0,contact_customer_support,message,'There seems to be an issue with the recorded expenses for my recent trip. The travel costs are not reflecting accurately in my booking history.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+372,multi_turn_base_192:t0,TRAVEL,0,get_nearest_airport_by_city,location,'Rivermist',remove,A6_api_literal_removed_because_in_request
+373,multi_turn_base_192:t0,TRAVEL,1,get_nearest_airport_by_city,location,'Stonebrook',remove,A6_api_literal_removed_because_in_request
+374,multi_turn_base_192:t1,TRAVEL,0,get_flight_cost,travel_from,'RMS',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+375,multi_turn_base_192:t1,TRAVEL,0,get_flight_cost,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+376,multi_turn_base_192:t1,TRAVEL,0,get_flight_cost,travel_date,'2026-08-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+377,multi_turn_base_192:t1,TRAVEL,0,get_flight_cost,travel_class,'business',remove,A6_api_literal_removed_because_in_request
+378,multi_turn_base_192:t2,TRAVEL,0,set_budget_limit,access_token,'ABCDE12345',remove,
+379,multi_turn_base_192:t2,TRAVEL,0,set_budget_limit,budget_limit,1500,remove,
+380,multi_turn_base_192:t3,TRAVEL,0,book_flight,access_token,'ABCDE12345',remove,
+381,multi_turn_base_192:t3,TRAVEL,0,book_flight,card_id,'1432',remove,
+382,multi_turn_base_192:t3,TRAVEL,0,book_flight,travel_date,'2026-08-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+383,multi_turn_base_192:t3,TRAVEL,0,book_flight,travel_from,'RMS',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+384,multi_turn_base_192:t3,TRAVEL,0,book_flight,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+385,multi_turn_base_192:t3,TRAVEL,0,book_flight,travel_class,'business',remove,
+386,multi_turn_base_192:t4,TRAVEL,0,retrieve_invoice,access_token,'ABCDE12345',remove,
+387,multi_turn_base_192:t4,TRAVEL,0,retrieve_invoice,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+388,multi_turn_base_178:t0,TRAVEL,0,register_credit_card,access_token,'abc123xyz',remove,
+389,multi_turn_base_178:t0,TRAVEL,0,register_credit_card,card_number,'4012888888881881',remove,
+390,multi_turn_base_178:t0,TRAVEL,0,register_credit_card,expiration_date,'12/2028',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+391,multi_turn_base_178:t0,TRAVEL,0,register_credit_card,cardholder_name,'Michael Smith',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+392,multi_turn_base_178:t0,TRAVEL,0,register_credit_card,card_verification_number,465,remove,
+393,multi_turn_base_178:t0,TRAVEL,1,purchase_insurance,access_token,'abc123xyz',remove,
+394,multi_turn_base_178:t0,TRAVEL,1,purchase_insurance,insurance_type,'comprehensive',remove,
+395,multi_turn_base_178:t0,TRAVEL,1,purchase_insurance,insurance_cost,200,remove,
+396,multi_turn_base_178:t0,TRAVEL,1,purchase_insurance,booking_id,'flight_001',remove,
+397,multi_turn_base_178:t0,TRAVEL,1,purchase_insurance,card_id,'card_001',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+398,multi_turn_base_178:t0,TRAVEL,2,purchase_insurance,access_token,'abc123xyz',remove,
+399,multi_turn_base_178:t0,TRAVEL,2,purchase_insurance,insurance_type,'comprehensive',remove,
+400,multi_turn_base_178:t0,TRAVEL,2,purchase_insurance,insurance_cost,200,remove,
+401,multi_turn_base_178:t0,TRAVEL,2,purchase_insurance,booking_id,'flight_001',remove,
+402,multi_turn_base_178:t0,TRAVEL,2,purchase_insurance,card_id,'262919693687',remove+provenance,
+403,multi_turn_base_178:t1,TRAVEL,0,retrieve_invoice,access_token,'abc123xyz',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+404,multi_turn_base_178:t1,TRAVEL,0,retrieve_invoice,booking_id,'flight_001',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+405,multi_turn_base_178:t1,TRAVEL,0,retrieve_invoice,insurance_id,'498276044',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+406,multi_turn_base_178:t2,TRAVEL,0,contact_customer_support,booking_id,'flight_001',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+407,multi_turn_base_178:t2,TRAVEL,0,contact_customer_support,message,'I need immediate assistance with unresolved issues related to my travel insurance for my trip to New York.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+408,multi_turn_base_168:t0,TRAVEL,0,compute_exchange_rate,base_currency,'USD',remove,A6_api_literal_removed_because_in_request
+409,multi_turn_base_168:t0,TRAVEL,0,compute_exchange_rate,target_currency,'EUR',remove,A6_api_literal_removed_because_in_request
+410,multi_turn_base_168:t0,TRAVEL,0,compute_exchange_rate,value,1500,remove,
+411,multi_turn_base_168:t1,TRAVEL,0,get_nearest_airport_by_city,location,'San Francisco',remove,A6_api_literal_removed_because_in_request
+412,multi_turn_base_168:t1,TRAVEL,1,get_nearest_airport_by_city,location,'Boston',remove,A6_api_literal_removed_because_in_request
+413,multi_turn_base_168:t1,TRAVEL,2,get_flight_cost,travel_from,'SFO',remove+provenance,
+414,multi_turn_base_168:t1,TRAVEL,2,get_flight_cost,travel_to,'BOS',remove+provenance,
+415,multi_turn_base_168:t1,TRAVEL,2,get_flight_cost,travel_date,'2026-07-01',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+416,multi_turn_base_168:t1,TRAVEL,2,get_flight_cost,travel_class,'business',remove,A6_api_literal_removed_because_in_request
+417,multi_turn_base_168:t1,TRAVEL,3,book_flight,access_token,'abc123xyz456',remove,
+418,multi_turn_base_168:t1,TRAVEL,3,book_flight,card_id,'card5638',remove,
+419,multi_turn_base_168:t1,TRAVEL,3,book_flight,travel_date,'2026-07-01',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+420,multi_turn_base_168:t1,TRAVEL,3,book_flight,travel_from,'SFO',remove+provenance,
+421,multi_turn_base_168:t1,TRAVEL,3,book_flight,travel_to,'BOS',remove+provenance,
+422,multi_turn_base_168:t1,TRAVEL,3,book_flight,travel_class,'business',remove,
+423,multi_turn_base_168:t2,TRAVEL,0,retrieve_invoice,access_token,'abc123xyz456',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+424,multi_turn_base_168:t2,TRAVEL,0,retrieve_invoice,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+425,multi_turn_base_168:t3,TRAVEL,0,contact_customer_support,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+426,multi_turn_base_168:t3,TRAVEL,0,contact_customer_support,message,'Require assistance with the transaction particulars',remove,
+427,multi_turn_base_196:t0,TRAVEL,0,compute_exchange_rate,base_currency,'RMB',remove,A6_api_literal_removed_because_in_request
+428,multi_turn_base_196:t0,TRAVEL,0,compute_exchange_rate,target_currency,'USD',keep:api_literal,
+429,multi_turn_base_196:t0,TRAVEL,0,compute_exchange_rate,value,50000,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env);A8_numeric_in_request_in_other_form
+430,multi_turn_base_196:t0,TRAVEL,1,set_budget_limit,access_token,'abc123xyz',remove,
+431,multi_turn_base_196:t0,TRAVEL,1,set_budget_limit,budget_limit,7142.86,remove+provenance,
+432,multi_turn_base_196:t1,TRAVEL,0,get_flight_cost,travel_from,'LHR',remove,
+433,multi_turn_base_196:t1,TRAVEL,0,get_flight_cost,travel_to,'CDG',remove,
+434,multi_turn_base_196:t1,TRAVEL,0,get_flight_cost,travel_date,'2026-11-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+435,multi_turn_base_196:t1,TRAVEL,0,get_flight_cost,travel_class,'business',remove,A6_api_literal_removed_because_in_request
+436,multi_turn_base_196:t1,TRAVEL,1,book_flight,access_token,'abc123xyz',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+437,multi_turn_base_196:t1,TRAVEL,1,book_flight,card_id,'primary_8970',remove,
+438,multi_turn_base_196:t1,TRAVEL,1,book_flight,travel_date,'2026-11-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+439,multi_turn_base_196:t1,TRAVEL,1,book_flight,travel_from,'LHR',remove,
+440,multi_turn_base_196:t1,TRAVEL,1,book_flight,travel_to,'CDG',remove,
+441,multi_turn_base_196:t1,TRAVEL,1,book_flight,travel_class,'business',remove,
+442,multi_turn_base_196:t2,TRAVEL,0,cancel_booking,access_token,'abc123xyz',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+443,multi_turn_base_196:t2,TRAVEL,0,cancel_booking,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+444,multi_turn_base_196:t2,TRAVEL,1,set_budget_limit,access_token,'abc123xyz',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+445,multi_turn_base_196:t2,TRAVEL,1,set_budget_limit,budget_limit,7142.86,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+446,multi_turn_base_196:t3,TRAVEL,0,create_ticket,title,'Cancellation Issue',remove,
+447,multi_turn_base_196:t3,TRAVEL,0,create_ticket,description,'Error encountered during flight cancellation process.',remove,
+448,multi_turn_base_196:t3,TRAVEL,0,create_ticket,priority,1,keep:api_literal,A2_numeric_literal_matched_in_doc_text
+449,multi_turn_base_170:t0,TRAVEL,0,get_flight_cost,travel_from,'SFO',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+450,multi_turn_base_170:t0,TRAVEL,0,get_flight_cost,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+451,multi_turn_base_170:t0,TRAVEL,0,get_flight_cost,travel_date,'2026-11-15',remove,
+452,multi_turn_base_170:t0,TRAVEL,0,get_flight_cost,travel_class,'first',remove,A6_api_literal_removed_because_in_request
+453,multi_turn_base_170:t0,TRAVEL,1,get_credit_card_balance,access_token,'access_token_abc123',remove,
+454,multi_turn_base_170:t0,TRAVEL,1,get_credit_card_balance,card_id,'card123',remove,
+455,multi_turn_base_170:t0,TRAVEL,2,book_flight,access_token,'access_token_abc123',remove,
+456,multi_turn_base_170:t0,TRAVEL,2,book_flight,card_id,'card123',remove,
+457,multi_turn_base_170:t0,TRAVEL,2,book_flight,travel_date,'2026-11-15',remove,
+458,multi_turn_base_170:t0,TRAVEL,2,book_flight,travel_from,'SFO',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+459,multi_turn_base_170:t0,TRAVEL,2,book_flight,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+460,multi_turn_base_170:t0,TRAVEL,2,book_flight,travel_class,'first',remove,
+461,multi_turn_base_170:t1,TRAVEL,0,retrieve_invoice,access_token,'access_token_abc123',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+462,multi_turn_base_170:t1,TRAVEL,0,retrieve_invoice,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+463,multi_turn_base_170:t2,TRAVEL,0,contact_customer_support,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+464,multi_turn_base_170:t2,TRAVEL,0,contact_customer_support,message,'I need assistance with my booking ID 3426812.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+465,multi_turn_base_170:t3,TRAVEL,0,cancel_booking,access_token,'access_token_abc123',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+466,multi_turn_base_170:t3,TRAVEL,0,cancel_booking,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+467,multi_turn_base_170:t3,TRAVEL,1,contact_customer_support,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+468,multi_turn_base_170:t3,TRAVEL,1,contact_customer_support,message,'I would like to cancel my booking ID 3426812 and ensure a refund is processed.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+469,multi_turn_base_170:t4,TRAVEL,0,authenticate_twitter,username,'michael_smith',remove,
+470,multi_turn_base_170:t4,TRAVEL,0,authenticate_twitter,password,'michael1234',remove,
+471,multi_turn_base_170:t4,TRAVEL,1,post_tweet,content,"'Exploring the world, one city at a time!'",remove,
+472,multi_turn_base_170:t4,TRAVEL,1,post_tweet,tags,'#Travel',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env);A9_list_element
+473,multi_turn_base_170:t4,TRAVEL,1,post_tweet,tags,'#Adventure',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env);A9_list_element
+474,multi_turn_base_170:t5,TRAVEL,0,retweet,tweet_id,0,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+475,multi_turn_base_154:t0,TRAVEL,0,verify_traveler_information,first_name,'Michael',remove,
+476,multi_turn_base_154:t0,TRAVEL,0,verify_traveler_information,last_name,'Smith',remove,
+477,multi_turn_base_154:t0,TRAVEL,0,verify_traveler_information,date_of_birth,'1962-02-14',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+478,multi_turn_base_154:t0,TRAVEL,0,verify_traveler_information,passport_number,'P87654321',remove,
+479,multi_turn_base_154:t1,TRAVEL,0,get_nearest_airport_by_city,location,'Chicago',remove,A6_api_literal_removed_because_in_request
+480,multi_turn_base_154:t1,TRAVEL,1,get_flight_cost,travel_from,'MDW',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+481,multi_turn_base_154:t1,TRAVEL,1,get_flight_cost,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+482,multi_turn_base_154:t1,TRAVEL,1,get_flight_cost,travel_date,'2026-08-10',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+483,multi_turn_base_154:t1,TRAVEL,1,get_flight_cost,travel_class,'economy',keep:api_literal,A3_doc_mention_not_enum_or_quoted
+484,multi_turn_base_154:t1,TRAVEL,2,get_flight_cost,travel_from,'ORD',remove+provenance,
+485,multi_turn_base_154:t1,TRAVEL,2,get_flight_cost,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+486,multi_turn_base_154:t1,TRAVEL,2,get_flight_cost,travel_date,'2026-08-10',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+487,multi_turn_base_154:t1,TRAVEL,2,get_flight_cost,travel_class,'economy',keep:api_literal,A3_doc_mention_not_enum_or_quoted
+488,multi_turn_base_154:t2,TRAVEL,0,set_budget_limit,access_token,'token_ABC123XYZ',remove,
+489,multi_turn_base_154:t2,TRAVEL,0,set_budget_limit,budget_limit,1500,remove,
+490,multi_turn_base_154:t3,TRAVEL,0,book_flight,access_token,'token_ABC123XYZ',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+491,multi_turn_base_154:t3,TRAVEL,0,book_flight,card_id,'card1',remove,
+492,multi_turn_base_154:t3,TRAVEL,0,book_flight,travel_date,'2026-08-10',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+493,multi_turn_base_154:t3,TRAVEL,0,book_flight,travel_from,'ORD',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+494,multi_turn_base_154:t3,TRAVEL,0,book_flight,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+495,multi_turn_base_154:t3,TRAVEL,0,book_flight,travel_class,'economy',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+496,multi_turn_base_162:t1,TRAVEL,0,get_nearest_airport_by_city,location,'Rivermist',remove,A6_api_literal_removed_because_in_request
+497,multi_turn_base_162:t2,TRAVEL,0,get_flight_cost,travel_from,'RMS',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+498,multi_turn_base_162:t2,TRAVEL,0,get_flight_cost,travel_to,'JFK',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+499,multi_turn_base_162:t2,TRAVEL,0,get_flight_cost,travel_date,'2026-09-10',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+500,multi_turn_base_162:t2,TRAVEL,0,get_flight_cost,travel_class,'economy',remove,A6_api_literal_removed_because_in_request
+501,multi_turn_base_186:t0,TRAVEL,0,get_nearest_airport_by_city,location,'Rivermist',remove,A6_api_literal_removed_because_in_request
+502,multi_turn_base_186:t0,TRAVEL,1,get_flight_cost,travel_from,'RVT',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+503,multi_turn_base_186:t0,TRAVEL,1,get_flight_cost,travel_to,'JFK',remove,
+504,multi_turn_base_186:t0,TRAVEL,1,get_flight_cost,travel_date,'2026-12-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+505,multi_turn_base_186:t0,TRAVEL,1,get_flight_cost,travel_class,'first',remove,A6_api_literal_removed_because_in_request
+506,multi_turn_base_186:t0,TRAVEL,2,get_nearest_airport_by_city,location,'Rivermist',remove,A6_api_literal_removed_because_in_request
+507,multi_turn_base_186:t0,TRAVEL,3,get_flight_cost,travel_from,'RMS',remove+provenance,
+508,multi_turn_base_186:t0,TRAVEL,3,get_flight_cost,travel_to,'JFK',remove,
+509,multi_turn_base_186:t0,TRAVEL,3,get_flight_cost,travel_date,'2026-12-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+510,multi_turn_base_186:t0,TRAVEL,3,get_flight_cost,travel_class,'first',remove,A6_api_literal_removed_because_in_request
+511,multi_turn_base_186:t1,TRAVEL,0,book_flight,access_token,'secure_access_token_987654321',remove,
+512,multi_turn_base_186:t1,TRAVEL,0,book_flight,card_id,'card_4526',remove,
+513,multi_turn_base_186:t1,TRAVEL,0,book_flight,travel_date,'2026-12-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+514,multi_turn_base_186:t1,TRAVEL,0,book_flight,travel_from,'RMS',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+515,multi_turn_base_186:t1,TRAVEL,0,book_flight,travel_to,'JFK',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+516,multi_turn_base_186:t1,TRAVEL,0,book_flight,travel_class,'first',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+517,multi_turn_base_186:t2,TRAVEL,0,retrieve_invoice,access_token,'secure_access_token_987654321',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+518,multi_turn_base_186:t2,TRAVEL,0,retrieve_invoice,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+519,multi_turn_base_186:t3,TRAVEL,0,contact_customer_support,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+520,multi_turn_base_186:t3,TRAVEL,0,contact_customer_support,message,'There has been a problem with my booking and I need assistance to ensure the smooth facilitation of my travel arrangements.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+521,multi_turn_base_186:t4,TRAVEL,0,cancel_booking,access_token,'secure_access_token_987654321',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+522,multi_turn_base_186:t4,TRAVEL,0,cancel_booking,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+523,multi_turn_base_186:t5,TRAVEL,0,authenticate_twitter,username,'john',remove,
+524,multi_turn_base_186:t5,TRAVEL,0,authenticate_twitter,password,'john1234',remove,
+525,multi_turn_base_186:t5,TRAVEL,1,post_tweet,content,'Postponing my plans.',remove,
+526,multi_turn_base_186:t5,TRAVEL,1,post_tweet,tags,'#Travel',remove,A9_list_element
+527,multi_turn_base_186:t5,TRAVEL,1,post_tweet,tags,'#PlansChanged',remove,A9_list_element
+528,multi_turn_base_186:t5,TRAVEL,1,post_tweet,mentions,'@AirlineSupport',remove,A9_list_element
+529,multi_turn_base_156:t0,TRAVEL,0,compute_exchange_rate,base_currency,'USD',keep:api_literal,
+530,multi_turn_base_156:t0,TRAVEL,0,compute_exchange_rate,target_currency,'USD',keep:api_literal,
+531,multi_turn_base_156:t0,TRAVEL,0,compute_exchange_rate,value,6000,remove,
+532,multi_turn_base_156:t0,TRAVEL,1,get_flight_cost,travel_from,'SFO',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+533,multi_turn_base_156:t0,TRAVEL,1,get_flight_cost,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+534,multi_turn_base_156:t0,TRAVEL,1,get_flight_cost,travel_date,'2026-10-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+535,multi_turn_base_156:t0,TRAVEL,1,get_flight_cost,travel_class,'first',remove,A6_api_literal_removed_because_in_request
+536,multi_turn_base_156:t0,TRAVEL,2,get_credit_card_balance,access_token,'abc123xyz456',remove,
+537,multi_turn_base_156:t0,TRAVEL,2,get_credit_card_balance,card_id,'travel_card_12345',remove,
+538,multi_turn_base_156:t0,TRAVEL,3,book_flight,access_token,'abc123xyz456',remove,
+539,multi_turn_base_156:t0,TRAVEL,3,book_flight,card_id,'travel_card_12345',remove,
+540,multi_turn_base_156:t0,TRAVEL,3,book_flight,travel_date,'2026-10-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+541,multi_turn_base_156:t0,TRAVEL,3,book_flight,travel_from,'SFO',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+542,multi_turn_base_156:t0,TRAVEL,3,book_flight,travel_to,'LAX',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+543,multi_turn_base_156:t0,TRAVEL,3,book_flight,travel_class,'first',remove,
+544,multi_turn_base_156:t1,TRAVEL,0,retrieve_invoice,access_token,'abc123xyz456',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+545,multi_turn_base_156:t1,TRAVEL,0,retrieve_invoice,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+546,multi_turn_base_156:t2,TRAVEL,0,contact_customer_support,booking_id,'3426812',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+547,multi_turn_base_156:t2,TRAVEL,0,contact_customer_support,message,'There is a last-minute complication with my reservation.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+548,multi_turn_base_156:t3,TRAVEL,0,ticket_login,username,'mthompson',remove,
+549,multi_turn_base_156:t3,TRAVEL,0,ticket_login,password,'securePass123',remove,
+550,multi_turn_base_156:t3,TRAVEL,1,create_ticket,title,'Urgent Flight Issue',remove,
+551,multi_turn_base_156:t3,TRAVEL,1,create_ticket,priority,4,remove,
+552,multi_turn_base_156:t4,TRAVEL,0,edit_ticket,ticket_id,0,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+553,multi_turn_base_156:t4,TRAVEL,0,edit_ticket,updates,"{'status': 'Urgent', 'priority': 5}",remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+554,multi_turn_base_176:t0,TRAVEL,0,get_nearest_airport_by_city,location,'New York',remove,A6_api_literal_removed_because_in_request
+555,multi_turn_base_176:t0,TRAVEL,1,get_nearest_airport_by_city,location,'Los Angeles',remove,A6_api_literal_removed_because_in_request
+556,multi_turn_base_176:t0,TRAVEL,2,get_flight_cost,travel_from,'JFK',remove+provenance,
+557,multi_turn_base_176:t0,TRAVEL,2,get_flight_cost,travel_to,'LAX',remove+provenance,
+558,multi_turn_base_176:t0,TRAVEL,2,get_flight_cost,travel_date,'2026-12-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+559,multi_turn_base_176:t0,TRAVEL,2,get_flight_cost,travel_class,'business',remove,A6_api_literal_removed_because_in_request
+560,multi_turn_base_176:t0,TRAVEL,3,get_credit_card_balance,access_token,'ABCD1234',remove,
+561,multi_turn_base_176:t0,TRAVEL,3,get_credit_card_balance,card_id,'id_1234',remove,
+562,multi_turn_base_176:t0,TRAVEL,4,book_flight,access_token,'ABCD1234',remove,
+563,multi_turn_base_176:t0,TRAVEL,4,book_flight,card_id,'id_1234',remove,
+564,multi_turn_base_176:t0,TRAVEL,4,book_flight,travel_date,'2026-12-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+565,multi_turn_base_176:t0,TRAVEL,4,book_flight,travel_from,'JFK',remove+provenance,
+566,multi_turn_base_176:t0,TRAVEL,4,book_flight,travel_to,'LAX',remove+provenance,
+567,multi_turn_base_176:t0,TRAVEL,4,book_flight,travel_class,'business',remove,
+568,multi_turn_base_176:t0,TRAVEL,5,resolve_ticket,ticket_id,12345,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+569,multi_turn_base_176:t0,TRAVEL,5,resolve_ticket,resolution,'Business class trip from JFK to LAX on 2026-12-15 booked successfully. Booking ID: 3426812.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+570,multi_turn_base_176:t0,TRAVEL,6,resolve_ticket,ticket_id,12345,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+571,multi_turn_base_176:t0,TRAVEL,6,resolve_ticket,resolution,'Business class trip from JFK to LAX on 2026-12-15 booked successfully.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+572,multi_turn_base_176:t0,TRAVEL,7,resolve_ticket,ticket_id,12345,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+573,multi_turn_base_176:t0,TRAVEL,7,resolve_ticket,resolution,'Business class trip from JFK to LAX on 2026-12-15 booked successfully. Booking ID: 3426812.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+574,multi_turn_base_176:t0,TRAVEL,8,resolve_ticket,ticket_id,12345,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+575,multi_turn_base_176:t0,TRAVEL,8,resolve_ticket,resolution,'Business class trip from JFK to LAX on 2026-12-15 booked successfully.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+576,multi_turn_base_176:t0,TRAVEL,9,resolve_ticket,ticket_id,12345,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+577,multi_turn_base_176:t0,TRAVEL,9,resolve_ticket,resolution,'Business class trip from JFK to LAX on 2026-12-15 booked successfully. Booking ID: 3426812.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+578,multi_turn_base_176:t0,TRAVEL,10,resolve_ticket,ticket_id,12345,remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+579,multi_turn_base_176:t0,TRAVEL,10,resolve_ticket,resolution,'Business class trip from JFK to LAX on 2026-12-15 booked successfully.',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+580,multi_turn_base_173:t0,TRAVEL,0,get_flight_cost,travel_from,'LAX',remove,
+581,multi_turn_base_173:t0,TRAVEL,0,get_flight_cost,travel_to,'JFK',remove,
+582,multi_turn_base_173:t0,TRAVEL,0,get_flight_cost,travel_date,'2026-11-15',remove,A7_removed_value_from_nowhere_in_trace(earlier turn/default/env)
+583,multi_turn_base_173:t0,TRAVEL,0,get_flight_cost,travel_class,'business',remove,A6_api_literal_removed_because_in_request

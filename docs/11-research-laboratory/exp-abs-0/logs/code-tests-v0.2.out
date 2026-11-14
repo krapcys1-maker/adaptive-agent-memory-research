@@ -1,0 +1,54 @@
+test_api_constants_context_free (__main__.T1Rule.test_api_constants_context_free) ... ok
+test_block_level_replacement (__main__.T1Rule.test_block_level_replacement)
+a value removed in trace 1 must disappear from trace 2 too (audit R2, cause C1) ... ok
+test_decision_depends_only_on_function_param_value (__main__.T1Rule.test_decision_depends_only_on_function_param_value) ... ok
+test_no_marker_in_argument_position (__main__.T1Rule.test_no_marker_in_argument_position) ... ok
+test_provenance_note (__main__.T1Rule.test_provenance_note) ... ok
+test_travel_example (__main__.T1Rule.test_travel_example) ... ok
+test_vc_procedure_kept (__main__.T1Rule.test_vc_procedure_kept) ... ok
+test_all_abstract_blocks (__main__.T2Leak.test_all_abstract_blocks) ... ok
+test_scan_detects_a_planted_leak (__main__.T2Leak.test_scan_detects_a_planted_leak) ... ok
+test_audit_hook_blocks_other_reads (__main__.T3Process.test_audit_hook_blocks_other_reads)
+LA1: under the stimulus policy, opening a K1 result file stops the process (exit 97) ... ok
+test_deterministic_rebuild (__main__.T3Process.test_deterministic_rebuild) ... ok
+test_stim_reads_no_results (__main__.T3Process.test_stim_reads_no_results) ... ok
+test_P_builder_equals_K1 (__main__.T4K1Equality.test_P_builder_equals_K1) ... ok
+test_c_d_is_K1 (__main__.T4K1Equality.test_c_d_is_K1) ... ok
+test_raw_M_blocks_equal_K1 (__main__.T4K1Equality.test_raw_M_blocks_equal_K1) ... ok
+test_L1_L3 (__main__.T5Draws.test_L1_L3) ... ok
+test_joint_length_matching (__main__.T5Draws.test_joint_length_matching) ... ok
+test_new_draws_differ_from_K1 (__main__.T5Draws.test_new_draws_differ_from_K1) ... ok
+test_plan (__main__.T6Plan.test_plan) ... ok
+test_williams (__main__.T6Plan.test_williams) ... ok
+test_delta_method_se_matches_monte_carlo (__main__.T7Analysis.test_delta_method_se_matches_monte_carlo) ... ok
+test_holm (__main__.T7Analysis.test_holm) ... ok
+test_incomplete_blocks (__main__.T7Analysis.test_incomplete_blocks) ... ok
+test_lambda_estimates (__main__.T7Analysis.test_lambda_estimates) ... ok
+test_precondition_and_validity (__main__.T7Analysis.test_precondition_and_validity) ... [machine-local path omitted]
+  return np.nanmean(np.nanmean(aG, 1)) / np.nanmean(np.nanmean(sG, 1)) - np.nanmean(np.nanmean(aL, 1)) / np.nanmean(np.nanmean(sL, 1))
+[machine-local path omitted]
+  vG = (nG - 1) / nG * ((reps[:nG] - reps[:nG].mean()) ** 2).sum()
+[machine-local path omitted]
+  vL = (nL - 1) / nL * ((reps[nG:] - reps[nG:].mean()) ** 2).sum()
+[machine-local path omitted]
+  return np.nanmean(np.nanmean(aG, 1)) / np.nanmean(np.nanmean(sG, 1)) - np.nanmean(np.nanmean(aL, 1)) / np.nanmean(np.nanmean(sL, 1))
+ok
+test_sentences (__main__.T7Analysis.test_sentences) ... ok
+test_states_on_clear_data (__main__.T7Analysis.test_states_on_clear_data) ... ok
+test_records_to_arrays (__main__.T7bAssembly.test_records_to_arrays) ... ok
+test_mc1_baseline_rates (__main__.T8ManipulationChecksOnK1.test_mc1_baseline_rates) ... ok
+test_mc1_rule (__main__.T8ManipulationChecksOnK1.test_mc1_rule) ... ok
+test_mc2_positive_control_replicates (__main__.T8ManipulationChecksOnK1.test_mc2_positive_control_replicates) ... ok
+test_calls_within_limit (__main__.T9Budget.test_calls_within_limit) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 10.127s
+
+OK
+
+  MC1 marker baseline on K1 G/L episodes: M 3.1%, N 4.3%, S 1.9%
+
+  MC2 on K1 (episodes with a block-only instance value, M minus N chance): +8.6 pp [+5.4; +11.9]
+
+  expected calls (K1 rates per group and arm; abstract arms as raw): 18036; hard limit 22000
+  headroom of the hard limit over the forecast: 22%

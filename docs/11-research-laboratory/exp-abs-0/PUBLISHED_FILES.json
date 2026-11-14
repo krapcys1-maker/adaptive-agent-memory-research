@@ -1,0 +1,181 @@
+{
+ "task": "EXP-A draft (EXP-ABS-0) spec v0.2, audit and code",
+ "published": [
+  {
+   "path": "README.md",
+   "target": "docs/11-research-laboratory/exp-abs-0/README.md",
+   "sha256": "bfc2329e996b385715f826e3f2042e5183b169c75f65833bdd6c902c41529743",
+   "sha256_source": "bfc2329e996b385715f826e3f2042e5183b169c75f65833bdd6c902c41529743",
+   "bytes": 5916,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "spec/SPEC_EXP_A_v0.2.md",
+   "target": "docs/11-research-laboratory/exp-abs-0/spec/SPEC_EXP_A_v0.2.md",
+   "sha256": "b5f79ef616e7a24b997df0ce4e315768508bb8df264a311b248cd0edb38b4dd6",
+   "sha256_source": "727d1ccfff837078ef80f05cee5b00abdb7608ac714df4ba660a1efa0a4adf39",
+   "bytes": 24451,
+   "edits": [
+    "replaced 3 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  },
+  {
+   "path": "spec/SPEC_EXP_A_v0.1.md",
+   "target": "docs/11-research-laboratory/exp-abs-0/spec/SPEC_EXP_A_v0.1.md",
+   "sha256": "4d1fcb562187bc801a41b76556c301ad2b4ae722cb62dba345d7728c16145c11",
+   "sha256_source": "83d9b8acba579404ebee4c41dd3f499c78b59c8ea2bcd37af187188bdc9e3ec4",
+   "bytes": 31562,
+   "edits": [
+    "replaced 2 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  },
+  {
+   "path": "spec/ANALIZA_SENSU.md",
+   "target": "docs/11-research-laboratory/exp-abs-0/spec/ANALIZA_SENSU.md",
+   "sha256": "9fc60a43fbed3897fd5b18bcb2011e7185fd8e0a0a9273ac4f308451ff0ad824",
+   "sha256_source": "9fc60a43fbed3897fd5b18bcb2011e7185fd8e0a0a9273ac4f308451ff0ad824",
+   "bytes": 5803,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "audit/RAPORT_AUDYT_EXP_A_v0.1.md",
+   "target": "docs/11-research-laboratory/exp-abs-0/audit/RAPORT_AUDYT_EXP_A_v0.1.md",
+   "sha256": "c14723ef0097971473ff171ca239323bda37339f730679fa3e88ed49696b40b6",
+   "sha256_source": "ceb7c31f82976969f06f557c25e507085109831280754cbed02eecbcec64c167",
+   "bytes": 37808,
+   "edits": [
+    "replaced 4 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  },
+  {
+   "path": "audit/out/audit_abstraction.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/audit/out/audit_abstraction.out",
+   "sha256": "fbdd3fdda5e75aafe70c09ee68a64c1aecf97dd2df33ee83ce764307ec56df7c",
+   "sha256_source": "fbdd3fdda5e75aafe70c09ee68a64c1aecf97dd2df33ee83ce764307ec56df7c",
+   "bytes": 5756,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "audit/out/audit_calls_mc1.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/audit/out/audit_calls_mc1.out",
+   "sha256": "ca5198256de275206c1b4d5c35d2834285c695979781af205559ff975bf6f1a6",
+   "sha256_source": "ca5198256de275206c1b4d5c35d2834285c695979781af205559ff975bf6f1a6",
+   "bytes": 415,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "audit/out/audit_copy_k1.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/audit/out/audit_copy_k1.out",
+   "sha256": "0eeee1ef093e0090ea5c0d5ba7348e20ed8bc2f7dbbc9526477b4f8c356dcc68",
+   "sha256_source": "0eeee1ef093e0090ea5c0d5ba7348e20ed8bc2f7dbbc9526477b4f8c356dcc68",
+   "bytes": 8171,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "audit/out/audit_joint_match.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/audit/out/audit_joint_match.out",
+   "sha256": "0b975b3799bae670a7ad582ab6049bea8e03e6deea31d961b072b8c591e8c0a5",
+   "sha256_source": "0b975b3799bae670a7ad582ab6049bea8e03e6deea31d961b072b8c591e8c0a5",
+   "bytes": 138,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "audit/out/audit_power.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/audit/out/audit_power.out",
+   "sha256": "27fe7ff20b55417329ed4ad5df7d94638447eb2abd28cf9c031ef9cd70dc3ba5",
+   "sha256_source": "27fe7ff20b55417329ed4ad5df7d94638447eb2abd28cf9c031ef9cd70dc3ba5",
+   "bytes": 8287,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "audit/out/diag_leak.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/audit/out/diag_leak.out",
+   "sha256": "bfc1edeeec0a84c013ad87ed8d39c7b2202842d921d13a0ca83c35aa266813ea",
+   "sha256_source": "bfc1edeeec0a84c013ad87ed8d39c7b2202842d921d13a0ca83c35aa266813ea",
+   "bytes": 1811,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "audit/out/block_lengths_GL.csv",
+   "target": "docs/11-research-laboratory/exp-abs-0/audit/out/block_lengths_GL.csv",
+   "sha256": "3c3420430703397ca8262a56e12391a65be2211e8555a2a5a03a2301efd651f9",
+   "sha256_source": "3c3420430703397ca8262a56e12391a65be2211e8555a2a5a03a2301efd651f9",
+   "bytes": 27136,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "audit/out/decision_table_584.csv",
+   "target": "docs/11-research-laboratory/exp-abs-0/audit/out/decision_table_584.csv",
+   "sha256": "64354513e4e80baee7bf24b5b4d61e0bb7931fe9bfc2d4704209d7b6723880a9",
+   "sha256_source": "64354513e4e80baee7bf24b5b4d61e0bb7931fe9bfc2d4704209d7b6723880a9",
+   "bytes": 64655,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "logs/power-simulation-v0.1.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/logs/power-simulation-v0.1.out",
+   "sha256": "ec740d3524f899e44eef76c5fced978570e4b678726c1aeade26435c52e02b24",
+   "sha256_source": "ec740d3524f899e44eef76c5fced978570e4b678726c1aeade26435c52e02b24",
+   "bytes": 10809,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "logs/prior-evidence-v0.1.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/logs/prior-evidence-v0.1.out",
+   "sha256": "602336da85b4593bafef5ffd53484f6d07e50c7bea9fdd220bd2538791927824",
+   "sha256_source": "602336da85b4593bafef5ffd53484f6d07e50c7bea9fdd220bd2538791927824",
+   "bytes": 2611,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "logs/power-simulation-v0.2.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/logs/power-simulation-v0.2.out",
+   "sha256": "ab51edd88e4695ac38254f90acb3fb99cecef976672d4333863561eac18d8914",
+   "sha256_source": "ab51edd88e4695ac38254f90acb3fb99cecef976672d4333863561eac18d8914",
+   "bytes": 5257,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "logs/code-tests-v0.2.out",
+   "target": "docs/11-research-laboratory/exp-abs-0/logs/code-tests-v0.2.out",
+   "sha256": "e27264dc2f584bf564f0e44a276f5edaf74a991b4193ee4f45593457d878e3fd",
+   "sha256_source": "6b34ee57b6a9ed8523f2eb56f8e3d6956b88b3bf6da5d7ea5685b84369179da7",
+   "bytes": 3630,
+   "edits": [
+    "replaced 4 machine-local path(s) with '[machine-local path omitted]'"
+   ]
+  }
+ ],
+ "private": [],
+ "paths_are_relative": true,
+ "protected_check": {
+  "result": "clean",
+  "withheld": []
+ }
+}

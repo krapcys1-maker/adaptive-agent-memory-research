@@ -1,0 +1,2 @@
+{'turns': 195, 'raw_ok_any': 195, 'joint_ok_any': 195, 'joint_ok_ge20': 187}
+joint-feasible candidate pairs per turn: median 142 min 10
