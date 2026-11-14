@@ -137,6 +137,14 @@ def walk_json(value: Any, key_path: list[str]) -> Iterable[tuple[list[str], str,
                 yield key_path, str(index), child
 
 
+def _inside_repository(path: Path) -> bool:
+    try:
+        path.resolve().relative_to(ROOT.resolve())
+    except ValueError:
+        return False
+    return True
+
+
 def resolve_declared_target(manifest: Path, key: str, key_path: list[str]) -> tuple[Path, bool] | None:
     """Work out which file a declared digest refers to.
 
@@ -152,11 +160,14 @@ def resolve_declared_target(manifest: Path, key: str, key_path: list[str]) -> tu
     """
     candidate = key
     if "/" in candidate or candidate.endswith(tuple(TEXT_SUFFIXES)):
+        # A key that is an absolute path (a frozen artifact may record the machine that wrote it) joins to that
+        # absolute path, which can be a real file outside the repository. Only files inside the repository are
+        # declarations this audit can check; anything else is unresolvable here, never a crash.
         absolute = ROOT / candidate
-        if absolute.is_file():
+        if absolute.is_file() and _inside_repository(absolute):
             return absolute, True
         sibling = manifest.parent / candidate
-        if sibling.is_file():
+        if sibling.is_file() and _inside_repository(sibling):
             return sibling, True
         return None
 
