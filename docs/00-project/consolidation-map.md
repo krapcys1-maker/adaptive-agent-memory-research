@@ -42,13 +42,19 @@ The laboratory has its own home and is **not** part of this tree. No other direc
 |---|---|
 | `repo/` | the canonical clone at `main`; the git-ignored data that experiments expect (`external/`, `sources/papers`, `data/lab/arena/raw`) was moved into it from the old clone; every commit of the three legacy clones is kept as `refs/legacy/*` |
 | `work/` | worktrees of the branches in progress only; those of merged branches were removed |
-| `private/` | `raw` and `gh-revival` (raw runs and private reports of earlier experiments), `k1-executor` (the K1 executor folder with its 326 MB raw run), `legacy` (older audit and preparation folders, venv package lists, the old clone's scratch data), `backups` (the restored audit deliveries and a copy of the coordinator's configuration before the switch), `docs-local` (the local coordination documents) |
+| `private/` | `raw` and `gh-revival` (raw runs and private reports of earlier experiments), `k1-executor` (the K1 executor folder with its 326 MB raw run), `legacy` (older audit and preparation folders, venv package lists, the old clone's scratch data), `backups` (the restored audit deliveries and a copy of the coordinator's configuration before the switch), `docs-local` (the local coordination documents), `drafts` (unfinished drafts such as EXP-A, each with a status file), `notes-on-memory` (the maintainer's notes), `raw/<id>` (raw runs moved here by the export tool) |
 | `sync/` | `sync.local.json`, the folder manifests and the dated reports; the scheduled task `AAMR-SYNC-REPORT` runs the report every day at 07:30 |
 
-**Compatibility stubs.** The coordinator's database stores some absolute paths of the old layout, and a migration of a running database needs its own safeguard (a copy and a restore test), so the
-old names are kept as directory junctions that point into the working root (delete a junction and move the folder back to undo): the old clone's name -> `repo/`, the old
-`GH_REVIVAL` folder -> `private/gh-revival`, the K1 executor folder -> `private/k1-executor`, the 2026-11-13 audit folder -> `private/legacy/aamr-audit-2026-11-13`. The coordinator's
-read-only commands (`lab list`, `runner check`, `status`) gave identical output before and after the switch, and its next scheduled ticks ran without error.
+**The laboratory's paths (switched and the stubs removed, 2026-11-14).** The coordinator's database and configuration named the old layout by absolute paths, so for the first day the old names were kept as
+directory junctions into the working root. They are gone now. The switch was done in this order: a verified backup of the code (git bundle, restore clone, `fsck`) and of the database (online backup,
+integrity check, restore test); the configuration moved to the new layout (`local_root` is `D:\AAMR`, `aamr_repo` is `repo`, `gh_revival` is `private/gh-revival`; the read-only roots only grew, the old root stays and
+`D:\AAMR\repo` and `D:\AAMR\private\gh-revival` were added); then, in one transaction after a snapshot, 18 path cells of the database (the `experiments` rows, their freeze records and one `watch` value) and,
+in a second step after a SHA-256 proof for each file, the ten pinned-file keys of the K1 runner record. Historical text (event messages, finished tasks) was left as it was. The coordinator's
+commands `lab list`, `runner check`, `status` and `lab verify` gave the same results before the switch, after it, and after the junctions were removed (the only differences are the new paths and elapsed
+time), and its scheduled ticks after the switch ran without error. One tick, at the moment the two configuration files were changed, read a half-switched configuration and logged NIGHT-1 and NIGHT-2 as
+`missing` for five minutes (events "done -> missing" and "missing -> done"); nothing was dispatched and the next tick restored both. The scripts and the before/after outputs are in
+`private/backups/coordinator-path-migration-2026-11-14` and `sync/reports`. The laboratory's code is its own private repository (code only: no database, `.env`, keys, private results or raw transcripts), changed
+by its pull request #3 there.
 
 ## 3. Target layout inside the repository
 
@@ -111,24 +117,31 @@ an append to the registry and event log. Then:
 
 | Legacy location | Result |
 |---|---|
-| the old main clone and its 36 worktrees, the standalone lab-map clone | **removed**; their git-ignored data moved into `repo/` and `private/legacy`, their venvs removed after recording the package lists (`private/legacy/venv-freeze`); the old clone's name is a junction to `repo/` |
+| the old main clone and its 36 worktrees, the standalone lab-map clone | **removed**; their git-ignored data moved into `repo/` and `private/legacy`, their venvs removed after recording the package lists (`private/legacy/venv-freeze`); the old clone's name was a junction to `repo/` for a day and is gone |
 | the folder of earlier integration worktrees (`... - community-cleanup`, a second clone and 6 worktrees) | **removed** |
-| `GH_REVIVAL` | its 36 worktrees were **removed**; its 27 data folders and loose notes moved to `private/gh-revival` (junction at the old name) |
-| the K1 executor folder | moved to `private/k1-executor` (junction at the old name, because the coordinator's database names it); its code and results are in `data/lab/aamr-k1/` |
-| the 2026-11-13 audit and the K1 specifications folder | moved to `private/legacy/aamr-audit-2026-11-13` (junction at the old name: the registry pins the K1 specification there); the specification itself is in `data/lab/aamr-k1/spec/` |
+| `GH_REVIVAL` | its 36 worktrees were **removed**; its 27 data folders and loose notes moved to `private/gh-revival` (the old name is gone, with its two worktree junctions) |
+| the K1 executor folder | moved to `private/k1-executor` (the coordinator's database and configuration now name the new place); its code and results are in `data/lab/aamr-k1/` |
+| the 2026-11-13 audit and the K1 specifications folder | moved to `private/legacy/aamr-audit-2026-11-13` (the registry's pin of the K1 specification now names the new place, same SHA-256); the specification itself is in `data/lab/aamr-k1/spec/` |
 | the preparation package for a next experiment, the runner scheduling test folder | moved to `private/legacy` |
 | the audit backups | moved to `private/backups/audit-backups` (they are the only backups of earlier deliveries; no newer verified backup exists) |
 | local coordination documents of the old root | copied to `private/docs-local` and verified by hash, originals removed; the old root's `CLAUDE.md` is a pointer to the new one at the working root |
 
-**Exceptions that remain, with the reason:** the coordinator's home folder (the running laboratory); the old root folder as a thin compatibility shell (the two secret files whose location the held-out isolation
-design names, the data of the separate NIE persona project, a project settings folder, and two junctions); the four junctions named above; the maintainer's notes folder on the pattern-research ("pajęczyna") topic
-(an unidentified process holds the folder itself, although no file in it is locked, so it was not moved); and the unfinished EXP-A (EXP-ABS-0) draft folders (specification v0.1 and v0.2, the methodological audit, code and
-tests: unfrozen drafts awaiting the owner's approval; the code still reads the K1 executor and audit folders through the junctions, and the daily report lists them as held, with a warning until a protected-data check and
-a publication decision exist). No session was running on 2026-11-14 at the end of the day. The K1 audit folder (its audit is published; it holds the blinded cases and their key) and the laboratory review report
-were moved to `private/legacy`; the review is held in the daily report until the owner decides whether to publish it. A third-party research tool and an unrelated project that live on the same disk are not part of this project.
+**What remains outside the working root, and why.** There is no junction left anywhere. (1) The coordinator's home folder: the running laboratory, with its own scheduler task, database and private
+repository of code; its configuration now names `D:\AAMR`. (2) The old root folder, as a thin shell: the two secret files (their location is named by the frozen E0 specification and by the laboratory's security note, so
+they were neither opened nor moved), the data of the separate NIE persona project, the application's own lock and log folders, and a `CLAUDE.md` that points to the working root. (3) A third-party research tool and unrelated
+projects on the same disk are not part of this project.
+
+**Moved on 2026-11-14, last step:** the maintainer's notes on the pattern-research ("pajęczyna") topic, once the process that held the folder let go (no process was stopped), to `private/notes-on-memory`; and the unfinished
+EXP-A (EXP-ABS-0) draft (specification v0.1 and v0.2, the methodological audit, code, tests, stimulus preview) to `private/drafts/exp-a`, copied byte for byte (37 files, SHA-256 manifest) with a `STATUS.md` that says
+*draft, not frozen, not run, not approved* and maps the old paths named inside the files to the new ones (the files still name the old places; a new version, not an edit, must change that before any run). The K1 audit
+folder (its audit is published; it holds the blinded cases and their key) and the laboratory review report are in `private/legacy`. The EXP-A draft and the review report are held in the daily report; their protected-data check
+(run with `scripts/aamr_export.py check`) holds them only for machine-local paths in the text, so they could be published with `--sanitize-paths` once the owner decides. One other session (the laboratory's builder, working on
+the laboratory's own code) was active at the end of the day; it was told about the switch and uses only the new paths.
 
 The 63 remote branches that were already contained in `main` were deleted on GitHub after each was re-checked against the live remote (same SHA as listed, still an ancestor of `main`, no open pull request); the list with
-their last SHAs is kept in `private/backups/remote-branches-2026-11-14`. Only `main` and `codex/structured-memory-runtime-2026-11-04` (88 patches of unique history, the former large pull request) remain on the remote; there are no tags.
+their last SHAs is kept in `private/backups/remote-branches-2026-11-14`. On the remote remain `main`, `codex/structured-memory-runtime-2026-11-04` (88 patches of unique history, the former large pull request), the branch of this
+closing pull request, and `docs/raw-freeze-errata-2026-11-14` (its content is on `main` as pull request #151, but one of its commits was authored under the wrong git identity (not the GitHub no-reply address used for all
+other work), so that pull request was made from a new branch; deleting the old branch is the maintainer's decision, as deleting an unmerged branch is outside what was authorised). There are no tags.
 
 ## 7. The laboratory and the repository
 
@@ -140,9 +153,10 @@ their last SHAs is kept in `private/backups/remote-branches-2026-11-14`. Only `m
 4. **How the gap is watched.** The daily report reads the laboratory's declared experiments (a run folder with
    `DONE.json` means finished) and its closed missions, and shows each task as one of: *on main*, *in PR*, *held by owner*,
    *finished only locally*. Tasks that ended without a declared target path are listed separately, so nothing is hidden.
-5. **A limited export step** is needed for tasks whose products have no declared path (closed missions, the K1 executor):
-   each such task gets a target path in this repository, either in the synchronisation configuration or, if the owner
-   decides to change the laboratory, as a field of the task definition. Until then the report names the gap.
+5. **The export step exists** (`scripts/aamr_export.py`, [export flow](coordinator-export-flow.md)): a finished task gets an export plan (target paths here, raw and protected files for the
+   private area); the tool runs the protected-data check, copies or moves the raw files to `private/`, opens the branch and pull request, waits for the required checks, merges only when they pass,
+   confirms the files on `main` by Git blob and writes the export record that the daily report reads. Anything uncertain holds that export only. It was run end to end on a fictional task
+   (pull request #152, merged and confirmed on `main`; the same plan with a token-shaped string was held with nothing pushed). The fictional result was removed again afterwards.
 6. **Infrastructure code** of the laboratory is not required to be public. If the owner later wants it published, it would
    be imported with history under a path of the owner's choice, in a separate pull request, and the running installation
    would still not be switched over by that import.
@@ -150,17 +164,14 @@ their last SHAs is kept in `private/backups/remote-branches-2026-11-14`. Only `m
 ## 8. Open decisions for the maintainer
 
 1. A second physical location for private backups (the audit backups and the raw runs are on the same disk as everything else).
-2. The coordinator's absolute paths: migrate its database and configuration to the new layout and then remove the four junctions. It needs a copy of the database and a restore test first; the coordinator's own
-   fix for the K1 registry entry (branch `fix/lab-sync-keep-protocol`) is not merged there.
+2. *Done, 2026-11-14:* the coordinator's database and configuration were migrated to the new layout after a verified copy, and the junctions were removed (section 2).
 3. K1: the large raw run (326 MB) stays private; if it should be public, Git LFS or a release asset is the choice. K1b (about 1 000 tasks) is not designed or approved.
 4. The held-out set of the T39 plan: who writes it, given that the plan is now public (decision G of that plan).
 5. A fork for the cloned third-party tool.
 6. Whether to create the `status:` labels proposed in the work rules.
-7. Whether, and where, the laboratory's infrastructure code is ever published.
-8. The `raw_root` field of the two published `raw-freeze.json` files (NIGHT-1, NIGHT-2) records a Windows drive path of the old layout (a drive letter, the old root folder, the old `GH_REVIVAL` folder and the run folder). It was published
-   byte for byte with an erratum, on the owner's ruling for NIGHT-1. A later commit or revert does not remove it from Git history, nor from the pull-request refs and any clone or fork; only a history rewrite with a force push would, and that
-   would break the recorded commit hashes and links. The folder names were already in earlier public commits; the user name and any secret are not in these files. Decision: leave as is, or replace the value in the current tree with an erratum
-   (the frozen bytes then change; no manifest pins these two files), or rewrite history.
-9. Whether to publish the EXP-A draft and the laboratory review report (held in the daily report).
+7. Whether the laboratory's infrastructure code is ever published. (It has its own private repository, code only; the owner's rule is that no database, `.env`, key, private result or raw transcript goes there.)
+8. *Decided by the owner, done:* the `raw_root` field of the published `raw-freeze.json` files (NIGHT-1, NIGHT-2) and the paths in the K1 files stay as published, byte for byte, with errata that say where the raw runs are now and that
+   their hashes were re-checked against the original manifests (17/17, 19/19, 21/21). No history was rewritten. New manifests use relative paths, and the export tool holds an export whose manifest records an absolute path.
+9. Whether to publish the EXP-A draft and the laboratory review report (held in the daily report; only machine-local paths in the text stand in the way).
 10. The EXP-A (EXP-ABS-0) specification itself: approval to freeze, to build its executor and to run.
 
