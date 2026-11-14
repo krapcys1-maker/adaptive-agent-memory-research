@@ -1,0 +1,1977 @@
+{
+  "experiment": "EXP-XFER-1",
+  "stage": "S1 (development, Vehicle Control; not confirmatory)",
+  "test_tasks": 30,
+  "arms": [
+    "N",
+    "R+",
+    "Tp",
+    "Tr",
+    "G",
+    "T*"
+  ],
+  "incomplete_arms": [],
+  "sources": {
+    "Tp": "s1c 20261112T145644Z",
+    "N": "s1c 20261112T145644Z",
+    "Tr": "s1c 20261112T145644Z",
+    "G": "s1c 20261112T145644Z",
+    "R+": "s1c 20261112T145644Z",
+    "T*": "s1e 20261112T155528Z"
+  },
+  "lessons_sha256": "af563e629e7594988776204d9fdb9633c3d0903a531d838feac55f842deef960",
+  "lesson_tools": [
+    "startEngine"
+  ],
+  "ledger": {
+    "calls": 3232,
+    "seconds": 3966.186999999998,
+    "runs": [
+      {
+        "stage": "s1a",
+        "run_id": "20261112T145317Z",
+        "calls": 114,
+        "elapsed_seconds": 148.375,
+        "status": "completed"
+      },
+      {
+        "stage": "s1b",
+        "run_id": "20261112T145620Z",
+        "calls": 1,
+        "elapsed_seconds": 8.375,
+        "status": "completed"
+      },
+      {
+        "stage": "s1c",
+        "run_id": "20261112T145644Z",
+        "calls": 1483,
+        "elapsed_seconds": 1725.9060000000027,
+        "status": "completed"
+      },
+      {
+        "stage": "s1d",
+        "run_id": "20261112T152547Z",
+        "calls": 1371,
+        "elapsed_seconds": 1745.7969999999987,
+        "status": "completed"
+      },
+      {
+        "stage": "s1e",
+        "run_id": "20261112T155528Z",
+        "calls": 263,
+        "elapsed_seconds": 337.73399999999674,
+        "status": "completed"
+      }
+    ]
+  },
+  "s1a": {
+    "run_id": "20261112T145317Z",
+    "transport": {
+      "all_ok": true,
+      "gpu_full": true,
+      "api_ps_model": {
+        "name": "qwen2.5:14b-instruct",
+        "model": "qwen2.5:14b-instruct",
+        "size": 10290085231,
+        "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "14.8B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-11-12T16:58:57.1606806+02:00",
+        "size_vram": 10290085231,
+        "context_length": 8192,
+        "runner": "llamacpp"
+      }
+    },
+    "tasks": [
+      "multi_turn_base_50",
+      "multi_turn_base_67",
+      "multi_turn_base_60",
+      "multi_turn_base_53",
+      "multi_turn_base_71"
+    ],
+    "episodes": [
+      {
+        "task": "multi_turn_base_50",
+        "arm": "N",
+        "identical_to_pilot": true,
+        "solved": true,
+        "calls": 2
+      },
+      {
+        "task": "multi_turn_base_50",
+        "arm": "R+",
+        "identical_to_pilot": true,
+        "solved": true,
+        "calls": 2
+      },
+      {
+        "task": "multi_turn_base_67",
+        "arm": "N",
+        "identical_to_pilot": true,
+        "solved": false,
+        "calls": 13
+      },
+      {
+        "task": "multi_turn_base_67",
+        "arm": "R+",
+        "identical_to_pilot": true,
+        "solved": false,
+        "calls": 13
+      },
+      {
+        "task": "multi_turn_base_60",
+        "arm": "N",
+        "identical_to_pilot": false,
+        "solved": true,
+        "calls": 14
+      },
+      {
+        "task": "multi_turn_base_60",
+        "arm": "R+",
+        "identical_to_pilot": true,
+        "solved": true,
+        "calls": 16
+      },
+      {
+        "task": "multi_turn_base_53",
+        "arm": "N",
+        "identical_to_pilot": true,
+        "solved": true,
+        "calls": 12
+      },
+      {
+        "task": "multi_turn_base_53",
+        "arm": "R+",
+        "identical_to_pilot": true,
+        "solved": false,
+        "calls": 8
+      },
+      {
+        "task": "multi_turn_base_71",
+        "arm": "N",
+        "identical_to_pilot": true,
+        "solved": false,
+        "calls": 19
+      },
+      {
+        "task": "multi_turn_base_71",
+        "arm": "R+",
+        "identical_to_pilot": true,
+        "solved": true,
+        "calls": 11
+      }
+    ],
+    "identical_to_pilot": false,
+    "reuse_pilot_N_and_Rplus": false,
+    "base_arms_to_run": [
+      "N",
+      "R+",
+      "Tp",
+      "Tr",
+      "G"
+    ]
+  },
+  "per_arm": {
+    "N": {
+      "source": "s1c 20261112T145644Z",
+      "solved": 9,
+      "state_all": 11,
+      "mean_progress": 0.48277777777777775,
+      "error_events": 44,
+      "error_results": 85,
+      "repeat_errors": 41,
+      "first_attempt_turns": 21,
+      "first_attempt_errors": 21,
+      "first_attempt_error_rate": 1.0,
+      "invalid_calls": 5,
+      "invalid_outputs": 0,
+      "replay_mismatch": 0,
+      "cost": {
+        "model_calls": 307,
+        "prompt_eval_sum": 554758,
+        "eval_sum": 8487,
+        "wall_seconds": 290.2349999999933,
+        "turns_started": 99,
+        "mean_block_chars": 0.0,
+        "status": {
+          "completed": 27,
+          "forced_termination": 3
+        }
+      }
+    },
+    "R+": {
+      "source": "s1c 20261112T145644Z",
+      "solved": 13,
+      "state_all": 13,
+      "mean_progress": 0.56,
+      "error_events": 29,
+      "error_results": 46,
+      "repeat_errors": 17,
+      "first_attempt_turns": 25,
+      "first_attempt_errors": 13,
+      "first_attempt_error_rate": 0.52,
+      "invalid_calls": 3,
+      "invalid_outputs": 0,
+      "replay_mismatch": 0,
+      "cost": {
+        "model_calls": 289,
+        "prompt_eval_sum": 655076,
+        "eval_sum": 10690,
+        "wall_seconds": 431.02800000002026,
+        "turns_started": 101,
+        "mean_block_chars": 1438.0891089108911,
+        "status": {
+          "completed": 28,
+          "forced_termination": 2
+        }
+      }
+    },
+    "Tp": {
+      "source": "s1c 20261112T145644Z",
+      "solved": 9,
+      "state_all": 11,
+      "mean_progress": 0.4666666666666667,
+      "error_events": 23,
+      "error_results": 38,
+      "repeat_errors": 15,
+      "first_attempt_turns": 29,
+      "first_attempt_errors": 2,
+      "first_attempt_error_rate": 0.06896551724137931,
+      "invalid_calls": 6,
+      "invalid_outputs": 0,
+      "replay_mismatch": 0,
+      "cost": {
+        "model_calls": 293,
+        "prompt_eval_sum": 589448,
+        "eval_sum": 9724,
+        "wall_seconds": 379.83299999999144,
+        "turns_started": 104,
+        "mean_block_chars": 698.0,
+        "status": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      }
+    },
+    "Tr": {
+      "source": "s1c 20261112T145644Z",
+      "solved": 13,
+      "state_all": 15,
+      "mean_progress": 0.5533333333333333,
+      "error_events": 44,
+      "error_results": 84,
+      "repeat_errors": 40,
+      "first_attempt_turns": 21,
+      "first_attempt_errors": 21,
+      "first_attempt_error_rate": 1.0,
+      "invalid_calls": 5,
+      "invalid_outputs": 0,
+      "replay_mismatch": 0,
+      "cost": {
+        "model_calls": 299,
+        "prompt_eval_sum": 549688,
+        "eval_sum": 8468,
+        "wall_seconds": 290.2640000000101,
+        "turns_started": 99,
+        "mean_block_chars": 0.0,
+        "status": {
+          "completed": 27,
+          "forced_termination": 3
+        }
+      }
+    },
+    "G": {
+      "source": "s1c 20261112T145644Z",
+      "solved": 11,
+      "state_all": 13,
+      "mean_progress": 0.48388888888888887,
+      "error_events": 42,
+      "error_results": 61,
+      "repeat_errors": 19,
+      "first_attempt_turns": 26,
+      "first_attempt_errors": 17,
+      "first_attempt_error_rate": 0.6538461538461539,
+      "invalid_calls": 3,
+      "invalid_outputs": 0,
+      "replay_mismatch": 0,
+      "cost": {
+        "model_calls": 295,
+        "prompt_eval_sum": 557319,
+        "eval_sum": 8636,
+        "wall_seconds": 332.2479999999996,
+        "turns_started": 103,
+        "mean_block_chars": 481.0,
+        "status": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      }
+    },
+    "T*": {
+      "source": "s1e 20261112T155528Z",
+      "solved": 11,
+      "state_all": 11,
+      "mean_progress": 0.5038888888888889,
+      "error_events": 21,
+      "error_results": 30,
+      "repeat_errors": 9,
+      "first_attempt_turns": 26,
+      "first_attempt_errors": 2,
+      "first_attempt_error_rate": 0.07692307692307693,
+      "invalid_calls": 7,
+      "invalid_outputs": 0,
+      "replay_mismatch": 0,
+      "cost": {
+        "model_calls": 263,
+        "prompt_eval_sum": 507515,
+        "eval_sum": 7280,
+        "wall_seconds": 337.3160000000207,
+        "turns_started": 103,
+        "mean_block_chars": 877.6116504854369,
+        "status": {
+          "completed": 29,
+          "forced_termination": 1
+        }
+      }
+    }
+  },
+  "pairs": {
+    "R+-N": {
+      "solved": {
+        "x_only": 6,
+        "y_only": 2,
+        "p_one_sided_x_gt_y": 0.14453125,
+        "p_two_sided": 0.2890625,
+        "diff": 4
+      },
+      "errors": {
+        "events": {
+          "x_sum": 26,
+          "y_sum": 42,
+          "ratio": 0.6190476190476191,
+          "x_lower": 15,
+          "x_higher": 5,
+          "ties": 10,
+          "p_one_sided_x_lt_y": 0.020694732666015625,
+          "p_two_sided": 0.04138946533203125
+        },
+        "raw": {
+          "x_sum": 41,
+          "y_sum": 81,
+          "ratio": 0.5061728395061729,
+          "x_lower": 18,
+          "x_higher": 6,
+          "ties": 6,
+          "p_one_sided_x_lt_y": 0.011327922344207764,
+          "p_two_sided": 0.022655844688415527
+        },
+        "repeat": {
+          "x_sum": 15,
+          "y_sum": 39,
+          "ratio": 0.38461538461538464,
+          "x_lower": 9,
+          "x_higher": 4,
+          "ties": 17,
+          "p_one_sided_x_lt_y": 0.1334228515625,
+          "p_two_sided": 0.266845703125
+        },
+        "common_turns": 94
+      },
+      "layers": {
+        "mem_layer=A": {
+          "n": 7,
+          "x_pass": 6,
+          "y_pass": 5,
+          "diff_pp": 14.285714285714286
+        },
+        "mem_layer=B": {
+          "n": 17,
+          "x_pass": 13,
+          "y_pass": 11,
+          "diff_pp": 11.764705882352942
+        },
+        "mem_layer=C": {
+          "n": 37,
+          "x_pass": 27,
+          "y_pass": 27,
+          "diff_pp": 0.0
+        },
+        "gt_layer=A": {
+          "n": 24,
+          "x_pass": 21,
+          "y_pass": 19,
+          "diff_pp": 8.333333333333334
+        },
+        "gt_layer=B": {
+          "n": 14,
+          "x_pass": 11,
+          "y_pass": 10,
+          "diff_pp": 7.142857142857143
+        },
+        "gt_layer=C": {
+          "n": 23,
+          "x_pass": 14,
+          "y_pass": 14,
+          "diff_pp": 0.0
+        },
+        "l_turn=True": {
+          "n": 11,
+          "x_pass": 9,
+          "y_pass": 6,
+          "diff_pp": 27.272727272727273
+        },
+        "l_turn=False": {
+          "n": 50,
+          "x_pass": 37,
+          "y_pass": 37,
+          "diff_pp": 0.0
+        }
+      }
+    },
+    "Tp-N": {
+      "solved": {
+        "x_only": 3,
+        "y_only": 3,
+        "p_one_sided_x_gt_y": 0.65625,
+        "p_two_sided": 1.0,
+        "diff": 0
+      },
+      "errors": {
+        "events": {
+          "x_sum": 22,
+          "y_sum": 44,
+          "ratio": 0.5,
+          "x_lower": 17,
+          "x_higher": 0,
+          "ties": 13,
+          "p_one_sided_x_lt_y": 7.62939453125e-06,
+          "p_two_sided": 1.52587890625e-05
+        },
+        "raw": {
+          "x_sum": 37,
+          "y_sum": 85,
+          "ratio": 0.43529411764705883,
+          "x_lower": 18,
+          "x_higher": 2,
+          "ties": 10,
+          "p_one_sided_x_lt_y": 0.00020122528076171875,
+          "p_two_sided": 0.0004024505615234375
+        },
+        "repeat": {
+          "x_sum": 15,
+          "y_sum": 41,
+          "ratio": 0.36585365853658536,
+          "x_lower": 13,
+          "x_higher": 4,
+          "ties": 13,
+          "p_one_sided_x_lt_y": 0.0245208740234375,
+          "p_two_sided": 0.049041748046875
+        },
+        "common_turns": 99
+      },
+      "layers": {
+        "mem_layer=A": {
+          "n": 7,
+          "x_pass": 5,
+          "y_pass": 6,
+          "diff_pp": -14.285714285714286
+        },
+        "mem_layer=B": {
+          "n": 15,
+          "x_pass": 9,
+          "y_pass": 10,
+          "diff_pp": -6.666666666666667
+        },
+        "mem_layer=C": {
+          "n": 36,
+          "x_pass": 26,
+          "y_pass": 25,
+          "diff_pp": 2.7777777777777777
+        },
+        "gt_layer=A": {
+          "n": 23,
+          "x_pass": 14,
+          "y_pass": 19,
+          "diff_pp": -21.73913043478261
+        },
+        "gt_layer=B": {
+          "n": 13,
+          "x_pass": 10,
+          "y_pass": 9,
+          "diff_pp": 7.6923076923076925
+        },
+        "gt_layer=C": {
+          "n": 22,
+          "x_pass": 16,
+          "y_pass": 13,
+          "diff_pp": 13.636363636363637
+        },
+        "l_turn=True": {
+          "n": 14,
+          "x_pass": 10,
+          "y_pass": 8,
+          "diff_pp": 14.285714285714286
+        },
+        "l_turn=False": {
+          "n": 44,
+          "x_pass": 30,
+          "y_pass": 33,
+          "diff_pp": -6.818181818181818
+        }
+      }
+    },
+    "Tr-N": {
+      "solved": {
+        "x_only": 5,
+        "y_only": 1,
+        "p_one_sided_x_gt_y": 0.109375,
+        "p_two_sided": 0.21875,
+        "diff": 4
+      },
+      "errors": {
+        "events": {
+          "x_sum": 44,
+          "y_sum": 44,
+          "ratio": 1.0,
+          "x_lower": 1,
+          "x_higher": 1,
+          "ties": 28,
+          "p_one_sided_x_lt_y": 0.75,
+          "p_two_sided": 1.0
+        },
+        "raw": {
+          "x_sum": 84,
+          "y_sum": 85,
+          "ratio": 0.9882352941176471,
+          "x_lower": 1,
+          "x_higher": 1,
+          "ties": 28,
+          "p_one_sided_x_lt_y": 0.75,
+          "p_two_sided": 1.0
+        },
+        "repeat": {
+          "x_sum": 40,
+          "y_sum": 41,
+          "ratio": 0.975609756097561,
+          "x_lower": 1,
+          "x_higher": 1,
+          "ties": 28,
+          "p_one_sided_x_lt_y": 0.75,
+          "p_two_sided": 1.0
+        },
+        "common_turns": 99
+      },
+      "layers": {
+        "mem_layer=A": {
+          "n": 9,
+          "x_pass": 7,
+          "y_pass": 7,
+          "diff_pp": 0.0
+        },
+        "mem_layer=B": {
+          "n": 18,
+          "x_pass": 12,
+          "y_pass": 12,
+          "diff_pp": 0.0
+        },
+        "mem_layer=C": {
+          "n": 37,
+          "x_pass": 28,
+          "y_pass": 25,
+          "diff_pp": 8.108108108108109
+        },
+        "gt_layer=A": {
+          "n": 27,
+          "x_pass": 21,
+          "y_pass": 21,
+          "diff_pp": 0.0
+        },
+        "gt_layer=B": {
+          "n": 14,
+          "x_pass": 10,
+          "y_pass": 10,
+          "diff_pp": 0.0
+        },
+        "gt_layer=C": {
+          "n": 23,
+          "x_pass": 16,
+          "y_pass": 13,
+          "diff_pp": 13.043478260869565
+        },
+        "l_turn=True": {
+          "n": 15,
+          "x_pass": 12,
+          "y_pass": 8,
+          "diff_pp": 26.666666666666668
+        },
+        "l_turn=False": {
+          "n": 49,
+          "x_pass": 35,
+          "y_pass": 36,
+          "diff_pp": -2.0408163265306123
+        }
+      }
+    },
+    "G-N": {
+      "solved": {
+        "x_only": 4,
+        "y_only": 2,
+        "p_one_sided_x_gt_y": 0.34375,
+        "p_two_sided": 0.6875,
+        "diff": 2
+      },
+      "errors": {
+        "events": {
+          "x_sum": 40,
+          "y_sum": 43,
+          "ratio": 0.9302325581395349,
+          "x_lower": 9,
+          "x_higher": 5,
+          "ties": 16,
+          "p_one_sided_x_lt_y": 0.21197509765625,
+          "p_two_sided": 0.4239501953125
+        },
+        "raw": {
+          "x_sum": 58,
+          "y_sum": 84,
+          "ratio": 0.6904761904761905,
+          "x_lower": 17,
+          "x_higher": 6,
+          "ties": 7,
+          "p_one_sided_x_lt_y": 0.01734483242034912,
+          "p_two_sided": 0.03468966484069824
+        },
+        "repeat": {
+          "x_sum": 18,
+          "y_sum": 41,
+          "ratio": 0.43902439024390244,
+          "x_lower": 12,
+          "x_higher": 4,
+          "ties": 14,
+          "p_one_sided_x_lt_y": 0.0384063720703125,
+          "p_two_sided": 0.076812744140625
+        },
+        "common_turns": 96
+      },
+      "layers": {
+        "mem_layer=A": {
+          "n": 8,
+          "x_pass": 7,
+          "y_pass": 6,
+          "diff_pp": 12.5
+        },
+        "mem_layer=B": {
+          "n": 17,
+          "x_pass": 11,
+          "y_pass": 12,
+          "diff_pp": -5.882352941176471
+        },
+        "mem_layer=C": {
+          "n": 37,
+          "x_pass": 26,
+          "y_pass": 27,
+          "diff_pp": -2.7027027027027026
+        },
+        "gt_layer=A": {
+          "n": 27,
+          "x_pass": 21,
+          "y_pass": 21,
+          "diff_pp": 0.0
+        },
+        "gt_layer=B": {
+          "n": 14,
+          "x_pass": 10,
+          "y_pass": 11,
+          "diff_pp": -7.142857142857143
+        },
+        "gt_layer=C": {
+          "n": 21,
+          "x_pass": 13,
+          "y_pass": 13,
+          "diff_pp": 0.0
+        },
+        "l_turn=True": {
+          "n": 13,
+          "x_pass": 10,
+          "y_pass": 7,
+          "diff_pp": 23.076923076923077
+        },
+        "l_turn=False": {
+          "n": 49,
+          "x_pass": 34,
+          "y_pass": 38,
+          "diff_pp": -8.16326530612245
+        }
+      }
+    },
+    "T*-N": {
+      "solved": {
+        "x_only": 5,
+        "y_only": 3,
+        "p_one_sided_x_gt_y": 0.36328125,
+        "p_two_sided": 0.7265625,
+        "diff": 2
+      },
+      "errors": {
+        "events": {
+          "x_sum": 20,
+          "y_sum": 43,
+          "ratio": 0.46511627906976744,
+          "x_lower": 18,
+          "x_higher": 2,
+          "ties": 10,
+          "p_one_sided_x_lt_y": 0.00020122528076171875,
+          "p_two_sided": 0.0004024505615234375
+        },
+        "raw": {
+          "x_sum": 29,
+          "y_sum": 81,
+          "ratio": 0.35802469135802467,
+          "x_lower": 20,
+          "x_higher": 3,
+          "ties": 7,
+          "p_one_sided_x_lt_y": 0.000244140625,
+          "p_two_sided": 0.00048828125
+        },
+        "repeat": {
+          "x_sum": 9,
+          "y_sum": 38,
+          "ratio": 0.23684210526315788,
+          "x_lower": 14,
+          "x_higher": 3,
+          "ties": 13,
+          "p_one_sided_x_lt_y": 0.0063629150390625,
+          "p_two_sided": 0.012725830078125
+        },
+        "common_turns": 98
+      },
+      "layers": {
+        "mem_layer=A": {
+          "n": 8,
+          "x_pass": 5,
+          "y_pass": 7,
+          "diff_pp": -25.0
+        },
+        "mem_layer=B": {
+          "n": 16,
+          "x_pass": 11,
+          "y_pass": 11,
+          "diff_pp": 0.0
+        },
+        "mem_layer=C": {
+          "n": 35,
+          "x_pass": 25,
+          "y_pass": 23,
+          "diff_pp": 5.714285714285714
+        },
+        "gt_layer=A": {
+          "n": 23,
+          "x_pass": 14,
+          "y_pass": 18,
+          "diff_pp": -17.391304347826086
+        },
+        "gt_layer=B": {
+          "n": 13,
+          "x_pass": 11,
+          "y_pass": 10,
+          "diff_pp": 7.6923076923076925
+        },
+        "gt_layer=C": {
+          "n": 23,
+          "x_pass": 16,
+          "y_pass": 13,
+          "diff_pp": 13.043478260869565
+        },
+        "l_turn=True": {
+          "n": 14,
+          "x_pass": 10,
+          "y_pass": 8,
+          "diff_pp": 14.285714285714286
+        },
+        "l_turn=False": {
+          "n": 45,
+          "x_pass": 31,
+          "y_pass": 33,
+          "diff_pp": -4.444444444444445
+        }
+      }
+    },
+    "Tp-R+": {
+      "solved": {
+        "x_only": 3,
+        "y_only": 7,
+        "p_one_sided_x_gt_y": 0.9453125,
+        "p_two_sided": 0.34375,
+        "diff": -4
+      },
+      "errors": {
+        "events": {
+          "x_sum": 23,
+          "y_sum": 29,
+          "ratio": 0.7931034482758621,
+          "x_lower": 12,
+          "x_higher": 5,
+          "ties": 13,
+          "p_one_sided_x_lt_y": 0.0717315673828125,
+          "p_two_sided": 0.143463134765625
+        },
+        "raw": {
+          "x_sum": 38,
+          "y_sum": 46,
+          "ratio": 0.8260869565217391,
+          "x_lower": 13,
+          "x_higher": 6,
+          "ties": 11,
+          "p_one_sided_x_lt_y": 0.08353424072265625,
+          "p_two_sided": 0.1670684814453125
+        },
+        "repeat": {
+          "x_sum": 15,
+          "y_sum": 17,
+          "ratio": 0.8823529411764706,
+          "x_lower": 9,
+          "x_higher": 3,
+          "ties": 18,
+          "p_one_sided_x_lt_y": 0.072998046875,
+          "p_two_sided": 0.14599609375
+        },
+        "common_turns": 99
+      },
+      "layers": {
+        "mem_layer=A": {
+          "n": 5,
+          "x_pass": 3,
+          "y_pass": 4,
+          "diff_pp": -20.0
+        },
+        "mem_layer=B": {
+          "n": 16,
+          "x_pass": 9,
+          "y_pass": 12,
+          "diff_pp": -18.75
+        },
+        "mem_layer=C": {
+          "n": 35,
+          "x_pass": 25,
+          "y_pass": 26,
+          "diff_pp": -2.857142857142857
+        },
+        "gt_layer=A": {
+          "n": 20,
+          "x_pass": 11,
+          "y_pass": 17,
+          "diff_pp": -30.0
+        },
+        "gt_layer=B": {
+          "n": 14,
+          "x_pass": 11,
+          "y_pass": 11,
+          "diff_pp": 0.0
+        },
+        "gt_layer=C": {
+          "n": 22,
+          "x_pass": 15,
+          "y_pass": 14,
+          "diff_pp": 4.545454545454546
+        },
+        "l_turn=True": {
+          "n": 11,
+          "x_pass": 7,
+          "y_pass": 9,
+          "diff_pp": -18.181818181818183
+        },
+        "l_turn=False": {
+          "n": 45,
+          "x_pass": 30,
+          "y_pass": 33,
+          "diff_pp": -6.666666666666667
+        }
+      }
+    },
+    "Tr-Tp": {
+      "solved": {
+        "x_only": 6,
+        "y_only": 2,
+        "p_one_sided_x_gt_y": 0.14453125,
+        "p_two_sided": 0.2890625,
+        "diff": 4
+      },
+      "errors": {
+        "events": {
+          "x_sum": 44,
+          "y_sum": 22,
+          "ratio": 2.0,
+          "x_lower": 0,
+          "x_higher": 16,
+          "ties": 14,
+          "p_one_sided_x_lt_y": 1.0,
+          "p_two_sided": 3.0517578125e-05
+        },
+        "raw": {
+          "x_sum": 84,
+          "y_sum": 37,
+          "ratio": 2.27027027027027,
+          "x_lower": 2,
+          "x_higher": 18,
+          "ties": 10,
+          "p_one_sided_x_lt_y": 0.9999799728393555,
+          "p_two_sided": 0.0004024505615234375
+        },
+        "repeat": {
+          "x_sum": 40,
+          "y_sum": 15,
+          "ratio": 2.6666666666666665,
+          "x_lower": 3,
+          "x_higher": 13,
+          "ties": 14,
+          "p_one_sided_x_lt_y": 0.9979095458984375,
+          "p_two_sided": 0.021270751953125
+        },
+        "common_turns": 99
+      },
+      "layers": {
+        "mem_layer=A": {
+          "n": 7,
+          "x_pass": 5,
+          "y_pass": 5,
+          "diff_pp": 0.0
+        },
+        "mem_layer=B": {
+          "n": 15,
+          "x_pass": 10,
+          "y_pass": 9,
+          "diff_pp": 6.666666666666667
+        },
+        "mem_layer=C": {
+          "n": 35,
+          "x_pass": 27,
+          "y_pass": 24,
+          "diff_pp": 8.571428571428571
+        },
+        "gt_layer=A": {
+          "n": 22,
+          "x_pass": 17,
+          "y_pass": 13,
+          "diff_pp": 18.181818181818183
+        },
+        "gt_layer=B": {
+          "n": 12,
+          "x_pass": 8,
+          "y_pass": 9,
+          "diff_pp": -8.333333333333334
+        },
+        "gt_layer=C": {
+          "n": 23,
+          "x_pass": 17,
+          "y_pass": 16,
+          "diff_pp": 4.3478260869565215
+        },
+        "l_turn=True": {
+          "n": 14,
+          "x_pass": 11,
+          "y_pass": 10,
+          "diff_pp": 7.142857142857143
+        },
+        "l_turn=False": {
+          "n": 43,
+          "x_pass": 31,
+          "y_pass": 28,
+          "diff_pp": 6.976744186046512
+        }
+      }
+    },
+    "G-Tp": {
+      "solved": {
+        "x_only": 4,
+        "y_only": 2,
+        "p_one_sided_x_gt_y": 0.34375,
+        "p_two_sided": 0.6875,
+        "diff": 2
+      },
+      "errors": {
+        "events": {
+          "x_sum": 41,
+          "y_sum": 23,
+          "ratio": 1.7826086956521738,
+          "x_lower": 1,
+          "x_higher": 17,
+          "ties": 12,
+          "p_one_sided_x_lt_y": 0.9999961853027344,
+          "p_two_sided": 0.00014495849609375
+        },
+        "raw": {
+          "x_sum": 59,
+          "y_sum": 38,
+          "ratio": 1.5526315789473684,
+          "x_lower": 4,
+          "x_higher": 18,
+          "ties": 8,
+          "p_one_sided_x_lt_y": 0.9995722770690918,
+          "p_two_sided": 0.004343509674072266
+        },
+        "repeat": {
+          "x_sum": 18,
+          "y_sum": 15,
+          "ratio": 1.2,
+          "x_lower": 4,
+          "x_higher": 6,
+          "ties": 20,
+          "p_one_sided_x_lt_y": 0.828125,
+          "p_two_sided": 0.75390625
+        },
+        "common_turns": 101
+      },
+      "layers": {
+        "mem_layer=A": {
+          "n": 6,
+          "x_pass": 5,
+          "y_pass": 4,
+          "diff_pp": 16.666666666666668
+        },
+        "mem_layer=B": {
+          "n": 15,
+          "x_pass": 10,
+          "y_pass": 10,
+          "diff_pp": 0.0
+        },
+        "mem_layer=C": {
+          "n": 37,
+          "x_pass": 25,
+          "y_pass": 25,
+          "diff_pp": 0.0
+        },
+        "gt_layer=A": {
+          "n": 22,
+          "x_pass": 17,
+          "y_pass": 13,
+          "diff_pp": 18.181818181818183
+        },
+        "gt_layer=B": {
+          "n": 13,
+          "x_pass": 9,
+          "y_pass": 11,
+          "diff_pp": -15.384615384615385
+        },
+        "gt_layer=C": {
+          "n": 23,
+          "x_pass": 14,
+          "y_pass": 15,
+          "diff_pp": -4.3478260869565215
+        },
+        "l_turn=True": {
+          "n": 13,
+          "x_pass": 10,
+          "y_pass": 8,
+          "diff_pp": 15.384615384615385
+        },
+        "l_turn=False": {
+          "n": 45,
+          "x_pass": 30,
+          "y_pass": 31,
+          "diff_pp": -2.2222222222222223
+        }
+      }
+    },
+    "T*-Tp": {
+      "solved": {
+        "x_only": 4,
+        "y_only": 2,
+        "p_one_sided_x_gt_y": 0.34375,
+        "p_two_sided": 0.6875,
+        "diff": 2
+      },
+      "errors": {
+        "events": {
+          "x_sum": 21,
+          "y_sum": 22,
+          "ratio": 0.9545454545454546,
+          "x_lower": 5,
+          "x_higher": 3,
+          "ties": 22,
+          "p_one_sided_x_lt_y": 0.36328125,
+          "p_two_sided": 0.7265625
+        },
+        "raw": {
+          "x_sum": 30,
+          "y_sum": 33,
+          "ratio": 0.9090909090909091,
+          "x_lower": 6,
+          "x_higher": 5,
+          "ties": 19,
+          "p_one_sided_x_lt_y": 0.5,
+          "p_two_sided": 1.0
+        },
+        "repeat": {
+          "x_sum": 9,
+          "y_sum": 11,
+          "ratio": 0.8181818181818182,
+          "x_lower": 2,
+          "x_higher": 4,
+          "ties": 24,
+          "p_one_sided_x_lt_y": 0.890625,
+          "p_two_sided": 0.6875
+        },
+        "common_turns": 103
+      },
+      "layers": {
+        "mem_layer=A": {
+          "n": 7,
+          "x_pass": 4,
+          "y_pass": 5,
+          "diff_pp": -14.285714285714286
+        },
+        "mem_layer=B": {
+          "n": 16,
+          "x_pass": 11,
+          "y_pass": 10,
+          "diff_pp": 6.25
+        },
+        "mem_layer=C": {
+          "n": 37,
+          "x_pass": 28,
+          "y_pass": 25,
+          "diff_pp": 8.108108108108109
+        },
+        "gt_layer=A": {
+          "n": 23,
+          "x_pass": 14,
+          "y_pass": 13,
+          "diff_pp": 4.3478260869565215
+        },
+        "gt_layer=B": {
+          "n": 13,
+          "x_pass": 11,
+          "y_pass": 11,
+          "diff_pp": 0.0
+        },
+        "gt_layer=C": {
+          "n": 24,
+          "x_pass": 18,
+          "y_pass": 16,
+          "diff_pp": 8.333333333333334
+        },
+        "l_turn=True": {
+          "n": 15,
+          "x_pass": 11,
+          "y_pass": 10,
+          "diff_pp": 6.666666666666667
+        },
+        "l_turn=False": {
+          "n": 45,
+          "x_pass": 32,
+          "y_pass": 30,
+          "diff_pp": 4.444444444444445
+        }
+      }
+    }
+  },
+  "harm": {
+    "R+": {
+      "harm": 2,
+      "help": 6,
+      "cases": [
+        {
+          "task": "multi_turn_base_53",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "forced_termination",
+          "agent_functions_not_in_gold": [
+            "display_log",
+            "fillFuelTank"
+          ],
+          "memory_shown": [
+            "multi_turn_base_58:t1",
+            "multi_turn_base_54:t0"
+          ]
+        },
+        {
+          "task": "multi_turn_base_83",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "forced_termination",
+          "agent_functions_not_in_gold": [],
+          "memory_shown": [
+            "multi_turn_base_70:t0",
+            "multi_turn_base_87:t1"
+          ]
+        }
+      ]
+    },
+    "Tp": {
+      "harm": 3,
+      "help": 3,
+      "cases": [
+        {
+          "task": "multi_turn_base_52",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "activateParkingBrake",
+            "displayCarStatus",
+            "lockDoors"
+          ],
+          "memory_shown": [
+            "startEngine|brake pedal needs to be pressed when starting the engine",
+            "startEngine|all doors must be locked before starting the engine",
+            "startEngine|must press the brake fully before starting the engine"
+          ]
+        },
+        {
+          "task": "multi_turn_base_64",
+          "turn": 1,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "displayCarStatus",
+            "set_navigation"
+          ],
+          "memory_shown": [
+            "startEngine|brake pedal needs to be pressed when starting the engine",
+            "startEngine|all doors must be locked before starting the engine",
+            "startEngine|must press the brake fully before starting the engine"
+          ]
+        },
+        {
+          "task": "multi_turn_base_57",
+          "turn": 0,
+          "checker_error": "multi_turn:execution_response_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "display_log",
+            "estimate_drive_feasibility_by_mileage",
+            "find_nearest_tire_shop"
+          ],
+          "memory_shown": [
+            "startEngine|brake pedal needs to be pressed when starting the engine",
+            "startEngine|all doors must be locked before starting the engine",
+            "startEngine|must press the brake fully before starting the engine"
+          ]
+        }
+      ]
+    },
+    "Tr": {
+      "harm": 1,
+      "help": 5,
+      "cases": [
+        {
+          "task": "multi_turn_base_60",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "fillFuelTank",
+            "get_current_speed"
+          ],
+          "memory_shown": []
+        }
+      ]
+    },
+    "G": {
+      "harm": 2,
+      "help": 4,
+      "cases": [
+        {
+          "task": "multi_turn_base_83",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "gallon_to_liter"
+          ],
+          "memory_shown": [
+            "startEngine"
+          ]
+        },
+        {
+          "task": "multi_turn_base_57",
+          "turn": 0,
+          "checker_error": "multi_turn:execution_response_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "get_outside_temperature_from_google",
+            "get_outside_temperature_from_weather_com"
+          ],
+          "memory_shown": [
+            "startEngine"
+          ]
+        }
+      ]
+    },
+    "T*": {
+      "harm": 3,
+      "help": 5,
+      "cases": [
+        {
+          "task": "multi_turn_base_60",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "fillFuelTank"
+          ],
+          "memory_shown": [
+            "startEngine|brake pedal needs to be pressed when starting the engine",
+            "startEngine|all doors must be locked before starting the engine",
+            "estimate_distance|distance not found in database",
+            "startEngine|must press the brake fully before starting the engine"
+          ]
+        },
+        {
+          "task": "multi_turn_base_91",
+          "turn": 0,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "adjustClimateControl",
+            "display_log",
+            "get_outside_temperature_from_weather_com",
+            "get_user_id",
+            "message_login"
+          ],
+          "memory_shown": [
+            "startEngine|brake pedal needs to be pressed when starting the engine",
+            "startEngine|all doors must be locked before starting the engine",
+            "estimate_distance|distance not found in database",
+            "startEngine|must press the brake fully before starting the engine",
+            "send_message|no user is currently logged in"
+          ]
+        },
+        {
+          "task": "multi_turn_base_64",
+          "turn": 1,
+          "checker_error": "multi_turn:instance_state_mismatch",
+          "status": "completed",
+          "agent_functions_not_in_gold": [
+            "activateParkingBrake",
+            "displayCarStatus",
+            "releaseBrakePedal",
+            "setCruiseControl",
+            "setHeadlights"
+          ],
+          "memory_shown": [
+            "startEngine|brake pedal needs to be pressed when starting the engine",
+            "startEngine|all doors must be locked before starting the engine",
+            "estimate_distance|distance not found in database",
+            "startEngine|must press the brake fully before starting the engine"
+          ]
+        }
+      ]
+    }
+  },
+  "over_application": {
+    "Tp": {
+      "turns_without_lesson_tool": 76,
+      "turns_with_unneeded_fix_call": 4,
+      "cases": [
+        {
+          "task": "multi_turn_base_90",
+          "turn": 2,
+          "functions": [
+            "lockDoors",
+            "pressBrakePedal"
+          ]
+        },
+        {
+          "task": "multi_turn_base_94",
+          "turn": 1,
+          "functions": [
+            "lockDoors",
+            "pressBrakePedal"
+          ]
+        },
+        {
+          "task": "multi_turn_base_72",
+          "turn": 0,
+          "functions": [
+            "lockDoors",
+            "pressBrakePedal"
+          ]
+        },
+        {
+          "task": "multi_turn_base_82",
+          "turn": 0,
+          "functions": [
+            "lockDoors",
+            "pressBrakePedal"
+          ]
+        }
+      ]
+    },
+    "Tr": {
+      "turns_without_lesson_tool": 76,
+      "turns_with_unneeded_fix_call": 0,
+      "cases": []
+    },
+    "G": {
+      "turns_without_lesson_tool": 74,
+      "turns_with_unneeded_fix_call": 2,
+      "cases": [
+        {
+          "task": "multi_turn_base_72",
+          "turn": 0,
+          "functions": [
+            "lockDoors",
+            "pressBrakePedal"
+          ]
+        },
+        {
+          "task": "multi_turn_base_82",
+          "turn": 0,
+          "functions": [
+            "lockDoors",
+            "pressBrakePedal"
+          ]
+        }
+      ]
+    }
+  },
+  "lesson_usage": {
+    "Tp": {
+      "turns_tool_called": 87,
+      "lesson_shown_before_or_at_error": 87,
+      "fix_calls_before_first_call": 79,
+      "first_call_error": 6
+    },
+    "Tr": {
+      "turns_tool_called": 63,
+      "lesson_shown_before_or_at_error": 35,
+      "fix_calls_before_first_call": 3,
+      "first_call_error": 63
+    }
+  },
+  "probe": {
+    "run_id": "20261112T152547Z",
+    "arms": [
+      "G",
+      "N",
+      "R+",
+      "Tp"
+    ],
+    "per_arm": {
+      "G": {
+        "all": {
+          "entries": 50,
+          "reached": 47,
+          "uar": 0.8936170212765957,
+          "uar_executed": 0.8936170212765957,
+          "uar_state": 0.44680851063829785,
+          "imported_argument": 1,
+          "invalid_outputs": 0,
+          "proposed": 42
+        },
+        "near": {
+          "entries": 20,
+          "reached": 19,
+          "uar": 0.8947368421052632,
+          "uar_executed": 0.8947368421052632,
+          "uar_state": 0.3684210526315789,
+          "imported_argument": 0,
+          "invalid_outputs": 0,
+          "proposed": 17
+        },
+        "far": {
+          "entries": 30,
+          "reached": 28,
+          "uar": 0.8928571428571429,
+          "uar_executed": 0.8928571428571429,
+          "uar_state": 0.5,
+          "imported_argument": 1,
+          "invalid_outputs": 0,
+          "proposed": 25
+        },
+        "near_exact": {
+          "entries": 10,
+          "reached": 10,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.3,
+          "imported_argument": 0,
+          "invalid_outputs": 0,
+          "proposed": 10
+        },
+        "same_turn_shown": {
+          "entries": 11,
+          "reached": 11,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.36363636363636365,
+          "imported_argument": 0,
+          "invalid_outputs": 0,
+          "proposed": 11
+        },
+        "cost": {
+          "model_calls": 342,
+          "prompt_eval_sum": 607783,
+          "wall_seconds": 420.6710000000385
+        }
+      },
+      "N": {
+        "all": {
+          "entries": 50,
+          "reached": 47,
+          "uar": 0.9148936170212766,
+          "uar_executed": 0.9148936170212766,
+          "uar_state": 0.40425531914893614,
+          "imported_argument": 0,
+          "invalid_outputs": 0,
+          "proposed": 43
+        },
+        "near": {
+          "entries": 20,
+          "reached": 19,
+          "uar": 0.8947368421052632,
+          "uar_executed": 0.8947368421052632,
+          "uar_state": 0.3684210526315789,
+          "imported_argument": 0,
+          "invalid_outputs": 0,
+          "proposed": 17
+        },
+        "far": {
+          "entries": 30,
+          "reached": 28,
+          "uar": 0.9285714285714286,
+          "uar_executed": 0.9285714285714286,
+          "uar_state": 0.42857142857142855,
+          "imported_argument": 0,
+          "invalid_outputs": 0,
+          "proposed": 26
+        },
+        "near_exact": {
+          "entries": 10,
+          "reached": 10,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.3,
+          "imported_argument": 0,
+          "invalid_outputs": 0,
+          "proposed": 10
+        },
+        "same_turn_shown": {
+          "entries": 11,
+          "reached": 11,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.36363636363636365,
+          "imported_argument": 0,
+          "invalid_outputs": 0,
+          "proposed": 11
+        },
+        "cost": {
+          "model_calls": 368,
+          "prompt_eval_sum": 633763,
+          "wall_seconds": 386.4019999999873
+        }
+      },
+      "R+": {
+        "all": {
+          "entries": 50,
+          "reached": 50,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.44,
+          "imported_argument": 34,
+          "invalid_outputs": 0,
+          "proposed": 50
+        },
+        "near": {
+          "entries": 20,
+          "reached": 20,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.5,
+          "imported_argument": 16,
+          "invalid_outputs": 0,
+          "proposed": 20
+        },
+        "far": {
+          "entries": 30,
+          "reached": 30,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.4,
+          "imported_argument": 18,
+          "invalid_outputs": 0,
+          "proposed": 30
+        },
+        "near_exact": {
+          "entries": 10,
+          "reached": 10,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.3,
+          "imported_argument": 8,
+          "invalid_outputs": 0,
+          "proposed": 10
+        },
+        "same_turn_shown": {
+          "entries": 11,
+          "reached": 11,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.36363636363636365,
+          "imported_argument": 9,
+          "invalid_outputs": 0,
+          "proposed": 11
+        },
+        "cost": {
+          "model_calls": 334,
+          "prompt_eval_sum": 725686,
+          "wall_seconds": 517.6720000000278
+        }
+      },
+      "Tp": {
+        "all": {
+          "entries": 50,
+          "reached": 48,
+          "uar": 0.875,
+          "uar_executed": 0.875,
+          "uar_state": 0.4375,
+          "imported_argument": 9,
+          "invalid_outputs": 0,
+          "proposed": 42
+        },
+        "near": {
+          "entries": 20,
+          "reached": 19,
+          "uar": 0.8947368421052632,
+          "uar_executed": 0.8947368421052632,
+          "uar_state": 0.3684210526315789,
+          "imported_argument": 3,
+          "invalid_outputs": 0,
+          "proposed": 17
+        },
+        "far": {
+          "entries": 30,
+          "reached": 29,
+          "uar": 0.8620689655172413,
+          "uar_executed": 0.8620689655172413,
+          "uar_state": 0.4827586206896552,
+          "imported_argument": 6,
+          "invalid_outputs": 0,
+          "proposed": 25
+        },
+        "near_exact": {
+          "entries": 10,
+          "reached": 10,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.3,
+          "imported_argument": 1,
+          "invalid_outputs": 0,
+          "proposed": 10
+        },
+        "same_turn_shown": {
+          "entries": 11,
+          "reached": 11,
+          "uar": 1.0,
+          "uar_executed": 1.0,
+          "uar_state": 0.36363636363636365,
+          "imported_argument": 1,
+          "invalid_outputs": 0,
+          "proposed": 11
+        },
+        "cost": {
+          "model_calls": 327,
+          "prompt_eval_sum": 597683,
+          "wall_seconds": 419.3899999999994
+        }
+      }
+    },
+    "paired_vs_N": {
+      "G-N": {
+        "all": {
+          "pairs": 47,
+          "uar_x": 0.8936170212765957,
+          "uar_N": 0.9148936170212766,
+          "excess_pp": -2.127659574468088,
+          "x_only": 0,
+          "y_only": 1,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        },
+        "near": {
+          "pairs": 19,
+          "uar_x": 0.8947368421052632,
+          "uar_N": 0.8947368421052632,
+          "excess_pp": 0.0,
+          "x_only": 0,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        },
+        "far": {
+          "pairs": 28,
+          "uar_x": 0.8928571428571429,
+          "uar_N": 0.9285714285714286,
+          "excess_pp": -3.57142857142857,
+          "x_only": 0,
+          "y_only": 1,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        },
+        "near_exact": {
+          "pairs": 10,
+          "uar_x": 1.0,
+          "uar_N": 1.0,
+          "excess_pp": 0.0,
+          "x_only": 0,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        },
+        "same_turn_shown": {
+          "pairs": 11,
+          "uar_x": 1.0,
+          "uar_N": 1.0,
+          "excess_pp": 0.0,
+          "x_only": 0,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        }
+      },
+      "R+-N": {
+        "all": {
+          "pairs": 47,
+          "uar_x": 1.0,
+          "uar_N": 0.9148936170212766,
+          "excess_pp": 8.510638297872342,
+          "x_only": 4,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 0.0625,
+          "p_two_sided": 0.125
+        },
+        "near": {
+          "pairs": 19,
+          "uar_x": 1.0,
+          "uar_N": 0.8947368421052632,
+          "excess_pp": 10.526315789473683,
+          "x_only": 2,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 0.25,
+          "p_two_sided": 0.5
+        },
+        "far": {
+          "pairs": 28,
+          "uar_x": 1.0,
+          "uar_N": 0.9285714285714286,
+          "excess_pp": 7.14285714285714,
+          "x_only": 2,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 0.25,
+          "p_two_sided": 0.5
+        },
+        "near_exact": {
+          "pairs": 10,
+          "uar_x": 1.0,
+          "uar_N": 1.0,
+          "excess_pp": 0.0,
+          "x_only": 0,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        },
+        "same_turn_shown": {
+          "pairs": 11,
+          "uar_x": 1.0,
+          "uar_N": 1.0,
+          "excess_pp": 0.0,
+          "x_only": 0,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        }
+      },
+      "Tp-N": {
+        "all": {
+          "pairs": 47,
+          "uar_x": 0.8936170212765957,
+          "uar_N": 0.9148936170212766,
+          "excess_pp": -2.127659574468088,
+          "x_only": 0,
+          "y_only": 1,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        },
+        "near": {
+          "pairs": 19,
+          "uar_x": 0.8947368421052632,
+          "uar_N": 0.8947368421052632,
+          "excess_pp": 0.0,
+          "x_only": 0,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        },
+        "far": {
+          "pairs": 28,
+          "uar_x": 0.8928571428571429,
+          "uar_N": 0.9285714285714286,
+          "excess_pp": -3.57142857142857,
+          "x_only": 0,
+          "y_only": 1,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        },
+        "near_exact": {
+          "pairs": 10,
+          "uar_x": 1.0,
+          "uar_N": 1.0,
+          "excess_pp": 0.0,
+          "x_only": 0,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        },
+        "same_turn_shown": {
+          "pairs": 11,
+          "uar_x": 1.0,
+          "uar_N": 1.0,
+          "excess_pp": 0.0,
+          "x_only": 0,
+          "y_only": 0,
+          "p_one_sided_x_gt_y": 1.0,
+          "p_two_sided": 1.0
+        }
+      }
+    },
+    "counts": {
+      "entries": 50,
+      "near": 20,
+      "far": 30,
+      "near_exact": 10,
+      "turns_to_run": 112
+    }
+  },
+  "gates": {
+    "A_channel_works": {
+      "N_rate": 1.0,
+      "Tp_rate": 0.06896551724137931,
+      "pass": true
+    },
+    "B_no_gross_harm": {
+      "N": 9,
+      "Tp": 9,
+      "pass": true
+    },
+    "C_probe_discriminates": {
+      "UAR_N": 0.9148936170212766,
+      "pass": false
+    },
+    "D_llm_writer_not_clearly_better": {
+      "G": 11,
+      "Tp": 9,
+      "pass": true
+    },
+    "s2_may_start": true,
+    "s2_with_probe": false,
+    "tstar_triggered": true
+  },
+  "secondary_rules_development": {
+    "tr_helps": {
+      "repeat_ratio_Tr_over_N": 0.975609756097561,
+      "p_one_sided": 0.75,
+      "solved_Tr": 13,
+      "solved_N": 9,
+      "met": false
+    },
+    "tr_suffices": {
+      "raw_error_drop_Tr": 1,
+      "raw_error_drop_Tp": 48,
+      "met": false
+    },
+    "Tp_layers_vs_N": {
+      "mem_layer=A": {
+        "n": 7,
+        "x_pass": 5,
+        "y_pass": 6,
+        "diff_pp": -14.285714285714286
+      },
+      "mem_layer=B": {
+        "n": 15,
+        "x_pass": 9,
+        "y_pass": 10,
+        "diff_pp": -6.666666666666667
+      },
+      "mem_layer=C": {
+        "n": 36,
+        "x_pass": 26,
+        "y_pass": 25,
+        "diff_pp": 2.7777777777777777
+      },
+      "l_turn=True": {
+        "n": 14,
+        "x_pass": 10,
+        "y_pass": 8,
+        "diff_pp": 14.285714285714286
+      },
+      "l_turn=False": {
+        "n": 44,
+        "x_pass": 30,
+        "y_pass": 33,
+        "diff_pp": -6.818181818181818
+      }
+    },
+    "R+_layers_vs_N": {
+      "mem_layer=A": {
+        "n": 7,
+        "x_pass": 6,
+        "y_pass": 5,
+        "diff_pp": 14.285714285714286
+      },
+      "mem_layer=B": {
+        "n": 17,
+        "x_pass": 13,
+        "y_pass": 11,
+        "diff_pp": 11.764705882352942
+      },
+      "mem_layer=C": {
+        "n": 37,
+        "x_pass": 27,
+        "y_pass": 27,
+        "diff_pp": 0.0
+      },
+      "l_turn=True": {
+        "n": 11,
+        "x_pass": 9,
+        "y_pass": 6,
+        "diff_pp": 27.272727272727273
+      },
+      "l_turn=False": {
+        "n": 50,
+        "x_pass": 37,
+        "y_pass": 37,
+        "diff_pp": 0.0
+      }
+    }
+  },
+  "rerun_vs_pilot": {
+    "N": {
+      "episodes_identical_to_pilot": 21,
+      "episodes": 30,
+      "solved_now": 9,
+      "solved_pilot": 10,
+      "tasks_with_different_outcome": [
+        "multi_turn_base_77"
+      ]
+    },
+    "R+": {
+      "episodes_identical_to_pilot": 19,
+      "episodes": 30,
+      "solved_now": 13,
+      "solved_pilot": 14,
+      "tasks_with_different_outcome": [
+        "multi_turn_base_84"
+      ]
+    }
+  }
+}

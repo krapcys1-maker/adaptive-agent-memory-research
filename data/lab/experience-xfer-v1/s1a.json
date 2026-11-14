@@ -1,0 +1,115 @@
+{
+  "run_id": "20261112T145317Z",
+  "transport": {
+    "all_ok": true,
+    "gpu_full": true,
+    "api_ps_model": {
+      "name": "qwen2.5:14b-instruct",
+      "model": "qwen2.5:14b-instruct",
+      "size": 10290085231,
+      "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen2",
+        "families": [
+          "qwen2"
+        ],
+        "parameter_size": "14.8B",
+        "quantization_level": "Q4_K_M"
+      },
+      "expires_at": "2026-11-12T16:58:57.1606806+02:00",
+      "size_vram": 10290085231,
+      "context_length": 8192,
+      "runner": "llamacpp"
+    }
+  },
+  "tasks": [
+    "multi_turn_base_50",
+    "multi_turn_base_67",
+    "multi_turn_base_60",
+    "multi_turn_base_53",
+    "multi_turn_base_71"
+  ],
+  "episodes": [
+    {
+      "task": "multi_turn_base_50",
+      "arm": "N",
+      "identical_to_pilot": true,
+      "solved": true,
+      "calls": 2
+    },
+    {
+      "task": "multi_turn_base_50",
+      "arm": "R+",
+      "identical_to_pilot": true,
+      "solved": true,
+      "calls": 2
+    },
+    {
+      "task": "multi_turn_base_67",
+      "arm": "N",
+      "identical_to_pilot": true,
+      "solved": false,
+      "calls": 13
+    },
+    {
+      "task": "multi_turn_base_67",
+      "arm": "R+",
+      "identical_to_pilot": true,
+      "solved": false,
+      "calls": 13
+    },
+    {
+      "task": "multi_turn_base_60",
+      "arm": "N",
+      "identical_to_pilot": false,
+      "solved": true,
+      "calls": 14
+    },
+    {
+      "task": "multi_turn_base_60",
+      "arm": "R+",
+      "identical_to_pilot": true,
+      "solved": true,
+      "calls": 16
+    },
+    {
+      "task": "multi_turn_base_53",
+      "arm": "N",
+      "identical_to_pilot": true,
+      "solved": true,
+      "calls": 12
+    },
+    {
+      "task": "multi_turn_base_53",
+      "arm": "R+",
+      "identical_to_pilot": true,
+      "solved": false,
+      "calls": 8
+    },
+    {
+      "task": "multi_turn_base_71",
+      "arm": "N",
+      "identical_to_pilot": true,
+      "solved": false,
+      "calls": 19
+    },
+    {
+      "task": "multi_turn_base_71",
+      "arm": "R+",
+      "identical_to_pilot": true,
+      "solved": true,
+      "calls": 11
+    }
+  ],
+  "identical_to_pilot": false,
+  "reuse_pilot_N_and_Rplus": false,
+  "base_arms_to_run": [
+    "N",
+    "R+",
+    "Tp",
+    "Tr",
+    "G"
+  ]
+}

@@ -108,3 +108,11 @@ path = ["data/lab/experience-pilot-v0/pools/**", "data/lab/experience-pilot-v0/e
 precedence = "closest"
 SPDX-FileCopyrightText = ["2026 Adaptive Agent Memory Research contributors", "Gorilla / Berkeley Function-Calling Leaderboard authors"]
 SPDX-License-Identifier = "CC-BY-4.0 AND Apache-2.0"
+
+# EXP-XFER-1 lessons and tool guidance quote BFCL environment error messages and call strings
+# (Apache-2.0, (c) the Gorilla / BFCL authors, ShishirPatil/gorilla @ 6ea5797). Our analysis stays CC BY 4.0.
+[[annotations]]
+path = ["data/lab/experience-xfer-v1/lessons.jsonl", "data/lab/experience-xfer-v1/lessons-tstar.jsonl", "data/lab/experience-xfer-v1/open-problems.json", "data/lab/experience-xfer-v1/g-guidance.json"]
+precedence = "closest"
+SPDX-FileCopyrightText = ["2026 Adaptive Agent Memory Research contributors", "Gorilla / Berkeley Function-Calling Leaderboard authors"]
+SPDX-License-Identifier = "CC-BY-4.0 AND Apache-2.0"

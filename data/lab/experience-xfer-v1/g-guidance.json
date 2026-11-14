@@ -1,0 +1,20 @@
+{
+  "tools": [
+    "startEngine"
+  ],
+  "guidance": {
+    "startEngine": "Core function: Starts the vehicle's engine. Success patterns: Engine starts successfully when all doors are locked and the brake pedal is fully pressed. Common issues: Engine fails to start if doors are unlocked or brake pedal is not pressed. Best practices: Ensure all doors are securely locked and press the brake pedal fully before initiating the engine."
+  },
+  "writer": [
+    {
+      "tool": "startEngine",
+      "history_items": 30,
+      "raw_text": "{\"guidance\": \"Core function: Starts the vehicle's engine. Success patterns: Engine starts successfully when all doors are locked and the brake pedal is fully pressed. Common issues: Engine fails to start if doors are unlocked or brake pedal is not pressed. Best practices: Ensure all doors are securely locked and press the brake pedal fully before initiating the engine.\"}",
+      "done_reason": "stop",
+      "guidance": "Core function: Starts the vehicle's engine. Success patterns: Engine starts successfully when all doors are locked and the brake pedal is fully pressed. Common issues: Engine fails to start if doors are unlocked or brake pedal is not pressed. Best practices: Ensure all doors are securely locked and press the brake pedal fully before initiating the engine.",
+      "request_sha256": "236af17603faa2e4d8ec76554237b7ee672bfeadd52b52830050f6657a771c70"
+    }
+  ],
+  "arm_G_valid": true,
+  "sha256": "d710aabdb39899b975554da637e2bf4bfdc451baa7ded8368b0278d0d2d2f982"
+}

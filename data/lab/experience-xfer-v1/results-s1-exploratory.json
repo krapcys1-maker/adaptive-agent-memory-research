@@ -1,0 +1,521 @@
+{
+  "note": "Exploratory analysis added after the S1 results were seen; not a pre-registered measure or decision input.",
+  "start_engine_turns": {
+    "N": {
+      "turns_with_successful_start": 20,
+      "brake_released_afterwards": 4,
+      "turns_passed": 8
+    },
+    "R+": {
+      "turns_with_successful_start": 25,
+      "brake_released_afterwards": 0,
+      "turns_passed": 11
+    },
+    "Tp": {
+      "turns_with_successful_start": 29,
+      "brake_released_afterwards": 1,
+      "turns_passed": 10
+    },
+    "Tr": {
+      "turns_with_successful_start": 21,
+      "brake_released_afterwards": 0,
+      "turns_passed": 12
+    },
+    "G": {
+      "turns_with_successful_start": 26,
+      "brake_released_afterwards": 0,
+      "turns_passed": 11
+    },
+    "T*": {
+      "turns_with_successful_start": 26,
+      "brake_released_afterwards": 0,
+      "turns_passed": 11
+    }
+  },
+  "task_matrix_where_arms_differ": {
+    "multi_turn_base_60": {
+      "N": true,
+      "R+": true,
+      "Tp": true,
+      "Tr": false,
+      "G": true,
+      "T*": false
+    },
+    "multi_turn_base_53": {
+      "N": true,
+      "R+": false,
+      "Tp": true,
+      "Tr": true,
+      "G": true,
+      "T*": true
+    },
+    "multi_turn_base_71": {
+      "N": false,
+      "R+": true,
+      "Tp": false,
+      "Tr": true,
+      "G": true,
+      "T*": false
+    },
+    "multi_turn_base_90": {
+      "N": false,
+      "R+": true,
+      "Tp": false,
+      "Tr": false,
+      "G": false,
+      "T*": false
+    },
+    "multi_turn_base_52": {
+      "N": true,
+      "R+": true,
+      "Tp": false,
+      "Tr": true,
+      "G": true,
+      "T*": true
+    },
+    "multi_turn_base_83": {
+      "N": true,
+      "R+": false,
+      "Tp": true,
+      "Tr": true,
+      "G": false,
+      "T*": true
+    },
+    "multi_turn_base_91": {
+      "N": true,
+      "R+": true,
+      "Tp": true,
+      "Tr": true,
+      "G": true,
+      "T*": false
+    },
+    "multi_turn_base_81": {
+      "N": false,
+      "R+": false,
+      "Tp": true,
+      "Tr": true,
+      "G": false,
+      "T*": true
+    },
+    "multi_turn_base_64": {
+      "N": true,
+      "R+": true,
+      "Tp": false,
+      "Tr": true,
+      "G": true,
+      "T*": false
+    },
+    "multi_turn_base_84": {
+      "N": false,
+      "R+": false,
+      "Tp": false,
+      "Tr": true,
+      "G": false,
+      "T*": true
+    },
+    "multi_turn_base_80": {
+      "N": false,
+      "R+": true,
+      "Tp": false,
+      "Tr": false,
+      "G": false,
+      "T*": false
+    },
+    "multi_turn_base_77": {
+      "N": false,
+      "R+": true,
+      "Tp": true,
+      "Tr": false,
+      "G": true,
+      "T*": true
+    },
+    "multi_turn_base_57": {
+      "N": true,
+      "R+": true,
+      "Tp": false,
+      "Tr": true,
+      "G": false,
+      "T*": true
+    },
+    "multi_turn_base_88": {
+      "N": false,
+      "R+": true,
+      "Tp": false,
+      "Tr": false,
+      "G": true,
+      "T*": true
+    },
+    "multi_turn_base_74": {
+      "N": false,
+      "R+": true,
+      "Tp": true,
+      "Tr": true,
+      "G": true,
+      "T*": true
+    },
+    "multi_turn_base_63": {
+      "N": false,
+      "R+": false,
+      "Tp": false,
+      "Tr": true,
+      "G": false,
+      "T*": false
+    }
+  },
+  "help_and_harm_tasks": {
+    "R+": {
+      "help": [
+        "multi_turn_base_71",
+        "multi_turn_base_90",
+        "multi_turn_base_80",
+        "multi_turn_base_77",
+        "multi_turn_base_88",
+        "multi_turn_base_74"
+      ],
+      "harm": [
+        "multi_turn_base_53",
+        "multi_turn_base_83"
+      ]
+    },
+    "Tp": {
+      "help": [
+        "multi_turn_base_81",
+        "multi_turn_base_77",
+        "multi_turn_base_74"
+      ],
+      "harm": [
+        "multi_turn_base_52",
+        "multi_turn_base_64",
+        "multi_turn_base_57"
+      ]
+    },
+    "Tr": {
+      "help": [
+        "multi_turn_base_71",
+        "multi_turn_base_81",
+        "multi_turn_base_84",
+        "multi_turn_base_74",
+        "multi_turn_base_63"
+      ],
+      "harm": [
+        "multi_turn_base_60"
+      ]
+    },
+    "G": {
+      "help": [
+        "multi_turn_base_71",
+        "multi_turn_base_77",
+        "multi_turn_base_88",
+        "multi_turn_base_74"
+      ],
+      "harm": [
+        "multi_turn_base_83",
+        "multi_turn_base_57"
+      ]
+    },
+    "T*": {
+      "help": [
+        "multi_turn_base_81",
+        "multi_turn_base_84",
+        "multi_turn_base_77",
+        "multi_turn_base_88",
+        "multi_turn_base_74"
+      ],
+      "harm": [
+        "multi_turn_base_60",
+        "multi_turn_base_91",
+        "multi_turn_base_64"
+      ]
+    }
+  },
+  "tr_help_cases_at_N_first_failed_turn": [
+    {
+      "task": "multi_turn_base_71",
+      "turn": 3,
+      "N": [
+        "ERR:startEngine",
+        "lockDoors",
+        "ERR:startEngine",
+        "pressBrakePedal",
+        "startEngine",
+        "releaseBrakePedal"
+      ],
+      "Tr": [
+        "ERR:startEngine",
+        "lockDoors",
+        "ERR:startEngine",
+        "pressBrakePedal",
+        "startEngine"
+      ]
+    },
+    {
+      "task": "multi_turn_base_81",
+      "turn": 1,
+      "N": [
+        "ERR:startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "lockDoors",
+        "ERR:startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "pressBrakePedal",
+        "startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "releaseBrakePedal"
+      ],
+      "Tr": [
+        "ERR:startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "lockDoors",
+        "ERR:startEngine",
+        "pressBrakePedal",
+        "startEngine",
+        "displayCarStatus",
+        "displayCarStatus"
+      ]
+    },
+    {
+      "task": "multi_turn_base_84",
+      "turn": 0,
+      "N": [
+        "fillFuelTank",
+        "ERR:startEngine",
+        "lockDoors",
+        "ERR:startEngine",
+        "pressBrakePedal",
+        "startEngine",
+        "releaseBrakePedal",
+        "activateParkingBrake"
+      ],
+      "Tr": [
+        "fillFuelTank",
+        "ERR:startEngine",
+        "lockDoors",
+        "ERR:startEngine",
+        "pressBrakePedal",
+        "startEngine",
+        "activateParkingBrake"
+      ]
+    },
+    {
+      "task": "multi_turn_base_74",
+      "turn": 1,
+      "N": [
+        "ERR:startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "displayCarStatus",
+        "ERR:displayCarStatus",
+        "lockDoors",
+        "ERR:startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "displayCarStatus",
+        "pressBrakePedal",
+        "startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "displayCarStatus",
+        "releaseBrakePedal"
+      ],
+      "Tr": [
+        "ERR:startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "displayCarStatus",
+        "ERR:displayCarStatus",
+        "lockDoors",
+        "ERR:startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "displayCarStatus",
+        "pressBrakePedal",
+        "startEngine",
+        "displayCarStatus",
+        "displayCarStatus",
+        "displayCarStatus"
+      ]
+    },
+    {
+      "task": "multi_turn_base_63",
+      "turn": 1,
+      "N": [
+        "liter_to_gallon",
+        "fillFuelTank",
+        "ERR:startEngine",
+        "lockDoors",
+        "activateParkingBrake"
+      ],
+      "Tr": [
+        "liter_to_gallon",
+        "fillFuelTank",
+        "ERR:startEngine",
+        "lockDoors",
+        "activateParkingBrake",
+        "ERR:startEngine",
+        "pressBrakePedal",
+        "startEngine"
+      ]
+    }
+  ],
+  "tasks_broken_by_the_pilot_placebo_block": [
+    "multi_turn_base_52",
+    "multi_turn_base_57"
+  ],
+  "probe": {
+    "withheld_value_proposed": {
+      "G": {
+        "near_exact": {
+          "hit": 5,
+          "n": 7
+        },
+        "near_other": {
+          "hit": 3,
+          "n": 9
+        },
+        "far": {
+          "hit": 11,
+          "n": 20
+        }
+      },
+      "N": {
+        "near_exact": {
+          "hit": 3,
+          "n": 7
+        },
+        "near_other": {
+          "hit": 3,
+          "n": 9
+        },
+        "far": {
+          "hit": 11,
+          "n": 20
+        }
+      },
+      "R+": {
+        "near_exact": {
+          "hit": 6,
+          "n": 7
+        },
+        "near_other": {
+          "hit": 6,
+          "n": 10
+        },
+        "far": {
+          "hit": 12,
+          "n": 21
+        }
+      },
+      "Tp": {
+        "near_exact": {
+          "hit": 4,
+          "n": 7
+        },
+        "near_other": {
+          "hit": 3,
+          "n": 9
+        },
+        "far": {
+          "hit": 12,
+          "n": 21
+        }
+      }
+    },
+    "examples_R+_near_exact": [
+      {
+        "entry": "multi_turn_miss_param_54",
+        "withheld_values": [
+          "START",
+          "driver",
+          "passenger",
+          "rear_left",
+          "rear_right"
+        ],
+        "filled_by_R+": [
+          "START",
+          "driver",
+          "passenger",
+          "rear_left",
+          "rear_right"
+        ],
+        "in_memory_block": [
+          "START",
+          "driver",
+          "passenger",
+          "rear_left",
+          "rear_right"
+        ]
+      },
+      {
+        "entry": "multi_turn_miss_param_56",
+        "withheld_values": [
+          "83214",
+          "94016",
+          "Rivermist"
+        ],
+        "filled_by_R+": [
+          "83214",
+          "94016"
+        ],
+        "in_memory_block": [
+          "83214",
+          "94016"
+        ]
+      },
+      {
+        "entry": "multi_turn_miss_param_58",
+        "withheld_values": [
+          "83214",
+          "94016",
+          "Rivermist",
+          "San Francisco"
+        ],
+        "filled_by_R+": [
+          "83214",
+          "94016",
+          "Rivermist",
+          "San Francisco"
+        ],
+        "in_memory_block": [
+          "83214",
+          "94016",
+          "Rivermist",
+          "San Francisco"
+        ]
+      },
+      {
+        "entry": "multi_turn_miss_param_73",
+        "withheld_values": [
+          "123 Pine St, San Francisco, CA 94016"
+        ],
+        "filled_by_R+": [
+          "123 Pine St, San Francisco, CA 94016"
+        ],
+        "in_memory_block": [
+          "123 Pine St, San Francisco, CA 94016"
+        ]
+      },
+      {
+        "entry": "multi_turn_miss_param_85",
+        "withheld_values": [
+          "83214",
+          "94016",
+          "San Francisco"
+        ],
+        "filled_by_R+": [
+          "83214",
+          "94016",
+          "San Francisco"
+        ],
+        "in_memory_block": [
+          "83214",
+          "94016",
+          "San Francisco"
+        ]
+      }
+    ]
+  }
+}

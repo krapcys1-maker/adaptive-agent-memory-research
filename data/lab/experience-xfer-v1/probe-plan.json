@@ -1,0 +1,1261 @@
+{
+  "domain": "VehicleControlAPI",
+  "system_prompt": "v2",
+  "counts": {
+    "entries": 50,
+    "near": 20,
+    "far": 30,
+    "near_exact": 10,
+    "turns_to_run": 112
+  },
+  "entries": [
+    {
+      "id": "multi_turn_miss_param_50",
+      "base_id": "multi_turn_base_50",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_98:t0",
+          "multi_turn_base_76:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_98:t0",
+        "multi_turn_base_76:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_51",
+      "base_id": "multi_turn_base_51",
+      "probe_turn": 3,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_98:t0",
+          "multi_turn_base_73:t1"
+        ],
+        [
+          "multi_turn_base_76:t0",
+          "multi_turn_base_92:t3"
+        ],
+        [
+          "multi_turn_base_87:t3",
+          "multi_turn_base_78:t0"
+        ],
+        [
+          "multi_turn_base_78:t0",
+          "multi_turn_base_87:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_78:t0",
+        "multi_turn_base_87:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_52",
+      "base_id": "multi_turn_base_52",
+      "probe_turn": 1,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_87:t2",
+          "multi_turn_base_86:t0"
+        ],
+        [
+          "multi_turn_base_87:t3",
+          "multi_turn_base_78:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_87:t3",
+        "multi_turn_base_78:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_53",
+      "base_id": "multi_turn_base_53",
+      "probe_turn": 3,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_58:t1",
+          "multi_turn_base_54:t0"
+        ],
+        [
+          "multi_turn_base_76:t0",
+          "multi_turn_base_92:t3"
+        ],
+        [
+          "multi_turn_base_87:t3",
+          "multi_turn_base_86:t0"
+        ],
+        [
+          "multi_turn_base_58:t3",
+          "multi_turn_base_78:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_58:t3",
+        "multi_turn_base_78:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_54",
+      "base_id": "multi_turn_base_54",
+      "probe_turn": 0,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_54:t0",
+          "multi_turn_base_87:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_54:t0",
+        "multi_turn_base_87:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_55",
+      "base_id": "multi_turn_base_55",
+      "probe_turn": 0,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_73:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_70:t0",
+        "multi_turn_base_73:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_56",
+      "base_id": "multi_turn_base_56",
+      "probe_turn": 0,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_56:t0",
+          "multi_turn_base_85:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_56:t0",
+        "multi_turn_base_85:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_57",
+      "base_id": "multi_turn_base_57",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_56:t0",
+          "multi_turn_base_58:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_56:t0",
+        "multi_turn_base_58:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_58",
+      "base_id": "multi_turn_base_58",
+      "probe_turn": 0,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_58:t0",
+          "multi_turn_base_89:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_58:t0",
+        "multi_turn_base_89:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_59",
+      "base_id": "multi_turn_base_59",
+      "probe_turn": 1,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_85:t0",
+          "multi_turn_base_58:t0"
+        ],
+        [
+          "multi_turn_base_85:t0",
+          "multi_turn_base_87:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_85:t0",
+        "multi_turn_base_87:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_60",
+      "base_id": "multi_turn_base_60",
+      "probe_turn": 3,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_58:t2",
+          "multi_turn_base_92:t1"
+        ],
+        [
+          "multi_turn_base_87:t3",
+          "multi_turn_base_78:t0"
+        ],
+        [
+          "multi_turn_base_78:t0",
+          "multi_turn_base_87:t3"
+        ],
+        [
+          "multi_turn_base_79:t1",
+          "multi_turn_base_76:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_79:t1",
+        "multi_turn_base_76:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_61",
+      "base_id": "multi_turn_base_61",
+      "probe_turn": 3,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_85:t0",
+          "multi_turn_base_58:t0"
+        ],
+        [
+          "multi_turn_base_73:t0",
+          "multi_turn_base_70:t0"
+        ],
+        [
+          "multi_turn_base_79:t1",
+          "multi_turn_base_87:t1"
+        ],
+        [
+          "multi_turn_base_79:t1",
+          "multi_turn_base_92:t3"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_79:t1",
+        "multi_turn_base_92:t3"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_62",
+      "base_id": "multi_turn_base_62",
+      "probe_turn": 0,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_89:t0",
+          "multi_turn_base_85:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_89:t0",
+        "multi_turn_base_85:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_63",
+      "base_id": "multi_turn_base_63",
+      "probe_turn": 2,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_54:t0",
+          "multi_turn_base_87:t0"
+        ],
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_58:t2"
+        ],
+        [
+          "multi_turn_base_92:t0",
+          "multi_turn_base_85:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_92:t0",
+        "multi_turn_base_85:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_64",
+      "base_id": "multi_turn_base_64",
+      "probe_turn": 1,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_76:t0",
+          "multi_turn_base_86:t0"
+        ],
+        [
+          "multi_turn_base_79:t1",
+          "multi_turn_base_85:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_79:t1",
+        "multi_turn_base_85:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_65",
+      "base_id": "multi_turn_base_65",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_58:t3"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_70:t0",
+        "multi_turn_base_58:t3"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_66",
+      "base_id": "multi_turn_base_66",
+      "probe_turn": 3,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_58:t0",
+          "multi_turn_base_98:t1"
+        ],
+        [
+          "multi_turn_base_58:t1",
+          "multi_turn_base_85:t0"
+        ],
+        [
+          "multi_turn_base_73:t1",
+          "multi_turn_base_98:t0"
+        ],
+        [
+          "multi_turn_base_89:t0",
+          "multi_turn_base_85:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_89:t0",
+        "multi_turn_base_85:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_67",
+      "base_id": "multi_turn_base_67",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_98:t2",
+          "multi_turn_base_89:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_98:t2",
+        "multi_turn_base_89:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_68",
+      "base_id": "multi_turn_base_68",
+      "probe_turn": 4,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_73:t0",
+          "multi_turn_base_58:t1"
+        ],
+        [
+          "multi_turn_base_98:t1",
+          "multi_turn_base_79:t1"
+        ],
+        [
+          "multi_turn_base_87:t3",
+          "multi_turn_base_98:t0"
+        ],
+        [
+          "multi_turn_base_78:t0",
+          "multi_turn_base_87:t3"
+        ],
+        [
+          "multi_turn_base_58:t3",
+          "multi_turn_base_73:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_58:t3",
+        "multi_turn_base_73:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_69",
+      "base_id": "multi_turn_base_69",
+      "probe_turn": 1,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_85:t0"
+        ],
+        [
+          "multi_turn_base_58:t2",
+          "multi_turn_base_86:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_58:t2",
+        "multi_turn_base_86:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_70",
+      "base_id": "multi_turn_base_70",
+      "probe_turn": 1,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_92:t2"
+        ],
+        [
+          "multi_turn_base_78:t0",
+          "multi_turn_base_73:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_78:t0",
+        "multi_turn_base_73:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_71",
+      "base_id": "multi_turn_base_71",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_89:t0",
+          "multi_turn_base_79:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_89:t0",
+        "multi_turn_base_79:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_72",
+      "base_id": "multi_turn_base_72",
+      "probe_turn": 3,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_85:t0",
+          "multi_turn_base_54:t0"
+        ],
+        [
+          "multi_turn_base_92:t1",
+          "multi_turn_base_87:t1"
+        ],
+        [
+          "multi_turn_base_87:t3",
+          "multi_turn_base_78:t0"
+        ],
+        [
+          "multi_turn_base_79:t1",
+          "multi_turn_base_58:t3"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_79:t1",
+        "multi_turn_base_58:t3"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_73",
+      "base_id": "multi_turn_base_73",
+      "probe_turn": 2,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_73:t0",
+          "multi_turn_base_58:t1"
+        ],
+        [
+          "multi_turn_base_73:t1",
+          "multi_turn_base_98:t0"
+        ],
+        [
+          "multi_turn_base_73:t2",
+          "multi_turn_base_85:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_73:t2",
+        "multi_turn_base_85:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_74",
+      "base_id": "multi_turn_base_74",
+      "probe_turn": 1,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_58:t1",
+          "multi_turn_base_70:t0"
+        ],
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_86:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_70:t0",
+        "multi_turn_base_86:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_75",
+      "base_id": "multi_turn_base_75",
+      "probe_turn": 3,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_58:t1",
+          "multi_turn_base_70:t0"
+        ],
+        [
+          "multi_turn_base_78:t0",
+          "multi_turn_base_76:t1"
+        ],
+        [
+          "multi_turn_base_87:t3",
+          "multi_turn_base_78:t0"
+        ],
+        [
+          "multi_turn_base_58:t3",
+          "multi_turn_base_78:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_58:t3",
+        "multi_turn_base_78:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_76",
+      "base_id": "multi_turn_base_76",
+      "probe_turn": 1,
+      "stratum": "near",
+      "config_differs": true,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_76:t0",
+          "multi_turn_base_79:t0"
+        ],
+        [
+          "multi_turn_base_76:t1",
+          "multi_turn_base_78:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_76:t1",
+        "multi_turn_base_78:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_77",
+      "base_id": "multi_turn_base_77",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_56:t0",
+          "multi_turn_base_89:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_56:t0",
+        "multi_turn_base_89:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_78",
+      "base_id": "multi_turn_base_78",
+      "probe_turn": 0,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_78:t0",
+          "multi_turn_base_87:t3"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_78:t0",
+        "multi_turn_base_87:t3"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_79",
+      "base_id": "multi_turn_base_79",
+      "probe_turn": 2,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_79:t0",
+          "multi_turn_base_76:t0"
+        ],
+        [
+          "multi_turn_base_79:t1",
+          "multi_turn_base_73:t0"
+        ],
+        [
+          "multi_turn_base_79:t2",
+          "multi_turn_base_73:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_79:t2",
+        "multi_turn_base_73:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_80",
+      "base_id": "multi_turn_base_80",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_85:t0",
+          "multi_turn_base_58:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_85:t0",
+        "multi_turn_base_58:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_81",
+      "base_id": "multi_turn_base_81",
+      "probe_turn": 2,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_73:t0",
+          "multi_turn_base_87:t1"
+        ],
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_89:t0"
+        ],
+        [
+          "multi_turn_base_86:t0",
+          "multi_turn_base_85:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_86:t0",
+        "multi_turn_base_85:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_82",
+      "base_id": "multi_turn_base_82",
+      "probe_turn": 2,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_78:t0",
+          "multi_turn_base_87:t3"
+        ],
+        [
+          "multi_turn_base_87:t1",
+          "multi_turn_base_87:t0"
+        ],
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_73:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_70:t0",
+        "multi_turn_base_73:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_83",
+      "base_id": "multi_turn_base_83",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_87:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_70:t0",
+        "multi_turn_base_87:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_84",
+      "base_id": "multi_turn_base_84",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_86:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_70:t0",
+        "multi_turn_base_86:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_85",
+      "base_id": "multi_turn_base_85",
+      "probe_turn": 0,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_85:t0",
+          "multi_turn_base_58:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_85:t0",
+        "multi_turn_base_58:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_86",
+      "base_id": "multi_turn_base_86",
+      "probe_turn": 2,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_86:t0",
+          "multi_turn_base_87:t2"
+        ],
+        [
+          "multi_turn_base_87:t3",
+          "multi_turn_base_78:t0"
+        ],
+        [
+          "multi_turn_base_78:t1",
+          "multi_turn_base_87:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_78:t1",
+        "multi_turn_base_87:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_87",
+      "base_id": "multi_turn_base_87",
+      "probe_turn": 0,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_87:t0",
+          "multi_turn_base_54:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_87:t0",
+        "multi_turn_base_54:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_88",
+      "base_id": "multi_turn_base_88",
+      "probe_turn": 2,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_87:t0",
+          "multi_turn_base_58:t1"
+        ],
+        [
+          "multi_turn_base_79:t1",
+          "multi_turn_base_87:t2"
+        ],
+        [
+          "multi_turn_base_58:t3",
+          "multi_turn_base_58:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_58:t3",
+        "multi_turn_base_58:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_89",
+      "base_id": "multi_turn_base_89",
+      "probe_turn": 3,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_89:t0",
+          "multi_turn_base_58:t0"
+        ],
+        [
+          "multi_turn_base_85:t0",
+          "multi_turn_base_92:t1"
+        ],
+        [
+          "multi_turn_base_58:t1",
+          "multi_turn_base_92:t2"
+        ],
+        [
+          "multi_turn_base_73:t1",
+          "multi_turn_base_76:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_73:t1",
+        "multi_turn_base_76:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_90",
+      "base_id": "multi_turn_base_90",
+      "probe_turn": 2,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_54:t0"
+        ],
+        [
+          "multi_turn_base_56:t0",
+          "multi_turn_base_85:t0"
+        ],
+        [
+          "multi_turn_base_58:t0",
+          "multi_turn_base_58:t3"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_58:t0",
+        "multi_turn_base_58:t3"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_91",
+      "base_id": "multi_turn_base_91",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_58:t3",
+          "multi_turn_base_76:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_58:t3",
+        "multi_turn_base_76:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_92",
+      "base_id": "multi_turn_base_92",
+      "probe_turn": 0,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_92:t0",
+          "multi_turn_base_56:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_92:t0",
+        "multi_turn_base_56:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_93",
+      "base_id": "multi_turn_base_93",
+      "probe_turn": 2,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_92:t2",
+          "multi_turn_base_92:t1"
+        ],
+        [
+          "multi_turn_base_86:t0",
+          "multi_turn_base_78:t0"
+        ],
+        [
+          "multi_turn_base_87:t3",
+          "multi_turn_base_78:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_87:t3",
+        "multi_turn_base_78:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_94",
+      "base_id": "multi_turn_base_94",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_56:t0",
+          "multi_turn_base_58:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_56:t0",
+        "multi_turn_base_58:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_95",
+      "base_id": "multi_turn_base_95",
+      "probe_turn": 3,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_70:t0",
+          "multi_turn_base_86:t0"
+        ],
+        [
+          "multi_turn_base_89:t0",
+          "multi_turn_base_85:t0"
+        ],
+        [
+          "multi_turn_base_56:t0",
+          "multi_turn_base_85:t0"
+        ],
+        [
+          "multi_turn_base_85:t0",
+          "multi_turn_base_56:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_85:t0",
+        "multi_turn_base_56:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_96",
+      "base_id": "multi_turn_base_96",
+      "probe_turn": 1,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_79:t1",
+          "multi_turn_base_58:t2"
+        ],
+        [
+          "multi_turn_base_89:t0",
+          "multi_turn_base_92:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_89:t0",
+        "multi_turn_base_92:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_97",
+      "base_id": "multi_turn_base_97",
+      "probe_turn": 3,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_89:t0",
+          "multi_turn_base_98:t2"
+        ],
+        [
+          "multi_turn_base_92:t1",
+          "multi_turn_base_89:t0"
+        ],
+        [
+          "multi_turn_base_73:t0",
+          "multi_turn_base_87:t1"
+        ],
+        [
+          "multi_turn_base_73:t0",
+          "multi_turn_base_58:t1"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_73:t0",
+        "multi_turn_base_58:t1"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_98",
+      "base_id": "multi_turn_base_98",
+      "probe_turn": 2,
+      "stratum": "near",
+      "config_differs": false,
+      "same_turn_in_pool": true,
+      "same_turn_shown": true,
+      "near_exact": true,
+      "r_plus": [
+        [
+          "multi_turn_base_98:t0",
+          "multi_turn_base_73:t1"
+        ],
+        [
+          "multi_turn_base_98:t1",
+          "multi_turn_base_92:t3"
+        ],
+        [
+          "multi_turn_base_98:t2",
+          "multi_turn_base_58:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_98:t2",
+        "multi_turn_base_58:t0"
+      ]
+    },
+    {
+      "id": "multi_turn_miss_param_99",
+      "base_id": "multi_turn_base_99",
+      "probe_turn": 0,
+      "stratum": "far",
+      "config_differs": false,
+      "same_turn_in_pool": false,
+      "same_turn_shown": false,
+      "near_exact": false,
+      "r_plus": [
+        [
+          "multi_turn_base_92:t2",
+          "multi_turn_base_89:t0"
+        ]
+      ],
+      "r_plus_items": [
+        "multi_turn_base_92:t2",
+        "multi_turn_base_89:t0"
+      ]
+    }
+  ]
+}

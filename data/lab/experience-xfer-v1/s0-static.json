@@ -1,0 +1,21 @@
+{
+  "bfcl_commit": "6ea57973c7a6097fd7c5915698c54c17c5b1b6c8",
+  "pilot_commit": "52487db964796e3fb05b19fa4cdf9ee61cdad031",
+  "pilot_pools_sha_match_build_json": {
+    "A": true,
+    "A_plus": true
+  },
+  "checker_skips_empty_ground_truth_turn": true,
+  "irrelevance_checker_called_from_multi_turn_checker": false,
+  "vc_probe_entries": 50,
+  "vc_probe_entries_ok": 50,
+  "vc_probe_near": 20,
+  "vc_probe_far": 30,
+  "vc_probe_config_differs": [
+    "multi_turn_miss_param_76"
+  ],
+  "vc_probe_turns_to_run": 112,
+  "system_v2_extra_line": [
+    "If the current request cannot be carried out because required information is missing or no listed function fits, return {\"calls\":[]} and do not guess."
+  ]
+}
