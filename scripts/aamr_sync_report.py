@@ -492,6 +492,81 @@ def review_tasks(tasks: list[dict[str, Any]], canonical: Path | None, main_ref: 
     return findings, rows
 
 
+PROTECTED_RESULTS = ("clean", "withheld")
+
+
+def _days_since(day: str, now: float) -> float | None:
+    try:
+        stamp = datetime.fromisoformat(day.replace("Z", "+00:00"))
+    except (ValueError, AttributeError):
+        return None
+    if stamp.tzinfo is None:
+        stamp = stamp.replace(tzinfo=timezone.utc)
+    return (now - stamp.timestamp()) / 86400
+
+
+def review_exports(tasks: list[dict[str, Any]], rows: list[dict[str, str]], exports: dict[str, Any],
+                   require_record: bool, hold_max_days: float, now: float) -> list[Finding]:
+    """Check the export record of every finished task: a target, a protected-data check, a branch or pull request, or a hold.
+
+    The record lives in the synchronisation configuration (``exports``), never in the coordinator's database, so nothing
+    here needs a migration of the running laboratory. A task that is already on the main line is reported softly (note);
+    a task that is not is reported as a warning, so the gap shows up before the work is exported, not after.
+    """
+    findings: list[Finding] = []
+    states = {row["id"]: row["state"] for row in rows}
+    for task in tasks:
+        name = task["id"]
+        state = states.get(name)
+        if state is None or state == STATE_RUNNING:
+            continue
+        record = exports.get(name)
+        row = next(r for r in rows if r["id"] == name)
+        soft = INFO if state == STATE_MAIN else WARN
+        if record is None:
+            if require_record:
+                findings.append(Finding(soft, "EXPORT_NO_RECORD", name,
+                                        "finished, but no export record (target, protected-data check, branch or pull request, or hold)"))
+            continue
+        parts = []
+        check = record.get("protected_check")
+        if not isinstance(check, dict) or not check.get("checked_on"):
+            findings.append(Finding(soft, "EXPORT_NO_PROTECTED_CHECK", name,
+                                    "the export record has no protected-data check (checked_on, result, withheld)"))
+            parts.append("check missing")
+        elif check.get("result") not in PROTECTED_RESULTS:
+            findings.append(Finding(WARN, "EXPORT_PROTECTED_CHECK_OPEN", name,
+                                    f"the protected-data check has result {check.get('result')!r}; it must be one of {PROTECTED_RESULTS}"))
+            parts.append("check open")
+        elif check["result"] == "withheld" and not check.get("withheld"):
+            findings.append(Finding(WARN, "EXPORT_PROTECTED_CHECK_INCOMPLETE", name,
+                                    "the check says material is withheld but does not list what"))
+            parts.append("check incomplete")
+        else:
+            parts.append(f"check {check['result']} {check['checked_on']}")
+        if record.get("pr"):
+            parts.append(f"PR #{record['pr']}")
+        elif record.get("branch"):
+            parts.append(f"branch {record['branch']}")
+        if record.get("branch") and state == STATE_LOCAL:
+            findings.append(Finding(ALERT, "EXPORT_BRANCH_MISSING", name,
+                                    f"the record names branch {record['branch']!r}, but the result is on no remote branch"))
+        hold = record.get("hold")
+        if hold:
+            age = _days_since(str(record.get("hold_since", "")), now)
+            if age is None:
+                findings.append(Finding(WARN, "EXPORT_HOLD_STALE", name, f"held ({hold}) without a valid hold_since date"))
+            elif age > hold_max_days:
+                findings.append(Finding(WARN, "EXPORT_HOLD_STALE", name,
+                                        f"held for {age:.0f} days (limit {hold_max_days:.0f}): {hold}"))
+            parts.append(f"hold since {record.get('hold_since', '?')}")
+        row["export"] = "; ".join(parts) or "record without details"
+    for name in sorted(set(exports) - {t["id"] for t in tasks}):
+        findings.append(Finding(INFO, "EXPORT_RECORD_UNKNOWN_TASK", name,
+                                "an export record names a task the coordinator and the configuration do not know (stale?)"))
+    return findings
+
+
 # ---------------------------------------------------------------------------------------------
 # Read-only adapter for the coordinator's declared experiments and closed missions
 # ---------------------------------------------------------------------------------------------
@@ -690,8 +765,13 @@ def render(findings: list[Finding], task_rows: list[dict[str, str]], title: str,
     counts = {s: sum(1 for f in findings if f.severity == s) for s in (ALERT, WARN, INFO)}
     lines = [f"# {title}", "", f"Generated {stamp}. Alerts: {counts[ALERT]}, warnings: {counts[WARN]}, notes: {counts[INFO]}.", ""]
     if task_rows:
-        lines += ["## Tasks and their results on GitHub", "", "| Task | Source | State |", "|---|---|---|"]
-        lines += [f"| {r['id']} | {r.get('source', '')} | {r['state']} |" for r in task_rows]
+        with_export = any("export" in r for r in task_rows)
+        if with_export:
+            lines += ["## Tasks and their results on GitHub", "", "| Task | Source | State | Export record |", "|---|---|---|---|"]
+            lines += [f"| {r['id']} | {r.get('source', '')} | {r['state']} | {r.get('export', 'none')} |" for r in task_rows]
+        else:
+            lines += ["## Tasks and their results on GitHub", "", "| Task | Source | State |", "|---|---|---|"]
+            lines += [f"| {r['id']} | {r.get('source', '')} | {r['state']} |" for r in task_rows]
         lines.append("")
     for severity in (ALERT, WARN, INFO):
         group = [f for f in ordered if f.severity == severity]
@@ -742,8 +822,18 @@ def run_local(cfg: dict[str, Any], now: float, update_manifests: bool,
         known = {task["id"] for task in tasks}
         tasks += [task for task in discover_coordinator_tasks(cfg["coordinator"], cfg.get("task_overrides", {}))
                   if task["id"] not in known]
+    exports = cfg.get("exports", {})
+    for task in tasks:  # an export record may supply the target and the hold of a task the coordinator does not describe
+        record = exports.get(task["id"])
+        if record:
+            if record.get("targets") and not task.get("published_paths") and not task.get("published_path"):
+                task["published_paths"] = list(record["targets"])
+            if record.get("hold") and not task.get("owner_hold"):
+                task["owner_hold"] = record["hold"]
     task_findings, rows = review_tasks(tasks, canonical, cfg.get("remote_main", "origin/main"), open_pr_heads)
-    return findings + task_findings, rows
+    export_findings = review_exports(tasks, rows, exports, bool(cfg.get("require_export_record")),
+                                     float(cfg.get("hold_max_days", 14)), now)
+    return findings + task_findings + export_findings, rows
 
 
 def run_github(snapshot: dict[str, Any], tree: Path | None, main_ref: str, now: float) -> list[Finding]:

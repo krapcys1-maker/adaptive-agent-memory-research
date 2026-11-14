@@ -476,3 +476,135 @@ def test_command_line_github_section_from_a_file(world, tmp_path, capsys):
 def test_command_line_local_needs_a_config(capsys):
     with pytest.raises(SystemExit):
         sync.main(["local"])
+
+
+# --------------------------------------------------------------------------------------------------------------------
+# Export records: target, protected-data check, branch or pull request, hold (fictional tasks only)
+# --------------------------------------------------------------------------------------------------------------------
+CHECK = {"checked_on": "2026-11-14", "result": "clean", "withheld": [], "by": "agent"}
+
+
+def export_run(work: Path, root: Path, tasks: list[dict], exports: dict, require=False, hold_max_days=14.0, now=None):
+    now = now or time.time()
+    findings, rows = sync.review_tasks(tasks, work, "origin/main")
+    findings += sync.review_exports(tasks, rows, exports, require, hold_max_days, now)
+    return findings, {r["id"]: r for r in rows}
+
+
+def finished(root: Path, name: str, path: str | None = None) -> dict:
+    done = root / "DONE.json"
+    done.write_text("{}", encoding="utf-8")
+    task = {"id": name, "finished_marker": str(done)}
+    if path:
+        task["published_path"] = path
+    return task
+
+
+def codes_of(findings, name):
+    return sorted((f.code, f.severity) for f in findings if f.where == name and f.code.startswith("EXPORT_"))
+
+
+def test_export_record_complete_and_on_main_is_quiet_and_shown_in_the_table(world):
+    work, root = world["work"], world["root"]
+    tasks = [finished(root, "T-ok", "docs/x.md")]
+    findings, rows = export_run(work, root, tasks, {"T-ok": {"protected_check": CHECK, "pr": 12}})
+    assert codes_of(findings, "T-ok") == []
+    assert rows["T-ok"]["export"] == "check clean 2026-11-14; PR #12"
+    text = sync.render(findings, list(rows.values()), "R", time.time())
+    assert "| Task | Source | State | Export record |" in text and "check clean 2026-11-14; PR #12" in text
+
+
+def test_a_finished_task_without_a_protected_check_is_a_warning_before_export_and_a_note_after(world):
+    work, root = world["work"], world["root"]
+    tasks = [finished(root, "T-local", "data/lab/t-local/README.md"), finished(root, "T-main", "docs/x.md")]
+    exports = {"T-local": {"targets": ["data/lab/t-local/README.md"]}, "T-main": {}}
+    findings, rows = export_run(work, root, tasks, exports)
+    assert codes_of(findings, "T-local") == [("EXPORT_NO_PROTECTED_CHECK", sync.WARN)]
+    assert codes_of(findings, "T-main") == [("EXPORT_NO_PROTECTED_CHECK", sync.INFO)]
+    assert rows["T-local"]["export"] == "check missing"
+
+
+def test_the_protected_check_must_have_a_known_result_and_list_what_is_withheld(world):
+    work, root = world["work"], world["root"]
+    tasks = [finished(root, "T-open", "docs/x.md"), finished(root, "T-vague", "docs/x.md"), finished(root, "T-good", "docs/x.md")]
+    exports = {"T-open": {"protected_check": {**CHECK, "result": "maybe"}},
+               "T-vague": {"protected_check": {**CHECK, "result": "withheld", "withheld": []}},
+               "T-good": {"protected_check": {**CHECK, "result": "withheld", "withheld": ["raw run (326 MB), hashes published"]}}}
+    findings, rows = export_run(work, root, tasks, exports)
+    assert codes_of(findings, "T-open") == [("EXPORT_PROTECTED_CHECK_OPEN", sync.WARN)]
+    assert codes_of(findings, "T-vague") == [("EXPORT_PROTECTED_CHECK_INCOMPLETE", sync.WARN)]
+    assert codes_of(findings, "T-good") == []
+    assert rows["T-good"]["export"].startswith("check withheld")
+
+
+def test_a_record_that_names_a_branch_nobody_pushed_is_an_alert(world):
+    work, root = world["work"], world["root"]
+    tasks = [finished(root, "T-nobranch", "data/lab/t-nobranch/README.md")]
+    findings, _ = export_run(work, root, tasks, {"T-nobranch": {"protected_check": CHECK, "branch": "claude/t-nobranch"}})
+    assert ("EXPORT_BRANCH_MISSING", sync.ALERT) in codes_of(findings, "T-nobranch")
+    assert any(f.code == "FINISHED_NOT_PUBLISHED" and f.severity == sync.ALERT for f in findings)
+
+
+def test_a_hold_goes_stale_and_needs_a_date(world):
+    work, root = world["work"], world["root"]
+    now = time.mktime((2026, 11, 14, 12, 0, 0, 0, 0, 0))
+    tasks = [finished(root, n, f"data/lab/{n}/README.md") for n in ("T-fresh", "T-old", "T-nodate", "T-baddate")]
+    exports = {"T-fresh": {"protected_check": CHECK, "hold": "owner decision", "hold_since": "2026-11-12"},
+               "T-old": {"protected_check": CHECK, "hold": "owner decision", "hold_since": "2026-09-01"},
+               "T-nodate": {"protected_check": CHECK, "hold": "owner decision"},
+               "T-baddate": {"protected_check": CHECK, "hold": "owner decision", "hold_since": "yesterday"}}
+    findings, rows = export_run(work, root, tasks, exports, now=now)
+    assert codes_of(findings, "T-fresh") == []
+    assert codes_of(findings, "T-old") == [("EXPORT_HOLD_STALE", sync.WARN)]
+    assert codes_of(findings, "T-nodate") == [("EXPORT_HOLD_STALE", sync.WARN)]
+    assert codes_of(findings, "T-baddate") == [("EXPORT_HOLD_STALE", sync.WARN)]
+    assert rows["T-fresh"]["export"].endswith("hold since 2026-11-12")
+
+
+def test_require_export_record_flags_finished_tasks_without_one_and_ignores_running_ones(world):
+    work, root = world["work"], world["root"]
+    tasks = [finished(root, "T-none-local", "data/lab/x/README.md"), finished(root, "T-none-main", "docs/x.md"),
+             {"id": "T-running", "finished_marker": str(root / "no-such-marker")}]
+    exports = {"T-ghost": {"protected_check": CHECK}}
+    findings, _ = export_run(work, root, tasks, exports, require=True)
+    assert codes_of(findings, "T-none-local") == [("EXPORT_NO_RECORD", sync.WARN)]
+    assert codes_of(findings, "T-none-main") == [("EXPORT_NO_RECORD", sync.INFO)]
+    assert codes_of(findings, "T-running") == []
+    assert codes_of(findings, "T-ghost") == [("EXPORT_RECORD_UNKNOWN_TASK", sync.INFO)]
+    off, _ = export_run(work, root, tasks, {}, require=False)
+    assert not [f for f in off if f.code.startswith("EXPORT_")]
+
+
+def test_run_local_takes_the_target_and_the_hold_from_the_export_record_of_a_coordinator_mission(world):
+    work, root = world["work"], world["root"]
+    spec = write_fake_coordinator(root)
+    cfg = {"canonical_repo": str(work), "remote_main": "origin/main", "coordinator": spec, "roots": [],
+           "manifest_dir": str(root / "m"), "require_export_record": True,
+           "exports": {"mission M-PLAN": {"targets": ["docs/x.md"], "protected_check": CHECK, "pr": 3},
+                       "FAKE-1": {"protected_check": CHECK, "hold": "owner decision", "hold_since": "2999-01-01"}}}
+    findings, rows = sync.run_local(cfg, time.time(), False)
+    states = {r["id"]: r for r in rows}
+    assert states["mission M-PLAN"]["state"] == "on main"      # the target came from the record, not from the coordinator
+    assert states["mission M-PLAN"]["export"] == "check clean 2026-11-14; PR #3"
+    assert states["FAKE-1"]["state"].startswith("held by owner")
+    assert ("EXPORT_NO_RECORD", sync.WARN) in codes_of(findings, "mission M-MAPPED")
+    assert codes_of(findings, "FAKE-1") == []
+
+
+def test_export_records_and_the_report_never_open_the_coordinator_database(world, monkeypatch):
+    work, root = world["work"], world["root"]
+    spec = write_fake_coordinator(root)
+    opened = []
+    real_open = open
+
+    def spy(path, *args, **kwargs):
+        opened.append(str(path))
+        return real_open(path, *args, **kwargs)
+
+    monkeypatch.setattr("builtins.open", spy)
+    cfg = {"canonical_repo": str(work), "remote_main": "origin/main", "coordinator": spec, "roots": [],
+           "manifest_dir": str(root / "m"), "exports": {"FAKE-1": {"protected_check": CHECK}}}
+    findings, rows = sync.run_local(cfg, time.time(), False)
+    text = sync.render(findings, rows, "R", time.time())
+    assert not [p for p in opened if p.endswith((".db", ".env"))]
+    assert "SUPERSECRET" not in text
