@@ -165,16 +165,30 @@ def test_guidance_block_uses_the_lesson_header():
     assert xf.render_guidance_block({"other": "x"}, {"startEngine"}) == ""
 
 
+PILOT_README = "data/lab/experience-pilot-v0/README.md"
+
+
 def test_pilot_files_are_unchanged():
+    """The pilot is frozen at the commit named in the config.
+
+    Every pilot file must be identical to that commit, except the README, which may only grow: the audit
+    amendments of 13 November 2026 were appended under a "## Amendments" heading. The frozen text must stay
+    a byte-exact prefix, and whatever follows it must start with that heading.
+    """
     paths = ["scripts/experience_pilot_v0.py", "scripts/experience_pilot_v0_analysis.py", "tests/test_experience_pilot_v0.py",
-             "data/lab/experience-pilot-v0"]
+             "data/lab/experience-pilot-v0", f":(exclude){PILOT_README}"]
     try:
         r = subprocess.run(["git", "diff", "--quiet", CFG["pilot_commit"], "--"] + paths, cwd=ROOT, capture_output=True, timeout=60)
+        shown = subprocess.run(["git", "show", f"{CFG['pilot_commit']}:{PILOT_README}"], cwd=ROOT, capture_output=True, timeout=60)
     except (OSError, subprocess.TimeoutExpired):
         pytest.skip("git not available")
-    if r.returncode not in (0, 1):
+    if r.returncode not in (0, 1) or shown.returncode != 0:
         pytest.skip("pilot commit not available in this checkout")
     assert r.returncode == 0, "pilot files differ from the frozen pilot commit"
+    frozen, current = shown.stdout, (ROOT / PILOT_README).read_bytes()
+    assert current.startswith(frozen), "the frozen pilot README text was changed, not only extended"
+    appended = current[len(frozen):].lstrip(b"\r\n")
+    assert appended == b"" or appended.startswith(b"## Amendments"), "only an Amendments section may follow the frozen README"
 
 
 def test_ledger_and_stage_use_this_experiments_raw_root(tmp_path, monkeypatch):
