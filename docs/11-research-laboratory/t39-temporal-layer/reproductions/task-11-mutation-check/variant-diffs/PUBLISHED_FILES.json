@@ -1,0 +1,51 @@
+{
+ "task": "T39 mutation-check variants",
+ "published": [
+  {
+   "path": "README.md",
+   "target": "docs/11-research-laboratory/t39-temporal-layer/reproductions/task-11-mutation-check/variant-diffs/README.md",
+   "sha256": "cbca397ada4678efa64e43b08fd2f7f10690bf4fb62baf5d53aee1439d7f52a4",
+   "sha256_source": "cbca397ada4678efa64e43b08fd2f7f10690bf4fb62baf5d53aee1439d7f52a4",
+   "bytes": 2223,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "M1.diff",
+   "target": "docs/11-research-laboratory/t39-temporal-layer/reproductions/task-11-mutation-check/variant-diffs/M1.diff",
+   "sha256": "eb2dee65ee51bdf3d1b24fa78a0f7364465483ecb163c338d32e2b87993210c2",
+   "sha256_source": "eb2dee65ee51bdf3d1b24fa78a0f7364465483ecb163c338d32e2b87993210c2",
+   "bytes": 485,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "NOFALLBACK.diff",
+   "target": "docs/11-research-laboratory/t39-temporal-layer/reproductions/task-11-mutation-check/variant-diffs/NOFALLBACK.diff",
+   "sha256": "ae32cda10d86f74bad168f05b64e8e1011f7cfaa704878772764f450d5371729",
+   "sha256_source": "ae32cda10d86f74bad168f05b64e8e1011f7cfaa704878772764f450d5371729",
+   "bytes": 600,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "M1_NOFALLBACK.diff",
+   "target": "docs/11-research-laboratory/t39-temporal-layer/reproductions/task-11-mutation-check/variant-diffs/M1_NOFALLBACK.diff",
+   "sha256": "7708a1e08047378b1883fa6192e52cbd245f35bb3225ab4751e21b4bd0e02830",
+   "sha256_source": "7708a1e08047378b1883fa6192e52cbd245f35bb3225ab4751e21b4bd0e02830",
+   "bytes": 956,
+   "edits": [
+    "none"
+   ]
+  }
+ ],
+ "private": [],
+ "paths_are_relative": true,
+ "protected_check": {
+  "result": "clean",
+  "withheld": []
+ }
+}

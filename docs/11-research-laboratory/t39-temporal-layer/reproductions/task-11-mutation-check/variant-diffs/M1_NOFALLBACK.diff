@@ -1,0 +1,20 @@
+--- a/scripts/run_revision_v0.py
++++ b/scripts/run_revision_v0.py
+@@ -104,13 +104,15 @@
+     if kind == "as_known_at":
+         # Only records written by T may be consulted. Anything later is future
+         # information and must not influence the answer.
+-        visible = [e for e in chain if e["created_at"] <= at]
++        visible = list(chain)  # MUTANT M1: bez filtra created_at <= T
+         if not visible:
+             return None
+         successor = _superseded_by(visible)
+         live = [e for e in visible if e["id"] not in successor]
+         # Among what was live then, take the one in force at that time.
+-        in_force = [e for e in live if e["valid_from"] <= at] or live
++        in_force = [e for e in live if e["valid_from"] <= at]  # WARIANT: bez fallbacku or-live
++        if not in_force:
++            return None
+         return max(in_force, key=lambda e: (e["valid_from"], e["created_at"]))["title"]
+ 
+     visible = chain
