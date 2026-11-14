@@ -339,3 +339,72 @@ def test_the_command_line_check_reports_a_hold_without_changing_anything(world, 
     out = capsys.readouterr().out
     assert '"result": "hold"' in out and FAKE_TOKEN not in out
     assert not w["config"].exists()
+
+
+# ------------------------------------------------------------------------------------------- guards against a double publication
+def lock_file(w) -> Path:
+    return w["config"].parent / ex.LOCK_NAME
+
+
+def test_a_second_export_of_a_confirmed_id_does_nothing(world):
+    w = world
+    assert run_export(w, make_plan(w), merge=True)[0] == 0 and len(w["gh"].prs) == 1
+    code, log = run_export(w, make_plan(w), merge=True)
+    assert code == 0 and log[0].startswith("ALREADY EXPORTED") and len(w["gh"].prs) == 1 and w["gh"].merged == [7]
+
+
+def test_an_id_with_an_unmerged_pull_request_is_refused_not_duplicated(world):
+    w = world
+    assert run_export(w, make_plan(w), merge=False)[0] == 0
+    code, log = run_export(w, make_plan(w), merge=False)
+    assert code == ex.EXIT_BUSY and log[0].startswith("BUSY") and "#7" in log[0] and len(w["gh"].prs) == 1
+
+
+def test_allow_reexport_overrides_the_refusal_with_a_new_branch(world):
+    w = world
+    assert run_export(w, make_plan(w), merge=False)[0] == 0
+    again = make_plan(w, branch="claude/export-fake-1-again")
+    code, _ = run_export(w, again, merge=False, allow_reexport=True)
+    assert code == 0 and len(w["gh"].prs) == 2
+
+
+def test_a_fresh_lock_stops_the_export_before_anything_happens(world):
+    w = world
+    lock_file(w).write_text('{"pid": 1, "task": "someone else"}', encoding="utf-8")
+    code, log = run_export(w, make_plan(w), merge=True)
+    assert code == ex.EXIT_BUSY and "another export" in log[0] and w["gh"].prs == {}
+    assert lock_file(w).exists()                                       # not ours: left alone
+    assert not (w["config"].exists() and "FAKE-1" in json.loads(w["config"].read_text(encoding="utf-8")).get("exports", {}))
+    assert not (w["root"] / "work").exists() and not (w["root"] / "private" / "raw").exists()
+
+
+def test_a_stale_lock_left_by_a_dead_run_is_replaced(world):
+    w = world
+    lock_file(w).write_text('{"pid": 1, "task": "dead"}', encoding="utf-8")
+    old = __import__("time").time() - 3 * 3600
+    os.utime(lock_file(w), (old, old))
+    assert run_export(w, make_plan(w), merge=True)[0] == 0
+    assert not lock_file(w).exists()
+
+
+def test_the_lock_is_released_after_success_after_a_hold_and_after_a_failure(world):
+    w = world
+    assert run_export(w, make_plan(w), merge=True)[0] == 0 and not lock_file(w).exists()
+    (w["out"] / "notes.txt").write_text(f"{FAKE_TOKEN}\n", encoding="utf-8")
+    held = make_plan(w, id="FAKE-2", branch="claude/export-fake-2")
+    held["publish"].append({"from": str(w["out"] / "notes.txt"), "to": "data/lab/fake-1/notes.txt"})
+    assert run_export(w, held, merge=True)[0] == 3 and not lock_file(w).exists()
+    w["gh"].state = ("failure", "FAILURE")
+    failing = make_plan(w, id="FAKE-3", branch="claude/export-fake-3")
+    for e in failing["publish"]:
+        e["to"] = e["to"].replace("fake-1", "fake-3")
+    assert run_export(w, failing, merge=True)[0] == 4 and not lock_file(w).exists()
+
+
+def test_two_different_ids_one_after_the_other_both_go_out(world):
+    w = world
+    assert run_export(w, make_plan(w), merge=True)[0] == 0
+    second = make_plan(w, id="FAKE-2", branch="claude/export-fake-2")
+    for e in second["publish"]:
+        e["to"] = e["to"].replace("fake-1", "fake-2")
+    assert run_export(w, second, merge=True)[0] == 0 and w["gh"].merged == [7, 8]

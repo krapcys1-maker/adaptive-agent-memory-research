@@ -26,8 +26,10 @@ Usage::
     python scripts/aamr_export.py check  PLAN.json
     python scripts/aamr_export.py export PLAN.json --config sync.local.json [--merge] [--sanitize-paths]
 
-Exit codes: 0 done (exported, or a pull request opened), 3 held (this export only), 4 failed after the pull request existed (checks failed, not mergeable,
-confirmation failed), 2 usage or plan error.
+Exit codes: 0 done (exported, or a pull request opened, or the id was already exported and nothing was done), 3 held (this export only), 4 failed after the pull request existed (checks failed, not mergeable,
+confirmation failed), 5 busy (another export holds ``export-run.lock`` next to the configuration, or the id has an unmerged pull request; nothing was done), 2 usage or plan error.
+Guards against a double publication: exports run one at a time (the lock file; a lock older than two hours is replaced), and an id whose record shows ``merged`` or ``confirmed_on_main`` is not exported again
+unless ``--allow-reexport`` is passed.
 """
 from __future__ import annotations
 
@@ -306,9 +308,9 @@ def pr_body(plan: dict[str, Any], check: dict[str, Any], private: list[dict[str,
     return "\n".join(lines)
 
 
-def export(plan: dict[str, Any], config_path: Path, gh: GitHub, *, merge: bool = False, wait_s: float = 1800, poll_s: float = 20,
-           identity: tuple[str, str] = ("export-flow", "export-flow@users.noreply.invalid"), move_private: bool = False,
-           sleeper=time.sleep, log=print) -> int:
+def _export(plan: dict[str, Any], config_path: Path, gh: GitHub, *, merge: bool = False, wait_s: float = 1800, poll_s: float = 20,
+            identity: tuple[str, str] = ("export-flow", "export-flow@users.noreply.invalid"), move_private: bool = False,
+            sleeper=time.sleep, log=print) -> int:
     canonical = Path(plan["canonical"])
     base, remote, task_id = plan.get("base", "main"), plan.get("remote", "origin"), plan["id"]
     private_root = Path(plan["private_root"])
@@ -393,6 +395,72 @@ def export(plan: dict[str, Any], config_path: Path, gh: GitHub, *, merge: bool =
         git(canonical, "branch", "-D", plan["branch"], check=False)
 
 
+# ---------------------------------------------------------------------------------------------
+# Guards against a double publication: one export at a time, and no second export of an id that already went out
+# ---------------------------------------------------------------------------------------------
+
+EXIT_BUSY = 5
+LOCK_NAME = "export-run.lock"          # next to the synchronisation configuration; a worker that queues exports keeps its own, different lock
+
+
+def read_record(config_path: Path, task_id: str) -> dict[str, Any]:
+    if not config_path.exists():
+        return {}
+    return (json.loads(config_path.read_text(encoding="utf-8")).get("exports") or {}).get(task_id) or {}
+
+
+def acquire_lock(path: Path, task_id: str, stale_s: float) -> bool:
+    """Create the lock file exclusively. A lock older than ``stale_s`` seconds was left by a run that died and is replaced."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    for _ in range(2):
+        try:
+            fd = os.open(str(path), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        except FileExistsError:
+            try:
+                age = time.time() - path.stat().st_mtime
+            except FileNotFoundError:
+                continue                       # released in between: try once more
+            if age <= stale_s:
+                return False
+            path.unlink(missing_ok=True)
+            continue
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            json.dump({"pid": os.getpid(), "task": task_id, "since": datetime.datetime.now().isoformat(timespec="seconds")}, handle)
+        return True
+    return False
+
+
+def release_lock(path: Path) -> None:
+    try:
+        owner = json.loads(path.read_text(encoding="utf-8")).get("pid")
+    except (OSError, ValueError):
+        return
+    if owner == os.getpid():                   # never remove another run's lock
+        path.unlink(missing_ok=True)
+
+
+def export(plan: dict[str, Any], config_path: Path, gh: GitHub, *, allow_reexport: bool = False, lock_path: Path | None = None,
+           lock_stale_s: float = 7200.0, log=print, **kwargs: Any) -> int:
+    """Run one export under the guards. Exit 0 also when the id was already exported (nothing is done); 5 when another export holds the lock or the id has an unmerged pull request."""
+    task_id = plan["id"]
+    if not allow_reexport:
+        record = read_record(config_path, task_id)
+        if record.get("confirmed_on_main") or record.get("merged"):
+            log(f"ALREADY EXPORTED: {task_id} (pull request #{record.get('pr', '?')}, confirmed on main {record.get('confirmed_on_main', '')}); nothing done. Pass --allow-reexport to export it again")
+            return 0
+        if record.get("pr"):
+            log(f"BUSY: {task_id} already has pull request #{record['pr']} that is not merged; finish or close it first, or pass --allow-reexport with a new branch name")
+            return EXIT_BUSY
+    lock = Path(lock_path) if lock_path else Path(config_path).parent / LOCK_NAME
+    if not acquire_lock(lock, task_id, lock_stale_s):
+        log(f"BUSY: another export holds {lock}; nothing done, try again later")
+        return EXIT_BUSY
+    try:
+        return _export(plan, config_path, gh, log=log, **kwargs)
+    finally:
+        release_lock(lock)
+
+
 def load_plan(path: Path) -> dict[str, Any]:
     plan = json.loads(path.read_text(encoding="utf-8"))
     for key in ("id", "canonical", "work_root", "private_root", "branch", "publish"):
@@ -412,6 +480,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--identity-name", default="export-flow")
     parser.add_argument("--identity-email", default="export-flow@users.noreply.invalid")
     parser.add_argument("--wait-seconds", type=float, default=1800)
+    parser.add_argument("--allow-reexport", action="store_true", help="export an id again although its record shows a merged or open pull request (use a new branch name)")
     args = parser.parse_args(argv)
     plan = load_plan(Path(args.plan))
     if args.sanitize_paths:
@@ -426,7 +495,7 @@ def main(argv: list[str] | None = None) -> int:
     if not args.config or "repo" not in plan:
         parser.error("export needs --config and a 'repo' (OWNER/NAME) in the plan")
     return export(plan, Path(args.config), GhCli(plan["repo"]), merge=args.merge, wait_s=args.wait_seconds,
-                  identity=(args.identity_name, args.identity_email), move_private=args.move_private)
+                  identity=(args.identity_name, args.identity_email), move_private=args.move_private, allow_reexport=args.allow_reexport)
 
 
 if __name__ == "__main__":

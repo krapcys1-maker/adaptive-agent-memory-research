@@ -59,6 +59,12 @@ python <AAMR_ROOT>/repo/scripts/aamr_export.py export PLAN.json --config <AAMR_R
 does not record an absolute `raw_root`; the check holds the export otherwise. Where the raw run lives is stated in the README and the private area's own manifest, so moving
 the folder breaks nothing and nothing machine-local enters the public history (the frozen NIGHT-1, NIGHT-2 and K1 manifests are the reason: see their errata).
 
+**No double publication.** Two guards run before anything else. (1) *One export at a time:* the tool creates `export-run.lock` next to the synchronisation configuration exclusively and removes it at the end
+(also after a hold or a failure); a second run finds it and stops with exit code 5 without touching anything; a lock older than two hours was left by a run that died and is replaced. A worker that queues exports
+keeps its own, differently named lock, so it can call the tool while holding that one. (2) *One export per id:* if the record of the id shows `merged` or `confirmed_on_main`, the tool says `ALREADY EXPORTED`, does
+nothing and exits 0; if the record shows a pull request that is not merged, it stops with exit code 5 instead of opening a second one. `--allow-reexport` overrides both statements for a deliberate second export, with a new branch name
+(the old remote branch is never overwritten: there is no force-push).
+
 The tool writes only to the worktree it creates, the private area and the synchronisation configuration. It reads no database, `.env` or sealed material, calls no model and
 no paid API, and never force-pushes or rewrites history. The worktree and the local branch are removed at the end, whatever the outcome.
 
