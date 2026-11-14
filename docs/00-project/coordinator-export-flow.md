@@ -137,6 +137,15 @@ label file, a transcript and a database (nothing pushed, no secret value in the 
 an overwrite; a target outside the allowed folders; path replacement in a file that is not frozen, with the edit stated in the manifest; a frozen file with paths that needs its erratum;
 one held export not stopping the next; the daily report reading what the tool wrote; and a content scan that stays linear on a 5 MB single line.
 
+**End to end on the real repository, 2026-11-14.** A fictional finished task was built outside the laboratory (a run folder with a `DONE.json`, an output folder, a relative-path `raw-freeze.json`, invented numbers, a README that
+opens with "FICTIONAL self-test"). Run with `--merge --move-private`: the check passed with the raw run withheld, the branch and pull request #152 were opened, all 12 required checks passed on the exact head, the pull request was merged,
+and the tool confirmed on `origin/main` that every published file has the blob it had committed. Checked afterwards by hand: the files and a relative-path `PUBLISHED_FILES.json` were on `main`; the raw run
+was in `private/raw/export-flow-selftest/run` with a manifest whose hashes all matched and which holds no absolute path; the task's folder in the laboratory kept only the pointer file `run.MOVED.json`; the export record
+held `pr`, `protected_check`, `private_location`, `merged` and `confirmed_on_main`; the daily report showed the task as *on main*; the worktree and local branch were gone. A second fictional task with a token-shaped
+string in a note was **held**: exit code 3, nothing pushed, the reason and the date in the record (the string appears neither in the record nor in the check file), and the report showed it as *held*. The fictional result
+was removed from `data/lab/` in the pull request that closes the consolidation, so that `data/lab/` holds only real results; its trace stays in the history of pull request #152. The remote branch of a merged export is not deleted by the
+tool: it is removed by the routine branch clean-up after it is checked against the live remote.
+
 `tests/test_aamr_sync_report.py` covers the record on invented tasks and a fictional coordinator home with fake secrets: a complete record is quiet and shown in
 the table; a missing, open or incomplete check; a branch nobody pushed; a hold that is fresh, stale, undated or badly dated; finished tasks without a record
 (and running ones, which are ignored); targets and holds taken from the record for a closed mission; and a spy on `open` showing that the report never opens a
