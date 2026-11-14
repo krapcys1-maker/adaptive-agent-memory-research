@@ -1,0 +1,22 @@
+{
+  "id": "<the coordinator's task id: an experiment name, or 'mission <name>'>",
+  "repo": "OWNER/NAME",
+  "canonical": "<AAMR_ROOT>/repo",
+  "work_root": "<AAMR_ROOT>/work",
+  "private_root": "<AAMR_ROOT>/private",
+  "base": "main",
+  "remote": "origin",
+  "branch": "claude/<topic>-<date>",
+  "title": "Export: <task id>",
+  "run_dir": "<the laboratory's raw run folder for this task>",
+  "require_readme": true,
+  "publish": [
+    {"from": "<out_dir>/README.md", "to": "data/lab/<id>/README.md"},
+    {"from": "<out_dir>/REPORT.md", "to": "data/lab/<id>/REPORT.md"},
+    {"from": "<out_dir>/results.json", "to": "data/lab/<id>/results.json"},
+    {"from": "<out_dir>/raw-freeze.json", "to": "data/lab/<id>/raw-freeze.json", "manifest": true}
+  ],
+  "private": [
+    {"from": "<run_dir>", "to": "raw/<id>/run", "what": "raw run (sessions, transcripts), pinned by SHA-256 in raw-freeze.json"}
+  ]
+}

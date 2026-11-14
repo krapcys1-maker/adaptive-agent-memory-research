@@ -1,7 +1,8 @@
 # From the coordinator to GitHub: the export flow
 
 **Status:** operating procedure, introduced 2026-11-14 with the consolidation ([map](consolidation-map.md), [rules](work-placement-and-sync-rules.md)).
-It adds an *export record* to the daily synchronisation report. It changes nothing in the running coordinator and needs no migration of its
+It adds an *export record* to the daily synchronisation report and a tool, `scripts/aamr_export.py`, that does the route below
+([the tool](#the-tool)). It changes nothing in the running coordinator and needs no migration of its
 database: the record lives in the synchronisation configuration, on the maintainer's machine, next to the report.
 
 ## The rule
@@ -35,6 +36,32 @@ Work that has neither shows up in the daily report as a warning, and as an alert
 7. **A hold** (the owner decides publication, a protected-data question is open) is written into the record with `hold` and `hold_since`. A hold
    older than 14 days is a warning until it is decided or renewed with a new date.
 
+## The tool
+
+`scripts/aamr_export.py` does steps 2 to 6 for one finished task. It takes an *export plan* (a JSON file, [example](aamr-export-plan.example.json)):
+which files are the publishable result and where they go in the repository, and which files are raw or protected and belong to the private area.
+
+```text
+python <AAMR_ROOT>/repo/scripts/aamr_export.py check  PLAN.json
+python <AAMR_ROOT>/repo/scripts/aamr_export.py export PLAN.json --config <AAMR_ROOT>/sync/sync.local.json [--merge] [--move-private] [--sanitize-paths]
+```
+
+| Step | What the tool does |
+|---|---|
+| protected-data check | refuses a file whose name or folder looks like a secret, a blinding key, sealed data, a database or a transcript; a file inside the raw run folder; a file over 5 MB (50 MB in total); content with a token, key block, bearer credential, assigned secret or a personal e-mail address; a machine-local absolute path (unless the plan replaces it in a file that is not frozen, or a frozen file is published byte for byte together with an erratum); a manifest that records an absolute path; a target that already exists on `main` (unless the plan says `update`); a target outside `data/lab/`, `docs/`, `scripts/`, `tests/`; a result without a README that opens with its status |
+| hold | **uncertain means held.** Nothing is pushed. The reasons (never the secret values: a match is masked) go into the export record with `hold` and `hold_since`, and the daily report shows the task as held. One held export never stops another; the exit code is 3 |
+| private area | files named under `private` are copied (or, with `--move-private`, moved and replaced by a `<name>.MOVED.json` pointer) into `<AAMR_ROOT>/private`, with `MANIFEST.sha256.json` (relative paths, SHA-256, size) verified after the copy. The laboratory keeps its state and the pointer |
+| branch and pull request | a worktree of the canonical clone, one commit with a `PUBLISHED_FILES.json` manifest (relative paths, SHA-256 of what was published and of the source, a note of any edit), a push, a pull request with a HANDOFF block, then the record is updated (`branch`, `pr`, `protected_check`, `private_location`) |
+| checks and merge | only with `--merge`: wait for the required checks on the pull request; merge only when all pass. Failed or still pending checks: not merged, record gets a hold, exit code 4 |
+| confirmation | after the merge the tool fetches and compares, for every published path, the blob on `origin/main` with the blob it committed; only then the record gets `merged` and `confirmed_on_main` and loses its hold |
+
+**New manifests use relative paths.** A manifest of a raw run (`raw-freeze.json` or any file the plan marks `manifest`) lists the files relative to the run folder and
+does not record an absolute `raw_root`; the check holds the export otherwise. Where the raw run lives is stated in the README and the private area's own manifest, so moving
+the folder breaks nothing and nothing machine-local enters the public history (the frozen NIGHT-1, NIGHT-2 and K1 manifests are the reason: see their errata).
+
+The tool writes only to the worktree it creates, the private area and the synchronisation configuration. It reads no database, `.env` or sealed material, calls no model and
+no paid API, and never force-pushes or rewrites history. The worktree and the local branch are removed at the end, whatever the outcome.
+
 ## The export record
 
 In `sync.local.json` (ignored by Git, see [the example](aamr-sync-config.example.json)):
@@ -49,6 +76,9 @@ In `sync.local.json` (ignored by Git, see [the example](aamr-sync-config.example
                         "withheld": ["raw run (326 MB), pinned by SHA-256"], "by": "<who>"},
     "branch": "claude/<topic>-<date>",
     "pr": 142,
+    "private_location": ["private/raw/<id>/run"],
+    "merged": true,
+    "confirmed_on_main": "<12 characters of the commit on main>",
     "hold": "owner decides whether to publish",
     "hold_since": "2026-11-14"
   }
@@ -56,7 +86,8 @@ In `sync.local.json` (ignored by Git, see [the example](aamr-sync-config.example
 ```
 
 `targets` supplies the result path for a task the coordinator does not describe (every closed mission, an experiment whose output is not under
-`data/`). `hold` and `hold_since` are optional; `branch` and `pr` are written once they exist. The task id is the coordinator's: an experiment name,
+`data/`). `hold` and `hold_since` are optional; `branch` and `pr` are written once they exist. `aamr_export.py` writes all of these itself
+(`merged` and `confirmed_on_main` only after it has compared the files on `main`). The task id is the coordinator's: an experiment name,
 or `mission <name>` for a closed mission.
 
 ## What the daily report says
@@ -93,10 +124,18 @@ the signal to look at the report; the report names local paths, so it is not pub
   (`allow_schema_upgrade`) is not implemented. Any such migration needs its own safeguard (a copy, a restore test) first.
 - It does not decide *whether* something may be published; the protected-data check is a human or agent judgement recorded in the file, not an
   automatic proof. A `clean` result that is wrong is a failure of the check, not of the report.
-- It does not export for you. The coordinator keeps running research; the export is a separate, reviewable pull request.
+- The coordinator never exports by itself. It keeps running research; the export is a separate, reviewable pull request that an agent or the maintainer starts with
+  `aamr_export.py`, and the tool stops at any uncertainty instead of guessing.
 - Work that never ran as a declared experiment or mission is visible only through the Git findings (`LOCAL_ONLY_BRANCH`, `DIRTY`, ...).
 
 ## Tested on fictional tasks
+
+`tests/test_aamr_export.py` runs the whole route on invented tasks against a local bare repository standing in for GitHub, with a fake pull-request client that really merges:
+finished task to confirmed on `main` (relative manifest, private copy with a verified SHA-256 manifest, pointer, record, worktree removed); a pull request left open with `main` untouched;
+failed and pending checks (no merge, a hold in the record); held exports for a token, an assigned secret, a personal address, a local path, a key file, `.env`, a blinding key, a blind
+label file, a transcript and a database (nothing pushed, no secret value in the record or in the check file); a raw run file; a large file; an absolute manifest path; a missing README status;
+an overwrite; a target outside the allowed folders; path replacement in a file that is not frozen, with the edit stated in the manifest; a frozen file with paths that needs its erratum;
+one held export not stopping the next; the daily report reading what the tool wrote; and a content scan that stays linear on a 5 MB single line.
 
 `tests/test_aamr_sync_report.py` covers the record on invented tasks and a fictional coordinator home with fake secrets: a complete record is quiet and shown in
 the table; a missing, open or incomplete check; a branch nobody pushed; a hold that is fresh, stale, undated or badly dated; finished tasks without a record
