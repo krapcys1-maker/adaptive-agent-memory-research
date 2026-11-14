@@ -12,7 +12,7 @@ Search string `Loftus` in [the LifeSim design digest](../../11-research-laborato
 
 Elizabeth F. Loftus and John C. Palmer, "Reconstruction of automobile destruction: An example of the interaction between language and memory", *Journal of Verbal Learning and Verbal Behavior* 13(5):585-589, October 1974. Published article, DOI `https://doi.org/10.1016/S0022-5371(74)80011-3`.
 
-Read: the published abstract, the method and results sections of a publicly posted PDF of the published article (Experiments I and II), and Table 2. Not a fresh page-by-page full read of every page.
+Read: the published abstract, the method and results sections of a publicly posted PDF of the published article (Experiments I and II), and Table 2. Not a fresh page-by-page full read of every page. The contributor did not record the address of the copy. Maintainer re-check, 2026-11-14: a scan of the original pages 585-589 of the article (copy at `https://www.gwern.net/doc/psychology/cognitive-bias/1974-loftus.pdf`) confirms that the broken-glass table is **Table 2** (Table 3 in the same article gives the probability of "yes" conditional on the speed estimate; secondary summaries that call the broken-glass table "Table 3" are mistaken), the 45 and 150 student samples, and the .32 and .14 figures. Two page locators below were corrected (they said p. 588 and pp. 587-589).
 
 ## Bibliographic check (authors, year, venue, volume and pages: match / differ, and how)
 
@@ -20,9 +20,9 @@ Match. Authors are Elizabeth F. Loftus and John C. Palmer; the article is in *Jo
 
 ## What the source says about the claim, with a locator (page, section, table or figure)
 
-- Experiment I: 45 students viewed seven films of traffic accidents and answered questions. The critical question about vehicle speed used one of five verbs. "Smashed" elicited higher speed estimates than "collided", "bumped", "contacted" or "hit" (abstract, p. 585; Experiment I, pp. 585-587).
+- Experiment I: 45 students viewed seven films of traffic accidents and answered questions. The critical question about vehicle speed used one of five verbs. "Smashed" elicited higher speed estimates than "collided", "bumped", "contacted" or "hit" (abstract, p. 585; Experiment I, pp. 586-587).
 - Experiment II: 150 students viewed one film and answered a questionnaire. One week later, without viewing the film again, they answered a set of questions including "Did you see any broken glass?" There was no broken glass in the film (Experiment II method, p. 587).
-- Experiment II result: the probability of saying "yes" to broken glass was .32 in the "smashed" condition and .14 in the "hit" condition (Table 2 and text, p. 588). The authors interpret this as consistent with post-event information being integrated into the memory representation, while also considering a response-bias interpretation for the speed estimates (discussion, pp. 587-589).
+- Experiment II result: the probability of saying "yes" to broken glass was .32 in the "smashed" condition and .14 in the "hit" condition (Table 2 and text, p. 587). The authors interpret this as consistent with post-event information being integrated into the memory representation, while also considering a response-bias interpretation for the speed estimates (Experiment I discussion, p. 586; general discussion, p. 588).
 
 ## Verdict: partly supported
 
@@ -43,4 +43,4 @@ At FM2: "Original exact (1), misleading value (intrusion), other (error); a sour
 
 ## How far you read
 
-Abstract and targeted method/results sections of a publicly posted PDF of the published article (Experiments I and II, Table 2), not a fresh full-text read.
+Abstract and targeted method/results sections of a publicly posted PDF of the published article (Experiments I and II, Table 2), not a fresh full-text read. Re-checked by the maintainers against a scan of all five pages (see the primary-source section).

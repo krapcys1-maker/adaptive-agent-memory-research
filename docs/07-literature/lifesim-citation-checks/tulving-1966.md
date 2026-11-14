@@ -12,7 +12,7 @@ Search string `Tulving and Pearlstone` in [the LifeSim design digest](../../11-r
 
 Endel Tulving and Zena Pearlstone, "Availability versus accessibility of information in memory for words", *Journal of Verbal Learning and Verbal Behavior* 5(4):381-391, August 1966. Published article, DOI `https://doi.org/10.1016/S0022-5371(66)80048-8`.
 
-Read: the published abstract (publisher/Crossref record), the repository's existing [full-read note](../full-read-notes/1966-tulving-pearlstone-availability-accessibility.md), and targeted excerpts from a reprinted PDF. This was not a fresh page-by-page full read.
+Read: the published abstract (publisher/Crossref record), the repository's existing [full-read note](../full-read-notes/1966-tulving-pearlstone-availability-accessibility.md), and targeted excerpts from a reprinted PDF. This was not a fresh page-by-page full read. The contributor did not record which reprint was read; the maintainer's review comment on this pull request records an independent check of the p. 382 caution and of N = 948 against the paper.
 
 ## Bibliographic check (authors, year, venue, volume and pages: match / differ, and how)
 
