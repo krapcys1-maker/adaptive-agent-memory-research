@@ -1,3 +1,15 @@
+> **English summary and provenance.** Imported on 2026-11-14 from the AAMR coordinator (commit `74980a3`, authorship and
+> history kept); the Polish text below is the original. `scripts/rule_characteristics.py` simulates a *preregistered decision
+> rule* on a declared noise model before the protocol is frozen, and refuses the freeze when the rule cannot do its job:
+> too many false supports without an effect, too little power at the smallest practically important effect (SESOI), a rule
+> that closes a direction on mere non-significance, no reachable "inconclusive" state, no separation of "positive" from
+> "practically important", undeclared dependence between observations, noise taken from a rerun instead of a placebo, or
+> repeats counted as replication when they are nearly deterministic. It never changes a historical verdict. One figure can be
+> checked by hand: a rule that supports a hypothesis when the treated arm leads by at least two tasks, with eight discordant
+> pairs and no true effect, supports it with probability 93/256 = 0.3633. The thresholds are a scientific decision of the
+> maintainer; the defaults are proposals. The other numbers in the table come from the module's seeded simulation and were
+> not independently re-derived here.
+
 # Charakterystyka reguł decyzyjnych przed zamrożeniem (P1)
 
 Stan: gałąź `lab/p1-rule-calibration`, **niewdrożone**. Domyślnie wyłączone (`[lab.rule_check] required = false`), więc po scaleniu nie zmienia zachowania, dopóki właściciel tego nie włączy.
