@@ -1,0 +1,5 @@
+PMLAB-H2-TEMP-E1 — dev, model-free, no API cost
+
+  arm          correct  wrong rec  abstain     CONFLIC  CORRECT   FUTURE  HISTORI  OVERLAP
+  newest         0.200      0.600    0.000       0.000    1.000    0.000    0.000    0.000
+  resolver       1.000      0.000    0.200       1.000    1.000    1.000    1.000    1.000
