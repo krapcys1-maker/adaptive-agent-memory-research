@@ -1,0 +1,13 @@
+R1 NIGHT-2 prompt_eval_count: step s+1 larger than step s in 1811/1811 consecutive pairs (full counts grow with the history; cache remainders would be small); identical requests in two arms (empty M block) with equal counts 1/1; counts below 500 tokens 0/2800
+R2 prose tokens/char 0.20, per-block prose noise sd 0%: frozen T tasks rel VC -1.1%, GFS -2.8%, TRAVEL -2.1%; random 10+10 splits failing +-5%: VC 0%, GFS 1%, TRAVEL 0%
+R2 prose tokens/char 0.20, per-block prose noise sd 3%: frozen T tasks rel VC +0.4%, GFS -3.8%, TRAVEL -1.4%; random 10+10 splits failing +-5%: VC 1%, GFS 5%, TRAVEL 6%
+R2 prose tokens/char 0.23, per-block prose noise sd 0%: frozen T tasks rel VC -0.5%, GFS -1.7%, TRAVEL -1.7%; random 10+10 splits failing +-5%: VC 0%, GFS 0%, TRAVEL 0%
+R2 prose tokens/char 0.23, per-block prose noise sd 3%: frozen T tasks rel VC +1.0%, GFS -2.6%, TRAVEL -1.0%; random 10+10 splits failing +-5%: VC 0%, GFS 1%, TRAVEL 2%
+R2 prose tokens/char 0.26, per-block prose noise sd 0%: frozen T tasks rel VC +0.1%, GFS -0.6%, TRAVEL -1.2%; random 10+10 splits failing +-5%: VC 0%, GFS 0%, TRAVEL 0%
+R2 prose tokens/char 0.26, per-block prose noise sd 3%: frozen T tasks rel VC +1.6%, GFS -1.5%, TRAVEL -0.5%; random 10+10 splits failing +-5%: VC 0%, GFS 0%, TRAVEL 2%
+R2 prose tokens/char 0.29, per-block prose noise sd 0%: frozen T tasks rel VC +0.6%, GFS +0.9%, TRAVEL -0.8%; random 10+10 splits failing +-5%: VC 0%, GFS 0%, TRAVEL 0%
+R2 prose tokens/char 0.29, per-block prose noise sd 3%: frozen T tasks rel VC +2.1%, GFS -0.1%, TRAVEL -0.0%; random 10+10 splits failing +-5%: VC 0%, GFS 5%, TRAVEL 1%
+R2 worst |rel| on the frozen T task lists over the sweep: 3.8% (gate 5%)
+R3 NIGHT-2 (temperature 0) calls/episode: 12 m tasks 8.92; N on 60 training 9.55; N on 148 9.74; N+M on 148 9.46; random 12 of 60 training: 5-95% 8.25-10.92; the 1.10 margin covers an underestimate of +6.1% for these 12 tasks
+R4 K1 stimuli equal (parsed JSON) to the pilot's frozen stimuli: {'k1_tasks.json': True, 'k1_plans_M.json': True, 'k1_pool_VC.json': True, 'k1_pool_GFS.json': True, 'k1_pool_TRAVEL.json': True}
+RESULT RISKS T: PASS {'R1': True, 'R2': True, 'R3': True, 'R4': True}

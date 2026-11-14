@@ -388,3 +388,24 @@ def test_an_invalid_percent_encoded_target_is_reported_and_does_not_abort_the_au
     audit.check_doc_links(findings, counters)
     assert [item.detail for item in findings] == ["link target 'x%00y.md' does not resolve"]
     assert counters["doc_links_checked"] == 2
+
+
+def test_a_declared_digest_keyed_by_an_absolute_path_outside_the_repository_is_not_a_crash(tmp_path, monkeypatch) -> None:
+    """A frozen artifact can record the absolute path of a file on the machine that wrote it. If that file exists on the
+    machine running the audit, it is outside the repository and cannot be checked; it must be skipped, not abort the audit."""
+    repo = tmp_path / "repo"
+    outside = tmp_path / "elsewhere" / "note.md"
+    outside.parent.mkdir(parents=True)
+    outside.write_bytes(b"a file outside the repository")
+    manifest = repo / "data" / "lab" / "x" / "FREEZE.json"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(json.dumps({"external_references": {outside.as_posix(): sha(b"a file outside the repository")}}),
+                        encoding="utf-8")
+    monkeypatch.setattr(audit, "ROOT", repo)
+
+    findings, counters = run_audit()
+
+    assert findings == []
+    assert counters["declared_hashes_seen"] == 1
+    assert counters["declared_hashes_unresolvable"] == 1
+    assert counters["declared_hashes_resolved"] == 0

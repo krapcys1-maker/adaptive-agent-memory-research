@@ -1,0 +1,760 @@
+{
+ "files": [
+  {
+   "published_path": "spec/SPEC_K1_PLACEBO_v1.0.1.md",
+   "source": "spec/SPEC_K1_PLACEBO_v1.0.1.md",
+   "kind": "frozen specification",
+   "bytes": 63596,
+   "sha256": "8b854b35657088bd5409750d8bfffb16fe635b817ac49554ebf35428f11f2744",
+   "sha256_original": "8b854b35657088bd5409750d8bfffb16fe635b817ac49554ebf35428f11f2744",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "spec/FREEZE.json",
+   "source": "spec/FREEZE.json",
+   "kind": "frozen specification",
+   "bytes": 7312,
+   "sha256": "9429ab20d0526ba29cebff4d87a3a737c5f240075c4720a868208092b83da0f7",
+   "sha256_original": "9429ab20d0526ba29cebff4d87a3a737c5f240075c4720a868208092b83da0f7",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "spec/superseded_v1.0/SPEC_K1_PLACEBO_v1.0.md",
+   "source": "spec/superseded_v1.0/SPEC_K1_PLACEBO_v1.0.md",
+   "kind": "superseded specification",
+   "bytes": 57460,
+   "sha256": "e585ed8dac5670f906e7deceaf89b306a89bece30acd2da06b8d5be781dd38df",
+   "sha256_original": "e585ed8dac5670f906e7deceaf89b306a89bece30acd2da06b8d5be781dd38df",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "spec/superseded_v1.0/FREEZE.json",
+   "source": "spec/superseded_v1.0/FREEZE.json",
+   "kind": "superseded specification",
+   "bytes": 3828,
+   "sha256": "db4508fc11bdce3b11fa4ffd3389a9c7a5466b34f8c48205d11e837b3be9f2b9",
+   "sha256_original": "db4508fc11bdce3b11fa4ffd3389a9c7a5466b34f8c48205d11e837b3be9f2b9",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/analyze.py",
+   "source": "code/analyze.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 31999,
+   "sha256": "84ab5fd77226381303336a44bd627505db514afb4b1d990bf77b817100bc0da2",
+   "sha256_original": "84ab5fd77226381303336a44bd627505db514afb4b1d990bf77b817100bc0da2",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/checker.py",
+   "source": "code/checker.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 2323,
+   "sha256": "718352c9c9b718af64dbba8dd5d6c8150ae088e3d43585e96daefda445b5eab8",
+   "sha256_original": "718352c9c9b718af64dbba8dd5d6c8150ae088e3d43585e96daefda445b5eab8",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/draw_worker.py",
+   "source": "code/draw_worker.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 5991,
+   "sha256": "2630ad40fe01179112c77013497a3ba272af3612fdde31299c7e91cd03221cc3",
+   "sha256_original": "2630ad40fe01179112c77013497a3ba272af3612fdde31299c7e91cd03221cc3",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/k1_audit_hook.py",
+   "source": "code/k1_audit_hook.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 9726,
+   "sha256": "831013701cb308e0dfb18aa240914b73f4ee83fa4c8d7390f56451953455681a",
+   "sha256_original": "831013701cb308e0dfb18aa240914b73f4ee83fa4c8d7390f56451953455681a",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/k1_config.json",
+   "source": "code/k1_config.json",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 8690,
+   "sha256": "271e18ce606bb4d40c094b822e17dbcc1a1585b54f76fa56d77d92d7cf1c7cde",
+   "sha256_original": "271e18ce606bb4d40c094b822e17dbcc1a1585b54f76fa56d77d92d7cf1c7cde",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "executor/code/k1_l4.py",
+   "source": "code/k1_l4.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 6985,
+   "sha256": "1c23b0f41e5b98cb59dddb066bd36287e347ad1876b4ce7e040ca360dfcf9021",
+   "sha256_original": "1c23b0f41e5b98cb59dddb066bd36287e347ad1876b4ce7e040ca360dfcf9021",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/k1_length.py",
+   "source": "code/k1_length.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 4030,
+   "sha256": "5430e901acbfea4c52c39da9a5ece405f9c1a4c7e816058c4fe217cc9e92bdad",
+   "sha256_original": "5430e901acbfea4c52c39da9a5ece405f9c1a4c7e816058c4fe217cc9e92bdad",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/k1_lib.py",
+   "source": "code/k1_lib.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 19883,
+   "sha256": "94215234631da6ae7d3f44e2921f0b909ad8363d94e935260b0347e36949e4af",
+   "sha256_original": "94215234631da6ae7d3f44e2921f0b909ad8363d94e935260b0347e36949e4af",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "executor/code/k1_v04_reading.py",
+   "source": "code/k1_v04_reading.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 15653,
+   "sha256": "a9a7ff019b9f2e501ab1c11bbebec514654d16f9bd09229dec4a15e8189ccabf",
+   "sha256_original": "a9a7ff019b9f2e501ab1c11bbebec514654d16f9bd09229dec4a15e8189ccabf",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/prepare.py",
+   "source": "code/prepare.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 15693,
+   "sha256": "bc61334873978365deffab93a40a3519f18a37d6525a2c81db5247ce6f45ae17",
+   "sha256_original": "bc61334873978365deffab93a40a3519f18a37d6525a2c81db5247ce6f45ae17",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "executor/code/rebuild_worker.py",
+   "source": "code/rebuild_worker.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 1989,
+   "sha256": "69a5110bd9b7f798a20387ed7b75352d6df45b92cb42fb7ebca1c6471ec98471",
+   "sha256_original": "69a5110bd9b7f798a20387ed7b75352d6df45b92cb42fb7ebca1c6471ec98471",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/supervisor.py",
+   "source": "code/supervisor.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 9188,
+   "sha256": "f32649e8d59f03defec16647af24858dce4537b1990e5199693c5b6127a2e06b",
+   "sha256_original": "f32649e8d59f03defec16647af24858dce4537b1990e5199693c5b6127a2e06b",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/t_w6_cells.py",
+   "source": "code/t_w6_cells.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 6109,
+   "sha256": "1abf1f083041d1a0c6b53fa6b6b5f8a59c8a483cf41ca1975db555fe4bc84003",
+   "sha256_original": "1abf1f083041d1a0c6b53fa6b6b5f8a59c8a483cf41ca1975db555fe4bc84003",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/code/worker.py",
+   "source": "code/worker.py",
+   "kind": "executor code (pinned by the L8 manifest)",
+   "bytes": 21088,
+   "sha256": "b42eac6669e6f4ecfd8def2912fa3cf3492090fd91a93e83234235b4566e4d76",
+   "sha256_original": "b42eac6669e6f4ecfd8def2912fa3cf3492090fd91a93e83234235b4566e4d76",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/tests/run_tests.py",
+   "source": "tests/run_tests.py",
+   "kind": "executor tests and their recorded output",
+   "bytes": 42995,
+   "sha256": "0644e191a51b40b83c89b4b93aec2c41aa385f085b3b2dc6d3eed5d3be54039c",
+   "sha256_original": "0644e191a51b40b83c89b4b93aec2c41aa385f085b3b2dc6d3eed5d3be54039c",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "executor/tests/t_risks_T.py",
+   "source": "tests/t_risks_T.py",
+   "kind": "executor tests and their recorded output",
+   "bytes": 6717,
+   "sha256": "32c29e9bc23bba20c9dcfd2e9e873ee0035e844c90546ca08dcd9b4626555760",
+   "sha256_original": "32c29e9bc23bba20c9dcfd2e9e873ee0035e844c90546ca08dcd9b4626555760",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "executor/tests/t_v101_conformity.py",
+   "source": "tests/t_v101_conformity.py",
+   "kind": "executor tests and their recorded output",
+   "bytes": 9779,
+   "sha256": "308595438c264b31d8a17edf42a65ac195506078bebb582a6e486bd219849e1f",
+   "sha256_original": "308595438c264b31d8a17edf42a65ac195506078bebb582a6e486bd219849e1f",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "executor/tests/test_coordinator_runner.py",
+   "source": "tests/test_coordinator_runner.py",
+   "kind": "executor tests and their recorded output",
+   "bytes": 5600,
+   "sha256": "0d3b85e8b79cd8811ba742cebe35a6d6db3618792a92d405464bb6f0ceaa9791",
+   "sha256_original": "0d3b85e8b79cd8811ba742cebe35a6d6db3618792a92d405464bb6f0ceaa9791",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "executor/tests/WYNIKI_RUNNER.out",
+   "source": "tests/WYNIKI_RUNNER.out",
+   "kind": "executor tests and their recorded output",
+   "bytes": 657,
+   "sha256": "61a8b72e6e8eea5c401c971080cabc6f42cec04d70de23c352188f8a168d860b",
+   "sha256_original": "61a8b72e6e8eea5c401c971080cabc6f42cec04d70de23c352188f8a168d860b",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/tests/WYNIKI_RYZYKA_T.out",
+   "source": "tests/WYNIKI_RYZYKA_T.out",
+   "kind": "executor tests and their recorded output",
+   "bytes": 2188,
+   "sha256": "74fc4ea3666abc213096b6610a63eb11a5e26c3b7c5b81be0fcb3f9a228ca130",
+   "sha256_original": "74fc4ea3666abc213096b6610a63eb11a5e26c3b7c5b81be0fcb3f9a228ca130",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/tests/WYNIKI_TESTOW.out",
+   "source": "tests/WYNIKI_TESTOW.out",
+   "kind": "executor tests and their recorded output",
+   "bytes": 6383,
+   "sha256": "c7785364b4fc57dcffe006cfe3d432464ec785b1ac4ec7ddc4d78cd4e3c3b27c",
+   "sha256_original": "c7785364b4fc57dcffe006cfe3d432464ec785b1ac4ec7ddc4d78cd4e3c3b27c",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/tests/WYNIKI_ZGODNOSC_v1.0.1.out",
+   "source": "tests/WYNIKI_ZGODNOSC_v1.0.1.out",
+   "kind": "executor tests and their recorded output",
+   "bytes": 2136,
+   "sha256": "bb966f51dc5fa4473c1283ee9bcc71a5134ca6be200a9494155d0452a5766cce",
+   "sha256_original": "bb966f51dc5fa4473c1283ee9bcc71a5134ca6be200a9494155d0452a5766cce",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/tools/pre_T_check.py",
+   "source": "tools/pre_T_check.py",
+   "kind": "executor tools",
+   "bytes": 3773,
+   "sha256": "2f2d1f4b18e9b9311d110e867aad5e33a45fecf7031958c6f8aba143f7cb651c",
+   "sha256_original": "2f2d1f4b18e9b9311d110e867aad5e33a45fecf7031958c6f8aba143f7cb651c",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "executor/tools/review_T.py",
+   "source": "tools/review_T.py",
+   "kind": "executor tools",
+   "bytes": 4316,
+   "sha256": "2dff9b9ed229ff4fb35fdb0aa6cec6014ec7b9ddbc8a8b6037756f0ad17df5d6",
+   "sha256_original": "2dff9b9ed229ff4fb35fdb0aa6cec6014ec7b9ddbc8a8b6037756f0ad17df5d6",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "executor/materials/corpus_P_candidates.txt",
+   "source": "materials/corpus_P_candidates.txt",
+   "kind": "executor materials",
+   "bytes": 11807,
+   "sha256": "bd257c8dfdaf55968d236e05ee73c402f9dba059362d962c5861babfc5003da8",
+   "sha256_original": "bd257c8dfdaf55968d236e05ee73c402f9dba059362d962c5861babfc5003da8",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/materials/corpus_P_source.txt",
+   "source": "materials/corpus_P_source.txt",
+   "kind": "executor materials",
+   "bytes": 9939,
+   "sha256": "192809be1f877e6ffbff12bc50391ebfddbefc469983370a4a06f5980dccff1c",
+   "sha256_original": "192809be1f877e6ffbff12bc50391ebfddbefc469983370a4a06f5980dccff1c",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/materials/PROTOTYPES_SHA256.txt",
+   "source": "materials/PROTOTYPES_SHA256.txt",
+   "kind": "executor materials",
+   "bytes": 401,
+   "sha256": "6e50ae2880de120a363d744c7456559c0155b11acdeaaf75d64f5cd37506c6d6",
+   "sha256_original": "6e50ae2880de120a363d744c7456559c0155b11acdeaaf75d64f5cd37506c6d6",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "decisions/DZIENNIK_DECYZJI_K1.md",
+   "source": "DZIENNIK_DECYZJI_K1.md",
+   "kind": "executor decision record before the run (AI-written, Polish)",
+   "bytes": 6781,
+   "sha256": "e312505a3054fd2a92af051fb9f0b7e9a7422f7497a90aa1e6c751b1ec940fc2",
+   "sha256_original": "e312505a3054fd2a92af051fb9f0b7e9a7422f7497a90aa1e6c751b1ec940fc2",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "decisions/DZIENNIK_DECYZJI_K1_v1.0.1.md",
+   "source": "DZIENNIK_DECYZJI_K1_v1.0.1.md",
+   "kind": "executor decision record before the run (AI-written, Polish)",
+   "bytes": 4818,
+   "sha256": "b677b09300ebd07febcf4429a236c3add7748c6817c87f7f13f8c2cc85904d6b",
+   "sha256_original": "e168ed474f0975bc288d768330e0c0b3ce8779849ca2a8c48b4e7856a17ea600",
+   "edits": [
+    "replaced 1 machine-local path(s) with '[machine-local path omitted]'"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "decisions/ANEKS_C2_D12.md",
+   "source": "ANEKS_C2_D12.md",
+   "kind": "executor decision record before the run (AI-written, Polish)",
+   "bytes": 7243,
+   "sha256": "b27641922bf9e7a1c81421933e89a3f7f9f3e01f27b1a32a00b7be2669aa0063",
+   "sha256_original": "b27641922bf9e7a1c81421933e89a3f7f9f3e01f27b1a32a00b7be2669aa0063",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "decisions/DECYZJE_BRAKUJACE.md",
+   "source": "DECYZJE_BRAKUJACE.md",
+   "kind": "executor decision record before the run (AI-written, Polish)",
+   "bytes": 2348,
+   "sha256": "8107a57885a5d5d1a770b2fdf005cae3ef02ba26948687144becafb2ae93fc3e",
+   "sha256_original": "8107a57885a5d5d1a770b2fdf005cae3ef02ba26948687144becafb2ae93fc3e",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "decisions/T1_T12_I_ZGODY.md",
+   "source": "T1_T12_I_ZGODY.md",
+   "kind": "executor decision record before the run (AI-written, Polish)",
+   "bytes": 8537,
+   "sha256": "61a0b97a27e4a0f4a33d35cde97eb6a0192dcabc5596c5365ccc8d4f13722401",
+   "sha256_original": "685284b0e28d22e46c085d82292c154f87bd542a9e75db05cc7fe7f59f87a58d",
+   "edits": [
+    "replaced 1 machine-local path(s) with '[machine-local path omitted]'"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "decisions/RAPORT_GO_NOGO_K1.md",
+   "source": "RAPORT_GO_NOGO_K1.md",
+   "kind": "executor decision record before the run (AI-written, Polish)",
+   "bytes": 13759,
+   "sha256": "6d46ca62c77a91bb0d5614e2c2217aa2289c0d2b2b97bac9af7d8086e1b61b25",
+   "sha256_original": "9dab554305b72607567b0341cf0129595a097ddf3a1fa7dfa8110aabe1bfa6a1",
+   "edits": [
+    "replaced 6 machine-local path(s) with '[machine-local path omitted]'"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "decisions/WERDYKT.md",
+   "source": "WERDYKT.md",
+   "kind": "executor decision record before the run (AI-written, Polish)",
+   "bytes": 5858,
+   "sha256": "0a35c578b947de21112ecd457f89e11c8d9156cb0462ae1b86d71a16acd1c644",
+   "sha256_original": "0a35c578b947de21112ecd457f89e11c8d9156cb0462ae1b86d71a16acd1c644",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "decisions/CHECKLISTA_STARTOWA_K1.md",
+   "source": "CHECKLISTA_STARTOWA_K1.md",
+   "kind": "executor decision record before the run (AI-written, Polish)",
+   "bytes": 9144,
+   "sha256": "7c2a73ad61402e295a8656c389edefcf9b8b7061513908f41282ff66dd6a1278",
+   "sha256_original": "cb041b3a74bad8261462bac2ac46f35f1ceb9fc5f302415ea3bb5e756dd4ac12",
+   "edits": [
+    "replaced 9 machine-local path(s) with '[machine-local path omitted]'"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "executor/EXECUTOR_README.pl.md",
+   "source": "README.md",
+   "kind": "the executor's own README (Polish)",
+   "bytes": 4317,
+   "sha256": "7886863d4fd87b4e6f916f223a10b92b795b2b0278080bd75c5d15aca22d4583",
+   "sha256_original": "3902187fffdd9d373855ff871e9015b57bc127e9e0c0fe4f26b1e1f6ac35e42f",
+   "edits": [
+    "replaced 3 machine-local path(s) with '[machine-local path omitted]'"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_corpus_P.json",
+   "source": "base/stim/k1_corpus_P.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 10311,
+   "sha256": "97e5f5fb051751d679ee320571aa45dea48b875969466e0de63bfadd36c7a678",
+   "sha256_original": "97e5f5fb051751d679ee320571aa45dea48b875969466e0de63bfadd36c7a678",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_draws_SX.json",
+   "source": "base/stim/k1_draws_SX.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 237721,
+   "sha256": "ffba18b68ad4123563ed19e36a2e4c4aad91a3d0d28abe5247894ed15d69b821",
+   "sha256_original": "ffba18b68ad4123563ed19e36a2e4c4aad91a3d0d28abe5247894ed15d69b821",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_l4_lists.json",
+   "source": "base/stim/k1_l4_lists.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 11129,
+   "sha256": "88228edc4b71efac9635f1b69e5e44af55cda3ec8d4246e8da62adc447047327",
+   "sha256_original": "88228edc4b71efac9635f1b69e5e44af55cda3ec8d4246e8da62adc447047327",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_l6a_allow.json",
+   "source": "base/stim/k1_l6a_allow.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 2504,
+   "sha256": "698ed9ebd9819bb0bcd6330e8a21f4fe41bc389a91c34c292bc9593036850bd1",
+   "sha256_original": "698ed9ebd9819bb0bcd6330e8a21f4fe41bc389a91c34c292bc9593036850bd1",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": true
+  },
+  {
+   "published_path": "stim/k1_plans_M.json",
+   "source": "base/stim/k1_plans_M.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 39644,
+   "sha256": "1c5bd8867a360b115487bcaee84eb33da888eaf439049d2fd9a3c567737a0be7",
+   "sha256_original": "1c5bd8867a360b115487bcaee84eb33da888eaf439049d2fd9a3c567737a0be7",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_pool_GFS.json",
+   "source": "base/stim/k1_pool_GFS.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 16024,
+   "sha256": "68eee20e4ce6991f72fda0e600213e9e342ef03c91076b1f30009d092fdd22ea",
+   "sha256_original": "68eee20e4ce6991f72fda0e600213e9e342ef03c91076b1f30009d092fdd22ea",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_pool_TRAVEL.json",
+   "source": "base/stim/k1_pool_TRAVEL.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 44474,
+   "sha256": "a93d06eb12217c9c6ad967d6fa422aa34eb14802640de7a866dd545fae0b7445",
+   "sha256_original": "a93d06eb12217c9c6ad967d6fa422aa34eb14802640de7a866dd545fae0b7445",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_pool_VC.json",
+   "source": "base/stim/k1_pool_VC.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 27341,
+   "sha256": "5744c9a6c4182f16af8ac3fe16fab70af27e1893740aa4873e2766e4ba9eafc5",
+   "sha256_original": "5744c9a6c4182f16af8ac3fe16fab70af27e1893740aa4873e2766e4ba9eafc5",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_shared_graph.json",
+   "source": "base/stim/k1_shared_graph.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 38474,
+   "sha256": "aab707d99eb1c53666c53a0eb1007b1dd858071c4fca884b0a5bef027bd57483",
+   "sha256_original": "aab707d99eb1c53666c53a0eb1007b1dd858071c4fca884b0a5bef027bd57483",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_T_tasks.json",
+   "source": "base/stim/k1_T_tasks.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 3775,
+   "sha256": "59d60b6b0fd89a9f71586cde550475e43a3ea5304bead4d14d0261bab5825f86",
+   "sha256_original": "59d60b6b0fd89a9f71586cde550475e43a3ea5304bead4d14d0261bab5825f86",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_tasks.json",
+   "source": "base/stim/k1_tasks.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 3386,
+   "sha256": "7d93d562a14fe92741b5a274fffc623709a2575957fe49319298068ae41e3dca",
+   "sha256_original": "7d93d562a14fe92741b5a274fffc623709a2575957fe49319298068ae41e3dca",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_test_tasks_88.json",
+   "source": "base/stim/k1_test_tasks_88.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 1958,
+   "sha256": "1fd5197c78c85fc8968ecc56c2190a021c4d47dd987c5da2a74bbd6e47b91406",
+   "sha256_original": "1fd5197c78c85fc8968ecc56c2190a021c4d47dd987c5da2a74bbd6e47b91406",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "stim/k1_tokref.json",
+   "source": "base/stim/k1_tokref.json",
+   "kind": "stimuli prepared for the run (pinned by the L8 manifest)",
+   "bytes": 18946,
+   "sha256": "fc8750e94a73551e31dfa2a7f2d8fd373ab945f308a88574379a570e5f246e69",
+   "sha256_original": "fc8750e94a73551e31dfa2a7f2d8fd373ab945f308a88574379a570e5f246e69",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "eval/A.jsonl",
+   "source": "base/eval/A.jsonl",
+   "kind": "per-episode checker outcomes",
+   "bytes": 233666,
+   "sha256": "8165f9bf71b0286295c168e1f1c35b5e755e8c50c1045f895c81dd50e85cac40",
+   "sha256_original": "8165f9bf71b0286295c168e1f1c35b5e755e8c50c1045f895c81dd50e85cac40",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "eval/S1.jsonl",
+   "source": "base/eval/S1.jsonl",
+   "kind": "per-episode checker outcomes",
+   "bytes": 391953,
+   "sha256": "865ebd3c83e8f7c8cd502d9b8cec04bdb568e0f9c3ea2470ce841d284e8f2bdc",
+   "sha256_original": "865ebd3c83e8f7c8cd502d9b8cec04bdb568e0f9c3ea2470ce841d284e8f2bdc",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "eval/S2.jsonl",
+   "source": "base/eval/S2.jsonl",
+   "kind": "per-episode checker outcomes",
+   "bytes": 391291,
+   "sha256": "6e018c739ad30baf0fa7eb4e30bd6c3d9255bf50dd4340d24be0351087c32929",
+   "sha256_original": "6e018c739ad30baf0fa7eb4e30bd6c3d9255bf50dd4340d24be0351087c32929",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "eval/S3.jsonl",
+   "source": "base/eval/S3.jsonl",
+   "kind": "per-episode checker outcomes",
+   "bytes": 391366,
+   "sha256": "273d846df318dd12639139837f9012665961a1b6e4899994ee8ccf774c44c94f",
+   "sha256_original": "273d846df318dd12639139837f9012665961a1b6e4899994ee8ccf774c44c94f",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "report/K1_RAPORT.md",
+   "source": "base/report/K1_RAPORT.md",
+   "kind": "mechanical report generated by the analysis code",
+   "bytes": 12214,
+   "sha256": "fe13a5b21a4a968273fbc2c0bd9013caf4f8a1ea7fa83c59c5d8942aec252299",
+   "sha256_original": "fe13a5b21a4a968273fbc2c0bd9013caf4f8a1ea7fa83c59c5d8942aec252299",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "report/results.json",
+   "source": "base/report/results.json",
+   "kind": "results generated by the analysis code",
+   "bytes": 21897,
+   "sha256": "727b43bfc4c7ac31d2d04c61c01880ccc42ef16788ef33052588cbf8a5bd2642",
+   "sha256_original": "727b43bfc4c7ac31d2d04c61c01880ccc42ef16788ef33052588cbf8a5bd2642",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "meta/provenance.json",
+   "source": "base/meta/provenance.json",
+   "kind": "preparation checks (L1 to L4b, L10)",
+   "bytes": 1767,
+   "sha256": "39169a142a19dd6549882f56ccc96eb5be6c2de3ba39865d1ffd0f34c71208c7",
+   "sha256_original": "39169a142a19dd6549882f56ccc96eb5be6c2de3ba39865d1ffd0f34c71208c7",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "out/raw-freeze.json",
+   "source": "base/out/raw-freeze.json",
+   "kind": "SHA-256 manifest of the 21 raw files",
+   "bytes": 1950,
+   "sha256": "502875a95fc2af9e02145141454ec953e70223a9355b585718845beb97777faf",
+   "sha256_original": "502875a95fc2af9e02145141454ec953e70223a9355b585718845beb97777faf",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "closure/K1_CLOSURE_CHECK.json",
+   "source": "audit/K1_CLOSURE_CHECK.json",
+   "kind": "mechanical closure check (completeness, hashes), PASS",
+   "bytes": 3050,
+   "sha256": "f66c319cdbdb786bbaa52177eff9a66aa5a54ca5fd12b0a70b4350aecbcc45c0",
+   "sha256_original": "f66c319cdbdb786bbaa52177eff9a66aa5a54ca5fd12b0a70b4350aecbcc45c0",
+   "edits": [
+    "none"
+   ],
+   "has_local_path": false
+  },
+  {
+   "published_path": "meta/manifest-L8-files.json",
+   "source": "derived from base/meta/MANIFEST.json",
+   "kind": "derived manifest",
+   "bytes": 4399,
+   "sha256": "b1757ae386345010464bc4be8021a3b2db5eb60ed8d702866e1e4e0d4f2f488b",
+   "sha256_original": null,
+   "edits": [
+    "derived file"
+   ],
+   "has_local_path": false
+  }
+ ]
+}

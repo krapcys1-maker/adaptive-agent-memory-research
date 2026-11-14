@@ -1,0 +1,98 @@
+{
+ "G1_rows": 114,
+ "G2_keys": 520,
+ "L1": {
+  "M": {
+   "checked": 1022,
+   "violations": 0
+  },
+  "S1": {
+   "checked": 1022,
+   "violations": 0
+  },
+  "S2": {
+   "checked": 1022,
+   "violations": 0
+  },
+  "S3": {
+   "checked": 1022,
+   "violations": 0
+  },
+  "X1": {
+   "checked": 1022,
+   "violations": 0
+  },
+  "X2": {
+   "checked": 1022,
+   "violations": 0
+  },
+  "X3": {
+   "checked": 1022,
+   "violations": 0
+  }
+ },
+ "L2": {
+  "own_task_detected": true,
+  "test_source_detected": true
+ },
+ "L3_violations": {
+  "1": 0,
+  "2": 0,
+  "3": 0
+ },
+ "L4a_domain_stems": 408,
+ "L4a_domain_words": 451,
+ "L4a_failures": 0,
+ "L4b_max": 0.0196078431372549,
+ "P_blocks_checked": 2056,
+ "P_len_dev_max": 6,
+ "T_tasks": {
+  "cal": {
+   "GFS": 10,
+   "TRAVEL": 10,
+   "VC": 10
+  },
+  "len": {
+   "GFS": 10,
+   "TRAVEL": 10,
+   "VC": 10
+  },
+  "len2": {
+   "GFS": 10,
+   "TRAVEL": 10,
+   "VC": 10
+  },
+  "m_tasks": 12,
+  "recal": {
+   "GFS": 20,
+   "TRAVEL": 20,
+   "VC": 20
+  }
+ },
+ "corpus_sentences": 199,
+ "draw_rule": "D12 log rule of the frozen prototype t_d9_length.py: |ln(predicted/target)| <= ln 1.2, i.e. -16.67%..+20%; 200 attempts, else closest by |ln| (owner choice C2, 2026-11-13; formal status: ANEKS_C2_D12.md)",
+ "draws": {
+  "S": {
+   "closest": 21,
+   "matched": 1521,
+   "repeats_within_task": 0
+  },
+  "X": {
+   "closest": 157,
+   "matched": 1385
+  }
+ },
+ "failures": [],
+ "header_failures": 0,
+ "predicted_length_imbalance_pct": {
+  "S": 2.31,
+  "X": 1.83
+ },
+ "shared_graph": {
+  "definition": "traces of the turns recorded in NIGHT-2 M episodes (v0.3)",
+  "first_trace_groups": 68,
+  "pairs": 1260,
+  "pairs_full_plan_variant": 1314
+ },
+ "tasks": 148
+}
