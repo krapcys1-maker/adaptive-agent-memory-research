@@ -10,6 +10,24 @@
 > maintainer; the defaults are proposals. The other numbers in the table come from the module's seeded simulation and were
 > not independently re-derived here.
 
+> **Coordinator-specific parts of the Polish text.** The status line ("gałąź `lab/p1-rule-calibration`, niewdrożone"), the command
+> `python -m aamr_coord lab rulecheck`, the admission step `lab admit` and the setting `[lab.rule_check] required` describe the
+> coordinator, where this module is used as a condition for admitting an experiment. None of them exists in this repository;
+> here the module is a library. To check a rule:
+
+```python
+import json, sys
+sys.path.insert(0, "scripts")
+from rule_characteristics import freeze_check, render
+
+report = freeze_check(json.load(open("rule.json", encoding="utf-8")), n_sim=4000)
+print(render(report))
+sys.exit(0 if report["ok"] else 2)        # 0: the rule may be frozen, 2: refused
+```
+
+The specification file has the keys `design`, `rule`, optionally `thresholds`, `tier` and `n_sim`; `tests/test_rule_characteristics.py`
+contains complete examples (`H16`, `NIGHT2_MAIN`, `G2`, `ci_spec`).
+
 # Charakterystyka reguł decyzyjnych przed zamrożeniem (P1)
 
 Stan: gałąź `lab/p1-rule-calibration`, **niewdrożone**. Domyślnie wyłączone (`[lab.rule_check] required = false`), więc po scaleniu nie zmienia zachowania, dopóki właściciel tego nie włączy.
