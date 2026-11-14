@@ -42,6 +42,13 @@ Every current `aam-*/README.md` and `wmb-*/README.md` is linked here; the histor
 | LifeSim X0/X1 | [Registered experiments, instrument assumptions and epochs](../../data/lab/aam-lifesim/README.md) |
 | WMB slice 0 | [Judge-validity result](../../data/lab/wmb-v0/slice0/README.md) |
 | WMB R1 | [Retrieval result and amendments](../../data/lab/wmb-r1-retrieval/README.md) |
+| EXP-PILOT-0 own-experience memory | [BFCL multi-turn pilot, results and audit amendments](../../data/lab/experience-pilot-v0/README.md) |
+| EXP-XFER-1 tool-keyed lessons | [Stage S1, development result](../../data/lab/experience-xfer-v1/README.md) |
+| AAMR-NIGHT-1 | [Right content at the error moment and lesson writers: development result, transfer not confirmed](../../data/lab/aamr-night1/README.md) |
+| AAMR-NIGHT-2 | [Composed system against no memory and competitor-style arms: negative on the frozen main test](../../data/lab/aamr-night2/README.md) |
+| AAMR-K1 (EXP-PLACEBO-0) | [Mechanical record: nothing decided at 10 pp; interpretation is a separate audit](../../data/lab/aamr-k1/README.md) |
+| MAB FactConsolidation label screen | [Preliminary screening by one AI reader, not confirmed errors](../../data/lab/mab-fc-label-screen-v1/README.md) |
+| DeepSeek spend ledger, November phase | [Complete ledger and its open points](../../data/lab/aam-deepseek-2026-11/README.md) |
 
 The local [metering proxy](../../scripts/metered_proxy.py) and [flash-only proxy](../../scripts/flash_only_proxy.py) enforce a run's declared limits. New paid runs use the [version-2 flash-only proxy](../../scripts/flash_only_proxy_v2.py) with the [fail-closed spend ledger](../../scripts/arena/spend_ledger_v2.py): under a cap scope the version-1 ledger counts a torn line as zero, so it can authorise a call past the cap; version 2 refuses any ledger it cannot read completely and reserves each call before forwarding it. The version-1 files stay as the instruments of the runs that used them. Their availability is not permission to run a new experiment. No command on this page calls a model, starts a proxy or opens a confirmation epoch.
 
