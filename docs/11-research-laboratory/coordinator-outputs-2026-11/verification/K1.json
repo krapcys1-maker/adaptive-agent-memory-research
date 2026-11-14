@@ -1,0 +1,131 @@
+{
+ "experiment": "K1",
+ "at": "2026-11-14T14:53:15+00:00",
+ "levels": {
+  "execution": {
+   "status": "pass",
+   "stages": {
+    "run": "done",
+    "final": "done"
+   },
+   "not_done": {},
+   "error_log_lines": 0,
+   "restarts": null
+  },
+  "integrity": {
+   "status": "pass",
+   "frozen": 21,
+   "mismatched": [],
+   "missing": [],
+   "not_in_manifest": [],
+   "modified_after_freeze": []
+  },
+  "provenance": {
+   "status": "warn",
+   "protocol": {
+    "sha": "8b854b35657088bd",
+    "unchanged_since_registration": true
+   },
+   "spec": {
+    "sha": "8b854b35657088bd",
+    "unchanged_since_registration": true
+   },
+   "config_id": [],
+   "models": {
+    "subject": "qwen2.5:14b-instruct"
+   },
+   "model_digest_ok": null,
+   "changed": []
+  },
+  "statistics": {
+   "status": "unchecked",
+   "reason": "brak sesji w formacie {task, arm, evaluation.solved}"
+  },
+  "comparability": {
+   "status": "unchecked",
+   "sessions": {},
+   "problems": []
+  },
+  "leakage": {
+   "status": "pass",
+   "memory_sources": 43,
+   "test_tasks": 88,
+   "overlap": [],
+   "same_task_episodes": [],
+   "memory_arms": {
+    "S1": {
+     "M": {
+      "episodes": 148,
+      "with_block": 148,
+      "with_notes": 0,
+      "sources": 43
+     },
+     "S": {
+      "episodes": 148,
+      "with_block": 148,
+      "with_notes": 0,
+      "sources": 43
+     },
+     "X": {
+      "episodes": 148,
+      "with_block": 148,
+      "with_notes": 0,
+      "sources": 40
+     }
+    },
+    "S2": {
+     "M": {
+      "episodes": 148,
+      "with_block": 148,
+      "with_notes": 0,
+      "sources": 43
+     },
+     "S": {
+      "episodes": 148,
+      "with_block": 148,
+      "with_notes": 0,
+      "sources": 43
+     },
+     "X": {
+      "episodes": 148,
+      "with_block": 148,
+      "with_notes": 0,
+      "sources": 42
+     }
+    }
+   },
+   "note_sources": 0,
+   "pool_sources": 0,
+   "artifact_sources": 0,
+   "problems": []
+  },
+  "mechanism": {
+   "status": "unchecked",
+   "baseline": "N",
+   "effects": {},
+   "significant_at_0_05": [],
+   "note": "efekt mechaniczny w danych rozwojowych; nie jest potwierdzeniem hipotezy"
+  },
+  "replication": {
+   "status": "none",
+   "of": null,
+   "note": "niezależna replikacja wymaga osobnego eksperymentu (inny wykonawca/model/dane)"
+  },
+  "hypothesis": {
+   "status": "undecided",
+   "note": "decyzja właściciela po niezależnej recenzji (Fable); weryfikacja mechaniczna jej nie zastępuje"
+  }
+ },
+ "blocking": [],
+ "summary": {
+  "execution": "pass",
+  "integrity": "pass",
+  "provenance": "warn",
+  "statistics": "unchecked",
+  "comparability": "unchecked",
+  "leakage": "pass",
+  "mechanism": "unchecked",
+  "replication": "none",
+  "hypothesis": "undecided"
+ }
+}

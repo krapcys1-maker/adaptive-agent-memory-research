@@ -1,0 +1,5 @@
+start {'base': '[machine-local path omitted]', 'transport': 'ollama'}
+worker phase done {'phase': 'A'}
+worker phase done {'phase': 'S'}
+raw data frozen {'blocks': ['A', 'S1', 'S2', 'S3']}
+done {'blocks': ['A', 'S1', 'S2', 'S3'], 'analysis': 'FINAL REPORT written; states {"MP": "V4", "MX": "V4", "MS": "V5"}'}
