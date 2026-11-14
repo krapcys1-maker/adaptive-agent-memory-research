@@ -1,0 +1,5204 @@
+{
+ "program": "AAMR-NIGHT-2",
+ "state": {
+  "stages": {
+   "preflight_q14": {
+    "started_at": "2026-11-13T05:37:08.381026+00:00",
+    "status": "done",
+    "probes": [
+     {
+      "probe": "short-1",
+      "ok": true,
+      "text": "{\n  \"calls\": [\n    {\n      \"name\": \"setHeadlights\",\n      \"arguments\": {\n        \"mode\": \"on\"\n      }\n    }\n  ]\n}",
+      "thinking_present": false
+     },
+     {
+      "probe": "long-1",
+      "ok": true,
+      "text": "{\"calls\":[{\"name\":\"setHeadlights\",\"arguments\":{\"mode\":\"off\"}}]}",
+      "thinking_present": false
+     },
+     {
+      "probe": "short-2",
+      "ok": true,
+      "text": "{\n  \"calls\": []\n}",
+      "thinking_present": false
+     }
+    ],
+    "gpu_full": true,
+    "digest_ok": true,
+    "ollama": {
+     "version": "0.40.16"
+    },
+    "api_ps": [
+     {
+      "name": "qwen2.5:14b-instruct",
+      "model": "qwen2.5:14b-instruct",
+      "size": 10290085231,
+      "digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+      "details": {
+       "parent_model": "",
+       "format": "gguf",
+       "family": "qwen2",
+       "families": [
+        "qwen2"
+       ],
+       "parameter_size": "14.8B",
+       "quantization_level": "Q4_K_M"
+      },
+      "expires_at": "2026-11-13T07:48:02.2975716+02:00",
+      "size_vram": 10290085231,
+      "context_length": 8192,
+      "runner": "llamacpp"
+     }
+    ],
+    "reason": null,
+    "finished_at": "2026-11-13T05:38:02.417868+00:00"
+   },
+   "E1": {
+    "started_at": "2026-11-13T05:38:08.391405+00:00",
+    "episodes": 300,
+    "new": 299,
+    "missing": 0,
+    "exhausted_buckets": [],
+    "status": "done",
+    "arms": [
+     "N",
+     "R+",
+     "M2",
+     "M1",
+     "N'"
+    ],
+    "dropped_for_budget": [],
+    "E_star": "R+",
+    "finished_at": "2026-11-13T07:21:37.489637+00:00"
+   },
+   "E2": {
+    "started_at": "2026-11-13T05:43:38.427105+00:00",
+    "status": "done",
+    "plan": {
+     "VC": {
+      "signatures": 5,
+      "states": 27
+     },
+     "GFS": {
+      "signatures": 10,
+      "states": 26
+     },
+     "TRAVEL": {
+      "signatures": 5,
+      "states": 17
+     }
+    },
+    "tool_valid": true,
+    "set_used": "T",
+    "selected": {
+     "VC": 5,
+     "GFS": 7,
+     "TRAVEL": 4
+    },
+    "finished_at": "2026-11-13T06:10:02.591144+00:00"
+   },
+   "build_c": {
+    "started_at": "2026-11-13T06:10:08.622117+00:00",
+    "status": "done",
+    "rb_entries": 60,
+    "rb_with_items": 60,
+    "g_tools": {
+     "VC": 1,
+     "GFS": 16,
+     "TRAVEL": 22
+    },
+    "finished_at": "2026-11-13T07:30:16.482656+00:00"
+   },
+   "E3": {
+    "started_at": "2026-11-13T07:30:39.169374+00:00",
+    "episodes": 616,
+    "new": 616,
+    "missing": 0,
+    "exhausted_buckets": [],
+    "status": "done",
+    "arms": [
+     "N",
+     "V0",
+     "N'",
+     "E*",
+     "TrT",
+     "V0q",
+     "TrQ"
+    ],
+    "dropped_for_budget": [],
+    "K": "V0q",
+    "finished_at": "2026-11-13T09:52:20.904591+00:00"
+   },
+   "E4": {
+    "started_at": "2026-11-13T09:52:42.598486+00:00",
+    "episodes": 352,
+    "new": 352,
+    "missing": 0,
+    "exhausted_buckets": [],
+    "status": "done",
+    "arms": [
+     "N",
+     "K",
+     "C-RB",
+     "C-G"
+    ],
+    "K_is": "V0q",
+    "dropped_for_budget": [],
+    "finished_at": "2026-11-13T11:11:49.968609+00:00"
+   },
+   "preflight_q9": {
+    "started_at": "2026-11-13T11:12:14.970347+00:00",
+    "status": "done",
+    "probes": [
+     {
+      "probe": "short-1",
+      "ok": true,
+      "text": "{\n  \"calls\": [\n    {\n      \"name\": \"setHeadlights\",\n      \"arguments\": {\n        \"mode\": \"on\"\n      }\n    }\n  ]\n}",
+      "thinking_present": false
+     },
+     {
+      "probe": "long-1",
+      "ok": true,
+      "text": "{\"calls\":[{\"name\":\"setHeadlights\",\"arguments\":{\"mode\":\"off\"}}]}",
+      "thinking_present": false
+     },
+     {
+      "probe": "short-2",
+      "ok": true,
+      "text": "{\"calls\": []}",
+      "thinking_present": false
+     }
+    ],
+    "gpu_full": true,
+    "digest_ok": true,
+    "ollama": {
+     "version": "0.40.16"
+    },
+    "api_ps": [
+     {
+      "name": "qwen3.5:9b-q4_K_M",
+      "model": "qwen3.5:9b-q4_K_M",
+      "size": 5862210928,
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "details": {
+       "parent_model": "",
+       "format": "gguf",
+       "family": "qwen35",
+       "families": [
+        "qwen35"
+       ],
+       "parameter_size": "9.0B",
+       "quantization_level": "Q4_K_M"
+      },
+      "expires_at": "2026-11-13T13:23:17.8201222+02:00",
+      "size_vram": 5862210928,
+      "context_length": 8192,
+      "runner": "llamacpp"
+     }
+    ],
+    "reason": null,
+    "finished_at": "2026-11-13T11:13:18.051280+00:00"
+   },
+   "E5": {
+    "started_at": "2026-11-13T11:13:46.123875+00:00",
+    "episodes": 264,
+    "new": 264,
+    "missing": 0,
+    "exhausted_buckets": [],
+    "status": "done",
+    "arms": [
+     "N",
+     "K",
+     "N'"
+    ],
+    "K_is": "V0q",
+    "dropped_for_budget": [],
+    "finished_at": "2026-11-13T11:45:43.683929+00:00"
+   },
+   "final": {
+    "started_at": "2026-11-13T11:46:15.866128+00:00"
+   }
+  },
+  "config_id": "9887b4d12e497fcb",
+  "amendments": [
+   {
+    "at": "2026-11-13T06:11:38.636938+00:00",
+    "note": "amendment 4: E1 retrieval plan file collided with E1_plan.json (case-insensitive names); plan recomputed deterministically, E1 reset to started",
+    "E1_before": {
+     "status": "failed",
+     "errors": 2,
+     "reason": "KeyError('VC')",
+     "at": "2026-11-13T05:43:08.431642+00:00"
+    },
+    "old_config_id": "32c3f00a5a7f9461",
+    "new_config_id": "9887b4d12e497fcb"
+   }
+  ]
+ },
+ "done": false,
+ "stopped": null,
+ "restarts": {
+  "count": 3,
+  "at": "2026-11-13T06:11:38.397850+00:00",
+  "last_rc": 4294967295
+ },
+ "costs": {
+  "local_attempts": 16106,
+  "local_by_bucket": {
+   "T": 6,
+   "E1": 2807,
+   "E2": 1101,
+   "E4": 3506,
+   "E3": 6025,
+   "E5": 2661
+  },
+  "local_by_model": {
+   "qwen2.5:14b-instruct": 13442,
+   "qwen3.5:9b-q4_K_M": 2664
+  },
+  "local_retries": 0,
+  "local_model_seconds": {
+   "qwen2.5:14b-instruct": 19348.9,
+   "qwen3.5:9b-q4_K_M": 1957.3
+  },
+  "local_tokens_prompt_eval": {
+   "qwen2.5:14b-instruct": [
+    29824545,
+    506594
+   ],
+   "qwen3.5:9b-q4_K_M": [
+    5817143,
+    70792
+   ]
+  },
+  "first_attempt_at": "2026-11-13T05:37:08.389532+00:00",
+  "last_attempt_at": "2026-11-13T11:45:43.348142+00:00",
+  "flash_reserved_calls": 0,
+  "flash_reserved_usd": 0,
+  "flash_usage_upper_usd": 0,
+  "flash_prompt_tokens": 0,
+  "flash_completion_tokens": 0,
+  "smoke_attempts": 32,
+  "total_local_with_smoke": 16138,
+  "paid_calls": 0
+ },
+ "E1": {
+  "arms": [
+   "N",
+   "R+",
+   "M2",
+   "M1",
+   "N'"
+  ],
+  "tasks": [
+   "multi_turn_base_69",
+   "multi_turn_base_58",
+   "multi_turn_base_55",
+   "multi_turn_base_75",
+   "multi_turn_base_79",
+   "multi_turn_base_87",
+   "multi_turn_base_92",
+   "multi_turn_base_89",
+   "multi_turn_base_78",
+   "multi_turn_base_85",
+   "multi_turn_base_68",
+   "multi_turn_base_96",
+   "multi_turn_base_98",
+   "multi_turn_base_70",
+   "multi_turn_base_54",
+   "multi_turn_base_62",
+   "multi_turn_base_86",
+   "multi_turn_base_56",
+   "multi_turn_base_76",
+   "multi_turn_base_73",
+   "multi_turn_base_19",
+   "multi_turn_base_8",
+   "multi_turn_base_5",
+   "multi_turn_base_25",
+   "multi_turn_base_29",
+   "multi_turn_base_37",
+   "multi_turn_base_42",
+   "multi_turn_base_39",
+   "multi_turn_base_28",
+   "multi_turn_base_35",
+   "multi_turn_base_18",
+   "multi_turn_base_46",
+   "multi_turn_base_48",
+   "multi_turn_base_20",
+   "multi_turn_base_4",
+   "multi_turn_base_12",
+   "multi_turn_base_36",
+   "multi_turn_base_6",
+   "multi_turn_base_26",
+   "multi_turn_base_23",
+   "multi_turn_base_169",
+   "multi_turn_base_158",
+   "multi_turn_base_155",
+   "multi_turn_base_175",
+   "multi_turn_base_179",
+   "multi_turn_base_187",
+   "multi_turn_base_192",
+   "multi_turn_base_189",
+   "multi_turn_base_178",
+   "multi_turn_base_185",
+   "multi_turn_base_168",
+   "multi_turn_base_196",
+   "multi_turn_base_198",
+   "multi_turn_base_170",
+   "multi_turn_base_154",
+   "multi_turn_base_162",
+   "multi_turn_base_186",
+   "multi_turn_base_156",
+   "multi_turn_base_176",
+   "multi_turn_base_173"
+  ],
+  "table": {
+   "N": {
+    "tasks": 60,
+    "solved": 20,
+    "error_events": 91,
+    "error_results": 196,
+    "invalid_calls": 6,
+    "invalid_outputs": 0,
+    "model_calls": 573,
+    "prompt_tokens": 1153588,
+    "eval_tokens": 19099,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 55,
+     "forced_termination": 5
+    }
+   },
+   "R+": {
+    "tasks": 60,
+    "solved": 22,
+    "error_events": 73,
+    "error_results": 111,
+    "invalid_calls": 16,
+    "invalid_outputs": 0,
+    "model_calls": 548,
+    "prompt_tokens": 1314841,
+    "eval_tokens": 21782,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 57,
+     "forced_termination": 3
+    }
+   },
+   "M2": {
+    "tasks": 60,
+    "solved": 14,
+    "error_events": 73,
+    "error_results": 117,
+    "invalid_calls": 26,
+    "invalid_outputs": 0,
+    "model_calls": 549,
+    "prompt_tokens": 1301847,
+    "eval_tokens": 24462,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 56,
+     "forced_termination": 4
+    }
+   },
+   "M1": {
+    "tasks": 60,
+    "solved": 18,
+    "error_events": 78,
+    "error_results": 152,
+    "invalid_calls": 9,
+    "invalid_outputs": 1,
+    "model_calls": 561,
+    "prompt_tokens": 1260699,
+    "eval_tokens": 22686,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 58,
+     "forced_termination": 2
+    }
+   },
+   "N'": {
+    "tasks": 60,
+    "solved": 20,
+    "error_events": 91,
+    "error_results": 174,
+    "invalid_calls": 6,
+    "invalid_outputs": 0,
+    "model_calls": 575,
+    "prompt_tokens": 1160478,
+    "eval_tokens": 18820,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 56,
+     "forced_termination": 4
+    }
+   }
+  },
+  "pairs": {
+   "R+": {
+    "x": "R+",
+    "y": "N",
+    "gained": 11,
+    "lost": 9,
+    "gained_tasks": [
+     "multi_turn_base_68",
+     "multi_turn_base_96",
+     "multi_turn_base_62",
+     "multi_turn_base_86",
+     "multi_turn_base_39",
+     "multi_turn_base_28",
+     "multi_turn_base_35",
+     "multi_turn_base_48",
+     "multi_turn_base_23",
+     "multi_turn_base_178",
+     "multi_turn_base_162"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_87",
+     "multi_turn_base_98",
+     "multi_turn_base_29",
+     "multi_turn_base_46",
+     "multi_turn_base_20",
+     "multi_turn_base_26",
+     "multi_turn_base_158",
+     "multi_turn_base_154",
+     "multi_turn_base_186"
+    ],
+    "p_one_sided": 0.41190147399902344,
+    "p_two_sided": 0.8238029479980469,
+    "diff": 2,
+    "error_events_x": 73,
+    "error_events_y": 91
+   },
+   "M2": {
+    "x": "M2",
+    "y": "N",
+    "gained": 5,
+    "lost": 11,
+    "gained_tasks": [
+     "multi_turn_base_96",
+     "multi_turn_base_62",
+     "multi_turn_base_39",
+     "multi_turn_base_23",
+     "multi_turn_base_175"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_79",
+     "multi_turn_base_87",
+     "multi_turn_base_78",
+     "multi_turn_base_98",
+     "multi_turn_base_29",
+     "multi_turn_base_46",
+     "multi_turn_base_26",
+     "multi_turn_base_158",
+     "multi_turn_base_179",
+     "multi_turn_base_170",
+     "multi_turn_base_186"
+    ],
+    "p_one_sided": 0.9615936279296875,
+    "p_two_sided": 0.210113525390625,
+    "diff": -6,
+    "error_events_x": 73,
+    "error_events_y": 91
+   },
+   "M1": {
+    "x": "M1",
+    "y": "N",
+    "gained": 8,
+    "lost": 10,
+    "gained_tasks": [
+     "multi_turn_base_69",
+     "multi_turn_base_68",
+     "multi_turn_base_96",
+     "multi_turn_base_62",
+     "multi_turn_base_42",
+     "multi_turn_base_39",
+     "multi_turn_base_23",
+     "multi_turn_base_175"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_87",
+     "multi_turn_base_78",
+     "multi_turn_base_73",
+     "multi_turn_base_29",
+     "multi_turn_base_46",
+     "multi_turn_base_12",
+     "multi_turn_base_26",
+     "multi_turn_base_158",
+     "multi_turn_base_154",
+     "multi_turn_base_186"
+    ],
+    "p_one_sided": 0.7596588134765625,
+    "p_two_sided": 0.8145294189453125,
+    "diff": -2,
+    "error_events_x": 78,
+    "error_events_y": 91
+   },
+   "N'": {
+    "x": "N'",
+    "y": "N",
+    "gained": 0,
+    "lost": 0,
+    "gained_tasks": [],
+    "lost_tasks": [],
+    "p_one_sided": 1.0,
+    "p_two_sided": 1.0,
+    "diff": 0,
+    "error_events_x": 91,
+    "error_events_y": 91
+   }
+  },
+  "per_domain": {
+   "VC": {
+    "N": 6,
+    "R+": 8,
+    "M2": 4,
+    "M1": 7,
+    "N'": 6,
+    "tasks": 20
+   },
+   "GFS": {
+    "N": 5,
+    "R+": 6,
+    "M2": 4,
+    "M1": 4,
+    "N'": 5,
+    "tasks": 20
+   },
+   "TRAVEL": {
+    "N": 9,
+    "R+": 8,
+    "M2": 6,
+    "M1": 7,
+    "N'": 9,
+    "tasks": 20
+   }
+  },
+  "changes": {
+   "R+": {
+    "gains": [
+     {
+      "task": "multi_turn_base_68",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_96",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_62",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_86",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_39",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_28",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_35",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_48",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_23",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_178",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_162",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 3
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_87",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "pressBrakePedal:1.0",
+       "startEngine:START"
+      ],
+      "copied_functions": [
+       "startEngine",
+       "lockDoors",
+       "pressBrakePedal"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_98",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "activateParkingBrake:engage",
+       "displayCarStatus:parkingBrake"
+      ],
+      "copied_functions": [
+       "lockDoors",
+       "activateParkingBrake"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_29",
+      "domain": "GFS",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [],
+      "copied_functions": [
+       "echo"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_46",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_20",
+      "domain": "GFS",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "tail:document.txt"
+      ],
+      "copied_functions": [
+       "find"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_26",
+      "domain": "GFS",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "cat:79.pdf",
+       "cat:summary.txt"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_158",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_154",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "get_flight_cost:business"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_186",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "book_flight:LAX",
+       "book_flight:business",
+       "get_flight_cost:LAX",
+       "get_flight_cost:business"
+      ],
+      "copied_functions": [
+       "get_flight_cost"
+      ],
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 11
+    },
+    "losses_by_cause": {
+     "copy": 7,
+     "memory": 2
+    }
+   },
+   "M2": {
+    "gains": [
+     {
+      "task": "multi_turn_base_96",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_62",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_39",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_23",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_175",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_79",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [],
+      "copied_functions": [
+       "activateParkingBrake"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_87",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "pressBrakePedal:0.5",
+       "pressBrakePedal:1.0",
+       "startEngine:START"
+      ],
+      "copied_functions": [
+       "startEngine",
+       "lockDoors",
+       "pressBrakePedal"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_78",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "lockDoors:driver",
+       "lockDoors:passenger",
+       "lockDoors:rear_left",
+       "lockDoors:rear_right",
+       "pressBrakePedal:1.0",
+       "startEngine:START"
+      ],
+      "copied_functions": [
+       "lockDoors",
+       "activateParkingBrake",
+       "pressBrakePedal",
+       "startEngine"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_98",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "activateParkingBrake:engage",
+       "displayCarStatus:parkingBrake"
+      ],
+      "copied_functions": [
+       "lockDoors",
+       "activateParkingBrake"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_29",
+      "domain": "GFS",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [],
+      "copied_functions": [
+       "echo"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_46",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_26",
+      "domain": "GFS",
+      "cause": "copy",
+      "first_fail": 2,
+      "copied_values": [
+       "cp:79.pdf"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_158",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_179",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_170",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 4,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_186",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 5
+    },
+    "losses_by_cause": {
+     "copy": 6,
+     "memory": 5
+    }
+   },
+   "M1": {
+    "gains": [
+     {
+      "task": "multi_turn_base_69",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_68",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_96",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_62",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_42",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_39",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_23",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_175",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_87",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "pressBrakePedal:0.5",
+       "pressBrakePedal:1.0",
+       "startEngine:START"
+      ],
+      "copied_functions": [
+       "startEngine",
+       "lockDoors",
+       "pressBrakePedal"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_78",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "post_tweet:@mike53"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_73",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_29",
+      "domain": "GFS",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [],
+      "copied_functions": [
+       "echo"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_46",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_12",
+      "domain": "GFS",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [],
+      "copied_functions": [
+       "find",
+       "cat"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_26",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_158",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_154",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 3,
+      "copied_values": [],
+      "copied_functions": [
+       "get_flight_cost"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_186",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 8
+    },
+    "losses_by_cause": {
+     "copy": 5,
+     "memory": 5
+    }
+   },
+   "N'": {
+    "gains": [],
+    "losses": [],
+    "gains_by_cause": {},
+    "losses_by_cause": {}
+   }
+  },
+  "copy_losses": {
+   "R+": 7,
+   "M2": 6,
+   "M1": 5,
+   "N'": 0
+  },
+  "E_star": {
+   "E_star": "R+",
+   "tasks": 60,
+   "solved": {
+    "N": 20,
+    "R+": 22,
+    "M2": 14,
+    "M1": 18,
+    "N'": 20
+   },
+   "losses_vs_N": {
+    "R+": 9,
+    "M2": 11,
+    "M1": 10
+   }
+  },
+  "H14": {
+   "verdict": "refuted",
+   "M": "M1",
+   "solved_R+": 22,
+   "solved_M": 18,
+   "losses_R+": 9,
+   "losses_M": 10,
+   "copy_losses": {
+    "R+": 7,
+    "M2": 6,
+    "M1": 5,
+    "N'": 0
+   }
+  }
+ },
+ "E2": {
+  "forks": 351,
+  "by_source": {
+   "none": 70,
+   "Q": 68,
+   "G0": 70,
+   "F": 66,
+   "O": 6,
+   "S": 6,
+   "P": 6,
+   "X": 29,
+   "D": 30
+  },
+  "set_used": "T",
+  "tool_control": {
+   "winner": "F",
+   "table": {
+    "none": {
+     "states": 6,
+     "resolved": 2,
+     "passed": 2
+    },
+    "O": {
+     "states": 6,
+     "resolved": 5,
+     "passed": 3,
+     "regressions": 0,
+     "admissible": true
+    },
+    "S": {
+     "states": 6,
+     "resolved": 5,
+     "passed": 1,
+     "regressions": 1,
+     "admissible": false
+    },
+    "P": {
+     "states": 6,
+     "resolved": 2,
+     "passed": 2,
+     "regressions": 0,
+     "admissible": true
+    },
+    "Q": {
+     "states": 6,
+     "resolved": 3,
+     "passed": 3,
+     "regressions": 1,
+     "admissible": false
+    },
+    "F": {
+     "states": 6,
+     "resolved": 5,
+     "passed": 4,
+     "regressions": 0,
+     "admissible": true
+    }
+   },
+   "valid": true
+  },
+  "per_signature": [
+   {
+    "domain": "GFS",
+    "signature": "cat|cat: <v>: invalid character",
+    "selected": null,
+    "table": {
+     "none": {
+      "states": 4,
+      "resolved": 2,
+      "passed": 1
+     },
+     "Q": {
+      "states": 4,
+      "resolved": 1,
+      "passed": 2,
+      "regressions": 0,
+      "admissible": false
+     },
+     "G0": {
+      "states": 4,
+      "resolved": 1,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": false
+     }
+    },
+    "x_created": false,
+    "states": 4
+   },
+   {
+    "domain": "GFS",
+    "signature": "cd|cd: <v>: no such file or directory",
+    "selected": null,
+    "table": {
+     "none": {
+      "states": 4,
+      "resolved": 2,
+      "passed": 2
+     },
+     "D": {
+      "states": 4,
+      "resolved": 1,
+      "passed": 2,
+      "regressions": 1,
+      "admissible": false
+     },
+     "Q": {
+      "states": 4,
+      "resolved": 4,
+      "passed": 0,
+      "regressions": 2,
+      "admissible": false
+     },
+     "G0": {
+      "states": 4,
+      "resolved": 1,
+      "passed": 2,
+      "regressions": 1,
+      "admissible": false
+     }
+    },
+    "x_created": false,
+    "states": 4
+   },
+   {
+    "domain": "GFS",
+    "signature": "cd|current directory is already the root",
+    "selected": "G0",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 0,
+      "passed": 1
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 0,
+      "regressions": 1,
+      "admissible": false
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "GFS",
+    "signature": "cp|cp: cannot copy <v>: no such file or directory",
+    "selected": "Q",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 2
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 2,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 2,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "GFS",
+    "signature": "cp|cp: path not allowed in destination",
+    "selected": null,
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 0
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 0,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": false
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 0,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": false
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "GFS",
+    "signature": "echo|echo: cannot write to <v>: no such file",
+    "selected": "D",
+    "table": {
+     "none": {
+      "states": 4,
+      "resolved": 4,
+      "passed": 0
+     },
+     "D": {
+      "states": 4,
+      "resolved": 4,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": true
+     },
+     "Q": {
+      "states": 4,
+      "resolved": 4,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 4,
+      "resolved": 4,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 4
+   },
+   {
+    "domain": "GFS",
+    "signature": "grep|grep: <arg>: no such file or directory",
+    "selected": "Q",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 0
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 0,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": false
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "GFS",
+    "signature": "mv|mv: cannot move <v>: no such file or directory",
+    "selected": "Q",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 0,
+      "passed": 0
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 0,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "GFS",
+    "signature": "mv|mv: path not allowed in destination",
+    "selected": "G0",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 0
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "GFS",
+    "signature": "tail|tail: <arg>: no such file or directory",
+    "selected": "Q",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 1
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 2,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "TRAVEL",
+    "signature": "book_flight|invalid access token",
+    "selected": "G0",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 0
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 1,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": false
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 0,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "TRAVEL",
+    "signature": "book_flight|invalid departure airport code: <arg>",
+    "selected": "D",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1
+     },
+     "D": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "TRAVEL",
+    "signature": "compute_exchange_rate|no available exchange rate for the given currencies",
+    "selected": null,
+    "table": {
+     "none": {
+      "states": 4,
+      "resolved": 1,
+      "passed": 2
+     },
+     "Q": {
+      "states": 4,
+      "resolved": 0,
+      "passed": 1,
+      "regressions": 1,
+      "admissible": false
+     },
+     "G0": {
+      "states": 4,
+      "resolved": 0,
+      "passed": 1,
+      "regressions": 1,
+      "admissible": false
+     }
+    },
+    "x_created": false,
+    "states": 4
+   },
+   {
+    "domain": "TRAVEL",
+    "signature": "get_flight_cost|no available route for the given airports",
+    "selected": "Q",
+    "table": {
+     "none": {
+      "states": 7,
+      "resolved": 7,
+      "passed": 5
+     },
+     "X": {
+      "states": 7,
+      "resolved": 6,
+      "passed": 5,
+      "regressions": 0,
+      "admissible": false
+     },
+     "Q": {
+      "states": 7,
+      "resolved": 7,
+      "passed": 5,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 7,
+      "resolved": 7,
+      "passed": 4,
+      "regressions": 1,
+      "admissible": false
+     }
+    },
+    "x_created": true,
+    "states": 7
+   },
+   {
+    "domain": "TRAVEL",
+    "signature": "retrieve_invoice|booking not found",
+    "selected": "D",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1
+     },
+     "D": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 2
+   },
+   {
+    "domain": "VC",
+    "signature": "estimate_distance|distance not found in database",
+    "selected": "Q",
+    "table": {
+     "none": {
+      "states": 3,
+      "resolved": 1,
+      "passed": 1
+     },
+     "Q": {
+      "states": 3,
+      "resolved": 2,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 3,
+      "resolved": 1,
+      "passed": 1,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": false,
+    "states": 3
+   },
+   {
+    "domain": "VC",
+    "signature": "fillFuelTank|cannot fill gas above the tank capacity",
+    "selected": "G0",
+    "table": {
+     "none": {
+      "states": 6,
+      "resolved": 2,
+      "passed": 2
+     },
+     "X": {
+      "states": 6,
+      "resolved": 4,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     },
+     "Q": {
+      "states": 6,
+      "resolved": 3,
+      "passed": 3,
+      "regressions": 1,
+      "admissible": false
+     },
+     "G0": {
+      "states": 6,
+      "resolved": 5,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": true,
+    "states": 6
+   },
+   {
+    "domain": "VC",
+    "signature": "startEngine|all doors must be locked before starting the engine",
+    "selected": "D",
+    "table": {
+     "none": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4
+     },
+     "D": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     },
+     "X": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     },
+     "Q": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": true,
+    "states": 8
+   },
+   {
+    "domain": "VC",
+    "signature": "startEngine|brake pedal needs to be pressed when starting the engine",
+    "selected": "D",
+    "table": {
+     "none": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4
+     },
+     "D": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     },
+     "X": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     },
+     "Q": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 8,
+      "resolved": 8,
+      "passed": 4,
+      "regressions": 0,
+      "admissible": true
+     }
+    },
+    "x_created": true,
+    "states": 8
+   },
+   {
+    "domain": "VC",
+    "signature": "startEngine|must press the brake fully before starting the engine",
+    "selected": "D",
+    "table": {
+     "none": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 2
+     },
+     "D": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 2,
+      "regressions": 0,
+      "admissible": true
+     },
+     "Q": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 2,
+      "regressions": 0,
+      "admissible": true
+     },
+     "G0": {
+      "states": 2,
+      "resolved": 2,
+      "passed": 1,
+      "regressions": 1,
+      "admissible": false
+     }
+    },
+    "x_created": false,
+    "states": 2
+   }
+  ],
+  "F_vs_local": {
+   "signatures_with_F": 19,
+   "F_would_win": 4,
+   "detail": [
+    {
+     "signature": "GFS:cat|cat: <v>: invalid character",
+     "local_best": null,
+     "winner_vs_F": "F"
+    },
+    {
+     "signature": "GFS:cd|cd: <v>: no such file or directory",
+     "local_best": null,
+     "winner_vs_F": null
+    },
+    {
+     "signature": "GFS:cd|current directory is already the root",
+     "local_best": "G0",
+     "winner_vs_F": "G0"
+    },
+    {
+     "signature": "GFS:cp|cp: cannot copy <v>: no such file or directory",
+     "local_best": "Q",
+     "winner_vs_F": "Q"
+    },
+    {
+     "signature": "GFS:cp|cp: path not allowed in destination",
+     "local_best": null,
+     "winner_vs_F": "F"
+    },
+    {
+     "signature": "GFS:grep|grep: <arg>: no such file or directory",
+     "local_best": "Q",
+     "winner_vs_F": "Q"
+    },
+    {
+     "signature": "GFS:mv|mv: cannot move <v>: no such file or directory",
+     "local_best": "Q",
+     "winner_vs_F": "F"
+    },
+    {
+     "signature": "GFS:mv|mv: path not allowed in destination",
+     "local_best": "G0",
+     "winner_vs_F": "G0"
+    },
+    {
+     "signature": "GFS:tail|tail: <arg>: no such file or directory",
+     "local_best": "Q",
+     "winner_vs_F": "Q"
+    },
+    {
+     "signature": "TRAVEL:book_flight|invalid access token",
+     "local_best": "G0",
+     "winner_vs_F": "G0"
+    },
+    {
+     "signature": "TRAVEL:book_flight|invalid departure airport code: <arg>",
+     "local_best": "D",
+     "winner_vs_F": "D"
+    },
+    {
+     "signature": "TRAVEL:compute_exchange_rate|no available exchange rate for the given currencies",
+     "local_best": null,
+     "winner_vs_F": null
+    },
+    {
+     "signature": "TRAVEL:get_flight_cost|no available route for the given airports",
+     "local_best": "Q",
+     "winner_vs_F": "Q"
+    },
+    {
+     "signature": "TRAVEL:retrieve_invoice|booking not found",
+     "local_best": "D",
+     "winner_vs_F": "D"
+    },
+    {
+     "signature": "VC:estimate_distance|distance not found in database",
+     "local_best": "Q",
+     "winner_vs_F": "F"
+    },
+    {
+     "signature": "VC:fillFuelTank|cannot fill gas above the tank capacity",
+     "local_best": "G0",
+     "winner_vs_F": "G0"
+    },
+    {
+     "signature": "VC:startEngine|all doors must be locked before starting the engine",
+     "local_best": "D",
+     "winner_vs_F": "D"
+    },
+    {
+     "signature": "VC:startEngine|brake pedal needs to be pressed when starting the engine",
+     "local_best": "D",
+     "winner_vs_F": "D"
+    },
+    {
+     "signature": "VC:startEngine|must press the brake fully before starting the engine",
+     "local_best": "D",
+     "winner_vs_F": "D"
+    }
+   ]
+  },
+  "selected_sources": {
+   "VC": {
+    "Q": 1,
+    "G0": 1,
+    "D": 3
+   },
+   "GFS": {
+    "G0": 2,
+    "Q": 4,
+    "D": 1
+   },
+   "TRAVEL": {
+    "G0": 1,
+    "D": 2,
+    "Q": 1
+   }
+  },
+  "selected_texts": {
+   "VC": [
+    {
+     "function": "estimate_distance",
+     "error_key": "distance not found in database",
+     "text": "estimate_distance: Error 'distance not found in database' indicates the distance between the given cities could not be estimated. Retry with correct zipcodes or check if the cities are supported.",
+     "source": "Q"
+    },
+    {
+     "function": "fillFuelTank",
+     "error_key": "cannot fill gas above the tank capacity",
+     "text": "fillFuelTank: this error was also returned in earlier tasks, and repeating the call with guessed arguments did not resolve it. Before calling fillFuelTank again, use a tool that reads the current state this call depends on, and base the new arguments on what it returns.",
+     "source": "G0"
+    },
+    {
+     "function": "startEngine",
+     "error_key": "all doors must be locked before starting the engine",
+     "text": "startEngine: error \"All doors must be locked before starting the engine. Here are the unlocked doors: driver, passenger, rear_left\" was resolved by first calling lockDoors(unlock=False, door=['driver', 'passenger', 'rear_left', 'rear_right']). Seen in 14 tasks.",
+     "source": "D"
+    },
+    {
+     "function": "startEngine",
+     "error_key": "brake pedal needs to be pressed when starting the engine",
+     "text": "startEngine: error \"Brake pedal needs to be pressed when starting the engine.\" was resolved by first calling pressBrakePedal(pedalPosition=1.0). Seen in 18 tasks.",
+     "source": "D"
+    },
+    {
+     "function": "startEngine",
+     "error_key": "must press the brake fully before starting the engine",
+     "text": "startEngine: error \"Must press the brake fully before starting the engine.\" was resolved by first calling pressBrakePedal(pedalPosition=1.0). Seen in 2 tasks.",
+     "source": "D"
+    }
+   ],
+   "GFS": [
+    {
+     "function": "cd",
+     "error_key": "current directory is already the root",
+     "text": "cd: this error was also returned in earlier tasks, and repeating the call with guessed arguments did not resolve it. Before calling cd again, use a tool that reads the current state this call depends on, and base the new arguments on what it returns.",
+     "source": "G0"
+    },
+    {
+     "function": "cp",
+     "error_key": "cp: cannot copy <v>: no such file or directory",
+     "text": "cp: Error indicates the source file for cp does not exist. Ensure files exist before copying. Use grep or ls to confirm file names and paths.",
+     "source": "Q"
+    },
+    {
+     "function": "echo",
+     "error_key": "echo: cannot write to <v>: no such file",
+     "text": "echo: error \"echo: cannot write to 'index.html': No such file\" was resolved by first calling touch(...). Seen in 4 tasks.",
+     "source": "D"
+    },
+    {
+     "function": "grep",
+     "error_key": "grep: <arg>: no such file or directory",
+     "text": "grep: The error indicates the specified file does not exist in the current directory. Ensure you are in the correct directory or use the full file name as found by 'find' before using 'grep' or other file operations.",
+     "source": "Q"
+    },
+    {
+     "function": "mv",
+     "error_key": "mv: cannot move <v>: no such file or directory",
+     "text": "mv: The error indicates the source file does not exist in the current directory. Ensure you are in the correct directory and use 'pwd' to confirm. Use 'ls' to list files and 'cp' to copy before moving.",
+     "source": "Q"
+    },
+    {
+     "function": "mv",
+     "error_key": "mv: path not allowed in destination",
+     "text": "mv: this error was also returned in earlier tasks, and repeating the call with guessed arguments did not resolve it. Before calling mv again, use a tool that reads the current state this call depends on, and base the new arguments on what it returns.",
+     "source": "G0"
+    },
+    {
+     "function": "tail",
+     "error_key": "tail: <arg>: no such file or directory",
+     "text": "tail: The error indicates that the specified file does not exist in the current directory. Ensure you are in the correct directory and use the correct file name. Use 'ls' to list files or 'find' to locate the file.",
+     "source": "Q"
+    }
+   ],
+   "TRAVEL": [
+    {
+     "function": "book_flight",
+     "error_key": "invalid access token",
+     "text": "book_flight: this error was also returned in earlier tasks, and repeating the call with guessed arguments did not resolve it. Before calling book_flight again, use a tool that reads the current state this call depends on, and base the new arguments on what it returns.",
+     "source": "G0"
+    },
+    {
+     "function": "book_flight",
+     "error_key": "invalid departure airport code: <arg>",
+     "text": "book_flight: error \"Invalid departure airport code: RMT\" was resolved by first calling get_nearest_airport_by_city(...). Seen in 2 tasks.",
+     "source": "D"
+    },
+    {
+     "function": "get_flight_cost",
+     "error_key": "no available route for the given airports",
+     "text": "get_flight_cost: Error 'No available route for the given airports' indicates no flights are available between the specified airports on the given date. Check airport codes and dates, or try alternative airports using get_nearest_airport_by_city.",
+     "source": "Q"
+    },
+    {
+     "function": "retrieve_invoice",
+     "error_key": "booking not found",
+     "text": "retrieve_invoice: error \"Booking not found\" was resolved by first calling book_flight(...). Seen in 2 tasks.",
+     "source": "D"
+    }
+   ]
+  }
+ },
+ "E3": {
+  "arms": [
+   "N",
+   "V0",
+   "N'",
+   "E*",
+   "TrT",
+   "V0q",
+   "TrQ"
+  ],
+  "tasks": [
+   "multi_turn_base_50",
+   "multi_turn_base_67",
+   "multi_turn_base_60",
+   "multi_turn_base_53",
+   "multi_turn_base_71",
+   "multi_turn_base_93",
+   "multi_turn_base_90",
+   "multi_turn_base_94",
+   "multi_turn_base_52",
+   "multi_turn_base_59",
+   "multi_turn_base_66",
+   "multi_turn_base_51",
+   "multi_turn_base_83",
+   "multi_turn_base_91",
+   "multi_turn_base_81",
+   "multi_turn_base_64",
+   "multi_turn_base_97",
+   "multi_turn_base_84",
+   "multi_turn_base_80",
+   "multi_turn_base_61",
+   "multi_turn_base_72",
+   "multi_turn_base_77",
+   "multi_turn_base_95",
+   "multi_turn_base_57",
+   "multi_turn_base_88",
+   "multi_turn_base_65",
+   "multi_turn_base_74",
+   "multi_turn_base_99",
+   "multi_turn_base_82",
+   "multi_turn_base_63",
+   "multi_turn_base_0",
+   "multi_turn_base_17",
+   "multi_turn_base_10",
+   "multi_turn_base_3",
+   "multi_turn_base_21",
+   "multi_turn_base_43",
+   "multi_turn_base_40",
+   "multi_turn_base_44",
+   "multi_turn_base_2",
+   "multi_turn_base_9",
+   "multi_turn_base_16",
+   "multi_turn_base_1",
+   "multi_turn_base_33",
+   "multi_turn_base_41",
+   "multi_turn_base_31",
+   "multi_turn_base_14",
+   "multi_turn_base_47",
+   "multi_turn_base_34",
+   "multi_turn_base_30",
+   "multi_turn_base_11",
+   "multi_turn_base_22",
+   "multi_turn_base_27",
+   "multi_turn_base_45",
+   "multi_turn_base_7",
+   "multi_turn_base_38",
+   "multi_turn_base_15",
+   "multi_turn_base_24",
+   "multi_turn_base_49",
+   "multi_turn_base_32",
+   "multi_turn_base_13",
+   "multi_turn_base_150",
+   "multi_turn_base_160",
+   "multi_turn_base_153",
+   "multi_turn_base_171",
+   "multi_turn_base_193",
+   "multi_turn_base_190",
+   "multi_turn_base_194",
+   "multi_turn_base_152",
+   "multi_turn_base_159",
+   "multi_turn_base_166",
+   "multi_turn_base_151",
+   "multi_turn_base_183",
+   "multi_turn_base_191",
+   "multi_turn_base_181",
+   "multi_turn_base_164",
+   "multi_turn_base_197",
+   "multi_turn_base_184",
+   "multi_turn_base_161",
+   "multi_turn_base_172",
+   "multi_turn_base_177",
+   "multi_turn_base_195",
+   "multi_turn_base_157",
+   "multi_turn_base_188",
+   "multi_turn_base_165",
+   "multi_turn_base_174",
+   "multi_turn_base_199",
+   "multi_turn_base_182",
+   "multi_turn_base_163"
+  ],
+  "table": {
+   "N": {
+    "tasks": 88,
+    "solved": 28,
+    "error_events": 144,
+    "error_results": 310,
+    "invalid_calls": 33,
+    "invalid_outputs": 0,
+    "model_calls": 869,
+    "prompt_tokens": 1777749,
+    "eval_tokens": 30167,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 74,
+     "forced_termination": 14
+    }
+   },
+   "V0": {
+    "tasks": 88,
+    "solved": 35,
+    "error_events": 93,
+    "error_results": 166,
+    "invalid_calls": 32,
+    "invalid_outputs": 0,
+    "model_calls": 841,
+    "prompt_tokens": 2038661,
+    "eval_tokens": 32406,
+    "notes_shown": 58,
+    "statuses": {
+     "completed": 82,
+     "forced_termination": 6
+    }
+   },
+   "N'": {
+    "tasks": 88,
+    "solved": 27,
+    "error_events": 142,
+    "error_results": 299,
+    "invalid_calls": 30,
+    "invalid_outputs": 0,
+    "model_calls": 865,
+    "prompt_tokens": 1770618,
+    "eval_tokens": 30477,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 74,
+     "forced_termination": 14
+    }
+   },
+   "E*": {
+    "tasks": 88,
+    "solved": 38,
+    "error_events": 97,
+    "error_results": 192,
+    "invalid_calls": 38,
+    "invalid_outputs": 1,
+    "model_calls": 810,
+    "prompt_tokens": 1953890,
+    "eval_tokens": 33125,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 79,
+     "forced_termination": 8,
+     "context_overflow": 1
+    }
+   },
+   "TrT": {
+    "tasks": 88,
+    "solved": 36,
+    "error_events": 140,
+    "error_results": 250,
+    "invalid_calls": 31,
+    "invalid_outputs": 0,
+    "model_calls": 894,
+    "prompt_tokens": 1898602,
+    "eval_tokens": 31144,
+    "notes_shown": 104,
+    "statuses": {
+     "completed": 81,
+     "forced_termination": 7
+    }
+   },
+   "V0q": {
+    "tasks": 88,
+    "solved": 34,
+    "error_events": 90,
+    "error_results": 138,
+    "invalid_calls": 50,
+    "invalid_outputs": 0,
+    "model_calls": 844,
+    "prompt_tokens": 2060372,
+    "eval_tokens": 33248,
+    "notes_shown": 63,
+    "statuses": {
+     "completed": 84,
+     "forced_termination": 3,
+     "context_overflow": 1
+    }
+   },
+   "TrQ": {
+    "tasks": 88,
+    "solved": 34,
+    "error_events": 145,
+    "error_results": 282,
+    "invalid_calls": 30,
+    "invalid_outputs": 0,
+    "model_calls": 902,
+    "prompt_tokens": 1920315,
+    "eval_tokens": 31213,
+    "notes_shown": 119,
+    "statuses": {
+     "completed": 82,
+     "forced_termination": 6
+    }
+   }
+  },
+  "pairs": {
+   "V0": {
+    "x": "V0",
+    "y": "N",
+    "gained": 20,
+    "lost": 13,
+    "gained_tasks": [
+     "multi_turn_base_71",
+     "multi_turn_base_90",
+     "multi_turn_base_80",
+     "multi_turn_base_77",
+     "multi_turn_base_88",
+     "multi_turn_base_74",
+     "multi_turn_base_17",
+     "multi_turn_base_21",
+     "multi_turn_base_9",
+     "multi_turn_base_33",
+     "multi_turn_base_47",
+     "multi_turn_base_34",
+     "multi_turn_base_11",
+     "multi_turn_base_7",
+     "multi_turn_base_15",
+     "multi_turn_base_160",
+     "multi_turn_base_153",
+     "multi_turn_base_190",
+     "multi_turn_base_159",
+     "multi_turn_base_195"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_53",
+     "multi_turn_base_83",
+     "multi_turn_base_81",
+     "multi_turn_base_43",
+     "multi_turn_base_49",
+     "multi_turn_base_152",
+     "multi_turn_base_151",
+     "multi_turn_base_183",
+     "multi_turn_base_191",
+     "multi_turn_base_181",
+     "multi_turn_base_165",
+     "multi_turn_base_182",
+     "multi_turn_base_163"
+    ],
+    "p_one_sided": 0.1481031842995435,
+    "p_two_sided": 0.296206368599087,
+    "diff": 7,
+    "error_events_x": 93,
+    "error_events_y": 144
+   },
+   "N'": {
+    "x": "N'",
+    "y": "N",
+    "gained": 0,
+    "lost": 1,
+    "gained_tasks": [],
+    "lost_tasks": [
+     "multi_turn_base_81"
+    ],
+    "p_one_sided": 1.0,
+    "p_two_sided": 1.0,
+    "diff": -1,
+    "error_events_x": 142,
+    "error_events_y": 144
+   },
+   "E*": {
+    "x": "E*",
+    "y": "N",
+    "gained": 22,
+    "lost": 12,
+    "gained_tasks": [
+     "multi_turn_base_71",
+     "multi_turn_base_90",
+     "multi_turn_base_84",
+     "multi_turn_base_80",
+     "multi_turn_base_77",
+     "multi_turn_base_88",
+     "multi_turn_base_74",
+     "multi_turn_base_17",
+     "multi_turn_base_21",
+     "multi_turn_base_33",
+     "multi_turn_base_47",
+     "multi_turn_base_34",
+     "multi_turn_base_11",
+     "multi_turn_base_7",
+     "multi_turn_base_15",
+     "multi_turn_base_160",
+     "multi_turn_base_153",
+     "multi_turn_base_193",
+     "multi_turn_base_190",
+     "multi_turn_base_194",
+     "multi_turn_base_159",
+     "multi_turn_base_195"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_53",
+     "multi_turn_base_83",
+     "multi_turn_base_81",
+     "multi_turn_base_43",
+     "multi_turn_base_152",
+     "multi_turn_base_151",
+     "multi_turn_base_183",
+     "multi_turn_base_191",
+     "multi_turn_base_181",
+     "multi_turn_base_165",
+     "multi_turn_base_182",
+     "multi_turn_base_163"
+    ],
+    "p_one_sided": 0.06072474247775972,
+    "p_two_sided": 0.12144948495551944,
+    "diff": 10,
+    "error_events_x": 97,
+    "error_events_y": 144
+   },
+   "TrT": {
+    "x": "TrT",
+    "y": "N",
+    "gained": 10,
+    "lost": 2,
+    "gained_tasks": [
+     "multi_turn_base_71",
+     "multi_turn_base_97",
+     "multi_turn_base_84",
+     "multi_turn_base_77",
+     "multi_turn_base_74",
+     "multi_turn_base_82",
+     "multi_turn_base_63",
+     "multi_turn_base_1",
+     "multi_turn_base_166",
+     "multi_turn_base_195"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_60",
+     "multi_turn_base_43"
+    ],
+    "p_one_sided": 0.019287109375,
+    "p_two_sided": 0.03857421875,
+    "diff": 8,
+    "error_events_x": 140,
+    "error_events_y": 144
+   },
+   "V0q": {
+    "x": "V0q",
+    "y": "N",
+    "gained": 18,
+    "lost": 12,
+    "gained_tasks": [
+     "multi_turn_base_71",
+     "multi_turn_base_90",
+     "multi_turn_base_80",
+     "multi_turn_base_77",
+     "multi_turn_base_88",
+     "multi_turn_base_82",
+     "multi_turn_base_17",
+     "multi_turn_base_21",
+     "multi_turn_base_33",
+     "multi_turn_base_47",
+     "multi_turn_base_34",
+     "multi_turn_base_7",
+     "multi_turn_base_15",
+     "multi_turn_base_160",
+     "multi_turn_base_153",
+     "multi_turn_base_190",
+     "multi_turn_base_159",
+     "multi_turn_base_195"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_83",
+     "multi_turn_base_81",
+     "multi_turn_base_43",
+     "multi_turn_base_22",
+     "multi_turn_base_152",
+     "multi_turn_base_151",
+     "multi_turn_base_183",
+     "multi_turn_base_191",
+     "multi_turn_base_181",
+     "multi_turn_base_165",
+     "multi_turn_base_182",
+     "multi_turn_base_163"
+    ],
+    "p_one_sided": 0.1807973040267825,
+    "p_two_sided": 0.361594608053565,
+    "diff": 6,
+    "error_events_x": 90,
+    "error_events_y": 144
+   },
+   "TrQ": {
+    "x": "TrQ",
+    "y": "N",
+    "gained": 9,
+    "lost": 3,
+    "gained_tasks": [
+     "multi_turn_base_84",
+     "multi_turn_base_77",
+     "multi_turn_base_74",
+     "multi_turn_base_63",
+     "multi_turn_base_16",
+     "multi_turn_base_1",
+     "multi_turn_base_13",
+     "multi_turn_base_166",
+     "multi_turn_base_195"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_60",
+     "multi_turn_base_22",
+     "multi_turn_base_49"
+    ],
+    "p_one_sided": 0.072998046875,
+    "p_two_sided": 0.14599609375,
+    "diff": 6,
+    "error_events_x": 145,
+    "error_events_y": 144
+   }
+  },
+  "per_domain": {
+   "VC": {
+    "N": 10,
+    "V0": 13,
+    "N'": 9,
+    "E*": 14,
+    "TrT": 16,
+    "V0q": 14,
+    "TrQ": 13,
+    "tasks": 30
+   },
+   "GFS": {
+    "N": 5,
+    "V0": 12,
+    "N'": 5,
+    "E*": 12,
+    "TrT": 5,
+    "V0q": 10,
+    "TrQ": 6,
+    "tasks": 30
+   },
+   "TRAVEL": {
+    "N": 13,
+    "V0": 10,
+    "N'": 13,
+    "E*": 12,
+    "TrT": 15,
+    "V0q": 10,
+    "TrQ": 15,
+    "tasks": 28
+   }
+  },
+  "changes": {
+   "V0": {
+    "gains": [
+     {
+      "task": "multi_turn_base_71",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_90",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_80",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_77",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_88",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_74",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_17",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_21",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_9",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_33",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_47",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_34",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_11",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_7",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_15",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_160",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_153",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_190",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_159",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_195",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_53",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "displayCarStatus:battery",
+       "displayCarStatus:doors",
+       "fillFuelTank:20.0"
+      ],
+      "copied_functions": [
+       "fillFuelTank"
+      ],
+      "notes_in_deciding_turn": [
+       "fillFuelTank|cannot fill gas above the tank capacity"
+      ]
+     },
+     {
+      "task": "multi_turn_base_83",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_81",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_43",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 2,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_49",
+      "domain": "GFS",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "cd:tmp"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": [
+       "cd|current directory is already the root"
+      ]
+     },
+     {
+      "task": "multi_turn_base_152",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 2,
+      "copied_values": [
+       "create_ticket:4.0"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_151",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_183",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "book_flight:business",
+       "get_flight_cost:business"
+      ],
+      "copied_functions": [
+       "retrieve_invoice"
+      ],
+      "notes_in_deciding_turn": [
+       "retrieve_invoice|booking not found"
+      ]
+     },
+     {
+      "task": "multi_turn_base_191",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 4,
+      "copied_values": [
+       "set_budget_limit:7142.86"
+      ],
+      "copied_functions": [
+       "set_budget_limit"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_181",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 4,
+      "copied_values": [
+       "create_ticket:4.0"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_165",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 2,
+      "copied_values": [
+       "book_flight:JFK",
+       "get_flight_cost:JFK",
+       "get_nearest_airport_by_city:New York"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": [
+       "get_flight_cost|no available route for the given airports"
+      ]
+     },
+     {
+      "task": "multi_turn_base_182",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "get_flight_cost:SSV"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_163",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "set_budget_limit:7142.86"
+      ],
+      "copied_functions": [
+       "set_budget_limit"
+      ],
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 20
+    },
+    "losses_by_cause": {
+     "copy": 9,
+     "memory": 4
+    }
+   },
+   "N'": {
+    "gains": [],
+    "losses": [
+     {
+      "task": "multi_turn_base_81",
+      "domain": "VC",
+      "cause": "noise_before_memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {},
+    "losses_by_cause": {
+     "noise_before_memory": 1
+    }
+   },
+   "E*": {
+    "gains": [
+     {
+      "task": "multi_turn_base_71",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_90",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_84",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_80",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_77",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_88",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_74",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_17",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_21",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_33",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_47",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_34",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_11",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_7",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_15",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_160",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_153",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_193",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_190",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_194",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_159",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_195",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_53",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "fillFuelTank:50.0"
+      ],
+      "copied_functions": [
+       "fillFuelTank"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_83",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_81",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_43",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 2,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_152",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 2,
+      "copied_values": [
+       "create_ticket:4.0"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_151",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_183",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "book_flight:business",
+       "get_flight_cost:business"
+      ],
+      "copied_functions": [
+       "retrieve_invoice"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_191",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 4,
+      "copied_values": [
+       "set_budget_limit:7142.86"
+      ],
+      "copied_functions": [
+       "set_budget_limit"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_181",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 4,
+      "copied_values": [
+       "create_ticket:4.0"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_165",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 2,
+      "copied_values": [
+       "book_flight:JFK",
+       "get_flight_cost:JFK"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_182",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "get_flight_cost:SSV"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_163",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "set_budget_limit:7142.86"
+      ],
+      "copied_functions": [
+       "set_budget_limit"
+      ],
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 22
+    },
+    "losses_by_cause": {
+     "copy": 8,
+     "memory": 4
+    }
+   },
+   "TrT": {
+    "gains": [
+     {
+      "task": "multi_turn_base_71",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_97",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_84",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_77",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_74",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_82",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_63",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_1",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_166",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_195",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_60",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": [
+       "startEngine|all doors must be locked before starting the engine",
+       "startEngine|brake pedal needs to be pressed when starting the engine"
+      ]
+     },
+     {
+      "task": "multi_turn_base_43",
+      "domain": "GFS",
+      "cause": "noise_before_memory",
+      "first_fail": 2,
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 10
+    },
+    "losses_by_cause": {
+     "memory": 1,
+     "noise_before_memory": 1
+    }
+   },
+   "V0q": {
+    "gains": [
+     {
+      "task": "multi_turn_base_71",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_90",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_80",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_77",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_88",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_82",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_17",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_21",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_33",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_47",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_34",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_7",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_15",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_160",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_153",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_190",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_159",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_195",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_83",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_81",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_43",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_22",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": [
+       "cp|cp: path not allowed in destination"
+      ]
+     },
+     {
+      "task": "multi_turn_base_152",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "compute_exchange_rate:USD"
+      ],
+      "copied_functions": [
+       "compute_exchange_rate",
+       "get_credit_card_balance"
+      ],
+      "notes_in_deciding_turn": [
+       "compute_exchange_rate|no available exchange rate for the given currencies"
+      ]
+     },
+     {
+      "task": "multi_turn_base_151",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_183",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "book_flight:business",
+       "get_flight_cost:business"
+      ],
+      "copied_functions": [
+       "retrieve_invoice"
+      ],
+      "notes_in_deciding_turn": [
+       "retrieve_invoice|booking not found"
+      ]
+     },
+     {
+      "task": "multi_turn_base_191",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 4,
+      "copied_values": [
+       "set_budget_limit:7142.86"
+      ],
+      "copied_functions": [
+       "set_budget_limit"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_181",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 4,
+      "copied_values": [
+       "create_ticket:4.0"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_165",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 2,
+      "copied_values": [
+       "book_flight:JFK",
+       "get_flight_cost:JFK",
+       "get_nearest_airport_by_city:New York"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": [
+       "get_flight_cost|no available route for the given airports"
+      ]
+     },
+     {
+      "task": "multi_turn_base_182",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "get_flight_cost:SSV"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_163",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "set_budget_limit:7142.86"
+      ],
+      "copied_functions": [
+       "set_budget_limit"
+      ],
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 18
+    },
+    "losses_by_cause": {
+     "memory": 5,
+     "copy": 7
+    }
+   },
+   "TrQ": {
+    "gains": [
+     {
+      "task": "multi_turn_base_84",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_77",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_74",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_63",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_16",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_1",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_13",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_166",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_195",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_60",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": [
+       "startEngine|all doors must be locked before starting the engine",
+       "startEngine|brake pedal needs to be pressed when starting the engine"
+      ]
+     },
+     {
+      "task": "multi_turn_base_22",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": [
+       "cp|cp: path not allowed in destination"
+      ]
+     },
+     {
+      "task": "multi_turn_base_49",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": [
+       "cd|cd: <v>: no such file or directory"
+      ]
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 9
+    },
+    "losses_by_cause": {
+     "memory": 3
+    }
+   }
+  },
+  "copy_losses": {
+   "V0": 9,
+   "N'": 0,
+   "E*": 8,
+   "TrT": 0,
+   "V0q": 7,
+   "TrQ": 0
+  },
+  "drift": {
+   "tasks": 88,
+   "agree": 86,
+   "ok": true,
+   "flipped": [
+    "multi_turn_base_81",
+    "multi_turn_base_43"
+   ]
+  },
+  "main": {
+   "verdict": "refuted",
+   "V0": 35,
+   "N": 28,
+   "diff": 7,
+   "p_one_sided": 0.1481031842995435,
+   "losses": 13,
+   "noise_abs_Nprime_minus_N": 1,
+   "domains_V0_ge_N": false,
+   "domains_V0_gt_N": 2
+  },
+  "secondary": {
+   "H15": {
+    "verdict": "refuted",
+    "V0": 35,
+    "E*": 38,
+    "TrT": 36,
+    "pairs": {
+     "V0_vs_E*": {
+      "x": "V0",
+      "y": "E*",
+      "gained": 1,
+      "lost": 4,
+      "gained_tasks": [
+       "multi_turn_base_9"
+      ],
+      "lost_tasks": [
+       "multi_turn_base_84",
+       "multi_turn_base_49",
+       "multi_turn_base_193",
+       "multi_turn_base_194"
+      ],
+      "p_one_sided": 0.96875,
+      "p_two_sided": 0.375,
+      "diff": -3,
+      "error_events_x": 93,
+      "error_events_y": 97
+     },
+     "V0_vs_TrT": {
+      "x": "V0",
+      "y": "TrT",
+      "gained": 17,
+      "lost": 18,
+      "gained_tasks": [
+       "multi_turn_base_60",
+       "multi_turn_base_90",
+       "multi_turn_base_80",
+       "multi_turn_base_88",
+       "multi_turn_base_17",
+       "multi_turn_base_21",
+       "multi_turn_base_9",
+       "multi_turn_base_33",
+       "multi_turn_base_47",
+       "multi_turn_base_34",
+       "multi_turn_base_11",
+       "multi_turn_base_7",
+       "multi_turn_base_15",
+       "multi_turn_base_160",
+       "multi_turn_base_153",
+       "multi_turn_base_190",
+       "multi_turn_base_159"
+      ],
+      "lost_tasks": [
+       "multi_turn_base_53",
+       "multi_turn_base_83",
+       "multi_turn_base_81",
+       "multi_turn_base_97",
+       "multi_turn_base_84",
+       "multi_turn_base_82",
+       "multi_turn_base_63",
+       "multi_turn_base_1",
+       "multi_turn_base_49",
+       "multi_turn_base_152",
+       "multi_turn_base_166",
+       "multi_turn_base_151",
+       "multi_turn_base_183",
+       "multi_turn_base_191",
+       "multi_turn_base_181",
+       "multi_turn_base_165",
+       "multi_turn_base_182",
+       "multi_turn_base_163"
+      ],
+      "p_one_sided": 0.6320605995715596,
+      "p_two_sided": 1.0,
+      "diff": -1,
+      "error_events_x": 93,
+      "error_events_y": 140
+     }
+    }
+   },
+   "H16": {
+    "verdict": "supported",
+    "TrT": 36,
+    "TrQ": 34,
+    "losses_TrT": 2,
+    "losses_TrQ": 3,
+    "pair": {
+     "x": "TrT",
+     "y": "TrQ",
+     "gained": 5,
+     "lost": 3,
+     "gained_tasks": [
+      "multi_turn_base_71",
+      "multi_turn_base_97",
+      "multi_turn_base_82",
+      "multi_turn_base_22",
+      "multi_turn_base_49"
+     ],
+     "lost_tasks": [
+      "multi_turn_base_43",
+      "multi_turn_base_16",
+      "multi_turn_base_13"
+     ],
+     "p_one_sided": 0.36328125,
+     "p_two_sided": 0.7265625,
+     "diff": 2,
+     "error_events_x": 140,
+     "error_events_y": 145
+    }
+   },
+   "H14_repeat": {
+    "verdict": "not_applicable (E* = R+)"
+   },
+   "holm": {
+    "TrT_vs_TrQ": {
+     "p": 0.36328125,
+     "threshold": 0.016666666666666666,
+     "reject": false
+    },
+    "V0_vs_TrT": {
+     "p": 0.6320605995715596,
+     "threshold": 0.025,
+     "reject": false
+    },
+    "V0_vs_E*": {
+     "p": 0.96875,
+     "threshold": 0.05,
+     "reject": false
+    }
+   }
+  },
+  "K": {
+   "K": "V0q",
+   "V0": 35,
+   "V0q": 34,
+   "tasks": 88
+  },
+  "K_failures": {
+   "failed": 54,
+   "classes": {
+    "error_resolved_turn_still_wrong": 15,
+    "error_unresolved": 10,
+    "no_error_wrong_or_extra_action": 26,
+    "invalid_call_no_env_error": 1,
+    "limit_steps": 2
+   },
+   "error_adjacent": 25,
+   "error_adjacent_share": 0.46296296296296297
+  },
+  "K_open_problems": {
+   "mkdir|mkdir: cannot create directory <v>: file exists": 3,
+   "cp|cp: cannot copy <v>: no such file or directory": 2,
+   "fillFuelTank|cannot fill gas above the tank capacity": 1,
+   "view_messages_sent|no user is currently logged in": 1,
+   "get_message_stats|no user is currently logged in": 1,
+   "search_messages|no user is currently logged in": 1,
+   "get_user_id|user <v> not found in the workspace": 1,
+   "cp|cp: path not allowed in destination": 1,
+   "grep|grep: <arg>: no such file or directory": 1,
+   "mv|mv: cannot move <v>: no such file or directory": 1,
+   "compute_exchange_rate|no available exchange rate for the given currencies": 1,
+   "get_flight_cost|no available route for the given airports": 1
+  },
+  "N_open_problems": {
+   "fillFuelTank|cannot fill gas above the tank capacity": 6,
+   "get_flight_cost|no available route for the given airports": 5,
+   "grep|grep: <arg>: no such file or directory": 4,
+   "cp|cp: cannot copy <v>: no such file or directory": 3,
+   "estimate_distance|distance not found in database": 2,
+   "cp|cp: path not allowed in destination": 2,
+   "mv|mv: cannot move <v>: no such file or directory": 2,
+   "cat|cat: <v>: no such file or directory": 2,
+   "cat|cat: <v>: invalid character": 2,
+   "compute_exchange_rate|no available exchange rate for the given currencies": 2,
+   "startEngine|all doors must be locked before starting the engine": 1,
+   "mkdir|mkdir: cannot create directory <v>: file exists": 1
+  },
+  "K_lost_tasks": [
+   {
+    "task": "multi_turn_base_83",
+    "domain": "VC",
+    "cause": "memory",
+    "first_fail": 0,
+    "notes_in_deciding_turn": []
+   },
+   {
+    "task": "multi_turn_base_81",
+    "domain": "VC",
+    "cause": "memory",
+    "first_fail": 0,
+    "notes_in_deciding_turn": []
+   },
+   {
+    "task": "multi_turn_base_43",
+    "domain": "GFS",
+    "cause": "memory",
+    "first_fail": 3,
+    "notes_in_deciding_turn": []
+   },
+   {
+    "task": "multi_turn_base_22",
+    "domain": "GFS",
+    "cause": "memory",
+    "first_fail": 1,
+    "notes_in_deciding_turn": [
+     "cp|cp: path not allowed in destination"
+    ]
+   },
+   {
+    "task": "multi_turn_base_152",
+    "domain": "TRAVEL",
+    "cause": "copy",
+    "first_fail": 0,
+    "copied_values": [
+     "compute_exchange_rate:USD"
+    ],
+    "copied_functions": [
+     "compute_exchange_rate",
+     "get_credit_card_balance"
+    ],
+    "notes_in_deciding_turn": [
+     "compute_exchange_rate|no available exchange rate for the given currencies"
+    ]
+   },
+   {
+    "task": "multi_turn_base_151",
+    "domain": "TRAVEL",
+    "cause": "memory",
+    "first_fail": 0,
+    "notes_in_deciding_turn": []
+   },
+   {
+    "task": "multi_turn_base_183",
+    "domain": "TRAVEL",
+    "cause": "copy",
+    "first_fail": 1,
+    "copied_values": [
+     "book_flight:business",
+     "get_flight_cost:business"
+    ],
+    "copied_functions": [
+     "retrieve_invoice"
+    ],
+    "notes_in_deciding_turn": [
+     "retrieve_invoice|booking not found"
+    ]
+   },
+   {
+    "task": "multi_turn_base_191",
+    "domain": "TRAVEL",
+    "cause": "copy",
+    "first_fail": 4,
+    "copied_values": [
+     "set_budget_limit:7142.86"
+    ],
+    "copied_functions": [
+     "set_budget_limit"
+    ],
+    "notes_in_deciding_turn": []
+   },
+   {
+    "task": "multi_turn_base_181",
+    "domain": "TRAVEL",
+    "cause": "copy",
+    "first_fail": 4,
+    "copied_values": [
+     "create_ticket:4.0"
+    ],
+    "copied_functions": [],
+    "notes_in_deciding_turn": []
+   },
+   {
+    "task": "multi_turn_base_165",
+    "domain": "TRAVEL",
+    "cause": "copy",
+    "first_fail": 2,
+    "copied_values": [
+     "book_flight:JFK",
+     "get_flight_cost:JFK",
+     "get_nearest_airport_by_city:New York"
+    ],
+    "copied_functions": [],
+    "notes_in_deciding_turn": [
+     "get_flight_cost|no available route for the given airports"
+    ]
+   },
+   {
+    "task": "multi_turn_base_182",
+    "domain": "TRAVEL",
+    "cause": "copy",
+    "first_fail": 0,
+    "copied_values": [
+     "get_flight_cost:SSV"
+    ],
+    "copied_functions": [],
+    "notes_in_deciding_turn": []
+   },
+   {
+    "task": "multi_turn_base_163",
+    "domain": "TRAVEL",
+    "cause": "copy",
+    "first_fail": 1,
+    "copied_values": [
+     "set_budget_limit:7142.86"
+    ],
+    "copied_functions": [
+     "set_budget_limit"
+    ],
+    "notes_in_deciding_turn": []
+   }
+  ]
+ },
+ "E4": {
+  "arms": [
+   "N",
+   "K",
+   "C-RB",
+   "C-G"
+  ],
+  "tasks": [
+   "multi_turn_base_50",
+   "multi_turn_base_67",
+   "multi_turn_base_60",
+   "multi_turn_base_53",
+   "multi_turn_base_71",
+   "multi_turn_base_93",
+   "multi_turn_base_90",
+   "multi_turn_base_94",
+   "multi_turn_base_52",
+   "multi_turn_base_59",
+   "multi_turn_base_66",
+   "multi_turn_base_51",
+   "multi_turn_base_83",
+   "multi_turn_base_91",
+   "multi_turn_base_81",
+   "multi_turn_base_64",
+   "multi_turn_base_97",
+   "multi_turn_base_84",
+   "multi_turn_base_80",
+   "multi_turn_base_61",
+   "multi_turn_base_72",
+   "multi_turn_base_77",
+   "multi_turn_base_95",
+   "multi_turn_base_57",
+   "multi_turn_base_88",
+   "multi_turn_base_65",
+   "multi_turn_base_74",
+   "multi_turn_base_99",
+   "multi_turn_base_82",
+   "multi_turn_base_63",
+   "multi_turn_base_0",
+   "multi_turn_base_17",
+   "multi_turn_base_10",
+   "multi_turn_base_3",
+   "multi_turn_base_21",
+   "multi_turn_base_43",
+   "multi_turn_base_40",
+   "multi_turn_base_44",
+   "multi_turn_base_2",
+   "multi_turn_base_9",
+   "multi_turn_base_16",
+   "multi_turn_base_1",
+   "multi_turn_base_33",
+   "multi_turn_base_41",
+   "multi_turn_base_31",
+   "multi_turn_base_14",
+   "multi_turn_base_47",
+   "multi_turn_base_34",
+   "multi_turn_base_30",
+   "multi_turn_base_11",
+   "multi_turn_base_22",
+   "multi_turn_base_27",
+   "multi_turn_base_45",
+   "multi_turn_base_7",
+   "multi_turn_base_38",
+   "multi_turn_base_15",
+   "multi_turn_base_24",
+   "multi_turn_base_49",
+   "multi_turn_base_32",
+   "multi_turn_base_13",
+   "multi_turn_base_150",
+   "multi_turn_base_160",
+   "multi_turn_base_153",
+   "multi_turn_base_171",
+   "multi_turn_base_193",
+   "multi_turn_base_190",
+   "multi_turn_base_194",
+   "multi_turn_base_152",
+   "multi_turn_base_159",
+   "multi_turn_base_166",
+   "multi_turn_base_151",
+   "multi_turn_base_183",
+   "multi_turn_base_191",
+   "multi_turn_base_181",
+   "multi_turn_base_164",
+   "multi_turn_base_197",
+   "multi_turn_base_184",
+   "multi_turn_base_161",
+   "multi_turn_base_172",
+   "multi_turn_base_177",
+   "multi_turn_base_195",
+   "multi_turn_base_157",
+   "multi_turn_base_188",
+   "multi_turn_base_165",
+   "multi_turn_base_174",
+   "multi_turn_base_199",
+   "multi_turn_base_182",
+   "multi_turn_base_163"
+  ],
+  "table": {
+   "N": {
+    "tasks": 88,
+    "solved": 27,
+    "error_events": 126,
+    "error_results": 277,
+    "invalid_calls": 41,
+    "invalid_outputs": 0,
+    "model_calls": 862,
+    "prompt_tokens": 1756173,
+    "eval_tokens": 30455,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 75,
+     "forced_termination": 13
+    }
+   },
+   "K": {
+    "tasks": 88,
+    "solved": 32,
+    "error_events": 94,
+    "error_results": 153,
+    "invalid_calls": 49,
+    "invalid_outputs": 0,
+    "model_calls": 847,
+    "prompt_tokens": 2063283,
+    "eval_tokens": 32947,
+    "notes_shown": 71,
+    "statuses": {
+     "completed": 82,
+     "forced_termination": 6
+    }
+   },
+   "C-RB": {
+    "tasks": 88,
+    "solved": 30,
+    "error_events": 131,
+    "error_results": 243,
+    "invalid_calls": 30,
+    "invalid_outputs": 0,
+    "model_calls": 885,
+    "prompt_tokens": 2012961,
+    "eval_tokens": 28910,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 75,
+     "forced_termination": 13
+    }
+   },
+   "C-G": {
+    "tasks": 88,
+    "solved": 31,
+    "error_events": 109,
+    "error_results": 195,
+    "invalid_calls": 49,
+    "invalid_outputs": 0,
+    "model_calls": 813,
+    "prompt_tokens": 1918243,
+    "eval_tokens": 26992,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 76,
+     "forced_termination": 12
+    }
+   }
+  },
+  "pairs": {
+   "K": {
+    "x": "K",
+    "y": "N",
+    "gained": 16,
+    "lost": 11,
+    "gained_tasks": [
+     "multi_turn_base_71",
+     "multi_turn_base_90",
+     "multi_turn_base_80",
+     "multi_turn_base_77",
+     "multi_turn_base_88",
+     "multi_turn_base_82",
+     "multi_turn_base_21",
+     "multi_turn_base_33",
+     "multi_turn_base_34",
+     "multi_turn_base_7",
+     "multi_turn_base_15",
+     "multi_turn_base_160",
+     "multi_turn_base_153",
+     "multi_turn_base_190",
+     "multi_turn_base_159",
+     "multi_turn_base_195"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_53",
+     "multi_turn_base_83",
+     "multi_turn_base_22",
+     "multi_turn_base_152",
+     "multi_turn_base_151",
+     "multi_turn_base_183",
+     "multi_turn_base_191",
+     "multi_turn_base_181",
+     "multi_turn_base_165",
+     "multi_turn_base_182",
+     "multi_turn_base_163"
+    ],
+    "p_one_sided": 0.22103416919708252,
+    "p_two_sided": 0.44206833839416504,
+    "diff": 5,
+    "error_events_x": 94,
+    "error_events_y": 126
+   },
+   "C-RB": {
+    "x": "C-RB",
+    "y": "N",
+    "gained": 11,
+    "lost": 8,
+    "gained_tasks": [
+     "multi_turn_base_90",
+     "multi_turn_base_81",
+     "multi_turn_base_84",
+     "multi_turn_base_77",
+     "multi_turn_base_1",
+     "multi_turn_base_45",
+     "multi_turn_base_7",
+     "multi_turn_base_13",
+     "multi_turn_base_153",
+     "multi_turn_base_166",
+     "multi_turn_base_195"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_60",
+     "multi_turn_base_83",
+     "multi_turn_base_47",
+     "multi_turn_base_152",
+     "multi_turn_base_151",
+     "multi_turn_base_181",
+     "multi_turn_base_164",
+     "multi_turn_base_199"
+    ],
+    "p_one_sided": 0.3238029479980469,
+    "p_two_sided": 0.6476058959960938,
+    "diff": 3,
+    "error_events_x": 131,
+    "error_events_y": 126
+   },
+   "C-G": {
+    "x": "C-G",
+    "y": "N",
+    "gained": 12,
+    "lost": 8,
+    "gained_tasks": [
+     "multi_turn_base_77",
+     "multi_turn_base_88",
+     "multi_turn_base_74",
+     "multi_turn_base_17",
+     "multi_turn_base_1",
+     "multi_turn_base_33",
+     "multi_turn_base_7",
+     "multi_turn_base_15",
+     "multi_turn_base_193",
+     "multi_turn_base_159",
+     "multi_turn_base_166",
+     "multi_turn_base_195"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_83",
+     "multi_turn_base_57",
+     "multi_turn_base_47",
+     "multi_turn_base_152",
+     "multi_turn_base_151",
+     "multi_turn_base_183",
+     "multi_turn_base_181",
+     "multi_turn_base_199"
+    ],
+    "p_one_sided": 0.2517223358154297,
+    "p_two_sided": 0.5034446716308594,
+    "diff": 4,
+    "error_events_x": 109,
+    "error_events_y": 126
+   }
+  },
+  "per_domain": {
+   "VC": {
+    "N": 9,
+    "K": 13,
+    "C-RB": 11,
+    "C-G": 10,
+    "tasks": 30
+   },
+   "GFS": {
+    "N": 5,
+    "K": 9,
+    "C-RB": 8,
+    "C-G": 9,
+    "tasks": 30
+   },
+   "TRAVEL": {
+    "N": 13,
+    "K": 10,
+    "C-RB": 11,
+    "C-G": 12,
+    "tasks": 28
+   }
+  },
+  "changes": {
+   "K": {
+    "gains": [
+     {
+      "task": "multi_turn_base_71",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_90",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_80",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_77",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_88",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_82",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_21",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_33",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_34",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_7",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_15",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_160",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_153",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_190",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_159",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_195",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_53",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "fillFuelTank:20.0"
+      ],
+      "copied_functions": [
+       "fillFuelTank"
+      ],
+      "notes_in_deciding_turn": [
+       "fillFuelTank|cannot fill gas above the tank capacity"
+      ]
+     },
+     {
+      "task": "multi_turn_base_83",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_22",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": [
+       "cp|cp: path not allowed in destination"
+      ]
+     },
+     {
+      "task": "multi_turn_base_152",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "compute_exchange_rate:USD"
+      ],
+      "copied_functions": [
+       "compute_exchange_rate",
+       "get_credit_card_balance"
+      ],
+      "notes_in_deciding_turn": [
+       "compute_exchange_rate|no available exchange rate for the given currencies"
+      ]
+     },
+     {
+      "task": "multi_turn_base_151",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_183",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "book_flight:business",
+       "get_flight_cost:business"
+      ],
+      "copied_functions": [
+       "retrieve_invoice"
+      ],
+      "notes_in_deciding_turn": [
+       "retrieve_invoice|booking not found"
+      ]
+     },
+     {
+      "task": "multi_turn_base_191",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 4,
+      "copied_values": [
+       "set_budget_limit:7142.86"
+      ],
+      "copied_functions": [
+       "set_budget_limit"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_181",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 4,
+      "copied_values": [
+       "create_ticket:4.0"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_165",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 2,
+      "copied_values": [
+       "book_flight:JFK",
+       "get_flight_cost:JFK",
+       "get_nearest_airport_by_city:New York"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": [
+       "get_flight_cost|no available route for the given airports"
+      ]
+     },
+     {
+      "task": "multi_turn_base_182",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "get_flight_cost:SSV"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_163",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [
+       "set_budget_limit:7142.86"
+      ],
+      "copied_functions": [
+       "set_budget_limit"
+      ],
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 16
+    },
+    "losses_by_cause": {
+     "copy": 8,
+     "memory": 3
+    }
+   },
+   "C-RB": {
+    "gains": [
+     {
+      "task": "multi_turn_base_90",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_81",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_84",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_77",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_1",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_45",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_7",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_13",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_153",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_166",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_195",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_60",
+      "domain": "VC",
+      "cause": "copy",
+      "first_fail": 0,
+      "copied_values": [
+       "activateParkingBrake:engage",
+       "displayCarStatus:doors",
+       "fillFuelTank:45.0"
+      ],
+      "copied_functions": [],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_83",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_47",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_152",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 2,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_151",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 2,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_181",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_164",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_199",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 4,
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 11
+    },
+    "losses_by_cause": {
+     "copy": 1,
+     "memory": 7
+    }
+   },
+   "C-G": {
+    "gains": [
+     {
+      "task": "multi_turn_base_77",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_88",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_74",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_17",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_1",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_33",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_7",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_15",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3
+     },
+     {
+      "task": "multi_turn_base_193",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_159",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_166",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_195",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_83",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_57",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_47",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_152",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 2,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_151",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_183",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_181",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 4,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_199",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 4,
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 12
+    },
+    "losses_by_cause": {
+     "memory": 8
+    }
+   }
+  },
+  "copy_losses": {
+   "K": 8,
+   "C-RB": 1,
+   "C-G": 0
+  },
+  "competitors": {
+   "verdict": "K_not_ahead",
+   "C": "C-G",
+   "K": 32,
+   "C_solved": 31,
+   "losses_K": 11,
+   "losses_C": 8,
+   "K_minus_N": 5
+  }
+ },
+ "E5": {
+  "arms": [
+   "N",
+   "K",
+   "N'"
+  ],
+  "tasks": [
+   "multi_turn_base_50",
+   "multi_turn_base_67",
+   "multi_turn_base_60",
+   "multi_turn_base_53",
+   "multi_turn_base_71",
+   "multi_turn_base_93",
+   "multi_turn_base_90",
+   "multi_turn_base_94",
+   "multi_turn_base_52",
+   "multi_turn_base_59",
+   "multi_turn_base_66",
+   "multi_turn_base_51",
+   "multi_turn_base_83",
+   "multi_turn_base_91",
+   "multi_turn_base_81",
+   "multi_turn_base_64",
+   "multi_turn_base_97",
+   "multi_turn_base_84",
+   "multi_turn_base_80",
+   "multi_turn_base_61",
+   "multi_turn_base_72",
+   "multi_turn_base_77",
+   "multi_turn_base_95",
+   "multi_turn_base_57",
+   "multi_turn_base_88",
+   "multi_turn_base_65",
+   "multi_turn_base_74",
+   "multi_turn_base_99",
+   "multi_turn_base_82",
+   "multi_turn_base_63",
+   "multi_turn_base_0",
+   "multi_turn_base_17",
+   "multi_turn_base_10",
+   "multi_turn_base_3",
+   "multi_turn_base_21",
+   "multi_turn_base_43",
+   "multi_turn_base_40",
+   "multi_turn_base_44",
+   "multi_turn_base_2",
+   "multi_turn_base_9",
+   "multi_turn_base_16",
+   "multi_turn_base_1",
+   "multi_turn_base_33",
+   "multi_turn_base_41",
+   "multi_turn_base_31",
+   "multi_turn_base_14",
+   "multi_turn_base_47",
+   "multi_turn_base_34",
+   "multi_turn_base_30",
+   "multi_turn_base_11",
+   "multi_turn_base_22",
+   "multi_turn_base_27",
+   "multi_turn_base_45",
+   "multi_turn_base_7",
+   "multi_turn_base_38",
+   "multi_turn_base_15",
+   "multi_turn_base_24",
+   "multi_turn_base_49",
+   "multi_turn_base_32",
+   "multi_turn_base_13",
+   "multi_turn_base_150",
+   "multi_turn_base_160",
+   "multi_turn_base_153",
+   "multi_turn_base_171",
+   "multi_turn_base_193",
+   "multi_turn_base_190",
+   "multi_turn_base_194",
+   "multi_turn_base_152",
+   "multi_turn_base_159",
+   "multi_turn_base_166",
+   "multi_turn_base_151",
+   "multi_turn_base_183",
+   "multi_turn_base_191",
+   "multi_turn_base_181",
+   "multi_turn_base_164",
+   "multi_turn_base_197",
+   "multi_turn_base_184",
+   "multi_turn_base_161",
+   "multi_turn_base_172",
+   "multi_turn_base_177",
+   "multi_turn_base_195",
+   "multi_turn_base_157",
+   "multi_turn_base_188",
+   "multi_turn_base_165",
+   "multi_turn_base_174",
+   "multi_turn_base_199",
+   "multi_turn_base_182",
+   "multi_turn_base_163"
+  ],
+  "table": {
+   "N": {
+    "tasks": 88,
+    "solved": 35,
+    "error_events": 104,
+    "error_results": 169,
+    "invalid_calls": 11,
+    "invalid_outputs": 0,
+    "model_calls": 891,
+    "prompt_tokens": 1837528,
+    "eval_tokens": 23606,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 73,
+     "forced_termination": 15
+    }
+   },
+   "K": {
+    "tasks": 88,
+    "solved": 40,
+    "error_events": 77,
+    "error_results": 131,
+    "invalid_calls": 8,
+    "invalid_outputs": 0,
+    "model_calls": 873,
+    "prompt_tokens": 2127689,
+    "eval_tokens": 23205,
+    "notes_shown": 68,
+    "statuses": {
+     "completed": 77,
+     "forced_termination": 11
+    }
+   },
+   "N'": {
+    "tasks": 88,
+    "solved": 34,
+    "error_events": 106,
+    "error_results": 187,
+    "invalid_calls": 11,
+    "invalid_outputs": 0,
+    "model_calls": 897,
+    "prompt_tokens": 1850819,
+    "eval_tokens": 23911,
+    "notes_shown": 0,
+    "statuses": {
+     "completed": 71,
+     "forced_termination": 17
+    }
+   }
+  },
+  "pairs": {
+   "K": {
+    "x": "K",
+    "y": "N",
+    "gained": 17,
+    "lost": 12,
+    "gained_tasks": [
+     "multi_turn_base_60",
+     "multi_turn_base_71",
+     "multi_turn_base_90",
+     "multi_turn_base_81",
+     "multi_turn_base_57",
+     "multi_turn_base_88",
+     "multi_turn_base_82",
+     "multi_turn_base_1",
+     "multi_turn_base_22",
+     "multi_turn_base_32",
+     "multi_turn_base_150",
+     "multi_turn_base_160",
+     "multi_turn_base_193",
+     "multi_turn_base_190",
+     "multi_turn_base_181",
+     "multi_turn_base_164",
+     "multi_turn_base_172"
+    ],
+    "lost_tasks": [
+     "multi_turn_base_94",
+     "multi_turn_base_51",
+     "multi_turn_base_83",
+     "multi_turn_base_14",
+     "multi_turn_base_47",
+     "multi_turn_base_24",
+     "multi_turn_base_13",
+     "multi_turn_base_194",
+     "multi_turn_base_159",
+     "multi_turn_base_183",
+     "multi_turn_base_184",
+     "multi_turn_base_165"
+    ],
+    "p_one_sided": 0.22912915982306004,
+    "p_two_sided": 0.45825831964612007,
+    "diff": 5,
+    "error_events_x": 77,
+    "error_events_y": 104
+   },
+   "N'": {
+    "x": "N'",
+    "y": "N",
+    "gained": 0,
+    "lost": 1,
+    "gained_tasks": [],
+    "lost_tasks": [
+     "multi_turn_base_13"
+    ],
+    "p_one_sided": 1.0,
+    "p_two_sided": 1.0,
+    "diff": -1,
+    "error_events_x": 106,
+    "error_events_y": 104
+   }
+  },
+  "per_domain": {
+   "VC": {
+    "N": 9,
+    "K": 13,
+    "N'": 9,
+    "tasks": 30
+   },
+   "GFS": {
+    "N": 10,
+    "K": 9,
+    "N'": 9,
+    "tasks": 30
+   },
+   "TRAVEL": {
+    "N": 16,
+    "K": 18,
+    "N'": 16,
+    "tasks": 28
+   }
+  },
+  "changes": {
+   "K": {
+    "gains": [
+     {
+      "task": "multi_turn_base_60",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_71",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_90",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_81",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_57",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_88",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_82",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_1",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 2
+     },
+     {
+      "task": "multi_turn_base_22",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_32",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_150",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_160",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_193",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_190",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     },
+     {
+      "task": "multi_turn_base_181",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_164",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1
+     },
+     {
+      "task": "multi_turn_base_172",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0
+     }
+    ],
+    "losses": [
+     {
+      "task": "multi_turn_base_94",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_51",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 2,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_83",
+      "domain": "VC",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_14",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 3,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_47",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_24",
+      "domain": "GFS",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [],
+      "copied_functions": [
+       "cat"
+      ],
+      "notes_in_deciding_turn": [
+       "mv|mv: cannot move <v>: no such file or directory"
+      ]
+     },
+     {
+      "task": "multi_turn_base_13",
+      "domain": "GFS",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_194",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_159",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 1,
+      "copied_values": [],
+      "copied_functions": [
+       "get_flight_cost"
+      ],
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_183",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 1,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_184",
+      "domain": "TRAVEL",
+      "cause": "memory",
+      "first_fail": 3,
+      "notes_in_deciding_turn": []
+     },
+     {
+      "task": "multi_turn_base_165",
+      "domain": "TRAVEL",
+      "cause": "copy",
+      "first_fail": 2,
+      "copied_values": [],
+      "copied_functions": [
+       "get_flight_cost"
+      ],
+      "notes_in_deciding_turn": [
+       "get_flight_cost|no available route for the given airports"
+      ]
+     }
+    ],
+    "gains_by_cause": {
+     "memory": 17
+    },
+    "losses_by_cause": {
+     "memory": 9,
+     "copy": 3
+    }
+   },
+   "N'": {
+    "gains": [],
+    "losses": [
+     {
+      "task": "multi_turn_base_13",
+      "domain": "GFS",
+      "cause": "noise_before_memory",
+      "first_fail": 0,
+      "notes_in_deciding_turn": []
+     }
+    ],
+    "gains_by_cause": {},
+    "losses_by_cause": {
+     "noise_before_memory": 1
+    }
+   }
+  },
+  "copy_losses": {
+   "K": 3,
+   "N'": 0
+  },
+  "rule": {
+   "verdict": "inconclusive",
+   "K_minus_N": 5,
+   "losses": 12,
+   "K": 40,
+   "N": 35,
+   "N'": 34
+  }
+ },
+ "build_costs": {
+  "attempts": {
+   "other": 14906,
+   "E2_forks": 1101,
+   "C-RB": 61,
+   "C-G": 38
+  },
+  "K": "V0q",
+  "K_build_calls": 0,
+  "K_note": "V0: tournament forks of E2; V0q: notes Q written in NIGHT-1 (20 local writer calls there)",
+  "C-RB_build_calls": 61,
+  "C-G_build_calls": 38
+ },
+ "recommendation": "WRÓCIĆ DO SKŁADNIKÓW",
+ "weakest_component": {
+  "K_failure_classes": {
+   "error_resolved_turn_still_wrong": 15,
+   "error_unresolved": 10,
+   "no_error_wrong_or_extra_action": 26,
+   "invalid_call_no_env_error": 1,
+   "limit_steps": 2
+  },
+  "K_loss_causes": {
+   "memory": 5,
+   "copy": 7
+  },
+  "largest_failure_class": "no_error_wrong_or_extra_action"
+ },
+ "hypotheses": {
+  "H14 (E1)": "refuted",
+  "H14 (E3 repeat)": "not_applicable (E* = R+)",
+  "H15": "refuted",
+  "H16": "supported",
+  "H10 (rozwojowo, E4)": "K_not_ahead",
+  "test główny v0": "refuted",
+  "drugi model (E5)": "inconclusive"
+ }
+}
