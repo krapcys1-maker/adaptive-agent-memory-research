@@ -24,6 +24,18 @@
       "<mission id>": "docs/11-research-laboratory/<topic>/README.md"
     }
   },
+  "require_export_record": true,
+  "hold_max_days": 14,
+  "exports": {
+    "<experiment id or 'mission <id>'>": {
+      "targets": ["data/lab/<experiment-id>/README.md"],
+      "protected_check": {"checked_on": "YYYY-MM-DD", "result": "clean | withheld", "withheld": ["<what is not published and how it is pinned>"], "by": "<who checked>"},
+      "branch": "claude/<topic>-<date>",
+      "pr": 0,
+      "hold": "<why publication waits; leave out when nothing waits>",
+      "hold_since": "YYYY-MM-DD"
+    }
+  },
   "task_overrides": {
     "<experiment id or 'mission <id>'>": {
       "owner_hold": "<why publication waits>",

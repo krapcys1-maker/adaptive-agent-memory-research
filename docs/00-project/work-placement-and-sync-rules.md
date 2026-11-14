@@ -140,7 +140,8 @@ remote-tracking refs older than a week are flagged and the result then errs on t
 (or `repo` in the configuration) it reads the open pull requests through `gh` to tell *in PR* from *pushed, no open PR*.
 Reports name local paths: keep them in an ignored folder and do not publish them.
 
-Scheduling it (for example with the Windows Task Scheduler, once a day) is a separate step that the owner approves.
+Every finished task should also carry an export record (target, protected-data check, branch or pull request, or an explicit hold); the steps and the
+findings are in [the export flow](coordinator-export-flow.md). Scheduling the report (for example with the Windows Task Scheduler, once a day) is described there too.
 
 ## 8. Coverage and its limits
 
