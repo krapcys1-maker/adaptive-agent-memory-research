@@ -82,7 +82,7 @@ All of these ran offline, with no model calls.
 - **Reflexion's published ALFWorld logs** (`noahshinn/reflexion`, MIT; 134 tasks, a retry run and a reflection run):
   - Plain retries at temperature 0 solve 10 of the 50 tasks failed in the first trial at the first retry, and 17 over six retries (best-of-6). At an equal number of trials (6), reflections reach 123 of 134 and plain retries 101, so 17 of the 39 tasks gained with reflections were also gained without them. Only failure-to-success is observable: successes were not rerun.
   - 161 of 200 reflections open with the wording of the single reflection example in the prompt.
-  - 17 reflections, in 4 tasks, state that the microwave or fridge must be opened before heating or cooling. ALFWorld's PDDL does not require that.
+  - 22 reflections (18 distinct texts), in 4 tasks, state that the microwave or fridge must be opened before heating or cooling. ALFWorld's PDDL does not require it, and the running game agrees: in replayed planner walkthroughs, 22 of 22 heat or cool games that never opened the appliance were won. (An independent recount corrected our earlier figure of 17.)
 - **Twenty no-memory episodes of Qwen3-4B-Instruct-2507** from a feasibility run (AdaMEM harness, `valid_seen`; bf16 and FP8):
   - 12 and 14 of 20 solved. 4 of 20 tasks flip between the two runs, which differ in weights (bf16 vs FP8) and in sampling (temperature 0.7). This is far above AdaMEM's 45.2% for the same model on all 140 tasks; see DIRECTIONS Q0.
   - All 3 goals in the adjective form ("put a cool egg in microwave") fail in both runs. Verb-form goals of the same types ("cool some X and put it in Y") mostly succeed.

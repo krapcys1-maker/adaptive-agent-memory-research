@@ -300,7 +300,7 @@
   "key": "reflexion-logs",
   "title": "Reflexion published ALFWorld logs (our analysis)",
   "year": 2026,
-  "claim": "A single retry at temperature 0 solves 10 of 50 failed tasks (17 over six retries); 161/200 reflections copy the prompt example; 17 reflections state a false precondition (open the microwave/fridge) that the PDDL does not require. [verification: P (our count)]",
+  "claim": "A single retry at temperature 0 solves 10 of 50 failed tasks (17 over six retries); 161/200 reflections copy the prompt example; 22 reflections (18 distinct) state a false precondition (open the microwave/fridge); the PDDL does not require it and 22/22 replayed walkthroughs that never opened the appliance were won. [verification: P (our count)]",
   "mentions": [
    "benchmark=alfworld",
    "noise=retry",

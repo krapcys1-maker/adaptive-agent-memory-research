@@ -297,7 +297,7 @@ The cost figures above assume one GPU. **With volunteers, cost turns into calend
 - **Stored rules, consolidation, or full layered memory at once.**
   - Evidence on abstraction is mixed (section 1.3), and components interfere (2605.05716).
   - If synthesis is tried, compare a version that discards the synthesis after use.
-  - In ALFWorld, lessons about preconditions can be checked against the PDDL: Reflexion's logs contain 17 lessons ("open the microwave first") that the domain does not require.
+  - In ALFWorld, lessons about preconditions can be checked against the PDDL: Reflexion's logs contain 22 lessons (18 distinct) ("open the microwave first") that the domain does not require.
 - **Memory of failures without fine-tuning** (ExpRAG).
 - **Conclusions from differences under about 10 points** on 60 × 3, or from single-seed runs.
 - **Using `valid_unseen` during development.**
