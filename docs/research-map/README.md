@@ -113,6 +113,10 @@ All of these ran offline, with no model calls.
 | ReMe, 2512.10696 ✓ | BFCL-V3 and AppWorld with Qwen3-8B: no memory 40.33 / 14.97, ReMe 45.17 / 24.70 (Avg@4); A-Mem and LangMem fall below no memory on AppWorld; a model-written "usage scenario" key beats the raw task description (figure) |
 | HiPlan 2508.19076 ✓; Adaptive-planning 2408.06458 ✓ | the same failures we saw in Qwen3-4B, in other agents: a skipped cooling step for "put a cool tomato in the microwave"; Gemma-2-9B fetching the desklamp first and substituting a handtowel for a cloth |
 | PlyBench, 2608.03420 (abstract and sections) | games with computable optimal moves, as a judge-free test bed for experience memory; a lead for a fresh benchmark |
+| EffectMem, EMNLP 2026 Findings (ACL 2026.findings-emnlp.859) ✓ | applicability-gated "contracts" with fallback to the plain policy; Qwen3-8B: ALFWorld 38.3 → 91.8, ScienceWorld 15 → 65, WebShop 28.3 → 54.5 (ReAct → EffectMem; single seed; a multi-agent pipeline per step) |
+| CFGM, 2508.15305 | ALFWorld (GPT-4-turbo, 4-fold): ReAct 80.6 → 91.0; key = task description, unit = whole experience plus tips; helper reports k=2–3 best and k=5 falling back to 81.3 |
+| HSL, "Spinning Straw into Gold", 2607.04235 (ICLR 2026) | failed runs relabeled as successes for the goals they did reach (90% relabel accuracy on 200 hand checks), used for fine-tuning a 1B model, not as in-context examples |
+| ProactAgent, 2604.20572; PlugMem, 2603.03296; REAPER, 2608.03420 | retrieval as an RL-trained action (gain not separable from training); a graph memory evaluated without ALFWorld; in tic-tac-toe, a raw-observation key at least as good as a model-written state description |
 | Benchmarks: Evo-Memory 2511.20857, EvoMemBench 2605.18421, MemEvoBench 2604.15774, AMA-Bench 2602.22769, procedural retrieval 2511.21730 | see DIRECTIONS.md section 4a. Evo-Memory has no public code. EvoMemBench's repository has no licence. MemEvoBench measures safety and AMA-Bench in-trajectory recall, not reuse across tasks |
 
 ## Not yet read in full

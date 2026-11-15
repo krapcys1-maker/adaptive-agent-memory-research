@@ -197,6 +197,17 @@ These are cheap; several need no GPU.
 - **For:** cheap once a bank exists. It also separates the key from the unit, which the literature changes together.
 - **Against:** a model-written key adds a call per step. Observation keys can look perfect on retrieval metrics while not helping (2608.03420 notes this).
 
+### D10. An applicability gate (show nothing unless it fits)
+
+- **Question:** does refusing to show a poorly matching entry help more than better similarity?
+- **Evidence:**
+  - EffectMem (EMNLP 2026 Findings ✓, seed 42 only, many LLM calls per step) checks each retrieved "contract" against the current task and falls back to the plain policy when none fits. With Qwen3-8B it reports ALFWorld 38.3 → 91.8, ScienceWorld 15 → 65, WebShop 28.3 → 54.5. In its ablation the gate alone takes ScienceWorld from 15 to 51.
+  - In SWE-ContextBench ✓, unfiltered retrieval falls below no memory.
+- **Design:** on top of the best rung, a **rule** gate first (show an entry only if its task type and the required receptacle or appliance match the goal), then, separately, a model-judged gate. Compare both with the ungated rung and with D7's similarity threshold.
+- **Cost:** 2–3 arms. The rule gate costs nothing at run time.
+- **For:** a cheap, testable mechanism with one large but single-seed result behind it.
+- **Against:** EffectMem's gain mixes the gate with a whole pipeline (scoring agents, a monitor, corrections), so the gate's own share for a 4B model is unknown.
+
 ### D8. A non-memory competitor
 
 - **Question:** is memory needed for the dominant failures, or would one sentence do?
@@ -216,11 +227,11 @@ These are cheap; several need no GPU.
 
 | Candidate | For | Against |
 |---|---|---|
-| ScienceWorld (Apache-2.0) | the usual second environment; effects there often differ from ALFWorld (ExpRAG, 2610.27406) | long episodes, slow with a local model |
+| ScienceWorld (Apache-2.0) | runs on the CPU (needs Java); three independent studies report large gains from retrieved raw trajectories, the mechanism tested here: ExpRAG (Ministral 3-8B, 10.4% → about 34%), Evo-Memory, and 2610.27406 ✓ (held-out success: Llama-4-Scout 9.4 → 20.0, Qwen3-Coder-Next 27.2 → 43.8, Gemma-4-31B 44.2 → 51.7); ExpRAG's easy-to-hard task-type split tests transfer | a 4B model may sit near the floor, so pilot it first; pin the version (1.3.0 changed object ordering); fix the score threshold for "success" in advance and report the raw score as well |
 | BFCL multi-turn as packaged in EvoMemBench's CrossEp-Tool (4 × 50 tasks) | mid-range baselines and large memory gains reported (helper) | EvoMemBench's repository declares no licence; 200 tasks give about ±7 points; a 4B model's baseline is unknown |
 | A stream built with SeqMem-Eval's protocol (Apache-2.0), for example APIBench-HF (911 tasks) | many tasks; an online-versus-hold-out protocol that exposes gains that vanish on hold-out (they do for Qwen3-8B ✓) | not embodied action; one fixed order |
 | Evo-Memory's PDDL (60) | low baseline (helper) | no public code; small |
-| AppWorld (Apache-2.0), the ROADMAP's tool-use target | a local-model memory result exists: ReMe ✓ raises Qwen3-8B from 14.97 to 24.70 (Avg@4), while A-Mem (12.95) and LangMem (11.46) fall below no memory; low baselines leave room | needs its own server; a 4B baseline is unknown |
+| AppWorld (Apache-2.0; task data are distributed encrypted), the ROADMAP's tool-use target | a local-model memory result exists: ReMe ✓ raises Qwen3-8B from 14.97 to 24.70 (Avg@4), while A-Mem (12.95) and LangMem (11.46) fall below no memory; low baselines leave room | prompts are long (the API documentation alone is about 142k tokens and is fetched in pieces), so a 16k context is tight on 12 GB; ReMe is distilled procedural memory in an undocumented harness, not raw exemplars; dev has only 60 tasks (20 scenarios × 3, correlated); roughly 3–10 times the cost of ScienceWorld (helper estimate) |
 
 AMA-Bench (questions about one long trajectory), MemEvoBench (memory safety) and the procedural-retrieval benchmark (retrieval only) test other things.
 

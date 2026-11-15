@@ -50,6 +50,7 @@ flowchart LR
     D7["D7 k, oracles"]
     D8["D8 instruction competitor"]
     D9["D9 retrieval key"]
+    D10["D10 applicability gate"]
   end
   E1 --> F1
   E2 --> F1
@@ -74,6 +75,8 @@ flowchart LR
   F4 --> D2
   F5 --> Q5
   F6 --> D7
+  F6 --> D10
+  E15["EffectMem ✓<br/>gate + fallback, Qwen3-8B 38 → 92"] --> F6
   Q0 --> D0
   Q0 --> D2
   Q1 --> D1
@@ -162,6 +165,7 @@ When the laboratory departs from this map, it records the reason. That record is
 These came up but were not read in depth.
 
 - **Games with computable optimal moves** as a fresh benchmark for experience memory: PlyBench (2608.03420; tic-tac-toe, Nim, Connect Four, with obfuscated variants). Outcomes need no judge, and per-move credit is computable.
-- **EffectMem** (EMNLP 2026 Findings): gate retrieved memories by validity at execution time, not only by relevance. Abstract only.
+- **EffectMem** (EMNLP 2026 Findings): now read; see direction D10. Its large single-seed gains come from a whole pipeline, so the gate's own share is open.
 - **AppWorld with Qwen3-8B and ReMe** (2512.10696 ✓): a local-model memory result on a tool-use benchmark, Apache-2.0. A natural candidate for Stage 3 of the ROADMAP.
-- **The relabeling of failed trajectories as successes for other goals** (ICLR 2026, "Spinning Straw into Gold"): ALFWorld often lets a failed run satisfy a different goal. That could grow a bank cheaply, but it also creates a new leakage risk.
+- **The relabeling of failed trajectories as successes for other goals** (HSL, 2607.04235, ICLR 2026): used there only for fine-tuning a 1B model. Whether relabeled runs work as in-context examples, and how often a failed ALFWorld run satisfies another goal, are both unmeasured. It is a cheap way to grow a bank, with a leakage risk if test goals are used.
+- **ScienceWorld as the second benchmark:** see DIRECTIONS section 4a. Three studies show raw-trajectory gains there.
