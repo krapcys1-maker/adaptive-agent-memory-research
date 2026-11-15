@@ -141,6 +141,7 @@ These are cheap; several need no GPU.
 - **Cost:** (a) and (c) need no GPU to build. (b) needs a few hundred `train` episodes, about 5–15 GPU hours; Self-Generated ICL got most of its gain within the first 100 training tasks. Then 3 arms × 9 h.
 - **For:** a cheap axis that the literature mixes up: ExpRAG uses scripted experts, Self-Generated ICL and AdaMEM the agent's own runs.
 - **Against:** bank (b) depends on the agent's noisy success on `train`. Walkthroughs are short (about 6 steps) and our successes are longer (median about 8–9 steps), so prompt budgets must be matched.
+- **Public banks barely search either.** ETO trajectories are only about 2 steps longer than the planner walkthrough for the same game (median 8 vs 6 over 3,118 `train` games, counted on the CPU). Only the agent's own runs, or those of another agent that explores, show real search.
 - **Prediction to test:** walkthroughs help with procedure failures (adjective form, desklamp) but not with search.
 
 ### D4. Unit of retrieval

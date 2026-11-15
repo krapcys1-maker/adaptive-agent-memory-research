@@ -160,6 +160,11 @@ The table gives examples of how a result could re-route the work. The laboratory
 
 When the laboratory departs from this map, it records the reason. That record is part of the result.
 
+## Machine-readable versions
+
+- [`corpus.json`](corpus.json): the key claims, each with its verification level, as records with `key`, `title`, `year`, `claim` and `mentions` (`dimension=value` tags such as `rung=3`, `unit=step-window`, `failure=adjective-form`). It is meant for tools that search an offline corpus.
+- [`directions.json`](directions.json): the directions with their arms, prerequisites, rough GPU hours and evidence keys, plus the invariants.
+
 ## 5. Leads not yet followed
 
 These came up but were not read in depth.

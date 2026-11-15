@@ -1,0 +1,337 @@
+[
+ {
+  "key": "selfgen-icl-2025",
+  "title": "Self-Generated In-Context Examples Improve LLM Agents for Sequential Decision-Making Tasks",
+  "year": 2025,
+  "claim": "Growing a per-step retrieved bank with the agent's own successes: ALFWorld unseen 73 -> 89% (gpt-4o-mini, 5 seeds); baseline is a fixed 18-example human bank, not no memory; high seed variance; no random-bank control. [verification: T]",
+  "mentions": [
+   "benchmark=alfworld",
+   "rung=5",
+   "bank=own-successes",
+   "effect=positive",
+   "control=none",
+   "level=T"
+  ],
+  "arxiv": "2505.00234"
+ },
+ {
+  "key": "adamem-2026",
+  "title": "AdaMEM: Test-Time Adaptive Memory for Language Agents",
+  "year": 2026,
+  "claim": "Qwen3-4B-Instruct-2507, ALFWorld seen: no memory 45.2, AdaMEM-low 54.0 (main table); ablation AdaMEM-max 65.5, without strategy 59.3, strategy without memory 34.8; temperature 0.7; bank of 1,596 own train successes; top-1 retrieval. [verification: T+K]",
+  "mentions": [
+   "benchmark=alfworld",
+   "model=qwen3-4b",
+   "rung=5",
+   "bank=own-successes",
+   "effect=positive",
+   "level=T+K"
+  ],
+  "arxiv": "2606.05684"
+ },
+ {
+  "key": "trad-2024",
+  "title": "TRAD: Step-Wise Thought Retrieval and Aligned Decision",
+  "year": 2024,
+  "claim": "GPT-4, ALFWorld unseen: random same-type examples 89.8 = task retrieval (Synapse) 89.6 < step retrieval by thought with a window 96.8. 'Random' draws within the task type (checked in code). [verification: T+K]",
+  "mentions": [
+   "benchmark=alfworld",
+   "rung=3",
+   "rung=4",
+   "unit=step-window",
+   "key=thought",
+   "effect=null-for-similarity",
+   "level=T+K"
+  ],
+  "arxiv": "2403.06221"
+ },
+ {
+  "key": "expel-2024",
+  "title": "ExpeL: LLM Agents Are Experiential Learners",
+  "year": 2024,
+  "claim": "gpt-3.5, ALFWorld, Table 3 (example selection ablation): ReAct 40.0, random successful 42.5, reasoning similarity 48.5, task similarity 59.0; unclear whether the random row keeps insights. [verification: T]",
+  "mentions": [
+   "benchmark=alfworld",
+   "rung=2",
+   "rung=4",
+   "effect=positive-for-similarity",
+   "level=T"
+  ],
+  "arxiv": "2308.10144"
+ },
+ {
+  "key": "exprag-2026",
+  "title": "Retrieval-Augmented LLM Agents: Learning to Learn from Experience",
+  "year": 2026,
+  "claim": "3-8B models, scripted-expert bank: retrieval once ~ every step for whole trajectories (64.2 vs 63.8, k=4); the no-memory arm lacks admissible actions, so much of the gain is format; a mismatched-type bank gives little on hard tasks; learning from failures only after retrieval-aware fine-tuning. [verification: T]",
+  "mentions": [
+   "benchmark=alfworld",
+   "benchmark=scienceworld",
+   "unit=trajectory",
+   "refresh=once-vs-step",
+   "effect=format-confound",
+   "level=T"
+  ],
+  "arxiv": "2603.18272"
+ },
+ {
+  "key": "mate-2026",
+  "title": "When Successful Memories Mislead Embodied Agents (MATE)",
+  "year": 2026,
+  "claim": "Old ALFWorld action syntax in the bank drops Qwen2.5-14B from 72.4 to 20.1 (single run); normalising 19 of 877 lines restores 82.1; with a bank from the same executor, raw trajectories are best (79.9). [verification: T]",
+  "mentions": [
+   "benchmark=alfworld",
+   "harm=format",
+   "rung=-1",
+   "level=T"
+  ],
+  "arxiv": "2609.35808"
+ },
+ {
+  "key": "antipersistence-2026",
+  "title": "More Memory, Worse Agents: Error Reproduction and Anti-Persistence",
+  "year": 2026,
+  "claim": "Abstraction or joint memory worse than trajectory memory in 7 of 9 settings; discarding synthesised guidance after use beats storing it (Llama ALFWorld 54.7 vs 26.7); ScienceWorld held-out: trajectory memory helps (Llama-4-Scout 9.4 -> 20.0). [verification: T]",
+  "mentions": [
+   "benchmark=alfworld",
+   "benchmark=scienceworld",
+   "harm=stored-abstraction",
+   "rung=6+",
+   "level=T"
+  ],
+  "arxiv": "2610.27406"
+ },
+ {
+  "key": "effectmem-2026",
+  "title": "EffectMem (EMNLP 2026 Findings)",
+  "year": 2026,
+  "claim": "Applicability-gated contracts with fallback to the plain policy; Qwen3-8B ALFWorld 38.3 -> 91.8, ScienceWorld 15 -> 65 (single seed, multi-agent pipeline); the gate alone takes ScienceWorld 15 -> 51. [verification: T (spot-checked)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "benchmark=scienceworld",
+   "model=qwen3-8b",
+   "mechanism=gate",
+   "effect=positive",
+   "level=T (spot-checked)"
+  ]
+ },
+ {
+  "key": "swe-contextbench-2026",
+  "title": "SWE-ContextBench",
+  "year": 2026,
+  "claim": "Retrieved summaries without an oracle fall below no memory (22.2 vs 26.3); oracle 34.3; top-1 retrieval hits the related task 18% of the time. [verification: T (spot-checked)]",
+  "mentions": [
+   "benchmark=swe-bench",
+   "harm=bad-retrieval",
+   "mechanism=oracle",
+   "level=T (spot-checked)"
+  ],
+  "arxiv": "2602.08316"
+ },
+ {
+  "key": "reasoningbank-2025",
+  "title": "ReasoningBank",
+  "year": 2025,
+  "claim": "WebArena +4 to +7 points; k=1 best (49.7), falling to 44.4 at k=4; learns on the test stream with an LLM judge (72.7% accurate). [verification: T (spot-checked k sweep)]",
+  "mentions": [
+   "benchmark=webarena",
+   "knob=k",
+   "effect=positive",
+   "level=T (spot-checked k sweep)"
+  ],
+  "arxiv": "2509.25140"
+ },
+ {
+  "key": "swe-exp-2025",
+  "title": "SWE-Exp",
+  "year": 2025,
+  "claim": "SWE-bench Verified: one retrieved experience is best (42.0) versus two (39.8) and four (39.0). [verification: T (spot-checked k sweep)]",
+  "mentions": [
+   "benchmark=swe-bench",
+   "knob=k",
+   "level=T (spot-checked k sweep)"
+  ],
+  "arxiv": "2507.23361"
+ },
+ {
+  "key": "memp-2025",
+  "title": "Memp: Exploring Agent Procedural Memory",
+  "year": 2025,
+  "claim": "ALFWorld test, GPT-4o: no memory 42.14, trajectories 74.29, trajectories+scripts 77.86; retrieval once by task; random vs retrieved only on TravelPlanner (74.59 vs 73.38). [verification: T (spot-checked)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "rung=4",
+   "effect=positive",
+   "level=T (spot-checked)"
+  ],
+  "arxiv": "2508.06433"
+ },
+ {
+  "key": "synapse-2024",
+  "title": "Synapse: Trajectory-as-Exemplar Prompting with Memory",
+  "year": 2024,
+  "claim": "Mind2Web GPT-3.5: retrieved exemplars add only +1.4/+1.5/+0.2 step SR over fixed exemplars; most of the gain comes from format and state abstraction. [verification: T (helper, not spot-checked)]",
+  "mentions": [
+   "benchmark=mind2web",
+   "rung=1",
+   "rung=4",
+   "effect=small",
+   "level=T (helper, not spot-checked)"
+  ],
+  "arxiv": "2306.07863"
+ },
+ {
+  "key": "rap-2024",
+  "title": "RAP: Retrieval-Augmented Planning with Contextual Memory",
+  "year": 2024,
+  "claim": "The one paper retrieving windows of steps during the episode (ALFWorld GPT-3.5 52.2 -> 85.8 with 3 trials); the plain variant learns from the test stream. [verification: T (helper)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "unit=step-window",
+   "issue=test-stream-learning",
+   "level=T (helper)"
+  ],
+  "arxiv": "2402.03610"
+ },
+ {
+  "key": "imagine-then-plan-2026",
+  "title": "Imagine-then-Plan",
+  "year": 2026,
+  "claim": "One harness, single run: RAP adds +9.3 for Qwen3-8B (19.29 -> 28.57) and +1.43 for Llama-3.1-8B (21.43 -> 22.86) on ALFWorld; it lowers Qwen3-8B's two-object tasks 25.0 -> 4.2. [verification: T (spot-checked)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "model=qwen3-8b",
+   "model=llama-3.1-8b",
+   "question=model-strength",
+   "level=T (spot-checked)"
+  ],
+  "arxiv": "2601.08955"
+ },
+ {
+  "key": "seqmem-eval-2026",
+  "title": "SeqMem-Eval",
+  "year": 2026,
+  "claim": "Qwen3-8B ALFWorld: no memory 52.9, G-Memory 62.9, ExpeL single-attempt 59.3, multi-attempt 79.3 (confounded by attempts); online gains vanish on hold-out for API tasks. [verification: T (spot-checked)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "model=qwen3-8b",
+   "protocol=online-vs-holdout",
+   "level=T (spot-checked)"
+  ],
+  "arxiv": "2605.15384"
+ },
+ {
+  "key": "reme-2025",
+  "title": "Remember Me, Refine Me (ReMe)",
+  "year": 2025,
+  "claim": "Qwen3-8B: BFCL-V3 40.33 -> 45.17, AppWorld 14.97 -> 24.70 (Avg@4); A-Mem and LangMem below no memory on AppWorld; a usage-scenario key beats the raw task description. [verification: T (spot-checked)]",
+  "mentions": [
+   "benchmark=appworld",
+   "benchmark=bfcl",
+   "model=qwen3-8b",
+   "key=llm-description",
+   "level=T (spot-checked)"
+  ],
+  "arxiv": "2512.10696"
+ },
+ {
+  "key": "hiplan-2025",
+  "title": "HiPlan",
+  "year": 2025,
+  "claim": "The agent moves the tomato into the microwave without cooling it for 'put a cool tomato in the microwave' (adjective-form goal failure). [verification: T (spot-checked quote)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "failure=adjective-form",
+   "level=T (spot-checked quote)"
+  ],
+  "arxiv": "2508.19076"
+ },
+ {
+  "key": "adaptive-planning-2024",
+  "title": "Towards Autonomous Agents: Adaptive-planning, Reasoning, and Acting in Language Models",
+  "year": 2024,
+  "claim": "gemma-2-9b-it fetches the desklamp first for 'examine the cd with the desklamp' and substitutes a handtowel for a cloth. [verification: T (spot-checked quote)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "failure=desklamp",
+   "failure=substitution",
+   "level=T (spot-checked quote)"
+  ],
+  "arxiv": "2408.06458"
+ },
+ {
+  "key": "cfgm-2025",
+  "title": "Coarse-to-Fine Grounded Memory (CFGM)",
+  "year": 2025,
+  "claim": "ALFWorld GPT-4-turbo 80.6 -> 91.0; key = task description; k=2-3 best, k=5 falls back to 81.3 (helper). [verification: T (helper)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "knob=k",
+   "level=T (helper)"
+  ],
+  "arxiv": "2508.15305"
+ },
+ {
+  "key": "hsl-2026",
+  "title": "Spinning Straw into Gold (HSL)",
+  "year": 2026,
+  "claim": "Failed runs relabeled as successes for goals they reached (90% relabel accuracy), used for fine-tuning a 1B model, not in context. [verification: T (helper)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "bank=relabeled-failures",
+   "level=T (helper)"
+  ],
+  "arxiv": "2607.04235"
+ },
+ {
+  "key": "ctim-rover-2025",
+  "title": "CTIM-Rover",
+  "year": 2025,
+  "claim": "Negative result: no memory arm beat the baseline on 45 SWE-bench tasks (42% vs 40%); one misleading rule hurt. [verification: T (helper)]",
+  "mentions": [
+   "benchmark=swe-bench",
+   "effect=negative",
+   "level=T (helper)"
+  ],
+  "arxiv": "2505.23422"
+ },
+ {
+  "key": "reflexion-logs",
+  "title": "Reflexion published ALFWorld logs (our analysis)",
+  "year": 2026,
+  "claim": "A single retry at temperature 0 solves 10 of 50 failed tasks (17 over six retries); 161/200 reflections copy the prompt example; 17 reflections state a false precondition (open the microwave/fridge) that the PDDL does not require. [verification: P (our count)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "noise=retry",
+   "harm=false-lesson",
+   "level=P (our count)"
+  ]
+ },
+ {
+  "key": "own-20-episodes",
+  "title": "Qwen3-4B no-memory episodes in the AdaMEM harness (our analysis)",
+  "year": 2026,
+  "claim": "12/20 and 14/20 solved (bf16, FP8, temperature 0.7), 4/20 flip; adjective-form goals 3/3 fail in both; desklamp 2/2 fail; sequential search uses the step limit. Hypotheses from 20 tasks. [verification: P (our count)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "model=qwen3-4b",
+   "failure=adjective-form",
+   "failure=desklamp",
+   "failure=search",
+   "level=P (our count)"
+  ]
+ },
+ {
+  "key": "cpu-checks",
+  "title": "CPU checks of ALFWorld data and public banks (our analysis)",
+  "year": 2026,
+  "claim": "Adjective-form goals are 28% of valid_seen and 25% of valid_unseen; walkthrough replay 30/30 admissible; 90-92% of trajectories in ETO, AgentTraj-L and AgentBank have an action not matching the current templates; ETO median 8 steps vs walkthrough 6; the harness orders games by an unsorted os.walk. [verification: P (our count)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "rung=-1",
+   "bank=walkthroughs",
+   "bank=public",
+   "level=P (our count)"
+  ]
+ }
+]

@@ -92,6 +92,7 @@ All of these ran offline, with no model calls.
 - **CPU checks** with the scripts in `tools/alfworld_cpu/`:
   - Adjective-form goals make up 28% of `valid_seen` and 25% of `valid_unseen`.
   - Every ALFWorld game carries a planner walkthrough in the installed action syntax. Replaying 30 random train walkthroughs on the CPU solved 30 of 30, with all actions admissible, at about 1.5 s per game.
+  - ETO's expert trajectories are a median of 8 steps against the walkthrough's 6 for the same games, so public banks show little search.
   - In three widely used public ALFWorld banks (ETO, AgentGym AgentTraj-L, AgentBank), 90–92% of trajectories contain at least one action that does not match the current syntax templates (a regex check, not a replay), mostly the old "put X in/on Y" form of the final placement.
 
 ## H. Other method papers, coding agents, benchmarks and older work (added 15 November 2026)
