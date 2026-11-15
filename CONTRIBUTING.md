@@ -56,6 +56,16 @@ Nobody, including regular contributors, needs or gets direct write access to `ma
 
 Two issue templates exist for contributions that are not code: a [reproduction report](.github/ISSUE_TEMPLATE/05-reproduction-report.md) (you ran something and want to say what matched) and a [mechanism proposal](.github/ISSUE_TEMPLATE/06-mechanism-proposal.md) (you have an idea: state the failure it addresses and the cheapest test that could show it does not work).
 
+## Lend a GPU: run a cell
+
+If you have a GPU with about 12 GB of memory, the most valuable thing you can give is compute.
+
+**What a cell is.** Experiments are split into cells: two arms on a block of 20 frozen tasks, with one seed, run on your machine and submitted as a small pull request (a configuration card plus per-episode results). That is about 2 hours on a 12 GB GPU.
+
+**Why both arms run on your machine.** Your differences are paired, so hardware and library differences cannot be mistaken for an effect.
+
+**How to take part.** The protocol is in [docs/research-map/VOLUNTEER_COMPUTE.md](docs/research-map/VOLUNTEER_COMPUTE.md). Cells are claimed on the cell board issue under the milestone **Experience memory: ladder v1**. Until the cell runner exists, rung 0 (the noise floor, #172) is the cell to run.
+
 ## Three ways in
 
 ### 1. Software work, no research background

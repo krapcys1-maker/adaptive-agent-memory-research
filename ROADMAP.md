@@ -8,12 +8,15 @@ Status: plan, 15 November 2026. Nothing in this line has been measured yet.
 2. ALFWorld adapter and the ladder arms: no memory, fixed examples, random bank, random bank of the same type, retrieval once by task, retrieval by state every step. Every arm logs which bank entries were shown at each decision.
 3. Bank built from ALFWorld expert demonstrations of the train split (no model calls); building it from the agent's own runs is a later rung.
 4. An embedding model that fits next to the agent model on a 12 GB GPU, or embeddings on CPU — measured, not assumed.
-5. A task-exposure ledger, a frozen 60-task development list from `valid_seen` (stratified by the six task types), and a block on `valid_unseen`.
+5. A task-exposure ledger, a frozen 60-task development list from `valid_seen` (stratified by the six task types and by goal phrasing, since adjective-form goals such as "put a cool egg in microwave" are 28% of `valid_seen`), and a block on `valid_unseen`.
+   - Check the action syntax of any bank first: 90–92% of trajectories in three public ALFWorld banks contain an action that does not match the current syntax templates.
+   - CPU tools for both checks are in `tools/alfworld_cpu/`.
+   - Possible directions, with their trade-offs, are in [docs/research-map/DIRECTIONS.md](docs/research-map/DIRECTIONS.md).
 6. Diagnostic overlays: polluted bank, stale entry, cold start, growing bank.
 
 ## Stage 1: the ladder (development data)
 
-Rungs 0–5 as in the README, then improvements one at a time. After each rung:
+Rungs 0–5 as in the [README](README.md), then improvements one at a time. After each rung:
 
 - per-task gain/loss table against the noise floor;
 - every gain and loss read and classified (memory pointed to the object, shortened the search, copied an action from a mismatched situation, distracted, overflowed the context, or unrelated noise);
@@ -23,7 +26,7 @@ Stop and report if rung 5 does not beat rung 2 beyond noise (the match does not 
 
 ## Stage 2: one confirmation
 
-The best version against no memory, the random bank and rung 5, on ALFWorld `valid_unseen`, 3 seeds. The decision rule and its power are simulated and written down before the first call.
+The best version against no memory, the random banks (rungs 2 and 3) and rung 5, on ALFWorld `valid_unseen`, 3 seeds. The decision rule and its power are simulated and written down before the first call.
 
 ## Stage 3: wider
 
