@@ -1,0 +1,251 @@
+{
+ "_about": "Machine-readable summary of docs/research-map/DIRECTIONS.md (15 November 2026). Options, not instructions. Evidence keys refer to corpus.json. Costs assume Qwen3-4B FP8 in the AdaMEM harness on one 12 GB GPU (about 9 GPU hours per arm for 60 tasks x 3 seeds); with volunteers, divide calendar time by the number of machines (cells: two arms, 20 named tasks, one seed, one machine).",
+ "invariants": [
+  "valid_unseen untouched until one confirmation",
+  "banks built from train only, frozen before evaluation",
+  "frozen task list named by game path, with SHA-256",
+  "same step limit in every arm; same retrieved-text budget (k, tokens) in every memory arm",
+  "decision rules, equivalence margins and comparison families written before the run",
+  "per-task paired sign-flip permutation test, two-sided, Holm within a family",
+  "raw runs frozen; negative results published as results"
+ ],
+ "directions": [
+  {
+   "id": "D0",
+   "question": "Q0: does AdaMEM's published gain reproduce in our setting? (a near-reproduction: MiniLM instead of Qwen3-Embedding-4B)",
+   "arms": [
+    "no memory",
+    "synapse (whole trajectories by task)",
+    "step-level retrieval without strategy"
+   ],
+   "prerequisites": [
+    "frozen task list (#176)",
+    "bank from own train runs (full bank about 180 GPU h, splittable across volunteers)"
+   ],
+   "gpu_hours": 27,
+   "evidence": [
+    "adamem-2026",
+    "own-20-episodes"
+   ]
+  },
+  {
+   "id": "D1",
+   "question": "Q1: does retrieval beat a random entry of the same task type? how large is each rung?",
+   "arms": [
+    "rung 0",
+    "rung 1 fixed expert",
+    "rung 2 random whole bank",
+    "rung 3 random same type",
+    "rung 4 whole trajectory by task",
+    "intermediate: whole trajectory by task refreshed every step",
+    "rung 5 steps by state",
+    "optional placebo: same length, other task types"
+   ],
+   "prerequisites": [
+    "#166",
+    "#167",
+    "#176",
+    "rung -1 checks"
+   ],
+   "gpu_hours": 60,
+   "evidence": [
+    "trad-2024",
+    "expel-2024",
+    "synapse-2024",
+    "selfgen-icl-2025"
+   ]
+  },
+  {
+   "id": "D2",
+   "question": "Q0 (baseline gap) and Q5: failure census and noise floor on all 140 valid_seen tasks (noise floor needs 2 or more replicates)",
+   "arms": [
+    "rung 0, 1-3 seeds"
+   ],
+   "prerequisites": [
+    "failure tagger (#177)"
+   ],
+   "gpu_hours": 14,
+   "evidence": [
+    "own-20-episodes",
+    "hiplan-2025",
+    "adaptive-planning-2024",
+    "reflexion-logs"
+   ]
+  },
+  {
+   "id": "D3",
+   "question": "Q3: which bank source helps which failure?",
+   "arms": [
+    "walkthrough bank",
+    "own-success bank",
+    "translated public bank (replay-verified)"
+   ],
+   "prerequisites": [
+    "#168",
+    "#178"
+   ],
+   "gpu_hours": 37,
+   "evidence": [
+    "cpu-checks",
+    "mate-2026",
+    "exprag-2026"
+   ]
+  },
+  {
+   "id": "D4",
+   "question": "Q2: unit of retrieval and refresh",
+   "arms": [
+    "whole trajectory once",
+    "whole trajectory every step",
+    "window of steps every step",
+    "single step every step"
+   ],
+   "prerequisites": [
+    "a bank",
+    "CPU embeddings (#173)"
+   ],
+   "gpu_hours": 36,
+   "evidence": [
+    "trad-2024",
+    "exprag-2026",
+    "rap-2024"
+   ]
+  },
+  {
+   "id": "D5",
+   "question": "Q4: does retrieval matter more for weaker models?",
+   "arms": [
+    "rungs 0, 3, 5 x Qwen3-1.7B / Qwen3-4B / optional Qwen3-8B-AWQ"
+   ],
+   "prerequisites": [
+    "D1 or D4 first"
+   ],
+   "gpu_hours": 50,
+   "evidence": [
+    "imagine-then-plan-2026",
+    "expel-2024",
+    "trad-2024"
+   ]
+  },
+  {
+   "id": "D6",
+   "question": "where does memory act? pre-defined slices (adjective form, desklamp, two objects)",
+   "arms": [
+    "reporting only"
+   ],
+   "prerequisites": [
+    "slices defined from goal text before runs"
+   ],
+   "gpu_hours": 0,
+   "evidence": [
+    "cpu-checks",
+    "own-20-episodes"
+   ]
+  },
+  {
+   "id": "D7",
+   "question": "settings and ceilings: k sweep, abstain threshold, bank size, best-of-bank oracle, solution oracle",
+   "arms": [
+    "k=1,2,4",
+    "abstain",
+    "bank sizes",
+    "oracles (development only)"
+   ],
+   "prerequisites": [
+    "a best rung"
+   ],
+   "gpu_hours": 45,
+   "evidence": [
+    "reasoningbank-2025",
+    "swe-exp-2025",
+    "cfgm-2025",
+    "swe-contextbench-2026"
+   ]
+  },
+  {
+   "id": "D8",
+   "question": "is memory needed, or would one instruction do?",
+   "arms": [
+    "rung 0 + fixed instruction"
+   ],
+   "prerequisites": [
+    "a best memory rung to compare with"
+   ],
+   "gpu_hours": 9,
+   "evidence": [
+    "hiplan-2025",
+    "own-20-episodes"
+   ]
+  },
+  {
+   "id": "D9",
+   "question": "Q6: retrieval key",
+   "arms": [
+    "task text",
+    "observation",
+    "agent thought",
+    "model-written situation description"
+   ],
+   "prerequisites": [
+    "a bank",
+    "a fixed unit"
+   ],
+   "gpu_hours": 36,
+   "evidence": [
+    "trad-2024",
+    "reme-2025",
+    "selfgen-icl-2025"
+   ]
+  },
+  {
+   "id": "D10",
+   "question": "does an applicability gate (show nothing unless it fits) help?",
+   "arms": [
+    "best rung",
+    "+ rule gate (task type, receptacle/appliance)",
+    "+ model-judged gate"
+   ],
+   "prerequisites": [
+    "a best rung",
+    "D7 similarity threshold for comparison"
+   ],
+   "gpu_hours": 27,
+   "evidence": [
+    "effectmem-2026",
+    "swe-contextbench-2026"
+   ]
+  },
+  {
+   "id": "D11",
+   "question": "Q7: does presenting retrieved actions grouped under named subgoals help more than a flat log?",
+   "arms": [
+    "flat action log",
+    "same actions grouped by subgoal (rule-based segmentation)"
+   ],
+   "prerequisites": [
+    "a bank",
+    "a fixed rung"
+   ],
+   "gpu_hours": 18,
+   "evidence": [
+    "min-2022",
+    "agents-read-demos-2026",
+    "own-20-episodes",
+    "hiplan-2025"
+   ]
+  }
+ ],
+ "second_benchmark_candidates": [
+  "ScienceWorld (CPU + Java; raw-trajectory gains in 3 studies)",
+  "AppWorld (encrypted data, long prompts)",
+  "SeqMem-Eval stream (online vs hold-out)",
+  "BFCL multi-turn via EvoMemBench (no licence declared)"
+ ],
+ "local_models": {
+  "main": "Qwen/Qwen3-4B-Instruct-2507-FP8",
+  "weaker": "Qwen/Qwen3-1.7B-FP8 (thinking off)",
+  "larger_same_family": "Qwen/Qwen3-8B-AWQ",
+  "other_family": "RedHatAI/Phi-4-mini-instruct-FP8-dynamic or Llama-3.1-8B-Instruct AWQ",
+  "embeddings_cpu": "sentence-transformers/all-MiniLM-L6-v2 or BAAI/bge-small-en-v1.5"
+ }
+}

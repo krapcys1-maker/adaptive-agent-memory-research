@@ -1,5 +1,8 @@
 blank_issues_enabled: true
 contact_links:
+  - name: Lend a GPU — the cell board
+    url: https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/179
+    about: Run one small cell of an experiment on your own GPU (about 2 hours on 12 GB). How it works is in docs/research-map/VOLUNTEER_COMPUTE.md.
   - name: Start here if you are new
     url: https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/no-expertise-needed
     about: Scoped tasks with explicit acceptance criteria. No background in memory research needed.

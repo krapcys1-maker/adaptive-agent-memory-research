@@ -82,7 +82,7 @@ All of these ran offline, with no model calls.
 - **Reflexion's published ALFWorld logs** (`noahshinn/reflexion`, MIT; 134 tasks, a retry run and a reflection run):
   - Plain retries at temperature 0 solve 10 of the 50 tasks failed in the first trial at the first retry, and 17 over six retries (best-of-6). At an equal number of trials (6), reflections reach 123 of 134 and plain retries 101, so 17 of the 39 tasks gained with reflections were also gained without them. Only failure-to-success is observable: successes were not rerun.
   - 161 of 200 reflections open with the wording of the single reflection example in the prompt.
-  - 17 reflections, in 4 tasks, state that the microwave or fridge must be opened before heating or cooling. ALFWorld's PDDL does not require that.
+  - 22 reflections (18 distinct texts), in 4 tasks, state that the microwave or fridge must be opened before heating or cooling. ALFWorld's PDDL does not require it, and the running game agrees: in replayed planner walkthroughs, 22 of 22 heat or cool games that never opened the appliance were won. (An independent recount corrected our earlier figure of 17.)
 - **Twenty no-memory episodes of Qwen3-4B-Instruct-2507** from a feasibility run (AdaMEM harness, `valid_seen`; bf16 and FP8):
   - 12 and 14 of 20 solved. 4 of 20 tasks flip between the two runs, which differ in weights (bf16 vs FP8) and in sampling (temperature 0.7). This is far above AdaMEM's 45.2% for the same model on all 140 tasks; see DIRECTIONS Q0.
   - All 3 goals in the adjective form ("put a cool egg in microwave") fail in both runs. Verb-form goals of the same types ("cool some X and put it in Y") mostly succeed.
@@ -92,6 +92,7 @@ All of these ran offline, with no model calls.
 - **CPU checks** with the scripts in `tools/alfworld_cpu/`:
   - Adjective-form goals make up 28% of `valid_seen` and 25% of `valid_unseen`.
   - Every ALFWorld game carries a planner walkthrough in the installed action syntax. Replaying 30 random train walkthroughs on the CPU solved 30 of 30, with all actions admissible, at about 1.5 s per game.
+  - ETO's expert trajectories are a median of 8 steps against the walkthrough's 6 for the same games, so public banks show little search.
   - In three widely used public ALFWorld banks (ETO, AgentGym AgentTraj-L, AgentBank), 90–92% of trajectories contain at least one action that does not match the current syntax templates (a regex check, not a replay), mostly the old "put X in/on Y" form of the final placement.
 
 ## H. Other method papers, coding agents, benchmarks and older work (added 15 November 2026)
@@ -112,9 +113,15 @@ All of these ran offline, with no model calls.
 | Episodic control and case-based reasoning: MFEC 2016, NEC 2017, R2A 2022; the utility (swamping) problem in case bases | episodic memory helps most early, with little data; querying with the raw state alone gave no gain in R2A; a growing case base can cost more than it helps |
 | ReMe, 2512.10696 ✓ | BFCL-V3 and AppWorld with Qwen3-8B: no memory 40.33 / 14.97, ReMe 45.17 / 24.70 (Avg@4); A-Mem and LangMem fall below no memory on AppWorld; a model-written "usage scenario" key beats the raw task description (figure) |
 | HiPlan 2508.19076 ✓; Adaptive-planning 2408.06458 ✓ | the same failures we saw in Qwen3-4B, in other agents: a skipped cooling step for "put a cool tomato in the microwave"; Gemma-2-9B fetching the desklamp first and substituting a handtowel for a cloth |
-| PlyBench, 2608.03420 (abstract and sections) | games with computable optimal moves, as a judge-free test bed for experience memory; a lead for a fresh benchmark |
+| PlyBench and its REAPER agent, 2608.03420 (abstract and sections) | games with computable optimal moves, as a judge-free test bed for experience memory (a lead for a fresh benchmark); in tic-tac-toe, a raw-observation key was at least as good as a model-written state description |
+| EffectMem, EMNLP 2026 Findings (ACL 2026.findings-emnlp.859) ✓ | applicability-gated "contracts" with fallback to the plain policy; Qwen3-8B: ALFWorld 38.3 → 91.8, ScienceWorld 15 → 65, WebShop 28.3 → 54.5 (ReAct → EffectMem; single seed; a multi-agent pipeline per step) |
+| CFGM, 2508.15305 | ALFWorld (GPT-4-turbo, 4-fold): ReAct 80.6 → 91.0; key = task description, unit = whole experience plus tips; helper reports k=2–3 best and k=5 falling back to 81.3 |
+| HSL, "Spinning Straw into Gold", 2607.04235 (ICLR 2026) | failed runs relabeled as successes for the goals they did reach (90% relabel accuracy on 200 hand checks), used for fine-tuning a 1B model, not as in-context examples |
+| ProactAgent, 2604.20572; PlugMem, 2603.03296 | retrieval as an RL-trained action (gain not separable from training); a graph memory evaluated without ALFWorld; in tic-tac-toe, a raw-observation key at least as good as a model-written state description |
+| Rethinking the Role of Demonstrations, 2202.12837 (Min et al. 2022) | classification-style in-context learning: random labels in demonstrations barely hurt; format, label space and input distribution drive the effect. A reason for format-matched placebo arms |
+| How Should Agents Read Demonstrations?, 2606.20978 ✓ (abstract and setup) | identical action sequences, different organisation: named subgoal groups 76.7 → 90.7% on 43 vaguely described web tasks (6:0); no format helps on 42 precise tasks; 3 runs per condition, McNemar and permutation tests |
 | Benchmarks: Evo-Memory 2511.20857, EvoMemBench 2605.18421, MemEvoBench 2604.15774, AMA-Bench 2602.22769, procedural retrieval 2511.21730 | see DIRECTIONS.md section 4a. Evo-Memory has no public code. EvoMemBench's repository has no licence. MemEvoBench measures safety and AMA-Bench in-trajectory recall, not reuse across tasks |
 
 ## Not yet read in full
 
-ReMe, ExpGraph, the IBM trajectory-tips work, CMC, SWE-Bench-CL, the ReflAct table for Llama-3.1-8B. We did not find the full text of the NeurIPS 2026 paper "When Does Agent Memory Transfer?". Reading these is a good first contribution: one paper per pull request, with the level of verification stated.
+ExpGraph, the IBM trajectory-tips work, CMC, SWE-Bench-CL, the ReflAct table for Llama-3.1-8B. We did not find the full text of the NeurIPS 2026 paper "When Does Agent Memory Transfer?". Reading these is a good first contribution: one paper per pull request, with the level of verification stated.

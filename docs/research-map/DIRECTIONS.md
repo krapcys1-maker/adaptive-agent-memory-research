@@ -69,6 +69,11 @@ Sources and their verification levels are in [README.md](README.md); the CPU too
 
 **Q6. What should the query be?** The evidence is scattered: TRAD retrieves by the agent's thought; Self-Generated ICL by reasoning after the first step; R2A found a raw-state query gave no gain; ReMe (2512.10696) found a model-written "usage scenario" key beats the raw task description (figure only); AdaMEM retrieves by the current state. No one compares these keys for step retrieval with a small model.
 
+**Q7. How should a retrieved entry be presented?**
+- Classic in-context learning work (Min et al. 2022, 2202.12837, classification tasks) found that demonstrations work largely through format, the label space and the input distribution: random labels barely hurt.
+- For agents, 2606.20978 kept action sequences identical and changed only their organisation. On 43 web tasks with vague descriptions, actions grouped into named subgoals raised the pass rate from 76.7% to 90.7% (win-loss 6:0, paired permutation test), and flat logs gave a smaller, non-significant gain. On 42 precisely described tasks no format helped.
+- Our most systematic failure (a skipped transform in adjective-form goals) is a missed subgoal, so presentation may matter as much as selection.
+
 **Q5. Which failures can memory fix at all?** These are hypotheses from our 20 episodes only:
 - goals in the adjective form ("put a cool egg in microwave") fail 3 of 3 in both runs. Other models show the same failure: HiPlan reports the skipped cooling step for "put a cool tomato in the microwave" ✓, and 2408.06458 reports Gemma-2-9B fetching the desklamp first and substituting a handtowel for a cloth ✓. Nobody has tested whether the phrasing itself causes the failure;
 - "look at X under the desklamp" fails 2 of 2;
@@ -93,7 +98,7 @@ These are cheap; several need no GPU.
 **Cost basis.** Qwen3-4B FP8 in the AdaMEM harness runs 20 tasks in about 1 hour with 20 environments in parallel, so 60 tasks × 3 seeds ≈ 9 hours per arm.
 
 **Rules for every direction:**
-- **Matched budget.** Every arm shows the same number of entries k and the same retrieved-text budget, as the root README promises ("same amount of retrieved text"). Log prompt tokens and truncation per arm.
+- **Matched budget.** Every memory arm shows the same number of entries k and the same retrieved-text budget, as the root README promises ("same amount of retrieved text"). Log prompt tokens and truncation per arm.
 - **Seeds.** A seed means a separate sampled run at a stated temperature, not a pairing device. AdaMEM decodes at 0.7. At temperature 0, three "seeds" would be near-copies.
 - **No learning on the test stream.** Several published gains mix memory with extra attempts and a reward or judge signal on the test tasks themselves: RAP's plain variant, AWM online, ReasoningBank, Memp's update arm, and the multi-attempt ("MT") arms in SeqMem-Eval. Build the bank from `train` only, freeze it, and evaluate the frozen bank. A bank that grows online (a rung 6+ option in the root README) is a separate arm with its own trial budget, evaluated on tasks it has not seen.
 - **Leakage.** `valid_seen` shares scenes with `train`, so a `train` bank can reveal where objects lie. Expect, and pre-register, a smaller effect on `valid_unseen`.
@@ -138,9 +143,10 @@ These are cheap; several need no GPU.
   - (a) planner walkthroughs replayed on the CPU;
   - (b) the agent's own successes on a subset of `train`;
   - (c) a translated public bank, verified by replay (#178).
-- **Cost:** (a) and (c) need no GPU to build. (b) needs a few hundred `train` episodes, about 5–15 GPU hours; Self-Generated ICL got most of its gain within the first 100 training tasks. Then 3 arms × 9 h.
+- **Cost:** (a) and (c) need no GPU to build. (b) needs `train` episodes: a few hundred for a small bank (about 5–15 GPU hours), or all 3,553 for AdaMEM's full bank (1,596 successes; roughly 180 GPU hours, a natural job to split across volunteers); Self-Generated ICL got most of its gain within the first 100 training tasks. Then 3 arms × 9 h.
 - **For:** a cheap axis that the literature mixes up: ExpRAG uses scripted experts, Self-Generated ICL and AdaMEM the agent's own runs.
 - **Against:** bank (b) depends on the agent's noisy success on `train`. Walkthroughs are short (about 6 steps) and our successes are longer (median about 8–9 steps), so prompt budgets must be matched.
+- **Public banks barely search either.** ETO trajectories are only about 2 steps longer than the planner walkthrough for the same game (median 8 vs 6 over 3,118 `train` games, counted on the CPU). Only the agent's own runs, or those of another agent that explores, show real search.
 - **Prediction to test:** walkthroughs help with procedure failures (adjective form, desklamp) but not with search.
 
 ### D4. Unit of retrieval
@@ -184,18 +190,10 @@ These are cheap; several need no GPU.
   - an "abstain" variant that shows nothing below a similarity threshold;
   - a bank-size curve;
   - on development tasks only, two oracle arms:
-    - a **best-of-bank oracle**: the `train` entry that best matches the task's type and objects, chosen with the answer known. This is the ceiling for retrieval from this bank;
+    - a **best-of-bank oracle**: the `train` entry that best matches the task's type and objects, chosen with the answer known. This is a strong reference for retrieval from this bank, not a proven ceiling;
     - a **solution oracle**: the walkthrough of the same game. This is an answer key, including object locations, and shows only how much a perfect hint could give.
 - **Cost:** a few arms on one rung.
 - **Against:** many small comparisons; treat them as one family.
-
-### D9. Retrieval key
-
-- **Question:** Q6.
-- **Design:** one bank, one unit (for example a window of steps), the same budget, four keys: the task text, the current observation, the agent's current thought, and a short model-written description of the situation.
-- **Cost:** 4 arms × 9 h. Embeddings run on the CPU.
-- **For:** cheap once a bank exists. It also separates the key from the unit, which the literature changes together.
-- **Against:** a model-written key adds a call per step. Observation keys can look perfect on retrieval metrics while not helping (2608.03420 notes this).
 
 ### D8. A non-memory competitor
 
@@ -205,6 +203,34 @@ These are cheap; several need no GPU.
 - **For:** an honest baseline. If an instruction removes a failure type, memory's value lies elsewhere.
 - **Against:** hand-written knowledge of the benchmark. Report it as a competitor, not as a method.
 
+### D11. Presentation of the retrieved entry
+
+- **Question:** Q7.
+- **Design:** the same retrieved entries, shown in two forms: a flat action log, or the same actions grouped under named subgoals (for example "find the egg / cool it with the fridge / put it in the microwave"). Subgoals can be derived from action types (go, take, clean/cool/heat, move) without a model.
+- **Cost:** 2 arms × 9 h on one rung. Segmentation runs on the CPU.
+- **For:** directly targets the most common systematic failure. A presentation change costs nothing at run time.
+- **Against:** one agent study (web tasks, 85 tasks, not ALFWorld). Grouped entries are slightly longer, so the text budget must be matched.
+- **Prediction:** the gain concentrates on adjective-form goals and two-object tasks; it should vanish on plain pick-and-place.
+
+### D9. Retrieval key
+
+- **Question:** Q6.
+- **Design:** one bank, one unit (for example a window of steps), the same budget, four keys: the task text, the current observation, the agent's current thought, and a short model-written description of the situation.
+- **Cost:** 4 arms × 9 h. Embeddings run on the CPU.
+- **For:** cheap once a bank exists. It also separates the key from the unit, which the literature changes together.
+- **Against:** a model-written key adds a call per step. Retrieval metrics can mislead: with an observation key, a stored state retrieves itself (100% "retrieval success" in 2608.03420), which says nothing about usefulness. In that paper's tic-tac-toe setting, a raw-observation key was still at least as good as a model-written description.
+
+### D10. An applicability gate (show nothing unless it fits)
+
+- **Question:** does refusing to show a poorly matching entry help more than better similarity?
+- **Evidence:**
+  - EffectMem (EMNLP 2026 Findings ✓, seed 42 only, many LLM calls per step) checks each retrieved "contract" against the current task and falls back to the plain policy when none fits. With Qwen3-8B it reports ALFWorld 38.3 → 91.8, ScienceWorld 15 → 65, WebShop 28.3 → 54.5. In its ablation the gate alone takes ScienceWorld from 15 to 51.
+  - In SWE-ContextBench ✓, unfiltered retrieval falls below no memory.
+- **Design:** on top of the best rung, a **rule** gate first (show an entry only if its task type and the required receptacle or appliance match the goal), then, separately, a model-judged gate. Compare both with the ungated rung and with D7's similarity threshold.
+- **Cost:** 2–3 arms. The rule gate costs nothing at run time.
+- **For:** a cheap, testable mechanism with one large but single-seed result behind it.
+- **Against:** EffectMem's gain mixes the gate with a whole pipeline (scoring agents, a monitor, corrections), so the gate's own share for a 4B model is unknown.
+
 ## 4a. Benchmarks
 
 **Development and first confirmation: ALFWorld.**
@@ -212,15 +238,15 @@ These are cheap; several need no GPU.
 - For: our model runs on it, walkthroughs give a free expert bank, and the action syntax can be checked.
 - Against: strong models hit a ceiling (TraceRetain). Several benchmark papers (Evo-Memory, EvoMemBench's CrossEp-Emb, the procedural-retrieval benchmark) reuse the same games, so it is not fresh for anyone.
 
-**A second, fresh benchmark: no ready option fits all needs.** The candidates below were read by a helper; among them only SeqMem-Eval's numbers were spot-checked by us.
+**A second, fresh benchmark: no ready option fits all needs.** The candidates below were read by a helper. Numbers marked ✓ were spot-checked by us; the rest were not.
 
 | Candidate | For | Against |
 |---|---|---|
-| ScienceWorld (Apache-2.0) | the usual second environment; effects there often differ from ALFWorld (ExpRAG, 2610.27406) | long episodes, slow with a local model |
+| ScienceWorld (Apache-2.0) | runs on the CPU (needs Java); several studies report gains from retrieved raw trajectories, the mechanism tested here: ExpRAG (Ministral 3-8B, 10.4% → about 34%; partly a format effect, since its no-memory arm lacks the action list) and Evo-Memory (helper-read, not spot-checked), and 2610.27406 ✓ (held-out success: Llama-4-Scout 9.4 → 20.0, Qwen3-Coder-Next 27.2 → 43.8, Gemma-4-31B 44.2 → 51.7); ExpRAG's easy-to-hard task-type split tests transfer | a 4B model may sit near the floor, so pilot it first; pin the version (1.3.0 changed object ordering); fix the score threshold for "success" in advance and report the raw score as well |
 | BFCL multi-turn as packaged in EvoMemBench's CrossEp-Tool (4 × 50 tasks) | mid-range baselines and large memory gains reported (helper) | EvoMemBench's repository declares no licence; 200 tasks give about ±7 points; a 4B model's baseline is unknown |
 | A stream built with SeqMem-Eval's protocol (Apache-2.0), for example APIBench-HF (911 tasks) | many tasks; an online-versus-hold-out protocol that exposes gains that vanish on hold-out (they do for Qwen3-8B ✓) | not embodied action; one fixed order |
 | Evo-Memory's PDDL (60) | low baseline (helper) | no public code; small |
-| AppWorld (Apache-2.0), the ROADMAP's tool-use target | a local-model memory result exists: ReMe ✓ raises Qwen3-8B from 14.97 to 24.70 (Avg@4), while A-Mem (12.95) and LangMem (11.46) fall below no memory; low baselines leave room | needs its own server; a 4B baseline is unknown |
+| AppWorld (Apache-2.0; task data are distributed encrypted), the ROADMAP's tool-use target | a local-model memory result exists: ReMe ✓ raises Qwen3-8B from 14.97 to 24.70 (Avg@4), while A-Mem (12.95) and LangMem (11.46) fall below no memory; low baselines leave room | prompts are long (the API documentation alone is about 142k tokens and is fetched in pieces), so a 16k context is tight on 12 GB; ReMe is distilled procedural memory in an undocumented harness, not raw exemplars; dev has only 60 tasks (20 scenarios × 3, correlated); roughly 3–10 times the cost of ScienceWorld (helper estimate) |
 
 AMA-Bench (questions about one long trajectory), MemEvoBench (memory safety) and the procedural-retrieval benchmark (retrieval only) test other things.
 
@@ -239,7 +265,7 @@ AMA-Bench (questions about one long trajectory), MemEvoBench (memory safety) and
 - Gemma 3 12B and Ministral-3-8B do not fit with a 16k context.
 - Qwen3.5 small models need vLLM kernels that are unverified without nvcc.
 
-**Harness differences.** No-memory scores depend on the harness: the same Qwen3-8B scores 19.3% in one harness and 52.9% in another (SeqMem-Eval ✓). Compare models only within one harness.
+**Harness differences.** No-memory scores depend on the harness: the same Qwen3-8B scores 19.3% in one harness (Imagine-then-Plan ✓) and 52.9% in another (SeqMem-Eval ✓). Compare models only within one harness.
 
 **Embeddings.**
 - all-MiniLM-L6-v2 on the CPU: 50 ms per query, but a 256-token limit.
@@ -252,8 +278,8 @@ The cost figures above assume one GPU. **With volunteers, cost turns into calend
 
 | Direction | Cells for the full design | Calendar time with 1 GPU | with 5 volunteers | with 10 |
 |---|---|---|---|---|
-| D0 reproduce AdaMEM | about 18 | about 1.5 days | about 7 h | about 4 h |
-| D2 failure census (rung 0 only) | about 21 (single-arm blocks) | about 1–2 days | under 1 day | about half a day |
+| D0 near-reproduction of AdaMEM (MiniLM instead of Qwen3-Embedding-4B; bank as available) | about 18, plus the bank | about 1.5 days, plus about 180 h for the full bank | about 7 h, plus the bank | about 4 h, plus the bank |
+| D2 failure census (rung 0 only, 3 replicates) | about 21 (single-arm blocks of about 1 h) | about 1 day | about 4 h | about 2 h |
 | D1 ladder, rungs 0–5 plus the intermediate arm | about 54 | about 4–5 days | about 1 day | about half a day |
 | D4 unit of retrieval | about 27 | about 2–3 days | about half a day | a few hours |
 
@@ -262,6 +288,8 @@ The cost figures above assume one GPU. **With volunteers, cost turns into calend
 - Directions need not wait for each other: D2 and D0 can run at once on different machines, and D4 can start as soon as a bank exists.
 - A share of cells is replicated on a second machine.
 
+**Cell counts are larger than one run per arm**, because each cell repeats its reference arm and every comparison a decision rule uses needs its own cells (VOLUNTEER_COMPUTE.md). That is why the D1 row exceeds the 2.5–3 days of section 4.
+
 **What volunteers without a GPU can do in parallel:** #166–#169, #171, #173 and #176–#178. All of these are CPU work: the frozen list, failure tags, banks, the viewer, paper summaries.
 
 ## 5. What we would not do now, and why
@@ -269,7 +297,7 @@ The cost figures above assume one GPU. **With volunteers, cost turns into calend
 - **Stored rules, consolidation, or full layered memory at once.**
   - Evidence on abstraction is mixed (section 1.3), and components interfere (2605.05716).
   - If synthesis is tried, compare a version that discards the synthesis after use.
-  - In ALFWorld, lessons about preconditions can be checked against the PDDL: Reflexion's logs contain 17 lessons ("open the microwave first") that the domain does not require.
+  - In ALFWorld, lessons about preconditions can be checked against the PDDL: Reflexion's logs contain 22 lessons (18 distinct) ("open the microwave first") that the domain does not require.
 - **Memory of failures without fine-tuning** (ExpRAG).
 - **Conclusions from differences under about 10 points** on 60 × 3, or from single-seed runs.
 - **Using `valid_unseen` during development.**
@@ -304,7 +332,7 @@ The cost figures above assume one GPU. **With volunteers, cost turns into calend
 
 ## 7. Making runs faster
 
-The root README forbids "a shortcut that could move the result (for example, no cutting the step limit)". Speed-ups therefore have to keep each episode's outcome unchanged.
+The root README forbids "a shortcut that could move the result (for example, no cutting the step limit)". At temperature 0.7 no speed-up can keep each episode bit-identical, and batching changes the numerics. Speed-ups therefore must not change what the model is shown, and must be identical for every arm.
 
 **Safe:**
 - prefix caching in vLLM for the shared system prompt;
