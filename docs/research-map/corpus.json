@@ -91,7 +91,7 @@
   "key": "antipersistence-2026",
   "title": "More Memory, Worse Agents: Error Reproduction and Anti-Persistence",
   "year": 2026,
-  "claim": "Abstraction or joint memory worse than trajectory memory in 7 of 9 settings; discarding synthesised guidance after use beats storing it (Llama ALFWorld 54.7 vs 26.7); ScienceWorld held-out: trajectory memory helps (Llama-4-Scout 9.4 -> 20.0). [verification: T]",
+  "claim": "Abstraction or joint memory worse than trajectory memory in 7 of 9 settings; discarding synthesised guidance after use beats storing it (Llama ALFWorld 54.7 vs 26.7); ScienceWorld held-out: trajectory memory helps (Llama-4-Scout 9.4 -> 20.0). [verification: T; ScienceWorld numbers spot-checked]",
   "mentions": [
    "benchmark=alfworld",
    "benchmark=scienceworld",
@@ -113,7 +113,8 @@
    "mechanism=gate",
    "effect=positive",
    "level=T (spot-checked)"
-  ]
+  ],
+  "acl_anthology": "2026.findings-emnlp.859"
  },
  {
   "key": "swe-contextbench-2026",
@@ -332,6 +333,54 @@
    "bank=walkthroughs",
    "bank=public",
    "level=P (our count)"
+  ]
+ },
+ {
+  "key": "faulty-memories-2026",
+  "title": "Useful Memories Become Faulty When Continuously Updated by LLMs",
+  "year": 2026,
+  "claim": "Repeated LLM consolidation degrades memory across seven frameworks; episodes carry the gain, abstractions alone fall to the no-memory level. [verification: T]",
+  "mentions": [
+   "harm=consolidation",
+   "rung=6+",
+   "level=T"
+  ],
+  "arxiv": "2605.12978"
+ },
+ {
+  "key": "automanual-2024",
+  "title": "AutoManual",
+  "year": 2024,
+  "claim": "ALFWorld unseen 97.4% (GPT-4-turbo) with rules built online; offline rules weaker (90.7). [verification: T (helper)]",
+  "mentions": [
+   "benchmark=alfworld",
+   "mechanism=rules",
+   "effect=positive",
+   "level=T (helper)"
+  ],
+  "arxiv": "2405.16247"
+ },
+ {
+  "key": "experience-reuse-2026",
+  "title": "When Continual Learning Moves to Memory: A Study of Experience Reuse in LLM Agents",
+  "year": 2026,
+  "claim": "Raw trajectories transfer negatively across different tasks; abstract procedural insights transfer more reliably (two runs per condition). [verification: T]",
+  "mentions": [
+   "mechanism=abstraction",
+   "effect=mixed",
+   "level=T"
+  ],
+  "arxiv": "2604.27003"
+ },
+ {
+  "key": "r2a-2022",
+  "title": "Retrieval-Augmented Reinforcement Learning (R2A)",
+  "year": 2022,
+  "claim": "Querying with the agent's raw state gave no gain; an information bottleneck and a separate query mattered. [verification: T (helper, partial)]",
+  "mentions": [
+   "key=state",
+   "effect=null-for-raw-state",
+   "level=T (helper, partial)"
   ]
  }
 ]

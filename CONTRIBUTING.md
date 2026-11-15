@@ -62,9 +62,9 @@ If you have a GPU with about 12 GB of memory, the most valuable thing you can gi
 
 **What a cell is.** Experiments are split into cells: two arms on a block of 20 frozen tasks, with one seed, run on your machine and submitted as a small pull request (a configuration card plus per-episode results). That is about 2 hours on a 12 GB GPU.
 
-**Why both arms run on your machine.** Your differences are paired, so hardware and library differences cannot be mistaken for an effect.
+**Why both arms run on your machine.** Your differences are paired, which removes differences in level between machines. It does not remove differences in effect, so the primary analysis uses cells on the reference configuration, and the maintainer assigns blocks at random.
 
-**How to take part.** The protocol is in [docs/research-map/VOLUNTEER_COMPUTE.md](docs/research-map/VOLUNTEER_COMPUTE.md). Cells are claimed on the cell board issue under the milestone **Experience memory: ladder v1**. Until the cell runner exists, rung 0 (the noise floor, #172) is the cell to run.
+**How to take part.** The protocol is in [docs/research-map/VOLUNTEER_COMPUTE.md](docs/research-map/VOLUNTEER_COMPUTE.md). Cells are claimed on the cell board issue under the milestone **Experience memory: ladder v1**. Until the cell runner exists, the jobs to run are single-arm: rung 0 on the 140 seen games (#172), with all replicates of a block on one machine, and building the bank from the agent's own `train` runs. Both are described in the protocol.
 
 ## Three ways in
 

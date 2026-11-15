@@ -14,7 +14,7 @@ An agent that does tasks (in a home simulator, a science lab simulator, later wi
 
 A review of recent work, read in full where it shaped a decision ([research map](docs/research-map/README.md)), points the same way from several sides:
 
-- **Retrieving earlier successful steps by the agent's current state, at every step, is the best-supported simple mechanism** for agents that act. In one study (AdaMEM, ICML 2026) it raised ALFWorld success from 45.2% to 59.3% with a 4B model (ablation, Table 3; the main table reports 54.0% for the full method); a synthesis step on top added about 6 points within run-to-run noise, and synthesis *without* memory made things worse. One study, one model — a reason to test, not a promise.
+- **A bank of earlier successful runs, retrieved while the agent acts, is the best-supported simple mechanism** for agents that act. In AdaMEM (ICML 2026, 4B model, ALFWorld seen tasks), the full method reaches 54.0% against 45.2% without memory in the main table. In its ablation, retrieval of steps by the current state reaches 59.3%, synthesis on top 65.5%, and synthesis *without* memory 34.8%. Which retrieval key and unit work best is open: see [DIRECTIONS.md](docs/research-map/DIRECTIONS.md), Q2 and Q6. One study, one model — a reason to test, not a promise.
 - **Simple baselines are hard to beat.** Plain retrieval over raw history beats elaborate memory systems on conversation benchmarks, and turning on every component at once is consistently worse than the best subset.
 - **Memory can hurt.** Repeatedly rewriting memory with an LLM degrades it across seven frameworks; similar-but-wrong stored experiences lower precision; gains shrink with stronger models.
 - **Experience memory is barely deployed.** Products mostly store user facts or note files. There is room to find out, properly, what actually helps.
@@ -37,7 +37,7 @@ Rules that keep it honest: development on a frozen 60-task subset of ALFWorld `v
 
 ## Benchmarks
 
-- **ALFWorld** (MIT; train 3,553 / valid_seen 140 / valid_unseen 134 games) — main development and confirmation set. A local 4B model solves roughly 60–70% without memory, so there is room both ways.
+- **ALFWorld** (MIT; train 3,553 / valid_seen 140 / valid_unseen 134 games) — main development and confirmation set. Our local 4B model solved 12 and 14 of 20 feasibility tasks without memory, while AdaMEM reports 45.2% for the same model on all 140 seen tasks. Resolving that gap is direction D0/D2.
 - **ScienceWorld** (Apache-2.0; 30 task types, 7,200 variations) — second world, more units for small effects.
 - **A tool-use benchmark** — the real target; to be chosen.
 - **Our own overlays** on those tasks, for harms the benchmarks do not measure: a polluted bank, a stale entry, a cold start with an empty bank, a growing bank, a change of model.
@@ -45,7 +45,7 @@ Rules that keep it honest: development on a frozen 60-task subset of ALFWorld `v
 ## Help wanted
 
 **Lend a GPU.**
-- The research is split into small *cells*: two arms on 20 frozen tasks with one seed, about 2 hours on a 12 GB GPU, run on your own machine. Many people each running a cell is what lets several directions be tested in parallel, in days instead of weeks.
+- The research is split into small *cells*: two arms on 20 frozen tasks with one seed, about 2 hours on a 12 GB GPU, run on your own machine. Many people each running a cell is what lets several directions be tested in parallel: several hundred GPU hours become days of calendar time instead of weeks.
 - How it works and what to submit: [docs/research-map/VOLUNTEER_COMPUTE.md](docs/research-map/VOLUNTEER_COMPUTE.md). Possible directions: [docs/research-map/DIRECTIONS.md](docs/research-map/DIRECTIONS.md).
 
 **Without a GPU.** You do not need a GPU for most of the rest. Good first tasks will be listed under the milestone **Experience memory: ladder v1** in the issues: a random-bank control arm, a per-task gain/loss table and viewer, the polluted-bank overlay, summaries of papers we have only read as abstracts, a ScienceWorld port. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [first-contribution walkthrough](docs/00-project/first-contribution-walkthrough.md).

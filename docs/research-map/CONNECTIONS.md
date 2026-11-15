@@ -10,7 +10,7 @@ flowchart LR
     E1["Self-Generated ICL<br/>own-success bank +16 over fixed bank"]
     E2["AdaMEM<br/>45.2 → 54.0 main / 59.3 ablation"]
     E3["TRAD ✓ code<br/>random same-type = task retrieval;<br/>step windows win"]
-    E4["ExpeL<br/>random 42.5 vs retrieval 59.0"]
+    E4["ExpeL<br/>random from the whole pool 42.5<br/>vs retrieval 59.0"]
     E5["ExpRAG<br/>once ≈ every step for whole trajectories"]
     E6["MATE<br/>old syntax 72 → 20"]
     E7["2610.27406, 2605.12978<br/>stored abstractions hurt"]
@@ -19,8 +19,9 @@ flowchart LR
     E10["Reflexion logs, our 20 episodes<br/>noise, phrasing, desklamp, search"]
     E11["HiPlan, 2408.06458 ✓<br/>same phrasing and desklamp failures<br/>in other models"]
     E12["ReasoningBank, SWE-Exp ✓<br/>k=1 best"]
-    E13["SWE-ContextBench ✓<br/>bad retrieval < no memory"]
+    E13["SWE-ContextBench ✓<br/>bad retrieval below no memory"]
     E14["Our CPU checks<br/>90–92% bank syntax mismatch;<br/>walkthrough replay works"]
+    E15["EffectMem ✓<br/>gate + fallback, Qwen3-8B 38 → 92"]
   end
   subgraph F["Findings"]
     F1["Simple bank helps"]
@@ -76,7 +77,9 @@ flowchart LR
   F5 --> Q5
   F6 --> D7
   F6 --> D10
-  E15["EffectMem ✓<br/>gate + fallback, Qwen3-8B 38 → 92"] --> F6
+  E15 --> F6
+  E3 --> Q6
+  F2 --> Q3
   Q0 --> D0
   Q0 --> D2
   Q1 --> D1
@@ -97,11 +100,11 @@ Solid arrows mean "supports" or "raises". The dotted arrow is a later option, no
 These are the places where one result would change several plans. They are the most informative experiments per GPU hour.
 
 **Q0 meets Q5: one run answers both.**
-- A no-memory run on all 140 `valid_seen` tasks (D2) gives the noise floor and the failure census. It also settles Q0: is our 60–70% on 20 tasks an easy sample, or a harness difference?
-- If 14 of 20 came from a true rate of 45.2%, that would happen by chance only about 2% of the time (binomial). So the gap is worth explaining before any memory arm.
+- A no-memory run on all 140 `valid_seen` tasks (D2) gives the noise floor and the failure census. It also settles the baseline part of Q0: is our 12–14 of 20 an easy sample, or a harness difference? (Whether the memory gain reproduces needs D0.)
+- At a true rate of 45.2%, 14 or more of 20 would happen about 2% of the time, and 12 or more about 13% (binomial). The 20 tasks were not a random sample (unsorted `os.walk`), so the gap is worth explaining before any memory arm.
 
 **Q1 meets Q5 and D8: is memory needed where it seems to help?**
-- In other models too, the dominant failures are a skipped transform in adjective-form goals, the desklamp order and object substitution (HiPlan; 2408.06458 with Gemma-2-9B; our 20 episodes).
+- The same failures appear in other models: a skipped transform in adjective-form goals, the desklamp order and object substitution (HiPlan; 2408.06458 with Gemma-2-9B; our 20 episodes).
 - A random same-type example (rung 3) or a single instruction (D8) might fix them.
 - If either does, retrieval by similarity must show its value elsewhere, probably on search (Q3, D3).
 
@@ -129,23 +132,25 @@ The table gives examples of how a result could re-route the work. The laboratory
 
 | If… | …then one reasonable reading is | Options that open up |
 |---|---|---|
-| D0 does not reproduce AdaMEM's gain | the published gain depends on settings we do not share | inspect the harness differences first; D2; a smaller ladder |
-| D2 shows most failures are phrasing or desklamp | memory may act mostly as a procedure reminder | D8 (instruction) against rung 3; D6 slices; D3 with walkthroughs |
+| D0 does not reproduce AdaMEM's gain (judged against an equivalence margin set in advance) | the gain depends on settings we do not share, or our design lacks power and headroom, or the embedding swap matters | inspect the harness differences first; D2; a smaller ladder |
+| D2 shows most failures are phrasing or desklamp | the headroom is mostly procedure | D8 (instruction) against rung 3; D6 slices; D3 with walkthroughs |
 | D2 shows most failures are search | the bank must show *where to look* | D3 with the agent's own runs; D4 windows; D9 keys |
-| Rung 3 ≈ rung 4 within the equivalence margin | similarity adds nothing over the same type, as in TRAD with GPT-4 | D4 and D9 (unit and key) rather than better similarity |
-| Rung 5 > rung 4, but not against the intermediate arm | the gain is the refresh, not the step unit | D4 with matched refresh |
-| The weaker model gains more (D5) | supports the ExpeL-versus-TRAD reading | prioritise small models; widen D5 |
-| The best oracle arm (D7) is far above every rung | retrieval, not the bank, is the bottleneck | D9, a k sweep, abstain thresholds |
-| The best oracle is close to rung 5 | the bank's content is the limit | D3 (a different source), a larger or curated bank |
-| An effect seen on `valid_seen` shrinks on `valid_unseen` | a train bank leaked scene knowledge (pre-registered expectation) | report both; ScienceWorld or AppWorld next |
+| Rung 3 ≈ rung 4 within the equivalence margin, with refresh matched | similarity adds nothing over the same type, as in TRAD with GPT-4 | D4 and D9 (unit and key) rather than better similarity |
+| Rung 5 > rung 4, but not against the intermediate arm | the gain is the refresh, not the change of unit and key | D4 with matched refresh |
+| The weaker model gains more (D5) | consistent with the ExpeL-versus-TRAD contrast (ExpeL's random arm drew from the whole pool, on another model and harness); compare gains relative to each model's headroom | prioritise small models; widen D5 |
+| The best-of-bank oracle (D7) is far above every rung | retrieval, not the bank, is the bottleneck | D9, a k sweep, abstain thresholds |
+| The best-of-bank oracle is close to rung 5 | the bank's content is the limit | D3 (a different source), a larger or curated bank |
+| An effect seen on `valid_seen` shrinks on `valid_unseen` | a train bank leaked scene knowledge (pre-registered expectation), or the winner's curse of picking the best arm on development data | report both; ScienceWorld or AppWorld next |
 
 ## 4. What stays fixed, and what the laboratory may decide
 
 **Invariants.** These keep results comparable and honest:
 - `valid_unseen` is untouched until one confirmation;
+- task lists name games by path;
+- equivalence margins and Holm-corrected families are fixed before the runs;
 - banks come from `train` only;
 - frozen task lists, with their SHA-256;
-- the same step limit and the same retrieved-text budget across arms;
+- the same step limit across arms, and the same retrieved-text budget across memory arms;
 - decision rules and families written down before each run;
 - raw runs frozen;
 - the paired test of DIRECTIONS section 6;
@@ -165,9 +170,9 @@ When the laboratory departs from this map, it records the reason. That record is
 - [`corpus.json`](corpus.json): the key claims, each with its verification level, as records with `key`, `title`, `year`, `claim` and `mentions` (`dimension=value` tags such as `rung=3`, `unit=step-window`, `failure=adjective-form`). It is meant for tools that search an offline corpus.
 - [`directions.json`](directions.json): the directions with their arms, prerequisites, rough GPU hours and evidence keys, plus the invariants.
 
-## 5. Leads not yet followed
+## 5. Leads and recently read items
 
-These came up but were not read in depth.
+The items below came up late. Some have now been read; the rest are leads.
 
 - **Games with computable optimal moves** as a fresh benchmark for experience memory: PlyBench (2608.03420; tic-tac-toe, Nim, Connect Four, with obfuscated variants). Outcomes need no judge, and per-move credit is computable.
 - **EffectMem** (EMNLP 2026 Findings): now read; see direction D10. Its large single-seed gains come from a whole pipeline, so the gate's own share is open.
