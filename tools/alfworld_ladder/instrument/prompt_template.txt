@@ -1,0 +1,50 @@
+# Prompt templates of the ALFWorld ladder (copied verbatim from src/agent.py; source: yunx-z/AdaMEM, Apache-2.0)
+
+Every step's prompt = BASE + SUFFIX, sent as one user message.
+- BASE at step 1: TEMPLATE_NO_HIS. BASE from step 2: TEMPLATE with the last 50 (observation, action) pairs,
+  formatted as AdaMEM does: [Observation i: '<obs>', Action i: '<action>'].
+- SUFFIX for arm `none`: ACTION_INSTR (this makes the `none` prompt identical to AdaMEM's no-memory prompt).
+- SUFFIX for arms `placebo`, `random_same_type`, `retrieved_task`: MEMORY_WRAPPER with {retrieved_exp} =
+  "Retrieved Item 0:
+<item>
+
+Retrieved Item 1:
+<item>". The block is fixed for the whole episode and
+  sits at the same position for every memory arm. Only the item text differs between arms.
+- Item text for random_same_type and retrieved_task: "Task: <goal>." followed by one line per walkthrough step in
+  the same format as the agent's own history, [Observation i: '<obs>', Action i: '<action>'], and a last line
+  Final observation: '<obs>'; observations cut to 240 characters.
+- Item text for placebo: lines of instrument/placebo.txt, split over two items, token-matched (vLLM /tokenize)
+  to the random_same_type block of the same (task, seed).
+- One parser for all arms: the answer is the last <action>...</action>, matched case-insensitively to the admissible
+  commands. Anything else is sent to the game as written ("Nothing happens.") and counted in metrics.invalid_actions.
+
+## TEMPLATE_NO_HIS
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: {current_observation}
+Your admissible actions of the current situation are: [{admissible_actions}].
+
+## TEMPLATE
+
+You are an expert agent operating in the ALFRED Embodied Environment. Your task is to: {task_description}
+Prior to this step, you have already taken {step_count} step(s). Below are the most recent {history_length} observations and the corresponding actions you took: {action_history}
+You are now at step {current_step} and your current observation is: {current_observation}
+Your admissible actions of the current situation are: [{admissible_actions}].
+
+## ACTION_INSTR
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+## MEMORY_WRAPPER
+
+Here are some task solving trajectories on similar tasks:
+
+Retrieved Experiences:
+{retrieved_exp}
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
