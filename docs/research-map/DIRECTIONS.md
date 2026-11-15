@@ -1,6 +1,6 @@
 # Possible directions for the experience-memory ladder
 
-Written 15 November 2026 as input for the autonomous laboratory and for contributors. **These are options, not instructions.** Each one gives the question, a sketch of the design, the cost, what speaks for it and against it, and what a result would mean. The laboratory or the maintainer chooses. **Contributors with a GPU can run any direction in parallel, in small cells**: see section 4c and [VOLUNTEER_COMPUTE.md](VOLUNTEER_COMPUTE.md).
+Written 15 November 2026 as input for the autonomous laboratory and for contributors. **These are options, not instructions.** Each one gives the question, a sketch of the design, the cost, what speaks for it and against it, and what a result would mean. The laboratory or the maintainer chooses. **Contributors with a GPU can run any direction in parallel, in small cells**: see section 4c and [VOLUNTEER_COMPUTE.md](VOLUNTEER_COMPUTE.md). How the evidence, questions and directions connect, which results would re-route the work, and what stays fixed versus what the laboratory may decide: [CONNECTIONS.md](CONNECTIONS.md).
 
 Sources and their verification levels are in [README.md](README.md); the CPU tools are in [`tools/alfworld_cpu/`](../../tools/alfworld_cpu/). An independent review of a first draft of this page found over-claims and design gaps; they are corrected here.
 
@@ -67,8 +67,10 @@ Sources and their verification levels are in [README.md](README.md); the CPU too
 - This is suggested by Q1.
 - One single-run table (Imagine-then-Plan, 2601.08955, about 140 tasks, no variance) shows RAP adding +9.3 points for Qwen3-8B and +1.4 for Llama-3.1-8B-Instruct. In the same table RAP *lowers* Qwen3-8B's two-object tasks from 25.0 to 4.2.
 
+**Q6. What should the query be?** The evidence is scattered: TRAD retrieves by the agent's thought; Self-Generated ICL by reasoning after the first step; R2A found a raw-state query gave no gain; ReMe (2512.10696) found a model-written "usage scenario" key beats the raw task description (figure only); AdaMEM retrieves by the current state. No one compares these keys for step retrieval with a small model.
+
 **Q5. Which failures can memory fix at all?** These are hypotheses from our 20 episodes only:
-- goals in the adjective form ("put a cool egg in microwave") fail 3 of 3 in both runs;
+- goals in the adjective form ("put a cool egg in microwave") fail 3 of 3 in both runs. Other models show the same failure: HiPlan reports the skipped cooling step for "put a cool tomato in the microwave" ✓, and 2408.06458 reports Gemma-2-9B fetching the desklamp first and substituting a handtowel for a cloth ✓. Nobody has tested whether the phrasing itself causes the failure;
 - "look at X under the desklamp" fails 2 of 2;
 - cabinet-by-cabinet search uses up the step limit.
 
@@ -186,6 +188,14 @@ These are cheap; several need no GPU.
 - **Cost:** a few arms on one rung.
 - **Against:** many small comparisons; treat them as one family.
 
+### D9. Retrieval key
+
+- **Question:** Q6.
+- **Design:** one bank, one unit (for example a window of steps), the same budget, four keys: the task text, the current observation, the agent's current thought, and a short model-written description of the situation.
+- **Cost:** 4 arms × 9 h. Embeddings run on the CPU.
+- **For:** cheap once a bank exists. It also separates the key from the unit, which the literature changes together.
+- **Against:** a model-written key adds a call per step. Observation keys can look perfect on retrieval metrics while not helping (2608.03420 notes this).
+
 ### D8. A non-memory competitor
 
 - **Question:** is memory needed for the dominant failures, or would one sentence do?
@@ -209,6 +219,7 @@ These are cheap; several need no GPU.
 | BFCL multi-turn as packaged in EvoMemBench's CrossEp-Tool (4 × 50 tasks) | mid-range baselines and large memory gains reported (helper) | EvoMemBench's repository declares no licence; 200 tasks give about ±7 points; a 4B model's baseline is unknown |
 | A stream built with SeqMem-Eval's protocol (Apache-2.0), for example APIBench-HF (911 tasks) | many tasks; an online-versus-hold-out protocol that exposes gains that vanish on hold-out (they do for Qwen3-8B ✓) | not embodied action; one fixed order |
 | Evo-Memory's PDDL (60) | low baseline (helper) | no public code; small |
+| AppWorld (Apache-2.0), the ROADMAP's tool-use target | a local-model memory result exists: ReMe ✓ raises Qwen3-8B from 14.97 to 24.70 (Avg@4), while A-Mem (12.95) and LangMem (11.46) fall below no memory; low baselines leave room | needs its own server; a 4B baseline is unknown |
 
 AMA-Bench (questions about one long trajectory), MemEvoBench (memory safety) and the procedural-retrieval benchmark (retrieval only) test other things.
 
