@@ -69,6 +69,11 @@ Sources and their verification levels are in [README.md](README.md); the CPU too
 
 **Q6. What should the query be?** The evidence is scattered: TRAD retrieves by the agent's thought; Self-Generated ICL by reasoning after the first step; R2A found a raw-state query gave no gain; ReMe (2512.10696) found a model-written "usage scenario" key beats the raw task description (figure only); AdaMEM retrieves by the current state. No one compares these keys for step retrieval with a small model.
 
+**Q7. How should a retrieved entry be presented?**
+- Classic in-context learning work (Min et al. 2022, 2202.12837, classification tasks) found that demonstrations work largely through format, the label space and the input distribution: random labels barely hurt.
+- For agents, 2606.20978 kept action sequences identical and changed only their organisation. On 43 web tasks with vague descriptions, actions grouped into named subgoals raised the pass rate from 76.7% to 90.7% (win-loss 6:0, paired permutation test), and flat logs gave a smaller, non-significant gain. On 42 precisely described tasks no format helped.
+- Our most systematic failure (a skipped transform in adjective-form goals) is a missed subgoal, so presentation may matter as much as selection.
+
 **Q5. Which failures can memory fix at all?** These are hypotheses from our 20 episodes only:
 - goals in the adjective form ("put a cool egg in microwave") fail 3 of 3 in both runs. Other models show the same failure: HiPlan reports the skipped cooling step for "put a cool tomato in the microwave" ✓, and 2408.06458 reports Gemma-2-9B fetching the desklamp first and substituting a handtowel for a cloth ✓. Nobody has tested whether the phrasing itself causes the failure;
 - "look at X under the desklamp" fails 2 of 2;
@@ -197,6 +202,15 @@ These are cheap; several need no GPU.
 - **Cost:** 1 arm.
 - **For:** an honest baseline. If an instruction removes a failure type, memory's value lies elsewhere.
 - **Against:** hand-written knowledge of the benchmark. Report it as a competitor, not as a method.
+
+### D11. Presentation of the retrieved entry
+
+- **Question:** Q7.
+- **Design:** the same retrieved entries, shown in two forms: a flat action log, or the same actions grouped under named subgoals (for example "find the egg / cool it with the fridge / put it in the microwave"). Subgoals can be derived from action types (go, take, clean/cool/heat, move) without a model.
+- **Cost:** 2 arms × 9 h on one rung. Segmentation runs on the CPU.
+- **For:** directly targets the most common systematic failure. A presentation change costs nothing at run time.
+- **Against:** one agent study (web tasks, 85 tasks, not ALFWorld). Grouped entries are slightly longer, so the text budget must be matched.
+- **Prediction:** the gain concentrates on adjective-form goals and two-object tasks; it should vanish on plain pick-and-place.
 
 ### D9. Retrieval key
 

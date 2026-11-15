@@ -382,5 +382,29 @@
    "effect=null-for-raw-state",
    "level=T (helper, partial)"
   ]
+ },
+ {
+  "key": "min-2022",
+  "title": "Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?",
+  "year": 2022,
+  "arxiv": "2202.12837",
+  "claim": "Classification-style ICL: randomly replacing labels in demonstrations barely hurts across 12 models; the label space, input distribution and format drive the effect. [verification: A]",
+  "mentions": [
+   "mechanism=format",
+   "control=placebo",
+   "level=A"
+  ]
+ },
+ {
+  "key": "agents-read-demos-2026",
+  "title": "How Should Agents Read Demonstrations? Hierarchical Structure Beats Flat Action Logs",
+  "year": 2026,
+  "arxiv": "2606.20978",
+  "claim": "Identical action sequences, different organisation: named subgoal groups raise the pass rate 76.7 -> 90.7% on 43 vaguely described web tasks (win-loss 6:0); flat logs give a smaller, non-significant gain; no format helps on 42 precise tasks. [verification: T (abstract and setup)]",
+  "mentions": [
+   "presentation=subgoals",
+   "failure=adjective-form",
+   "level=T"
+  ]
  }
 ]

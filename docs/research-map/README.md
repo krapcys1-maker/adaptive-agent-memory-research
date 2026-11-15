@@ -118,6 +118,8 @@ All of these ran offline, with no model calls.
 | CFGM, 2508.15305 | ALFWorld (GPT-4-turbo, 4-fold): ReAct 80.6 → 91.0; key = task description, unit = whole experience plus tips; helper reports k=2–3 best and k=5 falling back to 81.3 |
 | HSL, "Spinning Straw into Gold", 2607.04235 (ICLR 2026) | failed runs relabeled as successes for the goals they did reach (90% relabel accuracy on 200 hand checks), used for fine-tuning a 1B model, not as in-context examples |
 | ProactAgent, 2604.20572; PlugMem, 2603.03296 | retrieval as an RL-trained action (gain not separable from training); a graph memory evaluated without ALFWorld; in tic-tac-toe, a raw-observation key at least as good as a model-written state description |
+| Rethinking the Role of Demonstrations, 2202.12837 (Min et al. 2022) | classification-style in-context learning: random labels in demonstrations barely hurt; format, label space and input distribution drive the effect. A reason for format-matched placebo arms |
+| How Should Agents Read Demonstrations?, 2606.20978 ✓ (abstract and setup) | identical action sequences, different organisation: named subgoal groups 76.7 → 90.7% on 43 vaguely described web tasks (6:0); no format helps on 42 precise tasks; 3 runs per condition, McNemar and permutation tests |
 | Benchmarks: Evo-Memory 2511.20857, EvoMemBench 2605.18421, MemEvoBench 2604.15774, AMA-Bench 2602.22769, procedural retrieval 2511.21730 | see DIRECTIONS.md section 4a. Evo-Memory has no public code. EvoMemBench's repository has no licence. MemEvoBench measures safety and AMA-Bench in-trajectory recall, not reuse across tasks |
 
 ## Not yet read in full

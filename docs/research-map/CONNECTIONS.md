@@ -22,6 +22,7 @@ flowchart LR
     E13["SWE-ContextBench ✓<br/>bad retrieval below no memory"]
     E14["Our CPU checks<br/>90–92% bank syntax mismatch;<br/>walkthrough replay works"]
     E15["EffectMem ✓<br/>gate + fallback, Qwen3-8B 38 → 92"]
+    E16["Min 2022; 2606.20978 ✓<br/>format and subgoal grouping<br/>drive demonstration effects"]
   end
   subgraph F["Findings"]
     F1["Simple bank helps"]
@@ -39,6 +40,7 @@ flowchart LR
     Q4["Q4 model strength"]
     Q5["Q5 which failures are fixable"]
     Q6["Q6 retrieval key"]
+    Q7["Q7 presentation"]
   end
   subgraph D["Directions"]
     D0["D0 reproduce"]
@@ -52,6 +54,7 @@ flowchart LR
     D8["D8 instruction competitor"]
     D9["D9 retrieval key"]
     D10["D10 applicability gate"]
+    D11["D11 presentation"]
   end
   E1 --> F1
   E2 --> F1
@@ -78,6 +81,9 @@ flowchart LR
   F6 --> D7
   F6 --> D10
   E15 --> F6
+  E16 --> Q7
+  F5 --> Q7
+  Q7 --> D11
   E3 --> Q6
   F2 --> Q3
   Q0 --> D0
@@ -116,6 +122,11 @@ These are the places where one result would change several plans. They are the m
 - AdaMEM retrieves by the current state.
 
 Unit and key are usually changed together. Separating them is cheap, because both run off the same bank and the same CPU embeddings.
+
+**Q5 meets Q7: the failure we see most is a missed subgoal.**
+- Adjective-form goals fail by skipping the transform.
+- Presenting retrieved actions grouped under named subgoals helped vaguely described tasks in a web study (2606.20978).
+- If presentation (D11) fixes what selection (D1) does not, the bank's value lies in its structure more than in its similarity.
 
 **Q3 meets F2: the bank source decides what format problems exist.**
 - Walkthroughs and the agent's own runs are in the current syntax by construction.

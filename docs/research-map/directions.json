@@ -214,6 +214,25 @@
     "effectmem-2026",
     "swe-contextbench-2026"
    ]
+  },
+  {
+   "id": "D11",
+   "question": "Q7: does presenting retrieved actions grouped under named subgoals help more than a flat log?",
+   "arms": [
+    "flat action log",
+    "same actions grouped by subgoal (rule-based segmentation)"
+   ],
+   "prerequisites": [
+    "a bank",
+    "a fixed rung"
+   ],
+   "gpu_hours": 18,
+   "evidence": [
+    "min-2022",
+    "agents-read-demos-2026",
+    "own-20-episodes",
+    "hiplan-2025"
+   ]
   }
  ],
  "second_benchmark_candidates": [
