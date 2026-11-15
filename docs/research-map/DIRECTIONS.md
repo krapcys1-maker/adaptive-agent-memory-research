@@ -108,6 +108,7 @@ These are cheap; several need no GPU.
 - **Question:** Q1, and the size of each step.
 - **Design:** rungs −1, then 0 (3 seeds), 1, 2, 3, 4 and 5, all under the matched budget.
 - **Not one change per rung.** Rung 4 → 5 changes three things: the unit (trajectory → steps), the refresh (once → every step) and the key (task → state). It may also change the bank, because AdaMEM's step-level bank comes from the agent's own runs while the ROADMAP's first bank comes from walkthroughs. To attribute a 4 → 5 gain, add an intermediate arm: whole trajectories by task similarity, refreshed every step. State whether rungs 2 and 3 refresh every step (the root README says rung 2 does).
+- **Placebo option:** examples of the same length taken only from *other* task types, a variant of rung 2. It separates "the prompt got longer and showed the format" from "the content was relevant". ExpRAG suggests much of a gain can be format.
 - **Cost:** about 6–7 arms × 9 h ≈ 2.5–3 days of GPU.
 - **For:** a clear, cumulative story. A **pre-specified equivalence margin** between rungs 3 and 4 (for example ±5 points) turns a null result into information. Without it, a null result on 60 × 3 only says "smaller than about 10 points".
 - **Against:** long. The ROADMAP's stop rule ("rung 5 does not beat rung 2 beyond noise") needs a numeric threshold written down before the runs.
