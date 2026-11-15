@@ -24,6 +24,8 @@ On a 12 GB GPU with Qwen3-4B FP8, that is about 2 hours.
 - If one person ran arm A and another ran arm B, that machine difference would be mixed into the arm difference.
 - With both arms in every cell, each machine contributes **paired** differences, and the machine becomes a block in the analysis, not a confound.
 
+**Tasks are named, not counted.** The AdaMEM environment orders games by an unsorted directory walk, so "tasks 21–40" can mean different games on different machines. A cell always lists its games by path, from the frozen list (#176).
+
 ## What you need
 
 **Hardware.**
