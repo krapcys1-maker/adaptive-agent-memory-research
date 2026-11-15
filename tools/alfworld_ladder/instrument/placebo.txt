@@ -1,6 +1,6 @@
 # Placebo filler for the ALFWorld ladder. Lines starting with # are ignored.
 # The agent repeats these lines in order, split into two items, until the block has the same
-# token count as the random_same_type block of the same (task, seed). No line names an object,
+# token count as the retrieved_task block of the same (task, seed). No line names an object,
 # a receptacle, a room, an action or a task.
 This line is a placeholder and carries no information.
 Nothing is recorded in this slot.

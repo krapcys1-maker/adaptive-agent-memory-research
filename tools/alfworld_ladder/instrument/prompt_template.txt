@@ -15,7 +15,7 @@ Retrieved Item 1:
   the same format as the agent's own history, [Observation i: '<obs>', Action i: '<action>'], and a last line
   Final observation: '<obs>'; observations cut to 240 characters.
 - Item text for placebo: lines of instrument/placebo.txt, split over two items, token-matched (vLLM /tokenize)
-  to the random_same_type block of the same (task, seed).
+  to the retrieved_task block of the same (task, seed).
 - One parser for all arms: the answer is the last <action>...</action>, matched case-insensitively to the admissible
   commands. Anything else is sent to the game as written ("Nothing happens.") and counted in metrics.invalid_actions.
 

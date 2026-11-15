@@ -34,6 +34,11 @@ timeout --kill-after=30 "${LADDER_BATCH_TIMEOUT:-43200}" .venv/bin/python "$HERE
 AG=$!
 echo "pid $AG" >> "$PIDS"
 wait "$AG"; rc=$?
-[ -n "$SRV" ] && kill -- -"$SRV" 2>/dev/null
+if [ -n "$SRV" ]; then
+  kill -- -"$SRV" 2>/dev/null
+  # wait until the whole server process group is gone, so the GPU is free for the next batch / the lab's gate
+  for i in $(seq 1 60); do pgrep -g "$SRV" >/dev/null 2>&1 || break; sleep 1; done
+  pgrep -g "$SRV" >/dev/null 2>&1 && { kill -9 -- -"$SRV" 2>/dev/null; sleep 3; }
+fi
 echo "done rc=$rc results=$(cat "$O" 2>/dev/null | wc -l)"
 exit $rc
