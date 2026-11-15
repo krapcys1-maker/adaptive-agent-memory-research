@@ -10,7 +10,7 @@ No paid API is used.
 |---|---|
 | `none` | nothing. The prompt is exactly AdaMEM's no-memory ALFWorld prompt (baseline). |
 | `placebo` | AdaMEM's retrieval wrapper ("Here are some task solving trajectories on similar tasks: … Retrieved Item 0 / Retrieved Item 1"), with neutral filler lines from `placebo.txt` in place of the trajectories. The filler is token-matched (vLLM `/tokenize`) to the `retrieved_task` block of the same (task, seed). Same position, same wrapper, same two-item layout. |
-| `retrieved_task` | the same wrapper with k = 2 expert walkthroughs from the bank whose goal text is most similar to this game's goal (content-word Jaccard, ties broken by a hash of (task, seed)). Ladder rung 4: whole trajectories retrieved by task. |
+| `retrieved_task` | the same wrapper with k = 2 expert walkthroughs from the bank whose goal text is most similar to this game's goal (content-word Jaccard over the WHOLE bank, ties broken by a hash of (task, seed)). Ladder rung 4: whole trajectories retrieved by task. Measured on the 137 units (independent audit, seed 0): 21% of units get at least one walkthrough of another task type (13% of items, mostly pick-and-place ↔ pick-two); in 114 of 137 units the second item is decided by the tie-break. This is the arm as described, not a defect. |
 
 The block is chosen once per episode and shown at every step. `memory_tokens` = tokens of the whole wrapper with
 its items (0 for `none`). `memory_sources` = the two bank task ids for `retrieved_task`, empty for `none` and `placebo`.
@@ -64,6 +64,20 @@ walkthroughs of the same task type; the TRAD "Random" control). It is the natura
 - Reported per result: `solved`, `memory_sources`, `metrics.memory_tokens`, `tokens`, `steps`,
   `invalid_actions`, `seconds`, `temperature`, `max_tokens`, `max_steps`, `model`, and `evidence` (goal, outcome,
   last four actions with the game's replies).
+
+## Planned secondary analyses (written before the program starts)
+
+- **Same-room sensitivity.** valid_seen rooms also occur in train. No test family is in the bank, but bank
+  entries of other tasks in the same room remain. An independent audit found that the retrieved items come from
+  the test game's room in 7–10 of 137 units, and show the true location of the goal object in 2–6 of them
+  (upper bound on the advantage 2.9–4.4 points, expected about 1 point). The primary result (memory − placebo)
+  is repeated without the units whose `memory_sources` share the room number (the last number of the task
+  directory) with the unit.
+- **Format versus behaviour.** `metrics.invalid_no_action_tag` per step, by arm. A memory-arm excess of untagged
+  answers over placebo is a format trace; an excess of tagged but inadmissible answers is behaviour.
+- **Empty answers.** `metrics.empty_retries` per step, by arm.
+- **Server failures.** If the model server fails on every attempt for a step, the episode ends as an error
+  (no `solved`), so the lab retries it. It is never recorded as unsolved.
 
 ## Known limits
 

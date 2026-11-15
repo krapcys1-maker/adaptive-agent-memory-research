@@ -63,3 +63,28 @@ def test_parse_action_maps_case_and_rejects_unknown():
     assert agent.parse_action("<think>x</think><action>Go to shelf 1</action>", adm) == ("go to shelf 1", True)
     assert agent.parse_action("<action>fly away</action>", adm) == ("fly away", False)
     assert agent.parse_action("no tags", adm) == ("None", False)
+
+
+def test_server_failure_is_an_error_not_an_unsolved_step(monkeypatch):
+    def down(*a, **k):
+        raise ConnectionRefusedError("server down")
+    monkeypatch.setattr(agent.urllib.request, "urlopen", down)
+    monkeypatch.setattr(agent.time, "sleep", lambda s: None)
+    with pytest.raises(agent.ServerError):
+        agent.chat("prompt", 1)
+
+
+def test_empty_answers_are_retried_and_counted(monkeypatch):
+    import io
+    import json as _json
+
+    class R(io.BytesIO):
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+    body = {"choices": [{"message": {"content": ""}}], "usage": {"prompt_tokens": 1, "completion_tokens": 0}}
+    monkeypatch.setattr(agent.urllib.request, "urlopen", lambda *a, **k: R(_json.dumps(body).encode()))
+    assert agent.chat("prompt", 1) == ("", 0, 4)
