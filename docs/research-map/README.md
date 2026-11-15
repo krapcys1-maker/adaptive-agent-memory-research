@@ -59,8 +59,8 @@ These works bear directly on ladder rungs 1–5. Taken together, they say that t
 | Work | What it shows | Level | Caveats |
 |---|---|---|---|
 | TRAD, arXiv 2403.06221 (SIGIR 2024); code `SkyRiver-2000/TRAD-Official`, MIT | On the 134 ALFWorld unseen tasks with GPT-4, 2 examples, 3 seeds: random trajectories **of the same task type** 89.8%, fixed human examples 90.6%, retrieval by task description (Synapse) 89.6%, retrieval of **single steps by the current thought, with a window of following steps** 96.8%. The same ordering holds on Mind2Web and in an industrial deployment | T + K (`run_react_random.py` draws from the pool of the task's own type, so "Random" is our rung 3, not rung 2) | GPT-4 near the ceiling; ablations only on Mind2Web |
-| ExpeL, arXiv 2308.10144 (AAAI 2024); code `LeapLabTHU/ExpeL`, Apache-2.0 | ALFWorld with gpt-3.5: ReAct 40.0%, randomly sampled successful trajectories 42.5%, reasoning-similarity retrieval 48.5%, task-similarity retrieval with insights 59.0% | T (ablation table) | the 59.0 row also has insights, so the random-versus-retrieval comparison is not clean |
-| Self-Generated In-Context Examples, arXiv 2505.00234 | Adding the agent's own successful runs to the bank, retrieved at every step: ALFWorld unseen 73 → 89% with gpt-4o-mini (5 seeds), more than the upgrade to gpt-4o (88%). Two curation steps reach 93%. Large spread across seeds; some added trajectories lower the score | T | no random-bank control; no code found |
+| ExpeL, arXiv 2308.10144 (AAAI 2024); code `LeapLabTHU/ExpeL`, Apache-2.0 | ALFWorld with gpt-3.5, Table 3 (ablation of example selection): ReAct 40.0%, randomly sampled successful trajectories 42.5±0.8%, reasoning-similarity retrieval 48.5±2.1%, task-similarity retrieval (ExpeL) 59.0±0.3% | T (ablation table) | the paper does not say whether the random row keeps the extracted insights |
+| Self-Generated In-Context Examples, arXiv 2505.00234 | Growing the bank with the agent's own successful runs, retrieved at every step: ALFWorld unseen 73 → 89% with gpt-4o-mini (5 seeds). The 73% is a fixed bank of 18 human examples, already retrieved per step, not "no memory". The gain exceeds the upgrade to gpt-4o (88%). Two curation steps reach 93%. Large spread across seeds; some added trajectories lower the score | T | no random-bank control; no code found |
 | ExpRAG, arXiv 2603.18272 | Models of 3–8B with a scripted-expert bank: retrieving once at the start ≈ retrieving every step for whole trajectories (64.2 vs 63.8%, k=4); per-step retrieval is the least stable factor across models; a bank of the wrong task types gives little on hard tasks | T | the no-memory arm gets no list of admissible actions (4.5%), so much of the gain is action format |
 
 **What this leaves open for the ladder:**
@@ -80,11 +80,11 @@ These works bear directly on ladder rungs 1–5. Taken together, they say that t
 All of these ran offline, with no model calls.
 
 - **Reflexion's published ALFWorld logs** (`noahshinn/reflexion`, MIT; 134 tasks, a retry run and a reflection run):
-  - Plain retries at temperature 0 solve 17 of the 50 tasks failed in the first trial. About 44% of the gain usually credited to reflections is retry noise.
+  - Plain retries at temperature 0 solve 10 of the 50 tasks failed in the first trial at the first retry, and 17 over six retries (best-of-6). At an equal number of trials (6), reflections reach 123 of 134 and plain retries 101, so 17 of the 39 tasks gained with reflections were also gained without them. Only failure-to-success is observable: successes were not rerun.
   - 161 of 200 reflections open with the wording of the single reflection example in the prompt.
   - 17 reflections, in 4 tasks, state that the microwave or fridge must be opened before heating or cooling. ALFWorld's PDDL does not require that.
 - **Twenty no-memory episodes of Qwen3-4B-Instruct-2507** from a feasibility run (AdaMEM harness, `valid_seen`; bf16 and FP8):
-  - 12 and 14 of 20 solved. 4 of 20 tasks flip between the two precisions.
+  - 12 and 14 of 20 solved. 4 of 20 tasks flip between the two runs, which differ in weights (bf16 vs FP8) and in sampling (temperature 0.7). This is far above AdaMEM's 45.2% for the same model on all 140 tasks; see DIRECTIONS Q0.
   - All 3 goals in the adjective form ("put a cool egg in microwave") fail in both runs. Verb-form goals of the same types ("cool some X and put it in Y") mostly succeed.
   - Both "look at X under the desklamp" tasks fail in both runs.
   - Sequential cabinet-by-cabinet search uses up the step limit.
@@ -92,7 +92,7 @@ All of these ran offline, with no model calls.
 - **CPU checks** with the scripts in `tools/alfworld_cpu/`:
   - Adjective-form goals make up 28% of `valid_seen` and 25% of `valid_unseen`.
   - Every ALFWorld game carries a planner walkthrough in the installed action syntax. Replaying 30 random train walkthroughs on the CPU solved 30 of 30, with all actions admissible, at about 1.5 s per game.
-  - In three widely used public ALFWorld banks (ETO, AgentGym AgentTraj-L, AgentBank), 90–92% of trajectories contain at least one action that the current ALFWorld rejects, mostly the old "put X in/on Y" form of the final placement.
+  - In three widely used public ALFWorld banks (ETO, AgentGym AgentTraj-L, AgentBank), 90–92% of trajectories contain at least one action that does not match the current syntax templates (a regex check, not a replay), mostly the old "put X in/on Y" form of the final placement.
 
 ## H. Other method papers, coding agents, benchmarks and older work (added 15 November 2026)
 
@@ -106,7 +106,7 @@ All of these ran offline, with no model calls.
 | ReasoningBank, 2509.25140 (code `google-research/reasoning-bank`) ✓ (the k sweep) | WebArena +4 to +7 points; one retrieved experience is best (k=1 49.7, k=4 44.4); learns on the test stream with an LLM judge of 72.7% accuracy |
 | AWM, 2409.07429 | WebArena 15.0 → 35.5 (GPT-4), learned online from the test stream; rule-based and LLM-based workflow induction perform about the same |
 | AutoManual, 2405.16247 | ALFWorld unseen 97.4% (GPT-4-turbo) with rules built online; offline rules are clearly weaker (90.7) |
-| Imagine-then-Plan, 2601.08955 ✓ | in one harness, RAP retrieval adds +9.3 points for Qwen3-8B but +1.4 for Llama-3.1-8B-Instruct on ALFWorld |
+| Imagine-then-Plan, 2601.08955 ✓ | in one harness and a single run (about 140 tasks, no variance), RAP retrieval adds +9.3 points for Qwen3-8B (19.29 → 28.57) and +1.43 for Llama-3.1-8B-Instruct (21.43 → 22.86) on ALFWorld; it lowers Qwen3-8B's two-object tasks from 25.0 to 4.2 |
 | SeqMem-Eval, 2605.15384 ✓ (code `ShenGroup/SeqMem-Eval`, Apache-2.0) | Qwen3-8B on ALFWorld: no memory 52.9, G-Memory 62.9, ExpeL single-attempt 59.3, ExpeL multi-attempt 79.3 (the extra attempts are a confound). On API tasks, online gains largely vanish on the hold-out set |
 | Coding agents: SWE-Exp 2507.23361 ✓ (the k sweep), Agent KB 2507.06229, CTIM-Rover 2505.23422, SWE-ContextBench 2602.08316 ✓, subtask memory 2602.21611 | gains of 2–7 points that shrink with stronger models. One negative result (CTIM-Rover: no arm beat the baseline). Retrieval without an oracle can fall below no memory (SWE-ContextBench 22.2 vs 26.3). One retrieved item beats several (SWE-Exp). None has a random-example control |
 | Episodic control and case-based reasoning: MFEC 2016, NEC 2017, R2A 2022; the utility (swamping) problem in case bases | episodic memory helps most early, with little data; querying with the raw state alone gave no gain in R2A; a growing case base can cost more than it helps |

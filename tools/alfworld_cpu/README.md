@@ -19,6 +19,8 @@ Measured with ALFWorld data `json_2.1.1` and the ALFWorld version installed by t
 
 **Bank syntax:**
 
+Regex check against the installed syntax templates (not a replay):
+
 | Bank | Compatible actions | Trajectories with an incompatible action |
 |---|---|---|
 | ETO `alfworld_sft` | 87.1% | 92% |
