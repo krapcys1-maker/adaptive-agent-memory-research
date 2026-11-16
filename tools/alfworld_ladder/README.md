@@ -18,6 +18,26 @@ job. The format is the batch contract of the autonomous lab (`solved`, `memory_s
 Bank, families and the separation from the test games: `instrument/memory_build.md`.
 Prompts: `instrument/prompt_template.txt`.
 
+## Placebo check: a volunteer cell (no coding needed)
+
+In the lab's V3 run (100 valid_seen games), a token-matched block of neutral filler added about 13 points over
+no memory. It also hid an artefact: without it, the model often ended its answer at once (empty answers).
+The runner now sets vLLM `min_tokens = 8` for every arm. `--min-tokens 0` reproduces the artefact.
+
+```
+python placebo_check.py prepare --pool v4 --block B03 --replicate 1   # claim the block on #179 first
+python placebo_check.py run data/contrib/placebo-v4-B03-r1-mt8           # 60 episodes, about 1.5 h on 12 GB
+python placebo_check.py finish data/contrib/placebo-v4-B03-r1-mt8        # card: GPU, driver, vLLM version
+python placebo_check.py summary data/contrib/placebo-v4-B03-r1-mt8
+```
+
+Then open a pull request with `data/contrib/<cell-id>/`.
+- Pool `v4` holds the 354 held-out train games the lab measures in its V4 program, so a cell replicates them on
+  other hardware.
+- Pool `fresh` holds 242 games that nobody has measured, but only three task types. Use it only if the cell board
+  asks.
+- The bank is in `data/bank.jsonl`. Do not rebuild it: the card records its sha256.
+
 ## Run it
 
 Inside the environment that has `alfworld`, `textworld` and a vLLM server for Qwen3-4B-Instruct-2507-FP8 on port 8001:

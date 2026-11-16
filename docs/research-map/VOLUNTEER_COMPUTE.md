@@ -4,9 +4,10 @@
 
 On one 12 GB GPU, a single arm of the ladder (60 tasks × 3 seeds) takes about 9 hours. All the directions in [DIRECTIONS.md](DIRECTIONS.md) together take several hundred GPU hours. Split into small cells and spread across contributors, that becomes days of calendar time instead of weeks. Several directions can also run side by side.
 
-**Status, 15 November 2026: a proposal.**
-- The cell runner does not exist yet. It depends on #166 (package skeleton), #167 (random-bank arms) and #176 (the frozen task list).
-- The cell board is #179. Comment there before running anything.
+**Status, 16 November 2026: one cell type works, the placebo check.**
+- `tools/alfworld_ladder/placebo_check.py` runs one block of 20 frozen games × the arms none, placebo and retrieved_task, and writes the submission layout below. Blocks are listed in `tools/alfworld_ladder/contrib/pools.json`.
+- Other cell types (ladder rungs 2–5, embeddings) still depend on #166, #167 and #176.
+- The cell board is #179. Claim a block there before running anything.
 
 ## What a cell is
 
@@ -69,7 +70,7 @@ These are not your choices. Each must match the values published for the cell, a
 
 ## What you submit
 
-Submit a pull request to `data/contrib/<cell-id>/`. The exact layout will be fixed together with the cell runner. It contains three things.
+Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `placebo_check.py` writes this layout: `card.json` (the configuration card, with the block id and the sha256 of its frozen game list), `batch.jsonl` (the jobs), `records.jsonl` (one line per episode, with the full action sequence for replay) and `per_unit.csv` (the same per-episode counters as the lab's published tables). The cell id is `placebo-<pool>-<block>-r<replicate>-mt<min_tokens>`. It contains three things.
 
 **1. A configuration card:** one JSON file with the fixed values above plus:
 - the GPU model and driver;
