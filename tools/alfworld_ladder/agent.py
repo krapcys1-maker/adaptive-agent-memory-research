@@ -37,6 +37,10 @@ CFG = {
     "model": os.environ.get("LADDER_MODEL", "Qwen/Qwen3-4B-Instruct-2507-FP8"),
     "temperature": 0.7,
     "max_tokens": 2048,
+    # V4: forbid ending the answer within the first 8 tokens. In V3 the model ended at once (<|im_end|> as
+    # first token, p ~ 0.4-0.5) in arms none and retrieved_task but almost never in placebo, so the arms
+    # differed in empty answers (0.74 / 0.58 / 0.001 per step). Same for every arm.
+    "min_tokens": int(os.environ.get("LADDER_MIN_TOKENS", "8")),
     "max_steps": 50,
     "history_length": 50,
     "k": 2,
@@ -169,7 +173,8 @@ def chat(prompt: str, seed: int) -> tuple:
     """Returns (text, tokens, empty_retries). Empty answers are retried with a new seed (AdaMEM feasibility
     patch) and counted; if every attempt raised (server down, timeout), raises ServerError."""
     body = {"model": CFG["model"], "messages": [{"role": "user", "content": prompt}],
-            "temperature": CFG["temperature"], "max_tokens": CFG["max_tokens"], "seed": seed}
+            "temperature": CFG["temperature"], "max_tokens": CFG["max_tokens"],
+            "min_tokens": CFG["min_tokens"], "seed": seed}
     empty, last_exc = 0, None
     for attempt in range(4):
         try:
@@ -250,11 +255,12 @@ def episode(job: dict) -> dict:
                 break
         return {"unit": job["unit"], "arm": arm, "seed": seed, "solved": bool(won),
                 "memory_sources": sources,
+                "actions": [a for _, a in hist],  # full action sequence, for CPU replay checks
                 "metrics": {"memory_tokens": mem_tokens, "tokens": tokens, "steps": len(hist),
                             "invalid_actions": invalid, "invalid_no_action_tag": no_tag,
                             "invalid_samples": bad_samples, "empty_retries": empty_retries, "seconds": round(time.time() - t0, 1),
                             "temperature": CFG["temperature"], "max_tokens": CFG["max_tokens"],
-                            "max_steps": CFG["max_steps"], "model": CFG["model"]},
+                            "min_tokens": CFG["min_tokens"], "max_steps": CFG["max_steps"], "model": CFG["model"]},
                 "evidence": (f"goal: {goal} | won: {won} | last: " +
                              " ; ".join(f"{a} -> {' '.join(o.split())[:60]}" for o, a in
                                         list(zip([h[0] for h in hist[1:]] + [cur], [h[1] for h in hist]))[-4:]))[:500]}
@@ -279,7 +285,12 @@ def main():
     ap.add_argument("--data-root", default=os.path.expanduser("~/test-a-feasibility/alfworld_data/json_2.1.1"))
     ap.add_argument("--bank", default=os.path.join(BASE, "data", "bank.jsonl"))
     ap.add_argument("--parallel", type=int, default=24)
+    ap.add_argument("--min-tokens", type=int, default=None,
+                    help="default 8; 0 reproduces the V3 empty-answer artefact (answers that end at once)")
     a = ap.parse_args()
+    if a.min_tokens is not None:
+        CFG["min_tokens"] = a.min_tokens
+        os.environ["LADDER_MIN_TOKENS"] = str(a.min_tokens)  # also for spawned workers
     jobs = [json.loads(l) for l in open(a.batch, encoding="utf-8") if l.strip()]
     for j in jobs:
         if j["arm"] not in ARMS:
