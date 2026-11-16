@@ -2,6 +2,8 @@
 
 Contributions are welcome at three depths, and only the last one needs a background in memory research.
 
+**How your work is credited:** validated cells, merged substantive pull requests and written reviews or replications make you a co-author of the next report. Smaller contributions are thanked by name. The exact rules are in [AUTHORSHIP.md](AUTHORSHIP.md).
+
 ## Quick start
 
 ```bash
