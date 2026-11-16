@@ -9,7 +9,7 @@ Steps (inside the environment with alfworld, textworld and a vLLM server for the
     python placebo_check.py prepare --pool v4 --block B03 --replicate 1          # writes data/contrib/<cell-id>/
     python placebo_check.py run data/contrib/<cell-id>                           # runs all episodes (GPU)
     python placebo_check.py finish data/contrib/<cell-id>                        # fills the card, checks completeness
-    python placebo_check.py summary data/contrib/<cell-id>                       # prints the comparison
+    python placebo_check.py summary data/contrib/<cell-id>                       # prints the comparison, writes per_unit.csv
 
 `--min-tokens 0` reproduces the V3 artefact; run it as a second cell on the same block to compare.
 The cell id is placebo-<pool>-<block>-r<replicate>-mt<min_tokens>. Claim the block on the cell board first.
@@ -75,7 +75,9 @@ def cmd_prepare(a) -> None:
         commit = None
     card = {
         "cell_id": cid, "pool": a.pool, "block": a.block, "replicate": a.replicate, "games": games,
-        "pool_games_sha256": pools[a.pool]["games_sha256"], "arms": ARMS,
+        "pool_games_sha256": pools[a.pool]["games_sha256"],
+        "block_games_sha256": hashlib.sha256(json.dumps(sorted(games)).encode()).hexdigest(),
+        "pools_file_sha256": sha_file(POOLS), "arms": ARMS,
         "fixed": {"model": "Qwen/Qwen3-4B-Instruct-2507-FP8", "temperature": 0.7, "max_tokens": 2048,
                   "min_tokens": a.min_tokens, "max_steps": 50, "history_length": 50, "k": 2,
                   "sha256": {k: sha_file(p) for k, p in FIXED_FILES.items()}, "harness_commit": commit},
@@ -145,10 +147,26 @@ def cmd_finish(a) -> None:
     card["finished_at"] = now()
     card["records"] = {"expected": len(want), "present": len(got & want), "missing": len(missing), "duplicates": dup}
     card["status"] = "complete" if not missing and not dup else "incomplete"
+    write_per_unit(recs, os.path.join(a.cell, "per_unit.csv"))
     save_card(a.cell, card)
     print(json.dumps(card["records"]), card["status"])
     if missing:
         print("missing (first 5):", missing[:5])
+
+
+COUNTERS = ["steps", "empty_retries", "invalid_no_action_tag", "invalid_actions", "memory_tokens"]
+
+
+def write_per_unit(recs: list, path: str) -> None:
+    """One row per episode with the same counters as the lab's per_unit.csv."""
+    import csv
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["unit", "task", "arm", "seed", "solved"] + COUNTERS)
+        for r in sorted(recs, key=lambda r: (r["unit"], r["arm"])):
+            m = r.get("metrics") or {}
+            w.writerow([r["unit"], r["unit"].split("~", 1)[-1], r["arm"], r.get("seed"), int(bool(r.get("solved")))]
+                       + [m.get(c, 0) for c in COUNTERS])
 
 
 def summarise(recs: list) -> dict:
@@ -160,7 +178,8 @@ def summarise(recs: list) -> dict:
     for arm in ARMS:
         rs = [by[u][arm] for u in full]
         steps = sum(r["metrics"]["steps"] for r in rs) or 1
-        out[arm] = {"solved": sum(bool(r["solved"]) for r in rs),
+        out[arm] = {"episodes": len(rs), "solved": sum(bool(r["solved"]) for r in rs),
+                    "totals": {c: sum((r.get("metrics") or {}).get(c, 0) for r in rs) for c in COUNTERS},
                     "empty_retries_per_step": round(sum(r["metrics"].get("empty_retries", 0) for r in rs) / steps, 3),
                     "untagged_per_step": round(sum(r["metrics"].get("invalid_no_action_tag", 0) for r in rs) / steps, 3),
                     "memory_tokens_mean": round(sum(r["metrics"]["memory_tokens"] for r in rs) / max(1, len(rs)))}
@@ -172,7 +191,9 @@ def summarise(recs: list) -> dict:
 
 
 def cmd_summary(a) -> None:
-    s = summarise(read_records(a.cell))
+    recs = read_records(a.cell)
+    write_per_unit(recs, os.path.join(a.cell, "per_unit.csv"))
+    s = summarise(recs)
     print(json.dumps(s, indent=1))
     print("A single block of 20 games is far too small to decide anything; the maintainer pools cells by block.")
 

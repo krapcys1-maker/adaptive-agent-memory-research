@@ -70,7 +70,7 @@ These are not your choices. Each must match the values published for the cell, a
 
 ## What you submit
 
-Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `placebo_check.py` writes this layout: `card.json` (the configuration card), `batch.jsonl` (the jobs) and `records.jsonl` (one line per episode, with the full action sequence for replay). The cell id is `placebo-<pool>-<block>-r<replicate>-mt<min_tokens>`. It contains three things.
+Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `placebo_check.py` writes this layout: `card.json` (the configuration card, with the block id and the sha256 of its frozen game list), `batch.jsonl` (the jobs), `records.jsonl` (one line per episode, with the full action sequence for replay) and `per_unit.csv` (the same per-episode counters as the lab's published tables). The cell id is `placebo-<pool>-<block>-r<replicate>-mt<min_tokens>`. It contains three things.
 
 **1. A configuration card:** one JSON file with the fixed values above plus:
 - the GPU model and driver;

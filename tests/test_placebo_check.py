@@ -71,9 +71,14 @@ def test_finish_and_summary(pc, tmp_path, monkeypatch):
     pc.main(["finish", str(d)])
     card = json.loads((d / "card.json").read_text())
     assert card["status"] == "complete" and card["machine"]["gpu"] == "TEST"
+    assert card["block"] == "B01" and len(card["block_games_sha256"]) == 64 and len(card["pools_file_sha256"]) == 64
+    rows = (d / "per_unit.csv").read_text(encoding="utf-8").splitlines()
+    assert rows[0] == "unit,task,arm,seed,solved,steps,empty_retries,invalid_no_action_tag,invalid_actions,memory_tokens"
+    assert len(rows) == 61
     s = pc.summarise(recs)
     assert s["games_with_all_arms"] == 20
     assert s["placebo-none"] == {"wins": 19, "losses": 0, "difference": 0.95}
+    assert s["none"]["totals"]["steps"] == 200 and s["none"]["totals"]["empty_retries"] == 40
     assert s["none"]["empty_retries_per_step"] == 0.2 and s["placebo"]["empty_retries_per_step"] == 0.0
 
 
