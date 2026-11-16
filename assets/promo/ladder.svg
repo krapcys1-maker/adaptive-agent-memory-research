@@ -1,0 +1,45 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='760' height='440' viewBox='0 0 760 440' role='img' aria-labelledby='title desc' font-family='Segoe UI, Helvetica, Arial, sans-serif'>
+  <title id='title'>The experience-memory ladder</title>
+  <desc id='desc'>Rungs from 0 (no memory) to 5 (retrieval by the current state at every step), then one improvement per rung. Each rung is compared on the same tasks, model and budget with the rung below, with no memory and with a random bank of the same amount of text.</desc>
+  <rect x='0' y='0' width='760' height='440' fill='#ffffff'/>
+  <text x='24' y='30' font-size='17' font-weight='bold' fill='#1f2328'>Add one thing per rung. Measure it against controls.</text>
+  <line x1='40' y1='48' x2='40' y2='428' stroke='#57606a' stroke-width='4' stroke-linecap='round'/>
+  <line x1='480' y1='48' x2='480' y2='428' stroke='#57606a' stroke-width='4' stroke-linecap='round'/>
+  <rect x='40' y='56' width='440' height='40' rx='6' fill='#ffffff' stroke='#57606a' stroke-width='1.5' stroke-dasharray='6 4'/>
+  <text x='52' y='82' font-size='15' font-weight='bold' fill='#0969da'>6+</text>
+  <text x='96' y='82' font-size='14' fill='#1f2328'>one improvement per rung, chosen from results</text>
+  <rect x='40' y='110' width='440' height='40' rx='6' fill='#ddf4ff' stroke='#54aeff' stroke-width='1.5'/>
+  <text x='58' y='136' font-size='15' font-weight='bold' fill='#0969da'>5</text>
+  <text x='96' y='136' font-size='14' fill='#1f2328'>retrieval by the current state, every step</text>
+  <rect x='40' y='164' width='440' height='40' rx='6' fill='#ddf4ff' stroke='#54aeff' stroke-width='1.5'/>
+  <text x='58' y='190' font-size='15' font-weight='bold' fill='#0969da'>4</text>
+  <text x='96' y='190' font-size='14' fill='#1f2328'>retrieval by task description, once at start</text>
+  <rect x='40' y='218' width='440' height='40' rx='6' fill='#f6f8fa' stroke='#d0d7de' stroke-width='1.5'/>
+  <text x='58' y='244' font-size='15' font-weight='bold' fill='#0969da'>3</text>
+  <text x='96' y='244' font-size='14' fill='#1f2328'>random bank entries of the same task type</text>
+  <rect x='40' y='272' width='440' height='40' rx='6' fill='#f6f8fa' stroke='#d0d7de' stroke-width='1.5'/>
+  <text x='58' y='298' font-size='15' font-weight='bold' fill='#0969da'>2</text>
+  <text x='96' y='298' font-size='14' fill='#1f2328'>random bank entries, every step</text>
+  <rect x='40' y='326' width='440' height='40' rx='6' fill='#f6f8fa' stroke='#d0d7de' stroke-width='1.5'/>
+  <text x='58' y='352' font-size='15' font-weight='bold' fill='#0969da'>1</text>
+  <text x='96' y='352' font-size='14' fill='#1f2328'>fixed expert examples per task type</text>
+  <rect x='40' y='380' width='440' height='40' rx='6' fill='#f6f8fa' stroke='#d0d7de' stroke-width='1.5'/>
+  <text x='58' y='406' font-size='15' font-weight='bold' fill='#0969da'>0</text>
+  <text x='96' y='406' font-size='14' fill='#1f2328'>no memory, 3 seeds: baseline and noise floor</text>
+  <rect x='504' y='56' width='232' height='364' rx='8' fill='#fff8c5' stroke='#d4a72c' stroke-width='1.5'/>
+  <text x='520' y='82' font-size='14' font-weight='bold' fill='#1f2328'>Each rung is compared with</text>
+  <text x='520' y='108' font-size='13' fill='#1f2328'>&#8226; the rung below</text>
+  <text x='520' y='130' font-size='13' fill='#1f2328'>&#8226; no memory</text>
+  <text x='520' y='152' font-size='13' fill='#1f2328'>&#8226; a random bank with the</text>
+  <text x='532' y='170' font-size='13' fill='#1f2328'>same amount of text</text>
+  <line x1='520' y1='190' x2='720' y2='190' stroke='#d4a72c' stroke-width='1'/>
+  <text x='520' y='214' font-size='14' font-weight='bold' fill='#1f2328'>Rules</text>
+  <text x='520' y='238' font-size='13' fill='#1f2328'>&#8226; same tasks, model, budget</text>
+  <text x='520' y='260' font-size='13' fill='#1f2328'>&#8226; every gained or lost task</text>
+  <text x='532' y='278' font-size='13' fill='#1f2328'>read and explained</text>
+  <text x='520' y='300' font-size='13' fill='#1f2328'>&#8226; decision rules written</text>
+  <text x='532' y='318' font-size='13' fill='#1f2328'>before each run</text>
+  <text x='520' y='340' font-size='13' fill='#1f2328'>&#8226; raw runs frozen by SHA-256</text>
+  <text x='520' y='362' font-size='13' fill='#1f2328'>&#8226; valid_unseen kept for one</text>
+  <text x='532' y='380' font-size='13' fill='#1f2328'>final confirmation</text>
+</svg>
