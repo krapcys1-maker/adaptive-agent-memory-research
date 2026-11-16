@@ -1,0 +1,19 @@
+{
+ "program": "ALFWORLD-LADDER-R4-V3",
+ "goal": "Does showing the 4B agent two expert ALFWorld walkthroughs retrieved by goal similarity (ladder rung 4) raise the solve rate on valid_seen games above a token-matched placebo block and above no memory?",
+ "domain": "command-run",
+ "objects": 30,
+ "knowledge_sha256": "c58e9c6d574bc3f248d4f044411a8f675ea0b385810c68d27cc204b0a1259a52",
+ "integrity_problems": [],
+ "raw": [
+  {
+   "run": "run:16b37e41f3abc9ba",
+   "raw_sha256": "eae3561b32038aaeb0fca5febaea43d03e4db482f45acbea026538b37328e867",
+   "records": 300,
+   "location": "private/autolab/ALFWORLD-LADDER-R4-V3/raw/c1/raw.jsonl"
+  }
+ ],
+ "generated_by": "kordynator autolab (eksport)",
+ "exported_at": "2026-11-16T18:26:59.461467+00:00",
+ "note": "Każdy obiekt ma sha256 z kanonicznego JSON (rodzaj, program, treść, rodzice); sprawdzenie: python verify_provenance.py knowledge.jsonl"
+}
