@@ -1,0 +1,67 @@
+{
+ "task": "autolab ALFWORLD-LADDER-R4-V3",
+ "published": [
+  {
+   "path": "README.md",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v3/README.md",
+   "sha256": "53b0ba80186f1a2e407731180b11245cea1e2839d19313420694775ad366f10e",
+   "sha256_source": "53b0ba80186f1a2e407731180b11245cea1e2839d19313420694775ad366f10e",
+   "bytes": 4345,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "knowledge.jsonl",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v3/knowledge.jsonl",
+   "sha256": "c58e9c6d574bc3f248d4f044411a8f675ea0b385810c68d27cc204b0a1259a52",
+   "sha256_source": "c58e9c6d574bc3f248d4f044411a8f675ea0b385810c68d27cc204b0a1259a52",
+   "bytes": 89892,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "PROVENANCE.json",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v3/PROVENANCE.json",
+   "sha256": "4b9021fbc4f3bae613dec8b3d6ef6312d06cc6a65bdc67393e791e3b1a2ecee1",
+   "sha256_source": "4b9021fbc4f3bae613dec8b3d6ef6312d06cc6a65bdc67393e791e3b1a2ecee1",
+   "bytes": 914,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "verify_provenance.py",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v3/verify_provenance.py",
+   "sha256": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "sha256_source": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "bytes": 1500,
+   "edits": [
+    "none"
+   ]
+  }
+ ],
+ "private": [
+  {
+   "to": "private/autolab/ALFWORLD-LADDER-R4-V3/final",
+   "files": 4,
+   "moved": false,
+   "what": "pakiet final (rejestr, pochodzenie)"
+  },
+  {
+   "to": "private/autolab/ALFWORLD-LADDER-R4-V3/raw/c1",
+   "files": 6,
+   "moved": false,
+   "what": "surowe dane przebiegu c1"
+  }
+ ],
+ "paths_are_relative": true,
+ "protected_check": {
+  "result": "withheld",
+  "withheld": [
+   "pakiet final (rejestr, pochodzenie)",
+   "surowe dane przebiegu c1"
+  ]
+ }
+}
