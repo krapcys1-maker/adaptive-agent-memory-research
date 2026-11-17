@@ -89,3 +89,11 @@ def test_agent_min_tokens_switch(monkeypatch):
     assert agent.CFG["min_tokens"] == 0
     monkeypatch.delenv("LADDER_MIN_TOKENS")
     assert load("ladder_agent_mt8", "agent.py").CFG["min_tokens"] == 8
+
+
+def test_prepare_with_mismatched_arm(pc, tmp_path):
+    pc.main(["prepare", "--block", "B02", "--with-mismatched"])
+    d = tmp_path / "placebo-v4-B02-r1-mt8-mis"
+    batch = [json.loads(l) for l in (d / "batch.jsonl").read_text().splitlines()]
+    assert len(batch) == 80 and "mismatched_type" in {b["arm"] for b in batch}
+    assert json.loads((d / "card.json").read_text())["arms"][-1] == "mismatched_type"

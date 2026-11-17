@@ -61,13 +61,16 @@ def cmd_prepare(a) -> None:
     games = pools[a.pool]["blocks"][a.block]
     if any(not g.startswith("train/") for g in games):
         sys.exit("refusing: a block game is outside train")
+    arms = ARMS + (["mismatched_type"] if a.with_mismatched else [])
     cid, d = cell_dir(a.pool, a.block, a.replicate, a.min_tokens)
+    if a.with_mismatched:
+        cid, d = cid + "-mis", d + "-mis"
     if os.path.exists(os.path.join(d, "records.jsonl")):
         sys.exit(f"{d} already has records; use a new replicate number")
     os.makedirs(d, exist_ok=True)
     with open(os.path.join(d, "batch.jsonl"), "w", encoding="utf-8", newline="\n") as f:
         for g in games:
-            for arm in ARMS:  # all arms of a game side by side: they share machine state and load
+            for arm in arms:  # all arms of a game side by side: they share machine state and load
                 f.write(json.dumps({"unit": f"{cid}~{g}", "task": g, "arm": arm, "seed": a.replicate}) + "\n")
     try:
         commit = subprocess.run(["git", "-C", REPO, "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
@@ -77,7 +80,7 @@ def cmd_prepare(a) -> None:
         "cell_id": cid, "pool": a.pool, "block": a.block, "replicate": a.replicate, "games": games,
         "pool_games_sha256": pools[a.pool]["games_sha256"],
         "block_games_sha256": hashlib.sha256(json.dumps(sorted(games)).encode()).hexdigest(),
-        "pools_file_sha256": sha_file(POOLS), "arms": ARMS,
+        "pools_file_sha256": sha_file(POOLS), "arms": arms,
         "fixed": {"model": "Qwen/Qwen3-4B-Instruct-2507-FP8", "temperature": 0.7, "max_tokens": 2048,
                   "min_tokens": a.min_tokens, "max_steps": 50, "history_length": 50, "k": 2,
                   "sha256": {k: sha_file(p) for k, p in FIXED_FILES.items()}, "harness_commit": commit},
@@ -86,7 +89,7 @@ def cmd_prepare(a) -> None:
         "started_at": None, "finished_at": None, "status": "prepared", "notes": a.notes or "",
     }
     json.dump(card, open(os.path.join(d, "card.json"), "w", encoding="utf-8", newline="\n"), indent=1)
-    print(f"prepared {cid}: {len(games)} games x {len(ARMS)} arms -> {d}")
+    print(f"prepared {cid}: {len(games)} games x {len(arms)} arms -> {d}")
 
 
 def load_card(d: str) -> dict:
@@ -174,9 +177,10 @@ def summarise(recs: list) -> dict:
     by = defaultdict(dict)
     for r in recs:
         by[r["unit"]][r["arm"]] = r
-    full = [u for u, v in by.items() if all(a in v for a in ARMS)]
+    arms = ARMS + (["mismatched_type"] if any("mismatched_type" in v for v in by.values()) else [])
+    full = [u for u, v in by.items() if all(a in v for a in arms)]
     out = {"games_with_all_arms": len(full)}
-    for arm in ARMS:
+    for arm in arms:
         rs = [by[u][arm] for u in full]
         steps = sum(r["metrics"]["steps"] for r in rs) or 1
         out[arm] = {"episodes": len(rs), "solved": sum(bool(r["solved"]) for r in rs),
@@ -187,7 +191,10 @@ def summarise(recs: list) -> dict:
                     "untagged_not_truncated_per_step": round(
                         sum(r["metrics"].get("untagged_not_truncated", 0) for r in rs) / steps, 3),
                     "memory_tokens_mean": round(sum(r["metrics"]["memory_tokens"] for r in rs) / max(1, len(rs)))}
-    for a, b in (("placebo", "none"), ("retrieved_task", "placebo"), ("retrieved_task", "none")):
+    pairs = [("placebo", "none"), ("retrieved_task", "placebo"), ("retrieved_task", "none")]
+    if "mismatched_type" in arms:
+        pairs += [("mismatched_type", "placebo"), ("retrieved_task", "mismatched_type")]
+    for a, b in pairs:
         g = sum(by[u][a]["solved"] and not by[u][b]["solved"] for u in full)
         l = sum(by[u][b]["solved"] and not by[u][a]["solved"] for u in full)
         out[f"{a}-{b}"] = {"wins": g, "losses": l, "difference": round((g - l) / max(1, len(full)), 3)}
@@ -212,6 +219,8 @@ def main(argv=None) -> None:
     p.add_argument("--min-tokens", type=int, default=8, choices=[0, 8])
     p.add_argument("--kernel", default=None, help="quantisation kernel reported in the vLLM log")
     p.add_argument("--notes", default=None)
+    p.add_argument("--with-mismatched", action="store_true",
+                   help="add the mismatched_type arm (walkthroughs of other task types, length-matched)")
     p.set_defaults(f=cmd_prepare)
     for name, f in (("run", cmd_run), ("finish", cmd_finish), ("summary", cmd_summary)):
         q = sub.add_parser(name)
