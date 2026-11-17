@@ -41,6 +41,9 @@ CFG = {
     # first token, p ~ 0.4-0.5) in arms none and retrieved_task but almost never in placebo, so the arms
     # differed in empty answers (0.74 / 0.58 / 0.001 per step). Same for every arm.
     "min_tokens": int(os.environ.get("LADDER_MIN_TOKENS", "8")),
+    # V5: the same one-line format reminder at the very end of every arm's prompt (none included), after the
+    # memory block. Off reproduces V3/V4 prompts exactly.
+    "format_reminder": os.environ.get("LADDER_FORMAT_REMINDER", "1") == "1",
     "max_steps": 50,
     "history_length": 50,
     "k": 2,
@@ -73,6 +76,7 @@ Now it's your turn to take an action.
 You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
 Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
 """
+FORMAT_REMINDER = "\nReminder: end your answer with exactly one admissible action inside <action> </action> tags.\n"
 ARMS = ("none", "placebo", "random_same_type", "retrieved_task", "mismatched_type")
 STOP = set("a an the some put in on to and of with it then your is".split())
 
@@ -159,22 +163,30 @@ def similarity_metrics(goal: str, sources: list, bank: list) -> dict:
             "memory_similarity": round(sum(shown) / len(shown), 4) if shown else None}
 
 
-def mismatched_items(task: str, seed: int, bank: list, target: int, tries: int = 400):
-    """Two real walkthroughs of OTHER task types than the unit (real content, wrong task), chosen among seeded
-    random pairs so that the whole block's token count is closest to `target` (the retrieved_task block of the
-    same task and seed). Item token counts are cached per bank entry."""
-    pool = [b for b in bank if b["type"] != ttype_of(task)]
-    for b in pool:
+def mismatched_items(task: str, goal: str, seed: int, bank: list, target: int, tol: float = 0.03):
+    """Two real walkthroughs of OTHER task types than the unit: real walkthrough content, wrong and unrelated task.
+    Candidates are the other-type bank entries ordered by goal similarity (lowest first). Search starts in the
+    least similar quarter (at least 20 entries); every pair is scored by its estimated block token count against
+    `target` (the retrieved_task block of the same task and seed). If no pair is within `tol` (3%), the pool widens
+    to the least similar half, then to all other-type entries. Ties are broken by a sha256 hash of (task, seed,
+    pair), so the choice is deterministic. Item token counts are cached per bank entry."""
+    other = sorted((b for b in bank if b["type"] != ttype_of(task)), key=lambda b: (jaccard(goal, b["goal"]), b["task"]))
+    for b in other:
         if b["task"] not in _ITEM_TOKENS:
             _ITEM_TOKENS[b["task"]] = count_tokens(render(b))
-    rng = random.Random(_h(task, seed, "mis"))
     overhead = count_tokens(wrap(["x", "x"])) - 2 * count_tokens("x")
     best = None
-    for _ in range(tries):
-        a, b = rng.sample(pool, 2)
-        est = _ITEM_TOKENS[a["task"]] + _ITEM_TOKENS[b["task"]] + overhead
-        if best is None or abs(est - target) < best[0]:
-            best = (abs(est - target), a, b)
+    for size in (max(20, len(other) // 4), max(20, len(other) // 2), len(other)):
+        pool = other[:size]
+        for i in range(len(pool)):
+            for j in range(i + 1, len(pool)):
+                a, b = pool[i], pool[j]
+                diff = abs(_ITEM_TOKENS[a["task"]] + _ITEM_TOKENS[b["task"]] + overhead - target)
+                key = (diff, _h(task, seed, "mis", a["task"], b["task"]))
+                if best is None or key < best[0]:
+                    best = (key, a, b)
+        if best[0][0] <= tol * target:
+            break
     picks = [best[1], best[2]]
     return wrap([render(x) for x in picks]), [x["task"] for x in picks]
 
@@ -196,7 +208,7 @@ def choose_memory(task: str, goal: str, arm: str, seed: int, bank: list):
         if arm == "retrieved_task":
             return wrap([render(b) for b in picks]), [b["task"] for b in picks]
         if arm == "mismatched_type":
-            return mismatched_items(task, seed, bank, count_tokens(wrap([render(b) for b in picks])))
+            return mismatched_items(task, goal, seed, bank, count_tokens(wrap([render(b) for b in picks])))
         # placebo: token-matched to the retrieved_task block of the same (task, seed); no source is shown
         n = count_tokens(wrap([render(b) for b in picks]))
         return wrap(placebo_items(n)), []
@@ -271,6 +283,8 @@ def episode(job: dict) -> dict:
         goal = goal_of(obs)
         block, sources = choose_memory(task, goal, arm, seed, BANK)
         suffix = ACTION_INSTR if block is None else MEMORY_WRAPPER.format(retrieved_exp=block)
+        if CFG["format_reminder"]:
+            suffix += FORMAT_REMINDER
         mem_tokens = 0 if block is None else count_tokens(MEMORY_WRAPPER.format(retrieved_exp=block))
         hist, tokens, invalid, won, cur = [], 0, 0, False, obs0
         no_tag, bad_samples, empty_retries = 0, [], 0
@@ -316,7 +330,7 @@ def episode(job: dict) -> dict:
                             **similarity_metrics(goal, sources, BANK),
                             "invalid_samples": bad_samples, "empty_retries": empty_retries, "seconds": round(time.time() - t0, 1),
                             "temperature": CFG["temperature"], "max_tokens": CFG["max_tokens"],
-                            "min_tokens": CFG["min_tokens"], "max_steps": CFG["max_steps"], "model": CFG["model"]},
+                            "min_tokens": CFG["min_tokens"], "format_reminder": CFG["format_reminder"], "max_steps": CFG["max_steps"], "model": CFG["model"]},
                 "evidence": (f"goal: {goal} | won: {won} | last: " +
                              " ; ".join(f"{a} -> {' '.join(o.split())[:60]}" for o, a in
                                         list(zip([h[0] for h in hist[1:]] + [cur], [h[1] for h in hist]))[-4:]))[:500]}

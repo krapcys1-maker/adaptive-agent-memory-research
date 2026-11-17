@@ -139,3 +139,22 @@ def test_similarity_metrics(bank):
     m = agent.similarity_metrics(goal, src, bank)
     assert m["top1_similarity"] > 0 and m["memory_similarity"] == m["top1_similarity"]
     assert agent.similarity_metrics(goal, [], bank)["memory_similarity"] is None
+
+
+def test_mismatched_type_comes_from_the_least_similar_quarter(bank):
+    bank = bank + [entry(f"train/pick_two_obj_and_place-Pen-None-Desk-{i}/trial_1", "put two pen in desk", 3 + i % 5)
+                   for i in range(30)]
+    goal = "heat some egg and put it in fridge"
+    _, src = agent.choose_memory(TASK, goal, "mismatched_type", 1, bank)
+    other = sorted((b for b in bank if b["type"] != "pick_heat_then_place_in_recep"),
+                   key=lambda b: (agent.jaccard(goal, b["goal"]), b["task"]))
+    # the least similar quarter unless no pair there is within 3% of the memory block; then wider
+    assert all(t in {b["task"] for b in other} for t in src)
+    mem, _ = agent.choose_memory(TASK, goal, "retrieved_task", 1, bank)
+    blk, _ = agent.choose_memory(TASK, goal, "mismatched_type", 1, bank)
+    assert abs(agent.count_tokens(blk) - agent.count_tokens(mem)) <= 0.05 * agent.count_tokens(mem) + 4
+
+
+def test_format_reminder_is_on_by_default_and_identical_text():
+    assert agent.CFG["format_reminder"] is True
+    assert "<action>" in agent.FORMAT_REMINDER and agent.FORMAT_REMINDER.startswith(chr(10))

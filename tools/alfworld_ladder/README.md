@@ -14,10 +14,10 @@ job. The format is the batch contract of the autonomous lab (`solved`, `memory_s
 | `placebo` | AdaMEM's retrieval wrapper with neutral filler (`instrument/placebo.txt`), token-matched to the `retrieved_task` block of the same game and seed |
 | `random_same_type` | 2 random bank walkthroughs of the same task type (rung 3, the TRAD "Random" control) |
 | `retrieved_task` | the 2 bank walkthroughs whose goal is most similar to this game's goal (rung 4) |
-| `mismatched_type` | 2 bank walkthroughs of OTHER task types, chosen so the block is about as long as the `retrieved_task` block: real walkthrough content, wrong task. Separates "any walkthrough" from "the right walkthrough". `placebo_check.py prepare --with-mismatched` adds it to a cell |
+| `mismatched_type` | 2 bank walkthroughs of OTHER task types from the least goal-similar quarter, chosen so the block is about as long as the `retrieved_task` block: real walkthrough content, wrong task. Separates "any walkthrough" from "the right walkthrough". `placebo_check.py prepare --with-mismatched` adds it to a cell |
 
 Bank, families and the separation from the test games: `instrument/memory_build.md`.
-Prompts: `instrument/prompt_template.txt`.
+Prompts: `instrument/prompt_template.txt`. Since V5 every arm ends with the same one-line format reminder (`LADDER_FORMAT_REMINDER=0` turns it off and reproduces the V3/V4 prompts).
 
 ## Placebo check: a volunteer cell (no coding needed)
 
