@@ -1,25 +1,52 @@
 # adaptive-agent-memory-research
 
-**Experience memory for LLM agents that act — built up from the simplest thing that works, one measured step at a time.**
+**Experience memory for LLM agents that act — built up from the simplest thing that works, one measured step at a time, with controls at every step.**
+
+[![CI](https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml/badge.svg)](https://github.com/krapcys1-maker/adaptive-agent-memory-research/actions/workflows/ci.yml)
+[![Code: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-blue)](LICENSE)
+[![Docs and data: CC BY 4.0](https://img.shields.io/badge/docs%20%26%20data-CC%20BY%204.0-lightgrey)](LICENSES/CC-BY-4.0.txt)
+[![GPU cell: 12 GB, about 2 h](https://img.shields.io/badge/GPU%20cell-12%20GB%2C%20~2%20h-orange)](docs/research-map/VOLUNTEER_COMPUTE.md)
+[![Good first issues](https://img.shields.io/github/issues/krapcys1-maker/adaptive-agent-memory-research/good%20first%20issue?label=good%20first%20issues)](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue)
 
 An agent that does tasks (in a home simulator, a science lab simulator, later with real tools) should get better from its own experience without retraining the model. This project asks a narrow question first and earns every next step with a measurement:
 
 > Does showing an agent the *right* pieces of its earlier successful runs, at the *right* moment, make it solve more tasks — and is it the match that helps, or just showing any example?
 
-**Status (15 November 2026): new direction, nothing measured yet in it.** The repository changed course after an external literature and code review. Earlier research lines are kept, with their results and negative findings, in the [archive index](docs/ARCHIVE_INDEX.md). The previous README is preserved unchanged at [README at commit 34936e9](https://github.com/krapcys1-maker/adaptive-agent-memory-research/blob/34936e9/README.md).
+## The finding so far: check the controls first
 
----
+In the published ALFWorld run with a local 4B model, a token-matched **placebo** block — meaningless text of the same length, no task content — raised the solve rate by 13 points on its own. It also suppressed an empty-answer decoding artefact. So much of what would have looked like a memory gain was not caused by memory content.
 
-## Why this direction
+What this does and does not say: it is one model on one benchmark, and it does not show that memory never helps. It shows that comparing "with memory" against "no memory" is not enough, which is why every rung below is compared with controls of the same length.
 
-A review of recent work, read in full where it shaped a decision ([research map](docs/research-map/README.md)), points the same way from several sides:
+- Published run, per-task table and caveats: [data/lab/autolab-alfworld-ladder-r4-v3/README.md](data/lab/autolab-alfworld-ladder-r4-v3/README.md) ([per_unit.csv](data/lab/autolab-alfworld-ladder-r4-v3/per_unit.csv), [provenance check](data/lab/autolab-alfworld-ladder-r4-v3/verify_provenance.py))
+- The preregistered placebo study K1 (specification, frozen records, report): [data/lab/aamr-k1/README.md](data/lab/aamr-k1/README.md), [report](data/lab/aamr-k1/report/K1_RAPORT.md)
+- **Does a meaningless block help *your* model too?** That is the [placebo check](docs/challenges/placebo-check.md). Accepted submissions go into the [public results table](docs/challenges/RESULTS.md).
 
-- **A bank of earlier successful runs, retrieved while the agent acts, is the best-supported simple mechanism** for agents that act. In AdaMEM (ICML 2026, 4B model, ALFWorld seen tasks), the full method reaches 54.0% against 45.2% without memory in the main table. In its ablation, retrieval of steps by the current state reaches 59.3%, synthesis on top 65.5%, and synthesis *without* memory 34.8%. Which retrieval key and unit work best is open: see [DIRECTIONS.md](docs/research-map/DIRECTIONS.md), Q2 and Q6. One study, one model — a reason to test, not a promise.
-- **Simple baselines are hard to beat.** Plain retrieval over raw history beats elaborate memory systems on conversation benchmarks, and turning on every component at once is consistently worse than the best subset.
-- **Memory can hurt.** Repeatedly rewriting memory with an LLM degrades it across seven frameworks; similar-but-wrong stored experiences lower precision; gains shrink with stronger models.
-- **Experience memory is barely deployed.** Products mostly store user facts or note files. There is room to find out, properly, what actually helps.
+## Help in five minutes
+
+| You have | Do this |
+|---|---|
+| 5 minutes, no install | Open the [per-task table](data/lab/autolab-alfworld-ladder-r4-v3/per_unit.csv) of the published run next to its [README](data/lab/autolab-alfworld-ladder-r4-v3/README.md). If a number, a link or a claim does not hold up, open an issue — a reported problem in a published result is a real contribution. |
+| A laptop | Clone and run the full local check (below). If it fails on your machine, that is a defect worth reporting. |
+| An evening, no GPU | Pick an issue labelled [`good first issue`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/good%20first%20issue) or [`no-gpu-needed`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/no-gpu-needed): analysis, tests, docs, paper summaries. |
+| A GPU with about 12 GB | Run a cell (about 2 hours) or the [placebo check](docs/challenges/placebo-check.md): see [VOLUNTEER_COMPUTE.md](docs/research-map/VOLUNTEER_COMPUTE.md), issues labelled [`gpu-volunteer`](https://github.com/krapcys1-maker/adaptive-agent-memory-research/labels/gpu-volunteer), and the [lend-a-GPU issue template](.github/ISSUE_TEMPLATE/07-lend-a-gpu.md). |
+
+```bash
+git clone https://github.com/krapcys1-maker/adaptive-agent-memory-research
+cd adaptive-agent-memory-research
+python -m pip install -r requirements-dev.txt   # one-time, about 230 MB
+python tasks.py check                           # every CI gate, about 5-6 minutes
+```
+
+Details, faster targets and the pull-request flow: [CONTRIBUTING.md](CONTRIBUTING.md) and the [first-contribution walkthrough](docs/00-project/first-contribution-walkthrough.md). How credit works (including co-authorship) is written down in [AUTHORSHIP.md](AUTHORSHIP.md); to cite the project, use [CITATION.cff](CITATION.cff). Pull requests are reviewed by the maintainer, [@krapcys1-maker](https://github.com/krapcys1-maker).
+
+## Status (16 November 2026)
+
+The repository changed course on 15 November 2026 after an external literature and code review. The ladder below is the current direction; the published run and the K1 study above are its first measurements. Earlier research lines are kept, with their results and negative findings, in the [archive index](docs/ARCHIVE_INDEX.md). The previous README is preserved unchanged at [README at commit 34936e9](https://github.com/krapcys1-maker/adaptive-agent-memory-research/blob/34936e9/README.md).
 
 ## How we work: the ladder
+
+![The ladder: rungs 0 to 5 and beyond, each compared with the rung below, with no memory and with a random bank of the same amount of text](assets/promo/ladder.svg)
 
 Each rung adds **one** thing and is compared, on the same tasks, model and budget, with the rung below, with no memory, and with a *random-bank* control (same amount of retrieved text, chosen at random). After every rung we read every task that was gained or lost and write down **why**, before choosing the next rung.
 
@@ -35,6 +62,15 @@ Each rung adds **one** thing and is compared, on the same tasks, model and budge
 
 Rules that keep it honest: development on a frozen 60-task subset of ALFWorld `valid_seen`; **ALFWorld `valid_unseen` stays untouched until a single confirmation at the end**; decision rules written down before each run; raw runs frozen by SHA-256; no shortcut that could move the result (for example, no cutting the step limit). Details: [ROADMAP.md](ROADMAP.md).
 
+## Why this direction
+
+A review of recent work, read in full where it shaped a decision ([research map](docs/research-map/README.md)), points the same way from several sides:
+
+- **A bank of earlier successful runs, retrieved while the agent acts, is the best-supported simple mechanism** for agents that act. In AdaMEM (ICML 2026, 4B model, ALFWorld seen tasks), the full method reaches 54.0% against 45.2% without memory in the main table. In its ablation, retrieval of steps by the current state reaches 59.3%, synthesis on top 65.5%, and synthesis *without* memory 34.8%. Which retrieval key and unit work best is open: see [DIRECTIONS.md](docs/research-map/DIRECTIONS.md), Q2 and Q6. One study, one model — a reason to test, not a promise.
+- **Simple baselines are hard to beat.** Plain retrieval over raw history beats elaborate memory systems on conversation benchmarks, and turning on every component at once is consistently worse than the best subset.
+- **Memory can hurt.** Repeatedly rewriting memory with an LLM degrades it across seven frameworks; similar-but-wrong stored experiences lower precision; gains shrink with stronger models.
+- **Experience memory is barely deployed.** Products mostly store user facts or note files. There is room to find out, properly, what actually helps.
+
 ## Benchmarks
 
 - **ALFWorld** (MIT; train 3,553 / valid_seen 140 / valid_unseen 134 games) — main development and confirmation set. Our local 4B model solved 12 and 14 of 20 feasibility tasks without memory, while AdaMEM reports 45.2% for the same model on all 140 seen tasks. Resolving that gap is direction D0/D2.
@@ -48,14 +84,14 @@ Rules that keep it honest: development on a frozen 60-task subset of ALFWorld `v
 - The research is split into small *cells*: two arms on 20 frozen tasks with one seed, about 2 hours on a 12 GB GPU, run on your own machine. Many people each running a cell is what lets several directions be tested in parallel: several hundred GPU hours become days of calendar time instead of weeks.
 - How it works and what to submit: [docs/research-map/VOLUNTEER_COMPUTE.md](docs/research-map/VOLUNTEER_COMPUTE.md). Possible directions: [docs/research-map/DIRECTIONS.md](docs/research-map/DIRECTIONS.md).
 
-**Without a GPU.** You do not need a GPU for most of the rest. Good first tasks will be listed under the milestone **Experience memory: ladder v1** in the issues: a random-bank control arm, a per-task gain/loss table and viewer, the polluted-bank overlay, summaries of papers we have only read as abstracts, a ScienceWorld port. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [first-contribution walkthrough](docs/00-project/first-contribution-walkthrough.md).
+**Without a GPU.** You do not need a GPU for most of the rest: the milestone **Experience memory: ladder v1** in the issues holds CPU tasks (control arms, per-task gain/loss analysis and viewers, overlays, paper summaries, a ScienceWorld port). Read [CONTRIBUTING.md](CONTRIBUTING.md) and the broader guide [Join the research](docs/00-project/join-the-research.md).
 
 ## What stays from before
 
 - **Method tools** we keep using: decision-rule simulation before a run (`scripts/rule_characteristics.py`), raw-run freezing and errata instead of edits, the experiment registry, the export tool with a protected-data check.
-- **The project-memory engine** (`tools/project_memory/`, an append-only log with an MCP server) still works and records this project's own decisions. Setup is in the [previous README](https://github.com/krapcys1-maker/adaptive-agent-memory-research/blob/34936e9/README.md#give-claude-code-persistent-project-memory-in-two-minutes).
+- **The project-memory engine** (`tools/project_memory/`, an append-only log with an MCP server) still works and records this project's own decisions. Setup is in the [previous README](https://github.com/krapcys1-maker/adaptive-agent-memory-research/blob/34936e9/README.md#give-claude-code-persistent-project-memory-in-two-minutes); orientation for working in this repository is in [START_HERE.md](START_HERE.md).
 - **All earlier research lines and their results, including the negative ones** — see the [archive index](docs/ARCHIVE_INDEX.md).
 
 ## License
 
-Code under Apache-2.0, documentation and data under CC BY 4.0, as before (see `LICENSE`, `LICENSES/`, `REUSE.toml`). Third-party code will carry its own licence and attribution.
+Code under Apache-2.0, documentation and data under CC BY 4.0, as before (see [LICENSE](LICENSE), `LICENSES/`, [REUSE.toml](REUSE.toml) and [NOTICE](NOTICE)). Third-party code will carry its own licence and attribution. All participants are expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md).
