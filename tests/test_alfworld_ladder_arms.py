@@ -87,4 +87,34 @@ def test_empty_answers_are_retried_and_counted(monkeypatch):
 
     body = {"choices": [{"message": {"content": ""}}], "usage": {"prompt_tokens": 1, "completion_tokens": 0}}
     monkeypatch.setattr(agent.urllib.request, "urlopen", lambda *a, **k: R(_json.dumps(body).encode()))
-    assert agent.chat("prompt", 1) == ("", 0, 4)
+    assert agent.chat("prompt", 1) == ("", 0, 4, None)
+
+
+def test_chat_returns_finish_reason(monkeypatch):
+    import io
+    import json as _json
+
+    class R(io.BytesIO):
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+    body = {"choices": [{"message": {"content": "<action>look</action>"}, "finish_reason": "length"}],
+            "usage": {"prompt_tokens": 3, "completion_tokens": 2}}
+    monkeypatch.setattr(agent.urllib.request, "urlopen", lambda *a, **k: R(_json.dumps(body).encode()))
+    assert agent.chat("prompt", 1) == ("<action>look</action>", 5, 0, "length")
+
+
+@pytest.mark.parametrize("text,finish,expected", [
+    ("<think>x</think><action>go to shelf 1</action>", "stop", (0, 0)),   # well formed
+    ("<action>fly away</action>", "stop", (0, 0)),                         # tagged but not admissible: not a format error
+    ("reasoning without any tag", "stop", (0, 1)),                         # missing tag
+    ("</action>\ntake plate 1\n</action>", "stop", (0, 1)),                # malformed: closing tag used as opening
+    ("long deliberation cut in the middle of a sente", "length", (1, 0)),  # truncated: behaviour, not format
+    ("", None, (0, 1)),                                                    # empty after all retries
+])
+def test_classify_answer(text, finish, expected):
+    c = agent.classify_answer(text, finish)
+    assert (c["truncated"], c["untagged_not_truncated"]) == expected

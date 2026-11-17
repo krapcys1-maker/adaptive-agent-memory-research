@@ -73,7 +73,8 @@ def test_finish_and_summary(pc, tmp_path, monkeypatch):
     assert card["status"] == "complete" and card["machine"]["gpu"] == "TEST"
     assert card["block"] == "B01" and len(card["block_games_sha256"]) == 64 and len(card["pools_file_sha256"]) == 64
     rows = (d / "per_unit.csv").read_text(encoding="utf-8").splitlines()
-    assert rows[0] == "unit,task,arm,seed,solved,steps,empty_retries,invalid_no_action_tag,invalid_actions,memory_tokens"
+    assert rows[0] == ("unit,task,arm,seed,solved,steps,empty_retries,invalid_no_action_tag,invalid_actions,"
+                       "memory_tokens,truncated,untagged_not_truncated")
     assert len(rows) == 61
     s = pc.summarise(recs)
     assert s["games_with_all_arms"] == 20

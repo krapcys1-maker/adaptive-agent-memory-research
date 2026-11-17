@@ -170,7 +170,7 @@ class ServerError(RuntimeError):
 
 
 def chat(prompt: str, seed: int) -> tuple:
-    """Returns (text, tokens, empty_retries). Empty answers are retried with a new seed (AdaMEM feasibility
+    """Returns (text, tokens, empty_retries, finish_reason). Empty answers are retried with a new seed (AdaMEM feasibility
     patch) and counted; if every attempt raised (server down, timeout), raises ServerError."""
     body = {"model": CFG["model"], "messages": [{"role": "user", "content": prompt}],
             "temperature": CFG["temperature"], "max_tokens": CFG["max_tokens"],
@@ -184,7 +184,8 @@ def chat(prompt: str, seed: int) -> tuple:
                 j = json.load(r)
             text = j["choices"][0]["message"]["content"] or ""
             if text.strip():
-                return text, j["usage"]["prompt_tokens"] + j["usage"]["completion_tokens"], empty
+                return (text, j["usage"]["prompt_tokens"] + j["usage"]["completion_tokens"], empty,
+                        j["choices"][0].get("finish_reason"))
             empty += 1
             body["seed"] = seed + 7919 * (attempt + 1)
         except Exception as e:
@@ -192,7 +193,17 @@ def chat(prompt: str, seed: int) -> tuple:
             time.sleep(5 * (attempt + 1))
     if empty == 0:
         raise ServerError(f"model server failed 4 times: {last_exc!r}"[:200])
-    return "", 0, empty
+    return "", 0, empty, None
+
+
+def classify_answer(text: str, finish_reason) -> dict:
+    """Process counters for one answer, identical for every arm.
+    truncated: the server stopped at max_tokens (finish_reason == "length"); behaviour, not format.
+    untagged_not_truncated: no complete <action>...</action> pair (missing or malformed tags) in an answer
+    that was NOT truncated; this is the format counter."""
+    truncated = finish_reason == "length"
+    untagged = re.search(r"<action>(.*?)</action>", text, re.S) is None
+    return {"truncated": int(truncated), "untagged_not_truncated": int(untagged and not truncated)}
 
 
 def parse_action(text: str, admissible: list) -> tuple:
@@ -224,6 +235,7 @@ def episode(job: dict) -> dict:
         mem_tokens = 0 if block is None else count_tokens(MEMORY_WRAPPER.format(retrieved_exp=block))
         hist, tokens, invalid, won, cur = [], 0, 0, False, obs0
         no_tag, bad_samples, empty_retries = 0, [], 0
+        truncated, untagged_nt = 0, 0
         limit = float(os.environ.get("LADDER_EPISODE_TIMEOUT", "5400"))
         for step in range(CFG["max_steps"]):
             if time.time() - t0 > limit:
@@ -239,9 +251,12 @@ def episode(job: dict) -> dict:
                 p = TEMPLATE.format(task_description=goal, step_count=len(hist), history_length=len(recent),
                                     action_history=ah, current_step=len(hist) + 1, current_observation=cur,
                                     admissible_actions=adm)
-            text, used, n_empty = chat(p + suffix, _h(job["unit"], arm, seed, step) % (2 ** 31))
+            text, used, n_empty, finish = chat(p + suffix, _h(job["unit"], arm, seed, step) % (2 ** 31))
             tokens += used
             empty_retries += n_empty
+            c = classify_answer(text, finish)
+            truncated += c["truncated"]
+            untagged_nt += c["untagged_not_truncated"]
             action, ok = parse_action(text, info["admissible_commands"])
             invalid += (not ok)
             if not ok:
@@ -258,6 +273,7 @@ def episode(job: dict) -> dict:
                 "actions": [a for _, a in hist],  # full action sequence, for CPU replay checks
                 "metrics": {"memory_tokens": mem_tokens, "tokens": tokens, "steps": len(hist),
                             "invalid_actions": invalid, "invalid_no_action_tag": no_tag,
+                            "truncated": truncated, "untagged_not_truncated": untagged_nt,
                             "invalid_samples": bad_samples, "empty_retries": empty_retries, "seconds": round(time.time() - t0, 1),
                             "temperature": CFG["temperature"], "max_tokens": CFG["max_tokens"],
                             "min_tokens": CFG["min_tokens"], "max_steps": CFG["max_steps"], "model": CFG["model"]},
