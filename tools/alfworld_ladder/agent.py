@@ -73,7 +73,7 @@ Now it's your turn to take an action.
 You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
 Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
 """
-ARMS = ("none", "placebo", "random_same_type", "retrieved_task")
+ARMS = ("none", "placebo", "random_same_type", "retrieved_task", "mismatched_type")
 STOP = set("a an the some put in on to and of with it then your is".split())
 
 
@@ -142,6 +142,29 @@ def placebo_items(n_tokens: int) -> list:
     return prev
 
 
+_ITEM_TOKENS: dict = {}
+
+
+def mismatched_items(task: str, seed: int, bank: list, target: int, tries: int = 400):
+    """Two real walkthroughs of OTHER task types than the unit (real content, wrong task), chosen among seeded
+    random pairs so that the whole block's token count is closest to `target` (the retrieved_task block of the
+    same task and seed). Item token counts are cached per bank entry."""
+    pool = [b for b in bank if b["type"] != ttype_of(task)]
+    for b in pool:
+        if b["task"] not in _ITEM_TOKENS:
+            _ITEM_TOKENS[b["task"]] = count_tokens(render(b))
+    rng = random.Random(_h(task, seed, "mis"))
+    overhead = count_tokens(wrap(["x", "x"])) - 2 * count_tokens("x")
+    best = None
+    for _ in range(tries):
+        a, b = rng.sample(pool, 2)
+        est = _ITEM_TOKENS[a["task"]] + _ITEM_TOKENS[b["task"]] + overhead
+        if best is None or abs(est - target) < best[0]:
+            best = (abs(est - target), a, b)
+    picks = [best[1], best[2]]
+    return wrap([render(x) for x in picks]), [x["task"] for x in picks]
+
+
 def choose_memory(task: str, goal: str, arm: str, seed: int, bank: list):
     k = CFG["k"]
     if arm == "none":
@@ -150,7 +173,7 @@ def choose_memory(task: str, goal: str, arm: str, seed: int, bank: list):
         pool = [b for b in bank if b["type"] == ttype_of(task)]
         picks = random.Random(_h(task, seed, "rst")).sample(pool, k)
         return wrap([render(b) for b in picks]), [b["task"] for b in picks]
-    if arm in ("retrieved_task", "placebo"):
+    if arm in ("retrieved_task", "placebo", "mismatched_type"):
         gw = words(goal)
         rng = random.Random(_h(task, seed, "ret"))
         scored = sorted(bank, key=lambda b: (-len(gw & words(b["goal"])) / max(1, len(gw | words(b["goal"]))),
@@ -158,6 +181,8 @@ def choose_memory(task: str, goal: str, arm: str, seed: int, bank: list):
         picks = scored[:k]
         if arm == "retrieved_task":
             return wrap([render(b) for b in picks]), [b["task"] for b in picks]
+        if arm == "mismatched_type":
+            return mismatched_items(task, seed, bank, count_tokens(wrap([render(b) for b in picks])))
         # placebo: token-matched to the retrieved_task block of the same (task, seed); no source is shown
         n = count_tokens(wrap([render(b) for b in picks]))
         return wrap(placebo_items(n)), []

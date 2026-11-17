@@ -118,3 +118,16 @@ def test_chat_returns_finish_reason(monkeypatch):
 def test_classify_answer(text, finish, expected):
     c = agent.classify_answer(text, finish)
     assert (c["truncated"], c["untagged_not_truncated"]) == expected
+
+
+def test_mismatched_type_is_other_type_length_matched_and_deterministic(bank):
+    bank = bank + [entry(f"train/pick_two_obj_and_place-Pen-None-Desk-{i}/trial_1", "put two pen in desk", 3 + i % 5)
+                   for i in range(12)]
+    goal = "heat some egg and put it in fridge"
+    mem, _ = agent.choose_memory(TASK, goal, "retrieved_task", 0, bank)
+    a = agent.choose_memory(TASK, goal, "mismatched_type", 0, bank)
+    assert a == agent.choose_memory(TASK, goal, "mismatched_type", 0, bank)
+    block, src = a
+    assert len(src) == 2 and not any("pick_heat" in s for s in src)
+    n_mem, n_mis = agent.count_tokens(mem), agent.count_tokens(block)
+    assert abs(n_mis - n_mem) <= 0.15 * n_mem, (n_mem, n_mis)
