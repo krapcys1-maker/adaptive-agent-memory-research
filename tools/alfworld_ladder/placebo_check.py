@@ -154,7 +154,8 @@ def cmd_finish(a) -> None:
         print("missing (first 5):", missing[:5])
 
 
-COUNTERS = ["steps", "empty_retries", "invalid_no_action_tag", "invalid_actions", "memory_tokens"]
+COUNTERS = ["steps", "empty_retries", "invalid_no_action_tag", "invalid_actions", "memory_tokens",
+            "truncated", "untagged_not_truncated"]  # the first five match the lab's per_unit.csv
 
 
 def write_per_unit(recs: list, path: str) -> None:
@@ -182,6 +183,9 @@ def summarise(recs: list) -> dict:
                     "totals": {c: sum((r.get("metrics") or {}).get(c, 0) for r in rs) for c in COUNTERS},
                     "empty_retries_per_step": round(sum(r["metrics"].get("empty_retries", 0) for r in rs) / steps, 3),
                     "untagged_per_step": round(sum(r["metrics"].get("invalid_no_action_tag", 0) for r in rs) / steps, 3),
+                    "truncated_per_step": round(sum(r["metrics"].get("truncated", 0) for r in rs) / steps, 3),
+                    "untagged_not_truncated_per_step": round(
+                        sum(r["metrics"].get("untagged_not_truncated", 0) for r in rs) / steps, 3),
                     "memory_tokens_mean": round(sum(r["metrics"]["memory_tokens"] for r in rs) / max(1, len(rs)))}
     for a, b in (("placebo", "none"), ("retrieved_task", "placebo"), ("retrieved_task", "none")):
         g = sum(by[u][a]["solved"] and not by[u][b]["solved"] for u in full)

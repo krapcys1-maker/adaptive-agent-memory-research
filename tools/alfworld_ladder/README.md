@@ -58,7 +58,9 @@ settings. Paths in both scripts assume the layout of our test machine. Adjust th
 - The placebo block is within a few tokens of the memory block (`analyse_pilot.py` prints the difference).
 - No `memory_sources` family appears in the test units (`families.json`).
 - `valid_unseen` is never used. The agent refuses any task outside `valid_seen` and `train`.
-- Unparsed answers per arm (`metrics.invalid_actions`, `invalid_no_action_tag`). Bank items must use the same
+- Unparsed answers per arm (`metrics.invalid_actions`, `invalid_no_action_tag`). Since November 2026 two more counters
+  split them: `truncated` (the answer hit max_tokens, which is behaviour) and `untagged_not_truncated` (missing or
+  malformed `<action>` tags in a complete answer, which is a format problem). Bank items must use the same
   format as the agent's own history. In our first pilot a `> action` rendering made the memory arm drop the
   `<action>` tags: 7.2 unparsed actions per successful episode against 0.3 for placebo. The history-format
   rendering cut that to 2.5 against 1.5.
