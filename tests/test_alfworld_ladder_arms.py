@@ -131,3 +131,11 @@ def test_mismatched_type_is_other_type_length_matched_and_deterministic(bank):
     assert len(src) == 2 and not any("pick_heat" in s for s in src)
     n_mem, n_mis = agent.count_tokens(mem), agent.count_tokens(block)
     assert abs(n_mis - n_mem) <= 0.15 * n_mem, (n_mem, n_mis)
+
+
+def test_similarity_metrics(bank):
+    goal = "heat some egg and put it in fridge"
+    _, src = agent.choose_memory(TASK, goal, "retrieved_task", 0, bank)
+    m = agent.similarity_metrics(goal, src, bank)
+    assert m["top1_similarity"] > 0 and m["memory_similarity"] == m["top1_similarity"]
+    assert agent.similarity_metrics(goal, [], bank)["memory_similarity"] is None

@@ -145,6 +145,20 @@ def placebo_items(n_tokens: int) -> list:
 _ITEM_TOKENS: dict = {}
 
 
+def jaccard(goal: str, other: str) -> float:
+    a, b = words(goal), words(other)
+    return len(a & b) / max(1, len(a | b))
+
+
+def similarity_metrics(goal: str, sources: list, bank: list) -> dict:
+    """top1_similarity: the best goal Jaccard over the whole bank (the same for every arm of a unit; the input
+    for a relevance gate). memory_similarity: mean goal Jaccard of the items actually shown (None if none)."""
+    by_task = {b["task"]: b for b in bank}
+    shown = [jaccard(goal, by_task[t]["goal"]) for t in sources if t in by_task]
+    return {"top1_similarity": round(max((jaccard(goal, b["goal"]) for b in bank), default=0.0), 4),
+            "memory_similarity": round(sum(shown) / len(shown), 4) if shown else None}
+
+
 def mismatched_items(task: str, seed: int, bank: list, target: int, tries: int = 400):
     """Two real walkthroughs of OTHER task types than the unit (real content, wrong task), chosen among seeded
     random pairs so that the whole block's token count is closest to `target` (the retrieved_task block of the
@@ -299,6 +313,7 @@ def episode(job: dict) -> dict:
                 "metrics": {"memory_tokens": mem_tokens, "tokens": tokens, "steps": len(hist),
                             "invalid_actions": invalid, "invalid_no_action_tag": no_tag,
                             "truncated": truncated, "untagged_not_truncated": untagged_nt,
+                            **similarity_metrics(goal, sources, BANK),
                             "invalid_samples": bad_samples, "empty_retries": empty_retries, "seconds": round(time.time() - t0, 1),
                             "temperature": CFG["temperature"], "max_tokens": CFG["max_tokens"],
                             "min_tokens": CFG["min_tokens"], "max_steps": CFG["max_steps"], "model": CFG["model"]},
