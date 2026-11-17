@@ -406,5 +406,114 @@
    "failure=adjective-form",
    "level=T"
   ]
+ },
+ {
+  "key": "shi-irrelevant-2023",
+  "title": "Large Language Models Can Be Easily Distracted by Irrelevant Context",
+  "year": 2023,
+  "url": "https://arxiv.org/abs/2302.00093",
+  "claim": "Adding irrelevant sentences (GSM-IC) sharply lowers accuracy; an instruction to ignore irrelevant information partly helps. [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "mentions": [
+   "control=irrelevant-context",
+   "effect=negative",
+   "topic=distraction"
+  ]
+ },
+ {
+  "key": "levy-padding-2024",
+  "title": "Same Task, More Tokens: the Impact of Input Length on the Reasoning Performance of LLMs",
+  "year": 2024,
+  "url": "https://arxiv.org/abs/2402.14848",
+  "claim": "Padding with duplicate, similar or unrelated text lowers accuracy from about 0.92 to 0.68 as input grows from 250 to 3K tokens; failure modes include non-answers and answering before reasoning. [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "mentions": [
+   "control=padding",
+   "control=length-matched",
+   "effect=negative",
+   "topic=input-length"
+  ]
+ },
+ {
+  "key": "du-length-2025",
+  "title": "Context length alone hurts LLM performance (whitespace and masked padding)",
+  "year": 2025,
+  "url": "https://arxiv.org/abs/2510.05381",
+  "claim": "Accuracy drops of 13.9-85% persist even when the added context is whitespace or fully masked; reciting the evidence first mitigates. [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "mentions": [
+   "control=padding",
+   "effect=negative",
+   "topic=input-length"
+  ]
+ },
+ {
+  "key": "cuconasu-random-docs-2024",
+  "title": "The Power of Noise: Redefining Retrieval for RAG Systems",
+  "year": 2024,
+  "url": "https://arxiv.org/abs/2401.14887",
+  "claim": "Adding random documents to RAG prompts improved accuracy (reported up to 35%), while related-but-wrong documents hurt: a published precedent for filler-like gains. [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "mentions": [
+   "control=random-documents",
+   "effect=positive",
+   "topic=placebo-like"
+  ]
+ },
+ {
+  "key": "pfau-filler-2024",
+  "title": "Let's Think Dot by Dot: Hidden Computation in Transformer Language Models",
+  "year": 2024,
+  "url": "https://arxiv.org/abs/2404.15758",
+  "claim": "Filler tokens add useful computation only under dense supervision; no evidence that off-the-shelf LLMs benefit from filler. [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "mentions": [
+   "control=filler-tokens",
+   "topic=placebo-like"
+  ]
+ },
+ {
+  "key": "awm-2024",
+  "title": "Agent Workflow Memory",
+  "year": 2024,
+  "url": "https://arxiv.org/abs/2409.07429",
+  "claim": "Abstract workflows induced from past runs beat raw-trajectory memory (Synapse) on WebArena and Mind2Web; suggests full examples bias the agent (hypothesis, not isolated). [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "mentions": [
+   "benchmark=webarena",
+   "bank=workflows",
+   "unit=workflow",
+   "effect=positive"
+  ]
+ },
+ {
+  "key": "experience-following-2025",
+  "title": "How Memory Management Impacts LLM Agents: An Empirical Study of Experience-Following Behavior",
+  "year": 2025,
+  "url": "https://arxiv.org/abs/2505.16067",
+  "claim": "Similar input makes the agent copy the retrieved output; stored errors propagate; adding every experience performs worse than a fixed memory. [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "mentions": [
+   "topic=copying",
+   "effect=mixed",
+   "bank=all-experiences"
+  ]
+ },
+ {
+  "key": "semantic-misguidance-2025",
+  "title": "Demonstrations can hurt reasoning models through semantic misguidance",
+  "year": 2025,
+  "url": "https://arxiv.org/abs/2509.23196",
+  "claim": "With semantically similar demonstrations, reasoning models copy the exemplar's steps and lose accuracy. [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "mentions": [
+   "topic=copying",
+   "topic=mismatch",
+   "effect=negative"
+  ]
+ },
+ {
+  "key": "overthinking-agents-2025",
+  "title": "The Danger of Overthinking: Examining the Reasoning-Action Dilemma in Agentic Tasks",
+  "year": 2025,
+  "url": "https://arxiv.org/abs/2502.08235",
+  "claim": "Overthinking (analysis paralysis) correlates with lower agent success; choosing the least-overthinking candidate gave about +30% success at 43% lower cost. [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "mentions": [
+   "topic=deliberation",
+   "topic=truncation",
+   "effect=negative"
+  ]
  }
 ]
