@@ -1,0 +1,77 @@
+{
+ "task": "autolab ALFWORLD-LADDER-R4-V4",
+ "published": [
+  {
+   "path": "README.md",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v4/README.md",
+   "sha256": "4f5274f2c8423e78102f499ca476555e0a75b97c4d48a2cbbde626c128c62075",
+   "sha256_source": "4f5274f2c8423e78102f499ca476555e0a75b97c4d48a2cbbde626c128c62075",
+   "bytes": 3701,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "knowledge.jsonl",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v4/knowledge.jsonl",
+   "sha256": "0797bd3625f83dc9a2ec6473845feaca5904683641f768f5abe9c0d7023acbbb",
+   "sha256_source": "0797bd3625f83dc9a2ec6473845feaca5904683641f768f5abe9c0d7023acbbb",
+   "bytes": 146595,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "PROVENANCE.json",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v4/PROVENANCE.json",
+   "sha256": "62ffac263bd236f942751e79b2ce7ff8f54cd3a03c02b1c7ba2b9baaab0e3304",
+   "sha256_source": "62ffac263bd236f942751e79b2ce7ff8f54cd3a03c02b1c7ba2b9baaab0e3304",
+   "bytes": 952,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "verify_provenance.py",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v4/verify_provenance.py",
+   "sha256": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "sha256_source": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "bytes": 1500,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "per_unit.csv",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v4/per_unit.csv",
+   "sha256": "2f080a47ed3daf0be851460b452107c8d395849cbec800f11185b4f0d403a556",
+   "sha256_source": "2f080a47ed3daf0be851460b452107c8d395849cbec800f11185b4f0d403a556",
+   "bytes": 117471,
+   "edits": [
+    "none"
+   ]
+  }
+ ],
+ "private": [
+  {
+   "to": "private/autolab/ALFWORLD-LADDER-R4-V4/final",
+   "files": 5,
+   "moved": false,
+   "what": "pakiet final (rejestr, pochodzenie)"
+  },
+  {
+   "to": "private/autolab/ALFWORLD-LADDER-R4-V4/raw/c1",
+   "files": 6,
+   "moved": false,
+   "what": "surowe dane przebiegu c1"
+  }
+ ],
+ "paths_are_relative": true,
+ "protected_check": {
+  "result": "withheld",
+  "withheld": [
+   "pakiet final (rejestr, pochodzenie)",
+   "surowe dane przebiegu c1"
+  ]
+ }
+}
