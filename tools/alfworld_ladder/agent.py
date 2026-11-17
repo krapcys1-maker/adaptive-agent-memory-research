@@ -163,24 +163,30 @@ def similarity_metrics(goal: str, sources: list, bank: list) -> dict:
             "memory_similarity": round(sum(shown) / len(shown), 4) if shown else None}
 
 
-def mismatched_items(task: str, goal: str, seed: int, bank: list, target: int, tries: int = 400):
-    """Two real walkthroughs of OTHER task types than the unit, taken from the least goal-similar quarter of them
-    (at least 20 entries): real walkthrough content, wrong and unrelated task. Among seeded random pairs of that
-    pool the pair whose block token count is closest to `target` (the retrieved_task block of the same task and
-    seed) is shown. Item token counts are cached per bank entry."""
+def mismatched_items(task: str, goal: str, seed: int, bank: list, target: int, tol: float = 0.03):
+    """Two real walkthroughs of OTHER task types than the unit: real walkthrough content, wrong and unrelated task.
+    Candidates are the other-type bank entries ordered by goal similarity (lowest first). Search starts in the
+    least similar quarter (at least 20 entries); every pair is scored by its estimated block token count against
+    `target` (the retrieved_task block of the same task and seed). If no pair is within `tol` (3%), the pool widens
+    to the least similar half, then to all other-type entries. Ties are broken by a sha256 hash of (task, seed,
+    pair), so the choice is deterministic. Item token counts are cached per bank entry."""
     other = sorted((b for b in bank if b["type"] != ttype_of(task)), key=lambda b: (jaccard(goal, b["goal"]), b["task"]))
-    pool = other[:max(20, len(other) // 4)]
-    for b in pool:
+    for b in other:
         if b["task"] not in _ITEM_TOKENS:
             _ITEM_TOKENS[b["task"]] = count_tokens(render(b))
-    rng = random.Random(_h(task, seed, "mis"))
     overhead = count_tokens(wrap(["x", "x"])) - 2 * count_tokens("x")
     best = None
-    for _ in range(tries):
-        a, b = rng.sample(pool, 2)
-        est = _ITEM_TOKENS[a["task"]] + _ITEM_TOKENS[b["task"]] + overhead
-        if best is None or abs(est - target) < best[0]:
-            best = (abs(est - target), a, b)
+    for size in (max(20, len(other) // 4), max(20, len(other) // 2), len(other)):
+        pool = other[:size]
+        for i in range(len(pool)):
+            for j in range(i + 1, len(pool)):
+                a, b = pool[i], pool[j]
+                diff = abs(_ITEM_TOKENS[a["task"]] + _ITEM_TOKENS[b["task"]] + overhead - target)
+                key = (diff, _h(task, seed, "mis", a["task"], b["task"]))
+                if best is None or key < best[0]:
+                    best = (key, a, b)
+        if best[0][0] <= tol * target:
+            break
     picks = [best[1], best[2]]
     return wrap([render(x) for x in picks]), [x["task"] for x in picks]
 
