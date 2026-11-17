@@ -6,6 +6,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import agent  # noqa: E402
+ARMS_SHOWN = (sys.argv[1].split(",") if len(sys.argv) > 1 else ["none", "placebo", "retrieved_task"])
 
 import textworld
 import textworld.gym
@@ -26,9 +27,11 @@ adm = "\n ".join(f"'{s}'" for s in info["admissible_commands"] if s != "help")
 base = agent.TEMPLATE_NO_HIS.format(current_observation=obs0, admissible_actions=adm)
 out = [f"# Step-1 prompt of each arm for the non-test game {task} (seed 0).",
        "# From step 2 the BASE part switches to TEMPLATE with history; the arm part stays the same.\n"]
-for arm in ("none", "placebo", "retrieved_task"):
+for arm in [a for a in ("none", "placebo", "retrieved_task", "mismatched_type") if a in ARMS_SHOWN]:
     block, src = agent.choose_memory(task, goal, arm, 0, agent.BANK)
     suffix = agent.ACTION_INSTR if block is None else agent.MEMORY_WRAPPER.format(retrieved_exp=block)
+    if agent.CFG["format_reminder"]:
+        suffix += agent.FORMAT_REMINDER
     mt = 0 if block is None else agent.count_tokens(agent.MEMORY_WRAPPER.format(retrieved_exp=block))
     out.append(f"=================== ARM {arm} | memory_tokens {mt} | memory_sources {src}\n{base + suffix}")
 open(os.path.join(here, "instrument", "prompt_examples.txt"), "w", encoding="utf-8", newline="\n").write("\n".join(out))
