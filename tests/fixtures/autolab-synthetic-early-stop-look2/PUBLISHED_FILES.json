@@ -1,0 +1,70 @@
+{
+ "task": "autolab SYNTHETIC-EARLY-STOP-LOOK2",
+ "published": [
+  {
+   "path": "README.md",
+   "target": "tests/fixtures/autolab-synthetic-early-stop-look2/README.md",
+   "sha256": "3ef14a3ae8f997fa731aeee5e6c60888de506b266ca928174bbd696d947b9172",
+   "sha256_source": "3ef14a3ae8f997fa731aeee5e6c60888de506b266ca928174bbd696d947b9172",
+   "bytes": 4131,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "knowledge.jsonl",
+   "target": "tests/fixtures/autolab-synthetic-early-stop-look2/knowledge.jsonl",
+   "sha256": "2ec044405d53e5fa83c1995939920e2a46add7f6a47d3af48d0640f0ec275826",
+   "sha256_source": "2ec044405d53e5fa83c1995939920e2a46add7f6a47d3af48d0640f0ec275826",
+   "bytes": 20547,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "PROVENANCE.json",
+   "target": "tests/fixtures/autolab-synthetic-early-stop-look2/PROVENANCE.json",
+   "sha256": "c5f80e601921c1a262a32555928d6ddbcf19eb1b72df5d9824fa3aa7558b196a",
+   "sha256_source": "c5f80e601921c1a262a32555928d6ddbcf19eb1b72df5d9824fa3aa7558b196a",
+   "bytes": 646,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "verify_provenance.py",
+   "target": "tests/fixtures/autolab-synthetic-early-stop-look2/verify_provenance.py",
+   "sha256": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "sha256_source": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "bytes": 1500,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "per_unit.csv",
+   "target": "tests/fixtures/autolab-synthetic-early-stop-look2/per_unit.csv",
+   "sha256": "fca544f4f2b033f3681a24ffdb9fa8f5b5e1e84b88c9a4a34848fe7df16bd98d",
+   "sha256_source": "fca544f4f2b033f3681a24ffdb9fa8f5b5e1e84b88c9a4a34848fe7df16bd98d",
+   "bytes": 67585,
+   "edits": [
+    "none"
+   ]
+  }
+ ],
+ "private": [
+  {
+   "to": "private/autolab/SYNTHETIC-EARLY-STOP-LOOK2/raw/c1",
+   "files": 1,
+   "moved": false,
+   "what": "synthetic raw records"
+  }
+ ],
+ "paths_are_relative": true,
+ "protected_check": {
+  "result": "withheld",
+  "withheld": [
+   "synthetic raw records"
+  ]
+ }
+}

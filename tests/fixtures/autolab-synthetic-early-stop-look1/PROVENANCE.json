@@ -1,0 +1,19 @@
+{
+ "program": "SYNTHETIC-EARLY-STOP-LOOK1",
+ "goal": "Synthetic sequential package that stopped early at look 1",
+ "domain": "command-run",
+ "objects": 14,
+ "knowledge_sha256": "75f9e49338d6896d72127dc4cf4cdbd8bf5de0b392557a871575f16bbda5659e",
+ "integrity_problems": [],
+ "raw": [
+  {
+   "run": "run:c42903dc755dd735",
+   "raw_sha256": "615ea555a6134cdacead31fac5126fb0359bc5be8a4b5fe4838f9f848837b2b1",
+   "records": 412,
+   "location": "private/autolab/SYNTHETIC-EARLY-STOP-LOOK1/raw/c1/raw_sequential.jsonl"
+  }
+ ],
+ "generated_by": "synthetic fixture (lab analysis code)",
+ "exported_at": "2026-11-18T00:00:00+00:00",
+ "note": "synthetic"
+}

@@ -1,0 +1,19 @@
+{
+ "program": "SYNTHETIC-TWO-SEEDS",
+ "goal": "Synthetic package with two seeds, a placebo identical to no memory and a disputed result",
+ "domain": "command-run",
+ "objects": 11,
+ "knowledge_sha256": "55546877243cc5ac555169fb0f960e5b0a2132650447592aa071d980b3d7d085",
+ "integrity_problems": [],
+ "raw": [
+  {
+   "run": "run:4937f23f313900a6",
+   "raw_sha256": "5e8e72b5031de8aacde243aee4218a791abfb9f22e1d955aa77ef9b9332f470f",
+   "records": 480,
+   "location": "private/autolab/SYNTHETIC-TWO-SEEDS/raw/c1/raw.jsonl"
+  }
+ ],
+ "generated_by": "synthetic fixture (lab analysis code)",
+ "exported_at": "2026-11-18T00:00:00+00:00",
+ "note": "synthetic"
+}
