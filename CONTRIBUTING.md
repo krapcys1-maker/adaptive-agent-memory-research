@@ -27,7 +27,7 @@ The other targets, for when you do not want to wait for the whole thing
 ```bash
 python tasks.py fast      # ~0.2s -- memory integrity + source pipeline; fine in a pre-commit hook
 python tasks.py test      # ~6min -- the test suite alone
-python tasks.py audit     # ~10s  -- both audits, without the test suite
+python tasks.py audit     # ~15s  -- the audits and the autolab package check, without the test suite
 python tasks.py --list    # what each target runs, and roughly how long it takes
 ```
 
