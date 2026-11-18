@@ -5,7 +5,7 @@ These are research questions, not chores. Each one has:
 - the cheapest test that could refute it;
 - what you need to run it.
 
-They come from our first measurements (V3, and V4, which is running) and from a survey of related work, done on
+They come from our first measurements (V3 and V4; V5B is running) and from a survey of related work, done on
 17 November 2026. The sources are in [corpus.json](corpus.json), and the longer-term directions are in
 [DIRECTIONS.md](DIRECTIONS.md).
 
@@ -17,7 +17,13 @@ counts toward co-authorship of the next report ([AUTHORSHIP.md](../../AUTHORSHIP
 **What we know so far.** On ALFWorld with Qwen3-4B:
 - A token-matched placebo block raised the solve rate by 13 points in V3. Most of that came from a decoding artefact:
   without extra text, the model often ended its answer at the first token. With `min_tokens = 8` for every arm (V4,
-  running), empty answers are gone, and placebo and no memory are within 2 points of each other.
+  300 games), empty answers are gone, and placebo and no memory are within 2 points of each other (0.45 vs 0.47).
+- In V4 retrieved walkthroughs beat the placebo by 24 points (0.69 vs 0.45, interval [+0.18, +0.30]). Limits: one
+  model, one seed, and five of the six task types (no `look_at_obj_in_light` games in V4's pool); the lab flags a
+  measurement problem because the pre-registered format criterion was exceeded. V5B adds the sixth type and a
+  format-matched control.
+- In V4 the memory arm also makes more invalid actions per step (0.29 vs 0.20 for the placebo): walkthroughs may help
+  planning while adding actions that do not fit the current room. Open question, see P1.
 - In V4 the memory arm produces more answers without an action tag. A sample suggests that these are mostly answers
   cut off at max_tokens after long deliberation about a mismatch between the retrieved walkthrough and the current
   room.
@@ -29,8 +35,8 @@ counts toward co-authorship of the next report ([AUTHORSHIP.md](../../AUTHORSHIP
 - **Hypothesis:** the gain grows with goal similarity, and truncated or untagged answers cluster in low-similarity
   games.
 - **Test:** re-analyse the published per-task tables. For V3, use
-  [`per_unit.csv`](../../data/lab/autolab-alfworld-ladder-r4-v3/per_unit.csv); V4's table follows with its
-  result. Fit success and untagged rate against similarity, and run paired tests per task type.
+  [`per_unit.csv`](../../data/lab/autolab-alfworld-ladder-r4-v3/per_unit.csv); for V4,
+  [`per_unit.csv`](../../data/lab/autolab-alfworld-ladder-r4-v4/per_unit.csv). Fit success and untagged rate against similarity, and run paired tests per task type.
 - **Needs:** a laptop.
 - **Why it matters:** it is free, and it sets the threshold for the relevance gate (P3, D10).
 
