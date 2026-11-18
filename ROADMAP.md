@@ -1,6 +1,6 @@
 # Roadmap: experience memory, ladder v1
 
-Status: plan, 15 November 2026. Nothing in this line has been measured yet.
+Status: plan written 15 November 2026. Measured since then (rung 4, retrieved expert walkthroughs, Qwen3-4B): V3 and V4 — see [the results table](docs/challenges/RESULTS.md) and `data/lab/autolab-alfworld-ladder-r4-v4/`. V5B (a format-matched control: walkthroughs of unrelated task types) is running. Rungs 0–3 and 5 are not measured yet.
 
 ## Stage 0: setup (no study results)
 
