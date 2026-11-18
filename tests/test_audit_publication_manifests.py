@@ -230,6 +230,21 @@ def test_a_deleted_path_keyed_freeze_is_critical(path_keyed: Path) -> None:
     assert findings[0].path == "scripts/tool.py"
 
 
+def test_a_deleted_freeze_that_arrived_by_rename_is_critical(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """A file that reached its frozen path through `git mv` was never "added" there with rename detection on."""
+    git(tmp_path, "init", "-q")
+    write(tmp_path / "scripts/old_tool.py", b"X = 1\n")
+    commit_all(tmp_path, "add helper")
+    git(tmp_path, "mv", "scripts/old_tool.py", "scripts/tool.py")
+    write(tmp_path / "data/lab/run/manifest.json", json.dumps({"inputs": {"scripts/tool.py": sha(b"X = 1\n")}}).encode())
+    commit_all(tmp_path, "rename and freeze")
+    monkeypatch.setattr(audit, "ROOT", tmp_path)
+    (tmp_path / "scripts/tool.py").unlink()
+    commit_all(tmp_path, "delete the frozen helper")
+    findings, _ = run_audit()
+    assert verdicts(findings) == [("declared-file-missing", "critical")]
+
+
 def deletion_note(root: Path, **overrides: object) -> dict:
     log = git(root, "log", "--format=%H").split()
     document = {

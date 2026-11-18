@@ -177,7 +177,7 @@ def paths_ever_committed() -> frozenset[str]:
     cache_key = str(ROOT)
     if cache_key not in _COMMITTED_PATHS:
         result = subprocess.run(
-            ["git", "-c", "core.quotepath=false", "log", "HEAD", "--format=", "--name-only", "--diff-filter=A", "-z"],
+            ["git", "-c", "core.quotepath=false", "log", "HEAD", "--format=", "--name-only", "--diff-filter=A", "--no-renames", "-z"],
             cwd=ROOT, capture_output=True, check=False,
         )
         names = result.stdout.decode("utf-8", errors="replace").split("\0") if result.returncode == 0 else []

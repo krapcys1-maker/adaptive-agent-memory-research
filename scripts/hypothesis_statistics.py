@@ -17,6 +17,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import numbers
 import re
 from typing import Any
 
@@ -35,9 +36,9 @@ def fingerprint(scope: dict) -> str:
 
 
 def _count(value: Any, name: str) -> int:
-    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+    if isinstance(value, bool) or not isinstance(value, numbers.Integral) or value < 0:
         raise ValueError(f"{name} must be a non-negative integer, got {value!r}")
-    return value
+    return int(value)
 
 
 def mcnemar_one_sided(gained: int, lost: int) -> float:
