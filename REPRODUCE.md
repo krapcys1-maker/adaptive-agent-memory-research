@@ -145,7 +145,7 @@ Exit status:
 - 1: at least one field mismatches; each is listed.
 - 2: a required file is missing or unreadable.
 
-CI runs the script (job *Autolab package verification*). The tests are in `tests/test_verify_autolab_packages.py`. They alter one thing at a time: a solved cell; a removed, duplicated or relabelled row; declared numbers; a caveat, a section or the status line; extra prose. They also run two synthetic packages in `tests/fixtures/` that have the shape of the next exports: sequential thresholds, four arms, `imbalance_only`, float and empty cells, two seeds, a disputed verdict. These fixtures were generated with the lab's own analysis and README code from synthetic records.
+CI runs the script (job *Autolab package verification*). The tests are in `tests/test_verify_autolab_packages.py`. They alter one thing at a time: a solved cell; a removed, duplicated or relabelled row; declared numbers; a caveat, a section or the status line; extra prose. They also run four synthetic packages in `tests/fixtures/` that have the shape of the next exports: sequential thresholds, four arms, `imbalance_only`, float and empty cells; two seeds and a disputed verdict; and sequential runs that stopped early at look 1 and at look 2 (the run keeps the units of the stop look, the report counts the planned units). These fixtures were generated with the lab's own analysis, audit and README code from synthetic records.
 
 What a package does not let anyone recompute is printed as `N/V` (not verifiable from the package), with the reason:
 - counters that are not columns of `per_unit.csv` (V4's `min_tokens`);
@@ -157,7 +157,9 @@ What a package does not let anyone recompute is printed as `N/V` (not verifiable
 - free prose in the README;
 - V3's `per_unit.csv`, which was added after V3's export and is not in its `PUBLISHED_FILES.json`.
 
-The set of N/V fields of each package is pinned in `scripts/verify_autolab_packages.baseline.json`, so a field that stops being checked fails CI. After reviewing new N/V lines, `--update-baseline` rewrites the entry. A new package without an entry is verified, and a note says how to add one.
+The set of N/V fields of each package is pinned in `scripts/verify_autolab_packages.baseline.json`, and the check fails closed. A missing, empty or malformed baseline fails. A package without an entry fails, and the message gives the command that adds the entry. The N/V fields must equal the entry: a new N/V field fails, and so does an entry the package no longer has, so the file cannot be pre-loaded to hide a later change. N/V fields that carry a value (model calls, audit check results, calibration figures, digests) carry it in their name, so a changed value is a changed field. `--update-baseline` refuses to write for a package with any FAIL and prints the fields it adds and removes. **An export pull request adds its package's baseline entry in the same pull request** (`python scripts/verify_autolab_packages.py --package data/lab/<package> --update-baseline`), so the reviewer sees its N/V list in the diff; until then CI fails on the new package.
+
+Known coupling: the README checks use the English wording and the constants of the lab's exporter and analysis code (copied into the script, with the lab function named). A wording change in the lab's exporter makes CI fail on the next package until the verifier follows. The fixtures cannot be regenerated from this repository, because their generator uses the lab's private code.
 
 `WARN` marks two statements of a package that disagree with each other, where the package does not say which one decides. In V4 that is hypothesis H3. The lab's verdict rule reads only the predicted direction (positive, so `practical` supports it), while H3 pre-registered the expected state "positive below SESOI" and its falsification text names `practical` among the refuting states.
 

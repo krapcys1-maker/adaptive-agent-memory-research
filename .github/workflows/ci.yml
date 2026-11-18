@@ -162,8 +162,9 @@ jobs:
       # criterion, and compares them with the numbers the package declares.
       # Any mismatch fails the job. Numbers that cannot be recomputed from the
       # package are printed as N/V; their set per package is pinned in
-      # scripts/verify_autolab_packages.baseline.json, so lost coverage fails
-      # too. Standard library only.
+      # scripts/verify_autolab_packages.baseline.json and must equal it, so lost
+      # coverage fails too; an export PR adds its package's entry. Standard
+      # library only.
       - name: Recompute the published autolab numbers
         run: python scripts/verify_autolab_packages.py
 

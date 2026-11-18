@@ -29,8 +29,9 @@ recomputation, or listed as ``N/V``. It also checks the export manifest digests 
 
 Anything the package states that cannot be recomputed from the package is printed as ``N/V`` ("not verifiable from the
 package") with the reason. The set of N/V fields of each package is pinned in
-``scripts/verify_autolab_packages.baseline.json``: a field that becomes N/V and is not in the baseline FAILS, so lost
-coverage is visible in CI (``--update-baseline`` rewrites the entries of the checked packages). ``WARN`` marks two
+``scripts/verify_autolab_packages.baseline.json`` and the check fails closed: a missing or malformed baseline, a package
+without an entry, a new N/V field and a stale entry all FAIL (``--update-baseline`` rewrites the entries of the checked
+packages, refuses a package with a FAIL, and prints the fields it adds and removes). ``WARN`` marks two
 statements of the package that disagree with each other where the package does not say which one rules; it does not
 change the exit status.
 
@@ -38,7 +39,7 @@ Properties: standard library only, no network, reads only files inside the packa
 nothing unless ``--update-baseline`` is given.
 
 Exit status: 0 every verifiable check passed in every package; 1 at least one recomputed or declared number differs,
-or the N/V set grew beyond the baseline (the per-field list is printed at the end); 2 usage error, or a package folder
+or a package's N/V set differs from its baseline entry (the per-field list is printed at the end); 2 usage error, or a package folder
 lacks a required file or holds unreadable JSON.
 
 Usage: python scripts/verify_autolab_packages.py [--repo PATH] [--package DIR ...] [--baseline FILE] [--update-baseline]
@@ -550,8 +551,9 @@ class Verifier:
                       raw.get("records") == run.get("records") and raw.get("raw_sha256") == run.get("raw_sha256"),
                       "run object: %s records, raw %s" % (run.get("records"), str(run.get("raw_sha256"))[:12]))
         rep.check("PROVENANCE.json: every run object has a raw entry", sorted(listed_runs) == sorted(runs), "PROVENANCE %s, runs %s" % (listed_runs, sorted(runs)))
-        rep.nv("PROVENANCE.json: raw_sha256 and location of each run", "the raw episode logs are private")
-        rep.nv("PROVENANCE.json: generated_by, exported_at, note", "export metadata, not a result")
+        rep.nv("PROVENANCE.json: raw_sha256 and location of each run %s" % [(r.get("raw_sha256", "")[:16], r.get("location")) for r in prov.get("raw", [])],
+               "the raw episode logs are private")
+        rep.nv("PROVENANCE.json: generated_by %r, exported_at %r, note" % (prov.get("generated_by"), prov.get("exported_at")), "export metadata, not a result")
 
     # ---------------------------------------------------------------- per_unit.csv against the run objects
     def structure(self) -> None:
@@ -587,16 +589,19 @@ class Verifier:
                       "missing %d row(s): %s" % (len(grid_missing), "; ".join(grid_missing[:3])) if grid_missing else
                       "%d units x %d arms x %d seed(s)" % (len(units), len(arms), len(seeds)))
             rows = sum(1 for k in t.rows if k[0] == cycle and k[1] in set(units))
-            lines = t.n_rows if len(self.k.kind("run")) == 1 else rows
-            rep.check("%s: rows = run.records %s" % (tag, p.get("records")), rows == p.get("records") and lines == p.get("records"),
+            lines = t.n_rows if len(self.k.kind("run")) == 1 and not early else rows
+            rep.check("%s: rows of the run's units = run.records %s" % (tag, p.get("records")), rows == p.get("records") and lines == p.get("records"),
                       "%d distinct rows, %d lines" % (rows, lines))
+            if early:
+                self.check_early_stop(tag, run, proto)
             errors = sum(1 for k, v in t.rows.items() if k[0] == cycle and v.get("error"))
             measured = (p.get("measurement") or {}).get("errors_counted_as_unsolved")
             if measured is None:
                 rep.nv("%s: errors counted as unsolved" % tag, "the run object does not state it")
             else:
                 rep.check("%s: rows with error = run.measurement.errors_counted_as_unsolved %s" % (tag, measured), errors == measured, "table %d" % errors)
-            rep.nv("%s: units_sha256, raw_sha256, runner pins, lab_code" % tag, "they hash or name private files and code")
+            rep.nv("%s: units_sha256 %s, raw_sha256 %s, runner pins, lab_code" % (tag, str(p.get("units_sha256"))[:16], str(p.get("raw_sha256"))[:16]),
+                   "they hash or name private files and code")
         for cycle in t.cycles():
             if cycle not in cycles_seen:
                 rep.check("per_unit.csv: cycle %s has a run object" % cycle, False)
@@ -613,6 +618,34 @@ class Verifier:
                 rep.nv("per_unit.csv column %s" % col, "no published number is computed from it by a lab rule this script mirrors (values: %s)"
                        % "/".join(k.replace("NoneType", "empty") for k in kinds))
         rep.nv("per_unit.csv column n_memory_sources", "the number of memory items per episode; no published number is computed from it")
+
+    def run_units(self, cycle: Any) -> Set[str]:
+        """The units the lab analysed in a cycle: the run's units (an early-stopped run keeps only the units of its stop look)."""
+        return {u for r in self.k.kind("run") if r.get("cycle") == cycle for u in r["payload"].get("units") or []}
+
+    def check_early_stop(self, tag: str, run: Dict[str, Any], proto: Dict[str, Any]) -> None:
+        """program._early_stop_run: the run keeps the first n complete units of the stop look, with that look's threshold."""
+        rep = self.rep
+        seq = run["payload"].get("sequential") or {}
+        looks = list((proto.get("sequential") or {}).get("looks") or [])
+        zs = list((proto.get("sequential") or {}).get("z") or [])
+        j = int(seq.get("look") or 0) - 1
+        planned = int(seq.get("planned_units") or proto.get("n_units") or 0)
+        rep.check("%s: stopped at look %s of %d pre-registered" % (tag, seq.get("look"), len(looks)), 0 <= j < len(looks), "looks %s" % looks)
+        if 0 <= j < len(looks):
+            need = math.ceil(looks[j] * planned)
+            rep.check("%s: %d units = ceil(look %s x planned %d)" % (tag, len(run["payload"].get("units") or []), looks[j], planned),
+                      len(run["payload"].get("units") or []) == need, "expected %d" % need)
+            rep.check("%s: stop threshold z %s = protocol z[%d]" % (tag, seq.get("z"), j), j < len(zs) and agrees(float(zs[j]), seq.get("z"), 6),
+                      "protocol %s" % zs)
+        rep.check("%s: planned_units %s = protocol n_units %s" % (tag, seq.get("planned_units"), proto.get("n_units")), seq.get("planned_units") == proto.get("n_units"))
+        d = self.k.by_id.get(seq.get("decision") or "")
+        rep.check("%s: stop decision %s is an interim look that stopped" % (tag, seq.get("decision")),
+                  bool(d) and d["payload"].get("action") == "interim_look" and d["payload"].get("stop") is True
+                  and d["payload"].get("look") == seq.get("look") and d["payload"].get("n") == len(run["payload"].get("units") or [])
+                  and agrees(float(seq.get("z") or 0), d["payload"].get("z"), 6))
+        rep.nv("%s: choice of the first %d complete units (look %s, planned %s)" % (tag, len(run["payload"].get("units") or []), seq.get("look"), planned),
+               "the order of the lab's unit list and which units were complete at the look are not in the package")
 
     def is_process_column(self, col: str) -> bool:
         """A lab metric that enters the process balance: an integer value in some row, not a size or a time
@@ -694,7 +727,8 @@ class Verifier:
             rep.check("%s: z = %s (sequential threshold %s)" % (tag, p.get("z"), "of the run's look" if seq_run is not None else "of the final analysis"),
                       agrees(float(want), p.get("z"), 6), "pre-registered %s" % want)
             rep.check("%s: the sequential threshold is one of the protocol's %s" % (tag, seq_proto), any(abs(float(want) - float(x)) < 1e-9 for x in seq_proto))
-            rep.nv("%s: the sequential thresholds themselves" % tag, "O'Brien-Fleming thresholds from a lab simulation (experiment.sequential_z); "
+            rep.nv("%s: the sequential thresholds themselves %s at looks %s" % (tag, seq_proto, (proto.get("sequential") or {}).get("looks")),
+                   "O'Brien-Fleming thresholds from a lab simulation (experiment.sequential_z); "
                    "taken as pre-registered in the protocol")
             return float(want)
         if seq_proto:
@@ -761,12 +795,13 @@ class Verifier:
                 keys: List[str]) -> Dict[str, Any]:
         """experiment.process_balance over per_unit.csv (records of the first seed with numeric steps)."""
         t = self.table
-        rows_seed0 = {k: v for k, v in t.rows.items() if k[0] == cycle and k[3] == seed0}
+        analysed = self.run_units(cycle)
+        rows_seed0 = {k: v for k, v in t.rows.items() if k[0] == cycle and k[3] == seed0 and k[1] in analysed}
         by: Dict[str, Dict[str, Dict[str, Any]]] = {}
         for (cyc, unit, arm, seed), v in rows_seed0.items():
             if t.is_number(v.get(STEPS)):
                 by.setdefault(arm, {})[unit] = v
-        present = {c for c in t.columns if any(v.get(c) is not None for k, v in t.rows.items() if k[0] == cycle)}
+        present = {c for c in t.columns if any(v.get(c) is not None for k, v in t.rows.items() if k[0] == cycle and k[1] in analysed)}
         missing = sorted(k for k in crit if k not in present)
         pl = by.get(self.placebo()) or {}
 
@@ -827,7 +862,8 @@ class Verifier:
             treatments = list(proto.get("treatments") or [])
             placebo = self.placebo()
             tag = "cycle %s %s (%s)" % (cycle, audit["id"], audit["payload"].get("by"))
-            recs = {k: v for k, v in t.rows.items() if k[0] == cycle and k[3] == seed0}
+            analysed = self.run_units(cycle)
+            recs = {k: v for k, v in t.rows.items() if k[0] == cycle and k[3] == seed0 and k[1] in analysed}
             by_arm: Dict[str, List[Dict[str, Any]]] = {}
             for k, v in recs.items():
                 by_arm.setdefault(k[2], []).append(v)
@@ -852,6 +888,15 @@ class Verifier:
             if "placebo_length_checked" in ms:
                 rep.check("%s: placebo_length_checked = %s" % (tag, ms["placebo_length_checked"]), ms["placebo_length_checked"] == length_checked)
             means = {a: (sum(v) / len(v) if v else None) for a, v in tokens.items()}
+            if pl_vals and "placebo_length_checked" not in ms:
+                # export/experiment G09: the placebo block must average at least 0.8 of each memory arm's block; this audit predates
+                # the lab's check, so it is applied here directly to the table
+                for a in treatments:
+                    m = means.get(a)
+                    if m:
+                        ratio = means[placebo] / m
+                        rep.check("%s: placebo memory tokens >= %.1f x %s (lab rule, applied to per_unit.csv)" % (tag, PLACEBO_LENGTH_MIN_RATIO, a),
+                                  ratio >= PLACEBO_LENGTH_MIN_RATIO, "placebo %.1f, %s %.1f, ratio %.3f" % (means[placebo], a, m, ratio))
             rep.note("%s: mean memory tokens per arm (episodes that report them): %s" % (tag, ", ".join(
                 "%s %s" % (a, "-" if m is None else "%.1f" % m) for a, m in sorted(means.items()))))
             for a in treatments:
@@ -1023,7 +1068,7 @@ class Verifier:
             rec = self.cycles.get(cycle)
             hyp = self.k.parent(f, "hypothesis")
             hp = hyp["payload"] if hyp else {}
-            label = hp.get("id", "?")
+            label = hp.get("id") or "H%d" % i
             c = rec["contrasts"].get(("primary", p.get("arm"))) if rec else None
             if c is None or res is None:
                 rep.check("%s: has a result parent with a primary contrast for %s" % (tag, p.get("arm")), False)
@@ -1071,7 +1116,7 @@ class Verifier:
             if p.get("level") not in LEVEL_EN:
                 rep.nv("%s (%s): level = %s" % (tag, label, p.get("level")), "an evidence level the lab's exporter does not name")
             else:
-                rep.nv("%s (%s): level" % (tag, label), "developmental / replicated depends on earlier findings of the program and sealed "
+                rep.nv("%s (%s): level %s" % (tag, label, p.get("level")), "developmental / replicated depends on earlier findings of the program and sealed "
                        "confirmations, a rule over the program history")
             problems = list(p.get("measurement_problem") or [])
             if code is not None:
@@ -1090,8 +1135,11 @@ class Verifier:
             rep.nv("report", "the package has no report object")
             return
         p = obj["payload"]
-        units = sum(len(r["units"]) for r in self.cycles.values())
-        rep.check("report: units_used = %s" % p.get("units_used"), p.get("units_used") == units, "units of the analysed runs: %d" % units)
+        # program: units_used grows by the cycle's planned units when the run starts; an early stop keeps fewer for the analysis
+        units = sum(int((r["payload"].get("sequential") or {}).get("planned_units") or len(r["payload"].get("units") or []))
+                    for r in self.k.kind("run"))
+        rep.check("report: units_used = %s" % p.get("units_used"), p.get("units_used") == units,
+                  "units the runs consumed (planned units of an early-stopped run): %d" % units)
         rep.check("report: cycles = %s" % p.get("cycles"), p.get("cycles") == max([c for c in self.cycles if isinstance(c, int)] or [0]),
                   "result cycles %s" % sorted(self.cycles))
         rep.check("report: program and goal", p.get("program") == self.program().get("id") and p.get("goal") == self.program().get("goal"))
@@ -1128,7 +1176,10 @@ class Verifier:
             rep.check("report.measurement_problems = the problems of the arms with that status", mps == want, "declared %d arm(s), expected %d" % (len(mps), len(want)))
         for key in ("role_calls", "model_calls", "provenance", "role_notes", "role_blocks", "ideation", "new_variants"):
             if key in p:
-                rep.nv("report: %s" % key, "model-role activity and lab code provenance are not part of the published tables")
+                value = p[key]
+                shown = value if isinstance(value, (int, float, str)) or value is None else (
+                    "%d item(s), sha256 %s" % (len(value), hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()[:12]))
+                rep.nv("report: %s = %s" % (key, shown), "model-role activity and lab code provenance are not part of the published tables")
 
     def noise_checks(self) -> None:
         rep = self.rep
@@ -1178,15 +1229,45 @@ class Verifier:
                    "rule_null_calibration": "a simulation whose specification is not in the package",
                    "recompute": "the lab's own recomputation from the raw log; this script's recomputation from per_unit.csv is the public counterpart"}
             for name in sorted(set(checks) - {"noise_vs_calibration", "completeness", "measurement_sensitivity"}):
-                rep.nv("%s: checks.%s" % (tag, name), why.get(name, "a check this script does not mirror"))
+                c = checks[name] if isinstance(checks[name], dict) else {}
+                rep.nv("%s: checks.%s (ok = %s%s)" % (tag, name, c.get("ok"), ", severity %s" % c["severity"] if "severity" in c else ""),
+                       why.get(name, "a check this script does not mirror"))
+            if audit["payload"].get("by") == "code" and checks:
+                # experiment.audit: blocking = checks not ok whose severity is not warning/info; verdict invalid iff any is blocking
+                blocking = [n for n, c in checks.items() if isinstance(c, dict) and not c.get("ok") and c.get("severity") not in ("warning", "info")]
+                warnings = [n for n, c in checks.items() if isinstance(c, dict) and not c.get("ok") and c.get("severity") == "warning"]
+                pa = audit["payload"]
+                rep.check("%s: verdict %s, blocking %s, warnings %s follow the checks' ok and severity" % (tag, pa.get("verdict"), pa.get("blocking"), pa.get("warnings")),
+                          pa.get("verdict") == ("invalid" if blocking else "valid") and sorted(pa.get("blocking") or []) == sorted(blocking)
+                          and sorted(pa.get("warnings") or []) == sorted(warnings), "recomputed blocking %s, warnings %s" % (blocking, warnings))
         for cal in self.k.kind("calibration"):
-            rep.nv("%s (power, alpha, false close)" % cal["id"], "Monte Carlo calibration of the design before the run; its simulation specification is private")
+            cp = cal["payload"]
+            rep.nv("%s (ok %s, power_at_sesoi %s, alpha_at_null %s, false_close_at_sesoi %s, close_power_at_zero %s)" % (
+                cal["id"], cp.get("ok"), cp.get("power_at_sesoi"), cp.get("alpha_at_null"), cp.get("false_close_at_sesoi"), cp.get("close_power_at_zero")),
+                "Monte Carlo calibration of the design before the run; its simulation specification is private")
         for d in self.k.kind("decision"):
-            if d["payload"].get("action") == "interim_look":
-                rep.nv("%s: interim look (n %s, z %s, states)" % (d["id"], d["payload"].get("n"), d["payload"].get("z")),
-                       "the look used the first n complete units in the order of the lab's unit list, which the package does not publish")
+            if d["payload"].get("action") != "interim_look":
+                continue
+            stop_run = next((r for r in self.k.kind("run") if (r["payload"].get("sequential") or {}).get("decision") == d["id"]), None)
+            rec = self.cycles.get(d.get("cycle"))
+            if stop_run is not None and rec is not None:
+                states = {name: interval_state(c["ci"][0], c["ci"][1], rec["sesoi"]) for (g, name), c in rec["contrasts"].items() if g == "primary"}
+                rep.check("%s: states of the stop look = recomputed primary states" % d["id"], d["payload"].get("states") == states, "recomputed %s" % states)
+                rep.check("%s: stop = every primary contrast decided" % d["id"], d["payload"].get("stop") is True and "inconclusive" not in states.values())
+            else:
+                rep.nv("%s: interim look %s (n %s, z %s, states %s, stop %s)" % (d["id"], d["payload"].get("look"), d["payload"].get("n"), d["payload"].get("z"),
+                                                                            d["payload"].get("states"), d["payload"].get("stop")),
+                       "a look that did not stop: it used the first n complete units in the order of the lab's unit list, which the package does not publish")
 
     # ---------------------------------------------------------------- README, line by line
+    def cells_ok(self, cells: List[str], header: List[str], i: int) -> bool:
+        """A table row must have exactly the header's cells: an extra or a missing cell is not passed silently."""
+        ok = len(cells) == len(header)
+        if not ok:
+            self.rep.check("README table row %r has the %d cells of its header" % (short(self.readme_lines[i], 60), len(header)), False,
+                           "%d cells" % len(cells))
+        return ok
+
     def use(self, i: int) -> None:
         self.used.add(i)
 
@@ -1347,6 +1428,7 @@ class Verifier:
                 self.use(i)
                 if is_separator(cells) or cells[0] == "comparison":
                     continue
+                self.cells_ok(cells, header, i)
                 c = dict(zip(header, cells))
                 label = c.get("comparison", "")
                 mp = re.fullmatch(r"(\S+) \u2212 placebo \(primary\)", label)
@@ -1380,6 +1462,7 @@ class Verifier:
             self.use(i)
             if is_separator(cells) or cells[0] == "arm":
                 continue
+            self.cells_ok(cells, header, i)
             rows.append(dict(zip(header, cells)))
         rep.check("README Findings: one row per finding object, in order", [r.get("id", "").strip("`") for r in rows] == [f["obj"]["id"] for f in self.findings],
                   "README %d rows, knowledge.jsonl %d findings" % (len(rows), len(self.findings)))
@@ -1521,6 +1604,7 @@ class Verifier:
                 self.use(i)
                 if is_separator(cells) or cells[0] == "arm":
                     continue
+                self.cells_ok(cells, header, i)
                 arm = cells[0]
                 seen.append(arm)
                 for col, value in zip(header[1:], cells[1:]):
@@ -1559,6 +1643,7 @@ class Verifier:
             self.use(i)
             if is_separator(cells) or cells[0] == "arm":
                 continue
+            self.cells_ok(cells, header, i)
             row = dict(zip(header, cells))
             arm, k = row.get("arm"), row.get("counter", "").strip("`")
             seen.append((arm, k))
@@ -1628,8 +1713,12 @@ class Verifier:
     def readme_scope(self, rng: Tuple[int, int, int], report: Dict[str, Any]) -> None:
         scope = report.get("scope") or {}
         runs = self.k.kind("run")
-        self.rep.check("report.scope: data = run domain, units_tested = analysed units, runs = run objects, placebo, sesoi",
-                       all(r["payload"].get("domain") == scope.get("data") for r in runs) and scope.get("units_tested") == sum(len(c["units"]) for c in self.cycles.values())
+        dp = self.domain_params()
+        population = "%s:%s" % (self.program().get("domain"), dp["experiment"]) if dp.get("experiment") else None
+        domains = {r["payload"]["domain"] for r in runs if r["payload"].get("domain")}
+        self.rep.check("report.scope: data = run domain = program domain:experiment, units_tested = analysed units, runs = run objects, placebo, sesoi",
+                       domains <= {scope.get("data")} and (population is None or population == scope.get("data")) and (domains or population)
+                       and scope.get("units_tested") == sum(len(c["units"]) for c in self.cycles.values())
                        and scope.get("runs") == len(runs) and scope.get("placebo") == self.placebo() and scope.get("sesoi") == self.program().get("sesoi"),
                        "scope %s / %s / %s" % (scope.get("data"), scope.get("units_tested"), scope.get("runs")))
         text = ("The conclusions apply only to the task population `%s`, the arms %s against the placebo `%s`, the measurement conditions "
@@ -1656,45 +1745,82 @@ class Verifier:
                                "verifier does not understand, or the verifier has a bug" % (type(exc).__name__, exc, where.lineno))
 
 
-# --------------------------------------------------------------------------- baseline of N/V fields
-def load_baseline(path: Path) -> Dict[str, List[str]]:
+# --------------------------------------------------------------------------- baseline of N/V fields (fails closed)
+def load_baseline(path: Path) -> Tuple[Dict[str, List[str]], Optional[str]]:
+    """(entries, problem). A missing, empty or malformed baseline is a problem, never an empty baseline."""
     if not path.is_file():
-        return {}
+        return {}, "the N/V baseline %s does not exist" % path.name
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
-    except ValueError as exc:
-        raise InputError("the N/V baseline %s is not valid JSON: %s" % (path, exc))
-    return dict(data.get("packages") or {})
+    except (OSError, ValueError) as exc:
+        return {}, "the N/V baseline %s is not valid JSON (%s)" % (path.name, exc)
+    packages = data.get("packages") if isinstance(data, dict) else None
+    if not isinstance(packages, dict) or not packages:
+        return {}, "the N/V baseline %s has no 'packages' object with entries" % path.name
+    bad = [k for k, v in packages.items() if not isinstance(v, list) or not all(isinstance(x, str) for x in v)]
+    if bad:
+        return {}, "the N/V baseline %s has entries that are not lists of strings: %s" % (path.name, bad[:3])
+    return packages, None
 
 
-def compare_baseline(rep: Report, baseline: Dict[str, List[str]], baseline_path: Path) -> None:
+def add_command(package: Path) -> str:
+    return "python scripts/verify_autolab_packages.py --package %s --update-baseline" % package.as_posix()
+
+
+def compare_baseline(rep: Report, package: Path, baseline: Dict[str, List[str]], problem: Optional[str], baseline_path: Path) -> None:
+    """The N/V set of the package must EQUAL its baseline entry: a new N/V field fails, and so does a stale entry, so the
+    baseline cannot be pre-loaded with fields that would hide a later change."""
     print("-- N/V baseline")
-    if rep.package not in baseline:
-        rep.note("%s has no entry in %s: its %d N/V field(s) are not pinned. Review them, then add the package with "
-                 "`python scripts/verify_autolab_packages.py --package <dir> --update-baseline`." % (rep.package, baseline_path.name, len(rep.unverifiable)))
+    if problem:
+        rep.check("N/V baseline: %s" % problem, False, "the baseline is required; restore it, or create it with: %s" % add_command(package))
         return
-    pinned = set(baseline[rep.package])
-    new = [f for f in rep.unverifiable if f not in pinned]
+    if rep.package not in baseline:
+        rep.check("N/V baseline: entry for %s in %s" % (rep.package, baseline_path.name), False,
+                  "every package needs an entry; review its %d N/V line(s) above, then add it in the same pull request with: %s"
+                  % (len(rep.unverifiable), add_command(package)))
+        return
+    pinned = list(baseline[rep.package])
+    new = [f for f in rep.unverifiable if f not in set(pinned)]
+    stale = [f for f in pinned if f not in set(rep.unverifiable)]
     for field in new:
-        rep.check("N/V baseline: %s" % field, False, "this field is not verifiable now but was not N/V in the baseline (coverage dropped, or the "
-                  "package changed); if intended, review it and run --update-baseline")
-    gone = sorted(pinned - set(rep.unverifiable))
-    for field in gone:
-        rep.note("N/V baseline: %r is no longer N/V (now checked, or no longer stated); run --update-baseline to tighten the baseline" % field)
-    if not new:
-        rep.check("N/V baseline: no new not-verifiable field (%d pinned)" % len(pinned), True)
+        rep.check("N/V baseline: %s" % field, False, "not verifiable now, but not in the baseline: coverage dropped or the package changed")
+    for field in stale:
+        rep.check("N/V baseline: stale entry %s" % field, False, "in the baseline, but the package no longer has this N/V field "
+                  "(now checked, or the package changed); the baseline must list exactly the N/V fields")
+    if not new and not stale:
+        rep.check("N/V baseline: the N/V fields equal the baseline entry (%d)" % len(pinned), True)
 
 
-def write_baseline(path: Path, reports: List[Report]) -> None:
-    current = load_baseline(path)
+def write_baseline(path: Path, reports: List[Report], packages: List[Path]) -> int:
+    current, problem = load_baseline(path)
+    if problem and path.is_file():
+        print("refusing to update: %s; fix or delete the file first" % problem, file=sys.stderr)
+        return 2
+    refused = [r for r in reports if r.failures]
+    for r in refused:
+        print("refusing to update the baseline entry of %s: it has %d FAIL line(s); a baseline is written only for a package "
+              "whose every verifiable number matches" % (r.package, len(r.failures)), file=sys.stderr)
+    if refused:
+        return 1
     for r in reports:
-        current[r.package] = sorted(r.unverifiable)
-    doc = {"comment": "N/V (not verifiable from the package) fields per autolab package, pinned so that lost coverage fails CI. "
-                      "Regenerate the entries of the checked packages with scripts/verify_autolab_packages.py --update-baseline "
-                      "after reviewing every new N/V line.",
+        old = set(current.get(r.package) or [])
+        new = set(r.unverifiable)
+        print("baseline entry %s: %s" % (r.package, "new entry" if r.package not in current else "updated"))
+        for field in sorted(new - old):
+            print("  + " + field)
+        for field in sorted(old - new):
+            print("  - " + field)
+        if new == old and r.package in current:
+            print("  (no change)")
+        current[r.package] = sorted(new)
+    doc = {"comment": "N/V (not verifiable from the package) fields per autolab package. The verifier fails unless a package's "
+                      "N/V fields equal its entry, and every package needs an entry. An export pull request adds its package's "
+                      "entry, written with scripts/verify_autolab_packages.py --package <dir> --update-baseline, so that the "
+                      "reviewer sees the N/V list in the diff.",
            "packages": {k: current[k] for k in sorted(current)}}
     path.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
-    print("baseline written: %s (%s)" % (path, ", ".join(r.package for r in reports)))
+    print("baseline written: %s" % path)
+    return 0
 
 
 # --------------------------------------------------------------------------- entry point
@@ -1715,13 +1841,15 @@ def discover(repo: Path) -> List[Path]:
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(
         description="Recompute, offline and from the package alone, the published numbers of autolab result packages "
-                    "(per_unit.csv + README + knowledge.jsonl). Exit 0 = all verifiable checks pass, 1 = a number differs or the N/V "
-                    "set grew beyond the baseline, 2 = usage error or a required file is missing or unreadable.")
+                    "(per_unit.csv + README + knowledge.jsonl). Exit 0 = all verifiable checks pass and every package's N/V "
+                    "fields equal its baseline entry, 1 = a number differs or the N/V set differs from the baseline, "
+                    "2 = usage error or a required file is missing or unreadable.")
     parser.add_argument("--repo", default=str(Path(__file__).resolve().parents[1]), help="repository root (default: the checkout this script is in)")
     parser.add_argument("--package", action="append", default=[], metavar="DIR",
                         help="check only this package folder (repeatable); default: every %s folder of the repository" % PACKAGE_GLOB)
     parser.add_argument("--baseline", default=str(Path(__file__).resolve().parent / BASELINE_NAME), help="the N/V baseline file")
-    parser.add_argument("--update-baseline", action="store_true", help="write the current N/V fields of the checked packages into the baseline")
+    parser.add_argument("--update-baseline", action="store_true", help="write the N/V fields of the checked packages into the baseline "
+                        "(refused when a package has a FAIL); prints the added and removed fields")
     args = parser.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[union-attr]
@@ -1731,15 +1859,15 @@ def main(argv: Optional[List[str]] = None) -> int:
         print("no autolab package found under %s/%s" % (repo, PACKAGE_GLOB), file=sys.stderr)
         return 2
     baseline_path = Path(args.baseline).resolve()
+    baseline, problem = load_baseline(baseline_path)
     reports = []
     try:
-        baseline = load_baseline(baseline_path)
         for package in packages:
             if not package.is_dir():
                 raise InputError("not a folder: %s" % package)
             rep = verify_package(package)
             if not args.update_baseline:
-                compare_baseline(rep, baseline, baseline_path)
+                compare_baseline(rep, package, baseline, problem, baseline_path)
             print("%s: %d passed, %d FAILED, %d not verifiable from the package, %d warning(s)" % (
                 rep.package, rep.passed, len(rep.failures), len(rep.unverifiable), len(rep.warnings)))
             print("")
@@ -1748,7 +1876,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         print("input error: " + str(exc), file=sys.stderr)
         return 2
     if args.update_baseline:
-        write_baseline(baseline_path, reports)
+        return write_baseline(baseline_path, reports, packages)
     failed = [r for r in reports if r.failures]
     for r in reports:
         if r.failures:
@@ -1763,8 +1891,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     if failed:
         print("%d of %d package(s) FAILED verification." % (len(failed), len(reports)))
         return 1
-    print("all %d package(s) verified: every number recomputable from the package matches; %d field(s) not verifiable from the package (listed as N/V)." % (
-        len(reports), sum(len(r.unverifiable) for r in reports)))
+    print("all %d package(s) verified: every number recomputable from the package matches, and the %d field(s) not verifiable from the "
+          "package (listed as N/V) equal the baseline." % (len(reports), sum(len(r.unverifiable) for r in reports)))
     return 0
 
 

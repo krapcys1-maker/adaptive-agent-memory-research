@@ -33,6 +33,8 @@ V3 = ROOT / "data" / "lab" / "autolab-alfworld-ladder-r4-v3"
 V4 = ROOT / "data" / "lab" / "autolab-alfworld-ladder-r4-v4"
 V5B = ROOT / "tests" / "fixtures" / "autolab-synthetic-v5b-shape"
 TWO_SEEDS = ROOT / "tests" / "fixtures" / "autolab-synthetic-two-seeds"
+EARLY1 = ROOT / "tests" / "fixtures" / "autolab-synthetic-early-stop-look1"
+EARLY2 = ROOT / "tests" / "fixtures" / "autolab-synthetic-early-stop-look2"
 V3_RESULT = "cycle 1 result:e9d6bf59f88b0c4b"
 V4_RESULT = "cycle 1 result:ccc9c8b402d50ac0"
 MINUS = "\u2212"
@@ -100,16 +102,16 @@ def test_real_packages_pass() -> None:
     out = result.stdout
     assert not lines(out, "FAIL  ")
     assert "== autolab-alfworld-ladder-r4-v3 ==" in out and "== autolab-alfworld-ladder-r4-v4 ==" in out
-    assert out.count("N/V baseline: no new not-verifiable field") == 2
+    assert out.count("N/V baseline: the N/V fields equal the baseline entry") == 2
     assert "all 2 package(s) verified" in out
 
 
-@pytest.mark.parametrize("package", [V3, V4, V5B, TWO_SEEDS], ids=["v3", "v4", "v5b-shape", "two-seeds"])
+@pytest.mark.parametrize("package", [V3, V4, V5B, TWO_SEEDS, EARLY1, EARLY2], ids=["v3", "v4", "v5b-shape", "two-seeds", "early-look1", "early-look2"])
 def test_each_package_passes_alone(package: Path) -> None:
     result = run("--package", str(package))
     assert result.returncode == 0, result.stdout[-3000:] + result.stderr
     assert "all 1 package(s) verified" in result.stdout
-    assert "N/V baseline: no new not-verifiable field" in result.stdout
+    assert "N/V baseline: the N/V fields equal the baseline entry" in result.stdout
 
 
 def test_recomputed_numbers_are_pinned() -> None:
@@ -136,7 +138,7 @@ def test_unverifiable_fields_are_listed_not_passed() -> None:
     assert has("process counter min_tokens") and has("min_tokens is not a column of per_unit.csv")
     assert has("Early check after the first chunk")
     assert has("PUBLISHED_FILES.json: per_unit.csv")                        # V3 table added after the export manifest
-    assert has("checks.leakage") and has("checks.raw_integrity") and has("(power, alpha, false close)")
+    assert has("checks.leakage") and has("checks.raw_integrity") and has("power_at_sesoi")
     assert "WARN  cycle 1 finding:e7402eac3345ea88 (H3)" in out
     assert "the lab's verdict rule reads only the predicted direction" in out
 
@@ -179,7 +181,7 @@ def test_removed_row_fails(tmp_path: Path) -> None:
     columns, rows = read_rows(package)
     del rows[next(i for i, r in enumerate(rows) if r["arm"] == "placebo")]
     write_rows(package, columns, rows)
-    assert_fails_on(run("--package", str(package)), "complete unit x arm x seed grid (completeness)", "rows = run.records 900",
+    assert_fails_on(run("--package", str(package)), "complete unit x arm x seed grid (completeness)", "= run.records 900",
                     V4_RESULT + ": primary.retrieved_task (retrieved_task - placebo) n = 300", "completeness records 900 of expected 900")
 
 
@@ -188,7 +190,7 @@ def test_duplicated_row_fails(tmp_path: Path) -> None:
     columns, rows = read_rows(package)
     rows.insert(5, dict(rows[4]))
     write_rows(package, columns, rows)
-    assert_fails_on(run("--package", str(package)), "per_unit.csv: one row per (cycle, unit, arm, seed)", "rows = run.records 300")
+    assert_fails_on(run("--package", str(package)), "per_unit.csv: one row per (cycle, unit, arm, seed)", "= run.records 300")
 
 
 @pytest.mark.parametrize("source,result_id", [(V3, V3_RESULT), (V4, V4_RESULT)], ids=["v3", "v4"])
@@ -357,11 +359,10 @@ def test_unknown_column_with_realistic_cells(tmp_path: Path) -> None:
     for i, r in enumerate(rows):
         r["top1_similarity"] = "" if r["arm"] in ("none", "placebo") else ("1.0" if i % 7 == 0 else "0.%04d" % (i % 9999))
     write_rows(package, columns + ["top1_similarity"], rows)
-    without = run("--package", str(package), "--baseline", str(tmp_path / "no-baseline.json"))
-    assert without.returncode == 0, without.stdout[-3000:]
-    assert "N/V   per_unit.csv column top1_similarity" in without.stdout
-    assert "has no entry in no-baseline.json" in without.stdout
-    assert_fails_on(run("--package", str(package)), "N/V baseline: per_unit.csv column top1_similarity")
+    result = run("--package", str(package))
+    assert "N/V   per_unit.csv column top1_similarity" in result.stdout            # reported, no table error
+    assert "PASS  per_unit.csv: cycle and seed are integers" in result.stdout
+    assert_fails_on(result, "N/V baseline: per_unit.csv column top1_similarity")   # and the new N/V field must be reviewed
 
 
 def test_update_baseline_writes_only_the_given_file(tmp_path: Path) -> None:
@@ -371,6 +372,88 @@ def test_update_baseline_writes_only_the_given_file(tmp_path: Path) -> None:
     data = json.loads(target.read_text(encoding="utf-8"))
     assert list(data["packages"]) == ["autolab-alfworld-ladder-r4-v4"]
     assert any("min_tokens" in f for f in data["packages"]["autolab-alfworld-ladder-r4-v4"])
+    assert "baseline entry autolab-alfworld-ladder-r4-v4: new entry" in result.stdout and "\n  + " in result.stdout
+
+
+def test_update_baseline_refuses_a_package_with_a_fail(tmp_path: Path) -> None:
+    package = copy_package(V4, tmp_path)
+    edit_text(package / "README.md", "| placebo | 0.45 |", "| placebo | 0.46 |")
+    target = tmp_path / "baseline.json"
+    result = run("--package", str(package), "--baseline", str(target), "--update-baseline")
+    assert result.returncode == 1
+    assert "refusing to update the baseline entry of autolab-alfworld-ladder-r4-v4" in result.stderr
+    assert not target.exists()
+
+
+@pytest.mark.parametrize("content,message", [(None, "does not exist"), ("{}", "has no 'packages' object"),
+                                             ('{"packages": []}', "has no 'packages' object"), ("{not json", "is not valid JSON")],
+                         ids=["missing", "empty", "wrong-type", "malformed"])
+def test_baseline_fails_closed(tmp_path: Path, content, message: str) -> None:
+    target = tmp_path / "baseline.json"
+    if content is not None:
+        target.write_text(content, encoding="utf-8")
+    assert_fails_on(run("--package", str(V4), "--baseline", str(target)), message)
+
+
+def test_package_without_a_baseline_entry_fails(tmp_path: Path) -> None:
+    renamed = tmp_path / "autolab-alfworld-ladder-r4-v4b"
+    shutil.copytree(V4, renamed)
+    result = run("--package", str(renamed))
+    assert_fails_on(result, "N/V baseline: entry for autolab-alfworld-ladder-r4-v4b")
+    assert "--update-baseline" in result.stdout
+
+
+def test_stale_baseline_entry_fails(tmp_path: Path) -> None:
+    data = json.loads((ROOT / "scripts" / "verify_autolab_packages.baseline.json").read_text(encoding="utf-8"))
+    data["packages"]["autolab-alfworld-ladder-r4-v4"].append("README text 'a sentence that a later change could hide behind'")
+    target = tmp_path / "baseline.json"
+    target.write_text(json.dumps(data), encoding="utf-8")
+    assert_fails_on(run("--package", str(V4), "--baseline", str(target)), "N/V baseline: stale entry README text 'a sentence")
+
+
+def test_early_stop_fixtures_are_verified() -> None:
+    out = run("--package", str(EARLY1), "--package", str(EARLY2)).stdout
+    assert "stopped at look 1 of 2 pre-registered" in out and "stopped at look 2 of 2 pre-registered" in out
+    assert "103 units = ceil(look 0.34 x planned 300)" in out and "201 units = ceil(look 0.67 x planned 300)" in out
+    assert "z = 3.8992 (sequential threshold of the run's look)" in out and "z = 2.7777 (sequential threshold of the run's look)" in out
+    assert "report: units_used = 300" in out
+    assert "states of the stop look = recomputed primary states" in out
+
+
+def test_tampered_early_stop_fails(tmp_path: Path) -> None:
+    package = copy_package(EARLY2, tmp_path)
+    run_obj = next(json.loads(x) for x in (package / "knowledge.jsonl").read_text(encoding="utf-8").splitlines() if json.loads(x)["kind"] == "run")
+    stop = run_obj["payload"]["sequential"]["decision"]
+    edit_object(package, stop, lambda p: p["states"].update(mismatched_type="practical"))
+    assert_fails_on(run("--package", str(package)), stop + ": states of the stop look = recomputed primary states")
+
+
+def test_extra_table_cell_fails(tmp_path: Path) -> None:
+    package = copy_package(V4, tmp_path)
+    edit_text(package / "README.md", "| `finding:00fa0192dfd13db2` |", "| `finding:00fa0192dfd13db2` | p < 0.001 |")
+    assert_fails_on(run("--package", str(package)), "has the 9 cells of its header")
+
+
+def test_placebo_tokens_halved_fails(tmp_path: Path) -> None:
+    package = copy_package(V3, tmp_path)               # V3's audit predates the lab's placebo-length check
+    columns, rows = read_rows(package)
+    for r in rows:
+        if r["arm"] == "placebo":
+            r["memory_tokens"] = str(int(r["memory_tokens"]) // 2)
+    write_rows(package, columns, rows)
+    assert_fails_on(run("--package", str(package)), "placebo memory tokens >= 0.8 x retrieved_task")
+
+
+def test_failed_check_with_a_valid_verdict_fails(tmp_path: Path) -> None:
+    package = copy_package(V4, tmp_path)
+    edit_object(package, "audit:ff4e4912acd1a5e9", lambda p: p["checks"]["leakage"].update(ok=False))
+    assert_fails_on(run("--package", str(package)), "follow the checks' ok and severity", "N/V baseline: cycle 1 audit:ff4e4912acd1a5e9: checks.leakage (ok = False)")
+
+
+def test_changed_model_calls_is_visible(tmp_path: Path) -> None:
+    package = copy_package(V4, tmp_path)
+    edit_object(package, "report:81d81227fb6cc53c", lambda p: p.update(model_calls=9999))
+    assert_fails_on(run("--package", str(package)), "N/V baseline: report: model_calls = 9999")
 
 
 # --------------------------------------------------------------------------- the lab rules themselves
