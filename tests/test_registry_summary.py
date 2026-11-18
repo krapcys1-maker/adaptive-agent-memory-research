@@ -30,6 +30,8 @@ import registry_summary as summary  # noqa: E402
         ("design-only-execution-locked", "awaiting"),
         ("", "awaiting"),
         ("  Completed  ", "completed"),
+        ("s1-development-completed-s2-not-approved", "completed"),
+        ("screen-completed-preliminary-not-confirmed", "completed"),
     ],
 )
 def test_a_status_lands_in_the_expected_bucket(status: str, expected: str) -> None:
@@ -58,3 +60,24 @@ def test_the_live_registry_is_fully_accounted_for() -> None:
         rows = sum(1 for _ in csv.DictReader(handle))
     assert counts["total"] == rows
     assert sum(counts[name] for name in summary.BUCKETS) == rows
+
+
+def test_every_status_that_names_a_completed_stage_is_counted_as_completed() -> None:
+    """A status such as "<stage>-completed-<rest>" must not fall through to awaiting: add it to STATUS_BUCKETS."""
+    with summary.REGISTRY.open(encoding="utf-8-sig", newline="") as handle:
+        statuses = {row["status"].strip().lower() for row in csv.DictReader(handle)}
+    for status in statuses:
+        if "completed" in status and not status.startswith(("blocked", "invalid", "partial")):
+            assert summary.bucket(status) == "completed", status
+
+
+def test_the_autolab_alfworld_programs_are_registered() -> None:
+    with summary.REGISTRY.open(encoding="utf-8-sig", newline="") as handle:
+        rows = {row["experiment_id"]: row for row in csv.DictReader(handle)}
+    for program, folder in (("ALFWORLD-LADDER-R4-V3", "autolab-alfworld-ladder-r4-v3"),
+                            ("ALFWORLD-LADDER-R4-V4", "autolab-alfworld-ladder-r4-v4")):
+        row = rows[program]
+        assert summary.bucket(row["status"]) == "completed"
+        assert row["artifact_path"] == f"data/lab/{folder}/"
+        assert (ROOT / row["artifact_path"] / "PUBLISHED_FILES.json").is_file()
+        assert (ROOT / row["manifest_path"]).is_file()

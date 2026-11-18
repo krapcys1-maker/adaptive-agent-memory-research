@@ -154,7 +154,7 @@ Separate role prompts are not sufficient independence. High-impact conclusions r
 - `data/lab/pmlab-forgetting-challenge-v0/parser-challenge-v1/` — post-freeze language/date perturbation set that falsifies parser v0 generality.
 - `data/lab/coverage-matrix.csv` — topic status and gaps.
 - `data/lab/search-log.csv` — denominator for saturation claims.
-- `data/lab/experiment-registry.csv` — all planned, running, completed, null, and failed experiments.
+- `data/lab/experiment-registry.csv` — planned, completed, null, and failed experiments. Programs of the autonomous lab are added once they are finished and exported (ALFWORLD-LADDER-R4-V3 and -V4 so far); a program that is still running, such as V5B, is not listed yet. `scripts/registry_summary.py` counts the rows by bucket.
 - `data/lab/phase-gate-status.csv` — current gate decision and blockers for each active experiment family.
 - `data/lab/backend-registry.csv` — frozen retrieval ladder and unlock state.
 - `data/lab/pmlab-v0-dev/` — 24-query development slice and first B0/B1/B2 instrument report; explicitly not the released benchmark.
