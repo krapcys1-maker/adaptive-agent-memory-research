@@ -141,18 +141,22 @@ def test_similarity_metrics(bank):
     assert agent.similarity_metrics(goal, [], bank)["memory_similarity"] is None
 
 
-def test_mismatched_type_comes_from_the_least_similar_quarter(bank):
+def test_mismatched_type_stays_in_least_similar_half_and_avoids_retrieved(bank):
     bank = bank + [entry(f"train/pick_two_obj_and_place-Pen-None-Desk-{i}/trial_1", "put two pen in desk", 3 + i % 5)
                    for i in range(30)]
+    # an other-type entry that is very similar to the goal must never be shown
+    bank = bank + [entry("train/pick_cool_then_place_in_recep-Egg-None-Fridge-7/trial_1", "cool some egg and put it in fridge")]
     goal = "heat some egg and put it in fridge"
-    _, src = agent.choose_memory(TASK, goal, "mismatched_type", 1, bank)
-    other = sorted((b for b in bank if b["type"] != "pick_heat_then_place_in_recep"),
+    _, ret = agent.choose_memory(TASK, goal, "retrieved_task", 1, bank)
+    blk, src = agent.choose_memory(TASK, goal, "mismatched_type", 1, bank)
+    info = dict(agent.MISMATCH_INFO)
+    other = sorted((b for b in bank if b["type"] != "pick_heat_then_place_in_recep" and b["task"] not in ret),
                    key=lambda b: (agent.jaccard(goal, b["goal"]), b["task"]))
-    # the least similar quarter unless no pair there is within 3% of the memory block; then wider
-    assert all(t in {b["task"] for b in other} for t in src)
-    mem, _ = agent.choose_memory(TASK, goal, "retrieved_task", 1, bank)
-    blk, _ = agent.choose_memory(TASK, goal, "mismatched_type", 1, bank)
-    assert abs(agent.count_tokens(blk) - agent.count_tokens(mem)) <= 0.05 * agent.count_tokens(mem) + 4
+    half = {b["task"] for b in other[:max(20, len(other) // 2)]}
+    assert set(src) <= half and not set(src) & set(ret)
+    assert "train/pick_cool_then_place_in_recep-Egg-None-Fridge-7/trial_1" not in src
+    assert info["mismatched_pool"] in ("quarter", "half") and info["overlap_with_retrieved"] == 0
+    assert isinstance(info["mismatched_length_diff"], float)
 
 
 def test_format_reminder_is_on_by_default_and_identical_text():

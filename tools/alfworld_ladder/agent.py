@@ -163,20 +163,25 @@ def similarity_metrics(goal: str, sources: list, bank: list) -> dict:
             "memory_similarity": round(sum(shown) / len(shown), 4) if shown else None}
 
 
-def mismatched_items(task: str, goal: str, seed: int, bank: list, target: int, tol: float = 0.03):
-    """Two real walkthroughs of OTHER task types than the unit: real walkthrough content, wrong and unrelated task.
-    Candidates are the other-type bank entries ordered by goal similarity (lowest first). Search starts in the
-    least similar quarter (at least 20 entries); every pair is scored by its estimated block token count against
-    `target` (the retrieved_task block of the same task and seed). If no pair is within `tol` (3%), the pool widens
-    to the least similar half, then to all other-type entries. Ties are broken by a sha256 hash of (task, seed,
-    pair), so the choice is deterministic. Item token counts are cached per bank entry."""
-    other = sorted((b for b in bank if b["type"] != ttype_of(task)), key=lambda b: (jaccard(goal, b["goal"]), b["task"]))
+MISMATCH_INFO: dict = {}   # details of the last mismatched_type choice in this process, read by episode()
+
+
+def mismatched_items(task: str, goal: str, seed: int, bank: list, target: int, exclude=(), tol: float = 0.03):
+    """Two real walkthroughs of OTHER task types than the unit: real walkthrough content, unrelated task.
+    Candidates: other-type bank entries that are not among `exclude` (the retrieved_task picks of the same task and
+    seed), ordered by goal similarity, lowest first. Every pair of the least similar quarter (at least 20 entries)
+    is scored by estimated block token count against `target` (the retrieved_task block). If no pair is within
+    `tol` (3%), the least similar HALF is searched. The pool never goes beyond the least similar half, so the shown
+    tasks stay unrelated; the closest pair found is used even if it is more than 3% off, and the real difference is
+    reported. Ties are broken by a sha256 hash of (task, seed, pair). Item token counts are cached per entry."""
+    other = sorted((b for b in bank if b["type"] != ttype_of(task) and b["task"] not in set(exclude)),
+                   key=lambda b: (jaccard(goal, b["goal"]), b["task"]))
     for b in other:
         if b["task"] not in _ITEM_TOKENS:
             _ITEM_TOKENS[b["task"]] = count_tokens(render(b))
     overhead = count_tokens(wrap(["x", "x"])) - 2 * count_tokens("x")
-    best = None
-    for size in (max(20, len(other) // 4), max(20, len(other) // 2), len(other)):
+    best, level = None, None
+    for level, size in (("quarter", max(20, len(other) // 4)), ("half", max(20, len(other) // 2))):
         pool = other[:size]
         for i in range(len(pool)):
             for j in range(i + 1, len(pool)):
@@ -188,7 +193,12 @@ def mismatched_items(task: str, goal: str, seed: int, bank: list, target: int, t
         if best[0][0] <= tol * target:
             break
     picks = [best[1], best[2]]
-    return wrap([render(x) for x in picks]), [x["task"] for x in picks]
+    block = wrap([render(x) for x in picks])
+    MISMATCH_INFO.clear()
+    MISMATCH_INFO.update({"mismatched_pool": level,
+                          "mismatched_length_diff": round((count_tokens(block) - target) / max(1, target), 4),
+                          "overlap_with_retrieved": len({x["task"] for x in picks} & set(exclude))})
+    return block, [x["task"] for x in picks]
 
 
 def choose_memory(task: str, goal: str, arm: str, seed: int, bank: list):
@@ -208,7 +218,8 @@ def choose_memory(task: str, goal: str, arm: str, seed: int, bank: list):
         if arm == "retrieved_task":
             return wrap([render(b) for b in picks]), [b["task"] for b in picks]
         if arm == "mismatched_type":
-            return mismatched_items(task, goal, seed, bank, count_tokens(wrap([render(b) for b in picks])))
+            return mismatched_items(task, goal, seed, bank, count_tokens(wrap([render(b) for b in picks])),
+                                    exclude=[b["task"] for b in picks])
         # placebo: token-matched to the retrieved_task block of the same (task, seed); no source is shown
         n = count_tokens(wrap([render(b) for b in picks]))
         return wrap(placebo_items(n)), []
@@ -281,7 +292,9 @@ def episode(job: dict) -> dict:
         obs, info = env.reset()
         obs0 = obs.split("\n\n", 1)[-1] if "Your task is to" in obs.split("\n\n", 1)[-1] else obs
         goal = goal_of(obs)
+        MISMATCH_INFO.clear()
         block, sources = choose_memory(task, goal, arm, seed, BANK)
+        mis = dict(MISMATCH_INFO) if arm == "mismatched_type" else {}
         suffix = ACTION_INSTR if block is None else MEMORY_WRAPPER.format(retrieved_exp=block)
         if CFG["format_reminder"]:
             suffix += FORMAT_REMINDER
@@ -328,6 +341,9 @@ def episode(job: dict) -> dict:
                             "invalid_actions": invalid, "invalid_no_action_tag": no_tag,
                             "truncated": truncated, "untagged_not_truncated": untagged_nt,
                             **similarity_metrics(goal, sources, BANK),
+                            "mismatched_pool": mis.get("mismatched_pool"),
+                            "mismatched_length_diff": mis.get("mismatched_length_diff"),
+                            "overlap_with_retrieved": mis.get("overlap_with_retrieved"),
                             "invalid_samples": bad_samples, "empty_retries": empty_retries, "seconds": round(time.time() - t0, 1),
                             "temperature": CFG["temperature"], "max_tokens": CFG["max_tokens"],
                             "min_tokens": CFG["min_tokens"], "format_reminder": CFG["format_reminder"], "max_steps": CFG["max_steps"], "model": CFG["model"]},
