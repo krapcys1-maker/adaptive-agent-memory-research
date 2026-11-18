@@ -19,7 +19,10 @@ PIDS=/tmp/ladder-run.$ME.pids
 setsid bash -c "while kill -0 $ME 2>/dev/null; do sleep 5; done; while read -r k p; do if [ \"\$k\" = grp ]; then kill -- -\$p; else kill \$p; fi; done < $PIDS 2>/dev/null; rm -f $PIDS" >/dev/null 2>&1 < /dev/null &
 SRV=""
 up() { curl -s -m 3 http://127.0.0.1:8001/v1/models | grep -q Qwen; }
-if ! up; then
+# a batch of scripted positive-control arms only (rung 0) needs no model: do not start the server
+NEEDS_MODEL=1
+if ! grep -vqE '"arm": "scripted_(expert|null)"' "$B"; then NEEDS_MODEL=0; echo "scripted arms only: no model server"; fi
+if [ "$NEEDS_MODEL" = 1 ] && ! up; then
   echo "starting vLLM"
   setsid bash "$HERE/vllm_serve.sh" > "$HERE/../data/vllm_last.log" 2>&1 < /dev/null &
   SRV=$!
