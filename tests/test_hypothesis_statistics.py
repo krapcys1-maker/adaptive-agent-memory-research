@@ -201,3 +201,36 @@ def test_textsim_tokens_fold_accents_and_drop_stop_words():
     assert tokens("Łódź i ŻÓŁW the cat") == ["lodz", "zolw", "cat"]
     assert features("alpha beta gamma", reach=1)["alpha|beta"] == 1
     assert "alpha|gamma" not in features("alpha beta gamma", reach=1)
+
+
+# ------------------------------------------------- input validation (external audit, gpt raport, 2026-11-18)
+@pytest.mark.parametrize("order", [("A", "B", "C"), ("C", "A", "B"), ("B", "C", "A")])
+def test_holm_rejects_nan_in_every_input_order(order):
+    """Before the fix, {A: NaN, B: 0.01, C: 0.02} rejected nothing in two orders and B and C in the third."""
+    values = {"A": float("nan"), "B": 0.01, "C": 0.02}
+    with pytest.raises(ValueError, match="'A'"):
+        holm({k: values[k] for k in order}, 0.05)
+
+
+@pytest.mark.parametrize("bad", [-0.5, 1.5, float("inf"), float("-inf"), "0.01", True])
+def test_holm_rejects_p_values_outside_the_unit_interval(bad):
+    with pytest.raises(ValueError):
+        holm({"a": bad, "b": 0.01}, 0.05)
+
+
+@pytest.mark.parametrize("alpha", [0, 1, -0.05, 1.5, float("nan"), True])
+def test_holm_rejects_alpha_outside_the_open_unit_interval(alpha):
+    with pytest.raises(ValueError):
+        holm({"a": 0.01}, alpha)
+
+
+def test_holm_still_accepts_none_and_the_edges():
+    r = holm({"a": 0.0, "b": 1.0, "c": None}, 0.05)
+    assert r["a"]["reject"] is True and r["c"]["executed"] is False and r["c"]["p"] == 1.0
+
+
+@pytest.mark.parametrize("gained,lost", [(5, -1), (-3, 2), (-1, -1), (2.0, 1), (1, 0.5), (True, 1), ("3", 1)])
+def test_mcnemar_rejects_counts_that_are_not_non_negative_integers(gained, lost):
+    """Before the fix, (5, -1) returned p = 0.0 and (-3, 2) raised from inside math.comb."""
+    with pytest.raises(ValueError):
+        mcnemar_one_sided(gained, lost)
