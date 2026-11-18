@@ -1,24 +1,24 @@
 # Evidence diagnosis: the bottleneck is not just the reader
 
-Model-free follow-up to the [completed rejected BEAM reader study](../beam-reader-evidence-v1/README.md). The whole176-case annotated subset has every declared source represented in only16final packets (28at the16candidate stage). A new literal context envelope exposes the lost example heading in the known regression, but its byte cost removes315of705previously selected windows. **Accept only the inspectable structural interface; keep the packet variant experimental and do not adopt it as a better answer method.** No new model call, score repair or independent confirmation.
+Model-free follow-up to the [completed rejected BEAM reader study](../beam-reader-evidence-v1/README.md). The whole 176-case annotated subset has every declared source represented in only 16 final packets (28 at the 16-candidate stage). A new literal context envelope exposes the lost example heading in the known regression, but its byte cost removes 315 of 705 previously selected windows. **Accept only the inspectable structural interface; keep the packet variant experimental and do not adopt it as a better answer method.** No new model call, score repair or independent confirmation.
 
 ## Complete coverage diagnostic
 
 [Original protocol](../beam-evidence-boundary-v1/PLAN.md) frozen5b70e0e before processing. V1stopped on an explicit `--` reference marker in6-Q0004; its started/failure evidence and code remain immutable. [V2amendment](PLAN.md) frozen50e12e4 before the second corpus pass retains that marker as an unresolved target slot, with no guessed source and no target-denominator deletion. [Failed original receipt](failed-v1.json).
 
-All200questions/10histories/10abilities remain in the report.176cases have nonempty reference declarations;24have no source_chat_ids field (20abstention and4summarization), not zero-evidence retrieval successes.1326declared slots:1325unique-per-case numeric references, one unresolved marker. All1325numeric references map exactly to original scope-specific messages;0archive misses. Sources1244user/81assistant. No IDs are guessed from expected answers, question wording or an ideal response.
+All 200 questions / 10 histories / 10 abilities remain in the report. 176 cases have nonempty reference declarations; 24 have no source_chat_ids field (20 abstention and 4 summarization), not zero-evidence retrieval successes. 1326 declared slots: 1325 unique-per-case numeric references, one unresolved marker. All 1325 numeric references map exactly to original scope-specific messages; 0 archive misses. Sources 1244 user / 81 assistant. No IDs are guessed from expected answers, question wording or an ideal response.
 
 | Fate of declared source target | Slots |
 |---|---:|
 | Explicit unresolved marker | 1 |
-| Available but outside16lexical candidates | 1216 |
+| Available but outside 16 lexical candidates | 1216 |
 | Retrieved but omitted by complete-message budget | 34 |
 | Source represented partially | 5 |
 | Source represented fully | 70 |
 
-Any declared source appears in74/176candidate sets and56/176final packets. All targets appear in28candidate sets and16final packets; those16also retain full source text for each declared target. The unresolved slot prevents an all-target result for its case. Targets are counted once per case; overlap/repeated windows do not inflate character coverage. [Full summary](result.json), [all200content-free case metrics](case-metrics.jsonl).
+Any declared source appears in 74/176 candidate sets and 56/176 final packets. All targets appear in 28 candidate sets and 16 final packets; those 16 also retain full source text for each declared target. The unresolved slot prevents an all-target result for its case. Targets are counted once per case; overlap/repeated windows do not inflate character coverage. [Full summary](result.json), [all 200 content-free case metrics](case-metrics.jsonl).
 
-| Ability | Cases with reference field | All targets in16candidates | All targets shown |
+| Ability | Cases with reference field | All targets in 16 candidates | All targets shown |
 |---|---:|---:|---:|
 | abstention | 0 | 0 | 0 |
 | contradiction resolution | 20 | 7 | 4 |

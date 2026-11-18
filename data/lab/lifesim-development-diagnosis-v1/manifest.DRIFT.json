@@ -1,0 +1,17 @@
+{
+  "status": "declaration-drift-explained",
+  "manifest": "data/lab/lifesim-development-diagnosis-v1/manifest.json",
+  "path": "scripts/lifesim/development_diagnosis.py",
+  "declared_sha256": "833540fb763c36dbf78c5ac4fc7be9783b3ea61d972b5325cf28f8f8241f57d2",
+  "declared_matched_at": [
+    "1a6f521b4f0c9ac52e3dc46ec64890387ae19135",
+    "9dfb6b121e28d080be524866cbb621ec3cbec116"
+  ],
+  "changed_in": "f9a6d3d8191584d2b236b1e9114cc7771d8b4277",
+  "current_sha256": "absent",
+  "moved_to": "scripts/reviews/lifesim_development_diagnosis.py",
+  "reason": "After the measurement the runner was moved out of the deterministic lifesim package (which forbids clock imports) to scripts/reviews/lifesim_development_diagnosis.py, with a small edit for its timing receipt. The packet README records the move ('Operational packaging correction after measurement'). The manifest was not rewritten.",
+  "consequence": "The executed source is the declared bytes at the matched commits; use git show at those commits. The moved file is a later edited copy, not the declared bytes.",
+  "recorded_at": "2026-11-18",
+  "recorded_by": "Claude Code on fix/gpt-audit-2026-11-18, after the claim audit learned to report deleted frozen files; manifest preserved"
+}

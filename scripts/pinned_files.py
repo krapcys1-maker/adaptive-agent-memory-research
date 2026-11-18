@@ -2,7 +2,9 @@
 """Which experiment manifests freeze a file: ask before you edit it.
 
 A file is frozen when a JSON manifest under ``data/`` declares its SHA-256 under a key
-that is the file's path. Committing any change to such a file makes
+that is the file's path, or as ``sha256`` in a record whose ``target``, ``published_path``
+or ``path`` field names the file (the ``PUBLISHED_FILES.json`` format of the lab exports and
+the K1 packet). Committing any change to such a file makes
 ``scripts/audit_repository_claims.py`` report a critical ``declared-hash`` finding and
 fails CI, unless a ``<manifest>.DRIFT.json`` note next to every pinning manifest proves
 the change from Git. Shared helpers are frozen this way too, not only experiment code:
@@ -11,7 +13,7 @@ this command tells you before the edit, so that a change to a frozen helper beco
 new versioned file (the project's documented route) instead of a red build.
 
 It applies the audit's own rules: manifests under ``data/`` only, packets governed by a
-valid ``SUPERSEDED.json`` skipped, and only path keys counted (a ``<name>_sha256`` key is
+valid ``SUPERSEDED.json`` skipped, and only path keys and path records counted (a ``<name>_sha256`` key is
 a guess the audit reports at low severity, so it is listed separately and never decides
 the verdict). The rules are imported from the audit module, not copied, so the two
 cannot drift apart. It reads files and runs read-only ``git show``; it writes nothing.
@@ -74,7 +76,7 @@ def declarations(root: Path | None = None) -> dict[str, list[dict[str, Any]]]:
         for key_path, key, value in audit.walk_json(payload, []):
             if not isinstance(value, str) or not audit.HEX64.match(value):
                 continue
-            resolved = audit.resolve_declared_target(manifest, key, key_path)
+            resolved = audit.resolve_declared_target(manifest, key, key_path, audit.container_at(payload, key_path))
             if resolved is None:
                 continue
             target, certain = resolved

@@ -14,7 +14,7 @@ An agent that does tasks (in a home simulator, a science lab simulator, later wi
 
 ## The finding so far: check the controls first
 
-In the published ALFWorld run with a local 4B model, a token-matched **placebo** block — meaningless text of the same length, no task content — raised the solve rate by 13 points on its own. It also suppressed an empty-answer decoding artefact. So much of what would have looked like a memory gain was not caused by memory content.
+In the published ALFWorld run with a local 4B model, a token-matched **placebo** block — meaningless text of the same length, no task content — raised the solve rate by 13 points on its own. It also coincided with an almost complete absence of empty answers, which were frequent in the other arms. So comparing memory with no memory alone would have overstated the memory effect; a placebo that changes decoding is itself not a clean control.
 
 What this does and does not say: it is one model on one benchmark, and it does not show that memory never helps. It shows that comparing "with memory" against "no memory" is not enough, which is why every rung below is compared with controls of the same length.
 
