@@ -219,3 +219,5 @@ privacy,Direct hashes are weak pseudonymisation for low-entropy identifiers beca
 causal-inference,Inverse-probability handling of censoring requires conditional exchangeability positivity ,medium,2024,uncatalogued-cited,unknown,,https://www.hsph.harvard.edu/miguel-hernan/wp-content/uploads/sites/1268/2024/04/hernanrobins_WhatIf_26apr24.pdf,,cited by evidence-ledger claim(s): AI-041
 data-integrity,Cryptographic operations over JSON require an invariant representation such as a named can,medium,,uncatalogued-cited,unknown,,https://www.rfc-editor.org/rfc/rfc8785.html,,cited by evidence-ledger claim(s): AI-044
 distributed-invariants,Invariant confluence is the necessary and sufficient condition for safe coordination-free ,medium,,uncatalogued-cited,unknown,,https://www.vldb.org/pvldb/vol8/p185-bailis.pdf,,cited by evidence-ledger claim(s): SYS-003
+
+llm-memory,procedural-workflow-memory,A,2024,preprint-primary,full-read,Agent Workflow Memory,https://arxiv.org/abs/2409.07429,https://arxiv.org/pdf/2409.07429,Reusable procedural workflows with separate offline and online evaluation and non-additive integration results
