@@ -15,18 +15,27 @@ setup and your own idea. A refuted hypothesis is a result. A written review, a r
 counts toward co-authorship of the next report ([AUTHORSHIP.md](../../AUTHORSHIP.md)).
 
 **What we know so far.** On ALFWorld with Qwen3-4B:
-- A token-matched placebo block raised the solve rate by 13 points in V3. Most of that came from a decoding artefact:
-  without extra text, the model often ended its answer at the first token. With `min_tokens = 8` for every arm (V4,
-  300 games), empty answers are gone, and placebo and no memory are within 2 points of each other (0.45 vs 0.47).
+- In V3 (100 `valid_seen` games, six task types, `min_tokens` not set) a token-matched placebo block raised the
+  solve rate by 13 points over no memory (0.57 vs 0.44, [+0.04, +0.22]). In the same run the placebo almost removed
+  empty answers (per step: none 0.743, memory 0.582, placebo 0.001), so V3's placebo was not a neutral control.
+- In V4, with `min_tokens = 8` in every arm, there were no empty answers, and placebo and no memory were equivalent
+  (0.45 vs 0.47, difference −0.02 [−0.07, +0.02]). V4 also changed the games (300 `train` games, five task types,
+  no game shared with V3, a different family split), so the V3 → V4 change does **not** tell how much of the
+  13 points came from the decoding artefact. That is a hypothesis. The direct test is the same games with
+  `min_tokens` 0 and 8, all else fixed (P5).
 - In V4 retrieved walkthroughs beat the placebo by 24 points (0.69 vs 0.45, interval [+0.18, +0.30]). Limits: one
-  model, one seed, and five of the six task types (no `look_at_obj_in_light` games in V4's pool); the lab flags a
-  measurement problem because the pre-registered format criterion was exceeded. V5B adds the sixth type and a
-  format-matched control.
+  model, one seed, and five of the six task types (no `look_at_obj_in_light` games in V4's pool). The lab flags a
+  measurement problem because the pre-registered format criterion was exceeded when untagged answers are counted
+  per step, pooled over the 300 episodes of each arm (memory − placebo +3.4 pp, interval [+1.4, +5.3], criterion
+  3 pp). Averaged per game instead (the mean of the 300 per-episode rates, a sensitivity analysis from the public
+  `per_unit.csv`), the difference is +0.45 pp: the memory arm's episodes are shorter (26 vs 37 steps on average), so
+  the per-step figure depends on how steps are weighted. The status is `measurement_problem`: neither established
+  nor closed. V5B adds the sixth type and a format-matched control.
 - In V4 the memory arm also makes more invalid actions per step (0.29 vs 0.20 for the placebo): walkthroughs may help
   planning while adding actions that do not fit the current room. Open question, see P1.
-- In V4 the memory arm produces more answers without an action tag. A sample suggests that these are mostly answers
-  cut off at max_tokens after long deliberation about a mismatch between the retrieved walkthrough and the current
-  room.
+- In V4 the memory arm produces more answers without an action tag. A private sample of raw logs suggests that
+  these are mostly answers cut off at max_tokens after long deliberation about a mismatch between the retrieved
+  walkthrough and the current room. V3 and V4 did not record truncation, so the public tables cannot check this.
 - None of the agent-memory papers we surveyed used a length-matched placebo: not AdaMEM, ExpeL, RAP, TRAD, Memp or
   ReasoningBank.
 
@@ -34,10 +43,21 @@ counts toward co-authorship of the next report ([AUTHORSHIP.md](../../AUTHORSHIP
 
 - **Hypothesis:** the gain grows with goal similarity, and truncated or untagged answers cluster in low-similarity
   games.
-- **Test:** re-analyse the published per-task tables. For V3, use
-  [`per_unit.csv`](../../data/lab/autolab-alfworld-ladder-r4-v3/per_unit.csv); for V4,
-  [`per_unit.csv`](../../data/lab/autolab-alfworld-ladder-r4-v4/per_unit.csv). Fit success and untagged rate against similarity, and run paired tests per task type.
-- **Needs:** a laptop.
+- **Test, part 1 (the public tables only):** re-analyse the published per-task tables, V3
+  [`per_unit.csv`](../../data/lab/autolab-alfworld-ladder-r4-v3/per_unit.csv) and V4
+  [`per_unit.csv`](../../data/lab/autolab-alfworld-ladder-r4-v4/per_unit.csv). They hold, per game and arm, the
+  solve outcome, steps, empty retries, untagged answers (`invalid_no_action_tag`), invalid actions, memory tokens,
+  `n_memory_sources` and `error`; the task type is part of the game name. From them you can run paired win/loss
+  tests per task type and look at untagged answers and invalid actions by arm and type.
+- **What they do not hold:** goal similarity and truncation were **not recorded** for V3 and V4. Truncation
+  (`finish_reason`) was added to the agent after the V4 pin and cannot be recovered. Similarity can only be
+  recomputed: the goal text comes from the ALFWorld game files, the walkthroughs from
+  `tools/alfworld_ladder/data/bank.jsonl`, and the retrieved pair can be re-derived with the agent's deterministic
+  Jaccard ranking and hash tie-break. That needs the ALFWorld data, not just the tables.
+- **Test, part 2 (from V5B on):** the per-unit table also includes `truncated`, `untagged_not_truncated`,
+  `top1_similarity` and `memory_similarity` (the lab exporter is being changed for that; placebo-check cells
+  already write the similarity columns). Fit success and the untagged rate against similarity there.
+- **Needs:** a laptop (part 1 and part 2); the ALFWorld data to recompute similarity for V3/V4.
 - **Why it matters:** it is free, and it sets the threshold for the relevance gate (P3, D10).
 
 ## P2. Relevant content, or just the shape of an expert trajectory? (12 GB GPU)
@@ -66,10 +86,12 @@ counts toward co-authorship of the next report ([AUTHORSHIP.md](../../AUTHORSHIP
 
 ## P5. Does the empty-answer artefact appear on your model? (12 GB GPU)
 
-- **Hypothesis:** first-token end-of-sequence, and the placebo "gain" that came from it, depend on the model and the
-  serving stack.
-- **Test:** the placebo-check cell (#193) with `--min-tokens 0` and `8`, on another model (Qwen3-1.7B, Llama-3.2-3B,
-  Gemma-3-4B) or another vLLM version.
+- **Hypothesis:** first-token end-of-sequence, and any part of the V3 placebo effect that came from it, depend on the
+  model and the serving stack.
+- **Test:** the placebo-check cell (#193) with `--min-tokens 0` and `8` on the same block, everything else fixed
+  (this is also the direct test of the decoding hypothesis on those games), with Qwen3-4B or on another model
+  (Qwen3-1.7B, Llama-3.2-3B, Gemma-3-4B) or another vLLM version. A different model makes the cell a conceptual
+  replication; the card records it.
 - **Why it matters:** if it generalises, every memory evaluation without such a control is suspect.
 
 ## P6. Does AdaMEM's raw-trajectory gain survive a placebo? (12 GB GPU)
