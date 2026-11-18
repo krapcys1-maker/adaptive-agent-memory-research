@@ -160,8 +160,10 @@ jobs:
       # (per_unit.csv, README, knowledge.jsonl), the solved rates, the paired
       # contrasts and their intervals, the states and the per-step format
       # criterion, and compares them with the numbers the package declares.
-      # Any mismatch fails the job; numbers that cannot be recomputed from the
-      # package are printed as N/V and do not fail it. Standard library only.
+      # Any mismatch fails the job. Numbers that cannot be recomputed from the
+      # package are printed as N/V; their set per package is pinned in
+      # scripts/verify_autolab_packages.baseline.json, so lost coverage fails
+      # too. Standard library only.
       - name: Recompute the published autolab numbers
         run: python scripts/verify_autolab_packages.py
 

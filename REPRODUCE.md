@@ -125,9 +125,41 @@ python scripts/verify_autolab_packages.py                       # every package
 python scripts/verify_autolab_packages.py --package data/lab/autolab-alfworld-ladder-r4-v4
 ```
 
-From `per_unit.csv` it recomputes the solved count and rate of each arm; for the primary contrast (variant - placebo) and every secondary contrast the package states, the number of pairs, gains, losses, the paired difference, the discordance and the paired Wald interval at the package's z; the interval state (practical, positive, equivalent, negative, inconclusive) with the rule the package's hypotheses state at the protocol's SESOI; the per-step process counters (empty retries, untagged answers, invalid actions), step-weighted as pre-registered (sum over the episodes of an arm divided by their steps), their difference memory - placebo and the pre-registered format criterion; the finding verdicts and Brier scores; and the per-direction status when a pre-registered format criterion fails. Each is compared with the number the README and `knowledge.jsonl` declare, with a tolerance for rounding only, and the export manifest digests and object hashes are checked too. Exit status 0 means every recomputable number matches, 1 lists each mismatching field, 2 means a required file is missing or unreadable. CI runs it (job *Autolab package verification*); the tests, which alter a solved cell, remove, duplicate or relabel a row and change declared numbers, are `tests/test_verify_autolab_packages.py`.
+The script applies the laboratory's own rules, each named in the script by the lab function it mirrors. From `per_unit.csv` it recomputes:
 
-What the packages do not let anyone recompute is printed as `N/V` (not verifiable from the package) with the reason, never passed silently: the exact digits of the bootstrap intervals of the format criterion (the resampling seed and the number of replicates are not published, so the script checks agreement with its own seeded paired bootstrap within Monte Carlo error, and the criterion's decision only when it does not depend on those digits); counters that are not columns of `per_unit.csv` (V4's `min_tokens` rates); the early check after the first chunk of a run (the table does not record the chunks); the design calibration (a simulation whose specification is private); the leakage, fresh-unit and raw-integrity parts of the code audit and the raw-log digests (they need private files); the number of model calls; and V3's `per_unit.csv`, which was added after V3's export and is not in its `PUBLISHED_FILES.json`. `WARN` marks two statements of a package that disagree with each other without the package saying which one rules; in V4 that is hypothesis H3, whose verdict follows its predicted direction (positive, so `practical` supports it) while its stated expected state is "positive below SESOI" and its falsification text names `practical` among the refuting states.
+- the solved rate of each arm, on the first seed of the protocol (the lab analyses only that seed);
+- for the primary contrasts (variant - placebo) and the secondary contrasts (arm - baseline): the number of pairs, gains, losses, the paired difference, the discordance, and the paired Wald interval. When the variance is 0 the standard error is 1/n. The z is the fixed-sample quantile 1 - 0.025/k with k = max(family size, number of treatments), or, when the result says `z_sequential`, the sequential threshold pre-registered in the run or the protocol;
+- the interval state, in the lab's order: practical, positive, negative, equivalent, else inconclusive;
+- the per-step process counters (step-weighted: the sum over an arm's episodes divided by their steps) and their difference variant - placebo, for every counter the audit declares, including any pre-registered criterion counter that is a column of the table;
+- the bootstrap interval of that difference, rerun with the lab's default resampling parameters (seed 20261116, 2000 replicates). The packages do not state these parameters, so the script says it uses the lab default. It reproduces every published digit of V3 and V4;
+- the counter states (balanced / imbalanced / unresolved / not_computable) under the package's format rule (`equivalence` or `imbalance_only`, with behaviour counters exempt);
+- the measurement problems that follow from the table: placebo rate range, error excess, memory delivery, placebo block length, metric coverage and process imbalance. These are checked against the audit, the findings and the report;
+- the finding verdicts (invalid, supported, refuted, inconclusive, disputed), `negative_result` and the Brier scores;
+- the per-direction status `measurement_problem`;
+- the noise check against the design.
+
+Each value is compared with the number `knowledge.jsonl` and the README declare, with a tolerance for rounding only. The README is checked line by line against what the lab's exporter writes from those objects: the head lines, every section and table (including the *Process criteria* table of newer exports), the caveats, the decisions, the direction status and the scope sentence. A missing section, caveat or status line fails. The export manifest (`PUBLISHED_FILES.json`) and `PROVENANCE.json` are required, and their digests, and the object hashes, are checked too. A caveat on those hashes: an object marked `redacted` is only checked against its own `sha256_redacted`, so for it only the manifest and `PROVENANCE.json` digests pin the content.
+
+Exit status:
+- 0: every recomputable number matches.
+- 1: at least one field mismatches; each is listed.
+- 2: a required file is missing or unreadable.
+
+CI runs the script (job *Autolab package verification*). The tests are in `tests/test_verify_autolab_packages.py`. They alter one thing at a time: a solved cell; a removed, duplicated or relabelled row; declared numbers; a caveat, a section or the status line; extra prose. They also run two synthetic packages in `tests/fixtures/` that have the shape of the next exports: sequential thresholds, four arms, `imbalance_only`, float and empty cells, two seeds, a disputed verdict. These fixtures were generated with the lab's own analysis and README code from synthetic records.
+
+What a package does not let anyone recompute is printed as `N/V` (not verifiable from the package), with the reason:
+- counters that are not columns of `per_unit.csv` (V4's `min_tokens`);
+- the early check after the first chunk of a run (the table does not record the chunks);
+- the design calibration and the sequential thresholds themselves (lab simulations);
+- the leakage, fresh-unit and raw-integrity parts of the code audit, and the raw-log digests (they need private files);
+- evidence levels and statuses that depend on the program history;
+- model-call counts;
+- free prose in the README;
+- V3's `per_unit.csv`, which was added after V3's export and is not in its `PUBLISHED_FILES.json`.
+
+The set of N/V fields of each package is pinned in `scripts/verify_autolab_packages.baseline.json`, so a field that stops being checked fails CI. After reviewing new N/V lines, `--update-baseline` rewrites the entry. A new package without an entry is verified, and a note says how to add one.
+
+`WARN` marks two statements of a package that disagree with each other, where the package does not say which one decides. In V4 that is hypothesis H3. The lab's verdict rule reads only the predicted direction (positive, so `practical` supports it), while H3 pre-registered the expected state "positive below SESOI" and its falsification text names `practical` among the refuting states.
 
 ## Tell us where we are wrong
 

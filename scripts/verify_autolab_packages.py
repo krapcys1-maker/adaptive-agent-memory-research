@@ -2,39 +2,46 @@
 """Recompute the published numbers of every autolab result package from the package alone, offline.
 
 An autolab package (``data/lab/autolab-*``, written by the private laboratory through ``scripts/aamr_export.py``) holds
-a README with the results, ``knowledge.jsonl`` (the laboratory's objects: program, protocol, run, result, audits,
-findings, decisions, report), ``PROVENANCE.json``, ``PUBLISHED_FILES.json`` and ``per_unit.csv`` (one row per
-task x arm x seed). This script never sees the laboratory's database or the raw episode logs. It recomputes, from
-``per_unit.csv`` only:
+a README, ``knowledge.jsonl`` (the laboratory's objects: program, protocol, run, result, audits, findings, decisions,
+report), ``PROVENANCE.json``, ``PUBLISHED_FILES.json`` and ``per_unit.csv`` (one row per task x arm x seed). This
+script never sees the laboratory's database or the raw episode logs. From ``per_unit.csv`` it recomputes, with the
+laboratory's own rules (cited below by the lab function that applies them):
 
-* per-arm solved counts and rates;
-* every primary contrast (variant - placebo) and every secondary contrast the package states: number of pairs, gains,
-  losses, paired difference, discordance and the paired Wald interval at the package's z (the method is recoverable:
-  the protocol says "przedzial Walda dla par" and the stored z is the 1 - 0.025/k normal quantile);
-* the interval state of each contrast, with the state rule the package's own hypotheses state
-  (practical: lower >= SESOI; positive: 0 < lower < SESOI; equivalent: -SESOI < lower and upper < SESOI;
-  negative: upper < 0; otherwise inconclusive);
-* the per-step process counters (empty retries, untagged answers, invalid actions), step-weighted as pre-registered
-  (sum of the counter over all episodes of an arm divided by the sum of their steps), their difference
-  memory - placebo, and the pre-registered format criterion (difference <= tolerance, or a 95% interval that includes 0);
-* finding verdicts, Brier scores and the per-direction status where they follow from the above;
+* per-arm solved rates and every primary contrast (variant - placebo) and secondary contrast (arm - baseline): pairs,
+  gains, losses, difference, discordance and the paired Wald interval (``rulecheck.paired_ci``: se = 1/n when the
+  variance is 0); the lab analyses the first seed of the protocol only (``experiment.analyze``), and so does this script;
+* the interval z: the fixed-sample normal quantile 1 - 0.025/k with k = max(family_size, number of treatments), or, when
+  the result says ``z_sequential``, the pre-registered sequential threshold stated in the run or the protocol;
+* the interval state in the lab's order (``Rule.label``: practical, positive, negative, equivalent, else inconclusive);
+* the per-step process counters (``experiment.process_balance``): step-weighted rates per arm, the difference
+  variant - placebo, its bootstrap interval, the state balanced / imbalanced / unresolved / not_computable and the
+  pre-registered format criterion with the package's format rule; the bootstrap uses the LAB'S DEFAULT resampling
+  parameters (seed 20261116, 2000 replicates), which the packages do not state;
+* the measurement-sensitivity problems that follow from the table (placebo rate range, error excess, memory delivery,
+  placebo block length, metric coverage, process problems) and their copies in findings and report;
+* finding verdicts (``program._s_conclude``: invalid / supported / refuted / inconclusive / disputed), Brier scores,
+  ``negative_result`` and the per-direction ``measurement_problem`` status;
 
-and compares each with the number declared in the README and in ``knowledge.jsonl``. Numbers match when they agree
-to the precision they are declared with (rounding only). It also checks the export manifest's SHA-256 digests and the
-provenance hashes of the objects.
+and compares each with the number declared in ``knowledge.jsonl`` and the README, to the precision it is declared with
+(rounding only). The README is accounted line by line: every line is either checked against the objects and the
+recomputation, or listed as ``N/V``. It also checks the export manifest digests (required), ``PROVENANCE.json``
+(required) and the provenance hashes of the objects.
 
-Anything the package states that cannot be recomputed from the package (a bootstrap interval whose resampling seed is
-not published, a counter that is not a column of ``per_unit.csv``, simulation-based calibration, leakage checks that
-need the private family file, the raw-log digest) is printed as ``N/V`` ("not verifiable from the package") with the
-reason, never passed silently. ``WARN`` marks two statements of the package that disagree with each other where the
-package does not say which one rules; it does not change the exit status.
+Anything the package states that cannot be recomputed from the package is printed as ``N/V`` ("not verifiable from the
+package") with the reason. The set of N/V fields of each package is pinned in
+``scripts/verify_autolab_packages.baseline.json``: a field that becomes N/V and is not in the baseline FAILS, so lost
+coverage is visible in CI (``--update-baseline`` rewrites the entries of the checked packages). ``WARN`` marks two
+statements of the package that disagree with each other where the package does not say which one rules; it does not
+change the exit status.
 
-Properties: standard library only, no network, reads only files inside the package folders, writes nothing.
+Properties: standard library only, no network, reads only files inside the package folders and the baseline, writes
+nothing unless ``--update-baseline`` is given.
 
-Exit status: 0 every verifiable check passed in every package; 1 at least one recomputed or declared number differs
-(the per-field list is printed at the end); 2 usage error, or a required file is missing or unreadable.
+Exit status: 0 every verifiable check passed in every package; 1 at least one recomputed or declared number differs,
+or the N/V set grew beyond the baseline (the per-field list is printed at the end); 2 usage error, or a package folder
+lacks a required file or holds unreadable JSON.
 
-Usage: python scripts/verify_autolab_packages.py [--repo PATH] [--package DIR ...]
+Usage: python scripts/verify_autolab_packages.py [--repo PATH] [--package DIR ...] [--baseline FILE] [--update-baseline]
 """
 
 from __future__ import annotations
@@ -48,25 +55,63 @@ import math
 import random
 import re
 import sys
+import traceback
 from pathlib import Path
 from statistics import NormalDist
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Tuple
 
 PACKAGE_GLOB = "data/lab/autolab-*"
-REQUIRED_FILES = ("README.md", "knowledge.jsonl", "per_unit.csv")
+BASELINE_NAME = "verify_autolab_packages.baseline.json"
+REQUIRED_FILES = ("README.md", "knowledge.jsonl", "per_unit.csv", "PUBLISHED_FILES.json", "PROVENANCE.json")
 KEY_COLUMNS = ("cycle", "unit", "arm", "seed")
 OUTCOME = "solved"
 STEPS = "steps"
-# Per-step process counters: a per_unit.csv column whose rate is sum(counter) / sum(steps) per arm.
-STEP_COUNTERS = ("empty_retries", "invalid_no_action_tag", "invalid_actions")
-# Columns that are described in the README but carry no declared number to compare with.
-DESCRIPTIVE_COLUMNS = ("memory_tokens", "n_memory_sources", "error")
-STATES = ("practical", "positive", "equivalent", "negative", "inconclusive")
-POSITIVE_STATES = {"practical", "positive"}
-NULL_STATES = {"equivalent", "negative"}
-LEVEL_NAMES = {"rozwojowy": "developmental"}            # knowledge.jsonl (Polish) -> README (English)
-BOOTSTRAP_REPLICATES = 4000
-BOOTSTRAP_SEED = 20261118
+# columns the exporter derives itself (not lab metrics): they never enter the process balance
+EXPORTER_COLUMNS = ("n_memory_sources", "error")
+
+# ---- laboratory constants, copied from the lab code that applies them (aamr_coord/autolab/experiment.py, program.py,
+# export.py, lab/rulecheck.py); none of them is stated in the packages, so every use is labelled "lab default"
+LAB_BOOT_SEED = 20261116            # experiment.process_balance(seed=20261116)
+LAB_BOOT_N = 2000                   # experiment.process_balance(n_boot=2000)
+LAB_PROCESS_TOL = 0.03              # experiment.PROCESS_TOL
+LAB_PROCESS_SKIP = {"steps", "max_steps", "max_tokens", "memory_tokens", "tokens", "seconds"}
+FORMAT_MARKERS = ("empty", "no_action_tag", "untagged", "unparsed", "parse")
+PLACEBO_RANGE = (0.10, 0.90)
+ERROR_EXCESS_MAX = 0.05
+PLACEBO_LENGTH_MIN_RATIO = 0.8
+METRICS_COVERAGE_MIN = 0.95
+SUPPORT = {"practical", "positive"}
+CLOSE = {"equivalent", "negative"}
+SUPPORT_UNDERMINING = ("b\u0142\u0119dy ramienia", "proces:", "kontrakt ramienia", "placebo niedopasowane", "przeciek niesprawdzalny")
+LEVEL_EN = {"rozwojowy": "developmental", "zreplikowany": "replicated", "historyczny": "historical"}
+ACTION_EN = {
+    "stop_program": "program finished", "continue": "next cycle", "rules": "rules applied to the results",
+    "halt": "halted", "run_despite_power_block": "measured despite a power-only objection",
+    "resume_after_export_halt": "export retried", "requeue_after_deadline": "measurement resumed after the time limit",
+    "resume_after_infrastructure_failure": "measurement resumed after an infrastructure failure",
+    "requeue_after_task_failures": "measurement resumed after tasks without a result",
+    "instrument_hold": "instrument objections recorded", "post_hoc_annotation": "annotation added after the result",
+    "veto": "owner veto", "ideate": "new variants proposed", "no_rivals": "fewer than two rival hypotheses",
+}
+CAVEAT_EN = {
+    "run_despite_power_block": "Measured although the reviewers' only remaining objection was statistical power "
+                               "(risk of an inconclusive result).",
+    "instrument_hold": "Measured despite objections from the instrument review; the instrument files are pinned to "
+                       "the reviewed versions.",
+    "measurement_hold": "Placebo success rate outside the range in which an effect can be detected; results carry a "
+                        "measurement-problem flag.",
+    "dispute_hold": "A second auditor dispute about this direction; the lab continued with replication instead of "
+                    "waiting.",
+    "director_stop_request": "The director role asked to stop; the code rules decided to continue.",
+    "requeue_after_deadline": "The measurement hit the cycle time limit and was resumed from the saved records with a "
+                              "longer limit.",
+    "resume_after_export_halt": "The export was retried after an incomplete copy; no data were lost.",
+    "resume_after_infrastructure_failure": "The measurement was interrupted by an infrastructure failure (a batch "
+                                           "orphaned by a killed worker blocked the output file); the saved records "
+                                           "were kept and only the missing tasks were run again.",
+    "requeue_after_task_failures": "Some tasks returned no valid result (an infrastructure failure); the saved records "
+                                   "were kept and only the missing tasks were run again.",
+}
 MINUS = "\u2212"
 NUMBER = r"[+\-\u2212]?\d+(?:\.\d+)?"
 
@@ -94,7 +139,8 @@ class Report:
 
     def nv(self, field: str, why: str) -> None:
         print("N/V   " + field + "  | not verifiable from the package: " + why)
-        self.unverifiable.append(field)
+        if field not in self.unverifiable:
+            self.unverifiable.append(field)
 
     def warn(self, field: str, why: str) -> None:
         print("WARN  " + field + "  | " + why)
@@ -109,27 +155,49 @@ def number(text: str) -> float:
     return float(text.replace(MINUS, "-").replace("+", ""))
 
 
-def show(ci: Optional[Tuple[float, float]]) -> str:
-    return "n/a" if ci is None else "[%.4f, %.4f]" % ci
-
-
 def places(text: str) -> int:
     text = text.strip()
     return len(text.split(".", 1)[1]) if "." in text else 0
 
 
-def agrees(recomputed: float, declared: Any, decimals: Optional[int] = None) -> bool:
+def agrees(recomputed: Optional[float], declared: Any, decimals: Optional[int] = None) -> bool:
     """True when ``recomputed`` rounds to ``declared``: a string keeps its own number of decimals, a JSON number is
-    compared at ``decimals`` places (the precision the laboratory stores), an int must be equal."""
-    if isinstance(declared, bool) or declared is None:
+    compared at ``decimals`` places (the precision the laboratory stores), an int without ``decimals`` must be equal."""
+    if recomputed is None or isinstance(declared, bool) or declared is None:
+        return recomputed is None and declared is None
+    if isinstance(recomputed, float) and math.isnan(recomputed):
         return False
     if isinstance(declared, str):
-        value, dp = number(declared), places(declared)
+        try:
+            value, dp = number(declared), places(declared)
+        except ValueError:
+            return False
     elif isinstance(declared, int) and decimals is None:
         return recomputed == declared
-    else:
+    elif isinstance(declared, (int, float)):
         value, dp = float(declared), (6 if decimals is None else decimals)
+    else:
+        return False
     return abs(recomputed - value) <= 0.5 * 10 ** (-dp) + 1e-9
+
+
+def r4(x: float) -> float:
+    """The lab stores process rates at 4 places and formats the stored value."""
+    return round(x, 4)
+
+
+def r6(x: float) -> float:
+    """The lab stores rates, differences and intervals at 6 places and formats the stored value."""
+    return round(x, 6)
+
+
+def show(ci: Optional[Sequence[float]]) -> str:
+    return "n/a" if ci is None else "[%.4f, %.4f]" % (ci[0], ci[1])
+
+
+def short(text: str, n: int = 60) -> str:
+    text = " ".join(text.split())
+    return text if len(text) <= n else text[:n] + "..."
 
 
 # --------------------------------------------------------------------------- reading the package
@@ -152,14 +220,24 @@ def read_text(package: Path, name: str) -> str:
         raise InputError("%s/%s is not UTF-8: %s" % (package.name, name, exc))
 
 
+def read_json(package: Path, name: str) -> Any:
+    try:
+        return json.loads(read_text(package, name))
+    except ValueError as exc:
+        raise InputError("%s/%s is not valid JSON: %s" % (package.name, name, exc))
+
+
 def load_objects(package: Path) -> List[Dict[str, Any]]:
     objects = []
     for i, line in enumerate(read_text(package, "knowledge.jsonl").splitlines(), 1):
         if line.strip():
             try:
-                objects.append(json.loads(line))
+                obj = json.loads(line)
             except ValueError as exc:
                 raise InputError("knowledge.jsonl line %d is not JSON: %s" % (i, exc))
+            if not isinstance(obj, dict) or not all(k in obj for k in ("id", "kind", "payload", "parents")):
+                raise InputError("knowledge.jsonl line %d is not a laboratory object (id, kind, payload, parents)" % i)
+            objects.append(obj)
     return objects
 
 
@@ -175,16 +253,30 @@ class Knowledge:
         found = self.kind(kind)
         return found[-1] if found else None
 
-    def parent(self, obj: Dict[str, Any], kind: str) -> Optional[Dict[str, Any]]:
+    def parent(self, obj: Dict[str, Any], kind: str, where: Optional[Callable[[Dict[str, Any]], bool]] = None) -> Optional[Dict[str, Any]]:
         for pid in obj.get("parents", []):
-            if pid.startswith(kind + ":") and pid in self.by_id:
-                return self.by_id[pid]
+            o = self.by_id.get(pid)
+            if o is not None and o["kind"] == kind and (where is None or where(o)):
+                return o
         return None
 
 
+def parse_cell(cell: str) -> Any:
+    cell = cell.strip()
+    if cell == "":
+        return None
+    if re.fullmatch(r"-?\d+", cell):
+        return int(cell)
+    try:
+        return float(cell)
+    except ValueError:
+        return cell
+
+
 class Table:
-    """per_unit.csv, keyed by (cycle, unit, arm, seed). Structural problems are reported, not fatal, so that the
-    numeric consequences of a removed or duplicated row are listed too."""
+    """per_unit.csv keyed by (cycle, unit, arm, seed). Only the key columns and ``solved`` must be integers; any other
+    cell may be an integer, a float or empty (the exporter writes floats as floats and a missing metric as an empty
+    cell). A column the verifier computes from is checked for numeric values where it is used."""
 
     def __init__(self, text: str, rep: Report) -> None:
         reader = csv.DictReader(io.StringIO(text))
@@ -192,138 +284,114 @@ class Table:
         missing = [c for c in KEY_COLUMNS + (OUTCOME,) if c not in self.columns]
         if missing:
             raise InputError("per_unit.csv lacks the column(s) %s" % ", ".join(missing))
-        self.rows: Dict[Tuple[int, str, str, int], Dict[str, int]] = {}
+        self.rows: Dict[Tuple[int, str, str, int], Dict[str, Any]] = {}
         self.n_rows = 0
-        bad_values: List[str] = []
+        bad: List[str] = []
         duplicates: List[str] = []
-        numeric = [c for c in self.columns if c not in ("unit", "arm")]
         for line, raw in enumerate(reader, 2):
             self.n_rows += 1
-            values: Dict[str, int] = {}
-            for col in numeric:
-                cell = (raw.get(col) or "").strip()
-                if not re.fullmatch(r"\d+", cell):
-                    bad_values.append("line %d %s=%r" % (line, col, cell))
-                    cell = "0"
-                values[col] = int(cell)
+            values = {c: parse_cell(raw.get(c) or "") for c in self.columns if c not in ("unit", "arm")}
+            for c in ("cycle", "seed"):
+                if not isinstance(values[c], int):
+                    bad.append("line %d %s=%r" % (line, c, raw.get(c)))
+                    values[c] = -1
             if values[OUTCOME] not in (0, 1):
-                bad_values.append("line %d solved=%d" % (line, values[OUTCOME]))
-            key = (values["cycle"], raw["unit"], raw["arm"], values["seed"])
+                bad.append("line %d solved=%r" % (line, raw.get(OUTCOME)))
+                values[OUTCOME] = 0
+            if not raw.get("unit") or not raw.get("arm"):
+                bad.append("line %d has an empty unit or arm" % line)
+            key = (values["cycle"], raw.get("unit") or "", raw.get("arm") or "", values["seed"])
             if key in self.rows:
-                duplicates.append("line %d repeats cycle %d / %s / %s / seed %d" % ((line,) + key))
+                duplicates.append("line %d repeats cycle %s / %s / %s / seed %s" % ((line,) + key))
                 continue
             self.rows[key] = values
-        rep.check("per_unit.csv: every cell is a non-negative integer and solved is 0 or 1", not bad_values,
-                  "; ".join(bad_values[:5]) + (" ..." if len(bad_values) > 5 else ""))
+        rep.check("per_unit.csv: cycle and seed are integers, solved is 0 or 1, unit and arm are named", not bad,
+                  "; ".join(bad[:5]) + (" ..." if len(bad) > 5 else ""))
         rep.check("per_unit.csv: one row per (cycle, unit, arm, seed)", not duplicates,
                   "; ".join(duplicates[:5]) + (" ..." if len(duplicates) > 5 else "") if duplicates else "%d rows" % self.n_rows)
 
     def cycles(self) -> List[int]:
         return sorted({k[0] for k in self.rows})
 
-    def units(self, cycle: Optional[int] = None) -> List[str]:
-        return sorted({k[1] for k in self.rows if cycle is None or k[0] == cycle})
+    def units(self, cycle: Optional[int] = None, seed: Optional[int] = None) -> List[str]:
+        return sorted({k[1] for k in self.rows if (cycle is None or k[0] == cycle) and (seed is None or k[3] == seed)})
 
-    def arms(self) -> List[str]:
-        return sorted({k[2] for k in self.rows})
+    def arms(self, cycle: Optional[int] = None) -> List[str]:
+        return sorted({k[2] for k in self.rows if cycle is None or k[0] == cycle})
 
-    def seeds(self) -> List[int]:
-        return sorted({k[3] for k in self.rows})
+    def seeds(self, cycle: Optional[int] = None) -> List[int]:
+        return sorted({k[3] for k in self.rows if cycle is None or k[0] == cycle})
 
-    def arm_rows(self, cycle: int, arm: str) -> Dict[Tuple[str, int], Dict[str, int]]:
-        return {(k[1], k[3]): v for k, v in self.rows.items() if k[0] == cycle and k[2] == arm}
+    def arm_rows(self, cycle: int, arm: str, seed: int) -> Dict[str, Dict[str, Any]]:
+        return {k[1]: v for k, v in self.rows.items() if k[0] == cycle and k[2] == arm and k[3] == seed}
 
-
-# --------------------------------------------------------------------------- statistics
-def paired(table: Table, cycle: int, a: str, b: str, z: float) -> Dict[str, Any]:
-    """a - b over the (unit, seed) pairs present in both arms; paired Wald interval."""
-    ra, rb = table.arm_rows(cycle, a), table.arm_rows(cycle, b)
-    keys = sorted(set(ra) & set(rb))
-    n = len(keys)
-    gains = sum(1 for k in keys if ra[k][OUTCOME] == 1 and rb[k][OUTCOME] == 0)
-    losses = sum(1 for k in keys if ra[k][OUTCOME] == 0 and rb[k][OUTCOME] == 1)
-    if n == 0:
-        return {"n": 0, "gains": 0, "losses": 0, "diff": float("nan"), "discordance": float("nan"), "ci": (float("nan"),) * 2}
-    diff, disc = (gains - losses) / n, (gains + losses) / n
-    se = math.sqrt(max(disc - diff * diff, 0.0) / n)
-    return {"n": n, "gains": gains, "losses": losses, "diff": diff, "discordance": disc, "ci": (diff - z * se, diff + z * se)}
+    def is_number(self, value: Any) -> bool:
+        return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
-def interval_states(lo: float, hi: float, sesoi: float) -> List[str]:
-    out = []
+# --------------------------------------------------------------------------- statistics (the lab's rules)
+def family(protocol: Dict[str, Any]) -> int:
+    """experiment.family: max(family_size, number of treatments, 1)."""
+    return max(int(protocol.get("family_size") or 0), len(protocol.get("treatments") or []), 1)
+
+
+def family_z(k: int) -> float:
+    return NormalDist().inv_cdf(1 - 0.05 / (2 * max(k, 1)))
+
+
+def paired_ci(gains: int, losses: int, n: int, z: float) -> Tuple[float, float]:
+    """rulecheck.paired_ci (deff 1): Wald for paired proportions; se = 1/n when the variance is 0."""
+    d = (gains - losses) / n
+    var = max(((gains + losses) / n - d * d) / n, 0.0)
+    se = math.sqrt(var) if var > 0 else 1.0 / n
+    return d - z * se, d + z * se
+
+
+def interval_state(lo: float, hi: float, sesoi: float) -> str:
+    """rulecheck.Rule.label, kind ci_states, in the lab's order."""
     if lo >= sesoi:
-        out.append("practical")
-    elif lo > 0:
-        out.append("positive")
-    if -sesoi < lo and hi < sesoi:
-        out.append("equivalent")
+        return "practical"
+    if lo > 0:
+        return "positive"
     if hi < 0:
-        out.append("negative")
-    return out or ["inconclusive"]
+        return "negative"
+    if lo > -sesoi and hi < sesoi:
+        return "equivalent"
+    return "inconclusive"
 
 
-def step_rate(rows: Dict[Any, Dict[str, int]], counter: str) -> float:
-    steps = sum(r[STEPS] for r in rows.values())
-    return sum(r[counter] for r in rows.values()) / steps if steps else float("nan")
+def lab_verdict(predicted: Optional[str], state: str, audit_valid: bool, disputed: bool) -> Optional[str]:
+    """program._s_conclude."""
+    if not audit_valid:
+        return "invalid"
+    if state in SUPPORT:
+        verdict = "supported" if predicted == "positive" else "refuted"
+    elif state in CLOSE:
+        verdict = "refuted" if predicted == "positive" else "supported"
+    else:
+        verdict = "inconclusive"
+    return "disputed" if disputed else verdict
 
 
-def ratio_bootstrap(table: Table, cycle: int, a: str, b: str, counters: Sequence[str]) -> Dict[str, Tuple[float, float]]:
-    """Percentile interval of step_rate(a) - step_rate(b), resampling (unit, seed) pairs with a fixed seed.
-    Used only as an approximate reference for the laboratory's bootstrap interval, whose seed is not published."""
-    ra, rb = table.arm_rows(cycle, a), table.arm_rows(cycle, b)
-    keys = sorted(set(ra) & set(rb))
-    if not keys:
-        return {}
-    cols = [STEPS] + list(counters)
-    va = [[ra[k][c] for c in cols] for k in keys]
-    vb = [[rb[k][c] for c in cols] for k in keys]
-    rng = random.Random(BOOTSTRAP_SEED)
-    n, m = len(keys), len(cols)
-    draws: Dict[str, List[float]] = {c: [] for c in counters}
-    for _ in range(BOOTSTRAP_REPLICATES):
-        sa, sb = [0] * m, [0] * m
-        for _i in range(n):
-            j = rng.randrange(n)
-            xa, xb = va[j], vb[j]
-            for c in range(m):
-                sa[c] += xa[c]
-                sb[c] += xb[c]
-        for c, name in enumerate(counters, 1):
-            if sa[0] and sb[0]:
-                draws[name].append(sa[c] / sa[0] - sb[c] / sb[0])
-    out = {}
-    for name, values in draws.items():
-        values.sort()
-        if values:
-            out[name] = (values[int(0.025 * len(values))], values[int(math.ceil(0.975 * len(values))) - 1])
-    return out
+# --------------------------------------------------------------------------- README helpers
+def split_sections(lines: List[str]) -> Tuple[Tuple[int, int], Dict[str, Tuple[int, int, int]]]:
+    """(head range, {title: (heading line, body start, body end)})."""
+    heads = [i for i, ln in enumerate(lines) if ln.startswith("## ")]
+    sections = {}
+    for j, i in enumerate(heads):
+        end = heads[j + 1] if j + 1 < len(heads) else len(lines)
+        sections[lines[i][3:].strip()] = (i, i + 1, end)
+    return (0, heads[0] if heads else len(lines)), sections
 
 
-def bootstrap_tolerance(ci: Tuple[float, float]) -> float:
-    # Two percentile bootstraps of the same data with different seeds differ by Monte Carlo noise of the order of
-    # 0.1 standard errors per endpoint at 1000 replicates; a quarter of the half-width (about half a standard error)
-    # plus the declared rounding is a generous bound for "the same method on the same data".
-    return 0.25 * (ci[1] - ci[0]) / 2
-
-
-# --------------------------------------------------------------------------- README parsing
-def readme_sections(text: str) -> Tuple[str, Dict[str, str]]:
-    parts = re.split(r"^## ", text, flags=re.MULTILINE)
-    head, sections = parts[0], {}
-    for part in parts[1:]:
-        title, _, body = part.partition("\n")
-        sections[title.strip()] = body
-    return head, sections
-
-
-def md_tables(body: str) -> List[List[List[str]]]:
-    tables, current = [], []
-    for line in body.splitlines():
+def md_tables(lines: List[str], start: int, end: int) -> List[List[Tuple[int, List[str]]]]:
+    """Tables in lines[start:end], each a list of (line index, cells); separator rows are included as cells too."""
+    tables: List[List[Tuple[int, List[str]]]] = []
+    current: List[Tuple[int, List[str]]] = []
+    for i in range(start, end):
+        line = lines[i]
         if line.strip().startswith("|"):
-            cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            if all(re.fullmatch(r":?-{3,}:?", c) for c in cells):
-                continue
-            current.append(cells)
+            current.append((i, [c.strip() for c in line.strip().strip("|").split("|")]))
         elif current:
             tables.append(current)
             current = []
@@ -332,12 +400,55 @@ def md_tables(body: str) -> List[List[List[str]]]:
     return tables
 
 
+def is_separator(cells: List[str]) -> bool:
+    return all(re.fullmatch(r":?-{3,}:?", c) for c in cells)
+
+
 INTERVAL = re.compile(r"\[(" + NUMBER + r")[,;] (" + NUMBER + r")\]")
-# "invalid_no_action_tag per step, arm - placebo +0.034 [+0.014, +0.053] > 0.03" (README, English)
-# "invalid_no_action_tag na krok wariant - placebo +0.034 [+0.014; +0.053] > 0.03" (knowledge.jsonl, Polish)
-# "empty_retries +0.582 [+0.459; +0.725]" (post-hoc audit, Polish)
-COUNTER_CLAIM = re.compile(r"\b(" + "|".join(STEP_COUNTERS) + r"|min_tokens|[a-z_]+)\b(?: per step, arm \u2212 placebo| na krok wariant \u2212 placebo)? (" +
-                           NUMBER + r") \[(" + NUMBER + r")[,;] (" + NUMBER + r")\](?: > (" + NUMBER + r"))?")
+PROCESS_EN = re.compile(r"process: (\S+) per step, arm \u2212 placebo (" + NUMBER + r") \[(" + NUMBER + r"), (" + NUMBER + r")\]")
+PROCESS_PL = re.compile(r"proces: (\S+)(?: na krok wariant \u2212 placebo)? (" + NUMBER + r") \[(" + NUMBER + r"); (" + NUMBER + r")\]")
+
+
+def problem_en(x: str) -> str:
+    """export._problem_en for the process problems (the English README wording of a Polish problem text)."""
+    pre = r"( \(kryterium ustalone przed pomiarem\))?"
+    num = r"([+-]?[\d.]+)"
+    m = re.fullmatch(r"proces: (\S+) na krok wariant \u2212 placebo " + num + r" \[" + num + "; " + num + r"\] > " + num + pre +
+                     r" \u2014 tre\u015b\u0107 i format/proces nie s\u0105 rozdzielone", x)
+    if m:
+        return ("process: %s per step, arm \u2212 placebo %s [%s, %s] > %s%s \u2014 content and format/process effects are not separated"
+                % (m[1], m[2], m[3], m[4], m[5], " (pre-registered criterion)" if m[6] else ""))
+    m = re.fullmatch(r"proces: (\S+) na krok wariant \u2212 placebo " + num + r" \[" + num + "; " + num + r"\] nierozstrzygni\u0119ty \u2014 przedzia\u0142 "
+                     r"nie mie\u015bci si\u0119 w \u00b1" + num + pre + r"; neutralno\u015b\u0107 placebo niewykazana", x)
+    if m:
+        return ("process: %s per step, arm \u2212 placebo %s [%s, %s] unresolved \u2014 the interval is not within \u00b1%s%s; placebo "
+                "neutrality not shown" % (m[1], m[2], m[3], m[4], m[5], " (pre-registered criterion)" if m[6] else ""))
+    m = re.fullmatch(r"proces: kryterium (\S+)" + pre + r" niepoliczalne \u2014 licznik nieobecny w rekordach polecenia; neutralno\u015b\u0107 "
+                     r"placebo niesprawdzona", x)
+    if m:
+        return ("process: criterion %s%s cannot be computed \u2014 the counter is absent from the command's records; placebo "
+                "neutrality not checked" % (m[1], " (pre-registered criterion)" if m[2] else ""))
+    return x
+
+
+def problem_kind(text: str) -> Optional[Tuple[str, str]]:
+    """A measurement-sensitivity problem text -> (kind, detail); None = a problem this script cannot recompute."""
+    if text.startswith("proces: metryki tylko w"):
+        return ("coverage", "")
+    if text.startswith("proces: kryteria "):
+        return ("criteria_not_computed", "")
+    m = re.match(r"proces: kryterium (\S+)", text) or re.match(r"proces: (\S+)", text)
+    if m:
+        return ("process", m.group(1))
+    if text.startswith("skuteczno\u015b\u0107 placebo"):
+        return ("placebo_range", "")
+    if text.startswith("b\u0142\u0119dy ramienia"):
+        return ("errors", "")
+    if text.startswith("rami\u0119 nie dosta\u0142o pami\u0119ci"):
+        return ("no_memory", "")
+    if text.startswith("placebo niedopasowane"):
+        return ("placebo_length", "")
+    return None
 
 
 # --------------------------------------------------------------------------- verification of one package
@@ -346,38 +457,68 @@ class Verifier:
         self.package = package
         self.rep = rep
         self.k = Knowledge(load_objects(package))
-        self.readme = read_text(package, "README.md")
+        self.readme_lines = read_text(package, "README.md").splitlines()
+        self.used: Set[int] = set()
         self.table = Table(read_text(package, "per_unit.csv"), rep)
-        self.recomputed: Dict[int, Dict[str, Any]] = {}
+        self.cycles: Dict[Any, Dict[str, Any]] = {}       # cycle -> recomputed result
+        self.process: Dict[str, Dict[str, Any]] = {}      # audit id -> recomputed process balance + problems
+        self.findings: List[Dict[str, Any]] = []
+
+    # ---------------------------------------------------------------- the program's settings
+    def program(self) -> Dict[str, Any]:
+        prog = self.k.one("program")
+        return prog["payload"] if prog else {}
+
+    def domain_params(self) -> Dict[str, Any]:
+        return self.program().get("domain_params") or {}
+
+    def placebo(self) -> str:
+        return self.domain_params().get("placebo") or "placebo"
+
+    def baseline(self) -> str:
+        return self.domain_params().get("baseline") or "none"
+
+    def protocol_of(self, run: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+        proto = self.k.parent(run, "protocol") if run else None
+        proto = proto or self.k.one("protocol")
+        return proto["payload"] if proto else {}
+
+    def run_of(self, obj: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        run = self.k.parent(obj, "run")
+        if run is None:
+            res = self.k.parent(obj, "result")
+            run = self.k.parent(res, "run") if res else None
+        return run
 
     # ---------------------------------------------------------------- package integrity
-    def manifest_and_provenance(self) -> None:
+    def integrity(self) -> None:
         rep, pkg = self.rep, self.package
-        present = sorted(p.name for p in pkg.iterdir() if p.is_file())
-        if (pkg / "PUBLISHED_FILES.json").is_file():
-            manifest = json.loads(read_text(pkg, "PUBLISHED_FILES.json"))
-            listed = set()
-            for entry in manifest.get("published", []):
-                name = entry["path"]
-                listed.add(name)
-                if not (pkg / name).is_file():
-                    rep.check("PUBLISHED_FILES.json: %s exists" % name, False, "listed in the manifest but missing")
-                    continue
-                data = read_bytes(pkg, name)
-                digest = hashlib.sha256(data).hexdigest()
-                rep.check("PUBLISHED_FILES.json: sha256 and size of %s" % name,
-                          digest == entry.get("sha256") and len(data) == entry.get("bytes"),
-                          "file %s / %d bytes, manifest %s / %s bytes" % (digest[:12], len(data), str(entry.get("sha256"))[:12], entry.get("bytes")))
-            for name in present:
-                if name not in listed and name != "PUBLISHED_FILES.json":
-                    rep.nv("PUBLISHED_FILES.json: %s" % name, "the file is in the package folder but not in its export manifest, so its "
-                           "bytes are not pinned by the export; its numbers are still recomputed below")
-        else:
-            rep.nv("PUBLISHED_FILES.json", "the package has no export manifest")
+        manifest = read_json(pkg, "PUBLISHED_FILES.json")
+        prog = self.program()
+        rep.check("PUBLISHED_FILES.json: task = 'autolab %s'" % prog.get("id"), manifest.get("task") == "autolab %s" % prog.get("id"),
+                  "manifest says %r" % manifest.get("task"))
+        listed = set()
+        for entry in manifest.get("published", []):
+            name = entry.get("path")
+            listed.add(name)
+            if not name or not (pkg / name).is_file():
+                rep.check("PUBLISHED_FILES.json: %s exists" % name, False, "listed in the manifest but missing")
+                continue
+            data = read_bytes(pkg, name)
+            digest = hashlib.sha256(data).hexdigest()
+            rep.check("PUBLISHED_FILES.json: sha256 and size of %s" % name,
+                      digest == entry.get("sha256") and len(data) == entry.get("bytes"),
+                      "file %s / %d bytes, manifest %s / %s bytes" % (digest[:12], len(data), str(entry.get("sha256"))[:12], entry.get("bytes")))
+        for name in sorted(p.name for p in pkg.iterdir() if p.is_file()):
+            if name not in listed and name != "PUBLISHED_FILES.json":
+                rep.nv("PUBLISHED_FILES.json: %s" % name, "the file is in the package folder but not in its export manifest, so its bytes "
+                       "are not pinned by the export; its numbers are still recomputed")
+        if manifest.get("private"):
+            rep.nv("PUBLISHED_FILES.json: private area (%d item(s))" % len(manifest["private"]), "the withheld files are private by design")
         bad = []
-        seen = set()
+        seen: Set[str] = set()
         for o in self.k.objects:
-            body = {"kind": o["kind"], "program": o["program"], "payload": o["payload"], "parents": sorted(set(o["parents"]))}
+            body = {"kind": o["kind"], "program": o.get("program"), "payload": o["payload"], "parents": sorted(set(o["parents"]))}
             sha = hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode("utf-8")).hexdigest()
             if o.get("redacted"):
                 if sha != o.get("sha256_redacted"):
@@ -389,709 +530,1171 @@ class Verifier:
         rep.check("knowledge.jsonl: object hashes and parent order (as verify_provenance.py)", not bad, "; ".join(bad[:4]) or "%d objects" % len(self.k.objects))
         redacted = sum(1 for o in self.k.objects if o.get("redacted"))
         if redacted:
-            rep.nv("knowledge.jsonl: original hashes of %d redacted object(s)" % redacted,
-                   "machine-local paths were replaced; only the redacted copy's hash can be recomputed, the id is the hash of the private original")
-        if (pkg / "PROVENANCE.json").is_file():
-            prov = json.loads(read_text(pkg, "PROVENANCE.json"))
-            digest = hashlib.sha256(read_bytes(pkg, "knowledge.jsonl")).hexdigest()
-            rep.check("PROVENANCE.json: knowledge_sha256", prov.get("knowledge_sha256") == digest, "knowledge.jsonl %s" % digest[:12])
-            rep.check("PROVENANCE.json: objects = %s" % prov.get("objects"), prov.get("objects") == len(self.k.objects), "knowledge.jsonl has %d" % len(self.k.objects))
-            runs = {r["id"]: r["payload"] for r in self.k.kind("run")}
-            for raw in prov.get("raw", []):
-                run = runs.get(raw.get("run"), {})
-                rep.check("PROVENANCE.json: raw records of %s = %s" % (raw.get("run"), raw.get("records")),
-                          raw.get("records") == run.get("records") and raw.get("raw_sha256") == run.get("raw_sha256"),
-                          "run object: %s records, raw %s" % (run.get("records"), str(run.get("raw_sha256"))[:12]))
-                rep.nv("PROVENANCE.json: raw_sha256 of %s" % raw.get("run"), "the raw episode log is private (%s)" % raw.get("location"))
-        else:
-            rep.nv("PROVENANCE.json", "the package has no provenance file")
+            rep.nv("knowledge.jsonl: original hashes of the redacted objects", "machine-local paths were replaced in %d object(s); only the "
+                   "redacted copy's hash can be recomputed, the id is the hash of the private original" % redacted)
+        prov = read_json(pkg, "PROVENANCE.json")
+        digest = hashlib.sha256(read_bytes(pkg, "knowledge.jsonl")).hexdigest()
+        rep.check("PROVENANCE.json: knowledge_sha256", prov.get("knowledge_sha256") == digest, "knowledge.jsonl %s" % digest[:12])
+        rep.check("PROVENANCE.json: objects = %s" % prov.get("objects"), prov.get("objects") == len(self.k.objects), "knowledge.jsonl has %d" % len(self.k.objects))
+        for key in ("program", "goal", "domain"):
+            want = prog.get("id") if key == "program" else prog.get(key)
+            rep.check("PROVENANCE.json: %s = program %s" % (key, key), prov.get(key) == want, "PROVENANCE %r" % short(str(prov.get(key))))
+        rep.check("PROVENANCE.json: integrity_problems is empty", prov.get("integrity_problems") == [],
+                  "declared %r" % (prov.get("integrity_problems"),))
+        runs = {r["id"]: r["payload"] for r in self.k.kind("run")}
+        listed_runs = []
+        for raw in prov.get("raw", []):
+            listed_runs.append(raw.get("run"))
+            run = runs.get(raw.get("run"), {})
+            rep.check("PROVENANCE.json: raw of %s = run object (records %s, sha256)" % (raw.get("run"), raw.get("records")),
+                      raw.get("records") == run.get("records") and raw.get("raw_sha256") == run.get("raw_sha256"),
+                      "run object: %s records, raw %s" % (run.get("records"), str(run.get("raw_sha256"))[:12]))
+        rep.check("PROVENANCE.json: every run object has a raw entry", sorted(listed_runs) == sorted(runs), "PROVENANCE %s, runs %s" % (listed_runs, sorted(runs)))
+        rep.nv("PROVENANCE.json: raw_sha256 and location of each run", "the raw episode logs are private")
+        rep.nv("PROVENANCE.json: generated_by, exported_at, note", "export metadata, not a result")
 
-    # ---------------------------------------------------------------- per_unit.csv against the run
+    # ---------------------------------------------------------------- per_unit.csv against the run objects
     def structure(self) -> None:
         rep, t = self.rep, self.table
-        protocol = self.protocol()
-        arms = list(protocol.get("arms") or [])
-        seeds = list(protocol.get("seeds") or [])
-        rep.check("per_unit.csv: arms = protocol arms %s" % arms, t.arms() == sorted(arms), "table has %s" % t.arms())
-        rep.check("per_unit.csv: seeds = protocol seeds %s" % seeds, t.seeds() == sorted(seeds), "table has %s" % t.seeds())
-        if len(seeds) > 1:
-            rep.nv("pairing over several seeds", "the package does not state whether pairs are (unit, seed) or units averaged over seeds; "
-                   "pairs are taken as (unit, seed) here")
-        runs = self.k.kind("run")
-        for run in runs:
+        cycles_seen = set()
+        for run in self.k.kind("run"):
             cycle = run.get("cycle")
+            cycles_seen.add(cycle)
             p = run["payload"]
-            units = sorted(p.get("units") or [])
+            proto = self.protocol_of(run)
+            seeds = list(p.get("seeds") or proto.get("seeds") or [])
+            arms = list(p.get("arms") or proto.get("arms") or [])
+            tag = "cycle %s %s" % (cycle, run["id"])
+            rep.check("%s: arms = protocol arms %s" % (tag, proto.get("arms")), arms == list(proto.get("arms") or []), "run %s" % arms)
+            rep.check("%s: seeds = protocol seeds %s" % (tag, proto.get("seeds")), seeds == list(proto.get("seeds") or []), "run %s" % seeds)
+            rep.check("%s: per_unit.csv arms = run arms" % tag, t.arms(cycle) == sorted(arms), "table %s" % t.arms(cycle))
+            rep.check("%s: per_unit.csv seeds = run seeds" % tag, t.seeds(cycle) == sorted(seeds), "table %s" % t.seeds(cycle))
+            if len(seeds) > 1:
+                rep.nv("%s: rows of seeds %s" % (tag, seeds[1:]), "the lab analyses only the first seed of the protocol (%s; "
+                       "experiment.analyze); the other seeds enter no published number" % seeds[0])
+            units = list(p.get("units") or [])
             have = t.units(cycle)
             missing, extra = sorted(set(units) - set(have)), sorted(set(have) - set(units))
-            rep.check("cycle %s: units in per_unit.csv = the %d units of %s" % (cycle, len(units), run["id"]), not missing and not extra,
-                      "missing %s; not in the run %s" % (missing[:3], extra[:3]) if missing or extra else "%d units" % len(have))
-            grid_missing = ["%s/%s/seed %d" % (u, a, s) for u in units for a in p.get("arms", []) for s in p.get("seeds", [])
-                            if (cycle, u, a, s) not in t.rows]
-            rep.check("cycle %s: complete unit x arm x seed grid (completeness)" % cycle, not grid_missing,
+            early = bool(p.get("sequential"))
+            rep.check("%s: every unit of the run has rows" % tag, not missing, "missing %s" % missing[:3] if missing else "%d units" % len(units))
+            if extra and early:
+                rep.nv("%s: %d unit(s) outside the run's units" % (tag, len(extra)), "the run stopped early at a sequential look; the lab "
+                       "analysed only the run's units")
+            else:
+                rep.check("%s: no rows outside the run's units" % tag, not extra, "not in the run: %s" % extra[:3] if extra else "")
+            grid_missing = ["%s/%s/seed %d" % (u, a, s) for u in units for a in arms for s in seeds if (cycle, u, a, s) not in t.rows]
+            rep.check("%s: complete unit x arm x seed grid (completeness)" % tag, not grid_missing,
                       "missing %d row(s): %s" % (len(grid_missing), "; ".join(grid_missing[:3])) if grid_missing else
-                      "%d units x %d arms x %d seed(s)" % (len(units), len(p.get("arms", [])), len(p.get("seeds", []))))
-            rows = sum(1 for k in t.rows if k[0] == cycle)
-            rep.check("cycle %s: rows = run.records %s" % (cycle, p.get("records")), rows == p.get("records") and t.n_rows == sum(
-                r["payload"].get("records", 0) for r in runs), "%d distinct rows, %d lines" % (rows, t.n_rows))
-            errors = sum(1 for k, v in t.rows.items() if k[0] == cycle and v.get("error", 0))
+                      "%d units x %d arms x %d seed(s)" % (len(units), len(arms), len(seeds)))
+            rows = sum(1 for k in t.rows if k[0] == cycle and k[1] in set(units))
+            lines = t.n_rows if len(self.k.kind("run")) == 1 else rows
+            rep.check("%s: rows = run.records %s" % (tag, p.get("records")), rows == p.get("records") and lines == p.get("records"),
+                      "%d distinct rows, %d lines" % (rows, lines))
+            errors = sum(1 for k, v in t.rows.items() if k[0] == cycle and v.get("error"))
             measured = (p.get("measurement") or {}).get("errors_counted_as_unsolved")
             if measured is None:
-                rep.nv("cycle %s: errors counted as unsolved" % cycle, "the run object does not state it (the table has %d row(s) with error != 0)" % errors)
+                rep.nv("%s: errors counted as unsolved" % tag, "the run object does not state it")
             else:
-                rep.check("cycle %s: rows with error = run.measurement.errors_counted_as_unsolved %s" % (cycle, measured), errors == measured, "table %d" % errors)
-            rep.nv("cycle %s: units_sha256 / raw_sha256 of %s" % (cycle, run["id"]), "they hash private files (the unit list file and the raw log)")
-        other = [c for c in t.columns if c not in KEY_COLUMNS + (OUTCOME, STEPS) + STEP_COUNTERS + DESCRIPTIVE_COLUMNS]
-        for col in other:
-            rep.nv("per_unit.csv column %s" % col, "no number declared in the package is computed from it by a rule this verifier knows")
+                rep.check("%s: rows with error = run.measurement.errors_counted_as_unsolved %s" % (tag, measured), errors == measured, "table %d" % errors)
+            rep.nv("%s: units_sha256, raw_sha256, runner pins, lab_code" % tag, "they hash or name private files and code")
+        for cycle in t.cycles():
+            if cycle not in cycles_seen:
+                rep.check("per_unit.csv: cycle %s has a run object" % cycle, False)
+        for col in t.columns:
+            if col in KEY_COLUMNS + (OUTCOME,) or col in EXPORTER_COLUMNS:
+                continue
+            values = [v.get(col) for v in t.rows.values()]
+            kinds = sorted({type(x).__name__ for x in values})
+            if any(isinstance(x, str) for x in values):
+                rep.nv("per_unit.csv column %s" % col, "it holds text values; no rule here computes from it")
+            elif col in (STEPS, "memory_tokens") or self.is_process_column(col):
+                continue              # used by the process balance and sensitivity checks below
+            else:
+                rep.nv("per_unit.csv column %s" % col, "no published number is computed from it by a lab rule this script mirrors (values: %s)"
+                       % "/".join(k.replace("NoneType", "empty") for k in kinds))
+        rep.nv("per_unit.csv column n_memory_sources", "the number of memory items per episode; no published number is computed from it")
 
-    def protocol(self) -> Dict[str, Any]:
-        run = self.k.one("run")
-        proto = self.k.parent(run, "protocol") if run else None
-        proto = proto or self.k.one("protocol")
-        return proto["payload"] if proto else {}
+    def is_process_column(self, col: str) -> bool:
+        """A lab metric that enters the process balance: an integer value in some row, not a size or a time
+        (experiment.process_balance keys), or any pre-registered criterion counter."""
+        if col in KEY_COLUMNS + (OUTCOME,) or col in EXPORTER_COLUMNS or col in LAB_PROCESS_SKIP or col.startswith("max_"):
+            return col in self.all_criteria()
+        return any(isinstance(v.get(col), int) for v in self.table.rows.values()) or col in self.all_criteria()
 
-    def program(self) -> Dict[str, Any]:
-        prog = self.k.one("program")
-        return prog["payload"] if prog else {}
-
-    def placebo(self) -> str:
-        return (self.program().get("domain_params") or {}).get("placebo") or "placebo"
-
-    def sesoi(self) -> float:
-        protocol, program = self.protocol(), self.program()
-        if protocol.get("sesoi") != program.get("sesoi"):
-            self.rep.check("SESOI: protocol %s = program %s" % (protocol.get("sesoi"), program.get("sesoi")), False)
-        return float(protocol.get("sesoi", program.get("sesoi")))
+    def all_criteria(self) -> Dict[str, Any]:
+        crit = dict(self.domain_params().get("format_criteria") or {})
+        for a in self.k.kind("audit"):
+            pb = (((a["payload"].get("checks") or {}).get("measurement_sensitivity") or {}).get("process_balance") or {})
+            crit.update(pb.get("criteria") or {})
+        return crit
 
     # ---------------------------------------------------------------- result objects
     def results(self) -> None:
         rep, t = self.rep, self.table
-        sesoi, placebo = self.sesoi(), self.placebo()
+        placebo, baseline = self.placebo(), self.baseline()
         for res in self.k.kind("result"):
-            cycle = res.get("cycle")
             p = res["payload"]
+            run = self.k.parent(res, "run")
+            proto = self.protocol_of(run)
+            cycle = res.get("cycle")
             tag = "cycle %s %s" % (cycle, res["id"])
-            k = int(p.get("family_size", 1))
-            z = NormalDist().inv_cdf(1 - 0.025 / k)
-            rep.check("%s: z = %s (normal quantile 1 - 0.025/k, k = %d)" % (tag, p.get("z"), k), agrees(z, p.get("z"), 6), "recomputed %.6f" % z)
-            units = t.units(cycle)
-            rep.check("%s: n_units = %s" % (tag, p.get("n_units")), len(units) == p.get("n_units"), "recomputed %d" % len(units))
-            rec: Dict[str, Any] = {"z": z, "rates": {}, "contrasts": {}, "k": k, "sesoi": sesoi}
-            for arm in t.arms():
-                rows = t.arm_rows(cycle, arm)
-                solved = sum(r[OUTCOME] for r in rows.values())
-                rate = solved / len(rows) if rows else float("nan")
+            if run is None:
+                rep.check("%s: has a run parent" % tag, False)
+                continue
+            units = list(run["payload"].get("units") or [])
+            seed0 = (proto.get("seeds") or [0])[0]
+            arms = list(proto.get("arms") or [])
+            treatments = list(proto.get("treatments") or [])
+            sesoi = float(proto.get("sesoi", self.program().get("sesoi")))
+            if proto.get("sesoi") != self.program().get("sesoi"):
+                rep.nv("%s: SESOI protocol %s, program %s" % (tag, proto.get("sesoi"), self.program().get("sesoi")),
+                       "the protocol's value is used, as the lab does")
+            k = family(proto)
+            rep.check("%s: family_size = %s (max(family_size, treatments))" % (tag, p.get("family_size")), p.get("family_size") == k, "recomputed %d" % k)
+            rep.check("%s: seed = %s (first protocol seed)" % (tag, p.get("seed")), p.get("seed") == seed0, "protocol seeds %s" % proto.get("seeds"))
+            rep.check("%s: n_units = %s" % (tag, p.get("n_units")), p.get("n_units") == len(units), "run has %d units" % len(units))
+            z = self.result_z(tag, p, run, proto, k)
+            rec: Dict[str, Any] = {"z": z, "rates": {}, "contrasts": {}, "k": k, "sesoi": sesoi, "seed": seed0, "units": units,
+                                   "result": res, "treatments": treatments}
+            declared_rates = p.get("success_rate") or {}
+            rep.check("%s: success_rate lists the protocol arms %s" % (tag, arms), sorted(declared_rates) == sorted(arms), "declared %s" % sorted(declared_rates))
+            for arm in arms:
+                rows = t.arm_rows(cycle, arm, seed0)
+                solved = sum(rows[u][OUTCOME] for u in units if u in rows)
+                rate = solved / len(units) if units else float("nan")
                 rec["rates"][arm] = rate
-                declared = (p.get("success_rate") or {}).get(arm)
-                rep.check("%s: success_rate[%s] = %s" % (tag, arm, declared), agrees(rate, declared, 6),
-                          "recomputed %d solved / %d = %.6f" % (solved, len(rows), rate))
-            for arm in sorted(set((p.get("success_rate") or {})) - set(t.arms())):
-                rep.check("%s: success_rate[%s] has rows in per_unit.csv" % (tag, arm), False, "no rows for this arm")
-            contrasts = [("primary", arm, arm, placebo, body) for arm, body in (p.get("primary") or {}).items()]
-            for name, body in (p.get("secondary") or {}).items():
-                a, _, b = name.partition("-")
-                contrasts.append(("secondary", name, a, b, body))
-            for group, name, a, b, body in contrasts:
-                c = paired(t, cycle, a, b, z)
-                rec["contrasts"][(group, name)] = c
-                where = "%s: %s.%s (%s - %s)" % (tag, group, name, a, b)
-                for key in ("n", "gains", "losses"):
-                    rep.check("%s %s = %s" % (where, key, body.get(key)), c[key] == body.get(key), "recomputed %d" % c[key])
-                for key in ("diff", "discordance"):
-                    rep.check("%s %s = %s" % (where, key, body.get(key)), agrees(c[key], body.get(key), 6), "recomputed %.6f" % c[key])
-                ci = body.get("ci") or [None, None]
-                rep.check("%s ci = %s (paired Wald)" % (where, ci), agrees(c["ci"][0], ci[0], 6) and agrees(c["ci"][1], ci[1], 6),
-                          "recomputed [%.6f, %.6f]" % c["ci"])
-                self.check_state("%s state" % where, c["ci"], sesoi, body.get("state"))
-                for key in sorted(set(body) - {"n", "gains", "losses", "diff", "discordance", "ci", "state"}):
-                    rep.nv("%s %s" % (where, key), "no rule in the package says how this field is computed")
-            for key in sorted(set(p) - {"z", "n_units", "family_size", "success_rate", "primary", "secondary", "estimand", "raw_sha256", "seed"}):
-                rep.nv("%s: %s" % (tag, key), "no rule in the package says how this field is computed")
-            if "seed" in p:
-                rep.check("%s: seed = %s" % (tag, p["seed"]), [p["seed"]] == t.seeds(), "table seeds %s" % t.seeds())
-            rep.nv("%s: raw_sha256" % tag, "hash of the private raw log")
-            self.recomputed[cycle] = rec
+                rep.check("%s: success_rate[%s] = %s" % (tag, arm, declared_rates.get(arm)), agrees(rate, declared_rates.get(arm), 6),
+                          "recomputed %d solved / %d = %.6f" % (solved, len(units), rate))
+            want_primary = {a: (a, placebo) for a in treatments}
+            want_secondary = {"%s-%s" % (a, baseline): (a, baseline) for a in treatments + [placebo]}
+            for group, want, body in (("primary", want_primary, p.get("primary") or {}), ("secondary", want_secondary, p.get("secondary") or {})):
+                rep.check("%s: %s contrasts = %s" % (tag, group, sorted(want)), sorted(body) == sorted(want), "declared %s" % sorted(body))
+                for name, (a, b) in want.items():
+                    c = self.contrast(cycle, units, seed0, a, b, z)
+                    rec["contrasts"][(group, name)] = c
+                    if name in body:
+                        self.check_contrast("%s: %s.%s (%s - %s)" % (tag, group, name, a, b), c, body[name], sesoi)
+            estimand = "wariant \u2212 %s (efekt tre\u015bci)" % placebo
+            rep.check("%s: estimand" % tag, p.get("estimand") == estimand, "declared %r" % p.get("estimand"))
+            rep.check("%s: raw_sha256 = run raw_sha256" % tag, p.get("raw_sha256") == run["payload"].get("raw_sha256"))
+            for key in sorted(set(p) - {"z", "z_sequential", "n_units", "family_size", "success_rate", "primary", "secondary", "estimand", "raw_sha256", "seed"}):
+                rep.nv("%s: %s" % (tag, key), "a field no lab rule mirrored here computes")
+            self.cycles[cycle] = rec
 
-    def check_state(self, field: str, ci: Tuple[float, float], sesoi: float, declared: Any) -> None:
-        candidates = interval_states(ci[0], ci[1], sesoi)
+    def result_z(self, tag: str, p: Dict[str, Any], run: Dict[str, Any], proto: Dict[str, Any], k: int) -> float:
+        rep = self.rep
+        seq_proto = (proto.get("sequential") or {}).get("z") or []
+        if p.get("z_sequential"):
+            seq_run = (run["payload"].get("sequential") or {}).get("z")
+            want = seq_run if seq_run is not None else (seq_proto[-1] if seq_proto else None)
+            if want is None:
+                rep.nv("%s: z = %s (sequential)" % (tag, p.get("z")), "the result says z_sequential but neither the run nor the protocol "
+                       "states the sequential thresholds; the declared z is used for the intervals")
+                return float(p.get("z"))
+            rep.check("%s: z = %s (sequential threshold %s)" % (tag, p.get("z"), "of the run's look" if seq_run is not None else "of the final analysis"),
+                      agrees(float(want), p.get("z"), 6), "pre-registered %s" % want)
+            rep.check("%s: the sequential threshold is one of the protocol's %s" % (tag, seq_proto), any(abs(float(want) - float(x)) < 1e-9 for x in seq_proto))
+            rep.nv("%s: the sequential thresholds themselves" % tag, "O'Brien-Fleming thresholds from a lab simulation (experiment.sequential_z); "
+                   "taken as pre-registered in the protocol")
+            return float(want)
+        if seq_proto:
+            rep.check("%s: a sequential protocol gives a sequential z" % tag, False, "the protocol has sequential looks but the result has no z_sequential")
+        z = family_z(k)
+        rep.check("%s: z = %s (normal quantile 1 - 0.025/k, k = %d)" % (tag, p.get("z"), k), agrees(z, p.get("z"), 6), "recomputed %.6f" % z)
+        return z
+
+    def contrast(self, cycle: Any, units: List[str], seed: int, a: str, b: str, z: float) -> Dict[str, Any]:
+        ra, rb = self.table.arm_rows(cycle, a, seed), self.table.arm_rows(cycle, b, seed)
+        keys = [u for u in units if u in ra and u in rb]
+        n = len(keys)
+        gains = sum(1 for u in keys if ra[u][OUTCOME] == 1 and rb[u][OUTCOME] == 0)
+        losses = sum(1 for u in keys if ra[u][OUTCOME] == 0 and rb[u][OUTCOME] == 1)
+        if n == 0:
+            return {"n": 0, "gains": 0, "losses": 0, "diff": float("nan"), "discordance": float("nan"), "ci": (float("nan"),) * 2}
+        return {"n": n, "gains": gains, "losses": losses, "diff": (gains - losses) / n, "discordance": (gains + losses) / n,
+                "ci": paired_ci(gains, losses, n, z)}
+
+    def check_contrast(self, where: str, c: Dict[str, Any], body: Dict[str, Any], sesoi: float) -> None:
+        rep = self.rep
+        for key in ("n", "gains", "losses"):
+            rep.check("%s %s = %s" % (where, key, body.get(key)), c[key] == body.get(key), "recomputed %d" % c[key])
+        for key in ("diff", "discordance"):
+            rep.check("%s %s = %s" % (where, key, body.get(key)), agrees(c[key], body.get(key), 6), "recomputed %.6f" % c[key])
+        ci = body.get("ci") or [None, None]
+        rep.check("%s ci = %s (paired Wald)" % (where, ci), agrees(c["ci"][0], ci[0], 6) and agrees(c["ci"][1], ci[1], 6),
+                  "recomputed [%.6f, %.6f]" % c["ci"])
+        self.check_state("%s state" % where, c["ci"], sesoi, body.get("state"))
+        for key in sorted(set(body) - {"n", "gains", "losses", "diff", "discordance", "ci", "state"}):
+            rep.nv("%s %s" % (where, key), "a field no lab rule mirrored here computes")
+
+    def check_state(self, field: str, ci: Sequence[float], sesoi: float, declared: Any) -> None:
         near = [b for b in (sesoi, -sesoi, 0.0) for x in ci if abs(x - b) < 1e-6]
         if near:
-            self.rep.nv(field, "an interval end lies within rounding of a state boundary (%s), so the state depends on unpublished digits" % near)
+            self.rep.nv(field, "an interval end lies within rounding of a state boundary (%s), so the state depends on digits the "
+                        "package does not publish" % near)
             return
-        self.rep.check("%s = %s" % (field, declared), declared in candidates,
-                       "rule gives %s at SESOI %s for [%.6f, %.6f]" % (" or ".join(candidates), sesoi, ci[0], ci[1]))
-        if len(candidates) > 1 and declared in candidates:
-            self.rep.nv(field + " (name)", "the interval satisfies %s; the package does not say which name the code uses" % " and ".join(candidates))
+        want = interval_state(ci[0], ci[1], sesoi)
+        self.rep.check("%s = %s" % (field, declared), declared == want, "lab rule (practical, positive, negative, equivalent, else "
+                       "inconclusive) gives %s at SESOI %s for [%.6f, %.6f]" % (want, sesoi, ci[0], ci[1]))
 
-    # ---------------------------------------------------------------- process counters (format criterion)
-    def process(self) -> Dict[int, Dict[str, Any]]:
-        """Recompute per-step rates and memory - placebo differences, check the code audits' process_balance."""
-        rep, t = self.rep, self.table
-        criteria_prog = (self.program().get("domain_params") or {}).get("format_criteria")
-        placebo = self.placebo()
-        variants = list(self.protocol().get("treatments") or [])
-        counters = [c for c in STEP_COUNTERS if c in t.columns]
-        out: Dict[int, Dict[str, Any]] = {}
-        for cycle in t.cycles():
-            rates = {arm: {c: step_rate(t.arm_rows(cycle, arm), c) for c in counters} for arm in t.arms()}
-            boot = {arm: ratio_bootstrap(t, cycle, arm, placebo, counters) for arm in variants}
-            out[cycle] = {"rates": rates, "boot": boot, "criteria": criteria_prog}
-        for audit in self.k.kind("audit"):
-            checks = (audit["payload"].get("checks") or {})
-            ms = checks.get("measurement_sensitivity") or {}
-            pb = ms.get("process_balance")
-            cycle = audit.get("cycle")
-            if cycle not in out:
+    # ---------------------------------------------------------------- process balance and sensitivity (lab rules)
+    def criteria_for(self, pb: Dict[str, Any], tag: str) -> Tuple[Dict[str, Any], set, str]:
+        dp = self.domain_params()
+        if "format_criteria" in dp:
+            crit = dict(dp.get("format_criteria") or {})
+            self.rep.check("%s: process_balance.criteria = program format_criteria" % tag, (pb.get("criteria") or {}) == crit,
+                           "audit %s, program %s" % (pb.get("criteria"), crit))
+        else:
+            crit = dict(pb.get("criteria") or {})
+            if crit:
+                self.rep.nv("%s: format criteria %s fixed before the run" % (tag, sorted(crit)), "the program in the package states no "
+                            "format_criteria; the criteria are taken from the audit object")
+        behaviour = set(dp.get("behaviour_counters") or pb.get("behaviour_counters") or []) - set(crit)
+        rule = dp.get("format_rule") or pb.get("format_rule") or "equivalence"
+        if behaviour or "behaviour_counters" in pb:
+            self.rep.check("%s: process_balance.behaviour_counters = %s" % (tag, sorted(behaviour)), sorted(pb.get("behaviour_counters") or []) == sorted(behaviour))
+        if rule != "equivalence" or "format_rule" in pb:
+            self.rep.check("%s: process_balance.format_rule = %s" % (tag, rule), pb.get("format_rule", "equivalence") == rule)
+        return crit, behaviour, rule
+
+    def balance(self, cycle: Any, seed0: int, treatments: List[str], crit: Dict[str, Any], behaviour: set, rule: str,
+                keys: List[str]) -> Dict[str, Any]:
+        """experiment.process_balance over per_unit.csv (records of the first seed with numeric steps)."""
+        t = self.table
+        rows_seed0 = {k: v for k, v in t.rows.items() if k[0] == cycle and k[3] == seed0}
+        by: Dict[str, Dict[str, Dict[str, Any]]] = {}
+        for (cyc, unit, arm, seed), v in rows_seed0.items():
+            if t.is_number(v.get(STEPS)):
+                by.setdefault(arm, {})[unit] = v
+        present = {c for c in t.columns if any(v.get(c) is not None for k, v in t.rows.items() if k[0] == cycle)}
+        missing = sorted(k for k in crit if k not in present)
+        pl = by.get(self.placebo()) or {}
+
+        def rate(ms: Dict[str, Dict[str, Any]], units: Sequence[str], k: str) -> float:
+            st = sum(float(ms[u].get(STEPS) or 0) for u in units)
+            return sum(float(ms[u].get(k) or 0) for u in units) / st if st else 0.0
+
+        rates = {a: {k: rate(ms, list(ms), k) for k in keys} for a, ms in by.items()}
+        rng = random.Random(LAB_BOOT_SEED)
+        per_arm: Dict[str, Dict[str, Any]] = {}
+        for a in treatments:
+            ms = by.get(a) or {}
+            units = sorted(set(ms) & set(pl))
+            if not units or not pl:
                 continue
-            tag = "cycle %s %s (%s)" % (cycle, audit["id"], audit["payload"].get("by"))
-            if "placebo_rate" in ms:
-                rate = self.recomputed.get(cycle, {}).get("rates", {}).get(placebo, float("nan"))
-                rep.check("%s: placebo_rate = %s" % (tag, ms["placebo_rate"]), agrees(rate, ms["placebo_rate"], 4), "recomputed %.4f" % rate)
-            if not pb:
-                continue
-            criteria = pb.get("criteria") or {}
-            if criteria_prog is None:
-                rep.nv("%s: format criteria %s fixed before the run" % (tag, criteria),
-                       "the program in the package has no format_criteria; the README cites the private instrument file for them")
-                out[cycle]["criteria"] = criteria
-            else:
-                rep.check("%s: criteria = program format_criteria %s" % (tag, criteria_prog), criteria == criteria_prog, "audit %s" % criteria)
-            for arm, values in (pb.get("rates") or {}).items():
-                for counter, declared in values.items():
-                    field = "%s: process_balance.rates[%s][%s] = %s" % (tag, arm, counter, declared)
-                    if counter not in counters:
-                        rep.nv(field, "%s is not a column of per_unit.csv" % counter)
-                    elif arm not in out[cycle]["rates"]:
-                        rep.check(field, False, "no rows for arm %s" % arm)
-                    else:
-                        got = out[cycle]["rates"][arm][counter]
-                        rep.check(field + " (step-weighted)", agrees(got, declared, 4), "recomputed %.4f" % got)
-            for arm, per in (pb.get("per_arm") or {}).items():
-                for counter, body in per.items():
-                    field = "%s: process_balance.per_arm[%s][%s]" % (tag, arm, counter)
-                    if counter not in counters:
-                        rep.nv(field, "%s is not a column of per_unit.csv (declared diff %s, ci %s, state %s)" % (
-                            counter, body.get("diff"), body.get("ci"), body.get("state", "imbalanced=%s" % body.get("imbalanced"))))
-                        continue
-                    self.check_counter(field, cycle, arm, counter, body, criteria, out)
-        return out
+            samples = [[rng.choice(units) for _ in units] for _ in range(LAB_BOOT_N)]
+            out = {}
+            for k in keys:
+                tol = crit.get(k, LAB_PROCESS_TOL)
+                fmt = k in crit or (k not in behaviour and any(x in k.lower() for x in FORMAT_MARKERS))
+                if k in missing:
+                    out[k] = {"diff": None, "ci": None, "tolerance": tol, "preregistered": True, "format_counter": True,
+                              "imbalanced": False, "state": "not_computable"}
+                    continue
+                d = rate(ms, units, k) - rate(pl, units, k)
+                bs = sorted(rate(ms, s, k) - rate(pl, s, k) for s in samples)
+                lo, hi = bs[int(0.025 * LAB_BOOT_N)], bs[int(0.975 * LAB_BOOT_N) - 1]
+                imb = abs(d) > tol and not lo <= 0 <= hi
+                state = "imbalanced" if imb else "balanced" if (-tol <= lo and hi <= tol) else "unresolved"
+                out[k] = {"diff": d, "ci": (lo, hi), "tolerance": tol, "preregistered": k in crit, "format_counter": fmt,
+                          "imbalanced": imb, "state": state, "rule": rule if k in crit and rule != "equivalence" else None}
+            per_arm[a] = out
+        n_seed0 = len(rows_seed0)
+        covered = sum(len(ms) for ms in by.values())
+        return {"rates": rates, "per_arm": per_arm, "missing": missing, "coverage": covered / n_seed0 if n_seed0 else None,
+                "has_placebo": bool(pl), "by": by}
 
-    def counter_result(self, cycle: int, arm: str, counter: str, out: Dict[int, Dict[str, Any]]) -> Tuple[float, Optional[Tuple[float, float]]]:
-        rates = out[cycle]["rates"]
-        diff = rates[arm][counter] - rates[self.placebo()][counter]
-        return diff, out[cycle]["boot"].get(arm, {}).get(counter)
-
-    def criterion(self, diff: float, ci: Optional[Tuple[float, float]], tol: float) -> Optional[bool]:
-        """Imbalanced = difference above the tolerance and a 95% interval that excludes 0 (the package's words:
-        'memory - placebo <= tolerance or a 95% bootstrap interval that includes 0' passes). None = not decidable."""
-        if diff <= tol + 1e-12:
-            return False if diff >= -tol else None
-        if ci is None:
-            return None
-        margin = bootstrap_tolerance(ci)
-        if ci[0] > margin:
+    @staticmethod
+    def process_problem(v: Dict[str, Any]) -> bool:
+        """experiment.process_problems: does this counter raise a measurement problem."""
+        st = v.get("state") or ("imbalanced" if v.get("imbalanced") else "balanced")
+        if st == "imbalanced" and v.get("format_counter"):
             return True
-        if ci[0] < -margin:
-            return False
-        return None
+        if st == "unresolved" and v.get("preregistered") and v.get("rule") != "imbalance_only":
+            return True
+        return st == "not_computable" and bool(v.get("preregistered"))
 
-    def check_counter(self, field: str, cycle: int, arm: str, counter: str, body: Dict[str, Any], criteria: Dict[str, Any],
-                      out: Dict[int, Dict[str, Any]]) -> None:
-        rep = self.rep
-        diff, ci = self.counter_result(cycle, arm, counter, out)
-        rep.check("%s.diff = %s (arm - %s, step-weighted)" % (field, body.get("diff"), self.placebo()), agrees(diff, body.get("diff"), 4), "recomputed %.4f" % diff)
-        dci = body.get("ci")
-        if ci is not None and dci:
-            tol = bootstrap_tolerance(ci) + 0.5e-4
-            ok = abs(ci[0] - dci[0]) <= tol and abs(ci[1] - dci[1]) <= tol
-            rep.check("%s.ci = %s, approximately (bootstrap)" % (field, dci), ok,
-                      "own paired bootstrap (seed %d, %d replicates) [%.4f, %.4f], tolerance %.4f" % (BOOTSTRAP_SEED, BOOTSTRAP_REPLICATES, ci[0], ci[1], tol))
-            rep.nv("%s.ci (exact digits)" % field, "a bootstrap interval; the package publishes neither its resampling seed nor its number of "
-                   "replicates, so only agreement within Monte Carlo error is checked")
-        if "preregistered" in body:
-            rep.check("%s.preregistered = %s" % (field, body["preregistered"]), body["preregistered"] == (counter in criteria), "criteria %s" % sorted(criteria))
-        tol = body.get("tolerance")
-        if counter in criteria:
-            rep.check("%s.tolerance = %s" % (field, tol), tol == criteria[counter], "criteria %s" % criteria[counter])
-        elif tol is not None:
-            rep.nv("%s.tolerance = %s" % (field, tol), "the counter is not pre-registered and the package does not state where its tolerance comes from")
-        if tol is None:
-            return
-        verdict = self.criterion(diff, ci, float(tol))
-        declared_flags = [("imbalanced", body.get("imbalanced"))] + ([("state", body.get("state") == "imbalanced")] if "state" in body else [])
-        for name, flag in declared_flags:
-            if name == "state" and body.get("state") not in ("balanced", "imbalanced"):
-                rep.nv("%s.state = %s" % (field, body.get("state")), "unknown state name")
+    def sensitivity(self) -> None:
+        rep, t = self.rep, self.table
+        for audit in self.k.kind("audit"):
+            ms = (audit["payload"].get("checks") or {}).get("measurement_sensitivity")
+            if not ms:
                 continue
-            if verdict is None:
-                rep.nv("%s.%s = %s" % (field, name, body.get(name)), "the decision depends on whether the unpublished bootstrap interval includes 0 "
-                       "(own interval %s), or the difference is below -tolerance, which the criterion's wording does not cover" % show(ci))
+            run = self.run_of(audit)
+            cycle = audit.get("cycle")
+            proto = self.protocol_of(run)
+            seed0 = (proto.get("seeds") or [0])[0]
+            treatments = list(proto.get("treatments") or [])
+            placebo = self.placebo()
+            tag = "cycle %s %s (%s)" % (cycle, audit["id"], audit["payload"].get("by"))
+            recs = {k: v for k, v in t.rows.items() if k[0] == cycle and k[3] == seed0}
+            by_arm: Dict[str, List[Dict[str, Any]]] = {}
+            for k, v in recs.items():
+                by_arm.setdefault(k[2], []).append(v)
+            pl = by_arm.get(placebo) or []
+            pl_rate = sum(r[OUTCOME] for r in pl) / len(pl) if pl else None
+            pl_err = sum(1 for r in pl if r.get("error")) / len(pl) if pl else 0.0
+            has_tokens = "memory_tokens" in t.columns and any(t.is_number(r.get("memory_tokens")) for r in recs.values())
+            expected: Dict[str, List[Tuple[str, str]]] = {a: [] for a in treatments}
+            if "placebo_rate" in ms:
+                rep.check("%s: placebo_rate = %s" % (tag, ms["placebo_rate"]), agrees(pl_rate, ms["placebo_rate"], 4),
+                          "recomputed %s" % (None if pl_rate is None else "%.4f" % pl_rate))
+            if "placebo_problem" in ms:
+                want = pl_rate is not None and not PLACEBO_RANGE[0] <= pl_rate <= PLACEBO_RANGE[1]
+                rep.check("%s: placebo_problem = %s" % (tag, ms["placebo_problem"]), ms["placebo_problem"] == want, "placebo rate outside %s: %s" % (PLACEBO_RANGE, want))
+            if "tokens_reported" in ms:
+                rep.check("%s: tokens_reported = %s" % (tag, ms["tokens_reported"]), ms["tokens_reported"] == has_tokens, "memory_tokens cells: %s" % has_tokens)
+            if "memory_delivery_checked" in ms:
+                rep.check("%s: memory_delivery_checked = %s" % (tag, ms["memory_delivery_checked"]), ms["memory_delivery_checked"] == has_tokens)
+            tokens = {a: [float(r["memory_tokens"]) for r in rs if t.is_number(r.get("memory_tokens"))] for a, rs in by_arm.items()}
+            pl_vals = tokens.get(placebo) or []
+            length_checked = bool(pl_vals) and has_tokens
+            if "placebo_length_checked" in ms:
+                rep.check("%s: placebo_length_checked = %s" % (tag, ms["placebo_length_checked"]), ms["placebo_length_checked"] == length_checked)
+            means = {a: (sum(v) / len(v) if v else None) for a, v in tokens.items()}
+            rep.note("%s: mean memory tokens per arm (episodes that report them): %s" % (tag, ", ".join(
+                "%s %s" % (a, "-" if m is None else "%.1f" % m) for a, m in sorted(means.items()))))
+            for a in treatments:
+                rs = by_arm.get(a) or []
+                if pl_rate is not None and not PLACEBO_RANGE[0] <= pl_rate <= PLACEBO_RANGE[1]:
+                    expected[a].append(("placebo_range", ""))
+                err = sum(1 for r in rs if r.get("error")) / len(rs) if rs else 0.0
+                n_a, n_p = max(len(rs), 1), max(len(pl), 1)
+                pool = (err * n_a + pl_err * n_p) / (n_a + n_p)
+                se = (max(pool * (1 - pool), 1e-9) * (1 / n_a + 1 / n_p)) ** 0.5
+                if abs(err - pl_err) > ERROR_EXCESS_MAX and abs(err - pl_err) / se > 2.576:
+                    expected[a].append(("errors", ""))
+                body = (ms.get("per_arm") or {}).get(a) or {}
+                if "error_rate" in body:
+                    rep.check("%s: per_arm[%s].error_rate = %s" % (tag, a, body["error_rate"]), agrees(err, body["error_rate"], 4), "recomputed %.4f" % err)
+                if has_tokens and rs:
+                    tok = [float(r.get("memory_tokens") or 0) for r in rs]
+                    if sum(tok) / len(tok) == 0:
+                        expected[a].append(("no_memory", ""))
+                if length_checked:
+                    vals = tokens.get(a) or []
+                    mean = sum(vals) / len(vals) if vals else 0.0
+                    if mean > 0 and sum(pl_vals) / len(pl_vals) < PLACEBO_LENGTH_MIN_RATIO * mean:
+                        expected[a].append(("placebo_length", ""))
+            pb = ms.get("process_balance")
+            if pb:
+                self.process_balance_checks(tag, audit, pb, cycle, seed0, treatments, expected)
+            self.process[audit["id"]] = {"expected": expected, "ms": ms, "has_pb": bool(pb), "has_length": "placebo_length_checked" in ms,
+                                         "has_memory": bool(ms.get("memory_delivery_checked")), "cycle": cycle, "tag": tag}
+            for a in treatments:
+                declared = list(((ms.get("per_arm") or {}).get(a) or {}).get("problems") or [])
+                self.compare_problems("%s: per_arm[%s].problems" % (tag, a), declared, expected[a], self.process[audit["id"]], a, cycle)
+
+    def process_balance_checks(self, tag: str, audit: Dict[str, Any], pb: Dict[str, Any], cycle: Any, seed0: int,
+                               treatments: List[str], expected: Dict[str, List[Tuple[str, str]]]) -> None:
+        rep, t = self.rep, self.table
+        crit, behaviour, rule = self.criteria_for(pb, tag)
+        declared_keys = sorted({k for v in (pb.get("rates") or {}).values() for k in v} | {k for v in (pb.get("per_arm") or {}).values() for k in v} | set(crit))
+        keys = [k for k in declared_keys if k in t.columns]
+        for k in declared_keys:
+            if k not in t.columns:
+                rep.nv("%s: process counter %s" % (tag, k), "%s is not a column of per_unit.csv (the exporter does not publish it); its rates, "
+                       "difference, interval and state are the lab's" % k)
+        for col in t.columns:
+            if self.is_process_column(col) and col not in declared_keys and col not in (STEPS,):
+                rep.check("%s: process_balance covers the integer counter %s" % (tag, col), False,
+                          "per_unit.csv has integer values in %s, which the lab's process balance would include" % col)
+        bal = self.balance(cycle, seed0, treatments, crit, behaviour, rule, keys)
+        for arm, values in (pb.get("rates") or {}).items():
+            for k, declared in values.items():
+                if k not in keys:
+                    continue
+                got = bal["rates"].get(arm, {}).get(k)
+                rep.check("%s: process_balance.rates[%s][%s] = %s (step-weighted)" % (tag, arm, k, declared), agrees(got, declared, 4),
+                          "recomputed %s" % (None if got is None else "%.4f" % got))
+        rep.check("%s: process_balance.rates lists the arms with steps" % tag, sorted(pb.get("rates") or {}) == sorted(bal["rates"]),
+                  "declared %s, recomputed %s" % (sorted(pb.get("rates") or {}), sorted(bal["rates"])))
+        if "not_computable" in pb:
+            rep.check("%s: process_balance.not_computable = %s" % (tag, pb["not_computable"]), sorted(pb["not_computable"]) == bal["missing"],
+                      "criteria with no value in per_unit.csv: %s" % bal["missing"])
+        if "metrics_coverage" in pb:
+            rep.check("%s: process_balance.metrics_coverage = %s" % (tag, pb["metrics_coverage"]), agrees(bal["coverage"], pb["metrics_coverage"], 4),
+                      "rows with steps / rows of the first seed: %s" % bal["coverage"])
+            if crit and bal["coverage"] is not None and bal["coverage"] < METRICS_COVERAGE_MIN:
+                for a in expected:
+                    expected[a].append(("coverage", ""))
+        if crit:
+            for a in expected:
+                if a not in bal["per_arm"]:
+                    expected[a].append(("criteria_not_computed", ""))
+        rep.check("%s: process_balance.per_arm lists %s" % (tag, sorted(bal["per_arm"])), sorted(pb.get("per_arm") or {}) == sorted(bal["per_arm"]),
+                  "declared %s" % sorted(pb.get("per_arm") or {}))
+        for arm, per in (pb.get("per_arm") or {}).items():
+            for k, body in per.items():
+                field = "%s: process_balance.per_arm[%s][%s]" % (tag, arm, k)
+                v = bal["per_arm"].get(arm, {}).get(k)
+                if v is None:
+                    continue
+                self.check_counter(field, body, v)
+                if self.process_problem(v):
+                    expected.setdefault(arm, []).append(("process", k))
+        self.process.setdefault("_balance", {})[audit["id"]] = bal
+
+    def check_counter(self, field: str, body: Dict[str, Any], v: Dict[str, Any]) -> None:
+        rep = self.rep
+        boot = "lab default bootstrap: seed %d, %d replicates, units resampled with replacement; the package does not state them" % (LAB_BOOT_SEED, LAB_BOOT_N)
+        if v["state"] == "not_computable":
+            rep.check("%s.diff = %s (not computable)" % (field, body.get("diff")), body.get("diff") is None and body.get("ci") is None,
+                      "the counter has no value in per_unit.csv")
+        else:
+            rep.check("%s.diff = %s (variant - placebo, step-weighted)" % (field, body.get("diff")), agrees(v["diff"], body.get("diff"), 4), "recomputed %.4f" % v["diff"])
+            dci = body.get("ci") or [None, None]
+            exact = agrees(v["ci"][0], dci[0], 4) and agrees(v["ci"][1], dci[1], 4)
+            if exact:
+                rep.check("%s.ci = %s" % (field, dci), True, "recomputed %s (%s)" % (show(v["ci"]), boot))
             else:
-                why = ("diff %.4f <= tolerance %s" % (diff, tol)) if diff <= float(tol) else \
-                    ("diff %.4f > tolerance %s and the interval %s %s 0" % (diff, tol, show(ci), "excludes" if verdict else "includes"))
-                rep.check("%s.%s = %s" % (field, name, body.get(name)), flag == verdict,
-                          "criterion: %s -> %s" % (why, "imbalanced" if verdict else "balanced"))
-
-    def claim(self, field: str, text: str, cycle: int, arm: str, out: Dict[int, Dict[str, Any]], criteria: Dict[str, Any]) -> bool:
-        """Check every '<counter> +d [lo, hi] (> tol)' claim in a sentence; returns True if one was found."""
-        found = False
-        for m in COUNTER_CLAIM.finditer(text):
-            counter, d, lo, hi, tol = m.groups()
-            if counter not in STEP_COUNTERS:
-                continue
-            found = True
-            if counter not in self.table.columns:
-                self.rep.nv("%s: %s" % (field, m.group(0)), "%s is not a column of per_unit.csv" % counter)
-                continue
-            diff, ci = self.counter_result(cycle, arm, counter, out)
-            self.rep.check("%s: %s %s (step-weighted arm - placebo)" % (field, counter, d), agrees(diff, d), "recomputed %.4f" % diff)
-            if ci is not None:
-                width = bootstrap_tolerance(ci) + 0.5 * 10 ** (-places(lo))
-                self.rep.check("%s: %s interval [%s, %s], approximately (bootstrap)" % (field, counter, lo, hi),
-                               abs(ci[0] - number(lo)) <= width and abs(ci[1] - number(hi)) <= width,
-                               "own bootstrap [%.4f, %.4f], tolerance %.4f; exact digits not verifiable (seed not published)" % (ci[0], ci[1], width))
-            if tol is not None:
-                self.rep.check("%s: %s threshold %s = pre-registered criterion" % (field, counter, tol), criteria.get(counter) is not None and
-                               agrees(float(criteria[counter]), tol), "criteria %s" % criteria)
-                verdict = self.criterion(diff, ci, number(tol))
-                if verdict is None:
-                    self.rep.nv("%s: %s exceeds the criterion" % (field, counter), "decision depends on the unpublished bootstrap")
+                margin = 0.25 * (v["ci"][1] - v["ci"][0]) / 2 + 0.5e-4
+                near = all(isinstance(x, (int, float)) for x in dci) and abs(v["ci"][0] - dci[0]) <= margin and abs(v["ci"][1] - dci[1]) <= margin
+                if near:
+                    rep.nv("%s.ci (exact digits)" % field, "does not reproduce exactly with the %s; it agrees within Monte Carlo error "
+                           "(recomputed %s)" % (boot, show(v["ci"])))
                 else:
-                    self.rep.check("%s: %s exceeds the criterion" % (field, counter), verdict, "recomputed diff %.4f, own interval %s" % (diff, show(ci)))
-        return found
+                    rep.check("%s.ci = %s" % (field, dci), False, "recomputed %s with the %s" % (show(v["ci"]), boot))
+        for key in ("tolerance", "preregistered", "format_counter", "imbalanced", "state"):
+            if key in body:
+                ok = agrees(float(v[key]), body[key], 4) if key == "tolerance" and isinstance(body[key], (int, float)) else body[key] == v[key]
+                why = {"tolerance": "the criterion's tolerance, else the lab default %s" % LAB_PROCESS_TOL,
+                       "preregistered": "the counter is a format criterion of the program",
+                       "format_counter": "criterion, or a name with a format marker %s and not a behaviour counter" % (FORMAT_MARKERS,),
+                       "imbalanced": "|diff| > tolerance and the interval excludes 0",
+                       "state": "balanced: interval within +-tolerance; imbalanced: as above; else unresolved"}[key]
+                rep.check("%s.%s = %s" % (field, key, body[key]), ok, "recomputed %s (%s)" % (v[key], why))
+        if "rule" in body or v.get("rule"):
+            rep.check("%s.rule = %s" % (field, body.get("rule")), body.get("rule") == v.get("rule"), "recomputed %s" % v.get("rule"))
+        for key in sorted(set(body) - {"diff", "ci", "tolerance", "preregistered", "format_counter", "imbalanced", "state", "rule"}):
+            rep.nv("%s.%s" % (field, key), "a field no lab rule mirrored here computes")
 
-    # ---------------------------------------------------------------- findings, report
-    def verdict(self, predicted: str, state: str) -> Optional[str]:
-        if state == "inconclusive":
-            return "inconclusive"
-        if predicted == "positive":
-            return "supported" if state in POSITIVE_STATES else "refuted" if state in NULL_STATES else None
-        if predicted == "null":
-            return "supported" if state in NULL_STATES else "refuted" if state in POSITIVE_STATES else None
-        return None
-
-    def findings(self, process: Dict[int, Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    def compare_problems(self, field: str, declared: List[str], expected: List[Tuple[str, str]], info: Dict[str, Any], arm: str,
+                         cycle: Any, support_filter: bool = False) -> None:
+        """Declared measurement problems against the ones recomputed from the table, for the checks the audit ran."""
         rep = self.rep
-        derived: Dict[str, Dict[str, Any]] = {}
-        for f in self.k.kind("finding"):
+        gate = {"process": info["has_pb"], "coverage": info["has_pb"], "criteria_not_computed": info["has_pb"],
+                "placebo_length": info["has_length"], "no_memory": info["has_memory"], "placebo_range": True, "errors": True}
+        want = [x for x in expected if gate[x[0]]]
+        got: List[Tuple[str, str]] = []
+        for text in declared:
+            kind = problem_kind(text)
+            if kind is None:
+                rep.nv("%s: %r" % (field, short(text)), "an arm-contract or leakage problem; it needs the raw records or the private family file")
+                continue
+            if kind[0] == "process":
+                self.claim("%s: %r" % (field, short(text, 40)), text, cycle, arm)
+            got.append(kind)
+        if support_filter:
+            want = [x for x in want if x[0] in ("process", "coverage", "criteria_not_computed", "errors", "placebo_length")]
+        rep.check("%s: recomputable problems %s" % (field, sorted("%s %s" % x for x in want) or "none"), sorted(got) == sorted(want),
+                  "declared %s" % (sorted("%s %s" % x for x in got) or "none"))
+        if not info["has_pb"]:
+            rep.nv("%s: process problems" % field, "this audit predates the lab's process-balance check, so it makes no statement about them")
+
+    def claim(self, field: str, text: str, cycle: Any, arm: str) -> bool:
+        """Check the '<counter> +d [lo, hi]' figures of a process sentence (Polish or English) against the recomputation."""
+        m = PROCESS_PL.search(text) or PROCESS_EN.search(text)
+        if not m:
+            return False
+        counter, d, lo, hi = m.groups()
+        bal = self.balance_for(cycle)
+        v = (bal or {}).get("per_arm", {}).get(arm, {}).get(counter) if bal else None
+        if v is None or v["state"] == "not_computable":
+            self.rep.nv("%s: %s %s [%s, %s]" % (field, counter, d, lo, hi), "%s is not a column of per_unit.csv, or not computable" % counter)
+            return True
+        # the lab formats the stored 4-place values (experiment.process_problems), so round to 4 places first
+        self.rep.check("%s: %s %s [%s, %s]" % (field, counter, d, lo, hi), agrees(r4(v["diff"]), d) and agrees(r4(v["ci"][0]), lo) and agrees(r4(v["ci"][1]), hi),
+                       "recomputed %.4f %s (lab default bootstrap)" % (v["diff"], show(v["ci"])))
+        return True
+
+    def balance_for(self, cycle: Any) -> Optional[Dict[str, Any]]:
+        bals = self.process.get("_balance", {})
+        audits = [a for a in self.k.kind("audit") if a["id"] in bals and a.get("cycle") == cycle]
+        return bals[audits[-1]["id"]] if audits else None
+
+    # ---------------------------------------------------------------- findings and report
+    def findings_checks(self) -> None:
+        rep = self.rep
+        for i, f in enumerate(self.k.kind("finding"), 1):
             p, cycle = f["payload"], f.get("cycle")
             tag = "cycle %s %s" % (cycle, f["id"])
-            rec = self.recomputed.get(cycle)
-            c = rec["contrasts"].get(("primary", p.get("arm"))) if rec else None
-            if c is None:
-                rep.check("%s: arm %s has a primary contrast" % (tag, p.get("arm")), False)
-                continue
+            res = self.k.parent(f, "result")
+            rec = self.cycles.get(cycle)
             hyp = self.k.parent(f, "hypothesis")
             hp = hyp["payload"] if hyp else {}
             label = hp.get("id", "?")
+            c = rec["contrasts"].get(("primary", p.get("arm"))) if rec else None
+            if c is None or res is None:
+                rep.check("%s: has a result parent with a primary contrast for %s" % (tag, p.get("arm")), False)
+                continue
             for key in ("n",):
                 rep.check("%s (%s): %s = %s" % (tag, label, key, p.get(key)), c[key] == p.get(key), "recomputed %d" % c[key])
             for key in ("diff", "discordance"):
                 rep.check("%s (%s): %s = %s" % (tag, label, key, p.get(key)), agrees(c[key], p.get(key), 6), "recomputed %.6f" % c[key])
             ci = p.get("ci") or [None, None]
             rep.check("%s (%s): ci = %s" % (tag, label, ci), agrees(c["ci"][0], ci[0], 6) and agrees(c["ci"][1], ci[1], 6), "recomputed [%.6f, %.6f]" % c["ci"])
-            rep.check("%s (%s): k = %s" % (tag, label, p.get("k")), p.get("k") == rec["k"], "family_size %d" % rec["k"])
-            self.check_state("%s (%s): state" % (tag, label), c["ci"], rec["sesoi"], p.get("state"))
+            rep.check("%s (%s): k = %s" % (tag, label, p.get("k")), p.get("k") == rec["k"], "family %d" % rec["k"])
             state = p.get("state")
+            self.check_state("%s (%s): state" % (tag, label), c["ci"], rec["sesoi"], state)
             if hyp is None:
-                rep.nv("%s: verdict / predicted" % tag, "the finding has no hypothesis parent")
-            else:
-                rep.check("%s (%s): predicted = hypothesis.predicted %s" % (tag, label, hp.get("predicted")), p.get("predicted") == hp.get("predicted"),
-                          "finding says %s" % p.get("predicted"))
-                want = self.verdict(hp.get("predicted"), state)
-                if want is None:
-                    rep.nv("%s (%s): verdict = %s" % (tag, label, p.get("verdict")), "no stated rule for predicted %r and state %r" % (hp.get("predicted"), state))
-                else:
-                    rep.check("%s (%s): verdict = %s" % (tag, label, p.get("verdict")), p.get("verdict") == want,
-                              "rule (hypothesis falsification texts): predicted %s, state %s -> %s" % (hp.get("predicted"), state, want))
-                expected = hp.get("expected_state")
-                if expected and state != expected and p.get("verdict") == "supported":
-                    text = str(hp.get("falsification") or "")
-                    mention = (" Its falsification text mentions the state '%s': %r." % (state, text[:160])) if state in text else ""
-                    rep.warn("%s (%s): verdict supported with state %s, hypothesis expected_state %s" % (tag, label, state, expected),
-                             "the verdict follows the predicted direction (%s), but the hypothesis states a narrower expected state.%s "
-                             "The package does not say which of the two rules decides the verdict." % (hp.get("predicted"), mention))
-                if "p_positive" in hp and "brier" in p:
-                    outcome = 1.0 if state in POSITIVE_STATES else 0.0
-                    brier = (float(hp["p_positive"]) - outcome) ** 2
-                    rep.check("%s (%s): brier = %s ((p_positive %s - [state positive or practical])^2)" % (tag, label, p["brier"], hp["p_positive"]),
-                              agrees(brier, p["brier"], 4), "recomputed %.4f" % brier)
-                    derived[f["id"]] = {"brier": brier}
+                rep.nv("%s: verdict, predicted, brier" % tag, "the finding has no hypothesis parent")
+                self.findings.append({"obj": f, "index": i, "label": label, "c": c})
+                continue
+            rep.check("%s (%s): predicted = hypothesis.predicted %s" % (tag, label, hp.get("predicted")), p.get("predicted") == hp.get("predicted"))
+            rep.check("%s (%s): hypothesis = hypothesis.statement" % (tag, label), p.get("hypothesis") == hp.get("statement"))
+            code = self.k.parent(f, "audit", lambda o: str(o["payload"].get("by", "")).startswith("code"))
+            role = self.k.parent(f, "audit", lambda o: not str(o["payload"].get("by", "")).startswith("code"))
+            audit_valid = bool(code) and code["payload"].get("verdict") == "valid"
+            rp = role["payload"] if role else {}
+            disputed_arms = {cl.get("arm") for cl in rp.get("claims") or [] if isinstance(cl, dict) and cl.get("arm")}
+            disputed = bool(rp.get("verdict") == "dispute" and rp.get("claims")) and audit_valid and (not disputed_arms or p.get("arm") in disputed_arms)
+            want = lab_verdict(hp.get("predicted"), state, audit_valid, disputed)
+            rep.check("%s (%s): verdict = %s" % (tag, label, p.get("verdict")), p.get("verdict") == want,
+                      "lab rule (program._s_conclude: code audit %s, role audit %s, predicted %s, state %s; the predicted direction only, "
+                      "not expected_state or the falsification text) -> %s" % (code["payload"].get("verdict") if code else None,
+                                                                                 rp.get("verdict"), hp.get("predicted"), state, want))
+            expected_state = hp.get("expected_state")
+            if expected_state and state != expected_state and p.get("verdict") == "supported":
+                text = str(hp.get("falsification") or "")
+                mention = (" Its falsification text names '%s' among the refuting states: %r." % (state, short(text, 150))) if state in text else ""
+                rep.warn("%s (%s): verdict supported with state %s, hypothesis expected_state %s" % (tag, label, state, expected_state),
+                         "the lab's verdict rule reads only the predicted direction (%s); the hypothesis pre-registered a narrower expected "
+                         "state.%s The package does not say which of the two decides." % (hp.get("predicted"), mention))
             if "negative_result" in p:
-                rep.nv("%s (%s): negative_result = %s" % (tag, label, p["negative_result"]), "the package states no rule for this flag")
-            if p.get("level") not in LEVEL_NAMES:
-                rep.nv("%s (%s): level = %s" % (tag, label, p.get("level")), "an evidence level the package does not define")
-            problems = p.get("measurement_problem") or []
-            criteria = process.get(cycle, {}).get("criteria") or {}
-            for text in problems:
-                if not self.claim("%s (%s): measurement_problem" % (tag, label), text, cycle, p.get("arm"), process, criteria):
-                    rep.nv("%s (%s): measurement_problem %r" % (tag, label, text[:60]), "no counter claim this verifier can parse")
-            derived.setdefault(f["id"], {}).update({"state": state, "verdict": p.get("verdict"), "arm": p.get("arm"), "cycle": cycle,
-                                                    "diff": c["diff"], "ci": c["ci"], "label": label, "predicted": hp.get("predicted"),
-                                                    "level": p.get("level")})
-        return derived
+                neg = p.get("verdict") == "refuted" or state in CLOSE
+                rep.check("%s (%s): negative_result = %s" % (tag, label, p["negative_result"]), p["negative_result"] == neg, "refuted or a closing state: %s" % neg)
+            if "p_positive" in hp and "brier" in p:
+                brier = (float(hp["p_positive"]) - (1.0 if state in SUPPORT else 0.0)) ** 2
+                rep.check("%s (%s): brier = %s ((p_positive %s - [state in practical/positive])^2)" % (tag, label, p["brier"], hp["p_positive"]),
+                          agrees(brier, p["brier"], 6), "recomputed %.6f" % brier)
+            if p.get("level") not in LEVEL_EN:
+                rep.nv("%s (%s): level = %s" % (tag, label, p.get("level")), "an evidence level the lab's exporter does not name")
+            else:
+                rep.nv("%s (%s): level" % (tag, label), "developmental / replicated depends on earlier findings of the program and sealed "
+                       "confirmations, a rule over the program history")
+            problems = list(p.get("measurement_problem") or [])
+            if code is not None:
+                ms = (code["payload"].get("checks") or {}).get("measurement_sensitivity") or {}
+                source = list(((ms.get("per_arm") or {}).get(p.get("arm")) or {}).get("problems") or [])
+                if state in SUPPORT:
+                    source = [x for x in source if x.startswith(SUPPORT_UNDERMINING)]
+                rep.check("%s (%s): measurement_problem = the code audit's problems%s" % (tag, label, " that undermine support" if state in SUPPORT else ""),
+                          problems == source, "audit %d, finding %d" % (len(source), len(problems)))
+            self.findings.append({"obj": f, "index": i, "label": label, "c": c, "verdict_ok": p.get("verdict") == want})
 
-    def derived_status(self, arm: str, process: Dict[int, Dict[str, Any]]) -> Optional[str]:
-        """measurement_problem when a pre-registered format counter is imbalanced; otherwise the status follows decision
-        rules (replication, retry with a larger n) that the package records but does not state as a computable rule."""
-        for cycle, data in process.items():
-            criteria = data.get("criteria") or {}
-            for counter, tol in criteria.items():
-                if counter not in self.table.columns or arm not in data["boot"]:
-                    continue
-                diff, ci = self.counter_result(cycle, arm, counter, process)
-                if self.criterion(diff, ci, float(tol)):
-                    return "measurement_problem"
-        return None
-
-    def report_object(self, process: Dict[int, Dict[str, Any]], findings: Dict[str, Dict[str, Any]]) -> None:
+    def report_checks(self) -> None:
         rep = self.rep
         obj = self.k.one("report")
         if obj is None:
             rep.nv("report", "the package has no report object")
             return
         p = obj["payload"]
-        units = len(self.table.units())
-        rep.check("report: units_used = %s" % p.get("units_used"), p.get("units_used") == units, "per_unit.csv has %d units" % units)
-        rep.check("report: cycles = %s" % p.get("cycles"), p.get("cycles") == len(self.table.cycles()), "per_unit.csv has cycles %s" % self.table.cycles())
-        briers = [v["brier"] for v in findings.values() if "brier" in v]
+        units = sum(len(r["units"]) for r in self.cycles.values())
+        rep.check("report: units_used = %s" % p.get("units_used"), p.get("units_used") == units, "units of the analysed runs: %d" % units)
+        rep.check("report: cycles = %s" % p.get("cycles"), p.get("cycles") == max([c for c in self.cycles if isinstance(c, int)] or [0]),
+                  "result cycles %s" % sorted(self.cycles))
+        rep.check("report: program and goal", p.get("program") == self.program().get("id") and p.get("goal") == self.program().get("goal"))
+        briers = [f["obj"]["payload"].get("brier") for f in self.findings if f["obj"]["payload"].get("brier") is not None]
         if briers and "brier_mean" in p:
             mean = sum(briers) / len(briers)
-            rep.check("report: brier_mean = %s" % p["brier_mean"], agrees(mean, p["brier_mean"], 4), "mean of %d recomputed Brier scores %.4f" % (len(briers), mean))
+            rep.check("report: brier_mean = %s" % p["brier_mean"], agrees(mean, p["brier_mean"], 4), "mean of %d finding Brier scores %.4f" % (len(briers), mean))
+        fobj = {f["obj"]["id"]: f["obj"]["payload"] for f in self.findings}
         for item in p.get("findings") or []:
-            f = findings.get(item.get("id"))
-            if f is None:
-                rep.check("report.findings %s is a finding object" % item.get("id"), False)
-                continue
-            ok = agrees(f["diff"], item.get("diff"), 6) and agrees(f["ci"][0], (item.get("ci") or [None])[0], 6) and \
-                agrees(f["ci"][1], (item.get("ci") or [None, None])[1], 6) and item.get("state") == f["state"] and item.get("verdict") == f["verdict"]
-            rep.check("report.findings %s: diff, ci, state, verdict" % item["id"], ok, "recomputed %.6f [%.6f, %.6f] %s %s" % (f["diff"], f["ci"][0], f["ci"][1], f["state"], f["verdict"]))
+            f = fobj.get(item.get("id"))
+            ok = f is not None and all(item.get(k) == f.get(k) for k in ("arm", "state", "verdict", "level", "diff", "ci"))
+            rep.check("report.findings %s = the finding object" % item.get("id"), ok)
+        rep.check("report.findings lists every finding", sorted(x.get("id") for x in p.get("findings") or []) == sorted(fobj))
+        order = [o["id"] for o in self.k.objects]
+        later = [d["id"] for d in self.k.kind("decision") if order.index(d["id"]) > order.index(obj["id"])]
+        rep.check("report.decisions = every decision made before the report", sorted(p.get("decisions") or []) ==
+                  sorted(d["id"] for d in self.k.kind("decision") if d["id"] not in later), "decisions after the report: %s" % later)
         for arm, body in (p.get("arms") or {}).items():
-            want = self.derived_status(arm, process)
-            if want is None:
-                rep.nv("report.arms[%s].status = %s" % (arm, body.get("status")), "no pre-registered format criterion fails, so the status follows decision rules "
-                       "(replication on fresh units, a larger retry) that are not computable from the package")
-            elif body.get("status") == want:
-                rep.check("report.arms[%s].status = %s" % (arm, body.get("status")), True, "a pre-registered format criterion fails")
+            fs = [f["obj"] for f in self.findings if f["obj"]["payload"].get("arm") == arm]
+            last = fs[-1]["payload"] if fs else {}
+            mp = bool(last.get("measurement_problem")) and last.get("verdict") != "invalid"
+            rep.check("report.arms[%s].findings are findings of the arm" % arm, set(body.get("findings") or []) <= {f["id"] for f in fs})
+            if mp or body.get("status") == "measurement_problem":
+                rep.check("report.arms[%s].status = %s" % (arm, body.get("status")), (body.get("status") == "measurement_problem") == mp,
+                          "lab rule: measurement_problem iff the arm's last finding has measurement problems and is not invalid (%s)" % mp)
             else:
-                later = [d for d in self.k.kind("decision") if d["payload"].get("action") == "post_hoc_annotation"
-                         and d["payload"].get("measurement_problem")]
-                if later:
-                    rep.note("report.arms[%s].status = %s predates %s, which records the measurement problem after the result; "
-                             "the README status is checked against the recomputed criterion" % (arm, body.get("status"), later[-1]["id"]))
-                else:
-                    rep.check("report.arms[%s].status = %s" % (arm, body.get("status")), False, "a pre-registered format criterion fails -> %s" % want)
-        for key in ("role_calls", "model_calls"):
+                rep.nv("report.arms[%s].status = %s" % (arm, body.get("status")), "without a measurement problem the status follows decision rules "
+                       "over the program history (replication, retries, disputes, vetoes)")
+        mps = {a: v for a, v in (p.get("measurement_problems") or {}).items()}
+        want = {a: (fs[-1]["payload"].get("measurement_problem")) for a in (p.get("arms") or {})
+                for fs in [[f["obj"] for f in self.findings if f["obj"]["payload"].get("arm") == a]] if fs
+                and (p.get("arms") or {})[a].get("status") == "measurement_problem"}
+        if "measurement_problems" in p:
+            rep.check("report.measurement_problems = the problems of the arms with that status", mps == want, "declared %d arm(s), expected %d" % (len(mps), len(want)))
+        for key in ("role_calls", "model_calls", "provenance", "role_notes", "role_blocks", "ideation", "new_variants"):
             if key in p:
-                rep.nv("report: %s = %s" % (key, p[key]), "model calls are not part of the published tables")
-        mp =p.get("measurement_problems") or {}
-        for arm, texts in mp.items():
-            for text in texts:
-                for cycle in process:
-                    if not self.claim("report.measurement_problems[%s]" % arm, text, cycle, arm, process, process[cycle].get("criteria") or {}):
-                        rep.nv("report.measurement_problems[%s] %r" % (arm, text[:60]), "no counter claim this verifier can parse")
+                rep.nv("report: %s" % key, "model-role activity and lab code provenance are not part of the published tables")
 
-    def noise_check(self) -> None:
+    def noise_checks(self) -> None:
         rep = self.rep
-        assumed = self.protocol().get("discordance_assumed")
         for audit in self.k.kind("audit"):
-            nv = (audit["payload"].get("checks") or {}).get("noise_vs_calibration")
+            checks = audit["payload"].get("checks") or {}
             cycle = audit.get("cycle")
-            rec = self.recomputed.get(cycle)
-            if not nv or not rec:
+            rec = self.cycles.get(cycle)
+            if rec is None:
                 continue
-            tag = "cycle %s %s: noise_vs_calibration" % (cycle, audit["id"])
-            prim = [c for (g, _), c in rec["contrasts"].items() if g == "primary"]
-            if not prim:
-                continue
-            worst = max(prim, key=lambda c: c["discordance"])
-            # The laboratory takes the bound from the discordance as it stores it (rounded to 6 places): with the
-            # unrounded 110/300 of V4 the bound is 0.3121362, with the stored 0.366667 it is 0.3121365 -> 0.312137.
-            disc = round(worst["discordance"], 6)
-            lower = disc - rec["z"] * math.sqrt(disc * (1 - disc) / worst["n"])
-            rep.check("%s.observed_max = %s" % (tag, nv.get("observed_max")), agrees(worst["discordance"], nv.get("observed_max"), 6),
-                      "largest primary discordance %.6f" % worst["discordance"])
-            rep.check("%s.observed_lower_bound = %s" % (tag, nv.get("observed_lower_bound")), agrees(lower, nv.get("observed_lower_bound"), 6),
-                      "Wald lower bound at 2.5%%/k of the stored discordance %.6f: %.7f" % (disc, lower))
-            rep.check("%s.assumed = %s (protocol discordance_assumed)" % (tag, nv.get("assumed")), nv.get("assumed") == assumed)
-            if lower <= float(nv.get("assumed", assumed)):
-                rep.check("%s.ok = %s" % (tag, nv.get("ok")), nv.get("ok") is True, "lower bound %.4f <= assumed %.2f, so the rule cannot fire" % (lower, assumed))
-            else:
-                rep.nv("%s.ok = %s" % (tag, nv.get("ok")), "the rule also needs the power at the observed noise, a simulation not in the package")
-            completeness = (audit["payload"].get("checks") or {}).get("completeness")
-            if completeness:
-                n_rows = sum(1 for k in self.table.rows if k[0] == cycle)
-                rep.check("cycle %s %s: completeness records %s of expected %s" % (cycle, audit["id"], completeness.get("records"), completeness.get("expected")),
-                          completeness.get("records") == n_rows and completeness.get("expected") == len(self.table.units(cycle)) * len(self.table.arms()) * len(self.table.seeds()),
-                          "per_unit.csv: %d rows, grid %d" % (n_rows, len(self.table.units(cycle)) * len(self.table.arms()) * len(self.table.seeds())))
-            for name in ("leakage", "fresh_units", "raw_integrity", "rule_null_calibration", "recompute"):
-                if name in (audit["payload"].get("checks") or {}):
-                    why = {"leakage": "needs the private family file and the memory sources of each episode",
-                           "fresh_units": "needs the laboratory's ledger of used units",
-                           "raw_integrity": "hashes the private raw log",
-                           "rule_null_calibration": "a simulation whose specification is not in the package",
-                           "recompute": "the laboratory's own recomputation from the raw log; this script's recomputation from per_unit.csv is the public counterpart"}[name]
-                    rep.nv("cycle %s %s: %s.ok" % (cycle, audit["id"], name), why)
-        for cal in self.k.kind("calibration"):
-            rep.nv("%s (power, alpha, false close)" % cal["id"], "Monte Carlo calibration of the design before the run; its simulation specification is private (spec_sha256 only)")
-
-    # ---------------------------------------------------------------- README
-    def readme_checks(self, process: Dict[int, Dict[str, Any]], findings: Dict[str, Dict[str, Any]]) -> None:
-        rep, t = self.rep, self.table
-        head, sections = readme_sections(self.readme)
-        program, report = self.program(), (self.k.one("report") or {}).get("payload", {})
-        m = re.search(r"\*\*Question \(owner\):\*\* (.+)", head)
-        rep.check("README: question = program goal", bool(m) and m.group(1).strip() == program.get("goal"), "")
-        m = re.search(r"^Domain: `([^`]+)`", head, flags=re.MULTILINE)
-        rep.check("README: domain = program domain %s" % program.get("domain"), bool(m) and m.group(1) == program.get("domain"))
-        m = re.search(r"Cycles: (\d+); role calls: (\d+); units: (\d+)\.", head)
-        if not m:
-            rep.check("README: 'Cycles: ..; role calls: ..; units: ..' line", False, "not found")
-        else:
-            rep.check("README: cycles %s" % m.group(1), int(m.group(1)) == len(t.cycles()), "per_unit.csv cycles %s" % t.cycles())
-            rep.check("README: units %s" % m.group(3), int(m.group(3)) == len(t.units()), "per_unit.csv has %d units" % len(t.units()))
-            rep.check("README: role calls %s = report.role_calls" % m.group(2), int(m.group(2)) == report.get("role_calls"), "report %s" % report.get("role_calls"))
-            rep.nv("README: role calls %s" % m.group(2), "the number of model calls is not in the published tables (only checked against report.role_calls)")
-        handled = set()
-        for title, body in sections.items():
-            mres = re.match(r"Results \(cycle (\d+), n = (\d+) units, (\d+) arms\)", title)
-            if mres:
-                handled.add(title)
-                self.readme_results(int(mres.group(1)), int(mres.group(2)), int(mres.group(3)), body)
-            elif title.startswith("Findings"):
-                handled.add(title)
-                self.readme_findings(body, findings)
-            elif title == "Caveats":
-                handled.add(title)
-                self.readme_caveats(body, process)
-            elif title.startswith("Measurement checks"):
-                handled.add(title)
-                self.readme_measurement(body, process)
-            elif title == "Decisions":
-                handled.add(title)
-                self.readme_decisions(body, process)
-            elif title.startswith("Status of each direction"):
-                handled.add(title)
-                self.readme_status(body, process)
-            elif title.startswith("Scope of the conclusions"):
-                handled.add(title)
-                self.readme_scope(body)
-        for title in sections:
-            if title not in handled:
-                rep.nv("README section '%s'" % title, "a section this verifier does not know")
-
-    def readme_results(self, cycle: int, n: int, n_arms: int, body: str) -> None:
-        rep, t = self.rep, self.table
-        tag = "README Results cycle %d" % cycle
-        rec = self.recomputed.get(cycle)
-        rep.check("%s: n = %d units" % (tag, n), n == len(t.units(cycle)), "per_unit.csv %d" % len(t.units(cycle)))
-        rep.check("%s: %d arms" % (tag, n_arms), n_arms == len(t.arms()), "per_unit.csv %s" % t.arms())
-        if rec is None:
-            rep.check("%s: a result object for the cycle" % tag, False)
-            return
-        tables = md_tables(body)
-        for table in tables:
-            header = [h.lower() for h in table[0]]
-            if header[:2] == ["arm", "solved"]:
-                seen = set()
-                for row in table[1:]:
-                    arm = row[0]
-                    seen.add(arm)
-                    rate = rec["rates"].get(arm)
-                    rep.check("%s: solved[%s] = %s" % (tag, arm, row[1]), rate is not None and agrees(rate, row[1]),
-                              "recomputed %s" % ("%.4f" % rate if rate is not None else "no rows"))
-                rep.check("%s: solved table lists every arm" % tag, seen == set(t.arms()), "table %s, per_unit.csv %s" % (sorted(seen), t.arms()))
-            elif header[:1] == ["comparison"]:
-                for row in table[1:]:
-                    cells = dict(zip(header, row))
-                    label = cells["comparison"]
-                    mp = re.fullmatch(r"(\S+) \u2212 (\S+) \(primary\)", label)
-                    key = ("primary", mp.group(1)) if mp else ("secondary", label)
-                    c = rec["contrasts"].get(key)
-                    if c is None:
-                        rep.check("%s: comparison '%s' is a contrast of the result object" % (tag, label), False)
-                        continue
-                    field = "%s: %s" % (tag, label)
-                    rep.check("%s difference %s" % (field, cells.get("difference")), agrees(c["diff"], cells.get("difference", "nan")), "recomputed %.4f" % c["diff"])
-                    mi = INTERVAL.fullmatch(cells.get("95% interval", ""))
-                    rep.check("%s interval %s" % (field, cells.get("95% interval")), bool(mi) and agrees(c["ci"][0], mi.group(1)) and agrees(c["ci"][1], mi.group(2)),
-                              "recomputed [%.4f, %.4f]" % c["ci"])
-                    mg = re.fullmatch(r"(\d+) / (\d+)", cells.get("gains / losses", ""))
-                    rep.check("%s gains / losses %s" % (field, cells.get("gains / losses")), bool(mg) and (int(mg.group(1)), int(mg.group(2))) == (c["gains"], c["losses"]),
-                              "recomputed %d / %d" % (c["gains"], c["losses"]))
-                    self.check_state("%s state" % field, c["ci"], rec["sesoi"], cells.get("state"))
-                    if key[0] == "primary":
-                        rep.check("%s: primary contrast is against the placebo %s" % (field, self.placebo()), mp.group(2) == self.placebo())
-                listed = {("primary", re.sub(r" \u2212 .*", "", r[0])) if "(primary)" in r[0] else ("secondary", r[0]) for r in table[1:]}
-                rep.check("%s: comparison table lists every contrast of the result" % tag, listed == set(rec["contrasts"]),
-                          "README %s, result %s" % (sorted(listed), sorted(rec["contrasts"])))
-            else:
-                rep.nv("%s: table with columns %s" % (tag, table[0]), "a table this verifier does not know")
-
-    def readme_findings(self, body: str, findings: Dict[str, Dict[str, Any]]) -> None:
-        rep = self.rep
-        for table in md_tables(body):
-            header = [h.lower() for h in table[0]]
-            for row in table[1:]:
-                cells = dict(zip(header, row))
-                fid = cells.get("id", "").strip("`")
-                f = findings.get(fid)
-                tag = "README Findings %s" % fid
-                if f is None:
-                    rep.check("%s: is a finding object" % tag, False)
-                    continue
-                mh = re.fullmatch(r"(\S+) \(predicted (\S+)\)", cells.get("hypothesis", ""))
-                rep.check("%s: hypothesis %s" % (tag, cells.get("hypothesis")), bool(mh) and (mh.group(1), mh.group(2)) == (f["label"], f["predicted"]),
-                          "knowledge.jsonl: %s predicted %s" % (f["label"], f["predicted"]))
-                rep.check("%s: arm %s, cycle %s" % (tag, cells.get("arm"), cells.get("cycle")), cells.get("arm") == f["arm"] and cells.get("cycle") == str(f["cycle"]))
-                rep.check("%s: state %s, verdict %s" % (tag, cells.get("state"), cells.get("verdict")), (cells.get("state"), cells.get("verdict")) == (f["state"], f["verdict"]),
-                          "finding: %s, %s" % (f["state"], f["verdict"]))
-                rep.check("%s: difference %s" % (tag, cells.get("difference")), agrees(f["diff"], cells.get("difference", "nan")), "recomputed %.4f" % f["diff"])
-                mi = INTERVAL.fullmatch(cells.get("interval", ""))
-                rep.check("%s: interval %s" % (tag, cells.get("interval")), bool(mi) and agrees(f["ci"][0], mi.group(1)) and agrees(f["ci"][1], mi.group(2)),
-                          "recomputed [%.4f, %.4f]" % f["ci"])
-                level = LEVEL_NAMES.get(f["level"])
-                if level is None:
-                    rep.nv("%s: level %s" % (tag, cells.get("level")), "unknown level %r in knowledge.jsonl" % f["level"])
+            tag = "cycle %s %s" % (cycle, audit["id"])
+            nv = checks.get("noise_vs_calibration")
+            proto = self.protocol_of(self.run_of(audit))
+            if nv:
+                # experiment.audit: per primary arm, the Wald lower bound of its stored (6-place) discordance at z = 1 - 0.025/k
+                # with k = number of primary arms and n = protocol n_units; the largest bound is published
+                prim = {name: c for (g, name), c in rec["contrasts"].items() if g == "primary"}
+                k_arms = max(len(prim), 1)
+                z_noise = NormalDist().inv_cdf(1 - 0.025 / k_arms)
+                n_obs = max(int(proto.get("n_units") or len(rec["units"])), 1)
+                bounds = {}
+                for name, c in prim.items():
+                    o = round(c["discordance"], 6)
+                    bounds[name] = o - z_noise * (max(o * (1 - o), 0.0) / n_obs) ** 0.5
+                worst = max(c["discordance"] for c in prim.values())
+                lower = max(bounds.values())
+                rep.check("%s: noise_vs_calibration.observed_max = %s" % (tag, nv.get("observed_max")), agrees(worst, nv.get("observed_max"), 6),
+                          "largest primary discordance %.6f" % worst)
+                rep.check("%s: noise_vs_calibration.observed_lower_bound = %s" % (tag, nv.get("observed_lower_bound")), agrees(lower, nv.get("observed_lower_bound"), 6),
+                          "largest Wald lower bound of the stored discordances at z %.4f (k = %d), n %d: %.7f" % (z_noise, k_arms, n_obs, lower))
+                rep.check("%s: noise_vs_calibration.assumed = %s (protocol discordance_assumed)" % (tag, nv.get("assumed")), nv.get("assumed") == proto.get("discordance_assumed"))
+                above = sorted(a for a, b in bounds.items() if b > float(proto.get("discordance_assumed") or 0))
+                rep.check("%s: noise_vs_calibration.significant_arms = %s" % (tag, sorted(nv.get("significant_arms") or {})),
+                          sorted(nv.get("significant_arms") or {}) == above, "arms whose lower bound exceeds the assumed noise: %s" % above)
+                if not above:
+                    rep.check("%s: noise_vs_calibration.ok = %s" % (tag, nv.get("ok")), nv.get("ok") is True, "no lower bound above the assumed noise, so the rule cannot fire")
                 else:
-                    rep.check("%s: level %s" % (tag, cells.get("level")), cells.get("level") == level, "knowledge.jsonl %s" % f["level"])
-            listed = {r[dict((h.lower(), i) for i, h in enumerate(table[0]))["id"]].strip("`") for r in table[1:]}
-            rep.check("README Findings: every finding object is listed", listed == set(findings), "README %d, knowledge.jsonl %d" % (len(listed), len(findings)))
+                    rep.nv("%s: noise_vs_calibration.ok" % tag, "the rule also needs the power at the observed noise, a simulation not in the package")
+            comp = checks.get("completeness")
+            if comp:
+                run = self.run_of(audit)
+                want = len(rec["units"]) * len((run or {}).get("payload", {}).get("arms") or []) * len((run or {}).get("payload", {}).get("seeds") or [])
+                rows = sum(1 for k in self.table.rows if k[0] == cycle and k[1] in set(rec["units"]))
+                rep.check("%s: completeness records %s of expected %s" % (tag, comp.get("records"), comp.get("expected")),
+                          comp.get("records") == rows and comp.get("expected") == want, "per_unit.csv: %d rows, grid %d" % (rows, want))
+            why = {"leakage": "needs the private family file and the memory sources of each episode",
+                   "fresh_units": "needs the laboratory's ledger of used units", "raw_integrity": "hashes the private raw log",
+                   "rule_null_calibration": "a simulation whose specification is not in the package",
+                   "recompute": "the lab's own recomputation from the raw log; this script's recomputation from per_unit.csv is the public counterpart"}
+            for name in sorted(set(checks) - {"noise_vs_calibration", "completeness", "measurement_sensitivity"}):
+                rep.nv("%s: checks.%s" % (tag, name), why.get(name, "a check this script does not mirror"))
+        for cal in self.k.kind("calibration"):
+            rep.nv("%s (power, alpha, false close)" % cal["id"], "Monte Carlo calibration of the design before the run; its simulation specification is private")
+        for d in self.k.kind("decision"):
+            if d["payload"].get("action") == "interim_look":
+                rep.nv("%s: interim look (n %s, z %s, states)" % (d["id"], d["payload"].get("n"), d["payload"].get("z")),
+                       "the look used the first n complete units in the order of the lab's unit list, which the package does not publish")
 
-    def readme_caveats(self, body: str, process: Dict[int, Dict[str, Any]]) -> None:
+    # ---------------------------------------------------------------- README, line by line
+    def use(self, i: int) -> None:
+        self.used.add(i)
+
+    def find_line(self, text: str, start: int = 0, end: Optional[int] = None) -> Optional[int]:
+        lines = self.readme_lines
+        for i in range(start, len(lines) if end is None else end):
+            if lines[i] == text:
+                return i
+        return None
+
+    def expect_line(self, field: str, text: str, start: int = 0, end: Optional[int] = None) -> Optional[int]:
+        i = self.find_line(text, start, end)
+        self.rep.check(field, i is not None, "expected line %r" % short(text, 100) if i is None else "")
+        if i is not None:
+            self.use(i)
+        return i
+
+    def readme(self) -> None:
+        rep, lines = self.rep, self.readme_lines
+        (h0, h1), sections = split_sections(lines)
+        prog = self.program()
+        report = (self.k.one("report") or {}).get("payload") or {}
+        # head
+        m = re.match(r"\*\*Status:\*\* (\S+)( \u2014 .*)?$", lines[0]) if lines else None
+        if not m:
+            rep.check("README: first line '**Status:** ...'", False, "found %r" % (lines[0] if lines else ""))
+        else:
+            self.use(0)
+            finished = any(d["payload"].get("action") == "stop_program" for d in self.k.kind("decision"))
+            if finished:
+                rep.check("README: status %s (the program has a stop_program decision)" % m.group(1), m.group(1) == "completed")
+            else:
+                rep.nv("README: status %s" % m.group(1), "without a stop_program decision the export status is the lab's choice")
+            if m.group(2):
+                rep.nv("README: status note %r" % short(m.group(2)), "free text of the envelope")
+        self.expect_line("README: title '# Lab program %s'" % prog.get("id"), "# Lab program %s" % prog.get("id"), h0, h1)
+        for i in range(h0, h1):
+            if lines[i].startswith("> "):
+                self.use(i)
+                rep.nv("README: note %r" % short(lines[i][2:]), "a note of the envelope, free text")
+        self.expect_line("README: question = program goal", "**Question (owner):** %s" % prog.get("goal"), h0, h1)
+        dom = "Domain: `%s`" % prog.get("domain") + (" \u2014 synthetic world with a known truth (a lab test, not a scientific result)"
+                                                     if str(prog.get("domain", "")).startswith("synthetic") else "")
+        self.expect_line("README: domain line", dom, h0, h1)
+        self.expect_line("README: cycles, role calls, units = report %s / %s / %s" % (report.get("cycles"), report.get("role_calls"), report.get("units_used")),
+                         "Cycles: %s; role calls: %s; units: %s." % (report.get("cycles"), report.get("role_calls"), report.get("units_used")), h0, h1)
+        prior = report.get("prior_analyses_of_dataset") or []
+        if prior:
+            self.expect_line("README: earlier analyses = %d" % len(prior), "Earlier analyses of this data set in the lab: %d \u2014 multiplicity at the "
+                             "data-set level." % len(prior), h0, h1)
+        handled: Set[str] = set()
+        for res in self.k.kind("result"):
+            if not res["payload"].get("success_rate"):
+                continue
+            title = next((s for s in sections if s.startswith("Results (cycle %s," % res.get("cycle"))), None)
+            if not rep.check("README: section 'Results (cycle %s, ...)' present" % res.get("cycle"), title is not None):
+                continue
+            handled.add(title)
+            self.readme_results(res, title, sections[title])
+        title = next((s for s in sections if s == "Findings (negative ones included)"), None)
+        if rep.check("README: section 'Findings (negative ones included)' present", title is not None):
+            handled.add(title)
+            self.readme_findings(sections[title])
+        audits = [a for a in self.k.kind("audit") if (a["payload"].get("checks") or {}).get("measurement_sensitivity")]
+        pbal = ((audits[-1]["payload"]["checks"]["measurement_sensitivity"].get("process_balance") or {}) if audits else {})
+        probs = sorted({x for f in self.k.kind("finding") for x in (f["payload"].get("measurement_problem") or [])})
+        caveats = list(report.get("caveats") or [])
+        rule_notes = self.rule_notes(pbal)
+        if "Caveats" in sections:
+            handled.add("Caveats")
+            self.readme_caveats(sections["Caveats"], caveats, probs, rule_notes)
+        else:
+            rep.check("README: section 'Caveats' present when there are caveats, measurement problems or rule notes",
+                      not (caveats or probs or rule_notes), "%d caveat(s), %d problem(s), %d rule note(s)" % (len(caveats), len(probs), len(rule_notes)))
+        if audits:
+            title = "Measurement checks (per step, by arm)"
+            rates = pbal.get("rates") or {}
+            if rates or title in sections:
+                if rep.check("README: section '%s' present" % title, title in sections):
+                    handled.add(title)
+                    self.readme_measurement(sections[title], audits[-1], pbal)
+            else:
+                self.expect_line("README: code audit verdict line", "Code audit verdict: **%s** (completeness, recomputation, leakage, raw-data integrity)."
+                                 % audits[-1]["payload"].get("verdict"))
+        vetoed = list(report.get("vetoed_decisions") or [])
+        if vetoed:
+            self.expect_line("README: vetoed decisions line", "> **The owner VETOED %d decision(s)** \u2014 their conclusions are not applied: %s"
+                             % (len(vetoed), ", ".join("`%s`" % v for v in sorted(vetoed))))
+        if rep.check("README: section 'Decisions' present", "Decisions" in sections):
+            handled.add("Decisions")
+            self.readme_decisions(sections["Decisions"], set(vetoed))
+        if report.get("arms") or "Status of each direction" in sections:
+            if rep.check("README: section 'Status of each direction' present", "Status of each direction" in sections):
+                handled.add("Status of each direction")
+                self.readme_status(sections["Status of each direction"], report)
+        if report.get("scope") or "Scope of the conclusions" in sections:
+            if rep.check("README: section 'Scope of the conclusions' present", "Scope of the conclusions" in sections):
+                handled.add("Scope of the conclusions")
+                self.readme_scope(sections["Scope of the conclusions"], report)
+        for title, (hi, _, _) in sections.items():
+            if title not in handled:
+                self.use(hi)
+                rep.nv("README section '%s'" % title, "a section the lab's exporter does not write")
+            else:
+                self.use(hi)
+        # the closing lines, wherever they are
+        notes = report.get("role_notes") or []
+        if notes:
+            self.expect_line("README: %d reviewer and auditor notes = report.role_notes" % len(notes),
+                             "Reviewer and auditor notes that did not change the protocol: %d (in `knowledge.jsonl`, kind `discussion`)." % len(notes))
+        per_unit = ("Per-task records (one row per task \u00d7 arm \u00d7 seed: solved, steps, empty and untagged answers, memory tokens): "
+                    "`per_unit.csv`. The raw episode logs stay private.")
+        i = self.find_line(per_unit)
+        if i is None:
+            rep.nv("README: the per_unit.csv sentence", "the README does not name per_unit.csv (the package predates that sentence)")
+        else:
+            self.use(i)
+            rep.check("README: the per_unit.csv sentence", True)
+        self.expect_line("README: closing line on who computed the numbers",
+                         "All numbers were computed by the lab's code from the raw data; model roles only proposed and criticised.")
+        self.expect_line("README: provenance line", "Provenance: `knowledge.jsonl` + `PROVENANCE.json`; check with `python verify_provenance.py knowledge.jsonl`.")
+        for i, line in enumerate(lines):
+            if i not in self.used and line.strip():
+                rep.nv("README text %r" % short(line, 70), "free text no rule here checks")
+
+    def readme_results(self, res: Dict[str, Any], title: str, rng: Tuple[int, int, int]) -> None:
         rep = self.rep
-        for line in [ln[2:].strip() for ln in body.splitlines() if ln.startswith("- ")]:
-            self.readme_sentence("README Caveats", line, process)
+        cycle = res.get("cycle")
+        rec = self.cycles.get(cycle)
+        p = res["payload"]
+        tag = "README Results cycle %s" % cycle
+        m = re.fullmatch(r"Results \(cycle (\S+), n = (\d+) units, (\d+) arms\)", title)
+        rep.check("%s: heading n = %s units, %s arms" % (tag, m.group(2) if m else "?", m.group(3) if m else "?"),
+                  bool(m) and rec is not None and int(m.group(2)) == len(rec["units"]) and int(m.group(3)) == len(p.get("success_rate") or {}),
+                  "recomputed %s units, %d arms" % (len(rec["units"]) if rec else "?", len(p.get("success_rate") or {})))
+        if rec is None:
+            return
+        tables = md_tables(self.readme_lines, rng[1], rng[2])
+        arm_table = next((tb for tb in tables if tb[0][1][:2] == ["arm", "solved"]), None)
+        comp_table = next((tb for tb in tables if tb[0][1][:1] == ["comparison"]), None)
+        if rep.check("%s: solved table present" % tag, arm_table is not None):
+            seen = []
+            for i, cells in arm_table:
+                self.use(i)
+                if is_separator(cells) or cells[:2] == ["arm", "solved"]:
+                    continue
+                arm = cells[0]
+                seen.append(arm)
+                rate = rec["rates"].get(arm)
+                rep.check("%s: solved[%s] = %s" % (tag, arm, cells[1] if len(cells) > 1 else None), rate is not None and len(cells) == 2 and agrees(r6(rate), cells[1]),
+                          "recomputed %s" % ("%.4f" % rate if rate is not None else "no such arm"))
+            # export.render_readme_en renders the objects as the lab stores them (canonical JSON, keys sorted)
+            rep.check("%s: solved table lists the arms of the result in order" % tag, seen == list(p.get("success_rate") or {}), "README %s" % seen)
+        if rep.check("%s: comparison table present" % tag, comp_table is not None):
+            header = [h.lower() for h in comp_table[0][1]]
+            listed = []
+            for i, cells in comp_table:
+                self.use(i)
+                if is_separator(cells) or cells[0] == "comparison":
+                    continue
+                c = dict(zip(header, cells))
+                label = c.get("comparison", "")
+                mp = re.fullmatch(r"(\S+) \u2212 placebo \(primary\)", label)
+                key = ("primary", mp.group(1)) if mp else ("secondary", label)
+                listed.append(key)
+                cc = rec["contrasts"].get(key)
+                field = "%s: %s" % (tag, label)
+                if not rep.check("%s is a contrast of the result" % field, cc is not None):
+                    continue
+                rep.check("%s difference %s" % (field, c.get("difference")), agrees(r6(cc["diff"]), c.get("difference", "")), "recomputed %.4f" % cc["diff"])
+                mi = INTERVAL.fullmatch(c.get("95% interval", ""))
+                rep.check("%s interval %s" % (field, c.get("95% interval")), bool(mi) and agrees(r6(cc["ci"][0]), mi.group(1)) and agrees(r6(cc["ci"][1]), mi.group(2)),
+                          "recomputed [%.4f, %.4f]" % cc["ci"])
+                mg = re.fullmatch(r"(\d+) / (\d+)", c.get("gains / losses", ""))
+                rep.check("%s gains / losses %s" % (field, c.get("gains / losses")), bool(mg) and (int(mg.group(1)), int(mg.group(2))) == (cc["gains"], cc["losses"]),
+                          "recomputed %d / %d" % (cc["gains"], cc["losses"]))
+                self.check_state("%s state" % field, cc["ci"], rec["sesoi"], c.get("state"))
+            # export.render_readme_en: primary, then secondary contrasts, in the key order of the stored result object
+            want = [("primary", a) for a in (p.get("primary") or {})] + [("secondary", x) for x in (p.get("secondary") or {})]
+            rep.check("%s: comparison table lists every contrast of the result in order" % tag, listed == want, "README %s" % [x[1] for x in listed])
 
-    def readme_sentence(self, where: str, line: str, process: Dict[int, Dict[str, Any]]) -> None:
+    def readme_findings(self, rng: Tuple[int, int, int]) -> None:
+        rep = self.rep
+        tables = md_tables(self.readme_lines, rng[1], rng[2])
+        if not rep.check("README Findings: table present", bool(tables)):
+            return
+        table = tables[0]
+        header = [h.lower() for h in table[0][1]]
+        rows = []
+        for i, cells in table:
+            self.use(i)
+            if is_separator(cells) or cells[0] == "arm":
+                continue
+            rows.append(dict(zip(header, cells)))
+        rep.check("README Findings: one row per finding object, in order", [r.get("id", "").strip("`") for r in rows] == [f["obj"]["id"] for f in self.findings],
+                  "README %d rows, knowledge.jsonl %d findings" % (len(rows), len(self.findings)))
+        for row, f in zip(rows, self.findings):
+            p = f["obj"]["payload"]
+            tag = "README Findings %s" % f["obj"]["id"]
+            # export.render_readme_en labels findings H1, H2, ... by their running index, not by the hypothesis id
+            rep.check("%s: hypothesis %s" % (tag, row.get("hypothesis")), row.get("hypothesis") == "H%d (predicted %s)" % (f["index"], p.get("predicted")),
+                      "exporter label: H%d (predicted %s)" % (f["index"], p.get("predicted")))
+            rep.check("%s: arm %s, cycle %s" % (tag, row.get("arm"), row.get("cycle")), row.get("arm") == p.get("arm") and row.get("cycle") == str(f["obj"].get("cycle")))
+            rep.check("%s: state %s, verdict %s" % (tag, row.get("state"), row.get("verdict")), (row.get("state"), row.get("verdict")) == (p.get("state"), p.get("verdict")),
+                      "finding: %s, %s" % (p.get("state"), p.get("verdict")))
+            rep.check("%s: level %s" % (tag, row.get("level")), row.get("level") == LEVEL_EN.get(p.get("level"), p.get("level")), "knowledge.jsonl %s" % p.get("level"))
+            rep.check("%s: difference %s" % (tag, row.get("difference")), agrees(r6(f["c"]["diff"]), row.get("difference", "")), "recomputed %.4f" % f["c"]["diff"])
+            mi = INTERVAL.fullmatch(row.get("interval", ""))
+            rep.check("%s: interval %s" % (tag, row.get("interval")), bool(mi) and agrees(r6(f["c"]["ci"][0]), mi.group(1)) and agrees(r6(f["c"]["ci"][1]), mi.group(2)),
+                      "recomputed [%.4f, %.4f]" % f["c"]["ci"])
+
+    @staticmethod
+    def rule_notes(pb: Dict[str, Any]) -> List[str]:
+        """export.process_rule_notes."""
+        out = []
+        if pb.get("format_rule") == "imbalance_only":
+            out.append("Format criteria used the pre-registered rule `imbalance_only`: a counter fails only if the arm \u2212 placebo difference "
+                       "exceeds its tolerance AND the 95% interval excludes 0. Under this rule an `unresolved` state means placebo neutrality "
+                       "was not shown, only not refuted.")
+            for arm, ks in sorted((pb.get("per_arm") or {}).items()):
+                for k, v in sorted(ks.items()):
+                    if v.get("preregistered") and v.get("state") == "unresolved" and v.get("ci"):
+                        out.append("%s: `%s` unresolved \u2014 arm \u2212 placebo %+.3f [%+.3f, %+.3f], tolerance \u00b1%s: placebo neutrality not shown for this "
+                                   "counter." % (arm, k, v["diff"], v["ci"][0], v["ci"][1], v["tolerance"]))
+        if pb.get("behaviour_counters"):
+            out.append("Counters pre-registered as behaviour, not as format failures (their imbalance does not flag a measurement problem): "
+                       + ", ".join("`%s`" % x for x in pb["behaviour_counters"]) + "; see the process criteria table below.")
+        return out
+
+    def caveat_text(self, c: Dict[str, Any]) -> str:
+        """export._caveat_en_safe."""
+        if c.get("text_en"):
+            return c["text_en"]
+        d = self.k.by_id.get(c.get("decision") or "")
+        act = ((d or {}).get("payload") or {}).get("action")
+        return CAVEAT_EN.get(act) or ((d or {}).get("payload") or {}).get("text_en") or c.get("text") or ""
+
+    def readme_caveats(self, rng: Tuple[int, int, int], caveats: List[Dict[str, Any]], probs: List[str], rule_notes: List[str]) -> None:
+        rep, lines = self.rep, self.readme_lines
+        start, end = rng[1], rng[2]
+        sub = next((i for i in range(start, end) if lines[i].startswith("### ")), end)
+        for c in caveats:
+            text = self.caveat_text(c)
+            i = self.expect_line("README Caveats: %r (report caveat)" % short(text), "- " + text, start, sub)
+            if i is not None and re.search(r"first chunk|early check", text, flags=re.I):
+                rep.nv("README Caveats: figures of %r" % short(text), "a check on the first chunk of the run; per_unit.csv does not record the chunks")
+            elif i is not None and re.search(r"\d\.\d", text):
+                self.readme_sentence_numbers("README Caveats", text)
+        for x in probs:
+            text = "- Measurement problem: " + problem_en(x)
+            i = self.expect_line("README Caveats: measurement problem %r" % short(problem_en(x), 50), text, start, sub)
+            if i is not None:
+                cycle, arm = self.problem_owner(x)
+                if not self.claim("README Caveats: measurement problem", problem_en(x), cycle, arm):
+                    rep.nv("README Caveats: figures of %r" % short(x), "a problem without per-step figures")
+        for x in rule_notes:
+            self.expect_line("README Caveats: rule note %r" % short(x, 50), "- " + x, start, sub)
+        decisions = self.k.kind("decision")
+        for i in range(start, sub):
+            line = lines[i]
+            if i in self.used or not line.startswith("- "):
+                continue
+            text = line[2:]
+            match = next((d for d in decisions if text in (CAVEAT_EN.get(d["payload"].get("action")), d["payload"].get("text_en"))), None)
+            if match is not None:
+                self.use(i)
+                rep.check("README Caveats: %r = text of %s (%s)" % (short(text), match["id"], match["payload"].get("action")), True)
+                self.readme_sentence_numbers("README Caveats", text)
+        if sub < end:
+            self.use(sub)
+            report = (self.k.one("report") or {}).get("payload") or {}
+            objections = list(report.get("instrument_objections") or [])
+            bullets = [i for i in range(sub, end) if lines[i].startswith("- ")]
+            rep.check("README Caveats: %d instrument objection(s) = report.instrument_objections" % len(bullets), len(bullets) == len(objections),
+                      "report has %d" % len(objections))
+            for i in bullets:
+                self.use(i)
+                if lines[i][2:] in objections:
+                    rep.check("README Caveats: objection %r is in the report" % short(lines[i][2:], 40), True)
+                else:
+                    rep.nv("README Caveats: objection %r" % short(lines[i][2:], 40), "redacted reviewer text, not found verbatim in the report")
+
+    def problem_owner(self, text: str) -> Tuple[Any, Optional[str]]:
+        for f in self.k.kind("finding"):
+            if text in (f["payload"].get("measurement_problem") or []):
+                return f.get("cycle"), f["payload"].get("arm")
+        return None, None
+
+    def readme_sentence_numbers(self, where: str, text: str) -> None:
+        """Figures in the V3 post-hoc annotation: 'empty retries per step: placebo a, memory b, no memory c' and the untagged criterion."""
         rep = self.rep
         cycle = self.table.cycles()[-1] if self.table.cycles() else None
-        variants = list(self.protocol().get("treatments") or [])
-        arm = variants[0] if len(variants) == 1 else None
-        short = line[:70] + ("..." if len(line) > 70 else "")
-        if re.search(r"first chunk|early check", line, flags=re.I):
-            rep.nv("%s: '%s'" % (where, short), "a check on the first chunk of the run; per_unit.csv does not record which episodes made up that chunk")
-            return
-        checked = False
-        mprefix = re.match(r"(?:Measurement problem: process|[^:]*): (\w+):", line)
-        if mprefix and mprefix.group(1) in variants:
-            arm = mprefix.group(1)
-        if arm is not None and cycle is not None:
-            criteria = process.get(cycle, {}).get("criteria") or {}
-            checked = self.claim("%s: '%s'" % (where, short), line, cycle, arm, process, criteria)
-            mrates = re.search(r"empty retries per step: placebo (" + NUMBER + r"), memory (" + NUMBER + r"), no memory (" + NUMBER + r")", line)
-            if mrates:
-                checked = True
-                rates = process[cycle]["rates"]
-                base = self.program().get("domain_params", {}).get("baseline", "none")
-                for name, value, a in (("placebo", mrates.group(1), self.placebo()), ("memory", mrates.group(2), arm), ("no memory", mrates.group(3), base)):
-                    rep.check("%s: empty retries per step, %s = %s" % (where, name, value), agrees(rates[a]["empty_retries"], value), "recomputed %.4f" % rates[a]["empty_retries"])
-            mfail = re.search(r"untagged answers per step, memory \u2212 placebo \u2264 (" + NUMBER + r")[^)]*\) (FAILED|PASSED): (" + NUMBER + r") \[(" + NUMBER + r"), (" + NUMBER + r")\]", line)
-            if mfail:
-                checked = True
-                text = "invalid_no_action_tag per step, arm \u2212 placebo %s [%s, %s] > %s" % (mfail.group(3), mfail.group(4), mfail.group(5), mfail.group(1))
-                self.claim("%s: untagged-answer criterion" % where, text, cycle, arm, process, criteria)
-                diff, ci = self.counter_result(cycle, arm, "invalid_no_action_tag", process)
-                verdict = self.criterion(diff, ci, number(mfail.group(1)))
-                if verdict is None:
-                    rep.nv("%s: criterion %s" % (where, mfail.group(2)), "decision depends on the unpublished bootstrap")
-                else:
-                    rep.check("%s: criterion %s" % (where, mfail.group(2)), (mfail.group(2) == "FAILED") == verdict, "recomputed: %s" % ("fails" if verdict else "passes"))
-        if not checked:
-            numbers = re.findall(r"\d+\.\d+|\d+/\d+", line)
-            if numbers:
-                rep.nv("%s: '%s'" % (where, short), "numbers %s in a sentence no rule here recomputes" % numbers[:4])
-            else:
-                rep.nv("%s: '%s'" % (where, short), "a statement about the run's history, not a number in the tables")
+        bal = self.balance_for(cycle)
+        treatments = list((self.cycles.get(cycle) or {}).get("treatments") or [])
+        arm = treatments[0] if len(treatments) == 1 else None
+        found = False
+        m = re.search(r"empty retries per step: placebo (" + NUMBER + r"), memory (" + NUMBER + r"), no memory (" + NUMBER + r")", text)
+        if m and bal and arm:
+            found = True
+            for name, value, a in (("placebo", m.group(1), self.placebo()), ("memory", m.group(2), arm), ("no memory", m.group(3), self.baseline())):
+                got = bal["rates"].get(a, {}).get("empty_retries")
+                rep.check("%s: empty retries per step, %s = %s" % (where, name, value), got is not None and agrees(r4(got), value), "recomputed %s" % got)
+        m = re.search(r"untagged answers per step, memory \u2212 placebo \u2264 (" + NUMBER + r")[^)]*\) (FAILED|PASSED): (" + NUMBER + r") \[(" + NUMBER + r"), ("
+                      + NUMBER + r")\]", text)
+        if m and bal and arm:
+            found = True
+            v = bal["per_arm"].get(arm, {}).get("invalid_no_action_tag")
+            if v and v["state"] != "not_computable":
+                rep.check("%s: untagged answers %s [%s, %s]" % (where, m.group(3), m.group(4), m.group(5)),
+                          agrees(r4(v["diff"]), m.group(3)) and agrees(r4(v["ci"][0]), m.group(4)) and agrees(r4(v["ci"][1]), m.group(5)),
+                          "recomputed %.4f %s (lab default bootstrap)" % (v["diff"], show(v["ci"])))
+                tol = number(m.group(1))
+                fails = abs(v["diff"]) > tol and not v["ci"][0] <= 0 <= v["ci"][1]
+                rep.check("%s: untagged criterion %s" % (where, m.group(2)), (m.group(2) == "FAILED") == fails, "recomputed: %s" % ("fails" if fails else "passes"))
+        if not found and re.search(r"\d\.\d", text):
+            rep.nv("%s: figures in %r" % (where, short(text)), "figures in a sentence no rule here recomputes")
 
-    def readme_measurement(self, body: str, process: Dict[int, Dict[str, Any]]) -> None:
-        rep = self.rep
-        cycle = self.table.cycles()[-1]
-        rates = process[cycle]["rates"]
-        for table in md_tables(body):
-            header = table[0]
-            for row in table[1:]:
-                arm = row[0]
-                for col, value in zip(header[1:], row[1:]):
+    def readme_measurement(self, rng: Tuple[int, int, int], audit: Dict[str, Any], pb: Dict[str, Any]) -> None:
+        rep, lines = self.rep, self.readme_lines
+        start, end = rng[1], rng[2]
+        sub = next((i for i in range(start, end) if lines[i].startswith("### ")), end)
+        bal = (self.process.get("_balance") or {}).get(audit["id"])
+        rates = pb.get("rates") or {}
+        keys = sorted({k for v in rates.values() for k in v})
+        tables = md_tables(lines, start, sub)
+        if rep.check("README Measurement checks: rates table present", bool(tables)):
+            table = tables[0]
+            header = table[0][1]
+            rep.check("README Measurement checks: columns = the audit's counters %s" % keys, header == ["arm"] + keys, "README %s" % header[1:])
+            seen = []
+            for i, cells in table:
+                self.use(i)
+                if is_separator(cells) or cells[0] == "arm":
+                    continue
+                arm = cells[0]
+                seen.append(arm)
+                for col, value in zip(header[1:], cells[1:]):
                     field = "README Measurement checks: %s per step [%s] = %s" % (col, arm, value)
-                    if col not in STEP_COUNTERS or col not in self.table.columns:
-                        rep.nv(field, "%s is not a column of per_unit.csv" % col)
-                    elif arm not in rates:
-                        rep.check(field, False, "no rows for arm %s" % arm)
+                    declared = (rates.get(arm) or {}).get(col, 0)
+                    if col not in self.table.columns:
+                        rep.check(field + " (= audit rate)", agrees(float(declared), value), "audit %s" % declared)
+                        rep.nv("README Measurement checks: %s per step [%s]" % (col, arm), "%s is not a column of per_unit.csv" % col)
                     else:
-                        rep.check(field + " (step-weighted)", agrees(rates[arm][col], value), "recomputed %.4f" % rates[arm][col])
-        m = re.search(r"Code audit verdict: \*\*(\w+)\*\* \(([^)]*)\)", self.readme)
-        if m:
-            audits = [a for a in self.k.kind("audit") if (a["payload"].get("by") or "") == "code"]
-            rep.check("README: code audit verdict %s = audit object" % m.group(1), bool(audits) and audits[-1]["payload"].get("verdict") == m.group(1),
-                      "audit %s" % (audits[-1]["payload"].get("verdict") if audits else None))
-            rep.note("of the audit's parts (%s), completeness and the recomputation of the result are re-done above from per_unit.csv; "
-                     "leakage and raw-data integrity need private files" % m.group(2))
+                        got = (bal or {}).get("rates", {}).get(arm, {}).get(col)
+                        rep.check(field + " (step-weighted)", got is not None and agrees(r4(got), value), "recomputed %s" % (None if got is None else "%.4f" % got))
+            rep.check("README Measurement checks: one row per arm of the audit, in order", seen == list(rates), "README %s" % seen)
+        if sub < end:
+            self.use(sub)
+        self.readme_process_table(lines, sub, end, pb, bal)
+        self.expect_line("README: code audit verdict = %s" % audit["payload"].get("verdict"),
+                         "Code audit verdict: **%s** (completeness, recomputation, leakage, raw-data integrity)." % audit["payload"].get("verdict"), start, end)
 
-    def readme_decisions(self, body: str, process: Dict[int, Dict[str, Any]]) -> None:
+    def readme_process_table(self, lines: List[str], sub: int, end: int, pb: Dict[str, Any], bal: Optional[Dict[str, Any]]) -> None:
+        """export.process_criteria_table: one row per pre-registered or behaviour counter, checked against the recomputation."""
         rep = self.rep
-        listed = []
-        for line in body.splitlines():
-            m = re.match(r"- `(decision:[0-9a-f]+)` \(cycle (\d+)\): (.*)", line)
-            if not m:
+        beh = set(pb.get("behaviour_counters") or [])
+        want = [(arm, k) for arm, ks in sorted((pb.get("per_arm") or {}).items()) for k, v in sorted(ks.items()) if v.get("preregistered") or k in beh]
+        tables = md_tables(lines, sub, end) if sub < end else []
+        if not want:
+            rep.check("README Measurement checks: no process criteria table without criteria or behaviour counters", not tables)
+            return
+        if not (sub < end and lines[sub] == "### Process criteria (arm \u2212 placebo, per step)" and tables):
+            rep.nv("README Measurement checks: the process criteria table", "the README has no 'Process criteria' table (the package predates it); "
+                   "the criteria are checked in the audit object above")
+            return
+        table = tables[0]
+        header = [h.lower() for h in table[0][1]]
+        seen = []
+        for i, cells in table:
+            self.use(i)
+            if is_separator(cells) or cells[0] == "arm":
                 continue
-            listed.append(m.group(1))
-            d = self.k.by_id.get(m.group(1))
-            rep.check("README Decisions: %s (cycle %s) is a decision object" % (m.group(1), m.group(2)), d is not None and d["kind"] == "decision" and str(d.get("cycle")) == m.group(2))
-            if d is not None and " \u2014 " in m.group(3):
-                self.readme_sentence("README Decisions %s" % m.group(1), m.group(3).split(" \u2014 ", 1)[1], process)
-        decisions = [d["id"] for d in self.k.kind("decision")]
-        rep.check("README Decisions: every decision object is listed", sorted(listed) == sorted(decisions), "README %d, knowledge.jsonl %d" % (len(listed), len(decisions)))
-        rep.nv("README Decisions: labels", "the English labels of decision actions are written by the exporter; only ids and cycles are checked")
-
-    def readme_status(self, body: str, process: Dict[int, Dict[str, Any]]) -> None:
-        rep = self.rep
-        for line in body.splitlines():
-            m = re.match(r"- (\S+): (\S+)", line)
-            if not m:
+            row = dict(zip(header, cells))
+            arm, k = row.get("arm"), row.get("counter", "").strip("`")
+            seen.append((arm, k))
+            field = "README Process criteria %s / %s" % (arm, k)
+            body = ((pb.get("per_arm") or {}).get(arm) or {}).get(k)
+            v = ((bal or {}).get("per_arm") or {}).get(arm, {}).get(k)
+            if body is None:
+                rep.check("%s is a counter of the audit" % field, False)
                 continue
-            arm, status = m.group(1), m.group(2)
-            want = self.derived_status(arm, process)
-            if want is None:
-                rep.nv("README Status: %s = %s" % (arm, status), "no pre-registered format criterion fails, so the status follows decision rules "
-                       "(replication on fresh units, a larger retry) that are not computable from the package")
+            kind = "behaviour" if k in beh else "criterion (%s)" % (body.get("rule") or pb.get("format_rule") or "equivalence")
+            rep.check("%s: kind %s, tolerance %s, state %s" % (field, row.get("kind"), row.get("tolerance"), row.get("state")),
+                      (row.get("kind"), row.get("tolerance"), row.get("state")) == (kind, str(body.get("tolerance")), str(body.get("state"))),
+                      "audit: %s, %s, %s" % (kind, body.get("tolerance"), body.get("state")))
+            if v is None:
+                rep.nv("%s: difference and interval" % field, "%s is not a column of per_unit.csv" % k)
+                continue
+            if v["state"] == "not_computable":
+                rep.check("%s: difference and interval are empty (not computable)" % field, row.get("difference") == "\u2014" and row.get("95% interval") == "\u2014")
             else:
-                rep.check("README Status: %s = %s" % (arm, status), status == want, "a pre-registered format criterion fails -> %s" % want)
+                mi = INTERVAL.fullmatch(row.get("95% interval", ""))
+                rep.check("%s: difference %s, interval %s" % (field, row.get("difference"), row.get("95% interval")),
+                          agrees(r4(v["diff"]), row.get("difference", "")) and bool(mi) and agrees(r4(v["ci"][0]), mi.group(1)) and agrees(r4(v["ci"][1]), mi.group(2)),
+                          "recomputed %.4f %s (lab default bootstrap)" % (v["diff"], show(v["ci"])))
+            rep.check("%s: state %s = recomputed" % (field, row.get("state")), row.get("state") == v["state"], "recomputed %s" % v["state"])
+        rep.check("README Process criteria: one row per criterion and behaviour counter", seen == want, "README %d rows, expected %d" % (len(seen), len(want)))
 
-    def readme_scope(self, body: str) -> None:
+    def readme_decisions(self, rng: Tuple[int, int, int], vetoed: Set[str]) -> None:
         rep = self.rep
-        scope = (self.k.one("report") or {}).get("payload", {}).get("scope") or {}
-        m = re.search(r"task population `([^`]+)`, the arms (\[[^\]]*\]) against the placebo `([^`]+)`.*scale of (\d+) units in (\d+) run", body, flags=re.S)
-        if not m:
-            rep.nv("README Scope", "the sentence has an unknown form")
-        else:
-            runs = self.k.kind("run")
-            rep.check("README Scope: population %s = run domain" % m.group(1), all(r["payload"].get("domain") == m.group(1) for r in runs) and scope.get("data") == m.group(1))
-            rep.check("README Scope: arms %s = protocol treatments" % m.group(2), m.group(2) == str(list(self.protocol().get("treatments") or [])))
-            rep.check("README Scope: placebo %s" % m.group(3), m.group(3) == self.placebo())
-            rep.check("README Scope: %s units in %s run(s)" % (m.group(4), m.group(5)), (int(m.group(4)), int(m.group(5))) == (len(self.table.units()), len(runs)),
-                      "per_unit.csv %d units, %d run object(s)" % (len(self.table.units()), len(runs)))
-        mn = re.search(r"notes that did not change the protocol: (\d+)", self.readme)
-        if mn:
-            notes = (self.k.one("report") or {}).get("payload", {}).get("role_notes") or []
-            rep.check("README: %s reviewer and auditor notes = report.role_notes" % mn.group(1), int(mn.group(1)) == len(notes), "report has %d" % len(notes))
+        for d in self.k.kind("decision"):
+            a = d["payload"].get("action")
+            text = ("- `%s` (cycle %s): %s" % (d["id"], d.get("cycle"), ACTION_EN.get(a, a))
+                    + (" \u2014 %s" % d["payload"]["text_en"] if d["payload"].get("text_en") else "")
+                    + (" \u2014 **VETOED by the owner**" if d["id"] in vetoed else ""))
+            i = self.expect_line("README Decisions: %s (%s)" % (d["id"], a), text, rng[1], rng[2])
+            if i is not None and d["payload"].get("text_en"):
+                self.readme_sentence_numbers("README Decisions %s" % d["id"], d["payload"]["text_en"])
+        listed = [ln for ln in self.readme_lines[rng[1]:rng[2]] if ln.startswith("- `decision:")]
+        rep.check("README Decisions: one line per decision object", len(listed) == len(self.k.kind("decision")), "README %d, knowledge.jsonl %d" % (len(listed), len(self.k.kind("decision"))))
 
+    def readme_status(self, rng: Tuple[int, int, int], report: Dict[str, Any]) -> None:
+        rep = self.rep
+        posthoc = {}
+        for d in self.k.kind("decision"):
+            if d["payload"].get("action") == "post_hoc_annotation" and d["payload"].get("measurement_problem"):
+                for aid in d["payload"].get("basis") or []:
+                    info = self.process.get(aid)
+                    if info:
+                        for arm, exp in info["expected"].items():
+                            counters = {x[1] for x in exp if x[0] == "process"}
+                            if counters & set(d["payload"]["measurement_problem"]):
+                                posthoc[arm] = d["id"]
+        for arm, v in sorted((report.get("arms") or {}).items()):
+            status = v.get("status")
+            if arm in posthoc and status != "measurement_problem":
+                rep.note("README Status: report status of %s is %s; %s records a measurement problem after the result (recomputed from "
+                         "per_unit.csv), so the README must say measurement_problem" % (arm, status, posthoc[arm]))
+                status = "measurement_problem"
+            line = ("- %s: %s" % (arm, status) + (" (vetoed; was %s)" % v.get("vetoed_status") if status == "vetoed" else "")
+                    + (" \u2014 closed despite an auditor dispute; an owner veto would reopen it" if v.get("closed_despite_dispute") else "")
+                    + (" \u2014 measurement problem, so neither established nor closed" if status == "measurement_problem" else "")
+                    + (" \u2014 replicated positive result, but measured despite open instrument review objections (see Caveats), so not plainly "
+                       "established" if status == "established_instrument_disputed" else ""))
+            self.expect_line("README Status: %s = %s" % (arm, status), line, rng[1], rng[2])
+        listed = [ln for ln in self.readme_lines[rng[1]:rng[2]] if ln.startswith("- ")]
+        rep.check("README Status: one line per arm of the report", len(listed) == len(report.get("arms") or {}), "README %d" % len(listed))
+
+    def readme_scope(self, rng: Tuple[int, int, int], report: Dict[str, Any]) -> None:
+        scope = report.get("scope") or {}
+        runs = self.k.kind("run")
+        self.rep.check("report.scope: data = run domain, units_tested = analysed units, runs = run objects, placebo, sesoi",
+                       all(r["payload"].get("domain") == scope.get("data") for r in runs) and scope.get("units_tested") == sum(len(c["units"]) for c in self.cycles.values())
+                       and scope.get("runs") == len(runs) and scope.get("placebo") == self.placebo() and scope.get("sesoi") == self.program().get("sesoi"),
+                       "scope %s / %s / %s" % (scope.get("data"), scope.get("units_tested"), scope.get("runs")))
+        text = ("The conclusions apply only to the task population `%s`, the arms %s against the placebo `%s`, the measurement conditions "
+                "of the envelope and the scale of %s units in %s run(s). Do not generalise to other tasks, models, prompts or scales."
+                % (scope.get("data"), scope.get("arms_tested"), scope.get("placebo"), scope.get("units_tested"), scope.get("runs")))
+        self.expect_line("README Scope: the scope sentence = report.scope", text, rng[1], rng[2])
+
+    # ---------------------------------------------------------------- run all
     def run(self) -> None:
-        print("-- package files, manifest and provenance")
-        self.manifest_and_provenance()
-        print("-- per_unit.csv against the run objects")
-        self.structure()
-        print("-- result objects (solved rates, contrasts, intervals, states)")
-        self.results()
-        print("-- process counters and the pre-registered format criterion")
-        process = self.process()
-        print("-- findings, audits and report")
-        findings = self.findings(process)
-        self.noise_check()
-        self.report_object(process, findings)
-        print("-- README")
-        self.readme_checks(process, findings)
+        phases = [("package files, manifest and provenance", self.integrity), ("per_unit.csv against the run objects", self.structure),
+                  ("result objects (solved rates, contrasts, intervals, states)", self.results),
+                  ("measurement sensitivity and process balance (lab rules)", self.sensitivity),
+                  ("findings", self.findings_checks), ("audits: noise, completeness", self.noise_checks), ("report", self.report_checks),
+                  ("README, line by line", self.readme)]
+        for title, phase in phases:
+            print("-- " + title)
+            try:
+                phase()
+            except InputError:
+                raise
+            except Exception as exc:   # a structure this script does not expect: report it, keep checking the rest
+                where = traceback.extract_tb(exc.__traceback__)[-1]
+                self.rep.check("phase '%s' completed" % title, False, "%s: %s (verify_autolab_packages.py line %d); the package has a structure this "
+                               "verifier does not understand, or the verifier has a bug" % (type(exc).__name__, exc, where.lineno))
+
+
+# --------------------------------------------------------------------------- baseline of N/V fields
+def load_baseline(path: Path) -> Dict[str, List[str]]:
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except ValueError as exc:
+        raise InputError("the N/V baseline %s is not valid JSON: %s" % (path, exc))
+    return dict(data.get("packages") or {})
+
+
+def compare_baseline(rep: Report, baseline: Dict[str, List[str]], baseline_path: Path) -> None:
+    print("-- N/V baseline")
+    if rep.package not in baseline:
+        rep.note("%s has no entry in %s: its %d N/V field(s) are not pinned. Review them, then add the package with "
+                 "`python scripts/verify_autolab_packages.py --package <dir> --update-baseline`." % (rep.package, baseline_path.name, len(rep.unverifiable)))
+        return
+    pinned = set(baseline[rep.package])
+    new = [f for f in rep.unverifiable if f not in pinned]
+    for field in new:
+        rep.check("N/V baseline: %s" % field, False, "this field is not verifiable now but was not N/V in the baseline (coverage dropped, or the "
+                  "package changed); if intended, review it and run --update-baseline")
+    gone = sorted(pinned - set(rep.unverifiable))
+    for field in gone:
+        rep.note("N/V baseline: %r is no longer N/V (now checked, or no longer stated); run --update-baseline to tighten the baseline" % field)
+    if not new:
+        rep.check("N/V baseline: no new not-verifiable field (%d pinned)" % len(pinned), True)
+
+
+def write_baseline(path: Path, reports: List[Report]) -> None:
+    current = load_baseline(path)
+    for r in reports:
+        current[r.package] = sorted(r.unverifiable)
+    doc = {"comment": "N/V (not verifiable from the package) fields per autolab package, pinned so that lost coverage fails CI. "
+                      "Regenerate the entries of the checked packages with scripts/verify_autolab_packages.py --update-baseline "
+                      "after reviewing every new N/V line.",
+           "packages": {k: current[k] for k in sorted(current)}}
+    path.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    print("baseline written: %s (%s)" % (path, ", ".join(r.package for r in reports)))
 
 
 # --------------------------------------------------------------------------- entry point
@@ -1100,12 +1703,8 @@ def verify_package(package: Path) -> Report:
     print("== %s ==" % package.name)
     for name in REQUIRED_FILES:
         if not (package / name).is_file():
-            raise InputError("%s has no %s" % (package.name, name))
+            raise InputError("%s has no %s (a published autolab package must have %s)" % (package.name, name, ", ".join(REQUIRED_FILES)))
     Verifier(package, rep).run()
-    t = rep.passed + len(rep.failures)
-    print("%s: %d passed, %d FAILED, %d not verifiable from the package, %d warning(s) out of %d checks" % (
-        package.name, rep.passed, len(rep.failures), len(rep.unverifiable), len(rep.warnings), t))
-    print("")
     return rep
 
 
@@ -1116,11 +1715,13 @@ def discover(repo: Path) -> List[Path]:
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(
         description="Recompute, offline and from the package alone, the published numbers of autolab result packages "
-                    "(per_unit.csv + README + knowledge.jsonl). Exit 0 = all verifiable checks pass, 1 = a number differs, "
-                    "2 = usage error or a required file is missing or unreadable.")
+                    "(per_unit.csv + README + knowledge.jsonl). Exit 0 = all verifiable checks pass, 1 = a number differs or the N/V "
+                    "set grew beyond the baseline, 2 = usage error or a required file is missing or unreadable.")
     parser.add_argument("--repo", default=str(Path(__file__).resolve().parents[1]), help="repository root (default: the checkout this script is in)")
     parser.add_argument("--package", action="append", default=[], metavar="DIR",
                         help="check only this package folder (repeatable); default: every %s folder of the repository" % PACKAGE_GLOB)
+    parser.add_argument("--baseline", default=str(Path(__file__).resolve().parent / BASELINE_NAME), help="the N/V baseline file")
+    parser.add_argument("--update-baseline", action="store_true", help="write the current N/V fields of the checked packages into the baseline")
     args = parser.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[union-attr]
@@ -1129,18 +1730,25 @@ def main(argv: Optional[List[str]] = None) -> int:
     if not packages:
         print("no autolab package found under %s/%s" % (repo, PACKAGE_GLOB), file=sys.stderr)
         return 2
+    baseline_path = Path(args.baseline).resolve()
     reports = []
     try:
+        baseline = load_baseline(baseline_path)
         for package in packages:
             if not package.is_dir():
                 raise InputError("not a folder: %s" % package)
-            reports.append(verify_package(package))
+            rep = verify_package(package)
+            if not args.update_baseline:
+                compare_baseline(rep, baseline, baseline_path)
+            print("%s: %d passed, %d FAILED, %d not verifiable from the package, %d warning(s)" % (
+                rep.package, rep.passed, len(rep.failures), len(rep.unverifiable), len(rep.warnings)))
+            print("")
+            reports.append(rep)
     except InputError as exc:
         print("input error: " + str(exc), file=sys.stderr)
         return 2
-    except (KeyError, IndexError, TypeError, AttributeError, ValueError) as exc:
-        print("input error: unexpected structure or content in a package file (%s: %s)" % (type(exc).__name__, exc), file=sys.stderr)
-        return 2
+    if args.update_baseline:
+        write_baseline(baseline_path, reports)
     failed = [r for r in reports if r.failures]
     for r in reports:
         if r.failures:
