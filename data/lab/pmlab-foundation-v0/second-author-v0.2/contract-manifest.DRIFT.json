@@ -1,0 +1,16 @@
+{
+  "status": "declaration-drift-explained",
+  "manifest": "data/lab/pmlab-foundation-v0/second-author-v0.2/contract-manifest.json",
+  "path": ".github/ISSUE_TEMPLATE/independent-foundation-second-author-challenge.md",
+  "declared_sha256": "6f465c493cb4f0eec87ef09f053e1dac860b06eaf8c04533141a97abd498dd9b",
+  "declared_matched_at": [
+    "328d1c14be9d0e57df6629141382b292a00bac85"
+  ],
+  "changed_in": "abd47e2ee142d84ac4dab0de563a3c20401437a2",
+  "current_sha256": "absent",
+  "moved_to": ".github/ISSUE_TEMPLATE/9-independent-foundation-second-author-challenge.md",
+  "reason": "The issue template was renamed without changes when the issue chooser was reordered (commit abd47e2). The renamed file holds the declared bytes. The manifest was not rewritten.",
+  "consequence": "The declared bytes are unchanged at the new path; only the location moved.",
+  "recorded_at": "2026-11-18",
+  "recorded_by": "Claude Code on fix/gpt-audit-2026-11-18, after the claim audit learned to report deleted frozen files; manifest preserved"
+}
