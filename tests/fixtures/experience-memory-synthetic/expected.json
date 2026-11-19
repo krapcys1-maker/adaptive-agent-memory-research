@@ -1,0 +1,660 @@
+{
+ "generated_by": "tools/experience_memory/parity/make_synthetic_fixture.py",
+ "reference": "tools/alfworld_ladder/agent.py (choose_memory, arm retrieved_task)",
+ "reference_sha256": "c5c5eea0545eba11fbd27435296a80bb88e0c31e707762862f98417caba9636a",
+ "k": 2,
+ "cases": [
+  {
+   "query_id": "train/pick_and_place_simple-CD-None-Shelf-401/trial_q1",
+   "goal": "put a cd in shelf",
+   "query_family": null,
+   "seed": 0,
+   "expected_items": [
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302"
+   ],
+   "expected_scores": [
+    1.0,
+    1.0
+   ],
+   "expected_block_sha256": "0eb3ba8532fc4a91c6b22f7051db3b880b5c37a67a6d3f0ac4b5813df5229cb6",
+   "full_order": [
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306"
+   ]
+  },
+  {
+   "query_id": "train/pick_and_place_simple-CD-None-Shelf-401/trial_q1",
+   "goal": "put a cd in shelf",
+   "query_family": "pick_and_place_simple-CD-None-Shelf-301",
+   "seed": 0,
+   "expected_items": [
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309"
+   ],
+   "expected_excluded": [
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301"
+   ],
+   "derived_from_instrument_order": true
+  },
+  {
+   "query_id": "train/pick_and_place_simple-CD-None-Shelf-401/trial_q1",
+   "goal": "put a cd in shelf",
+   "query_family": null,
+   "seed": 1,
+   "expected_items": [
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301"
+   ],
+   "expected_scores": [
+    1.0,
+    1.0
+   ],
+   "expected_block_sha256": "25eca7cfd65c8b3fce9b931732e15e78525ba8ea8218ab2b7c14cb510f6f0358",
+   "full_order": [
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303"
+   ]
+  },
+  {
+   "query_id": "train/pick_and_place_simple-CD-None-Shelf-401/trial_q1",
+   "goal": "put a cd in shelf",
+   "query_family": null,
+   "seed": 6,
+   "expected_items": [
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301"
+   ],
+   "expected_scores": [
+    1.0,
+    1.0
+   ],
+   "expected_block_sha256": "25eca7cfd65c8b3fce9b931732e15e78525ba8ea8218ab2b7c14cb510f6f0358",
+   "full_order": [
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303"
+   ]
+  },
+  {
+   "query_id": "train/pick_and_place_simple-CD-None-Shelf-402/trial_q2",
+   "goal": "Put a CD on the shelf.",
+   "query_family": null,
+   "seed": 0,
+   "expected_items": [
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302"
+   ],
+   "expected_scores": [
+    1.0,
+    1.0
+   ],
+   "expected_block_sha256": "0eb3ba8532fc4a91c6b22f7051db3b880b5c37a67a6d3f0ac4b5813df5229cb6",
+   "full_order": [
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304"
+   ]
+  },
+  {
+   "query_id": "train/pick_and_place_simple-CD-None-Shelf-402/trial_q2",
+   "goal": "Put a CD on the shelf.",
+   "query_family": null,
+   "seed": 1,
+   "expected_items": [
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301"
+   ],
+   "expected_scores": [
+    1.0,
+    1.0
+   ],
+   "expected_block_sha256": "25eca7cfd65c8b3fce9b931732e15e78525ba8ea8218ab2b7c14cb510f6f0358",
+   "full_order": [
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304"
+   ]
+  },
+  {
+   "query_id": "train/pick_and_place_simple-CD-None-Shelf-402/trial_q2",
+   "goal": "Put a CD on the shelf.",
+   "query_family": null,
+   "seed": 6,
+   "expected_items": [
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302"
+   ],
+   "expected_scores": [
+    1.0,
+    1.0
+   ],
+   "expected_block_sha256": "0eb3ba8532fc4a91c6b22f7051db3b880b5c37a67a6d3f0ac4b5813df5229cb6",
+   "full_order": [
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303"
+   ]
+  },
+  {
+   "query_id": "train/pick_heat_then_place_in_recep-Egg-None-Fridge-403/trial_q3",
+   "goal": "put a hot egg in fridge",
+   "query_family": null,
+   "seed": 0,
+   "expected_items": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306"
+   ],
+   "expected_scores": [
+    1.0,
+    0.2
+   ],
+   "expected_block_sha256": "53b617c027c3d2a4e3214d6ddfca3896649bc3c76227b150744849faf7b2b61b",
+   "full_order": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301"
+   ]
+  },
+  {
+   "query_id": "train/pick_heat_then_place_in_recep-Egg-None-Fridge-403/trial_q3",
+   "goal": "put a hot egg in fridge",
+   "query_family": null,
+   "seed": 1,
+   "expected_items": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305"
+   ],
+   "expected_scores": [
+    1.0,
+    0.2
+   ],
+   "expected_block_sha256": "49a49dd803260ae8615eb87dc150b15d43c42ba0c4d10d6d68f78dff2cc8eae0",
+   "full_order": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308"
+   ]
+  },
+  {
+   "query_id": "train/pick_heat_then_place_in_recep-Egg-None-Fridge-403/trial_q3",
+   "goal": "put a hot egg in fridge",
+   "query_family": "pick_heat_then_place_in_recep-Egg-None-Fridge-304",
+   "seed": 1,
+   "expected_items": [
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306"
+   ],
+   "expected_excluded": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304"
+   ],
+   "derived_from_instrument_order": true
+  },
+  {
+   "query_id": "train/pick_heat_then_place_in_recep-Egg-None-Fridge-403/trial_q3",
+   "goal": "put a hot egg in fridge",
+   "query_family": null,
+   "seed": 6,
+   "expected_items": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305"
+   ],
+   "expected_scores": [
+    1.0,
+    0.2
+   ],
+   "expected_block_sha256": "49a49dd803260ae8615eb87dc150b15d43c42ba0c4d10d6d68f78dff2cc8eae0",
+   "full_order": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308"
+   ]
+  },
+  {
+   "query_id": "train/pick_cool_then_place_in_recep-Egg-None-Fridge-404/trial_q4",
+   "goal": "put a cool egg in fridge",
+   "query_family": null,
+   "seed": 0,
+   "expected_items": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306"
+   ],
+   "expected_scores": [
+    0.5,
+    0.5
+   ],
+   "expected_block_sha256": "53b617c027c3d2a4e3214d6ddfca3896649bc3c76227b150744849faf7b2b61b",
+   "full_order": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307"
+   ]
+  },
+  {
+   "query_id": "train/pick_cool_then_place_in_recep-Egg-None-Fridge-404/trial_q4",
+   "goal": "put a cool egg in fridge",
+   "query_family": null,
+   "seed": 1,
+   "expected_items": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306"
+   ],
+   "expected_scores": [
+    0.5,
+    0.5
+   ],
+   "expected_block_sha256": "53b617c027c3d2a4e3214d6ddfca3896649bc3c76227b150744849faf7b2b61b",
+   "full_order": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308"
+   ]
+  },
+  {
+   "query_id": "train/pick_cool_then_place_in_recep-Egg-None-Fridge-404/trial_q4",
+   "goal": "put a cool egg in fridge",
+   "query_family": null,
+   "seed": 6,
+   "expected_items": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306"
+   ],
+   "expected_scores": [
+    0.5,
+    0.5
+   ],
+   "expected_block_sha256": "53b617c027c3d2a4e3214d6ddfca3896649bc3c76227b150744849faf7b2b61b",
+   "full_order": [
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301"
+   ]
+  },
+  {
+   "query_id": "train/pick_two_obj_and_place-Pen-None-Drawer-405/trial_q5",
+   "goal": "put two pen in drawer",
+   "query_family": null,
+   "seed": 0,
+   "expected_items": [
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309"
+   ],
+   "expected_scores": [
+    0.666667,
+    0.2
+   ],
+   "expected_block_sha256": "dee0310cd3d83ed908fceb19ab5f717b93b6a52020853d8178c6b343408009ac",
+   "full_order": [
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302"
+   ]
+  },
+  {
+   "query_id": "train/pick_two_obj_and_place-Pen-None-Drawer-405/trial_q5",
+   "goal": "put two pen in drawer",
+   "query_family": null,
+   "seed": 1,
+   "expected_items": [
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309"
+   ],
+   "expected_scores": [
+    0.666667,
+    0.2
+   ],
+   "expected_block_sha256": "dee0310cd3d83ed908fceb19ab5f717b93b6a52020853d8178c6b343408009ac",
+   "full_order": [
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306"
+   ]
+  },
+  {
+   "query_id": "train/pick_two_obj_and_place-Pen-None-Drawer-405/trial_q5",
+   "goal": "put two pen in drawer",
+   "query_family": null,
+   "seed": 6,
+   "expected_items": [
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309"
+   ],
+   "expected_scores": [
+    0.666667,
+    0.2
+   ],
+   "expected_block_sha256": "dee0310cd3d83ed908fceb19ab5f717b93b6a52020853d8178c6b343408009ac",
+   "full_order": [
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306"
+   ]
+  },
+  {
+   "query_id": "train/look_at_obj_in_light-Book-None-DeskLamp-406/trial_q6",
+   "goal": "examine the book with the desklamp",
+   "query_family": null,
+   "seed": 0,
+   "expected_items": [
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307"
+   ],
+   "expected_scores": [
+    0.142857,
+    0.0
+   ],
+   "expected_block_sha256": "b49c9a9af3c91647e2da6acdb211c5c995c4a1f5efc6966378434d02ff264480",
+   "full_order": [
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302"
+   ]
+  },
+  {
+   "query_id": "train/look_at_obj_in_light-Book-None-DeskLamp-406/trial_q6",
+   "goal": "examine the book with the desklamp",
+   "query_family": null,
+   "seed": 1,
+   "expected_items": [
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302"
+   ],
+   "expected_scores": [
+    0.142857,
+    0.0
+   ],
+   "expected_block_sha256": "f70c22d26492b14baf78958e1968d371e63546e003caecaf06c9fb4d7755079e",
+   "full_order": [
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307"
+   ]
+  },
+  {
+   "query_id": "train/look_at_obj_in_light-Book-None-DeskLamp-406/trial_q6",
+   "goal": "examine the book with the desklamp",
+   "query_family": null,
+   "seed": 6,
+   "expected_items": [
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307"
+   ],
+   "expected_scores": [
+    0.142857,
+    0.0
+   ],
+   "expected_block_sha256": "b49c9a9af3c91647e2da6acdb211c5c995c4a1f5efc6966378434d02ff264480",
+   "full_order": [
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302"
+   ]
+  },
+  {
+   "query_id": "train/pick_and_place_simple-Vase-None-Safe-407/trial_q7",
+   "goal": "put a vase in safe",
+   "query_family": null,
+   "seed": 0,
+   "expected_items": [
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309"
+   ],
+   "expected_scores": [
+    0.0,
+    0.0
+   ],
+   "expected_block_sha256": "942eca0686c8089a9a69b26f11e9a3274645c7d0fb11ea9cbe4d36d7189ba20f",
+   "full_order": [
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305"
+   ]
+  },
+  {
+   "query_id": "train/pick_and_place_simple-Vase-None-Safe-407/trial_q7",
+   "goal": "put a vase in safe",
+   "query_family": null,
+   "seed": 1,
+   "expected_items": [
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307"
+   ],
+   "expected_scores": [
+    0.0,
+    0.0
+   ],
+   "expected_block_sha256": "7c4c2845854eee39ee992d5dcaccc9b2524d1cea1ef9d1861c951fb721fc9a0b",
+   "full_order": [
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301"
+   ]
+  },
+  {
+   "query_id": "train/pick_and_place_simple-Vase-None-Safe-407/trial_q7",
+   "goal": "put a vase in safe",
+   "query_family": null,
+   "seed": 6,
+   "expected_items": [
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306"
+   ],
+   "expected_scores": [
+    0.0,
+    0.0
+   ],
+   "expected_block_sha256": "526fe6082d5a9aeb50e086092012094461d241a3b4e0bb11d7eecbaa7bceff45",
+   "full_order": [
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308"
+   ]
+  },
+  {
+   "query_id": "train/pick_clean_then_place_in_recep-Mug-None-Shelf-408/trial_q8",
+   "goal": "put a clean mug in shelf",
+   "query_family": null,
+   "seed": 0,
+   "expected_items": [
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301"
+   ],
+   "expected_scores": [
+    1.0,
+    0.25
+   ],
+   "expected_block_sha256": "842c59b4d18b2dc499dfe71574cdbe838410a08135ffe09cc46bc560b9fbdc15",
+   "full_order": [
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304"
+   ]
+  },
+  {
+   "query_id": "train/pick_clean_then_place_in_recep-Mug-None-Shelf-408/trial_q8",
+   "goal": "put a clean mug in shelf",
+   "query_family": null,
+   "seed": 1,
+   "expected_items": [
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302"
+   ],
+   "expected_scores": [
+    1.0,
+    0.25
+   ],
+   "expected_block_sha256": "08a37ccb825bf9d1c07d4a71b63a43e72451ab0a561bd1d4c42b0e52881068b8",
+   "full_order": [
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304"
+   ]
+  },
+  {
+   "query_id": "train/pick_clean_then_place_in_recep-Mug-None-Shelf-408/trial_q8",
+   "goal": "put a clean mug in shelf",
+   "query_family": null,
+   "seed": 6,
+   "expected_items": [
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301"
+   ],
+   "expected_scores": [
+    1.0,
+    0.25
+   ],
+   "expected_block_sha256": "842c59b4d18b2dc499dfe71574cdbe838410a08135ffe09cc46bc560b9fbdc15",
+   "full_order": [
+    "train/pick_clean_then_place_in_recep-Mug-None-Shelf-307/trial_T0000_307",
+    "train/pick_and_place_simple-CD-None-Shelf-301/trial_T0000_301",
+    "train/pick_and_place_simple-CD-None-Shelf-302/trial_T0000_302",
+    "train/pick_two_obj_and_place-CD-None-Shelf-309/trial_T0000_309",
+    "train/pick_heat_then_place_in_recep-Egg-None-Fridge-304/trial_T0000_304",
+    "train/look_at_obj_in_light-CD-None-DeskLamp-308/trial_T0000_308",
+    "train/pick_cool_then_place_in_recep-Apple-None-Fridge-306/trial_T0000_306",
+    "train/pick_and_place_simple-Pen-None-Drawer-303/trial_T0000_303",
+    "train/pick_heat_then_place_in_recep-Egg-None-CounterTop-305/trial_T0000_305"
+   ]
+  }
+ ]
+}
