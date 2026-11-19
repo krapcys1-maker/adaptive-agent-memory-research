@@ -103,8 +103,12 @@ def test_real_packages_pass() -> None:
     out = result.stdout
     assert not lines(out, "FAIL  ")
     assert "== autolab-alfworld-ladder-r4-v3 ==" in out and "== autolab-alfworld-ladder-r4-v4 ==" in out
-    assert out.count("N/V baseline: the N/V fields equal the baseline entry") == 2
-    assert "all 2 package(s) verified" in out
+    # every published package, however many the laboratory has exported by now (a fixed count failed the CI of
+    # each new export pull request: V5B, 2026-11-19)
+    n = len(sorted(p for p in (ROOT / "data" / "lab").glob("autolab-*") if p.is_dir()))
+    assert n >= 2
+    assert out.count("N/V baseline: the N/V fields equal the baseline entry") == n
+    assert "all %d package(s) verified" % n in out
 
 
 @pytest.mark.parametrize("package", [V3, V4, V5B, TWO_SEEDS, EARLY1, EARLY2], ids=["v3", "v4", "v5b-shape", "two-seeds", "early-look1", "early-look2"])
