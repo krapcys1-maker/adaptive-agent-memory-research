@@ -361,11 +361,61 @@ def interval_state(lo: float, hi: float, sesoi: float) -> str:
     return "inconclusive"
 
 
-def lab_verdict(predicted: Optional[str], state: str, audit_valid: bool, disputed: bool) -> Optional[str]:
-    """program._s_conclude."""
+EXPECTED_STATES = ("practical", "positive", "positive_below_sesoi", "equivalent", "negative")
+
+
+def expected_state_verdict(hyp: dict, state: str, ci, sesoi: float) -> Tuple[str, str]:
+    """program.hypothesis_verdict (lab code from 2026-11-19, findings that carry ``verdict_rule``): a hypothesis with
+    ``expected_state`` is judged against that state, not only against its predicted direction (erratum V4 H3)."""
+    if state not in SUPPORT and state not in CLOSE:
+        return "inconclusive", "stan nierozstrzygnięty"
+    raw = hyp.get("expected_state")
+    exp = str(raw).strip().lower().replace("-", "_").replace(" ", "_") if raw not in (None, "") else None
+    hi = float(ci[1]) if ci is not None and ci[1] is not None else None
+    below = bool(sesoi) and hi is not None and hi < sesoi
+    if exp in EXPECTED_STATES:
+        rule = "expected_state=%s" % exp
+        if exp == "practical":
+            if state == "practical":
+                return "supported", rule
+            if state == "positive":
+                return ("refuted" if below else "inconclusive"), rule
+            return "refuted", rule
+        if exp == "positive_below_sesoi":
+            if state == "positive":
+                return ("supported" if below else "inconclusive"), rule
+            if state == "equivalent":
+                return "inconclusive", rule
+            return "refuted", rule
+        if exp == "positive":
+            return ("supported" if state in SUPPORT else "refuted"), rule
+        if exp == "equivalent":
+            if state == "negative":
+                lo = float(ci[0]) if ci is not None and ci[0] is not None else None
+                if sesoi and hi is not None and hi <= -sesoi:
+                    return "refuted", rule
+                if sesoi and lo is not None and lo > -sesoi:
+                    return "supported", rule
+                return "inconclusive", rule
+            return ("supported" if state in CLOSE else "refuted"), rule
+        if state == "negative":
+            return "supported", rule
+        return ("refuted" if state in SUPPORT else "inconclusive"), rule
+    rule = "kierunek predicted" + ((" (nieznany expected_state %r)" % str(raw)[:40]) if exp else "")
+    if state in SUPPORT:
+        return ("supported" if hyp.get("predicted") == "positive" else "refuted"), rule
+    return ("refuted" if hyp.get("predicted") == "positive" else "supported"), rule
+
+
+def lab_verdict(predicted: Optional[str], state: str, audit_valid: bool, disputed: bool,
+                hyp: Optional[dict] = None, ci=None, sesoi: float = 0.0) -> Optional[str]:
+    """program._s_conclude. With ``hyp`` (a finding written by lab code that records ``verdict_rule``): the
+    expected_state rule of program.hypothesis_verdict; without it: the predicted direction only (older packages)."""
     if not audit_valid:
         return "invalid"
-    if state in SUPPORT:
+    if hyp is not None:
+        verdict = expected_state_verdict(hyp, state, ci, sesoi)[0]
+    elif state in SUPPORT:
         verdict = "supported" if predicted == "positive" else "refuted"
     elif state in CLOSE:
         verdict = "refuted" if predicted == "positive" else "supported"
@@ -1094,13 +1144,24 @@ class Verifier:
             rp = role["payload"] if role else {}
             disputed_arms = {cl.get("arm") for cl in rp.get("claims") or [] if isinstance(cl, dict) and cl.get("arm")}
             disputed = bool(rp.get("verdict") == "dispute" and rp.get("claims")) and audit_valid and (not disputed_arms or p.get("arm") in disputed_arms)
-            want = lab_verdict(hp.get("predicted"), state, audit_valid, disputed)
-            rep.check("%s (%s): verdict = %s" % (tag, label, p.get("verdict")), p.get("verdict") == want,
-                      "lab rule (program._s_conclude: code audit %s, role audit %s, predicted %s, state %s; the predicted direction only, "
-                      "not expected_state or the falsification text) -> %s" % (code["payload"].get("verdict") if code else None,
-                                                                                 rp.get("verdict"), hp.get("predicted"), state, want))
+            new_rule = "verdict_rule" in p
+            want = lab_verdict(hp.get("predicted"), state, audit_valid, disputed,
+                               hyp=hp if new_rule else None, ci=c["ci"], sesoi=float(rec["sesoi"] or 0.0))
+            if new_rule:
+                rule = expected_state_verdict(hp, state, c["ci"], float(rec["sesoi"] or 0.0))[1] if audit_valid else "audyt kodu"
+                rep.check("%s (%s): verdict = %s" % (tag, label, p.get("verdict")), p.get("verdict") == want,
+                          "lab rule (program.hypothesis_verdict: code audit %s, role audit %s, predicted %s, expected_state %s, state %s) -> %s"
+                          % (code["payload"].get("verdict") if code else None, rp.get("verdict"), hp.get("predicted"),
+                             hp.get("expected_state"), state, want))
+                rep.check("%s (%s): verdict_rule = %s" % (tag, label, p.get("verdict_rule")), p.get("verdict_rule") == rule,
+                          "recomputed %r" % rule)
+            else:
+                rep.check("%s (%s): verdict = %s" % (tag, label, p.get("verdict")), p.get("verdict") == want,
+                          "lab rule (program._s_conclude before 2026-11-19: code audit %s, role audit %s, predicted %s, state %s; the predicted "
+                          "direction only, not expected_state or the falsification text) -> %s" % (code["payload"].get("verdict") if code else None,
+                                                                                                    rp.get("verdict"), hp.get("predicted"), state, want))
             expected_state = hp.get("expected_state")
-            if expected_state and state != expected_state and p.get("verdict") == "supported":
+            if not new_rule and expected_state and state != expected_state and p.get("verdict") == "supported":
                 text = str(hp.get("falsification") or "")
                 mention = (" Its falsification text names '%s' among the refuting states: %r." % (state, short(text, 150))) if state in text else ""
                 rep.warn("%s (%s): verdict supported with state %s, hypothesis expected_state %s" % (tag, label, state, expected_state),
@@ -1378,9 +1439,13 @@ class Verifier:
         if notes:
             self.expect_line("README: %d reviewer and auditor notes = report.role_notes" % len(notes),
                              "Reviewer and auditor notes that did not change the protocol: %d (in `knowledge.jsonl`, kind `discussion`)." % len(notes))
-        per_unit = ("Per-task records (one row per task \u00d7 arm \u00d7 seed: solved, steps, empty and untagged answers, memory tokens): "
-                    "`per_unit.csv`. The raw episode logs stay private.")
-        i = self.find_line(per_unit)
+        # the exporter's sentence before and after 2026-11-19 (the protocol's counters; "an empty cell = not reported")
+        per_units = ("Per-task records (one row per task \u00d7 arm \u00d7 seed: solved, steps, empty and untagged answers, memory tokens): "
+                     "`per_unit.csv`. The raw episode logs stay private.",
+                     "Per-task records (one row per task \u00d7 arm \u00d7 seed: solved, steps, empty and untagged answers, memory tokens, "
+                     "the counters required by the protocol; an empty cell = not reported, not zero): `per_unit.csv`. The raw episode "
+                     "logs stay private.")
+        i = next((j for j in (self.find_line(x) for x in per_units) if j is not None), None)
         if i is None:
             rep.nv("README: the per_unit.csv sentence", "the README does not name per_unit.csv (the package predates that sentence)")
         else:
