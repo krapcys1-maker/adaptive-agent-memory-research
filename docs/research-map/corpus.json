@@ -468,6 +468,19 @@
   ]
  },
  {
+  "key": "expharness-2026",
+  "title": "ExpHarness: Model-Agnostic Experience Learning through a Trainable Harness",
+  "year": 2026,
+  "url": "https://arxiv.org/abs/2605.30712",
+  "claim": "ExpHarness combines an experience graph, diffusion and utility-aware retrieval around frozen executors. It improves weighted scores but requires substantial training compute; node utility is set-level rather than causal, joint transfer is closest to target-specific training among variants, and no random-bank control is reported. [verification: main text, experiments and implementation appendix read on 2026-11-19; Tables 2 and 3, Figures 2 and 3; code licence Apache-2.0]",
+  "mentions": [
+   "benchmark=alfworld",
+   "bank=experience-graph",
+   "unit=skill-lesson",
+   "effect=mixed"
+  ]
+ },
+ {
   "key": "awm-2024",
   "title": "Agent Workflow Memory",
   "year": 2024,

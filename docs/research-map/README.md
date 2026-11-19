@@ -130,6 +130,14 @@ All of these ran offline, with no model calls.
 - **Our reading (hypothesis):** compare raw trajectories, rule-induced workflows and LM-induced workflows under matched model, task and token budgets, with random/fixed-bank controls. Do not assume that LM induction is better or that offline and online memories compose. A matched-budget null result would reject the abstraction advantage for that task family.
 - **Verification:** T (all 16 PDF pages, method, setup, main tables and limitations). Official code is Apache-2.0 at `8c0ff8cd11d648c8fceb99e4e42f37e3b75381b1`; the licence was read, not executed. See the [full-read note](../07-literature/full-read-notes/2024-wang-agent-workflow-memory.md).
 
+### ExpHarness full-read note (added 19 November 2026)
+
+- **Paper claim:** ExpHarness learns a replaceable harness consisting of an experience graph and a retrieval copilot. Semantic seeding, graph diffusion and utility-aware ranking jointly select experiences without changing the frozen executor (Sections 3.1–3.4, pp. 3–6).
+- **Reported results:** Static Table 2 (p. 6) gives 69.57 versus 62.06 for MemRL with Llama-3.2-3B and 78.76 versus 75.34 with Llama-3.1-8B. Agentic Table 3 (p. 7) gives 53.4 versus 44.0 for S3 with Qwen3-32B and 62.3 versus 55.3 with Gemini-3.1-Flash-Lite. Figure 2 (p. 8) finds joint graph+copilot transfer closest to target-specific training among the variants.
+- **Limitations:** node utility is a historical shared-reward estimate for retrieval sets, not an isolated causal contribution. Appendix B (p. 16) reports about 40 hours for Agentic and 20 hours for Static training on 4 A6000 GPUs; environment steps exclude retrieval, inference and training costs. The large-to-small transfer comparison has no no-memory reference. Graph hyperparameters are fixed, there is no random-bank control, and flat-experience ablation confounds candidate generation with ranking.
+- **Our reading (hypothesis):** test raw trajectories, a flat pool, graph diffusion and utility-aware retrieval separately under matched model, task, token and compute budgets. Reject the extra graph complexity wherever matched comparisons show no benefit, rather than treating it as universally useful.
+- **Verification:** T (main text, experiments and implementation appendix). Official code is Apache-2.0 at `9dd6b3f42ede70b85196a9041d295e61ee5af9b2`; licence read, no execution. See the [full-read note](../07-literature/full-read-notes/2026-feng-expharness.md).
+
 ## Not yet read in full
 
 ExpGraph, the IBM trajectory-tips work, CMC, SWE-Bench-CL, the ReflAct table for Llama-3.1-8B. We did not find the full text of the NeurIPS 2026 paper "When Does Agent Memory Transfer?". Reading these is a good first contribution: one paper per pull request, with the level of verification stated.
