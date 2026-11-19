@@ -1439,9 +1439,13 @@ class Verifier:
         if notes:
             self.expect_line("README: %d reviewer and auditor notes = report.role_notes" % len(notes),
                              "Reviewer and auditor notes that did not change the protocol: %d (in `knowledge.jsonl`, kind `discussion`)." % len(notes))
-        per_unit = ("Per-task records (one row per task \u00d7 arm \u00d7 seed: solved, steps, empty and untagged answers, memory tokens): "
-                    "`per_unit.csv`. The raw episode logs stay private.")
-        i = self.find_line(per_unit)
+        # the exporter's sentence before and after 2026-11-19 (the protocol's counters; "an empty cell = not reported")
+        per_units = ("Per-task records (one row per task \u00d7 arm \u00d7 seed: solved, steps, empty and untagged answers, memory tokens): "
+                     "`per_unit.csv`. The raw episode logs stay private.",
+                     "Per-task records (one row per task \u00d7 arm \u00d7 seed: solved, steps, empty and untagged answers, memory tokens, "
+                     "the counters required by the protocol; an empty cell = not reported, not zero): `per_unit.csv`. The raw episode "
+                     "logs stay private.")
+        i = next((j for j in (self.find_line(x) for x in per_units) if j is not None), None)
         if i is None:
             rep.nv("README: the per_unit.csv sentence", "the README does not name per_unit.csv (the package predates that sentence)")
         else:
