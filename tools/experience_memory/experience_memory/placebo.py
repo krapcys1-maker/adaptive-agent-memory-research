@@ -78,13 +78,15 @@ def placebo_block(memory: MemoryBlock | int, count_tokens: TokenCounter, *, form
     """
     fmt = formatter or get_formatter()
     if isinstance(memory, MemoryBlock):
-        if memory.is_empty or not memory.text:
+        if not memory.text:
             return MemoryBlock(text="", item_ids=(), formatter=f"placebo/{fmt.name}", n_tokens=0, target_tokens=0)
         target = count_tokens(memory.text)
-        n_items = n_items or len(memory.item_ids)
+        if n_items is None:
+            n_items = len(memory.item_ids) or 2  # a block without item ids (for example a placebo): two items
     else:
         target = int(memory)
-        n_items = n_items or 2
+        if n_items is None:
+            n_items = 2
     text = fmt.wrap(placebo_texts(target, count_tokens, formatter=fmt, filler=filler, max_lines=max_lines,
                                   n_items=n_items))
     return MemoryBlock(text=text, item_ids=(), formatter=f"placebo/{fmt.name}", n_tokens=count_tokens(text),

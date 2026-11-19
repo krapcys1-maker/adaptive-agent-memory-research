@@ -92,6 +92,9 @@ class ExperienceBank:
                  held_out_families: Iterable[str] = ()) -> None:
         self._items: list[Trajectory] = []
         self._ids: set[str] = set()
+        for name, value in (("held_out_ids", held_out_ids), ("held_out_families", held_out_families)):
+            if isinstance(value, (str, bytes)):  # a bare string would become a set of characters
+                raise TypeError(f"{name} must be a collection of strings, not a single string")
         self.held_out_ids = frozenset(held_out_ids)
         self.held_out_families = frozenset(held_out_families)
         for it in items:

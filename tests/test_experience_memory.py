@@ -177,6 +177,8 @@ def test_bank_refuses_held_out_ids_and_families():
         bank.add(traj("x", "put a cd in shelf", family="F"))
     bank.add(traj("y", "put a cd in shelf", family="G"))
     assert len(bank) == 1
+    with pytest.raises(TypeError):
+        em.ExperienceBank(held_out_families="family-3")
 
 
 def test_trajectory_field_types_are_checked():
@@ -355,6 +357,9 @@ def test_placebo_records_its_target_and_follows_the_item_count():
     assert em.placebo_block(empty, ws).text == "" and em.prompt_suffix(em.placebo_block(empty, ws)).startswith(em.ACTION_INSTR)
     three = em.placebo_texts(50, ws, n_items=3)
     assert len(three) == 3 and all(three)
+    with pytest.raises(ValueError):
+        em.placebo_block(one, ws, n_items=0)
+    assert em.placebo_block(p, ws).text.count("Retrieved Item") == 2  # a placebo of a placebo: two items
 
 
 def test_placebo_needs_a_counter():

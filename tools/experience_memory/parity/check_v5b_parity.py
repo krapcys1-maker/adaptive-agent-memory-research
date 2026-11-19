@@ -21,8 +21,8 @@ Two modes:
   that output into a public place.
 - ``public``: the public copy of the instrument and its public bank (the V3/V4 bank of 710 items), with goals of
   the public bank as queries. The reference is the pinned V5B code: the working copy of
-  ``tools/alfworld_ladder/agent.py`` if it still equals the pin, else the pinned version from git history. This
-  runs in CI (``tests/test_experience_memory.py``).
+  ``tools/alfworld_ladder/agent.py`` if it still equals the pin, else the pinned version from git history (this
+  needs the full history; a shallow clone then exits 2). This runs in CI (``tests/test_experience_memory.py``).
 
 Exit code: 0 = no mismatch (or skipped), 1 = at least one mismatch, 2 = a required input is missing, differs
 from the pins, or the check would compare nothing.

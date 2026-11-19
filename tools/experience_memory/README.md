@@ -102,8 +102,7 @@ bank = em.ExperienceBank((from_lab_record(r) for r in records),
 ```
 
 The public bank `tools/alfworld_ladder/data/bank.jsonl` is the 710-item V3/V4 bank, **not** the 360-item V5B bank,
-and it is not disjoint from the V5B test games: it shares families with most of them. Do not use it to evaluate on
-V5B games. Families and ids are compared as exact strings, so normalise them first if your sources differ in
+and it was not built disjoint from the V5B test games. Do not use it to evaluate on V5B games. Families and ids are compared as exact strings, so normalise them first if your sources differ in
 spelling.
 
 `count_tokens` must be the tokenizer of the model you prompt (the lab used vLLM's `/tokenize`). A token budget is

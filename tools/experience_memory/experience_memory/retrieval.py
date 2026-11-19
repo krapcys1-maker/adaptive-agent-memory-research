@@ -18,6 +18,7 @@ tie-break numbers before the exclusion means that excluding an item never change
 from __future__ import annotations
 
 import hashlib
+import operator
 import random
 import re
 from dataclasses import dataclass
@@ -89,8 +90,9 @@ class GoalSimilarityRetriever:
             raise ValueError("query_id must be a non-empty string")
         if query_family is not None and (not isinstance(query_family, str) or not query_family.strip()):
             raise ValueError("query_family must be a non-empty string or None")
-        if isinstance(seed, bool) or not isinstance(seed, int):
-            raise TypeError(f"seed must be an int, got {seed!r}")  # 0.0 or True would hash differently from 0, 1
+        if isinstance(seed, bool):
+            raise TypeError("seed must be an int, not a bool")  # True would hash differently from 1
+        seed = operator.index(seed)  # an integer type (numpy too) becomes int; 0.0 or "0" raise TypeError
         gw = content_words(goal)
         rng = random.Random(stable_hash(query_id, seed, "ret"))
         scored = []
