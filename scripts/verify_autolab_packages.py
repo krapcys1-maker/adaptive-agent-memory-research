@@ -31,7 +31,10 @@ Anything the package states that cannot be recomputed from the package is printe
 package") with the reason. The set of N/V fields of each package is pinned in
 ``scripts/verify_autolab_packages.baseline.json`` and the check fails closed: a missing or malformed baseline, a package
 without an entry, a new N/V field and a stale entry all FAIL (``--update-baseline`` rewrites the entries of the checked
-packages, refuses a package with a FAIL, and prints the fields it adds and removes). ``WARN`` marks two
+packages, refuses a package with a FAIL, and prints the fields it adds and removes). A package with no entry there may
+carry its own entry, ``NV_BASELINE.json`` (written by the laboratory's export with ``--write-package-baseline``, refused
+for a package with a FAIL, pinned by ``PUBLISHED_FILES.json`` and shown in the export pull request's diff); an entry in the
+shared baseline file always wins over it. ``WARN`` marks two
 statements of the package that disagree with each other where the package does not say which one rules; it does not
 change the exit status.
 
@@ -63,6 +66,7 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Tuple
 
 PACKAGE_GLOB = "data/lab/autolab-*"
 BASELINE_NAME = "verify_autolab_packages.baseline.json"
+PACKAGE_BASELINE_NAME = "NV_BASELINE.json"     # the package's own N/V entry (export of 2026-11-19 on)
 REQUIRED_FILES = ("README.md", "knowledge.jsonl", "per_unit.csv", "PUBLISHED_FILES.json", "PROVENANCE.json")
 KEY_COLUMNS = ("cycle", "unit", "arm", "seed")
 OUTCOME = "solved"
@@ -561,6 +565,10 @@ class Verifier:
                       digest == entry.get("sha256") and len(data) == entry.get("bytes"),
                       "file %s / %d bytes, manifest %s / %s bytes" % (digest[:12], len(data), str(entry.get("sha256"))[:12], entry.get("bytes")))
         for name in sorted(p.name for p in pkg.iterdir() if p.is_file()):
+            if name == PACKAGE_BASELINE_NAME and name not in listed:
+                rep.check("PUBLISHED_FILES.json: %s is pinned by the export manifest" % name, False,
+                          "a package-local N/V baseline must be listed in the manifest, so its bytes are the exported ones")
+                continue
             if name not in listed and name != "PUBLISHED_FILES.json":
                 rep.nv("PUBLISHED_FILES.json: %s" % name, "the file is in the package folder but not in its export manifest, so its bytes "
                        "are not pinned by the export; its numbers are still recomputed")
@@ -1832,19 +1840,45 @@ def add_command(package: Path) -> str:
     return "python scripts/verify_autolab_packages.py --package %s --update-baseline" % package.as_posix()
 
 
+def load_package_baseline(package: Path) -> Tuple[Optional[List[str]], Optional[str]]:
+    """(fields, problem) of the package's own NV_BASELINE.json; (None, None) when the file is absent."""
+    f = package / PACKAGE_BASELINE_NAME
+    if not f.is_file():
+        return None, None
+    try:
+        doc = json.loads(f.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return None, "%s is not valid JSON (%s)" % (PACKAGE_BASELINE_NAME, exc)
+    fields = doc.get("fields") if isinstance(doc, dict) else None
+    if not isinstance(doc, dict) or doc.get("package") != package.name or not isinstance(fields, list) \
+            or not all(isinstance(x, str) for x in fields):
+        return None, "%s must be {\"package\": \"%s\", \"fields\": [strings]}" % (PACKAGE_BASELINE_NAME, package.name)
+    return list(fields), None
+
+
 def compare_baseline(rep: Report, package: Path, baseline: Dict[str, List[str]], problem: Optional[str], baseline_path: Path) -> None:
     """The N/V set of the package must EQUAL its baseline entry: a new N/V field fails, and so does a stale entry, so the
-    baseline cannot be pre-loaded with fields that would hide a later change."""
+    baseline cannot be pre-loaded with fields that would hide a later change. The entry comes from the shared baseline
+    file, or, for a package without one there, from the package's own NV_BASELINE.json."""
     print("-- N/V baseline")
-    if problem:
+    local, local_problem = load_package_baseline(package)
+    if local_problem:
+        rep.check("N/V baseline: %s" % local_problem, False, "rewrite it with: python scripts/verify_autolab_packages.py "
+                  "--package %s --write-package-baseline" % package.as_posix())
+        return
+    if problem and local is None:
         rep.check("N/V baseline: %s" % problem, False, "the baseline is required; restore it, or create it with: %s" % add_command(package))
         return
-    if rep.package not in baseline:
+    if rep.package not in baseline and local is None:
         rep.check("N/V baseline: entry for %s in %s" % (rep.package, baseline_path.name), False,
                   "every package needs an entry; review its %d N/V line(s) above, then add it in the same pull request with: %s"
                   % (len(rep.unverifiable), add_command(package)))
         return
-    pinned = list(baseline[rep.package])
+    if rep.package in baseline:
+        pinned = list(baseline[rep.package])
+    else:
+        pinned = local or []
+        print("(entry from the package's own %s)" % PACKAGE_BASELINE_NAME)
     new = [f for f in rep.unverifiable if f not in set(pinned)]
     stale = [f for f in pinned if f not in set(rep.unverifiable)]
     for field in new:
@@ -1888,6 +1922,23 @@ def write_baseline(path: Path, reports: List[Report], packages: List[Path]) -> i
     return 0
 
 
+def write_package_baseline(reports: List[Report], packages: List[Path]) -> int:
+    """NV_BASELINE.json in each package folder (the export writes it before its pull request); refused for a FAIL."""
+    refused = [r for r in reports if r.failures]
+    for r in refused:
+        print("refusing to write %s for %s: it has %d FAIL line(s)" % (PACKAGE_BASELINE_NAME, r.package, len(r.failures)), file=sys.stderr)
+    if refused:
+        return 1
+    for r, package in zip(reports, packages):
+        doc = {"package": r.package, "fields": sorted(set(r.unverifiable)),
+               "comment": "N/V (not verifiable from the package) fields of this package, written by "
+                          "scripts/verify_autolab_packages.py --write-package-baseline when every verifiable number matched. "
+                          "The verifier fails unless the package's N/V fields equal this list."}
+        (package / PACKAGE_BASELINE_NAME).write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+        print("written %s (%d field(s))" % (package / PACKAGE_BASELINE_NAME, len(doc["fields"])))
+    return 0
+
+
 # --------------------------------------------------------------------------- entry point
 def verify_package(package: Path) -> Report:
     rep = Report(package.name)
@@ -1915,6 +1966,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--baseline", default=str(Path(__file__).resolve().parent / BASELINE_NAME), help="the N/V baseline file")
     parser.add_argument("--update-baseline", action="store_true", help="write the N/V fields of the checked packages into the baseline "
                         "(refused when a package has a FAIL); prints the added and removed fields")
+    parser.add_argument("--write-package-baseline", action="store_true", help="write each checked package's own %s "
+                        "(refused when a package has a FAIL); used by the laboratory's export" % PACKAGE_BASELINE_NAME)
     args = parser.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[union-attr]
@@ -1931,7 +1984,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             if not package.is_dir():
                 raise InputError("not a folder: %s" % package)
             rep = verify_package(package)
-            if not args.update_baseline:
+            if not args.update_baseline and not args.write_package_baseline:
                 compare_baseline(rep, package, baseline, problem, baseline_path)
             print("%s: %d passed, %d FAILED, %d not verifiable from the package, %d warning(s)" % (
                 rep.package, rep.passed, len(rep.failures), len(rep.unverifiable), len(rep.warnings)))
@@ -1942,6 +1995,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 2
     if args.update_baseline:
         return write_baseline(baseline_path, reports, packages)
+    if args.write_package_baseline:
+        return write_package_baseline(reports, packages)
     failed = [r for r in reports if r.failures]
     for r in reports:
         if r.failures:
