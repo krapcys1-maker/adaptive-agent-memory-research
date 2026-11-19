@@ -18,6 +18,7 @@ from __future__ import annotations
 import csv
 import importlib.util
 import io
+import hashlib
 import json
 import shutil
 import subprocess
@@ -523,3 +524,64 @@ def test_expected_state_verdict_rule_matches_the_lab() -> None:
     assert m.expected_state_verdict(eq, "negative", [-0.10, -0.01], 0.12)[0] == "supported"
     assert m.expected_state_verdict(eq, "negative", [-0.2, -0.01], 0.12)[0] == "inconclusive"
     assert m.expected_state_verdict(eq, "negative", [-0.3, -0.13], 0.12)[0] == "refuted"
+
+
+# --------------------------------------------------------------------------- package-local N/V baseline (2026-11-19)
+def _pin_in_manifest(package: Path, name: str) -> None:
+    man = json.loads((package / "PUBLISHED_FILES.json").read_text(encoding="utf-8"))
+    data = (package / name).read_bytes()
+    entry = {"path": name, "target": "data/lab/%s/%s" % (package.name, name), "sha256": hashlib.sha256(data).hexdigest(),
+             "sha256_source": hashlib.sha256(data).hexdigest(), "bytes": len(data), "edits": ["none"]}
+    man["published"] = [e for e in man["published"] if e.get("path") != name] + [entry]
+    (package / "PUBLISHED_FILES.json").write_text(json.dumps(man, indent=1), encoding="utf-8")
+
+
+def _renamed_v4(tmp_path: Path) -> Path:
+    """V4 under a name with no entry in the shared baseline (a new package, as an export would add it)."""
+    dest = tmp_path / "autolab-alfworld-ladder-r4-v4b"
+    shutil.copytree(V4, dest)
+    return dest
+
+
+def test_package_local_baseline_written_by_the_export_passes_when_pinned(tmp_path: Path) -> None:
+    package = _renamed_v4(tmp_path)
+    w = run("--package", str(package), "--write-package-baseline")
+    assert w.returncode == 0 and (package / "NV_BASELINE.json").is_file(), w.stdout + w.stderr
+    assert_fails_on(run("--package", str(package)), "NV_BASELINE.json is pinned by the export manifest")
+    _pin_in_manifest(package, "NV_BASELINE.json")
+    result = run("--package", str(package))
+    assert result.returncode == 0, result.stdout[-3000:]
+    assert "entry from the package's own NV_BASELINE.json" in result.stdout
+
+
+def test_package_local_baseline_must_equal_the_nv_set(tmp_path: Path) -> None:
+    package = _renamed_v4(tmp_path)
+    assert run("--package", str(package), "--write-package-baseline").returncode == 0
+    doc = json.loads((package / "NV_BASELINE.json").read_text(encoding="utf-8"))
+    dropped = doc["fields"].pop(0)
+    (package / "NV_BASELINE.json").write_text(json.dumps(doc), encoding="utf-8")
+    _pin_in_manifest(package, "NV_BASELINE.json")
+    assert_fails_on(run("--package", str(package)), "N/V baseline: " + dropped[:40])
+
+
+def test_package_local_baseline_is_refused_for_a_failing_package(tmp_path: Path) -> None:
+    package = _renamed_v4(tmp_path)
+    edit_text(package / "README.md", "| retrieved_task | 0.69 |", "| retrieved_task | 0.70 |")
+    w = run("--package", str(package), "--write-package-baseline")
+    assert w.returncode == 1 and not (package / "NV_BASELINE.json").exists()
+    assert "refusing to write NV_BASELINE.json" in w.stderr
+
+
+def test_malformed_or_foreign_package_baseline_fails(tmp_path: Path) -> None:
+    package = _renamed_v4(tmp_path)
+    (package / "NV_BASELINE.json").write_text(json.dumps({"package": "another", "fields": []}), encoding="utf-8")
+    _pin_in_manifest(package, "NV_BASELINE.json")
+    assert_fails_on(run("--package", str(package)), "NV_BASELINE.json must be")
+
+
+def test_shared_baseline_entry_wins_over_the_package_file(tmp_path: Path) -> None:
+    package = copy_package(V4, tmp_path)               # V4 has an entry in the shared baseline
+    (package / "NV_BASELINE.json").write_text(json.dumps({"package": package.name, "fields": []}), encoding="utf-8")
+    _pin_in_manifest(package, "NV_BASELINE.json")
+    result = run("--package", str(package))
+    assert "entry from the package's own" not in result.stdout
