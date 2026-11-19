@@ -7,7 +7,7 @@ name = "experience-memory"
 version = "0.1.0"
 description = "Goal-similar successful trajectories as LLM agent memory: the configuration the AAMR lab measured (ALFWorld V5B)."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = { text = "Apache-2.0" }
 dependencies = []
 

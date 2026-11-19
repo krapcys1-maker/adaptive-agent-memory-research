@@ -77,20 +77,33 @@ def test_fixture_first_block_bytes(fixture_bank, expected):
 # --- parity with the public copy of the V5B instrument (runs in CI) -----------------------------------------------
 
 
-def test_public_instrument_is_the_v5b_pinned_code():
-    assert parity.sha256_file(parity.PUBLIC_AGENT) == parity.V5B_PINS["src/agent.py"]
+def pinned_reference():
+    source, origin = parity.pinned_public_source()
+    if source is None:  # a shallow clone without the pinned version
+        pytest.skip("the pinned V5B instrument is not in this checkout or its git history")
+    return parity.load_reference(parity.PUBLIC_AGENT, source)
+
+
+def test_pinned_instrument_is_found_in_working_copy_or_history(monkeypatch):
+    source, origin = parity.pinned_public_source()
+    assert source is not None and hashlib.sha256(source).hexdigest() == parity.V5B_PINS["src/agent.py"]
+    real = parity.sha256_file
+    monkeypatch.setattr(parity, "sha256_file", lambda p: "edited" if p == parity.PUBLIC_AGENT else real(p))
+    source, origin = parity.pinned_public_source()  # as if a later PR edited the public runner
+    if source is None:
+        pytest.skip("no git history in this checkout")
+    assert origin.startswith("git ") and hashlib.sha256(source).hexdigest() == parity.V5B_PINS["src/agent.py"]
 
 
 def test_parity_with_public_instrument_on_public_bank():
     records = parity.read_records(parity.PUBLIC_BANK)
-    ref = parity.load_reference(parity.PUBLIC_AGENT)
-    result = parity.compare(ref, records, parity.public_queries(records, 25, 3), seeds=[0, 6])
+    result = parity.compare(pinned_reference(), records, parity.public_queries(records, 25, 3), seeds=[0, 6])
     assert result["comparisons"] == 50
     assert result["mismatches"] == []
 
 
 def test_prompt_text_equals_instrument():
-    ref = parity.load_reference(parity.PUBLIC_AGENT)
+    ref = pinned_reference()
     assert em.MEMORY_WRAPPER == ref.MEMORY_WRAPPER
     assert em.ACTION_INSTR == ref.ACTION_INSTR
     assert em.FORMAT_REMINDER == ref.FORMAT_REMINDER
@@ -110,8 +123,8 @@ def test_parity_check_detects_a_changed_rule(monkeypatch, mutation):
         real = em_retrieval.stable_hash
         monkeypatch.setattr(em_retrieval, "stable_hash", lambda *p: real(*p, "x"))
     records = parity.read_records(parity.PUBLIC_BANK)
-    ref = parity.load_reference(parity.PUBLIC_AGENT)
-    result = parity.compare(ref, records, parity.public_queries(records, 25, 3), seeds=[0], check_placebo=False)
+    result = parity.compare(pinned_reference(), records, parity.public_queries(records, 25, 3), seeds=[0],
+                            check_placebo=False)
     assert result["mismatches"], mutation
 
 
@@ -122,6 +135,14 @@ def test_private_check_skips_cleanly_when_absent(tmp_path):
     assert out.getvalue().startswith("SKIPPED")
     with redirect_stdout(io.StringIO()):
         assert parity.main(["private", "--v5b-dir", str(tmp_path / "absent"), "--require"]) == 2
+
+
+def test_parity_check_refuses_to_compare_nothing(tmp_path):
+    with redirect_stdout(io.StringIO()):
+        assert parity.main(["public", "--seeds", "5-3"]) == 2
+        assert parity.main(["public", "--sample", "0"]) == 2
+    with pytest.raises(ValueError):
+        parity.compare(pinned_reference(), parity.read_records(FIXTURE / "bank.jsonl"), [], seeds=[0])
 
 
 def test_private_check_refuses_inputs_that_differ_from_the_pins(tmp_path):
@@ -146,6 +167,26 @@ def test_bank_refuses_test_items_failures_and_duplicates():
     with pytest.raises(ValueError, match="already"):
         bank.add(traj("a", "put a pen in shelf"))
     assert len(bank) == 1
+
+
+def test_bank_refuses_held_out_ids_and_families():
+    bank = em.ExperienceBank(held_out_ids={"t1"}, held_out_families={"F"})
+    with pytest.raises(em.LeakageError):
+        bank.add(traj("t1", "put a cd in shelf", family="G"))
+    with pytest.raises(em.LeakageError):
+        bank.add(traj("x", "put a cd in shelf", family="F"))
+    bank.add(traj("y", "put a cd in shelf", family="G"))
+    assert len(bank) == 1
+
+
+def test_trajectory_field_types_are_checked():
+    with pytest.raises(ValueError):
+        traj("a", "g", family=" ")
+    with pytest.raises(ValueError):
+        em.Trajectory("a", "g", "t", 3, ())  # type: ignore[arg-type]
+    with pytest.raises(TypeError):
+        em.Trajectory.from_dict({"item_id": "a", "goal": "g", "task_type": "t", "family_id": "F", "steps": [],
+                                 "success": "False"})
 
 
 def test_alfworld_adapter_flags_non_train_games_as_test():
@@ -209,6 +250,22 @@ def test_ties_depend_on_query_and_seed_only():
     assert len(others) > 1
 
 
+def test_query_arguments_are_checked():
+    bank = em.ExperienceBank([traj("a", "put a cd in shelf")])
+    ret = em.GoalSimilarityRetriever()
+    with pytest.raises(ValueError):
+        ret.retrieve(bank, "g", query_id="q", query_family="")
+    for bad in (0.0, True, "0"):
+        with pytest.raises(TypeError):
+            ret.retrieve(bank, "g", query_id="q", query_family=None, seed=bad)
+
+
+def test_rendering_refuses_test_items():
+    item = traj("a", "g", is_test=True)
+    with pytest.raises(em.LeakageError):
+        em.build_memory_block([item])
+
+
 def test_k_must_be_positive():
     with pytest.raises(ValueError):
         em.GoalSimilarityRetriever(k=0)
@@ -239,6 +296,8 @@ def test_budget_drops_whole_low_ranked_items():
     assert em.prompt_suffix(none) == em.ACTION_INSTR + em.FORMAT_REMINDER
     with pytest.raises(ValueError):
         em.build_memory_block(items, token_budget=10)
+    with pytest.raises(ValueError):
+        em.ExperienceMemory(em.ExperienceBank(), token_budget=10)
 
 
 class PlanFormatter:
@@ -256,8 +315,9 @@ class PlanFormatter:
 def test_a_new_format_plugs_in_and_the_placebo_follows_its_layout():
     em.register_formatter("test_plan", PlanFormatter, replace=True)
     assert "test_plan" in em.available_formatters()
-    with pytest.raises(ValueError):
-        em.register_formatter("walkthrough_v5b", PlanFormatter)
+    for replace in (False, True):
+        with pytest.raises(ValueError):
+            em.register_formatter("walkthrough_v5b", PlanFormatter, replace=replace)
     assert isinstance(em.get_formatter("test_plan"), em.Formatter)
     bank = em.ExperienceBank([traj("a", "put a cd in shelf"), traj("b", "put a cd in shelf")])
     memory = em.ExperienceMemory(bank, formatter="test_plan", count_tokens=ws)
@@ -283,6 +343,18 @@ def test_placebo_is_token_matched_and_content_free(fixture_bank):
         body = re.sub(r"Retrieved Item \d+:", "", placebo.text)
         assert not (em.content_words(body) & em.content_words(goal))
     assert memory.placebo_for(shown).text == memory.placebo_for(shown).text
+
+
+def test_placebo_records_its_target_and_follows_the_item_count():
+    one = em.build_memory_block([traj("a", "g", n_steps=5)], count_tokens=ws)
+    p = em.placebo_block(one, ws)
+    assert p.target_tokens == one.n_tokens and p.text.count("Retrieved Item") == 1
+    far = em.placebo_block(10 ** 6, ws)
+    assert far.target_tokens == 10 ** 6 and far.n_tokens < far.target_tokens  # the V5B line cap, now visible
+    empty = em.build_memory_block([traj("a", "g")], token_budget=1, count_tokens=ws)
+    assert em.placebo_block(empty, ws).text == "" and em.prompt_suffix(em.placebo_block(empty, ws)).startswith(em.ACTION_INSTR)
+    three = em.placebo_texts(50, ws, n_items=3)
+    assert len(three) == 3 and all(three)
 
 
 def test_placebo_needs_a_counter():

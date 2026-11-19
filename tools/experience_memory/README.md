@@ -5,7 +5,7 @@ to help: before each episode, show the agent the **2 successful walkthroughs fro
 to the current goal**, rendered in the agent's own history format, never from the task's own family.
 
 It also gives you the **token-matched placebo** the lab compared against, so that you can run the same controlled
-comparison on your own agent and model. Standard library only; Python 3.10 or newer.
+comparison on your own agent and model. Standard library only; Python 3.11 or newer.
 
 **Status:** version 0.1.0. The package reproduces the measured arm byte for byte (see [Acceptance](#acceptance-parity-with-the-measured-instrument)).
 Everything beyond that arm (token budget, other formats, family refusal on banks that were not built disjoint) is
@@ -17,11 +17,13 @@ engineering, not a measured result.
 |---|---|---|
 | Two goal-similar expert walkthroughs (k = 2, this package's defaults) raise the solve rate over a token-matched placebo by **+0.169, 95% interval [+0.053, +0.285]** | Lab program **ALFWORLD-LADDER-R4-V5B**: 201 held-out ALFWorld `train` games, Qwen3-4B-Instruct-2507-FP8, 360-item bank whose families are disjoint from the test games. Instrument: [`tools/alfworld_ladder/agent.py`](../alfworld_ladder/agent.py) (its SHA-256 equals the V5B program pin) | `positive` |
 | Two walkthroughs of **other** task types do not help: **+0.015** over the same placebo | ALFWORLD-LADDER-R4-V5B, arm `mismatched_type` | `equivalent` (an effect smaller than the 0.12 threshold in either direction is shown) |
-| The earlier run of the same arm, on a 710-item bank: **+0.240 [+0.177, +0.303]** over placebo, 300 games | [V4 package](../../data/lab/autolab-alfworld-ladder-r4-v4/README.md), [erratum on its H3 verdict](../../docs/11-research-laboratory/errata/2026-11-19-alfworld-ladder-r4-v4-h3-verdict.md) | `practical`, but verdict `measurement_problem`: answers without a parsable action tag rose with memory, so content and format were not separated |
+| The earlier run of this arm (without the V5 format reminder that `prompt_suffix` adds by default), on a 710-item bank: **+0.240 [+0.177, +0.303]** over placebo, 300 games | [V4 package](../../data/lab/autolab-alfworld-ladder-r4-v4/README.md), [erratum on its H3 verdict](../../docs/11-research-laboratory/errata/2026-11-19-alfworld-ladder-r4-v4-h3-verdict.md) | `practical`, but verdict `measurement_problem`: answers without a parsable action tag rose with memory, so content and format were not separated |
 
 **Caveat on V5B.** The V5B result package is not published yet. The V5B numbers above are the lab's report of
 19 November 2026 and cannot yet be recomputed from a public package; until the package is exported, cite them as
-"ALFWORLD-LADDER-R4-V5B, publication pending". The V4 numbers can be recomputed from the linked package
+"ALFWORLD-LADDER-R4-V5B, publication pending". The program prepared 350 test units; the lab's report gives 201
+analysed games. Which games were analysed, and why, will be documented in the package; this README does not
+claim more. No V5B comparison against the no-memory arm is cited here. The V4 numbers can be recomputed from the linked package
 (`scripts/verify_autolab_packages.py`).
 
 Together the two V5B arms say: goal-similar walkthroughs helped, walkthroughs of other task types did not, so the
@@ -90,8 +92,19 @@ placebo = memory.placebo_for(shown, count_tokens=my_model_tokenizer_count)
 placebo_prompt = base_prompt + em.prompt_suffix(placebo)
 ```
 
-For ALFWorld records in the lab's bank format (`tools/alfworld_ladder/data/bank.jsonl`),
-`experience_memory.alfworld.from_lab_record` builds the items and flags every game outside `train` as test data.
+For ALFWorld records in the lab's bank format, `experience_memory.alfworld.from_lab_record` builds the items and
+flags every game outside `train` as test data. That flag alone does not protect a test set drawn from `train`, as
+the lab's are: give the bank your test ids and families as well, and it refuses them at insertion.
+
+```python
+bank = em.ExperienceBank((from_lab_record(r) for r in records),
+                         held_out_ids=test_game_ids, held_out_families=test_families)
+```
+
+The public bank `tools/alfworld_ladder/data/bank.jsonl` is the 710-item V3/V4 bank, **not** the 360-item V5B bank,
+and it is not disjoint from the V5B test games: it shares families with most of them. Do not use it to evaluate on
+V5B games. Families and ids are compared as exact strings, so normalise them first if your sources differ in
+spelling.
 
 `count_tokens` must be the tokenizer of the model you prompt (the lab used vLLM's `/tokenize`). A token budget is
 optional: `ExperienceMemory(bank, token_budget=1200, count_tokens=...)` drops the lowest-ranked walkthrough whole
@@ -99,8 +112,8 @@ until the block fits, and shows nothing (the plain action instruction) if even t
 
 ## The measured rule, exactly
 
-1. **Bank.** Successful trajectories only; an item flagged `is_test` is refused (`LeakageError`), and so is a
-   duplicate id.
+1. **Bank.** Successful trajectories only; an item flagged `is_test`, or whose id or family is held out, is refused
+   (`LeakageError`), and so is a duplicate id. Rendering refuses `is_test` items too.
 2. **Retrieval** (`GoalSimilarityRetriever`, k = 2). Lower-case the goal, take every run of `a`–`z`, drop the stop
    words `a an the some put in on to and of with it then your is`. Score every bank item by Jaccard of these sets.
    Order by score; break ties with `random.Random(int(sha256("<query_id>|<seed>|ret")[:12], 16)).random()`, one
@@ -128,7 +141,8 @@ memory = em.ExperienceMemory(bank, formatter="plan_v6")
 ```
 
 The placebo uses the formatter's `wrap`, so a new format keeps a matched control. A new format is not a measured
-configuration until the lab has measured it against `walkthrough_v5b`.
+configuration until the lab has measured it against `walkthrough_v5b`; the name `walkthrough_v5b` itself cannot be
+re-registered, so a log that says `walkthrough_v5b` always means the measured rendering.
 
 ## Acceptance: parity with the measured instrument
 
@@ -142,11 +156,15 @@ python tools/experience_memory/parity/check_v5b_parity.py private --seeds 0-9   
 python tools/experience_memory/parity/check_v5b_parity.py public --seeds 0-4    # anywhere
 ```
 
-- `private` reads the lab's private V5B folder and refuses inputs that differ from the program's SHA-256 pins. If
-  the folder is absent it prints `SKIPPED` and exits 0 (`--require` makes that exit 2). It prints counts only.
-  Result on 19 November 2026: all 350 V5B units × seeds 0–9, **3,500 comparisons, 0 mismatches**, inputs equal to
-  the program pins.
-- `public` uses the public copy of the instrument and the public 710-item bank. CI runs it
+- `private` reads the lab's private V5B folder (`--v5b-dir`, the variable `EXPERIENCE_MEMORY_V5B_DIR`, or the lab
+  layout) and refuses inputs that differ from the program's SHA-256 pins (instrument, bank, units, families, unit
+  goals). If the folder is absent it prints `SKIPPED` and exits 0 (`--require` makes that exit 2); a selection
+  that would compare nothing exits 2. It prints counts; on a mismatch it also prints the unit and bank ids
+  concerned, so keep that output private. Result on 19 November 2026: all 350 V5B units × seeds 0–9,
+  **3,500 comparisons, 0 mismatches**, inputs equal to the program pins.
+- `public` uses the public 710-item bank and the V5B instrument code as pinned: the working copy of
+  `tools/alfworld_ladder/agent.py` while it equals the pin, else the pinned version from git history, so a later
+  change of the lab's runner does not silently change the reference. CI runs it
   (`tests/test_experience_memory.py`), together with a synthetic fixture whose expected picks and block digests
   were produced by the instrument code
   ([`tests/fixtures/experience-memory-synthetic`](../../tests/fixtures/experience-memory-synthetic/expected.json),

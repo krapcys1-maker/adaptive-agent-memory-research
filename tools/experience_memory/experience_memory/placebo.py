@@ -7,7 +7,13 @@ its content, not of a longer prompt. Rule (V5B ``placebo_items``):
 - repeat the filler lines in order; with ``n`` lines, the first ``ceil(n / 2)`` form item 0 and the rest item 1;
 - for ``n = 2, 3, ...`` count the tokens of the wrapped block; at the first ``n`` that reaches the target, return
   the block with ``n`` or ``n - 1`` lines, whichever is closer to the target (``n`` on a tie);
-- stop at ``max_lines`` lines (399 in V5B) and return the longest block tried.
+- stop at ``max_lines`` lines (399 in V5B) and return the longest block tried. The result records the target, so
+  a block that fell short is visible (``n_tokens < target_tokens``).
+
+V5B always had two items. ``n_items`` (default 2; :meth:`ExperienceMemory.placebo_for` passes the number of shown
+items) splits the lines over that many items, the first items taking one line more when the lines do not divide
+evenly; for two items this is the V5B split. An empty memory block gets an empty placebo, because the memory arm
+then falls back to the no-memory prompt.
 
 The token counter must be the tokenizer of the model under test (V5B: vLLM ``/tokenize`` of Qwen3-4B); a
 whitespace count is fine for tests but not for an experiment.
@@ -32,17 +38,24 @@ DEFAULT_FILLER = (
 
 
 def placebo_texts(target_tokens: int, count_tokens: TokenCounter, *, formatter: Formatter | None = None,
-                  filler: Sequence[str] = DEFAULT_FILLER, max_lines: int = 399) -> list[str]:
-    """The two filler item texts whose wrapped block is closest to ``target_tokens`` (rule in the module docstring)."""
+                  filler: Sequence[str] = DEFAULT_FILLER, max_lines: int = 399, n_items: int = 2) -> list[str]:
+    """The filler item texts whose wrapped block is closest to ``target_tokens`` (rule in the module docstring)."""
     fmt = formatter or get_formatter()
     lines = [ln for ln in filler if ln.strip() and not ln.startswith("#")]
     if not lines:
         raise ValueError("the filler has no usable line")
+    if n_items < 1:
+        raise ValueError("n_items must be at least 1")
 
     def items(n_lines: int) -> list[str]:
         out = [lines[i % len(lines)] for i in range(n_lines)]
-        half = (len(out) + 1) // 2
-        return ["\n".join(out[:half]), "\n".join(out[half:])]
+        q, r = divmod(len(out), n_items)
+        texts, start = [], 0
+        for i in range(n_items):
+            size = q + (1 if i < r else 0)
+            texts.append("\n".join(out[start:start + size]))
+            start += size
+        return texts
 
     prev = items(1)
     prev_n = count_tokens(fmt.wrap(prev))
@@ -56,12 +69,23 @@ def placebo_texts(target_tokens: int, count_tokens: TokenCounter, *, formatter: 
 
 
 def placebo_block(memory: MemoryBlock | int, count_tokens: TokenCounter, *, formatter: Formatter | None = None,
-                  filler: Sequence[str] = DEFAULT_FILLER, max_lines: int = 399) -> MemoryBlock:
+                  filler: Sequence[str] = DEFAULT_FILLER, max_lines: int = 399,
+                  n_items: int | None = None) -> MemoryBlock:
     """A placebo block token-matched to ``memory`` (a :class:`MemoryBlock` or a target token count).
 
-    Pass the formatter that rendered the memory block, so that the placebo uses the same layout.
+    Pass the formatter that rendered the memory block, so that the placebo uses the same layout. ``n_items``
+    defaults to the number of items of ``memory`` (2 when a token count is given).
     """
     fmt = formatter or get_formatter()
-    target = count_tokens(memory.text) if isinstance(memory, MemoryBlock) else int(memory)
-    text = fmt.wrap(placebo_texts(target, count_tokens, formatter=fmt, filler=filler, max_lines=max_lines))
-    return MemoryBlock(text=text, item_ids=(), formatter=f"placebo/{fmt.name}", n_tokens=count_tokens(text))
+    if isinstance(memory, MemoryBlock):
+        if memory.is_empty or not memory.text:
+            return MemoryBlock(text="", item_ids=(), formatter=f"placebo/{fmt.name}", n_tokens=0, target_tokens=0)
+        target = count_tokens(memory.text)
+        n_items = n_items or len(memory.item_ids)
+    else:
+        target = int(memory)
+        n_items = n_items or 2
+    text = fmt.wrap(placebo_texts(target, count_tokens, formatter=fmt, filler=filler, max_lines=max_lines,
+                                  n_items=n_items))
+    return MemoryBlock(text=text, item_ids=(), formatter=f"placebo/{fmt.name}", n_tokens=count_tokens(text),
+                       target_tokens=target)

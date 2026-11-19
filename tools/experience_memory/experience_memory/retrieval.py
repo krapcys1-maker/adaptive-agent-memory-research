@@ -58,7 +58,7 @@ class Retrieval:
     seed: int
     picks: tuple[Pick, ...]
     excluded_ids: tuple[str, ...]
-    top1_similarity: float
+    top1_similarity: float  # best score among the items the query may see (V5B: the whole bank; equal there)
 
     @property
     def items(self) -> tuple[Trajectory, ...]:
@@ -85,8 +85,12 @@ class GoalSimilarityRetriever:
         ``query_family`` is the query's own family: its items are never shown. It is required on purpose; pass
         ``None`` only if the query belongs to no family that the bank could contain.
         """
-        if not query_id:
+        if not isinstance(query_id, str) or not query_id:
             raise ValueError("query_id must be a non-empty string")
+        if query_family is not None and (not isinstance(query_family, str) or not query_family.strip()):
+            raise ValueError("query_family must be a non-empty string or None")
+        if isinstance(seed, bool) or not isinstance(seed, int):
+            raise TypeError(f"seed must be an int, got {seed!r}")  # 0.0 or True would hash differently from 0, 1
         gw = content_words(goal)
         rng = random.Random(stable_hash(query_id, seed, "ret"))
         scored = []

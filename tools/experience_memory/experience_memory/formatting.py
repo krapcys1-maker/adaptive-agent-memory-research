@@ -26,7 +26,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Callable, Protocol, Sequence, runtime_checkable
 
-from .bank import Trajectory
+from .bank import LeakageError, Trajectory
 
 TokenCounter = Callable[[str], int]
 
@@ -66,10 +66,14 @@ class WalkthroughFormatter:
 
 
 _REGISTRY: dict[str, Callable[[], Formatter]] = {WalkthroughFormatter.name: WalkthroughFormatter}
+_PROTECTED = frozenset({WalkthroughFormatter.name})  # the measured format can never be replaced under its name
 
 
 def register_formatter(name: str, factory: Callable[[], Formatter], *, replace: bool = False) -> None:
-    """Make a format available by name. Refuses to overwrite a registered name unless ``replace=True``."""
+    """Make a format available by name. Refuses to overwrite a registered name unless ``replace=True``, and
+    never overwrites the measured ``walkthrough_v5b``."""
+    if name in _PROTECTED:
+        raise ValueError(f"formatter {name!r} is the measured format and cannot be replaced")
     if name in _REGISTRY and not replace:
         raise ValueError(f"formatter {name!r} is already registered")
     _REGISTRY[name] = factory
@@ -92,7 +96,8 @@ class MemoryBlock:
 
     ``text`` is the block (the ``{retrieved_exp}`` of the prompt wrapper). ``item_ids`` are the shown items in order;
     ``dropped_ids`` are retrieved items left out to respect the token budget. ``n_tokens`` is the block's token
-    count when a counter was given, else ``None``.
+    count when a counter was given, else ``None``. ``target_tokens`` is set on a placebo: the token count it was
+    matched to, so ``n_tokens - target_tokens`` is the remaining gap.
     """
 
     text: str
@@ -100,6 +105,7 @@ class MemoryBlock:
     formatter: str
     dropped_ids: tuple[str, ...] = ()
     n_tokens: int | None = None
+    target_tokens: int | None = None
 
     @property
     def is_empty(self) -> bool:
@@ -113,7 +119,13 @@ def build_memory_block(items: Sequence[Trajectory], formatter: Formatter | None 
     Without a budget (the measured V5B setting) every item is shown. With ``token_budget`` the lowest-ranked items
     are dropped, whole, until the block fits; an item is never cut in the middle. If not even the first item fits,
     the block is empty: use the no-memory prompt then. A budget that is never binding gives the V5B block exactly.
+
+    Items flagged as test data are refused here too (``LeakageError``). Family exclusion is the retriever's job:
+    this function renders whatever it is given.
     """
+    for it in items:
+        if it.is_test:
+            raise LeakageError(f"refusing to render {it.item_id!r}: it is flagged as test data")
     fmt = formatter or get_formatter()
     if token_budget is not None and count_tokens is None:
         raise ValueError("a token_budget needs a count_tokens function (the tokenizer of the model you prompt)")

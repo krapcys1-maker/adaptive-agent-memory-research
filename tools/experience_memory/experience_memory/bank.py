@@ -3,12 +3,16 @@
 Each item is one solved episode: its goal, its task type, the family it belongs to (the group of episodes that
 share a setting, so that a test task never sees a demonstration of its own family) and its steps.
 
-The bank refuses three kinds of item at insertion:
+The bank refuses at insertion:
 - an item flagged as test data (``is_test=True``);
+- an item whose id or family is in the bank's held-out set (``held_out_ids``, ``held_out_families``): give it the
+  ids and families of your test tasks when the test tasks come from the same split as the bank (in V5B both were
+  ALFWorld ``train`` games, so a split flag alone would not have protected anything);
 - an item that was not solved (``success=False``): the measured arm shows successful walkthroughs only;
 - a second item with an ``item_id`` already in the bank.
 
-Retrieval (``retrieval.py``) additionally refuses, per query, every item of the query's own family.
+Retrieval (``retrieval.py``) additionally refuses, per query, every item of the query's own family. Families and ids
+are compared as exact strings: normalise them before you build the bank if your sources spell them differently.
 """
 from __future__ import annotations
 
@@ -56,8 +60,12 @@ class Trajectory:
             if not isinstance(s, Step):
                 raise TypeError(f"{self.item_id}: steps must be Step objects, got {type(s).__name__}")
         for name in ("item_id", "family_id", "task_type"):
-            if not getattr(self, name):
-                raise ValueError(f"trajectory field {name!r} must be a non-empty string")
+            value = getattr(self, name)
+            if not isinstance(value, str) or not value.strip():
+                raise ValueError(f"trajectory field {name!r} must be a non-empty string, got {value!r}")
+        for name in ("success", "is_test"):
+            if not isinstance(getattr(self, name), bool):
+                raise TypeError(f"trajectory field {name!r} must be a bool, got {getattr(self, name)!r}")
 
     def to_dict(self) -> dict[str, Any]:
         return {"item_id": self.item_id, "goal": self.goal, "task_type": self.task_type,
@@ -80,9 +88,12 @@ class ExperienceBank:
     instrument does), so the same items in the same order always give the same picks.
     """
 
-    def __init__(self, items: Iterable[Trajectory] = ()) -> None:
+    def __init__(self, items: Iterable[Trajectory] = (), *, held_out_ids: Iterable[str] = (),
+                 held_out_families: Iterable[str] = ()) -> None:
         self._items: list[Trajectory] = []
         self._ids: set[str] = set()
+        self.held_out_ids = frozenset(held_out_ids)
+        self.held_out_families = frozenset(held_out_families)
         for it in items:
             self.add(it)
 
@@ -91,6 +102,8 @@ class ExperienceBank:
             raise TypeError(f"expected Trajectory, got {type(item).__name__}")
         if item.is_test:
             raise LeakageError(f"refusing {item.item_id!r}: it is flagged as test data")
+        if item.item_id in self.held_out_ids or item.family_id in self.held_out_families:
+            raise LeakageError(f"refusing {item.item_id!r}: its id or family {item.family_id!r} is held out")
         if not item.success:
             raise ValueError(f"refusing {item.item_id!r}: the bank holds successful trajectories only")
         if item.item_id in self._ids:
@@ -120,6 +133,8 @@ class ExperienceBank:
                 f.write(json.dumps(it.to_dict(), ensure_ascii=False) + "\n")
 
     @classmethod
-    def from_jsonl(cls, path: str | Path) -> "ExperienceBank":
+    def from_jsonl(cls, path: str | Path, *, held_out_ids: Iterable[str] = (),
+                   held_out_families: Iterable[str] = ()) -> "ExperienceBank":
         with open(path, encoding="utf-8") as f:
-            return cls(Trajectory.from_dict(json.loads(line)) for line in f if line.strip())
+            return cls((Trajectory.from_dict(json.loads(line)) for line in f if line.strip()),
+                       held_out_ids=held_out_ids, held_out_families=held_out_families)

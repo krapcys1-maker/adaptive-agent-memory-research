@@ -33,6 +33,8 @@ class ExperienceMemory:
         self.bank = bank
         self.retriever = GoalSimilarityRetriever(k=k)
         self.formatter = get_formatter(formatter) if isinstance(formatter, str) else (formatter or get_formatter())
+        if token_budget is not None and count_tokens is None:
+            raise ValueError("a token_budget needs count_tokens (the tokenizer of the model you prompt)")
         self.token_budget = token_budget
         self.count_tokens = count_tokens
 

@@ -1,7 +1,7 @@
 """Write the public synthetic fixture that pins the retriever and the formatter in CI.
 
 The bank is made up (ALFWorld-like train games, no real game data). The expected picks and block digests come from
-the V5B instrument code (``tools/alfworld_ladder/agent.py``, whose SHA-256 equals the V5B program pin), not from
+the V5B instrument code (``tools/alfworld_ladder/agent.py`` at the SHA-256 of the V5B program pin), not from
 the package, so the fixture is an independent record of the measured rule. Queries are built to hit ties, a goal
 with no content word in common with the bank, punctuation and case. Cases with a family exclusion have no instrument
 counterpart (the V5B bank and units share no family); their expectation is derived from the no-exclusion picks by
@@ -19,7 +19,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from check_v5b_parity import PUBLIC_AGENT, V5B_PINS, load_reference, sha256_file  # noqa: E402
+from check_v5b_parity import PUBLIC_AGENT, V5B_PINS, load_reference, pinned_public_source  # noqa: E402
 
 OUT = HERE.parents[2] / "tests" / "fixtures" / "experience-memory-synthetic"
 
@@ -90,10 +90,11 @@ EXCLUSIONS = [(0, 0, "pick_and_place_simple-CD-None-Shelf-301"), (2, 1, "pick_he
 
 
 def main() -> int:
-    if sha256_file(PUBLIC_AGENT) != V5B_PINS["src/agent.py"]:
-        print("refusing: the public instrument differs from the V5B pin")
+    source, origin = pinned_public_source()
+    if source is None:
+        print("refusing: the pinned V5B instrument is neither in the working copy nor in git history")
         return 1
-    ref = load_reference(PUBLIC_AGENT)
+    ref = load_reference(PUBLIC_AGENT, source)
     bank = json.loads(json.dumps(BANK))
     for b in bank:
         b["goal"] = ref.goal_of(b["initial_observation"])
