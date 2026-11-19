@@ -1,0 +1,61 @@
+{
+ "schema": "aamr-parity-certificate/1",
+ "component": {
+  "name": "experience_memory",
+  "version": "0.1.0",
+  "commit": "7ec35fa441153c8b7b6d64c0c9fa74ec60486101"
+ },
+ "program": "ALFWORLD-LADDER-R4-V5B",
+ "instrument": {
+  "pins": [
+   "0630a0500be0684f6b66c526dbd23320d309f45fb5903f6c8567593069d67ab2",
+   "58adea8dc276587dd0bdf35b9d5bcbb615e1636cbe43b79f142823586ff0e97b",
+   "ac91b81d689a4994bf60ea660b7294d5606792ca1e6e46274243d09e2720b834",
+   "ad31bc301aec1428592edba489fe69a2fe8ed808b59621cf50ea465859496b89",
+   "c840232aa7364c1a737d16892c03cbacd38326cfd8808145e323ef97e43ce21d",
+   "dee4622fb6e85d9a0b7b740e1e438863b8181c87dbe39a7ade66dcbdbd259e90"
+  ],
+  "files": {
+   "instrument/length_check.json": "0630a0500be0684f6b66c526dbd23320d309f45fb5903f6c8567593069d67ab2",
+   "instrument/memory_build.md": "ad31bc301aec1428592edba489fe69a2fe8ed808b59621cf50ea465859496b89",
+   "instrument/pilot_games.txt": "c840232aa7364c1a737d16892c03cbacd38326cfd8808145e323ef97e43ce21d",
+   "instrument/placebo.txt": "ac91b81d689a4994bf60ea660b7294d5606792ca1e6e46274243d09e2720b834",
+   "instrument/prompt_examples.txt": "58adea8dc276587dd0bdf35b9d5bcbb615e1636cbe43b79f142823586ff0e97b",
+   "instrument/prompt_template.txt": "dee4622fb6e85d9a0b7b740e1e438863b8181c87dbe39a7ade66dcbdbd259e90"
+  },
+  "units_sha256": "65112a6627d49fa560e6d33ae78a5ec84148c676af91419ce4a593c01437a1b9",
+  "runner_pins": {
+   "src/agent.py": "c5c5eea0545eba11fbd27435296a80bb88e0c31e707762862f98417caba9636a",
+   "data/bank.jsonl": "67a747a0a548f1554a3d2dcb5eef64ca7b025cd4eabac8ced3d1e5103a3d8ef8",
+   "data/units.json": "65112a6627d49fa560e6d33ae78a5ec84148c676af91419ce4a593c01437a1b9",
+   "data/families.json": "b94ce0e0ed56d4792453d67aab684948e4e0ab29c7e02e0fdb2ee271e3a0b0ba",
+   "data/unit_goals.json": "afedda7b6408a12433ffb18954b03bf288a8b1faa75c134269a50fd553553838"
+  }
+ },
+ "unit_set": {
+  "n": 350,
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "bank_items": 360,
+  "units_with_exclusions": 0
+ },
+ "test": {
+  "comparisons": 3500,
+  "mismatches": 0,
+  "command": "python tools/experience_memory/parity/check_v5b_parity.py private --seeds 0-9 --require",
+  "parity_script_sha256": "bf566d43b79dd581afbd96edc0c896b16bffac500482d023c2ab853cb78283de",
+  "compared": "chosen items, memory block bytes, placebo block bytes (whitespace token counter on both sides), top1/memory similarity, no exclusion",
+  "log": "tools/experience_memory/parity/PARITY_LOG.txt",
+  "log_sha256": "990ee394e16ffebd67707bd1b6bfd74667b75b130eff48dc79fd0543693c88b7"
+ }
+}
