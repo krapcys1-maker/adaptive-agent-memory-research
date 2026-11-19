@@ -4,7 +4,7 @@
     python tasks.py check     the local part of what a pull request must pass
     python tasks.py fast      the sub-second subset, for a git hook
     python tasks.py test      the test suite alone
-    python tasks.py audit     the two audits alone
+    python tasks.py audit     the audits alone
     python tasks.py --list    show the targets and what they run
 
 Why a Python script and not a Makefile
@@ -72,6 +72,12 @@ CLAIM_AUDIT = Gate(
     "declared hashes, registry paths, cross-references (CI job: Repository claim audit)",
     13.6,
 )
+AUTOLAB_PACKAGES = Gate(
+    "autolab-packages",
+    ["scripts/verify_autolab_packages.py"],
+    "published autolab numbers recomputed from each package (CI job: Autolab package verification)",
+    1.5,
+)
 # Not a CI job. It reports on the source pipeline rather than gating on it, so
 # it is deliberately absent from `check`: adding it there would mean claiming
 # CI enforces something it does not.
@@ -84,12 +90,12 @@ SOURCE_PIPELINE = Gate(
 
 TARGETS: dict[str, tuple[str, list[Gate]]] = {
     "check": (
-        "the Tests, Project-memory integrity and Repository claim audit jobs of CI, in CI's order "
-        "(the kernel-mutation, other-interpreter and canonical-store-guard jobs run only in CI)",
-        [TESTS, MEMORY_INTEGRITY, CLAIM_AUDIT],
+        "the Tests, Project-memory integrity, Repository claim audit and Autolab package verification jobs of CI, "
+        "in CI's order (the kernel-mutation, other-interpreter and canonical-store-guard jobs run only in CI)",
+        [TESTS, MEMORY_INTEGRITY, CLAIM_AUDIT, AUTOLAB_PACKAGES],
     ),
     "test": ("the test suite alone", [TESTS]),
-    "audit": ("both audits, without the test suite", [CLAIM_AUDIT, SOURCE_PIPELINE]),
+    "audit": ("the audits, without the test suite", [CLAIM_AUDIT, AUTOLAB_PACKAGES, SOURCE_PIPELINE]),
     "fast": (
         "the subset that finishes in well under five seconds",
         [MEMORY_INTEGRITY, SOURCE_PIPELINE],
