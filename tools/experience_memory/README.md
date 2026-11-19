@@ -188,7 +188,9 @@ The certificate is never written by hand. On the lab machine:
 
 In CI, `tests/test_experience_memory_parity_cert.py` recomputes the certificate from the log. The test fails as
 soon as the package code differs from the certified commit, so a changed package needs a new certified run before
-it can claim parity.
+it can claim parity. CI cannot re-run the private check itself: the log's authenticity rests on the run on the lab
+machine. Anyone with the private folder can repeat `run` and compare the log's SHA-256, because the run is
+deterministic.
 
 ## Licence and credit
 

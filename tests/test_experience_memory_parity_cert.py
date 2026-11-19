@@ -61,7 +61,10 @@ def test_component_pins_a_commit_version_and_unchanged_code():
     comp = CERT["component"]
     assert comp["name"] == mpc.NAME and re.fullmatch(r"[0-9a-f]{40}", comp["commit"])
     if git("cat-file", "-e", comp["commit"] + "^{commit}").returncode != 0:
-        pytest.skip("the certified commit is not in this clone (shallow checkout)")
+        if git("rev-parse", "--is-shallow-repository").stdout.strip() == "true":
+            pytest.skip("the certified commit is not in this shallow clone")
+        pytest.fail(f"the certified commit {comp['commit'][:12]} is not in the history: a squash or rebase merge "
+                    "dropped it, or the certificate pins an unmerged commit")
     assert git("merge-base", "--is-ancestor", comp["commit"], "HEAD").returncode == 0
     at_commit = git("show", f"{comp['commit']}:{mpc.PACKAGE_INIT}").stdout
     assert re.search(r"^__version__\s*=\s*[\"']" + re.escape(comp["version"]) + r"[\"']\s*$", at_commit, re.M)
@@ -80,3 +83,5 @@ def test_build_refuses_a_failing_or_foreign_log():
         mpc.build_cert(LOG.replace('"mode": "private"', '"mode": "public"'))
     with pytest.raises(ValueError):
         mpc.build_cert("something else\n")
+    with pytest.raises(ValueError):
+        mpc.build_cert(LOG.split(mpc.SEPARATOR)[0] + mpc.SEPARATOR + "\nPASS: 0 mismatches\n")

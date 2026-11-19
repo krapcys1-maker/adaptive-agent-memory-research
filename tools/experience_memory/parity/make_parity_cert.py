@@ -20,6 +20,10 @@ Two steps, so that the certificate is never written by hand:
 
 The log holds only digests and counts (no unit ids, no bank items); a run with a mismatch is refused, so the
 mismatch details that would name units never reach it.
+
+Limit: CI cannot re-run the private check, so it verifies the certificate against the log, git and the published
+program record, not the log against a fresh run. The log's authenticity rests on the run on the lab machine; anyone
+with the private folder can re-run ``run`` and compare the log's SHA-256 (the run is deterministic).
 """
 from __future__ import annotations
 
@@ -95,6 +99,12 @@ def run(folder: Path) -> int:
     if dirty or git("diff", "--name-only", commit, "--", PACKAGE_DIR):
         print("refusing: the package code or the parity script has uncommitted changes")
         return 2
+    on_main = subprocess.run(["git", "merge-base", "--is-ancestor", commit, "origin/main"], cwd=REPO,
+                             capture_output=True).returncode == 0
+    if not on_main:  # the lab accepts only a commit on AAMR main (a squash or rebase merge would drop it)
+        print(f"refusing: the package commit {commit[:12]} is not on origin/main; merge the package first "
+              "(with a merge commit) and certify the merged code")
+        return 2
     env = program_envelope()
     files = instrument_files(env)
     for rel, digest in files.items():
@@ -141,8 +151,10 @@ def parse_log(text: str) -> tuple[dict, dict]:
         raise ValueError("not a parity log")
     head, output = ("\n" + rest).split(f"\n{SEPARATOR}\n", 1)
     header = json.loads(head)
-    summary_text = output[: output.index("\n}\n") + 2]
-    summary = json.loads(summary_text)
+    end = output.find("\n}\n")
+    if end < 0:
+        raise ValueError("not a parity log: no parity summary")
+    summary = json.loads(output[: end + 2])
     if not output.rstrip("\n").endswith("PASS: 0 mismatches"):
         raise ValueError("the parity output does not end with PASS")
     return header, summary
