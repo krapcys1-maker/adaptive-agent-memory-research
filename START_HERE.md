@@ -1,5 +1,7 @@
 # Start Here
 
+The repository changed course on 15 November 2026: start with the [README](README.md) and its [experience-memory ladder](README.md#how-we-work-the-ladder), then [Status and where help is wanted #84](../../issues/84) and the [volunteer-compute protocol](docs/research-map/VOLUNTEER_COMPUTE.md). The earlier reading path below is kept as an archive of the previous lines.
+
 Before substantial work, inspect [memory/CURRENT_STATE.md](memory/CURRENT_STATE.md), with the full diagnostic history in [memory/DIAGNOSTICS_ARCHIVE.md](memory/DIAGNOSTICS_ARCHIVE.md), and retrieve a focused context bundle through the project-memory MCP server or CLI. See [memory/README.md](memory/README.md) for setup and usage.
 
 For the November writing-agent experiments, WMB, the memory kernel and LifeSim,
@@ -61,7 +63,7 @@ For every important claim:
 - **Speculation:** useful idea that is not yet operationalized.
 - **Rejected:** contradicted, non-falsifiable, or empirically unhelpful.
 
-## Immediate reading path
+## Archive: previous reading path
 
 1. [Scope and boundaries](docs/00-project/scope.md)
 2. [Definitions](docs/00-project/definitions.md)
