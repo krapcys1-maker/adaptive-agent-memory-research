@@ -27,8 +27,8 @@ Its question: Does showing the 4B agent two goal-similar expert ALFWorld walkthr
 
 | program | units | primary comparison | difference | 95% interval | state | direction status | read before citing |
 |---|---|---|---|---|---|---|---|
-| [ALFWORLD-LADDER-R4-V5B](data/lab/autolab-alfworld-ladder-r4-v5b/README.md) | 201 | `retrieved_task` − `placebo` | +0.169 | [+0.053, +0.285] | positive | open | [caveats (5)](data/lab/autolab-alfworld-ladder-r4-v5b/README.md#caveats) |
-| [ALFWORLD-LADDER-R4-V5B](data/lab/autolab-alfworld-ladder-r4-v5b/README.md) | 201 | `mismatched_type` − `placebo` | +0.015 | [-0.067, +0.097] | equivalent | closed | [caveats (5)](data/lab/autolab-alfworld-ladder-r4-v5b/README.md#caveats) |
+| [ALFWORLD-LADDER-R4-V5B](data/lab/autolab-alfworld-ladder-r4-v5b/README.md) | 201 | `retrieved_task` − `placebo` | +0.169 | [+0.053, +0.285] | positive | open | [caveats (5)](data/lab/autolab-alfworld-ladder-r4-v5b/README.md#caveats), [addendum: secondary contrast](docs/11-research-laboratory/errata/2026-11-19-alfworld-ladder-r4-v5b-secondary-contrast.md) |
+| [ALFWORLD-LADDER-R4-V5B](data/lab/autolab-alfworld-ladder-r4-v5b/README.md) | 201 | `mismatched_type` − `placebo` | +0.015 | [-0.067, +0.097] | equivalent | closed | [caveats (5)](data/lab/autolab-alfworld-ladder-r4-v5b/README.md#caveats), [addendum: secondary contrast](docs/11-research-laboratory/errata/2026-11-19-alfworld-ladder-r4-v5b-secondary-contrast.md) |
 | [ALFWORLD-LADDER-R4-V4](data/lab/autolab-alfworld-ladder-r4-v4/README.md) | 300 | `retrieved_task` − `placebo` | +0.240 | [+0.177, +0.303] | practical | measurement_problem | [caveats (3)](data/lab/autolab-alfworld-ladder-r4-v4/README.md#caveats), [erratum](docs/11-research-laboratory/errata/2026-11-19-alfworld-ladder-r4-v4-h3-verdict.md) |
 | [ALFWORLD-LADDER-R4-V3](data/lab/autolab-alfworld-ladder-r4-v3/README.md) | 100 | `retrieved_task` − `placebo` | +0.070 | [-0.042, +0.182] | inconclusive | measurement_problem | [caveats (2)](data/lab/autolab-alfworld-ladder-r4-v3/README.md#caveats) |
 
