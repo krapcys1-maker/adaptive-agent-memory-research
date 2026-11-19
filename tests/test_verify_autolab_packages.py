@@ -502,3 +502,24 @@ def test_rounding_tolerance() -> None:
     assert m.agrees(0.177091, 0.177091, 6) and not m.agrees(0.177091, 0.177093, 6)
     assert m.agrees(91, 91) and not m.agrees(91, 92)
     assert not m.agrees(0.5, None)
+
+
+def test_expected_state_verdict_rule_matches_the_lab() -> None:
+    """program.hypothesis_verdict (lab code from 2026-11-19): V4 H3 expected positive_below_sesoi, state practical."""
+    m = load_module()
+    h3 = {"predicted": "positive", "expected_state": "positive_below_SESOI"}
+    assert m.expected_state_verdict(h3, "practical", [0.177, 0.303], 0.12) == ("refuted", "expected_state=positive_below_sesoi")
+    assert m.lab_verdict("positive", "practical", True, False, hyp=h3, ci=[0.177, 0.303], sesoi=0.12) == "refuted"
+    assert m.lab_verdict("positive", "practical", True, False) == "supported"          # older packages: direction only
+    pr = {"predicted": "positive", "expected_state": "practical"}
+    assert m.expected_state_verdict(pr, "positive", [0.02, 0.10], 0.12)[0] == "refuted"
+    assert m.expected_state_verdict(pr, "positive", [0.05, 0.28], 0.12)[0] == "inconclusive"
+    assert m.expected_state_verdict({"predicted": "null", "expected_state": "negative"}, "equivalent", [-0.05, 0.05], 0.12)[0] == "inconclusive"
+    assert m.expected_state_verdict({"predicted": "null"}, "equivalent", [-0.05, 0.05], 0.12) == ("supported", "kierunek predicted")
+    assert m.expected_state_verdict(pr, "inconclusive", [-0.1, 0.3], 0.12)[0] == "inconclusive"
+    assert m.lab_verdict("positive", "practical", True, True, hyp=pr, ci=[0.2, 0.3], sesoi=0.12) == "disputed"
+    assert m.expected_state_verdict({"predicted": "positive", "expected_state": "positive_below_sesoi"}, "equivalent", [-0.01, 0.08], 0.12)[0] == "inconclusive"
+    eq = {"predicted": "null", "expected_state": "equivalent"}
+    assert m.expected_state_verdict(eq, "negative", [-0.10, -0.01], 0.12)[0] == "supported"
+    assert m.expected_state_verdict(eq, "negative", [-0.2, -0.01], 0.12)[0] == "inconclusive"
+    assert m.expected_state_verdict(eq, "negative", [-0.3, -0.13], 0.12)[0] == "refuted"
