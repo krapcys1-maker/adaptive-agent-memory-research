@@ -1,0 +1,87 @@
+{
+ "task": "autolab ALFWORLD-LADDER-R4-V5B",
+ "published": [
+  {
+   "path": "README.md",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v5b/README.md",
+   "sha256": "5747292b6a545bcc738124d2283317f0b60429d18ff641f50e1234c599d7db22",
+   "sha256_source": "5747292b6a545bcc738124d2283317f0b60429d18ff641f50e1234c599d7db22",
+   "bytes": 5662,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "knowledge.jsonl",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v5b/knowledge.jsonl",
+   "sha256": "bf6a0d41a6b5814cd2afc56cc73f23f334b081911668f1ba3a98ac2fbea73bca",
+   "sha256_source": "bf6a0d41a6b5814cd2afc56cc73f23f334b081911668f1ba3a98ac2fbea73bca",
+   "bytes": 162529,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "PROVENANCE.json",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v5b/PROVENANCE.json",
+   "sha256": "4e5fe15284617a5f9d33e4f98756411bcf3fe3a1fee09bf6e4a6b8b0ffa2a073",
+   "sha256_source": "4e5fe15284617a5f9d33e4f98756411bcf3fe3a1fee09bf6e4a6b8b0ffa2a073",
+   "bytes": 2368,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "verify_provenance.py",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v5b/verify_provenance.py",
+   "sha256": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "sha256_source": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "bytes": 1500,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "per_unit.csv",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v5b/per_unit.csv",
+   "sha256": "a7466cfd73fcfe0e64c157678d09903d7600d4fda45cccec12e3a0eb21c78471",
+   "sha256_source": "a7466cfd73fcfe0e64c157678d09903d7600d4fda45cccec12e3a0eb21c78471",
+   "bytes": 123923,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "NV_BASELINE.json",
+   "target": "data/lab/autolab-alfworld-ladder-r4-v5b/NV_BASELINE.json",
+   "sha256": "637265f1ad65d106611ca5ad4993600bdb6722ba5d1ecf26eae2c31e1603c7f8",
+   "sha256_source": "637265f1ad65d106611ca5ad4993600bdb6722ba5d1ecf26eae2c31e1603c7f8",
+   "bytes": 3312,
+   "edits": [
+    "none"
+   ]
+  }
+ ],
+ "private": [
+  {
+   "to": "private/autolab/ALFWORLD-LADDER-R4-V5B/final",
+   "files": 6,
+   "moved": false,
+   "what": "pakiet final (rejestr, pochodzenie)"
+  },
+  {
+   "to": "private/autolab/ALFWORLD-LADDER-R4-V5B/raw/c1",
+   "files": 11,
+   "moved": false,
+   "what": "surowe dane przebiegu c1"
+  }
+ ],
+ "paths_are_relative": true,
+ "protected_check": {
+  "result": "withheld",
+  "withheld": [
+   "pakiet final (rejestr, pochodzenie)",
+   "surowe dane przebiegu c1"
+  ]
+ }
+}

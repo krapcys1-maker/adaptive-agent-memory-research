@@ -1,0 +1,73 @@
+{
+ "program": "ALFWORLD-LADDER-R4-V5B",
+ "goal": "Does showing the 4B agent two goal-similar expert ALFWorld walkthroughs (rung 4), or two length-matched walkthroughs of unrelated task types, raise the solve rate on fresh held-out train games above a token-matched placebo block?",
+ "domain": "command-run",
+ "objects": 38,
+ "knowledge_sha256": "bf6a0d41a6b5814cd2afc56cc73f23f334b081911668f1ba3a98ac2fbea73bca",
+ "integrity_problems": [],
+ "raw": [
+  {
+   "run": "run:6ef0cdae4f7733cb",
+   "raw_sha256": "ea2674a913171d141cfcefd727d20232303ea9a5e839745bac32b82a50332545",
+   "records": 804,
+   "file": "raw_sequential.jsonl",
+   "location": "private/autolab/ALFWORLD-LADDER-R4-V5B/raw/c1/raw_sequential.jsonl",
+   "full_log": {
+    "file": "raw.jsonl",
+    "location": "private/autolab/ALFWORLD-LADDER-R4-V5B/raw/c1/raw.jsonl",
+    "role": "pełny dziennik wykonawcy (nie wszystkie rekordy weszły do analizy)",
+    "sha256": "cc9552aa4fb8d31197647ddca9261eb27110b1c69d7e8024bde73cdf1ac029fa",
+    "records": 899
+   }
+  }
+ ],
+ "per_unit": {
+  "written": true,
+  "rows": 804,
+  "columns": [
+   "cycle",
+   "unit",
+   "arm",
+   "seed",
+   "solved",
+   "steps",
+   "empty_retries",
+   "invalid_no_action_tag",
+   "invalid_actions",
+   "memory_tokens",
+   "truncated",
+   "untagged_not_truncated",
+   "top1_similarity",
+   "memory_similarity",
+   "mismatched_length_diff",
+   "overlap_with_retrieved",
+   "tokens",
+   "n_memory_sources",
+   "error"
+  ],
+  "protocol_counters": [],
+  "coverage": {
+   "solved": "804/804",
+   "steps": "804/804",
+   "empty_retries": "804/804",
+   "invalid_no_action_tag": "804/804",
+   "invalid_actions": "804/804",
+   "memory_tokens": "804/804",
+   "truncated": "804/804",
+   "untagged_not_truncated": "804/804",
+   "top1_similarity": "804/804",
+   "memory_similarity": "402/804",
+   "mismatched_length_diff": "201/804",
+   "overlap_with_retrieved": "201/804",
+   "tokens": "804/804"
+  },
+  "empty_cell": "brak odczytu w rekordzie (nie zero)",
+  "check": {
+   "comparisons_checked": 2,
+   "mismatches": []
+  }
+ },
+ "generated_by": "kordynator autolab (eksport)",
+ "exported_at": "2026-11-19T08:39:56.580947+00:00",
+ "note": "Każdy obiekt ma sha256 z kanonicznego JSON (rodzaj, program, treść, rodzice); sprawdzenie: python verify_provenance.py knowledge.jsonl"
+}
