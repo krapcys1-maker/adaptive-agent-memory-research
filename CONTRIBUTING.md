@@ -34,9 +34,11 @@ python tasks.py --list    # what each target runs, and roughly how long it takes
 For the newer parts of the repository, run only what you touched:
 
 ```bash
-python -m pytest -q tests/test_wmb_memory_kernel.py tests/test_wmb_kernel_v2.py   # the memory module: 22 + 94 tests, about 25 s, needs only pytest
-python -m pytest -q tests/test_wmb_*.py               # the writer-memory benchmark and the module: 309 tests, about a minute
-python -m pytest -q tests/test_lifesim_*.py           # LifeSim: 859 tests, about 2 minutes
+python -m pytest -q tests/test_wmb_memory_kernel.py tests/test_wmb_kernel_v2.py   # the memory module: 116 tests, about 25 s, needs only pytest
+python -m pytest -q tests/test_wmb_*.py               # the writer-memory benchmark and the module: 450 tests, about a minute
+python -m pytest -q tests/test_lifesim_*.py           # LifeSim: 867 tests, about 2 minutes
+
+Counts measured on 19 November 2026 at `c5087a4`: WMB 450, kernel 116 and LifeSim 867 tests passed, with no skipped tests.
 ```
 
 Each gate is still an ordinary script, so you can always run one directly —
@@ -100,10 +102,10 @@ Since November 2026 part of the work is a memory for an agent that writes, and t
 
 | Area | Where | Run | Worth knowing |
 |---|---|---|---|
-| The memory module | live line: `scripts/wmb/kernel/memory_kernel.py` (0.2.0), `tests/test_wmb_kernel_v2.py`; frozen: `scripts/wmb/memory_kernel.py` (0.1.0), `tests/test_wmb_memory_kernel.py` | `python -m pytest -q tests/test_wmb_memory_kernel.py tests/test_wmb_kernel_v2.py` (22 + 94 tests, about 25 s, pytest only; CI runs them on Python 3.14 too) | One standard-library file with no effects on import. Version 0.1.0 is frozen as the instrument of WMB-R1: its digest is declared in that study's `config.json`, so the file is not edited (see "Frozen files" below). Version 0.2.0 is now pinned by nine experiment manifests as well, so it is not edited either: the next kernel version is a new versioned module next to it, with its own `VERSION`, CHANGELOG and tests (the owner's decision of 2026-11-13; see `scripts/wmb/kernel/README.md`) |
-| The writer-memory benchmark (WMB) | `scripts/wmb/`, `data/lab/wmb-v0/`, `data/lab/wmb-r1-retrieval/`, [specification](docs/11-research-laboratory/memory-benchmark-spec-v0.md) | `python -m pytest -q tests/test_wmb_*.py` (403 tests, about a minute; needs `requirements-dev.txt`) | The judge battery, the small-sample statistics, the record contract and R1. Experiments on a live account's texts publish aggregates only, so some pipelines cannot be re-run outside the maintainers' machine; their tests run on invented fixtures |
+| The memory module | live line: `scripts/wmb/kernel/memory_kernel.py` (0.2.0), `tests/test_wmb_kernel_v2.py`; frozen: `scripts/wmb/memory_kernel.py` (0.1.0), `tests/test_wmb_memory_kernel.py` | `python -m pytest -q tests/test_wmb_memory_kernel.py tests/test_wmb_kernel_v2.py` (116 tests, about 25 s, pytest only; CI runs them on Python 3.14 too) | One standard-library file with no effects on import. Version 0.1.0 is frozen as the instrument of WMB-R1: its digest is declared in that study's `config.json`, so the file is not edited (see "Frozen files" below). Version 0.2.0 is now pinned by nine experiment manifests as well, so it is not edited either: the next kernel version is a new versioned module next to it, with its own `VERSION`, CHANGELOG and tests (the owner's decision of 2026-11-13; see `scripts/wmb/kernel/README.md`) |
+| The writer-memory benchmark (WMB) | `scripts/wmb/`, `data/lab/wmb-v0/`, `data/lab/wmb-r1-retrieval/`, [specification](docs/11-research-laboratory/memory-benchmark-spec-v0.md) | `python -m pytest -q tests/test_wmb_*.py` (450 tests, about a minute; needs `requirements-dev.txt`) | The judge battery, the small-sample statistics, the record contract and R1. Experiments on a live account's texts publish aggregates only, so some pipelines cannot be re-run outside the maintainers' machine; their tests run on invented fixtures |
 | AAM experiments | `data/lab/aam-*/` (each README is the preregistration and the results) | see the README of the experiment (most have a "Files" section) | Not entered in `data/lab/experiment-registry.csv`. Anything that calls a hosted model needs an issue and a decision first (see below) |
-| LifeSim | `scripts/corpus/lifesim/`, `scripts/lifesim/`, `data/lab/aam-lifesim/` | `python -m pytest -q tests/test_lifesim_*.py` (859 tests, about 2 minutes; ten of the twelve files need only pytest) | A deterministic generator of synthetic lives. Use development seeds 0 to 999 only |
+| LifeSim | `scripts/corpus/lifesim/`, `scripts/lifesim/`, `data/lab/aam-lifesim/` | `python -m pytest -q tests/test_lifesim_*.py` (867 tests, about 2 minutes; ten of the twelve files need only pytest) | A deterministic generator of synthetic lives. Use development seeds 0 to 999 only |
 
 ## Research principles
 
