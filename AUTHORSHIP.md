@@ -19,7 +19,8 @@ one of the following. The three paths are independent: any one of them is enough
      whatever the validation status of the cell.
 3. **A written review or an independent replication** of a result in the report, including one that finds a problem.
 
-Credit follows the criteria published here. They are never changed for a report after its results have been seen.
+Credit follows the criteria published here. They are never changed for a report after its results have been seen, except to correct an error. The report then
+states the correction.
 
 The cut-off date of each report is announced in [#84](../../issues/84) at least two weeks in advance. Contributions
 after the cut-off count toward the next report. This rule follows the one BIG-bench used for its 450 authors.

@@ -55,7 +55,8 @@ These are not your choices. Each must match the values published for the cell, a
 
 ## The reference configuration
 
-These are the values of the lab's own ALFWorld runs (programs V3 to V6, one RTX 3060). A cell is on the reference
+These are the values of the lab's own ALFWorld runs (programs V3 to V6, one RTX 3060), read from the lab's vLLM server
+logs and installed packages. Those logs are not published. A cell is on the reference
 configuration when the first four match. The environment versions in the last row are recorded on the card
 and reported, but do not by themselves make a cell a sensitivity cell. Your card and your vLLM log show each value.
 
@@ -76,7 +77,9 @@ and reported, but do not by themselves make a cell a sensitivity cell. Your card
   - In the older `json_2.1.1_tw-pddl.zip`, the same action reads `put <object> in/on <receptacle>`, and arriving
     reads "You arrive at loc 14".
   - Byte check: `train/pick_and_place_simple-CellPhone-None-Safe-302/trial_T20190908_122757_136508/game.tw-pddl`
-    has SHA-256 `86059504faa14bd6a04b7443f3779c240e2eedbcf673e0282795cdee29497b53` in the reference archive.
+    has SHA-256 `86059504faa14bd6a04b7443f3779c240e2eedbcf673e0282795cdee29497b53` in the lab's copy of the
+    reference archive, installed by `alfworld-download`. It extracts into a folder named `json_2.1.1`, even though
+    the archive is `json_2.1.2`.
 - **The archive matters for the memory arms**, not only for replay. The bank's walkthroughs use the `json_2.1.2`
   text. In a game from the older archive, a walkthrough shows actions that game does not accept.
 
@@ -139,12 +142,19 @@ Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `plac
    - **Which games.** The 5 with the lowest `sha256(salt + cell id + game path)`, where the random salt is committed
      to this repository before the draw.
    - **What it flags: gross deviations only, with these limits declared in advance.**
-     - The retrieved entry ids, `memory_tokens`, `top1_similarity` and `memory_similarity` must be equal for every
-       re-run episode.
-     - The number of solved episodes may differ by at most 8 of the 15, in either direction. If every episode had a
-       50% chance of success on both sides, the standard deviation of that difference would be √(15 × 0.5) ≈ 2.74,
-       which is its largest possible value. A difference of 9 is then more than 3 standard deviations.
-   - A spot-check this small cannot show that two configurations are equivalent, and it is not meant to.
+     - **Fields that must match.** For every re-run episode, the retrieved entry ids and `memory_tokens` must be
+       equal, and `top1_similarity` and `memory_similarity` must be equal as stored (rounded to 4 decimals).
+     - **Solved counts.** The number of solved episodes may differ by at most 8 of the 15 in total, and by at most 4
+       of the 5 in each arm, in either direction.
+       - Suppose each episode has the same chance of success on both sides. Then the standard deviation of the
+         difference is at most √(n × 0.5), with the maximum reached when every chance is 50%.
+       - That bound is ≈ 2.74 for n = 15 and ≈ 1.58 for n = 5. A difference of 9 in total, or of 5 in one arm, is
+         then more than 3 standard deviations.
+   - **Sensitivity cells.** For a sensitivity cell, the lab's re-run uses the reference configuration. So a
+     solved-count deviation is reported and attributed to the configuration difference. It does not by itself fail
+     the spot-check. The fields that must match still apply.
+   - A spot-check this small cannot show that two configurations are equivalent, and it is not meant to. The per-arm
+     counts of both runs are published next to the cell.
 3. **A fuller replication, for at least 10% of cells.** The lab chooses these cells after submission and re-runs each
    in full on another GPU. The results are reported next to the cell.
 4. **A cell is *validated* when steps 1 and 2 pass.** Whether a cell is drawn for step 3 never decides its

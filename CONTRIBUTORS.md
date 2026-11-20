@@ -12,7 +12,7 @@ credited under another name, open an issue.
 
 | Contributor | Contribution |
 |---|---|
-| [@2018cx](https://github.com/2018cx) | Placebo-check cell `placebo-v4-B03-r1-mt0-fr0`, run on an A100 and merged in [#243](https://github.com/krapcys1-maker/adaptive-agent-memory-research/pull/243). It passed the lab's code checks and the CPU replay of all 60 action sequences. It is a sensitivity cell, because its vLLM version and game archive differ from the reference. Its spot-check is pending. |
+| [@2018cx](https://github.com/2018cx) | Placebo-check cell `placebo-v4-B03-r1-mt0-fr0`, run on an A100 and merged in [#243](https://github.com/krapcys1-maker/adaptive-agent-memory-research/pull/243). It passed the lab's code checks and the CPU replay of all 60 action sequences. It is a sensitivity cell: its vLLM version (0.20.0) differs from the reference, and its game text (`put … in/on …`) matches the older game archive. Its TextWorld version (1.6.2) also differs; that is recorded but does not decide the class. Its spot-check is pending. |
 
 ## Formal analysis
 
