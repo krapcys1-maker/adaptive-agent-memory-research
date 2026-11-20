@@ -83,23 +83,38 @@ python tools/alfworld_ladder/v5b/src/agent.py --batch batch.jsonl --out records.
 
 ## A calibration before the long run (recommended, not counted)
 
-`calibration_units.json` lists 20 games that V5B measured (they are in the public
-`data/lab/autolab-alfworld-ladder-r4-v5b/per_unit.csv`) and that are **not** among the designated 300. Running them
-first costs about 1–2 GPU hours and tells both sides whether your setup reproduces the lab's.
+The calibration is a **technical check of your setup**, run before the 900 episodes. It is not a statistical
+comparison with the lab. With 20 games at a solve rate of about 60% (V5B `retrieved_task`: 0.617), the standard
+error of one arm's solve rate is about √(0.6 × 0.4 / 20) ≈ 0.11, i.e. 11 percentage points. Twenty games cannot
+show that two setups are equivalent.
 
+**The games.** `calibration_units.json` lists 20 games that V5B measured and that are **not** among the designated
+300. They are in the public `data/lab/autolab-alfworld-ladder-r4-v5b/per_unit.csv`.
 - **Rule.** From the 201 V5B units in `per_unit.csv`, the units outside the designated 300 are grouped by task type.
   Within each type they are ordered by `sha256("ALFWORLD-LADDER-R4-V5B:calibration|" + unit id)`. Units are then
   taken round-robin over the types in alphabetical order, skipping exhausted types, until there are 20.
 - **Result.** 3 or 4 games of each of the six types. The SHA-256 of `json.dumps(sorted(ids))` is
   `a4b4856e61396e72319a0292f4d31abe14fc681726e2ca75680905ba960a8527`.
-- **Run.** The three arms, seed 0, with the commands above. Submit the result as its own folder, marked
-  `calibration`. It is never pooled with the replication.
-- **What the lab checks:**
-  - the CPU replay of every action sequence;
-  - the retrieved entry ids;
-  - `memory_tokens`, `top1_similarity` and `memory_similarity`, which must equal the V5B values for those games and
-    arms in `per_unit.csv`;
-  - solve rates, which are compared only descriptively, because 20 games are too few for more.
+
+**How to run it.** The three arms, seed 0, with the commands above: 60 episodes, about 1–2 GPU hours. Submit the
+result as its own folder, marked `calibration`. It is never pooled with the replication.
+
+**It passes when all of these hold (declared in advance):**
+1. **Setup.** The card shows every fixed item of this page at its `same` value: checkpoint and revision, vLLM
+   0.33.0, the kernel line, the game archive, the ALFWorld and TextWorld versions, and the flags.
+2. **Records.** All 60 records are present (20 games × 3 arms, seed 0), with no duplicates or extra rows, and
+   every record carries the fixed decoding settings.
+3. **Replay.** The lab's CPU replay of every action sequence reproduces won and steps. Recomputed from the bank and
+   the goal, the retrieved entry ids, `top1_similarity` and `memory_similarity` equal yours, and also equal the V5B
+   values in `per_unit.csv`, as does `memory_tokens`.
+4. **No gross deviation.** In each arm, your number of solved games differs from V5B's on the same 20 games by at
+   most 9.
+   - V5B solved 10 (`none`), 11 (`placebo`) and 12 (`retrieved_task`) of these games.
+   - If every game had a 50% chance of success in both runs, the standard deviation of the difference would be
+     √(20 × 0.5) ≈ 3.16, which is its largest possible value. A difference of 10 is then more than 3 standard
+     deviations.
+
+If a check fails, post the output in #229 before starting the long run.
 
 ## Your card
 
