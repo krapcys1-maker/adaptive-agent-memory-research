@@ -39,7 +39,7 @@ Two cells on the same block (one with each setting) answer both for those 20 gam
 
 ## How to run a cell
 
-1. **Claim a block** in [#179](../../issues/179) ("B03, replicate 1, min_tokens 0"), so two people do not run the same
+1. **Claim a block** in [#179](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/179) ("B03, replicate 1, min_tokens 0"), so two people do not run the same
    cell. Blocks B00–B10 have 4 games of each of the 5 task types. The later blocks are mostly two-object and
    pick-and-place games.
 2. **Prepare, run, finish and check:**
@@ -70,9 +70,13 @@ Two cells on the same block (one with each setting) answer both for those 20 gam
   - every record ran with the card's model, `min_tokens`, format reminder, temperature, `max_tokens` and step limit;
   - the pinned files (agent, placebo text, bank, prompt template) match by sha256;
   - no memory taken from the test games' families;
-  - the counters are consistent with each other.
-- **A spot-check:** the lab re-runs a random sample of your games on its own GPU and compares the paired outcomes.
-  The sample is fixed in advance with a committed random salt.
+  - the counters are consistent with each other;
+  - the CPU replay of every action sequence reproduces won, steps and the retrieved entries.
+- **A spot-check:** the lab re-runs a random sample of your games on its own GPU and compares the outcomes.
+  - The sample is 5 of the 20 games, with all arms, fixed in advance with a committed random salt.
+  - It flags gross deviations only, with the limits declared in
+    [VOLUNTEER_COMPUTE.md](../research-map/VOLUNTEER_COMPUTE.md#how-results-are-checked).
+  - Separately, at least 10% of cells get a fuller replication. Being drawn for it, or not, never decides credit.
 - **After both pass:** the cell is *validated* and enters the [results table](RESULTS.md).
 
 ## Credit
