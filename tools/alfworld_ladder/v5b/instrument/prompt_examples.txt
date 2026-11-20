@@ -1,0 +1,308 @@
+# Step-1 prompt of each arm for the non-test game train/pick_and_place_simple-CD-None-Shelf-330/trial_T20190906_201356_091911 (seed 0).
+# From step 2 the BASE part switches to TEMPLATE with history; the arm part stays the same.
+
+=================== ARM none | memory_tokens 0 | memory_sources []
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: You are in the middle of a room. Looking quickly around you, you see a armchair 1, a bed 1, a drawer 16, a drawer 15, a drawer 14, a drawer 13, a drawer 12, a drawer 11, a drawer 10, a drawer 9, a drawer 8, a drawer 7, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 2, a dresser 1, a garbagecan 1, a shelf 2, a shelf 1, a sidetable 2, and a sidetable 1.
+
+Your task is to: put some cd on shelf.
+Your admissible actions of the current situation are: ['go to armchair 1'
+ 'go to bed 1'
+ 'go to drawer 1'
+ 'go to drawer 10'
+ 'go to drawer 11'
+ 'go to drawer 12'
+ 'go to drawer 13'
+ 'go to drawer 14'
+ 'go to drawer 15'
+ 'go to drawer 16'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to drawer 6'
+ 'go to drawer 7'
+ 'go to drawer 8'
+ 'go to drawer 9'
+ 'go to dresser 1'
+ 'go to dresser 2'
+ 'go to garbagecan 1'
+ 'go to shelf 1'
+ 'go to shelf 2'
+ 'go to sidetable 1'
+ 'go to sidetable 2'
+ 'inventory'
+ 'look'].
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.
+
+=================== ARM placebo | memory_tokens 853 | memory_sources []
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: You are in the middle of a room. Looking quickly around you, you see a armchair 1, a bed 1, a drawer 16, a drawer 15, a drawer 14, a drawer 13, a drawer 12, a drawer 11, a drawer 10, a drawer 9, a drawer 8, a drawer 7, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 2, a dresser 1, a garbagecan 1, a shelf 2, a shelf 1, a sidetable 2, and a sidetable 1.
+
+Your task is to: put some cd on shelf.
+Your admissible actions of the current situation are: ['go to armchair 1'
+ 'go to bed 1'
+ 'go to drawer 1'
+ 'go to drawer 10'
+ 'go to drawer 11'
+ 'go to drawer 12'
+ 'go to drawer 13'
+ 'go to drawer 14'
+ 'go to drawer 15'
+ 'go to drawer 16'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to drawer 6'
+ 'go to drawer 7'
+ 'go to drawer 8'
+ 'go to drawer 9'
+ 'go to dresser 1'
+ 'go to dresser 2'
+ 'go to garbagecan 1'
+ 'go to shelf 1'
+ 'go to shelf 2'
+ 'go to sidetable 1'
+ 'go to sidetable 2'
+ 'inventory'
+ 'look'].
+
+Here are some task solving trajectories on similar tasks:
+
+Retrieved Experiences:
+Retrieved Item 0:
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+
+Retrieved Item 1:
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.
+
+=================== ARM retrieved_task | memory_tokens 854 | memory_sources ['train/pick_two_obj_and_place-CD-None-Shelf-326/trial_T20190908_173629_751639', 'train/pick_and_place_simple-CD-None-DiningTable-311/trial_T20190908_071422_528388']
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: You are in the middle of a room. Looking quickly around you, you see a armchair 1, a bed 1, a drawer 16, a drawer 15, a drawer 14, a drawer 13, a drawer 12, a drawer 11, a drawer 10, a drawer 9, a drawer 8, a drawer 7, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 2, a dresser 1, a garbagecan 1, a shelf 2, a shelf 1, a sidetable 2, and a sidetable 1.
+
+Your task is to: put some cd on shelf.
+Your admissible actions of the current situation are: ['go to armchair 1'
+ 'go to bed 1'
+ 'go to drawer 1'
+ 'go to drawer 10'
+ 'go to drawer 11'
+ 'go to drawer 12'
+ 'go to drawer 13'
+ 'go to drawer 14'
+ 'go to drawer 15'
+ 'go to drawer 16'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to drawer 6'
+ 'go to drawer 7'
+ 'go to drawer 8'
+ 'go to drawer 9'
+ 'go to dresser 1'
+ 'go to dresser 2'
+ 'go to garbagecan 1'
+ 'go to shelf 1'
+ 'go to shelf 2'
+ 'go to sidetable 1'
+ 'go to sidetable 2'
+ 'inventory'
+ 'look'].
+
+Here are some task solving trajectories on similar tasks:
+
+Retrieved Experiences:
+Retrieved Item 0:
+Task: put two cd in shelf.
+[Observation 1: 'You are in the middle of a room. Looking quickly around you, you see a bed 2, a bed 1, a diningtable 1, a drawer 2, a drawer 1, a garbagecan 1, a shelf 14, a shelf 13, a shelf 12, a shelf 11, a shelf 10, a shelf 9, a shelf 8, a shelf 7, a s', Action 1: 'go to diningtable 1']
+[Observation 2: 'You arrive at diningtable 1. On the diningtable 1, you see a alarmclock 1, a bowl 1, a cd 2, a cd 1, a mug 1, a pencil 2, and a pencil 1.', Action 2: 'take cd 2 from diningtable 1']
+[Observation 3: 'You pick up the cd 2 from the diningtable 1.', Action 3: 'go to shelf 3']
+[Observation 4: 'You arrive at shelf 3. On the shelf 3, you see nothing.', Action 4: 'move cd 2 to shelf 3']
+[Observation 5: 'You move the cd 2 to the shelf 3.', Action 5: 'go to diningtable 1']
+[Observation 6: 'You arrive at diningtable 1. On the diningtable 1, you see a alarmclock 1, a bowl 1, a cd 1, a mug 1, a pencil 2, and a pencil 1.', Action 6: 'take cd 1 from diningtable 1']
+[Observation 7: 'You pick up the cd 1 from the diningtable 1.', Action 7: 'go to shelf 3']
+[Observation 8: 'You arrive at shelf 3. On the shelf 3, you see a cd 2.', Action 8: 'move cd 1 to shelf 3']
+Final observation: 'You move the cd 1 to the shelf 3.'
+
+Retrieved Item 1:
+Task: put a cd in diningtable.
+[Observation 1: 'You are in the middle of a room. Looking quickly around you, you see a armchair 2, a armchair 1, a bed 1, a countertop 1, a diningtable 1, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a laundryhamper 1, and a sidetable 1.', Action 1: 'go to sidetable 1']
+[Observation 2: 'You arrive at sidetable 1. On the sidetable 1, you see a alarmclock 2, a book 1, and a cd 2.', Action 2: 'take cd 2 from sidetable 1']
+[Observation 3: 'You pick up the cd 2 from the sidetable 1.', Action 3: 'go to diningtable 1']
+[Observation 4: 'You arrive at diningtable 1. On the diningtable 1, you see a alarmclock 1, a bowl 2, a bowl 1, a cellphone 1, a creditcard 1, a keychain 2, a laptop 1, a pen 1, and a pencil 1.', Action 4: 'move cd 2 to diningtable 1']
+Final observation: 'You move the cd 2 to the diningtable 1.'
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.
+
+=================== ARM mismatched_type | memory_tokens 853 | memory_sources ['train/pick_clean_then_place_in_recep-Cloth-None-Cart-430/trial_T20190906_194305_501996', 'train/pick_clean_then_place_in_recep-DishSponge-None-Drawer-427/trial_T20190909_001329_772865']
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: You are in the middle of a room. Looking quickly around you, you see a armchair 1, a bed 1, a drawer 16, a drawer 15, a drawer 14, a drawer 13, a drawer 12, a drawer 11, a drawer 10, a drawer 9, a drawer 8, a drawer 7, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 2, a dresser 1, a garbagecan 1, a shelf 2, a shelf 1, a sidetable 2, and a sidetable 1.
+
+Your task is to: put some cd on shelf.
+Your admissible actions of the current situation are: ['go to armchair 1'
+ 'go to bed 1'
+ 'go to drawer 1'
+ 'go to drawer 10'
+ 'go to drawer 11'
+ 'go to drawer 12'
+ 'go to drawer 13'
+ 'go to drawer 14'
+ 'go to drawer 15'
+ 'go to drawer 16'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to drawer 6'
+ 'go to drawer 7'
+ 'go to drawer 8'
+ 'go to drawer 9'
+ 'go to dresser 1'
+ 'go to dresser 2'
+ 'go to garbagecan 1'
+ 'go to shelf 1'
+ 'go to shelf 2'
+ 'go to sidetable 1'
+ 'go to sidetable 2'
+ 'inventory'
+ 'look'].
+
+Here are some task solving trajectories on similar tasks:
+
+Retrieved Experiences:
+Retrieved Item 0:
+Task: put a clean cloth in cart.
+[Observation 1: 'You are in the middle of a room. Looking quickly around you, you see a bathtubbasin 1, a cart 1, a countertop 1, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a garbagecan 1, a handtowelholder 1, a shelf 1, a sinkbasin 1, a toilet 1, a to', Action 1: 'go to countertop 1']
+[Observation 2: 'You arrive at countertop 1. On the countertop 1, you see a candle 1, a cloth 3, a dishsponge 1, a spraybottle 2, and a tissuebox 1.', Action 2: 'take cloth 3 from countertop 1']
+[Observation 3: 'You pick up the cloth 3 from the countertop 1.', Action 3: 'go to sinkbasin 1']
+[Observation 4: 'You arrive at sinkbasin 1. On the sinkbasin 1, you see a soapbar 1.', Action 4: 'clean cloth 3 with sinkbasin 1']
+[Observation 5: 'You clean the cloth 3 using the sinkbasin 1.', Action 5: 'go to cart 1']
+[Observation 6: 'You arrive at cart 1. On the cart 1, you see a cloth 1, a soapbottle 3, a tissuebox 3, and a tissuebox 2.', Action 6: 'move cloth 3 to cart 1']
+Final observation: 'You move the cloth 3 to the cart 1.'
+
+Retrieved Item 1:
+Task: put a clean dishsponge in drawer.
+[Observation 1: 'You are in the middle of a room. Looking quickly around you, you see a bathtubbasin 1, a countertop 1, a drawer 8, a drawer 7, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a garbagecan 1, a handtowelholder 2, a ha', Action 1: 'go to bathtubbasin 1']
+[Observation 2: 'You arrive at bathtubbasin 1. On the bathtubbasin 1, you see a cloth 1, and a dishsponge 1.', Action 2: 'take dishsponge 1 from bathtubbasin 1']
+[Observation 3: 'You pick up the dishsponge 1 from the bathtubbasin 1.', Action 3: 'go to sinkbasin 1']
+[Observation 4: 'You arrive at sinkbasin 1. On the sinkbasin 1, you see nothing.', Action 4: 'clean dishsponge 1 with sinkbasin 1']
+[Observation 5: 'You clean the dishsponge 1 using the sinkbasin 1.', Action 5: 'go to drawer 6']
+[Observation 6: 'You arrive at drawer 6. The drawer 6 is closed.', Action 6: 'open drawer 5']
+[Observation 7: 'You open the drawer 5. The drawer 5 is open. In it, you see nothing.', Action 7: 'move dishsponge 1 to drawer 5']
+Final observation: 'You move the dishsponge 1 to the drawer 5.'
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.

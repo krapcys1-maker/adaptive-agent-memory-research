@@ -1,0 +1,3178 @@
+{
+"summary": {
+"pools": {
+"quarter": 109,
+"half": 241
+},
+"overlap_with_retrieved_total": 0,
+"mismatched_jaccard_max": 0.0,
+"units": 350,
+"placebo_vs_memory": {
+"mean": 0.0006,
+"min": -0.0066,
+"max": 0.0098,
+"share_within_3pct": 1.0,
+"share_within_5pct": 1.0
+},
+"mismatched_vs_memory": {
+"mean": -0.0068,
+"min": -0.1582,
+"max": 0.0961,
+"share_within_3pct": 0.894,
+"share_within_5pct": 0.934
+},
+"memory_tokens_mean": 822
+},
+"rows": [
+{
+"unit": "train/look_at_obj_in_light-AlarmClock-None-DeskLamp-303/trial_T20190908_144950_175895",
+"retrieved_task": 559,
+"placebo": 564,
+"mismatched_type": 559,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-AlarmClock-None-DeskLamp-305/trial_T20190908_082736_108723",
+"retrieved_task": 535,
+"placebo": 539,
+"mismatched_type": 559,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-AlarmClock-None-DeskLamp-309/trial_T20190908_062755_880343",
+"retrieved_task": 535,
+"placebo": 539,
+"mismatched_type": 559,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-AlarmClock-None-DeskLamp-316/trial_T20190906_202253_509816",
+"retrieved_task": 615,
+"placebo": 614,
+"mismatched_type": 614,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-AlarmClock-None-DeskLamp-317/trial_T20190909_070740_947572",
+"retrieved_task": 546,
+"placebo": 548,
+"mismatched_type": 559,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-AlarmClock-None-DeskLamp-324/trial_T20190909_140222_907943",
+"retrieved_task": 546,
+"placebo": 548,
+"mismatched_type": 559,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Book-None-DeskLamp-303/trial_T20190909_085252_411891",
+"retrieved_task": 618,
+"placebo": 620,
+"mismatched_type": 617,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Book-None-DeskLamp-306/trial_T20190908_035303_350876",
+"retrieved_task": 598,
+"placebo": 597,
+"mismatched_type": 597,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Book-None-DeskLamp-317/trial_T20190909_201143_217673",
+"retrieved_task": 608,
+"placebo": 605,
+"mismatched_type": 607,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Bowl-None-DeskLamp-305/trial_T20190908_233020_632529",
+"retrieved_task": 584,
+"placebo": 581,
+"mismatched_type": 583,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Bowl-None-DeskLamp-307/trial_T20190908_204915_583447",
+"retrieved_task": 555,
+"placebo": 554,
+"mismatched_type": 559,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Bowl-None-DeskLamp-323/trial_T20190908_024019_183353",
+"retrieved_task": 584,
+"placebo": 581,
+"mismatched_type": 583,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Box-None-DeskLamp-224/trial_T20190908_105645_765201",
+"retrieved_task": 663,
+"placebo": 663,
+"mismatched_type": 662,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Box-None-DeskLamp-225/trial_T20190908_140203_064540",
+"retrieved_task": 629,
+"placebo": 630,
+"mismatched_type": 628,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-CD-None-DeskLamp-305/trial_T20190909_132447_100635",
+"retrieved_task": 609,
+"placebo": 605,
+"mismatched_type": 608,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-CD-None-DeskLamp-307/trial_T20190906_200412_559520",
+"retrieved_task": 634,
+"placebo": 637,
+"mismatched_type": 633,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-CD-None-DeskLamp-316/trial_T20190909_114559_561870",
+"retrieved_task": 593,
+"placebo": 597,
+"mismatched_type": 591,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-CD-None-DeskLamp-319/trial_T20190909_123058_970211",
+"retrieved_task": 618,
+"placebo": 620,
+"mismatched_type": 617,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-CD-None-DeskLamp-323/trial_T20190908_051139_258301",
+"retrieved_task": 523,
+"placebo": 523,
+"mismatched_type": 559,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-CD-None-DeskLamp-324/trial_T20190907_230854_854662",
+"retrieved_task": 634,
+"placebo": 637,
+"mismatched_type": 633,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-CellPhone-None-DeskLamp-316/trial_T20190907_075452_465579",
+"retrieved_task": 647,
+"placebo": 647,
+"mismatched_type": 646,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-CreditCard-None-DeskLamp-324/trial_T20190906_161309_564327",
+"retrieved_task": 562,
+"placebo": 564,
+"mismatched_type": 559,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-KeyChain-None-DeskLamp-309/trial_T20190909_094310_266647",
+"retrieved_task": 661,
+"placebo": 663,
+"mismatched_type": 660,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Laptop-None-DeskLamp-301/trial_T20190907_185618_889790",
+"retrieved_task": 662,
+"placebo": 663,
+"mismatched_type": 661,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Laptop-None-DeskLamp-306/trial_T20190908_105706_372317",
+"retrieved_task": 694,
+"placebo": 696,
+"mismatched_type": 693,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Laptop-None-DeskLamp-309/trial_T20190907_185728_635748",
+"retrieved_task": 600,
+"placebo": 597,
+"mismatched_type": 599,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Laptop-None-DeskLamp-323/trial_T20190908_014226_839563",
+"retrieved_task": 632,
+"placebo": 630,
+"mismatched_type": 631,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Newspaper-None-DeskLamp-210/trial_T20190906_234442_978940",
+"retrieved_task": 582,
+"placebo": 581,
+"mismatched_type": 580,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Newspaper-None-DeskLamp-224/trial_T20190909_091712_242922",
+"retrieved_task": 571,
+"placebo": 571,
+"mismatched_type": 573,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Newspaper-None-DeskLamp-225/trial_T20190909_085334_452202",
+"retrieved_task": 644,
+"placebo": 647,
+"mismatched_type": 643,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pen-None-DeskLamp-309/trial_T20190909_044929_695149",
+"retrieved_task": 659,
+"placebo": 663,
+"mismatched_type": 658,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pen-None-DeskLamp-319/trial_T20190908_111842_143166",
+"retrieved_task": 510,
+"placebo": 515,
+"mismatched_type": 559,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pen-None-DeskLamp-323/trial_T20190908_125522_292336",
+"retrieved_task": 510,
+"placebo": 515,
+"mismatched_type": 559,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pencil-None-DeskLamp-304/trial_T20190908_235401_841357",
+"retrieved_task": 602,
+"placebo": 605,
+"mismatched_type": 601,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pencil-None-DeskLamp-306/trial_T20190907_235854_062993",
+"retrieved_task": 549,
+"placebo": 548,
+"mismatched_type": 559,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pencil-None-DeskLamp-319/trial_T20190908_135046_043056",
+"retrieved_task": 550,
+"placebo": 548,
+"mismatched_type": 559,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pencil-None-DeskLamp-328/trial_T20190906_201152_550531",
+"retrieved_task": 569,
+"placebo": 571,
+"mismatched_type": 568,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pillow-None-DeskLamp-301/trial_T20190908_012827_451848",
+"retrieved_task": 662,
+"placebo": 663,
+"mismatched_type": 661,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pillow-None-DeskLamp-307/trial_T20190908_190608_801964",
+"retrieved_task": 634,
+"placebo": 637,
+"mismatched_type": 633,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pillow-None-DeskLamp-316/trial_T20190908_232421_645610",
+"retrieved_task": 611,
+"placebo": 614,
+"mismatched_type": 610,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pillow-None-DeskLamp-320/trial_T20190906_225908_972390",
+"retrieved_task": 679,
+"placebo": 680,
+"mismatched_type": 678,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Pillow-None-DeskLamp-324/trial_T20190908_155728_431043",
+"retrieved_task": 601,
+"placebo": 605,
+"mismatched_type": 600,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Plate-None-DeskLamp-218/trial_T20190907_215235_918119",
+"retrieved_task": 626,
+"placebo": 630,
+"mismatched_type": 625,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Statue-None-DeskLamp-218/trial_T20190909_085308_837993",
+"retrieved_task": 660,
+"placebo": 663,
+"mismatched_type": 659,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-TissueBox-None-DeskLamp-216/trial_T20190908_200035_042748",
+"retrieved_task": 617,
+"placebo": 620,
+"mismatched_type": 616,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-TissueBox-None-DeskLamp-225/trial_T20190906_192828_730493",
+"retrieved_task": 675,
+"placebo": 671,
+"mismatched_type": 674,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-TissueBox-None-DeskLamp-301/trial_T20190908_072624_007372",
+"retrieved_task": 629,
+"placebo": 630,
+"mismatched_type": 628,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-TissueBox-None-DeskLamp-328/trial_T20190907_201322_516201",
+"retrieved_task": 594,
+"placebo": 597,
+"mismatched_type": 593,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Watch-None-DeskLamp-205/trial_T20190907_001900_859623",
+"retrieved_task": 682,
+"placebo": 680,
+"mismatched_type": 681,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/look_at_obj_in_light-Watch-None-DeskLamp-301/trial_T20190909_151158_623013",
+"retrieved_task": 522,
+"placebo": 523,
+"mismatched_type": 559,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-AlarmClock-None-DiningTable-329/trial_T20190909_022322_775566",
+"retrieved_task": 687,
+"placebo": 686,
+"mismatched_type": 686,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Book-None-ArmChair-209/trial_T20190909_091603_675402",
+"retrieved_task": 662,
+"placebo": 663,
+"mismatched_type": 661,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Book-None-Bed-312/trial_T20190908_103710_898411",
+"retrieved_task": 867,
+"placebo": 869,
+"mismatched_type": 866,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Book-None-CoffeeTable-229/trial_T20190908_125658_195646",
+"retrieved_task": 674,
+"placebo": 671,
+"mismatched_type": 673,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Box-None-ArmChair-212/trial_T20190908_032842_573641",
+"retrieved_task": 642,
+"placebo": 647,
+"mismatched_type": 641,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Box-None-ArmChair-225/trial_T20190908_151218_514571",
+"retrieved_task": 644,
+"placebo": 647,
+"mismatched_type": 643,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Box-None-Sofa-206/trial_T20190909_102133_696249",
+"retrieved_task": 598,
+"placebo": 597,
+"mismatched_type": 597,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-ButterKnife-None-SideTable-28/trial_T20190908_133040_811710",
+"retrieved_task": 781,
+"placebo": 779,
+"mismatched_type": 780,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-CD-None-SideTable-328/trial_T20190907_033509_300729",
+"retrieved_task": 667,
+"placebo": 671,
+"mismatched_type": 666,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Candle-None-Cabinet-407/trial_T20190909_073645_454627",
+"retrieved_task": 846,
+"placebo": 845,
+"mismatched_type": 844,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Candle-None-Cabinet-418/trial_T20190907_190352_967068",
+"retrieved_task": 814,
+"placebo": 812,
+"mismatched_type": 813,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Candle-None-Toilet-418/trial_T20190907_185015_671728",
+"retrieved_task": 631,
+"placebo": 630,
+"mismatched_type": 630,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-CellPhone-None-Bed-313/trial_T20190907_092308_442494",
+"retrieved_task": 976,
+"placebo": 977,
+"mismatched_type": 975,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-CellPhone-None-Desk-305/trial_T20190907_231028_856423",
+"retrieved_task": 850,
+"placebo": 853,
+"mismatched_type": 848,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-CellPhone-None-Desk-327/trial_T20190907_162342_304038",
+"retrieved_task": 859,
+"placebo": 861,
+"mismatched_type": 858,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-CellPhone-None-Drawer-302/trial_T20190907_235426_919624",
+"retrieved_task": 895,
+"placebo": 894,
+"mismatched_type": 893,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-CellPhone-None-SideTable-326/trial_T20190909_150051_438324",
+"retrieved_task": 667,
+"placebo": 671,
+"mismatched_type": 666,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Cloth-None-Drawer-409/trial_T20190908_032838_597592",
+"retrieved_task": 739,
+"placebo": 737,
+"mismatched_type": 738,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-CreditCard-None-DiningTable-329/trial_T20190909_013611_626994",
+"retrieved_task": 936,
+"placebo": 935,
+"mismatched_type": 935,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-CreditCard-None-Sofa-220/trial_T20190909_110916_512916",
+"retrieved_task": 624,
+"placebo": 620,
+"mismatched_type": 623,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-DishSponge-None-Cart-401/trial_T20190909_045712_019986",
+"retrieved_task": 939,
+"placebo": 935,
+"mismatched_type": 935,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Fork-None-Drawer-12/trial_T20190907_151014_567960",
+"retrieved_task": 773,
+"placebo": 769,
+"mismatched_type": 772,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-HandTowel-None-GarbageCan-420/trial_T20190908_153318_365643",
+"retrieved_task": 634,
+"placebo": 637,
+"mismatched_type": 633,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-HandTowel-None-Toilet-428/trial_T20190908_064234_237470",
+"retrieved_task": 684,
+"placebo": 686,
+"mismatched_type": 683,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-KeyChain-None-Desk-304/trial_T20190907_192638_964457",
+"retrieved_task": 653,
+"placebo": 655,
+"mismatched_type": 652,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-KeyChain-None-Drawer-208/trial_T20190909_013444_420195",
+"retrieved_task": 904,
+"placebo": 901,
+"mismatched_type": 905,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-KeyChain-None-Dresser-317/trial_T20190910_183541_490131",
+"retrieved_task": 646,
+"placebo": 647,
+"mismatched_type": 645,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-KeyChain-None-SideTable-309/trial_T20190908_214938_408925",
+"retrieved_task": 1009,
+"placebo": 1010,
+"mismatched_type": 1008,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-KeyChain-None-Sofa-225/trial_T20190908_131143_093789",
+"retrieved_task": 584,
+"placebo": 581,
+"mismatched_type": 583,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-KeyChain-None-Sofa-229/trial_T20190908_123332_888981",
+"retrieved_task": 600,
+"placebo": 597,
+"mismatched_type": 599,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Newspaper-None-ArmChair-212/trial_T20190907_222321_153992",
+"retrieved_task": 1004,
+"placebo": 1001,
+"mismatched_type": 998,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Newspaper-None-Ottoman-210/trial_T20190907_144826_184935",
+"retrieved_task": 601,
+"placebo": 605,
+"mismatched_type": 600,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Pan-None-CounterTop-8/trial_T20190908_105438_904625",
+"retrieved_task": 869,
+"placebo": 869,
+"mismatched_type": 869,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Pan-None-DiningTable-15/trial_T20190908_182454_235938",
+"retrieved_task": 733,
+"placebo": 737,
+"mismatched_type": 732,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Pen-None-Drawer-305/trial_T20190907_224025_871983",
+"retrieved_task": 917,
+"placebo": 919,
+"mismatched_type": 917,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Pen-None-Shelf-319/trial_T20190907_203141_178191",
+"retrieved_task": 639,
+"placebo": 637,
+"mismatched_type": 638,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Pen-None-Shelf-330/trial_T20190908_145341_930096",
+"retrieved_task": 593,
+"placebo": 597,
+"mismatched_type": 592,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Pencil-None-Shelf-313/trial_T20190908_182735_615142",
+"retrieved_task": 639,
+"placebo": 637,
+"mismatched_type": 638,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-PepperShaker-None-Drawer-13/trial_T20190908_230731_141286",
+"retrieved_task": 729,
+"placebo": 729,
+"mismatched_type": 728,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-PepperShaker-None-SideTable-21/trial_T20190906_213417_095299",
+"retrieved_task": 925,
+"placebo": 927,
+"mismatched_type": 926,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Pillow-None-ArmChair-214/trial_T20190909_010430_625642",
+"retrieved_task": 795,
+"placebo": 795,
+"mismatched_type": 794,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-RemoteControl-None-ArmChair-207/trial_T20190908_140615_941385",
+"retrieved_task": 1012,
+"placebo": 1010,
+"mismatched_type": 1012,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-RemoteControl-None-Sofa-216/trial_T20190909_150024_719377",
+"retrieved_task": 1059,
+"placebo": 1059,
+"mismatched_type": 1038,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-SoapBottle-None-Cart-430/trial_T20190909_100630_359013",
+"retrieved_task": 715,
+"placebo": 713,
+"mismatched_type": 714,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-SoapBottle-None-GarbageCan-411/trial_T20190908_051634_985936",
+"retrieved_task": 741,
+"placebo": 737,
+"mismatched_type": 740,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-SoapBottle-None-SideTable-420/trial_T20190908_063611_150183",
+"retrieved_task": 715,
+"placebo": 713,
+"mismatched_type": 714,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-SoapBottle-None-Toilet-406/trial_T20190909_104226_709618",
+"retrieved_task": 809,
+"placebo": 812,
+"mismatched_type": 808,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-SoapBottle-None-Toilet-426/trial_T20190906_180937_392476",
+"retrieved_task": 809,
+"placebo": 812,
+"mismatched_type": 808,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-SprayBottle-None-CounterTop-427/trial_T20190908_232532_117315",
+"retrieved_task": 614,
+"placebo": 614,
+"mismatched_type": 613,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-SprayBottle-None-Toilet-422/trial_T20190909_124852_071149",
+"retrieved_task": 628,
+"placebo": 630,
+"mismatched_type": 627,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-SprayBottle-None-Toilet-426/trial_T20190908_155225_439006",
+"retrieved_task": 628,
+"placebo": 630,
+"mismatched_type": 627,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Statue-None-CoffeeTable-201/trial_T20190908_124733_145874",
+"retrieved_task": 928,
+"placebo": 927,
+"mismatched_type": 927,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Statue-None-CoffeeTable-222/trial_T20190907_131237_002467",
+"retrieved_task": 928,
+"placebo": 927,
+"mismatched_type": 927,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Statue-None-CoffeeTable-227/trial_T20190909_101650_071380",
+"retrieved_task": 928,
+"placebo": 927,
+"mismatched_type": 927,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Statue-None-CoffeeTable-230/trial_T20190909_145138_877153",
+"retrieved_task": 928,
+"placebo": 927,
+"mismatched_type": 927,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-ToiletPaper-None-Toilet-429/trial_T20190907_215139_316260",
+"retrieved_task": 859,
+"placebo": 861,
+"mismatched_type": 857,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-ToiletPaper-None-ToiletPaperHanger-407/trial_T20190909_081752_122600",
+"retrieved_task": 662,
+"placebo": 663,
+"mismatched_type": 661,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-ToiletPaper-None-ToiletPaperHanger-420/trial_T20190907_140402_751385",
+"retrieved_task": 662,
+"placebo": 663,
+"mismatched_type": 661,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-ToiletPaper-None-ToiletPaperHanger-421/trial_T20190906_182507_445544",
+"retrieved_task": 662,
+"placebo": 663,
+"mismatched_type": 661,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_and_place_simple-Watch-None-CoffeeTable-213/trial_T20190909_010748_137974",
+"retrieved_task": 1143,
+"placebo": 1142,
+"mismatched_type": 1038,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Apple-None-Fridge-27/trial_T20190906_220808_492885",
+"retrieved_task": 839,
+"placebo": 835,
+"mismatched_type": 838,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Apple-None-Microwave-24/trial_T20190907_133245_678353",
+"retrieved_task": 851,
+"placebo": 853,
+"mismatched_type": 850,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Apple-None-SideTable-21/trial_T20190908_041728_759551",
+"retrieved_task": 912,
+"placebo": 911,
+"mismatched_type": 910,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Bowl-None-DiningTable-23/trial_T20190907_221803_588693",
+"retrieved_task": 863,
+"placebo": 861,
+"mismatched_type": 862,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Bowl-None-Shelf-1/trial_T20190909_070204_191856",
+"retrieved_task": 876,
+"placebo": 878,
+"mismatched_type": 875,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-ButterKnife-None-CounterTop-12/trial_T20190909_105721_508235",
+"retrieved_task": 753,
+"placebo": 752,
+"mismatched_type": 752,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Cloth-None-CounterTop-408/trial_T20190908_103252_065529",
+"retrieved_task": 739,
+"placebo": 737,
+"mismatched_type": 721,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Cloth-None-CounterTop-409/trial_T20190908_140608_692564",
+"retrieved_task": 779,
+"placebo": 779,
+"mismatched_type": 778,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Cloth-None-Drawer-410/trial_T20190908_122824_123331",
+"retrieved_task": 867,
+"placebo": 869,
+"mismatched_type": 866,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Cloth-None-Drawer-411/trial_T20190907_202223_569116",
+"retrieved_task": 844,
+"placebo": 845,
+"mismatched_type": 843,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Cloth-None-Drawer-427/trial_T20190909_070356_398456",
+"retrieved_task": 842,
+"placebo": 845,
+"mismatched_type": 841,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Cloth-None-Toilet-406/trial_T20190908_102552_835735",
+"retrieved_task": 793,
+"placebo": 795,
+"mismatched_type": 792,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Cup-None-Microwave-6/trial_T20190909_033603_280835",
+"retrieved_task": 893,
+"placebo": 894,
+"mismatched_type": 892,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Cup-None-Shelf-1/trial_T20190909_151825_980574",
+"retrieved_task": 861,
+"placebo": 861,
+"mismatched_type": 860,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Cup-None-SideTable-3/trial_T20190907_120802_836392",
+"retrieved_task": 891,
+"placebo": 894,
+"mismatched_type": 890,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-DishSponge-None-Cabinet-414/trial_T20190909_061538_357779",
+"retrieved_task": 826,
+"placebo": 828,
+"mismatched_type": 825,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-DishSponge-None-Drawer-430/trial_T20190908_122230_051247",
+"retrieved_task": 876,
+"placebo": 878,
+"mismatched_type": 875,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-DishSponge-None-Shelf-401/trial_T20190908_072146_807271",
+"retrieved_task": 873,
+"placebo": 869,
+"mismatched_type": 873,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Egg-None-DiningTable-23/trial_T20190908_083733_678856",
+"retrieved_task": 938,
+"placebo": 935,
+"mismatched_type": 926,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Egg-None-GarbageCan-11/trial_T20190906_180918_337235",
+"retrieved_task": 870,
+"placebo": 869,
+"mismatched_type": 869,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Egg-None-SideTable-21/trial_T20190908_033911_286565",
+"retrieved_task": 884,
+"placebo": 884,
+"mismatched_type": 883,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Fork-None-DiningTable-15/trial_T20190907_203221_946933",
+"retrieved_task": 1028,
+"placebo": 1026,
+"mismatched_type": 929,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Fork-None-DiningTable-24/trial_T20190906_205125_257251",
+"retrieved_task": 1028,
+"placebo": 1026,
+"mismatched_type": 929,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Kettle-None-DiningTable-18/trial_T20190908_085532_288859",
+"retrieved_task": 989,
+"placebo": 993,
+"mismatched_type": 929,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Kettle-None-StoveBurner-3/trial_T20190907_054250_215208",
+"retrieved_task": 770,
+"placebo": 769,
+"mismatched_type": 769,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Knife-None-DiningTable-23/trial_T20190908_142153_073870",
+"retrieved_task": 974,
+"placebo": 977,
+"mismatched_type": 929,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Knife-None-DiningTable-26/trial_T20190908_133506_711168",
+"retrieved_task": 929,
+"placebo": 927,
+"mismatched_type": 929,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Knife-None-SideTable-3/trial_T20190906_210621_936693",
+"retrieved_task": 801,
+"placebo": 803,
+"mismatched_type": 800,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Ladle-None-Drawer-27/trial_T20190906_211607_560303",
+"retrieved_task": 860,
+"placebo": 861,
+"mismatched_type": 859,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Lettuce-None-CounterTop-18/trial_T20190909_071129_660883",
+"retrieved_task": 841,
+"placebo": 845,
+"mismatched_type": 840,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Lettuce-None-GarbageCan-17/trial_T20190907_163631_504901",
+"retrieved_task": 841,
+"placebo": 845,
+"mismatched_type": 840,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Mug-None-CoffeeMachine-1/trial_T20190909_134634_406636",
+"retrieved_task": 716,
+"placebo": 713,
+"mismatched_type": 715,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Mug-None-CoffeeMachine-11/trial_T20190909_100519_428325",
+"retrieved_task": 742,
+"placebo": 746,
+"mismatched_type": 741,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Mug-None-CoffeeMachine-14/trial_T20190906_213507_741596",
+"retrieved_task": 767,
+"placebo": 769,
+"mismatched_type": 766,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Mug-None-CoffeeMachine-22/trial_T20190907_070909_959049",
+"retrieved_task": 777,
+"placebo": 779,
+"mismatched_type": 776,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Mug-None-CoffeeMachine-6/trial_T20190909_113418_384092",
+"retrieved_task": 729,
+"placebo": 729,
+"mismatched_type": 721,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Pan-None-Cabinet-1/trial_T20190908_131016_333757",
+"retrieved_task": 884,
+"placebo": 884,
+"mismatched_type": 883,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Pan-None-Fridge-1/trial_T20190908_105504_396709",
+"retrieved_task": 932,
+"placebo": 935,
+"mismatched_type": 930,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Pan-None-StoveBurner-2/trial_T20190909_052052_434558",
+"retrieved_task": 768,
+"placebo": 769,
+"mismatched_type": 767,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Plate-None-Cabinet-13/trial_T20190909_123448_575866",
+"retrieved_task": 808,
+"placebo": 812,
+"mismatched_type": 807,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Plate-None-Fridge-19/trial_T20190907_013946_270209",
+"retrieved_task": 932,
+"placebo": 935,
+"mismatched_type": 930,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Plate-None-Microwave-7/trial_T20190907_170059_704503",
+"retrieved_task": 867,
+"placebo": 869,
+"mismatched_type": 866,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Plate-None-Shelf-7/trial_T20190908_230022_030239",
+"retrieved_task": 814,
+"placebo": 812,
+"mismatched_type": 813,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Pot-None-DiningTable-26/trial_T20190906_210442_771377",
+"retrieved_task": 974,
+"placebo": 977,
+"mismatched_type": 929,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Pot-None-Fridge-4/trial_T20190908_153101_496299",
+"retrieved_task": 900,
+"placebo": 901,
+"mismatched_type": 899,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Pot-None-Shelf-1/trial_T20190908_145243_949385",
+"retrieved_task": 807,
+"placebo": 803,
+"mismatched_type": 806,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Potato-None-Microwave-2/trial_T20190908_102036_283979",
+"retrieved_task": 869,
+"placebo": 869,
+"mismatched_type": 868,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-SoapBar-None-Cabinet-422/trial_T20190908_123321_281332",
+"retrieved_task": 849,
+"placebo": 853,
+"mismatched_type": 848,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-SoapBar-None-CounterTop-428/trial_T20190908_185056_640223",
+"retrieved_task": 813,
+"placebo": 812,
+"mismatched_type": 812,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-SoapBar-None-GarbageCan-420/trial_T20190906_201023_015139",
+"retrieved_task": 813,
+"placebo": 812,
+"mismatched_type": 812,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-SoapBar-None-GarbageCan-426/trial_T20190908_060552_772210",
+"retrieved_task": 813,
+"placebo": 812,
+"mismatched_type": 812,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-SoapBar-None-GarbageCan-429/trial_T20190909_015333_203352",
+"retrieved_task": 813,
+"placebo": 812,
+"mismatched_type": 812,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-SoapBar-None-Shelf-429/trial_T20190909_100836_067219",
+"retrieved_task": 827,
+"placebo": 828,
+"mismatched_type": 826,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-SoapBar-None-Toilet-408/trial_T20190908_122434_336174",
+"retrieved_task": 793,
+"placebo": 795,
+"mismatched_type": 792,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-SoapBar-None-Toilet-420/trial_T20190908_043110_082550",
+"retrieved_task": 793,
+"placebo": 795,
+"mismatched_type": 792,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-SoapBar-None-Toilet-422/trial_T20190908_204626_280695",
+"retrieved_task": 793,
+"placebo": 795,
+"mismatched_type": 792,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Spatula-None-DiningTable-19/trial_T20190909_081214_166116",
+"retrieved_task": 905,
+"placebo": 901,
+"mismatched_type": 904,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Spoon-None-DiningTable-21/trial_T20190908_064810_778005",
+"retrieved_task": 1013,
+"placebo": 1016,
+"mismatched_type": 929,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Spoon-None-SideTable-21/trial_T20190908_231958_358508",
+"retrieved_task": 928,
+"placebo": 927,
+"mismatched_type": 927,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_clean_then_place_in_recep-Tomato-None-DiningTable-23/trial_T20190909_000844_354286",
+"retrieved_task": 886,
+"placebo": 884,
+"mismatched_type": 885,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Apple-None-CounterTop-27/trial_T20190909_083822_290392",
+"retrieved_task": 850,
+"placebo": 853,
+"mismatched_type": 849,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Apple-None-GarbageCan-19/trial_T20190908_121544_758256",
+"retrieved_task": 812,
+"placebo": 812,
+"mismatched_type": 811,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Apple-None-Microwave-11/trial_T20190909_012317_645496",
+"retrieved_task": 797,
+"placebo": 795,
+"mismatched_type": 796,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Apple-None-Microwave-22/trial_T20190908_000241_664330",
+"retrieved_task": 860,
+"placebo": 861,
+"mismatched_type": 859,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Apple-None-SideTable-21/trial_T20190907_180932_300568",
+"retrieved_task": 873,
+"placebo": 869,
+"mismatched_type": 872,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bowl-None-Cabinet-19/trial_T20190908_043325_612655",
+"retrieved_task": 796,
+"placebo": 795,
+"mismatched_type": 795,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bowl-None-Cabinet-25/trial_T20190908_073559_391749",
+"retrieved_task": 857,
+"placebo": 861,
+"mismatched_type": 856,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bowl-None-CounterTop-15/trial_T20190909_034820_123796",
+"retrieved_task": 859,
+"placebo": 861,
+"mismatched_type": 858,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bowl-None-DiningTable-23/trial_T20190908_140213_904372",
+"retrieved_task": 949,
+"placebo": 950,
+"mismatched_type": 948,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bowl-None-Microwave-25/trial_T20190906_180413_806436",
+"retrieved_task": 857,
+"placebo": 861,
+"mismatched_type": 856,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bowl-None-Microwave-7/trial_T20190908_230837_778972",
+"retrieved_task": 857,
+"placebo": 861,
+"mismatched_type": 856,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bowl-None-Shelf-1/trial_T20190907_073835_452186",
+"retrieved_task": 853,
+"placebo": 853,
+"mismatched_type": 852,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bread-None-CounterTop-4/trial_T20190907_232940_130727",
+"retrieved_task": 799,
+"placebo": 803,
+"mismatched_type": 798,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bread-None-DiningTable-7/trial_T20190907_191128_519194",
+"retrieved_task": 855,
+"placebo": 853,
+"mismatched_type": 854,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Bread-None-Microwave-15/trial_T20190907_132633_001617",
+"retrieved_task": 899,
+"placebo": 901,
+"mismatched_type": 898,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Cup-None-Cabinet-12/trial_T20190909_102554_108303",
+"retrieved_task": 817,
+"placebo": 818,
+"mismatched_type": 816,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Cup-None-Cabinet-26/trial_T20190911_041711_460175",
+"retrieved_task": 776,
+"placebo": 779,
+"mismatched_type": 775,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Cup-None-Cabinet-4/trial_T20190906_214155_714827",
+"retrieved_task": 750,
+"placebo": 752,
+"mismatched_type": 749,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Cup-None-DiningTable-24/trial_T20190909_020224_927852",
+"retrieved_task": 762,
+"placebo": 762,
+"mismatched_type": 761,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Cup-None-DiningTable-4/trial_T20190909_065111_327275",
+"retrieved_task": 802,
+"placebo": 803,
+"mismatched_type": 801,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Cup-None-Shelf-7/trial_T20190906_222304_743502",
+"retrieved_task": 825,
+"placebo": 828,
+"mismatched_type": 824,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Egg-None-Microwave-20/trial_T20190908_052011_844993",
+"retrieved_task": 903,
+"placebo": 901,
+"mismatched_type": 902,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Egg-None-SideTable-21/trial_T20190907_044013_708280",
+"retrieved_task": 904,
+"placebo": 901,
+"mismatched_type": 903,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Lettuce-None-DiningTable-18/trial_T20190909_122556_499597",
+"retrieved_task": 956,
+"placebo": 960,
+"mismatched_type": 959,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Lettuce-None-GarbageCan-16/trial_T20190909_014736_101510",
+"retrieved_task": 853,
+"placebo": 853,
+"mismatched_type": 852,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Lettuce-None-GarbageCan-17/trial_T20190907_114546_602779",
+"retrieved_task": 948,
+"placebo": 950,
+"mismatched_type": 947,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Lettuce-None-GarbageCan-27/trial_T20190908_135424_349613",
+"retrieved_task": 794,
+"placebo": 795,
+"mismatched_type": 793,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Mug-None-Cabinet-22/trial_T20190910_111425_326630",
+"retrieved_task": 739,
+"placebo": 737,
+"mismatched_type": 721,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Mug-None-Cabinet-6/trial_T20190908_224333_300425",
+"retrieved_task": 725,
+"placebo": 729,
+"mismatched_type": 721,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Mug-None-CoffeeMachine-1/trial_T20190907_100841_356010",
+"retrieved_task": 764,
+"placebo": 762,
+"mismatched_type": 763,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Mug-None-CoffeeMachine-13/trial_T20190906_211215_210922",
+"retrieved_task": 734,
+"placebo": 737,
+"mismatched_type": 721,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Mug-None-CoffeeMachine-6/trial_T20190906_204003_012007",
+"retrieved_task": 599,
+"placebo": 597,
+"mismatched_type": 598,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Mug-None-Shelf-1/trial_T20190908_073555_430020",
+"retrieved_task": 825,
+"placebo": 828,
+"mismatched_type": 824,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pan-None-Cabinet-18/trial_T20190907_222321_075263",
+"retrieved_task": 816,
+"placebo": 818,
+"mismatched_type": 815,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pan-None-DiningTable-23/trial_T20190909_005801_641557",
+"retrieved_task": 823,
+"placebo": 828,
+"mismatched_type": 822,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pan-None-DiningTable-27/trial_T20190909_041736_994961",
+"retrieved_task": 754,
+"placebo": 752,
+"mismatched_type": 753,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pan-None-StoveBurner-15/trial_T20190907_121853_258663",
+"retrieved_task": 750,
+"placebo": 752,
+"mismatched_type": 749,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Plate-None-Cabinet-22/trial_T20190907_200807_715947",
+"retrieved_task": 824,
+"placebo": 828,
+"mismatched_type": 823,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Plate-None-DiningTable-23/trial_T20190910_004814_936794",
+"retrieved_task": 823,
+"placebo": 828,
+"mismatched_type": 822,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Plate-None-Shelf-20/trial_T20190907_034714_802572",
+"retrieved_task": 830,
+"placebo": 828,
+"mismatched_type": 829,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pot-None-Cabinet-1/trial_T20190908_184335_961034",
+"retrieved_task": 723,
+"placebo": 721,
+"mismatched_type": 721,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pot-None-Cabinet-27/trial_T20190908_131329_081708",
+"retrieved_task": 735,
+"placebo": 737,
+"mismatched_type": 721,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pot-None-Cabinet-5/trial_T20190906_235356_747730",
+"retrieved_task": 733,
+"placebo": 737,
+"mismatched_type": 721,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pot-None-CounterTop-17/trial_T20190908_235146_972017",
+"retrieved_task": 814,
+"placebo": 812,
+"mismatched_type": 813,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pot-None-CounterTop-5/trial_T20190908_073403_352600",
+"retrieved_task": 814,
+"placebo": 812,
+"mismatched_type": 813,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pot-None-StoveBurner-1/trial_T20190907_073551_639783",
+"retrieved_task": 676,
+"placebo": 680,
+"mismatched_type": 675,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pot-None-StoveBurner-25/trial_T20190907_114818_818003",
+"retrieved_task": 676,
+"placebo": 680,
+"mismatched_type": 675,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Pot-None-StoveBurner-4/trial_T20190906_190623_623711",
+"retrieved_task": 676,
+"placebo": 680,
+"mismatched_type": 675,
+"pool": "quarter",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Potato-None-CounterTop-14/trial_T20190908_053544_835832",
+"retrieved_task": 822,
+"placebo": 818,
+"mismatched_type": 821,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Potato-None-CounterTop-30/trial_T20190908_111718_406246",
+"retrieved_task": 812,
+"placebo": 812,
+"mismatched_type": 811,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Potato-None-GarbageCan-1/trial_T20190909_102549_719247",
+"retrieved_task": 797,
+"placebo": 795,
+"mismatched_type": 796,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Potato-None-GarbageCan-18/trial_T20190909_044319_709757",
+"retrieved_task": 807,
+"placebo": 803,
+"mismatched_type": 806,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Potato-None-GarbageCan-2/trial_T20190908_101621_422961",
+"retrieved_task": 752,
+"placebo": 752,
+"mismatched_type": 751,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Potato-None-GarbageCan-6/trial_T20190907_164308_014097",
+"retrieved_task": 803,
+"placebo": 803,
+"mismatched_type": 802,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Tomato-None-DiningTable-11/trial_T20190908_215900_237409",
+"retrieved_task": 848,
+"placebo": 845,
+"mismatched_type": 847,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Tomato-None-DiningTable-26/trial_T20190907_160916_014285",
+"retrieved_task": 841,
+"placebo": 845,
+"mismatched_type": 840,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Tomato-None-Microwave-5/trial_T20190908_132410_284943",
+"retrieved_task": 905,
+"placebo": 901,
+"mismatched_type": 903,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-Tomato-None-Microwave-6/trial_T20190908_082241_050373",
+"retrieved_task": 905,
+"placebo": 901,
+"mismatched_type": 905,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-WineBottle-None-Cabinet-17/trial_T20190907_064240_113879",
+"retrieved_task": 796,
+"placebo": 795,
+"mismatched_type": 795,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_cool_then_place_in_recep-WineBottle-None-CounterTop-16/trial_T20190907_165538_792657",
+"retrieved_task": 803,
+"placebo": 803,
+"mismatched_type": 802,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Apple-None-CounterTop-2/trial_T20190908_112607_841503",
+"retrieved_task": 823,
+"placebo": 828,
+"mismatched_type": 822,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Apple-None-CounterTop-30/trial_T20190908_103606_028358",
+"retrieved_task": 849,
+"placebo": 853,
+"mismatched_type": 848,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Apple-None-CounterTop-5/trial_T20190907_113555_848211",
+"retrieved_task": 871,
+"placebo": 869,
+"mismatched_type": 870,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Apple-None-Fridge-16/trial_T20190907_203512_225732",
+"retrieved_task": 798,
+"placebo": 795,
+"mismatched_type": 797,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Apple-None-Fridge-20/trial_T20190908_013911_274341",
+"retrieved_task": 830,
+"placebo": 828,
+"mismatched_type": 829,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Apple-None-Fridge-22/trial_T20190908_210352_288346",
+"retrieved_task": 830,
+"placebo": 828,
+"mismatched_type": 829,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Apple-None-Fridge-30/trial_T20190908_114730_041931",
+"retrieved_task": 896,
+"placebo": 894,
+"mismatched_type": 895,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Apple-None-GarbageCan-18/trial_T20190909_080831_292110",
+"retrieved_task": 849,
+"placebo": 853,
+"mismatched_type": 848,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Apple-None-GarbageCan-2/trial_T20190908_204114_322747",
+"retrieved_task": 830,
+"placebo": 828,
+"mismatched_type": 829,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Bread-None-CounterTop-15/trial_T20190907_000330_272060",
+"retrieved_task": 860,
+"placebo": 861,
+"mismatched_type": 859,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Bread-None-GarbageCan-15/trial_T20190906_230203_099939",
+"retrieved_task": 798,
+"placebo": 795,
+"mismatched_type": 797,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Cup-None-Cabinet-1/trial_T20190909_091033_436380",
+"retrieved_task": 847,
+"placebo": 845,
+"mismatched_type": 846,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Cup-None-Cabinet-3/trial_T20190909_010003_497831",
+"retrieved_task": 780,
+"placebo": 779,
+"mismatched_type": 779,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Cup-None-Cabinet-30/trial_T20190906_200229_166300",
+"retrieved_task": 818,
+"placebo": 818,
+"mismatched_type": 817,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Cup-None-Fridge-12/trial_T20190908_095835_636521",
+"retrieved_task": 878,
+"placebo": 878,
+"mismatched_type": 877,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Cup-None-Fridge-18/trial_T20190908_142308_771790",
+"retrieved_task": 787,
+"placebo": 787,
+"mismatched_type": 786,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Cup-None-Fridge-23/trial_T20190908_045659_449231",
+"retrieved_task": 914,
+"placebo": 911,
+"mismatched_type": 913,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Cup-None-Shelf-1/trial_T20190906_230209_175441",
+"retrieved_task": 742,
+"placebo": 746,
+"mismatched_type": 741,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Cup-None-SideTable-28/trial_T20190907_165203_052598",
+"retrieved_task": 818,
+"placebo": 818,
+"mismatched_type": 817,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-DiningTable-11/trial_T20190907_125428_577559",
+"retrieved_task": 861,
+"placebo": 861,
+"mismatched_type": 860,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-DiningTable-18/trial_T20190908_051307_917970",
+"retrieved_task": 863,
+"placebo": 861,
+"mismatched_type": 862,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-Fridge-17/trial_T20190909_130835_721326",
+"retrieved_task": 903,
+"placebo": 901,
+"mismatched_type": 902,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-Fridge-4/trial_T20190908_220718_809536",
+"retrieved_task": 797,
+"placebo": 795,
+"mismatched_type": 796,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-GarbageCan-1/trial_T20190908_132828_295041",
+"retrieved_task": 780,
+"placebo": 779,
+"mismatched_type": 779,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-GarbageCan-12/trial_T20190908_181854_326947",
+"retrieved_task": 831,
+"placebo": 828,
+"mismatched_type": 830,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-GarbageCan-20/trial_T20190909_114130_123227",
+"retrieved_task": 851,
+"placebo": 853,
+"mismatched_type": 850,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-GarbageCan-5/trial_T20190906_190707_776806",
+"retrieved_task": 831,
+"placebo": 828,
+"mismatched_type": 830,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-GarbageCan-8/trial_T20190909_120700_524631",
+"retrieved_task": 831,
+"placebo": 828,
+"mismatched_type": 830,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-SideTable-21/trial_T20190907_045104_949753",
+"retrieved_task": 956,
+"placebo": 960,
+"mismatched_type": 956,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Egg-None-SideTable-28/trial_T20190908_115607_419115",
+"retrieved_task": 852,
+"placebo": 853,
+"mismatched_type": 851,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-Cabinet-12/trial_T20190909_032836_007400",
+"retrieved_task": 807,
+"placebo": 803,
+"mismatched_type": 806,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-Cabinet-19/trial_T20190907_152639_710593",
+"retrieved_task": 807,
+"placebo": 803,
+"mismatched_type": 806,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-Cabinet-22/trial_T20190908_073018_399742",
+"retrieved_task": 807,
+"placebo": 803,
+"mismatched_type": 806,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-Cabinet-25/trial_T20190909_095542_548585",
+"retrieved_task": 816,
+"placebo": 818,
+"mismatched_type": 815,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-14/trial_T20190907_012050_928961",
+"retrieved_task": 791,
+"placebo": 795,
+"mismatched_type": 790,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-15/trial_T20190908_004759_413623",
+"retrieved_task": 791,
+"placebo": 795,
+"mismatched_type": 790,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-16/trial_T20190908_181157_270120",
+"retrieved_task": 791,
+"placebo": 795,
+"mismatched_type": 790,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-18/trial_T20190907_142057_604429",
+"retrieved_task": 819,
+"placebo": 818,
+"mismatched_type": 818,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-24/trial_T20190907_144750_235743",
+"retrieved_task": 791,
+"placebo": 795,
+"mismatched_type": 790,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-25/trial_T20190906_235756_721785",
+"retrieved_task": 791,
+"placebo": 795,
+"mismatched_type": 790,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-5/trial_T20190908_003714_311231",
+"retrieved_task": 791,
+"placebo": 795,
+"mismatched_type": 790,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Plate-None-Cabinet-13/trial_T20190907_062558_120187",
+"retrieved_task": 831,
+"placebo": 828,
+"mismatched_type": 830,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Plate-None-Cabinet-7/trial_T20190907_144205_820330",
+"retrieved_task": 754,
+"placebo": 752,
+"mismatched_type": 753,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Plate-None-CounterTop-13/trial_T20190909_100939_867117",
+"retrieved_task": 823,
+"placebo": 828,
+"mismatched_type": 822,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Plate-None-CounterTop-7/trial_T20190909_100747_111240",
+"retrieved_task": 887,
+"placebo": 884,
+"mismatched_type": 886,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Plate-None-Fridge-13/trial_T20190907_035716_975895",
+"retrieved_task": 952,
+"placebo": 950,
+"mismatched_type": 950,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Plate-None-Shelf-7/trial_T20190906_193929_080179",
+"retrieved_task": 868,
+"placebo": 869,
+"mismatched_type": 867,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Potato-None-CounterTop-19/trial_T20190909_151946_958394",
+"retrieved_task": 763,
+"placebo": 762,
+"mismatched_type": 762,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Potato-None-DiningTable-16/trial_T20190908_015247_818796",
+"retrieved_task": 852,
+"placebo": 853,
+"mismatched_type": 851,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Potato-None-Fridge-30/trial_T20190907_193517_118086",
+"retrieved_task": 952,
+"placebo": 950,
+"mismatched_type": 950,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Potato-None-Fridge-6/trial_T20190907_125528_464872",
+"retrieved_task": 908,
+"placebo": 911,
+"mismatched_type": 907,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Potato-None-GarbageCan-12/trial_T20190910_225228_723273",
+"retrieved_task": 775,
+"placebo": 779,
+"mismatched_type": 774,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Potato-None-GarbageCan-25/trial_T20190906_201557_292696",
+"retrieved_task": 752,
+"placebo": 752,
+"mismatched_type": 751,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Potato-None-GarbageCan-5/trial_T20190908_144144_976529",
+"retrieved_task": 752,
+"placebo": 752,
+"mismatched_type": 751,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Potato-None-SideTable-3/trial_T20190909_025547_305753",
+"retrieved_task": 814,
+"placebo": 812,
+"mismatched_type": 813,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Tomato-None-DiningTable-24/trial_T20190907_072944_373627",
+"retrieved_task": 768,
+"placebo": 769,
+"mismatched_type": 767,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Tomato-None-Fridge-14/trial_T20190908_091707_240737",
+"retrieved_task": 912,
+"placebo": 911,
+"mismatched_type": 911,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Tomato-None-GarbageCan-16/trial_T20190906_171701_034036",
+"retrieved_task": 824,
+"placebo": 828,
+"mismatched_type": 823,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Tomato-None-GarbageCan-2/trial_T20190908_111801_490050",
+"retrieved_task": 865,
+"placebo": 869,
+"mismatched_type": 864,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_heat_then_place_in_recep-Tomato-None-SideTable-3/trial_T20190907_140821_716243",
+"retrieved_task": 864,
+"placebo": 861,
+"mismatched_type": 863,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-AlarmClock-None-Desk-313/trial_T20190909_054612_605208",
+"retrieved_task": 863,
+"placebo": 861,
+"mismatched_type": 862,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Book-None-Dresser-317/trial_T20190910_180738_291661",
+"retrieved_task": 1076,
+"placebo": 1076,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Book-None-Dresser-324/trial_T20190908_085337_381415",
+"retrieved_task": 1068,
+"placebo": 1067,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CD-None-Drawer-321/trial_T20190908_180900_935530",
+"retrieved_task": 1002,
+"placebo": 1001,
+"mismatched_type": 998,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CD-None-Drawer-328/trial_T20190909_041643_301456",
+"retrieved_task": 1053,
+"placebo": 1051,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CD-None-GarbageCan-306/trial_T20190908_142812_942346",
+"retrieved_task": 1126,
+"placebo": 1125,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CD-None-GarbageCan-321/trial_T20190908_132301_116696",
+"retrieved_task": 1044,
+"placebo": 1043,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Candle-None-Cabinet-406/trial_T20190908_165628_335781",
+"retrieved_task": 1077,
+"placebo": 1076,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CellPhone-None-Bed-314/trial_T20190909_013318_115630",
+"retrieved_task": 976,
+"placebo": 977,
+"mismatched_type": 975,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CellPhone-None-DiningTable-326/trial_T20190907_125954_586140",
+"retrieved_task": 1163,
+"placebo": 1165,
+"mismatched_type": 979,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CellPhone-None-Drawer-318/trial_T20190910_054705_146286",
+"retrieved_task": 1058,
+"placebo": 1059,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Cloth-None-Toilet-417/trial_T20190908_152140_753366",
+"retrieved_task": 1058,
+"placebo": 1059,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CreditCard-None-ArmChair-217/trial_T20190909_114045_918354",
+"retrieved_task": 989,
+"placebo": 993,
+"mismatched_type": 989,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CreditCard-None-ArmChair-221/trial_T20190907_161645_456905",
+"retrieved_task": 950,
+"placebo": 950,
+"mismatched_type": 948,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-CreditCard-None-ArmChair-230/trial_T20190909_100226_368975",
+"retrieved_task": 955,
+"placebo": 960,
+"mismatched_type": 954,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Cup-None-Cabinet-2/trial_T20190908_031003_719573",
+"retrieved_task": 760,
+"placebo": 762,
+"mismatched_type": 759,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Cup-None-Microwave-22/trial_T20190918_234000_303529",
+"retrieved_task": 942,
+"placebo": 944,
+"mismatched_type": 941,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Cup-None-Microwave-26/trial_T20190907_231307_110058",
+"retrieved_task": 942,
+"placebo": 944,
+"mismatched_type": 941,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-HandTowel-None-Toilet-409/trial_T20190909_081043_762420",
+"retrieved_task": 1025,
+"placebo": 1026,
+"mismatched_type": 1027,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Kettle-None-Cabinet-3/trial_T20190908_121954_912027",
+"retrieved_task": 1077,
+"placebo": 1076,
+"mismatched_type": 1012,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-KeyChain-None-Dresser-322/trial_T20190908_051114_312895",
+"retrieved_task": 814,
+"placebo": 812,
+"mismatched_type": 813,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-KeyChain-None-Sofa-222/trial_T20190909_061611_717990",
+"retrieved_task": 1059,
+"placebo": 1059,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Laptop-None-Ottoman-203/trial_T20190907_034356_767031",
+"retrieved_task": 1096,
+"placebo": 1099,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Newspaper-None-CoffeeTable-212/trial_T20190907_211610_883853",
+"retrieved_task": 997,
+"placebo": 1001,
+"mismatched_type": 994,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Pen-None-Dresser-318/trial_T20190910_101622_375359",
+"retrieved_task": 1053,
+"placebo": 1051,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Pen-None-SideTable-329/trial_T20190906_203209_061579",
+"retrieved_task": 1102,
+"placebo": 1099,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Pen-None-SideTable-330/trial_T20190908_121048_491026",
+"retrieved_task": 1102,
+"placebo": 1099,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Pencil-None-Desk-303/trial_T20190908_220248_075224",
+"retrieved_task": 1073,
+"placebo": 1076,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Pencil-None-Desk-314/trial_T20190907_044915_976409",
+"retrieved_task": 1073,
+"placebo": 1076,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Pencil-None-Desk-327/trial_T20190907_234611_599540",
+"retrieved_task": 1073,
+"placebo": 1076,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Pencil-None-Drawer-316/trial_T20190907_003944_188608",
+"retrieved_task": 1072,
+"placebo": 1076,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Pencil-None-SideTable-329/trial_T20190909_001354_318049",
+"retrieved_task": 1102,
+"placebo": 1099,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-PepperShaker-None-Cabinet-17/trial_T20190919_014503_183355",
+"retrieved_task": 1119,
+"placebo": 1117,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-PepperShaker-None-DiningTable-18/trial_T20190918_215048_043255",
+"retrieved_task": 1163,
+"placebo": 1165,
+"mismatched_type": 979,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-PepperShaker-None-Drawer-15/trial_T20190909_022741_011150",
+"retrieved_task": 1135,
+"placebo": 1133,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Pillow-None-ArmChair-217/trial_T20190908_034605_540049",
+"retrieved_task": 795,
+"placebo": 795,
+"mismatched_type": 794,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-RemoteControl-None-ArmChair-220/trial_T20190906_190318_357577",
+"retrieved_task": 1012,
+"placebo": 1010,
+"mismatched_type": 1012,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-RemoteControl-None-ArmChair-230/trial_T20190907_195543_135937",
+"retrieved_task": 1012,
+"placebo": 1010,
+"mismatched_type": 1012,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-RemoteControl-None-CoffeeTable-202/trial_T20190907_075335_280493",
+"retrieved_task": 1063,
+"placebo": 1067,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-RemoteControl-None-Ottoman-210/trial_T20190906_202015_373575",
+"retrieved_task": 1063,
+"placebo": 1067,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SaltShaker-None-Cabinet-3/trial_T20190908_102210_822954",
+"retrieved_task": 1180,
+"placebo": 1183,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SoapBar-None-Shelf-415/trial_T20190908_070525_956427",
+"retrieved_task": 991,
+"placebo": 993,
+"mismatched_type": 990,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SoapBottle-None-Cabinet-417/trial_T20190909_122015_285026",
+"retrieved_task": 996,
+"placebo": 993,
+"mismatched_type": 996,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SoapBottle-None-Toilet-403/trial_T20190908_060039_542379",
+"retrieved_task": 996,
+"placebo": 993,
+"mismatched_type": 996,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SprayBottle-None-Cabinet-417/trial_T20190909_112634_915921",
+"retrieved_task": 1042,
+"placebo": 1043,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SprayBottle-None-CounterTop-410/trial_T20190908_161543_945343",
+"retrieved_task": 837,
+"placebo": 835,
+"mismatched_type": 836,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SprayBottle-None-GarbageCan-413/trial_T20190912_044047_465184",
+"retrieved_task": 831,
+"placebo": 828,
+"mismatched_type": 830,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SprayBottle-None-GarbageCan-418/trial_T20190909_071739_357749",
+"retrieved_task": 862,
+"placebo": 861,
+"mismatched_type": 861,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SprayBottle-None-GarbageCan-428/trial_T20190909_055216_429116",
+"retrieved_task": 1053,
+"placebo": 1051,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-SprayBottle-None-Toilet-405/trial_T20190907_151246_155544",
+"retrieved_task": 1035,
+"placebo": 1033,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Statue-None-SideTable-214/trial_T20190909_065508_033151",
+"retrieved_task": 1011,
+"placebo": 1010,
+"mismatched_type": 1012,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-TissueBox-None-Cart-430/trial_T20190906_172408_729431",
+"retrieved_task": 1161,
+"placebo": 1158,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-TissueBox-None-GarbageCan-230/trial_T20190908_050853_644994",
+"retrieved_task": 882,
+"placebo": 884,
+"mismatched_type": 881,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-ToiletPaper-None-Cabinet-402/trial_T20190908_144830_163459",
+"retrieved_task": 1115,
+"placebo": 1117,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-ToiletPaper-None-Cabinet-408/trial_T20190909_085658_782847",
+"retrieved_task": 1068,
+"placebo": 1067,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-ToiletPaper-None-Cabinet-412/trial_T20190908_141702_352728",
+"retrieved_task": 1017,
+"placebo": 1016,
+"mismatched_type": 1012,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-ToiletPaper-None-Cabinet-417/trial_T20190909_115011_963684",
+"retrieved_task": 1115,
+"placebo": 1117,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-ToiletPaper-None-SideTable-420/trial_T20190909_114817_260394",
+"retrieved_task": 1011,
+"placebo": 1010,
+"mismatched_type": 1012,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-Tomato-None-CounterTop-19/trial_T20190907_144716_566859",
+"retrieved_task": 1062,
+"placebo": 1059,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+},
+{
+"unit": "train/pick_two_obj_and_place-WineBottle-None-Cabinet-17/trial_T20190909_014040_145528",
+"retrieved_task": 1033,
+"placebo": 1033,
+"mismatched_type": 1031,
+"pool": "half",
+"overlap_with_retrieved": 0,
+"mismatched_jaccard": 0.0
+}
+]
+}
