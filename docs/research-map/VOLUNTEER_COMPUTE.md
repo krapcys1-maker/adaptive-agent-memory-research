@@ -127,7 +127,23 @@ Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `plac
 
 **Replay.** ALFWorld is deterministic given the actions. The maintainer replays every submitted action sequence on the CPU (about 1.5 s per game), recomputes "won" and "steps", and recomputes the retrieved entry ids from the bank and the logged queries. A mismatch voids the cell. The replay uses the reference game archive. A cell run on the older `json_2.1.1` archive is replayed with one one-to-one mapping of the action text (`put X in/on Y` becomes `move X to Y`; a `move …` the agent typed there stays inadmissible) and goes into the sensitivity analysis.
 
-**Re-runs.** At least 10% of cells, chosen by the maintainer after submission, are re-run on another machine.
+**Re-runs: one spot-check per machine.** This is the one rule for validating cells. The placebo check and
+[AUTHORSHIP.md](../../AUTHORSHIP.md) refer to it.
+- **What is re-run.** From every contributing machine, at least one cell is re-run in full on the lab's hardware at the
+  reference configuration: the same games, arms, replicate seed and settings. A machine is one GPU host, as its card
+  declares it. A contributor with two machines has two spot-checks.
+- **Which cell.** The lab chooses it after submission, by `sha256(salt + cell id)`, lowest first. The random salt is
+  committed to this repository before the draw.
+- **Agreement, declared before any spot-check.** The spot-check agrees when both of these hold:
+  - the CPU replay of the lab's re-run and of the volunteer's cell both pass, and their retrieved entry ids,
+    `memory_tokens`, `top1_similarity` and `memory_similarity` are equal for every game and arm;
+  - for every arm, the exact two-sided McNemar test on the per-game solved outcomes (volunteer versus lab) does
+    not reject at α = 0.01.
+- **What follows.**
+  - If the spot-check agrees, every cell of that machine that passed the code checks and the replay is
+    *validated*.
+  - If it does not, none of that machine's cells is validated. They are reported as not validated, never deleted.
+- **The analysis is unaffected.** A cell keeps its class, primary or sensitivity, whatever the spot-check shows.
 
 **Outliers.** A cell is compared with other runs of the same block, never with other blocks. The threshold for "far from the others" is set in advance. Outlying cells are reported, not silently dropped.
 

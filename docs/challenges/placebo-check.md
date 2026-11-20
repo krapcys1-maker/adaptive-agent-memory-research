@@ -71,8 +71,7 @@ Two cells on the same block (one with each setting) answer both for those 20 gam
   - the pinned files (agent, placebo text, bank, prompt template) match by sha256;
   - no memory taken from the test games' families;
   - the counters are consistent with each other.
-- **A spot-check:** the lab re-runs a random sample of your games on its own GPU and compares the paired outcomes.
-  The sample is fixed in advance with a committed random salt.
+- **A spot-check per machine:** the lab re-runs at least one whole cell from each contributing machine on its own GPU and compares the outcomes game by game. If they agree within the tolerance declared in [VOLUNTEER_COMPUTE.md](../research-map/VOLUNTEER_COMPUTE.md#how-results-are-checked), every cell of that machine that passed the code checks is validated; otherwise none is. The cell is chosen after submission with a committed random salt.
 - **After both pass:** the cell is *validated* and enters the [results table](RESULTS.md).
 
 ## Credit

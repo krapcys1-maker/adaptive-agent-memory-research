@@ -1,7 +1,7 @@
 # Placebo check: results table
 
-Each row is one validated cell or one lab program. A cell enters the table only after the lab's code checks and
-its spot-check rerun pass (see [the challenge](placebo-check.md)). Rows are never removed. A cell that later turns
+Each row is one validated cell or one lab program. A cell enters the table only after it passes the lab's code
+checks and the spot-check rerun of its machine agrees (see [the challenge](placebo-check.md)). Rows are never removed. A cell that later turns
 out to be flawed is marked, not deleted.
 
 Columns:

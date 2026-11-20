@@ -10,7 +10,8 @@ You are invited as a **co-author** of the next report if, before its announced c
 one of the following:
 
 - **A validated experiment cell** that is included in the reported results. Validated means that it passed the lab's
-  code checks and a spot-check rerun on our hardware. See [Lend a GPU](docs/research-map/VOLUNTEER_COMPUTE.md).
+  code checks and CPU replay, and that the spot-check rerun of its machine on our hardware agreed. One cell
+  from every contributing machine is rerun. See [the rule](docs/research-map/VOLUNTEER_COMPUTE.md#how-results-are-checked).
 - **A merged, substantive pull request**: code, analysis, data or documentation that the report relies on.
 - **A written review or an independent replication** of a result in the report, including one that finds a problem.
 
