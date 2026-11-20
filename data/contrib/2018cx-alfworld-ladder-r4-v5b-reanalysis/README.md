@@ -1,7 +1,11 @@
 # Public-data reanalysis of ALFWORLD-LADDER-R4-V5B
 
 Contribution for issue #230 (`community_task:14a80dc5561ab183`).
-Source: `data/lab/autolab-alfworld-ladder-r4-v5b/per_unit.csv` (201 units x 4 arms, 804 rows).
+The [public per-unit CSV](../../lab/autolab-alfworld-ladder-r4-v5b/per_unit.csv)
+is the input for all computed results. The [published V5B report](../../lab/autolab-alfworld-ladder-r4-v5b/README.md)
+supplies the comparison values in the columns marked **Published report** in
+section 1 and the stopping-look critical value used in the recomputation.
+All numeric findings in sections 2–6 are computed from the CSV.
 The script uses Python's standard library and runs without a GPU or inference calls.
 Input SHA-256: `a7466cfd73fcfe0e64c157678d09903d7600d4fda45cccec12e3a0eb21c78471`.
 An optional positional argument selects another path to the same CSV.
@@ -14,9 +18,11 @@ python data/contrib/2018cx-alfworld-ladder-r4-v5b-reanalysis/reanalysis.py
 
 ## 1. Replication of the published numbers
 
-The published point estimates and gains/losses reproduce exactly from `per_unit.csv`:
+The **Published report** columns transcribe the V5B results table. The
+**Computed from CSV** columns are the script's independently recomputed values,
+shown to four decimals for differences.
 
-| comparison | published diff | reproduced diff | published g/l | reproduced g/l |
+| Comparison | Difference (Published report) | Difference (Computed from CSV) | Gains/losses (Published report) | Gains/losses (Computed from CSV) |
 |---|---|---|---|---|
 | mismatched_type − placebo | +0.015 | +0.0149 | 19/16 | 19/16 |
 | retrieved_task − placebo | +0.169 | +0.1692 | 55/21 | 55/21 |
@@ -24,11 +30,16 @@ The published point estimates and gains/losses reproduce exactly from `per_unit.
 | placebo − none | −0.060 | −0.0597 | 19/31 | 19/31 |
 | retrieved_task − none | +0.109 | +0.1095 | 48/26 | 48/26 |
 
-The script also reproduces the two primary intervals using the lab's paired Wald
-formula and stopping-look critical value (`z = 2.7777`): mismatched versus placebo
-`[-0.067, +0.097]` and retrieved versus placebo `[+0.053, +0.285]`.
+The script recomputes the two primary intervals using the lab's paired Wald
+formula and the stopping-look critical value from the published report
+(`z = 2.7777`). Both intervals agree at the report's precision.
 
-Data integrity: 804 rows, 201 unique units, each with exactly the four arms,
+| Primary comparison | Interval (Published report) | Interval (Computed from CSV) |
+|---|---|---|
+| mismatched_type − placebo | [-0.067, +0.097] | [-0.067, +0.097] |
+| retrieved_task − placebo | [+0.053, +0.285] | [+0.053, +0.285] |
+
+Data checks computed from the CSV found 804 rows, 201 unique units, each with exactly the four arms,
 seed 0, cycle 1, and a binary solve outcome. All 804 error flags are zero.
 
 ## 2. Placebo token matching
