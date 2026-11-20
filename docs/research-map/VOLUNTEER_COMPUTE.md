@@ -127,23 +127,28 @@ Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `plac
 
 **Replay.** ALFWorld is deterministic given the actions. The maintainer replays every submitted action sequence on the CPU (about 1.5 s per game), recomputes "won" and "steps", and recomputes the retrieved entry ids from the bank and the logged queries. A mismatch voids the cell. The replay uses the reference game archive. A cell run on the older `json_2.1.1` archive is replayed with one one-to-one mapping of the action text (`put X in/on Y` becomes `move X to Y`; a `move …` the agent typed there stays inadmissible) and goes into the sensitivity analysis.
 
-**Re-runs: one spot-check per machine.** This is the one rule for validating cells. The placebo check and
+**Validation.** This is the one rule for validating cells. The placebo check and
 [AUTHORSHIP.md](../../AUTHORSHIP.md) refer to it.
-- **What is re-run.** From every contributing machine, at least one cell is re-run in full on the lab's hardware at the
-  reference configuration: the same games, arms, replicate seed and settings. A machine is one GPU host, as its card
-  declares it. A contributor with two machines has two spot-checks.
-- **Which cell.** The lab chooses it after submission, by `sha256(salt + cell id)`, lowest first. The random salt is
-  committed to this repository before the draw.
-- **Agreement, declared before any spot-check.** The spot-check agrees when both of these hold:
-  - the CPU replay of the lab's re-run and of the volunteer's cell both pass, and their retrieved entry ids,
-    `memory_tokens`, `top1_similarity` and `memory_similarity` are equal for every game and arm;
-  - for every arm, the exact two-sided McNemar test on the per-game solved outcomes (volunteer versus lab) does
-    not reject at α = 0.01.
-- **What follows.**
-  - If the spot-check agrees, every cell of that machine that passed the code checks and the replay is
-    *validated*.
-  - If it does not, none of that machine's cells is validated. They are reported as not validated, never deleted.
-- **The analysis is unaffected.** A cell keeps its class, primary or sensitivity, whatever the spot-check shows.
+
+1. **Code checks and replay, for every submitted cell.**
+   - The cell passes the lab's code checks: completeness, settings, pinned files and family separation.
+   - It also passes the CPU replay of all its action sequences, described above.
+2. **A small spot-check, for every cell that enters a report.**
+   - **What is re-run.** The lab re-runs 5 of the cell's 20 games on its own hardware, with all of the cell's arms,
+     its replicate seed and its settings. That is 15 episodes for a three-arm cell.
+   - **Which games.** The 5 with the lowest `sha256(salt + cell id + game path)`, where the random salt is committed
+     to this repository before the draw.
+   - **What it flags: gross deviations only, with these limits declared in advance.**
+     - The retrieved entry ids, `memory_tokens`, `top1_similarity` and `memory_similarity` must be equal for every
+       re-run episode.
+     - The number of solved episodes may differ by at most 8 of the 15, in either direction. If every episode had a
+       50% chance of success on both sides, the standard deviation of that difference would be √(15 × 0.5) ≈ 2.74,
+       which is its largest possible value. A difference of 9 is then more than 3 standard deviations.
+   - A spot-check this small cannot show that two configurations are equivalent, and it is not meant to.
+3. **A fuller replication, for at least 10% of cells.** The lab chooses these cells after submission and re-runs each
+   in full on another GPU. The results are reported next to the cell.
+4. **A cell is *validated* when steps 1 and 2 pass.** Whether a cell is drawn for step 3 never decides its
+   contributor's credit. The cell keeps its class, primary or sensitivity, whatever steps 2 and 3 show.
 
 **Outliers.** A cell is compared with other runs of the same block, never with other blocks. The threshold for "far from the others" is set in advance. Outlying cells are reported, not silently dropped.
 

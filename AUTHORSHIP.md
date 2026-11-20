@@ -7,13 +7,19 @@ results. This page says exactly how that work is credited, so nobody has to gues
 
 The experience-memory ladder will be written up as a technical report: an arXiv preprint and a release with a DOI.
 You are invited as a **co-author** of the next report if, before its announced cut-off date, you contributed at least
-one of the following:
+one of the following. The three paths are independent: any one of them is enough, and none depends on another.
 
-- **A validated experiment cell** that is included in the reported results. Validated means that it passed the lab's
-  code checks and CPU replay, and that the spot-check rerun of its machine on our hardware agreed. One cell
-  from every contributing machine is rerun. See [the rule](docs/research-map/VOLUNTEER_COMPUTE.md#how-results-are-checked).
-- **A merged, substantive pull request**: code, analysis, data or documentation that the report relies on.
-- **A written review or an independent replication** of a result in the report, including one that finds a problem.
+1. **A validated experiment cell** that is included in the reported results.
+   - Validated means that the cell passed the lab's code checks and the CPU replay of all its action sequences, and
+     that its spot-check, a re-run of a small random sample of its games on our hardware, flagged no gross deviation.
+   - Whether a cell is also drawn for the fuller replication of at least 10% of cells never decides credit.
+   - See [the rule](docs/research-map/VOLUNTEER_COMPUTE.md#how-results-are-checked).
+2. **A merged, substantive pull request** that the report relies on: code, analysis, data or documentation.
+   - A merged data pull request, such as a submitted cell, counts through this path if the report relies on its data,
+     whatever the validation status of the cell.
+3. **A written review or an independent replication** of a result in the report, including one that finds a problem.
+
+Credit follows the criteria published here. They are never changed for a report after its results have been seen.
 
 The cut-off date of each report is announced in [#84](../../issues/84) at least two weeks in advance. Contributions
 after the cut-off count toward the next report. This rule follows the one BIG-bench used for its 450 authors.
@@ -55,7 +61,7 @@ Smaller contributions are thanked by name in [CONTRIBUTORS.md](CONTRIBUTORS.md) 
 
 - a typo fix;
 - a comment that changed a design;
-- a cell that could not be validated.
+- a cell that could not be validated and whose data the report does not use.
 
 Each result's README also names the people whose cells it uses.
 

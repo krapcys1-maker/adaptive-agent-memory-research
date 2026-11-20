@@ -70,8 +70,13 @@ Two cells on the same block (one with each setting) answer both for those 20 gam
   - every record ran with the card's model, `min_tokens`, format reminder, temperature, `max_tokens` and step limit;
   - the pinned files (agent, placebo text, bank, prompt template) match by sha256;
   - no memory taken from the test games' families;
-  - the counters are consistent with each other.
-- **A spot-check per machine:** the lab re-runs at least one whole cell from each contributing machine on its own GPU and compares the outcomes game by game. If they agree within the tolerance declared in [VOLUNTEER_COMPUTE.md](../research-map/VOLUNTEER_COMPUTE.md#how-results-are-checked), every cell of that machine that passed the code checks is validated; otherwise none is. The cell is chosen after submission with a committed random salt.
+  - the counters are consistent with each other;
+  - the CPU replay of every action sequence reproduces won, steps and the retrieved entries.
+- **A spot-check:** the lab re-runs a random sample of your games on its own GPU and compares the outcomes.
+  - The sample is 5 of the 20 games, with all arms, fixed in advance with a committed random salt.
+  - It flags gross deviations only, with the limits declared in
+    [VOLUNTEER_COMPUTE.md](../research-map/VOLUNTEER_COMPUTE.md#how-results-are-checked).
+  - Separately, at least 10% of cells get a fuller replication. Being drawn for it, or not, never decides credit.
 - **After both pass:** the cell is *validated* and enters the [results table](RESULTS.md).
 
 ## Credit
