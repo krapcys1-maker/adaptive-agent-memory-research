@@ -1,0 +1,22 @@
+[
+ "0fe4c08886~train/look_at_obj_in_light-Laptop-None-DeskLamp-323/trial_T20190908_014226_839563",
+ "179040b7d9~train/pick_and_place_simple-SoapBottle-None-SideTable-420/trial_T20190908_063611_150183",
+ "2c054e09af~train/pick_cool_then_place_in_recep-Bread-None-Microwave-15/trial_T20190907_132633_001617",
+ "3abb2eaee2~train/pick_heat_then_place_in_recep-Apple-None-Fridge-16/trial_T20190907_203512_225732",
+ "41a3a2930b~train/pick_two_obj_and_place-SprayBottle-None-GarbageCan-428/trial_T20190909_055216_429116",
+ "464cb1cd6c~train/pick_cool_then_place_in_recep-Lettuce-None-GarbageCan-16/trial_T20190909_014736_101510",
+ "498f5f661f~train/pick_and_place_simple-KeyChain-None-Desk-304/trial_T20190907_192638_964457",
+ "49f551db75~train/pick_heat_then_place_in_recep-Potato-None-CounterTop-19/trial_T20190909_151946_958394",
+ "4d87bc26bf~train/look_at_obj_in_light-Newspaper-None-DeskLamp-225/trial_T20190909_085334_452202",
+ "50c623ac71~train/pick_clean_then_place_in_recep-Egg-None-DiningTable-23/trial_T20190908_083733_678856",
+ "6783b55509~train/pick_clean_then_place_in_recep-Pan-None-Cabinet-1/trial_T20190908_131016_333757",
+ "6904518e89~train/pick_heat_then_place_in_recep-Tomato-None-SideTable-3/trial_T20190907_140821_716243",
+ "6bd3758ff1~train/look_at_obj_in_light-CD-None-DeskLamp-323/trial_T20190908_051139_258301",
+ "7062b9f5ff~train/pick_clean_then_place_in_recep-Kettle-None-DiningTable-18/trial_T20190908_085532_288859",
+ "7692c1de78~train/pick_clean_then_place_in_recep-SoapBar-None-Toilet-408/trial_T20190908_122434_336174",
+ "81734444d3~train/pick_two_obj_and_place-PepperShaker-None-DiningTable-18/trial_T20190918_215048_043255",
+ "884a6788d0~train/pick_cool_then_place_in_recep-Mug-None-CoffeeMachine-1/trial_T20190907_100841_356010",
+ "8f4364f7c9~train/pick_cool_then_place_in_recep-Apple-None-Microwave-22/trial_T20190908_000241_664330",
+ "8fc2d36eea~train/pick_two_obj_and_place-SprayBottle-None-GarbageCan-413/trial_T20190912_044047_465184",
+ "90003cb841~train/pick_and_place_simple-CellPhone-None-Desk-305/trial_T20190907_231028_856423"
+]

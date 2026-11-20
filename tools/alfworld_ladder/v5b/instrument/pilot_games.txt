@@ -1,0 +1,26 @@
+# All games used in pilots 1-3 and the probe (train split). None is a program unit; no family is a unit family.
+train/pick_and_place_simple-Book-None-Dresser-319/trial_T20190906_204235_124843
+train/pick_and_place_simple-CD-None-Shelf-330/trial_T20190906_201356_091911
+train/pick_and_place_simple-Plate-None-Dresser-218/trial_T20190907_013508_041432
+train/pick_and_place_simple-ToiletPaper-None-ToiletPaperHanger-426/trial_T20190909_044747_168424
+train/pick_and_place_simple-Watch-None-CoffeeTable-201/trial_T20190908_124638_700872
+train/pick_clean_then_place_in_recep-Bowl-None-Fridge-21/trial_T20190909_014405_823537
+train/pick_clean_then_place_in_recep-Egg-None-Microwave-30/trial_T20190909_124704_617614
+train/pick_clean_then_place_in_recep-Ladle-None-Drawer-16/trial_T20190909_024553_470193
+train/pick_clean_then_place_in_recep-Lettuce-None-Fridge-4/trial_T20190907_163732_359902
+train/pick_clean_then_place_in_recep-Lettuce-None-SideTable-21/trial_T20190907_101234_922599
+train/pick_cool_then_place_in_recep-Apple-None-DiningTable-16/trial_T20190909_075718_480016
+train/pick_cool_then_place_in_recep-Pan-None-DiningTable-15/trial_T20190909_004008_377860
+train/pick_cool_then_place_in_recep-Pan-None-StoveBurner-27/trial_T20190906_212820_391099
+train/pick_cool_then_place_in_recep-Potato-None-Microwave-13/trial_T20190907_200955_697787
+train/pick_cool_then_place_in_recep-Tomato-None-GarbageCan-5/trial_T20190909_153636_286202
+train/pick_heat_then_place_in_recep-Cup-None-Cabinet-13/trial_T20190908_124531_467401
+train/pick_heat_then_place_in_recep-Egg-None-DiningTable-4/trial_T20190908_080003_104562
+train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-12/trial_T20190907_034213_294818
+train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-26/trial_T20190907_113653_821141
+train/pick_heat_then_place_in_recep-Tomato-None-SideTable-21/trial_T20190909_012239_336817
+train/pick_two_obj_and_place-Book-None-Desk-309/trial_T20190909_061225_804285
+train/pick_two_obj_and_place-CD-None-Drawer-319/trial_T20190907_145411_508522
+train/pick_two_obj_and_place-Egg-None-Microwave-23/trial_T20190908_033237_875814
+train/pick_two_obj_and_place-Ladle-None-Drawer-4/trial_T20190908_154838_594672
+train/pick_two_obj_and_place-ToiletPaper-None-Toilet-413/trial_T20190908_032023_125360
