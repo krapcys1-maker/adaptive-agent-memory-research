@@ -31,8 +31,8 @@ On a 12 GB GPU with Qwen3-4B FP8, two arms on 20 games take about 2 hours.
 - Pairing within a machine removes differences in *level* between machines. One GPU's agent may simply solve more tasks than another's.
 - It does not remove differences in *effect*. A memory arm could help more on one configuration than on another, for example native FP8 on newer GPUs versus weight-only FP8 kernels on Ampere cards such as the RTX 3060.
 - Therefore:
-  - **The primary analysis uses only cells run on the reference configuration.** That means the official FP8 checkpoint, the pinned vLLM version, and the quantisation kernel that vLLM reports in its log.
-  - Cells from other configurations go into a sensitivity analysis declared in advance.
+  - **The primary analysis uses only cells run on the [reference configuration](#the-reference-configuration).** That means the official FP8 checkpoint, the pinned vLLM version, the quantisation kernel that vLLM reports in its log, and the pinned ALFWorld game archive.
+  - Cells from other configurations go into the [sensitivity analysis](#sensitivity-analysis-declared-in-advance) declared in advance.
 
 **Tasks are named, not counted.** The AdaMEM environment orders games by an unsorted directory walk, so "the first 20 tasks" can mean different games on different machines. A cell lists its games by relative path.
 
@@ -53,11 +53,41 @@ These are not your choices. Each must match the values published for the cell, a
 
 **Banks are built once and downloaded, never rebuilt locally.**
 
+## The reference configuration
+
+These are the values of the lab's own ALFWorld runs (programs V3 to V6, one RTX 3060). A cell is on the reference
+configuration when the first four match. The environment versions in the last row are recorded on the card
+and reported, but do not by themselves make a cell a sensitivity cell. Your card and your vLLM log show each value.
+
+| Item | Reference value | Where you see it |
+|---|---|---|
+| Checkpoint | `Qwen/Qwen3-4B-Instruct-2507-FP8`, revision `8591804019c8b22094c3b5b4454e0edc05dffc98` | the Hugging Face snapshot folder name |
+| vLLM | `0.33.0` | `finish` writes it to the card from the server's `/version` |
+| Quantisation kernel | `MarlinFP8ScaledMMLinearKernel` for `Fp8LinearMethod` (weight-only FP8) | the vLLM log line `Selected … for Fp8LinearMethod` |
+| ALFWorld game archive | `json_2.1.2_tw-pddl.zip` (ALFWorld release 0.4.0), as fetched by `alfworld-download` from ALFWorld 0.4.2 | see the check below |
+| Environment | ALFWorld 0.4.2, TextWorld 1.7.0, fast-downward-textworld 20.6.4 | `pip show` |
+
+- **The kernel follows the GPU.** Ampere GPUs, such as the RTX 3060 and the A100, have no native FP8, so vLLM selects
+  the Marlin weight-only kernel there, as in the lab's runs. GPUs with native FP8 (Ada, Hopper) select another kernel.
+  Their cells go into the sensitivity analysis.
+- **Check the game archive before you run.** The two public archives differ in the text of the game:
+  - In `json_2.1.2`, putting an object down reads `move <object> to <receptacle>`, the same text as the lab's bank.
+    Arriving reads "You arrive at safe 1".
+  - In the older `json_2.1.1_tw-pddl.zip`, the same action reads `put <object> in/on <receptacle>`, and arriving
+    reads "You arrive at loc 14".
+  - Byte check: `train/pick_and_place_simple-CellPhone-None-Safe-302/trial_T20190908_122757_136508/game.tw-pddl`
+    has SHA-256 `86059504faa14bd6a04b7443f3779c240e2eedbcf673e0282795cdee29497b53` in the reference archive.
+- **The archive matters for the memory arms**, not only for replay. The bank's walkthroughs use the `json_2.1.2`
+  text. In a game from the older archive, a walkthrough shows actions that game does not accept.
+
+These values were first written down on 20 November 2026. Earlier versions of this page named the items without
+their values.
+
 ## What you need
 
 **For the main model.**
 - A GPU with about 12 GB of memory or more, able to run `Qwen/Qwen3-4B-Instruct-2507-FP8`.
-- Linux or WSL2, with vLLM (the pinned version), ALFWorld and the harness.
+- Linux or WSL2, with vLLM 0.33.0, ALFWorld with the reference game archive, and the harness (see [the reference configuration](#the-reference-configuration)).
 - Embeddings run on the CPU (all-MiniLM-L6-v2), so they take no GPU memory.
 
 **GPUs that cannot run FP8 (older generations)** can still help.
@@ -95,7 +125,7 @@ Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `plac
 
 ## How results are checked
 
-**Replay.** ALFWorld is deterministic given the actions. The maintainer replays every submitted action sequence on the CPU (about 1.5 s per game), recomputes "won" and "steps", and recomputes the retrieved entry ids from the bank and the logged queries. A mismatch voids the cell.
+**Replay.** ALFWorld is deterministic given the actions. The maintainer replays every submitted action sequence on the CPU (about 1.5 s per game), recomputes "won" and "steps", and recomputes the retrieved entry ids from the bank and the logged queries. A mismatch voids the cell. The replay uses the reference game archive. A cell run on the older `json_2.1.1` archive is replayed with one one-to-one mapping of the action text (`put X in/on Y` becomes `move X to Y`; a `move …` the agent typed there stays inadmissible) and goes into the sensitivity analysis.
 
 **Re-runs.** At least 10% of cells, chosen by the maintainer after submission, are re-run on another machine.
 
@@ -103,7 +133,24 @@ Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `plac
 
 **Analysis and credit.**
 - Per-game paired differences are pooled, with the machine as a block, using the test in DIRECTIONS section 6.
-- Contributors are credited in the result and in `CONTRIBUTORS.md`.
+- Contributors are credited in the result and in [CONTRIBUTORS.md](../../CONTRIBUTORS.md).
+
+### Sensitivity analysis (declared in advance)
+
+This plan was declared on 20 November 2026. That was after the first off-reference cell (#243) was submitted, and
+before any cell was pooled.
+
+- **Which analysis a cell enters is decided from its card alone,** before its outcomes are read. A cell that differs
+  from the [reference configuration](#the-reference-configuration) in the checkpoint or revision, the vLLM version,
+  the quantisation kernel or the game archive is a *sensitivity cell*. Every other check above still applies to it.
+- **Sensitivity cells are pooled separately,** with the same test and the machine as a block, for each comparison of
+  the primary analysis.
+- **They are reported next to the primary result,** never instead of it. The report also lists how each cell
+  differs from the reference.
+- **No cell moves between the two analyses after its data have been seen,** in either direction. A cell is
+  reclassified only for an error in its card, and the report says so.
+- **A difference between the primary and the sensitivity estimates is a finding,** for example a memory effect that
+  depends on the configuration. It is reported, not averaged away.
 
 **Rules for every cell:**
 - the frozen list only;

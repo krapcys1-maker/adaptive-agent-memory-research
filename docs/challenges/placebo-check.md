@@ -39,7 +39,7 @@ Two cells on the same block (one with each setting) answer both for those 20 gam
 
 ## How to run a cell
 
-1. **Claim a block** in [#179](../../issues/179) ("B03, replicate 1, min_tokens 0"), so two people do not run the same
+1. **Claim a block** in [#179](https://github.com/krapcys1-maker/adaptive-agent-memory-research/issues/179) ("B03, replicate 1, min_tokens 0"), so two people do not run the same
    cell. Blocks B00–B10 have 4 games of each of the 5 task types. The later blocks are mostly two-object and
    pick-and-place games.
 2. **Prepare, run, finish and check:**
