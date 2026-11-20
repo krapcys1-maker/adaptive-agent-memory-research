@@ -78,7 +78,29 @@ the observed outcome. The CSV cannot establish an action-format mechanism.
 A format-only exemplar arm, matched in length to a task-relevant exemplar,
 would directly test that explanation on new games.
 
-## 5. Scope of the leakage check
+## 5. Sensitivity of process rates to task weighting
+
+Across all 201 pairs, placebo contributes 7,700 steps and retrieved contributes
+5,687. The lab's pooled rate divides each arm's total event count by its total
+steps, giving more weight to longer episodes. An equal-task rate first divides
+the event count by steps within each episode, then averages those episode rates
+with each task weighted equally. All differences are retrieved minus placebo.
+
+| Counter | Step-weighted difference (pp) | Equal-task difference (pp) | Equal-task 95% interval (pp) |
+|---|---:|---:|---:|
+| `invalid_no_action_tag` | +1.47 | -0.11 | [-1.71, +1.47] |
+| `invalid_actions` | +7.14 | +1.82 | [-1.30, +5.00] |
+
+Intervals are exploratory percentile intervals from 10,000 bootstrap samples
+at seed 20261116, resampling whole paired tasks. The near-zero equal-task
+estimate for `invalid_no_action_tag` shows that its direction depends on the
+weighting. The step-weighted rate describes an observed step, and the
+equal-task rate describes the average episode-level fraction. Episode length
+can itself respond to the intervention, so both estimands describe observed
+episode behaviour. This sensitivity analysis concerns the process counters.
+The solve-rate contrast is already computed per paired task.
+
+## 6. Scope of the leakage check
 
 - `overlap_with_retrieved` is populated for the 201 mismatched rows and is zero throughout.
 - `memory_similarity` is populated for retrieved and mismatched (201 rows each).

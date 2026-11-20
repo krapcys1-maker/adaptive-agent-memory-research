@@ -5,7 +5,8 @@ No GPU, no model calls. Reads only the published per_unit.csv and reproduces
 the lab's primary numbers, then runs the three requested new analyses:
   1. effect decomposition by task type and goal object
   2. gain/loss arms vs per-step format counters
-  3. leakage / formatting artefact check
+  3. sensitivity of process rates to step versus task weighting
+  4. leakage / formatting artefact check
 
 Run:
     python reanalysis.py                      # uses the V5B CSV in this checkout
@@ -15,6 +16,7 @@ Every number printed is computed from the CSV; nothing is hard-coded.
 """
 import csv
 import math
+import random
 import re
 import statistics
 import sys
@@ -111,6 +113,39 @@ def section_gain_loss(by):
             print(f"    {c:24s} placebo={p:5.2f} retrieved={r:5.2f} delta={r-p:+.2f}")
 
 
+def section_rate_weighting(by):
+    print("\n== Process rates: step weighting vs equal task weighting ==")
+    arms = ("placebo", "retrieved_task")
+    steps = {arm: [int(pair[arm]["steps"]) for pair in by.values()] for arm in arms}
+    if any(n <= 0 for lengths in steps.values() for n in lengths):
+        raise ValueError("Process-rate comparison requires positive steps in both arms")
+    print("Total steps: " + ", ".join(f"{arm}={sum(steps[arm])}" for arm in arms))
+
+    for counter in ("invalid_no_action_tag", "invalid_actions"):
+        counts = {arm: [int(pair[arm][counter]) for pair in by.values()] for arm in arms}
+        pooled = [sum(counts[arm]) / sum(steps[arm]) for arm in arms]
+        rates = {
+            arm: [count / length for count, length in zip(counts[arm], steps[arm])]
+            for arm in arms
+        }
+        differences = [retrieved - placebo for placebo, retrieved in zip(*(rates[arm] for arm in arms))]
+        rng = random.Random(20261116)
+        replicates = 10_000
+        bootstrap = sorted(
+            statistics.mean(rng.choices(differences, k=len(differences)))
+            for _ in range(replicates)
+        )
+        tail = replicates // 40
+        lower, upper = bootstrap[tail], bootstrap[-tail - 1]
+        print(f"  {counter}:")
+        print(f"    step-weighted: {pooled[0]:.3%} -> {pooled[1]:.3%}, "
+              f"delta={(pooled[1] - pooled[0]) * 100:+.2f} pp")
+        print(f"    task-weighted: {statistics.mean(rates['placebo']):.3%} -> "
+              f"{statistics.mean(rates['retrieved_task']):.3%}, "
+              f"delta={statistics.mean(differences) * 100:+.2f} pp, "
+              f"95% paired bootstrap [{lower * 100:+.2f}, {upper * 100:+.2f}] pp")
+
+
 def section_token_match(by):
     print("\n== Token-matching check ==")
     for a, b in [("placebo", "retrieved_task"), ("placebo", "mismatched_type")]:
@@ -151,6 +186,7 @@ def main():
     section_token_match(by)
     section_by_type(by)
     section_gain_loss(by)
+    section_rate_weighting(by)
     section_leakage(rows)
 
 
