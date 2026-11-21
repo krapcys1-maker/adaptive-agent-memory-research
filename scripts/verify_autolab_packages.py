@@ -17,6 +17,8 @@ laboratory's own rules (cited below by the lab function that applies them):
   variant - placebo, its bootstrap interval, the state balanced / imbalanced / unresolved / not_computable and the
   pre-registered format criterion with the package's format rule; the bootstrap uses the LAB'S DEFAULT resampling
   parameters (seed 20261116, 2000 replicates), which the packages do not state;
+* the per-episode metric means by arm (``Per-episode metrics (mean by arm)``): arithmetic mean over reporting episodes
+  of the audited cycle, first seed and analysed units (``—`` when an arm has no numeric readings);
 * the measurement-sensitivity problems that follow from the table (placebo rate range, error excess, memory delivery,
   placebo block length, metric coverage, process problems) and their copies in findings and report;
 * finding verdicts (``program._s_conclude``: invalid / supported / refuted / inconclusive / disputed), Brier scores,
@@ -81,10 +83,35 @@ LAB_BOOT_N = 2000                   # experiment.process_balance(n_boot=2000)
 LAB_PROCESS_TOL = 0.03              # experiment.PROCESS_TOL
 LAB_PROCESS_SKIP = {"steps", "max_steps", "max_tokens", "memory_tokens", "tokens", "seconds"}
 FORMAT_MARKERS = ("empty", "no_action_tag", "untagged", "unparsed", "parse")
+PER_STEP_COUNTERS = frozenset({
+    "empty_retries",
+    "invalid_actions",
+    "invalid_no_action_tag",
+    "truncated",
+    "untagged_not_truncated",
+})
+SETTING_METRICS = frozenset({
+    "max_steps",
+    "max_tokens",
+    "min_tokens",
+    "min_steps",
+    "max_new_tokens",
+    "temperature",
+    "top_p",
+    "top_k",
+    "min_p",
+    "repetition_penalty",
+    "presence_penalty",
+    "frequency_penalty",
+})
 PLACEBO_RANGE = (0.10, 0.90)
 ERROR_EXCESS_MAX = 0.05
 PLACEBO_LENGTH_MIN_RATIO = 0.8
 METRICS_COVERAGE_MIN = 0.95
+PER_EPISODE_HEADING = "## Per-episode metrics (mean by arm)"
+PER_EPISODE_CELL = re.compile(r"^-?\d+\.\d{3}$")    # export.per_episode_table: fixed 3 decimals or an em dash
+# export._CSV_NON_METRIC_COLUMNS + EPISODE_METRIC_SKIP: structural columns, never per-episode metrics
+PER_UNIT_ID_COLUMNS = {"cycle", "unit", "arm", "seed", "solved", "n_memory_sources", "error", "seconds"}
 SUPPORT = {"practical", "positive"}
 CLOSE = {"equivalent", "negative"}
 SUPPORT_UNDERMINING = ("b\u0142\u0119dy ramienia", "proces:", "kontrakt ramienia", "placebo niedopasowane", "przeciek niesprawdzalny")
@@ -663,6 +690,7 @@ class Verifier:
         for cycle in t.cycles():
             if cycle not in cycles_seen:
                 rep.check("per_unit.csv: cycle %s has a run object" % cycle, False)
+        ep_cols = self.per_episode_readme_columns()
         for col in t.columns:
             if col in KEY_COLUMNS + (OUTCOME,) or col in EXPORTER_COLUMNS:
                 continue
@@ -670,8 +698,8 @@ class Verifier:
             kinds = sorted({type(x).__name__ for x in values})
             if any(isinstance(x, str) for x in values):
                 rep.nv("per_unit.csv column %s" % col, "it holds text values; no rule here computes from it")
-            elif col in (STEPS, "memory_tokens") or self.is_process_column(col):
-                continue              # used by the process balance and sensitivity checks below
+            elif col in (STEPS, "memory_tokens") or col in ep_cols or self.is_process_column(col):
+                continue              # used by the process balance, sensitivity or per-episode checks below
             else:
                 rep.nv("per_unit.csv column %s" % col, "no published number is computed from it by a lab rule this script mirrors (values: %s)"
                        % "/".join(k.replace("NoneType", "empty") for k in kinds))
@@ -718,6 +746,51 @@ class Verifier:
             pb = (((a["payload"].get("checks") or {}).get("measurement_sensitivity") or {}).get("process_balance") or {})
             crit.update(pb.get("criteria") or {})
         return crit
+
+    def contract_metrics(self) -> Set[str]:
+        contracts = self.domain_params().get("arm_contracts") or {}
+        return {m for rules in contracts.values() if isinstance(rules, dict) for m in rules if m != "_share"}
+
+    def is_per_step_counter(self, name: str, pb: Optional[Dict[str, Any]] = None) -> bool:
+        """export.is_per_step_counter: true per-step event counter (format criterion, behaviour counter, format marker or known counter)."""
+        dp = self.domain_params()
+        pb = pb or {}
+        crit = set(dp.get("format_criteria") or {}) | set(pb.get("criteria") or {})
+        beh = set(dp.get("behaviour_counters") or []) | set(pb.get("behaviour_counters") or [])
+        if name in crit or name in beh or name in PER_STEP_COUNTERS:
+            return True
+        low = name.lower()
+        return any(m in low for m in FORMAT_MARKERS)
+
+    @staticmethod
+    def is_setting_metric(name: str) -> bool:
+        return name in SETTING_METRICS or (name.startswith(("max_", "min_")) and name.endswith(("_tokens", "_steps")))
+
+    def is_constant_setting(self, name: str, by_arm: Dict[str, List[Dict[str, Any]]]) -> bool:
+        """export._is_constant_setting: setting metric constant across every arm (and not in arm_contracts)."""
+        if not self.is_setting_metric(name) or name in self.contract_metrics():
+            return False
+        if name not in self.table.columns:
+            return True
+        vals: List[float] = []
+        for arm, rs in by_arm.items():
+            av = [float(r[name]) for r in rs if self.table.is_number(r.get(name))]
+            if not av:
+                return False
+            vals.extend(av)
+        return bool(vals) and len(set(vals)) == 1
+
+    def per_episode_readme_columns(self) -> Set[str]:
+        """Columns listed in the README 'Per-episode metrics (mean by arm)' table, if present."""
+        _, sections = split_sections(self.readme_lines)
+        rng = sections.get("Per-episode metrics (mean by arm)")
+        if not rng:
+            return set()
+        tables = md_tables(self.readme_lines, rng[1], rng[2])
+        if not tables:
+            return set()
+        header = tables[0][0][1]
+        return set(header[1:]) if len(header) >= 2 and header[0] == "arm" else set()
 
     # ---------------------------------------------------------------- result objects
     def results(self) -> None:
@@ -850,7 +923,7 @@ class Verifier:
         return crit, behaviour, rule
 
     def balance(self, cycle: Any, seed0: int, treatments: List[str], crit: Dict[str, Any], behaviour: set, rule: str,
-                keys: List[str]) -> Dict[str, Any]:
+                keys: List[str], pair_coverage: bool = False) -> Dict[str, Any]:
         """experiment.process_balance over per_unit.csv (records of the first seed with numeric steps)."""
         t = self.table
         analysed = self.run_units(cycle)
@@ -880,22 +953,53 @@ class Verifier:
             for k in keys:
                 tol = crit.get(k, LAB_PROCESS_TOL)
                 fmt = k in crit or (k not in behaviour and any(x in k.lower() for x in FORMAT_MARKERS))
-                if k in missing:
-                    out[k] = {"diff": None, "ci": None, "tolerance": tol, "preregistered": True, "format_counter": True,
-                              "imbalanced": False, "state": "not_computable"}
-                    continue
-                d = rate(ms, units, k) - rate(pl, units, k)
-                bs = sorted(rate(ms, s, k) - rate(pl, s, k) for s in samples)
+                if pair_coverage:
+                    cu = [u for u in units if t.is_number(ms[u].get(k)) and t.is_number(pl[u].get(k))]
+                    cov = {
+                        "variant": sum(1 for u in units if t.is_number(ms[u].get(k))),
+                        "placebo": sum(1 for u in units if t.is_number(pl[u].get(k))),
+                        "complete_pairs": len(cu),
+                        "pairs": len(units),
+                    }
+                    if k in missing or not cu:
+                        one = ("variant" if cov["variant"] and not cov["placebo"] else
+                               "placebo" if cov["placebo"] and not cov["variant"] else None)
+                        out[k] = {"diff": None, "ci": None, "tolerance": tol, "preregistered": k in crit,
+                                  "format_counter": k in crit or fmt, "imbalanced": False, "state": "not_computable",
+                                  "coverage": cov}
+                        if one:
+                            out[k]["one_sided"] = one
+                        continue
+                    if len(cu) == len(units):
+                        use, smp = units, samples
+                    else:
+                        r2 = random.Random("%d:%s:%s" % (LAB_BOOT_SEED, a, k))
+                        use, smp = cu, [[r2.choice(cu) for _ in cu] for _ in range(LAB_BOOT_N)]
+                else:
+                    if k in missing:
+                        out[k] = {"diff": None, "ci": None, "tolerance": tol, "preregistered": True, "format_counter": True,
+                                  "imbalanced": False, "state": "not_computable"}
+                        continue
+                    use, smp, cov = units, samples, None
+                d = rate(ms, use, k) - rate(pl, use, k)
+                bs = sorted(rate(ms, s, k) - rate(pl, s, k) for s in smp)
                 lo, hi = bs[int(0.025 * LAB_BOOT_N)], bs[int(0.975 * LAB_BOOT_N) - 1]
                 imb = abs(d) > tol and not lo <= 0 <= hi
                 state = "imbalanced" if imb else "balanced" if (-tol <= lo and hi <= tol) else "unresolved"
-                out[k] = {"diff": d, "ci": (lo, hi), "tolerance": tol, "preregistered": k in crit, "format_counter": fmt,
-                          "imbalanced": imb, "state": state, "rule": rule if k in crit and rule != "equivalence" else None}
+                entry: Dict[str, Any] = {"diff": d, "ci": (lo, hi), "tolerance": tol, "preregistered": k in crit,
+                                         "format_counter": fmt, "imbalanced": imb, "state": state,
+                                         "rule": rule if k in crit and rule != "equivalence" else None}
+                if pair_coverage and cov is not None and len(use) < len(units):
+                    entry["coverage"] = cov
+                out[k] = entry
             per_arm[a] = out
         n_seed0 = len(rows_seed0)
         covered = sum(len(ms) for ms in by.values())
-        return {"rates": rates, "per_arm": per_arm, "missing": missing, "coverage": covered / n_seed0 if n_seed0 else None,
-                "has_placebo": bool(pl), "by": by}
+        not_comp = (sorted(set(missing) | {k for out_ in per_arm.values() for k, v in out_.items()
+                                           if k in crit and v["state"] == "not_computable"})
+                    if pair_coverage else missing)
+        return {"rates": rates, "per_arm": per_arm, "missing": missing, "not_computable": not_comp,
+                "coverage": covered / n_seed0 if n_seed0 else None, "has_placebo": bool(pl), "by": by}
 
     @staticmethod
     def process_problem(v: Dict[str, Any]) -> bool:
@@ -905,7 +1009,17 @@ class Verifier:
             return True
         if st == "unresolved" and v.get("preregistered") and v.get("rule") != "imbalance_only":
             return True
-        return st == "not_computable" and bool(v.get("preregistered"))
+        cov = v.get("coverage") or {}
+        if st == "not_computable" and v.get("format_counter") and v.get("one_sided"):
+            return True
+        if st == "not_computable" and v.get("preregistered"):
+            return True
+        if v.get("preregistered") and cov.get("pairs") and cov["complete_pairs"] / cov["pairs"] < METRICS_COVERAGE_MIN:
+            return True
+        if (v.get("format_counter") and cov.get("pairs") and (cov.get("variant") or cov.get("placebo"))
+                and cov["complete_pairs"] / cov["pairs"] < METRICS_COVERAGE_MIN):
+            return True
+        return False
 
     def sensitivity(self) -> None:
         rep, t = self.rep, self.table
@@ -1002,7 +1116,11 @@ class Verifier:
             if self.is_process_column(col) and col not in declared_keys and col not in (STEPS,):
                 rep.check("%s: process_balance covers the integer counter %s" % (tag, col), False,
                           "per_unit.csv has integer values in %s, which the lab's process balance would include" % col)
-        bal = self.balance(cycle, seed0, treatments, crit, behaviour, rule, keys)
+        # pair mode (missing field = no reading) is mandatory for every package in the new README format; the declared
+        # audit cannot switch the verifier back to the legacy computation by omitting its `coverage` keys (review I4)
+        has_pair_coverage = (any("coverage" in b for per in (pb.get("per_arm") or {}).values() for b in per.values())
+                             or PER_EPISODE_HEADING in self.readme_lines)
+        bal = self.balance(cycle, seed0, treatments, crit, behaviour, rule, keys, pair_coverage=has_pair_coverage)
         for arm, values in (pb.get("rates") or {}).items():
             for k, declared in values.items():
                 if k not in keys:
@@ -1013,8 +1131,8 @@ class Verifier:
         rep.check("%s: process_balance.rates lists the arms with steps" % tag, sorted(pb.get("rates") or {}) == sorted(bal["rates"]),
                   "declared %s, recomputed %s" % (sorted(pb.get("rates") or {}), sorted(bal["rates"])))
         if "not_computable" in pb:
-            rep.check("%s: process_balance.not_computable = %s" % (tag, pb["not_computable"]), sorted(pb["not_computable"]) == bal["missing"],
-                      "criteria with no value in per_unit.csv: %s" % bal["missing"])
+            rep.check("%s: process_balance.not_computable = %s" % (tag, pb["not_computable"]), sorted(pb["not_computable"]) == bal["not_computable"],
+                      "criteria not computable from per_unit.csv: %s" % bal["not_computable"])
         if "metrics_coverage" in pb:
             rep.check("%s: process_balance.metrics_coverage = %s" % (tag, pb["metrics_coverage"]), agrees(bal["coverage"], pb["metrics_coverage"], 4),
                       "rows with steps / rows of the first seed: %s" % bal["coverage"])
@@ -1069,7 +1187,14 @@ class Verifier:
                 rep.check("%s.%s = %s" % (field, key, body[key]), ok, "recomputed %s (%s)" % (v[key], why))
         if "rule" in body or v.get("rule"):
             rep.check("%s.rule = %s" % (field, body.get("rule")), body.get("rule") == v.get("rule"), "recomputed %s" % v.get("rule"))
-        for key in sorted(set(body) - {"diff", "ci", "tolerance", "preregistered", "format_counter", "imbalanced", "state", "rule"}):
+        if "coverage" in body or v.get("coverage"):
+            rep.check("%s.coverage = %s" % (field, body.get("coverage")), body.get("coverage") == v.get("coverage"),
+                      "recomputed %s" % (v.get("coverage"),))
+        if "one_sided" in body or v.get("one_sided"):
+            rep.check("%s.one_sided = %s" % (field, body.get("one_sided")), body.get("one_sided") == v.get("one_sided"),
+                      "recomputed %s" % (v.get("one_sided"),))
+        for key in sorted(set(body) - {"diff", "ci", "tolerance", "preregistered", "format_counter", "imbalanced",
+                                       "state", "rule", "coverage", "one_sided"}):
             rep.nv("%s.%s" % (field, key), "a field no lab rule mirrored here computes")
 
     def compare_problems(self, field: str, declared: List[str], expected: List[Tuple[str, str]], info: Dict[str, Any], arm: str,
@@ -1507,16 +1632,22 @@ class Verifier:
         else:
             rep.check("README: section 'Caveats' present when there are caveats, measurement problems or rule notes",
                       not (caveats or probs or rule_notes), "%d caveat(s), %d problem(s), %d rule note(s)" % (len(caveats), len(probs), len(rule_notes)))
+        per_ep_title = "Per-episode metrics (mean by arm)"
+        has_per_ep = per_ep_title in sections
         if audits:
             title = "Measurement checks (per step, by arm)"
             rates = pbal.get("rates") or {}
-            if rates or title in sections:
+            per_step = sorted({k for v in rates.values() for k in v if self.is_per_step_counter(k, pbal)})
+            if (rates and (per_step or not has_per_ep)) or title in sections:
                 if rep.check("README: section '%s' present" % title, title in sections):
                     handled.add(title)
-                    self.readme_measurement(sections[title], audits[-1], pbal)
+                    self.readme_measurement(sections[title], audits[-1], pbal, has_per_episode=has_per_ep)
             else:
                 self.expect_line("README: code audit verdict line", "Code audit verdict: **%s** (completeness, recomputation, leakage, raw-data integrity)."
                                  % audits[-1]["payload"].get("verdict"))
+        if has_per_ep:
+            handled.add(per_ep_title)
+            self.readme_per_episode(sections[per_ep_title], audits[-1] if audits else None, pbal)
         vetoed = list(report.get("vetoed_decisions") or [])
         if vetoed:
             self.expect_line("README: vetoed decisions line", "> **The owner VETOED %d decision(s)** \u2014 their conclusions are not applied: %s"
@@ -1756,17 +1887,42 @@ class Verifier:
         if not found and re.search(r"\d\.\d", text):
             rep.nv("%s: figures in %r" % (where, short(text)), "figures in a sentence no rule here recomputes")
 
-    def readme_measurement(self, rng: Tuple[int, int, int], audit: Dict[str, Any], pb: Dict[str, Any]) -> None:
+    def _audited_rows_by_arm(self, audit: Optional[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
+        """per_unit.csv rows for the audited cycle, first protocol seed and analysed run units, grouped by arm."""
+        run = self.run_of(audit) if audit is not None else (self.k.kind("run")[-1] if self.k.kind("run") else None)
+        cycle = (audit.get("cycle") if audit is not None else
+                 (run.get("cycle") if run is not None else (self.table.cycles()[-1] if self.table.cycles() else None)))
+        proto = self.protocol_of(run)
+        seed0 = (proto.get("seeds") or [0])[0]
+        analysed = self.run_units(cycle) if run is not None else set()
+        by_arm: Dict[str, List[Dict[str, Any]]] = {}
+        for (cyc, unit, arm, seed), v in self.table.rows.items():
+            if cyc == cycle and seed == seed0 and (not analysed or unit in analysed):
+                by_arm.setdefault(arm, []).append(v)
+        return by_arm
+
+    def readme_measurement(self, rng: Tuple[int, int, int], audit: Dict[str, Any], pb: Dict[str, Any],
+                           has_per_episode: bool = False) -> None:
         rep, lines = self.rep, self.readme_lines
         start, end = rng[1], rng[2]
         sub = next((i for i in range(start, end) if lines[i].startswith("### ")), end)
         bal = (self.process.get("_balance") or {}).get(audit["id"])
         rates = pb.get("rates") or {}
-        keys = sorted({k for v in rates.values() for k in v})
+        all_keys = sorted({k for v in rates.values() for k in v})
+        per_step_keys = sorted(k for k in all_keys if self.is_per_step_counter(k, pb))
         tables = md_tables(lines, start, sub)
         if rep.check("README Measurement checks: rates table present", bool(tables)):
             table = tables[0]
             header = table[0][1]
+            if has_per_episode:
+                keys = per_step_keys
+            else:
+                dropped = [k for k in all_keys if k not in per_step_keys]
+                by_arm = self._audited_rows_by_arm(audit) if dropped else {}
+                if header == ["arm"] + per_step_keys and all(self.is_constant_setting(k, by_arm) for k in dropped):
+                    keys = per_step_keys
+                else:
+                    keys = all_keys
             rep.check("README Measurement checks: columns = the audit's counters %s" % keys, header == ["arm"] + keys, "README %s" % header[1:])
             seen = []
             for i, cells in table:
@@ -1791,6 +1947,68 @@ class Verifier:
         self.readme_process_table(lines, sub, end, pb, bal)
         self.expect_line("README: code audit verdict = %s" % audit["payload"].get("verdict"),
                          "Code audit verdict: **%s** (completeness, recomputation, leakage, raw-data integrity)." % audit["payload"].get("verdict"), start, end)
+
+    def readme_per_episode(self, rng: Tuple[int, int, int], audit: Optional[Dict[str, Any]], pb: Dict[str, Any]) -> None:
+        """export.per_episode_table: recompute every per-episode mean by arm directly from per_unit.csv."""
+        rep, lines = self.rep, self.readme_lines
+        tables = md_tables(lines, rng[1], rng[2])
+        if not rep.check("README Per-episode metrics: table present", bool(tables)):
+            return
+        table = tables[0]
+        header = table[0][1]
+        if not rep.check("README Per-episode metrics: header starts with 'arm' and lists metrics",
+                         len(header) >= 2 and header[0] == "arm", "header %s" % header):
+            return
+        cols = header[1:]
+        rep.check("README Per-episode metrics: columns are unique and sorted", cols == sorted(set(cols)), "README %s" % cols)
+        bad_step = [c for c in cols if self.is_per_step_counter(c, pb)]
+        rep.check("README Per-episode metrics: contains no per-step event counters", not bad_step, "per-step counters %s" % bad_step)
+        missing_cols = [c for c in cols if c not in self.table.columns]
+        rep.check("README Per-episode metrics: every column is in per_unit.csv", not missing_cols,
+                  "missing from per_unit.csv: %s" % missing_cols)
+        by_arm = self._audited_rows_by_arm(audit)
+        rates = (pb or {}).get("rates") or {}
+        for k in sorted({k for v in rates.values() for k in v if not self.is_per_step_counter(k, pb)}):
+            if not self.is_constant_setting(k, by_arm):
+                rep.check("README Per-episode metrics: covers non-per-step audit metric %s" % k, k in cols,
+                          "present in audit.process_balance.rates but omitted from Per-episode metrics table")
+        # review I2: a numeric per_unit.csv column with readings (float metrics too, e.g. similarities) may not be
+        # silently dropped from the table — the rates of the process audit list only integer counters
+        for k in sorted(self.table.columns):
+            if k in PER_UNIT_ID_COLUMNS or self.is_per_step_counter(k, pb):
+                continue
+            has_values = any(self.table.is_number(r.get(k)) for rs in by_arm.values() for r in rs)
+            if has_values and not self.is_constant_setting(k, by_arm):
+                rep.check("README Per-episode metrics: covers per_unit.csv metric %s" % k, k in cols,
+                          "per_unit.csv has readings in %s but the Per-episode metrics table omits it" % k)
+        expected_arms = sorted(by_arm)
+        seen: List[str] = []
+        for i, cells in table:
+            self.use(i)
+            if is_separator(cells) or cells[0] == "arm":
+                continue
+            self.cells_ok(cells, header, i)
+            arm = cells[0]
+            seen.append(arm)
+            rs = by_arm.get(arm) or []
+            for col, value in zip(cols, cells[1:]):
+                field = "README Per-episode metrics: %s [%s] = %s" % (col, arm, value)
+                if col not in self.table.columns:
+                    rep.check(field, False, "%s is not a column of per_unit.csv" % col)
+                    continue
+                vals = [float(r[col]) for r in rs if self.table.is_number(r.get(col))]
+                if value != "—" and not PER_EPISODE_CELL.match(value):
+                    rep.check(field + " (format)", False, "expected a number with exactly 3 decimals or '—' "
+                              "(export.per_episode_table); a coarser cell would hide the recomputed mean")
+                    continue
+                if not vals:
+                    rep.check(field + " (no readings)", value == "\u2014",
+                              "no numeric values in per_unit.csv for arm %s; expected '\u2014'" % arm)
+                else:
+                    mean = sum(vals) / len(vals)
+                    rep.check(field + " (mean of %d)" % len(vals), agrees(mean, value), "recomputed %.4f" % mean)
+        rep.check("README Per-episode metrics: one row per arm, in order", seen == expected_arms,
+                  "README %s, expected %s" % (seen, expected_arms))
 
     def readme_process_table(self, lines: List[str], sub: int, end: int, pb: Dict[str, Any], bal: Optional[Dict[str, Any]]) -> None:
         """export.process_criteria_table: one row per pre-registered or behaviour counter, checked against the recomputation."""
