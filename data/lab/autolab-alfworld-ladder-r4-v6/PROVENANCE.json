@@ -1,0 +1,78 @@
+{
+ "program": "ALFWORLD-LADDER-R4-V6",
+ "goal": "With retrieval held fixed (the same two goal-similar expert walkthroughs), does the 4B agent's solve rate on fresh held-out train games rise above a token-matched placebo block when the walkthroughs are shown in full (V5B replication), as their actions only, or as an abstract subgoal plan without numbers and room-specific locations?",
+ "domain": "command-run",
+ "objects": 53,
+ "knowledge_sha256": "8f88c6c5402c9c2b3ac08dd229ed701a4cc3f9d887df2760d39c569abf98b65d",
+ "integrity_problems": [],
+ "raw": [
+  {
+   "run": "run:ce59d37333f8a5f6",
+   "raw_sha256": "eb09f9a78ca7980048f9cfe225f4bf76e5bda71d45074fb3c075c7200b6b10c2",
+   "records": 1500,
+   "file": "raw.jsonl",
+   "location": "private/autolab/ALFWORLD-LADDER-R4-V6/raw/c1/raw.jsonl"
+  }
+ ],
+ "per_unit": {
+  "written": true,
+  "rows": 1500,
+  "columns": [
+   "cycle",
+   "unit",
+   "arm",
+   "seed",
+   "solved",
+   "steps",
+   "empty_retries",
+   "invalid_no_action_tag",
+   "invalid_actions",
+   "memory_tokens",
+   "truncated",
+   "untagged_not_truncated",
+   "top1_similarity",
+   "memory_similarity",
+   "mismatched_length_diff",
+   "overlap_with_retrieved",
+   "tokens",
+   "block_length_diff",
+   "content_tokens",
+   "matched_block_tokens",
+   "min_tokens",
+   "plan_digit_count",
+   "steps_observation_count",
+   "n_memory_sources",
+   "error"
+  ],
+  "protocol_counters": [],
+  "coverage": {
+   "solved": "1500/1500",
+   "steps": "1500/1500",
+   "empty_retries": "1500/1500",
+   "invalid_no_action_tag": "1500/1500",
+   "invalid_actions": "1500/1500",
+   "memory_tokens": "1500/1500",
+   "truncated": "1500/1500",
+   "untagged_not_truncated": "1500/1500",
+   "top1_similarity": "1500/1500",
+   "memory_similarity": "900/1500",
+   "mismatched_length_diff": "0/1500",
+   "overlap_with_retrieved": "0/1500",
+   "tokens": "1500/1500",
+   "block_length_diff": "1200/1500",
+   "content_tokens": "1200/1500",
+   "matched_block_tokens": "1200/1500",
+   "min_tokens": "1500/1500",
+   "plan_digit_count": "300/1500",
+   "steps_observation_count": "300/1500"
+  },
+  "empty_cell": "brak odczytu w rekordzie (nie zero)",
+  "check": {
+   "comparisons_checked": 3,
+   "mismatches": []
+  }
+ },
+ "generated_by": "kordynator autolab (eksport)",
+ "exported_at": "2026-11-21T19:50:13.529807+00:00",
+ "note": "Każdy obiekt ma sha256 z kanonicznego JSON (rodzaj, program, treść, rodzice); sprawdzenie: python verify_provenance.py knowledge.jsonl"
+}
