@@ -162,3 +162,25 @@ def test_mismatched_type_stays_in_least_similar_half_and_avoids_retrieved(bank):
 def test_format_reminder_is_on_by_default_and_identical_text():
     assert agent.CFG["format_reminder"] is True
     assert "<action>" in agent.FORMAT_REMINDER and agent.FORMAT_REMINDER.startswith(chr(10))
+
+
+def test_positive_control_oracle_and_placebo(bank):
+    goal = "heat some egg and put it in fridge"
+    agent.PILOT.clear()
+    agent.PILOT[TASK] = entry(TASK, goal, 6)
+    try:
+        oracle, src = agent.choose_memory(TASK, goal, "oracle_self", 0, bank, control=True)
+        assert src[0] == TASK and len(src) == 2 and agent.render(agent.PILOT[TASK]) in oracle
+        pla, psrc = agent.choose_memory(TASK, goal, "placebo", 0, bank, control=True)
+        assert psrc == [] and abs(agent.count_tokens(pla) - agent.count_tokens(oracle)) <= 12
+        with pytest.raises(ValueError):
+            agent.choose_memory(TASK, goal, "retrieved_task", 0, bank, control=True)
+        # outside a control job the oracle arm does not exist
+        with pytest.raises((ValueError, KeyError)):
+            agent.choose_memory(TASK, goal, "oracle_self", 0, bank, control=False)
+    finally:
+        agent.PILOT.clear()
+
+
+def test_control_arms_are_not_program_arms():
+    assert not set(agent.CONTROL_ARMS) & set(agent.ARMS)

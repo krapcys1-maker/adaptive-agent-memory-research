@@ -78,6 +78,10 @@ Once you've finished your reasoning, you should choose an admissible action for 
 """
 FORMAT_REMINDER = "\nReminder: end your answer with exactly one admissible action inside <action> </action> tags.\n"
 ARMS = ("none", "placebo", "random_same_type", "retrieved_task", "mismatched_type")
+# Positive-control arms (lab POSITIVE_CONTROL_SPEC): never in a program's arm catalogue; only in jobs marked
+# {"control": "positive"} and only on pilot games that have a replayed walkthrough in PILOT.
+CONTROL_ARMS = ("oracle_self", "scripted_expert", "scripted_null")
+PILOT: dict = {}
 STOP = set("a an the some put in on to and of with it then your is".split())
 
 
@@ -201,7 +205,7 @@ def mismatched_items(task: str, goal: str, seed: int, bank: list, target: int, e
     return block, [x["task"] for x in picks]
 
 
-def choose_memory(task: str, goal: str, arm: str, seed: int, bank: list):
+def choose_memory(task: str, goal: str, arm: str, seed: int, bank: list, control: bool = False):
     k = CFG["k"]
     if arm == "none":
         return None, []
@@ -209,12 +213,24 @@ def choose_memory(task: str, goal: str, arm: str, seed: int, bank: list):
         pool = [b for b in bank if b["type"] == ttype_of(task)]
         picks = random.Random(_h(task, seed, "rst")).sample(pool, k)
         return wrap([render(b) for b in picks]), [b["task"] for b in picks]
-    if arm in ("retrieved_task", "placebo", "mismatched_type"):
+    if arm in ("retrieved_task", "placebo", "mismatched_type", "oracle_self"):
         gw = words(goal)
         rng = random.Random(_h(task, seed, "ret"))
         scored = sorted(bank, key=lambda b: (-len(gw & words(b["goal"])) / max(1, len(gw | words(b["goal"]))),
                                              rng.random()))
         picks = scored[:k]
+        if control:
+            # positive control: Item 0 = the expert walkthrough of THIS game (same trial), Item 1 = the top
+            # retrieved bank item, so the block has the same build as the program's blocks (k = 2). Placebo in a
+            # control job is token-matched to this oracle block.
+            oracle = [render(PILOT[task]), render(picks[0])]
+            if arm == "oracle_self":
+                return wrap(oracle), [task, picks[0]["task"]]
+            if arm == "placebo":
+                return wrap(placebo_items(count_tokens(wrap(oracle)))), []
+            raise ValueError(f"arm {arm} is not allowed in a positive-control job")
+        if arm == "oracle_self":
+            raise ValueError("oracle_self exists only in a positive-control job")
         if arm == "retrieved_task":
             return wrap([render(b) for b in picks]), [b["task"] for b in picks]
         if arm == "mismatched_type":
@@ -283,6 +299,7 @@ def episode(job: dict) -> dict:
     from alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos
     t0 = time.time()
     task, arm, seed = job["task"], job["arm"], int(job["seed"])
+    control = job.get("control") == "positive"
     game = os.path.join(DATA_ROOT, *task.split("/"), "game.tw-pddl")
     infos = textworld.EnvInfos(won=True, admissible_commands=True)
     env_id = textworld.gym.register_game(game, infos, max_episode_steps=CFG["max_steps"],
@@ -293,7 +310,9 @@ def episode(job: dict) -> dict:
         obs0 = obs.split("\n\n", 1)[-1] if "Your task is to" in obs.split("\n\n", 1)[-1] else obs
         goal = goal_of(obs)
         MISMATCH_INFO.clear()
-        block, sources = choose_memory(task, goal, arm, seed, BANK)
+        if arm in ("scripted_expert", "scripted_null"):
+            return scripted_episode(job, env, obs, goal, t0)
+        block, sources = choose_memory(task, goal, arm, seed, BANK, control=control)
         mis = dict(MISMATCH_INFO) if arm == "mismatched_type" else {}
         suffix = ACTION_INSTR if block is None else MEMORY_WRAPPER.format(retrieved_exp=block)
         if CFG["format_reminder"]:
@@ -302,6 +321,8 @@ def episode(job: dict) -> dict:
         hist, tokens, invalid, won, cur = [], 0, 0, False, obs0
         no_tag, bad_samples, empty_retries = 0, [], 0
         truncated, untagged_nt = 0, 0
+        wt = [st["action"] for st in PILOT[task]["steps"]] if control and task in PILOT else None
+        wt_pos, oracle_hits = 0, 0
         limit = float(os.environ.get("LADDER_EPISODE_TIMEOUT", "5400"))
         for step in range(CFG["max_steps"]):
             if time.time() - t0 > limit:
@@ -330,11 +351,18 @@ def episode(job: dict) -> dict:
                 if len(bad_samples) < 3:
                     bad_samples.append(text[-160:])
             hist.append((cur, action))
+            if wt is not None and wt_pos < len(wt) and action == wt[wt_pos]:
+                wt_pos += 1
+                oracle_hits += 1
             cur, _r, done, info = env.step(action)
             won = won or bool(info["won"])
             if done:
                 break
-        return {"unit": job["unit"], "arm": arm, "seed": seed, "solved": bool(won),
+        extra = {"control": "positive"} if control else {}
+        # share of steps whose action equals the next not-yet-matched action of this game's walkthrough
+        extra_metrics = ({"oracle_action_match": round(oracle_hits / max(1, len(hist)), 4), "walkthrough_length": len(wt)}
+                         if wt is not None else {})
+        return {"unit": job["unit"], "arm": arm, "seed": seed, "solved": bool(won), **extra,
                 "memory_sources": sources,
                 "actions": [a for _, a in hist],  # full action sequence, for CPU replay checks
                 "metrics": {"memory_tokens": mem_tokens, "tokens": tokens, "steps": len(hist),
@@ -346,7 +374,8 @@ def episode(job: dict) -> dict:
                             "overlap_with_retrieved": mis.get("overlap_with_retrieved"),
                             "invalid_samples": bad_samples, "empty_retries": empty_retries, "seconds": round(time.time() - t0, 1),
                             "temperature": CFG["temperature"], "max_tokens": CFG["max_tokens"],
-                            "min_tokens": CFG["min_tokens"], "format_reminder": CFG["format_reminder"], "max_steps": CFG["max_steps"], "model": CFG["model"]},
+                            "min_tokens": CFG["min_tokens"], "format_reminder": CFG["format_reminder"], "max_steps": CFG["max_steps"], "model": CFG["model"],
+                            **extra_metrics},
                 "evidence": (f"goal: {goal} | won: {won} | last: " +
                              " ; ".join(f"{a} -> {' '.join(o.split())[:60]}" for o, a in
                                         list(zip([h[0] for h in hist[1:]] + [cur], [h[1] for h in hist]))[-4:]))[:500]}
@@ -356,12 +385,37 @@ def episode(job: dict) -> dict:
         env.close()
 
 
-def init(data_root, bank_path):
+def scripted_episode(job: dict, env, obs: str, goal: str, t0: float) -> dict:
+    """Rung 0 of the positive control, no model: scripted_expert sends this game's walkthrough actions,
+    scripted_null sends 'look' 50 times. Checks the game and the 'solved' scoring."""
+    actions = ([st["action"] for st in PILOT[job["task"]]["steps"]] if job["arm"] == "scripted_expert"
+               else ["look"] * CFG["max_steps"])
+    won, done_steps = False, 0
+    for a in actions[:CFG["max_steps"]]:
+        _o, _r, done, info = env.step(a)
+        done_steps += 1
+        won = won or bool(info["won"])
+        if done:
+            break
+    return {"unit": job["unit"], "arm": job["arm"], "seed": int(job["seed"]), "solved": bool(won),
+            "control": "positive", "memory_sources": [], "actions": actions[:done_steps],
+            "metrics": {"memory_tokens": 0, "steps": done_steps, "scripted": True,
+                        "seconds": round(time.time() - t0, 1)},
+            "evidence": f"goal: {goal} | won: {won} | scripted {job['arm']}"[:500]}
+
+
+def init(data_root, bank_path, pilot_path=None):
     global DATA_ROOT, BANK
     DATA_ROOT = data_root
     BANK = [json.loads(l) for l in open(bank_path, encoding="utf-8")]
     for b in BANK:
         b["goal"] = goal_of(b["initial_observation"])
+    PILOT.clear()
+    if pilot_path and os.path.exists(pilot_path):
+        for line in open(pilot_path, encoding="utf-8"):
+            if line.strip():
+                e = json.loads(line)
+                PILOT[e["task"]] = e
 
 
 def main():
@@ -371,6 +425,8 @@ def main():
     ap.add_argument("--data-root", default=os.path.expanduser("~/test-a-feasibility/alfworld_data/json_2.1.1"))
     ap.add_argument("--bank", default=os.path.join(BASE, "data", "bank.jsonl"))
     ap.add_argument("--parallel", type=int, default=24)
+    ap.add_argument("--pilot-walkthroughs", default=os.path.join(BASE, "data", "pilot_walkthroughs.jsonl"),
+                    help="replayed walkthroughs of the pilot games (positive control only)")
     ap.add_argument("--min-tokens", type=int, default=None,
                     help="default 8; 0 reproduces the V3 empty-answer artefact (answers that end at once)")
     a = ap.parse_args()
@@ -378,12 +434,20 @@ def main():
         CFG["min_tokens"] = a.min_tokens
         os.environ["LADDER_MIN_TOKENS"] = str(a.min_tokens)  # also for spawned workers
     jobs = [json.loads(l) for l in open(a.batch, encoding="utf-8") if l.strip()]
+    pilot_tasks = set()
+    if os.path.exists(a.pilot_walkthroughs):
+        pilot_tasks = {json.loads(x)["task"] for x in open(a.pilot_walkthroughs, encoding="utf-8") if x.strip()}
     for j in jobs:
-        if j["arm"] not in ARMS:
-            sys.exit(f"unknown arm {j['arm']}")
+        if j.get("control") == "positive":
+            if j["arm"] not in CONTROL_ARMS + ("placebo",):
+                sys.exit(f"arm {j['arm']} is not allowed in a positive-control job")
+            if j["task"] not in pilot_tasks:
+                sys.exit(f"positive-control job on a game without a pilot walkthrough: {j['task']}")
+        elif j["arm"] not in ARMS:
+            sys.exit(f"unknown arm {j['arm']}; control arms need control=positive")
         if j["task"].split("/")[0] not in ("valid_seen", "train"):
             sys.exit(f"refusing task outside valid_seen/train (valid_unseen is never used): {j['task']}")
-    with Pool(a.parallel, initializer=init, initargs=(a.data_root, a.bank)) as p, \
+    with Pool(a.parallel, initializer=init, initargs=(a.data_root, a.bank, a.pilot_walkthroughs)) as p, \
             open(a.out, "a", encoding="utf-8") as f:
         for r in p.imap_unordered(episode, jobs):
             if "error" in r:
