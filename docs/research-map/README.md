@@ -122,6 +122,22 @@ All of these ran offline, with no model calls.
 | How Should Agents Read Demonstrations?, 2606.20978 ✓ (abstract and setup) | identical action sequences, different organisation: named subgoal groups 76.7 → 90.7% on 43 vaguely described web tasks (6:0); no format helps on 42 precise tasks; 3 runs per condition, McNemar and permutation tests |
 | Benchmarks: Evo-Memory 2511.20857, EvoMemBench 2605.18421, MemEvoBench 2604.15774, AMA-Bench 2602.22769, procedural retrieval 2511.21730 | see DIRECTIONS.md section 4a. Evo-Memory has no public code. EvoMemBench's repository has no licence. MemEvoBench measures safety and AMA-Bench in-trajectory recall, not reuse across tasks |
 
+### AWM full-read note (added 19 November 2026)
+
+- **Paper claim:** AWM induces reusable procedural workflows from successful trajectories, offline from training examples or online from the test stream (Sections 2.2–2.3, pp. 3–4).
+- **Reported results:** WebArena Table 1 (p. 5) moves from 15.0 SR and 7.9 steps with `BrowserGymax-tree` to 35.5 SR and 5.9 steps with AWM. Rule-based and LM-based induction are nearly tied in Table 5 (p. 8): 35.6 versus 35.5 SR. Mind2Web online AWM reaches 35.5 step SR cross-domain against MindAct's 18.6 in Table 4 (p. 8). Offline+online is not additive in Table 11 (p. 16): cross-task task SR is 1.6, below 4.8 offline and 4.0 online.
+- **Limitations:** the online arm learns on the test stream, so this is test-time adaptation rather than a frozen bank evaluated on untouched tasks. Incorrect trajectories can produce harmful workflows (p. 8). Main tables give point estimates without variance, cover GPT-3.5/4 rather than small local models, and include no random-bank control. Fixed workflow actions can fail when intermediate states change (Figure 7, p. 10).
+- **Our reading (hypothesis):** compare raw trajectories, rule-induced workflows and LM-induced workflows under matched model, task and token budgets, with random/fixed-bank controls. Do not assume that LM induction is better or that offline and online memories compose. A matched-budget null result would reject the abstraction advantage for that task family.
+- **Verification:** T (all 16 PDF pages, method, setup, main tables and limitations). Official code is Apache-2.0 at `8c0ff8cd11d648c8fceb99e4e42f37e3b75381b1`; the licence was read, not executed. See the [full-read note](../07-literature/full-read-notes/2024-wang-agent-workflow-memory.md).
+
+### ExpHarness full-read note (added 19 November 2026)
+
+- **Paper claim:** ExpHarness learns a replaceable harness consisting of an experience graph and a retrieval copilot. Semantic seeding, graph diffusion and utility-aware ranking jointly select experiences without changing the frozen executor (Sections 3.1–3.4, pp. 3–6).
+- **Reported results:** Static Table 2 (p. 6) gives 69.57 versus 62.06 for MemRL with Llama-3.2-3B and 78.76 versus 75.34 with Llama-3.1-8B. Agentic Table 3 (p. 7) gives 53.4 versus 44.0 for S3 with Qwen3-32B and 62.3 versus 55.3 with Gemini-3.1-Flash-Lite. Figure 2 (p. 8) finds joint graph+copilot transfer closest to target-specific training among the variants.
+- **Limitations:** node utility is a historical shared-reward estimate for retrieval sets, not an isolated causal contribution. Appendix B (p. 16) reports about 40 hours for Agentic and 20 hours for Static training on 4 A6000 GPUs; environment steps exclude retrieval, inference and training costs. The large-to-small transfer comparison has no no-memory reference. Graph hyperparameters are fixed, there is no random-bank control, and flat-experience ablation confounds candidate generation with ranking.
+- **Our reading (hypothesis):** test raw trajectories, a flat pool, graph diffusion and utility-aware retrieval separately under matched model, task, token and compute budgets. Reject the extra graph complexity wherever matched comparisons show no benefit, rather than treating it as universally useful.
+- **Verification:** T (main text, experiments and implementation appendix). Official code is Apache-2.0 at `9dd6b3f42ede70b85196a9041d295e61ee5af9b2`; licence read, no execution. See the [full-read note](../07-literature/full-read-notes/2026-feng-expharness.md).
+
 ## Not yet read in full
 
 ExpGraph, the IBM trajectory-tips work, CMC, SWE-Bench-CL, the ReflAct table for Llama-3.1-8B. We did not find the full text of the NeurIPS 2026 paper "When Does Agent Memory Transfer?". Reading these is a good first contribution: one paper per pull request, with the level of verification stated.

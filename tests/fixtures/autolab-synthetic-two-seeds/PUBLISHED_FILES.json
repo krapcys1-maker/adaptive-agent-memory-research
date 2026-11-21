@@ -1,0 +1,70 @@
+{
+ "task": "autolab SYNTHETIC-TWO-SEEDS",
+ "published": [
+  {
+   "path": "README.md",
+   "target": "tests/fixtures/autolab-synthetic-two-seeds/README.md",
+   "sha256": "c67d4dc2ceb6800a4c5f3838425c934271fae87cce7dc948f68eaae705cc89e3",
+   "sha256_source": "c67d4dc2ceb6800a4c5f3838425c934271fae87cce7dc948f68eaae705cc89e3",
+   "bytes": 2587,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "knowledge.jsonl",
+   "target": "tests/fixtures/autolab-synthetic-two-seeds/knowledge.jsonl",
+   "sha256": "55546877243cc5ac555169fb0f960e5b0a2132650447592aa071d980b3d7d085",
+   "sha256_source": "55546877243cc5ac555169fb0f960e5b0a2132650447592aa071d980b3d7d085",
+   "bytes": 11989,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "PROVENANCE.json",
+   "target": "tests/fixtures/autolab-synthetic-two-seeds/PROVENANCE.json",
+   "sha256": "e37f9076bb8322ab3862118ad77bdce76d6de4965265060b2d1c75ec2c8768f3",
+   "sha256_source": "e37f9076bb8322ab3862118ad77bdce76d6de4965265060b2d1c75ec2c8768f3",
+   "bytes": 652,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "verify_provenance.py",
+   "target": "tests/fixtures/autolab-synthetic-two-seeds/verify_provenance.py",
+   "sha256": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "sha256_source": "e5479cfbdc7bf8dc26894da0081a9f7b1887d256110e28eb746559ebcb847408",
+   "bytes": 1500,
+   "edits": [
+    "none"
+   ]
+  },
+  {
+   "path": "per_unit.csv",
+   "target": "tests/fixtures/autolab-synthetic-two-seeds/per_unit.csv",
+   "sha256": "7939e1504cd20863830ed12856f3031bfb147f74db65cc40073494c2e3ae5b28",
+   "sha256_source": "7939e1504cd20863830ed12856f3031bfb147f74db65cc40073494c2e3ae5b28",
+   "bytes": 34535,
+   "edits": [
+    "none"
+   ]
+  }
+ ],
+ "private": [
+  {
+   "to": "private/autolab/SYNTHETIC-TWO-SEEDS/raw/c1",
+   "files": 1,
+   "moved": false,
+   "what": "synthetic raw records"
+  }
+ ],
+ "paths_are_relative": true,
+ "protected_check": {
+  "result": "withheld",
+  "withheld": [
+   "synthetic raw records"
+  ]
+ }
+}

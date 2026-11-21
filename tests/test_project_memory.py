@@ -365,5 +365,60 @@ class ProjectMemoryTests(unittest.TestCase):
         self.assertFalse(_process_is_alive(0))
 
 
+class EvidenceProvenanceTests(unittest.TestCase):
+    """An external audit (gpt raport, 2026-11-18): a finding without sources was accepted, and the
+    verifier then flagged the immutable log for ever. The store must refuse it before writing."""
+
+    def setUp(self) -> None:
+        self.temporary = tempfile.TemporaryDirectory()
+        self.root = Path(self.temporary.name)
+        (self.root / "memory").mkdir()
+        self.store = MemoryStore(self.root)
+        self.store.initialize()
+
+    def tearDown(self) -> None:
+        self.temporary.cleanup()
+
+    def log_bytes(self) -> bytes:
+        path = self.root / "memory" / "events.jsonl"
+        return path.read_bytes() if path.exists() else b""
+
+    def test_evidence_kinds_match_the_verifier(self) -> None:
+        import importlib.util
+
+        script = Path(__file__).resolve().parents[1] / "scripts" / "verify_memory_integrity.py"
+        spec = importlib.util.spec_from_file_location("verify_memory_integrity_for_test", script)
+        verifier = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(verifier)
+        from tools.project_memory import memory_store
+
+        self.assertEqual(set(verifier.EVIDENCE_KINDS), set(memory_store.EVIDENCE_KINDS))
+
+    def test_add_refuses_evidence_without_sources_and_writes_nothing(self) -> None:
+        from tools.project_memory.memory_store import MemoryError
+
+        before = self.log_bytes()
+        for kind in ("finding", "failure"):
+            for refs in (None, [], "", ["  "]):
+                with self.assertRaises(MemoryError):
+                    self.store.add(kind=kind, title="T", summary="S", source_refs=refs)
+        self.assertEqual(before, self.log_bytes())
+        self.store.add(kind="decision", title="A plan", summary="Intent needs no source.")
+        self.store.add(kind="finding", title="T", summary="S", source_refs=["paper:x"])
+
+    def test_supersede_refuses_to_drop_the_sources_of_evidence(self) -> None:
+        from tools.project_memory.memory_store import MemoryError
+
+        old = self.store.add(kind="finding", title="T", summary="S", source_refs=["paper:x"])
+        before = self.log_bytes()
+        with self.assertRaises(MemoryError):
+            self.store.supersede(memory_id=old["id"], reason="drop the sources", source_refs=[])
+        self.assertEqual(before, self.log_bytes())
+        self.assertTrue(self.store.get(old["id"])["is_active"])
+        new = self.store.supersede(memory_id=old["id"], reason="keeps the sources")
+        self.assertEqual(["paper:x"], new["source_refs"])
+
+
+
 if __name__ == "__main__":
     unittest.main()

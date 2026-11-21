@@ -1,0 +1,15 @@
+Retrieved Item 0:
+Task: put a cd in shelf.
+[Observation 1: 'You are in the middle of a room. Looking quickly around you, you see a shelf 1, a shelf 1, and a drawer 1.', Action 1: 'go to drawer 1']
+[Observation 2: 'You arrive at drawer 1. The drawer 1 is closed.', Action 2: 'open drawer 1']
+[Observation 3: 'You open the drawer 1. The drawer 1 is open. In it, you see a cd 1.', Action 3: 'take cd 1 from drawer 1']
+[Observation 4: 'You pick up the cd 1 from the drawer 1.', Action 4: 'go to shelf 1']
+[Observation 5: 'You arrive at shelf 1. On the shelf 1, you see nothing.', Action 5: 'move cd 1 to shelf 1']
+Final observation: 'You move the cd 1 to the shelf 1.'
+
+Retrieved Item 1:
+Task: put some cd on shelf.
+[Observation 1: 'You are in the middle of a room. Looking quickly around you, you see a shelf 1, a shelf 1, and a drawer 1.', Action 1: 'go to shelf 1']
+[Observation 2: 'You arrive at shelf 1. On the shelf 1, you see a cd 2.', Action 2: 'take cd 2 from shelf 1']
+[Observation 3: 'You pick up the cd 2 from the shelf 1.', Action 3: 'move cd 2 to shelf 1']
+Final observation: 'You move the cd 2 to the shelf 1.'

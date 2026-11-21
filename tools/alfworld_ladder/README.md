@@ -22,14 +22,15 @@ Prompts: `instrument/prompt_template.txt`. Since V5 every arm ends with the same
 ## Placebo check: a volunteer cell (no coding needed)
 
 In the lab's V3 run (100 valid_seen games), a token-matched block of neutral filler added about 13 points over
-no memory. It also hid an artefact: without it, the model often ended its answer at once (empty answers).
-The runner now sets vLLM `min_tokens = 8` for every arm. `--min-tokens 0` reproduces the artefact.
+no memory. In the same run it almost removed an artefact: in the other arms the model often ended its answer at
+once (empty answers). The runner now sets vLLM `min_tokens = 8` for every arm. `--min-tokens 0` re-creates the V3
+decoding condition on train games (not the V3 games). `--format-reminder 0` (the default) keeps the V3/V4 prompts.
 
 ```
 python placebo_check.py prepare --pool v4 --block B03 --replicate 1   # claim the block on #179 first
-python placebo_check.py run data/contrib/placebo-v4-B03-r1-mt8           # 60 episodes, about 1.5 h on 12 GB
-python placebo_check.py finish data/contrib/placebo-v4-B03-r1-mt8        # card: GPU, driver, vLLM version
-python placebo_check.py summary data/contrib/placebo-v4-B03-r1-mt8
+python placebo_check.py run data/contrib/placebo-v4-B03-r1-mt8-fr0       # 60 episodes, about 1.5 h on 12 GB
+python placebo_check.py finish data/contrib/placebo-v4-B03-r1-mt8-fr0    # card: GPU, driver, vLLM version, checks
+python placebo_check.py summary data/contrib/placebo-v4-B03-r1-mt8-fr0
 ```
 
 Then open a pull request with `data/contrib/<cell-id>/`.

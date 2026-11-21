@@ -468,11 +468,24 @@
   ]
  },
  {
+  "key": "expharness-2026",
+  "title": "ExpHarness: Model-Agnostic Experience Learning through a Trainable Harness",
+  "year": 2026,
+  "url": "https://arxiv.org/abs/2605.30712",
+  "claim": "ExpHarness combines an experience graph, diffusion and utility-aware retrieval around frozen executors. It improves weighted scores but requires substantial training compute; node utility is set-level rather than causal, joint transfer is closest to target-specific training among variants, and no random-bank control is reported. [verification: main text, experiments and implementation appendix read on 2026-11-19; Tables 2 and 3, Figures 2 and 3; code licence Apache-2.0]",
+  "mentions": [
+   "benchmark=alfworld",
+   "bank=experience-graph",
+   "unit=skill-lesson",
+   "effect=mixed"
+  ]
+ },
+ {
   "key": "awm-2024",
   "title": "Agent Workflow Memory",
   "year": 2024,
   "url": "https://arxiv.org/abs/2409.07429",
-  "claim": "Abstract workflows induced from past runs beat raw-trajectory memory (Synapse) on WebArena and Mind2Web; suggests full examples bias the agent (hypothesis, not isolated). [verification: abstract or HTML read by an assistant on 2026-11-17; not read in full]",
+  "claim": "AWM reports reusable workflows improving WebArena and Mind2Web results; rule and LM induction are nearly tied on WebArena, and offline+online is not additive. Online AWM learns on the test stream, and no random-bank control is reported. [verification: full 16-page paper read on 2026-11-19; Tables 1, 4, 5 and 11; code licence Apache-2.0]",
   "mentions": [
    "benchmark=webarena",
    "bank=workflows",

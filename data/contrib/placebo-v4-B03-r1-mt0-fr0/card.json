@@ -1,0 +1,85 @@
+{
+ "cell_id": "placebo-v4-B03-r1-mt0-fr0",
+ "pool": "v4",
+ "block": "B03",
+ "replicate": 1,
+ "games": [
+  "train/pick_and_place_simple-CellPhone-None-Safe-302/trial_T20190908_122757_136508",
+  "train/pick_clean_then_place_in_recep-SoapBar-None-Cabinet-428/trial_T20190908_014606_560501",
+  "train/pick_two_obj_and_place-SprayBottle-None-GarbageCan-408/trial_T20190909_033220_609500",
+  "train/pick_cool_then_place_in_recep-Pan-None-DiningTable-11/trial_T20190908_204347_530034",
+  "train/pick_heat_then_place_in_recep-Potato-None-DiningTable-7/trial_T20190907_030735_362750",
+  "train/pick_and_place_simple-Book-None-ArmChair-209/trial_T20190909_091617_854251",
+  "train/pick_clean_then_place_in_recep-Mug-None-CoffeeMachine-13/trial_T20190907_171959_889613",
+  "train/pick_two_obj_and_place-Candle-None-Cabinet-412/trial_T20190908_222902_113581",
+  "train/pick_cool_then_place_in_recep-Bowl-None-Shelf-5/trial_T20190908_083645_361274",
+  "train/pick_heat_then_place_in_recep-Egg-None-Fridge-19/trial_T20190908_130450_106025",
+  "train/pick_and_place_simple-Box-None-Sofa-205/trial_T20190907_214830_497445",
+  "train/pick_clean_then_place_in_recep-Cloth-None-CounterTop-410/trial_T20190907_181320_769618",
+  "train/pick_two_obj_and_place-AlarmClock-None-SideTable-312/trial_T20190908_024638_080857",
+  "train/pick_cool_then_place_in_recep-Mug-None-SideTable-21/trial_T20190907_153535_965098",
+  "train/pick_heat_then_place_in_recep-Tomato-None-SideTable-28/trial_T20190908_031506_186347",
+  "train/pick_and_place_simple-Pen-None-Shelf-310/trial_T20190909_113609_142533",
+  "train/pick_clean_then_place_in_recep-Spatula-None-CounterTop-30/trial_T20190909_050651_623153",
+  "train/pick_two_obj_and_place-Candle-None-Cabinet-414/trial_T20190908_190650_163902",
+  "train/pick_cool_then_place_in_recep-Potato-None-Microwave-20/trial_T20190909_035658_081195",
+  "train/pick_heat_then_place_in_recep-Cup-None-CounterTop-22/trial_T20190909_023544_721677"
+ ],
+ "pool_games_sha256": "172a72a2e615e9c2aa5a2ab1b7d76fa324398f2a031b53b574c4a7c7321555e0",
+ "block_games_sha256": "49cc657202a48042e025f1946ab13eacd44ba8fced8d24040b01ffb7e69870ca",
+ "pools_file_sha256": "b90b6a89c088c9fc85808bf466ca709000450d951957b21f95056b5e96afe30a",
+ "arms": [
+  "none",
+  "placebo",
+  "retrieved_task"
+ ],
+ "fixed": {
+  "model": "Qwen/Qwen3-4B-Instruct-2507-FP8",
+  "temperature": 0.7,
+  "max_tokens": 2048,
+  "min_tokens": 0,
+  "format_reminder": false,
+  "max_steps": 50,
+  "history_length": 50,
+  "k": 2,
+  "prompt": {
+   "prompt_sha256": "89210ff5cfbac7d261e1bebde9730a8e22261feec9ba9ed56d586ea2d5b66f4d",
+   "prompt_template_sha256": "e1d94a682d38c95d47e0341adb2c66048509dcfbfb1d5a7f07d4d2828b0424ff",
+   "agent_prompts_match_template": true,
+   "prompts_match_v3_v4": true
+  },
+  "sha256": {
+   "agent": "c5c5eea0545eba11fbd27435296a80bb88e0c31e707762862f98417caba9636a",
+   "placebo": "ac91b81d689a4994bf60ea660b7294d5606792ca1e6e46274243d09e2720b834",
+   "bank": "73f0c63a718a1aa1c27141d70257d7ee75ca9a3d6f02fb42a950fb5272b54548",
+   "prompt_template": "e1d94a682d38c95d47e0341adb2c66048509dcfbfb1d5a7f07d4d2828b0424ff"
+  },
+  "harness_commit": "aae47bfe8645490b1675bb181a6ac6768e26c8fa"
+ },
+ "replication": "V3/V4 setup (model and prompts); min_tokens as chosen",
+ "agent_note": "agent.py is the current public runner, not the V4 agent pin (68f48c2f, unpublished). With format_reminder off its prompt text equals instrument/prompt_template.txt as pinned by V3 and V4 (prompts_match_v3_v4).",
+ "machine": {
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "driver": "535.129.03",
+  "vllm_version": "0.20.0",
+  "served_models": [
+   "Qwen/Qwen3-4B-Instruct-2507-FP8"
+  ],
+  "quantisation_kernel": "(EngineCore pid=2352509) INFO 11-20 02:33:45 [__init__.py:389] Selected MarlinFP8ScaledMMLinearKernel for Fp8LinearMethod",
+  "os": "Linux-5.4.250-2-velinux1u1-amd64-x86_64-with-glibc2.35"
+ },
+ "started_at": "2026-11-20T02:33:55+00:00",
+ "finished_at": "2026-11-20T04:06:14+00:00",
+ "status": "complete",
+ "notes": "Checkpoint Qwen/Qwen3-4B-Instruct-2507-FP8 at 8591804019c8b22094c3b5b4454e0edc05dffc98, A100-SXM4 single GPU, vLLM 0.20.0+cu129, pending maintainer classification. Initial attempt produced zero scored records due to NFS temporary-library cleanup; documents retained separately. TextWorld transient scratch uses tmpfs.",
+ "records": {
+  "expected": 60,
+  "present": 60,
+  "missing": 0,
+  "duplicates": 0,
+  "extra": 0,
+  "seed_mismatches": 0,
+  "setting_mismatches": 0
+ },
+ "invalid_reasons": []
+}

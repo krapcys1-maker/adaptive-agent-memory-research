@@ -1,0 +1,19 @@
+{
+ "program": "SYNTHETIC-V5B-SHAPE",
+ "goal": "Synthetic V5B-shaped package: does a retrieved walkthrough beat a token-matched placebo and a mismatched walkthrough?",
+ "domain": "command-run",
+ "objects": 13,
+ "knowledge_sha256": "d500033a4df7820c53e271a6bcf7db4ff292dcda992963c2cafa6957305ca4bd",
+ "integrity_problems": [],
+ "raw": [
+  {
+   "run": "run:01e6ce26e72d9323",
+   "raw_sha256": "3c4b85715463fa00398630f73de3993760ffc12d6700d856e60f0762ce642c7a",
+   "records": 480,
+   "location": "private/autolab/SYNTHETIC-V5B-SHAPE/raw/c1/raw.jsonl"
+  }
+ ],
+ "generated_by": "synthetic fixture (lab analysis code)",
+ "exported_at": "2026-11-18T00:00:00+00:00",
+ "note": "synthetic"
+}

@@ -9,7 +9,13 @@ Checks
 1. declared-hash      every 64-hex digest declared in a JSON manifest is
                       compared against the bytes of the file it names, and
                       against the bytes stored in the Git blob, so a hash that
-                      is only reproducible on one platform is reported.
+                      is only reproducible on one platform is reported. A file
+                      is named by a path key, or by a ``target`` /
+                      ``published_path`` / ``path`` field beside ``sha256`` in
+                      one record (the PUBLISHED_FILES.json format). A declared
+                      file that is gone is critical (declared-file-missing), and
+                      so is a digest in a PUBLISHED_FILES.json that names no
+                      checkable file (unresolvable-publication-digest).
 2. registry-paths     experiment-registry manifest and artifact paths exist.
 3. memory-sources     repository paths cited by memory source_refs exist.
 4. doc-links          relative Markdown links resolve to real files.
@@ -145,38 +151,169 @@ def _inside_repository(path: Path) -> bool:
     return True
 
 
-def resolve_declared_target(manifest: Path, key: str, key_path: list[str]) -> tuple[Path, bool] | None:
-    """Work out which file a declared digest refers to.
+# A publication manifest written by scripts/aamr_export.py (and the K1 packet's own) lists every
+# published file as one record: the file's path in a sibling field and its published bytes'
+# digest under "sha256". The record names its file unambiguously, so the declaration is certain.
+PUBLICATION_MANIFEST = "PUBLISHED_FILES.json"
+# Sibling fields that name the file a "sha256" in the same record describes, in order of precedence.
+# "target" is repository-relative (aamr_export.py); "published_path" and "path" are relative to the
+# manifest's directory (K1, and the short form aamr_export.py also writes).
+SIBLING_PATH_FIELDS = ("target", "published_path", "path")
+# Digests of the unpublished source bytes in the same record. They describe a file outside this
+# repository (before sanitising), so they are counted, never compared with the published file.
+SOURCE_DIGEST_KEYS = frozenset({"sha256_source", "sha256_original"})
 
-    Returns the resolved path plus whether the mapping is *certain*.
+_COMMITTED_PATHS: dict[str, frozenset[str]] = {}
 
-    A key that is itself a path names its file unambiguously. A key of the form
-    ``<name>_sha256`` is only a guess: this repository also uses that shape for
-    derived semantic digests that are deliberately not the digest of any file.
-    ``rankings_sha256`` in the reuse-characterization run is one such case — it
-    digests the ranking order to prove cross-process reproducibility, and does
-    not equal the digest of ``rankings.json``. Treating those as file claims
-    produces false positives, so they are reported at a lower severity.
+
+def paths_ever_committed() -> frozenset[str]:
+    """Every repository-relative path that was ever added in the history of HEAD (cached per ROOT).
+
+    A declared file that is absent from the working tree but present in history was deleted after
+    it was frozen. A declared file that was never committed is an external or private input that this
+    audit cannot check. Outside a Git repository, or on a shallow clone, the set is smaller, so a
+    deletion can be missed there but nothing is ever reported falsely.
     """
+    cache_key = str(ROOT)
+    if cache_key not in _COMMITTED_PATHS:
+        result = subprocess.run(
+            ["git", "-c", "core.quotepath=false", "log", "HEAD", "--format=", "--name-only", "--diff-filter=A", "--no-renames", "-m", "-z"],
+            cwd=ROOT, capture_output=True, check=False,
+        )
+        names = result.stdout.decode("utf-8", errors="replace").split("\0") if result.returncode == 0 else []
+        _COMMITTED_PATHS[cache_key] = frozenset(name.strip("\n") for name in names if name.strip("\n"))
+    return _COMMITTED_PATHS[cache_key]
+
+
+def _relative(path: Path) -> str | None:
+    try:
+        return path.resolve().relative_to(ROOT.resolve()).as_posix()
+    except (ValueError, OSError):
+        return None
+
+
+def _locate(candidates: list[Path]) -> tuple[Path | None, list[str]]:
+    """The first candidate that is a file inside the repository, plus every in-repository candidate's relative path."""
+    inside: list[str] = []
+    for candidate in candidates:
+        relative = _relative(candidate)
+        if relative is None:
+            continue
+        if candidate.is_file():
+            return candidate, inside + [relative]
+        inside.append(relative)
+    return None, inside
+
+
+def container_at(payload: Any, key_path: list[str]) -> Any:
+    """The JSON object or list that holds the leaf reached by ``key_path`` (as yielded by walk_json)."""
+    node = payload
+    for step in key_path:
+        if isinstance(node, dict):
+            node = node.get(step)
+        elif isinstance(node, list):
+            try:
+                node = node[int(step)]
+            except (ValueError, IndexError):
+                return None
+        else:
+            return None
+    return node
+
+
+def sibling_path(container: Any) -> tuple[str, str] | None:
+    """(field, value) of the field that names the file a "sha256" in this record describes."""
+    if not isinstance(container, dict):
+        return None
+    for field in SIBLING_PATH_FIELDS:
+        value = container.get(field)
+        if isinstance(value, str) and value.strip():
+            return field, value
+    return None
+
+
+def classify_declaration(
+    manifest: Path, key: str, key_path: list[str], container: Any = None
+) -> tuple[str, Path | None, bool, str]:
+    """Decide what a declared digest is a claim about.
+
+    Returns ``(kind, path, certain, detail)`` where ``kind`` is one of
+
+    * ``"file"``: the digest names ``path``; ``certain`` says whether the mapping is unambiguous;
+    * ``"missing"``: the digest certainly names a file of this repository that does not exist, a
+      deleted freeze; ``detail`` is its repository-relative path;
+    * ``"source"``: the digest of unpublished source bytes in a publication record;
+    * ``"unresolvable"``: the audit cannot tell which repository file, if any, the digest describes.
+
+    ``container`` is the JSON object holding the digest (see container_at). Without it only the key
+    is used.
+
+    A declared path that does not exist is "missing" when it certainly belongs to this repository:
+    a publication record ("target" or "published_path", or any record in PUBLISHED_FILES.json), or a
+    path that was committed at some point. A path that was never committed is an external or private
+    input (a raw capture, a download) that this repository never held, so it stays unresolvable.
+    """
+    named = sibling_path(container)
+    if named is not None and key == "sha256":
+        field, value = named
+        if field == "target":
+            candidates = [ROOT / value, manifest.parent / value]
+        else:
+            candidates = [manifest.parent / value, ROOT / value]
+        found, inside = _locate(candidates)
+        if found is not None:
+            return "file", found, True, ""
+        committed = [relative for relative in inside if relative in paths_ever_committed()]
+        if committed:
+            return "missing", None, True, committed[0]
+        if inside and (manifest.name == PUBLICATION_MANIFEST or field != "path"):
+            return "missing", None, True, inside[0]
+        return "unresolvable", None, False, ""
+    if named is not None and key in SOURCE_DIGEST_KEYS:
+        return "source", None, False, ""
+
     candidate = key
     if "/" in candidate or candidate.endswith(tuple(TEXT_SUFFIXES)):
         # A key that is an absolute path (a frozen artifact may record the machine that wrote it) joins to that
         # absolute path, which can be a real file outside the repository. Only files inside the repository are
         # declarations this audit can check; anything else is unresolvable here, never a crash.
-        absolute = ROOT / candidate
-        if absolute.is_file() and _inside_repository(absolute):
-            return absolute, True
-        sibling = manifest.parent / candidate
-        if sibling.is_file() and _inside_repository(sibling):
-            return sibling, True
-        return None
+        found, inside = _locate([ROOT / candidate, manifest.parent / candidate])
+        if found is not None:
+            return "file", found, True, ""
+        committed = paths_ever_committed()
+        for relative in inside:
+            if relative in committed:
+                return "missing", None, True, relative
+        return "unresolvable", None, False, ""
 
     if candidate.endswith("_sha256"):
         stem = candidate[: -len("_sha256")]
         for suffix in (".json", ".jsonl", ".md", ".txt", ".csv"):
             sibling = manifest.parent / f"{stem}{suffix}"
             if sibling.is_file():
-                return sibling, False
+                return "file", sibling, False, ""
+    return "unresolvable", None, False, ""
+
+
+def resolve_declared_target(
+    manifest: Path, key: str, key_path: list[str], container: Any = None
+) -> tuple[Path, bool] | None:
+    """Work out which existing file a declared digest refers to.
+
+    Returns the resolved path plus whether the mapping is *certain*, or None when no existing
+    file can be named (classify_declaration says why, including a deleted freeze).
+
+    A key that is itself a path names its file unambiguously, and so does a ``sha256`` beside a
+    ``target``, ``published_path`` or ``path`` field of the same record (the publication manifest
+    format). A key of the form ``<name>_sha256`` is only a guess: this repository also uses that
+    shape for derived semantic digests that are deliberately not the digest of any file.
+    ``rankings_sha256`` in the reuse-characterization run is one such case — it digests the ranking
+    order to prove cross-process reproducibility, and does not equal the digest of ``rankings.json``.
+    Treating those as file claims produces false positives, so they are reported at a lower severity.
+    """
+    kind, path, certain, _ = classify_declaration(manifest, key, key_path, container)
+    if kind == "file" and path is not None:
+        return path, certain
     return None
 
 
@@ -299,7 +436,16 @@ def matching_drift_declaration(document: dict, manifest: str, target: str, decla
     return None
 
 
-def prove_drift(document: dict[str, Any], target_relative: str, declared: str, working_digest: str) -> str:
+# current_sha256 of a note that explains a declared file which no longer exists (deleted or moved).
+ABSENT = "absent"
+
+
+def crlf_form(data: bytes) -> bytes:
+    """The bytes a Windows checkout with core.autocrlf produced: every bare LF written as CRLF."""
+    return re.sub(rb"(?<!\r)\n", b"\r\n", data)
+
+
+def prove_drift(document: dict[str, Any], target_relative: str, declared: str, working_digest: str | None) -> str:
     """Re-derive every claim in a drift note. Returns "" when all hold, else the first that fails.
 
     A freeze can be broken honestly: the file was edited after its manifest was
@@ -315,6 +461,9 @@ def prove_drift(document: dict[str, Any], target_relative: str, declared: str, w
     * ``changed_in`` exists, is reachable from HEAD, and holds different bytes;
     * ``current_sha256`` equals the file's bytes today, so a further edit voids the
       note and has to be explained again;
+    * for a declared file that no longer exists (``working_digest`` is None), the note says
+      ``current_sha256: "absent"``, ``changed_in`` is the commit that removed or moved it (the
+      path holds no file there), and an optional ``moved_to`` names an existing file;
     * if ``successor_manifest`` is given, it is a manifest under data/ (not a note or a
       marker) that declares ``current_sha256`` for this very file.
 
@@ -322,7 +471,12 @@ def prove_drift(document: dict[str, Any], target_relative: str, declared: str, w
     that it follows the manifest's own commit. Those stay the author's claim, recorded in
     the note; the audit insists on the Git-derived facts above.
     """
-    if document["current_sha256"] != working_digest:
+    deleted = document["current_sha256"] == ABSENT
+    if working_digest is None and not deleted:
+        return f"the file no longer exists; a note for a deleted file says current_sha256 {ABSENT!r}"
+    if working_digest is not None and deleted:
+        return "the note says the file is absent, but it exists"
+    if not deleted and document["current_sha256"] != working_digest:
         return "the file changed again after this note was written (current_sha256 no longer matches its bytes)"
     matched = document["declared_matched_at"]
     changed_in = document["changed_in"]
@@ -343,10 +497,21 @@ def prove_drift(document: dict[str, Any], target_relative: str, declared: str, w
         if not git_is_ancestor(commit, changed_in):
             return f"{commit} is not an ancestor of changed_in {changed_in}"
     changed_blob = git_blob_at(changed_in, target_relative)
-    if changed_blob is None or digest_bytes(changed_blob) == declared:
+    if deleted:
+        if changed_blob is not None:
+            return f"{target_relative} still exists at changed_in {changed_in}, so it was not removed there"
+    elif changed_blob is None or digest_bytes(changed_blob) == declared:
         return f"{target_relative} at changed_in {changed_in} still holds the declared bytes, so nothing changed there"
     if not git_is_ancestor(changed_in, "HEAD"):
         return f"changed_in {changed_in} is not reachable from HEAD"
+    if deleted:
+        if document.get("successor_manifest"):
+            return "a note for a deleted file cannot name a successor_manifest"
+        moved_to = document.get("moved_to")
+        if moved_to is not None:
+            if not isinstance(moved_to, str) or _relative(ROOT / moved_to) is None or not (ROOT / moved_to).is_file():
+                return f"moved_to does not name an existing file of this repository: {moved_to!r}"
+        return ""
     successor = document.get("successor_manifest")
     if successor:
         path = (ROOT / str(successor)).resolve()
@@ -364,7 +529,7 @@ def prove_drift(document: dict[str, Any], target_relative: str, declared: str, w
         for key_path, key, value in walk_json(payload, []):
             if value != working_digest:
                 continue
-            resolved = resolve_declared_target(path, key, key_path)
+            resolved = resolve_declared_target(path, key, key_path, container_at(payload, key_path))
             if resolved is not None and resolved[1] and resolved[0].resolve() == target:
                 break
         else:
@@ -372,7 +537,72 @@ def prove_drift(document: dict[str, Any], target_relative: str, declared: str, w
     return ""
 
 
+def explain_with_note(
+    findings: list[Finding],
+    counters: Counter,
+    manifest: Path,
+    relative_manifest: str,
+    relative_target: str,
+    key: str,
+    declared: str,
+    working: str | None,
+    reported_invalid_notes: set[str],
+) -> bool:
+    """True when the manifest's drift note proves this one broken declaration; findings record the outcome.
+
+    ``working`` is the file's digest today, or None when the declared file no longer exists.
+    """
+    note = drift_annotation_for(manifest)
+    if not note.is_file():
+        return False
+    relative_note = note.relative_to(ROOT).as_posix()
+    document, rejection = load_drift_annotation(note)
+    if document is None:
+        if relative_note not in reported_invalid_notes:
+            reported_invalid_notes.add(relative_note)
+            counters["invalid_drift_annotations"] += 1
+            findings.append(
+                Finding(
+                    "invalid-drift-annotation",
+                    "high",
+                    relative_note,
+                    f"{rejection}. Suppressing nothing; declarations are still checked.",
+                )
+            )
+        return False
+    entry = matching_drift_declaration(document, relative_manifest, relative_target, declared)
+    if entry is None:
+        return False  # a note that concerns a different declaration explains nothing here
+    problem = prove_drift(entry, relative_target, declared, working)
+    if not problem:
+        counters["explained_drift"] += 1
+        what = "declared file" if working is None else "declared digest"
+        state = "no longer exists" if working is None else "no longer matches"
+        findings.append(
+            Finding(
+                "explained-drift",
+                "low",
+                relative_target,
+                f"{what} in {relative_manifest} under '{key}' {state}; "
+                f"explained by {relative_note}: it matched at "
+                f"{', '.join(entry['declared_matched_at'])} and changed in {entry['changed_in']}.",
+            )
+        )
+        return True
+    counters["invalid_drift_annotations"] += 1
+    findings.append(
+        Finding(
+            "invalid-drift-annotation",
+            "high",
+            relative_note,
+            f"{problem}. Suppressing nothing; the declaration is still reported as broken.",
+        )
+    )
+    return False
+
+
 def check_declared_hashes(findings: list[Finding], counters: Counter) -> None:
+    _COMMITTED_PATHS.pop(str(ROOT), None)  # read history afresh on every run
     for manifest in iter_files(ROOT / "data", {".json"}):
         if manifest.name == SUPERSEDED_MARKER:
             continue
@@ -425,11 +655,45 @@ def check_declared_hashes(findings: list[Finding], counters: Counter) -> None:
             if not isinstance(value, str) or not HEX64.match(value):
                 continue
             counters["declared_hashes_seen"] += 1
-            resolved = resolve_declared_target(manifest, key, key_path)
-            if resolved is None:
-                counters["declared_hashes_unresolvable"] += 1
+            kind, target, certain, detail = classify_declaration(
+                manifest, key, key_path, container_at(payload, key_path)
+            )
+            if kind == "source":
+                counters["declared_source_digests"] += 1
                 continue
-            target, certain = resolved
+            if kind == "missing":
+                explained = explain_with_note(
+                    findings, counters, manifest, relative_manifest, detail, key, value, None, reported_invalid_notes
+                )
+                if explained:
+                    continue
+                counters["declared_files_missing"] += 1
+                findings.append(
+                    Finding(
+                        "declared-file-missing",
+                        "critical",
+                        detail,
+                        f"declared in {relative_manifest} under '{key}', but the file does not exist. "
+                        f"A frozen file was deleted or moved after it was declared.",
+                    )
+                )
+                continue
+            if kind != "file" or target is None:
+                counters["declared_hashes_unresolvable"] += 1
+                if manifest.name == PUBLICATION_MANIFEST:
+                    # Every digest in a publication manifest is a claim about published bytes. One the audit
+                    # cannot attribute is a gap in the protection, so it is never counted silently.
+                    counters["unresolvable_in_publication_manifest"] += 1
+                    findings.append(
+                        Finding(
+                            "unresolvable-publication-digest",
+                            "critical",
+                            relative_manifest,
+                            f"digest at '{'/'.join(key_path + [key])}' names no file this audit can check. "
+                            f"Declare it beside a 'target', 'published_path' or 'path' field.",
+                        )
+                    )
+                continue
             counters["declared_hashes_resolved"] += 1
             counters["declared_hashes_certain" if certain else "declared_hashes_guessed"] += 1
             relative_target = target.relative_to(ROOT).as_posix()
@@ -470,47 +734,26 @@ def check_declared_hashes(findings: list[Finding], counters: Counter) -> None:
                     )
                 )
                 continue
-            note = drift_annotation_for(manifest)
-            if note.is_file():
-                relative_note = note.relative_to(ROOT).as_posix()
-                document, rejection = load_drift_annotation(note)
-                if document is None:
-                    if relative_note not in reported_invalid_notes:
-                        reported_invalid_notes.add(relative_note)
-                        counters["invalid_drift_annotations"] += 1
-                        findings.append(
-                            Finding(
-                                "invalid-drift-annotation",
-                                "high",
-                                relative_note,
-                                f"{rejection}. Suppressing nothing; declarations are still checked.",
-                            )
-                        )
-                elif (document := matching_drift_declaration(document, relative_manifest, relative_target, value)) is not None:
-                    problem = prove_drift(document, relative_target, value, working)
-                    if not problem:
-                        counters["explained_drift"] += 1
-                        findings.append(
-                            Finding(
-                                "explained-drift",
-                                "low",
-                                relative_target,
-                                f"declared digest in {relative_manifest} under '{key}' no longer matches; "
-                                f"explained by {relative_note}: it matched at "
-                                f"{', '.join(document['declared_matched_at'])} and changed in {document['changed_in']}.",
-                            )
-                        )
-                        continue
-                    counters["invalid_drift_annotations"] += 1
-                    findings.append(
-                        Finding(
-                            "invalid-drift-annotation",
-                            "high",
-                            relative_note,
-                            f"{problem}. Suppressing nothing; the declaration is still reported as broken.",
-                        )
+            if explain_with_note(
+                findings, counters, manifest, relative_manifest, relative_target, key, value, working,
+                reported_invalid_notes,
+            ):
+                continue
+            if blob is not None and digest_bytes(crlf_form(blob)) == value:
+                # The declared digest is the committed bytes with every LF written as CRLF: the file was hashed on
+                # a Windows checkout before .gitattributes disabled end-of-line conversion (issue #26). The content
+                # is unchanged, but the declaration is reproducible on no checkout today, as above.
+                counters["crlf_only_declaration"] += 1
+                findings.append(
+                    Finding(
+                        "declared-hash",
+                        "high",
+                        relative_target,
+                        f"declared digest in {relative_manifest} under '{key}' is the CRLF form of the committed "
+                        f"bytes; the content is unchanged, but no checkout reproduces the declared bytes.",
                     )
-                # A note that concerns a different declaration explains nothing here.
+                )
+                continue
             counters["match_neither"] += 1
             findings.append(
                 Finding(

@@ -45,6 +45,11 @@ ALLOWED_CONFIDENCE = {"unknown", "low", "medium", "high"}
 # derived design exists to prevent, and an append-only log cannot update them on
 # the record they end anyway.
 ALLOWED_CLAIM_CLASSES = {"dispositional", "state", "unclassified"}
+# Kinds that assert something about the world. The integrity verifier
+# (scripts/verify_memory_integrity.py, EVIDENCE_KINDS) flags such an event without
+# source_refs as missing-provenance, and the append-only log can never be repaired,
+# so the store refuses to write one. A test keeps the two sets equal.
+EVIDENCE_KINDS = frozenset({"finding", "failure"})
 ALLOWED_SUPERSESSION_KINDS = {"succession", "correction", "unclassified"}
 TIMESTAMP_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 TEXT_EXTENSIONS = {
@@ -225,6 +230,15 @@ def _clean_list(value: Any, field: str) -> list[str]:
     return list(dict.fromkeys(item.strip() for item in value if item.strip()))
 
 
+def _require_provenance(event: dict[str, Any]) -> None:
+    """Refuse an evidence event without source_refs before anything is written."""
+    if event["kind"] in EVIDENCE_KINDS and not event["source_refs"]:
+        raise MemoryError(
+            f"kind '{event['kind']}' asserts evidence and requires at least one source_ref "
+            "(a path, URL, DOI or paper reference); the append-only log could never repair it later"
+        )
+
+
 class MemoryStore:
     def __init__(self, root: str | Path):
         self.root = Path(root).resolve()
@@ -337,6 +351,7 @@ class MemoryStore:
             "supersession_kind": None,
             "related_ids": _clean_list(related_ids, "related_ids"),
         }
+        _require_provenance(event)
         return self._append(event)
 
     def supersede(
@@ -399,6 +414,7 @@ class MemoryStore:
             "supersession_reason": _clean_string(reason, "reason", True),
             "related_ids": previous.get("related_ids", []),
         }
+        _require_provenance(event)
         return self._append(event)
 
     def load_events(self) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:

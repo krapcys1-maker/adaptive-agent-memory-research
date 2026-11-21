@@ -146,6 +146,28 @@ jobs:
       - name: Audit declared hashes, registry paths, and cross-references
         run: python scripts/audit_repository_claims.py --format text
 
+  autolab-packages:
+    name: Autolab package verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Recomputes, from each published data/lab/autolab-* package alone
+      # (per_unit.csv, README, knowledge.jsonl), the solved rates, the paired
+      # contrasts and their intervals, the states and the per-step format
+      # criterion, and compares them with the numbers the package declares.
+      # Any mismatch fails the job. Numbers that cannot be recomputed from the
+      # package are printed as N/V; their set per package is pinned in
+      # scripts/verify_autolab_packages.baseline.json and must equal it, so lost
+      # coverage fails too; an export PR adds its package's entry. Standard
+      # library only.
+      - name: Recompute the published autolab numbers
+        run: python scripts/verify_autolab_packages.py
+
   canonical-store-guard:
     name: Canonical store guard
     runs-on: ubuntu-latest
