@@ -1116,6 +1116,84 @@ class Verifier:
         audits = [a for a in self.k.kind("audit") if a["id"] in bals and a.get("cycle") == cycle]
         return bals[audits[-1]["id"]] if audits else None
 
+    @staticmethod
+    def format_criterion_detail(counter: str, v: Dict[str, Any]) -> str:
+        """One-line summary of a recomputed pre-registered format criterion counter."""
+        state = v.get("state")
+        if state == "not_computable":
+            return "%s not_computable, absent from per_unit.csv records" % counter
+        diff, ci, tol = v["diff"], v["ci"], v["tolerance"]
+        if state == "imbalanced":
+            return "%s diff %+.4f [%+.4f, %+.4f], |diff| > %s" % (counter, diff, ci[0], ci[1], tol)
+        if state == "unresolved":
+            return "%s diff %+.4f [%+.4f, %+.4f], unresolved at \u00b1%s" % (counter, diff, ci[0], ci[1], tol)
+        return "%s diff %+.4f [%+.4f, %+.4f], %s at \u00b1%s" % (counter, diff, ci[0], ci[1], state, tol)
+
+    def format_criteria_balance(self, cycle: Any, arm: Optional[str], code: Optional[Dict[str, Any]],
+                                rec: Optional[Dict[str, Any]]) -> Tuple[Dict[str, Any], Optional[Dict[str, Dict[str, Any]]]]:
+        """Pre-registered format criteria from program.domain_params and their recomputed per_unit.csv entries for ``arm``."""
+        dp = self.domain_params()
+        crit = dict(dp.get("format_criteria") or {})
+        if not crit or not arm:
+            return crit, None
+        bal = (self.process.get("_balance") or {}).get(code["id"]) if code is not None and code.get("cycle") == cycle else None
+        if bal is None and rec is not None:
+            behaviour = set(dp.get("behaviour_counters") or []) - set(crit)
+            rule = dp.get("format_rule") or "equivalence"
+            keys = [k for k in sorted(crit) if k in self.table.columns]
+            bal = self.balance(cycle, rec["seed"], rec["treatments"], crit, behaviour, rule, keys)
+        if bal is None:
+            return crit, None
+        per_arm = (bal.get("per_arm") or {}).get(arm)
+        return crit, (per_arm if isinstance(per_arm, dict) else None)
+
+    def check_finding_brier(self, tag: str, label: str, p: Dict[str, Any], hp: Dict[str, Any], state: Any,
+                            cycle: Any, code: Optional[Dict[str, Any]], rec: Optional[Dict[str, Any]]) -> Tuple[float, bool]:
+        """Check a finding's Brier score. Accept ``brier: null`` only when the finding marks ``measurement_problem`` AND
+        independent recomputation from ``per_unit.csv`` confirms a pre-registered format criterion failed for that arm.
+        Returns ``(recomputed_brier, excluded_from_mean)``."""
+        rep = self.rep
+        brier = (float(hp["p_positive"]) - (1.0 if state in SUPPORT else 0.0)) ** 2
+        if p["brier"] is not None:
+            rep.check("%s (%s): brier = %s ((p_positive %s - [state in practical/positive])^2)" % (tag, label, p["brier"], hp["p_positive"]),
+                      agrees(brier, p["brier"], 6), "recomputed %.6f" % brier)
+            return brier, False
+        raw_mp = p.get("measurement_problem")
+        marked = [x for x in raw_mp if isinstance(x, str) and x.strip()] if isinstance(raw_mp, list) else []
+        if not marked:
+            rep.check("%s (%s): brier = %s ((p_positive %s - [state in practical/positive])^2)" % (tag, label, p["brier"], hp["p_positive"]),
+                      False, "recomputed %.6f (brier is null without a measurement_problem mark)" % brier)
+            return brier, False
+        crit, per_arm = self.format_criteria_balance(cycle, p.get("arm"), code, rec)
+        if not crit or per_arm is None:
+            why = "no pre-registered format_criteria in program.domain_params" if not crit else "format criteria could not be recomputed from per_unit.csv"
+            rep.check("%s (%s): brier = None (measurement_problem claimed, but format criterion not confirmed)" % (tag, label),
+                      False, "recomputed %.6f; %s" % (brier, why))
+            return brier, False
+        failed = [(k, per_arm[k]) for k in sorted(crit) if k in per_arm and per_arm[k].get("preregistered") and self.process_problem(per_arm[k])]
+        marked_kinds = {problem_kind(x) for x in marked}
+        confirmed = [(k, v) for k, v in failed if ("process", k) in marked_kinds]
+        if confirmed:
+            summary = "; ".join(self.format_criterion_detail(k, v) for k, v in confirmed)
+            rep.check("%s (%s): brier not scored: measurement_problem confirmed (%s)" % (tag, label, summary),
+                      True, "excluded from brier_mean (would be %.6f if scored)" % brier)
+            return brier, True
+        if failed:
+            summary = "; ".join(self.format_criterion_detail(k, v) for k, v in failed)
+            rep.check("%s (%s): brier = None (measurement_problem does not name the failing format criterion)" % (tag, label),
+                      False, "recomputed %.6f; failing format criteria in per_unit.csv: %s" % (brier, summary))
+            return brier, False
+        passed = [self.format_criterion_detail(k, per_arm[k]) for k in sorted(crit) if k in per_arm]
+        missing = [k for k in sorted(crit) if k not in per_arm]
+        parts = []
+        if passed:
+            parts.append("per_unit.csv format criteria passed: " + "; ".join(passed))
+        if missing:
+            parts.append("not in per_unit.csv: " + ", ".join(missing))
+        rep.check("%s (%s): brier = None (measurement_problem claimed, but pre-registered format criteria passed)" % (tag, label),
+                  False, "recomputed %.6f; %s" % (brier, "; ".join(parts) or "no failing format criterion"))
+        return brier, False
+
     # ---------------------------------------------------------------- findings and report
     def findings_checks(self) -> None:
         rep = self.rep
@@ -1178,10 +1256,10 @@ class Verifier:
             if "negative_result" in p:
                 neg = p.get("verdict") == "refuted" or state in CLOSE
                 rep.check("%s (%s): negative_result = %s" % (tag, label, p["negative_result"]), p["negative_result"] == neg, "refuted or a closing state: %s" % neg)
+            brier_recomputed: Optional[float] = None
+            brier_excluded = False
             if "p_positive" in hp and "brier" in p:
-                brier = (float(hp["p_positive"]) - (1.0 if state in SUPPORT else 0.0)) ** 2
-                rep.check("%s (%s): brier = %s ((p_positive %s - [state in practical/positive])^2)" % (tag, label, p["brier"], hp["p_positive"]),
-                          agrees(brier, p["brier"], 6), "recomputed %.6f" % brier)
+                brier_recomputed, brier_excluded = self.check_finding_brier(tag, label, p, hp, state, cycle, code, rec)
             if p.get("level") not in LEVEL_EN:
                 rep.nv("%s (%s): level = %s" % (tag, label, p.get("level")), "an evidence level the lab's exporter does not name")
             else:
@@ -1195,7 +1273,8 @@ class Verifier:
                     source = [x for x in source if x.startswith(SUPPORT_UNDERMINING)]
                 rep.check("%s (%s): measurement_problem = the code audit's problems%s" % (tag, label, " that undermine support" if state in SUPPORT else ""),
                           problems == source, "audit %d, finding %d" % (len(source), len(problems)))
-            self.findings.append({"obj": f, "index": i, "label": label, "c": c, "verdict_ok": p.get("verdict") == want})
+            self.findings.append({"obj": f, "index": i, "label": label, "c": c, "verdict_ok": p.get("verdict") == want,
+                                  "brier_recomputed": brier_recomputed, "brier_excluded": brier_excluded})
 
     def report_checks(self) -> None:
         rep = self.rep
@@ -1212,10 +1291,27 @@ class Verifier:
         rep.check("report: cycles = %s" % p.get("cycles"), p.get("cycles") == max([c for c in self.cycles if isinstance(c, int)] or [0]),
                   "result cycles %s" % sorted(self.cycles))
         rep.check("report: program and goal", p.get("program") == self.program().get("id") and p.get("goal") == self.program().get("goal"))
-        briers = [f["obj"]["payload"].get("brier") for f in self.findings if f["obj"]["payload"].get("brier") is not None]
-        if briers and "brier_mean" in p:
-            mean = sum(briers) / len(briers)
-            rep.check("report: brier_mean = %s" % p["brier_mean"], agrees(mean, p["brier_mean"], 4), "mean of %d finding Brier scores %.4f" % (len(briers), mean))
+        briers: List[float] = []
+        excluded = 0
+        for f in self.findings:
+            fp = f["obj"]["payload"]
+            if f.get("brier_excluded"):
+                excluded += 1
+                continue
+            if f.get("brier_recomputed") is not None:
+                briers.append(f["brier_recomputed"])
+            elif isinstance(fp.get("brier"), (int, float)) and not isinstance(fp.get("brier"), bool):
+                briers.append(float(fp["brier"]))
+        if "brier_mean" in p:
+            if briers:
+                mean = sum(briers) / len(briers)
+                detail = ("mean of %d scored finding Brier scores %.4f (%d unscored excluded)" % (len(briers), mean, excluded)
+                          if excluded else "mean of %d finding Brier scores %.4f" % (len(briers), mean))
+                rep.check("report: brier_mean = %s" % p["brier_mean"], agrees(mean, p["brier_mean"], 4), detail)
+            else:
+                detail = ("all %d finding Brier scores unscored (expected None)" % excluded
+                          if excluded else "no scored finding Brier scores (expected None)")
+                rep.check("report: brier_mean = %s" % p["brier_mean"], p["brier_mean"] is None, detail)
         fobj = {f["obj"]["id"]: f["obj"]["payload"] for f in self.findings}
         for item in p.get("findings") or []:
             f = fobj.get(item.get("id"))

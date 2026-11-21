@@ -589,3 +589,165 @@ def test_shared_baseline_entry_wins_over_the_package_file(tmp_path: Path) -> Non
     _pin_in_manifest(package, "NV_BASELINE.json")
     result = run("--package", str(package))
     assert "entry from the package's own" not in result.stdout
+
+
+# --------------------------------------------------------------------------- null Brier with measurement_problem
+def _replace_ids(value, mapping: dict[str, str]):
+    if isinstance(value, str):
+        return mapping.get(value, value)
+    if isinstance(value, list):
+        return [_replace_ids(x, mapping) for x in value]
+    if isinstance(value, dict):
+        return {mapping.get(k, k): _replace_ids(v, mapping) for k, v in value.items()}
+    return value
+
+
+def _rehash_package(package: Path) -> dict[str, str]:
+    """Recompute knowledge.jsonl hashes/ids, README id references, PROVENANCE.json and PUBLISHED_FILES.json."""
+    kpath = package / "knowledge.jsonl"
+    objs = [json.loads(line) for line in kpath.read_text(encoding="utf-8").splitlines() if line.strip()]
+    mapping: dict[str, str] = {}
+    for o in objs:
+        o["parents"] = [_replace_ids(p, mapping) for p in o["parents"]]
+        o["payload"] = _replace_ids(o["payload"], mapping)
+        body = {"kind": o["kind"], "program": o.get("program"), "payload": o["payload"], "parents": sorted(set(o["parents"]))}
+        sha = hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode("utf-8")).hexdigest()
+        if o.get("redacted"):
+            o["sha256_redacted"] = sha
+        else:
+            old_id = o["id"]
+            new_id = "%s:%s" % (o["kind"], sha[:16])
+            o["sha256"] = sha
+            o["id"] = new_id
+            if new_id != old_id:
+                mapping[old_id] = new_id
+    kpath.write_bytes(("".join(json.dumps(o, ensure_ascii=False, separators=(",", ":")) + "\n" for o in objs)).encode("utf-8"))
+    if mapping:
+        rpath = package / "README.md"
+        readme = rpath.read_text(encoding="utf-8")
+        for old_id, new_id in mapping.items():
+            readme = readme.replace(old_id, new_id)
+        rpath.write_bytes(readme.encode("utf-8"))
+    prov_path = package / "PROVENANCE.json"
+    prov = json.loads(prov_path.read_text(encoding="utf-8"))
+    prov["knowledge_sha256"] = hashlib.sha256(kpath.read_bytes()).hexdigest()
+    prov_path.write_bytes((json.dumps(prov, indent=1, ensure_ascii=False) + "\n").encode("utf-8"))
+    man_path = package / "PUBLISHED_FILES.json"
+    man = json.loads(man_path.read_text(encoding="utf-8"))
+    for entry in man.get("published", []):
+        p = package / entry["path"]
+        if p.is_file():
+            data = p.read_bytes()
+            entry["sha256"] = hashlib.sha256(data).hexdigest()
+            entry["sha256_source"] = entry["sha256"]
+            entry["bytes"] = len(data)
+    man_path.write_bytes((json.dumps(man, indent=1, ensure_ascii=False) + "\n").encode("utf-8"))
+    return mapping
+
+
+def _v5b_with_null_brier_mp(tmp_path: Path, name: str = "autolab-synthetic-v5b-null-brier", brier_mean: float = 0.16) -> tuple[Path, str]:
+    """Copy V5B-shape under a fresh name, set brier=None on the measurement_problem arm (mismatched_type) and rehash."""
+    dest = tmp_path / name
+    shutil.copytree(V5B, dest)
+    edit_object(dest, "finding:7faec13a258c7b28", lambda p: p.update(brier=None))
+    edit_object(dest, "report:e7d72ac2fc31c5c1", lambda p: p.update(brier_mean=brier_mean))
+    mapping = _rehash_package(dest)
+    return dest, mapping.get("finding:7faec13a258c7b28", "finding:7faec13a258c7b28")
+
+
+def test_null_brier_confirmed_measurement_problem_passes(tmp_path: Path) -> None:
+    package, fid = _v5b_with_null_brier_mp(tmp_path)
+    w = run("--package", str(package), "--write-package-baseline")
+    assert w.returncode == 0, w.stdout[-3000:] + w.stderr
+    _pin_in_manifest(package, "NV_BASELINE.json")
+    result = run("--package", str(package))
+    assert result.returncode == 0, result.stdout[-3000:] + result.stderr
+    assert "PASS  cycle 1 %s (H2): brier not scored: measurement_problem confirmed (untagged_not_truncated diff +0.101" % fid in result.stdout
+    assert "PASS  report: brier_mean = 0.16  | mean of 1 scored finding Brier scores 0.1600 (1 unscored excluded)" in result.stdout
+    assert "all 1 package(s) verified" in result.stdout
+
+
+def test_null_brier_confirmed_measurement_problem_must_be_excluded_from_brier_mean(tmp_path: Path) -> None:
+    # brier_mean still averages the unscored finding (0.16 and 0.09 -> 0.125) instead of excluding it
+    package, fid = _v5b_with_null_brier_mp(tmp_path, brier_mean=0.125)
+    result = run("--package", str(package))
+    assert "PASS  cycle 1 %s (H2): brier not scored: measurement_problem confirmed" % fid in result.stdout
+    assert_fails_on(result, "report: brier_mean = 0.125")
+
+
+def test_null_brier_all_findings_unscored_requires_null_brier_mean(tmp_path: Path) -> None:
+    package = tmp_path / "autolab-alfworld-ladder-r4-v4-null-brier"
+    shutil.copytree(V4, package)
+    for fid in ("finding:00fa0192dfd13db2", "finding:102266bf120db7a3", "finding:e7402eac3345ea88"):
+        edit_object(package, fid, lambda p: p.update(brier=None))
+    edit_object(package, "report:81d81227fb6cc53c", lambda p: p.update(brier_mean=None))
+    _rehash_package(package)
+    w = run("--package", str(package), "--write-package-baseline")
+    assert w.returncode == 0, w.stdout[-3000:] + w.stderr
+    _pin_in_manifest(package, "NV_BASELINE.json")
+    result = run("--package", str(package))
+    assert result.returncode == 0, result.stdout[-3000:] + result.stderr
+    assert "PASS  report: brier_mean = None  | all 3 finding Brier scores unscored (expected None)" in result.stdout
+    # a non-null brier_mean when all findings are unscored must fail
+    edit_object(package, "report:81d81227fb6cc53c", lambda p: p.update(brier_mean=0.36))
+    assert_fails_on(run("--package", str(package)), "report: brier_mean = 0.36")
+
+
+def test_null_brier_claimed_measurement_problem_when_criterion_passes_fails(tmp_path: Path) -> None:
+    # (a) arm is marked measurement_problem and brier=None, but per_unit.csv shows the format criterion passes (balanced)
+    package, fid = _v5b_with_null_brier_mp(tmp_path, name="autolab-synthetic-v5b-mp-passes-data")
+    columns, rows = read_rows(package)
+    placebo_by_unit = {r["unit"]: r["untagged_not_truncated"] for r in rows if r["arm"] == "placebo"}
+    for r in rows:
+        if r["arm"] == "mismatched_type":
+            r["untagged_not_truncated"] = placebo_by_unit[r["unit"]]
+    write_rows(package, columns, rows)
+    assert_fails_on(run("--package", str(package)),
+                    "%s (H2): brier = None (measurement_problem claimed, but pre-registered format criteria passed)" % fid)
+
+    # (b) clean arm (retrieved_task) falsely marked measurement_problem with brier=None while its data pass
+    clean_pkg = copy_package(V5B, tmp_path)
+    edit_object(clean_pkg, "finding:de80c241f8c2275d", lambda p: p.update(
+        brier=None,
+        measurement_problem=["proces: untagged_not_truncated na krok wariant \u2212 placebo +0.050 [+0.035; +0.065] > 0.03 (kryterium ustalone przed pomiarem) \u2014 tre\u015b\u0107 i format/proces nie s\u0105 rozdzielone"],
+    ))
+    assert_fails_on(run("--package", str(clean_pkg)),
+                    "finding:de80c241f8c2275d (H1): brier = None (measurement_problem claimed, but pre-registered format criteria passed)")
+
+
+def test_null_brier_unresolved_under_imbalance_only_fails(tmp_path: Path) -> None:
+    # Under format_rule='imbalance_only', an 'unresolved' criterion (|diff| <= 0.03, CI crossing 0.03) PASSES
+    package, fid = _v5b_with_null_brier_mp(tmp_path, name="autolab-synthetic-v5b-unresolved")
+    columns, rows = read_rows(package)
+    units = sorted({r["unit"] for r in rows if r["arm"] == "mismatched_type"})
+    zero_units = set(units[50:])
+    for r in rows:
+        if r["arm"] == "mismatched_type" and r["unit"] in zero_units:
+            r["untagged_not_truncated"] = "0"
+    write_rows(package, columns, rows)
+    result = run("--package", str(package))
+    assert "unresolved at \u00b10.03" in result.stdout
+    assert_fails_on(result, "%s (H2): brier = None (measurement_problem claimed, but pre-registered format criteria passed)" % fid)
+
+
+def test_null_brier_without_measurement_problem_mark_fails(tmp_path: Path) -> None:
+    # (a) clean arm: brier=None with no measurement_problem mark
+    clean_pkg = copy_package(V5B, tmp_path)
+    edit_object(clean_pkg, "finding:de80c241f8c2275d", lambda p: p.update(brier=None))
+    assert_fails_on(run("--package", str(clean_pkg)),
+                    "finding:de80c241f8c2275d (H1): brier = None ((p_positive 0.6 - [state in practical/positive])^2)",
+                    "brier is null without a measurement_problem mark")
+
+    # (b) arm whose format criterion genuinely fails in per_unit.csv, but finding omits measurement_problem
+    unmarked_pkg, fid = _v5b_with_null_brier_mp(tmp_path, name="autolab-synthetic-v5b-unmarked")
+    edit_object(unmarked_pkg, fid, lambda p: p.pop("measurement_problem"))
+    assert_fails_on(run("--package", str(unmarked_pkg)),
+                    "%s (H2): brier = None ((p_positive 0.3 - [state in practical/positive])^2)" % fid,
+                    "brier is null without a measurement_problem mark")
+
+
+def test_null_brier_with_unrelated_measurement_problem_text_fails(tmp_path: Path) -> None:
+    package, fid = _v5b_with_null_brier_mp(tmp_path, name="autolab-synthetic-v5b-unrelated-mp")
+    edit_object(package, fid, lambda p: p.update(measurement_problem=["b\u0142\u0119dy ramienia > 5%"]))
+    assert_fails_on(run("--package", str(package)),
+                    "%s (H2): brier = None (measurement_problem does not name the failing format criterion)" % fid)
