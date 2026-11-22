@@ -388,7 +388,9 @@ def test_an_interrupted_run_is_recovered_and_the_rest_resumes(pc, tmp_path, monk
     assert jobs == [30]  # only the episodes without a record run again
     pc.main(["finish", str(d)])
     after = json.loads((d / "card.json").read_text())
-    assert after["status"] == "complete" and after["invalid_reasons"] == []
+    # The 30 recovered records are not shown to come from a checked run: a distinct status, not pooled.
+    assert after["status"] == "complete-recovered" and after["invalid_reasons"] == []
+    assert len(after["recovered_unverified_jobs"]) == 30
     first = after["archive"]["receipts"][0]
     assert first["closed_as"] == "recovered" and first["recovery"]["appended_record_lines"] == 30
     assert "recovered" in after["archive_evidence"]
@@ -409,10 +411,11 @@ def test_finish_recovers_an_interrupted_last_run_without_a_new_run(pc, tmp_path,
     (d / "card.json").write_text(json.dumps(card))
     pc.main(["finish", str(d)])
     after = json.loads((d / "card.json").read_text())
-    assert after["status"] == "complete" and after["archive"]["receipts"][0]["closed_as"] == "recovered"
+    assert after["status"] == "complete-recovered" and after["archive"]["receipts"][0]["closed_as"] == "recovered"
+    assert len(after["recovered_unverified_jobs"]) == 60
 
 
-@pytest.mark.parametrize("damage", ["earlier_records_changed", "partial_line", "foreign_line"])
+@pytest.mark.parametrize("damage", ["earlier_records_changed", "foreign_line"])
 def test_an_interrupted_run_that_cannot_be_recovered_stays_invalid(pc, tmp_path, monkeypatch, damage):
     base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
     d, card = prepared_cell(pc, tmp_path, monkeypatch)
@@ -427,8 +430,6 @@ def test_an_interrupted_run_that_cannot_be_recovered_stays_invalid(pc, tmp_path,
     lines = (d / "records.jsonl").read_text(encoding="utf-8").splitlines(keepends=True)
     if damage == "earlier_records_changed":
         lines[3] = json.dumps(dict(recs[3], solved=False)) + "\n"
-    elif damage == "partial_line":
-        lines.append(json.dumps(recs[40])[:25])
     else:
         lines.append("not a record\n")
     (d / "records.jsonl").write_text("".join(lines), encoding="utf-8")
@@ -688,3 +689,62 @@ def test_the_agent_prompt_equals_the_version_template(pc, monkeypatch, arm, remi
         action_history=f"[Observation 1: '{first_obs}', Action 1: 'go to sinkbasin 1']",
         current_step=2, current_observation="You arrive at sinkbasin 1.", admissible_actions="'look'")
     assert prompts[1].strip() == step2 + "\n\n" + tail
+
+
+def test_a_torn_last_line_is_set_aside_and_its_job_runs_again(pc, tmp_path, monkeypatch):
+    base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
+    d, card = prepared_cell(pc, tmp_path, monkeypatch)
+    recs = fake_records(card["cell_id"], card["games"], lambda g, arm: True)
+    spy_run(monkeypatch, pc, writes=recs[:20])
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    card = json.loads((d / "card.json").read_text())
+    open_receipt(card)  # power cut while the 21st record was being written
+    (d / "card.json").write_text(json.dumps(card))
+    with open(d / "records.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps(recs[20])[:25])
+    jobs = spy_jobs(monkeypatch, pc, writes=recs[20:])
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    assert jobs == [40]  # the torn record's job runs again
+    assert (d / "records.torn.jsonl").read_text(encoding="utf-8") == json.dumps(recs[20])[:25] + "\n"
+    pc.main(["finish", str(d)])
+    after = json.loads((d / "card.json").read_text())
+    rec = after["archive"]["receipts"][0]["recovery"]
+    assert rec["torn_fragment_bytes"] == 25 and rec["appended_record_lines"] == 20
+    assert after["status"] == "complete-recovered" and len(after["recovered_unverified_jobs"]) == 20
+
+
+def test_a_run_without_recovery_stays_plain_complete(pc, tmp_path, monkeypatch):
+    base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
+    d, card = prepared_cell(pc, tmp_path, monkeypatch)
+    spy_run(monkeypatch, pc, writes=fake_records(card["cell_id"], card["games"], lambda g, arm: True))
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    pc.main(["finish", str(d)])
+    after = json.loads((d / "card.json").read_text())
+    assert after["status"] == "complete" and after["recovered_unverified_jobs"] == []
+
+
+def test_an_upgrade_interrupted_before_the_move_is_finished_on_retry(pc, tmp_path, monkeypatch):
+    base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
+    d, _ = prepared_cell(pc, tmp_path, monkeypatch)
+    card = legacy_card(pc, d)
+    recs = fake_records(card["cell_id"], card["games"], lambda g, arm: True)
+    write_records(d, recs[:10])
+    real_replace = pc.os.replace
+
+    def crash(src, dst):
+        raise KeyboardInterrupt("power cut")
+
+    monkeypatch.setattr(pc.os, "replace", crash)
+    calls = spy_run(monkeypatch, pc)
+    with pytest.raises(KeyboardInterrupt):
+        pc.main(["run", str(d), "--data-root", str(data_root)])
+    assert calls == [] and json.loads((d / "card.json").read_text())["archive"]["upgraded_from_legacy"][
+        "pre_receipt"]["moved"] is False
+    monkeypatch.setattr(pc.os, "replace", real_replace)
+    jobs = spy_jobs(monkeypatch, pc, writes=recs)
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    assert jobs == [60] and (d / "records.pre_receipt.jsonl").exists()
+    after = json.loads((d / "card.json").read_text())
+    assert after["archive"]["upgraded_from_legacy"]["pre_receipt"]["moved"] is True
+    pc.main(["finish", str(d)])
+    assert json.loads((d / "card.json").read_text())["status"] == "complete"

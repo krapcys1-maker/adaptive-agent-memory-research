@@ -100,15 +100,24 @@ and reported, but do not by themselves make a cell a sensitivity cell. Your card
   - **An interrupted run.** If `run` is stopped before it can close its receipt (a closed terminal, a lost
     connection, a killed process, a power cut), the next `run` or `finish` closes that receipt as `recovered`. It
     does so only if `records.jsonl` still starts with exactly the bytes it had when the run started, and every line
-    after them is a complete record of one of the cell's jobs. The receipt records that it was recovered and how
-    many lines were added. Anything else leaves the cell invalid. The next `run` then continues with the jobs that
-    have no record.
+    after them is a complete record of one of the cell's jobs. A last line torn by a power cut is the only exception:
+    it is moved to `records.torn.jsonl` (kept, not counted) and its job runs again. The receipt records that it was
+    recovered, which jobs it accepted and how many bytes were torn off. Anything else leaves the cell invalid. The
+    next `run` then continues with the jobs that have no record.
+  - **Recovered records are unverified.** Nothing shows which process wrote the lines accepted by recovery, or on
+    which archive. If a complete cell has any such record, `finish` gives it the status `complete-recovered`, not
+    `complete`, and lists those jobs in `recovered_unverified_jobs`. Such a cell is not pooled until the CPU replay
+    on the reference archive confirms those episodes. Every submitted cell already gets that replay ([How results
+    are checked](#how-results-are-checked), step 1). A record made on the older archive does not pass it, because
+    its `put … in/on …` actions are not admissible there. No other step is added.
   - **Cells prepared before 22 November 2026** have no archive policy on their card. You do not need to prepare
     them again: `run` upgrades such a card to the reference profile, but only after the archive check of every
     scheduled game passes and after it confirms that `batch.jsonl` and the games are exactly what `prepare` writes
     for the card's block. Record lines written before the upgrade are moved to `records.pre_receipt.jsonl` and
     listed on the card as not counted. Their episodes run again under a receipt. If a check fails, the card is left
-    unchanged. `finish` on a card that has not been upgraded marks it invalid and says that `run` upgrades it.
+    unchanged. The card records the move before it happens, so if the upgrade itself is interrupted, the next `run`
+    or `finish` completes it. `finish` on a card that has not been upgraded marks it invalid and says that `run`
+    upgrades it.
   - **The published B03 cell.** `placebo-v4-B03-r1-mt0-fr0` was published before this check existed, and its
     published card and files are unchanged. `placebo_check.py` treats it as historical evidence: it cannot be run
     again, and `finish` would report it as historical, without a receipt. It keeps its published class

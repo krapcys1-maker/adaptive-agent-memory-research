@@ -393,8 +393,10 @@ def recover_open_receipt(d: str, card: dict) -> str | None:
     if len(data) < nb or got != r.get("records_sha256_before"):
         return f"run {i} was interrupted and the records written before it have changed since; not recoverable"
     tail = data[nb:]
-    if tail and not tail.endswith(b"\n"):
-        return f"run {i} was interrupted in the middle of a record line; not recoverable"
+    fragment = b""
+    if tail and not tail.endswith(b"\n"):  # a line torn by a power cut: only the last line can be torn
+        cut = tail.rfind(b"\n") + 1
+        tail, fragment = tail[:cut], tail[cut:]
     try:
         lines = [l for l in tail.decode("utf-8").split("\n") if l.strip()]
     except UnicodeDecodeError:
@@ -404,15 +406,37 @@ def recover_open_receipt(d: str, card: dict) -> str | None:
     if bad:
         return (f"run {i} was interrupted and {bad} line(s) after its start are not complete records of this cell's "
                 "jobs; not recoverable")
+    if fragment:
+        # Keep the torn bytes (not counted) before shortening records.jsonl; its job has no record and runs again.
+        with open(os.path.join(d, "records.torn.jsonl"), "ab") as f:
+            f.write(fragment + b"\n")
+        tmp = p + ".tmp"
+        with open(tmp, "wb") as f:
+            f.write(data[:nb] + tail)
+        os.replace(tmp, p)
     state = records_state(d)
+    recovered = sorted({(json.loads(l)["unit"], json.loads(l)["arm"]) for l in lines})
     r.update({"records_lines_after": state["records_lines"], "records_sha256_after": state["records_sha256"],
               "records_bytes_after": state["records_bytes"], "returncode": None, "ended_at": None,
               "closed_as": "recovered",
               "recovery": {"closed_at": now(), "appended_record_lines": len(lines),
+                           "recovered_jobs": [list(k) for k in recovered],
+                           "torn_fragment_bytes": len(fragment),
                            "note": "the run was interrupted before its receipt was closed; a later run or finish "
                                    "checked that the earlier bytes were unchanged and that every appended line is a "
-                                   "complete record of this cell's jobs"}})
+                                   "complete record of this cell's jobs. Nothing shows which process wrote these "
+                                   "lines, so they count as unverified until the lab's CPU replay on the reference "
+                                   "archive confirms them"}})
     return None
+
+
+def recovered_jobs(card: dict) -> list:
+    """The (unit, arm) jobs whose records were accepted by recovery, i.e. not shown to come from a checked run."""
+    out = []
+    for r in (card.get("archive") or {}).get("receipts") or []:
+        if r.get("closed_as") == "recovered":
+            out += [tuple(k) for k in (r.get("recovery") or {}).get("recovered_jobs", [])]
+    return sorted(set(out))
 
 
 def check_receipts(d: str, card: dict) -> tuple:
@@ -499,14 +523,30 @@ def upgrade_legacy_card(d: str, card: dict) -> None:
     note = {"at": now(), "pre_receipt": None,
             "note": "prepared before the archive preflight; upgraded by run to the reference profile after the "
                     "manifest check of every scheduled game"}
-    p = os.path.join(d, "records.jsonl")
     state = records_state(d)
-    if os.path.exists(p):
-        os.replace(p, os.path.join(d, "records.pre_receipt.jsonl"))
+    if os.path.exists(os.path.join(d, "records.jsonl")):
         note["pre_receipt"] = {"file": "records.pre_receipt.jsonl", "lines": state["records_lines"],
-                               "sha256": state["records_sha256"],
-                               "counted": False}
+                               "sha256": state["records_sha256"], "counted": False, "moved": False}
     card["archive"]["upgraded_from_legacy"] = note
+    save_card(d, card)  # the card names the move before it happens, so a crash in between is finished on retry
+    problem = complete_pending_upgrade(d, card)
+    if problem:
+        raise CellError(problem)
+    save_card(d, card)
+
+
+def complete_pending_upgrade(d: str, card: dict) -> str | None:
+    """Finish moving pre-receipt records that an upgrade recorded but may not have moved (a crash in between)."""
+    pre = ((card.get("archive") or {}).get("upgraded_from_legacy") or {}).get("pre_receipt")
+    if not pre or pre.get("moved", True):
+        return None
+    src, dst = os.path.join(d, "records.jsonl"), os.path.join(d, pre["file"])
+    if os.path.exists(src) and sha_file(src) == pre["sha256"] and not os.path.exists(dst):
+        os.replace(src, dst)
+    elif os.path.exists(src) or not os.path.exists(dst) or sha_file(dst) != pre["sha256"]:
+        return "an interrupted upgrade left records that do not match the upgrade note; not recoverable"
+    pre["moved"] = True
+    return None
 
 
 def remaining_jobs(d: str, card: dict) -> list:
@@ -543,7 +583,7 @@ def cmd_run(a) -> None:
         profile_name = REFERENCE_PROFILE
     else:
         profile_name = card["archive"]["profile"]
-        problem = recover_open_receipt(a.cell, card)
+        problem = complete_pending_upgrade(a.cell, card) or recover_open_receipt(a.cell, card)
         if problem:
             sys.exit("refusing to run: " + problem)
         save_card(a.cell, card)
@@ -557,8 +597,10 @@ def cmd_run(a) -> None:
     except CellError as e:
         sys.exit(str(e))
     if legacy:
-        upgrade_legacy_card(a.cell, card)
-        save_card(a.cell, card)
+        try:
+            upgrade_legacy_card(a.cell, card)
+        except CellError as e:
+            sys.exit(f"refusing to run: {e}")
         print("upgraded a card prepared before the archive preflight to the reference profile; "
               "earlier record lines (if any) are kept in records.pre_receipt.jsonl and not counted")
     jobs = remaining_jobs(a.cell, card)
@@ -690,22 +732,30 @@ def check_records(recs: list, card: dict) -> tuple[list, dict]:
 def cmd_finish(a) -> None:
     card = load_card(a.cell)
     card["machine"].update({k: v for k, v in machine_facts(a.base_url).items() if v})
+    # Recovery first: it may move a torn last line out of records.jsonl.
+    problem = complete_pending_upgrade(a.cell, card) or recover_open_receipt(a.cell, card)
     recs = read_records(a.cell)
     kept, report = check_records(recs, card)
     reasons = list(report["invalid_reasons"])
-    problem = recover_open_receipt(a.cell, card)
     if problem:
         reasons.append(problem)
     receipt_reasons, evidence = check_receipts(a.cell, card)
     reasons += [r for r in receipt_reasons if not (problem and "no closing record state" in r)]
     card["archive_evidence"] = evidence
+    unverified = [k for k in recovered_jobs(card) if k in {(r["unit"], r["arm"]) for r in kept}]
+    card["recovered_unverified_jobs"] = [list(k) for k in unverified]
     served = card["machine"].get("served_models")
     if served and card["fixed"]["model"] not in served:
         reasons.append(f"the server reports {served}, not the card's model {card['fixed']['model']}")
     card["finished_at"] = now()
     card["records"] = {k: (len(v) if k == "missing" else v) for k, v in report.items() if k != "invalid_reasons"}
     card["invalid_reasons"] = reasons
-    card["status"] = "invalid" if reasons else ("incomplete" if report["missing"] else "complete")
+    card["status"] = "invalid" if reasons else ("incomplete" if report["missing"] else
+                                                ("complete-recovered" if unverified else "complete"))
+    if card["status"] == "complete-recovered":
+        print(f"{len(unverified)} record(s) were accepted by recovery after an interrupted run, so no check shows "
+              "which archive they ran on: the cell is not pooled until the lab's CPU replay on the reference "
+              "archive confirms them (listed in recovered_unverified_jobs)")
     write_per_unit(kept, card, os.path.join(a.cell, "per_unit.csv"))
     save_card(a.cell, card)
     print(json.dumps(card["records"]), card["status"])
@@ -776,6 +826,9 @@ def cmd_summary(a) -> None:
         sys.exit(f"refusing to summarise {card['cell_id']}: {e}")
     print(json.dumps(s, indent=1))
     print("A single block of 20 games is far too small to decide anything; the maintainer pools cells by block.")
+    if card.get("status") == "complete-recovered":
+        print("This cell is complete-recovered: it is not pooled until the lab's CPU replay on the reference "
+              "archive confirms its recovered records.")
 
 
 def main(argv=None) -> None:
