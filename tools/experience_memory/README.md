@@ -43,12 +43,12 @@ does not show that goal similarity itself caused the difference. A balanced rand
 is still needed for that (see below).
 
 **V6 (published, [package](../../data/lab/autolab-alfworld-ladder-r4-v6/README.md); summary as of 22 November 2026).** 300 `train` games not measured
-in V3–V5B, all six task types, five arms, one seed. Retrieval was held fixed (the same two goal-similar walkthroughs)
-and only the rendering changed. Against placebo: full walkthroughs +0.130 [+0.049, +0.211] (72/33), actions only
-+0.137 [+0.055, +0.219] (75/34), abstract plans +0.130 [+0.060, +0.200] (60/21). All three are `positive` and none is
-`practical`. The full-walkthrough and actions directions are `open`. The plan arm has a format measurement problem
-(`untagged_not_truncated`/step +0.042 [+0.032, +0.052] above the pre-registered 0.03), so its positive contrast does
-not separate content from format. Full walkthroughs against no memory: +0.073 [−0.009, +0.156], `inconclusive`.
+in V3–V5B, all six task types, five arms, one seed. V6 swapped bank and test relative to V5B: its 300 test games come from the 360 families of V5B's bank, and its bank holds the replayed walkthroughs of V5B's 350 test games. It is a new bank and new games, not a same-bank re-run of V5B. Within V6 the three memory arms show the same two retrieved walkthroughs, but not the same amount of their content: about 720 tokens for full walkthroughs, 197 for actions and 112 for plans. The actions and plan blocks are padded with placebo filler to the same length of about 800 tokens. Against placebo (paired sequential intervals at the final look, look 3, `n = 300`, `z = 2.4166`):
+full walkthroughs +0.130 [+0.049, +0.211] (72/33), actions only +0.137 [+0.055, +0.219] (75/34), abstract plans
++0.130 [+0.060, +0.200] (60/21). All three are `positive` and none is `practical`. The full-walkthrough and actions
+directions are `open`. The plan arm has a format measurement problem (`untagged_not_truncated`/step +0.042
+[+0.032, +0.052] above the pre-registered 0.03), so its positive contrast does not separate content from format.
+Against no memory (secondary): full walkthroughs +0.073 [−0.009, +0.156] (64/42, `inconclusive`), actions +0.080 [+0.000, +0.160] (62/38, `positive`), plans +0.073 [+0.002, +0.145] (51/29, `positive`), and `placebo − none` −0.057 [−0.122, +0.009] (`inconclusive`). The three point estimates are close (+0.073, +0.080, +0.073) with lower bounds at or near zero, so the different labels reflect the decision threshold, not a difference between renderings; no contrast between renderings was tested. Inconclusive is not the same as no effect.
 - **What this package implements.** It ships one rendering, `walkthrough_v5b`, which is the full-walkthrough
   rendering of V5B; the parity check below covers it. The V6 actions-only and plan renderings were measured with the
   lab's V6 instrument, which is not part of this package. A formatter you register under any other name (for example
@@ -61,7 +61,8 @@ The lab's practical threshold (SESOI) is 0.12; the states follow
 ## What is NOT shown
 
 - **The effect is not shown to exceed the practical threshold.** The V5B lower bound, +0.053, is below 0.12, and so
-  are the V6 lower bounds (+0.049 to +0.060). The
+  are the V6 lower bounds against placebo (+0.049 to +0.060, on V6's own sequential intervals, with a different
+  bank and different games from V5B). The
   gain is positive; whether it is large enough to matter is open.
 - **One model.** Qwen3-4B-Instruct-2507-FP8 only, at temperature 0.7. Nothing is known about other models or sizes.
 - **One environment, seen rooms.** ALFWorld text games from the `train` split. Bank and test games come from the

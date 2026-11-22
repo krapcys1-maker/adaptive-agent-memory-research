@@ -47,16 +47,16 @@ counts toward co-authorship of the next report ([AUTHORSHIP.md](../../AUTHORSHIP
   **valid**. `invalid_actions`/step remained higher in `retrieved_task` (0.266 vs 0.194 placebo, 0.135 none) and
   `truncated`/step was 0.063 vs 0.036 placebo.
 - In [V6](../../data/lab/autolab-alfworld-ladder-r4-v6/README.md) (published; 300 `train` games not measured in V3–V5B, all six task types,
-  five arms, one seed), retrieval was held fixed and only the rendering changed. Against placebo: full walkthroughs
-  +0.130 [+0.049, +0.211] (72/33), actions only +0.137 [+0.055, +0.219] (75/34), abstract plans +0.130
-  [+0.060, +0.200] (60/21). All three are `positive`; none is `practical`. Full walkthroughs and actions are `open`.
-  The plan arm has a measurement problem: its `untagged_not_truncated`/step exceeded the pre-registered criterion
-  (+0.042 [+0.032, +0.052] > 0.03), so its positive contrast does not separate content from format. Full walkthroughs
-  against no memory: +0.073 [−0.009, +0.156] (64/42, `inconclusive`, which is not the same as no effect).
+  five arms, one seed). V6 swapped bank and test relative to V5B: its 300 test games come from the 360 families of V5B's bank, and its bank holds the replayed walkthroughs of V5B's 350 test games. It is a new bank and new games, not a same-bank re-run of V5B. Within V6 the three memory arms show the same two retrieved walkthroughs, but not the same amount of their content: about 720 tokens for full walkthroughs, 197 for actions and 112 for plans. The actions and plan blocks are padded with placebo filler to the same length of about 800 tokens.
+  Against placebo (paired sequential intervals at the final look, look 3, `n = 300`, `z = 2.4166`): full walkthroughs +0.130 [+0.049, +0.211] (72/33), actions only
+  +0.137 [+0.055, +0.219] (75/34), abstract plans +0.130 [+0.060, +0.200] (60/21). All three are `positive`; none is
+  `practical`. Full walkthroughs and actions are `open`. The plan arm has a measurement problem: its
+  `untagged_not_truncated`/step exceeded the pre-registered criterion (+0.042 [+0.032, +0.052] > 0.03), so its
+  positive contrast does not separate content from format. Against no memory (secondary): full walkthroughs +0.073 [−0.009, +0.156] (64/42, `inconclusive`), actions +0.080 [+0.000, +0.160] (62/38, `positive`), plans +0.073 [+0.002, +0.145] (51/29, `positive`), and `placebo − none` −0.057 [−0.122, +0.009] (`inconclusive`). The three point estimates are close (+0.073, +0.080, +0.073) with lower bounds at or near zero, so the different labels reflect the decision threshold, not a difference between renderings; no contrast between renderings was tested. Inconclusive is not the same as no effect.
 - On another GPU and serving stack, the first volunteer placebo-check cell
   ([`placebo-v4-B03-r1-mt0-fr0`](../../data/contrib/placebo-v4-B03-r1-mt0-fr0/README.md), `@2018cx`, A100-SXM4-80GB,
   vLLM 0.20.0, 20 `v4` games, `min_tokens = 0`, `format_reminder = 0`, older `json_2.1.1` archive; sensitivity cell,
-  CPU replay passed, lab spot-check pending) reproduced the empty-answer pattern (`empty/step`: none 0.577, placebo
+  CPU replay passed, lab spot-check pending) showed the same empty-answer pattern in this single cell (`empty/step`: none 0.577, placebo
   0.001, retrieved_task 0.545) with solve rates 0.45 / 0.45 / 0.60 (`placebo − none` 0.00, 2/2).
 - In V4, V5B and V6 the memory arm makes more invalid actions per step (V4: 0.291 vs 0.195 placebo; V5B: 0.266 vs
   0.194 placebo; V6 full walkthroughs: 0.322 vs 0.197 placebo, actions only 0.271, plans 0.214): walkthroughs may help
@@ -138,7 +138,7 @@ counts toward co-authorship of the next report ([AUTHORSHIP.md](../../AUTHORSHIP
   (Qwen3-1.7B, Llama-3.2-3B, Gemma-3-4B) or another vLLM version. A different model makes the cell a conceptual
   replication; the card records it. One `--min-tokens 0` sensitivity cell
   ([`placebo-v4-B03-r1-mt0-fr0`](../../data/contrib/placebo-v4-B03-r1-mt0-fr0/README.md), A100, vLLM 0.20.0,
-  spot-check pending) is merged and reproduced the empty-answer artefact (`0.577 / 0.001 / 0.545`); its paired
+  spot-check pending) is merged and showed the same empty-answer pattern in this single cell (`0.577 / 0.001 / 0.545`); its paired
   `--min-tokens 8` cell on B03 and reference-configuration cells remain open.
 - **Why it matters:** if it generalises, every memory evaluation without such a control is suspect.
 
