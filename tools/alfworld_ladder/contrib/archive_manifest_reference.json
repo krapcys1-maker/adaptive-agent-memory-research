@@ -1,6 +1,6 @@
 {
  "_comment": "Trusted manifest of the reference ALFWorld game archive for volunteer cells. One SHA-256 per scheduled game: the digest of that game's game.tw-pddl, the only per-game file agent.py loads. Covers every game of every block in pools.json. Hashed from the lab's reference copy (json_2.1.2_tw-pddl.zip, ALFWorld release 0.4.0, fetched by alfworld-download from ALFWorld 0.4.2, extracted into json_2.1.1/; its sentinel game matches tools/alfworld_ladder/v5b/SETUP_SAME.md). placebo_check.py pins the canonical digest of `games` (sorted keys, no whitespace); never edit.",
- "profile": "reference-json_2.1.2",
+ "profile": "reference",
  "archive": "json_2.1.2_tw-pddl.zip",
  "file": "game.tw-pddl",
  "digest": "sha256",

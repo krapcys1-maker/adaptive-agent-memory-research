@@ -89,15 +89,34 @@ and reported, but do not by themselves make a cell a sensitivity cell. Your card
     list stops the run, and no episode starts. The check covers the extracted per-game files. It is not a digest of
     the zip. `run` then passes the checked folder to the agent as `--data-root`.
   - **Receipts.** Each `run` writes a receipt to the card (`archive.receipts`). The receipt names the cell, the
-    batch digest, the manifest and the state of `records.jsonl` before and after the run. `finish` marks a cell
-    *invalid* unless every record line was written by a run with a receipt. Records written by running `agent.py`
-    by hand, or copied in from elsewhere, therefore do not make a cell complete. The cell published before this
-    check existed (`placebo-v4-B03-r1-mt0-fr0`) is labelled as historical evidence on its card. It keeps its
-    published class.
-  - **The older archive.** `placebo_check.py` names the older `json_2.1.1_tw-pddl.zip` as a separate sensitivity
-    profile (`--archive-profile older-json_2.1.1`). The repository has no lab-verified manifest for that archive yet,
-    so the tool refuses to prepare or run such a cell. Unknown bytes never run, under either profile. Until that
-    manifest is pinned, a planned older-archive sensitivity cell cannot be run with this tool.
+    batch digest, the manifest and the state of `records.jsonl` before and after the run. It stores only where the
+    checked folder came from (`--data-root`, `ALFWORLD_DATA` or the default) and its last folder name, never an
+    absolute path. `run` starts only the jobs that have no record yet. `finish` marks a cell *invalid* unless every
+    record line was written by a run with a receipt. Records written by running `agent.py` by hand, or copied in
+    from elsewhere, therefore do not make a cell complete.
+  - **Receipts catch accidents, not tampering.** They catch a skipped check, a wrong archive and records copied in
+    by mistake. The card is a plain file that its author can edit, so a receipt is not proof against deliberate
+    tampering. The CPU replay and the lab's spot-check (below) remain the control for that.
+  - **An interrupted run.** If `run` is stopped before it can close its receipt (a closed terminal, a lost
+    connection, a killed process, a power cut), the next `run` or `finish` closes that receipt as `recovered`. It
+    does so only if `records.jsonl` still starts with exactly the bytes it had when the run started, and every line
+    after them is a complete record of one of the cell's jobs. The receipt records that it was recovered and how
+    many lines were added. Anything else leaves the cell invalid. The next `run` then continues with the jobs that
+    have no record.
+  - **Cells prepared before 22 November 2026** have no archive policy on their card. You do not need to prepare
+    them again: `run` upgrades such a card to the reference profile, but only after the archive check of every
+    scheduled game passes and after it confirms that `batch.jsonl` and the games are exactly what `prepare` writes
+    for the card's block. Record lines written before the upgrade are moved to `records.pre_receipt.jsonl` and
+    listed on the card as not counted. Their episodes run again under a receipt. If a check fails, the card is left
+    unchanged. `finish` on a card that has not been upgraded marks it invalid and says that `run` upgrades it.
+  - **The published B03 cell.** `placebo-v4-B03-r1-mt0-fr0` was published before this check existed, and its
+    published card and files are unchanged. `placebo_check.py` treats it as historical evidence: it cannot be run
+    again, and `finish` would report it as historical, without a receipt. It keeps its published class
+    (sensitivity).
+  - **The older archive: currently unavailable.** `placebo_check.py` names the older `json_2.1.1_tw-pddl.zip` as a
+    separate sensitivity profile (`--archive-profile older-json_2.1.1`). The repository has no lab-verified manifest
+    for that archive yet, so the tool refuses to prepare or run such a cell. Unknown bytes never run, under either
+    profile. Until that manifest is pinned, new older-archive sensitivity cells cannot be run with this tool.
 - **The archive matters for the memory arms**, not only for replay. The bank's walkthroughs use the `json_2.1.2`
   text. In a game from the older archive, a walkthrough shows actions that game does not accept.
 
@@ -121,7 +140,7 @@ their values.
 
 ## What you submit
 
-Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `placebo_check.py` writes this layout: `card.json` (the configuration card, with the block id and the sha256 of its frozen game list), `batch.jsonl` (the jobs), `records.jsonl` (one line per episode, with the full action sequence for replay) and `per_unit.csv` (the same per-episode counters as the lab's published tables). The cell id is `placebo-<pool>-<block>-r<replicate>-mt<min_tokens>`. It contains three things.
+Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `placebo_check.py` writes this layout: `card.json` (the configuration card, with the block id and the sha256 of its frozen game list), `batch.jsonl` (the jobs), `records.jsonl` (one line per episode, with the full action sequence for replay) and `per_unit.csv` (the same per-episode counters as the lab's published tables). A card upgraded from before the archive check also has `records.pre_receipt.jsonl` (kept, not counted). The cell id is `placebo-<pool>-<block>-r<replicate>-mt<min_tokens>`. It contains three things.
 
 **1. A configuration card:** one JSON file with the fixed values above plus:
 - the GPU model and driver;
@@ -146,7 +165,7 @@ Submit a pull request to `data/contrib/<cell-id>/`. For the placebo check, `plac
 
 ## How results are checked
 
-**Replay.** ALFWorld is deterministic given the actions. The maintainer replays every submitted action sequence on the CPU (about 1.5 s per game), recomputes "won" and "steps", and recomputes the retrieved entry ids from the bank and the logged queries. A mismatch voids the cell. The replay uses the reference game archive. A cell run on the older `json_2.1.1` archive is replayed with one one-to-one mapping of the action text (`put X in/on Y` becomes `move X to Y`; a `move …` the agent typed there stays inadmissible) and goes into the sensitivity analysis.
+**Replay.** ALFWorld is deterministic given the actions. The maintainer replays every submitted action sequence on the CPU (about 1.5 s per game), recomputes "won" and "steps", and recomputes the retrieved entry ids from the bank and the logged queries. A mismatch voids the cell. The replay uses the reference game archive. A cell run on the older `json_2.1.1` archive is replayed with one one-to-one mapping of the action text (`put X in/on Y` becomes `move X to Y`; a `move …` the agent typed there stays inadmissible) and goes into the sensitivity analysis. This applies to the published B03 cell. New cells on the older archive cannot currently be run with `placebo_check.py` (see [the archive check](#the-reference-configuration)).
 
 **Validation.** This is the one rule for validating cells. The placebo check and
 [AUTHORSHIP.md](../../AUTHORSHIP.md) refer to it.
@@ -192,6 +211,9 @@ before any cell was pooled.
 - **Which analysis a cell enters is decided from its card alone,** before its outcomes are read. A cell that differs
   from the [reference configuration](#the-reference-configuration) in the checkpoint or revision, the vLLM version,
   the quantisation kernel or the game archive is a *sensitivity cell*. Every other check above still applies to it.
+  A different game archive is currently possible only for the published B03 cell: new older-archive cells cannot be
+  run with `placebo_check.py` until a manifest for that archive is pinned (see
+  [the reference configuration](#the-reference-configuration)).
 - **Sensitivity cells are pooled separately,** with the same test and the machine as a block, for each comparison of
   the primary analysis.
 - **They are reported next to the primary result,** never instead of it. The report also lists how each cell

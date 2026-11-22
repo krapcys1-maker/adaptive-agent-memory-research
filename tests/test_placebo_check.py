@@ -341,12 +341,162 @@ def test_finish_rejects_records_outside_the_receipt_chain(pc, tmp_path, monkeypa
     elif tamper == "receipt_for_other_batch":
         card["archive"]["receipts"][0]["batch_sha256"] = "0" * 64
         (d / "card.json").write_text(json.dumps(card))
-    else:
-        del card["archive"]["receipts"][0]["records_lines_after"]
+    else:  # an interrupted run whose file then received a line that is no record of this cell
+        open_receipt(card)
         (d / "card.json").write_text(json.dumps(card))
+        with open(d / "records.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps({"unit": "elsewhere~train/x", "arm": "none", "seed": 1, "solved": True,
+                                "metrics": {}}) + "\n")
     pc.main(["finish", str(d)])
     after = json.loads((d / "card.json").read_text())
     assert after["status"] == "invalid"
+
+
+def open_receipt(card, i=-1):
+    """What a hard kill leaves: the receipt written before the launch, never closed."""
+    for k in ("records_lines_after", "records_sha256_after", "records_bytes_after", "returncode", "ended_at",
+              "closed_as"):
+        card["archive"]["receipts"][i].pop(k, None)
+
+
+def spy_jobs(monkeypatch, pc, writes):
+    """Like spy_run, and records how many jobs each launch was given."""
+    jobs = []
+
+    def fake_run(cmd, env=None, **kw):
+        jobs.append(len(open(cmd[cmd.index("--batch") + 1], encoding="utf-8").read().splitlines()))
+        with open(cmd[cmd.index("--out") + 1], "a", encoding="utf-8") as f:
+            for r in writes:
+                f.write(json.dumps(r) + "\n")
+        return Done()
+
+    monkeypatch.setattr(pc.subprocess, "run", fake_run)
+    return jobs
+
+
+def test_an_interrupted_run_is_recovered_and_the_rest_resumes(pc, tmp_path, monkeypatch):
+    base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
+    d, card = prepared_cell(pc, tmp_path, monkeypatch)
+    recs = fake_records(card["cell_id"], card["games"], lambda g, arm: True)
+    spy_run(monkeypatch, pc, writes=recs[:30])
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    card = json.loads((d / "card.json").read_text())
+    open_receipt(card)  # killed after 30 episodes, before the receipt was closed
+    (d / "card.json").write_text(json.dumps(card))
+    jobs = spy_jobs(monkeypatch, pc, writes=recs[30:])
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    assert jobs == [30]  # only the episodes without a record run again
+    pc.main(["finish", str(d)])
+    after = json.loads((d / "card.json").read_text())
+    assert after["status"] == "complete" and after["invalid_reasons"] == []
+    first = after["archive"]["receipts"][0]
+    assert first["closed_as"] == "recovered" and first["recovery"]["appended_record_lines"] == 30
+    assert "recovered" in after["archive_evidence"]
+    # A third run has nothing left to do and adds no receipt.
+    calls = spy_run(monkeypatch, pc)
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    assert calls == [] and len(json.loads((d / "card.json").read_text())["archive"]["receipts"]) == 2
+
+
+def test_finish_recovers_an_interrupted_last_run_without_a_new_run(pc, tmp_path, monkeypatch):
+    base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
+    d, card = prepared_cell(pc, tmp_path, monkeypatch)
+    recs = fake_records(card["cell_id"], card["games"], lambda g, arm: True)
+    spy_run(monkeypatch, pc, writes=recs)
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    card = json.loads((d / "card.json").read_text())
+    open_receipt(card)
+    (d / "card.json").write_text(json.dumps(card))
+    pc.main(["finish", str(d)])
+    after = json.loads((d / "card.json").read_text())
+    assert after["status"] == "complete" and after["archive"]["receipts"][0]["closed_as"] == "recovered"
+
+
+@pytest.mark.parametrize("damage", ["earlier_records_changed", "partial_line", "foreign_line"])
+def test_an_interrupted_run_that_cannot_be_recovered_stays_invalid(pc, tmp_path, monkeypatch, damage):
+    base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
+    d, card = prepared_cell(pc, tmp_path, monkeypatch)
+    recs = fake_records(card["cell_id"], card["games"], lambda g, arm: True)
+    spy_run(monkeypatch, pc, writes=recs[:20])
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    spy_run(monkeypatch, pc, writes=recs[20:40])
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    card = json.loads((d / "card.json").read_text())
+    open_receipt(card)  # the second run was killed
+    (d / "card.json").write_text(json.dumps(card))
+    lines = (d / "records.jsonl").read_text(encoding="utf-8").splitlines(keepends=True)
+    if damage == "earlier_records_changed":
+        lines[3] = json.dumps(dict(recs[3], solved=False)) + "\n"
+    elif damage == "partial_line":
+        lines.append(json.dumps(recs[40])[:25])
+    else:
+        lines.append("not a record\n")
+    (d / "records.jsonl").write_text("".join(lines), encoding="utf-8")
+    calls = spy_run(monkeypatch, pc)
+    assert "not recoverable" in str(run_cell(pc, d, "--data-root", str(data_root)))
+    assert calls == []
+    pc.main(["finish", str(d)])
+    after = json.loads((d / "card.json").read_text())
+    assert after["status"] == "invalid" and any("not recoverable" in r for r in after["invalid_reasons"])
+    assert "closed_as" not in after["archive"]["receipts"][1]
+
+
+def legacy_card(pc, d):
+    """Turn a freshly prepared card into one written by placebo_check.py before the archive preflight."""
+    card = json.loads((d / "card.json").read_text())
+    del card["archive"], card["batch_sha256"]
+    (d / "card.json").write_text(json.dumps(card))
+    return card
+
+
+def test_a_card_prepared_before_the_preflight_is_upgraded_by_run(pc, tmp_path, monkeypatch):
+    base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
+    d, _ = prepared_cell(pc, tmp_path, monkeypatch)
+    card = legacy_card(pc, d)
+    recs = fake_records(card["cell_id"], card["games"], lambda g, arm: True)
+    write_records(d, recs[:10])  # episodes run before the preflight existed
+    pc.main(["finish", str(d)])
+    assert "`run` upgrades it" in json.loads((d / "card.json").read_text())["invalid_reasons"][-1]
+    jobs = spy_jobs(monkeypatch, pc, writes=recs)
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    assert jobs == [60]  # the pre-receipt episodes are not counted: every job runs under a receipt
+    after = json.loads((d / "card.json").read_text())
+    up = after["archive"]["upgraded_from_legacy"]
+    assert after["archive"]["profile"] == "reference" and up["pre_receipt"]["lines"] == 10
+    assert up["pre_receipt"]["counted"] is False and (d / "records.pre_receipt.jsonl").exists()
+    pc.main(["finish", str(d)])
+    after = json.loads((d / "card.json").read_text())
+    assert after["status"] == "complete" and "upgraded" in after["archive_evidence"]
+
+
+@pytest.mark.parametrize("problem", ["archive", "batch"])
+def test_a_legacy_card_is_not_upgraded_when_a_check_fails(pc, tmp_path, monkeypatch, problem):
+    base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
+    d, _ = prepared_cell(pc, tmp_path, monkeypatch)
+    card = legacy_card(pc, d)
+    write_records(d, fake_records(card["cell_id"], card["games"], lambda g, arm: True)[:10])
+    if problem == "archive":
+        data_root.joinpath(*card["games"][0].split("/"), "game.tw-pddl").write_bytes(b"other\n")
+    else:
+        with open(d / "batch.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps({"unit": "x", "task": card["games"][0], "arm": "none", "seed": 1}) + "\n")
+    calls = spy_run(monkeypatch, pc)
+    msg = str(run_cell(pc, d, "--data-root", str(data_root)))
+    assert ("preflight failed" if problem == "archive" else "cannot be upgraded") in msg
+    assert calls == [] and "archive" not in json.loads((d / "card.json").read_text())
+    assert (d / "records.jsonl").exists() and not (d / "records.pre_receipt.jsonl").exists()
+
+
+def test_the_receipt_stores_no_absolute_path(pc, tmp_path, monkeypatch):
+    base, data_root = fake_archive(pc, monkeypatch, tmp_path, "B05")
+    d, _ = prepared_cell(pc, tmp_path, monkeypatch)
+    spy_run(monkeypatch, pc)
+    assert run_cell(pc, d, "--data-root", str(data_root)) == 0
+    text = (d / "card.json").read_text()
+    receipt = json.loads(text)["archive"]["receipts"][0]
+    assert receipt["data_root"] == {"source": "--data-root", "folder": "json_2.1.1"}
+    assert str(data_root) not in text and json.dumps(str(data_root))[1:-1] not in text
+    assert len(receipt["placebo_check_sha256"]) == 64 and len(receipt["manifest_file_sha256"]) == 64
 
 
 def test_a_card_without_an_archive_policy_is_historical_only_for_published_cells(pc, tmp_path, monkeypatch):
