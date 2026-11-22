@@ -15,20 +15,44 @@ engineering, not a measured result.
 
 | Claim | Evidence | State |
 |---|---|---|
-| Two goal-similar expert walkthroughs (k = 2, this package's defaults) raise the solve rate over a token-matched placebo by **+0.169, 95% interval [+0.053, +0.285]** | Lab program **ALFWORLD-LADDER-R4-V5B**: 201 held-out ALFWorld `train` games, Qwen3-4B-Instruct-2507-FP8, 360-item bank whose families are disjoint from the test games. Instrument: [`tools/alfworld_ladder/agent.py`](../alfworld_ladder/agent.py) (its SHA-256 equals the V5B program pin) | `positive` |
-| Two walkthroughs of **other** task types do not help: **+0.015** over the same placebo | ALFWORLD-LADDER-R4-V5B, arm `mismatched_type` | `equivalent` (an effect smaller than the 0.12 threshold in either direction is shown) |
-| The earlier run of this arm (without the V5 format reminder that `prompt_suffix` adds by default), on a 710-item bank: **+0.240 [+0.177, +0.303]** over placebo, 300 games | [V4 package](../../data/lab/autolab-alfworld-ladder-r4-v4/README.md), [erratum on its H3 verdict](../../docs/11-research-laboratory/errata/2026-11-19-alfworld-ladder-r4-v4-h3-verdict.md) | `practical`, but verdict `measurement_problem`: answers without a parsable action tag rose with memory, so content and format were not separated |
+| Two goal-similar expert walkthroughs (k = 2, this package's defaults) raise the solve rate over a token-matched placebo by **+0.169 [+0.053, +0.285]** (55/21; paired sequential interval at look 2, `n = 201`, `z = 2.7777`) | [V5B package](../../data/lab/autolab-alfworld-ladder-r4-v5b/README.md) (**ALFWORLD-LADDER-R4-V5B**): 201 held-out ALFWorld `train` games (6 task types), Qwen3-4B-Instruct-2507-FP8, 360-item bank whose families are disjoint from the test games. Pinned instrument: [`tools/alfworld_ladder/v5b/`](../alfworld_ladder/v5b/SETUP_SAME.md), runner `src/agent.py` (SHA-256 `c5c5eea0…9636a`, the V5B program pin). The generic runner [`tools/alfworld_ladder/agent.py`](../alfworld_ladder/agent.py) has changed since (SHA-256 `5e22b4e0…88d0`) and is not the V5B runner: replicate V5B with `tools/alfworld_ladder/v5b/src/agent.py` | `positive` |
+| Two walkthroughs of **other** task types against the same placebo: **+0.015 [−0.067, +0.097]** (19/16, same interval type) | [V5B package](../../data/lab/autolab-alfworld-ladder-r4-v5b/README.md), arm `mismatched_type` | `equivalent` at the declared ±0.12 margin, for this model, sample and seed. The interval still includes small benefits and small harms |
+| The earlier run of this arm (without the V5 format reminder that `prompt_suffix` adds by default), on a 710-item bank: **+0.240 [+0.177, +0.303]** (91/19) over placebo, 300 games | [V4 package](../../data/lab/autolab-alfworld-ladder-r4-v4/README.md), [erratum on its H3 verdict](../../docs/11-research-laboratory/errata/2026-11-19-alfworld-ladder-r4-v4-h3-verdict.md) | `practical`, but verdict `measurement_problem`: answers without a parsable action tag rose with memory, so content and format were not separated |
 
-**Caveat on V5B.** The V5B result package is not published yet. The V5B numbers above are the lab's report of
-19 November 2026 and cannot yet be recomputed from a public package; until the package is exported, cite them as
-"ALFWORLD-LADDER-R4-V5B, publication pending". The program prepared 350 test units; the lab's report gives 201
-analysed games. Which games were analysed, and why, will be documented in the package; this README does not
-claim more. No V5B comparison against the no-memory arm is cited here. The V4 numbers can be recomputed from the linked package
-(`scripts/verify_autolab_packages.py`).
+**Notes and caveats on V5B.** The V5B result package is published at
+[`data/lab/autolab-alfworld-ladder-r4-v5b/README.md`](../../data/lab/autolab-alfworld-ladder-r4-v5b/README.md), and
+both the V5B and V4 verifiable numbers can be recomputed from their packages with `scripts/verify_autolab_packages.py`.
+- **Why 201 of 350 prepared units (300 planned) were analysed:** the executed sequential rule had interim looks at
+  `[0.34, 0.67]` with thresholds `[3.8992, 2.7777, 2.2736]` and stopped at interim look 2 (`n = 201`, `z = 2.7777`)
+  once both primary contrasts were decided. As noted in the package's
+  [caveats](../../data/lab/autolab-alfworld-ladder-r4-v5b/README.md#caveats), the power of the executed sequential
+  rule was not calibrated before the measurement (the registered power 0.857 describes a single-look rule with
+  `z = 2.2414`).
+- **Secondary contrasts:** against no memory, `retrieved_task − none` was +0.109 [−0.007, +0.226] (48/26,
+  `inconclusive`), `placebo − none` was −0.060 [−0.157, +0.037] (19/31, `inconclusive`) and `mismatched_type − none`
+  was −0.045 [−0.135, +0.045] (17/26, `inconclusive`). The direct contrast `retrieved_task − mismatched_type` is
+  documented in the
+  [secondary contrast addendum](../../docs/11-research-laboratory/errata/2026-11-19-alfworld-ladder-r4-v5b-secondary-contrast.md):
+  +0.154 [+0.035, +0.273] (55/24, `positive`, not `practical`), with an exposure imbalance noted (227 vs 141 distinct
+  walkthroughs).
 
-Together the two V5B arms say: goal-similar walkthroughs helped, walkthroughs of other task types did not, so the
-gain is not explained by showing *some* walkthrough. The direct contrast `retrieved_task − mismatched_type` is a
-secondary analysis of V5B and is not cited here.
+Together the two primary V5B arms say: goal-similar walkthroughs beat the placebo, and walkthroughs of other task
+types were equivalent to it at the ±0.12 margin. So the gain over placebo is not explained by showing just any
+walkthrough of that length. The direct contrast (+0.154 above) also changes the task type and the exposure, so it
+does not show that goal similarity itself caused the difference. A balanced random walkthrough of the same task type
+is still needed for that (see below).
+
+**V6 (published, [package](../../data/lab/autolab-alfworld-ladder-r4-v6/README.md); summary as of 22 November 2026).** 300 `train` games not measured
+in V3–V5B, all six task types, five arms, one seed. V6 swapped bank and test relative to V5B: its 300 test games come from the 360 families of V5B's bank, and its bank holds the replayed walkthroughs of V5B's 350 test games. It is a new bank and new games, not a same-bank re-run of V5B. Within V6 the three memory arms show the same two retrieved walkthroughs, but not the same amount of their content: about 720 tokens for full walkthroughs, 197 for actions and 112 for plans. The actions and plan blocks are padded with placebo filler to the same length of about 800 tokens. Against placebo (paired sequential intervals at the final look, look 3, `n = 300`, `z = 2.4166`):
+full walkthroughs +0.130 [+0.049, +0.211] (72/33), actions only +0.137 [+0.055, +0.219] (75/34), abstract plans
++0.130 [+0.060, +0.200] (60/21). All three are `positive` and none is `practical`. The full-walkthrough and actions
+directions are `open`. The plan arm has a format measurement problem (`untagged_not_truncated`/step +0.042
+[+0.032, +0.052] above the pre-registered 0.03), so its positive contrast does not separate content from format.
+Against no memory (secondary): full walkthroughs +0.073 [−0.009, +0.156] (64/42, `inconclusive`), actions +0.080 [+0.000, +0.160] (62/38, `positive`), plans +0.073 [+0.002, +0.145] (51/29, `positive`), and `placebo − none` −0.057 [−0.122, +0.009] (`inconclusive`). The three point estimates are close (+0.073, +0.080, +0.073) with lower bounds at or near zero, so the different labels reflect the decision threshold, not a difference between renderings; no contrast between renderings was tested. Inconclusive is not the same as no effect.
+- **What this package implements.** It ships one rendering, `walkthrough_v5b`, which is the full-walkthrough
+  rendering of V5B; the parity check below covers it. The V6 actions-only and plan renderings were measured with the
+  lab's V6 instrument, which is not part of this package. A formatter you register under any other name (for example
+  `plan_v6` in the example below) is optional library code, not the measured V6 rendering.
 
 The lab's practical threshold (SESOI) is 0.12; the states follow
 [the decision rule](../../docs/11-research-laboratory/decision-rule-characteristics.md): `practical` = lower bound
@@ -36,7 +60,9 @@ The lab's practical threshold (SESOI) is 0.12; the states follow
 
 ## What is NOT shown
 
-- **The effect is not shown to exceed the practical threshold.** The V5B lower bound, +0.053, is below 0.12. The
+- **The effect is not shown to exceed the practical threshold.** The V5B lower bound, +0.053, is below 0.12, and so
+  are the V6 lower bounds against placebo (+0.049 to +0.060, on V6's own sequential intervals, with a different
+  bank and different games from V5B). The
   gain is positive; whether it is large enough to matter is open.
 - **One model.** Qwen3-4B-Instruct-2507-FP8 only, at temperature 0.7. Nothing is known about other models or sizes.
 - **One environment, seen rooms.** ALFWorld text games from the `train` split. Bank and test games come from the
@@ -47,7 +73,8 @@ The lab's practical threshold (SESOI) is 0.12; the states follow
   walkthrough" from "a walkthrough of another type", not retrieval by similarity from a random same-type pick
   (ladder rung 3, not measured).
 - **Lexical similarity only.** Content-word Jaccard of the goal, not an embedding.
-- **Not measured at all:** the token budget (V5B had none), any other format (for example V6's abstract plan),
+- **Not measured at all:** the token budget (V5B had none), any format other than the lab's full-walkthrough
+  rendering (V5B, V6) and V6's actions-only and plan renderings (the plan with a measurement problem),
   k other than 2, and banks or prompts other than the lab's.
 
 ## Install
@@ -101,9 +128,11 @@ bank = em.ExperienceBank((from_lab_record(r) for r in records),
                          held_out_ids=test_game_ids, held_out_families=test_families)
 ```
 
-The public bank `tools/alfworld_ladder/data/bank.jsonl` is the 710-item V3/V4 bank, **not** the 360-item V5B bank,
-and it was not built disjoint from the V5B test games. Do not use it to evaluate on V5B games. Families and ids are compared as exact strings, so normalise them first if your sources differ in
-spelling.
+The bank `tools/alfworld_ladder/data/bank.jsonl` is the 710-item V3/V4 bank, **not** the 360-item V5B bank,
+and it was not built disjoint from the V5B test games. Do not use it to evaluate on V5B games; use the published
+360-item V5B bank in [`tools/alfworld_ladder/v5b/data/bank.jsonl`](../alfworld_ladder/v5b/data/bank.jsonl) instead
+(see [`tools/alfworld_ladder/v5b/SETUP_SAME.md`](../alfworld_ladder/v5b/SETUP_SAME.md)). Families and ids are compared
+as exact strings in 0.1.0, so normalise them first if your sources differ in spelling.
 
 `count_tokens` must be the tokenizer of the model you prompt (the lab used vLLM's `/tokenize`). A token budget is
 optional: `ExperienceMemory(bank, token_budget=1200, count_tokens=...)` drops the lowest-ranked walkthrough whole
@@ -151,19 +180,20 @@ the same stand-in token counter on both sides), the similarity metrics the instr
 excluded.
 
 ```bash
-python tools/experience_memory/parity/check_v5b_parity.py private --seeds 0-9   # lab machine only
-python tools/experience_memory/parity/check_v5b_parity.py public --seeds 0-4    # anywhere
+python tools/experience_memory/parity/check_v5b_parity.py private --v5b-dir tools/alfworld_ladder/v5b --seeds 0-9 --require
+python tools/experience_memory/parity/check_v5b_parity.py public --seeds 0-4
 ```
 
-- `private` reads the lab's private V5B folder (`--v5b-dir`, the variable `EXPERIENCE_MEMORY_V5B_DIR`, or the lab
-  layout) and refuses inputs that differ from the program's SHA-256 pins (instrument, bank, units, families, unit
-  goals). If the folder is absent it prints `SKIPPED` and exits 0 (`--require` makes that exit 2); a selection
-  that would compare nothing exits 2. It prints counts; on a mismatch it also prints the unit and bank ids
-  concerned, so keep that output private. Result on 19 November 2026: all 350 V5B units × seeds 0–9,
-  **3,500 comparisons, 0 mismatches**, inputs equal to the program pins.
+- `private` reads a V5B instrument folder (`--v5b-dir`, `EXPERIENCE_MEMORY_V5B_DIR`, or the lab layout — the pinned
+  V5B folder is now public at [`tools/alfworld_ladder/v5b/`](../alfworld_ladder/v5b/SETUP_SAME.md)) and refuses inputs
+  that differ from the program's SHA-256 pins (instrument, bank, units, families, unit goals). If the folder is absent
+  it prints `SKIPPED` and exits 0 (`--require` makes that exit 2); a selection that would compare nothing exits 2.
+  Result on 19 November 2026: all 350 V5B units × seeds 0–9, **3,500 comparisons, 0 mismatches**, inputs equal to the
+  program pins.
 - `public` uses the public 710-item bank and the V5B instrument code as pinned: the working copy of
   `tools/alfworld_ladder/agent.py` while it equals the pin, else the pinned version from git history, so a later
-  change of the lab's runner does not silently change the reference. CI runs it
+  change of the lab's runner does not silently change the reference. At 627c0da the working copy differs from the
+  pin, so the check uses the version from git commit c8d54df691e6. CI runs it
   (`tests/test_experience_memory.py`), together with a synthetic fixture whose expected picks and block digests
   were produced by the instrument code
   ([`tests/fixtures/experience-memory-synthetic`](../../tests/fixtures/experience-memory-synthetic/expected.json),
@@ -188,8 +218,11 @@ The certificate is never written by hand. On the lab machine:
 
 In CI, `tests/test_experience_memory_parity_cert.py` recomputes the certificate from the log. The test fails as
 soon as the package code differs from the certified commit, so a changed package needs a new certified run before
-it can claim parity. CI cannot re-run the private check itself: the log's authenticity rests on the run on the lab
-machine. Anyone with the private folder can repeat `run` and compare the log's SHA-256, because the run is
+it can claim parity. CI does not run the full V5B check (`private` mode) today: it runs `public` mode, the synthetic
+fixture and the certificate recomputation. The certificate's log comes from the run on the lab machine. The inputs
+of the full check are now public in [`tools/alfworld_ladder/v5b/`](../alfworld_ladder/v5b/SETUP_SAME.md), so anyone
+can repeat it: `check_v5b_parity.py private --v5b-dir tools/alfworld_ladder/v5b --seeds 0-9 --require` gave 3,500
+comparisons and 0 mismatches on 22 November 2026 at 627c0da, with inputs equal to the program pins. The run is
 deterministic.
 
 ## Licence and credit
