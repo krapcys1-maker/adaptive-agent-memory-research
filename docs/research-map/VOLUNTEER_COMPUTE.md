@@ -79,7 +79,25 @@ and reported, but do not by themselves make a cell a sensitivity cell. Your card
   - Byte check: `train/pick_and_place_simple-CellPhone-None-Safe-302/trial_T20190908_122757_136508/game.tw-pddl`
     has SHA-256 `86059504faa14bd6a04b7443f3779c240e2eedbcf673e0282795cdee29497b53` in the lab's copy of the
     reference archive, installed by `alfworld-download`. It extracts into a folder named `json_2.1.1`, even though
-    the archive is `json_2.1.2`.
+    the archive is `json_2.1.2`. That one file is a quick check by hand. It does not show that the other games match.
+  - **What `placebo_check.py run` checks (since 22 November 2026).** Before it starts any episode, `run` computes
+    the SHA-256 of `game.tw-pddl` for every game in the cell's batch. That is the only file per game that the agent
+    loads. It compares each digest with
+    [`tools/alfworld_ladder/contrib/archive_manifest_reference.json`](../../tools/alfworld_ladder/contrib/archive_manifest_reference.json).
+    This manifest was hashed from the lab's reference copy and covers every game of every block in `pools.json`.
+    `placebo_check.py` pins the manifest's own digest. A missing game, a changed game or a game the manifest does not
+    list stops the run, and no episode starts. The check covers the extracted per-game files. It is not a digest of
+    the zip. `run` then passes the checked folder to the agent as `--data-root`.
+  - **Receipts.** Each `run` writes a receipt to the card (`archive.receipts`). The receipt names the cell, the
+    batch digest, the manifest and the state of `records.jsonl` before and after the run. `finish` marks a cell
+    *invalid* unless every record line was written by a run with a receipt. Records written by running `agent.py`
+    by hand, or copied in from elsewhere, therefore do not make a cell complete. The cell published before this
+    check existed (`placebo-v4-B03-r1-mt0-fr0`) is labelled as historical evidence on its card. It keeps its
+    published class.
+  - **The older archive.** `placebo_check.py` names the older `json_2.1.1_tw-pddl.zip` as a separate sensitivity
+    profile (`--archive-profile older-json_2.1.1`). The repository has no lab-verified manifest for that archive yet,
+    so the tool refuses to prepare or run such a cell. Unknown bytes never run, under either profile. Until that
+    manifest is pinned, a planned older-archive sensitivity cell cannot be run with this tool.
 - **The archive matters for the memory arms**, not only for replay. The bank's walkthroughs use the `json_2.1.2`
   text. In a game from the older archive, a walkthrough shows actions that game does not accept.
 

@@ -10,8 +10,11 @@ checks on other hardware and software whether these effects appear, and two cell
 Steps (inside the environment with alfworld, textworld and a vLLM server for the model on port 8001):
 
     python placebo_check.py prepare --pool v4 --block B03 --replicate 1          # writes data/contrib/<cell-id>/
-    python placebo_check.py run data/contrib/<cell-id>                           # runs all episodes (GPU)
+    python placebo_check.py run data/contrib/<cell-id>                           # archive check, then all episodes (GPU)
     python placebo_check.py finish data/contrib/<cell-id>                        # fills the card, checks the records
+
+`run` first checks every scheduled game's game.tw-pddl against the pinned archive manifest and starts nothing if one
+is missing, unknown or changed. It writes a receipt to the card. `finish` accepts only records written by such runs.
     python placebo_check.py summary data/contrib/<cell-id>                       # prints the comparison, writes per_unit.csv
 
 `--min-tokens 0` re-creates the V3 decoding condition on train games (not the V3 games); run it as a second cell
@@ -52,6 +55,30 @@ FIXED_FILES = {"agent": os.path.join(HERE, "agent.py"), "placebo": os.path.join(
 # The configuration the lab's V3 and V4 programs measured (their knowledge.jsonl pins).
 V3V4_MODEL = "Qwen/Qwen3-4B-Instruct-2507-FP8"
 V3V4_PROMPT_TEMPLATE_SHA256 = "e1d94a682d38c95d47e0341adb2c66048509dcfbfb1d5a7f07d4d2828b0424ff"
+# The ALFWorld game archive a cell runs on. A profile is chosen at prepare, recorded on the card and verified before
+# any episode starts: every scheduled game's game.tw-pddl (the only per-game file agent.py loads) must have the
+# SHA-256 that the profile's trusted manifest lists, and the manifest itself must have the canonical digest pinned
+# here. Unknown, missing or changed bytes block the run in every profile. Only `reference` (json_2.1.2_tw-pddl.zip,
+# ALFWorld release 0.4.0, fetched by alfworld-download from ALFWorld 0.4.2, extracted into json_2.1.1/; see
+# tools/alfworld_ladder/v5b/SETUP_SAME.md) has a pinned manifest. The older json_2.1.1 archive is a declared
+# sensitivity profile without a pinned manifest, so it cannot be prepared or run yet
+# (docs/research-map/VOLUNTEER_COMPUTE.md).
+REFERENCE_PROFILE = "reference"
+ARCHIVE_PROFILES = {
+    "reference": {"class": "primary", "archive": "json_2.1.2_tw-pddl.zip",
+                  "manifest": os.path.join(HERE, "contrib", "archive_manifest_reference.json"),
+                  "games_canonical_sha256": "643701c5bb9683c6b3ccc7007d52dc423ee6793eb5eed1d95fc0399276bc240e"},
+    "older-json_2.1.1": {"class": "sensitivity", "archive": "json_2.1.1_tw-pddl.zip", "manifest": None,
+                         "games_canonical_sha256": None},
+}
+ARCHIVE_DIGEST_TYPE = "SHA-256 of game.tw-pddl, per scheduled game, against the profile's pinned manifest"
+# The sentinel game of SETUP_SAME.md; the reference manifest lists the same digest for it.
+ARCHIVE_CHECK_GAME = "train/pick_and_place_simple-CellPhone-None-Safe-302/trial_T20190908_122757_136508"
+ARCHIVE_CHECK_SHA256 = "86059504faa14bd6a04b7443f3779c240e2eedbcf673e0282795cdee29497b53"
+DEFAULT_DATA_ROOT_REL = "~/test-a-feasibility/alfworld_data/json_2.1.1"
+# Cells published before the archive preflight existed: their cards carry no archive policy and no receipt. finish
+# labels them as historical evidence; any other card without an archive policy is invalid.
+HISTORICAL_CELLS = frozenset({"placebo-v4-B03-r1-mt0-fr0"})
 # The prompt pieces agent.py sends, in the order instrument/prompt_template.txt documents them.
 TEMPLATE_SECTIONS = ("TEMPLATE_NO_HIS", "TEMPLATE", "ACTION_INSTR", "MEMORY_WRAPPER")
 # Settings every record must share with the card (agent.py writes them into metrics).
@@ -141,6 +168,18 @@ def cmd_prepare(a) -> None:
     if any(not g.startswith("train/") for g in games):
         sys.exit("refusing: a block game is outside train")
     arms = ARMS + (["mismatched_type"] if a.with_mismatched else [])
+    profile = ARCHIVE_PROFILES.get(a.archive_profile)
+    if profile is None:
+        sys.exit(f"unknown archive profile {a.archive_profile}; known: {sorted(ARCHIVE_PROFILES)}")
+    if not profile["manifest"] or not profile["games_canonical_sha256"]:
+        sys.exit(f"refusing: archive profile {a.archive_profile} has no pinned manifest in this repository, so its "
+                 "bytes cannot be verified before a run; only the reference profile can be prepared")
+    try:
+        manifest = load_manifest(a.archive_profile)
+    except CellError as e:
+        sys.exit(str(e))
+    if any(g not in manifest for g in games):
+        sys.exit(f"refusing: a block game is not in the {a.archive_profile} archive manifest")
     fr = bool(a.format_reminder)
     agent = load_agent(fr)
     cfg = agent.CFG
@@ -148,6 +187,8 @@ def cmd_prepare(a) -> None:
     cid = cell_id(a.pool, a.block, a.replicate, a.min_tokens, fr, cfg["model"], prompt)
     if a.with_mismatched:
         cid += "-mis"
+    if a.archive_profile != REFERENCE_PROFILE:
+        cid += "-a" + a.archive_profile  # a non-reference archive is never pooled with reference cells
     d = os.path.join(CONTRIB_ROOT, cid)
     if os.path.exists(os.path.join(d, "records.jsonl")):
         sys.exit(f"{d} already has records; use a new replicate number")
@@ -175,6 +216,10 @@ def cmd_prepare(a) -> None:
         "agent_note": ("agent.py is the current public runner, not the V4 agent pin (68f48c2f, unpublished). "
                        "With format_reminder off its prompt text equals instrument/prompt_template.txt as pinned "
                        "by V3 and V4 (prompts_match_v3_v4)."),
+        "batch_sha256": sha_file(os.path.join(d, "batch.jsonl")),
+        "archive": {"profile": a.archive_profile, "class": profile["class"], "archive": profile["archive"],
+                    "games_canonical_sha256": profile["games_canonical_sha256"], "digest_type": ARCHIVE_DIGEST_TYPE,
+                    "receipt_required": True, "receipts": []},
         "machine": {"gpu": None, "driver": None, "vllm_version": None, "served_models": None,
                     "quantisation_kernel": a.kernel, "os": platform.platform()},
         "started_at": None, "finished_at": None, "status": "prepared", "notes": a.notes or "",
@@ -202,6 +247,139 @@ def agent_env(card: dict) -> dict:
     return env
 
 
+def resolve_data_root(data_root: str | None = None) -> str:
+    """Where the ALFWorld game archive lives (matches agent.py --data-root resolution)."""
+    if data_root:
+        return os.path.expanduser(data_root)
+    if os.environ.get("ALFWORLD_DATA"):
+        return os.path.join(os.path.expanduser(os.environ["ALFWORLD_DATA"]), "json_2.1.1")
+    return os.path.expanduser(DEFAULT_DATA_ROOT_REL)
+
+
+def canonical_sha256(obj) -> str:
+    return hashlib.sha256(json.dumps(obj, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
+def load_manifest(profile_name: str) -> dict:
+    """The profile's trusted {game: sha256} manifest. Raises CellError if it is absent or not the pinned one."""
+    profile = ARCHIVE_PROFILES.get(profile_name)
+    if profile is None:
+        raise CellError(f"unknown archive profile {profile_name}")
+    if not profile["manifest"] or not profile["games_canonical_sha256"]:
+        raise CellError(f"archive profile {profile_name} has no pinned manifest; its bytes cannot be verified")
+    try:
+        with open(profile["manifest"], encoding="utf-8") as f:
+            games = json.load(f)["games"]
+    except (OSError, ValueError, KeyError) as e:
+        raise CellError(f"cannot read the {profile_name} archive manifest {profile['manifest']}: {e}") from e
+    digest = canonical_sha256(games)
+    if digest != profile["games_canonical_sha256"]:
+        raise CellError(f"the {profile_name} archive manifest has canonical digest {digest}, not the pinned "
+                        f"{profile['games_canonical_sha256']}; refusing to trust it")
+    return games
+
+
+def batch_tasks(batch_path: str) -> list:
+    with open(batch_path, encoding="utf-8") as f:
+        return sorted({json.loads(l)["task"] for l in f if l.strip()})
+
+
+def verify_game_archive(data_root: str, tasks: list, profile_name: str = REFERENCE_PROFILE) -> dict:
+    """Check every scheduled game's game.tw-pddl under data_root against the profile's pinned manifest.
+
+    Returns {game: sha256} for the checked games. Raises CellError, naming the missing, unknown and changed games,
+    if any game fails; the caller then starts nothing.
+    """
+    manifest = load_manifest(profile_name)
+    if not tasks:
+        raise CellError("refusing to run: the batch schedules no games")
+    missing, unknown, changed, seen = [], [], [], {}
+    for task in tasks:
+        if task not in manifest:
+            unknown.append(task)
+            continue
+        path = os.path.join(data_root, *task.split("/"), "game.tw-pddl")
+        if not os.path.isfile(path):
+            missing.append(task)
+            continue
+        digest = sha_file(path)
+        if digest != manifest[task]:
+            changed.append((task, digest, manifest[task]))
+        seen[task] = digest
+    if missing or unknown or changed:
+        parts = []
+        if missing:
+            parts.append(f"{len(missing)} game file(s) not found under {data_root}, e.g. {missing[:3]}")
+        if unknown:
+            parts.append(f"{len(unknown)} scheduled game(s) not in the pinned manifest, e.g. {unknown[:3]}")
+        if changed:
+            parts.append(f"{len(changed)} game file(s) with a SHA-256 other than the manifest's, e.g. "
+                         + "; ".join(f"{t}: got {g}, expected {e}" for t, g, e in changed[:3]))
+        raise CellError(
+            f"refusing to run: ALFWorld game archive preflight failed for profile {profile_name} "
+            f"({ARCHIVE_PROFILES[profile_name]['archive']}): " + "; ".join(parts)
+            + ". The reference is json_2.1.2_tw-pddl.zip as fetched by `alfworld-download` from ALFWorld 0.4.2, "
+              "which extracts into json_2.1.1/ (the older json_2.1.1 archive says 'put' where it says 'move'); "
+              "set ALFWORLD_DATA or pass --data-root")
+    return seen
+
+
+def records_state(d: str) -> dict:
+    p = os.path.join(d, "records.jsonl")
+    if not os.path.exists(p):
+        return {"records_lines": 0, "records_sha256": None}
+    with open(p, encoding="utf-8") as f:
+        lines = sum(1 for l in f if l.strip())
+    return {"records_lines": lines, "records_sha256": sha_file(p)}
+
+
+def check_receipts(d: str, card: dict) -> tuple:
+    """Whether every record line in the cell was written by a run that passed the archive preflight.
+
+    Returns (reasons, evidence). A card prepared with an archive policy needs a closed chain of receipts: the first
+    starts at an empty records file, each starts where the previous one ended, the last ends at the current file
+    (same line count and SHA-256), and each names the card's cell, batch digest and pinned manifest. Records imported
+    or appended outside `run`, a skipped preflight or a changed batch break the chain. A card without a policy is
+    historical evidence only if its cell is in HISTORICAL_CELLS; otherwise it is invalid.
+    """
+    policy = card.get("archive")
+    if policy is None:
+        if card.get("cell_id") in HISTORICAL_CELLS:
+            return [], "historical: published before the archive preflight; no receipt; class as published"
+        return ["the card has no archive policy (prepared without the archive preflight)"], "none"
+    profile = ARCHIVE_PROFILES.get(policy.get("profile"))
+    reasons = []
+    if (profile is None or not profile["games_canonical_sha256"]
+            or policy.get("games_canonical_sha256") != profile["games_canonical_sha256"]):
+        reasons.append(f"the card's archive profile {policy.get('profile')} does not match a pinned manifest")
+    batch = os.path.join(d, "batch.jsonl")
+    if (sha_file(batch) if os.path.exists(batch) else None) != card.get("batch_sha256"):
+        reasons.append("batch.jsonl differs from the batch the card was prepared with")
+    receipts = policy.get("receipts") or []
+    state = records_state(d)
+    if not receipts:
+        if state["records_lines"]:
+            reasons.append(f"{state['records_lines']} record line(s) but no archive preflight receipt: "
+                           "the records were not produced by `placebo_check.py run`")
+        return reasons, "preflight: none"
+    prev_lines, prev_sha = 0, None
+    for i, r in enumerate(receipts):
+        if (r.get("cell_id") != card.get("cell_id") or r.get("batch_sha256") != card.get("batch_sha256")
+                or r.get("profile") != policy.get("profile")
+                or r.get("games_canonical_sha256") != policy.get("games_canonical_sha256")):
+            reasons.append(f"preflight receipt {i} is bound to another cell, batch or manifest")
+        if r.get("records_lines_before") != prev_lines or r.get("records_sha256_before") != prev_sha:
+            reasons.append(f"records changed outside a preflighted run before run {i}")
+        if "records_lines_after" not in r:
+            reasons.append(f"run {i} has no closing record state (interrupted before its receipt was closed)")
+            break
+        prev_lines, prev_sha = r["records_lines_after"], r.get("records_sha256_after")
+    else:
+        if (state["records_lines"], state["records_sha256"]) != (prev_lines, prev_sha):
+            reasons.append("records.jsonl changed after the last preflighted run (imported or edited records)")
+    return reasons, f"preflight: {len(receipts)} receipt(s), profile {policy.get('profile')} ({policy.get('class')})"
+
+
 def cmd_run(a) -> None:
     card = load_card(a.cell)
     for k, p in FIXED_FILES.items():
@@ -209,17 +387,45 @@ def cmd_run(a) -> None:
             sys.exit(f"{k} changed since prepare ({p}); prepare a new cell")
     if prompt_config(load_agent(card["fixed"]["format_reminder"]), card["fixed"]["format_reminder"]) != card["fixed"]["prompt"]:
         sys.exit("the agent's prompt text differs from the card; prepare a new cell")
+    policy = card.get("archive")
+    if policy is None:
+        sys.exit("refusing to run: the card has no archive policy (prepared before the archive preflight); "
+                 "prepare a new cell")
+    reasons, _ = check_receipts(a.cell, card)
+    if reasons:
+        sys.exit("refusing to run: " + "; ".join(reasons))
+    batch = os.path.join(a.cell, "batch.jsonl")
+    data_root = resolve_data_root(getattr(a, "data_root", None))
+    try:
+        seen = verify_game_archive(data_root, batch_tasks(batch), policy["profile"])
+    except CellError as e:
+        sys.exit(str(e))
+    before = records_state(a.cell)
+    policy["receipts"].append({
+        "run": len(policy["receipts"]), "cell_id": card["cell_id"], "batch_sha256": card["batch_sha256"],
+        "profile": policy["profile"], "games_canonical_sha256": policy["games_canonical_sha256"],
+        "digest_type": ARCHIVE_DIGEST_TYPE, "games_checked": len(seen),
+        "checked_games_sha256": canonical_sha256(seen), "data_root": data_root, "checked_at": now(),
+        "records_lines_before": before["records_lines"], "records_sha256_before": before["records_sha256"]})
     card["started_at"], card["status"] = card["started_at"] or now(), "running"
     save_card(a.cell, card)
-    r = subprocess.run([sys.executable, FIXED_FILES["agent"], "--batch", os.path.join(a.cell, "batch.jsonl"),
-                        "--out", os.path.join(a.cell, "records.jsonl"), "--parallel", str(a.parallel),
-                        "--min-tokens", str(card["fixed"]["min_tokens"])]
-                       + (["--data-root", os.path.join(os.environ["ALFWORLD_DATA"], "json_2.1.1")]
-                          if os.environ.get("ALFWORLD_DATA") else []), env=agent_env(card))
-    card = load_card(a.cell)
-    card["status"] = "ran" if r.returncode == 0 else f"run exited {r.returncode}"
-    save_card(a.cell, card)
-    sys.exit(r.returncode)
+    returncode = None
+    try:
+        # --data-root is always passed, so the folder the preflight checked is the folder the agent reads.
+        r = subprocess.run([sys.executable, FIXED_FILES["agent"], "--batch", batch,
+                            "--out", os.path.join(a.cell, "records.jsonl"), "--parallel", str(a.parallel),
+                            "--min-tokens", str(card["fixed"]["min_tokens"]), "--data-root", data_root],
+                           env=agent_env(card))
+        returncode = r.returncode
+    finally:
+        card = load_card(a.cell)
+        after = records_state(a.cell)
+        card["archive"]["receipts"][-1].update({"records_lines_after": after["records_lines"],
+                                                "records_sha256_after": after["records_sha256"],
+                                                "returncode": returncode, "ended_at": now()})
+        card["status"] = "ran" if returncode == 0 else f"run exited {returncode}"
+        save_card(a.cell, card)
+    sys.exit(returncode)
 
 
 def machine_facts(base_url: str) -> dict:
@@ -298,6 +504,9 @@ def cmd_finish(a) -> None:
     recs = read_records(a.cell)
     kept, report = check_records(recs, card)
     reasons = list(report["invalid_reasons"])
+    receipt_reasons, evidence = check_receipts(a.cell, card)
+    reasons += receipt_reasons
+    card["archive_evidence"] = evidence
     served = card["machine"].get("served_models")
     if served and card["fixed"]["model"] not in served:
         reasons.append(f"the server reports {served}, not the card's model {card['fixed']['model']}")
@@ -389,6 +598,9 @@ def main(argv=None) -> None:
                    help="0 (default): the V3/V4 prompts; 1: add the V5 format reminder to every arm")
     p.add_argument("--kernel", default=None, help="quantisation kernel reported in the vLLM log")
     p.add_argument("--notes", default=None)
+    p.add_argument("--archive-profile", default=REFERENCE_PROFILE, choices=sorted(ARCHIVE_PROFILES),
+                   help="the ALFWorld game archive the cell will run on; only a profile with a pinned manifest "
+                        "can be prepared (today: reference)")
     p.add_argument("--with-mismatched", action="store_true",
                    help="add the mismatched_type arm (walkthroughs of other task types, length-matched)")
     p.set_defaults(f=cmd_prepare)
@@ -397,6 +609,10 @@ def main(argv=None) -> None:
         q.add_argument("cell")
         q.add_argument("--parallel", type=int, default=24)
         q.add_argument("--base-url", default="http://127.0.0.1:8001")
+        if name == "run":
+            q.add_argument("--data-root", default=None,
+                           help="ALFWorld json_2.1.1 folder (default: $ALFWORLD_DATA/json_2.1.1, else the agent.py "
+                                "default); always passed on to the agent")
         q.set_defaults(f=f)
     a = ap.parse_args(argv)
     a.f(a)

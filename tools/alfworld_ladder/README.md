@@ -28,7 +28,7 @@ decoding condition on train games (not the V3 games). `--format-reminder 0` (the
 
 ```
 python placebo_check.py prepare --pool v4 --block B03 --replicate 1   # claim the block on #179 first
-python placebo_check.py run data/contrib/placebo-v4-B03-r1-mt8-fr0       # 60 episodes, about 1.5 h on 12 GB
+python placebo_check.py run data/contrib/placebo-v4-B03-r1-mt8-fr0       # archive check, then 60 episodes, about 1.5 h on 12 GB
 python placebo_check.py finish data/contrib/placebo-v4-B03-r1-mt8-fr0    # card: GPU, driver, vLLM version, checks
 python placebo_check.py summary data/contrib/placebo-v4-B03-r1-mt8-fr0
 ```
