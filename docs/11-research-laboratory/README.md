@@ -7,6 +7,10 @@ For the November AAM, persona, WMB, memory-kernel and LifeSim work, use the
 executed test command and measured time. The historical campaign protocols below
 remain preserved; the map is the entry point for the newer tracks.
 
+Exploratory side studies outside the lab pipeline (DS-HARD-1, DS-HARD-2 and NEMO-FLOOR, November 2026) are summarised in
+[side-studies-2026-11.md](side-studies-2026-11.md). The seed-1 re-run of V6's primary contrast and the D8 instruction arm
+on the V6 games are in the [V6 addendum](errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md).
+
 ## Mission
 
 Produce conclusions that another person or model can audit, falsify, and reproduce before the project commits to a product architecture.
