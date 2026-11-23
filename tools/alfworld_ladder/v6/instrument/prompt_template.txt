@@ -1,0 +1,64 @@
+# Prompt templates of the ALFWorld ladder (copied verbatim from src/agent.py; source: yunx-z/AdaMEM, Apache-2.0)
+
+Every step's prompt = BASE + SUFFIX + FORMAT_REMINDER (V5: the same reminder in every arm), sent as one user message.
+- BASE at step 1: TEMPLATE_NO_HIS. BASE from step 2: TEMPLATE with the last 50 (observation, action) pairs,
+  formatted as AdaMEM does: [Observation i: '<obs>', Action i: '<action>'].
+- SUFFIX for arm `none`: ACTION_INSTR (this makes the `none` prompt identical to AdaMEM's no-memory prompt).
+- SUFFIX for arms `placebo`, `retrieved_task`, `retrieved_steps`, `retrieved_plan` (V6 catalogue; also the V3/V5B arms
+  `random_same_type`, `mismatched_type`, not in V6): MEMORY_WRAPPER with {retrieved_exp} =
+  "Retrieved Item 0:
+<item>
+
+Retrieved Item 1:
+<item>". The block is fixed for the whole episode and
+  sits at the same position for every memory arm. Only the item text differs between arms.
+- Item text for random_same_type and retrieved_task: "Task: <goal>." followed by one line per walkthrough step in
+  the same format as the agent's own history, [Observation i: '<obs>', Action i: '<action>'], and a last line
+  Final observation: '<obs>'; observations cut to 240 characters.
+- Item text for placebo: lines of instrument/placebo.txt, split over two items, token-matched (vLLM /tokenize)
+  to the retrieved_task block of the same (task, seed).
+- V6, item text for retrieved_steps: "Task: <goal>." followed by one line per walkthrough action,
+  [Action i: '<action>'] (verbatim, no observation).
+- V6, item text for retrieved_plan: "Task: <goal>.", "Plan (in order):", then one "- <subgoal>" line per subgoal from
+  the deterministic rules of agent.plan_steps (memory_build.md; no digit).
+- V6 padding (retrieved_steps, retrieved_plan): {retrieved_exp} = Retrieved Item 0 and 1 = filler items, built
+  exactly as the placebo's two items (the placebo's lines, order and half/half split) with n lines; Retrieved
+  Item 2 and 3 = the two content items, unchanged and last. n chosen so that the block is token-matched to the
+  retrieved_task block of the same (task, seed). No filler line shares an item with content. The three treatment
+  arms show the same two walkthroughs.
+- One parser for all arms: the answer is the last <action>...</action>, matched case-insensitively to the admissible
+  commands. Anything else is sent to the game as written ("Nothing happens.") and counted in metrics.invalid_actions.
+
+## TEMPLATE_NO_HIS
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: {current_observation}
+Your admissible actions of the current situation are: [{admissible_actions}].
+
+## TEMPLATE
+
+You are an expert agent operating in the ALFRED Embodied Environment. Your task is to: {task_description}
+Prior to this step, you have already taken {step_count} step(s). Below are the most recent {history_length} observations and the corresponding actions you took: {action_history}
+You are now at step {current_step} and your current observation is: {current_observation}
+Your admissible actions of the current situation are: [{admissible_actions}].
+
+## ACTION_INSTR
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+## MEMORY_WRAPPER
+
+Here are some task solving trajectories on similar tasks:
+
+Retrieved Experiences:
+{retrieved_exp}
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+## FORMAT_REMINDER (V5, every arm)
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.

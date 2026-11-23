@@ -1,0 +1,377 @@
+# Step-1 prompt of each V6 arm for the non-test game train/pick_and_place_simple-Book-None-Desk-314/trial_T20190908_111952_629798 (positive-control pilot game, seed 0).
+# From step 2 the BASE part switches to TEMPLATE with history; the arm part stays the same.
+
+=================== ARM none | memory_tokens 0 | memory_sources []
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, and a garbagecan 1.
+
+Your task is to: put some book on desk.
+Your admissible actions of the current situation are: ['go to bed 1'
+ 'go to desk 1'
+ 'go to drawer 1'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to dresser 1'
+ 'go to garbagecan 1'
+ 'inventory'
+ 'look'].
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.
+
+=================== ARM placebo | memory_tokens 686 | memory_sources []
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, and a garbagecan 1.
+
+Your task is to: put some book on desk.
+Your admissible actions of the current situation are: ['go to bed 1'
+ 'go to desk 1'
+ 'go to drawer 1'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to dresser 1'
+ 'go to garbagecan 1'
+ 'inventory'
+ 'look'].
+
+Here are some task solving trajectories on similar tasks:
+
+Retrieved Experiences:
+Retrieved Item 0:
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+
+Retrieved Item 1:
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.
+
+=================== ARM retrieved_task | memory_tokens 683 | memory_sources ['train/pick_and_place_simple-CellPhone-None-Desk-327/trial_T20190907_162342_304038', 'train/pick_and_place_simple-Book-None-CoffeeTable-229/trial_T20190908_125658_195646']
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, and a garbagecan 1.
+
+Your task is to: put some book on desk.
+Your admissible actions of the current situation are: ['go to bed 1'
+ 'go to desk 1'
+ 'go to drawer 1'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to dresser 1'
+ 'go to garbagecan 1'
+ 'inventory'
+ 'look'].
+
+Here are some task solving trajectories on similar tasks:
+
+Retrieved Experiences:
+Retrieved Item 0:
+Task: put a cellphone in desk.
+[Observation 1: 'You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 8, a drawer 7, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a shelf 5, a shelf 4, a she', Action 1: 'go to bed 1']
+[Observation 2: 'You arrive at bed 1. On the bed 1, you see a cellphone 1, a laptop 2, a laptop 1, and a pillow 1.', Action 2: 'take cellphone 1 from bed 1']
+[Observation 3: 'You pick up the cellphone 1 from the bed 1.', Action 3: 'go to desk 1']
+[Observation 4: 'You arrive at desk 1. On the desk 1, you see a book 1, a bowl 2, a creditcard 2, a keychain 3, a pencil 2, and a pencil 1.', Action 4: 'move cellphone 1 to desk 1']
+Final observation: 'You move the cellphone 1 to the desk 1.'
+
+Retrieved Item 1:
+Task: put a book in coffeetable.
+[Observation 1: 'You are in the middle of a room. Looking quickly around you, you see a armchair 1, a coffeetable 1, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a sidetable 3, a sidetable 2, a sidetable 1, and a sofa 1.', Action 1: 'go to dresser 1']
+[Observation 2: 'You arrive at dresser 1. On the dresser 1, you see a book 1, a creditcard 2, a creditcard 1, and a television 1.', Action 2: 'take book 1 from dresser 1']
+[Observation 3: 'You pick up the book 1 from the dresser 1.', Action 3: 'go to coffeetable 1']
+[Observation 4: 'You arrive at coffeetable 1. On the coffeetable 1, you see a box 1, a pen 1, a pencil 1, a statue 2, a statue 1, a tissuebox 2, and a tissuebox 1.', Action 4: 'move book 1 to coffeetable 1']
+Final observation: 'You move the book 1 to the coffeetable 1.'
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.
+
+=================== ARM retrieved_steps | memory_tokens 681 | memory_sources ['train/pick_and_place_simple-CellPhone-None-Desk-327/trial_T20190907_162342_304038', 'train/pick_and_place_simple-Book-None-CoffeeTable-229/trial_T20190908_125658_195646']
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, and a garbagecan 1.
+
+Your task is to: put some book on desk.
+Your admissible actions of the current situation are: ['go to bed 1'
+ 'go to desk 1'
+ 'go to drawer 1'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to dresser 1'
+ 'go to garbagecan 1'
+ 'inventory'
+ 'look'].
+
+Here are some task solving trajectories on similar tasks:
+
+Retrieved Experiences:
+Retrieved Item 0:
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+
+Retrieved Item 1:
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+
+Retrieved Item 2:
+Task: put a cellphone in desk.
+[Action 1: 'go to bed 1']
+[Action 2: 'take cellphone 1 from bed 1']
+[Action 3: 'go to desk 1']
+[Action 4: 'move cellphone 1 to desk 1']
+
+Retrieved Item 3:
+Task: put a book in coffeetable.
+[Action 1: 'go to dresser 1']
+[Action 2: 'take book 1 from dresser 1']
+[Action 3: 'go to coffeetable 1']
+[Action 4: 'move book 1 to coffeetable 1']
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.
+
+=================== ARM retrieved_plan | memory_tokens 685 | memory_sources ['train/pick_and_place_simple-CellPhone-None-Desk-327/trial_T20190907_162342_304038', 'train/pick_and_place_simple-Book-None-CoffeeTable-229/trial_T20190908_125658_195646']
+
+You are an expert agent operating in the ALFRED Embodied Environment.
+Your current observation is: You are in the middle of a room. Looking quickly around you, you see a bed 1, a desk 1, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, and a garbagecan 1.
+
+Your task is to: put some book on desk.
+Your admissible actions of the current situation are: ['go to bed 1'
+ 'go to desk 1'
+ 'go to drawer 1'
+ 'go to drawer 2'
+ 'go to drawer 3'
+ 'go to drawer 4'
+ 'go to drawer 5'
+ 'go to dresser 1'
+ 'go to garbagecan 1'
+ 'inventory'
+ 'look'].
+
+Here are some task solving trajectories on similar tasks:
+
+Retrieved Experiences:
+Retrieved Item 0:
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+
+Retrieved Item 1:
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+Placeholder text continues on the next line.
+There is nothing to learn from this line.
+This slot holds filler only.
+This line is a placeholder and carries no information.
+Nothing is recorded in this slot.
+The text here is neutral filler of fixed wording.
+No experience is stored at this position.
+This entry is intentionally left without content.
+
+Retrieved Item 2:
+Task: put a cellphone in desk.
+Plan (in order):
+- find a cellphone and take it
+- go to the desk
+- move the cellphone to the desk
+
+Retrieved Item 3:
+Task: put a book in coffeetable.
+Plan (in order):
+- find a book and take it
+- go to the coffeetable
+- move the book to the coffeetable
+
+Now it's your turn to take an action.
+You should first reason step-by-step about the current situation. This reasoning process MUST be enclosed within <think> </think> tags.
+Once you've finished your reasoning, you should choose an admissible action for current step and present it within <action> </action> tags.
+
+Reminder: end your answer with exactly one admissible action inside <action> </action> tags.
