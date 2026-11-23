@@ -1,149 +1,190 @@
-"""The November addenda (docs/11-research-laboratory/errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md,
-2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md), the side-studies note and the evidence summary
-(docs/11-research-laboratory/side-studies-2026-11.md, evidence-summary-2026-11.md) quote seed-0 numbers of V6 and V5B
-next to runs whose per-episode outputs are not published. This test recomputes every number that comes from a published
-per_unit.csv and checks that the documents print it. The seed-1, D8 and side-study numbers themselves cannot be
-recomputed from this repository (the documents say so and give the SHA-256 of their sources)."""
+"""The November 2026 side-run documents and their per-game tables.
+
+Documents: docs/11-research-laboratory/errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md,
+.../errata/2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md, .../side-studies-2026-11.md and
+.../evidence-summary-2026-11.md. Tables: data/lab/side-runs-2026-11/*.csv (unit, arm, seed, solved).
+
+This test recomputes the solve-rate numbers the documents print from the published tables and the packages'
+per_unit.csv, checks the tables' SHA-256 against their README, checks that every unit id is a published game, and checks
+the labels and cross-links. Numbers that need the private logs (steps, sources, costs) are not checked here; the
+documents say so."""
 
 from __future__ import annotations
 
 import csv
+import hashlib
+import math
+import re
 from math import comb
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LAB = ROOT / "data" / "lab"
-ADDENDUM = ROOT / "docs" / "11-research-laboratory" / "errata" / "2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md"
-SIDE = ROOT / "docs" / "11-research-laboratory" / "side-studies-2026-11.md"
-V5B_ADDENDUM = ROOT / "docs" / "11-research-laboratory" / "errata" / "2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md"
-SUMMARY = ROOT / "docs" / "11-research-laboratory" / "evidence-summary-2026-11.md"
+RUNS = LAB / "side-runs-2026-11"
+DOCS = ROOT / "docs" / "11-research-laboratory"
+V6A = DOCS / "errata" / "2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md"
+V5BA = DOCS / "errata" / "2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md"
+SIDE = DOCS / "side-studies-2026-11.md"
+SUMMARY = DOCS / "evidence-summary-2026-11.md"
 TRANSFORM = ("pick_clean", "pick_cool", "pick_heat")
 
 
-def _solved(package: str) -> dict:
-    games: dict = {}
-    with (LAB / package / "per_unit.csv").open(encoding="utf-8-sig", newline="") as source:
-        for row in csv.DictReader(source):
-            if row["seed"] == "0":
-                games.setdefault(row["unit"], {})[row["arm"]] = int(row["solved"])
-    return games
+def _text(path: Path) -> str:
+    return re.sub(r"\s+", " ", path.read_text(encoding="utf-8"))
 
 
-def _ttype(unit: str) -> str:
+def _package(name: str) -> dict:
+    out: dict = {}
+    with (LAB / name / "per_unit.csv").open(encoding="utf-8-sig", newline="") as f:
+        for r in csv.DictReader(f):
+            if r["seed"] == "0":
+                out[(r["unit"], r["arm"])] = int(r["solved"])
+    return out
+
+
+def _table(name: str, drop_excluded: bool = False) -> dict:
+    out: dict = {}
+    with (RUNS / name).open(encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(f):
+            if drop_excluded and r.get("excluded_by_length_rule") == "1":
+                continue
+            out[(r["unit"], r["arm"])] = int(r["solved"])
+    return out
+
+
+def _kind(unit: str) -> str:
     return unit.split("~", 1)[1].split("/")[1]
 
 
-def _split(games: dict, part: str) -> dict:
-    if part == "all":
-        return games
-    keep = (lambda u: _ttype(u).startswith(TRANSFORM)) if part == "transform" else (lambda u: not _ttype(u).startswith(TRANSFORM))
-    return {u: a for u, a in games.items() if keep(u)}
+def _units(sol: dict, part: str = "all") -> list:
+    us = sorted({u for u, _ in sol})
+    if part == "transform":
+        return [u for u in us if _kind(u).startswith(TRANSFORM)]
+    if part == "other":
+        return [u for u in us if not _kind(u).startswith(TRANSFORM)]
+    return us
 
 
-def _pair(games: dict, a: str, b: str):
-    gains = sum(g[a] == 1 and g[b] == 0 for g in games.values())
-    losses = sum(g[a] == 0 and g[b] == 1 for g in games.values())
-    n = gains + losses
-    p = min(1.0, 2 * sum(comb(n, i) for i in range(min(gains, losses) + 1)) / 2 ** n)
-    return len(games), gains, losses, (gains - losses) / len(games), p
+def _pair(sol: dict, us: list, a: str, b: str):
+    us = [u for u in us if (u, a) in sol and (u, b) in sol]
+    g = sum(1 for u in us if sol[(u, a)] and not sol[(u, b)])
+    l = sum(1 for u in us if sol[(u, b)] and not sol[(u, a)])
+    n = g + l
+    p = min(1.0, 2 * sum(comb(n, i) for i in range(min(g, l) + 1)) / 2 ** n) if n else 1.0
+    return len(us), g, l, round((g - l) / len(us), 3), p
 
 
-def _rate(games: dict, arm: str) -> float:
-    return sum(g[arm] for g in games.values()) / len(games)
+def _fmt(x: float) -> str:
+    return f"{x:+.3f}".replace("-", "−")
 
 
-def test_v6_seed0_rows_of_the_addendum():
-    games = _solved("autolab-alfworld-ladder-r4-v6")
-    expected = {"all": (300, 0.477, 0.607, 72, 33, "0.0002", "{:.4f}"),
-                "transform": (151, 0.404, 0.649, 50, 13, "3.0e-06", "{:.1e}"),
-                "other": (149, 0.550, 0.564, 22, 20, "0.88", "{:.2f}")}
-    text = ADDENDUM.read_text(encoding="utf-8")
-    for part, (n, placebo, task, gains, losses, p_text, p_format) in expected.items():
-        sub = _split(games, part)
-        got_n, g, l, _diff, p = _pair(sub, "retrieved_task", "placebo")
-        assert (got_n, g, l) == (n, gains, losses), part
-        assert (round(_rate(sub, "placebo"), 3), round(_rate(sub, "retrieved_task"), 3)) == (placebo, task), part
-        assert p_format.format(p) == p_text, part
-        row = f"| {n} | 0 | {placebo:.3f} | {task:.3f} | {(gains - losses) / n:+.3f} | {gains} / {losses} | {p_text} |"
-        assert row in text, row
+def test_tables_match_their_readme_and_use_only_published_games():
+    readme = (RUNS / "README.md").read_text(encoding="utf-8")
+    published = {u for name in ("autolab-alfworld-ladder-r4-v6", "autolab-alfworld-ladder-r4-v5b") for u, _ in _package(name)}
+    tables = sorted(RUNS.glob("*.csv"))
+    assert len(tables) == 10
+    for path in tables:
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        assert re.search(rf"`{re.escape(path.name)}` \|.*`{digest}`", readme), path.name
+        with path.open(encoding="utf-8", newline="") as f:
+            rows = list(csv.DictReader(f))
+        assert rows and set(rows[0]) >= {"unit", "arm", "seed", "solved"}
+        assert {r["unit"] for r in rows} <= published, path.name
+        assert not any(k in rows[0] for k in ("actions", "evidence", "memory_sources")), path.name
 
 
-def test_v6_seed0_arms_used_by_the_d8_comparison():
-    games = _solved("autolab-alfworld-ladder-r4-v6")
-    text = ADDENDUM.read_text(encoding="utf-8")
-    for part, none, task in (("transform", 0.430, 0.649), ("other", 0.638, 0.564)):
-        sub = _split(games, part)
-        assert (round(_rate(sub, "none"), 3), round(_rate(sub, "retrieved_task"), 3)) == (none, task)
-        assert f"| {none:.3f} | {task:.3f} |" in text
-    other = _split(games, "other")
-    assert round(_pair(other, "retrieved_task", "none")[3], 3) == -0.074
-    assert "is −0.074" in text
+def test_v6_seed1_rows_two_seed_estimate_and_per_type_table():
+    s0, s1 = _package("autolab-alfworld-ladder-r4-v6"), _table("v6-seed1.csv")
+    text = _text(V6A)
+    expected = {"all": ((300, 72, 33), (300, 78, 31)), "transform": ((151, 50, 13), (151, 53, 12)),
+                "other": ((149, 22, 20), (149, 25, 19))}
+    for part, (e0, e1) in expected.items():
+        assert _pair(s0, _units(s1, part), "retrieved_task", "placebo")[:3] == e0, part
+        assert _pair(s1, _units(s1, part), "retrieved_task", "placebo")[:3] == e1, part
+    for part, (diff, lo, hi) in {"all": (0.143, 0.090, 0.196), "transform": (0.258, 0.180, 0.337),
+                                 "other": (0.027, -0.040, 0.094)}.items():
+        us = _units(s1, part)
+        d = [((s0[(u, "retrieved_task")] + s1[(u, "retrieved_task")]) - (s0[(u, "placebo")] + s1[(u, "placebo")])) / 2 for u in us]
+        m = sum(d) / len(d)
+        sd = math.sqrt(sum((x - m) ** 2 for x in d) / (len(d) - 1))
+        half = 1.97 * sd / math.sqrt(len(d))  # the t quantile for 148 to 299 degrees of freedom is 1.968 to 1.976
+        assert round(m, 3) == diff and abs(m - half - lo) < 0.002 and abs(m + half - hi) < 0.002, part
+        assert f"{_fmt(diff)} | [{_fmt(lo)}, {_fmt(hi)}]" in text, part
+    for kind, (n0, n1) in {"pick_clean": (12, 12), "pick_cool": (15, 24), "pick_heat": (10, 5), "look_at": (7, 4),
+                           "pick_and_place": (0, 2), "pick_two": (-5, 0)}.items():
+        us = [u for u in _units(s1) if _kind(u).startswith(kind)]
+        net0 = sum(s0[(u, "retrieved_task")] - s0[(u, "placebo")] for u in us)
+        net1 = sum(s1[(u, "retrieved_task")] - s1[(u, "placebo")] for u in us)
+        assert (net0, net1) == (n0, n1), kind
+        assert f"| `{kind}` | {len(us)} | {n0} | {n1} |".replace("| -", "| −") in V6A.read_text(encoding="utf-8")
 
 
-def test_v5b_transform_rates_of_the_first_d8_pilot():
-    games = _split(_solved("autolab-alfworld-ladder-r4-v5b"), "transform")
-    assert len(games) == 114
-    assert sum(g["none"] for g in games.values()) == 44 and sum(g["retrieved_task"] for g in games.values()) == 67
+def test_d8_rows_and_the_filler_comparison():
+    s0 = _package("autolab-alfworld-ladder-r4-v6")
+    sol = dict(s0)
+    sol.update(_table("d8-v6.csv"))
+    text = _text(V6A)
+    assert _pair(sol, _units(s0, "transform"), "d8_instruction", "none")[:4] == (151, 29, 19, 0.066)
+    assert _pair(sol, _units(s0, "transform"), "retrieved_task", "d8_instruction")[:4] == (151, 40, 17, 0.152)
+    assert _pair(sol, _units(s0, "other"), "d8_instruction", "none")[:4] == (149, 13, 29, -0.107)
+    n, g, l, d, p = _pair(s0, _units(s0, "other"), "placebo", "none")
+    assert (n, g, l, d, round(p, 3)) == (149, 12, 25, -0.087, 0.047)
+    assert _pair(sol, _units(s0, "other"), "d8_instruction", "placebo")[:4] == (149, 16, 19, -0.02)
+    for needle in ("−0.087 (12 / 25, p = 0.047)", "−0.020 (16 / 19, p = 0.74)", "The result shows no harm specific to the sentence"):
+        assert needle in text, needle
+    pilot = _package("autolab-alfworld-ladder-r4-v5b")
+    pilot.update(_table("d8-v5b-pilot.csv"))
+    assert _pair(pilot, _units(_table("d8-v5b-pilot.csv")), "d8_instruction", "none")[:4] == (114, 25, 9, 0.14)
 
 
-def test_v6_net_gain_by_type_quoted_in_the_side_note():
-    games = _solved("autolab-alfworld-ladder-r4-v6")
-    net = {}
-    for unit, arms in games.items():
-        kind = next((t for t in TRANSFORM if _ttype(unit).startswith(t)), "other")
-        net[kind] = net.get(kind, 0) + arms["retrieved_task"] - arms["placebo"]
-    assert sum(net.values()) == 39
-    assert net["pick_clean"] + net["pick_cool"] == 27 and net["pick_heat"] == 10
-    assert "10 of its net 39 in heat (26%) and 27 in clean and cool" in SIDE.read_text(encoding="utf-8")
-    assert "27 of its net 39 in clean and cool, 10 in heat" in SUMMARY.read_text(encoding="utf-8")
+def test_v5b_seed1_rows():
+    s0, s1 = _package("autolab-alfworld-ladder-r4-v5b"), _table("v5b-seed1.csv")
+    text = V5BA.read_text(encoding="utf-8")
+    for part, n, (g0, l0), (g1, l1) in (("all", 201, (48, 26), (55, 20)), ("transform", 114, (36, 13), (36, 12)),
+                                        ("other", 87, (12, 13), (19, 8))):
+        us = _units(s1, part)
+        assert _pair(s0, us, "retrieved_task", "none")[:3] == (n, g0, l0), part
+        assert _pair(s1, us, "retrieved_task", "none")[:3] == (n, g1, l1), part
+        for seed, (g, l), sol in ((0, (g0, l0), s0), (1, (g1, l1), s1)):
+            none = sum(sol[(u, "none")] for u in us) / n
+            task = sum(sol[(u, "retrieved_task")] for u in us) / n
+            row = f"| {n} | {seed} | {none:.3f} | {task:.3f} | {_fmt((g - l) / n)} | {g} / {l} |"
+            assert row in text, row
 
 
-def test_v6_pick_two_and_d8_memory_gain():
-    games = _solved("autolab-alfworld-ladder-r4-v6")
-    pick_two = sum(a["retrieved_task"] - a["placebo"] for u, a in games.items() if _ttype(u).startswith("pick_two"))
-    assert pick_two == -5 and "−5 at seed 0" in SUMMARY.read_text(encoding="utf-8")
-    n, gains, losses, diff, _p = _pair(_split(games, "transform"), "retrieved_task", "none")
-    assert (n, gains, losses, round(diff, 3)) == (151, 44, 11, 0.219)
-    assert "+0.219, 44 / 11" in ADDENDUM.read_text(encoding="utf-8")
+def test_side_study_headlines():
+    h1 = _table("ds-hard-1.csv")
+    h1q2 = _table("ds-hard-1.csv", drop_excluded=True)
+    us = _units(h1)
+    assert _pair(h1, us, "retrieved_task", "placebo")[:4] == (193, 43, 1, 0.218)
+    assert _pair(h1q2, us, "retrieved_task", "mismatched_type")[:4] == (189, 32, 2, 0.159)
+    assert _pair(h1q2, us, "mismatched_type", "none")[:4] == (189, 21, 9, 0.063)
+    h2 = _table("ds-hard-2.csv")
+    us2 = _units(h2)
+    assert _pair(h2, us2, "retrieved_plan", "placebo")[:4] == (100, 15, 2, 0.13)
+    assert _pair(h2, us2, "retrieved_steps", "placebo")[:4] == (100, 18, 3, 0.15)
+    assert _pair(h2, us2, "retrieved_plan", "retrieved_steps")[:4] == (100, 3, 5, -0.02)
+    assert _pair(h2, us2, "retrieved_plan", "retrieved_task")[:3] == (100, 1, 7)
+    nf = _table("nemo-floor.csv")
+    assert _pair(nf, _units(nf), "retrieved_task", "placebo")[:4] == (100, 20, 0, 0.2)
+    assert [sum(v for (u, a), v in nf.items() if a == arm) for arm in ("none", "placebo", "retrieved_task")] == [1, 2, 22]
+    for name, none, task in (("ds-pilot-normal.csv", 17, 20), ("ds-pilot-hard.csv", 13, 18)):
+        t = _table(name)
+        solved = {arm: sum(v for (u, a), v in t.items() if a == arm) for arm in ("none", "retrieved_task")}
+        assert (solved["none"], solved["retrieved_task"]) == (none, task)
+    text = _text(SIDE)
+    for needle in ("43 / 1", "32 / 2", "15 / 2", "18 / 3", "20 / 0", "17 / 20", "13 / 20"):
+        assert needle in text, needle
 
 
-def test_v5b_seed0_rows_of_the_v5b_addendum():
-    games = _solved("autolab-alfworld-ladder-r4-v5b")
-    text = V5B_ADDENDUM.read_text(encoding="utf-8")
-    for part, n, none, task, gains, losses in (("all", 201, 0.507, 0.617, 48, 26), ("transform", 114, 0.386, 0.588, 36, 13),
-                                                ("other", 87, 0.667, 0.655, 12, 13)):
-        sub = _split(games, part)
-        got = _pair(sub, "retrieved_task", "none")
-        assert got[:3] == (n, gains, losses), part
-        assert (round(_rate(sub, "none"), 3), round(_rate(sub, "retrieved_task"), 3)) == (none, task), part
-        row = f"| {n} | 0 | {none:.3f} | {task:.3f} | {(gains - losses) / n:+.3f} | {gains} / {losses} |".replace("-0.011", "−0.011")
-        assert row in text, row
-
-
-def test_both_documents_label_the_runs_as_exploratory_and_link_each_other():
-    add, side = ADDENDUM.read_text(encoding="utf-8"), SIDE.read_text(encoding="utf-8")
-    assert "exploratory side runs outside the lab pipeline" in add.replace("\n", " ")
-    assert "It is not an independent replication" in add.replace("\n", " ")
-    assert "exploratory side studies" in side
-    assert "../side-studies-2026-11.md" in add and "errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md" in side
-    summary = SUMMARY.read_text(encoding="utf-8")
+def test_labels_and_links():
+    add, v5, side, summary = (p.read_text(encoding="utf-8") for p in (V6A, V5BA, SIDE, SUMMARY))
+    flat = re.sub(r"\s+", " ", add)
+    assert "exploratory side runs outside the lab pipeline" in flat
+    assert "It is not an independent replication" in flat
+    for text in (add, v5, side, summary):
+        assert "pre-registered" not in text
+        assert "side-runs-2026-11" in text
     for link in ("errata/2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md", "side-studies-2026-11.md",
                  "errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md"):
         assert link in summary, link
-    for text in (side, summary, V5B_ADDENDUM.read_text(encoding="utf-8")):
-        assert "pre-registered" not in text
-
-
-def test_v6_per_type_net_table_seed0_column():
-    """Seed 0 is recomputed from per_unit.csv; the seed-1 column comes from the unpublished re-run and is only
-    checked to sum to the seed-1 gains minus losses (78 - 31) printed in the same addendum."""
-    games = _solved("autolab-alfworld-ladder-r4-v6")
-    seed1 = {"pick_clean": 12, "pick_cool": 24, "pick_heat": 5, "look_at": 4, "pick_and_place": 2, "pick_two": 0}
-    text = ADDENDUM.read_text(encoding="utf-8")
-    assert sum(seed1.values()) == 78 - 31
-    for kind, s1 in seed1.items():
-        sub = {u: a for u, a in games.items() if _ttype(u).startswith(kind)}
-        net = sum(a["retrieved_task"] - a["placebo"] for a in sub.values())
-        row = f"| `{kind}` | {len(sub)} | {net} | {s1} |".replace("| -", "| −")
-        assert row in text, row
-    assert "| all | 300 | 39 | 47 |" in text

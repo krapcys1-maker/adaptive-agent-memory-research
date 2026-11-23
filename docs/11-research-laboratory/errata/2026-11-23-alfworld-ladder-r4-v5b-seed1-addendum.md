@@ -9,12 +9,12 @@ verdicts or direction status.
 This is an **exploratory side run outside the lab pipeline**: not a lab program, no envelope, instrument review,
 positive control or code audit, and no lab verdict. Like the V6 seed-1 re-run (see the
 [V6 addendum](2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md)), it was run and first analysed by a session of
-the project's automated coordinator. Every number below was recomputed for this addendum by a second script, written
-without importing the first, from the per-episode outputs and the published `per_unit.csv`; all agree with the run's
-own result file. That script was written by a model of the same family (Claude), so it is a recomputation, not an
-independent-model review. The per-episode outputs are not published (they hold the full action logs); their SHA-256 is
-at the end. The seed-0 rows can be recomputed from the public `per_unit.csv`; the seed-1 rows cannot be recomputed from
-this repository.
+the project's automated coordinator (a Claude model), and every number below was recomputed by a second script, also
+written by a Claude model, that does not import the first: internal checks within one model family, not independent
+reviews. The per-game outcomes are published in
+[`data/lab/side-runs-2026-11/v5b-seed1.csv`](../../../data/lab/side-runs-2026-11/README.md), so every number on this page
+except the between-seed source change can be recomputed from that table and the package's `per_unit.csv`
+(`tests/test_v6_seed1_d8_addendum.py` does so). The action logs stay private.
 
 ## What was run
 
@@ -32,9 +32,9 @@ this repository.
   different pair; that figure could not be checked here, because the public package does not list the sources.
 - **When:** 2026-11-21, about 15:58 to 23:35 UTC, on the lab's GPU, after V5B had finished; not
   interleaved or randomised together with V5B's arms. 402 episodes, 0 errors, 0 duplicates, no exclusions.
-- **Rule written before data** (2026-11-21; evidence: file times; not published, no external registry record): report
+- **Rule written before the data** (2026-11-21; evidence: file times; not published, no external registry record): report
   the solve rates and `retrieved_task − none` (paired gains and losses, exact McNemar p) at seed 1 next to seed 0, the
-  transform / other split descriptively, and the between-seed agreement. **Results are reported, not judged**: the rule
+  transform / other split descriptively, and the between-seed agreement. Results are reported, not judged: the rule
   defines no verdict and no pooled two-seed estimate, so none is given here.
 
 ## Results
@@ -65,13 +65,19 @@ V6 the same quantities were 0.585 / 0.468 / 0.297 (for `placebo` and `retrieved_
 - **The other games show how noisy one seed is.** Their difference moves from −0.011 at seed 0 to +0.126 at seed 1, with
   the same games and instrument. Neither "memory does not help on these types" (seed 0) nor "it does" (seed 1, p = 0.052)
   is supported by one seed. The transform / other split was chosen after V5B had shown where the gain sits: exploratory.
+  As a difference of differences (transform − other, 95% normal interval over games), it is +0.213 [+0.052, +0.375] at
+  seed 0 and +0.084 [−0.077, +0.245] at seed 1, so at seed 1 the V5B data do not support a transform concentration.
+  `none` itself moved on these 87 games from 0.667 to 0.598 between the seeds.
 - **Power.** With 87 other games and the discordance seen here (25 and 27 discordant pairs), the exact McNemar test
   reaches p < 0.05 only from a split of 18 / 7 or 20 / 7 onwards, a net difference of about +0.13 to +0.15. Smaller true
   effects on these games would usually be missed; no pooled estimate was planned, so the question stays open.
 - **Not shown.** Nothing about `placebo` or `mismatched_type` at seed 1, the primary contrasts, other models or
   environments.
 
-## Source files (not in this repository)
+## Source files
+
+The rule, the result file and the full outputs are not published (the outputs hold action logs; the rule and result
+file contain machine-local paths and internal notes). Their SHA-256 are commitments for a later release:
 
 | file | SHA-256 |
 |---|---|
@@ -80,7 +86,8 @@ V6 the same quantities were 0.585 / 0.468 / 0.297 (for `placebo` and `retrieved_
 | outputs `out_v5b_seed1.jsonl` | `0708689243cb5771a4e161723bcc775e54147b55a33929c5b686417614ebf02a` |
 | jobs `batch_v5b_seed1.jsonl` | `e3571ea032387bae97c42529af580405ce331e3968b6c7093f92784fc07c757d` |
 
-`tests/test_v6_seed1_d8_addendum.py` recomputes the seed-0 rows of this addendum from the published `per_unit.csv`.
+`tests/test_v6_seed1_d8_addendum.py` recomputes the rows of this addendum from the published `per_unit.csv` (seed 0)
+and `data/lab/side-runs-2026-11/v5b-seed1.csv` (seed 1).
 
 ## What does not change
 
