@@ -159,7 +159,7 @@ Every run since V6 was published, including the ones not reported here:
   problem.
 - All of these are secondary contrasts.
 
-### For Qwen, any added block (filler or instruction) lowers the solve rate a little against no memory, especially on the non-transform games
+### For Qwen, any added block (filler or instruction) lowers the solve rate a little against no memory (in V6 mostly on the non-transform games; V5B does not show that split)
 
 **Rests on:**
 - `placebo − none`: V4 −0.023, `equivalent`; V5B −0.060 and V6 −0.057, both `inconclusive` (results tables).

@@ -111,7 +111,7 @@ times). Neither rule judged memory: with 20 games, a solve-rate difference is a 
 - 65 of 80 episodes were recorded, on 19 of the 20 games. The other 15 were lost to HTTP 429 rate limits.
 - Solved: `none` 0 of 14 recorded episodes, `placebo` 0 of 17, `retrieved_task` 3 of 17, `mismatched_type` 1 of 17.
 - Its rule, written before the data, gave NO-GO for the NEMO-1 study as planned:
-  - the floor (`none` 0 of 20);
+  - the floor (`none` 0 of 14 recorded episodes);
   - too few episodes without error;
   - too few games with a usable length ratio.
 - This pilot motivated NEMO-FLOOR. Its 20 games are excluded from NEMO-FLOOR, because their outcomes had been seen.

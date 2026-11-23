@@ -24,7 +24,7 @@ What the runs are, how to read them, and their limits:
 | `d8-v5b-pilot.csv` | V5B transform games, `d8_instruction`, seed 0 (first D8 pilot) | Qwen3-4B, normal | 114 | `ec39529b0ea49e5703163906f78410c2909f3e9e14addcb4a04a19a161352a39` |
 | `ds-pilot-normal.csv` | 20 V6 games, `none` and `retrieved_task` | DeepSeek V4.1 Flash, normal | 40 | `18bcc698f4bd9e85b2155f89bab94c223cb530a93b978d76f51bfdce4bbea88b` |
 | `ds-pilot-hard.csv` | the same 20 games | DeepSeek V4.1 Flash, HARD | 40 | `17ecb333566776a9ec8899a84af32fec86a6c26ed32800372fb70fa1b59f1a72` |
-| `ds-hard-1.csv` | 200 V6 games, 4 arms (775 episodes recorded) | DeepSeek V4.1 Flash, HARD | 775 | `a4965221b41516490816eb549318e24d2f0b448ec5b7cb986506d2837ee88df3` |
+| `ds-hard-1.csv` | 195 V6 games with records (200 planned), 4 arms (775 episodes recorded) | DeepSeek V4.1 Flash, HARD | 775 | `a4965221b41516490816eb549318e24d2f0b448ec5b7cb986506d2837ee88df3` |
 | `ds-hard-2.csv` | 100 of those games, 4 arms | DeepSeek V4.1 Flash, HARD | 400 | `54163d3dd0e9b224e5eeb0995ede997f0edfc33ce478c807db1069303e712c2c` |
 | `nemo-floor.csv` | 100 of the DS-HARD-1 games, 3 arms | Mistral Nemo 12B, HARD | 300 | `039fd49eb0fcacd804f9c6df57148aa86446596ee7624991e85692659cfdd446` |
 | `nemo-pilot.csv` | NEMO-1 qualification pilot, 4 arms (65 of 80 episodes recorded) | Mistral Nemo 12B, HARD | 65 | `a3c0112f6cfd42215138d0e2082541abec9e1ee0ba8951a02f0d5b058c2590ad` |
