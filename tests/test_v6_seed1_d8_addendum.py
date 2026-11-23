@@ -1,6 +1,7 @@
-"""The V6 addendum (docs/11-research-laboratory/errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md) and the
-side-studies note (docs/11-research-laboratory/side-studies-2026-11.md) quote seed-0 numbers of V6 and V5B next to runs
-whose per-episode outputs are not published. This test recomputes every number that comes from a published
+"""The November addenda (docs/11-research-laboratory/errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md,
+2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md), the side-studies note and the evidence summary
+(docs/11-research-laboratory/side-studies-2026-11.md, evidence-summary-2026-11.md) quote seed-0 numbers of V6 and V5B
+next to runs whose per-episode outputs are not published. This test recomputes every number that comes from a published
 per_unit.csv and checks that the documents print it. The seed-1, D8 and side-study numbers themselves cannot be
 recomputed from this repository (the documents say so and give the SHA-256 of their sources)."""
 
@@ -14,6 +15,8 @@ ROOT = Path(__file__).resolve().parents[1]
 LAB = ROOT / "data" / "lab"
 ADDENDUM = ROOT / "docs" / "11-research-laboratory" / "errata" / "2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md"
 SIDE = ROOT / "docs" / "11-research-laboratory" / "side-studies-2026-11.md"
+V5B_ADDENDUM = ROOT / "docs" / "11-research-laboratory" / "errata" / "2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md"
+SUMMARY = ROOT / "docs" / "11-research-laboratory" / "evidence-summary-2026-11.md"
 TRANSFORM = ("pick_clean", "pick_cool", "pick_heat")
 
 
@@ -91,7 +94,30 @@ def test_v6_net_gain_by_type_quoted_in_the_side_note():
         net[kind] = net.get(kind, 0) + arms["retrieved_task"] - arms["placebo"]
     assert sum(net.values()) == 39
     assert net["pick_clean"] + net["pick_cool"] == 27 and net["pick_heat"] == 10
-    assert "27 of Qwen's net 39 games" in SIDE.read_text(encoding="utf-8")
+    assert "10 of its net 39 in heat (26%) and 27 in clean and cool" in SIDE.read_text(encoding="utf-8")
+    assert "27 of its net 39 in clean and cool, 10 in heat" in SUMMARY.read_text(encoding="utf-8")
+
+
+def test_v6_pick_two_and_d8_memory_gain():
+    games = _solved("autolab-alfworld-ladder-r4-v6")
+    pick_two = sum(a["retrieved_task"] - a["placebo"] for u, a in games.items() if _ttype(u).startswith("pick_two"))
+    assert pick_two == -5 and "−5 at seed 0" in SUMMARY.read_text(encoding="utf-8")
+    n, gains, losses, diff, _p = _pair(_split(games, "transform"), "retrieved_task", "none")
+    assert (n, gains, losses, round(diff, 3)) == (151, 44, 11, 0.219)
+    assert "+0.219, 44 / 11" in ADDENDUM.read_text(encoding="utf-8")
+
+
+def test_v5b_seed0_rows_of_the_v5b_addendum():
+    games = _solved("autolab-alfworld-ladder-r4-v5b")
+    text = V5B_ADDENDUM.read_text(encoding="utf-8")
+    for part, n, none, task, gains, losses in (("all", 201, 0.507, 0.617, 48, 26), ("transform", 114, 0.386, 0.588, 36, 13),
+                                                ("other", 87, 0.667, 0.655, 12, 13)):
+        sub = _split(games, part)
+        got = _pair(sub, "retrieved_task", "none")
+        assert got[:3] == (n, gains, losses), part
+        assert (round(_rate(sub, "none"), 3), round(_rate(sub, "retrieved_task"), 3)) == (none, task), part
+        row = f"| {n} | 0 | {none:.3f} | {task:.3f} | {(gains - losses) / n:+.3f} | {gains} / {losses} |".replace("-0.011", "−0.011")
+        assert row in text, row
 
 
 def test_both_documents_label_the_runs_as_exploratory_and_link_each_other():
@@ -100,3 +126,9 @@ def test_both_documents_label_the_runs_as_exploratory_and_link_each_other():
     assert "It is not an independent replication" in add.replace("\n", " ")
     assert "exploratory side studies" in side
     assert "../side-studies-2026-11.md" in add and "errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md" in side
+    summary = SUMMARY.read_text(encoding="utf-8")
+    for link in ("errata/2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md", "side-studies-2026-11.md",
+                 "errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md"):
+        assert link in summary, link
+    for text in (side, summary, V5B_ADDENDUM.read_text(encoding="utf-8")):
+        assert "pre-registered" not in text

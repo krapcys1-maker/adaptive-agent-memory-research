@@ -6,11 +6,13 @@ number. Nothing here changes the package's results, findings, verdicts, directio
 
 Two follow-up runs used the V6 games after V6 had finished. Both are **exploratory side runs outside the lab pipeline**:
 they are not lab programs, have no envelope, instrument review, positive control or code audit, and do not produce lab
-verdicts. Each had a written rule before its data (dates below). Both were run and first analysed by a session of the
+verdicts. Each had a rule written before its data. The rules are not published and have no external registry record; the
+evidence that they preceded the data is their file times (and their SHA-256 below). Both were run and first analysed by a session of the
 project's automated coordinator. Every number below was then recomputed for this addendum by a second script, written
 without importing the first one, from the per-episode outputs and from the published `per_unit.csv`; all of them agree
 with the runs' own result files. The second script was written by a model of the same family (Claude), so this is a
-recomputation, not an independent-model review.
+recomputation, not an independent-model review. No second-model check was done of the quantities that are new in this
+addendum (the Newcombe intervals of the D8 contrasts and the two-seed t-intervals).
 
 The per-episode outputs of both runs are not published (they hold the full action logs). Their SHA-256 sums are listed at
 the end. The seed-0 numbers can be recomputed from the public `per_unit.csv`; the seed-1 and D8 numbers cannot be
@@ -31,9 +33,10 @@ recomputed from this repository.
   check uses a proxy: DS-HARD-1 (see [the side-studies note](../side-studies-2026-11.md)) ran the same agent and bank at
   seed 0, so its `retrieved_task` sources are the V6 seed-0 picks. On the 195 games both runs share, the seed-1 pair was
   the same set of two walkthroughs in 69 games, and at least one walkthrough was shared in 166.
-- **When:** 2026-11-22, after V6 (its run record is dated 2026-11-21), on the lab's GPU. 600 episodes, 0 errors,
-  0 duplicates, no exclusions.
-- **Rule written before data** (2026-11-21): if seed 1 gives `retrieved_task − placebo` ≥ +0.05, the seed-0 result is
+- **When:** 2026-11-21 23:40 to 2026-11-22 14:58 UTC, on the lab's GPU, after V6 had finished. V6's objects in `knowledge.jsonl` are dated 2026-11-19
+  to 2026-11-21 (its run record 2026-11-21 05:14 UTC). The seed-1 episodes were not interleaved with V6's and not
+  randomised together with them. 600 episodes, 0 errors, 0 duplicates, no exclusions.
+- **Rule written before data** (2026-11-21; evidence: file times): if seed 1 gives `retrieved_task − placebo` ≥ +0.05, the seed-0 result is
   described as stable across two seeds; ≤ 0, not stable; in between, weaker but same sign. The rule also fixed the
   transform / other split and the two-seed estimate below.
 
@@ -104,15 +107,16 @@ seed 1 is 0.585 for `placebo` and 0.468 for `retrieved_task`; the correlation of
 
   The sentence also names the appliance for each transform, so the arm bundles the convention with appliance knowledge.
 - **Question:** how much of the memory gain on transform games does a one-sentence statement of the convention reproduce?
-- **Games:** all 300 V6 games, seed 0, run on 2026-11-21 after V6 had finished: 151 transform games and 149 others.
+- **Games:** all 300 V6 games, seed 0, run on 2026-11-21 between about 09:10 and 15:55 UTC, after V6 had finished (V6's
+  run record: 2026-11-21 05:14 UTC): 151 transform games and 149 others.
   300 episodes, 0 errors, 0 duplicates, `memory_tokens` 0 in every episode; same model and settings as V6.
 - **Agent:** the agent of the first D8 pilot, i.e. the V5B agent with this one sentence added. Its code path for a
   no-memory prompt is the same as the V6 agent's; the V6 agent's changes concern the memory arms and the positive-control
   arms only (checked by diff).
 - **Comparison:** game by game with V6's measured `none` and `retrieved_task` at seed 0 (the published `per_unit.csv`).
-  The D8 episodes ran on a different day from those arms and were not randomised together with them, so every
-  comparison below is **across runs**, not within one run.
-- **Rule written before data:** on transform games, "the convention explains most of the gain" if d8 − none ≥ +0.10 and
+  The D8 episodes ran later than those arms, were not interleaved with them and were not randomised together with them,
+  so every comparison below is **across runs**, not within one run.
+- **Rule written before data** (evidence: file times): on transform games, "the convention explains most of the gain" if d8 − none ≥ +0.10 and
   retrieved − d8 ≤ +0.05; "memory adds beyond the convention" if retrieved − d8 ≥ +0.10 with an exact McNemar p < 0.05;
   otherwise inconclusive. On other games, "harmless" if d8 − none > −0.05; "harmful" if d8 − none ≤ −0.05 with p < 0.05;
   otherwise inconclusive; d8 against `retrieved_task` there is descriptive only. The rule file is dated before the first
@@ -130,13 +134,17 @@ in the run's own result file.
 
 ### How to read it
 
-- **Transform games.** Across runs, the sentence's effect against `none` (+0.066) is not distinguishable from zero with
-  48 discordant pairs; the test could not detect a gain of this size. The walkthroughs beat the sentence by +0.152. Within
-  the limits below, a one-sentence statement of the convention (and of the appliances) reproduces only a small part of
-  the memory gain on these games.
+- **Transform games.** Across runs, the walkthroughs beat the sentence by +0.152 (the rule's "memory adds beyond the
+  convention"). How much of the memory gain the sentence reproduces is not pinned down: its point estimate against `none`
+  (+0.066) is about 30% of the memory gain on these games (`retrieved_task − none` +0.219, 44 / 11, in V6), and its
+  interval [−0.024, +0.154] reaches from no effect to about 70% of that gain.
+- **What the transform test could detect.** With 48 discordant pairs the exact McNemar test reaches p < 0.05 only from a
+  split of 32 / 16 onwards, a net difference of about +0.106 on 151 games. A true effect of the observed size (+0.066)
+  would usually not be detected, so the non-significant d8 − none says little.
 - **Other games.** Across runs, the sentence goes with −0.107 against `none`. For scale, the same 149 games give
-  `placebo` 0.550 at seed 0 and 0.544 at seed 1 (a different day), so day-to-day drift of a whole arm on these games was
-  small in that one case; it was not measured for `none`. Read this as a harm of this sentence, shown once, across runs. It
+  `placebo` 0.550 in V6 (2026-11-19 to 2026-11-21, seed 0) and 0.544 in the seed-1 re-run (2026-11-21/22). That is one arm,
+  in one subset, with the seed changed as well, so it shows only that a later run of a whole arm did not move much in that
+  one case; drift was not measured for `none`. Read this as a harm of this sentence, shown once, across runs. It
   is not evidence that retrieved memory harms these games: in V6 itself `retrieved_task − none` on them is −0.074, an
   exploratory subgroup whose interval includes zero.
 - **The first D8 pilot does not replicate in size.** The first pilot ran the same arm on the 114 transform games of V5B
@@ -177,3 +185,5 @@ SHA-256 of the files the numbers come from, kept in the maintainer's working cop
 The V6 package, its three primary contrasts and their sequential intervals, the findings (H1 and H2 supported, H3
 refuted), the measurement problem of `retrieved_plan`, the code audit verdict (valid) and the direction status
 (`retrieved_task` and `retrieved_steps` open, `retrieved_plan` measurement_problem).
+
+Related: [V5B seed-1 addendum](2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md); [what we know so far](../evidence-summary-2026-11.md).
