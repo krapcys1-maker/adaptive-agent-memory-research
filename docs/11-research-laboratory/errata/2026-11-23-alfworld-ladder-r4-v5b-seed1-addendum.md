@@ -20,10 +20,13 @@ this repository.
 
 - **Arms:** `none` and `retrieved_task` at seed 1, on the 201 games V5B measured. `placebo` and `mismatched_type` were not
   re-run, so this re-run says nothing about V5B's two primary contrasts, which are against `placebo`.
-- **Instrument:** the V5B agent with one added arm that this run does not use (the D8 instruction arm; the code paths of
-  `none` and `retrieved_task` are unchanged), the V5B bank (its SHA-256 equals the published
-  `tools/alfworld_ladder/v5b/data/bank.jsonl`), and the V5B model and settings: `Qwen/Qwen3-4B-Instruct-2507-FP8`,
-  temperature 0.7, `min_tokens` 8, 50 steps, format reminder on (checked in all 402 records).
+- **Instrument:** the V5B agent with one added arm that this run does not use (the D8 instruction arm). Checked by diff
+  against the published `tools/alfworld_ladder/v5b/src/agent.py` (same SHA-256 as the V5B agent copy the run started
+  from): the only changes are the sentence constant, the arm name in `ARMS`, `d8_instruction` returning no memory like
+  `none`, and its prompt suffix; the code paths of `none` and `retrieved_task` are unchanged.
+- **Bank, model and settings:** the V5B bank (its SHA-256 equals the published `tools/alfworld_ladder/v5b/data/bank.jsonl`)
+  and the V5B model and settings: `Qwen/Qwen3-4B-Instruct-2507-FP8`, temperature 0.7, `min_tokens` 8, 50 steps, format
+  reminder on (checked in all 402 records).
 - **Seed 1** changes the model's sampling and also the tie-break among equally similar bank entries, so the shown
   walkthrough pair can differ from seed 0. The run's rule cites an earlier audit estimate that about 66% of games get a
   different pair; that figure could not be checked here, because the public package does not list the sources.

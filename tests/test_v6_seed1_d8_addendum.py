@@ -132,3 +132,18 @@ def test_both_documents_label_the_runs_as_exploratory_and_link_each_other():
         assert link in summary, link
     for text in (side, summary, V5B_ADDENDUM.read_text(encoding="utf-8")):
         assert "pre-registered" not in text
+
+
+def test_v6_per_type_net_table_seed0_column():
+    """Seed 0 is recomputed from per_unit.csv; the seed-1 column comes from the unpublished re-run and is only
+    checked to sum to the seed-1 gains minus losses (78 - 31) printed in the same addendum."""
+    games = _solved("autolab-alfworld-ladder-r4-v6")
+    seed1 = {"pick_clean": 12, "pick_cool": 24, "pick_heat": 5, "look_at": 4, "pick_and_place": 2, "pick_two": 0}
+    text = ADDENDUM.read_text(encoding="utf-8")
+    assert sum(seed1.values()) == 78 - 31
+    for kind, s1 in seed1.items():
+        sub = {u: a for u, a in games.items() if _ttype(u).startswith(kind)}
+        net = sum(a["retrieved_task"] - a["placebo"] for a in sub.values())
+        row = f"| `{kind}` | {len(sub)} | {net} | {s1} |".replace("| -", "| −")
+        assert row in text, row
+    assert "| all | 300 | 39 | 47 |" in text

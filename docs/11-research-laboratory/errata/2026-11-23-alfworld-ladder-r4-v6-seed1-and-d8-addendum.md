@@ -70,6 +70,19 @@ over the games (the game is the unit, so the two seeds are not counted as indepe
 | transform | 151 | 0.387 | 0.646 | +0.258 | [+0.180, +0.337] |
 | other | 149 | 0.547 | 0.574 | +0.027 | [−0.040, +0.094] |
 
+**Net games gained by task type** (games solved only with `retrieved_task` minus games solved only with `placebo`;
+descriptive, a split chosen after the data):
+
+| task type | games | net, seed 0 | net, seed 1 |
+|---|---:|---:|---:|
+| `pick_clean` | 53 | 12 | 12 |
+| `pick_cool` | 49 | 15 | 24 |
+| `pick_heat` | 49 | 10 | 5 |
+| `look_at` | 50 | 7 | 4 |
+| `pick_and_place` | 46 | 0 | 2 |
+| `pick_two` | 53 | −5 | 0 |
+| all | 300 | 39 | 47 |
+
 **Agreement between seeds, game by game** (planning inputs for multi-seed programs): phi of `solved` between seed 0 and
 seed 1 is 0.585 for `placebo` and 0.468 for `retrieved_task`; the correlation of the per-game difference
 (`retrieved_task` − `placebo`) between the seeds is 0.297.
