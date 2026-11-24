@@ -3,7 +3,8 @@
 Status: graded summary; no new measurements. Added 2026-11-23; NEMO-1 added 2026-11-24.
 
 This page grades the claims that the published lab programs and the exploratory side runs support so far. It adds no
-measurement of its own. Every number is taken from the document it cites, where it is recomputed:
+measurement of its own. Every number is taken from the document it cites, where it is recomputed (except where that document says a number
+was taken from a result file without recomputation, such as the NEMO-1 Q5 interval):
 - **lab numbers** come from the package READMEs, which `scripts/verify_autolab_packages.py` recomputes;
 - **side-run numbers** come from the addenda and the side-studies note, whose solve-rate numbers can be recomputed from
   the per-game tables in [`data/lab/side-runs-2026-11/`](../../data/lab/side-runs-2026-11/README.md).
@@ -18,8 +19,9 @@ override it.
 - A bank of **expert walkthroughs**, not the agent's own earlier episodes.
 - Three models. Qwen3-4B in the normal mode (lab programs); DeepSeek V4.1 Flash in HARD mode; Mistral Nemo 12B in HARD
   mode (NEMO-FLOOR) and in the normal mode (NEMO-1). The last two are side studies. Model and mode are therefore
-  confounded in every comparison between models, except Qwen against NEMO-1, which share the normal mode. That
-  comparison still differs in game set and provider, and is descriptive.
+  confounded in comparisons between Qwen and the HARD-mode studies. Two pairs share a mode: Qwen and NEMO-1 (normal
+  mode; different game set and provider), and DeepSeek and NEMO-FLOOR (HARD mode; the same games and blocks, a
+  different provider). All such comparisons are descriptive.
 
 ## Terms
 
@@ -88,7 +90,8 @@ Every run since V6 was published, including the ones not reported here:
 - This is a gain over the filler, not over no memory. Against `none`, see the weak table: the filler itself runs about
   0.06 below `none` in V5B and V6.
 - The seed-1 runs are consistency checks, not independent replications. DS-HARD-2 repeats DS-HARD-1 on a subset of the
-  same games.
+  same games. NEMO-FLOOR and NEMO-1 use the DS-HARD-1 games and walkthroughs too, so the side-study legs are not
+  independent samples of games.
 - V4 is left out because of its measurement problem.
 
 ## Moderate
@@ -203,8 +206,8 @@ section 1, per-type table).
 - **Mistral Nemo, normal mode** (NEMO-1): 9 of its net 26 in heat, 12 in clean and cool, 2 in `pick_and_place`
   (side-studies note).
 
-**Reading:** "the gain is in heating" holds for DeepSeek in HARD mode only. Model and mode are confounded, except between
-Qwen and NEMO-1, whose comparison still differs in game set and provider. One untested explanation is that the normal mode's admissible-action list already offers the heat
+**Reading:** "the gain is in heating" holds for DeepSeek in HARD mode only. Model and mode are confounded between Qwen and
+the HARD-mode studies; Qwen and NEMO-1 share the normal mode but differ in game set and provider. One untested explanation is that the normal mode's admissible-action list already offers the heat
 command.
 
 ### Do walkthroughs of another type help? (against `none`)

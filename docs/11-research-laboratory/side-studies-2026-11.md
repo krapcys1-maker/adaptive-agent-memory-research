@@ -85,9 +85,10 @@ The models differ from V6, and every study except NEMO-1 also changes the prompt
   - It found the plan followed, the data complete and the claim supported by the numbers.
   - It asked for two corrections before use, both applied in the NEMO-1 section: no "replication" wording, and a
     statement that Q2 is borderline.
-  - The committed result file and summary (SHA-256 at the end of this note) are unchanged, so they still carry three
-    defects that the review noted or that this note corrects. They cite the plan as "r2", although the rules applied
-    are r3's. The summary calls the study a "cross-model replication". The result file lacks the count of
+  - The committed result file, summary and pilot gate are unchanged (SHA-256 of the first two at the end of this
+    note), so they still carry three defects that the review noted or that this note corrects. The result file's
+    header and the pilot gate cite the plan as "r2", although the rules applied are r3's. The summary calls the study
+    a "cross-model replication" and its rule a "replication rule". The result file lacks the count of
     wrapper-mapped token-cache lookups that the plan lists among its validity checks. The corrected wording exists only
     in this note.
 - **Numeric re-verification of DS-HARD-1 and DS-HARD-2:** a Claude model (Sonnet). Internal.
@@ -97,8 +98,8 @@ The models differ from V6, and every study except NEMO-1 also changes the prompt
     to Q3 and of `retrieved_task` − `none`.
   - For NEMO-1, the following are taken from the result file and were not recomputed: Q4, the Q5 bootstrap interval,
     the intervals of the sensitivity rows, the per-step counters, the length ratios and the costs.
-  - The step statistics agree with them.
-  - Bootstrap intervals agree only approximately, because they depend on the random stream; the note gives the result
+  - For the other studies, the step statistics agree with them.
+  - Their bootstrap intervals agree only approximately, because they depend on the random stream; the note gives the result
     file's values.
 
 No model outside the Claude family recomputed any number. With the published tables, anyone can.
@@ -362,7 +363,8 @@ the HARD-mode floor, from 2 of 100 (`placebo`) to 22 of 100 (`retrieved_task`). 
     both runs recorded, the recorded memory sources equal DS-HARD-1's (counted from the private logs).
 - **Calls:** the main run on 2026-11-23, 05:26–21:41 UTC, after NEMO-FLOOR and after the r3 qualification pilot above.
   The 20 pilot games are among the 200; the main run re-ran them, and the pilot episodes are not analysed.
-- **Plan:** revision r3, written before any r3 data on 2026-11-22 (evidence: file times).
+- **Plan:** revision r3, written on 2026-11-22 (file time 18:39 UTC), before any r3 data (first r3 pilot call
+  2026-11-23 03:44 UTC).
   - Revisions: r1 in HARD mode (an internal design review by a Claude model, Sonnet, gave NO-GO); r2 in HARD mode with
     the qualification pilot above (NO-GO); r3 in the normal mode, revised after a second internal design review (Sonnet).
   - Two primaries, with Holm correction.
@@ -400,9 +402,10 @@ Every question of the plan:
 | sensitivity | Q1 without the 20 pilot games | 180 | +0.139 | [+0.058, +0.218] | — | 0.0013 (uncorrected) | — |
 | sensitivity | Q2 without the 20 pilot games | 176 | +0.091 | [+0.009, +0.171] | — | 0.040 (uncorrected) | — |
 
-- Solved games: `none` 46, `placebo` 43, `retrieved_task` 69 and `mismatched_type` 53, of 200.
-- No floor or ceiling flag of the plan fired. The all-pairs sensitivity rows equal the primary rows, because every game
-  is complete.
+- Solved games: `none` 46, `placebo` 43, `retrieved_task` 69 and `mismatched_type` 53, of 200. `placebo` − `none` is
+  not a question of this plan, so it is not in the table; the per-game table gives it.
+- No floor or ceiling flag of the plan fired. Because every game is complete, the all-pairs sensitivity rows have the
+  same n, differences and intervals as the primary rows; their p values are unadjusted (0.0013 and 0.048).
 - The plan's classification rule, fixed before the data, gives "SAME PATTERN AS DS-HARD-1 (cross-model and
   cross-mode)": both primaries POSITIVE, with no floor flag on Q2. The plan defines this as the same direction and
   significance pattern on the same contrasts; it compares effect sizes only descriptively.
@@ -426,8 +429,8 @@ Both meet the plan-defined POSITIVE rule after Holm correction; Q2 only just.
   game's outcome changing could move p above 0.05 and the classification to the plan's "PARTIAL". With one sample per
   cell and no seed, Q2 is weak support.
 - **Q2 does not separate procedural content from matched vocabulary, object names or concrete commands**, as in
-  DS-HARD-1. The control arm shows the same walkthroughs as there, so the exposure imbalance described under DS-HARD-1
-  applies here as well.
+  DS-HARD-1. The control arm showed the same walkthroughs as there in every episode both runs recorded, so the exposure
+  imbalance described under DS-HARD-1 applies here as well (not recounted on NEMO-1's 196 games).
 - **Normal mode, not command production.** With the admissible list shown, memory can help by choosing among listed
   commands. The result says nothing about producing commands. The plan had named a Q1 near zero as an outcome
   consistent with DS-HARD-1 in this mode; Q1 was positive.
@@ -451,7 +454,8 @@ Both meet the plan-defined POSITIVE rule after Holm correction; Q2 only just.
 
 ## Across the studies
 
-- **Models and modes are confounded.** The lab's V6 measures Qwen3-4B in normal mode. These studies measure DeepSeek
+- **Models and modes are confounded** between Qwen and the HARD-mode studies. The lab's V6 measures Qwen3-4B in normal
+  mode. These studies measure DeepSeek
   V4.1 Flash in HARD mode, and Mistral Nemo 12B in HARD mode (NEMO-FLOOR) and in normal mode (NEMO-1). Any comparison of
   gain sizes, or of which task types gain, is descriptive. Net games gained over `placebo`:
 
