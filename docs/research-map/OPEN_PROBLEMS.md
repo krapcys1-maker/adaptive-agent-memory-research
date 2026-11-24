@@ -56,7 +56,7 @@ counts toward co-authorship of the next report ([AUTHORSHIP.md](../../AUTHORSHIP
 - On another GPU and serving stack, the first volunteer placebo-check cell
   ([`placebo-v4-B03-r1-mt0-fr0`](../../data/contrib/placebo-v4-B03-r1-mt0-fr0/README.md), `@2018cx`, A100-SXM4-80GB,
   vLLM 0.20.0, 20 `v4` games, `min_tokens = 0`, `format_reminder = 0`, older `json_2.1.1` archive; sensitivity cell,
-  CPU replay passed, lab spot-check pending) showed the same empty-answer pattern in this single cell (`empty/step`: none 0.577, placebo
+  CPU replay and lab spot-check passed) showed the same empty-answer pattern in this single cell (`empty/step`: none 0.577, placebo
   0.001, retrieved_task 0.545) with solve rates 0.45 / 0.45 / 0.60 (`placebo − none` 0.00, 2/2).
 - In V4, V5B and V6 the memory arm makes more invalid actions per step (V4: 0.291 vs 0.195 placebo; V5B: 0.266 vs
   0.194 placebo; V6 full walkthroughs: 0.322 vs 0.197 placebo, actions only 0.271, plans 0.214): walkthroughs may help
@@ -138,7 +138,7 @@ counts toward co-authorship of the next report ([AUTHORSHIP.md](../../AUTHORSHIP
   (Qwen3-1.7B, Llama-3.2-3B, Gemma-3-4B) or another vLLM version. A different model makes the cell a conceptual
   replication; the card records it. One `--min-tokens 0` sensitivity cell
   ([`placebo-v4-B03-r1-mt0-fr0`](../../data/contrib/placebo-v4-B03-r1-mt0-fr0/README.md), A100, vLLM 0.20.0,
-  spot-check pending) is merged and showed the same empty-answer pattern in this single cell (`0.577 / 0.001 / 0.545`); its paired
+  spot-check passed) is merged and showed the same empty-answer pattern in this single cell (`0.577 / 0.001 / 0.545`); its paired
   `--min-tokens 8` cell on B03 and reference-configuration cells remain open.
 - **Why it matters:** if it generalises, every memory evaluation without such a control is suspect.
 

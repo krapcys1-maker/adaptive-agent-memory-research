@@ -47,8 +47,8 @@ The CSV solve flags and step counts match the JSONL, and the logged memory
 sources do not share a task family with their evaluation games.
 
 An independent pass through the environment on CPU replayed each submitted
-action sequence. All 60 solve flags and step counts matched. The lab's own
-spot-check rerun is pending.
+action sequence. All 60 solve flags and step counts matched. The lab's spot-check re-run
+(5 games, 15 episodes, 2026-11-24) passed; see [`spotcheck/`](spotcheck/README.md).
 
 From the repository root, with the environment versions above and
 `ALFWORLD_DATA` pointing to the directory containing `json_2.1.1`:
