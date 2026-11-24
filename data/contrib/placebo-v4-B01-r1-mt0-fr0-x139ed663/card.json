@@ -1,0 +1,125 @@
+{
+ "cell_id": "placebo-v4-B01-r1-mt0-fr0-x139ed663",
+ "pool": "v4",
+ "block": "B01",
+ "replicate": 1,
+ "games": [
+  "train/pick_and_place_simple-Book-None-Desk-313/trial_T20190909_140547_719284",
+  "train/pick_clean_then_place_in_recep-Tomato-None-Fridge-18/trial_T20190909_045941_566760",
+  "train/pick_two_obj_and_place-Candle-None-Drawer-411/trial_T20190909_060014_389023",
+  "train/pick_cool_then_place_in_recep-Mug-None-CoffeeMachine-18/trial_T20190907_075254_520215",
+  "train/pick_heat_then_place_in_recep-Egg-None-Fridge-13/trial_T20190907_151643_465634",
+  "train/pick_and_place_simple-Bowl-None-Fridge-6/trial_T20190906_230933_751794",
+  "train/pick_clean_then_place_in_recep-ButterKnife-None-DiningTable-27/trial_T20190907_062853_238120",
+  "train/pick_two_obj_and_place-SoapBottle-None-GarbageCan-418/trial_T20190909_071048_747815",
+  "train/pick_cool_then_place_in_recep-Bowl-None-Shelf-7/trial_T20190906_190034_099701",
+  "train/pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-23/trial_T20190906_194152_150964",
+  "train/pick_and_place_simple-RemoteControl-None-ArmChair-222/trial_T20190906_201531_220119",
+  "train/pick_clean_then_place_in_recep-Knife-None-Drawer-8/trial_T20190907_044636_221471",
+  "train/pick_two_obj_and_place-Mug-None-Cabinet-318/trial_T20190907_222852_159147",
+  "train/pick_cool_then_place_in_recep-Bowl-None-CounterTop-13/trial_T20190909_060947_567458",
+  "train/pick_heat_then_place_in_recep-Tomato-None-Fridge-7/trial_T20190909_022716_437691",
+  "train/pick_and_place_simple-Bread-None-Microwave-15/trial_T20190907_040949_061246",
+  "train/pick_clean_then_place_in_recep-SoapBar-None-Cabinet-408/trial_T20190908_032441_986952",
+  "train/pick_two_obj_and_place-KeyChain-None-Drawer-307/trial_T20190919_014635_645841",
+  "train/pick_cool_then_place_in_recep-Cup-None-Shelf-7/trial_T20190906_222229_326451",
+  "train/pick_heat_then_place_in_recep-Tomato-None-Fridge-18/trial_T20190907_192941_099066"
+ ],
+ "pool_games_sha256": "172a72a2e615e9c2aa5a2ab1b7d76fa324398f2a031b53b574c4a7c7321555e0",
+ "block_games_sha256": "1f6f1070e12b996d2809ca5d25bde9ee2713213e9fb7299292bc5d51e7bfc8d1",
+ "pools_file_sha256": "b90b6a89c088c9fc85808bf466ca709000450d951957b21f95056b5e96afe30a",
+ "arms": [
+  "none",
+  "placebo",
+  "retrieved_task"
+ ],
+ "fixed": {
+  "model": "Qwen/Qwen3-4B",
+  "temperature": 0.7,
+  "max_tokens": 2048,
+  "min_tokens": 0,
+  "format_reminder": false,
+  "max_steps": 50,
+  "history_length": 50,
+  "k": 2,
+  "prompt": {
+   "prompt_sha256": "89210ff5cfbac7d261e1bebde9730a8e22261feec9ba9ed56d586ea2d5b66f4d",
+   "prompt_template_sha256": "e1d94a682d38c95d47e0341adb2c66048509dcfbfb1d5a7f07d4d2828b0424ff",
+   "agent_prompts_match_template": true,
+   "prompts_match_v3_v4": true
+  },
+  "sha256": {
+   "agent": "5e22b4e04b7cd864a720ae2f067b0d1c0ca2248b29ef824225375571ba0288d0",
+   "placebo": "ac91b81d689a4994bf60ea660b7294d5606792ca1e6e46274243d09e2720b834",
+   "bank": "73f0c63a718a1aa1c27141d70257d7ee75ca9a3d6f02fb42a950fb5272b54548",
+   "prompt_template": "e1d94a682d38c95d47e0341adb2c66048509dcfbfb1d5a7f07d4d2828b0424ff"
+  },
+  "harness_commit": "937b142c66c63e5ce78997ec12fcae88d75646af"
+ },
+ "replication": "conceptual: model or prompts differ from V3/V4; analysed separately",
+ "agent_note": "agent.py is the current public runner, not the V4 agent pin (68f48c2f, unpublished). With format_reminder off its prompt text equals instrument/prompt_template.txt as pinned by V3 and V4 (prompts_match_v3_v4).",
+ "batch_sha256": "af0adfb06898336950ef651e3aee194aca89b2ce4a0ed14f5cf18eedc73c18a3",
+ "archive": {
+  "profile": "reference",
+  "class": "primary",
+  "archive": "json_2.1.2_tw-pddl.zip",
+  "games_canonical_sha256": "643701c5bb9683c6b3ccc7007d52dc423ee6793eb5eed1d95fc0399276bc240e",
+  "digest_type": "SHA-256 of game.tw-pddl, per scheduled game, against the profile's pinned manifest",
+  "receipt_required": true,
+  "receipts": [
+   {
+    "run": 0,
+    "cell_id": "placebo-v4-B01-r1-mt0-fr0-x139ed663",
+    "batch_sha256": "af0adfb06898336950ef651e3aee194aca89b2ce4a0ed14f5cf18eedc73c18a3",
+    "profile": "reference",
+    "games_canonical_sha256": "643701c5bb9683c6b3ccc7007d52dc423ee6793eb5eed1d95fc0399276bc240e",
+    "manifest_file_sha256": "a3982cb23e26182a4761f349cd1344919affabe8fad71cd5eeaf89970e084972",
+    "placebo_check_sha256": "f8c2bc44446b6c51e5d466a47ead21c6506e0a64c9e0d2bf0d3a576edb006d65",
+    "digest_type": "SHA-256 of game.tw-pddl, per scheduled game, against the profile's pinned manifest",
+    "games_checked": 20,
+    "checked_games_sha256": "790d1520a7e001888f1f00d32f960a38d2247af0aaea9076e8c65c4121f1167a",
+    "data_root": {
+     "source": "ALFWORLD_DATA",
+     "folder": "json_2.1.1"
+    },
+    "checked_at": "2026-11-22T12:34:22+00:00",
+    "jobs_scheduled": 60,
+    "records_lines_before": 0,
+    "records_sha256_before": null,
+    "records_bytes_before": 0,
+    "records_lines_after": 46,
+    "records_sha256_after": "a0f3b387e28d46d8b360311d04f3672ce8094fc12c5be0e3cc7710036175ea91",
+    "records_bytes_after": 76842,
+    "returncode": 0,
+    "ended_at": "2026-11-22T15:26:09+00:00",
+    "closed_as": "run"
+   }
+  ]
+ },
+ "machine": {
+  "gpu": "Tesla T4",
+  "driver": "580.178.04",
+  "vllm_version": "0.34.0",
+  "served_models": [
+   "Qwen/Qwen3-4B"
+  ],
+  "quantisation_kernel": null,
+  "os": "Linux-6.18.55+-x86_64-with-glibc2.39"
+ },
+ "started_at": "2026-11-22T12:34:22+00:00",
+ "finished_at": "2026-11-22T15:26:10+00:00",
+ "status": "incomplete",
+ "notes": "",
+ "archive_evidence": "preflight: 1 receipt(s), profile reference (primary)",
+ "recovered_unverified_jobs": [],
+ "records": {
+  "expected": 60,
+  "present": 46,
+  "missing": 14,
+  "duplicates": 0,
+  "extra": 0,
+  "seed_mismatches": 0,
+  "setting_mismatches": 0
+ },
+ "invalid_reasons": []
+}
