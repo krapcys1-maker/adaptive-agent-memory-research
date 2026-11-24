@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="210" viewBox="0 0 760 210" role="img" aria-labelledby="title desc">
+  <title id="title">Three ways to start</title>
+  <desc id="desc">Three boxes. 15 minutes on a CPU: re-check a published result with the package verifier. An evening without a GPU: summarise a paper or take a good-first or no-gpu-needed issue. About 2 hours on a 12 GB GPU: run a cell or the placebo check on your own model. Credit rules for all three are in AUTHORSHIP.md.</desc>
+  <rect x="0" y="0" width="760" height="210" fill="#ffffff"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" fill="#1f2328">
+    <text x="380" y="26" font-size="17" font-weight="600" text-anchor="middle">Three ways to start</text>
+    <g>
+      <rect x="20" y="42" width="230" height="126" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+      <text x="135" y="68" font-size="14" font-weight="600" text-anchor="middle">15 minutes &#183; CPU</text>
+      <text x="135" y="96" font-size="13" text-anchor="middle">Re-check a published</text>
+      <text x="135" y="114" font-size="13" text-anchor="middle">result: run the package</text>
+      <text x="135" y="132" font-size="13" text-anchor="middle">verifier, read the</text>
+      <text x="135" y="150" font-size="13" text-anchor="middle">per-unit table</text>
+    </g>
+    <g>
+      <rect x="265" y="42" width="230" height="126" rx="8" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.5"/>
+      <text x="380" y="68" font-size="14" font-weight="600" text-anchor="middle">An evening &#183; no GPU</text>
+      <text x="380" y="96" font-size="13" text-anchor="middle">Summarise a paper, or</text>
+      <text x="380" y="114" font-size="13" text-anchor="middle">take a good first issue</text>
+      <text x="380" y="132" font-size="13" text-anchor="middle">or no-gpu-needed issue</text>
+      <text x="380" y="150" font-size="13" text-anchor="middle">(code, tests, analysis)</text>
+    </g>
+    <g>
+      <rect x="510" y="42" width="230" height="126" rx="8" fill="#fff8c5" stroke="#9a6700" stroke-width="1.5"/>
+      <text x="625" y="68" font-size="14" font-weight="600" text-anchor="middle">About 2 h &#183; 12 GB GPU</text>
+      <text x="625" y="96" font-size="13" text-anchor="middle">Run a cell: two arms,</text>
+      <text x="625" y="114" font-size="13" text-anchor="middle">20 frozen tasks, one seed;</text>
+      <text x="625" y="132" font-size="13" text-anchor="middle">or the placebo check</text>
+      <text x="625" y="150" font-size="13" text-anchor="middle">on your own model</text>
+    </g>
+    <text x="380" y="194" font-size="12" fill="#59636e" text-anchor="middle">Credit rules for all three paths: AUTHORSHIP.md</text>
+  </g>
+</svg>
