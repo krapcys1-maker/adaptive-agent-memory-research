@@ -1,6 +1,6 @@
 # What we know so far: experience memory in ALFWorld, November 2026
 
-Status: graded summary; no new measurements. Added 2026-11-23.
+Status: graded summary; no new measurements. Added 2026-11-23; NEMO-1 added 2026-11-24.
 
 This page grades the claims that the published lab programs and the exploratory side runs support so far. It adds no
 measurement of its own. Every number is taken from the document it cites, where it is recomputed:
@@ -16,8 +16,9 @@ override it.
 - ALFWorld text games only, all of them `train` games. Their rooms were seen when the bank was built; `valid_unseen` is
   not used.
 - A bank of **expert walkthroughs**, not the agent's own earlier episodes.
-- Three models, each in one prompt mode: Qwen3-4B in the normal mode (lab programs), and DeepSeek V4.1 Flash and Mistral
-  Nemo 12B in HARD mode (side studies). Model and mode are therefore confounded in every comparison between models.
+- Three models. Qwen3-4B in the normal mode (lab programs); DeepSeek V4.1 Flash in HARD mode; Mistral Nemo 12B in HARD
+  mode (NEMO-FLOOR) and in the normal mode (NEMO-1). The last two are side studies. Model and mode are therefore
+  confounded in every comparison between models, except Qwen against NEMO-1, which share the normal mode.
 
 ## Terms
 
@@ -38,7 +39,7 @@ Short names used below:
 - **Addenda:** [V5B secondary contrast](errata/2026-11-19-alfworld-ladder-r4-v5b-secondary-contrast.md),
   [V5B seed 1](errata/2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md) and
   [V6 seed 1 and D8](errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md).
-- **The [side-studies note](side-studies-2026-11.md):** DS-HARD-1, DS-HARD-2, NEMO-FLOOR and the pilots.
+- **The [side-studies note](side-studies-2026-11.md):** DS-HARD-1, DS-HARD-2, NEMO-FLOOR, NEMO-1 and the pilots.
 
 ## Runs since V6 was published
 
@@ -55,7 +56,8 @@ Every run since V6 was published, including the ones not reported here:
 | NEMO-1 smoke test | 5 API calls, one unfinished episode | — | not a result (no episode finished) |
 | NEMO-1 pilot, revision r2 | Mistral Nemo 12B, HARD mode, 20 games | side-studies note | reported as a pilot (NO-GO) |
 | NEMO-FLOOR | Mistral Nemo 12B, HARD mode, 100 games | side-studies note | reported |
-| NEMO-1 pilot r3 and main run | Mistral Nemo 12B, normal mode | — | pilot GO; main run started 2026-11-23, no result as of that date; left to the NEMO-1 report |
+| NEMO-1 pilot, revision r3 | Mistral Nemo 12B, normal mode, the same 20 games | side-studies note | reported as a pilot (GO) |
+| NEMO-1 | Mistral Nemo 12B, normal mode, the 200 DS-HARD-1 games | side-studies note | reported (added 2026-11-24) |
 | Faster-serving benchmark | vLLM serving flags on recorded V6 prompts | — | engineering measurement, no memory contrast; not reported here |
 
 ## Grades
@@ -76,7 +78,8 @@ Every run since V6 was published, including the ones not reported here:
 - V6 at seed 1: +0.157; two-seed estimate +0.143 [+0.090, +0.196] (V6 addendum, section 1);
 - DS-HARD-1 Q1 +0.218 [+0.158, +0.282];
 - DS-HARD-2 S0 +0.190, on the same population as DS-HARD-1;
-- NEMO-FLOOR +0.200, a floor lift (side-studies note).
+- NEMO-FLOOR +0.200, a floor lift (side-studies note);
+- NEMO-1 Q1 +0.130 [+0.054, +0.205], Mistral Nemo in the normal mode, on the DS-HARD-1 games (side-studies note).
 
 **Limits:**
 - Among V5B and V6, no lab interval is `practical`: every lower bound is below the SESOI. The lab's level for these
@@ -95,13 +98,16 @@ Every run since V6 was published, including the ones not reported here:
 - V5B `retrieved_task − mismatched_type` +0.154 [+0.035, +0.273], `positive`. This is a secondary contrast, named
   before the measurement and reported later (V5B secondary-contrast addendum).
 - DS-HARD-1 Q2 +0.159 [+0.103, +0.220], plan-defined POSITIVE (side-studies note).
+- NEMO-1 Q2 +0.082 [+0.005, +0.157], plan-defined POSITIVE but borderline (Holm p = 0.048), on the same games and
+  walkthroughs as DS-HARD-1 (side-studies note).
 
 **Limits:**
 - In both, the control repeats a few walkthroughs across many games:
   - in V5B, its ten most used walkthroughs account for 131 of 402 uses;
   - in DS-HARD-1, for 105 of 378 uses (the matched arm: 44 of 378).
 - Neither separates knowing the procedure of the type from matched vocabulary, object names or concrete commands.
-- The DeepSeek half is one model, with one sample per cell.
+- The side-study legs are one sample per cell. DS-HARD-1 and NEMO-1 share the games and the walkthroughs, so they are
+  not independent samples.
 
 ### The actions alone, without the observation text, already beat the placebo
 
@@ -114,12 +120,13 @@ Every run since V6 was published, including the ones not reported here:
 - The V6 interval is not `practical`.
 - The actions keep the verbs, objects and appliances. Both arms are padded to the full block length.
 
-### For Qwen and DeepSeek, more of the gain over the filler falls in transform games (clean / cool / heat) than in the others
+### For Qwen, DeepSeek and Mistral Nemo in the normal mode, more of the gain over the filler falls in transform games (clean / cool / heat) than in the others
 
 **Rests on** transform − other, the difference of the two stratum differences:
 - Qwen V6 against `placebo`: +0.232 [+0.103, +0.360] at seed 0 and +0.231 [+0.102, +0.361] at seed 1; two-seed means
   +0.231 [+0.129, +0.334] (V6 addendum, section 1).
 - DeepSeek DS-HARD-1 Q5: +0.297, bootstrap [+0.183, +0.402] (side-studies note).
+- Mistral Nemo NEMO-1 Q5: +0.160, bootstrap [+0.010, +0.310] (side-studies note).
 
 **Limits:**
 - The split was chosen after V5B had shown where the gain sits, so it is exploratory.
@@ -127,7 +134,10 @@ Every run since V6 was published, including the ones not reported here:
   others.
 - **V5B does not support the pattern at seed 1.** Against `none`, V5B's difference of differences is +0.213
   [+0.052, +0.375] at seed 0, but only +0.084 [−0.077, +0.245] at seed 1 (V5B seed-1 addendum).
-- **It does not hold for Mistral Nemo:** 7 of its net 20 games gained are transform games, and 9 are `pick_and_place`.
+- **It does not hold for Mistral Nemo in HARD mode** (NEMO-FLOOR): 7 of its net 20 games gained are transform games, and
+  9 are `pick_and_place`.
+- In NEMO-1 the transform types start near the floor without memory (3 of 32 to 34 solved by `none` in each), so the
+  split confounds task type with headroom there as well.
 
 ### A rule-based plan without numbers and room-specific locations beats the placebo, and is not detectably worse than the actions alone
 
@@ -187,16 +197,21 @@ section 1, per-type table).
 - **DeepSeek, HARD mode:** 26 of its net 42 in heat games (side-studies note).
 - **Qwen, normal mode** (V6 seed 0): 27 of its net 39 in clean and cool, 10 in heat.
 - **Mistral Nemo, HARD mode:** 9 of its net 20 in `pick_and_place`, 4 in heat (side-studies note).
+- **Mistral Nemo, normal mode** (NEMO-1): 9 of its net 26 in heat, 12 in clean and cool, 2 in `pick_and_place`
+  (side-studies note).
 
-**Reading:** "the gain is in heating" holds for DeepSeek in HARD mode only. Model and mode are confounded. One untested
-explanation is that the normal mode's admissible-action list already offers the heat command.
+**Reading:** "the gain is in heating" holds for DeepSeek in HARD mode only. Model and mode are confounded, except between
+Qwen and NEMO-1. One untested explanation is that the normal mode's admissible-action list already offers the heat
+command.
 
 ### Do walkthroughs of another type help? (against `none`)
 
 - **DeepSeek, HARD mode:** `mismatched_type − none` +0.063 [+0.006, +0.121], uncorrected (DS-HARD-1 Q3).
 - **Qwen, normal mode:** V5B `mismatched_type − none` −0.045 [−0.135, +0.045], `inconclusive`.
+- **Mistral Nemo, normal mode:** `mismatched_type − none` +0.041 [−0.026, +0.108], uncorrected (NEMO-1 Q3).
 
-**Reading:** both model and mode differ. In HARD mode any walkthrough also shows the command grammar in use; that route
+**Reading:** between DeepSeek and the others, both model and mode differ. In the normal mode neither interval excludes
+zero. In HARD mode any walkthrough also shows the command grammar in use; that route
 is untested.
 
 ### What does the D8 sentence do on transform games? (against `none`, across runs)
@@ -218,8 +233,8 @@ walkthroughs clearly add beyond the sentence; on V5B they do not detectably add.
 ## What cannot be said yet
 
 - That the agent learns from **its own** episodes. Every result uses a bank of expert walkthroughs.
-- That memory "works across models" as a general claim. Three models were measured, each in one mode, and the DeepSeek
-  studies share games.
+- That memory "works across models" as a general claim. Three models were measured, two of them in one mode only, and the
+  side studies share games.
 - That an abstract strategy carries the gain. The plans keep the verbs and appliance classes, and "about two thirds" is
   not supported: the interval of the plan's share is 0.42 to 0.94.
 - That memory or the D8 sentence harms where it is not needed. No harm specific to added content was shown; the drop

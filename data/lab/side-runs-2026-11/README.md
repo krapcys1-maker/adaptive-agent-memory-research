@@ -3,9 +3,9 @@
 # Side runs since V6 (November 2026): per-game solved tables
 
 One CSV per run. Each row is one game × arm × seed, with the columns `unit`, `arm`, `seed` and `solved` (1 = the game
-was won within 50 steps). The `ds-hard-1.csv` table has one more column, `excluded_by_length_rule`: 1 marks the 4
-`mismatched_type` episodes that the study plan excludes from Q2 and Q3, because their block length differed by more
-than 10% from `retrieved_task`.
+was won within 50 steps). The `ds-hard-1.csv` and `nemo-1.csv` tables have one more column, `excluded_by_length_rule`: 1 marks
+the `mismatched_type` episodes that the study plan excludes from Q2 and Q3 (4 in each table), because their block
+length differed by more than 10% from `retrieved_task`.
 
 Every `unit` id is already public: each is a game of the published V6 package (`../autolab-alfworld-ladder-r4-v6/`) or
 the published V5B package (`../autolab-alfworld-ladder-r4-v5b/`). The tables hold no actions, prompts, model outputs,
@@ -27,7 +27,9 @@ What the runs are, how to read them, and their limits:
 | `ds-hard-1.csv` | 195 V6 games with records (200 planned), 4 arms (775 episodes recorded) | DeepSeek V4.1 Flash, HARD | 775 | `a4965221b41516490816eb549318e24d2f0b448ec5b7cb986506d2837ee88df3` |
 | `ds-hard-2.csv` | 100 of those games, 4 arms | DeepSeek V4.1 Flash, HARD | 400 | `54163d3dd0e9b224e5eeb0995ede997f0edfc33ce478c807db1069303e712c2c` |
 | `nemo-floor.csv` | 100 of the DS-HARD-1 games, 3 arms | Mistral Nemo 12B, HARD | 300 | `039fd49eb0fcacd804f9c6df57148aa86446596ee7624991e85692659cfdd446` |
-| `nemo-pilot.csv` | NEMO-1 qualification pilot, 4 arms (65 of 80 episodes recorded) | Mistral Nemo 12B, HARD | 65 | `a3c0112f6cfd42215138d0e2082541abec9e1ee0ba8951a02f0d5b058c2590ad` |
+| `nemo-pilot.csv` | NEMO-1 qualification pilot, revision r2, 4 arms (65 of 80 episodes recorded) | Mistral Nemo 12B, HARD | 65 | `a3c0112f6cfd42215138d0e2082541abec9e1ee0ba8951a02f0d5b058c2590ad` |
+| `nemo-1-pilot-r3.csv` | NEMO-1 qualification pilot, revision r3: the same 20 games, 4 arms | Mistral Nemo 12B, normal | 80 | `a907bd3130e9ae29f9e500af56e8e7595136af0f8b98e3ef8285ca0e021ffa68` |
+| `nemo-1.csv` | NEMO-1 main run: the 200 DS-HARD-1 games, 4 arms | Mistral Nemo 12B, normal | 800 | `c52a077ce0b927260f5279930649332ed85bd7abb1c2a0bfbb0e4316c6addd7f` |
 
 `tests/test_v6_seed1_d8_addendum.py` recomputes the headline contrasts of the addenda and the note from these tables
 and from the packages' `per_unit.csv`.
