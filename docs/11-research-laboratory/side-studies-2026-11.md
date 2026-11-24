@@ -1,6 +1,6 @@
-# Side studies, November 2026: DS-HARD-1, DS-HARD-2, NEMO-FLOOR and the DeepSeek and Mistral pilots
+# Side studies, November 2026: DS-HARD-1, DS-HARD-2, NEMO-FLOOR, NEMO-1 and the DeepSeek and Mistral pilots
 
-Status: exploratory side studies, outside the lab pipeline. Added 2026-11-23.
+Status: exploratory side studies, outside the lab pipeline. Added 2026-11-23; NEMO-1 added 2026-11-24.
 
 ## How to read this note
 
@@ -20,7 +20,8 @@ data. The results below are read only against those plans.
   "plan-defined".
 - The prompt mode and the game sets were chosen after the pilots described below.
 
-These are exploratory results about other models in a harder prompt mode, not confirmatory results of the project.
+These are exploratory results about other models, mostly in a harder prompt mode (NEMO-1 uses the lab's normal mode),
+not confirmatory results of the project.
 The list of all runs since V6, including those not reported here, is in [what we know so far](evidence-summary-2026-11.md).
 
 **Funding and process.** The DeepSeek and OpenRouter calls were paid by the maintainer, from budgets approved in
@@ -35,8 +36,8 @@ from the spend ledgers (conservative: all input booked at the peak cache-miss pr
 - the walkthroughs that V6's retrieval picks at seed 0;
 - the same kind of length-matched placebo block.
 
-The models and the prompt mode differ from V6:
-- **HARD mode.** The prompt shows no list of admissible actions. It gives the ALFWorld command grammar with a worked
+The models differ from V6, and every study except NEMO-1 also changes the prompt mode:
+- **HARD mode** (DS-HARD-1, DS-HARD-2, NEMO-FLOOR and the HARD-mode pilots). The prompt shows no list of admissible actions. It gives the ALFWorld command grammar with a worked
   example, and the agent must type a valid command itself (an invalid one gets "Nothing happens."). The text is
   identical in every arm, so each memory comparison changes one factor. The HARD-mode prompt patch is not in this
   repository.
@@ -44,7 +45,8 @@ The models and the prompt mode differ from V6:
   the Qwen tokenizer the lab used for V6.
 
 **Statistics, as fixed in the plans.**
-- The game is the unit. A game enters a contrast only if both arms finished.
+- The game is the unit. A game enters a contrast only if both arms finished (NEMO-1: only games with all four arms
+  recorded).
 - Each contrast is a paired difference of solve rates, with an exact two-sided McNemar test on the discordant pairs and
   a 95% Newcombe interval (method 10, paired).
 - Plan-defined verdict words:
@@ -79,12 +81,25 @@ The models and the prompt mode differ from V6:
     result files, used here).
 - **The science review of NEMO-FLOOR:** a Claude model (Fable). The studies were written and run by Claude sessions, so
   this review is internal (same model family), not independent. It found the claim supported, with minor notes.
+- **The lab's science review of NEMO-1:** also a Claude model (Fable), so internal as well.
+  - It found the plan followed, the data complete and the claim supported by the numbers.
+  - It asked for two corrections before use, both applied in the NEMO-1 section: no "replication" wording, and a
+    statement that Q2 is borderline.
+  - The committed result file, summary and pilot gate are unchanged (SHA-256 of the first two at the end of this
+    note), so they still carry three defects that the review noted or that this note corrects. The result file's
+    header and the pilot gate cite the plan as "r2", although the rules applied are r3's. The summary calls the study
+    a "cross-model replication" and its rule a "replication rule". The result file lacks the count of
+    wrapper-mapped token-cache lookups that the plan lists among its validity checks. The corrected wording exists only
+    in this note.
 - **Numeric re-verification of DS-HARD-1 and DS-HARD-2:** a Claude model (Sonnet). Internal.
-- **This note's recomputation:** a script written by a Claude model that does not import the studies' analyzers.
+- **This note's recomputation:** scripts written by a Claude model that do not import the studies' analyzers.
   Internal.
-  - All solve-rate numbers agree exactly with the result files.
-  - The step statistics agree with them.
-  - Bootstrap intervals agree only approximately, because they depend on the random stream; the note gives the result
+  - All solve-rate numbers agree exactly with the result files. For NEMO-1 this includes the Newcombe intervals of Q1
+    to Q3 and of `retrieved_task` − `none`.
+  - For NEMO-1, the following are taken from the result file and were not recomputed: Q4, the Q5 bootstrap interval,
+    the intervals of the sensitivity rows, the per-step counters, the length ratios and the costs.
+  - For the other studies, the step statistics agree with them.
+  - Their bootstrap intervals agree only approximately, because they depend on the random stream; the note gives the result
     file's values.
 
 No model outside the Claude family recomputed any number. With the published tables, anyone can.
@@ -115,9 +130,18 @@ times). Neither rule judged memory: with 20 games, a solve-rate difference is a 
   - too few episodes without error;
   - too few games with a usable length ratio.
 - This pilot motivated NEMO-FLOOR. Its 20 games are excluded from NEMO-FLOOR, because their outcomes had been seen.
-- **NEMO-1 revision r3, normal mode.** NEMO-1 was then re-planned for the normal mode (r3). Its qualification pilot
-  (2026-11-23, 80 of 80 episodes) passed its rule (GO), and the NEMO-1 main run started on 2026-11-23. It had no result
-  as of 2026-11-23. Its pilot and main run are left to the NEMO-1 report and are not reported here.
+
+**Mistral Nemo qualification pilot, revision r3** (normal mode; the same 20 V6 games; 4 arms). NEMO-1 was then
+re-planned for the normal mode (r3). Its qualification pilot used the same 20 games as the r2 pilot.
+- Its rule, written before the data, gives GO only if all of these hold:
+  - `none` solves 4 to 16 of 20;
+  - at least 90% of the 80 episodes end without an error;
+  - the mean Mistral-token length ratio of `placebo`, and that of `mismatched_type`, lies in [0.90, 1.10], with at least
+    15 usable games.
+- The pilot (2026-11-23, 80 of 80 episodes without error) passed it: GO.
+- Solved, of 20: `none` 4, at the lower edge of the window; `placebo` 4; `retrieved_task` 7; `mismatched_type` 6.
+- Mean length ratios on 20 games: `placebo` 0.984, `mismatched_type` 0.995.
+- The main run is reported in the NEMO-1 section below.
 
 ## DS-HARD-1: memory on a stronger API model, HARD mode
 
@@ -322,21 +346,129 @@ the HARD-mode floor, from 2 of 100 (`placebo`) to 22 of 100 (`retrieved_task`). 
 - **Power** (from the plan): a lift of 0.10 or more was well powered, about 0.85 to 0.9 with the futility stop. Below
   about 0.08, INCONCLUSIVE would have been the likeliest outcome.
 
+## NEMO-1: the DS-HARD-1 contrasts on Mistral Nemo 12B in the lab's normal mode
+
+**Setup.**
+- **Model:** as NEMO-FLOOR: Mistral Nemo 12B (`mistralai/mistral-nemo`) through OpenRouter, pinned to DeepInfra (FP8,
+  no fallbacks). All 33,689 calls in the recorded episodes were served by it.
+- **Settings:** temperature 0.7, kept from DS-HARD-1 although Mistral recommends 0.3 for this model; no seed, 50 steps,
+  one sample per cell.
+- **Mode: normal.** The prompt is the V6 instrument's own prompt, with the list of admissible actions, as in the lab's
+  Qwen runs. DS-HARD-1 used HARD mode.
+- **Design:** the DS-HARD-1 design on the same population.
+  - The same 200 games and 800 jobs: the jobs file is a byte copy of DS-HARD-1's.
+  - The same 4 arms and seed label 0; the placebo and control blocks matched in length with the Qwen tokenizer, through
+    DS-HARD-1's token cache.
+  - The same shown walkthroughs: in each of the 581 `placebo`, `retrieved_task` and `mismatched_type` episodes that
+    both runs recorded, the recorded memory sources equal DS-HARD-1's (counted from the private logs).
+- **Calls:** the main run on 2026-11-23, 05:26–21:41 UTC, after NEMO-FLOOR and after the r3 qualification pilot above.
+  The 20 pilot games are among the 200; the main run re-ran them, and the pilot episodes are not analysed.
+- **Plan:** revision r3, written on 2026-11-22 (file time 18:39 UTC), before any r3 data (first r3 pilot call
+  2026-11-23 03:44 UTC).
+  - Revisions: r1 in HARD mode (an internal design review by a Claude model, Sonnet, gave NO-GO); r2 in HARD mode with
+    the qualification pilot above (NO-GO); r3 in the normal mode, revised after a second internal design review (Sonnet).
+  - Two primaries, with Holm correction.
+  - The unit set is the complete games, those with all four arms recorded without an error. DS-HARD-1 used all
+    available pairs; the plan reports that as a sensitivity row.
+  - The plan's expectation, before the data: if DS-HARD-1's HARD-mode gain came from producing commands, the
+    admissible-action list removes that route and Q1 could be near zero.
+  - **Power** (from the plan): about 0.4 to 0.6 for a true difference of 0.10, so the plan named INCONCLUSIVE as the
+    likeliest outcome.
+
+**Completeness.**
+- 800 of 800 episodes, 200 complete games, 0 errors, one run with no resumes.
+- One agent version in all 800 episodes; 0 misses of the strict Qwen token cache.
+- Four `mismatched_type` games were excluded from Q2 and Q3 by the plan's length rule (|length difference| > 10%). All
+  four were unsolved in both Q2 arms, so they do not change Q2's gains and losses.
+- The blocks were matched in length with the Qwen tokenizer. Under Mistral's tokenizer, the mean length ratio to
+  `retrieved_task` (step-0 prompt minus `none`) was 0.985 for `placebo` (0.947 to 1.004) and 0.996 for `mismatched_type`
+  (0.858 to 1.046), on 200 games.
+
+**Cost.**
+- Main run: 2.632 USD over 33,775 calls (provider-reported 2.100 USD). Qualification pilot r3: 0.258 USD.
+- The cap was 4.9 USD on the total of all Mistral ledgers, NEMO-FLOOR included. The NEMO-1 ledgers (probe, smoke test,
+  both pilots, main run) total 3.215 USD; NEMO-FLOOR's 0.933 USD (above) is not in that total.
+
+Every question of the plan:
+
+| question | contrast | n | difference | 95% interval | gains / losses | p | plan verdict |
+|---|---|---:|---:|---|---:|---:|---|
+| Q1, primary | `retrieved_task` − `placebo` | 200 | +0.130 | [+0.054, +0.205] | 44 / 18 | 0.0026 (Holm) | POSITIVE |
+| Q2, primary | `retrieved_task` − `mismatched_type` | 196 | +0.082 | [+0.005, +0.157] | 37 / 21 | 0.048 (Holm) | POSITIVE |
+| Q3, secondary | `mismatched_type` − `none` | 196 | +0.041 | [−0.026, +0.108] | 26 / 18 | 0.29 (uncorrected) | — |
+| Q4, secondary | steps, `retrieved_task` − `none` | 200 | median paired difference 0 steps | — | — | Wilcoxon z = −4.28, p ≈ 1.9e-05 | — |
+| Q5, exploratory | Q1 within transform / other | 100 / 100 | +0.210 / +0.050; difference +0.160 | bootstrap [+0.010, +0.310] | — | — | — |
+| descriptive | `retrieved_task` − `none` | 200 | +0.115 | [+0.043, +0.186] | 39 / 16 | 0.0027 | — |
+| sensitivity | Q1 without the 20 pilot games | 180 | +0.139 | [+0.058, +0.218] | — | 0.0013 (uncorrected) | — |
+| sensitivity | Q2 without the 20 pilot games | 176 | +0.091 | [+0.009, +0.171] | — | 0.040 (uncorrected) | — |
+
+- Solved games: `none` 46, `placebo` 43, `retrieved_task` 69 and `mismatched_type` 53, of 200. `placebo` − `none` is
+  not a question of this plan, so it is not in the table; the per-game table gives it.
+- No floor or ceiling flag of the plan fired. Because every game is complete, the all-pairs sensitivity rows have the
+  same n, differences and intervals as the primary rows; their p values are unadjusted (0.0013 and 0.048).
+- The plan's classification rule, fixed before the data, gives "SAME PATTERN AS DS-HARD-1 (cross-model and
+  cross-mode)": both primaries POSITIVE, with no floor flag on Q2. The plan defines this as the same direction and
+  significance pattern on the same contrasts; it compares effect sizes only descriptively.
+- **Invalid commands.** In the normal mode an invalid command is one not on the admissible list. Per step: `none` 0.170,
+  `placebo` 0.200, `retrieved_task` 0.281, `mismatched_type` 0.223. The analyzer applies the plan's format flags only to
+  the untagged and no-tag counters (at most 0.002 per step in any arm). The plan does not say whether invalid commands
+  are a format counter. So more invalid commands with memory were not flagged, although `retrieved_task` − `placebo` is +0.081 per
+  step and every arm is above 0.10 per step.
+
+**Corrected claim.** In this side study, on Mistral Nemo 12B in ALFWorld V6 normal mode, two expert walkthroughs of the
+same task type raised the solve rate:
+- by +0.130 over the length-matched neutral filler (200 games);
+- by +0.082 over length-matched walkthroughs of another task type (196 games).
+
+Both meet the plan-defined POSITIVE rule after Holm correction; Q2 only just.
+
+**What it does not show.**
+- **Not a replication of DS-HARD-1.** The games, walkthroughs, arms and statistics are the same, but the model and the
+  prompt mode both differ. Effect sizes are compared only descriptively: DS-HARD-1 gave Q1 +0.218 and Q2 +0.159.
+- **Q2 is borderline.** Its Holm p is 0.048 and its interval's lower bound is +0.005. The lab's review noted that one
+  game's outcome changing could move p above 0.05 and the classification to the plan's "PARTIAL". With one sample per
+  cell and no seed, Q2 is weak support.
+- **Q2 does not separate procedural content from matched vocabulary, object names or concrete commands**, as in
+  DS-HARD-1. The control arm showed the same walkthroughs as there in every episode both runs recorded, so the exposure
+  imbalance described under DS-HARD-1 applies here as well (not recounted on NEMO-1's 196 games).
+- **Normal mode, not command production.** With the admissible list shown, memory can help by choosing among listed
+  commands. The result says nothing about producing commands. The plan had named a Q1 near zero as an outcome
+  consistent with DS-HARD-1 in this mode; Q1 was positive.
+- **Where the gain sits is exploratory (Q5).** Solved games by type (descriptive):
+
+  | type | games | `none` | `placebo` | `retrieved_task` | `mismatched_type` |
+  |---|---:|---:|---:|---:|---:|
+  | `pick_and_place` | 30 | 18 | 21 | 23 | 21 |
+  | `pick_two` | 38 | 7 | 8 | 7 | 5 |
+  | `look_at` | 32 | 12 | 8 | 12 | 7 |
+  | `pick_clean` | 34 | 3 | 1 | 5 | 7 |
+  | `pick_cool` | 34 | 3 | 2 | 10 | 6 |
+  | `pick_heat` | 32 | 3 | 3 | 12 | 7 |
+
+  - Of the net 26 games gained over `placebo`, 21 are transform games: heat 9, cool 8, clean 4.
+  - On `pick_two` and `look_at`, `retrieved_task` solved as many games as `none`.
+  - The transform types start near the floor without memory, so the split confounds task type with headroom.
+- **Q4 mostly mirrors success**, because failures count as 50 steps; the median paired difference is 0 steps.
+- **Limits:** one model at one pinned provider with FP8 weights, one environment (ALFWorld V6 `train` games), one sample
+  per cell, no reproducible sampling, and a temperature above the model's recommended one.
+
 ## Across the studies
 
-- **Models and modes are confounded.** The lab's V6 measures Qwen3-4B in normal mode; these studies measure DeepSeek V4.1
-  Flash and Mistral Nemo 12B in HARD mode. Any comparison of gain sizes, or of which task types gain, is descriptive.
-  Net games gained over `placebo`:
+- **Models and modes are confounded** between Qwen and the HARD-mode studies. The lab's V6 measures Qwen3-4B in normal
+  mode. These studies measure DeepSeek
+  V4.1 Flash in HARD mode, and Mistral Nemo 12B in HARD mode (NEMO-FLOOR) and in normal mode (NEMO-1). Any comparison of
+  gain sizes, or of which task types gain, is descriptive. Net games gained over `placebo`:
 
   | model (run) | net games | heat | clean and cool | `pick_and_place` |
   |---|---:|---:|---:|---:|
   | DeepSeek (DS-HARD-1) | 42 | 26 (62%) | 9 | — |
   | Qwen (V6 `per_unit.csv`, seed 0) | 39 | 10 (26%) | 27 | — |
-  | Mistral Nemo (NEMO-FLOOR) | 20 | 4 | — | 9 |
+  | Mistral Nemo (NEMO-FLOOR, HARD mode) | 20 | 4 | — | 9 |
+  | Mistral Nemo (NEMO-1, normal mode) | 26 | 9 (35%) | 12 | 2 |
 
   Whether the admissible-action list of the normal mode already supplies the heat command is an untested hypothesis.
-- **Same games, correlated results.** All studies use V6 games, and NEMO-FLOOR and DS-HARD-2 use subsets of the
-  DS-HARD-1 games. Outcomes are correlated through game difficulty; the studies are not independent samples of games.
+- **Same games, correlated results.** All studies use V6 games. NEMO-1 uses the DS-HARD-1 games, and NEMO-FLOOR and
+  DS-HARD-2 use subsets of them. Outcomes are correlated through game difficulty; the studies are not independent samples of games.
 - **Expert walkthroughs only.** All memory here is a bank of expert walkthroughs, not the agent's own earlier episodes.
 
 ## Source files
@@ -363,6 +495,13 @@ Their SHA-256 are commitments for a later release:
 | NEMO-FLOOR outputs `out_nemo_floor.jsonl` | `7cb69cd0ea815cb239fbd3f80e49f0c19f732f8590065f3f4ecdf22655fa9836` |
 | NEMO-FLOOR jobs `batch_nemo_floor.jsonl` | `f2afee508a86542f2df752cd8ac2202732846057dd6fe51c81790e723b145a7b` |
 | NEMO-1 pilot outputs `out_nemo_1_pilot.jsonl` | `4d759d857a0d5cceee7877e23bc939005709780d01778aaab6250449307c87fb` |
+| NEMO-1 plan `NEMO_1_PLAN.md` (r3) | `2b3f48e7cf488c45734c996466f5e8faf9319493e4028584394ea8a8baed53ff` |
+| NEMO-1 pilot r3 outputs `out_nemo_1_pilot_r3.jsonl` | `c9fd67e019672e673051954cc1c09245dc54a7dd2d5d33e72fcb8c43239d62cf` |
+| NEMO-1 pilot r3 result `PILOT_NEMO_1_r3.md` | `ac38608ccf04cf1fd024b8cf58bb34905988bf39227a38f127a7646a644dcb82` |
+| NEMO-1 result `RESULT_NEMO_1.md` | `b3b499be350f41fbc6cfdb6de093b7c28f8a793892378d73a7df07af3e26d52b` |
+| NEMO-1 summary `summary_nemo_1.json` | `d58f90c223fbb02020723e518caa2578afed1969a667a4c35fbf75692aee63ac` |
+| NEMO-1 outputs `out_nemo_1.jsonl` | `3eda895f601494a0ebaf86e08ddc4331b9a5ee8f73f31f48ad20cf9752f2b59c` |
+| NEMO-1 jobs `batch_nemo_1.jsonl` (equal to the DS-HARD-1 jobs) | `d2e42fa532391c7ea1c2d76d9ceb57314043cb26a48cf352663dc5e141a63d12` |
 | DeepSeek pilot rule `PILOT_RULE.md` | `a5d9ebea4adf5a8b82528fa033a02aa722610538eec985a35649854f5d41cf3d` |
 | DeepSeek pilot result `RESULT_PILOT.md` | `2e6895ec44d7cb251a550eaf8de163ab9e861b3669093fe3045b5acbc03bc767` |
 | HARD pilot rule `PILOT_HARD_RULE.md` | `68993794a950e2cddece3874c89a1c6a950a48ecb70198ee770aa8d51864035f` |

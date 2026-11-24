@@ -82,7 +82,7 @@ def test_tables_match_their_readme_and_use_only_published_games():
     readme = (RUNS / "README.md").read_text(encoding="utf-8")
     published = {u for name in ("autolab-alfworld-ladder-r4-v6", "autolab-alfworld-ladder-r4-v5b") for u, _ in _package(name)}
     tables = sorted(RUNS.glob("*.csv"))
-    assert len(tables) == 10
+    assert len(tables) == 12
     for path in tables:
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         assert re.search(rf"`{re.escape(path.name)}` \|.*`{digest}`", readme), path.name
@@ -168,12 +168,29 @@ def test_side_study_headlines():
     nf = _table("nemo-floor.csv")
     assert _pair(nf, _units(nf), "retrieved_task", "placebo")[:4] == (100, 20, 0, 0.2)
     assert [sum(v for (u, a), v in nf.items() if a == arm) for arm in ("none", "placebo", "retrieved_task")] == [1, 2, 22]
+    n1 = _table("nemo-1.csv")
+    n1q2 = _table("nemo-1.csv", drop_excluded=True)
+    us1 = _units(n1)
+    assert _pair(n1, us1, "retrieved_task", "placebo")[:4] == (200, 44, 18, 0.13)
+    assert _pair(n1q2, us1, "retrieved_task", "mismatched_type")[:4] == (196, 37, 21, 0.082)
+    assert _pair(n1q2, us1, "mismatched_type", "none")[:4] == (196, 26, 18, 0.041)
+    assert _pair(n1, us1, "retrieved_task", "none")[:4] == (200, 39, 16, 0.115)
+    assert _pair(n1, _units(n1, "transform"), "retrieved_task", "placebo")[:4] == (100, 24, 3, 0.21)
+    assert _pair(n1, _units(n1, "other"), "retrieved_task", "placebo")[:4] == (100, 20, 15, 0.05)
+    assert [sum(v for (u, a), v in n1.items() if a == arm) for arm in ("none", "placebo", "retrieved_task", "mismatched_type")] == [46, 43, 69, 53]
+    pilot_r3 = _table("nemo-1-pilot-r3.csv")
+    assert {u for u, _ in pilot_r3} <= set(us1)
+    assert [sum(v for (u, a), v in pilot_r3.items() if a == arm) for arm in ("none", "placebo", "retrieved_task", "mismatched_type")] == [4, 4, 7, 6]
+    rest = [u for u in us1 if u not in {u for u, _ in pilot_r3}]
+    assert _pair(n1, rest, "retrieved_task", "placebo")[:3] == (180, 41, 16)
+    assert _pair(n1q2, rest, "retrieved_task", "mismatched_type")[:3] == (176, 35, 19)
     for name, none, task in (("ds-pilot-normal.csv", 17, 20), ("ds-pilot-hard.csv", 13, 18)):
         t = _table(name)
         solved = {arm: sum(v for (u, a), v in t.items() if a == arm) for arm in ("none", "retrieved_task")}
         assert (solved["none"], solved["retrieved_task"]) == (none, task)
     text = _text(SIDE)
-    for needle in ("43 / 1", "32 / 2", "15 / 2", "18 / 3", "20 / 0", "17 / 20", "13 / 20"):
+    for needle in ("43 / 1", "32 / 2", "15 / 2", "18 / 3", "20 / 0", "17 / 20", "13 / 20", "44 / 18", "37 / 21", "26 / 18",
+                   "39 / 16"):
         assert needle in text, needle
 
 
