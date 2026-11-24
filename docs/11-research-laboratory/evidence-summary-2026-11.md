@@ -18,7 +18,8 @@ override it.
 - A bank of **expert walkthroughs**, not the agent's own earlier episodes.
 - Three models. Qwen3-4B in the normal mode (lab programs); DeepSeek V4.1 Flash in HARD mode; Mistral Nemo 12B in HARD
   mode (NEMO-FLOOR) and in the normal mode (NEMO-1). The last two are side studies. Model and mode are therefore
-  confounded in every comparison between models, except Qwen against NEMO-1, which share the normal mode.
+  confounded in every comparison between models, except Qwen against NEMO-1, which share the normal mode. That
+  comparison still differs in game set and provider, and is descriptive.
 
 ## Terms
 
@@ -53,7 +54,7 @@ Every run since V6 was published, including the ones not reported here:
 | V6 seed 1 | `placebo`, `retrieved_task` at seed 1, 300 games, Qwen | V6 addendum, section 1 | reported |
 | DeepSeek pilots | 20 games, normal and HARD mode | side-studies note | reported as pilots |
 | DS-HARD-1, DS-HARD-2 | DeepSeek V4.1 Flash, HARD mode | side-studies note | reported |
-| NEMO-1 smoke test | 5 API calls, one unfinished episode | — | not a result (no episode finished) |
+| Mistral probe and NEMO-1 smoke test | 1 and 5 API calls, one unfinished episode | — | not a result (no episode finished) |
 | NEMO-1 pilot, revision r2 | Mistral Nemo 12B, HARD mode, 20 games | side-studies note | reported as a pilot (NO-GO) |
 | NEMO-FLOOR | Mistral Nemo 12B, HARD mode, 100 games | side-studies note | reported |
 | NEMO-1 pilot, revision r3 | Mistral Nemo 12B, normal mode, the same 20 games | side-studies note | reported as a pilot (GO) |
@@ -102,10 +103,12 @@ Every run since V6 was published, including the ones not reported here:
   walkthroughs as DS-HARD-1 (side-studies note).
 
 **Limits:**
-- In both, the control repeats a few walkthroughs across many games:
+- In V5B and DS-HARD-1, the control repeats a few walkthroughs across many games (NEMO-1 shows the same control
+  walkthroughs as DS-HARD-1; not counted separately):
   - in V5B, its ten most used walkthroughs account for 131 of 402 uses;
   - in DS-HARD-1, for 105 of 378 uses (the matched arm: 44 of 378).
-- Neither separates knowing the procedure of the type from matched vocabulary, object names or concrete commands.
+- None of the three separates knowing the procedure of the type from matched vocabulary, object names or concrete
+  commands.
 - The side-study legs are one sample per cell. DS-HARD-1 and NEMO-1 share the games and the walkthroughs, so they are
   not independent samples.
 
@@ -120,13 +123,13 @@ Every run since V6 was published, including the ones not reported here:
 - The V6 interval is not `practical`.
 - The actions keep the verbs, objects and appliances. Both arms are padded to the full block length.
 
-### For Qwen, DeepSeek and Mistral Nemo in the normal mode, more of the gain over the filler falls in transform games (clean / cool / heat) than in the others
+### For Qwen, DeepSeek (HARD mode) and Mistral Nemo (normal mode only), more of the gain over the filler falls in transform games (clean / cool / heat) than in the others
 
 **Rests on** transform − other, the difference of the two stratum differences:
 - Qwen V6 against `placebo`: +0.232 [+0.103, +0.360] at seed 0 and +0.231 [+0.102, +0.361] at seed 1; two-seed means
   +0.231 [+0.129, +0.334] (V6 addendum, section 1).
 - DeepSeek DS-HARD-1 Q5: +0.297, bootstrap [+0.183, +0.402] (side-studies note).
-- Mistral Nemo NEMO-1 Q5: +0.160, bootstrap [+0.010, +0.310] (side-studies note).
+- Mistral Nemo NEMO-1 Q5: +0.160, bootstrap [+0.010, +0.310], lower bound near zero (side-studies note).
 
 **Limits:**
 - The split was chosen after V5B had shown where the gain sits, so it is exploratory.
@@ -201,7 +204,7 @@ section 1, per-type table).
   (side-studies note).
 
 **Reading:** "the gain is in heating" holds for DeepSeek in HARD mode only. Model and mode are confounded, except between
-Qwen and NEMO-1. One untested explanation is that the normal mode's admissible-action list already offers the heat
+Qwen and NEMO-1, whose comparison still differs in game set and provider. One untested explanation is that the normal mode's admissible-action list already offers the heat
 command.
 
 ### Do walkthroughs of another type help? (against `none`)

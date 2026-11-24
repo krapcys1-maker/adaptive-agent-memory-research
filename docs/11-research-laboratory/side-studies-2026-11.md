@@ -45,7 +45,8 @@ The models differ from V6, and every study except NEMO-1 also changes the prompt
   the Qwen tokenizer the lab used for V6.
 
 **Statistics, as fixed in the plans.**
-- The game is the unit. A game enters a contrast only if both arms finished.
+- The game is the unit. A game enters a contrast only if both arms finished (NEMO-1: only games with all four arms
+  recorded).
 - Each contrast is a paired difference of solve rates, with an exact two-sided McNemar test on the discordant pairs and
   a 95% Newcombe interval (method 10, paired).
 - Plan-defined verdict words:
@@ -84,11 +85,18 @@ The models differ from V6, and every study except NEMO-1 also changes the prompt
   - It found the plan followed, the data complete and the claim supported by the numbers.
   - It asked for two corrections before use, both applied in the NEMO-1 section: no "replication" wording, and a
     statement that Q2 is borderline.
+  - The committed result file and summary (SHA-256 at the end of this note) are unchanged, so they still carry three
+    defects that the review noted or that this note corrects. They cite the plan as "r2", although the rules applied
+    are r3's. The summary calls the study a "cross-model replication". The result file lacks the count of
+    wrapper-mapped token-cache lookups that the plan lists among its validity checks. The corrected wording exists only
+    in this note.
 - **Numeric re-verification of DS-HARD-1 and DS-HARD-2:** a Claude model (Sonnet). Internal.
 - **This note's recomputation:** scripts written by a Claude model that do not import the studies' analyzers.
   Internal.
   - All solve-rate numbers agree exactly with the result files. For NEMO-1 this includes the Newcombe intervals of Q1
     to Q3 and of `retrieved_task` − `none`.
+  - For NEMO-1, the following are taken from the result file and were not recomputed: Q4, the Q5 bootstrap interval,
+    the intervals of the sensitivity rows, the per-step counters, the length ratios and the costs.
   - The step statistics agree with them.
   - Bootstrap intervals agree only approximately, because they depend on the random stream; the note gives the result
     file's values.
@@ -121,14 +129,18 @@ times). Neither rule judged memory: with 20 games, a solve-rate difference is a 
   - too few episodes without error;
   - too few games with a usable length ratio.
 - This pilot motivated NEMO-FLOOR. Its 20 games are excluded from NEMO-FLOOR, because their outcomes had been seen.
-- **NEMO-1 revision r3, normal mode.** NEMO-1 was then re-planned for the normal mode (r3), on the same 20 pilot games.
-  - Its rule, written before the data: GO only if `none` solves 4 to 16 of 20, at least 90% of the 80 episodes end
-    without an error, and the Mistral-token length ratios of `placebo` and `mismatched_type` lie in [0.90, 1.10] on at
-    least 15 games.
-  - The pilot (2026-11-23, 80 of 80 episodes without error) passed it: GO.
-  - Solved, of 20: `none` 4, at the lower edge of the window; `placebo` 4; `retrieved_task` 7; `mismatched_type` 6.
-  - Mean length ratios on 20 games: `placebo` 0.984, `mismatched_type` 0.995.
-  - The main run is reported in the NEMO-1 section below.
+
+**Mistral Nemo qualification pilot, revision r3** (normal mode; the same 20 V6 games; 4 arms). NEMO-1 was then
+re-planned for the normal mode (r3). Its qualification pilot used the same 20 games as the r2 pilot.
+- Its rule, written before the data, gives GO only if all of these hold:
+  - `none` solves 4 to 16 of 20;
+  - at least 90% of the 80 episodes end without an error;
+  - the mean Mistral-token length ratio of `placebo`, and that of `mismatched_type`, lies in [0.90, 1.10], with at least
+    15 usable games.
+- The pilot (2026-11-23, 80 of 80 episodes without error) passed it: GO.
+- Solved, of 20: `none` 4, at the lower edge of the window; `placebo` 4; `retrieved_task` 7; `mismatched_type` 6.
+- Mean length ratios on 20 games: `placebo` 0.984, `mismatched_type` 0.995.
+- The main run is reported in the NEMO-1 section below.
 
 ## DS-HARD-1: memory on a stronger API model, HARD mode
 
@@ -346,8 +358,8 @@ the HARD-mode floor, from 2 of 100 (`placebo`) to 22 of 100 (`retrieved_task`). 
   - The same 200 games and 800 jobs: the jobs file is a byte copy of DS-HARD-1's.
   - The same 4 arms and seed label 0; the placebo and control blocks matched in length with the Qwen tokenizer, through
     DS-HARD-1's token cache.
-  - The same shown walkthroughs: in each of the 581 memory-arm episodes that both runs recorded, they equal
-    DS-HARD-1's (counted from the private logs).
+  - The same shown walkthroughs: in each of the 581 `placebo`, `retrieved_task` and `mismatched_type` episodes that
+    both runs recorded, the recorded memory sources equal DS-HARD-1's (counted from the private logs).
 - **Calls:** the main run on 2026-11-23, 05:26–21:41 UTC, after NEMO-FLOOR and after the r3 qualification pilot above.
   The 20 pilot games are among the 200; the main run re-ran them, and the pilot episodes are not analysed.
 - **Plan:** revision r3, written before any r3 data on 2026-11-22 (evidence: file times).
@@ -395,9 +407,9 @@ Every question of the plan:
   cross-mode)": both primaries POSITIVE, with no floor flag on Q2. The plan defines this as the same direction and
   significance pattern on the same contrasts; it compares effect sizes only descriptively.
 - **Invalid commands.** In the normal mode an invalid command is one not on the admissible list. Per step: `none` 0.170,
-  `placebo` 0.200, `retrieved_task` 0.281, `mismatched_type` 0.223. The plan's format check covers only the untagged and
-  no-tag answers (at most 0.002 per step in any arm), and the plan does not say whether this counter is a format
-  counter. So more invalid commands with memory were not flagged, although `retrieved_task` − `placebo` is +0.081 per
+  `placebo` 0.200, `retrieved_task` 0.281, `mismatched_type` 0.223. The analyzer applies the plan's format flags only to
+  the untagged and no-tag counters (at most 0.002 per step in any arm). The plan does not say whether invalid commands
+  are a format counter. So more invalid commands with memory were not flagged, although `retrieved_task` − `placebo` is +0.081 per
   step and every arm is above 0.10 per step.
 
 **Corrected claim.** In this side study, on Mistral Nemo 12B in ALFWorld V6 normal mode, two expert walkthroughs of the

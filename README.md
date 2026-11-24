@@ -56,23 +56,30 @@ Related: [the preregistered placebo study K1](data/lab/aamr-k1/README.md); [the 
 
 ## Side studies (outside the lab pipeline)
 
-These runs are **not lab programs**. They had no envelope, no instrument review, no positive control and no lab code
-audit, and they carry no lab state or direction status: where the lab's results above apply, those rule. All runs are
-exploratory. Each run except K1 had a plan or rule written before its data; these plans are not published, and only
-file times show that they came first. "Plan-defined" verdict words are the plans' own. K1's frozen specification is
-published with it. All were planned, run and analysed by Claude sessions. Per-game outcomes are in
-[`data/lab/side-runs-2026-11/`](data/lab/side-runs-2026-11/README.md), and the evidence is graded in [what we know so far](docs/11-research-laboratory/evidence-summary-2026-11.md).
+These runs are **not lab programs**, and they carry no lab state or direction status: where the lab's results above
+apply, those rule.
 
-| study | model, environment | main contrast and result | checked by |
+- **The ALFWorld rows** (all except K1) are exploratory side runs. They had no envelope, no instrument review, no
+  positive control and no lab code audit. They were run and analysed by Claude sessions.
+  - Each had a plan or rule written before its data. These plans are not published, and only file times show that they
+    came first.
+  - The verdict words (POSITIVE and so on) are the plans' own, not the lab's states.
+  - Their per-game outcomes are in [`data/lab/side-runs-2026-11/`](data/lab/side-runs-2026-11/README.md). They are graded
+    in [what we know so far](docs/11-research-laboratory/evidence-summary-2026-11.md).
+- **K1** is an earlier study on BFCL tasks, with a preregistered, frozen specification, and not an autolab program. Its
+  own record, with its specification and per-episode outcomes, is at the link. It is not graded in the evidence summary,
+  which covers ALFWorld only.
+
+| study | model, environment | main contrast and result (verdict words: the study plan's) | checked by |
 |---|---|---|---|
-| [DS-HARD-1](docs/11-research-laboratory/side-studies-2026-11.md#ds-hard-1-memory-on-a-stronger-api-model-hard-mode) | DeepSeek V4.1 Flash, ALFWorld V6 games (200 planned, 195 with records), HARD mode (no admissible-action list) | `retrieved_task` − `placebo` +0.218 [+0.158, +0.282] on 193 games, plan-defined POSITIVE. Against walkthroughs of another task type: +0.159, also POSITIVE | lab science review by a GPT model (another family); it corrected the wording of the claim |
+| [DS-HARD-1](docs/11-research-laboratory/side-studies-2026-11.md#ds-hard-1-memory-on-a-stronger-api-model-hard-mode) | DeepSeek V4.1 Flash, ALFWorld V6 games (200 planned, 195 with records), HARD mode (no admissible-action list) | `retrieved_task` − `placebo` +0.218 [+0.158, +0.282] on 193 games, POSITIVE. Against walkthroughs of another task type: +0.159, also POSITIVE | lab science review by a GPT model (another family); it corrected the wording of the claim |
 | [DS-HARD-2](docs/11-research-laboratory/side-studies-2026-11.md#ds-hard-2-which-form-of-the-walkthroughs-carries-the-gain) | DeepSeek V4.1 Flash, 100 of those games, HARD mode | Over `placebo`: the walkthroughs' actions alone +0.150 [+0.062, +0.240]; a plan without numbers or room-specific locations +0.130 [+0.051, +0.213]. Both POSITIVE; plan − actions −0.020, inside ±0.10 | lab science review by a GPT model (another family) |
-| [DeepSeek pilots (DS-PILOT-1, DS-PILOT-HARD-1)](docs/11-research-laboratory/side-studies-2026-11.md#the-pilots-that-chose-the-task-pilots-not-tests) | DeepSeek V4.1 Flash, 20 V6 games, normal and HARD mode | Feasibility only, not a memory test: `none` 17 / 20 and `retrieved_task` 20 / 20 in normal mode left no headroom, so HARD mode was chosen (13 / 20 and 18 / 20) | pilots; not reviewed |
+| [DeepSeek pilots](docs/11-research-laboratory/side-studies-2026-11.md#the-pilots-that-chose-the-task-pilots-not-tests) | DeepSeek V4.1 Flash, 20 V6 games, normal and HARD mode | Feasibility only, not a memory test: `none` 17 / 20 and `retrieved_task` 20 / 20 in normal mode left almost no headroom, so HARD mode was chosen (13 / 20 and 18 / 20) | pilots; not reviewed |
 | [D8 on V6](docs/11-research-laboratory/errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md#2-the-d8-instruction-arm-on-the-v6-games) | Qwen3-4B, 300 V6 games, normal mode | On transform games, one sentence stating the clean / cool / heat convention: +0.066 [−0.024, +0.154] over `none`. The walkthroughs beat it by +0.152 [+0.055, +0.245]. Both are comparisons across runs | internal recomputation only (Claude) |
 | [V5B seed 1](docs/11-research-laboratory/errata/2026-11-23-alfworld-ladder-r4-v5b-seed1-addendum.md) | Qwen3-4B, 201 V5B games, normal mode | `retrieved_task` − `none` +0.174 (55 / 20) at seed 1, against +0.109 at seed 0. A consistency check on the same games, not a replication | internal recomputation only (Claude) |
 | [V6 seed 1](docs/11-research-laboratory/errata/2026-11-23-alfworld-ladder-r4-v6-seed1-and-d8-addendum.md#1-the-primary-contrast-at-a-second-seed) | Qwen3-4B, 300 V6 games, normal mode | `retrieved_task` − `placebo` +0.157 (78 / 31) at seed 1, against +0.130 at seed 0; two-seed estimate +0.143 [+0.090, +0.196]. Not a lab verdict | internal recomputation only (Claude) |
 | [NEMO-FLOOR](docs/11-research-laboratory/side-studies-2026-11.md#nemo-floor-can-walkthroughs-lift-a-weak-12b-model-off-the-hard-mode-floor) | Mistral Nemo 12B, 100 of the DS-HARD-1 games, HARD mode | `retrieved_task` − `placebo` +0.200 [+0.122, +0.289], 20 / 0, POSITIVE. A floor lift from 2 to 22 solved games of 100, not a general memory gain | science review by Fable (same model family as the authors) |
-| [NEMO-1](docs/11-research-laboratory/side-studies-2026-11.md#nemo-1-the-ds-hard-1-contrasts-on-mistral-nemo-12b-in-the-labs-normal-mode) | Mistral Nemo 12B, the 200 DS-HARD-1 games, normal mode | `retrieved_task` − `placebo` +0.130 [+0.054, +0.205], POSITIVE. Against walkthroughs of another task type: +0.082 [+0.005, +0.157], POSITIVE but borderline (Holm p = 0.048). The same contrasts as DS-HARD-1, but with another model and prompt mode, so not a replication | lab science review by Fable (same model family as the authors) |
+| [NEMO-1](docs/11-research-laboratory/side-studies-2026-11.md#nemo-1-the-ds-hard-1-contrasts-on-mistral-nemo-12b-in-the-labs-normal-mode) | Mistral Nemo 12B, the 200 DS-HARD-1 games, normal mode | `retrieved_task` − `placebo` +0.130 [+0.054, +0.205], POSITIVE. Against walkthroughs of another task type: +0.082 [+0.005, +0.157], POSITIVE but borderline (Holm p = 0.048). The same contrasts as DS-HARD-1, but with another model and prompt mode, so not a replication | lab science review by Fable (same model family as the authors); it asked for two wording corrections, applied |
 | [K1](data/lab/aamr-k1/README.md) | Qwen2.5 14B, 148 BFCL multi-turn tasks | Memory − length-matched neutral prose: +2.7 pp [−6.0; 11.4]. Not decided at the registered 10 pp level. A preregistered study with a frozen specification, not an autolab program | mechanical closure check passed; solve counts re-derived, contrasts not; no published scientific interpretation |
 
 ## Help in five minutes
